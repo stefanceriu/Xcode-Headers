@@ -18,8 +18,8 @@
     NSSet *_omcIdentifiers;
 }
 
-+ (id)entitlementS;
-+ (id)entitlementO;
++ (id)paymentPassAccessEntitlement;
++ (id)inAppPaymentsEntitlement;
 + (id)userNameForFlag:(id)arg1;
 @property(readonly) NSSet *omcIdentifiers; // @synthesize omcIdentifiers=_omcIdentifiers;
 @property(readonly) NSSet *applicationGroups; // @synthesize applicationGroups=_applicationGroups;

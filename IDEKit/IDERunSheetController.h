@@ -8,7 +8,7 @@
 
 #import "NSWindowDelegate.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTReplacementView, IDEExecutionEnvironment, IDENavigableItemCoordinator, IDENavigatorDataCell, IDENavigatorOutlineView, IDEScheme, IDESchemeAction, IDESchemeCommand, IDESchemePathControlViewController, IDEWorkspace, NSArray, NSArrayController, NSButton, NSImageView, NSString, NSTextField, NSView, NSWindow;
+@class DVTBorderedView, DVTObservingToken, DVTReplacementView, IDEExecutionEnvironment, IDENavigableItemAsyncFilteringCoordinator, IDENavigatorDataCell, IDENavigatorOutlineView, IDEScheme, IDESchemeAction, IDESchemeCommand, IDESchemePathControlViewController, IDEWorkspace, NSArray, NSArrayController, NSButton, NSImageView, NSString, NSTextField, NSView, NSWindow;
 
 @interface IDERunSheetController : IDEViewController <NSWindowDelegate>
 {
@@ -24,12 +24,13 @@
     NSView *contentView;
     NSButton *_sharedButton;
     NSImageView *_schemeImage;
+    NSArray *_phaseModels;
     NSArray *_phaseModelNavigables;
     IDENavigatorDataCell *_phaseCell;
     IDENavigatorDataCell *_subphaseCell;
     NSWindow *_workspaceWindow;
     IDEWorkspace *_workspace;
-    IDENavigableItemCoordinator *_navigableItemCoordinator;
+    IDENavigableItemAsyncFilteringCoordinator *_navigableItemCoordinator;
     IDESchemePathControlViewController *_pathControlViewController;
     DVTObservingToken *_runContextObservingToken;
     DVTObservingToken *_runContextClosingObservingToken;
@@ -57,6 +58,7 @@
 + (void)beginSheetForWindow:(id)arg1 workspaceWindow:(id)arg2 editingIdentity:(BOOL)arg3 forSchemeCommand:(id)arg4 okButtonReflectsSchemeCommand:(BOOL)arg5 showDoneButton:(BOOL)arg6 completionHandler:(CDUnknownBlockType)arg7;
 + (id)sheetOpeningLogAspect;
 @property(copy) NSArray *phaseModelNavigables; // @synthesize phaseModelNavigables=_phaseModelNavigables;
+@property(copy) NSArray *phaseModels; // @synthesize phaseModels=_phaseModels;
 @property(retain) IDESchemeAction *selectedRunPhase; // @synthesize selectedRunPhase=_selectedRunPhase;
 @property BOOL isDetailViewContentBound; // @synthesize isDetailViewContentBound=_isDetailViewContentBound;
 @property Class viewControllerClassForSelectedRunPhase; // @synthesize viewControllerClassForSelectedRunPhase=_viewControllerClassForSelectedRunPhase;
@@ -98,7 +100,6 @@
 - (void)_setUpDetailView;
 - (void)_setUpMainUI;
 - (void)_updatePhaseNavigables;
-- (void)_invalidatePhaseNavigables;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

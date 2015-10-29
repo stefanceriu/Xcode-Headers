@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEIODebugGaugesCore/IDEIOGaugeDebuggingAddition.h>
+#import <IDEIODebugGaugesCore/IDEGaugeDebuggingAddition.h>
 
 @class NSArray, NSDate, NSNumber;
 
-@interface IDENetworkIOGaugeDebuggingAddition : IDEIOGaugeDebuggingAddition
+@interface IDENetworkIOGaugeDebuggingAddition : IDEGaugeDebuggingAddition
 {
     NSDate *_updateTime;
     NSNumber *_rxBytesPerSecond;
@@ -26,7 +26,10 @@
     NSArray *_connections;
 }
 
++ (id)reportDataQueryAttributes;
++ (id)requiredDataQueryAttribute;
 + (id)basicDataQueryAttributes;
++ (BOOL)shouldInstantiateInLaunchSession:(id)arg1;
 @property(readonly, nonatomic) NSArray *connections; // @synthesize connections=_connections;
 @property(readonly, nonatomic) NSArray *txPacketsDeltas; // @synthesize txPacketsDeltas=_txPacketsDeltas;
 @property(readonly, nonatomic) NSArray *rxPacketsDeltas; // @synthesize rxPacketsDeltas=_rxPacketsDeltas;

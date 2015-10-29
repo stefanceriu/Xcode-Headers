@@ -17,6 +17,8 @@ __attribute__((visibility("hidden")))
 + (id)moveByX:(double)arg1 y:(double)arg2 z:(double)arg3 duration:(double)arg4;
 + (id)moveBy:(struct SCNVector3)arg1 duration:(double)arg2;
 + (BOOL)supportsSecureCoding;
+- (id)parameters;
+- (BOOL)isRelative;
 - (id)reversedAction;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;

@@ -6,9 +6,11 @@
 
 #import <IDEKit/IDEDebugBarContentProvider.h>
 
-@class DVTObservingToken, IDENavigableItem, IDENavigableItemCoordinator, IDEPathControl, NSArray;
+#import "IDEPathCellDelegate.h"
 
-@interface IDEStackFrameDebugBarContentProvider : IDEDebugBarContentProvider
+@class DVTNotificationToken, DVTObservingToken, IDENavigableItem, IDENavigableItemCoordinator, IDEPathControl, NSArray, NSString;
+
+@interface IDEStackFrameDebugBarContentProvider : IDEDebugBarContentProvider <IDEPathCellDelegate>
 {
     IDEPathControl *_pathControl;
     IDENavigableItemCoordinator *_navigableItemCoordinator;
@@ -19,17 +21,18 @@
     DVTObservingToken *_selectedNavigableItemFrameObserverToken;
     DVTObservingToken *_debugSessionStateObserverToken;
     DVTObservingToken *_launchSessionStateObserverToken;
+    DVTObservingToken *_executionEnvironmentObserverToken;
+    DVTNotificationToken *_forgetNavigableItemsObserverToken;
     BOOL _handlingSetSelectedItem;
 }
 
 + (id)keyPathsForValuesAffectingNavigableDebugItems;
 + (BOOL)automaticallyNotifiesObserversOfSelectedItem;
 + (Class)debugSessionControllerClass;
-+ (id)assetBundle;
-@property(retain) IDEPathControl *pathControl; // @synthesize pathControl=_pathControl;
 @property(retain, nonatomic) IDENavigableItem *selectedItem; // @synthesize selectedItem=_selectedItem;
 @property(retain, nonatomic) IDENavigableItem *rootNavigableItem; // @synthesize rootNavigableItem=_rootNavigableItem;
 @property(readonly) IDENavigableItemCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
+@property(retain) IDEPathControl *pathControl; // @synthesize pathControl=_pathControl;
 - (void).cxx_destruct;
 - (double)xOffsetForSharedLibrariesPopUpAnchoredOnDebugBar:(id)arg1;
 - (struct CGRect)additionalGrabRectOfDebugBar:(id)arg1 inTermsOfView:(id)arg2;
@@ -37,19 +40,24 @@
 - (void)_selectItemBasedOnDebugSessionState;
 - (void)_handleDebugBarSelectedModelItemChanged;
 - (void)wasAttachedToDebugBar:(id)arg1;
+- (id)pathCell:(id)arg1 childItemsForItem:(id)arg2;
 - (void)_forgetNavigableItems:(id)arg1;
 - (void)currentStackFrameDidChange:(id)arg1;
+@property(readonly) BOOL hasRealDebugSession;
 - (void)currentDebugSessionStateDidChange;
 - (void)currentDebugSessionDidChange;
-- (void)workspaceDidFinishLoading;
 - (BOOL)_userIsCurrentlyCPUDebugging;
-@property(readonly) NSArray *navigableDebugItems; // @dynamic navigableDebugItems;
+@property(readonly) NSArray *navigableDebugItems;
 - (void)_retrySetSelectedItem;
 - (void)_simpleSetSelectedItemWithKVO:(id)arg1;
 - (void)removeRootNavigableItemFromCoordinator;
-- (void)updateBoundContent;
-- (id)domainIdentifier;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

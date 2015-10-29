@@ -29,14 +29,6 @@ struct CGSize {
     double height;
 };
 
-struct FSEventStreamContext {
-    long long version;
-    void *info;
-    CDUnknownFunctionPointerType retain;
-    CDUnknownFunctionPointerType release;
-    CDUnknownFunctionPointerType copyDescription;
-};
-
 struct NodeMovePair;
 
 struct PolyEditor {
@@ -72,6 +64,20 @@ struct Vertex {
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
+};
+
+struct map<std::__1::basic_string<char>, CGImage *, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, CGImage *>>> {
+    struct __tree<std::__1::__value_type<std::__1::basic_string<char>, CGImage *>, std::__1::__map_value_compare<std::__1::basic_string<char>, std::__1::__value_type<std::__1::basic_string<char>, CGImage *>, std::__1::less<std::__1::basic_string<char>>, true>, std::__1::allocator<std::__1::__value_type<std::__1::basic_string<char>, CGImage *>>> {
+        struct __tree_node<std::__1::__value_type<std::__1::basic_string<char>, CGImage *>, void *> *__begin_node_;
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<std::__1::basic_string<char>, CGImage *>, void *>>> {
+            struct __tree_end_node<std::__1::__tree_node_base<void *>*> {
+                struct __tree_node_base<void *> *__left_;
+            } __first_;
+        } __pair1_;
+        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<std::__1::basic_string<char>, std::__1::__value_type<std::__1::basic_string<char>, CGImage *>, std::__1::less<std::__1::basic_string<char>>, true>> {
+            unsigned long long __first_;
+        } __pair3_;
+    } __tree_;
 };
 
 struct vector<NodeMovePair, std::__1::allocator<NodeMovePair>> {

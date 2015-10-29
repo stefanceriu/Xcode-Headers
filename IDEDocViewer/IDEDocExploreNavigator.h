@@ -26,8 +26,8 @@
 
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (void)initialize;
-+ (id)docNavigatorBackgroundColor;
 @property(retain) IDEDocExploreOutlineView *docSetsOutlineView; // @synthesize docSetsOutlineView=_docSetsOutlineView;
 - (void).cxx_destruct;
 - (id)stateSavingExpandedItems;
@@ -51,7 +51,6 @@
 - (long long)outlineView:(id)arg1 numberOfChildrenOfItem:(id)arg2;
 - (BOOL)outlineView:(id)arg1 isItemExpandable:(id)arg2;
 - (id)outlineView:(id)arg1 child:(long long)arg2 ofItem:(id)arg3;
-- (id)outlineView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
 - (void)_loadEditorWithSelectedNode;
 - (void)docSetWillBeUnloadedOrUpdated:(id)arg1;
 - (void)docSetDidUnload:(id)arg1;

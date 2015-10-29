@@ -21,16 +21,24 @@
 - (id)description;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 - (id)_initWithID:(id)arg1 revision:(id)arg2 service:(id)arg3 botCreators:(id)arg4 botViewers:(id)arg5 hostedRepositoryCreators:(id)arg6 validationErrors:(id *)arg7;
+- (id)initWithBotCreators:(id)arg1 botViewers:(id)arg2 hostedRepositoryCreators:(id)arg3 validationErrors:(id *)arg4;
+- (void)setDefaultHostedRepositoryCreators;
 - (BOOL)removeHostedRepositoryCreators:(id)arg1 validationErrors:(id *)arg2;
 - (BOOL)addHostedRepositoryCreators:(id)arg1 validationErrors:(id *)arg2;
 @property(readonly, nonatomic) NSArray *hostedRepositoryCreators;
+- (void)setDefaultBotViewers;
 - (BOOL)removeBotViewers:(id)arg1 validationErrors:(id *)arg2;
 - (BOOL)addBotViewers:(id)arg1 validationErrors:(id *)arg2;
 @property(readonly, nonatomic) NSArray *botViewers;
+- (void)setDefaultBotCreators;
 - (BOOL)removeBotCreators:(id)arg1 validationErrors:(id *)arg2;
 - (BOOL)addBotCreators:(id)arg1 validationErrors:(id *)arg2;
 @property(readonly, nonatomic) NSArray *botCreators;
-- (id)initWithBotCreators:(id)arg1 botViewers:(id)arg2 hostedRepositoryCreators:(id)arg3 validationErrors:(id *)arg4;
+- (void)clearHostedRepositoryCreators;
+- (void)clearBotViewers;
+- (void)clearBotCreators;
+- (void)clearACL;
+- (void)setDefaultACL;
 
 // Remaining properties
 @property(retain, nonatomic) NSMutableSet *internalBotCreators; // @dynamic internalBotCreators;

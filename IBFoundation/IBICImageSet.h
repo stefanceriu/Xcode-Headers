@@ -4,37 +4,42 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IBFoundation/IBICMappedMultipartImage.h>
+#import <IBFoundation/IBICSlottedAsset.h>
 
-@interface IBICImageSet : IBICMappedMultipartImage
+@interface IBICImageSet : IBICSlottedAsset
 {
     long long _templateRenderingIntent;
 }
 
-+ (id)pluralTypeNameForIssues;
-+ (id)typeNameForIssues;
-+ (id)fileExtension;
-+ (id)defaultInstanceForPlatforms:(id)arg1;
-+ (id)defaultImageName;
-+ (double)currentContentsJSONVersionNumber;
-+ (double)latestUnderstoodContentsJSONVersionNumber;
-+ (double)earliestUnderstoodContentsJSONVersionNumber;
-+ (Class)imageRepClass;
++ (id)importPriority;
++ (id)contentReferenceTypeName;
++ (id)classNameComponents;
++ (id)catalogItemFileExtension;
++ (id)defaultInstanceForIdioms:(id)arg1 enforceStrictIdioms:(BOOL)arg2;
++ (id)defaultName;
++ (Class)assetRepClass;
 @property(nonatomic) long long templateRenderingIntent; // @synthesize templateRenderingIntent=_templateRenderingIntent;
-- (id)infoDictionary;
-- (void)replaceChildrenFromFileSystemSnapshot:(id)arg1 results:(id)arg2;
-- (id)validatedContentsJSONInfoFromSnapshot:(id)arg1 results:(id)arg2;
+- (void)enumerateSizeProvidingItemsForValidatingBrandAssetCollection:(CDUnknownBlockType)arg1;
+- (id)enclosingSpriteAtlas;
+- (id)suggestionSetMaskForSuggestionSet:(id)arg1;
+- (id)requiredCounterpartsMask;
+- (id)existingScaleAndSizeClassMask;
+- (id)existingSizeClassAndGPUMask;
+- (CDStruct_550fdc95)taggingSupport;
+- (void)manifestArchivist:(id)arg1 populateManifest:(id)arg2;
+- (void)manifestArchivist:(id)arg1 applyPropertiesFromManifest:(id)arg2;
+- (BOOL)manifestArchivist:(id)arg1 validateManifest:(id)arg2 results:(id)arg3;
 - (void)enumerateDescriptionAttributeComponents:(CDUnknownBlockType)arg1;
-- (void)populateContentsJSONImageEntry:(id)arg1 forImageRep:(id)arg2;
-- (BOOL)shouldIncludeImageRepInContentsJSON:(id)arg1;
-- (id)suggestedFileNameForImageRepInSlot:(id)arg1;
-- (id)imageRepFromImageEntry:(id)arg1 results:(id)arg2;
-- (double)latestUnderstoodContentsJSONVersionNumber;
-- (id)descriptionShortClassName;
+- (void)manifestArchivist:(id)arg1 populateManifestEntry:(id)arg2 forChild:(id)arg3;
+- (BOOL)manifestArchivist:(id)arg1 childHasDataToRecordInManifest:(id)arg2;
+- (void)manifestArchivist:(id)arg1 applyPropertiesFromChildEntry:(id)arg2 toChild:(id)arg3 results:(id)arg4;
+- (id)intrinsicallyOrderedChildren;
+- (id)children;
+- (id)assetRepForStructuredIdentifier:(id)arg1;
 - (id)childForIdentifier:(id)arg1;
-- (id)imageRepForIdentifier:(id)arg1;
-- (id)imageRepForImageRepIdentifier:(id)arg1;
-- (id)imageRepForSlot:(id)arg1;
+- (id)assetRepForIdentifier:(id)arg1;
+- (id)assetRepForSlot:(id)arg1;
+- (id)initializeManifestArchivist;
 
 @end
 

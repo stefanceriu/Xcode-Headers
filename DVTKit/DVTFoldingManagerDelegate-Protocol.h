@@ -6,10 +6,13 @@
 
 #import "NSObject.h"
 
-@class DVTFoldingManager;
+@class DVTFoldingManager, NSArray;
 
 @protocol DVTFoldingManagerDelegate <NSObject>
 - (void)foldingManager:(DVTFoldingManager *)arg1 didUnfoldRange:(struct _NSRange)arg2;
 - (void)foldingManager:(DVTFoldingManager *)arg1 didFoldRange:(struct _NSRange)arg2;
+
+@optional
+- (NSArray *)directoriesForLiteralFoldInManager:(DVTFoldingManager *)arg1;
 @end
 

@@ -30,7 +30,6 @@
 @property int simulatedApplicationPID; // @synthesize simulatedApplicationPID=_simulatedApplicationPID;
 @property(retain, nonatomic) id <DTiPhoneSimulatorSessionDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (int)connectToServiceWithError:(id *)arg1;
 - (void)doUbiquityFetchEvent;
 - (void)doFetchEventForPID:(int)arg1;
 - (void)backgroundAllApps:(int)arg1;

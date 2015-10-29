@@ -6,7 +6,7 @@
 
 #import "IDEViewController.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTStackView_AppKitAutolayout, NSScrollView, NSTextField;
+@class DVTBorderedView, DVTStackView_AppKitAutolayout, NSScrollView, NSTextField;
 
 @interface IDEProductsUtilityViewController : IDEViewController
 {
@@ -17,13 +17,11 @@
     NSScrollView *_infoPaneScrollView;
     DVTBorderedView *_borderedView;
     NSTextField *_typeTextField;
-    DVTObservingToken *_currentInspectableObservingToken;
 }
 
 + (id)keyPathsForValuesAffectingShouldShowEmptyMessage;
 + (id)utilityPaneExtensionForIdentifier:(id)arg1;
 + (id)utilityExtensionForIdentifier:(id)arg1;
-@property(retain) DVTObservingToken *currentInspectableObservingToken; // @synthesize currentInspectableObservingToken=_currentInspectableObservingToken;
 @property __weak NSTextField *typeTextField; // @synthesize typeTextField=_typeTextField;
 @property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property __weak NSScrollView *infoPaneScrollView; // @synthesize infoPaneScrollView=_infoPaneScrollView;
@@ -36,6 +34,7 @@
 - (id)_descriptionPaneWithExtension:(id)arg1;
 - (id)_detailPaneWithExtension:(id)arg1;
 - (id)_doubleButtonPaneWithButtons:(id)arg1;
+- (id)_singleButtonPaneWithButton:(id)arg1 busyIndicatorKeyPath:(id)arg2 primary:(BOOL)arg3;
 - (id)_singleButtonPaneWithButton:(id)arg1 primary:(BOOL)arg2;
 - (id)_buttonPaneWithExtension:(id)arg1;
 - (void)_updateLayout;

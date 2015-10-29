@@ -6,16 +6,16 @@
 
 #import <IDEKit/IDESourceControlOperationInfo.h>
 
-@class IDESourceControlBranch, IDESourceControlRepository;
+@class DVTSourceControlBranch, DVTSourceControlRemoteRepository;
 
 @interface IDESourceControlPushOperationInfo : IDESourceControlOperationInfo
 {
-    IDESourceControlRepository *_remote;
-    IDESourceControlBranch *_remoteBranch;
+    DVTSourceControlRemoteRepository *_remote;
+    DVTSourceControlBranch *_remoteBranch;
 }
 
-@property(retain) IDESourceControlBranch *remoteBranch; // @synthesize remoteBranch=_remoteBranch;
-@property(retain) IDESourceControlRepository *remote; // @synthesize remote=_remote;
+@property(retain) DVTSourceControlBranch *remoteBranch; // @synthesize remoteBranch=_remoteBranch;
+@property(retain) DVTSourceControlRemoteRepository *remote; // @synthesize remote=_remote;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (id)processInfoWithProgressBlock:(CDUnknownBlockType)arg1 isSingleOperation:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;

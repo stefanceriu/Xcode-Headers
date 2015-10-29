@@ -44,6 +44,7 @@
 @property(retain, nonatomic) NSMutableURLRequest *request; // @synthesize request=_request;
 @property(retain, nonatomic) NSString *UUID; // @synthesize UUID=_UUID;
 - (void).cxx_destruct;
+- (id)identityRefUsingKeychainPath:(id)arg1 password:(id)arg2 error:(id *)arg3;
 - (id)httpCredentialWithError:(id *)arg1;
 - (void)URLSession:(id)arg1 task:(id)arg2 didReceiveChallenge:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)performRequestWithCompletionHandler:(CDUnknownBlockType)arg1;

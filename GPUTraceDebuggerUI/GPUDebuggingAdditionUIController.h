@@ -13,7 +13,7 @@
 @interface GPUDebuggingAdditionUIController : NSObject <IDEDebuggingAdditionUIController>
 {
     DVTExtension *_extension;
-    id _documentOpenRequestToken;
+    id <IDEOpenRequest> _documentOpenRequestToken;
     IDEBreakpointManager *_breakpointsManager;
     IDEEditorArea *_editorArea;
     NSCell *_trayFPSCell;
@@ -46,16 +46,13 @@
 - (void)ReleaseGPUFrame:(id)arg1;
 - (void)openLocation:(id)arg1 withEventType:(unsigned long long)arg2;
 - (void)openTraceItem:(id)arg1 withEventType:(unsigned long long)arg2;
-- (void)openSelectedNavigableItem:(id)arg1 withEventType:(unsigned long long)arg2;
 - (void)_setTargetFPS:(unsigned int)arg1;
 - (id)trayCellForNavigationProcessHeader;
 - (id)_trayFPSCell;
-- (BOOL)wantsTrayAreaForNavigationProcessHeader;
 - (id)debugSubmenu;
 - (BOOL)shouldReplaceDebugSubmenu;
 - (void)primitiveInvalidate;
 - (id)extension;
-- (id)launchSessionForSelectedRepresentedObject:(id)arg1;
 - (id)initWithWorkspaceTabController:(id)arg1 withDebuggingAddition:(id)arg2 forExtension:(id)arg3;
 - (void)_activateGPUDebuggerUI;
 - (void)_reopenStandaloneTraceDocument;

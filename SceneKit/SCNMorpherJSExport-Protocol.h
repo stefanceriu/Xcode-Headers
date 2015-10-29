@@ -16,6 +16,10 @@
 @property(copy, nonatomic) NSArray *targets;
 - (void)setWeight:(double)arg1 atTargetIndex:(long long)arg2;
 - (double)weightAtTargetIndex:(long long)arg1;
+- (id)valueForKeyPath:(NSString *)arg1;
+- (id)valueForKey:(NSString *)arg1;
+- (void)setValue:(id)arg1 forKey:(NSString *)arg2;
+- (void)setValue:(id)arg1 forKeyPath:(NSString *)arg2;
 - (id)copy;
 - (void)resumeAnimationForKey:(NSString *)arg1;
 - (void)pauseAnimationForKey:(NSString *)arg1;

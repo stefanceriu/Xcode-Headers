@@ -12,6 +12,9 @@
 + (id)program;
 @property(nonatomic) id <SCNProgramDelegate> delegate;
 @property(nonatomic, getter=isOpaque) BOOL opaque;
+@property(copy, nonatomic) NSString *geometryShader;
+@property(copy, nonatomic) NSString *tessellationEvaluationShader;
+@property(copy, nonatomic) NSString *tessellationControlShader;
 @property(copy, nonatomic) NSString *fragmentShader;
 @property(copy, nonatomic) NSString *vertexShader;
 - (id)copy;

@@ -23,10 +23,13 @@
 + (id)schemes;
 @property(readonly, nonatomic) DTXResourceTracker *resourceTracker; // @synthesize resourceTracker=_tracker;
 @property int status; // @synthesize status=_status;
+- (int)supportedDirections;
+- (id)permittedBlockCompressionTypes;
 @property(readonly) NSArray *localAddresses;
 @property(copy, nonatomic) CDUnknownBlockType dataReceivedHandler;
 - (void)disconnect;
 - (void)received:(const char *)arg1 ofLength:(unsigned long long)arg2 destructor:(CDUnknownBlockType)arg3;
+- (unsigned long long)transmit:(const void *)arg1 ofLength:(unsigned long long)arg2 withRateLimiter:(id)arg3;
 - (unsigned long long)transmit:(const void *)arg1 ofLength:(unsigned long long)arg2;
 - (id)initWithRemoteAddress:(id)arg1;
 - (id)initWithLocalAddress:(id)arg1;

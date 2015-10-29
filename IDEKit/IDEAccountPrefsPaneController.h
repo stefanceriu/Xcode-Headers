@@ -57,10 +57,11 @@
 - (void)removeAction:(id)arg1;
 - (void)newServerAction:(id)arg1;
 - (void)newRepositoryAction:(id)arg1;
+- (void)newAppleConnectIDAction:(id)arg1;
 - (void)newAppleIDAction:(id)arg1;
 @property(readonly) NSArray *contentArray;
-- (void)removePasswordAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
-- (void)removeRepository:(id)arg1 operation:(id)arg2;
+- (void)_removePasswordAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(id)arg3;
+- (void)removeRepositoryAccount:(id)arg1 operation:(id)arg2;
 @property(readonly) IDESourceControlManager *sourceControlManager;
 - (id)developerAccountManager;
 @property(readonly) IDEXcodeServerManager *serverManager;

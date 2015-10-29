@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDEMigrationAssistantContext.h>
 
-@class DVTMapTable, NSArray, NSMutableArray;
+@class DVTFilePath, NSArray, NSMapTable, NSMutableArray, NSURL;
 
 @interface IDESwiftMigrationAssistantContext : IDEMigrationAssistantContext
 {
@@ -16,24 +16,26 @@
     long long _numIncompatibilityErrors;
     BOOL _wasContinueBuildingAfterErrors;
     BOOL _shouldRemoveContinueBuildingAfterErrors;
-    DVTMapTable *_convertedFilePathForOriginalFilePathMapTable;
+    NSMapTable *_convertedFilePathForOriginalFilePathMapTable;
+    NSURL *_savedPlaygroundURL;
 }
 
 + (void)initialize;
+@property(retain) NSURL *savedPlaygroundURL; // @synthesize savedPlaygroundURL=_savedPlaygroundURL;
 @property unsigned long long currentConversionStage; // @synthesize currentConversionStage=_currentConversionStage;
 @property long long numberOfIncompatibilityErrors; // @synthesize numberOfIncompatibilityErrors=_numIncompatibilityErrors;
 @property(readonly, copy) NSArray *targets; // @synthesize targets=_targets;
 - (void).cxx_destruct;
-- (id)migrateFolderForBuildable:(id)arg1;
+- (id)migrateFolderForMigrationTarget:(id)arg1;
+@property(readonly) DVTFilePath *migrationBuildFolder;
 - (id)convertedFilePathForOriginalFilePath:(id)arg1;
 - (unsigned long long)numberOfConvertedFilePaths;
 - (id)_convertedFilePathForOriginalFilePathMapTable;
+- (void)_convertDirectory:(id)arg1;
 - (void)endPerformingContextTask;
 - (void)beginPerformingContextTask;
+- (void)reopenPlaygroundIfNecessary;
 - (void)setWorkspaceTabController:(id)arg1;
-- (id)buildActionEntries;
-- (id)runPhase;
-- (id)runContext;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 

@@ -28,8 +28,8 @@
 - (id)saveRepresentationHumanReadable:(BOOL)arg1;
 - (id)dictionaryRepresentation;
 - (id)description;
+- (id)initWithCommits:(struct NSArray *)arg1 validationErrors:(id *)arg2;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)_initWithCommits:(struct NSArray *)arg1 validationErrors:(id *)arg2;
 
 @end
 

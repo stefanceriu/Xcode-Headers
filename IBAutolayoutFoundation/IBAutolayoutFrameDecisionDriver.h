@@ -6,11 +6,10 @@
 
 #import <IBAutolayoutFoundation/IBAbstractAutolayoutFrameDecisionDriver.h>
 
-@class IBAutolayoutEngine, IBLayoutConstraint, IBMutableIdentityDictionary;
+@class IBAutolayoutEngine, IBLayoutConstraint;
 
 @interface IBAutolayoutFrameDecisionDriver : IBAbstractAutolayoutFrameDecisionDriver
 {
-    IBMutableIdentityDictionary *_ancestorSizeToDescendantToLayoutFrameCacheEntryTable;
     IBLayoutConstraint *_heightConstraint;
     IBLayoutConstraint *_widthConstraint;
     IBAutolayoutEngine *_engine;
@@ -30,13 +29,10 @@
 - (void).cxx_destruct;
 - (void)addConstraints:(id)arg1 replacingConstraints:(id)arg2 enforcingCurrentSizeOfViews:(id)arg3 mutuallyExclusiveConstraintBreakageStrategy:(unsigned long long)arg4 returningConstraintsAdded:(id *)arg5 returningConstraintsRemoved:(id *)arg6 framePropagationBlock:(CDUnknownBlockType)arg7;
 - (void)updateAutolayoutStatus;
-- (void)didStartFrameDecisionRequestSession;
 - (CDUnknownBlockType)sizeView:(id)arg1 toLayoutSize:(struct CGSize)arg2 suggestedLayoutOrigin:(struct CGPoint)arg3 mutuallyExclusiveConstraintBreakageStrategy:(unsigned long long)arg4 framePropagationBlock:(CDUnknownBlockType)arg5;
 - (void)updateWidthConstraint:(id)arg1 andHeightConstraint:(id)arg2 toSize:(struct CGSize)arg3;
 - (BOOL)shouldResizeViewByAddingRequiredSizingConstraints:(id)arg1;
 - (BOOL)shouldLiveResizeViewUsingExplicitSizingConstraints:(id)arg1;
-- (CDStruct_961d3510)viewMovementResultForView:(id)arg1 forSizingView:(id)arg2 alongEdge:(unsigned int)arg3 inCoordinateSpaceOfView:(id)arg4;
-- (struct CGRect)cachedLayoutRectForView:(id)arg1 afterSizingView:(id)arg2 toLayoutSize:(struct CGSize)arg3 inCoordinateSpaceOfView:(id)arg4;
 - (void)enumerateLayoutFramesForViews:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (struct CGRect)layoutFrameOrBoundsForView:(id)arg1;
 - (id)initWithArbitrationUnit:(id)arg1 initialStatus:(id)arg2 options:(id)arg3;

@@ -19,7 +19,9 @@
 - (id)shortTitle;
 - (id)subtitle;
 - (id)title;
+- (id)commandLineName;
 - (_Bool)supportsDistributionOfArchive:(id)arg1;
+- (double)sortOrder;
 
 @end
 

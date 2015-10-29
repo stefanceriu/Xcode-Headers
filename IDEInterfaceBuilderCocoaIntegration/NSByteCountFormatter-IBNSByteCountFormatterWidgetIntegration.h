@@ -10,5 +10,7 @@
 + (id)keyPathsForValuesAffectingIbInspectedShouldShowActualByteCount;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (BOOL)ibInspectedShouldShowActualByteCount;
+- (id)ibExternalSampleValueTooltipRelatedMethods;
+- (id)ibExternalSampleValueDefault;
 @end
 

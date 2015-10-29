@@ -28,7 +28,6 @@
     id <DVTFontTextFieldCellDelegate> _fontCellDelegate;
 }
 
-+ (void)activateFontCellInTableView:(id)arg1;
 + (id)keyPathsForValuesAffectingPointSize;
 + (id)defaultImage;
 + (void)initialize;
@@ -51,16 +50,12 @@
 - (void)setObjectValue:(id)arg1;
 - (void)selectWithFrame:(struct CGRect)arg1 inView:(id)arg2 editor:(id)arg3 delegate:(id)arg4 start:(long long)arg5 length:(long long)arg6;
 - (void)editWithFrame:(struct CGRect)arg1 inView:(id)arg2 editor:(id)arg3 delegate:(id)arg4 event:(id)arg5;
-- (void)setHighlighted:(BOOL)arg1;
 - (void)performEmbeddingButtonAction:(id)arg1;
 - (void)orderFrontFontPopUp:(id)arg1;
 - (void)orderFrontFontPanel:(id)arg1;
 - (void)dvt_setValueFromController:(id)arg1;
 - (void)changeFont:(id)arg1;
 - (void)changeAttributes:(id)arg1;
-- (void)dvt_updateViaBindingsForFont:(id)arg1;
-- (void)dvt_updateViaTableDataSourceForFont:(id)arg1;
-- (id)dvt_tableColumn;
 - (void)enumerateValuesWithBlock:(CDUnknownBlockType)arg1;
 - (void)transformFontViaBlock:(CDUnknownBlockType)arg1;
 @property double pointSize;

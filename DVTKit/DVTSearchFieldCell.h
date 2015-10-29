@@ -14,12 +14,13 @@
     NSTextView *_fieldEditor;
     NSTextFieldCell *_numberOfMatchesCell;
     BOOL _filterField;
+    unsigned long long _additionalCancelButtonInset;
     BOOL _hasText;
     int _visualStyle;
     long long _numberOfMatches;
 }
 
-+ (id)leftEdgeRoundedStyleBorderColor;
++ (id)_leftEdgeRoundedStyleBorderColor;
 + (id)textFieldPathForFrame:(struct CGRect)arg1 usingRadius:(double)arg2;
 + (void)drawBackgroundForLeftEdgeRoundedRectStyleWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 + (void)drawFocusRingMaskForLeftEdgeRoundedRectStyleWithFrame:(struct CGRect)arg1 inView:(id)arg2;
@@ -42,7 +43,12 @@
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)_drawBackgroundForFlatStyleWithFrame:(struct CGRect)arg1 inView:(id)arg2 hasFocus:(BOOL)arg3;
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
+- (double)progressIndicatorWidth;
+- (void)setAdditionalCancelButtonInset:(unsigned long long)arg1;
+- (unsigned long long)additionalCancelButtonInset;
+- (unsigned long long)standardCancelButtonInset;
 - (struct CGRect)searchButtonRectForBounds:(struct CGRect)arg1;
+- (struct CGRect)_cancelButtonRectForBoundsEvenIfHidden:(struct CGRect)arg1;
 - (struct CGRect)cancelButtonRectForBounds:(struct CGRect)arg1;
 - (BOOL)trackMouse:(id)arg1 inRect:(struct CGRect)arg2 ofView:(id)arg3 untilMouseUp:(BOOL)arg4;
 - (void)showSearchMenu;

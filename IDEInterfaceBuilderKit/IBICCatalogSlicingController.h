@@ -39,6 +39,7 @@
 - (id)displayedImageSets;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
+- (BOOL)isSubEditorExistanceInSyncForItem:(id)arg1;
 - (void)loadView;
 - (id)showAlternateDetailControllerTitle;
 - (BOOL)canZoomCanvas;

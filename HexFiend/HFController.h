@@ -45,9 +45,11 @@
         unsigned int reserved1:25;
         unsigned int reserved2:32;
     } _hfflags;
+    id <HFTextColoringDelegate> _coloringDelegate;
 }
 
 + (BOOL)prepareForChangeInFile:(id)arg1 fromWritingByteArray:(id)arg2;
+@property(retain) id <HFTextColoringDelegate> coloringDelegate; // @synthesize coloringDelegate=_coloringDelegate;
 - (BOOL)requiresOverwriteMode;
 - (void)setInOverwriteMode:(BOOL)arg1;
 - (BOOL)inOverwriteMode;

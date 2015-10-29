@@ -6,8 +6,11 @@
 
 #import <IDEFoundation/IDEDataProvider.h>
 
+@class NSObject<OS_dispatch_queue>;
+
 @interface IDEDataProvider_procinfo : IDEDataProvider
 {
+    NSObject<OS_dispatch_queue> *_capture_lock;
     struct unordered_map<int, ProcessInfo, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, ProcessInfo>>> _processInfoByPID;
 }
 
@@ -17,6 +20,7 @@
 - (id)captureAttributes:(id)arg1 forPIDs:(id)arg2;
 - (BOOL)captureAttributes:(id)arg1 toDictionary:(id)arg2 forPID:(id)arg3;
 - (id)supportedAttributes;
+- (id)init;
 
 @end
 

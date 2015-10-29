@@ -9,7 +9,6 @@
 @class DVTFileDataType, DVTFilePath, IDEBuildParameters, NSDictionary, NSString;
 
 @protocol IDEBuildableProduct <IDEBuildable>
-@property(readonly) NSDictionary *copiedFilePathsMap;
 @property(readonly) BOOL productIsExecutable;
 @property(readonly) NSDictionary *productSettings;
 @property(readonly) NSString *iconPath;

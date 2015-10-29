@@ -6,12 +6,13 @@
 
 #import <IDEKit/IDEEditorDocument.h>
 
-@class DVTObservingToken, IDELaunchSession;
+@class DVTObservingToken, IDEDebugSession, IDELaunchSession;
 
 @interface IDEDebugGaugeReportDocument : IDEEditorDocument
 {
     IDELaunchSession *_launchSession;
     DVTObservingToken *_launchSessionObservingToken;
+    IDEDebugSession *_debugSession;
 }
 
 + (BOOL)shouldUnlockFileURLBeforeMakingChanges;

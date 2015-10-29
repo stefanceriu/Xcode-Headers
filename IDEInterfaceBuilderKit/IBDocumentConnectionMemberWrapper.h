@@ -6,18 +6,23 @@
 
 #import <IDEInterfaceBuilderKit/IBDocumentMemberWrapper.h>
 
-@class IBConnection;
+@class IBConnection, NSString;
 
 @interface IBDocumentConnectionMemberWrapper : IBDocumentMemberWrapper
 {
+    NSString *_name;
 }
 
 + (id)keyPathsForValuesAffectingImage;
+- (void).cxx_destruct;
 - (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
 - (id)ideModelObjectTypeIdentifier;
+- (void)document:(id)arg1 didChangeKeyPath:(id)arg2 forMember:(id)arg3;
+- (void)refreshDisplayValues;
 - (BOOL)wrapsNormalDocumentObject;
 - (id)image;
 - (id)name;
+- (void)setName:(id)arg1;
 - (id)childWrappers;
 @property(readonly) IBConnection *connection;
 - (id)initWithMember:(id)arg1 document:(id)arg2;

@@ -8,7 +8,6 @@
 
 @interface SCNBox : SCNGeometry
 {
-    id _reserved;
     double _boxwidth;
     double _boxheight;
     double _boxlength;
@@ -21,7 +20,6 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)box;
 + (id)boxWithWidth:(double)arg1 height:(double)arg2 length:(double)arg3 chamferRadius:(double)arg4;
 - (id)initWithCoder:(id)arg1;
@@ -43,11 +41,10 @@
 @property(nonatomic) long long chamferSegmentCount;
 @property(nonatomic) double chamferRadius;
 - (void)_syncObjCModel:(struct __C3DParametricGeometry *)arg1;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (id)presentationGeometry;
 - (id)presentationBox;
 - (id)initPresentationParametricGeometryWithParametricGeometryRef:(struct __C3DParametricGeometry *)arg1;
-- (void)dealloc;
 - (struct __C3DGeometry *)__createCFObject;
 - (id)initWithParametricGeometryRef:(struct __C3DParametricGeometry *)arg1;
 - (id)init;

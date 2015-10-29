@@ -23,7 +23,7 @@
 - (struct CGRect)rectToPopUpFromPoint:(struct CGPoint)arg1 inView:(id)arg2;
 - (struct CGSize)sizeThatFits;
 - (struct CGRect)contentRect;
-- (unsigned long long)titleDrawingOptions;
+- (long long)titleDrawingOptions;
 - (id)attributedTitle;
 - (id)attributedTitleForTitle:(id)arg1;
 - (id)titleAttributes;

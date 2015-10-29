@@ -27,7 +27,7 @@
 + (void)initialize;
 @property(readonly) DVTCrashPointFilter *filter; // @synthesize filter=_filter;
 @property(readonly) DVTCrashPointParameters *filteredParameters; // @synthesize filteredParameters=_filteredParameters;
-@property(readonly) DVTCrashPointAppStoreSource *appStoreSource; // @synthesize appStoreSource=_appStoreSource;
+@property(readonly) __weak DVTCrashPointAppStoreSource *appStoreSource; // @synthesize appStoreSource=_appStoreSource;
 @property BOOL bypassCache; // @synthesize bypassCache=_bypassCache;
 @property(nonatomic) BOOL bypassTimestampRestrictions; // @synthesize bypassTimestampRestrictions=_bypassTimestampRestrictions;
 @property(retain) Class crashPointMoreLogsClass; // @synthesize crashPointMoreLogsClass=_crashPointMoreLogsClass;
@@ -48,13 +48,11 @@
 - (id)_crashLogsFromLogDataList:(id)arg1 cachePath:(id)arg2;
 - (id)_fetchCrashPointDataForIdentifier:(id)arg1 fromNetworkWithSession:(id)arg2 error:(id *)arg3;
 - (id)_fetchCrashPoinListFromNetworkWithSession:(id)arg1 error:(id *)arg2;
-- (id)_invalidSelfError;
 - (BOOL)refreshFromNetworkWithSession:(id)arg1 errors:(id *)arg2;
 - (BOOL)refreshFromDiskWithError:(id *)arg1;
 - (id)_webServiceLock;
 @property(retain) NSDate *lastRefreshDate;
 - (id)cachedPathForCrashPoint:(id)arg1;
-- (void)primitiveInvalidate;
 - (id)initWithParameters:(id)arg1 filter:(id)arg2 appStoreSource:(id)arg3 crashPointListClass:(Class)arg4 crashPointDownloadDataClass:(Class)arg5 crashPointMoreLogsClass:(Class)arg6;
 - (id)initWithParameters:(id)arg1 filter:(id)arg2 appStoreSource:(id)arg3;
 - (id)initWithBundleIdentifier:(id)arg1 version:(id)arg2 buildNumber:(id)arg3 isBeta:(BOOL)arg4;

@@ -6,24 +6,39 @@
 
 #import <IBFoundation/IBICAbstractCatalogItem.h>
 
+@class IBICManifestArchivist;
+
 @interface IBICFolder : IBICAbstractCatalogItem
 {
+    IBICManifestArchivist *_manifestArchivist;
+    BOOL _providesNamespace;
 }
 
-- (BOOL)fileStructureSnapshotChildWouldMapToModelChild:(id)arg1;
++ (id)contentReferenceTypeName;
++ (id)catalogItemFileExtension;
++ (Class)requiredChildrenClass;
++ (id)keysThatImpactIdentifier;
++ (id)classNameComponents;
++ (id)defaultInstanceForIdioms:(id)arg1 enforceStrictIdioms:(BOOL)arg2;
+@property(nonatomic) BOOL providesNamespace; // @synthesize providesNamespace=_providesNamespace;
+- (void).cxx_destruct;
+- (CDStruct_550fdc95)taggingSupport;
 - (void)replaceChildrenFromFileSystemSnapshot:(id)arg1 results:(id)arg2;
-- (Class)itemClassForDirectoryExtension:(id)arg1;
-- (id)imageSetWithFileName:(id)arg1;
 - (id)imageSetWithName:(id)arg1;
+- (id)imageSetWithFileName:(id)arg1;
 - (id)folderForFileName:(id)arg1;
-- (id)childWithFileName:(id)arg1;
-- (id)validatedFileNameForProposedDisplayName:(id)arg1;
-- (id)enclosingFolderIncludingReceiver;
-- (BOOL)canBeEmbeddedInFolder;
-- (BOOL)canHaveChildren;
 - (id)identifier;
-- (id)displayName;
-- (id)descriptionShortClassName;
+- (void)manifestArchivist:(id)arg1 populateManifest:(id)arg2;
+- (void)manifestArchivist:(id)arg1 applyPropertiesFromManifest:(id)arg2;
+- (BOOL)manifestArchivist:(id)arg1 validateManifest:(id)arg2 results:(id)arg3;
+- (id)runtimeNamespaceQualifier;
+- (id)manifestContent;
+- (id)manifestFileName;
+- (BOOL)isolatesAndConsolidatesContainedContent;
+- (void)enumerateDescriptionAttributeComponents:(CDUnknownBlockType)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (id)init;
 
 @end
 

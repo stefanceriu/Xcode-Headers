@@ -8,10 +8,7 @@
 
 @interface IBICImageSet (InspectorAdditions)
 + (id)keyPathsForValuesAffectingIbInspectedTemplateRenderingIntent;
-+ (id)keyPathsForValuesAffectingIbInspectedDeviceSpecificImageSets;
 - (void)setIbInspectedTemplateRenderingIntent:(long long)arg1;
 - (long long)ibInspectedTemplateRenderingIntent;
-- (void)setIbInspectedDeviceSpecificImageSets:(BOOL)arg1;
-- (BOOL)ibInspectedDeviceSpecificImageSets;
 @end
 

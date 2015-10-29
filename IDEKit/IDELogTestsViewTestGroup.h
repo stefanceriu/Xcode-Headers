@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "IDESharedTests_TestGroup.h"
+#import "IDETestReport_TestGroup.h"
 
 @class IDESchemeActionTestSummaryGroup, NSArray, NSMutableArray, NSString;
 
-@interface IDELogTestsViewTestGroup : NSObject <IDESharedTests_TestGroup>
+@interface IDELogTestsViewTestGroup : NSObject <IDETestReport_TestGroup>
 {
     NSMutableArray *_failingTestWrappers;
     NSMutableArray *_passingTestWrappers;
@@ -23,10 +23,11 @@
 @property(readonly, copy) NSArray *testSummaries; // @synthesize testSummaries=_testSummaries;
 @property(retain) IDESchemeActionTestSummaryGroup *parentGroup; // @synthesize parentGroup=_parentGroup;
 - (void).cxx_destruct;
-@property(readonly, copy, nonatomic) NSString *ide_sharedTests_testTargetName;
-@property(readonly, copy, nonatomic) NSString *ide_sharedTests_groupName;
+@property(readonly, copy, nonatomic) NSString *ide_testReport_base_identifier;
+@property(readonly, copy, nonatomic) NSString *ide_testReport_testGroup_testTargetName;
+@property(readonly, copy, nonatomic) NSString *ide_testReport_testGroup_groupName;
 - (void)addTestWrapper:(id)arg1;
-- (id)ide_sharedTests_includePassingTests:(BOOL)arg1 includeFailingTests:(BOOL)arg2 includeOnlyPerfTests:(BOOL)arg3;
+- (id)ide_sharedTests_testGroup_includePassingTests:(BOOL)arg1 includeFailingTests:(BOOL)arg2 includeOnlyPerfTests:(BOOL)arg3;
 - (id)ide_sharedTests_passingTests;
 - (id)ide_sharedTests_failingTests;
 - (id)ide_sharedTests_allTests;

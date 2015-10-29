@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTFilePath, IDEContainer<IDEBlueprintProvider>, IDEMutableOverridingBuildProperties, IDERunDestination, IDEScheme, IDEWorkspace, NSArray, NSDictionary, NSFileHandle, NSSet, NSString;
+@class DVTFilePath, IDEContainer<IDEBlueprintProvider>, IDEMutableOverridingBuildProperties, IDERunDestination, IDEScheme, IDESchemeActionsInvocationRecord, IDEWorkspace, NSArray, NSDictionary, NSFileHandle, NSSet, NSString;
 
 @interface IDECommandLineEnvironment : NSObject
 {
@@ -25,8 +25,10 @@
     IDEMutableOverridingBuildProperties *_buildProperties;
     NSString *_buildConfiguration;
     IDERunDestination *_runDestination;
+    IDESchemeActionsInvocationRecord *_schemeActionsInvocationRecord;
 }
 
+@property(retain, nonatomic) IDESchemeActionsInvocationRecord *schemeActionsInvocationRecord; // @synthesize schemeActionsInvocationRecord=_schemeActionsInvocationRecord;
 @property(retain, nonatomic) IDERunDestination *runDestination; // @synthesize runDestination=_runDestination;
 @property(copy, nonatomic) NSString *buildConfiguration; // @synthesize buildConfiguration=_buildConfiguration;
 @property(retain, nonatomic) IDEMutableOverridingBuildProperties *buildProperties; // @synthesize buildProperties=_buildProperties;

@@ -9,6 +9,5 @@
 #import "DBGNavigableItemPerformance.h"
 
 @interface DBGStackFrame (DBGNavigableItemPropertySupport) <DBGNavigableItemPerformance>
-- (BOOL)isGroupHeader:(id)arg1;
 @end
 

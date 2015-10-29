@@ -16,6 +16,7 @@
 + (void)initialize;
 @property(readonly) NSString *navigableItem_name;
 - (void)_noteDocumentEditedStateChanged;
+@property(readonly) BOOL associatedFileExists;
 - (id)textColor;
 @property(readonly) NSImage *image;
 - (void)_observeFilePathIfNecessary;

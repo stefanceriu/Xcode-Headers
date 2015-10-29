@@ -7,13 +7,16 @@
 #import "NSDictionary.h"
 
 @interface NSDictionary (IBDictionaryAdditions)
-+ (id)ib_dictionaryWithIntrinsicallyKeyedValues:(id)arg1 intrinsicKeyAccessor:(CDUnknownBlockType)arg2;
++ (id)ib_dictionaryWithIntrinsicallyKeyedValues:(id)arg1 nilKeyBehavior:(long long)arg2 intrinsicKeyAccessor:(CDUnknownBlockType)arg3;
 + (id)ib_strictDictionaryWithKeysAndObjects:(id)arg1;
 + (id)ib_dictionaryOfObjects:(id)arg1 groupedIntoSetsByKeyPath:(id)arg2;
++ (id)ib_dictionaryOfObjects:(id *)arg1 count:(unsigned long long)arg2 keyedByKeyPath:(id)arg3;
 + (id)ib_dictionaryOfObjects:(id)arg1 keyedByKeyPath:(id)arg2;
++ (id)ib_dictionaryWithKeys:(id)arg1 mappedToObjectsWithBlock:(CDUnknownBlockType)arg2;
 + (Class)ib_mutableClass;
 - (id)ib_uniqueValues;
 - (id)ib_uniqueKeys;
+- (id)ib_anyKey;
 - (id)ib_onlyObject;
 - (id)ib_onlyKey;
 - (id)ib_keysSortedUsingComparator:(CDUnknownBlockType)arg1;
@@ -31,10 +34,12 @@
 - (id)ib_invertedDictionaryUsingMutableDictionaryClass:(Class)arg1;
 - (id)ib_invertedDictionary;
 - (id)ib_dictionaryBySettingObject:(id)arg1 forKey:(id)arg2;
+- (id)ib_objectForKey:(id)arg1 inDictionaryForPossibleKeys:(id)arg2;
 - (id)ib_objectForKey:(id)arg1 inDictionaryForKey:(id)arg2;
 - (id)ib_dictionaryByAddingEntriesFromDictionary:(id)arg1;
 - (id)ib_dictionaryByRemovingObjectsForKeys:(id)arg1;
 - (id)ib_dictionaryByApplyingFilterToKeys:(CDUnknownBlockType)arg1;
+- (id)ib_dictionaryByMappingValuesWithKeyValueBlock:(CDUnknownBlockType)arg1;
 - (id)ib_dictionaryByMappingValuesWithBlock:(CDUnknownBlockType)arg1;
 - (id)ib_dictionaryByMappingKeysWithBlock:(CDUnknownBlockType)arg1;
 - (Class)ib_mutableClass;

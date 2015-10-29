@@ -38,7 +38,7 @@
 - (id)initWithEditorItemModel:(id)arg1 portalInfoDelegate:(id)arg2;
 
 // Remaining properties
-@property(readonly, nonatomic) Xcode3PassbookItemModel *model;
+@property(readonly, nonatomic) Xcode3PassbookItemModel *model; // @dynamic model;
 
 @end
 

@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @interface NSObject (DVTInvalidation)
-+ (void)dvt_setupWithInvalidationImplementingClass:(Class)arg1;
++ (void)dvt_synthesizeInvalidation;
+- (void)dvt_performAdditionalInvalidation;
 @end
 

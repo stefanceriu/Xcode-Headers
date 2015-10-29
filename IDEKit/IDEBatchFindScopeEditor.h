@@ -10,7 +10,7 @@
 #import "IDEBatchFindScopeRuleRowDelegate.h"
 #import "NSTableViewDelegate.h"
 
-@class DVTStackView_ML, IDEBatchFindRuleEditor, IDEBatchFindScopePredicate, NSArray, NSArrayController, NSImageView, NSPredicate, NSString, NSTextField;
+@class DVTStackView_ML, IDEBatchFindRuleEditor, IDEBatchFindScopeEditorDelegateProxy, IDEBatchFindScopePredicate, NSArray, NSArrayController, NSImageView, NSPredicate, NSString, NSTextField;
 
 @interface IDEBatchFindScopeEditor : IDEViewController <IDEBatchFindScopeRuleRowDelegate, IDEBatchFindRuleEditorDelegate, NSTableViewDelegate>
 {
@@ -24,10 +24,12 @@
     NSTextField *_errorLabel;
     NSImageView *_errorImage;
     NSTextField *_nameField;
+    IDEBatchFindScopeEditorDelegateProxy *_delegateProxy;
 }
 
 + (id)fileTypeTitles;
 + (id)fileTypes;
+@property(retain) IDEBatchFindScopeEditorDelegateProxy *delegateProxy; // @synthesize delegateProxy=_delegateProxy;
 @property(retain) NSTextField *nameField; // @synthesize nameField=_nameField;
 - (void).cxx_destruct;
 - (void)setNameAction:(id)arg1;
@@ -56,6 +58,7 @@
 @property(copy) NSArray *scopePredicates;
 - (BOOL)checkRulesAndCommit;
 - (void)loadView;
+- (void)primitiveInvalidate;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

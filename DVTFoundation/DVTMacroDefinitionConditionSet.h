@@ -30,6 +30,7 @@
 - (long long)compare:(id)arg1;
 - (id)subscriptRepresentation;
 - (BOOL)evaluateInScope:(id)arg1;
+- (BOOL)evaluateForParameterValues:(id)arg1;
 - (unsigned long long)precedence;
 - (id)conditionForParameterNamed:(id)arg1;
 - (id)parameterNames;

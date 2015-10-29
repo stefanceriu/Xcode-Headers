@@ -22,6 +22,7 @@
 - (id)description;
 - (BOOL)writeToCachePathWithError:(id *)arg1;
 - (id)initWithFilePath:(id)arg1 data:(id)arg2 childSnapshots:(id)arg3;
+- (id)init;
 
 @end
 

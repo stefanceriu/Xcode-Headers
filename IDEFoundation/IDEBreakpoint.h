@@ -10,21 +10,21 @@
 #import "DVTXMLUnarchiving.h"
 #import "NSCopying.h"
 
-@class DVTMapTable, DVTStackBacktrace, IDEBreakpointBucket, NSArray, NSMutableArray, NSString;
+@class DVTStackBacktrace, IDEBreakpointBucket, NSArray, NSMapTable, NSMutableArray, NSString;
 
 @interface IDEBreakpoint : NSObject <DVTXMLUnarchiving, NSCopying, DVTInvalidation>
 {
+    NSMutableArray *_actions;
+    NSMutableArray *_locations;
+    NSMapTable *_actionsToSetsOfObservers;
+    BOOL _shouldBeEnabled;
+    BOOL _continueAfterRunningActions;
+    int _breakpointStackSelectionBehavior;
     NSString *_displayName;
     IDEBreakpointBucket *_bucket;
-    BOOL _shouldBeEnabled;
     unsigned long long _ignoreCount;
     unsigned long long _hitCount;
     NSString *_condition;
-    BOOL _continueAfterRunningActions;
-    NSMutableArray *_actions;
-    NSMutableArray *_locations;
-    DVTMapTable *_actionsToSetsOfObservers;
-    int _breakpointStackSelectionBehavior;
     NSString *_customStopReasonString;
     id <IDEInternalBreakpointDelegate> _delegate;
 }
@@ -34,9 +34,9 @@
 @property(retain) id <IDEInternalBreakpointDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) NSString *customStopReasonString; // @synthesize customStopReasonString=_customStopReasonString;
 @property int breakpointStackSelectionBehavior; // @synthesize breakpointStackSelectionBehavior=_breakpointStackSelectionBehavior;
-@property unsigned long long hitCount; // @synthesize hitCount=_hitCount;
 @property BOOL continueAfterRunningActions; // @synthesize continueAfterRunningActions=_continueAfterRunningActions;
 @property(copy) NSString *condition; // @synthesize condition=_condition;
+@property unsigned long long hitCount; // @synthesize hitCount=_hitCount;
 @property unsigned long long ignoreCount; // @synthesize ignoreCount=_ignoreCount;
 @property(nonatomic) BOOL shouldBeEnabled; // @synthesize shouldBeEnabled=_shouldBeEnabled;
 @property(retain) IDEBreakpointBucket *bucket; // @synthesize bucket=_bucket;

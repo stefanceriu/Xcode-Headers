@@ -17,6 +17,7 @@
 - (NSArray *)workspaceNavigableItems;
 
 @optional
+- (BOOL)reviewFilesNavigator:(IDEReviewFilesNavigator *)arg1 outlineView:(IDENavigatorOutlineView *)arg2 showCheckboxForNavigableItem:(IDENavigableItem *)arg3;
 - (double)reviewFilesNavigator:(IDEReviewFilesNavigator *)arg1 outlineView:(IDENavigatorOutlineView *)arg2 rowHeightForNavigableItem:(IDENavigableItem *)arg3;
 - (void)reviewFilesNavigator:(IDEReviewFilesNavigator *)arg1 outlineView:(IDENavigatorOutlineView *)arg2 willDisplayCell:(id)arg3 forNavigableItem:(IDENavigableItem *)arg4;
 - (NSArray *)reviewFilesNavigator:(IDEReviewFilesNavigator *)arg1 importantFilePathsForNavigableItem:(IDENavigableItem *)arg2 excludingDisabledItems:(NSArray *)arg3;

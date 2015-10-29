@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, DVTObservingToken, IDEToybox;
+@class DVTObservingToken, IDEToybox, NSMapTable;
 
 @interface IDEValueHistoryToyResultAssociationMonitor : NSObject
 {
     IDEToybox *_toybox;
-    DVTMapTable *_loggerResultsToToys;
-    DVTMapTable *_previousGenerationLoggerResultsToToys;
+    NSMapTable *_loggerResultsToToys;
+    NSMapTable *_previousGenerationLoggerResultsToToys;
     unsigned long long _currentExecutionGeneration;
     unsigned long long _previousExecutionGeneration;
     DVTObservingToken *_executionGenerationObservingToken;

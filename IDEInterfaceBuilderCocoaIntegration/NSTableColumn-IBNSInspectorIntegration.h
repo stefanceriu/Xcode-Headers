@@ -47,6 +47,7 @@
 - (id)ibOrderedSnapshotAttributesKeyPaths;
 - (id)ibPasteboardTypes;
 - (Class)ibEditorClass;
+- (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (BOOL)ibCanRemoveChildren:(id)arg1;
 - (BOOL)ibCanBeBoundToFromObject:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;

@@ -14,7 +14,7 @@
 }
 
 + (BOOL)isObjectValidDestination:(id)arg1;
-+ (id)ibDefaultImageForInstance:(id)arg1;
++ (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
 + (id)classIdentifier;
 + (BOOL)isObjectValidSource:(id)arg1;
 @property(retain, nonatomic) NSView *containerView; // @synthesize containerView=_containerView;
@@ -23,6 +23,8 @@
 - (void)ibSetupTriggerForSegueTemplate:(id)arg1 inCompilationUnit:(id)arg2;
 - (id)instantiateSegueTemplate;
 - (id)badgeImage;
+- (BOOL)ibInspectedCanChangeCustomSegueClassName;
+- (BOOL)ibInspectedCanChangeKind;
 
 @end
 

@@ -10,10 +10,14 @@
 
 @interface IDEProductsUtilityPane : IDEViewController
 {
+    BOOL _hidden;
+    BOOL _hideBottomBorder;
     DVTBorderedView *_borderedView;
     id <IDEProductsInspectable> _inspectable;
 }
 
+@property BOOL hideBottomBorder; // @synthesize hideBottomBorder=_hideBottomBorder;
+@property(readonly) BOOL hidden; // @synthesize hidden=_hidden;
 @property(readonly) id <IDEProductsInspectable> inspectable; // @synthesize inspectable=_inspectable;
 @property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 - (void).cxx_destruct;

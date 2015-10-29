@@ -8,7 +8,7 @@
 
 #import "NSTabViewDelegate.h"
 
-@class DVTTabbedWindowTabViewItem, NSArray, NSColor, NSImage, NSString, NSTabView, NSView, NSVisualEffectView, NSWindowController<DVTTabbedWindowControlling>;
+@class DVTTabbedWindowTabViewItem, DVTViewController<DVTTabbedWindowTabContentControlling>, NSArray, NSColor, NSImage, NSString, NSTabView, NSView, NSVisualEffectView, NSWindowController<DVTTabbedWindowControlling>;
 
 @interface DVTBarBackground : KeyLoopSplicingContainerView <NSTabViewDelegate>
 {
@@ -35,7 +35,6 @@
 
 + (id)keyPathsForValuesAffectingActiveViewController;
 + (BOOL)isTabDrag:(id)arg1;
-+ (BOOL)isMiniWindowDrag:(id)arg1;
 @property(nonatomic) __weak NSTabView *tabView; // @synthesize tabView=_tabView;
 @property(retain) NSWindowController<DVTTabbedWindowControlling> *tabbedWindowController; // @synthesize tabbedWindowController=_tabbedWindowController;
 @property(retain, nonatomic) id <DVTBarBackgroundDelegate> delegate; // @synthesize delegate=_delegate;
@@ -88,7 +87,7 @@
 - (id)tabViewItemAtIndex:(long long)arg1;
 @property(readonly) long long numberOfTabViewItems;
 - (id)newTabWithViewController:(id)arg1 atIndex:(unsigned long long)arg2;
-- (id)activeViewController;
+@property(readonly) DVTViewController<DVTTabbedWindowTabContentControlling> *activeViewController;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)commonInit;

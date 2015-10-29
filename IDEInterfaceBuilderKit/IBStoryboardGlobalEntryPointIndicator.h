@@ -9,24 +9,24 @@
 #import "IBStoryboardEntryPointIndicator.h"
 #import "NSCoding.h"
 
-@class IBTargetRuntime, NSString;
+@class IBTargetRuntime, NSObject<IBPrimarySceneObject>, NSString;
 
 @interface IBStoryboardGlobalEntryPointIndicator : NSObject <IBStoryboardEntryPointIndicator, NSCoding>
 {
     IBTargetRuntime *_targetRuntime;
+    NSObject<IBPrimarySceneObject> *_indicatedEntryPoint;
 }
 
-+ (id)ibDefaultImageForInstance:(id)arg1;
++ (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
+@property(retain, nonatomic) NSObject<IBPrimarySceneObject> *indicatedEntryPoint; // @synthesize indicatedEntryPoint=_indicatedEntryPoint;
 @property(retain, nonatomic) IBTargetRuntime *targetRuntime; // @synthesize targetRuntime=_targetRuntime;
 - (void).cxx_destruct;
+- (id)storyboardIndicatedEntryPointKeyPath;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithTargetRuntime:(id)arg1;
 - (id)init;
-- (id)ibStoryboardIndicatedEntryPointKeyPath;
-- (id)ibIndicatedEntryPointInStoryboard:(id)arg1;
 - (id)ibTypeNameForDefaultLabel;
-- (void)ibTransferToObject:(id)arg1 fromObject:(id)arg2 inDocument:(id)arg3;
 - (BOOL)ibIsCopyableGivenSelection:(id)arg1;
 - (id)ibTopLevelObjectToSelectInCanvasForDocument:(id)arg1;
 - (BOOL)ibTopLevelSceneObjectWantsInclusionInCompiledStoryboard;

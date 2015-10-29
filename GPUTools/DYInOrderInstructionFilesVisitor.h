@@ -14,8 +14,10 @@
     NSArray *_captureFiles;
     NSArray *_deltaFiles;
     BOOL _visitDeltaFiles;
+    BOOL _unsorted;
 }
 
+@property(nonatomic) BOOL unsorted; // @synthesize unsorted=_unsorted;
 @property(nonatomic) BOOL visitDeltaFiles; // @synthesize visitDeltaFiles=_visitDeltaFiles;
 - (void)performPostCaptureVisitActions;
 - (void)performPreCaptureVisitActions;

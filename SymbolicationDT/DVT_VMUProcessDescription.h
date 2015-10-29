@@ -14,6 +14,7 @@
 {
     unsigned int _task;
     int _pid;
+    NSString *_hardwareModel;
     NSString *_processName;
     BOOL _processNameNeedsCorrection;
     NSString *_executablePath;
@@ -22,7 +23,7 @@
     unsigned long long _executableLoadAddress;
     int _cpuType;
     BOOL _is64Bit;
-    struct LSItemInfoRecord *_itemInfoRecord;
+    struct timeval _proc_starttime;
     NSDictionary *_lsApplicationInformation;
     NSMutableArray *_binaryImages;
     NSArray *_sortedBinaryImages;

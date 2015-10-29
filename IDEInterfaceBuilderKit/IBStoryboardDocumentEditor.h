@@ -21,6 +21,10 @@
 }
 
 - (void).cxx_destruct;
+- (void)refactorToStoryboardPrimitive:(id)arg1;
+- (void)refactorToStoryboard:(id)arg1;
+- (id)primarySceneObjectsForSelectedObjects;
+- (BOOL)validateUserInterfaceItem:(id)arg1;
 - (id)typeForTopLevelPastingWithPasteboard:(id)arg1;
 - (void)selectionProviderWasClicked:(id)arg1;
 - (BOOL)memberCanBeSelected:(id)arg1;
@@ -29,8 +33,6 @@
 @property(readonly, nonatomic) IBStoryboardCanvasViewController *canvasViewController;
 - (Class)structureViewControllerClass;
 - (Class)canvasViewControllerClass;
-- (BOOL)shouldAvoidEditingObject:(id)arg1;
-- (id)viewControllerWithLeftMostCanvasFrame:(id)arg1;
 - (void)unregisterWithDocument;
 - (void)registerWithDocument;
 - (void)recordUsageStatisticsWithReport:(id)arg1;

@@ -31,6 +31,7 @@
 @property(readonly) NSString *portalTeamName; // @synthesize portalTeamName=_portalTeamName;
 @property(readonly) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
 - (void).cxx_destruct;
+- (id)p12DataWithPassword:(id)arg1 error:(id *)arg2;
 - (id)_valueInSubjectNameSectionFromCertificate:(struct OpaqueSecCertificateRef *)arg1 forOID:(id)arg2;
 - (id)_dateFromCertificate:(struct OpaqueSecCertificateRef *)arg1 forOID:(id)arg2;
 - (id)certificateData;

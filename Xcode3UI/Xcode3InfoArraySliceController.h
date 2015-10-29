@@ -32,6 +32,7 @@
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)removeSlice:(id)arg1;
 - (void)addSlice:(id)arg1;
+- (void)_cleanupSliceController:(id)arg1;
 - (id)_sliceControllerForInfoDict:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)_hideEmptyContentView;

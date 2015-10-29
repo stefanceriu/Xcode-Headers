@@ -6,6 +6,8 @@
 
 #import <IDEInterfaceBuilderKit/IBAbstractSegueConnection.h>
 
+@class NSString;
+
 @interface IBStoryboardAbstractTriggeredSegue : IBAbstractSegueConnection
 {
 }
@@ -17,10 +19,12 @@
 + (void)populatePrototypes:(id)arg1 inStoryboard:(id)arg2 forSegueFromObject:(id)arg3 toObject:(id)arg4 withTrigger:(id)arg5;
 + (id)prototypeConnectionsForObject:(id)arg1;
 + (id)prototypeTriggeredSeguesForDestination:(id)arg1 inStoryboard:(id)arg2;
++ (BOOL)isValidForLaunchScreen;
 + (BOOL)isObjectValidSource:(id)arg1;
 + (BOOL)isAbstractType;
-- (void)setIbInspectedSegueClassName:(id)arg1;
-- (id)ibInspectedSegueClassName;
+- (void)copyInstanceStateToClone:(id)arg1 withContext:(id)arg2;
+- (void)copyCommonInstanceStateToTriggeredSegue:(id)arg1;
+@property(retain, nonatomic) NSString *ibInspectedSegueClassName;
 - (id)completeWithMissingComponent:(id)arg1;
 - (id)missingComponents;
 - (BOOL)validateDestination:(id)arg1;
@@ -33,6 +37,7 @@
 - (id)displayGroupIdentifierForDragFromObject:(id)arg1 toObject:(id)arg2;
 - (BOOL)validateSource:(id)arg1;
 - (id)userPresentableLabel;
+- (id)_descriptionSubstringForLabel;
 - (id)trigger;
 - (Class)classForPrototypeWithRespectTo:(id)arg1;
 - (id)initWithSource:(id)arg1 andTrigger:(id)arg2;

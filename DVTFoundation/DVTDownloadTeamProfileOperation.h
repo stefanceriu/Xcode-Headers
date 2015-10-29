@@ -10,8 +10,8 @@
 {
 }
 
-+ (id)operationWithSingleTeamToken:(id)arg1 appIdIds:(id)arg2 andPlatform:(id)arg3;
-+ (id)operationWithSingleTeamToken:(id)arg1 appIdId:(id)arg2 andPlatform:(id)arg3;
++ (id)operationWithSingleTeamToken:(id)arg1 appIdIds:(id)arg2 andPlatform:(id)arg3 andSubPlatform:(id)arg4;
++ (id)operationWithSingleTeamToken:(id)arg1 appIdId:(id)arg2 andPlatform:(id)arg3 andSubPlatform:(id)arg4;
 - (_Bool)_shouldRetryOnServiceError:(id)arg1;
 
 @end

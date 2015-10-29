@@ -10,7 +10,7 @@
 #import "NSAnimationDelegate.h"
 #import "NSLayoutManagerDelegate.h"
 
-@class DVTAnnotationManager, DVTHashTable, DVTMutableRangeArray, DVTObservingToken, DVTTextAnnotationIndicatorAnimation, DVTTextDocumentLocation, DVTTextPageGuideVisualization, NSAnimation, NSArray, NSDictionary, NSMutableArray, NSString, NSTimer, NSView, NSWindow;
+@class DVTAnnotationManager, DVTMutableRangeArray, DVTObservingToken, DVTTextAnnotationIndicatorAnimation, DVTTextDocumentLocation, DVTTextPageGuideVisualization, NSAnimation, NSArray, NSDictionary, NSHashTable, NSMutableArray, NSString, NSTimer, NSView, NSWindow;
 
 @interface DVTSourceTextView : DVTCompletingTextView <NSAnimationDelegate, NSLayoutManagerDelegate, DVTSourceTextScrollViewDelegate>
 {
@@ -39,7 +39,7 @@
     unsigned long long _locationOfOpenBracePendingClose;
     NSTimer *_scrollbarMarkerUpdateTimer;
     DVTAnnotationManager *_annotationManager;
-    DVTHashTable *_preparedViewAnnotations;
+    NSHashTable *_preparedViewAnnotations;
     NSView *_staticVisualizationView;
     int _findResultStyle;
     DVTMutableRangeArray *_typeOverCompletionRanges;
@@ -67,12 +67,12 @@
     BOOL _animatesCurrentScroll;
     BOOL _disableUpdatingInsertionPointCount;
     BOOL _currentlyAutoCompletingBracket;
-    BOOL _addedSpaceWhenAutoOpeningCloseBracket;
+    BOOL _currentlyDoingNonUserEditing;
     BOOL _wrapsLines;
     BOOL _postsLayoutManagerNotifications;
     BOOL _scrollingInScrollView;
     DVTObservingToken *_autoHighlightTokenRangesObservingToken;
-    BOOL _annotationLayoutScheduled;
+    id <DVTCancellable> _delayedAnnotationLayoutToken;
     struct _NSRange _selectedRangeBeforeMouseDown;
     BOOL _ensuringLayoutForScroll;
 }
@@ -85,12 +85,9 @@
 + (id)drawingLogAspect;
 + (void)initialize;
 @property BOOL postsLayoutManagerNotifications; // @synthesize postsLayoutManagerNotifications=_postsLayoutManagerNotifications;
-@property BOOL addedSpaceWhenAutoOpeningCloseBracket; // @synthesize addedSpaceWhenAutoOpeningCloseBracket=_addedSpaceWhenAutoOpeningCloseBracket;
-@property unsigned long long locationOfAutoOpenedCloseBracket; // @synthesize locationOfAutoOpenedCloseBracket=_locationOfAutoOpenedCloseBracket;
 @property int findResultStyle; // @synthesize findResultStyle=_findResultStyle;
 @property(nonatomic) unsigned long long pageGuideColumn; // @synthesize pageGuideColumn=_pageGuideColumn;
 @property(readonly) NSArray *visualizations; // @synthesize visualizations=_visualizations;
-@property(retain) DVTAnnotationManager *annotationManager; // @synthesize annotationManager=_annotationManager;
 @property(nonatomic) struct _NSRange ghostStringRange; // @synthesize ghostStringRange=_ghostStringRange;
 @property unsigned long long temporaryLinkHoverAltModifierFlags; // @synthesize temporaryLinkHoverAltModifierFlags=_temporaryLinkHoverAltModifierFlags;
 @property unsigned long long temporaryLinkHoverModifierFlags; // @synthesize temporaryLinkHoverModifierFlags=_temporaryLinkHoverModifierFlags;
@@ -175,6 +172,8 @@
 - (void)toggleTokenizedEditing:(id)arg1;
 - (void)textStorage:(id)arg1 didEndEditRange:(struct _NSRange)arg2 changeInLength:(long long)arg3;
 - (void)textStorage:(id)arg1 willEndEditRange:(struct _NSRange)arg2 changeInLength:(long long)arg3;
+- (void)didEndTokenizedEditingWithRanges:(id)arg1;
+- (void)willStartTokenizedEditingWithRanges:(id)arg1;
 - (void)tokenizableRangesWithRange:(struct _NSRange)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)_scheduleAutoHighlightTokenMenuTimerIfNeeded;
 - (void)_showAutoHighlightTokenMenuWithTimer:(id)arg1;
@@ -314,12 +313,15 @@
 - (id)visibleAnnotationsForLineNumberRange:(struct _NSRange)arg1;
 - (id)annotationForRepresentedObject:(id)arg1;
 @property(readonly) NSArray *annotations;
+@property(retain) DVTAnnotationManager *annotationManager; // @synthesize annotationManager=_annotationManager;
 - (void)setShowsFoldingSidebar:(BOOL)arg1;
 - (BOOL)showsFoldingSidebar;
 - (void)getParagraphRect:(struct CGRect *)arg1 firstLineRect:(struct CGRect *)arg2 forLineRange:(struct _NSRange)arg3 ensureLayout:(BOOL)arg4;
 - (struct _NSRange)lineNumberRangeForBoundingRect:(struct CGRect)arg1;
 - (unsigned long long)lineNumberForPoint:(struct CGPoint)arg1;
 - (id)printJobTitle;
+- (void)setIsCurrentlyDoingNonUserEditing:(BOOL)arg1;
+@property(readonly) BOOL isCurrentlyDoingNonUserEditing;
 @property(readonly) NSDictionary *syntaxColoringContext;
 - (id)language;
 - (BOOL)allowsCodeFolding;

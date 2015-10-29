@@ -6,24 +6,25 @@
 
 #import "DTDKDetailViewController.h"
 
+#import "DTDKRemoteDeviceConsoleControllerDelegate.h"
 #import "DVTDevicesWindowConsoleViewController.h"
 #import "DVTFindBarFindable.h"
 #import "DVTFindBarHostable.h"
 #import "DVTScopeBarHost.h"
 #import "DVTWindowActivationStateObserver.h"
 
-@class DVTIncrementalFindBar, DVTScopeBarController, DVTScopeBarsManager, DVTStackBacktrace, DVTSystemActivityToken, DVTiOSDevice, IDEiPhoneConsoleTextView, NSObject<OS_dispatch_source>, NSScrollView, NSString, NSView;
+@class DVTIncrementalFindBar, DVTScopeBarController, DVTScopeBarsManager, DVTStackBacktrace, DVTSystemActivityToken, DVTiOSDevice, IDEiPhoneConsoleTextView, NSScrollView, NSString, NSView;
 
-@interface IDEiPhoneOrganizerConsoleViewController : DTDKDetailViewController <DVTWindowActivationStateObserver, DVTDevicesWindowConsoleViewController, DVTScopeBarHost, DVTFindBarHostable, DVTFindBarFindable>
+@interface IDEiPhoneOrganizerConsoleViewController : DTDKDetailViewController <DVTWindowActivationStateObserver, DTDKRemoteDeviceConsoleControllerDelegate, DVTDevicesWindowConsoleViewController, DVTScopeBarHost, DVTFindBarHostable, DVTFindBarFindable>
 {
     NSView *consoleView;
     IDEiPhoneConsoleTextView *consoleTextView;
     DVTiOSDevice *_device;
-    NSObject<OS_dispatch_source> *_consoleTimer;
     unsigned int shouldWrapLines:1;
     unsigned int reserved:31;
     DVTSystemActivityToken *_activityToken;
     id <DVTCancellable> _windowActivationStateObserverCancellable;
+    id <DVTCancellable> _themeChangeToken;
     DVTScopeBarsManager *_scopeBarsManager;
     DVTScopeBarController *_findBarScopeBarController;
     DVTIncrementalFindBar *_findBar;
@@ -43,6 +44,8 @@
 - (void)dvtFindBar:(id)arg1 didUpdateCurrentResult:(id)arg2;
 - (void)dvtFindBar:(id)arg1 didUpdateResults:(id)arg2;
 @property(readonly) NSView *scopeBarsBaseView;
+- (void)consoleControllerDidClear:(id)arg1;
+- (void)consoleController:(id)arg1 didReceiveConsoleText:(id)arg2;
 - (void)save:(id)arg1;
 - (void)clear:(id)arg1;
 - (void)detailViewDidDisappear;
@@ -50,11 +53,12 @@
 - (void)saveConsole;
 @property(readonly) NSString *saveConsoleButtonTitle;
 - (void)clearConsole;
-- (id)consoleFont;
+- (void)_themeFontsAndColorsUpdated;
 - (void)primitiveInvalidate;
 - (void)stopUpdatingConsoleText;
 - (void)startUpdatingConsoleText;
 - (void)window:(id)arg1 didChangeActivationState:(long long)arg2;
+- (id)consoleController;
 - (void)stopSuppressingAppNap;
 - (void)suppressAppNapIfNeeded;
 - (void)viewWillUninstall;

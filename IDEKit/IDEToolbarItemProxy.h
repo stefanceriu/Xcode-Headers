@@ -10,8 +10,8 @@
 
 @interface IDEToolbarItemProxy : NSObject
 {
-    NSString *_toolbarItemIdentifier;
     BOOL _providesItems;
+    NSString *_toolbarItemIdentifier;
     NSString *_toolbarItemLabel;
     NSString *_toolbarItemPaletteLabel;
     NSString *_toolbarItemTooltip;
@@ -22,7 +22,7 @@
 }
 
 + (id)proxyForToolbarItemElement:(id)arg1 errorMessage:(id *)arg2;
-@property Class providerClass; // @synthesize providerClass=_providerClass;
+@property(retain) Class providerClass; // @synthesize providerClass=_providerClass;
 @property(retain) DVTExtension *commandDefinitionExtension; // @synthesize commandDefinitionExtension=_commandDefinitionExtension;
 @property(retain) NSImage *toolbarItemImage; // @synthesize toolbarItemImage=_toolbarItemImage;
 @property SEL toolbarItemAction; // @synthesize toolbarItemAction=_toolbarItemAction;

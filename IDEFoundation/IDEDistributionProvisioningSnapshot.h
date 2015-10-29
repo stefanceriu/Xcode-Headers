@@ -14,10 +14,12 @@
     IDEDistributionItemSigningInfo *_installerSigningInfo;
 }
 
-@property(retain) IDEDistributionItemSigningInfo *installerSigningInfo; // @synthesize installerSigningInfo=_installerSigningInfo;
-@property(retain) DVTMutableOrderedDictionary *itemToSigningInfoMap; // @synthesize itemToSigningInfoMap=_itemToSigningInfoMap;
+@property(readonly) IDEDistributionItemSigningInfo *installerSigningInfo; // @synthesize installerSigningInfo=_installerSigningInfo;
+@property(readonly) DVTMutableOrderedDictionary *itemToSigningInfoMap; // @synthesize itemToSigningInfoMap=_itemToSigningInfoMap;
 - (void).cxx_destruct;
 - (id)description;
+- (id)initWithItemToSigningInfoMap:(id)arg1 installerSigningInfo:(id)arg2;
+- (id)init;
 
 @end
 

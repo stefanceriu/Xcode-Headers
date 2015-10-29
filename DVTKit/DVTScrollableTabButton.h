@@ -58,11 +58,13 @@
 @property(nonatomic) SEL becomeFirstResponderAction; // @synthesize becomeFirstResponderAction=_becomeFirstResponderAction;
 @property(nonatomic) SEL closeAction; // @synthesize closeAction=_closeAction;
 @property(readonly) DVTRolloverImageButton *closeButton; // @synthesize closeButton=_closeButton;
-@property(retain, nonatomic) DVTTabbedWindowTabViewItem *tabViewItem; // @synthesize tabViewItem=_tabViewItem;
+- (void)setTabViewItem:(id)arg1;
+- (id)tabViewItem;
 - (void).cxx_destruct;
 - (void)stopEditingTabName;
 - (BOOL)control:(id)arg1 textView:(id)arg2 doCommandBySelector:(SEL)arg3;
 - (void)controlTextDidEndEditing:(id)arg1;
+- (void)_controlTextDidEndEditing;
 - (void)_stopEditingAndUninstallEditor;
 - (void)startEditingTabName;
 - (BOOL)resignFirstResponder;
@@ -82,7 +84,6 @@
 - (id)tabDragImage;
 - (struct CGSize)maximumDragImageSize;
 - (id)_titleStringAttributesForMainWindow:(BOOL)arg1 activeTab:(BOOL)arg2;
-- (void)_updateActiveTabColor;
 - (void)_updateTitleTextField;
 - (void)_updateErrorIndicatorImage;
 - (void)_updateCloseButtonImages;

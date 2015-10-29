@@ -21,7 +21,6 @@
 - (BOOL)_allowsSizeMode:(unsigned long long)arg1;
 - (BOOL)_allowsDisplayMode:(unsigned long long)arg1;
 - (BOOL)isFullScreen;
-- (id)_customMetrics;
 
 @end
 

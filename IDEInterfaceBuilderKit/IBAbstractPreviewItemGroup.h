@@ -8,13 +8,13 @@
 
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTMapTable, IDEFileReference, NSArray, NSImage, NSMutableArray, NSString;
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSMapTable, NSMutableArray, NSString;
 
 @interface IBAbstractPreviewItemGroup : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSMutableArray *_previewItems;
-    DVTMapTable *_workspaceToItemMapTable;
-    DVTMapTable *_workspaceToInvalidationObserverTable;
+    NSMapTable *_workspaceToItemMapTable;
+    NSMapTable *_workspaceToInvalidationObserverTable;
 }
 
 + (id)fileDataType;

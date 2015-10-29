@@ -34,7 +34,7 @@
 + (id)positionX:(id)arg1 Y:(id)arg2;
 + (id)positionY:(id)arg1;
 + (id)positionX:(id)arg1;
-@property(retain) SKNode *referenceNode; // @synthesize referenceNode=_referenceNode;
+@property(retain, nonatomic) SKNode *referenceNode; // @synthesize referenceNode=_referenceNode;
 @property BOOL enabled; // @synthesize enabled=_enabled;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;

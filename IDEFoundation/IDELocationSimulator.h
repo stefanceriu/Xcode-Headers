@@ -20,13 +20,14 @@
     BOOL _playingBack;
     NSTimer *_playbackTimer;
     unsigned long long _currentPlaybackIndex;
-    IDELocation *_currentPlaybackLocation;
     double _lastUpdateTime;
     NSOperationQueue *_playbackQueue;
+    IDELocation *_currentSimulatedLocation;
 }
 
 + (void)initialize;
 + (id)locationSimulatorLogAspect;
+@property(retain) IDELocation *currentSimulatedLocation; // @synthesize currentSimulatedLocation=_currentSimulatedLocation;
 @property(retain) IDESimulateLocationService *service; // @synthesize service=_service;
 @property(retain, nonatomic) IDELocationScenario *scenario; // @synthesize scenario=_scenario;
 @property(readonly) int state; // @synthesize state=_state;

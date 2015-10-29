@@ -6,12 +6,17 @@
 
 #import <IDEKit/IDEActivityReporter.h>
 
+@class DVTNotificationToken;
+
 @interface IDEActivityTestingActivityReporter : IDEActivityReporter
 {
+    DVTNotificationToken *_stopTestingAllActivitiesNotificationToken;
+    DVTNotificationToken *_runTestNotificationToken;
 }
 
 + (id)activityTests;
 + (void)initialize;
+- (void).cxx_destruct;
 - (void)testNewAndCompletedNonUserInitiatedTasksActivity;
 - (void)testNewAndCompletedUserInitiatedTasksActivity;
 - (void)runTestFromNotification:(id)arg1;
@@ -21,6 +26,7 @@
 - (void)testDeterminateActivities;
 - (void)testIndeterminateActivities;
 - (void)removeActivityReports:(id)arg1;
+- (void)primitiveInvalidate;
 - (id)initWithWorkspace:(id)arg1;
 
 @end

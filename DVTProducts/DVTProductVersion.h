@@ -9,24 +9,24 @@
 #import "DVTInvalidation.h"
 #import "DVTServicesJSONSerialization.h"
 
-@class DVTCrashPointAppStoreSource, DVTCrashPointLocalSource, DVTProductVersionBinaryInfo, DVTProductVersionSymbolInfo, DVTStackBacktrace, NSArray, NSDate, NSSet, NSString, NSURL;
+@class DVTCrashPointAppStoreSource, DVTCrashPointLocalSource, DVTProductCategory, DVTProductVersionBinaryInfos, DVTStackBacktrace, NSArray, NSDate, NSSet, NSString, NSURL;
 
 @interface DVTProductVersion : NSObject <DVTServicesJSONSerialization, DVTInvalidation>
 {
     NSString *_bundleIdentifier;
     NSString *_version;
     NSString *_buildNumber;
+    NSString *_platformSDKIdentifier;
     NSString *_name;
     NSURL *_imageURL;
     NSURL *_cacheImageURL;
     NSDate *_creationDate;
     NSArray *_childProducts;
-    unsigned long long _productType;
+    DVTProductCategory *_productCategory;
     NSString *_adamId;
     NSSet *_supportedDeviceTypes;
     NSSet *_supportedOSVersions;
-    DVTProductVersionBinaryInfo *_binaryInfo;
-    DVTProductVersionSymbolInfo *_symbolInfo;
+    DVTProductVersionBinaryInfos *_binaryInfos;
     DVTCrashPointAppStoreSource *_appStoreCrashPointSource;
     DVTCrashPointLocalSource *_localCrashPointSource;
     NSArray *_archives;
@@ -34,7 +34,6 @@
 }
 
 + (id)objectFromJSONRepresentation:(id)arg1 error:(id *)arg2;
-+ (id)keyPathsForValuesAffectingProductSourceType;
 + (id)productVersionFromArchive:(id)arg1 withError:(id *)arg2;
 + (BOOL)isValidProductVersionFromArchive:(id)arg1 withError:(id *)arg2;
 + (id)productVersionByMerging:(id)arg1;
@@ -44,17 +43,17 @@
 @property(retain) NSArray *archives; // @synthesize archives=_archives;
 @property(retain) DVTCrashPointLocalSource *localCrashPointSource; // @synthesize localCrashPointSource=_localCrashPointSource;
 @property(retain) DVTCrashPointAppStoreSource *appStoreCrashPointSource; // @synthesize appStoreCrashPointSource=_appStoreCrashPointSource;
-@property(retain) DVTProductVersionSymbolInfo *symbolInfo; // @synthesize symbolInfo=_symbolInfo;
-@property(retain) DVTProductVersionBinaryInfo *binaryInfo; // @synthesize binaryInfo=_binaryInfo;
+@property(retain) DVTProductVersionBinaryInfos *binaryInfos; // @synthesize binaryInfos=_binaryInfos;
 @property(retain) NSSet *supportedOSVersions; // @synthesize supportedOSVersions=_supportedOSVersions;
 @property(retain) NSSet *supportedDeviceTypes; // @synthesize supportedDeviceTypes=_supportedDeviceTypes;
 @property(copy) NSString *adamId; // @synthesize adamId=_adamId;
-@property(readonly) unsigned long long productType; // @synthesize productType=_productType;
+@property(readonly) DVTProductCategory *productCategory; // @synthesize productCategory=_productCategory;
 @property(retain) NSArray *childProducts; // @synthesize childProducts=_childProducts;
-@property(readonly) NSDate *creationDate; // @synthesize creationDate=_creationDate;
+@property(retain) NSDate *creationDate; // @synthesize creationDate=_creationDate;
 @property(retain) NSURL *cacheImageURL; // @synthesize cacheImageURL=_cacheImageURL;
 @property(retain) NSURL *imageURL; // @synthesize imageURL=_imageURL;
 @property(readonly) NSString *name; // @synthesize name=_name;
+@property(retain) NSString *platformSDKIdentifier; // @synthesize platformSDKIdentifier=_platformSDKIdentifier;
 @property(readonly) NSString *buildNumber; // @synthesize buildNumber=_buildNumber;
 @property(readonly) NSString *version; // @synthesize version=_version;
 @property(readonly) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
@@ -65,10 +64,11 @@
 - (BOOL)isEqual:(id)arg1;
 @property(readonly, getter=isAvailableForSale) BOOL availableForSale;
 @property(readonly, getter=isAvailableForPrerelease) BOOL availableForPrerelease;
-@property(readonly) unsigned long long productSourceType;
+@property(readonly) NSArray *flatChildProducts;
 - (void)primitiveInvalidate;
 - (void)setAppStoreCrashPointSource:(id)arg1 productManager:(id)arg2;
-- (id)initWithBundleIdentifier:(id)arg1 version:(id)arg2 buildNumber:(id)arg3 name:(id)arg4 childProducts:(id)arg5 productType:(unsigned long long)arg6;
+- (id)cachePathWithProductDirectory:(id)arg1;
+- (id)initWithBundleIdentifier:(id)arg1 version:(id)arg2 buildNumber:(id)arg3 name:(id)arg4 childProducts:(id)arg5 productCategory:(id)arg6;
 - (id)init;
 
 // Remaining properties

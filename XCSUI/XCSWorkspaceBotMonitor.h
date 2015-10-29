@@ -9,24 +9,28 @@
 #import "DVTInvalidation.h"
 #import "IDEContinuousIntegrationBotMonitor.h"
 
-@class DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEWorkspace, NSArray, NSMapTable, NSString;
+@class DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEWorkspace, NSArray, NSMapTable, NSMutableArray, NSString;
 
 @interface XCSWorkspaceBotMonitor : NSObject <DVTInvalidation, IDEContinuousIntegrationBotMonitor>
 {
     BOOL _filterBotsToWorkspace;
     DVTNotificationToken *_scmNotificationToken;
+    DVTNotificationToken *_maintenanceTasksEncounteredToken;
     DVTObservingToken *_serviceManagerServicesObservingToken;
     NSMapTable *_servicesConnectedObservers;
-    NSMapTable *_enabledConnectedObservers;
+    NSMutableArray *_maintenanceTaskPollTimers;
     IDEWorkspace *_workspace;
     NSArray *_bots;
+    NSArray *_serversWithMaintenanceTasks;
 }
 
 + (long long)resultForIntegrationID:(id)arg1;
 + (long long)currentStepForIntegrationID:(id)arg1;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (id)_activityStreamLogAspect;
 + (id)_workspaceBotMonitorLogAspect;
 + (void)initialize;
+@property(copy, nonatomic) NSArray *serversWithMaintenanceTasks; // @synthesize serversWithMaintenanceTasks=_serversWithMaintenanceTasks;
 @property(copy, nonatomic) NSArray *bots; // @synthesize bots=_bots;
 @property(retain, nonatomic) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 - (void).cxx_destruct;
@@ -34,10 +38,16 @@
 - (void)postAlertsForIntegrationID:(id)arg1 service:(id)arg2;
 - (void)updateBotClientsInService:(id)arg1;
 - (void)filterBotsToWorkspace:(BOOL)arg1;
-- (void)_updateBotsFromService:(id)arg1;
+- (void)_updateBotsFromService:(id)arg1 botNavigablesNeedRefresh:(BOOL)arg2;
+- (void)_updateBotsForServiceInMaintenanceMode:(id)arg1;
 - (void)startObservingServiceManager;
 - (void)primitiveInvalidate;
+- (void)_pollServiceForMaintenaceTasks:(id)arg1;
+- (void)pollServiceForMaintenaceTasks:(id)arg1;
+- (void)_cancelMaintenanceTasksPollingOnService:(id)arg1;
 - (id)initWithWorkspace:(id)arg1;
+- (id)init;
+- (void)_commonInit;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

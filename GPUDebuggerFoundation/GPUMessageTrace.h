@@ -27,7 +27,6 @@
 }
 
 + (id)sharedTrace;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_resetUsageStatistics;
 - (void)reportUsageStatistics;

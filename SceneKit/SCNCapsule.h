@@ -8,7 +8,6 @@
 
 @interface SCNCapsule : SCNGeometry
 {
-    id _reserved;
     double _capsulecapRadius;
     double _capsuleheight;
     long long _capsuleheightSegmentCount;
@@ -18,7 +17,6 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)capsuleWithCapRadius:(double)arg1 height:(double)arg2;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -36,11 +34,10 @@
 @property(nonatomic) long long capSegmentCount;
 @property(nonatomic) double capRadius;
 - (void)_syncObjCModel:(struct __C3DParametricGeometry *)arg1;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (id)presentationGeometry;
 - (id)presentationCapsule;
 - (id)initPresentationParametricGeometryWithParametricGeometryRef:(struct __C3DParametricGeometry *)arg1;
-- (void)dealloc;
 - (struct __C3DGeometry *)__createCFObject;
 - (id)initWithParametricGeometryRef:(struct __C3DParametricGeometry *)arg1;
 - (id)init;

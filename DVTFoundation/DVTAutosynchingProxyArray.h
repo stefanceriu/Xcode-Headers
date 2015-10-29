@@ -8,14 +8,14 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTMapTable, DVTStackBacktrace, NSString;
+@class DVTStackBacktrace, NSMapTable, NSString;
 
 @interface DVTAutosynchingProxyArray : NSArray <DVTInvalidation>
 {
     id _observedObject;
     NSString *_observedKeyPath;
     NSArray *_proxies;
-    DVTMapTable *_objectsToProxies;
+    NSMapTable *_objectsToProxies;
     CDUnknownBlockType _proxyObtainBlock;
     CDUnknownBlockType _proxyDiscardBlock;
     id _kvoNotifyObject;

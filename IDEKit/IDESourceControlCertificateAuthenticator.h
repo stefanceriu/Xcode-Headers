@@ -10,7 +10,7 @@
 {
 }
 
-- (void)showCertificatePanelForChallenge:(id)arg1 repository:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)showCertificatePanelForProtectionSpace:(id)arg1 repository:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 
 @end
 

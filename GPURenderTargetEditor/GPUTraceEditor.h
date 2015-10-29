@@ -34,7 +34,7 @@ __attribute__((visibility("hidden")))
     NSMenuItem *_toggleWireframeMenuItem;
     NSMenuItem *_toggleDeviceWireframeMenuItem;
     GPUDebuggingAdditionUIController *_debuggingAdditionUIController;
-    DVTObservingToken *_debugerControllerDebugStateObserverToken;
+    DVTObservingToken *_debuggerControllerDebugStateObserverToken;
     BOOL _haveRequestedUIController;
     id <DVTCancellable> _uiControllerObserver;
     id _controlKeyEventTap;

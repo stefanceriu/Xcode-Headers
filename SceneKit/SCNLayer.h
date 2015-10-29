@@ -9,11 +9,10 @@
 #import "SCNSceneRenderer.h"
 #import "SCNTechniqueSupport.h"
 
-@class NSString, SCNJitterer, SCNNode, SCNRenderer, SCNScene, SCNTechnique, SKScene;
+@class AVAudioEngine, AVAudioEnvironmentNode, NSString, SCNJitterer, SCNNode, SCNRenderer, SCNScene, SCNTechnique, SKScene;
 
 @interface SCNLayer : CAOpenGLLayer <SCNSceneRenderer, SCNTechniqueSupport>
 {
-    id _reserved;
     SCNJitterer *_jitterer;
     SCNRenderer *_renderer;
     SCNScene *_scene;
@@ -22,15 +21,13 @@
     BOOL _rendersIntoMaterial;
 }
 
-+ (id)SCNJSExportProtocol;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
 + (id)_kvoKeysForwardedToRenderer;
 - (id)_authoringEnvironment;
 - (void)set_showsAuthoringEnvironment:(BOOL)arg1;
 - (BOOL)_showsAuthoringEnvironment;
-- (unsigned long long)debugSettings;
-- (void)setDebugSettings:(unsigned long long)arg1;
+@property(nonatomic) unsigned long long debugOptions;
 - (void)drawInContext:(struct CGContext *)arg1;
 - (void)pause;
 - (void)stop;
@@ -51,6 +48,16 @@
 @property(readonly, nonatomic) void *context;
 - (struct _CGLContextObject *)CGLContext;
 @property(copy, nonatomic) SCNTechnique *technique;
+@property(retain, nonatomic) SCNNode *audioListener;
+@property(readonly, nonatomic) AVAudioEnvironmentNode *audioEnvironmentNode;
+@property(readonly, nonatomic) AVAudioEngine *audioEngine;
+@property(readonly, nonatomic) unsigned long long stencilPixelFormat;
+@property(readonly, nonatomic) unsigned long long depthPixelFormat;
+@property(readonly, nonatomic) unsigned long long colorPixelFormat;
+@property(readonly, nonatomic) id <MTLCommandQueue> commandQueue;
+@property(readonly, nonatomic) id <MTLDevice> device;
+@property(readonly, nonatomic) id <MTLRenderCommandEncoder> currentRenderCommandEncoder;
+- (id)currentRenderPassDescriptor;
 @property(retain, nonatomic) SKScene *overlaySKScene;
 @property(nonatomic) BOOL loops;
 @property(getter=isPlaying) BOOL playing;
@@ -60,7 +67,9 @@
 @property(nonatomic) double sceneTime;
 @property(nonatomic) double currentTime;
 @property(retain, nonatomic) SCNScene *scene;
+- (void)presentScene:(id)arg1 withTransition:(id)arg2 incomingPointOfView:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)_glContextDidChange;
+@property(readonly, nonatomic) unsigned long long renderingAPI;
 - (void)setBackgroundColor:(struct CGColor *)arg1;
 - (id)renderer;
 - (void)setRenderer:(id)arg1;
@@ -70,6 +79,7 @@
 - (void)projectPoints:(struct SCNVector3 *)arg1 count:(unsigned long long)arg2;
 - (void)prepareObjects:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (BOOL)prepareObject:(id)arg1 shouldAbortBlock:(CDUnknownBlockType)arg2;
+- (id)nodesInsideFrustumWithPointOfView:(id)arg1;
 - (BOOL)isNodeInsideFrustum:(id)arg1 withPointOfView:(id)arg2;
 - (id)hitTestWithSegmentFromPoint:(struct SCNVector3)arg1 toPoint:(struct SCNVector3)arg2 options:(id)arg3;
 - (id)hitTest:(struct CGPoint)arg1 options:(id)arg2;

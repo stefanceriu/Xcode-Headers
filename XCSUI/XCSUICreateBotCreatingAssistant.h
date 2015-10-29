@@ -36,8 +36,6 @@
 @property(readonly, nonatomic) BOOL completedAndWaitedMinimumDuration;
 - (void)_clearMinimumProgressIndicatorDurationTimer;
 - (void)_handleCommitAndIntegrateOptionsWithCreateBotAssistantContext:(id)arg1;
-- (void)_createBotWithBotExtendedAttributes:(id)arg1;
-- (id)_scmInfo;
 @property(readonly, nonatomic) NSString *statusText;
 @property(readonly, nonatomic) NSImage *statusImage;
 - (void)finishWithCompletionBlock:(CDUnknownBlockType)arg1;

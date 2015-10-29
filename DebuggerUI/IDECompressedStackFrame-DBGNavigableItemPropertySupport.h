@@ -10,6 +10,5 @@
 
 @interface IDECompressedStackFrame (DBGNavigableItemPropertySupport) <DBGNavigableItemPerformance>
 - (double)heightOfRow;
-- (BOOL)isGroupHeader:(id)arg1;
 @end
 

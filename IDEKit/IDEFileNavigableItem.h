@@ -22,7 +22,6 @@
 - (id)identifierForChildItem:(id)arg1;
 - (id)childRepresentedObjects;
 - (BOOL)isLeaf;
-- (BOOL)isMajorGroup;
 - (BOOL)isDocumentNavigableItem;
 - (id)structureProvidingEditorDocument;
 - (id)_editorDocument;
@@ -31,7 +30,6 @@
 - (void)_documentDidClose;
 - (void)primitiveInvalidate;
 - (id)contentDocumentLocation;
-@property(readonly) long long progress;
 @property(readonly) DVTFileDataType *documentType;
 @property(readonly) NSURL *fileURL;
 - (id)image;

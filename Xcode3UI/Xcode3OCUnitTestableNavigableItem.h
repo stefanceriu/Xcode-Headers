@@ -6,18 +6,21 @@
 
 #import "IDEKeyDrivenNavigableItem.h"
 
-@class NSImage;
+@class DVTNotificationToken, NSImage, NSString;
 
 @interface Xcode3OCUnitTestableNavigableItem : IDEKeyDrivenNavigableItem
 {
-    NSImage *_icon;
+    NSString *_testableName;
+    NSImage *_testableImage;
+    DVTNotificationToken *_testableImageNotificationToken;
 }
 
 - (void).cxx_destruct;
-- (void)primitiveInvalidate;
 - (id)image;
 - (id)name;
-- (void)targetProductSettingsChanged:(id)arg1;
+- (void)_setImageFromTarget;
+- (void)_setNameFromTarget;
+- (void)primitiveInvalidate;
 - (id)initWithRepresentedObject:(id)arg1;
 
 @end

@@ -22,6 +22,9 @@
 - (void).cxx_destruct;
 @property(readonly) NSString *informativeText;
 - (void)setDeveloperModeWithReturnCode:(long long)arg1;
+- (void)_performAskToEnableDeveloperModeIfNecessaryWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)_synchronizedPerformDeveloperModeAlertCompletionCallbacks;
+- (void)_synchronizedAskToEnableDeveloperModeIfNecessaryWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)askToEnableDeveloperModeIfNecessaryWithCompletionHandler:(CDUnknownBlockType)arg1;
 
 @end

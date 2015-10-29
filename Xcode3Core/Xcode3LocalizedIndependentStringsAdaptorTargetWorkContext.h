@@ -6,15 +6,12 @@
 
 #import "IDELocalizationWorkContext.h"
 
-#import "IDELocalizationWorkSystemTask.h"
+#import "IDELocalizationWorkProvider.h"
 
-@class DVTFilePath, NSArray, NSNumber, NSString, Xcode3Target;
+@class NSArray, NSString, Xcode3Target;
 
-@interface Xcode3LocalizedIndependentStringsAdaptorTargetWorkContext : IDELocalizationWorkContext <IDELocalizationWorkSystemTask>
+@interface Xcode3LocalizedIndependentStringsAdaptorTargetWorkContext : IDELocalizationWorkContext <IDELocalizationWorkProvider>
 {
-    DVTFilePath *IDELocalizationWork_launchPath;
-    NSArray *IDELocalizationWork_arguments;
-    NSNumber *IDELocalizationWork_exitStatus;
     Xcode3Target *_target;
     NSArray *_sourcePaths;
     NSArray *_tableNames;
@@ -25,10 +22,8 @@
 @property(retain) NSArray *tableNames; // @synthesize tableNames=_tableNames;
 @property(retain) NSArray *sourcePaths; // @synthesize sourcePaths=_sourcePaths;
 @property(retain) Xcode3Target *target; // @synthesize target=_target;
-@property(retain) NSNumber *IDELocalizationWork_exitStatus; // @synthesize IDELocalizationWork_exitStatus;
-@property(retain) NSArray *IDELocalizationWork_arguments; // @synthesize IDELocalizationWork_arguments;
-@property(retain) DVTFilePath *IDELocalizationWork_launchPath; // @synthesize IDELocalizationWork_launchPath;
 - (void).cxx_destruct;
+- (id)work;
 - (void)primitiveInvalidate;
 
 @end

@@ -6,13 +6,13 @@
 
 #import <IDEKit/IDEViewController.h>
 
-@class IDEDistributionAssistantWindowController, IDEDistributionContext, NSSet, NSString;
+@class IDEDistributionAssistantWindowController, IDEDistributionContext, IDEDistributionStep, NSSet, NSString;
 
 @interface IDEDistributionStepViewController : IDEViewController
 {
     BOOL _wantsNextAction;
     BOOL _cancelled;
-    IDEDistributionContext *_context;
+    IDEDistributionStep *_distributionStep;
     IDEDistributionAssistantWindowController *_assistantWindowController;
 }
 
@@ -21,12 +21,14 @@
 @property(getter=isCancelled) BOOL cancelled; // @synthesize cancelled=_cancelled;
 @property(readonly) BOOL wantsNextAction; // @synthesize wantsNextAction=_wantsNextAction;
 @property(readonly) IDEDistributionAssistantWindowController *assistantWindowController; // @synthesize assistantWindowController=_assistantWindowController;
-@property(readonly) IDEDistributionContext *context; // @synthesize context=_context;
+@property(readonly) IDEDistributionStep *distributionStep; // @synthesize distributionStep=_distributionStep;
 - (void).cxx_destruct;
 - (void)presentErrorAndCancel:(id)arg1;
 @property(readonly) NSSet *providedOutputContextPropertyNames;
 @property(readonly) NSSet *requiredInputContextPropertyNames;
+@property(readonly) IDEDistributionContext *context;
 - (void)takeNextAction;
+- (void)willGoNext;
 @property(readonly) NSString *nextButtonTitle;
 - (id)title;
 @property(readonly) BOOL canGoPrevious;

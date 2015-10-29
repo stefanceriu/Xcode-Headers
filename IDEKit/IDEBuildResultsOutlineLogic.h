@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTMapTable, DVTStackBacktrace, IDEActivityLogSection, IDEConfigurableDataSource, NSMutableDictionary, NSString, XCBuildResultAdapter, XCBuildResultsOutlineView;
+@class DVTStackBacktrace, IDEActivityLogSection, IDEConfigurableDataSource, NSMapTable, NSMutableDictionary, NSString, XCBuildResultAdapter, XCBuildResultsOutlineView;
 
 @interface IDEBuildResultsOutlineLogic : NSObject <DVTInvalidation>
 {
@@ -49,8 +49,8 @@
     XCBuildResultAdapter *_issueCategoryAdapter;
     XCBuildResultAdapter *_issueOccurrenceAdapter;
     XCBuildResultAdapter *_issueOccurrenceSubStepAdapter;
-    DVTMapTable *_textLayoutsGenerationA;
-    DVTMapTable *_textLayoutsGenerationB;
+    NSMapTable *_textLayoutsGenerationA;
+    NSMapTable *_textLayoutsGenerationB;
     NSMutableDictionary *_issueCategoryNodes;
     NSString *_searchFieldValue;
 }
@@ -103,6 +103,7 @@
 + (id)fixItErrorIconImage;
 + (id)fixItWarningIconImage;
 + (id)testFailureIconImage;
++ (id)testSuccessIconImage;
 + (id)errorIconImage;
 + (id)warningIconImage;
 + (id)analyzerControlFlowStepIconImage;

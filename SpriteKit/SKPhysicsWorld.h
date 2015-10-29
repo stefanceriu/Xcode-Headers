@@ -20,7 +20,6 @@
 @property(nonatomic) id <SKPhysicsContactDelegate> contactDelegate; // @synthesize contactDelegate=_contactDelegate;
 @property(nonatomic) struct CGVector gravity; // @synthesize gravity=_gravity;
 @property(nonatomic) double speed; // @synthesize speed;
-- (id).cxx_construct;
 -     // Error parsing type: 32@0:816, name: sampleFieldsAt:
 -     // Error parsing type: 32@0:816, name: sampleFields:
 - (id)bodyAlongRayStart:(struct CGPoint)arg1 end:(struct CGPoint)arg2;

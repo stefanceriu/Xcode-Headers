@@ -6,13 +6,12 @@
 
 #import "IDEDebugGaugeReportEditor.h"
 
-#import "DVTInvalidation.h"
 #import "IDEDebugGaugeReportContentDelegate.h"
 #import "IDEDebugGaugeReportTopSectionContentDelegate.h"
 
-@class DVTDevice, DVTStackBacktrace, IDEDebugGaugeReportSection, NSMutableSet, NSString, iCloudDocumentsViewController, iCloudHeaderViewController, iCloudPerformanceViewController;
+@class DVTDevice, IDEDebugGaugeReportSection, NSMutableSet, NSString, iCloudDocumentsViewController, iCloudHeaderViewController, iCloudPerformanceViewController;
 
-@interface iCloudActivityEditor : IDEDebugGaugeReportEditor <IDEDebugGaugeReportContentDelegate, IDEDebugGaugeReportTopSectionContentDelegate, DVTInvalidation>
+@interface iCloudActivityEditor : IDEDebugGaugeReportEditor <IDEDebugGaugeReportContentDelegate, IDEDebugGaugeReportTopSectionContentDelegate>
 {
     iCloudHeaderViewController *_headerViewController;
     iCloudPerformanceViewController *_transferActivityViewController;
@@ -44,13 +43,10 @@
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
 
 // Remaining properties
-@property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;
-@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

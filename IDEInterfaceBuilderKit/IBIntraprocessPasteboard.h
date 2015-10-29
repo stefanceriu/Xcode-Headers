@@ -24,6 +24,7 @@
 + (id)generalPasteboard;
 + (id)pasteboardWithUniqueName;
 + (id)pasteboardWithName:(id)arg1;
++ (id)_cachedPasteboardWithName:(id)arg1;
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (id)alloc;
 + (void)initialize;

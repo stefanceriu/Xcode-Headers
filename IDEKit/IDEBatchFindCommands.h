@@ -16,19 +16,24 @@
     id <IDESelectionSource> _selectionSource;
 }
 
-+ (void)_findText:(id)arg1 inWorkspaceTabController:(id)arg2;
-+ (id)_selectedTextInWindow:(id)arg1;
++ (void)_findText:(id)arg1 inWorkspaceTabController:(id)arg2 findType:(int)arg3;
++ (id)_selectedItemInWorkspaceTabController:(id)arg1 validateSymbol:(BOOL)arg2;
 + (id)handlerForAction:(SEL)arg1 withSelectionSource:(id)arg2;
 + (BOOL)_isValidForAction:(SEL)arg1 withSelectionSource:(id)arg2;
 + (id)selectedItemsInSelectionSource:(id)arg1;
 @property(readonly) id <IDESelectionSource> selectionSource; // @synthesize selectionSource=_selectionSource;
 - (void).cxx_destruct;
+- (void)findCallHierarchyForSymbol:(id)arg1;
+- (void)revealCallHierarchySymbolInSymbolNavigator:(id)arg1;
+- (void)callHierarchy:(id)arg1;
 - (void)contextMenu_searchInSelection:(id)arg1;
 - (void)navigateToPreviousFindResult:(id)arg1;
 - (void)navigateToNextFindResult:(id)arg1;
 - (void)_navigateToFindResult:(id)arg1 andUpdateIndex:(long long)arg2;
 - (void)findAndReplaceInWorkspace:(id)arg1;
+- (void)findSelectedSymbolInWorkspace:(id)arg1;
 - (void)findSelectedTextInWorkspace:(id)arg1;
+- (void)_findSelectionInWorkspaceByType:(int)arg1 validatingSymbol:(BOOL)arg2;
 - (void)findInWorkspace:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (id)_initWithSelectionSource:(id)arg1;

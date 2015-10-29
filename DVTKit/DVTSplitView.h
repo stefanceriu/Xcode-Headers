@@ -54,6 +54,7 @@
 
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 @property BOOL suppressFrameWarnings; // @synthesize suppressFrameWarnings=_suppressFrameWarnings;
 @property(retain, nonatomic) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
@@ -96,6 +97,7 @@
 - (void)revertStateWithDictionary:(id)arg1;
 - (void)_setSplitViewItemInfo:(id)arg1;
 - (id)_splitViewItemInfo;
+- (BOOL)_skipDividerIndexDuringAnimation:(long long)arg1;
 - (void)toggleVisibilityOfItemUsingAnimation:(id)arg1;
 @property(copy) NSColor *dividerColor;
 @property double dividerThickness;

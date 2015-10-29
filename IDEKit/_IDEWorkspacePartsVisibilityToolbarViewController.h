@@ -25,12 +25,7 @@
 - (id)menuForMenuFormRepresentation;
 - (void)primitiveInvalidate;
 - (id)_create1010AndLaterControl;
-- (id)_createPre1010Control;
 - (id)initWithToolbarItemIdentifier:(id)arg1 window:(id)arg2;
-- (id)_imageFactoryForImageNamed:(id)arg1;
-- (id)_viewUtilitiesImageFactory;
-- (id)_viewDebugAreaImageFactory;
-- (id)_viewNavigatorsImageFactory;
 
 @end
 

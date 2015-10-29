@@ -48,6 +48,7 @@
     NSObject<OS_dispatch_queue> *_synchronousJobQueue;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 + (id)logAspect;
 @property(readonly) NSObject<OS_dispatch_queue> *synchronousJobQueue; // @synthesize synchronousJobQueue=_synchronousJobQueue;
@@ -77,16 +78,21 @@
 @property(retain) GPUTraceModelFactory *modelFactory; // @synthesize modelFactory=_modelFactory;
 @property(retain, nonatomic) id <GPUResourceManager> resourceManager; // @synthesize resourceManager=_resourceManager;
 - (void).cxx_destruct;
+- (id)modifiedCaptureArchive;
+- (BOOL)isOfflineShaderInLoadedCapture;
 - (void)updateShaders;
 @property(readonly) BOOL supportsDebugBarShaderUpdate;
-- (id)createProgramPerformanceReportProvider;
-- (id)createInvestigatorReportProvider;
+- (id)createProgramPerformanceReportProvider:(id)arg1;
+- (id)createInvestigatorReportProvider:(id)arg1;
 - (void)handleDocumentChanged:(id)arg1 currentAPIItem:(id)arg2;
 - (id)runShaderProfiler;
+- (id)_profileShaders;
+- (id)_profileFrame;
 - (void)loadShaderProfilerResults;
 - (void)saveShaderProfilerResults;
 @property(readonly) BOOL isDisassemblerAvailable; // @dynamic isDisassemblerAvailable;
 @property(readonly) BOOL shaderProfilerResultsHaveBeenUpdated; // @dynamic shaderProfilerResultsHaveBeenUpdated;
+@property(readonly) BOOL isMacOSXDevice;
 @property(readonly) BOOL isShaderProfilerAvailable; // @dynamic isShaderProfilerAvailable;
 @property(readonly) BOOL isRuntimeOSAppleInternal; // @dynamic isRuntimeOSAppleInternal;
 - (id)queryShaderInfoWithPayload:(id)arg1;

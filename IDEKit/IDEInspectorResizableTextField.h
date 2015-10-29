@@ -11,9 +11,11 @@
 @interface IDEInspectorResizableTextField : DVTLayoutView_ML
 {
     NSTextField *_textField;
+    CDStruct_bf6d4a14 _textFieldInset;
 }
 
 @property(retain, nonatomic) NSTextField *textField; // @synthesize textField=_textField;
+@property(nonatomic) CDStruct_bf6d4a14 textFieldInset; // @synthesize textFieldInset=_textFieldInset;
 - (void).cxx_destruct;
 - (void)textFieldTextDidChange:(id)arg1;
 - (void)layoutBottomUp;

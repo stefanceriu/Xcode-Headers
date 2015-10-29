@@ -6,17 +6,16 @@
 
 #import "DVTTextVisualization.h"
 
-@class DVTMapTable, IDEAnalyzerResultsExplorer, NSArray;
+@class IDEAnalyzerResultsExplorer, NSArray, NSMapTable;
 
 @interface IDEAnalyzerResultsVisualization : DVTTextVisualization
 {
-    DVTMapTable *_controlFlowPathsByStep;
+    NSMapTable *_controlFlowPathsByStep;
     struct CGRect _cachedBounds;
     IDEAnalyzerResultsExplorer *_explorer;
 }
 
 @property(readonly) __weak IDEAnalyzerResultsExplorer *explorer; // @synthesize explorer=_explorer;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)drawOverTextInRect:(struct CGRect)arg1;
 - (void)refresh;

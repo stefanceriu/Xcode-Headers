@@ -8,8 +8,7 @@
 
 @interface NSFont (DVTPrivate)
 - (BOOL)dvt_isStyledFont;
-- (BOOL)dvt_isBoldSystemFont;
-- (BOOL)dvt_isSystemFont;
+- (BOOL)dvt_isNonRegularNonBoldSystemFontWeight;
 - (BOOL)dvt_isAnySystemFont;
 - (unsigned long long)metaFontType;
 @end

@@ -6,7 +6,7 @@
 
 #import "DVTSourceTextView.h"
 
-@class DVTTextSidebarView, NSString;
+@class DVTTextSidebarView;
 
 @interface GPUSimpleGLSLSourceView : DVTSourceTextView
 {
@@ -19,9 +19,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 textContainer:(id)arg2;
 - (void)_commonInit;
-
-// Remaining properties
-@property(retain) NSString *identifier;
 
 @end
 

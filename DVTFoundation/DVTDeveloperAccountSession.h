@@ -19,8 +19,8 @@
     NSData *_sessionData;
 }
 
-@property(copy) NSData *sessionData; // @synthesize sessionData=_sessionData;
-@property(copy) NSString *sessionID; // @synthesize sessionID=_sessionID;
+@property(copy, nonatomic) NSData *sessionData; // @synthesize sessionData=_sessionData;
+@property(copy, nonatomic) NSString *sessionID; // @synthesize sessionID=_sessionID;
 @property(copy) NSString *prsID; // @synthesize prsID=_prsID;
 @property(nonatomic) __weak DVTDeveloperAccount *account; // @synthesize account=_account;
 - (void).cxx_destruct;

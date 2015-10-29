@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTDelayedInvocation, DVTObservingToken, DVTStackBacktrace, IDEContainer, IDEContainerQuery, NSDictionary, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString;
+@class DVTObservingToken, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDEContainer, IDEContainerQuery, NSDictionary, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString;
 
 @interface IDEFileReferenceContainerObserver : NSObject <DVTInvalidation>
 {
@@ -24,16 +24,17 @@
     IDEContainer *_observedContainer;
     NSMutableSet *_observationBlocks;
     NSDictionary *_currentFilePaths;
-    NSSet *_currentFileReferences;
+    NSMutableSet *_currentFileReferences;
     NSObject<OS_dispatch_queue> *_ioQueue;
     NSString *_identifier;
     NSSet *_observedTypes;
     BOOL _hasProcessedFirstBatchOfContainerQueryMatches;
-    DVTDelayedInvocation *_processInvocation;
-    DVTDelayedInvocation *_postInvocation;
+    DVTTimeSlicedMainThreadWorkQueue *_processWorkQueue;
+    DVTTimeSlicedMainThreadWorkQueue *_postWorkQueue;
 }
 
 + (void)initialize;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (void)unregisterObserver:(id)arg1;
 + (id)observerForContainer:(id)arg1 types:(id)arg2 identifier:(id)arg3 updateHandlerBlock:(CDUnknownBlockType)arg4;
 + (id)observerForContainer:(id)arg1 types:(id)arg2 identifier:(id)arg3 updateHandlerBlock:(CDUnknownBlockType)arg4 skipFileReferencePredicate:(CDUnknownBlockType)arg5;
@@ -42,10 +43,11 @@
 @property(readonly) NSSet *observedTypes; // @synthesize observedTypes=_observedTypes;
 @property(readonly) IDEContainer *observedContainer; // @synthesize observedContainer=_observedContainer;
 - (void).cxx_destruct;
-- (void)processPendingResults:(id)arg1;
+- (void)processPendingResults;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)_unregisterObservationsForFileReference:(id)arg1;
 - (void)processResultForPath:(id)arg1 withLastKnownFileType:(id)arg2 updateType:(long long)arg3;
-- (void)postResults:(id)arg1;
+- (void)postResults;
 - (void)postResultsRetrospectiveResultsToObserverBlock:(CDUnknownBlockType)arg1;
 - (void)setResult:(id)arg1 forPath:(id)arg2;
 - (void)matchedContainerItemsDidChange:(id)arg1;

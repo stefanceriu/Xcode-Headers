@@ -14,13 +14,15 @@
 + (id)viewDebuggingDylibPathForLaunchSession:(id)arg1;
 + (void)initialize;
 - (void)primitiveInvalidate;
+- (id)targetKitFamilyIdentifier;
 - (id)_fontFromSummary:(id)arg1;
 - (void)_asyncAskForInspectableImageFromDataValue:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)_asyncAskForInspectableColorFromDataValue:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (BOOL)inspectableValueForDataValue:(id)arg1 handler:(CDUnknownBlockType)arg2;
-- (id)_primaryWindowFromWindows:(id)arg1 keyWindowPointer:(id)arg2;
+- (id)_turnOnLayersAsSnapshotsOptionString;
 - (void)fetchViewInfo:(CDUnknownBlockType)arg1 resultHandler:(CDUnknownBlockType)arg2;
 - (BOOL)isViewObjectInteresting:(id)arg1;
+- (unsigned long long)shouldChild:(id)arg1 flattenIntoParent:(id)arg2;
 - (id)classNameForDefaultViewIcon;
 
 @end

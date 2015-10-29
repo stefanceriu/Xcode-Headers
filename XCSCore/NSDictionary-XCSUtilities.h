@@ -11,7 +11,8 @@
 - (void)setDictionary:(id)arg1 forKeyPath:(id)arg2 createIntermediateDictionaries:(BOOL)arg3 replaceIntermediateObjects:(BOOL)arg4;
 - (void)processObject:(id)arg1 key:(id)arg2 path:(id *)arg3;
 - (id)keyPaths;
-- (id)toJSONDataWithError:(id *)arg1;
+- (id)toJSONCompactWithError:(id *)arg1;
+- (id)toJSONCompact;
 - (id)toJSONWithError:(id *)arg1;
 - (id)toJSON;
 @end

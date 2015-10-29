@@ -14,7 +14,6 @@
 - (BOOL)updateFixItInfoWithTextStorage:(id)arg1;
 - (void)setLocationHasBeenUpdated:(BOOL)arg1;
 - (BOOL)locationHasBeenUpdated;
-@property(readonly) unsigned long long activityLogSeverity;
 @property(readonly) struct _NSRange fixItReplacementRange;
 - (void)setFixItReplacementRange:(struct _NSRange)arg1;
 @property(readonly) NSString *fixItString;

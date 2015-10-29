@@ -7,9 +7,9 @@
 #import "NSDateFormatter.h"
 
 @interface NSDateFormatter (IBNSDateFormatterInspectorIntegration)
-+ (id)keyPathsForValuesAffectingIbInspectedSampleString;
 + (id)keyPathsForValuesAffectingIbInspectedDateFormatterBehavior;
-- (id)ibInspectedSampleString;
+- (id)ibExternalSampleValueTooltipRelatedMethods;
+- (id)ibExternalSampleValueDefault;
 - (void)setIbExternalTigerEditMode:(id)arg1;
 - (id)ibExternalTigerEditMode;
 - (void)setIbExternalPantherEditMode:(id)arg1;

@@ -42,6 +42,8 @@
 + (id)buildProductsFolderPathForSettings:(id)arg1 usingPlaceholderOfType:(int *)arg2;
 + (id)keyPathsForValuesAffectingPrecompiledHeadersFolderPath;
 + (id)keyPathsForValuesAffectingIBLiveViewsBuildFolderPath;
++ (id)keyPathsForValuesAffectingSwiftMigrationBuildFolderPath;
++ (id)keyPathsForValuesAffectingCodeCoverageBuildFolderPath;
 + (id)keyPathsForValuesAffectingPGOBuildFolderPath;
 + (id)keyPathsForValuesAffectingInstallingBuildFolderPath;
 + (id)keyPathsForValuesAffectingArchivingBuildFolderPath;
@@ -69,6 +71,8 @@
 @property(readonly) DVTFilePath *textIndexFolderPath;
 @property(readonly) DVTFilePath *precompiledHeadersFolderPath;
 @property(readonly) DVTFilePath *IBLiveViewsBuildFolderPath;
+@property(readonly) DVTFilePath *swiftMigrationBuildFolderPath;
+@property(readonly) DVTFilePath *codeCoverageBuildFolderPath;
 @property(readonly) DVTFilePath *pgoBuildFolderPath;
 @property(readonly) DVTFilePath *installingBuildFolderPath;
 @property(readonly) DVTFilePath *archivingBuildFolderPath;

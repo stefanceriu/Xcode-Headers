@@ -6,16 +6,13 @@
 
 #import "IDEDebugProcess.h"
 
-@class DBGStackFrame, DBGThread, DVTObservingToken, DVTStackBacktrace, NSArray, NSMutableArray, NSMutableSet, NSString;
+@class NSArray, NSMutableArray, NSMutableSet, NSString;
 
 @interface DBGProcess : IDEDebugProcess
 {
     NSMutableSet *_threadsAutoRefreshStackFrames;
-    DBGThread *_currentThread;
-    DBGStackFrame *_currentStackFrame;
     NSMutableArray *_memoryDatas;
-    DVTObservingToken *_currentStackFrameValidityObserver;
-    DVTStackBacktrace *_currentStackFrameBacktraceWhenSet;
+    NSMutableArray *_memoryFaultedMemoryData;
     BOOL _threadsAutoRefreshStackFramesDone;
     int _controlState;
     int _PID;
@@ -24,6 +21,7 @@
     NSArray *_queues;
 }
 
++ (id)keyPathsForValuesAffectingSubtitle;
 + (id)keyPathsForValuesAffectingName;
 + (id)keyPathsForValuesAffectingThreads;
 + (void)initialize;
@@ -36,6 +34,12 @@
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 @property(readonly, nonatomic) unsigned long long addressByteSize;
+- (void)shadowMemoryForAddress:(unsigned long long)arg1 numberOfBytes:(unsigned long long)arg2 handleOnMainQueueWithResultHandler:(CDUnknownBlockType)arg3;
+- (void)memoryPointerDescriptionForAddress:(unsigned long long)arg1 handleOnMainQueueWithResultHandler:(CDUnknownBlockType)arg2;
+@property(readonly, nonatomic) BOOL canProvideMemoryPointerDescriptions;
+- (void)recordedThreadsForAddress:(unsigned long long)arg1 handleOnMainQueueWithResultHandler:(CDUnknownBlockType)arg2;
+- (void)removeMemoryFaultedMemoryDatum:(id)arg1;
+- (void)addMemoryFaultedMemoryDatum:(id)arg1;
 - (void)removeMemoryData:(id)arg1;
 - (void)autoUpdateAllMemoryDatas;
 - (id)readMemoryAtAddress:(unsigned long long)arg1 numberOfBytes:(unsigned long long)arg2 progressHandler:(CDUnknownBlockType)arg3 resultHandler:(CDUnknownBlockType)arg4;
@@ -43,19 +47,16 @@
 - (void)rawMemoryDataForAddressExpression:(id)arg1 numberOfBytes:(unsigned long long)arg2 resultHandler:(CDUnknownBlockType)arg3;
 - (id)memoryDataForUUID:(id)arg1;
 - (id)memoryDataForAddressOfExpression:(id)arg1 numberOfBytes:(unsigned long long)arg2;
-- (void)setCurrentStackFrame:(id)arg1;
-- (id)currentStackFrame;
-- (void)setCurrentThread:(id)arg1;
-- (id)currentThread;
+- (Class)classForMemoryData;
 - (void)deregisterThreadAutoRefreshesStackFrames:(id)arg1;
 - (void)registerThreadAutoRefreshesStackFrames:(id)arg1;
 - (BOOL)_shouldSelectFirstSymbolFrame;
 - (BOOL)_shouldLookForStackFrameWithDebugSymbols;
 - (void)setInitialCurrentStackFrame;
+- (id)subtitle;
 - (BOOL)isPaused;
 - (void)setQueues:(id)arg1;
 - (id)name;
-@property(readonly) NSString *displayStatus;
 - (id)initWithDebugSession:(id)arg1;
 - (id)contentDelegateUIExtensionIdentifier;
 

@@ -39,9 +39,9 @@
 - (id)supersedingDisplayValues;
 - (BOOL)isCatchAllPrototypeForDisplayGroup;
 - (BOOL)isExclusiveTo:(id)arg1 inObjectContainer:(id)arg2;
-- (id)exclusitivityHintInObjectContainer:(id)arg1;
+- (id)exclusivityHintInObjectContainer:(id)arg1;
 - (BOOL)isActuallyAnOutlet;
-- (BOOL)canCoexistsWithOtherConnectionsHavingSameEndPoint;
+- (BOOL)canCoexistWithOtherConnectionsHavingSameEndPoint;
 - (BOOL)validateSource:(id)arg1;
 - (id)missingComponents;
 - (BOOL)validateDestination:(id)arg1;

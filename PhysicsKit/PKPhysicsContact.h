@@ -19,7 +19,6 @@
     BOOL _didEnd;
 }
 
-- (id).cxx_construct;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) double collisionImpulse;
 @property(readonly, nonatomic) struct CGVector contactNormal;

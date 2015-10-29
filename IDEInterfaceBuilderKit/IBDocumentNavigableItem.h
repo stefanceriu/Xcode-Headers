@@ -23,6 +23,7 @@
 - (void)willAccessChildItems;
 - (id)contentDocumentLocation;
 - (id)documentType;
+- (id)archivableRepresentation;
 - (id)childRepresentedObjects;
 - (BOOL)isLeaf;
 - (unsigned long long)indexOfChildItemForIdentifier:(id)arg1;

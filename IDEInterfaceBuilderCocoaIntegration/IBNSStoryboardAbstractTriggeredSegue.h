@@ -6,14 +6,50 @@
 
 #import "IBStoryboardAbstractTriggeredSegue.h"
 
-@interface IBNSStoryboardAbstractTriggeredSegue : IBStoryboardAbstractTriggeredSegue
+#import "NSCoding.h"
+
+@class NSString;
+
+@interface IBNSStoryboardAbstractTriggeredSegue : IBStoryboardAbstractTriggeredSegue <NSCoding>
 {
+    NSString *_customSegueClassName;
+    NSString *_customSegueClassModuleProvider;
 }
 
++ (id)ibKeyPathsAcceptingModuleNameBackfill;
++ (BOOL)wantsDefaultCustomClassCompatibilityWarning;
 + (BOOL)isObjectValidDestination:(id)arg1;
 + (BOOL)isObjectValidSource:(id)arg1;
 + (BOOL)isAbstractType;
++ (id)keyPathsForValuesAffectingIbInspectedCanChangeToCustomSegue;
++ (id)keyPathsForValuesAffectingIbInspectedCanChangeToSheetSegue;
++ (id)keyPathsForValuesAffectingIbInspectedCanChangeToModalSegue;
++ (id)keyPathsForValuesAffectingIbInspectedCanChangeToPopoverSegue;
++ (id)keyPathsForValuesAffectingIbInspectedCanChangeToShowSegue;
+@property(copy) NSString *customSegueClassModuleProvider; // @synthesize customSegueClassModuleProvider=_customSegueClassModuleProvider;
+@property(copy) NSString *customSegueClassName; // @synthesize customSegueClassName=_customSegueClassName;
+- (void).cxx_destruct;
+- (void)copyInstanceStateToClone:(id)arg1 withContext:(id)arg2;
+- (BOOL)isPrototypeFor:(id)arg1;
+- (BOOL)isEqualToPrototype:(id)arg1;
+@property(copy) NSString *customSegueClassModule;
+- (id)keyPathsAffectingCustomSegueClassModule;
+- (void)setCustomSegueFormattedClassSymbol:(id)arg1;
+- (id)customSegueFormattedClassSymbol;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
+- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)segueAttributeInspectorExtensionIdentifier;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (BOOL)ibCanChangeToSegueClass:(Class)arg1;
+- (BOOL)ibInspectedCanChangeToCustomSegue;
+- (BOOL)ibInspectedCanChangeToSheetSegue;
+- (BOOL)ibInspectedCanChangeToModalSegue;
+- (BOOL)ibInspectedCanChangeToPopoverSegue;
+- (BOOL)ibInspectedCanChangeToShowSegue;
+- (BOOL)ibInspectedCanChangeCustomSegueClassName;
+- (BOOL)ibInspectedCanChangeKind;
 
 @end
 

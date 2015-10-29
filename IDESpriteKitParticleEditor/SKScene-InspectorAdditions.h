@@ -9,14 +9,21 @@
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 #import "SKNodeWithShader.h"
 
-@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString, NSURL, SKShader;
+@class DVTDocumentLocation, DVTFileDataType, GTFActionLibrary, IDEFileReference, NSImage, NSString, NSURL, SKCameraNode, SKShader;
 
 @interface SKScene (InspectorAdditions) <IDEKeyDrivenNavigableItemRepresentedObject, SKNodeWithShader>
+@property(retain, nonatomic) GTFActionLibrary *nav_actionLibrary;
+- (id)childFromIndexPath:(id)arg1;
+- (void)refreshTexturesForProject;
+- (id)recreateTextureForName:(id)arg1 fromImages:(id)arg2;
+- (id)reloadTextureFromFile:(id)arg1 fromImages:(id)arg2;
 @property(retain, nonatomic) NSURL *customSpriteShader;
 @property(nonatomic) struct CGPoint spriteKitEditorGravity;
 @property(nonatomic) BOOL nodeNameDrawEnabled;
 @property(nonatomic) BOOL physicsDrawEnabled;
 @property(nonatomic) struct CGSize skEditorSize;
+@property(nonatomic) BOOL useCameraNode;
+@property(retain, nonatomic) SKCameraNode *cameraRef;
 - (id)ide_undoKVOKeypaths;
 - (void)setNilValueForKey:(id)arg1;
 - (id)inspectorAttributes;

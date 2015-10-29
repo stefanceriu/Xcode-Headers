@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDELibraryController.h>
 
-@class DVTMapTable, DVTObservingToken, IDEMediaResourceFoldingStrategy, IDEMediaResourceVariantContext, NSDictionary, NSObject<IDEMediaLibraryDelegate>, NSSet;
+@class DVTObservingToken, IDEMediaResourceFoldingStrategy, IDEMediaResourceVariantContext, NSDictionary, NSMapTable, NSObject<IDEMediaLibraryDelegate>, NSSet;
 
 @interface IDEMediaLibraryController : IDELibraryController
 {
@@ -20,7 +20,7 @@
     DVTObservingToken *_delegateExportedVariantKVOToken;
     NSObject<IDEMediaLibraryDelegate> *_delegate;
     NSDictionary *_variantForResolving;
-    DVTMapTable *_variantSetsToAssets;
+    NSMapTable *_variantSetsToAssets;
     BOOL _isLibraryLoaded;
     NSSet *_mediaRepositories;
 }

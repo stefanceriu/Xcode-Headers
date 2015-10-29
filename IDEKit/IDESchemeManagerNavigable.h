@@ -6,10 +6,14 @@
 
 #import <IDEKit/IDENavigableItem.h>
 
+@class DVTObservingToken;
+
 @interface IDESchemeManagerNavigable : IDENavigableItem
 {
+    DVTObservingToken *_runContextsObservingToken;
 }
 
+- (void).cxx_destruct;
 - (id)childRepresentedObjects;
 - (BOOL)isLeaf;
 - (id)image;

@@ -6,10 +6,11 @@
 
 #import "NSObject.h"
 
-@class IDEActivityLogMessage, NSSet, NSString;
+@class IBDocument, IDEActivityLogMessage, NSSet, NSString;
 
 @interface IBWarning : NSObject
 {
+    IBDocument *_globalWarningDocument;
     NSString *_message;
     IDEActivityLogMessage *_activityLogMessage;
     long long _warningType;
@@ -23,7 +24,10 @@
 + (void)setSeverityMap:(id)arg1;
 + (id)warningWithSource:(id)arg1 warningType:(long long)arg2 message:(id)arg3 objectsToSubmessages:(id)arg4;
 + (id)warningWithSource:(id)arg1 warningType:(long long)arg2 message:(id)arg3 affectedObjects:(id)arg4;
++ (id)globalWarningForDocument:(id)arg1 warningType:(long long)arg2 message:(id)arg3;
 + (id)ideIssueTypeIdentifierForWarningType:(long long)arg1;
++ (id)documentLocationTimestampForDocument:(id)arg1;
++ (id)documentLocationForDocument:(id)arg1;
 + (id)documentLocationForMember:(id)arg1;
 + (id)displayNameForInvalidMacOSXVersionRange:(long long)arg1;
 + (id)categoryList;
@@ -41,7 +45,7 @@
 - (BOOL)isEqualToWarning:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) long long warningSeverity;
-- (id)initWithSource:(id)arg1 warningType:(long long)arg2 message:(id)arg3 activityLogMessage:(id)arg4 affectedObjects:(id)arg5;
+- (id)initWithSource:(id)arg1 document:(id)arg2 warningType:(long long)arg3 message:(id)arg4 activityLogMessage:(id)arg5 affectedObjects:(id)arg6;
 
 @end
 

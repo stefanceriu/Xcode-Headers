@@ -12,6 +12,7 @@
 {
 }
 
+- (BOOL)_structureEditRemoveSubitemsShouldCloseDocumentsUnderPathWithoutSaving;
 - (BOOL)allowRemovingContainerGroup;
 - (BOOL)structureEditSetName:(id)arg1 inContext:(id)arg2;
 - (BOOL)canStructureEditName;

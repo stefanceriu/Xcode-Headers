@@ -11,11 +11,10 @@
 #import "DVTScopeBarHost.h"
 #import "IDEConsoleTextViewObjectiveCExpressionRangeDelegate.h"
 #import "IDEConsoleTextViewStandardIODelegate.h"
-#import "IDEDebuggerBarConsoleInfoProvider.h"
 
-@class DVTFindBar, DVTMapTable, DVTObservingToken, DVTScopeBarController, DVTScopeBarView, DVTScopeBarsManager, DVTScrollView, IDEConsoleTextView, IDEWorkspaceDocument, NSButton, NSMutableArray, NSMutableSet, NSPopUpButton, NSScrollView, NSSet, NSString, NSTimer, NSUndoManager, NSView;
+@class DVTFindBar, DVTNotificationToken, DVTObservingToken, DVTScopeBarController, DVTScopeBarView, DVTScopeBarsManager, DVTScrollView, IDEConsoleTextView, IDEWorkspaceDocument, NSButton, NSMapTable, NSMutableArray, NSMutableSet, NSPopUpButton, NSScrollView, NSSet, NSString, NSTimer, NSUndoManager, NSView;
 
-@interface IDEConsoleArea : IDEViewController <IDEConsoleTextViewObjectiveCExpressionRangeDelegate, DVTFindBarHostable, DVTScopeBarHost, IDEConsoleTextViewStandardIODelegate, IDEDebuggerBarConsoleInfoProvider, DVTCompletingTextViewDelegate>
+@interface IDEConsoleArea : IDEViewController <IDEConsoleTextViewObjectiveCExpressionRangeDelegate, DVTFindBarHostable, DVTScopeBarHost, IDEConsoleTextViewStandardIODelegate, DVTCompletingTextViewDelegate>
 {
     DVTScopeBarView *_scopeBar;
     IDEConsoleTextView *_consoleView;
@@ -27,7 +26,7 @@
     NSString *_userEnteredTextBeforeShowingCommandHistory;
     NSUndoManager *_undoManager;
     NSMutableSet *_consoleAdaptors;
-    DVTMapTable *_launchSessionsToClearTimes;
+    NSMapTable *_launchSessionsToClearTimes;
     NSSet *_initialConsoleItems;
     NSTimer *_clearInitialConsoleItemsTimer;
     DVTObservingToken *_workspaceDocumentObserverToken;
@@ -35,13 +34,12 @@
     DVTObservingToken *_consoleAdaptorsObservingToken;
     DVTObservingToken *_debugSessionStateObservingToken;
     DVTObservingToken *_currentDebugSessionToken;
+    DVTNotificationToken *_findStringChangedNotificationToken;
     DVTFindBar *_findBar;
     DVTScopeBarController *_findScopeBarController;
     DVTScopeBarsManager *_scopeBarsManager;
     struct _NSRange _originalSelection;
-    id _findStringChangedNotificationToken;
     int _filterMode;
-    BOOL _hasNewInterestingOutput;
     DVTScrollView *_consoleScrollView;
 }
 
@@ -50,7 +48,6 @@
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 @property __weak DVTScrollView *consoleScrollView; // @synthesize consoleScrollView=_consoleScrollView;
 @property(readonly) DVTScopeBarView *scopeBarView; // @synthesize scopeBarView=_scopeBar;
-@property BOOL hasNewInterestingOutput; // @synthesize hasNewInterestingOutput=_hasNewInterestingOutput;
 @property(nonatomic) int filterMode; // @synthesize filterMode=_filterMode;
 - (void).cxx_destruct;
 - (id)undoManagerForTextView:(id)arg1;
@@ -71,7 +68,6 @@
 - (void)dvtFindBar:(id)arg1 didUpdateCurrentResult:(id)arg2;
 - (BOOL)dvtFindBar:(id)arg1 validateUserInterfaceItem:(id)arg2;
 - (id)viewToShowWrapOrEndOfFileBezelOn:(id)arg1;
-- (void)_stopObservingGlobalFindStringDidChangeNotification;
 - (void)dismissFindBar:(id)arg1 andRestoreSelection:(BOOL)arg2;
 @property(readonly) NSView *scopeBarsBaseView;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
@@ -101,7 +97,8 @@
 - (void)_clearText;
 - (void)primitiveInvalidate;
 - (void)_removeObserverForConsoleAdaptor:(id)arg1;
-- (void)_filterChanged;
+- (void)_clearTextAndReAddAllItems;
+- (void)reloadConsole:(id)arg1;
 - (void)clearConsole:(id)arg1;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;

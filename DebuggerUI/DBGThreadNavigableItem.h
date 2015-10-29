@@ -4,23 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IDEKeyDrivenNavigableItem.h"
+#import <DebuggerUI/DBGDebugNavigableItem.h>
 
 @class NSArray, NSString;
 
-@interface DBGThreadNavigableItem : IDEKeyDrivenNavigableItem
+@interface DBGThreadNavigableItem : DBGDebugNavigableItem
 {
     NSString *_blockName;
     long long _compressionValue;
     NSArray *_cachedChildRepresentedObjects;
-    BOOL _expanded;
     BOOL _displayAsBlock;
     unsigned long long _displayImageType;
 }
 
 @property(nonatomic) unsigned long long displayImageType; // @synthesize displayImageType=_displayImageType;
 @property(nonatomic) BOOL displayAsBlock; // @synthesize displayAsBlock=_displayAsBlock;
-@property(getter=isExpanded) BOOL expanded; // @synthesize expanded=_expanded;
 - (void).cxx_destruct;
 - (BOOL)setCompressionValue:(long long)arg1;
 - (void)invalidateChildItems;
@@ -29,6 +27,7 @@
 - (BOOL)isLeaf;
 - (id)subtitle;
 - (id)name;
+- (BOOL)_isRecordedThreadForQueue;
 - (void)primitiveInvalidate;
 - (id)initWithRepresentedObject:(id)arg1;
 

@@ -33,10 +33,8 @@
     int _shadowSides;
     id <DVTCancellable> _windowActivationObservation;
     int _highlightSides;
-    id <DVTPainter> _backgroundPainter;
 }
 
-@property(retain) id <DVTPainter> backgroundPainter; // @synthesize backgroundPainter=_backgroundPainter;
 @property(nonatomic) int highlightSides; // @synthesize highlightSides=_highlightSides;
 @property(nonatomic) int verticalContentViewResizingMode; // @synthesize verticalContentViewResizingMode=_verticalContentViewResizingMode;
 @property(copy, nonatomic) NSColor *topInactiveBorderColor; // @synthesize topInactiveBorderColor=_topInactiveBorderColor;

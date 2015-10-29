@@ -8,6 +8,5 @@
 
 @interface NSColorWell (IBColorWellIntegration)
 - (BOOL)ibHasSingleCell;
-- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 @end
 

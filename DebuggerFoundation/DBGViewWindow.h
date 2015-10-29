@@ -6,11 +6,11 @@
 
 #import <DebuggerFoundation/DBGViewSurface.h>
 
-@class DBGLayoutConstraintSet, DVTMapTable;
+@class DBGLayoutConstraintSet, NSMapTable;
 
 @interface DBGViewWindow : DBGViewSurface
 {
-    DVTMapTable *_viewAddressesToViewSurfaces;
+    NSMapTable *_viewAddressesToViewSurfaces;
     DBGLayoutConstraintSet *_layoutConstraintSet;
     unsigned long long _orientation;
 }
@@ -23,7 +23,7 @@
 - (id)constraintForAddress:(id)arg1;
 - (id)childViewSurfaceForAddress:(id)arg1;
 - (id)window;
-- (id)initWithViewDescriber:(id)arg1 dictionary:(id)arg2;
+- (id)initWithViewDescriber:(id)arg1 parent:(id)arg2 dictionary:(id)arg3;
 @property(readonly) DBGViewSurface *contentView;
 
 @end

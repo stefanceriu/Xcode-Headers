@@ -7,7 +7,7 @@
 #import "NSUserDefaultsController.h"
 
 @interface NSUserDefaultsController (IBNSUserDefaultsControllerIntegration)
-+ (id)ibDefaultImageForInstance:(id)arg1;
++ (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
 + (id)ibSharedUserDefaultsControllerProxy;
 + (id)ibSynthesizeControllerKeyPaths;
 - (void)ibDidAddToDocument:(id)arg1 phase:(unsigned long long)arg2;

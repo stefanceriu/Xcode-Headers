@@ -12,13 +12,14 @@ __attribute__((visibility("hidden")))
 @interface SKPlaySound : SKAction
 {
     NSString *_filePath;
+    NSString *_fileName;
     struct SKCPlaySound *_mycaction;
     struct CGPoint _position;
     SKSoundSource *_soundSource;
 }
 
++ (id)_audioURLWithName:(id)arg1 bundle:(id)arg2;
 + (id)playSoundFileNamed:(id)arg1 atPosition:(struct CGPoint)arg2 waitForCompletion:(BOOL)arg3;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)reversedAction;
 - (id)copyWithZone:(struct _NSZone *)arg1;

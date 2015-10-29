@@ -6,12 +6,12 @@
 
 #import <IDEKit/IDEActivityReporter.h>
 
-@class DVTMapTable, DVTObservingToken;
+@class DVTObservingToken, NSMapTable;
 
 @interface IDEExecutionActivityReporter : IDEActivityReporter
 {
     DVTObservingToken *_launchSessionsStateObserverToken;
-    DVTMapTable *_reportForLaunchSessionTable;
+    NSMapTable *_reportForLaunchSessionTable;
 }
 
 + (void)initialize;

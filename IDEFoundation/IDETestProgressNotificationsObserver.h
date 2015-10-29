@@ -6,37 +6,41 @@
 
 #import "NSObject.h"
 
-#import "IDEUnitTestsObserver.h"
+#import "IDETestsObserver.h"
 
-@class IDETestRunSession, NSString;
+@class IDETestRunSession, NSString, NSTimer;
 
-@interface IDETestProgressNotificationsObserver : NSObject <IDEUnitTestsObserver>
+@interface IDETestProgressNotificationsObserver : NSObject <IDETestsObserver>
 {
     IDETestRunSession *_testRunSession;
     NSString *_currentSuite;
     NSString *_currentTestClass;
     NSString *_currentTestMethod;
+    double _postTimeForLastNotification;
+    NSTimer *_postNotificationCoalescingTimer;
 }
 
-@property(copy, nonatomic) NSString *currentTestMethod; // @synthesize currentTestMethod=_currentTestMethod;
-@property(copy, nonatomic) NSString *currentTestClass; // @synthesize currentTestClass=_currentTestClass;
-@property(copy, nonatomic) NSString *currentSuite; // @synthesize currentSuite=_currentSuite;
-@property(retain, nonatomic) IDETestRunSession *testRunSession; // @synthesize testRunSession=_testRunSession;
+@property(retain) NSTimer *postNotificationCoalescingTimer; // @synthesize postNotificationCoalescingTimer=_postNotificationCoalescingTimer;
+@property double postTimeForLastNotification; // @synthesize postTimeForLastNotification=_postTimeForLastNotification;
+@property(copy) NSString *currentTestMethod; // @synthesize currentTestMethod=_currentTestMethod;
+@property(copy) NSString *currentTestClass; // @synthesize currentTestClass=_currentTestClass;
+@property(copy) NSString *currentSuite; // @synthesize currentSuite=_currentSuite;
+@property(retain) IDETestRunSession *testRunSession; // @synthesize testRunSession=_testRunSession;
 - (void).cxx_destruct;
-- (void)_postDistributedProgressNotification;
-- (id)identifierForTestClass:(id)arg1 method:(id)arg2;
+- (void)didFinishTest:(id)arg1 withTestResult:(id)arg2 rawOutput:(id)arg3;
+- (void)didFailTest:(id)arg1 withTestResultMessage:(id)arg2 rawOutput:(id)arg3;
+- (void)test:(id)arg1 didMeasurePerformanceMetric:(id)arg2 rawOutput:(id)arg3;
+- (void)didStartTest:(id)arg1 withRawOutput:(id)arg2;
+- (void)_considerPostingDistributedNotification;
 - (void)testOperationGroupDidFinish;
-- (void)testOperation:(id)arg1 willFinishWithSuccess:(BOOL)arg2 withError:(id)arg3;
+- (void)testOperationWillFinishWithSuccess:(BOOL)arg1 withError:(id)arg2;
 - (void)testSuiteDidFinish:(long long)arg1 withFailures:(long long)arg2 unexpected:(long long)arg3 testDuration:(double)arg4 totalDuration:(double)arg5 rawOutput:(id)arg6;
 - (void)testSuite:(id)arg1 willFinishAt:(id)arg2 rawOutput:(id)arg3;
 - (void)testDidOutput:(id)arg1;
-- (void)testCaseDidProducePerformanceOutput:(id)arg1 rawOutput:(id)arg2;
-- (void)testCaseDidMeasurePerformanceMetricForTestClass:(id)arg1 method:(id)arg2 performanceMetric:(id)arg3 rawOutput:(id)arg4;
-- (void)testCaseDidFailForTestClass:(id)arg1 method:(id)arg2 withMessage:(id)arg3 file:(id)arg4 line:(long long)arg5 rawOutput:(id)arg6;
-- (void)testCaseDidFinishForTestClass:(id)arg1 method:(id)arg2 withStatus:(id)arg3 duration:(double)arg4 rawOutput:(id)arg5;
-- (void)testCaseDidStartForTestClass:(id)arg1 method:(id)arg2 rawOutput:(id)arg3;
+- (void)test:(id)arg1 didFinishActivity:(id)arg2;
+- (void)test:(id)arg1 willStartActivity:(id)arg2;
 - (void)testSuite:(id)arg1 didStartAt:(id)arg2 rawOutput:(id)arg3;
-- (void)testOperationDidStartExecution:(id)arg1;
+- (void)testRunner:(id)arg1 didLaunchTestSessionForScheme:(id)arg2 withDisplayName:(id)arg3;
 - (id)initWithTestRunSession:(id)arg1;
 
 // Remaining properties

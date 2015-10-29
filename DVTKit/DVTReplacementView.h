@@ -37,9 +37,9 @@
 
 + (void)initialize;
 @property BOOL isGrouped; // @synthesize isGrouped=_isGrouped;
-@property(nonatomic) Class controllerClass; // @synthesize controllerClass=_controllerClass;
 @property(nonatomic) int verticalContentViewResizingMode; // @synthesize verticalContentViewResizingMode=_verticalContentViewResizingMode;
 @property(nonatomic) int horizontalContentViewResizingMode; // @synthesize horizontalContentViewResizingMode=_horizontalContentViewResizingMode;
+@property(nonatomic) Class controllerClass; // @synthesize controllerClass=_controllerClass;
 - (void).cxx_destruct;
 - (void)discardEditing;
 - (BOOL)commitEditingForAction:(int)arg1 errors:(id)arg2;

@@ -16,7 +16,7 @@
 }
 
 + (id)keyPathsForValuesAffectingDisplayAttributedString;
-- (id)firstMatchingResultInString:(id)arg1 backwards:(BOOL)arg2 inRange:(struct _NSRange)arg3 withWordFindingBlock:(CDUnknownBlockType)arg4 docLocationCreationBlock:(CDUnknownBlockType)arg5;
+- (id)firstMatchingResultInString:(id)arg1 backwards:(BOOL)arg2 inRange:(struct _NSRange)arg3 withWordFindingBlock:(CDUnknownBlockType)arg4 passingTest:(CDUnknownBlockType)arg5 docLocationCreationBlock:(CDUnknownBlockType)arg6;
 - (id)firstMatchingResultInString:(id)arg1 backwards:(BOOL)arg2 inRange:(struct _NSRange)arg3 docLocationCreationBlock:(CDUnknownBlockType)arg4;
 @property(readonly) BOOL caseSensitive;
 @property(readonly) NSString *displayString;

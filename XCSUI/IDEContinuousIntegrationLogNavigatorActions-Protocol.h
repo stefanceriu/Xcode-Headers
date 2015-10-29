@@ -13,8 +13,8 @@
 - (void)menuCmd_viewBotInBrowser:(IDELogNavigator *)arg1;
 - (void)menuCmd_deleteIntegration:(IDELogNavigator *)arg1;
 - (void)menuCmd_cancelIntegration:(IDELogNavigator *)arg1;
-- (void)menuCmd_cleanAndIntegrateNow:(IDELogNavigator *)arg1;
-- (void)menuCmd_integrateNow:(IDELogNavigator *)arg1;
+- (void)menuCmd_cleanAndIntegrate:(IDELogNavigator *)arg1;
+- (void)menuCmd_integrate:(IDELogNavigator *)arg1;
 - (void)menuCmd_deleteBot:(IDELogNavigator *)arg1;
 - (void)menuCmd_editBot:(IDELogNavigator *)arg1;
 - (void)menuCmd_createBot:(IDELogNavigator *)arg1;

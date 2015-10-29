@@ -17,7 +17,7 @@
     NSNumber *_protocolVersion;
 }
 
-+ (id)negociateProtocolVersionFromLocalCapabilities:(id)arg1 remoteCapabilities:(id)arg2 error:(id *)arg3;
++ (id)negotiateProtocolVersionFromLocalCapabilities:(id)arg1 remoteCapabilities:(id)arg2 error:(id *)arg3;
 - (void).cxx_destruct;
 - (long long)binaryArchiveVersion;
 - (void)shutdown;

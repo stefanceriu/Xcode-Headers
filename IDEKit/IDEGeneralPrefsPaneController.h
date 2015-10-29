@@ -26,6 +26,7 @@
 - (void)setSearchNavigatorDetailPopUpLevel:(unsigned long long)arg1;
 - (unsigned long long)searchNavigatorDetailPopUpLevel;
 - (void)loadView;
+- (id)_itemWithTitle:(id)arg1 tag:(long long)arg2;
 - (id)_menuForNavigatorDetailLevel;
 
 @end

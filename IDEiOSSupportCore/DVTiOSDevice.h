@@ -10,7 +10,7 @@
 #import "IDERunDestinationFallbackSelectorDeviceInfo.h"
 #import "XCDTMobileIS_XPCDebuggingProcotol.h"
 
-@class DTDKRemoteDeviceToken, DTXChannel, DVTFuture, DVTNotificationToken, DVTObservingToken, IDELaunchParametersSnapshot, NSError, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString;
+@class DTDKRemoteDeviceToken, DTXChannel, DVTFuture, DVTNotificationToken, DVTObservingToken, IDELaunchParametersSnapshot, NSError, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString;
 
 @interface DVTiOSDevice : DVTAbstractiOSDevice <DVTDeviceApplicationInstaller, IDERunDestinationFallbackSelectorDeviceInfo, XCDTMobileIS_XPCDebuggingProcotol>
 {
@@ -21,9 +21,9 @@
     DVTObservingToken *_proxiedTokensObservingToken;
     DVTNotificationToken *_deviceProgressToken;
     DVTFuture *_wakeupInFlight;
-    BOOL _supportsXPCControlV2;
-    NSMutableDictionary *_xpcStdoutFDForPid;
+    struct __CFDictionary *_xpcStdoutFDForPid;
     NSMutableSet *_proxiedDevices;
+    BOOL _activityIsUserInitiated;
     BOOL _deviceIsBusy;
     BOOL _ignored;
     _Bool _deviceReady;
@@ -36,6 +36,7 @@
     NSError *_developerPrepError;
     IDELaunchParametersSnapshot *_scriptLaunchParameters;
     DTXChannel *_xpcAttachServiceChannel;
+    DTXChannel *_xpcProxyAttachServiceChannel;
 }
 
 + (id)keyPathsForValuesAffectingIsPasscodeLocked;
@@ -71,16 +72,14 @@
 + (id)keyPathsForValuesAffectingIsSupportedHardware;
 + (id)keyPathsForValuesAffectingProvisioningProfiles;
 + (id)keyPathsForValuesAffectingName;
++ (id)keyPathsForValuesAffectingCanBeWatchCompanion;
 + (id)iPhoneDeviceWithDeviceToken:(id)arg1;
-+ (Class)deviceClassForToken:(id)arg1;
-+ (Class)deviceClassForClass:(id)arg1;
-+ (Class)deviceClassForDeviceType:(id)arg1;
-+ (Class)deviceClassForCodename:(id)arg1;
 + (id)alliOSDevices;
 + (void)initialize;
 + (id)keyPathsForValuesAffectingCanExecute;
 + (id)allDeveloperDiskImagePathsForPlatform:(id)arg1;
 + (id)pathForInternalExecutable:(id)arg1 searchInPlatform:(id)arg2;
+@property(retain) DTXChannel *xpcProxyAttachServiceChannel; // @synthesize xpcProxyAttachServiceChannel=_xpcProxyAttachServiceChannel;
 @property(retain) DTXChannel *xpcAttachServiceChannel; // @synthesize xpcAttachServiceChannel=_xpcAttachServiceChannel;
 @property BOOL deviceIsTransient; // @synthesize deviceIsTransient=_deviceIsTransient;
 @property(retain) IDELaunchParametersSnapshot *scriptLaunchParameters; // @synthesize scriptLaunchParameters=_scriptLaunchParameters;
@@ -96,15 +95,11 @@
 - (id)monitorWirelessConnection;
 - (id)primaryInstrumentsServer;
 - (id)platform;
+- (BOOL)runningSupportedBuildForUITesting;
 - (id)makeTransportForTestManagerService:(id *)arg1;
-- (BOOL)requiresTestDaemonMediationForTestHostConnection;
-- (BOOL)supportsTestManagerDaemon;
-- (id)testingFrameworkPathsForBuildableProduct:(id)arg1 withBuildParameters:(id)arg2;
 - (id)testHostPathForBuildableProduct:(id)arg1 buildParameters:(id)arg2 outError:(id *)arg3;
 - (void)modifyTestingEnvironmentVariables:(id)arg1 host:(id)arg2 testBundlePath:(id)arg3;
 - (id)deviceForRunningUnitTestsWithHost:(id)arg1 error:(id *)arg2;
-- (BOOL)supportsFileSpecifyingTestScopes;
-- (BOOL)supportsInverseTestScopes;
 - (_Bool)isPasscodeLocked;
 - (id)processorDescription;
 - (void)setUsedForDevelopment:(BOOL)arg1;
@@ -128,8 +123,9 @@
 @property(readonly, copy) NSString *description;
 - (void)updateExpansionProgress:(double)arg1 withMessage:(id)arg2;
 - (void)setDeviceIsBusyOnMainThread:(BOOL)arg1;
-- (void)setStatusOnMainThread:(id)arg1 progress:(long long)arg2;
+- (void)setStatusOnMainThread:(id)arg1 userInitiated:(BOOL)arg2 progress:(long long)arg3;
 @property(readonly) BOOL statusIsIndeterminate;
+@property BOOL activityIsUserInitiated; // @synthesize activityIsUserInitiated=_activityIsUserInitiated;
 @property long long activityProgress; // @synthesize activityProgress=_activityProgress;
 @property(readonly, getter=isActivityVisible) BOOL activityVisible;
 @property(readonly) NSSet *systemApplications;
@@ -145,6 +141,7 @@
 - (void)dealloc;
 - (void)setCrashLogDirectory:(id)arg1;
 - (id)plistRepresentation;
+- (void)downloadOptimizationProfilesFromBundleIdentifiers:(id)arg1 orPaths:(id)arg2 toFilePath:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)downloadOptimizationProfilesFromBundleIdentifier:(id)arg1 orPath:(id)arg2 toFilePath:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (id)optimizationProfilesPathFromBundleIdentifier:(id)arg1;
 - (id)scriptingEnvironment;
@@ -171,12 +168,11 @@
 - (BOOL)isRunningSupportedOS;
 - (BOOL)isSupportedHardware;
 - (BOOL)supportsProvisioning;
-@property(readonly, nonatomic) BOOL ide_fallbackSelectorDeviceIsResizable;
 @property(readonly, nonatomic) NSString *ide_fallbackSelectorDeviceGroupingFamily;
 - (id)deviceClassForDisplay;
 - (void)uninstallProvisioningProfile:(id)arg1;
 - (void)installProvisioningProfiles:(id)arg1;
-- (void)installProvisioningProfileAtURL:(id)arg1;
+- (BOOL)installProvisioningProfileAtURL:(id)arg1 error:(id *)arg2;
 - (void)installProvisioningProfile:(id)arg1;
 - (id)provisioningProfiles;
 - (id)certificateUtilities;
@@ -194,6 +190,7 @@
 - (id)name;
 - (id)displayOrder;
 - (BOOL)canIgnore;
+- (BOOL)canBeWatchCompanion;
 - (unsigned long long)supportsFetchEvents;
 - (BOOL)supportsRoutingCoverageFile;
 - (BOOL)supportsLocationSimulation;
@@ -202,15 +199,15 @@
 - (id)initWithDeviceLocation:(id)arg1 extension:(id)arg2;
 - (void)_respondToDeviceProgressNotification:(id)arg1;
 @property(retain) DTDKRemoteDeviceToken *token; // @synthesize token=_token;
-- (void)stopDebuggingXPCServices:(id)arg1;
+- (void)stopDebuggingXPCServices:(id)arg1 forPairedDevice:(BOOL)arg2;
 - (void)xpcServiceObserved:(id)arg1 withProcessIdentifier:(int)arg2 requestedByProcess:(int)arg3 options:(id)arg4;
 - (void)outputReceived:(id)arg1 fromProcess:(int)arg2 atTime:(unsigned long long)arg3;
-- (void)debugXPCServices:(id)arg1;
-- (BOOL)supportsUnhostedXPCServiceDebugging;
-- (BOOL)supportsXPCServiceDebugging;
+- (void)debugXPCServices:(id)arg1 onPairedDevice:(BOOL)arg2 completionSemaphore:(id)arg3;
+- (void)_setXPCAttachChannel:(id)arg1 ForPairedDevice:(BOOL)arg2;
+- (id)_xpcChannelForPairedDevice:(BOOL)arg1;
 - (unsigned long long)supportedLaunchOptions;
 - (void)didFinishRunning;
-- (id)startDebugServerService;
+- (id)startDebugServerServiceForLaunchSession:(id)arg1;
 - (id)deviceArbitrationForcedCheckIn;
 - (id)deviceArbitrationCheckIn;
 - (BOOL)installApplicationWithLaunchSession:(id)arg1 error:(id *)arg2;
@@ -220,20 +217,18 @@
 - (void)_storeAppDataSyncRecords:(id)arg1 forApplication:(id)arg2;
 - (id)_appDataSyncRecordsForApplication:(id)arg1;
 - (id)_customDataSpecifierForApplication:(id)arg1;
-- (BOOL)rsyncInstallAppWithSession:(id)arg1 error:(id *)arg2;
 - (BOOL)installForRsyncDeveloperModeWithSession:(id)arg1 error:(id *)arg2;
 - (BOOL)installForNFSDeveloperModeWithSession:(id)arg1 error:(id *)arg2;
 - (id)deviceInstallPathForLaunchSession:(id)arg1 andBuildProductsPath:(id)arg2;
 - (BOOL)installForMobileInstallWithSession:(id)arg1 error:(id *)arg2;
 - (BOOL)installForTestBundleWithSession:(id)arg1 error:(id *)arg2;
+- (id)updatedTestConfiguration:(id)arg1 inDerivedDataLocation:(id)arg2 forRemoteDirectory:(id)arg3 error:(id *)arg4;
 - (id)applicationForSession:(id)arg1;
 - (id)deviceBuiltProductsDir;
 - (id)deviceMountedProductsDir;
 - (id)localBuiltProductsPathWithSession:(id)arg1 error:(id *)arg2;
 - (id)buildParametersForLaunchSession:(id)arg1;
 - (_Bool)_copyBackAlternateApplication:(id)arg1 atPath:(id *)arg2 error:(id *)arg3;
-- (void)prepareLaunchParametersForUnitTesting:(id)arg1 appExecutablePath:(id)arg2 testBundlePath:(id)arg3;
-- (id)checkForUnitTests:(id)arg1;
 - (void)setInstallProgress:(long long)arg1 text:(id)arg2;
 - (void)setInstallProgress:(long long)arg1 path:(id)arg2;
 - (long long)updateInstalledApplicationsWithResult:(id *)arg1;
@@ -268,8 +263,7 @@
 - (void)installApplications:(id)arg1 allowReplacing:(BOOL)arg2;
 - (void)_installApplicationsImpl:(id)arg1 allowReplacing:(BOOL)arg2 options:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)processAppInstallSet:(id)arg1 appUninstallSet:(id)arg2 installOptions:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
-- (void)processAppInstallSetLegacy:(id)arg1 appUninstallSet:(id)arg2 installOptions:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
-- (id)validateApplicationAtPath:(id)arg1;
+- (id)validateApplicationAtPath:(id)arg1 forInstallationToToken:(id)arg2;
 - (BOOL)_checkForARM64SliceAtPath:(id)arg1 executableName:(id)arg2 zipFile:(id)arg3 subpath:(id)arg4;
 - (id)installedApplicationWithBundleIdentifier:(id)arg1;
 

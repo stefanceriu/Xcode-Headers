@@ -23,6 +23,7 @@
 @property(readonly, nonatomic) id <IDEPortalInfoDelegate> portalInfoDelegate; // @synthesize portalInfoDelegate=_portalInfoDelegate;
 @property BOOL shouldResolveLongRunningFlightChecks; // @synthesize shouldResolveLongRunningFlightChecks=_shouldResolveLongRunningFlightChecks;
 - (void).cxx_destruct;
+- (BOOL)ensureValidAccount:(id)arg1 error:(id *)arg2;
 - (void)handleError:(id)arg1;
 - (void)performBlockRequiringAccountAndTeamSelection:(CDUnknownBlockType)arg1;
 - (id)initWithPortalInfoDelegate:(id)arg1 item:(id)arg2;

@@ -25,9 +25,21 @@ struct CGSize {
     double _field2;
 };
 
+struct DYShaderProfilerTiming {
+    struct Statistics _field1;
+    struct Statistics _field2;
+    struct Statistics _field3;
+};
+
 struct GPUValueRange {
     float min;
     float max;
+};
+
+struct Statistics {
+    double _field1;
+    double _field2;
+    double _field3;
 };
 
 struct _NSRange {

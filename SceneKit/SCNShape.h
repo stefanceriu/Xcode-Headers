@@ -10,18 +10,16 @@
 
 @interface SCNShape : SCNGeometry
 {
-    id _reserved;
     float _chamferRadius;
     float _extrusionDepth;
     float _discretizedStraightLineMaxLength;
-    struct NSBezierPath *_chamferProfile;
+    NSBezierPath *_chamferProfile;
     long long _primitiveType;
     long long _chamferMode;
-    struct NSBezierPath *_path;
+    NSBezierPath *_path;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)shapeWithPath:(id)arg1 extrusionDepth:(double)arg2;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -44,7 +42,7 @@
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (id)presentationGeometry;
 - (id)initPresentationShapeGeometryWithShapeGeometryRef:(struct __C3DShapeGeometry *)arg1;
 - (id)initWithShapeGeometryRef:(struct __C3DShapeGeometry *)arg1;

@@ -16,6 +16,8 @@
 }
 
 - (void)cache:(id)arg1 willEvictObject:(id)arg2;
+- (void)_syncMainThreadDiscard:(id)arg1;
+- (void)dealloc;
 - (id)init;
 - (id)initWithContext:(struct TimelineViewContext *)arg1;
 

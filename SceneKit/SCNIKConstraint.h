@@ -10,14 +10,12 @@
 
 @interface SCNIKConstraint : SCNConstraint
 {
-    id _reserved;
     SCNNode *_chainRootNode;
     struct SCNVector3 _ikTarget;
     NSMutableDictionary *_jointsPerNode;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)inverseKinematicsConstraintWithChainRootNode:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -31,6 +29,7 @@
 @property(nonatomic) struct SCNVector3 targetPosition;
 - (void)setChainRootNode:(id)arg1;
 @property(readonly, nonatomic) SCNNode *chainRootNode;
+- (id)initWithChainRootNode:(id)arg1;
 - (void)dealloc;
 - (id)init;
 

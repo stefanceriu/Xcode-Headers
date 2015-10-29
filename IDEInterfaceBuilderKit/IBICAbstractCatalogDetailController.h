@@ -41,6 +41,7 @@
 @property(readonly) IBICCatalogDocumentEditor *documentEditor; // @synthesize documentEditor=_documentEditor;
 @property(readonly) IBSelectionChannel *selectionChannel; // @synthesize selectionChannel=_selectionChannel;
 - (void).cxx_destruct;
+- (BOOL)isSubEditorExistanceInSyncForItem:(id)arg1;
 - (void)drawsWithKeyAppearanceDidChange;
 - (void)detailDocumentViewLayoutDidComplete:(id)arg1;
 - (void)detailDocumentViewWillLayoutTopDown:(id)arg1;
@@ -60,9 +61,10 @@
 - (void)detailDocumentView:(id)arg1 didTrackContextMenuFromEvent:(id)arg2;
 - (void)detailDocumentView:(id)arg1 willTrackContextMenuFromEvent:(id)arg2;
 - (id)detailDocumentView:(id)arg1 menuForEvent:(id)arg2;
-- (void)documentEditorDidChangeDisplayedMultipartImages;
-@property(readonly) NSArray *displayedMultipartImages;
+- (void)documentEditorDidChangeDisplayedCatalogItems;
+@property(readonly) NSArray *displayedCatalogItems;
 - (void)selectAll:(id)arg1;
+- (void)importImageCatalogContentFromProjectBasedOnSelectionContext:(id)arg1;
 - (id)objectsForSelectAll;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)pushSelectionToViews;

@@ -7,6 +7,8 @@
 #import "NSCoder.h"
 
 @interface NSCoder (IBCodingAdditions)
+- (struct CGPoint)ib_decodePointForKey:(id)arg1;
+- (void)ib_encodePoint:(struct CGPoint)arg1 forKey:(id)arg2;
 - (struct CGSize)ib_decodeSizeForKey:(id)arg1;
 - (void)ib_encodeSize:(struct CGSize)arg1 forKey:(id)arg2;
 - (CDStruct_c519178c)ib_decodeInsetForKey:(id)arg1;

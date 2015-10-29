@@ -4,26 +4,41 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IDEInspectorViewController.h"
+#import <IDESceneKitEditor/SKEInspectorViewController.h>
 
-@class DVTTableView, NSArrayController, NSString, SKEStaticTableViewInspectorContainerView;
+#import "NSTableViewDelegate.h"
 
-@interface SKEStaticTableViewInspector : IDEInspectorViewController
+@class DVTScopeBarView, DVTScrollView, DVTTableView, NSArrayController, NSString;
+
+@interface SKEStaticTableViewInspector : SKEInspectorViewController <NSTableViewDelegate>
 {
-    SKEStaticTableViewInspectorContainerView *containerView;
-    DVTTableView *tableView;
-    NSArrayController *arrayController;
-    NSString *emptyContentString;
+    DVTTableView *_tableView;
+    DVTScrollView *_scrollView;
+    DVTScopeBarView *_scopeBarView;
+    NSArrayController *_arrayController;
+    NSString *_emptyContentString;
 }
 
-@property(copy, nonatomic) NSString *emptyContentString; // @synthesize emptyContentString;
-@property(readonly) NSArrayController *arrayController; // @synthesize arrayController;
-@property(readonly) DVTTableView *tableView; // @synthesize tableView;
++ (id)tableColumnTitles;
++ (struct _NSRange)visibleRowCountRange;
++ (BOOL)wantsEditionBar;
+@property(readonly) NSArrayController *arrayController; // @synthesize arrayController=_arrayController;
+@property(readonly) DVTScopeBarView *scopeBarView; // @synthesize scopeBarView=_scopeBarView;
+@property(readonly) DVTTableView *tableView; // @synthesize tableView=_tableView;
 - (void).cxx_destruct;
-- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
+@property(copy, nonatomic) NSString *emptyContentString;
+- (id)tableView:(id)arg1 dataCellForTableColumn:(id)arg2 row:(long long)arg3;
+- (void)configureEditionBar;
+- (void)updateConstraintsAccordingToControlViewVisibilityAndNumberOfRows;
 - (void)loadView;
 - (void)setContent:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

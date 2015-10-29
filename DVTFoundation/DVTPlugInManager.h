@@ -40,8 +40,9 @@
     CDUnknownBlockType _shouldAllowNonApplePlugInsCallback;
 }
 
-+ (void)_setDefaultPlugInManager:(id)arg1;
 + (BOOL)enumerateExtensionDataForPluginAtPath:(id)arg1 error:(id *)arg2 withBlock:(CDUnknownBlockType)arg3;
++ (BOOL)ib_enumerateExtensionDataForPluginAtPath:(id)arg1 error:(id *)arg2 withBlock:(CDUnknownBlockType)arg3;
++ (void)_setDefaultPlugInManager:(id)arg1;
 + (id)defaultPlugInManager;
 + (void)initialize;
 @property(copy) CDUnknownBlockType shouldAllowNonApplePlugInsCallback; // @synthesize shouldAllowNonApplePlugInsCallback=_shouldAllowNonApplePlugInsCallback;
@@ -94,8 +95,7 @@
 - (id)_defaultApplicationSupportSubdirectory;
 @property(readonly, copy) NSArray *extraSearchPaths;
 - (id)_extensionsForExtensionPoint:(id)arg1 matchingPredicate:(id)arg2;
-- (id)sharedExtensionsForExtensionPoint:(id)arg1 matchingPredicate:(id)arg2;
-- (id)sharedExtensionWithIdentifier:(id)arg1;
+- (id)classesImplementingProtocol:(id)arg1;
 - (id)extensionWithIdentifier:(id)arg1;
 - (id)extensionPointWithIdentifier:(id)arg1;
 - (id)plugInWithIdentifier:(id)arg1;

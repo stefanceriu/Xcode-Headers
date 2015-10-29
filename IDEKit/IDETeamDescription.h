@@ -14,8 +14,10 @@
     NSString *_teamID;
     NSString *_iOSRole;
     NSString *_macRole;
+    id <IDEProvisioningTeam> _team;
 }
 
+@property(retain, nonatomic) id <IDEProvisioningTeam> team; // @synthesize team=_team;
 @property(copy, nonatomic) NSString *macRole; // @synthesize macRole=_macRole;
 @property(copy, nonatomic) NSString *iOSRole; // @synthesize iOSRole=_iOSRole;
 @property(copy, nonatomic) NSString *teamID; // @synthesize teamID=_teamID;

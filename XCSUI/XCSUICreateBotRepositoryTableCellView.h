@@ -17,10 +17,8 @@
     NSView *_actionsView;
     NSTextField *_resolutionStatusView;
     NSButton *_changeButton;
-    NSButton *_ignoreOrViewButton;
 }
 
-@property __weak NSButton *ignoreOrViewButton; // @synthesize ignoreOrViewButton=_ignoreOrViewButton;
 @property __weak NSButton *changeButton; // @synthesize changeButton=_changeButton;
 @property __weak NSTextField *resolutionStatusView; // @synthesize resolutionStatusView=_resolutionStatusView;
 @property __weak NSView *actionsView; // @synthesize actionsView=_actionsView;
@@ -32,9 +30,6 @@
 - (void)updateResolutionField;
 @property(retain) XCSUICreateBotRepositoryIssue *issue;
 - (void)updateCredentials:(id)arg1;
-- (void)ignoreIssues:(id)arg1;
-- (void)connection:(id)arg1 willSendRequestForAuthenticationChallenge:(id)arg2;
-- (void)certificateSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)dealloc;
 

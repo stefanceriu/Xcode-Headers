@@ -20,6 +20,8 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 - (void)drawInOpenGLContext:(id)arg1 pixelFormat:(id)arg2 forLayerTime:(double)arg3 displayTime:(const CDStruct_e50ab651 *)arg4;
 - (id)openGLPixelFormatForDisplayMask:(unsigned int)arg1;
+- (double)NS_suggestedContentsScale;
+- (BOOL)layer:(id)arg1 shouldInheritContentsScale:(double)arg2 fromWindow:(id)arg3;
 - (id)openGLContextForPixelFormat:(id)arg1;
 
 @end

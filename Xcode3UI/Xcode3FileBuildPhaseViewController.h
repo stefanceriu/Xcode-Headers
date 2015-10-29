@@ -10,14 +10,14 @@
 #import "NSTableViewDataSource.h"
 #import "Xcode3BuildPhaseFiltering.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTTableView, IDEFilePickerPanel, IDENavigableItem, IDENavigableItemCoordinator, IDENavigatorDataCell, NSArray, NSPredicate, NSString, NSTimer, Xcode3BuildFileGroup;
+@class DVTBorderedView, DVTObservingToken, DVTTableView, IDEFilePickerPanel, IDENavigableItem, IDENavigableItemSyncFilteringCoordinator, IDENavigatorDataCell, NSArray, NSPredicate, NSString, NSTimer, Xcode3BuildFileGroup;
 
 @interface Xcode3FileBuildPhaseViewController : Xcode3BuildPhaseViewController <NSTableViewDataSource, Xcode3BuildPhaseFiltering, IDEFilePickerViewDelegate>
 {
     DVTTableView *_tableView;
     DVTBorderedView *_tableBorder;
     Xcode3BuildFileGroup *_group;
-    IDENavigableItemCoordinator *_navigableItemCoordinator;
+    IDENavigableItemSyncFilteringCoordinator *_navigableItemCoordinator;
     IDENavigableItem *_rootNavigableItem;
     IDENavigatorDataCell *_nameWithPathCell;
     IDENavigatorDataCell *_nameCell;
@@ -41,6 +41,7 @@
 + (id)keyPathsForValuesAffectingHasSearchResults;
 + (id)keyPathsForValuesAffectingCanRemoveItems;
 + (id)keyPathsForValuesAffectingTitleForDisplay;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 @property(readonly) DVTBorderedView *tableBorder; // @synthesize tableBorder=_tableBorder;
 @property(copy) NSString *searchString; // @synthesize searchString=_searchString;
 @property(readonly) DVTTableView *tableView; // @synthesize tableView=_tableView;

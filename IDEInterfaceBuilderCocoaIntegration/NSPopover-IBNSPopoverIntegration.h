@@ -8,5 +8,6 @@
 
 @interface NSPopover (IBNSPopoverIntegration)
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 @end
 

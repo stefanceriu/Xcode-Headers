@@ -36,6 +36,7 @@
     BOOL _willRebuild;
     DVTDelayedInvocation *_scriptChangeDelayedInvocation;
     DVTNotificationToken *_frameChangeToken;
+    id <DVTCancellable> _rebuildToken;
 }
 
 - (void).cxx_destruct;

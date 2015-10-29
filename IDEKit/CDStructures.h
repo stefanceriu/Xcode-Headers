@@ -35,6 +35,10 @@ struct CGSize {
     double height;
 };
 
+struct DVTPortalOperationToken {
+    Class _field1;
+};
+
 struct NSEdgeInsets {
     double top;
     double left;
@@ -43,6 +47,10 @@ struct NSEdgeInsets {
 };
 
 struct NSObject {
+    Class _field1;
+};
+
+struct NSSet {
     Class _field1;
 };
 
@@ -122,4 +130,10 @@ typedef struct {
     double minY;
     double maxY;
 } CDStruct_bf6d4a14;
+
+typedef struct {
+    long long numberOfDirectlyTaggedObjects;
+    long long numberOfImplicitlyTaggedObjects;
+    long long numberOfSelectedObjects;
+} CDStruct_5017ad51;
 

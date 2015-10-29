@@ -6,19 +6,21 @@
 
 #import "GPUDebuggerController.h"
 
-@class DVTObservingToken, DYAnalyzerArchiveVisitor, GPUMTLFrameStats, NSCache, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>;
+@class DVTFilePath, DVTObservingToken, DYMTLAnalyzerArchiveVisitor, GPUMTLFrameStats, NSCache, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
 __attribute__((visibility("hidden")))
 @interface GPUMTLDebuggerController : GPUDebuggerController
 {
     NSCache *_sourceCache;
-    DYAnalyzerArchiveVisitor *_analyzerVisitor;
+    DYMTLAnalyzerArchiveVisitor *_analyzerVisitor;
     DVTObservingToken *_overviewSamplesObserver;
     NSMutableArray *_overviewSampleArray;
     BOOL _finalizedOverview;
     NSMutableDictionary *_changedLibraries;
     NSObject<OS_dispatch_queue> *_libraryUpdateQueue;
     NSMutableDictionary *_perEncoderStats;
+    DVTFilePath *_libraryPath;
+    BOOL _updateLibrary;
     BOOL _shadersUpdatable;
     GPUMTLFrameStats *_frameStats;
 }
@@ -39,8 +41,9 @@ __attribute__((visibility("hidden")))
 - (id)createProgramPerformanceReportProvider:(id)arg1;
 - (id)createInvestigatorReportProvider:(id)arg1;
 - (void)createReportWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)_updateLibrary:(const Library_c21f3395 *)arg1 withChanges:(id)arg2 forDocument:(id)arg3 onDevice:(unsigned long long)arg4;
-- (void)_updateDefaultLibrary:(const Library_c21f3395 *)arg1 onDevice:(unsigned long long)arg2;
+- (void)_updateLibrary:(const Library_fcf3a16e *)arg1 withChanges:(id)arg2 forDocument:(id)arg3 onDevice:(unsigned long long)arg4;
+- (void)_updateDefaultLibrary:(const Library_fcf3a16e *)arg1 onDevice:(unsigned long long)arg2;
+- (BOOL)isOfflineShaderInLoadedCapture;
 - (void)_updateShaderState;
 - (void)updateShaders;
 - (void)handleDocumentChanged:(id)arg1 currentAPIItem:(id)arg2;

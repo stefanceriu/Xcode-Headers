@@ -11,7 +11,7 @@
 __attribute__((visibility("hidden")))
 @interface SCNActionGroup : SCNAction
 {
-    struct SCNCActionGroup *_mycaction;
+    void *_mycaction;
     NSArray *_actions;
 }
 
@@ -20,6 +20,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)finished;
 - (id)reversedAction;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)setupWithActions:(id)arg1;
 - (BOOL)isCustom;
 - (void)encodeWithCoder:(id)arg1;
 - (void)dealloc;

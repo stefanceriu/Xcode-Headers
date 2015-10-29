@@ -9,14 +9,13 @@
 #import "DVTFilePathFieldCellDelegate.h"
 #import "IDEBuildFolderLocationSheetControllerDelegate.h"
 
-@class DVTChoice, DVTFilePathField, DVTTabChooserView, IDEWorkspace, NSButton, NSMenuItem, NSString, NSTabView, NSTextField, NSWindow;
+@class DVTBorderedView, DVTFilePathField, IDEWorkspace, NSButton, NSMenuItem, NSString, NSTextField, NSWindow;
 
 @interface IDEWorkspaceUserSettingsSheetController : IDEViewController <IDEBuildFolderLocationSheetControllerDelegate, DVTFilePathFieldCellDelegate>
 {
     NSWindow *_sheetWindow;
     NSButton *_doneButton;
-    DVTTabChooserView *_tabChooser;
-    NSTabView *_tabView;
+    DVTBorderedView *_borderedView;
     NSWindow *_hostWindow;
     CDUnknownBlockType _completionBlock;
     BOOL _didSheetEnd;
@@ -29,33 +28,22 @@
     NSString *_customBuildIntermediatesPath;
     BOOL _liveSourceIssuesEnabled;
     int _issueFilterStyle;
-    int _snapshotLocationStyle;
-    NSString *_snapshotCustomLocation;
-    BOOL _takeSnapshotsBeforeSignificantChanges;
-    NSButton *_takeSnapshotsCheckbox;
     IDEWorkspace *_workspace;
     NSMenuItem *_workspaceRelativePathTypePopUpMenuItem;
     DVTFilePathField *_derivedDataFilePathField;
     NSTextField *_derivedDataRelativePathField;
-    DVTFilePathField *_snapshotsFilePathField;
     DVTFilePathField *_derivedDataPathLabel;
-    DVTFilePathField *_snapshotsPathLabel;
-    DVTChoice *_selectedTabChoice;
+    NSTextField *_sheetTitleLabel;
 }
 
 + (id)keyPathsForValuesAffectingDerivedDataWorkspaceRelativeLocation;
-+ (id)keyPathsForValuesAffectingUseSnapshotCustomLocation;
 + (id)keyPathsForValuesAffectingUseCustomLocation;
 + (id)keyPathsForValuesAffectingDerivedDataLocationChoice;
 + (id)keyPathsForValuesAffectingSelectedTabChoices;
 + (void)runSheetForWindow:(id)arg1;
 + (void)beginSheetForWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-@property(retain) DVTChoice *selectedTabChoice; // @synthesize selectedTabChoice=_selectedTabChoice;
 @property int issueFilterStyle; // @synthesize issueFilterStyle=_issueFilterStyle;
 @property BOOL liveSourceIssuesEnabled; // @synthesize liveSourceIssuesEnabled=_liveSourceIssuesEnabled;
-@property BOOL takeSnapshotsBeforeSignificantChanges; // @synthesize takeSnapshotsBeforeSignificantChanges=_takeSnapshotsBeforeSignificantChanges;
-@property(copy) NSString *snapshotCustomLocation; // @synthesize snapshotCustomLocation=_snapshotCustomLocation;
-@property(nonatomic) int snapshotLocationStyle; // @synthesize snapshotLocationStyle=_snapshotLocationStyle;
 @property(copy) NSString *customBuildIntermediatesPath; // @synthesize customBuildIntermediatesPath=_customBuildIntermediatesPath;
 @property(copy) NSString *customBuildProductsPath; // @synthesize customBuildProductsPath=_customBuildProductsPath;
 @property int customBuildLocationType; // @synthesize customBuildLocationType=_customBuildLocationType;
@@ -69,27 +57,22 @@
 - (void)buildFolderLocationSheetDidEndWithBuildLocationStyle:(int)arg1 sharedBuildFolderName:(id)arg2 customBuildLocationType:(int)arg3 customBuildProductsPath:(id)arg4 customBuildIntermediatesPath:(id)arg5;
 - (void)showBuildFolderLocationSheet:(id)arg1;
 - (id)DVTFilePathFieldCell:(id)arg1 resolvedPathForPath:(id)arg2;
-- (void)_updateSnapshotsPathLabelForSelectedLocationStyle;
 - (void)_updateDerivedDataPathLabelForSelectedLocationStyle;
 - (void)_updatePathLabelsForSelectedLocationStyles;
 - (BOOL)validateSnapshotCustomLocation:(id *)arg1 error:(id *)arg2;
 - (BOOL)validateDerivedDataCustomLocation:(id *)arg1 error:(id *)arg2;
 @property(readonly) NSString *derivedDataWorkspaceRelativeLocation;
-@property(readonly) NSString *snapshotDefaultLocation;
+- (id)snapshotDefaultLocation;
 @property(readonly) NSString *derivedDataFolderDefaultLocation;
-@property(readonly) BOOL useSnapshotCustomLocation;
 @property(readonly) BOOL useCustomLocation;
 @property int derivedDataLocationChoice;
 @property(retain) IDEWorkspace *workspace;
 - (void)primitiveInvalidate;
 - (void)loadView;
-- (void)_updateSnapshotsCustomLocationFieldForPathType;
 - (void)_updateDerivedDataCustomLocationFieldForPathType;
 - (void)_updateCustomLocationFieldsForPathTypes;
-- (void)setSelectedTabChoices:(id)arg1;
-- (id)selectedTabChoices;
 - (void)sheetDoneAction:(id)arg1;
-- (void)sheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)_userSettingsSheetDidEndWithReturnCode:(long long)arg1;
 - (void)_saveChangesToUserSettings;
 - (void)_beginSheetForWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 

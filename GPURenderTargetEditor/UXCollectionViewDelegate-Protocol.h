@@ -6,11 +6,15 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSEvent, NSIndexPath, NSString, UXCollectionReusableView, UXCollectionView, UXCollectionViewCell;
+@class NSArray, NSEvent, NSIndexPath, NSMenu, NSString, UXCollectionReusableView, UXCollectionView, UXCollectionViewCell;
 
 @protocol UXCollectionViewDelegate <NSObject>
 
 @optional
+- (void)collectionView:(UXCollectionView *)arg1 atIndexPath:(NSIndexPath *)arg2 didCloseMenu:(NSMenu *)arg3 withEvent:(NSEvent *)arg4;
+- (void)collectionView:(UXCollectionView *)arg1 atIndexPath:(NSIndexPath *)arg2 willOpenMenu:(NSMenu *)arg3 withEvent:(NSEvent *)arg4;
+- (void)collectionView:(UXCollectionView *)arg1 atIndexPath:(NSIndexPath *)arg2 prepareForMenu:(NSMenu *)arg3 withEvent:(NSEvent *)arg4;
+- (NSMenu *)collectionView:(UXCollectionView *)arg1 actionMenuForItemAtIndexPath:(NSIndexPath *)arg2;
 - (struct CGPoint)collectionView:(UXCollectionView *)arg1 targetContentOffsetOnResizeForProposedContentOffset:(struct CGPoint)arg2;
 - (void)collectionView:(UXCollectionView *)arg1 didPrepareForOverdraw:(struct CGRect)arg2;
 - (void)collectionView:(UXCollectionView *)arg1 itemWasRightClickedAtIndexPath:(NSIndexPath *)arg2 withEvent:(NSEvent *)arg3;

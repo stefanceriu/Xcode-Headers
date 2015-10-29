@@ -13,6 +13,7 @@
     BOOL _instantiatedSegueTemplates;
 }
 
++ (BOOL)copyStringsFiles:(id)arg1 forDocument:(id)arg2 compiledToPath:(id)arg3 addTargetDeviceSuffix:(BOOL)arg4 options:(id)arg5 error:(id *)arg6;
 + (id)productPathExtension;
 - (id)compileWithOptions:(id)arg1 error:(id *)arg2;
 - (id)compiledPackageForWrapperContent:(id)arg1;
@@ -22,11 +23,10 @@
 - (BOOL)storyboardsAreAvailableForCompilationTargetReturningError:(id *)arg1;
 - (id)compileContentsOfStoryboardWithOptions:(id)arg1 errors:(id *)arg2;
 - (id)compiledWrappersFromCompilationResults:(id)arg1 withOptions:(id)arg2 error:(id *)arg3;
-- (id)stringByAppendingVariantSuffixToFilePath:(id)arg1 ifNeededForOptions:(id)arg2;
-- (id)infoPlistDictionaryForCompiledPackageWithViewControllerNibMap:(id)arg1;
-@property(readonly) NSString *infoPlistDesignatedEntryPointIdentifierKey;
-@property(readonly) NSString *infoPlistPackageVersionKey;
-@property(readonly) NSString *infoPlistViewControllerIdentifierToNibNameMapKey;
+- (id)stringByAppendingTargetDeviceSuffixToFilePath:(id)arg1 ifNeededForOptions:(id)arg2;
+- (void)finishPopulatingInfoPlist:(id)arg1;
+- (void)populateInfoPlist:(id)arg1 withCompilationResult:(id)arg2;
+- (id)referenceInfoForExternalPrimarySceneObject:(id)arg1;
 - (id)infoPlistFileWrapperForDictionary:(id)arg1 error:(id *)arg2;
 @property(readonly) NSNumber *compiledPackageVersion;
 - (id)compileUnitsFromCompilationGroups:(id)arg1 filter:(long long)arg2 options:(id)arg3 errors:(id *)arg4;
@@ -37,8 +37,9 @@
 - (id)storyboardCompilationGroups;
 - (id)controllersThatRequireIndependentInstantiation;
 - (id)instantiateSegueTemplatesAndReturnObjectsToTriggeredSeguesTemplatesMap;
-- (id)compileCompilationUnit:(id)arg1 options:(id)arg2 forSceneCompilationGroup:(id)arg3;
+- (id)compileCompilationUnit:(id)arg1 options:(id)arg2 forSceneCompilationGroup:(id)arg3 error:(id *)arg4;
 @property(readonly) NSString *storyboardPlaceholderIdentifier;
+- (id)platform;
 - (id)intermediateDocument;
 - (id)sourceDocument;
 

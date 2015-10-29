@@ -4,14 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEFoundation/IDEDistributionProcessingStep.h>
+#import <IDEFoundation/IDEDistributionProcessingPackagingStep.h>
 
-@interface IDEDistributionSkipPackagingStep : IDEDistributionProcessingStep
+@interface IDEDistributionSkipPackagingStep : IDEDistributionProcessingPackagingStep
 {
 }
 
-+ (id)processingStep;
-- (_Bool)processWithContext:(id)arg1 andError:(id *)arg2;
++ (_Bool)supportsDryRun;
++ (BOOL)wantsPayloadDir;
+- (id)providedOutputContextPropertyNames;
+- (id)requiredInputContextPropertyNames;
+- (_Bool)runWithError:(id *)arg1;
 
 @end
 

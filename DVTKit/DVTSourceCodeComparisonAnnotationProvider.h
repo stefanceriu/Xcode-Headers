@@ -6,7 +6,7 @@
 
 #import <DVTKit/DVTAnnotationProvider.h>
 
-@class DVTDiffDescriptor, DVTDiffSession, DVTMapTable, DVTObservingToken, NSURL;
+@class DVTDiffDescriptor, DVTDiffSession, DVTObservingToken, NSMapTable, NSURL;
 
 @interface DVTSourceCodeComparisonAnnotationProvider : DVTAnnotationProvider
 {
@@ -19,7 +19,7 @@
     DVTObservingToken *_disabledToken;
     DVTObservingToken *_diffDescriptorsShouldAppearAsUnfocusedToken;
     DVTObservingToken *_diffDescriptorsShouldAppearAsInactive;
-    DVTMapTable *_diffDescriptorToAnnotation;
+    NSMapTable *_diffDescriptorToAnnotation;
     id _themeObserver;
 }
 

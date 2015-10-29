@@ -12,6 +12,7 @@
 + (id)dvt_groupDefaultAssetIcon;
 + (id)dvt_groupLibrarySourceIcon;
 + (id)dvt_navPluginIcon;
++ (id)dvt_goToButtonIcon;
 + (id)dvt_watchAppIcon;
 + (id)dvt_downloadArrowDarkIcon;
 + (id)dvt_downloadArrowIcon;
@@ -29,8 +30,11 @@
 + (id)dvt_navFrameworkIcon;
 + (id)dvt_navSourcesFolderIcon;
 + (id)dvt_navGroupIcon;
++ (id)dvt_genericiOSDeviceIcon;
++ (id)dvt_iOSApplicationIcon;
 + (id)_dvt_navGroupIconName;
 + (id)dvt_questionMarkIcon;
++ (id)dvt_folderIcon;
 + (id)dvt_blankDocumentIcon;
 + (id)dvt_unknownFSObjectIcon;
 @end

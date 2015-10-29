@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)operationWithSingleTeamToken:(id)arg1 UUID:(id)arg2 name:(id)arg3 andPlatform:(id)arg4;
++ (id)operationWithSingleTeamToken:(id)arg1 UUID:(id)arg2 name:(id)arg3 portalDeviceClass:(id)arg4 andPlatform:(id)arg5;
 - (void)_failure:(id)arg1;
 
 @end

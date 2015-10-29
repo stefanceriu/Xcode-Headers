@@ -6,7 +6,7 @@
 
 #import "DVTCompletingTextViewDelegate.h"
 
-@class DVTAnnotationContext, DVTSourceTextView, NSArray, NSDictionary, NSEvent, NSMenu, NSNotification, NSString;
+@class DVTAnnotationContext, DVTMutableRangeArray, DVTSourceTextView, NSArray, NSDictionary, NSEvent, NSMenu, NSNotification, NSString;
 
 @protocol DVTSourceTextViewDelegate <DVTCompletingTextViewDelegate>
 
@@ -14,9 +14,13 @@
 - (double)textView:(DVTSourceTextView *)arg1 constrainAccessoryAnnotationWidth:(double)arg2;
 - (double)textView:(DVTSourceTextView *)arg1 constrainMaxAccessoryAnnotationWidth:(double)arg2;
 - (double)textView:(DVTSourceTextView *)arg1 constrainMinAccessoryAnnotationWidth:(double)arg2;
+- (NSArray *)directoriesForLiteralsInTextView:(DVTSourceTextView *)arg1;
+- (NSArray *)textView:(DVTSourceTextView *)arg1 objectLiteralStringsForObjects:(NSArray *)arg2;
 - (NSString *)textViewWillReturnPrintJobTitle:(DVTSourceTextView *)arg1;
 - (void)textViewDidScroll:(DVTSourceTextView *)arg1;
 - (void)setupGutterContextMenuWithMenu:(NSMenu *)arg1;
+- (void)didEndTokenizedEditingWithRanges:(DVTMutableRangeArray *)arg1;
+- (void)willStartTokenizedEditingWithRanges:(DVTMutableRangeArray *)arg1;
 - (void)tokenizableRangesWithRange:(struct _NSRange)arg1 completionBlock:(void (^)(NSArray *))arg2;
 - (void)textViewDidFinishAnimatingScroll:(DVTSourceTextView *)arg1;
 - (void)textViewDidLoadAnnotationProviders:(DVTSourceTextView *)arg1;

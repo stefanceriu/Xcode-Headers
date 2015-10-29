@@ -30,7 +30,7 @@
 + (id)keyPathsForValuesAffectingIbInspectedCanEditConstant;
 + (id)keyPathsForValuesAffectingIbInspectedConstantInspectionType;
 + (id)keyPathsForValuesAffectingIbInspectedInspectorHeaderTitle;
-+ (id)ibDefaultImageForInstance:(id)arg1;
++ (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
 + (id)keyPathsForValuesAffectingIbTypeLabel;
 + (id)keyPathsForValuesAffectingIbInspectedUserInterfaceDirection;
 + (id)ibConstantAttributeName;
@@ -52,15 +52,11 @@
 - (void)ibPopulateRequiredDocumentCapabilities:(id)arg1;
 - (void)awakeAfterUsingDocumentUnarchiver:(id)arg1;
 - (void)unarchiveScoringType:(id)arg1;
-- (void)archiveScoringType:(id)arg1;
-- (long long)archivedScoringType;
 - (void)unarchiveContainingView:(id)arg1;
 - (void)archiveContainingView:(id)arg1;
 - (void)archiveFirstItem:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)ibDidAddToDocument:(id)arg1 phase:(unsigned long long)arg2;
-- (void)ibDocument:(id)arg1 didAddConnection:(id)arg2;
 @property(readonly, nonatomic) unsigned long long ibInspectedAttributeInspectionType;
 @property(nonatomic) BOOL ibInspectedAutomaticallyLayoutBasedOnLanguage;
 - (BOOL)ibInspectedCanEditSizeAttributes;
@@ -91,10 +87,11 @@
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (id)ibInspectedInspectorHeaderTitle;
 - (id)ibQualifyingInfoForDefaultLabel;
+- (id)ibConstantString;
 - (id)ibTypeNameForDefaultLabel;
 - (BOOL)ibWantsVerboseDefaultLabel;
+- (void)ibPopulateWithLabelAffectingObjects:(id)arg1;
 - (id)ibTypeLabel;
-- (void)ibPromoteToUserConstraint;
 - (id)ibRuntimeClassName;
 - (BOOL)ibAvoidsEditing;
 - (id)ibLocalAdditionalIbtoolDescriptionKeyPaths;

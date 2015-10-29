@@ -7,5 +7,8 @@
 #import "NSSplitViewItem.h"
 
 @interface NSSplitViewItem (IBNSSplitViewItemIntegration)
++ (id)keyPathsForValuesAffectingCanCollapse;
+- (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
+@property long long ibShadowedBehavior;
 @end
 

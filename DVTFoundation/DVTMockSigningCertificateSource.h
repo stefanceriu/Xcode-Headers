@@ -21,6 +21,8 @@
 - (id)allSigningCertificates;
 - (void)_stopListeningForKeychainEvents;
 - (void)_startListeningForKeychainEvents;
+- (id)initWithDictionary:(id)arg1 logAspect:(id)arg2;
+- (id)initWithPlist:(id)arg1 logAspect:(id)arg2;
 - (id)initWithInitialSigningCertificates:(id)arg1 logAspect:(id)arg2;
 - (id)initWithLogAspect:(id)arg1;
 

@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDEViewController.h>
 
-@class DVTBorderedView, DVTGradientImageButton, DVTPointerArray, IDEAlertsView, IDEControlGroup, NSArray, NSCell, NSMutableArray, NSScrollView, NSTableView;
+@class DVTBorderedView, DVTGradientImageButton, IDEAlertsView, IDEControlGroup, NSArray, NSCell, NSMutableArray, NSPointerArray, NSScrollView, NSTableView;
 
 @interface IDEAlertsPrefsPaneController : IDEViewController
 {
@@ -18,7 +18,7 @@
     IDEControlGroup *_controlGroup;
     DVTGradientImageButton *_addButton;
     DVTGradientImageButton *_removeButton;
-    DVTPointerArray *_alertEvents;
+    NSPointerArray *_alertEvents;
     NSCell *_dividerCell;
     NSMutableArray *_observationTokens;
     NSMutableArray *_customObservationTokens;

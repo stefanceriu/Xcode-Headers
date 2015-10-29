@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTMapTable, DVTStackBacktrace, IDEKeyBindingPreferenceSet, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSString, NSUndoManager;
+@class DVTStackBacktrace, IDEKeyBindingPreferenceSet, NSArray, NSDictionary, NSMapTable, NSMutableArray, NSMutableDictionary, NSString, NSUndoManager;
 
 @interface IDEKeyBindingSet : NSObject <DVTInvalidation>
 {
@@ -16,7 +16,7 @@
     IDEKeyBindingPreferenceSet *_keyBindingPreferenceSet;
     NSMutableArray *_keyBindings;
     NSMutableDictionary *_keyBindingForCommandIdentifier;
-    DVTMapTable *_keyBindingOrArrayForRawKeyboardShortcut;
+    NSMapTable *_keyBindingOrArrayForRawKeyboardShortcut;
     NSMutableDictionary *_keyBindingOrCountedSetForKeyEquivalent;
     NSUndoManager *_undoManager;
     struct _IDEKeyBindingSetFlags _kbsFlags;

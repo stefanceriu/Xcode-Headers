@@ -9,15 +9,15 @@
 #import "DVTInvalidation.h"
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTMapTable, DVTStackBacktrace, IDEBreakpointBucket, IDEFileReference, NSArray, NSImage, NSMutableArray, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEBreakpointBucket, IDEFileReference, NSArray, NSImage, NSMapTable, NSMutableArray, NSString;
 
 @interface IDEBreakpointGroup : NSObject <IDEKeyDrivenNavigableItemRepresentedObject, DVTInvalidation>
 {
-    IDEBreakpointBucket *_bucket;
     NSMutableArray *_subGroups;
+    NSMapTable *_breakpointToObserverTokenMap;
+    IDEBreakpointBucket *_bucket;
     unsigned long long _breakpointCount;
     unsigned long long _disabledBreakpointCount;
-    DVTMapTable *_breakpointToObserverTokenMap;
 }
 
 + (void)initialize;

@@ -17,6 +17,7 @@
 - (void)addItems:(id)arg1;
 - (Class)targetedEditorClass;
 - (id)titleForDisplay;
+- (void)primitiveInvalidate;
 - (id)typeNames;
 
 @end

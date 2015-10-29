@@ -106,6 +106,11 @@ struct ValueImpl;
 
 struct ValueListImpl;
 
+struct _NSRange {
+    unsigned long long location;
+    unsigned long long length;
+};
+
 struct __shared_weak_count;
 
 struct _opaque_pthread_t {

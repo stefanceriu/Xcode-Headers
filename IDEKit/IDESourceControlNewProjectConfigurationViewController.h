@@ -41,7 +41,6 @@
 - (void)primitiveInvalidate;
 - (void)createGitRepositoryWithFilePath:(id)arg1 workspaceUIHandler:(id)arg2;
 - (void)updateDirectoryURL:(id)arg1;
-- (void)displayCannotCreateRepositorySheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)displayCannotCreateRepositorySheet:(id)arg1;
 - (BOOL)testSelectedServer;
 - (void)_checkCanCreateRepository;

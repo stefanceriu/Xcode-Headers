@@ -162,6 +162,7 @@
 - (void)addAttribute:(id)arg1 value:(id)arg2 range:(struct _NSRange)arg3;
 - (void)setAttributes:(id)arg1 range:(struct _NSRange)arg2;
 - (void)replaceCharactersInRange:(struct _NSRange)arg1 withString:(id)arg2;
+- (void)replaceCharactersInRange:(struct _NSRange)arg1 withString:(id)arg2 evenIfNotEditable:(BOOL)arg3;
 - (BOOL)isDoingBatchEdit;
 - (void)doingBatchEdit:(BOOL)arg1;
 - (void)doingBatchEdit:(BOOL)arg1 notifyModel:(BOOL)arg2;

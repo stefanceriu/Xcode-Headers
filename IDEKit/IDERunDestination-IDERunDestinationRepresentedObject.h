@@ -11,6 +11,7 @@
 @class NSString;
 
 @interface IDERunDestination (IDERunDestinationRepresentedObject) <IDERunDestinationRepresentedObject>
+@property(readonly) BOOL isWatchDestination;
 @property(readonly) IDERunDestination *runDestination;
 
 // Remaining properties

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTFilePath, DVTMapTable, NSArray, NSMutableArray, NSString;
+@class DVTFilePath, IDESchemeActionCodeCoverage, NSArray, NSMapTable, NSMutableArray, NSString;
 
 @interface IDESchemeActionsInvocationRecord : NSObject
 {
@@ -16,12 +16,14 @@
     NSMutableArray *_analyzerWarningSummaries;
     NSMutableArray *_testFailureSummaries;
     NSMutableArray *_testableSummaries;
-    DVTMapTable *_strongActionRecordsToStatusObservers;
+    NSMapTable *_strongActionRecordsToStatusObservers;
+    IDESchemeActionCodeCoverage *_coverageReport;
     BOOL _running;
     BOOL _archiveFetchable;
     BOOL _productFetchable;
     BOOL _shouldClearExistingFileOnSave;
     BOOL _remoteTestSummaryNeedsFetch;
+    BOOL _remoteCodeCoverageNeedsFetch;
     DVTFilePath *_archivePath;
     NSString *_archiveName;
     unsigned long long _archiveSize;
@@ -39,6 +41,7 @@
     DVTFilePath *_filePath;
     id <IDESchemeActionsInvocationRecordUpdateDelegate> _updateDelegate;
     id _remoteTestSummaryIdentifier;
+    id _remoteCodeCoverageIdentifier;
 }
 
 + (id)keyPathsForValuesAffectingSimpleOperationStatus;
@@ -46,6 +49,8 @@
 + (BOOL)updateSummariesFromDictionaryRepresentations:(id)arg1 withSummaryOwner:(id)arg2 summaryPropertyName:(id)arg3 summaryiVarArrayRef:(id *)arg4 summariesAreTestFailures:(BOOL)arg5;
 + (BOOL)automaticallyNotifiesObserversOfActions;
 + (void)invocationRecordWithLocalActionResultFilePath:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+@property(nonatomic) BOOL remoteCodeCoverageNeedsFetch; // @synthesize remoteCodeCoverageNeedsFetch=_remoteCodeCoverageNeedsFetch;
+@property(copy, nonatomic) id remoteCodeCoverageIdentifier; // @synthesize remoteCodeCoverageIdentifier=_remoteCodeCoverageIdentifier;
 @property(nonatomic) BOOL remoteTestSummaryNeedsFetch; // @synthesize remoteTestSummaryNeedsFetch=_remoteTestSummaryNeedsFetch;
 @property(copy, nonatomic) id remoteTestSummaryIdentifier; // @synthesize remoteTestSummaryIdentifier=_remoteTestSummaryIdentifier;
 @property(nonatomic) BOOL shouldClearExistingFileOnSave; // @synthesize shouldClearExistingFileOnSave=_shouldClearExistingFileOnSave;
@@ -75,11 +80,13 @@
 @property(retain, nonatomic) NSArray *actions; // @synthesize actions=_actions;
 @property(nonatomic, getter=isRunning) BOOL running; // @synthesize running=_running;
 - (void).cxx_destruct;
+- (void)fetchCodeCoverageAndUpdateRecordWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)fetchTestSummariesAndUpdateRecordWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)fetchLogsAndUpdateRecordWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)updateRecordWithCompletionBlock:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) int simpleOperationStatus;
 @property(readonly, nonatomic) int status;
+@property(readonly, nonatomic) IDESchemeActionCodeCoverage *aggregateCoverageReport;
 - (BOOL)updateLocalTestSummaryWithRemoteTestSummary:(id)arg1 error:(id *)arg2;
 - (BOOL)saveTestSummariesWithError:(id *)arg1;
 - (id)testSummaryFormatVersionString;

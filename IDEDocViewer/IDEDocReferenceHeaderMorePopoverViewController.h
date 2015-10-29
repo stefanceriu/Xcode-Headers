@@ -8,7 +8,7 @@
 
 #import "NSTextViewDelegate.h"
 
-@class NSAttributedString, NSString, NSTextView, NSTrackingArea;
+@class DVTBorderedView, NSAttributedString, NSString, NSTextView, NSTrackingArea;
 
 @interface IDEDocReferenceHeaderMorePopoverViewController : DVTViewController <NSTextViewDelegate>
 {
@@ -16,10 +16,12 @@
     NSAttributedString *_conformsToAttString;
     NSTextView *_textView;
     NSTrackingArea *_textViewMouseTracker;
+    DVTBorderedView *_borderLine;
     struct CGSize _renderedTextViewSize;
     struct _NSRange _currentUnderlineRange;
 }
 
+@property __weak DVTBorderedView *borderLine; // @synthesize borderLine=_borderLine;
 @property struct _NSRange currentUnderlineRange; // @synthesize currentUnderlineRange=_currentUnderlineRange;
 @property(retain) NSTrackingArea *textViewMouseTracker; // @synthesize textViewMouseTracker=_textViewMouseTracker;
 @property(retain) NSTextView *textView; // @synthesize textView=_textView;

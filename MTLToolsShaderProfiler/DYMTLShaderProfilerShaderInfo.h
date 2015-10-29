@@ -12,6 +12,8 @@
 }
 
 @property(nonatomic) unsigned long long libraryId; // @synthesize libraryId=_libraryId;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithLibraryId:(unsigned long long)arg1;
 
 @end

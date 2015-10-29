@@ -23,6 +23,7 @@
     BOOL _shouldAlwaysDrawBottomBorder;
 }
 
++ (Class)headerViewClass;
 + (id)keyPathsForValuesAffectingDisclosed;
 + (void)initialize;
 @property BOOL shouldAlwaysDrawBottomBorder; // @synthesize shouldAlwaysDrawBottomBorder=_shouldAlwaysDrawBottomBorder;

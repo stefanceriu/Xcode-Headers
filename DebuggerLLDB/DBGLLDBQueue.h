@@ -6,34 +6,22 @@
 
 #import "DBGQueue.h"
 
-#import "DBGLLDBInvalidation.h"
-
-@class NSString;
-
 __attribute__((visibility("hidden")))
-@interface DBGLLDBQueue : DBGQueue <DBGLLDBInvalidation>
+@interface DBGLLDBQueue : DBGQueue
 {
     struct SBQueue _lldbQueue;
     unsigned long long _numPendingBlocks;
     BOOL _derivedPendingBlocks;
-    BOOL _markedForInvalidationFromTheSessionThread;
 }
 
-@property BOOL markedForInvalidationFromTheSessionThread; // @synthesize markedForInvalidationFromTheSessionThread=_markedForInvalidationFromTheSessionThread;
++ (BOOL)supportsInvalidationPrevention;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (void)invalidateOldPendingBlocksThreads:(id)arg1;
 - (unsigned long long)numberOfPendingBlocks;
 - (id)pendingBlocksThreads;
 - (id)lldbSession;
 - (id)initWithParentProcess:(id)arg1 lldbQueue:(struct SBQueue)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

@@ -28,8 +28,10 @@
     NSString *_doNothingItemTitle;
     id _doNothingItemRepresentedObject;
     NSString *_uti;
+    NSString *_fileExtension;
 }
 
+@property(readonly) NSString *fileExtension; // @synthesize fileExtension=_fileExtension;
 @property(readonly) NSString *uti; // @synthesize uti=_uti;
 @property(readonly) id doNothingItemRepresentedObject; // @synthesize doNothingItemRepresentedObject=_doNothingItemRepresentedObject;
 @property(readonly) NSString *doNothingItemTitle; // @synthesize doNothingItemTitle=_doNothingItemTitle;

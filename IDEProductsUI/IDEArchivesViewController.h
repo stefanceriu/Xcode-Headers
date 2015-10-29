@@ -59,16 +59,15 @@
 - (void)primitiveInvalidate;
 @property(readonly) BOOL shouldShowNoSelection;
 - (void)handleAction:(id)arg1 fromInspectable:(id)arg2;
+- (void)downloadDSYMForArchive:(id)arg1;
 - (void)productsContextMenu_showArchiveInFinder:(id)arg1;
 - (void)productsContextMenu_deleteArchive:(id)arg1;
 - (void)deleteArchive:(id)arg1;
 - (void)deleteArchives:(id)arg1;
-- (void)deleteArchiveSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)updateStatusBar;
 - (id)archivesFilterPredicate;
 @property(retain, nonatomic) NSArray *archives;
-- (void)viewWillUninstall;
-- (void)viewDidInstall;
+- (void)viewDidLoad;
 - (void)loadView;
 - (void)revealArchive:(id)arg1;
 
@@ -77,6 +76,7 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic) BOOL vendorIsBusy;
 
 @end
 

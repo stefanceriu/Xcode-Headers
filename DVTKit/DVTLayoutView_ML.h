@@ -6,7 +6,7 @@
 
 #import "NSView.h"
 
-@class NSCountedSet, NSMutableDictionary;
+@class NSCountedSet, NSMapTable, NSMutableDictionary;
 
 @interface DVTLayoutView_ML : NSView
 {
@@ -16,6 +16,8 @@
     BOOL _implementsLayoutCompletionCallback;
     BOOL _layoutNeeded;
     NSMutableDictionary *_invalidationTokens;
+    NSMapTable *_frameChangeStacksByView;
+    NSMapTable *_boundsChangeStacksByView;
     BOOL _needsSecondLayoutPass;
 }
 
@@ -33,12 +35,13 @@
 - (void)invalidateLayoutWithChangesToKeyPath:(id)arg1 ofObject:(id)arg2;
 - (void)_autoLayoutViewViewFrameDidChange:(id)arg1;
 - (void)_autoLayoutViewViewBoundsDidChange:(id)arg1;
+- (void)_invalidateLayoutIfNeededAfterRegisteringRectChange:(struct CGRect)arg1 forView:(id)arg2 table:(id)arg3;
 - (void)stopInvalidatingLayoutWithBoundsChangesToView:(id)arg1;
 - (void)stopInvalidatingLayoutWithFrameChangesToView:(id)arg1;
 - (void)invalidateLayoutWithBoundsChangesToView:(id)arg1;
 - (void)invalidateLayoutWithFrameChangesToView:(id)arg1;
-- (void)tearDownObservationForObservedObject:(id)arg1 notificationName:(id)arg2 table:(id)arg3;
-- (void)setupObservationForObservedObject:(id)arg1 selector:(SEL)arg2 notificationName:(id)arg3 table:(id *)arg4;
+- (void)_tearDownObservationForObservedObject:(id)arg1 notificationName:(id)arg2 observationCountTable:(id)arg3 rectChangeStackTable:(id)arg4;
+- (void)_setupObservationForObservedObject:(id)arg1 selector:(SEL)arg2 notificationName:(id)arg3 observationCountTable:(id *)arg4 rectChangeStackTable:(id *)arg5;
 - (void)setFrameSize:(struct CGSize)arg1;
 - (void)didCompleteLayout;
 - (void)layoutBottomUp;

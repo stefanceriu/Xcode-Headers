@@ -70,6 +70,7 @@
 - (id)classDescriptionSourcesDescribingClassNamed:(id)arg1;
 - (BOOL)isClassNameDesignable:(id)arg1 recursive:(BOOL)arg2;
 - (id)commonBaseClassOfClassesNamed:(id)arg1;
+- (BOOL)is:(id)arg1 aKindOfClassNameInSet:(id)arg2;
 - (BOOL)is:(id)arg1 aKindOf:(id)arg2;
 - (BOOL)isClassNameCompletelyDescribed:(id)arg1;
 - (id)classNamesReferencedByDocument;

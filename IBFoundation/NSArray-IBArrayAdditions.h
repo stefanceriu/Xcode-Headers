@@ -11,6 +11,8 @@
 @class NSString;
 
 @interface NSArray (IBArrayAdditions) <IBOrderedCollection>
++ (id)ib_arrayByCopyingObject:(id)arg1 numberOfTimes:(long long)arg2;
++ (id)ib_arrayWithIndicesInRange:(struct _NSRange)arg1;
 + (id)ib_arrayWithCollection:(id)arg1;
 + (id)ib_arrayWithObjects:(id *)arg1 count:(long long)arg2 ignoringNil:(BOOL)arg3;
 + (id)ib_arrayWithOptionalObjects:(long long)arg1;
@@ -19,9 +21,12 @@
 + (id)ib_emptyCollection;
 + (Class)ib_mutableClass;
 + (id)ib_orderedCollectionWithOrderedCollection:(id)arg1;
+- (void)ib_getObjects:(id *)arg1;
 - (void)ib_removeObjectsInReceiverFromArray:(id)arg1;
 - (void)ib_removeObjectsInReceiverFromOrderedSet:(id)arg1;
 - (void)ib_removeObjectsInReceiverFromSet:(id)arg1;
+- (id)ib_subarrayFromIndex:(long long)arg1;
+- (BOOL)ib_isEntirelyComposedOfInstancesOfClass:(Class)arg1;
 - (id)ib_objectAtIndexIfInBounds:(long long)arg1;
 - (void)ib_invokeWithAccessToObjects:(CDUnknownBlockType)arg1;
 - (id)ib_maximumObjectUsingComparator:(CDUnknownBlockType)arg1;
@@ -61,6 +66,8 @@
 - (id)ib_arrayByReversingObjects;
 - (id)ib_setByMappingBlock:(CDUnknownBlockType)arg1;
 - (id)ib_arrayByApplyingBlock:(CDUnknownBlockType)arg1;
+- (id)ib_collectionByMappingAndFilteringWithBlock:(CDUnknownBlockType)arg1;
+- (id)ib_arrayByMappingAndFilteringWithBlock:(CDUnknownBlockType)arg1;
 - (id)ib_arrayByMappingBlockAndAssertingOnNilMappedValue:(CDUnknownBlockType)arg1;
 - (id)ib_arrayByMappingBlock:(CDUnknownBlockType)arg1;
 - (id)ib_arrayByMappingWithBehavior:(long long)arg1 andBlock:(CDUnknownBlockType)arg2;

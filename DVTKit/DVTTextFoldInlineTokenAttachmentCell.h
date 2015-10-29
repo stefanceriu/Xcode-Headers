@@ -11,12 +11,14 @@
 @interface DVTTextFoldInlineTokenAttachmentCell : NSTokenAttachmentCell
 {
     NSView *_controlView;
+    struct CGRect *_tmpRectArray;
     DVTTextFold *_fold;
 }
 
 @property __weak DVTTextFold *fold; // @synthesize fold=_fold;
 @property(retain) NSView *controlView; // @synthesize controlView=_controlView;
 - (void).cxx_destruct;
+- (struct CGRect *)rectArrayForCharacterRange:(struct _NSRange)arg1 inRect:(struct CGRect)arg2 rectCount:(unsigned long long *)arg3;
 - (unsigned long long)characterIndexForPoint:(struct CGPoint)arg1 inRect:(struct CGRect)arg2 ofView:(id)arg3;
 - (BOOL)trackMouse:(id)arg1 inRect:(struct CGRect)arg2 ofView:(id)arg3 atCharacterIndex:(unsigned long long)arg4 untilMouseUp:(BOOL)arg5;
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2 characterIndex:(unsigned long long)arg3 layoutManager:(id)arg4;
@@ -27,12 +29,14 @@
 - (struct CGRect)titleRectForBounds:(struct CGRect)arg1;
 - (struct CGSize)cellSizeForBounds:(struct CGRect)arg1;
 - (long long)_typesetterBehavior;
+- (void)_updateFontForCurrentTheme;
 - (void)_themeColorsChanged:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
 - (id)initTextCell:(id)arg1;
 - (void)_stopObservingFontAndColorNotifications;
 - (void)_startObservingFontAndColorNotifications;
+- (double)_textFoldInlineTokenAttachmentWidthDelta;
 
 @end
 

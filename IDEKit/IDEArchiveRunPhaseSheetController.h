@@ -26,9 +26,6 @@
 @property(retain) IDEScheme *scheme; // @synthesize scheme=_scheme;
 - (void).cxx_destruct;
 @property(retain) IDEWorkspace *workspace;
-- (id)_applicationToArchiveBundleIdentifiers;
-- (id)_applicationPlatform;
-- (id)_applicationProducts;
 - (void)primitiveInvalidate;
 - (void)loadView;
 @property(copy) NSString *customArchiveName;

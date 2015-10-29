@@ -6,7 +6,7 @@
 
 #import "JSExport.h"
 
-@class CAAnimation, NSArray, NSString, SCNGeometryElement, SCNGeometrySource, SCNMaterial;
+@class CAAnimation, NSArray, NSString, SCNGeometry, SCNGeometryElement, SCNGeometrySource, SCNMaterial, SCNMutableGeometry;
 
 @protocol SCNGeometryJSExport <JSExport>
 + (id)geometryWithSources:(NSArray *)arg1 elements:(NSArray *)arg2;
@@ -19,6 +19,10 @@
 @property(retain, nonatomic) SCNMaterial *firstMaterial;
 @property(copy, nonatomic) NSArray *materials;
 @property(copy, nonatomic) NSString *name;
+- (id)valueForKeyPath:(NSString *)arg1;
+- (id)valueForKey:(NSString *)arg1;
+- (void)setValue:(id)arg1 forKey:(NSString *)arg2;
+- (void)setValue:(id)arg1 forKeyPath:(NSString *)arg2;
 - (id)getBoundingSphere;
 - (id)getBoundingBox;
 - (id)copy;
@@ -35,5 +39,7 @@
 - (void)replaceMaterialAtIndex:(unsigned long long)arg1 withMaterial:(SCNMaterial *)arg2;
 - (void)removeMaterialAtIndex:(unsigned long long)arg1;
 - (void)insertMaterial:(SCNMaterial *)arg1 atIndex:(unsigned long long)arg2;
+- (SCNGeometry *)interleavedCopy;
+- (SCNMutableGeometry *)mutableCopy;
 @end
 

@@ -6,19 +6,19 @@
 
 #import "NSView.h"
 
-@class NSColor, NSTextField;
+@class DVTColorSwatchView, NSColor, NSTextField;
 
 @interface DVTColorSwatchLabel : NSView
 {
     NSColor *_color;
-    NSView *_colorSwatch;
+    DVTColorSwatchView *_colorSwatch;
     NSTextField *_labelTextField;
     NSTextField *_valueTextField;
 }
 
 @property(readonly) NSTextField *valueTextField; // @synthesize valueTextField=_valueTextField;
 @property(readonly) NSTextField *labelTextField; // @synthesize labelTextField=_labelTextField;
-@property(readonly) NSView *colorSwatch; // @synthesize colorSwatch=_colorSwatch;
+@property(readonly) DVTColorSwatchView *colorSwatch; // @synthesize colorSwatch=_colorSwatch;
 - (void).cxx_destruct;
 - (id)_createColorSwatchImageView;
 - (id)_createLabel:(id)arg1;

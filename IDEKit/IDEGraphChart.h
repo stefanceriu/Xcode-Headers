@@ -17,7 +17,7 @@
 
 @property(copy) NSArray *entries; // @synthesize entries=_entries;
 @property(retain) NSColor *color; // @synthesize color=_color;
-@property(retain) NSString *label; // @synthesize label=_label;
+@property(copy) NSString *label; // @synthesize label=_label;
 - (void).cxx_destruct;
 - (void)clearValues;
 - (void)flushEntriesToCount:(unsigned long long)arg1;

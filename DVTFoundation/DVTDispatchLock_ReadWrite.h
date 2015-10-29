@@ -8,6 +8,7 @@
 
 @interface DVTDispatchLock_ReadWrite : DVTDispatchLock
 {
+    void *_context;
 }
 
 - (void)performLockedReaderBlock:(CDUnknownBlockType)arg1;

@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 - (id)displayNameForIssueTypeIdentifier:(id)arg1;
 - (void)_clearIssues;
+- (id)_createIssueAndSubissuesFromAnalyzerFinding:(id)arg1;
 - (id)_createIssueFromAnalyzerFinding:(id)arg1;
 - (void)_recordNumIssues:(unsigned int)arg1;
 - (unsigned int)_createAnalyzerIssues;

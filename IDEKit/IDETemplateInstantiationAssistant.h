@@ -6,13 +6,14 @@
 
 #import <IDEKit/IDEAssistant.h>
 
-@class IDETemplateInstantiationContext;
+@class IDETemplateAssistantContext;
 
 @interface IDETemplateInstantiationAssistant : IDEAssistant
 {
 }
 
-@property(readonly) IDETemplateInstantiationContext *templateInstantiationContext;
++ (id)keyPathsForValuesAffectingTemplateAssistantContext;
+@property(readonly) IDETemplateAssistantContext *templateAssistantContext;
 
 @end
 

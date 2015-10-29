@@ -10,7 +10,6 @@
 {
 }
 
-+ (id)SCNJSExportProtocol;
 + (unsigned int)currentState;
 + (void)postCommandWithContext:(void *)arg1 object:(id)arg2 keyPath:(id)arg3 applyBlock:(CDUnknownBlockType)arg4;
 + (void)postCommandWithContext:(void *)arg1 object:(id)arg2 applyBlock:(CDUnknownBlockType)arg3;
@@ -29,6 +28,7 @@
 + (void)unlock;
 + (void)lock;
 + (void)flush;
++ (void)commitImmediate;
 + (void)commit;
 + (void)begin;
 - (id)animationTimingFunction;

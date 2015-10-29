@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTDispatchLock, DVTPointerArray, DVTStackBacktrace, IDEEditorDocument<DVTTextReplacable>, IDENavigableItem, IDEWorkspaceDocument, NSArray, NSImage, NSIndexSet, NSString, NSURL;
+@class DVTDispatchLock, DVTStackBacktrace, IDEEditorDocument<DVTTextReplacable>, IDENavigableItem, IDEWorkspaceDocument, NSArray, NSImage, NSIndexSet, NSPointerArray, NSString, NSURL;
 
 @interface IDEEditorDocumentPreviewProvider : NSObject <DVTInvalidation>
 {
@@ -21,8 +21,8 @@
     NSString *_replacementString;
     NSArray *_documentLocations;
     NSArray *_previewLocations;
-    DVTPointerArray *_originalRowViewCache;
-    DVTPointerArray *_previewRowViewCache;
+    NSPointerArray *_originalRowViewCache;
+    NSPointerArray *_previewRowViewCache;
     NSURL *_url;
     DVTDispatchLock *_cacheLock;
     IDEWorkspaceDocument *_workspaceDocument;

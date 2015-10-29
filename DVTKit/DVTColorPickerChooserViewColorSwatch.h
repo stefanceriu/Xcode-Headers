@@ -6,7 +6,7 @@
 
 #import "NSView.h"
 
-@class NSColor;
+@class NSColor, NSNumber, NSString;
 
 @interface DVTColorPickerChooserViewColorSwatch : NSView
 {
@@ -14,10 +14,14 @@
     BOOL highlighted;
     id target;
     SEL action;
+    NSString *_colorName;
+    NSNumber *_colorNameToolTipTag;
 }
 
+@property(copy) NSString *colorName; // @synthesize colorName=_colorName;
 @property(retain) NSColor *color; // @synthesize color;
 - (void).cxx_destruct;
+- (id)view:(id)arg1 stringForToolTip:(long long)arg2 point:(struct CGPoint)arg3 userData:(void *)arg4;
 - (id)description;
 - (void)drawRect:(struct CGRect)arg1;
 @property BOOL highlighted;
@@ -26,7 +30,8 @@
 - (void)mouseEntered:(id)arg1;
 - (void)setAction:(SEL)arg1;
 - (void)setTarget:(id)arg1;
-- (id)initWithColor:(id)arg1 andFrame:(struct CGRect)arg2;
+- (void)dealloc;
+- (id)initWithColor:(id)arg1 name:(id)arg2 andFrame:(struct CGRect)arg3;
 - (void)setupTrackingArea;
 - (BOOL)isFlipped;
 

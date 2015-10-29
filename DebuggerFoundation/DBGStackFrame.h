@@ -18,6 +18,7 @@
     NSArray *_locals;
     NSArray *_arguments;
     NSArray *_fileStatics;
+    NSArray *_globals;
     NSArray *_registers;
     DBGDisassemblyInstructionList *_disassembly;
 }
@@ -28,12 +29,14 @@
 @property(retain, nonatomic) DBGDisassemblyInstructionList *disassembly; // @synthesize disassembly=_disassembly;
 @property(nonatomic) BOOL returnValueIsValid; // @synthesize returnValueIsValid=_returnValueIsValid;
 @property(readonly, nonatomic) NSArray *registers; // @synthesize registers=_registers;
+@property(readonly, nonatomic) NSArray *globals; // @synthesize globals=_globals;
 @property(readonly, nonatomic) NSArray *fileStatics; // @synthesize fileStatics=_fileStatics;
 @property(readonly, nonatomic) NSArray *arguments; // @synthesize arguments=_arguments;
 @property(readonly, nonatomic) NSArray *locals; // @synthesize locals=_locals;
 @property(copy, nonatomic) NSString *instructionPointerAddressString; // @synthesize instructionPointerAddressString=_instructionPointerAddressString;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
+- (id)expressionWithSubstitutedTypesForExpression:(id)arg1;
 - (void)evaluateExpression:(id)arg1 options:(id)arg2 withResultBlock:(CDUnknownBlockType)arg3;
 - (void)evaluateExpression:(id)arg1 withResultBlock:(CDUnknownBlockType)arg2;
 - (void)requestDataValueForSymbol:(id)arg1 symbolKind:(id)arg2 atLocation:(id)arg3 onQueue:(id)arg4 withResultBlock:(CDUnknownBlockType)arg5;

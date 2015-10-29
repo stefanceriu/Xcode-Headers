@@ -11,7 +11,7 @@
 @class NSImage, NSSet, NSString;
 
 @interface DTDKApplication (InterfaceExtensions) <DVTDeviceApplication_KitSupport>
-@property(readonly) NSSet *rootContainerApplicationItems;
+@property(readonly, copy) NSSet *rootContainerApplicationItems;
 @property(readonly) NSString *version;
 @property(readonly) NSImage *appIcon;
 - (void)fetchUncrushedAppIcon:(CDUnknownBlockType)arg1;

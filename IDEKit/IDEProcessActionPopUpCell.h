@@ -13,21 +13,21 @@
     struct CGSize _cellSize;
     BOOL _mouseEntered;
     NSString *_toolTip;
+    BOOL _arrowIsVisible;
 }
 
+@property(nonatomic) BOOL arrowIsVisible; // @synthesize arrowIsVisible=_arrowIsVisible;
 @property(copy) NSString *toolTip; // @synthesize toolTip=_toolTip;
 - (void).cxx_destruct;
 - (id)accessibilityAttributeValue:(id)arg1;
 - (void)setMenu:(id)arg1;
-- (void)mouseExited:(id)arg1;
-- (void)mouseEntered:(id)arg1;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)addTrackingAreasForView:(id)arg1 inFrame:(struct CGRect)arg2 withUserInfo:(id)arg3 mouseLocation:(struct CGPoint)arg4;
 - (void)_updatePopUpButtonImageForSelectedMenuItem;
 - (void)selectItemAtIndex:(long long)arg1;
 - (BOOL)isHighlighted;
-- (struct CGSize)cellSize;
-- (id)initWithHeight:(double)arg1;
+- (struct NSEdgeInsets)_popupBezelInsets;
+- (id)init;
 
 @end
 

@@ -10,11 +10,10 @@
 #import "NSSecureCoding.h"
 #import "SCNAnimatable.h"
 
-@class NSDictionary, NSMutableDictionary, NSString, SCNOrderedDictionary;
+@class NSArray, NSDictionary, NSMutableDictionary, NSString, SCNOrderedDictionary;
 
 @interface SCNTechnique : NSObject <SCNAnimatable, NSCopying, NSSecureCoding>
 {
-    id _reserved;
     unsigned int _isPresentationInstance:1;
     struct __C3DFXTechnique *_technique;
     NSMutableDictionary *_valueForSymbol;
@@ -22,7 +21,6 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)techniqueWithTechniqueRef:(struct __C3DFXTechnique *)arg1;
 + (id)techniqueBySequencingTechniques:(id)arg1;
 + (id)techniqueWithDictionary:(id)arg1;
@@ -30,9 +28,10 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)_customDecodingOfSCNTechnique:(id)arg1;
 - (void)_customEncodingOfSCNTechnique:(id)arg1;
+- (void)_didInstallInEngineContext:(struct __C3DEngineContext *)arg1;
 - (id)presentationInstance;
 - (BOOL)isPausedOrPausedByInheritance;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (BOOL)isAnimationForKeyPaused:(id)arg1;
 - (void)removeAnimationForKey:(id)arg1 fadeOutDuration:(double)arg2;
 - (void)resumeAnimationForKey:(id)arg1;
@@ -40,7 +39,7 @@
 - (void)_pauseAnimation:(BOOL)arg1 forKey:(id)arg2;
 - (id)animationForKey:(id)arg1;
 - (void)_syncObjCAnimations;
-- (id)animationKeys;
+@property(readonly) NSArray *animationKeys;
 - (void)removeAnimationForKey:(id)arg1;
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
@@ -50,6 +49,8 @@
 - (void *)__CFObject;
 - (id)scene;
 - (struct __C3DScene *)sceneRef;
+- (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
+- (id)objectForKeyedSubscript:(id)arg1;
 - (id)valueForSymbolNamed:(id)arg1;
 - (void)setValue:(id)arg1 forSymbolNamed:(id)arg2;
 - (id)valueForUndefinedKey:(id)arg1;

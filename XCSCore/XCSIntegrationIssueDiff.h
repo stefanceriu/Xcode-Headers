@@ -13,21 +13,22 @@
     NSArray *_freshIssues;
     NSArray *_unresolvedIssues;
     NSArray *_resolvedIssues;
+    NSArray *_silencedIssues;
 }
 
-+ (id)integrationIssueDiffWithFreshIssues:(id)arg1 unresolvedIssues:(id)arg2 resolvedIssues:(id)arg3;
++ (id)integrationIssueDiffWithFreshIssues:(id)arg1 unresolvedIssues:(id)arg2 resolvedIssues:(id)arg3 validationErrors:(id *)arg4;
 + (id)emptyIntegrationIssueDiff;
+@property(readonly, nonatomic) NSArray *silencedIssues; // @synthesize silencedIssues=_silencedIssues;
 @property(readonly, nonatomic) NSArray *resolvedIssues; // @synthesize resolvedIssues=_resolvedIssues;
 @property(readonly, nonatomic) NSArray *unresolvedIssues; // @synthesize unresolvedIssues=_unresolvedIssues;
 @property(readonly, nonatomic) NSArray *freshIssues; // @synthesize freshIssues=_freshIssues;
 - (void).cxx_destruct;
-- (BOOL)_validateFreshIssues:(id)arg1 unresolvedIssues:(id)arg2 resolvedIssues:(id)arg3;
+- (BOOL)_validateFreshIssues:(id)arg1 unresolvedIssues:(id)arg2 resolvedIssues:(id)arg3 silencedIssues:(id)arg4 validationErrors:(id *)arg5;
 - (id)integrationIssues;
 - (id)saveRepresentation;
 - (id)dictionaryRepresentation;
-- (long long)issueCountChangeFromPreviousIntegration;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)initWithFreshIssues:(id)arg1 unresolvedIssues:(id)arg2 resolvedIssues:(id)arg3;
+- (id)initWithFreshIssues:(id)arg1 unresolvedIssues:(id)arg2 resolvedIssues:(id)arg3 silencedIssues:(id)arg4 validationErrors:(id *)arg5;
 
 @end
 

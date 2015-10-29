@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, NSString;
+@class NSMapTable, NSString;
 
 @interface DVTMountedFileSystem : NSObject
 {
     int _deviceNumber;
     NSString *_mountPath;
-    DVTMapTable *_inodesToVNodes;
+    NSMapTable *_inodesToVNodes;
 }
 
 + (id)mountedFileSystemWithDeviceNumber:(int)arg1;

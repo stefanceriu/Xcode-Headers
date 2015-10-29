@@ -19,6 +19,7 @@
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)keyPathsForValuesAffectingKeyTextView;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 - (void).cxx_destruct;
 - (void)find:(id)arg1;
 - (id)currentEditorContext;

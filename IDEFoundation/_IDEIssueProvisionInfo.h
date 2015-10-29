@@ -6,22 +6,22 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, IDEContainer, IDEIssueProvider, IDEIssueProviderSession, NSArray, NSMutableArray;
+@class IDEContainer, IDEIssueProvider, IDEIssueProviderSession, NSArray, NSMapTable, NSMutableArray;
 
 @interface _IDEIssueProvisionInfo : NSObject
 {
+    NSMutableArray *_issues;
     id <IDEBlueprint> _blueprint;
     IDEContainer *_container;
-    NSMutableArray *_issues;
-    DVTMapTable *_issueToGroupingObjectsMap;
+    NSMapTable *_issueToGroupingObjectsMap;
     IDEIssueProviderSession *_session;
 }
 
-@property(readonly) NSMutableArray *_mutableIssues; // @synthesize _mutableIssues=_issues;
 @property(readonly) IDEIssueProviderSession *session; // @synthesize session=_session;
-@property(copy) DVTMapTable *issueToGroupingObjectsMap; // @synthesize issueToGroupingObjectsMap=_issueToGroupingObjectsMap;
+@property(copy) NSMapTable *issueToGroupingObjectsMap; // @synthesize issueToGroupingObjectsMap=_issueToGroupingObjectsMap;
 @property(readonly) __weak IDEContainer *container; // @synthesize container=_container;
 @property(readonly) __weak id <IDEBlueprint> blueprint; // @synthesize blueprint=_blueprint;
+@property(readonly) NSMutableArray *_mutableIssues; // @synthesize _mutableIssues=_issues;
 - (void).cxx_destruct;
 - (void)removeIssues:(id)arg1;
 - (void)addIssues:(id)arg1;

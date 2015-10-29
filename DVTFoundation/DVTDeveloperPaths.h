@@ -30,6 +30,7 @@
 - (id)userDataDirectoryForCurrentApplication;
 - (id)dataDirectoryForCurrentApplication;
 - (id)cacheDirectoryWithOptions:(unsigned long long)arg1;
+- (id)binSearchPathForSystem;
 - (id)binSearchPathForPlatform:(id)arg1;
 - (id)usrSearchPathForPlatform:(id)arg1;
 - (id)sdksSearchPathForPlatform:(id)arg1;

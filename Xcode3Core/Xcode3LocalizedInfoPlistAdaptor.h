@@ -19,7 +19,7 @@
 - (id)expectedSuperitem;
 - (id)expectedDirectoryPath;
 - (id)expectedFileName;
-- (id)filteredBaseStringsByKey:(id)arg1;
+- (id)filteredBaseStrings:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithLocalizedContainer:(id)arg1 localizedGroup:(id)arg2 plistFileReference:(id)arg3 target:(id)arg4;
 

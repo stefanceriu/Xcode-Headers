@@ -13,6 +13,7 @@
 - (void)dvt_sortedMerge:(id)arg1 withComparator:(CDUnknownBlockType)arg2;
 - (void)dvt_sortedMerge:(id)arg1;
 - (void)dvt_sortedInsert:(id)arg1 withComparator:(CDUnknownBlockType)arg2;
+- (void)dvt_sortedInsert:(id)arg1 withComparisonSelector:(SEL)arg2;
 - (void)dvt_sortedInsert:(id)arg1;
 - (void)dvt_removeObjectsIdenticalToObjectsInArray:(id)arg1;
 - (void)dvt_addObjectsFromCollection:(id)arg1;

@@ -8,13 +8,13 @@
 
 #import "DVTTextAnnotationDelegate.h"
 
-@class DVTObservingToken, IDEAnnotationContext, IDEWorkspaceWindowController, NSString;
+@class DVTObservingToken, IDEAnnotationContext, IDEWorkspaceDocument, NSString;
 
 @interface DBGBreakpointAnnotationProvider : DVTAnnotationProvider <DVTTextAnnotationDelegate>
 {
-    IDEAnnotationContext *_context;
-    IDEWorkspaceWindowController *_workspaceWindowController;
+    IDEWorkspaceDocument *_workspaceDocument;
     DVTObservingToken *_breakpointsObservingToken;
+    IDEAnnotationContext *_context;
 }
 
 + (id)annotationProviderForContext:(id)arg1 error:(id *)arg2;

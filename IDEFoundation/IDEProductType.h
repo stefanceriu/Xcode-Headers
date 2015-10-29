@@ -12,9 +12,21 @@
 {
 }
 
++ (BOOL)buildableProductIsWatchAppExtension:(id)arg1;
++ (BOOL)buildableProductIsWatchApp:(id)arg1;
++ (BOOL)buildableProductIsAppExtension:(id)arg1;
++ (id)_expandedPlatformForBuildableProduct:(id)arg1;
++ (id)platformProductTypeOfBuildable:(id)arg1;
 + (id)productTypeForIdentifier:(id)arg1 platform:(id)arg2;
+- (BOOL)runsDirectlyOnProxy;
+- (BOOL)runsOnProxy;
+- (BOOL)installsOnProxy;
 - (BOOL)shouldAutocreateSchemes;
+- (BOOL)isWatch1AppExtension;
+- (BOOL)isWatch2AppExtension;
 - (BOOL)isWatchAppExtension;
+- (BOOL)isWatch1Application;
+- (BOOL)isWatch2Application;
 - (BOOL)isWatchApplication;
 - (BOOL)isAppExtension;
 - (BOOL)isApplication;

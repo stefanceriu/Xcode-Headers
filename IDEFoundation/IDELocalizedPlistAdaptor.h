@@ -22,12 +22,12 @@
 - (id)expectedSuperitem;
 - (id)expectedDirectoryPath;
 - (id)expectedFileName;
-- (id)filteredBaseStringsByKey:(id)arg1;
+- (id)filteredBaseStrings:(id)arg1;
 - (id)localizedGroupIdentifier;
 - (id)plistFileReference;
-- (id)commentsByKey;
-- (void)setStringsByKey:(id)arg1 forLanguage:(id)arg2;
-- (id)stringsByKeyForLanguage:(id)arg1;
+- (id)comments;
+- (void)setStrings:(id)arg1 forLanguage:(id)arg2;
+- (id)stringsForLanguage:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithLocalizedContainer:(id)arg1 localizedGroup:(id)arg2 plistFileReference:(id)arg3;
 

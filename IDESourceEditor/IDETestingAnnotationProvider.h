@@ -30,16 +30,17 @@
 - (void)didBeginRolloverOnAnnotation:(id)arg1 inTextSidebarView:(id)arg2 event:(id)arg3;
 - (BOOL)_shouldIgnoreEvent:(id)arg1;
 - (void)didClickAnnotation:(id)arg1 inTextSidebarView:(id)arg2 event:(id)arg3;
-- (void)workspaceReferencedTestablesChanged;
+- (void)allTestablesChanged;
 - (void)testsChanged:(id)arg1;
 - (void)testsInFileUpdated:(id)arg1;
 - (void)providerWillUninstall;
+- (void)_clearAnnotations;
+@property(readonly, copy) NSString *description;
 - (id)initWithContext:(id)arg1;
-- (id)_createAnnotationForSourceDocument:(id)arg1 test:(id)arg2;
+- (id)_createAnnotationForTestManager:(id)arg1 sourceDocument:(id)arg2 test:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

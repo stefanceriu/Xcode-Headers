@@ -22,11 +22,14 @@
     NSArray *_librarySearchPaths;
     NSDictionary *_infoDictionary;
     NSString *_propertyConditionName;
+    NSArray *_propertyConditionFallbackNames;
     NSString *_minimalDisplayName;
     NSDictionary *_defaultProperties;
     NSNumber *_isInternal;
     NSNumber *_isBaseSDK;
     DVTSearchPath *_commandLineToolSearchPath;
+    NSArray *_headerSearchPaths;
+    NSArray *_frameworkSearchPaths;
     NSDictionary *_versionInfo;
     NSArray *_toolchains;
     NSArray *_toolchainNames;
@@ -40,8 +43,6 @@
 + (id)sdkForBootSystemOrNil;
 + (id)sdkForBootSystem;
 + (id)sdkForNameOrPath:(id)arg1 withBasePath:(id)arg2 forceCreate:(BOOL)arg3;
-+ (id)_localizedSDKNameForCanonicalName:(id)arg1;
-+ (id)_localizedFamilyNameForCanonicalName:(id)arg1;
 + (id)_absolutePathForSDKPathString:(id)arg1;
 + (id)sdksForFamily:(id)arg1;
 + (id)sdkForCanonicalName:(id)arg1;
@@ -52,6 +53,7 @@
 + (BOOL)shouldAllowBootSystemSDK;
 + (void)initialize;
 @property(readonly, copy) NSArray *toolchainNames; // @synthesize toolchainNames=_toolchainNames;
+@property(readonly, copy) NSArray *propertyConditionFallbackNames; // @synthesize propertyConditionFallbackNames=_propertyConditionFallbackNames;
 @property(readonly, copy) NSDictionary *defaultProperties; // @synthesize defaultProperties=_defaultProperties;
 @property(readonly, copy) NSArray *toolchains; // @synthesize toolchains=_toolchains;
 @property(readonly, copy) NSURL *docSetFeedURL; // @synthesize docSetFeedURL=_docSetFeedURL;
@@ -70,11 +72,14 @@
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
+- (id)additionalFrameworkSearchPaths;
+- (id)additionalHeaderSearchPaths;
 - (id)commandLineToolSearchPath;
 @property(readonly) NSDictionary *versionInfo; // @synthesize versionInfo=_versionInfo;
 @property(readonly, getter=isBaseSDK) BOOL baseSDK;
 @property(readonly, getter=isInternal) BOOL internal;
 @property(retain) DVTPlatform *platform;
+- (BOOL)isEmbedded;
 - (id)initWithFilePath:(id)arg1;
 - (id)initWithFilePath:(id)arg1 infoDictionary:(id)arg2;
 

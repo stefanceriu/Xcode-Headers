@@ -12,15 +12,15 @@
 
 @interface IDEDebugBarContentProvider : NSObject <IDEDebugBarContentProvider>
 {
-    IDEDebugBar *_debugBar;
-    NSArray *_controlViews;
+    NSArray *_debugBarControlViews;
     DVTObservingToken *_workspaceFinishedLoadingObservation;
     DVTObservingToken *_currentDebugSessionObservation;
     DVTObservingToken *_currentDebugSessionStateObservation;
+    IDEDebugBar *_debugBar;
 }
 
-@property(copy) NSArray *debugBarControlViews; // @synthesize debugBarControlViews=_controlViews;
 @property(retain) IDEDebugBar *debugBar; // @synthesize debugBar=_debugBar;
+@property(copy) NSArray *debugBarControlViews; // @synthesize debugBarControlViews=_debugBarControlViews;
 - (void).cxx_destruct;
 - (void)willBeDetachedFromDebugBar:(id)arg1;
 - (void)wasAttachedToDebugBar:(id)arg1;
@@ -29,13 +29,14 @@
 - (void)workspaceDidFinishLoading;
 - (id)currentDebugSession;
 - (id)currentLaunchSession;
-- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) BOOL prefersDebugBarToAlwaysBeShown;
 @property(readonly) Class superclass;
+@property(readonly) BOOL wantsRightSideSeparatorBorder;
 
 @end
 

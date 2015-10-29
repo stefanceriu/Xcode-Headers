@@ -7,7 +7,6 @@
 #import "NSPopUpButton.h"
 
 @interface NSPopUpButton (IBNSPopupButtonIntegration)
-- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibEquivalentSourceForToOneOutlet:(id)arg1;
 - (void)ibCustomizeForInsertionIntoNSToolbar:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;
 @end

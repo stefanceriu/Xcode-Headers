@@ -10,7 +10,7 @@
 #import "IBLayoutConstraintStatusProvider.h"
 #import "NSPopoverDelegate.h"
 
-@class DVTDelayedInvocation, DVTObservingToken, IBAutolayoutConstraintAdditionValidationState, IBCancellationToken, IBLayoutConstraint, IBMutableIdentityDictionary, IBViewTracker, NSArray, NSDictionary, NSMutableDictionary, NSPopover, NSSet, NSString, NSValue;
+@class DVTDelayedInvocation, DVTObservingToken, IBCancellationToken, IBLayoutConstraint, IBMutableIdentityDictionary, IBViewTracker, NSArray, NSDictionary, NSMutableDictionary, NSPopover, NSSet, NSString, NSValue;
 
 @interface IBViewEditor : IBEditor <IBLayoutConstraintDrawingDestination, IBLayoutConstraintStatusProvider, NSPopoverDelegate>
 {
@@ -25,12 +25,13 @@
     struct CGPoint lastMouseMovedPoint;
     struct CGRect bandSelectionRect;
     BOOL reguardSiblingsIngoredForDragGuides;
+    BOOL drawBordersOnDraggedViews;
     NSSet *siblingsIngoredForDragGuides;
     long long pasteOffsetType;
     NSValue *nextPasteTarget;
     unsigned long long dragAndDropGuideDisplayToken;
-    IBAutolayoutConstraintAdditionValidationState *_constraintAdditionState;
     NSMutableDictionary *_constraintBadgeImageCachesByTintColor;
+    NSMutableDictionary *_selectedConstraintBadgeImageCachesByTintColor;
     IBCancellationToken *_documentStatusObservingToken;
     NSSet *_drawingOptionNotificationTokens;
     NSPopover *_currentConstraintEditingPopover;
@@ -46,16 +47,8 @@
     IBViewTracker *activeTracker;
 }
 
-+ (id)arbitrationOptionsForFrameDecideThenConstraintAddition;
-+ (id)arbitrationOptionsForPureConstraintAddition;
-+ (void)setUpgradesRedundantConstraintsToUserConstraintsForFrameDecideThenConstraintAddition:(BOOL)arg1;
-+ (BOOL)upgradesRedundantConstraintsToUserConstraintsForFrameDecideThenConstraintAddition;
-+ (void)setUpgradesRedundantConstraintsToUserConstraintsForPureConstraintAddition:(BOOL)arg1;
-+ (BOOL)upgradesRedundantConstraintsToUserConstraintsForPureConstraintAddition;
 + (void)resetCursorRectsForObject:(id)arg1 inFrameController:(id)arg2;
 + (struct CGRect)rectForDefaultCursorForChildView:(id)arg1 ofEditedObject:(id)arg2 inFrameController:(id)arg3;
-+ (void)setEnforcesCurrentSizesWhenAligningViews:(BOOL)arg1;
-+ (BOOL)enforcesCurrentSizesWhenAligningViews;
 + (id)keyPathsForInvalidatingConstraints;
 + (struct CGSize)knobSize;
 + (id)lockedKnobImage;
@@ -73,23 +66,6 @@
 @property(copy) NSArray *currentConstraintDrawableGuideLines; // @synthesize currentConstraintDrawableGuideLines=_currentConstraintDrawableGuideLines;
 @property(copy) NSSet *viewsInvolvedWithSelectedConstraints; // @synthesize viewsInvolvedWithSelectedConstraints=_viewsInvolvedWithSelectedConstraints;
 - (void).cxx_destruct;
-- (void)debugMenuItemMakeSelectedConstraintsUserDefined:(id)arg1;
-- (void)insertEqualHeightsConstraint:(id)arg1;
-- (void)insertEqualWidthsConstraint:(id)arg1;
-- (void)_insertEqualSizeConstraintForAttribute:(unsigned long long)arg1 constraintAdditionState:(id)arg2;
-- (void)addConstraintsRequiringFrameDecision:(id)arg1 options:(id)arg2 frameDecisionBlock:(CDUnknownBlockType)arg3;
-- (void)insertBottomSpacingToSuperviewConstraint:(id)arg1;
-- (void)insertTopSpacingToSuperviewConstraint:(id)arg1;
-- (void)insertTrailingSpacingToSuperviewConstraint:(id)arg1;
-- (void)insertLeadingSpacingToSuperviewConstraint:(id)arg1;
-- (void)_insertSpacingToSuperviewConstraintForAttribute:(unsigned long long)arg1 constraintAdditionState:(id)arg2;
-- (void)insertVerticalSpacingConstraint:(id)arg1;
-- (void)insertHorizontalSpacingConstraint:(id)arg1;
-- (void)_insertSpacingConstraintForOrientation:(unsigned long long)arg1 constraintAdditionState:(id)arg2;
-- (void)insertHeightConstraint:(id)arg1;
-- (void)insertWidthConstraint:(id)arg1;
-- (void)_insertAbsoluteConstraintForAttribute:(unsigned long long)arg1 constraintAdditionState:(id)arg2;
-- (void)_addConstraintsFromEditorMenuCommand:(id)arg1 arbitrationOptions:(id)arg2;
 - (id)objectsForSelectingAll;
 - (void)didClose;
 - (void)didOpen;
@@ -105,8 +81,8 @@
 - (void)selectConstraintsIfPossible:(id)arg1;
 - (void)selectConstraintsIfPossible:(id)arg1 withSelectionCallbackBlock:(CDUnknownBlockType)arg2;
 - (id)determineConstraintsToSelectAndWarnIfAnyConstraintWasRemovedFromDocument:(id)arg1;
-- (void)didResizeEditedObjectOrAncestorEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(long long)arg3;
-- (void)willResizeEditedObjectOrAncestorEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(long long)arg3;
+- (void)didResizeEditedObjectOrAncestorEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(CDUnion_31865a80)arg3;
+- (void)willResizeEditedObjectOrAncestorEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(CDUnion_31865a80)arg3;
 - (void)noteAncestor:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
 - (void)updateConstraintVisibilityBasedUponSelection;
 - (void)addEffectiveViewsInvolvedInConstraintToDraw:(id)arg1 toCollection:(id)arg2;
@@ -119,6 +95,7 @@
 - (void)didChangeShowingConstraints:(id)arg1;
 - (void)didChangeShowingResizeKnobs:(id)arg1;
 - (void)invalidateConstraintsForViews;
+- (void)invalidateMisplacedViewRectsBasedDidSelect:(id)arg1 andDeselect:(id)arg2;
 - (id)constraintsToDrawForView:(id)arg1;
 - (BOOL)constraintItemIsLegitimateItemForDrawing:(id)arg1 relativeToItem:(id)arg2;
 - (void)invalidateDrawingAreaForCurrentDrawablesAndGuideLines;
@@ -133,17 +110,18 @@
 - (void)drawViewEditorDrawable:(id)arg1;
 - (id)effectiveShadowForConstraintDrawable:(id)arg1;
 - (id)effectiveStrokeColorForConstraintDrawable:(id)arg1;
-- (void)drawRelativeConstraintAlignmentLineWithLine:(CDStruct_f6143a38)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5 edgeBias:(id)arg6;
-- (void)drawLimitedSpaceDualTBeamWithDrawable:(id)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5;
-- (void)drawLimitedSpaceConnectionWithLine:(CDStruct_f6143a38)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5;
-- (void)drawConstraintStraightLine:(CDStruct_f6143a38)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5 edgeBias:(id)arg6;
-- (void)drawIBeamWithLine:(CDStruct_f6143a38)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5;
+- (void)drawRelativeConstraintAlignmentLineWithLine:(CDStruct_f6143a38)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5 edgeBias:(id)arg6 badgeRect:(struct CGRect)arg7;
+- (void)drawBadgeStrokeOutlineForRect:(struct CGRect)arg1;
+- (void)drawLimitedSpaceDualTBeamWithDrawable:(id)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5 badgeRect:(struct CGRect)arg6;
+- (void)drawLimitedSpaceConnectionWithLine:(CDStruct_f6143a38)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5 badgeRect:(struct CGRect)arg6;
+- (void)drawConstraintStraightLine:(CDStruct_f6143a38)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5 edgeBias:(id)arg6 badgeRect:(struct CGRect)arg7;
+- (void)drawIBeamWithLine:(CDStruct_f6143a38)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5 badgeRect:(struct CGRect)arg6;
 - (id)dashedBezierPathLineForLine:(CDStruct_f6143a38)arg1 withThickness:(double)arg2 onDashLength:(double)arg3 offDashLength:(double)arg4 phase:(double)arg5 edgeBias:(id)arg6;
 - (void)drawConstraints;
 - (void)drawTrackingKnobs;
 - (id)viewForClippingToWhenDrawingSelectionKnobsForObject:(id)arg1;
 - (void)drawMisplacedViewIndicator;
-- (struct CGRect)misplacedViewIndicatorRectForView:(id)arg1 returningIsMisplaced:(char *)arg2;
+- (struct CGRect)misplacedViewIndicatorRectForView:(id)arg1 returningIsMisplacedOnly:(char *)arg2;
 - (void)drawBandSelection;
 - (CDStruct_c519178c)decorationInsetForChild:(id)arg1;
 - (void)drawKnobsForView:(id)arg1;
@@ -151,7 +129,7 @@
 - (id)installSelectionDrawingHandlers;
 - (BOOL)interceptEvent:(id)arg1;
 - (BOOL)isDocumentObjectCurrentlySelectable:(id)arg1;
-- (void)resizeFrameViewWithEvent:(id)arg1 fromEditorCanvasFrameKnob:(long long)arg2;
+- (void)resizeFrameViewWithEvent:(id)arg1 fromEditorCanvasFrameKnob:(CDUnion_31865a80)arg2;
 - (BOOL)interceptMouseDragged:(id)arg1;
 - (BOOL)child:(id)arg1 shouldBeSelectedOnMouseDraggedWithEvent:(id)arg2;
 - (BOOL)interceptDeadClicks:(id)arg1;
@@ -159,12 +137,12 @@
 - (BOOL)interceptResizingEvent:(id)arg1;
 - (id)selectableEventInterceptingLayoutConstraintAtPoint:(struct CGPoint)arg1;
 - (void)moveSelectedViewsWithKeyEvent:(id)arg1;
-- (struct CGSize)directionForKeyEvent:(id)arg1;
+- (struct CGPoint)_pointOffsetForKeyEvent:(id)arg1;
 - (id)frameToWindowTransformForPasteboardViews:(id)arg1;
 - (void)bandSelect;
-- (void)resizeChild:(id)arg1 fromKnob:(long long)arg2 withEvent:(id)arg3;
+- (void)resizeChild:(id)arg1 fromKnob:(CDUnion_31865a80)arg2 withEvent:(id)arg3;
 - (id)viewForTrackingObject:(id)arg1;
-- (BOOL)shouldResizeChild:(id *)arg1 fromKnob:(long long *)arg2 inEvent:(id)arg3;
+- (BOOL)shouldResizeChild:(id *)arg1 fromKnob:(CDUnion_31865a80 *)arg2 inEvent:(id)arg3;
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;
 - (BOOL)objectHasSelectionIndicatorOtherThanMask:(id)arg1;
 - (BOOL)areKnobsLockedForObject:(id)arg1;
@@ -174,7 +152,7 @@
 - (void)refreshMouseOverConstraintState;
 - (void)setConstraintSelectableUpdatingDelay:(double)arg1;
 - (void)resetCursorRects;
-- (CDStruct_fa3e0eee)activeKnobRectsForObject:(id)arg1;
+- (CDStruct_b58c4854)activeKnobRectsForObject:(id)arg1;
 - (id)installedChildViewsInRect:(struct CGRect)arg1;
 - (void)editorCanvasFrameDidCompleteLayout;
 - (void)noteDescendant:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
@@ -188,12 +166,17 @@
 - (id)calculateFramesForViews:(id)arg1 withDraggingInfo:(id)arg2;
 - (id)draggedObjectStateToUseForGuidingFromDragInfo:(id)arg1;
 - (void)dragSelectedViewsWithMouseDown:(id)arg1 andMouseDragged:(id)arg2;
+- (void)drawBordersOnDraggedViewsWhilePerformingBlock:(CDUnknownBlockType)arg1;
 - (unsigned long long)dragOperationForDraggingViews:(id)arg1 withMouseDown:(id)arg2 andMouseDragged:(id)arg3;
 - (void)reattachDraggedObjects:(id)arg1 dragContext:(id)arg2;
 - (void)detachDraggedObjects:(id)arg1 dragContext:(id)arg2;
 - (id)initialDragImageState:(id)arg1;
 - (id)draggedImageState:(id)arg1;
+- (BOOL)draggedSourceAllowsDrag:(id)arg1 toDestination:(id)arg2;
+- (unsigned long long)draggedOperationAllowedModifierFlags;
 - (id)draggedImageStateForDraggingInfo:(id)arg1 forOrderedIdentifiedViews:(id)arg2 withName:(id)arg3;
+- (id)draggedImageWithDrawnBordersForView:(id)arg1;
+- (id)draggedImageForView:(id)arg1;
 - (void)customizePasteboardInsertionContext:(id)arg1 fromPasteboard:(id)arg2 andDraggingInfo:(id)arg3;
 - (BOOL)selectsNextObjectAfterDeletionFromRelationship:(id)arg1;
 - (void)selectionOwner:(id)arg1 didSelect:(id)arg2 andDeselect:(id)arg3;
@@ -202,7 +185,6 @@
 - (BOOL)canSizeSelectionToFit;
 - (void)sizeSelectionToFit:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
-- (id)_constraintAdditionStateByUpdatingCurrentSelection;
 - (void)performCopy:(id)arg1;
 - (void)performCut:(id)arg1;
 - (void)addVerticalGuide:(id)arg1;
@@ -221,16 +203,18 @@
 - (void)sendToFront:(id)arg1;
 - (void)sendBackward:(id)arg1;
 - (void)sendToBack:(id)arg1;
-- (void)alignViews:(id)arg1 withConstraints:(id)arg2;
 - (void)didDeactivate;
 - (void)didActivate;
-- (id)_constraintBadgeImageForLabel:(id)arg1 tintColor:(id)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_c519178c *)arg4;
-- (id)_scalableBaseConstraintBadgeImageWithTintColor:(id)arg1 returningBadgeSize:(struct CGSize *)arg2 badgeInset:(CDStruct_c519178c *)arg3 supportedScaleFactors:(id *)arg4;
+- (id)_constraintBadgeImageForLabel:(id)arg1 tintColor:(id)arg2 drawSelected:(BOOL)arg3 returningBadgeSize:(struct CGSize *)arg4 badgeInset:(CDStruct_c519178c *)arg5;
+- (id)_cachedConstraintBadgeImageByTintColor:(id)arg1 drawSelected:(BOOL)arg2 label:(id)arg3;
+- (void)_setCachedConstraintBadgeImage:(id)arg1 forTintColor:(id)arg2 drawSelected:(BOOL)arg3 label:(id)arg4;
+- (id)_scalableBaseConstraintBadgeImageWithTintColor:(id)arg1 drawSelected:(BOOL)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_c519178c *)arg4 supportedScaleFactors:(id *)arg5;
 - (id)_baseConstraintBadgeImageShadowReturningShadowInset:(CDStruct_c519178c *)arg1;
 - (struct CGRect)rectForDrawableBadge:(id)arg1;
 - (struct CGRect)rectForDrawingOverlayForConstraintItem:(id)arg1;
 - (struct CGRect)rectForDrawingConstraintItem:(id)arg1;
 - (id)hitRectsForConstraint:(id)arg1 inCoordinateSpaceOfView:(id)arg2;
+- (struct CGRect)hitRectForDrawableBadge:(id)arg1;
 - (struct CGRect)hitRectForDrawable:(id)arg1;
 - (struct CGRect)rectForDrawable:(id)arg1;
 - (struct CGRect)rectForLimitedSpaceDualTBeamForDrawable:(id)arg1;
@@ -260,7 +244,7 @@
 - (id)selectedConstraintShadow;
 - (id)measurementDrawingHandler;
 - (BOOL)isFrameLockedForView:(id)arg1;
-- (id)trackerForChild:(id)arg1 withView:(id)arg2 fromKnob:(long long)arg3;
+- (id)trackerForChild:(id)arg1 withView:(id)arg2 fromKnob:(CDUnion_31865a80)arg3;
 - (void)setBandSelectionRect:(struct CGRect)arg1;
 - (struct CGRect)bandSelectionRect;
 - (id)selectedViewsInDesignableContainer;
@@ -280,10 +264,12 @@
 - (id)equalSizeBadge;
 - (id)greaterThanOrEqualToBadge;
 - (id)lessThanOrEqualToBadge;
-- (id)constraintBadgeImageForLabel:(id)arg1 tintColor:(id)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_c519178c *)arg4;
-- (id)badgeImageForAspectRatioConstraint:(id)arg1 attribute:(unsigned long long)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_c519178c *)arg4;
-- (id)badgeImageForMisplacedConstraint:(id)arg1 constantDelta:(double)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_c519178c *)arg4;
-- (id)badgeImageForConflictingConstraint:(id)arg1 returningBadgeSize:(struct CGSize *)arg2 badgeInset:(CDStruct_c519178c *)arg3;
+- (id)constraintBadgeImageForRelationshipImage:(id)arg1;
+- (id)constraintBadgeImageForLabel:(id)arg1 tintColor:(id)arg2 drawSelected:(BOOL)arg3 returningBadgeSize:(struct CGSize *)arg4 badgeInset:(CDStruct_c519178c *)arg5;
+- (id)badgeImageForAspectRatioConstraint:(id)arg1 drawSelected:(BOOL)arg2 attribute:(unsigned long long)arg3 returningBadgeSize:(struct CGSize *)arg4 badgeInset:(CDStruct_c519178c *)arg5;
+- (id)badgeImageForMisplacedConstraint:(id)arg1 drawSelected:(BOOL)arg2 constantDelta:(double)arg3 returningBadgeSize:(struct CGSize *)arg4 badgeInset:(CDStruct_c519178c *)arg5;
+- (id)badgeImageForAmbiguousConstraint:(id)arg1 drawSelected:(BOOL)arg2 constantDelta:(double)arg3 returningBadgeSize:(struct CGSize *)arg4 badgeInset:(CDStruct_c519178c *)arg5;
+- (id)badgeImageForConflictingConstraint:(id)arg1 drawSelected:(BOOL)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_c519178c *)arg4;
 - (struct CGRect)rectIncludingBadgeForDrawable:(id)arg1;
 - (BOOL)isShowingResizeKnobs;
 - (id)badgeLabelForAbstraction:(id)arg1 atIndex:(unsigned long long)arg2 isConflicting:(BOOL)arg3 isAmbiguous:(BOOL)arg4 isMisplaced:(BOOL)arg5;

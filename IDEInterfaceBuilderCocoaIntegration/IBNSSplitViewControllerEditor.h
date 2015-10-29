@@ -6,12 +6,15 @@
 
 #import <IDEInterfaceBuilderCocoaIntegration/IBNSRelationshipSegueModeledViewControllerEditor.h>
 
-@class IBNSSplitViewControllerView;
+@class DVTDelayedInvocation, IBNSSplitViewControllerView;
 
 @interface IBNSSplitViewControllerEditor : IBNSRelationshipSegueModeledViewControllerEditor
 {
+    DVTDelayedInvocation *_synchronizeInvocation;
 }
 
+- (void).cxx_destruct;
+- (void)willClose;
 - (void)childViewControllerChanged:(id)arg1 keyPath:(id)arg2 previousValue:(id)arg3;
 - (void)noteDescendant:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
 - (void)_rebuildItems;

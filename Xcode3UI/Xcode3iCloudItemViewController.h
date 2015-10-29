@@ -16,6 +16,7 @@
     NSMutableArray *_cancellationTokens;
     NSView *_servicesSlice;
     NSButton *_cloudKitServiceCheckBox;
+    NSView *_cloudDocsSlice;
     NSView *_defaultOrCustomContainerIdentifiersSlice;
     NSMatrix *_defaultOrCustomContainerIdentifiersRadioGroup;
     long long _containerIDsTypeTag;
@@ -36,6 +37,7 @@
 @property(nonatomic) long long containerIDsTypeTag; // @synthesize containerIDsTypeTag=_containerIDsTypeTag;
 @property(retain) NSMatrix *defaultOrCustomContainerIdentifiersRadioGroup; // @synthesize defaultOrCustomContainerIdentifiersRadioGroup=_defaultOrCustomContainerIdentifiersRadioGroup;
 @property(retain) NSView *defaultOrCustomContainerIdentifiersSlice; // @synthesize defaultOrCustomContainerIdentifiersSlice=_defaultOrCustomContainerIdentifiersSlice;
+@property(retain) NSView *cloudDocsSlice; // @synthesize cloudDocsSlice=_cloudDocsSlice;
 @property(retain) NSButton *cloudKitServiceCheckBox; // @synthesize cloudKitServiceCheckBox=_cloudKitServiceCheckBox;
 @property(retain) NSView *servicesSlice; // @synthesize servicesSlice=_servicesSlice;
 - (void).cxx_destruct;
@@ -60,7 +62,7 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) Xcode3iCloudItemModel *model;
+@property(readonly, nonatomic) Xcode3iCloudItemModel *model; // @dynamic model;
 @property(readonly) Class superclass;
 
 @end

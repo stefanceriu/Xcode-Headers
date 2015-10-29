@@ -8,7 +8,7 @@
 
 #import "DVTScopeBarContentController.h"
 
-@class DVTScopeBarButton, DVTSearchField, NSButton, NSProgressIndicator, NSString, NSView;
+@class DVTScopeBarButton, DVTSearchField, NSButton, NSPopUpButton, NSProgressIndicator, NSString, NSView;
 
 @interface XCSUIBotLogScopeBar : DVTViewController <DVTScopeBarContentController>
 {
@@ -23,9 +23,17 @@
     NSProgressIndicator *_downloadAllLogsProgressIndicator;
     id <XCSUIBotLogEditorScopeBarDelegate> _delegate;
     NSString *_currentLogDownloadToken;
+    NSPopUpButton *_logSelectorPopUp;
+    DVTScopeBarButton *_allMessagesScopeButton;
+    DVTScopeBarButton *_allIssuesScopeButton;
+    DVTScopeBarButton *_errorsOnlyScopeButton;
 }
 
 + (id)defaultViewNibName;
+@property __weak DVTScopeBarButton *errorsOnlyScopeButton; // @synthesize errorsOnlyScopeButton=_errorsOnlyScopeButton;
+@property __weak DVTScopeBarButton *allIssuesScopeButton; // @synthesize allIssuesScopeButton=_allIssuesScopeButton;
+@property __weak DVTScopeBarButton *allMessagesScopeButton; // @synthesize allMessagesScopeButton=_allMessagesScopeButton;
+@property __weak NSPopUpButton *logSelectorPopUp; // @synthesize logSelectorPopUp=_logSelectorPopUp;
 @property(retain) id <XCSUIBotLogEditorScopeBarDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)searchFieldAction:(id)arg1;
@@ -39,6 +47,7 @@
 - (void)setScopeBarState:(int)arg1 showAllResults:(BOOL)arg2;
 @property(readonly) double preferredViewHeight;
 - (void)loadView;
+- (void)showBuildLogScopeButtons:(BOOL)arg1;
 - (void)_updateShowSteps:(BOOL)arg1 showWarnings:(BOOL)arg2 showErrors:(BOOL)arg3 showAnalyzerResults:(BOOL)arg4;
 
 // Remaining properties

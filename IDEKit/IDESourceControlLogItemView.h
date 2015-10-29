@@ -11,12 +11,12 @@
 #import "NSPopoverDelegate.h"
 #import "RVPeoplePickerDelegate.h"
 
-@class DVTBindingToken, DVTStackView_ML, IDESourceControlLogFilesChangedView, IDESourceControlLogItem, IDESourceControlLogViewController, IDESourceControlNameTokenView, IDESourceControlPerson, IDESourceControlPersonPopover, IDESourceControlTree, NSString, NSTextField;
+@class DVTBindingToken, DVTSourceControlAuthor, DVTSourceControlLogItem, DVTSourceControlWorkingCopy, DVTStackView_ML, IDESourceControlLogFilesChangedView, IDESourceControlLogViewController, IDESourceControlNameTokenView, IDESourceControlPersonPopover, NSString, NSTextField;
 
 @interface IDESourceControlLogItemView : NSTableCellView <NSPopoverDelegate, RVPeoplePickerDelegate, IDESourceControlNameTokenViewDelegate, IDESourceControlLogFilesChangedViewDelegate>
 {
-    IDESourceControlPerson *_author;
-    IDESourceControlLogItem *_logItem;
+    DVTSourceControlAuthor *_author;
+    DVTSourceControlLogItem *_logItem;
     IDESourceControlPersonPopover *_peoplePickerPopover;
     DVTBindingToken *_imageBindingToken;
     DVTBindingToken *_nameBindingToken;
@@ -29,7 +29,7 @@
     NSTextField *_messageField;
     IDESourceControlNameTokenView *_nameTokenView;
     IDESourceControlLogViewController *_owningController;
-    IDESourceControlTree *_sourceTree;
+    DVTSourceControlWorkingCopy *_workingCopy;
 }
 
 + (double)textHorizontalMargins;
@@ -38,7 +38,7 @@
 + (id)showChatButtonTransformer;
 + (id)nibName;
 @property BOOL isChangedFilesExpanded; // @synthesize isChangedFilesExpanded=_isChangedFilesExpanded;
-@property __weak IDESourceControlTree *sourceTree; // @synthesize sourceTree=_sourceTree;
+@property __weak DVTSourceControlWorkingCopy *workingCopy; // @synthesize workingCopy=_workingCopy;
 @property __weak IDESourceControlLogViewController *owningController; // @synthesize owningController=_owningController;
 @property(retain) IDESourceControlNameTokenView *nameTokenView; // @synthesize nameTokenView=_nameTokenView;
 @property(retain) NSTextField *messageField; // @synthesize messageField=_messageField;
@@ -57,8 +57,8 @@
 - (void)setDate:(id)arg1;
 - (void)setDescriptionWithDate:(id)arg1 revision:(id)arg2 workingCopyName:(id)arg3;
 - (void)setMessage:(id)arg1;
-@property __weak IDESourceControlLogItem *logItem;
-@property(retain) IDESourceControlPerson *author;
+@property __weak DVTSourceControlLogItem *logItem;
+@property(retain) DVTSourceControlAuthor *author;
 - (void)awakeFromNib;
 - (id)initWithFrame:(struct CGRect)arg1;
 

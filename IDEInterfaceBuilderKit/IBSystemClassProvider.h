@@ -6,17 +6,20 @@
 
 #import <IDEInterfaceBuilderKit/IBAbstractClassProvider.h>
 
-@class IBPlatform, NSMutableSet;
+@class IBPlatform, NSDictionary, NSMutableDictionary, NSSet;
 
 @interface IBSystemClassProvider : IBAbstractClassProvider
 {
     IBPlatform *_platform;
-    NSMutableSet *_partialDescriptions;
+    NSSet *_partialDescriptions;
+    NSDictionary *_partialDescriptionsByName;
+    NSMutableDictionary *_cachedFlattenedOutletSetsByClassName;
 }
 
 + (id)systemClassProviderForPlatform:(id)arg1;
 - (void).cxx_destruct;
 - (id)partialClassDescriptions;
+- (id)flattenedOutletsForClassNamed:(id)arg1;
 - (id)initWithPlatform:(id)arg1;
 
 @end

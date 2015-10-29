@@ -18,6 +18,9 @@
     double _startTime;
     double _endTime;
     NSArray *_failureSummaries;
+    NSArray *_activities;
+    NSString *_testableBlueprintPath;
+    NSString *_testableBlueprintName;
     NSString *_deviceIdentifier;
     NSMutableArray *_somePerfMetrics;
 }
@@ -25,6 +28,9 @@
 + (id)gregorianCalendar;
 @property(retain, nonatomic) NSMutableArray *somePerfMetrics; // @synthesize somePerfMetrics=_somePerfMetrics;
 @property(retain, nonatomic) NSString *deviceIdentifier; // @synthesize deviceIdentifier=_deviceIdentifier;
+@property(copy, nonatomic) NSString *testableBlueprintName; // @synthesize testableBlueprintName=_testableBlueprintName;
+@property(copy, nonatomic) NSString *testableBlueprintPath; // @synthesize testableBlueprintPath=_testableBlueprintPath;
+@property(retain, nonatomic) NSArray *activities; // @synthesize activities=_activities;
 @property(retain, nonatomic) NSArray *failureSummaries; // @synthesize failureSummaries=_failureSummaries;
 @property(nonatomic) BOOL passed; // @synthesize passed=_passed;
 @property(nonatomic) double endTime; // @synthesize endTime=_endTime;
@@ -35,13 +41,13 @@
 @property(retain, nonatomic) XCSIntegration *integration; // @synthesize integration=_integration;
 - (void).cxx_destruct;
 - (BOOL)_validateWithPerfMetrics:(struct NSArray *)arg1 errors:(id *)arg2;
-- (BOOL)_validateWithIntegration:(id)arg1 device:(id)arg2 keyPath:(id)arg3 date:(id)arg4 startTime:(double)arg5 endTime:(double)arg6 passed:(BOOL)arg7 failureSummaries:(id)arg8;
+- (BOOL)_validateWithIntegration:(id)arg1 device:(id)arg2 keyPath:(id)arg3 date:(id)arg4 startTime:(double)arg5 endTime:(double)arg6 passed:(BOOL)arg7 failureSummaries:(id)arg8 activities:(id)arg9 testableBlueprintName:(id)arg10 testableBlueprintPath:(id)arg11;
 - (id)saveRepresentationHumanReadable:(BOOL)arg1;
 - (id)saveRepresentation;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)initWithIntegration:(id)arg1 device:(id)arg2 keyPath:(id)arg3 date:(id)arg4 startTime:(double)arg5 endTime:(double)arg6 passed:(BOOL)arg7 failureSummaries:(id)arg8;
+- (id)initWithIntegration:(id)arg1 device:(id)arg2 keyPath:(id)arg3 date:(id)arg4 startTime:(double)arg5 endTime:(double)arg6 passed:(BOOL)arg7 failureSummaries:(id)arg8 activities:(id)arg9 testableBlueprintName:(id)arg10 testableBlueprintPath:(id)arg11 validationErrors:(id *)arg12;
 - (BOOL)setTestPerfMetrics:(struct NSArray *)arg1 errors:(id *)arg2;
 @property(readonly, copy, nonatomic) NSString *name;
 @property(readonly, nonatomic) NSArray *perfMetrics;

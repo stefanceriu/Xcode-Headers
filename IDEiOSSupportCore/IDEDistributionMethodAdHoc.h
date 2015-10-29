@@ -6,13 +6,18 @@
 
 #import "IDEDistributionMethodExport.h"
 
+@class DVTPlatform;
+
 @interface IDEDistributionMethodAdHoc : IDEDistributionMethodExport
 {
 }
 
+- (id)summaryPaneNextButtonTitleOverride;
+- (BOOL)supportsManifestDistribution;
 - (id)packagingStepIdentifier;
 - (id)exportStepName;
 - (unsigned long long)provisioningProfileType;
+- (id)provisioningProfilePlatform;
 - (BOOL)wantsProvisioningProfiles;
 - (id)installerCertificateKind;
 - (id)certificateKind;
@@ -20,7 +25,11 @@
 - (id)subtitle;
 - (id)shortTitle;
 - (id)title;
+- (id)commandLineName;
+@property(readonly) DVTPlatform *supportedPlatform;
+- (id)appStoreName;
 - (_Bool)supportsDistributionOfArchive:(id)arg1;
+- (double)sortOrder;
 
 @end
 

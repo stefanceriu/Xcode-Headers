@@ -6,11 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSColor, NSImage, NSString, NSViewController<XCSUIStatusBadgeClickHandler>, XCSUIStatusBadgeView;
+@class NSColor, NSImage, NSString, XCSUIStatusBadgeView;
 
 @interface XCSUIStatusBadge : NSObject
 {
-    BOOL _supportsTrackingAndSelection;
     BOOL _showNewIssuesResolvedIssuesDifferencesCount;
     NSString *_badgeLabel;
     NSImage *_badgeIcon;
@@ -20,7 +19,6 @@
     NSColor *_secondaryBadgeColor;
     NSColor *_badgeColor;
     NSColor *_lightBadgeColor;
-    NSViewController<XCSUIStatusBadgeClickHandler> *_hostViewController;
     long long _countOfNewIssues;
     long long _countOfResolvedIssues;
     XCSUIStatusBadgeView *_badgeView;
@@ -30,8 +28,6 @@
 @property long long countOfResolvedIssues; // @synthesize countOfResolvedIssues=_countOfResolvedIssues;
 @property long long countOfNewIssues; // @synthesize countOfNewIssues=_countOfNewIssues;
 @property BOOL showNewIssuesResolvedIssuesDifferencesCount; // @synthesize showNewIssuesResolvedIssuesDifferencesCount=_showNewIssuesResolvedIssuesDifferencesCount;
-@property BOOL supportsTrackingAndSelection; // @synthesize supportsTrackingAndSelection=_supportsTrackingAndSelection;
-@property(retain) NSViewController<XCSUIStatusBadgeClickHandler> *hostViewController; // @synthesize hostViewController=_hostViewController;
 @property(copy) NSColor *lightBadgeColor; // @synthesize lightBadgeColor=_lightBadgeColor;
 @property(copy) NSColor *badgeColor; // @synthesize badgeColor=_badgeColor;
 @property(copy) NSColor *secondaryBadgeColor; // @synthesize secondaryBadgeColor=_secondaryBadgeColor;

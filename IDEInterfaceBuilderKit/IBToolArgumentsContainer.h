@@ -59,6 +59,7 @@
     NSString *_priorLocalizedDocumentPath;
     NSString *_priorMasterDocumentPath;
     NSString *_outputStringsFilePath;
+    NSString *_linkerOutputDirectory;
     NSString *_compilationOutputPath;
     NSString *_compilationOutputDirectory;
     NSString *_strippingOutputPath;
@@ -95,6 +96,7 @@
 @property(copy) NSString *strippingOutputPath; // @synthesize strippingOutputPath=_strippingOutputPath;
 @property(copy) NSString *compilationOutputDirectory; // @synthesize compilationOutputDirectory=_compilationOutputDirectory;
 @property(copy) NSString *compilationOutputPath; // @synthesize compilationOutputPath=_compilationOutputPath;
+@property(copy) NSString *linkerOutputDirectory; // @synthesize linkerOutputDirectory=_linkerOutputDirectory;
 @property BOOL extractLocalizableArrays; // @synthesize extractLocalizableArrays=_extractLocalizableArrays;
 @property BOOL extractLocalizableToManyRelationships; // @synthesize extractLocalizableToManyRelationships=_extractLocalizableToManyRelationships;
 @property BOOL extractLocalizableOther; // @synthesize extractLocalizableOther=_extractLocalizableOther;
@@ -140,11 +142,12 @@
 @property(copy) NSArray *importSourcePaths; // @synthesize importSourcePaths=_importSourcePaths;
 - (void).cxx_destruct;
 - (void)validateAfterInterpretingOptionsCollectingErrors:(id)arg1;
-- (void)interpretOption:(CDStruct_96d6799e)arg1 optionalParameter:(id)arg2 collectingErrors:(id)arg3;
+- (BOOL)supportsMultipleInputDocuments;
+- (void)interpretOption:(id)arg1 optionalParameter:(id)arg2 collectingErrors:(id)arg3;
 - (id)optionIndex;
 - (id)generateEquivalentArgumentArrayForIBToolVersion:(long long)arg1;
-- (long long)outputFormatArgumentCode;
 - (BOOL)isMissingRequiredArgumentsForIncrementalLocalization;
+- (id)optionsToSkipForIBTool3;
 - (id)collectionOptionsThatRequireInputDocuments;
 - (id)objectOptionsThatRequireInputDocuments;
 - (id)booleanOptionsThatRequireInputDocuments;

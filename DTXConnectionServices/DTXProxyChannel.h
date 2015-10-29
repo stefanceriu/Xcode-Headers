@@ -15,7 +15,7 @@
     DTXChannel *_channel;
 }
 
-@property(nonatomic) DTXChannel *channel; // @synthesize channel=_channel;
+@property(retain, nonatomic) DTXChannel *channel; // @synthesize channel=_channel;
 @property Protocol *remoteInterface; // @synthesize remoteInterface=_remoteInterface;
 - (void)_sendInvocationMessage:(id)arg1;
 - (void)setExportedObject:(id)arg1 queue:(id)arg2;

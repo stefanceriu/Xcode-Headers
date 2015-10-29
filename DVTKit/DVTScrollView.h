@@ -6,23 +6,20 @@
 
 #import "NSScrollView.h"
 
-@class DVTShadowView;
+@class _DVTScrollViewSeparatorView;
 
 @interface DVTScrollView : NSScrollView
 {
     BOOL _handleBoundsOrFrameChangePending;
-    DVTShadowView *_shadowView;
-    DVTShadowView *_leftShadowView;
+    _DVTScrollViewSeparatorView *_bottomBorderView;
     id _contentViewBoundsChangeNotificationToken;
     id _documentViewFrameChangeNotificationToken;
-    BOOL _showsShadowOnBottom;
-    BOOL _showsShadowOnLeft;
-    BOOL _shadowsComeAndGoBasedOnScrollPosition;
+    BOOL _showsBorderOnBottom;
+    BOOL _borderComesAndGoesBasedOnScrollPosition;
 }
 
-@property(nonatomic) BOOL shadowsComeAndGoBasedOnScrollPosition; // @synthesize shadowsComeAndGoBasedOnScrollPosition=_shadowsComeAndGoBasedOnScrollPosition;
-@property(nonatomic) BOOL showsShadowOnLeft; // @synthesize showsShadowOnLeft=_showsShadowOnLeft;
-@property(nonatomic) BOOL showsShadowOnBottom; // @synthesize showsShadowOnBottom=_showsShadowOnBottom;
+@property(nonatomic) BOOL borderComesAndGoesBasedOnScrollPosition; // @synthesize borderComesAndGoesBasedOnScrollPosition=_borderComesAndGoesBasedOnScrollPosition;
+@property(nonatomic) BOOL showsBorderOnBottom; // @synthesize showsBorderOnBottom=_showsBorderOnBottom;
 - (void).cxx_destruct;
 - (void)tile;
 - (void)_defferedHandleBoundsOrFrameChanged;

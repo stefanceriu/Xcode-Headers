@@ -62,10 +62,10 @@
 - (id)initWithLegacyRelationship:(id)arg1 andEntityMapping:(id)arg2 belongingToEntity:(id)arg3 inModel:(id)arg4;
 - (id)initInModel:(id)arg1;
 - (void)_registerUndoBlockForFoundRelationship:(CDUnknownBlockType)arg1;
-- (id)code_unorderedAccessors;
-- (id)code_orderedAccessors;
+- (id)code_accessors;
 - (id)code_relationshipDestinationClass;
 - (id)code_relationshipSetType;
+- (id)code_propertyTypePointer;
 
 @end
 

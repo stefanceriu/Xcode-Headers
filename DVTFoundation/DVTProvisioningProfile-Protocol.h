@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class DVTAppIDFeatures, DVTDevice, DVTPlatform, DVTSigningCertificate, NSArray, NSData, NSDate, NSDictionary, NSSet, NSString, NSURL;
+@class DVTAppIDFeatures, DVTDevice, DVTFilePath, DVTPlatform, DVTSigningCertificate, NSArray, NSData, NSDate, NSDictionary, NSSet, NSString, NSURL;
 
 @protocol DVTProvisioningProfile <NSObject>
 @property(readonly) NSArray *identityCertificates;
 @property(readonly) NSArray *certificates;
+@property(readonly) BOOL isPushEnabled;
 @property(readonly) BOOL isOMCEnabled;
 @property(readonly) BOOL isWACEnabled;
 @property(readonly) BOOL isHomeKitEnabled;
@@ -18,6 +19,7 @@
 @property(readonly) NSString *dataProtectionLevel;
 @property(readonly) BOOL isAssociatedDomainsEnabled;
 @property(readonly) BOOL isVPNLiteEnabled;
+@property(readonly) BOOL isApplicationGroupsEnabled;
 @property(readonly) BOOL isKeychainAccessGroupsEnabled;
 @property(readonly) BOOL isGameCenterEnabled;
 @property(readonly) BOOL isMapsEnabled;
@@ -40,6 +42,7 @@
 @property(readonly) BOOL expired;
 @property(readonly) NSArray *identitySigningCertificates;
 @property(readonly) NSArray *signingCertificates;
+@property(readonly, copy) DVTFilePath *filePath;
 @property(readonly, copy) NSString *localPath;
 @property(readonly) NSDate *expirationDate;
 @property(readonly) NSDate *creationDate;

@@ -6,13 +6,8 @@
 
 #import <XCSCore/XCSObject.h>
 
-@class NSNumber, NSString;
-
 @interface XCSBuildResultSummary : XCSObject
 {
-    NSString *_integrationID;
-    NSNumber *_integrationNumber;
-    long long _integrationStep;
     long long _analyzerWarningCount;
     long long _analyzerWarningChange;
     long long _warningCount;
@@ -25,31 +20,31 @@
     long long _testFailureChange;
     long long _improvedPerfTestCount;
     long long _regressedPerfTestCount;
+    long long _codeCoveragePercentage;
+    long long _codeCoveragePercentageDelta;
 }
 
-+ (id)summaryWithAnalyzerWarningCount:(long long)arg1 warningCount:(long long)arg2 errorCount:(long long)arg3 testsCount:(long long)arg4 testFailureCount:(long long)arg5 previousResults:(id)arg6 validationErrors:(id *)arg7;
++ (id)summaryWithAnalyzerWarningCount:(long long)arg1 warningCount:(long long)arg2 errorCount:(long long)arg3 testsCount:(long long)arg4 testFailureCount:(long long)arg5 codeCoveragePercentage:(long long)arg6 previousResults:(id)arg7 validationErrors:(id *)arg8;
+@property(nonatomic) long long codeCoveragePercentageDelta; // @synthesize codeCoveragePercentageDelta=_codeCoveragePercentageDelta;
+@property(nonatomic) long long codeCoveragePercentage; // @synthesize codeCoveragePercentage=_codeCoveragePercentage;
 @property(nonatomic) long long regressedPerfTestCount; // @synthesize regressedPerfTestCount=_regressedPerfTestCount;
 @property(nonatomic) long long improvedPerfTestCount; // @synthesize improvedPerfTestCount=_improvedPerfTestCount;
-@property(readonly, nonatomic) long long testFailureChange; // @synthesize testFailureChange=_testFailureChange;
-@property(readonly, nonatomic) long long testFailureCount; // @synthesize testFailureCount=_testFailureCount;
-@property(readonly, nonatomic) long long testsChange; // @synthesize testsChange=_testsChange;
-@property(readonly, nonatomic) long long testsCount; // @synthesize testsCount=_testsCount;
-@property(readonly, nonatomic) long long errorChange; // @synthesize errorChange=_errorChange;
-@property(readonly, nonatomic) long long errorCount; // @synthesize errorCount=_errorCount;
-@property(readonly, nonatomic) long long warningChange; // @synthesize warningChange=_warningChange;
-@property(readonly, nonatomic) long long warningCount; // @synthesize warningCount=_warningCount;
-@property(readonly, nonatomic) long long analyzerWarningChange; // @synthesize analyzerWarningChange=_analyzerWarningChange;
-@property(readonly, nonatomic) long long analyzerWarningCount; // @synthesize analyzerWarningCount=_analyzerWarningCount;
-@property(nonatomic) long long integrationStep; // @synthesize integrationStep=_integrationStep;
-@property(retain, nonatomic) NSNumber *integrationNumber; // @synthesize integrationNumber=_integrationNumber;
-@property(retain, nonatomic) NSString *integrationID; // @synthesize integrationID=_integrationID;
-- (void).cxx_destruct;
-- (long long)integrationResult;
+@property(nonatomic) long long testFailureChange; // @synthesize testFailureChange=_testFailureChange;
+@property(nonatomic) long long testFailureCount; // @synthesize testFailureCount=_testFailureCount;
+@property(nonatomic) long long testsChange; // @synthesize testsChange=_testsChange;
+@property(nonatomic) long long testsCount; // @synthesize testsCount=_testsCount;
+@property(nonatomic) long long errorChange; // @synthesize errorChange=_errorChange;
+@property(nonatomic) long long errorCount; // @synthesize errorCount=_errorCount;
+@property(nonatomic) long long warningChange; // @synthesize warningChange=_warningChange;
+@property(nonatomic) long long warningCount; // @synthesize warningCount=_warningCount;
+@property(nonatomic) long long analyzerWarningChange; // @synthesize analyzerWarningChange=_analyzerWarningChange;
+@property(nonatomic) long long analyzerWarningCount; // @synthesize analyzerWarningCount=_analyzerWarningCount;
+- (long long)calculateIntegrationResult;
 - (id)description;
 - (id)saveRepresentation;
 - (id)dictionaryRepresentation;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)initWithAnalyzerWarningCount:(long long)arg1 analyzerWarningChange:(long long)arg2 warningCount:(long long)arg3 warningChange:(long long)arg4 errorCount:(long long)arg5 errorChange:(long long)arg6 testsCount:(long long)arg7 testsChange:(long long)arg8 testFailureCount:(long long)arg9 testFailureChange:(long long)arg10 improvedPerfTestCount:(long long)arg11 regressedPerfTestCount:(long long)arg12 validationErrors:(id *)arg13;
+- (id)initWithAnalyzerWarningCount:(long long)arg1 analyzerWarningChange:(long long)arg2 warningCount:(long long)arg3 warningChange:(long long)arg4 errorCount:(long long)arg5 errorChange:(long long)arg6 testsCount:(long long)arg7 testsChange:(long long)arg8 testFailureCount:(long long)arg9 testFailureChange:(long long)arg10 improvedPerfTestCount:(long long)arg11 regressedPerfTestCount:(long long)arg12 codeCoveragePercentage:(long long)arg13 codeCoveragePercentageDelta:(long long)arg14 validationErrors:(id *)arg15;
 
 @end
 

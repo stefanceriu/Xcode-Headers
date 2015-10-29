@@ -6,31 +6,17 @@
 
 #import "NSObject.h"
 
-#import "IDEDebugCompressionStrategy.h"
-
-@class NSString;
-
 __attribute__((visibility("hidden")))
-@interface GPUStackFramesDefaultCompressionStrategy : NSObject <IDEDebugCompressionStrategy>
+@interface GPUStackFramesDefaultCompressionStrategy : NSObject
 {
 }
 
-+ (id)genericMaskFilePathWithColorsInRed:(double *)arg1 green:(double *)arg2 blue:(double *)arg3 alpha:(double *)arg4;
-+ (id)maskFilePathForUserCodeWithColorsInRed:(double *)arg1 green:(double *)arg2 blue:(double *)arg3 alpha:(double *)arg4;
-+ (id)maskFilePathForModulePathString:(id)arg1 withColorsInRed:(double *)arg2 green:(double *)arg3 blue:(double *)arg4 alpha:(double *)arg5;
-+ (id)_filePathForBlock:(CDUnknownBlockType)arg1 withColorsInRed:(double *)arg2 green:(double *)arg3 blue:(double *)arg4 alpha:(double *)arg5;
 + (id)sharedInstance;
 - (id)compressStackFrames:(id)arg1 level:(unsigned long long)arg2;
 - (unsigned long long)defaultCompressionLevel;
 - (unsigned long long)maxCompressionLevel;
 - (id)_initInternal;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

@@ -11,31 +11,48 @@
 @class IBICTransientUIStateRepository, NSImage, NSString;
 
 @interface IBICAbstractCatalogItem (DisplayAdditions) <IDEInspectorMatching>
++ (id)keysThatImpactCapsuleViewControllerClassForOverview;
 + (id)pasteboardTypes;
 + (id)pasteboardType;
-+ (void)swizzleInDisplayOverrides;
-- (void)notifyAboutDisplayPropertyChange:(id)arg1;
++ (id)keyPathsForValuesAffectingIbInspectedItemName;
+- (BOOL)shouldAvoidDeleting;
+- (BOOL)shouldAvoidDeletingChild:(id)arg1;
+- (CDUnknownBlockType)contentReferencePreservingCallbackGivenEndPointGenerator:(CDUnknownBlockType)arg1;
+- (id)contentReferenceKeyPathToPreserve:(Class *)arg1;
+- (id)titleProvidingItemForDetailCapsule;
+- (BOOL)isTitleProvidingItemForDetailCapsuleForDescendant:(id)arg1;
+- (long long)effectiveNameEditingMode;
+- (id)overridingNameEditingModeForChild:(id)arg1;
+- (long long)defaultNameEditingMode;
+- (void)populateChildrenForInclusionInMediaLibrary:(id)arg1;
 - (id)plistDescriptionForIctool;
 - (BOOL)shouldIncludeInPlistDescriptionForIctool;
+- (void)populatePlistWithDescriptionForIctool:(id)arg1 forChild:(id)arg2;
 - (void)populatePlistWithDescriptionForIctool:(id)arg1;
 - (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
+- (id)includedAttributeUtilitySlicesForChild:(id)arg1;
 - (void)prepareToReatatchForDragWithContext:(id)arg1;
 - (void)prepareToDetatchForDragWithContext:(id)arg1;
-- (void)appendToCatalog:(id)arg1 afterDecodingFromPasteboardWithCompanions:(id)arg2;
+- (Class)capsuleViewControllerClassForOverview;
+- (id)synthesizeAncestorsIfNeededToAllowHostingInFolder;
 @property(readonly, getter=isDraggable) BOOL draggable;
 - (id)quickLookPreviewItem;
 - (id)itemsForOpeningInExternalEditor;
 - (id)documentTransientUIStateForKey:(id)arg1;
 - (void)setDocumentTransientUIState:(id)arg1 forKey:(id)arg2;
 @property(readonly) IBICTransientUIStateRepository *documentTransientUIStateRepository;
-- (id)firstAncestorOrReceiverVisibleInOutline;
+- (id)firstAncestorIncludingReceiverVisibleInOutline;
+- (BOOL)standsInForDeletionOfChild:(id)arg1;
+- (id)targetForDeleteAction;
 - (void)performDeleteInDocument:(id)arg1;
 - (id)ideModelObjectTypeIdentifier;
-- (id)validatedFileNameForProposedDisplayName:(id)arg1;
+@property(retain) NSString *ibInspectedItemName;
 - (BOOL)isDisplayNameEditable;
-@property(readonly) BOOL isSelectableInDetailArea;
 @property(readonly) BOOL displaysInOutlineView;
 @property(readonly) BOOL displaysChildrenInOutlineView;
+@property(readonly) NSImage *dragImage;
+@property(readonly) NSImage *image;
+@property(readonly) NSImage *typeIcon;
 @property(readonly) NSImage *icon;
 
 // Remaining properties

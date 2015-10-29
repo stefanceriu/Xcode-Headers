@@ -10,14 +10,14 @@
 #import "DVTXMLUnarchiving.h"
 #import "IDECustomDataStoring.h"
 
-@class DVTMapTable, IDEDirectoryBasedCustomDataStore, IDEGroup, NSMutableDictionary, NSString;
+@class IDEDirectoryBasedCustomDataStore, IDEGroup, NSMapTable, NSMutableDictionary, NSString;
 
 @interface IDEXMLPackageContainer : IDEContainer <DVTXMLUnarchiverDelegate, DVTXMLUnarchiving, IDECustomDataStoring>
 {
     IDEGroup *_unarchivingGroup;
     NSMutableDictionary *_unarchivingProperties;
     IDEDirectoryBasedCustomDataStore *_customDataStore;
-    DVTMapTable *_unsavedXMLDataForCustomDataStoreSpecifier;
+    NSMapTable *_unsavedXMLDataForCustomDataStoreSpecifier;
     BOOL _hasUnhandledArchiveData;
 }
 

@@ -31,6 +31,10 @@
 @property(copy, nonatomic) NSString *name;
 @property(retain, nonatomic) id color;
 @property(copy, nonatomic) NSString *type;
+- (id)valueForKeyPath:(NSString *)arg1;
+- (id)valueForKey:(NSString *)arg1;
+- (void)setValue:(id)arg1 forKey:(NSString *)arg2;
+- (void)setValue:(id)arg1 forKeyPath:(NSString *)arg2;
 - (id)copy;
 - (void)resumeAnimationForKey:(NSString *)arg1;
 - (void)pauseAnimationForKey:(NSString *)arg1;

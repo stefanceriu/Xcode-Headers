@@ -12,7 +12,7 @@
 #import "IDEReviewFilesDataSource.h"
 #import "NSAnimationDelegate.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTStackBacktrace, IDEIndexSymbol, IDENavigableItemCoordinator, IDENavigatorDataCell, IDERefactoringActionViewController, IDERefactoringRevealingView, IDERefactoringSession, IDERefactoringTransformationViewController, IDEReviewFilesViewController, IDEWorkspaceDocument, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_semaphore>, NSOperationQueue, NSString, NSTextField, NSView, NSWindow;
+@class DVTBorderedView, DVTObservingToken, DVTStackBacktrace, IDEIndexSymbol, IDENavigableItemAsyncFilteringCoordinator, IDENavigatorDataCell, IDERefactoringActionViewController, IDERefactoringRevealingView, IDERefactoringSession, IDERefactoringTransformationViewController, IDEReviewFilesViewController, IDEWorkspaceDocument, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_semaphore>, NSOperationQueue, NSString, NSTextField, NSView, NSWindow;
 
 @interface IDERefactoringWindowController : NSWindowController <IDERefactoringSessionDelegate, IDEReviewFilesDataSource, IDEComparisonEditorDataSource, NSAnimationDelegate, DVTInvalidation>
 {
@@ -48,9 +48,9 @@
     IDENavigatorDataCell *_fileReferenceWithSubtitleDataCell;
     IDENavigatorDataCell *_issueDataCell;
     IDENavigatorDataCell *_groupDataCell;
-    IDENavigableItemCoordinator *_workspaceNavItemCoordinator;
-    IDENavigableItemCoordinator *_flatFileNavItemCoordinator;
-    IDENavigableItemCoordinator *_issueNavItemCoordinator;
+    IDENavigableItemAsyncFilteringCoordinator *_workspaceNavItemCoordinator;
+    IDENavigableItemAsyncFilteringCoordinator *_flatFileNavItemCoordinator;
+    IDENavigableItemAsyncFilteringCoordinator *_issueNavItemCoordinator;
     NSOperationQueue *_queue;
     BOOL _hasFatalError;
     NSObject<OS_dispatch_semaphore> *_errorResponseWaiter;
@@ -85,7 +85,6 @@
 - (id)_containerFileReferenceCell;
 - (id)fileSystemNavigableItems;
 - (void)animationDidEnd:(id)arg1;
-- (void)errorAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)refactoringSession:(id)arg1 didProduceError:(id)arg2;
 - (void)refactoringSession:(id)arg1 didCalculateResults:(id)arg2 issues:(id)arg3 locationsToReIndent:(id)arg4;
 - (void)_reIndentLocations:(id)arg1;
@@ -97,7 +96,6 @@
 - (void)setActivityString:(id)arg1;
 - (void)setError:(id)arg1;
 - (void)cancel;
-- (void)snapshotAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)apply;
 - (void)document:(id)arg1 didSave:(BOOL)arg2 contextInfo:(void *)arg3;
 - (void)_copyChangesFromTempFiles;
@@ -109,7 +107,6 @@
 - (id)_traverseNavigableItems:(id)arg1 forResults:(id)arg2 referencedFiles:(id)arg3;
 - (id)_snapshotContainerItem:(id)arg1 customizationBlock:(CDUnknownBlockType)arg2;
 - (void)_beginReviewFilesTransition;
-- (void)refactoringSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)beginSheetForWindow:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithWindowNibName:(id)arg1 symbol:(id)arg2;

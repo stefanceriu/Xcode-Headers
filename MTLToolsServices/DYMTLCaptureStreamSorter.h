@@ -31,8 +31,12 @@ __attribute__((visibility("hidden")))
     struct unordered_multimap<unsigned long long, unsigned int, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, unsigned int>>> _resourceToCommandBufferMap;
     struct unordered_map<unsigned long long, unsigned int, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, unsigned int>>> _receiverCreationIndex;
     BOOL _hasParallelRenderCommandEncoder;
+    unsigned long long _nextDrawableId;
+    unsigned long long _usedDrawableId;
 }
 
+@property(nonatomic) unsigned long long usedDrawableId; // @synthesize usedDrawableId=_usedDrawableId;
+@property(nonatomic) unsigned long long nextDrawableId; // @synthesize nextDrawableId=_nextDrawableId;
 @property(nonatomic) BOOL hasParallelRenderCommandEncoder; // @synthesize hasParallelRenderCommandEncoder=_hasParallelRenderCommandEncoder;
 @property(retain, nonatomic) DYCaptureArchive *archive; // @synthesize archive=_archive;
 - (id).cxx_construct;
@@ -43,6 +47,7 @@ __attribute__((visibility("hidden")))
 - (void)_postProcessParallelRenderCommandEncoder;
 - (unsigned int)_flattenParallelRenderCommandEncodingAtIndex:(unsigned int)arg1;
 - (void)_sortFunctionStreamCommands:(unsigned int)arg1;
+- (unsigned long long)_getCAMTLLayerId;
 - (unsigned int)_traverseHeirarchyAndDetermineOrder;
 - (void)_buildFunctionNodeHierarchy;
 - (void)_handleNonCommandBufferDescendentsForFunction:(unsigned int)arg1 withActiveCommandBufferIndex:(unsigned int)arg2 andLastCommandBufferCommitted:(_Bool)arg3 andLastestCommandBufferUsedOrder:(unsigned int)arg4;
@@ -59,6 +64,7 @@ __attribute__((visibility("hidden")))
 - (void)_readOriginalFunctionStream;
 - (void)_dumpDebugData;
 - (BOOL)processCaptureStream;
+- (void)_fixSamplerObjects;
 - (id)initWithCaptureArchive:(id)arg1;
 
 @end

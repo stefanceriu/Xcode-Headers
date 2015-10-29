@@ -80,7 +80,6 @@
 - (void)outlineViewColumnDidResize:(id)arg1;
 - (void)_outlineViewFrameChanged:(id)arg1;
 - (BOOL)control:(id)arg1 textShouldEndEditing:(id)arg2;
-- (void)invalidEntryAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (BOOL)control:(id)arg1 didFailToFormatString:(id)arg2 errorDescription:(id)arg3;
 - (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
 - (void)outlineView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 item:(id)arg4;

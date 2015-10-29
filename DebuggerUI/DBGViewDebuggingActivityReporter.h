@@ -6,12 +6,12 @@
 
 #import "IDEActivityReporter.h"
 
-@class DVTMapTable;
+@class NSMapTable;
 
 @interface DBGViewDebuggingActivityReporter : IDEActivityReporter
 {
-    DVTMapTable *_launchSessionsToTokens;
-    DVTMapTable *_reportForViewDebuggingAdditionTable;
+    NSMapTable *_launchSessionsToTokens;
+    NSMapTable *_reportForViewDebuggingAdditionTable;
 }
 
 + (id)_titleForViewDebuggingAddition:(id)arg1;

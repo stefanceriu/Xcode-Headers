@@ -15,9 +15,9 @@
 
 + (id)sharedAnonymousStrategy;
 + (BOOL)supportsSecureCoding;
-+ (Class)viewControllerClass;
 + (BOOL)strategyIsValidForURL:(id)arg1;
 + (id)name;
+- (unsigned long long)type;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)_init;

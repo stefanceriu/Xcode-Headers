@@ -20,6 +20,7 @@
 @property(readonly) id <IDEBlueprint> blueprint; // @synthesize blueprint=_blueprint;
 - (void).cxx_destruct;
 @property(readonly) BOOL buildsWithXCTest;
+- (BOOL)_buildsAgainstFrameworkWithName:(id)arg1;
 @property(readonly) BOOL buildsWithClang;
 @property(readonly) BOOL buildsValidArchtectures;
 @property(readonly, copy) NSString *warningMessage;

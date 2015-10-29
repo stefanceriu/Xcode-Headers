@@ -6,7 +6,7 @@
 
 #import "IDEExecutionActionOperation.h"
 
-@class NSDictionary, NSString, NSTask;
+@class DVTDisallowFinishToken, NSDictionary, NSString, NSTask;
 
 @interface IDEShellScriptExecutionActionOperation : IDEExecutionActionOperation
 {
@@ -15,8 +15,8 @@
     NSString *_scriptTempFile;
     NSTask *_shellTask;
     NSDictionary *_actionEnvironmentVariables;
-    id _disallowFinishToken;
-    id _cancellationToken;
+    DVTDisallowFinishToken *_disallowFinishToken;
+    id <DVTCancellationBlockCompletion> _cancellationToken;
 }
 
 - (void).cxx_destruct;

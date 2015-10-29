@@ -12,27 +12,25 @@
 
 @interface IDELogNavigatorRootItem : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
-    IDELogManager *_localGroup;
-    NSArray *_logGroups;
     IDEWorkspace *_workspace;
     BOOL _groupByTime;
+    NSString *_identifier;
+    IDELogManager *_localGroup;
+    NSArray *_logGroups;
     NSArray *_observationTokens;
-    NSArray *_botObservationTokens;
     NSMutableArray *_localCachedGroups;
     IDELogNavigatorItem *_workspaceItem;
-    NSArray *_allBots;
     IDENavigableItemCoordinator *_navigableItemCoordinator;
 }
 
 + (id)logRootItemForWorkspace:(id)arg1;
+@property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(retain, nonatomic) IDENavigableItemCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
-@property(copy, nonatomic) NSArray *allBots; // @synthesize allBots=_allBots;
 @property(retain, nonatomic) IDELogNavigatorItem *workspaceItem; // @synthesize workspaceItem=_workspaceItem;
 @property(retain, nonatomic) NSMutableArray *localCachedGroups; // @synthesize localCachedGroups=_localCachedGroups;
-@property(copy, nonatomic) NSArray *botObservationTokens; // @synthesize botObservationTokens=_botObservationTokens;
-@property(copy, nonatomic) NSArray *observationTokens; // @synthesize observationTokens=_observationTokens;
-@property(retain, nonatomic) IDELogManager *localGroup; // @synthesize localGroup=_localGroup;
+@property(retain, nonatomic) NSArray *observationTokens; // @synthesize observationTokens=_observationTokens;
 @property(copy, nonatomic) NSArray *logGroups; // @synthesize logGroups=_logGroups;
+@property(retain, nonatomic) IDELogManager *localGroup; // @synthesize localGroup=_localGroup;
 - (void).cxx_destruct;
 @property(readonly) NSString *navigableItem_name;
 - (void)updateLogGroups;

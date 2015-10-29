@@ -11,5 +11,6 @@
 - (id)IDELocalizationStream_join;
 - (id)IDELocalizationStream_asyncMap:(CDUnknownBlockType)arg1;
 - (id)IDELocalizationStream_map:(CDUnknownBlockType)arg1;
+- (id)IDELocalizationStream;
 @end
 

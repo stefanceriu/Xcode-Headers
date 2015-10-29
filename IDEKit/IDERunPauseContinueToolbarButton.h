@@ -14,6 +14,9 @@
 {
     IDEWorkspaceWindowController *_windowController;
     DVTObservingToken *_toolbarIdleObservingToken;
+    DVTObservingToken *_runContextRunnableObservingToken;
+    DVTObservingToken *_runContextBuildableObservingToken;
+    DVTObservingToken *_workspaceIsCleaningObservingToken;
     NSString *_label;
     NSString *_tooltip;
     NSToolbarItem *_toolbarItem;
@@ -36,9 +39,7 @@
 - (void)_setButtonToAnalyzeStyle:(id)arg1 menuItem:(id)arg2;
 - (void)_setButtonToRunStyle:(id)arg1 menuItem:(id)arg2;
 - (void)_updateEnablement;
-- (void)_updateIcon;
 - (void)_updateToolbarItem;
-- (void)_unregisterObservations;
 - (void)_buttonIsMovingToWindowController:(id)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)primitiveInvalidate;

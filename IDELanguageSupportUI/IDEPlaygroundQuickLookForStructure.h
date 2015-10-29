@@ -7,30 +7,37 @@
 #import "NSViewController.h"
 
 #import "DVTOutlineViewDelegate.h"
+#import "DVTTableRowViewMouseInsideDelegate.h"
 #import "IDEPlaygroundQuickLookProvider.h"
 #import "NSPopoverDelegate.h"
 
-@class IDELogEntryQuickLookNode, IDEPlaygroundQuickLookPopover, NSAttributedString, NSButtonCell, NSOutlineView, NSString, NSView;
+@class DVTOutlineView, IDELogEntryQuickLookNode, IDEPlaygroundQuickLookPopover, NSAttributedString, NSButtonCell, NSLayoutConstraint, NSString, NSView;
 
-@interface IDEPlaygroundQuickLookForStructure : NSViewController <DVTOutlineViewDelegate, NSPopoverDelegate, IDEPlaygroundQuickLookProvider>
+@interface IDEPlaygroundQuickLookForStructure : NSViewController <DVTOutlineViewDelegate, NSPopoverDelegate, DVTTableRowViewMouseInsideDelegate, IDEPlaygroundQuickLookProvider>
 {
     NSButtonCell *_quickLookCell;
     IDEPlaygroundQuickLookPopover *_quickLookPopover;
-    NSOutlineView *_outlineView;
+    NSLayoutConstraint *_widthConstraint;
+    NSLayoutConstraint *_heightConstraint;
+    DVTOutlineView *_outlineView;
     IDELogEntryQuickLookNode *_rootNode;
 }
 
 @property(readonly) IDELogEntryQuickLookNode *rootNode; // @synthesize rootNode=_rootNode;
-@property __weak NSOutlineView *outlineView; // @synthesize outlineView=_outlineView;
+@property __weak DVTOutlineView *outlineView; // @synthesize outlineView=_outlineView;
+@property __weak NSLayoutConstraint *heightConstraint; // @synthesize heightConstraint=_heightConstraint;
+@property __weak NSLayoutConstraint *widthConstraint; // @synthesize widthConstraint=_widthConstraint;
 - (void).cxx_destruct;
 - (void)outlineView:(id)arg1 rowPreviouslyUnderMouse:(long long)arg2 rowCurrentlyUnderMouse:(long long)arg3;
-- (BOOL)outlineView:(id)arg1 shouldMouseHoverForTableColumn:(id)arg2 row:(long long)arg3;
+- (id)outlineView:(id)arg1 rowViewForItem:(id)arg2;
 - (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
 - (BOOL)popoverShouldClose:(id)arg1;
 - (void)popoverDidShow:(id)arg1;
+- (void)tableRowView:(id)arg1 mouseInside:(BOOL)arg2;
 - (void)_showQuickLookForNode:(id)arg1 atRow:(long long)arg2;
 - (void)_toggleQuickLookForClickedRow:(id)arg1;
 - (double)outlineView:(id)arg1 heightOfRowByItem:(id)arg2;
+- (void)_updatePreferredSize;
 - (id)quickLookViewForResultsView;
 - (id)quickLookViewForNaturalSize;
 @property(readonly, copy) NSAttributedString *attributedTitle;

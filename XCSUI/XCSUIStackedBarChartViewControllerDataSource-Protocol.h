@@ -6,16 +6,23 @@
 
 #import "NSObject.h"
 
-@class NSNumber, XCSBuildResultSummary, XCSUIStackedBarChartBar, XCSUIStackedBarChartViewController;
+@class NSNumber, NSString, XCSBuildResultSummary, XCSUIStackedBarChartBar, XCSUIStackedBarChartViewController;
 
 @protocol XCSUIStackedBarChartViewControllerDataSource <NSObject>
+- (NSString *)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 getIntegrationIdForColumn:(unsigned long long)arg2;
+- (unsigned long long)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 codeCoveragePercentageDeltaForColumn:(unsigned long long)arg2;
+- (unsigned long long)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 codeCoveragePercentageForColumn:(unsigned long long)arg2;
+- (unsigned long long)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 codeCoveragePreferenceForColumn:(unsigned long long)arg2;
 - (BOOL)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 isRunningIntegrationForColumn:(unsigned long long)arg2;
 - (unsigned long long)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 countOfFailedTestsForColumn:(unsigned long long)arg2;
 - (unsigned long long)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 countOfPassedTestsForColumn:(unsigned long long)arg2;
 - (unsigned long long)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 countOfTestsForColumn:(unsigned long long)arg2;
+- (BOOL)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 isTestingEnabledForColumn:(unsigned long long)arg2;
 - (BOOL)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 isPendingIntegrationForColumn:(unsigned long long)arg2;
+- (BOOL)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 didIntegrationTriggerFailForColumn:(unsigned long long)arg2;
 - (BOOL)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 didIntegrationGenerateWarningsOrIssuesForColumn:(unsigned long long)arg2;
 - (BOOL)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 didIntegrationFailWithBuildErrorsForColumn:(unsigned long long)arg2;
+- (BOOL)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 isBotCanceledForIntegrationForColumn:(unsigned long long)arg2;
 - (BOOL)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 didBotFailForIntegrationForColumn:(unsigned long long)arg2;
 - (NSNumber *)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 labelForColumn:(unsigned long long)arg2;
 - (XCSBuildResultSummary *)stackedBarChartViewController:(XCSUIStackedBarChartViewController *)arg1 buildResultSummaryForColumn:(unsigned long long)arg2;

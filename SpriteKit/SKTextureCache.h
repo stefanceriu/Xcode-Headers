@@ -10,10 +10,6 @@ __attribute__((visibility("hidden")))
 @interface SKTextureCache : NSObject
 {
     long long filteringMode;
-    unsigned int texId;
-    int texInternalFormat;
-    unsigned int texFormat;
-    unsigned int texType;
     struct CGSize size;
     struct CGSize pixelSize;
     BOOL isLoaded;
@@ -24,16 +20,17 @@ __attribute__((visibility("hidden")))
     struct CGSize alphaMapSize;
     int state;
     int lock;
+    shared_ptr_bb77cfd9 _backingTexture;
+    unsigned int _textureFormat;
     struct CGImage *collisionMask;
     int wrapMode;
 }
 
+@property(nonatomic) shared_ptr_bb77cfd9 backingTexture; // @synthesize backingTexture=_backingTexture;
+@property(nonatomic) unsigned int textureFormat; // @synthesize textureFormat=_textureFormat;
 @property(nonatomic) int wrapMode; // @synthesize wrapMode;
 @property(nonatomic) long long filteringMode; // @synthesize filteringMode;
 @property(nonatomic) int state; // @synthesize state;
-@property(nonatomic) unsigned int texType; // @synthesize texType;
-@property(nonatomic) unsigned int texFormat; // @synthesize texFormat;
-@property(nonatomic) int texInternalFormat; // @synthesize texInternalFormat;
 @property(nonatomic) struct CGSize alphaMapSize; // @synthesize alphaMapSize;
 @property(nonatomic) unsigned int *alphaMap; // @synthesize alphaMap;
 @property(nonatomic) struct CGSize pixelSize; // @synthesize pixelSize;
@@ -42,9 +39,10 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) BOOL isPOT; // @synthesize isPOT;
 @property(nonatomic) BOOL isLoaded; // @synthesize isLoaded;
 @property(nonatomic) struct CGSize size; // @synthesize size;
-@property(nonatomic) unsigned int texId; // @synthesize texId;
 - (id).cxx_construct;
+- (void).cxx_destruct;
 @property(readonly, nonatomic, getter=getLock) int *lock;
+- (void)_reset;
 - (void)dealloc;
 - (id)init;
 

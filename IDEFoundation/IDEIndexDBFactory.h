@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class IDEIndexDBTransaction, NSString;
+#import "DVTInvalidation.h"
 
-@interface IDEIndexDBFactory : NSObject
+@class DVTStackBacktrace, IDEIndexDBTransaction, NSString;
+
+@interface IDEIndexDBFactory : NSObject <DVTInvalidation>
 {
     IDEIndexDBTransaction *_dbTransaction;
     NSString *_tableName;
@@ -24,15 +26,27 @@
     struct sqlite3_stmt *_dbStatement2;
 }
 
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 @property(readonly, nonatomic) long long objectCount; // @synthesize objectCount=_objectCount;
 @property(readonly, nonatomic) IDEIndexDBTransaction *dbTransaction; // @synthesize dbTransaction=_dbTransaction;
 - (void).cxx_destruct;
 - (void)dealloc;
+- (void)primitiveInvalidate;
 - (void)close;
 - (long long)realObjectIdForId:(long long)arg1;
 - (void)addObjectId:(long long *)arg1 withBindings:(CDUnknownBlockType)arg2;
 - (id)initWithTransaction:(id)arg1 table:(id)arg2 columns:(id)arg3;
+
+// Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

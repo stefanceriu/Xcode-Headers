@@ -6,16 +6,20 @@
 
 #import "NSObject.h"
 
-#import "DVTDeveloperProfileAccountProvider.h"
+#import "DVTSourceControlAccountManager.h"
 
-@class DVTDispatchLock, NSArray, NSMutableArray, NSOperationQueue, NSString;
+@class DVTDispatchLock, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSObject<OS_dispatch_queue>, NSOperationQueue, NSOrderedSet, NSString;
 
-@interface IDESourceControlManager : NSObject <DVTDeveloperProfileAccountProvider>
+@interface IDESourceControlManager : NSObject <DVTSourceControlAccountManager>
 {
-    NSMutableArray *_repositories;
-    NSMutableArray *_workingCopyConfigurations;
-    NSMutableArray *_workingTrees;
-    NSMutableArray *_projects;
+    NSMutableOrderedSet *_accounts;
+    NSMutableOrderedSet *_recentWorkspaceBlueprints;
+    NSMutableOrderedSet *_knownRepositories;
+    NSMutableDictionary *_knownHosts;
+    NSMutableArray *_registeredWorkspaces;
+    NSMutableArray *_legacyRepositories;
+    NSMutableArray *_legacyWorkingCopyConfigurations;
+    NSMutableArray *_legacyWorkingTrees;
     NSMutableArray *_extensions;
     NSOperationQueue *_operationQueue;
     NSMutableArray *_holdingQueue;
@@ -28,12 +32,14 @@
     BOOL _remoteStatusCheckingEnabled;
     BOOL _automaticallyAddNewFiles;
     BOOL _waitingForAuthentication;
-    BOOL _shouldLoadRepositories;
+    BOOL _shouldLoadAccounts;
     double _minimumLocalStatusRequestDelay;
+    NSObject<OS_dispatch_queue> *_legacyWorkingTreesDispatchQueue;
     NSString *_pathOfWorkspaceJustCheckedOut;
 }
 
 + (id)keyPathsForValuesAffectingRepositories;
++ (id)keyPathsForValuesAffectingExistingAccounts;
 + (id)sourceControlProfilingLogAspect;
 + (id)sourceControlAuthenticationLogAspect;
 + (id)sourceControlFileScanningLogAspect;
@@ -41,9 +47,14 @@
 + (id)sourceControlLogAspect;
 + (id)sharedSourceControlManager;
 @property(retain) NSString *pathOfWorkspaceJustCheckedOut; // @synthesize pathOfWorkspaceJustCheckedOut=_pathOfWorkspaceJustCheckedOut;
+@property(retain) NSOrderedSet *recentWorkspaceBlueprints; // @synthesize recentWorkspaceBlueprints=_recentWorkspaceBlueprints;
 @property(readonly) double minimumLocalStatusRequestDelay; // @synthesize minimumLocalStatusRequestDelay=_minimumLocalStatusRequestDelay;
-@property(readonly) BOOL shouldLoadRepositories; // @synthesize shouldLoadRepositories=_shouldLoadRepositories;
+@property(readonly) BOOL shouldLoadAccounts; // @synthesize shouldLoadAccounts=_shouldLoadAccounts;
+@property(readonly) NSArray *legacyRepositories; // @synthesize legacyRepositories=_legacyRepositories;
 @property(readonly) NSArray *extensions; // @synthesize extensions=_extensions;
+@property(readonly) NSDictionary *knownHostFingerprints; // @synthesize knownHostFingerprints=_knownHosts;
+@property(readonly) NSOrderedSet *knownRepositories; // @synthesize knownRepositories=_knownRepositories;
+@property(readonly) NSOrderedSet *accounts; // @synthesize accounts=_accounts;
 - (void).cxx_destruct;
 - (void)cancelRequest:(id)arg1;
 - (void)performRequest:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
@@ -62,6 +73,9 @@
 - (void)workingTreeRootForFilePath:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)workingTreeForFilePath:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)workingTreeForFilePath:(id)arg1;
+- (void)unregisterWorkspace:(id)arg1;
+- (void)registerWorkspace:(id)arg1;
+- (id)workingCopyForFilePath:(id)arg1;
 - (id)extensionForRequest:(id)arg1;
 - (id)commonExtensionForPaths:(id)arg1;
 - (id)extensionForURL:(id)arg1;
@@ -76,20 +90,18 @@
 - (id)extensionMatchingDirectoryIdentifier:(id)arg1;
 - (id)extensionsMatchingProtocol:(id)arg1;
 - (id)extensionMatchingIdentifier:(id)arg1;
-- (void)removeRepository:(id)arg1 removePasswordFromKeychain:(BOOL)arg2;
-- (void)addRepository:(id)arg1;
-- (void)addWorkingCopyConfiguration:(id)arg1;
-- (void)removeSourceControlProject:(id)arg1;
-- (void)addSourceControlProject:(id)arg1;
-- (void)removeWorkingTree:(id)arg1;
-- (void)addWorkingTree:(id)arg1;
+- (void)removeLegacyRepository:(id)arg1 removePasswordFromKeychain:(BOOL)arg2;
+- (void)addLegacyRepository:(id)arg1;
+- (void)addLegacyWorkingCopyConfiguration:(id)arg1;
+- (void)removeLegacyWorkingTree:(id)arg1;
+- (void)addLegacyWorkingTree:(id)arg1;
 - (void)updateUserDefaults;
-@property(readonly) NSArray *workingTrees; // @synthesize workingTrees=_workingTrees;
+- (id)arrayOfRecentBlueprintDictionaries;
+@property(readonly) NSArray *legacyWorkingTrees; // @synthesize legacyWorkingTrees=_legacyWorkingTrees;
 - (id)arrayOfWorkingCopyConfigurationDictionaries;
-- (id)workingCopyConfigurations;
-- (id)arrayOfProjectDictionaries;
-- (id)arrayOfRepositoryDictionaries;
-@property(readonly) NSArray *repositories; // @synthesize repositories=_repositories;
+- (id)legacyWorkingCopyConfigurations;
+- (id)arrayOfAccountsDictionaries;
+- (id)repositories;
 - (id)repositoryWithRoot:(id)arg1 sourceControlExtension:(id)arg2;
 - (void)repositoryRootForRepository:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (id)repositoryForURL:(id)arg1 sourceControlExtension:(id)arg2;
@@ -100,18 +112,34 @@
 @property BOOL enableSourceControl;
 - (id)_blacklistedDirectories;
 - (id)_directoryIdentifiers;
-- (void)loadProjects;
-@property(readonly) NSArray *projects; // @synthesize projects=_projects;
-- (void)loadRepositories;
-- (void)_fixVersion100Xcode5SCMPreferences;
-- (void)loadXcode40RepositoriesFromArray:(id)arg1;
-- (id)loadRepositoriesFromArray:(id)arg1 error:(id *)arg2;
-- (BOOL)importAccountsFromKeychain:(struct OpaqueSecKeychainRef *)arg1 propertyList:(id)arg2 numberOfAccounts:(unsigned long long *)arg3 error:(id *)arg4;
-- (BOOL)exportAccountsToKeychain:(struct OpaqueSecKeychainRef *)arg1 propertyList:(id *)arg2 numberOfAccounts:(unsigned long long *)arg3 error:(id *)arg4;
-@property(readonly) NSString *typeIdentifier;
+- (id)existingFingerprintForHost:(id)arg1;
+- (id)existingFingerprintForRepository:(id)arg1;
+- (void)addKnownHost:(id)arg1 fingerprint:(id)arg2;
+- (void)loadKnownHostsFromDictionary:(id)arg1;
+- (void)removeAccount:(id)arg1 deletingFromKeychain:(BOOL)arg2;
+- (void)removeAccount:(id)arg1;
+- (void)addAccount:(id)arg1;
+- (void)_addAccount:(id)arg1;
+- (void)accountChanged:(id)arg1 previousUsername:(id)arg2;
+- (id)remoteRepositoryForRepository:(id)arg1;
+- (id)existingAccountForURL:(id)arg1;
+- (id)existingAccountForRepository:(id)arg1 authenticationStrategy:(id)arg2 createIfNeeded:(BOOL)arg3;
+- (id)existingAccountLikeAccount:(id)arg1 addingIfNew:(BOOL)arg2;
+- (id)knownRepositoryForURL:(id)arg1 sourceControlSystem:(id)arg2;
+@property(readonly) NSOrderedSet *existingAccounts;
+- (void)addRecentWorkspaceBlueprint:(id)arg1;
+- (void)loadWorkspacesFromDefaults;
+- (void)loadAccounts;
+- (id)loadAccountsFromRepositoriesArray:(id)arg1 error:(id *)arg2;
+- (id)loadAccountsFromArray:(id)arg1 error:(id *)arg2;
+- (BOOL)saveAccountPassword:(id)arg1 previousUsername:(id)arg2 toKeychain:(struct OpaqueSecKeychainRef *)arg3 error:(id *)arg4;
+- (BOOL)deleteKeychainPasswordForAccount:(id)arg1;
+- (id)passwordFromKeychain:(void *)arg1 forDomain:(id)arg2 user:(id)arg3 fullURL:(id)arg4 error:(id *)arg5;
+- (id)sshKeyPasswordFromKeychain:(void *)arg1 forKeyURL:(id)arg2 error:(id *)arg3;
 - (void)loadExtensions;
+- (void)loadPlugIns;
 - (id)defaultExtension;
-- (id)initWithSavedRepositories:(BOOL)arg1;
+- (id)initWithSavedAccounts:(BOOL)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

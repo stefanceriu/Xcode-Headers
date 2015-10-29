@@ -7,10 +7,8 @@
 #import "IBICCatalog.h"
 
 @interface IBICCatalog (DisplayAdditions)
-- (void)appendToCatalog:(id)arg1 afterDecodingFromPasteboardWithCompanions:(id)arg2;
 - (BOOL)isDraggable;
 - (BOOL)isDisplayNameEditable;
-- (BOOL)displaysChildrenInOutlineView;
 - (id)icon;
 @end
 

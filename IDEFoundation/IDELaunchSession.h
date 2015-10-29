@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTFileDataType, DVTFuture, DVTMapTable, DVTObservingToken, DVTPerformanceMetric, IDEDebugSession, IDEExecutionEnvironment, IDEExecutionTracker, IDELaunchParametersSnapshot, IDELocationSimulator, IDERunDestination, IDESchemeActionRecord, IDESchemeCommand, NSArray, NSError, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
+@class DVTFileDataType, DVTFuture, DVTObservingToken, DVTPerformanceMetric, IDEDebugSession, IDEExecutionEnvironment, IDEExecutionTracker, IDELaunchParametersSnapshot, IDELocationSimulator, IDERunDestination, IDESchemeActionRecord, IDESchemeCommand, NSArray, NSError, NSMapTable, NSMutableArray, NSMutableSet, NSSet, NSString, XCTestConfiguration;
 
 @interface IDELaunchSession : NSObject
 {
@@ -17,13 +17,14 @@
     DVTPerformanceMetric *_xpcDebuggingMetric;
     NSArray *_frameworkNamesIncludingExtensionsLinkedByExecutable;
     NSArray *_frameworkNamesIncludingExtensionsLinkedByExecutableForAllSlices;
+    NSMutableSet *_gaugeLocations;
     BOOL _allConsoleAdaptorsTerminated;
-    NSMutableArray *_prioritizedGaugeLocations;
-    NSMutableArray *_nonPrioritizedGaugeLocations;
-    NSMutableDictionary *_gaugeLocationsToSortCharacteristic;
+    BOOL _hasAlreadyOutputExitString;
     DVTFuture *_appExtensionInstallFuture;
     BOOL _iconChanged;
     BOOL _representsAnXPCService;
+    BOOL _hasExitCode;
+    BOOL _hasCrashed;
     int _state;
     int _runnablePID;
     int _parentPID;
@@ -34,7 +35,6 @@
     IDEExecutionTracker *_executionTracker;
     IDEDebugSession *_currentDebugSession;
     id <IDETraceInferiorSession> _currentTraceInferiorSession;
-    NSArray *_gaugeLocations;
     IDELaunchParametersSnapshot *_launchParameters;
     DVTFileDataType *_runnableType;
     IDESchemeCommand *_schemeCommand;
@@ -44,14 +44,18 @@
     NSError *_alertError;
     NSString *_explicitActivityViewTitle;
     NSArray *_xpcServices;
+    XCTestConfiguration *_testConfiguration;
+    long long _exitCode;
     NSMutableSet *_consoleAdaptors;
-    DVTMapTable *_targetConsoleAdaptorToTerminationToken;
+    NSMapTable *_targetConsoleAdaptorToTerminationToken;
     DVTObservingToken *_codeModulesObserver;
 }
 
 + (id)watchLaunchOptionsForLaunchParameters:(id)arg1;
-+ (BOOL)_unregisterLaunchSession:(id)arg1 asSoleRecipientForAppExt:(id)arg2 inDevice:(id)arg3;
++ (BOOL)_isLaunchSession:(id)arg1 soleRecipientForAppExt:(id)arg2;
++ (BOOL)_unregisterLaunchSession:(id)arg1 asSoleRecipientForAppExt:(id)arg2;
 + (BOOL)_registerLaunchSession:(id)arg1 asSoleRecipientForAppExt:(id)arg2 error:(id *)arg3;
++ (id)keyPathsForValuesAffectingIsCurrentlyTracing;
 + (BOOL)automaticallyNotifiesObserversOfTargetOutputState;
 + (void)terminateLaunchSession:(id)arg1 inWorkspace:(id)arg2;
 + (void)terminateLaunchSession:(id)arg1;
@@ -61,8 +65,12 @@
 + (void)_setLaunchSession:(id)arg1 forReference:(id)arg2;
 + (void)initialize;
 @property(retain, nonatomic) DVTObservingToken *codeModulesObserver; // @synthesize codeModulesObserver=_codeModulesObserver;
-@property(retain, nonatomic) DVTMapTable *targetConsoleAdaptorToTerminationToken; // @synthesize targetConsoleAdaptorToTerminationToken=_targetConsoleAdaptorToTerminationToken;
+@property(retain, nonatomic) NSMapTable *targetConsoleAdaptorToTerminationToken; // @synthesize targetConsoleAdaptorToTerminationToken=_targetConsoleAdaptorToTerminationToken;
 @property(retain, nonatomic) NSMutableSet *consoleAdaptors; // @synthesize consoleAdaptors=_consoleAdaptors;
+@property BOOL hasCrashed; // @synthesize hasCrashed=_hasCrashed;
+@property long long exitCode; // @synthesize exitCode=_exitCode;
+@property BOOL hasExitCode; // @synthesize hasExitCode=_hasExitCode;
+@property(retain) XCTestConfiguration *testConfiguration; // @synthesize testConfiguration=_testConfiguration;
 @property(copy) NSArray *xpcServices; // @synthesize xpcServices=_xpcServices;
 @property BOOL representsAnXPCService; // @synthesize representsAnXPCService=_representsAnXPCService;
 @property(copy) NSString *explicitActivityViewTitle; // @synthesize explicitActivityViewTitle=_explicitActivityViewTitle;
@@ -78,14 +86,12 @@
 @property(nonatomic) int runnablePID; // @synthesize runnablePID=_runnablePID;
 @property(readonly) DVTFileDataType *runnableType; // @synthesize runnableType=_runnableType;
 @property(retain) IDELaunchParametersSnapshot *launchParameters; // @synthesize launchParameters=_launchParameters;
-@property(copy) NSArray *gaugeLocations; // @synthesize gaugeLocations=_gaugeLocations;
 @property(readonly, copy) NSArray *debuggingAdditions; // @synthesize debuggingAdditions=_debuggingAdditions;
 @property(retain) id <IDETraceInferiorSession> currentTraceInferiorSession; // @synthesize currentTraceInferiorSession=_currentTraceInferiorSession;
 @property(retain, nonatomic) IDEDebugSession *currentDebugSession; // @synthesize currentDebugSession=_currentDebugSession;
 @property(nonatomic) int state; // @synthesize state=_state;
 @property(retain) IDEExecutionTracker *executionTracker; // @synthesize executionTracker=_executionTracker;
 @property(retain) IDESchemeActionRecord *schemeActionRecord; // @synthesize schemeActionRecord=_schemeActionRecord;
-@property(readonly) IDEExecutionEnvironment *executionEnvironment; // @synthesize executionEnvironment=_executionEnvironment;
 - (void).cxx_destruct;
 - (void)performanceMetric_xpcDebuggingCheckpointWithLabel:(id)arg1;
 - (void)performanceMetric_xpcDebuggingCompleted;
@@ -98,6 +104,7 @@
 - (void)_cancelXPCPostLaunchActions;
 - (void)_startXPCPostLaunchActions;
 - (void)_startObservingXPCServicesAndAppExtensionsStage2;
+- (id)_tweakEnvironmentVariablesForXPCDebugging;
 - (void)_startObservingXPCServicesAndAppExtensions;
 - (id)_environmentVariablesWithTestingFilteredOut:(id)arg1;
 - (id)_createLaunchSessionForXPCServiceName:(id)arg1 withLaunchParameters:(id)arg2;
@@ -105,10 +112,8 @@
 @property(readonly) NSArray *frameworkNamesIncludingExtensionsLinkedByExecutableForAllSlices;
 @property(readonly) NSArray *frameworkNamesIncludingExtensionsLinkedByExecutable;
 - (id)_frameworkNamesIncludingExtensionsLinkedByExecutableForCpuType:(int)arg1;
+- (id)debuggingAdditionMatchingClass:(id)arg1;
 - (id)debuggingAdditionMatchingID:(id)arg1;
-@property(readonly, copy) NSMutableArray *mutableGaugeLocations;
-- (void)_removeAllGaugeLocations;
-- (void)removeGaugeLocation:(id)arg1;
 - (void)addNewGaugeLocation:(id)arg1 withPriority:(unsigned long long)arg2;
 - (void)addNewGaugeLocation:(id)arg1;
 - (id)existingGaugeLocationForURL:(id)arg1;
@@ -129,13 +134,16 @@
 - (void)addConsoleAdaptor:(id)arg1;
 @property(readonly, copy) NSMutableSet *kvoConsoleAdaptors;
 - (void)setTargetOutputState:(int)arg1;
+@property(readonly) IDEExecutionEnvironment *executionEnvironment; // @synthesize executionEnvironment=_executionEnvironment;
 @property(readonly) int CPUType;
 - (id)initWithExecutionEnvironment:(id)arg1 launchParameters:(id)arg2 runnableDisplayName:(id)arg3 runnableType:(id)arg4 runDestination:(id)arg5;
 
 // Remaining properties
 @property(copy) NSArray *debugSessions; // @dynamic debugSessions;
+@property(readonly) NSSet *gaugeLocations; // @dynamic gaugeLocations;
 @property(readonly, copy) NSMutableArray *mutableDebugSessions; // @dynamic mutableDebugSessions;
 @property(retain, nonatomic) NSMutableArray *mutableDebuggingAdditions; // @dynamic mutableDebuggingAdditions;
+@property(readonly) NSMutableSet *mutableGaugeLocations; // @dynamic mutableGaugeLocations;
 
 @end
 

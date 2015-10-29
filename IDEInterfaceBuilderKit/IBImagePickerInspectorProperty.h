@@ -15,6 +15,7 @@
     IBImagePickerInspectorPopoverContentView *_popoverContentView;
     IDEInspectorKeyPath *_valueKeyPath;
     IDEInspectorKeyPath *_imagesKeyPath;
+    IDEInspectorKeyPath *_representedObjectsKeyPath;
     IDEInspectorKeyPath *_toolTipsKeyPath;
     NSPopover *_popover;
     NSButton *_popoverButton;

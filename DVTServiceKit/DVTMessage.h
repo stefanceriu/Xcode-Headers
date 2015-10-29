@@ -16,7 +16,7 @@
 
 @property(copy) NSDictionary *userInfo; // @synthesize userInfo=_userInfo;
 - (void).cxx_destruct;
-- (id)contentAsPropertyList:(unsigned long long)arg1 error:(id *)arg2;
+- (id)contentAsPropertyListWithReadOptions:(unsigned long long)arg1 error:(id *)arg2;
 - (BOOL)setContentToPropertyList:(id)arg1 format:(unsigned long long)arg2 error:(id *)arg3;
 - (void)appendContentData:(id)arg1;
 @property(copy) NSData *content;

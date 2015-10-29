@@ -6,23 +6,26 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray;
+@class NSArray;
 
 @interface DVTStackBacktrace : NSObject
 {
     unsigned long long *_returnAddresses;
     unsigned long long _returnAddressesCount;
-    NSMutableArray *_symbolicatedArrayRepresentation;
+    NSArray *_symbolicatedArrayRepresentation;
 }
 
 + (unsigned long long *)_callStackReturnAddressesExcludingTopFrames:(unsigned long long)arg1 returningCount:(unsigned long long *)arg2;
 + (unsigned long long *)_callStackReturnAddressesFromNumbers:(id)arg1 excludingTopFrames:(unsigned long long)arg2 returningCount:(unsigned long long *)arg3;
++ (id)currentStackBacktraceStartingFromFrame:(long long)arg1;
 + (id)currentStackBacktrace;
 + (id)stackBacktraceWithCallStackReturnAddresses:(id)arg1;
 - (void).cxx_destruct;
 - (id)callStackReturnAddresses;
-- (id)_frameForAddress:(unsigned long long)arg1 symbolicatorPtr:(struct _CSTypeRef *)arg2 symbolPtr:(struct _CSTypeRef *)arg3;
+- (id)_cachedFrameForAddress:(unsigned long long)arg1 symbolicatorPtr:(struct _CSTypeRef *)arg2;
+- (id)_frameForAddress:(unsigned long long)arg1 symbolicatorPtr:(struct _CSTypeRef *)arg2;
 - (id)symbolicatedStackBacktraceFrames;
+- (id)stringRepresentationWithAddresses:(BOOL)arg1;
 - (id)stringRepresentation;
 - (void)dealloc;
 - (id)initWithCallStackReturnAddresses:(unsigned long long *)arg1 count:(unsigned long long)arg2;

@@ -6,7 +6,7 @@
 
 #import "DVTTextCompletionStrategy.h"
 
-@class DVTDispatchLock, DVTMapTable, IDEIndexCodeCompletionContext, NSArray;
+@class DVTDispatchLock, IDEIndexCodeCompletionContext, NSArray, NSMapTable;
 
 @interface IDEIndexCompletionStrategy : DVTTextCompletionStrategy
 {
@@ -14,7 +14,7 @@
     BOOL _shouldInsertIncludeStatements;
     IDEIndexCodeCompletionContext *_codeCompletionContext;
     NSArray *_knownSDKs;
-    DVTMapTable *_optimalBuildableProductForFileCache;
+    NSMapTable *_optimalBuildableProductForFileCache;
     DVTDispatchLock *_buildableProductCachesLock;
     NSArray *_sourceBuildableProductProxiesCache;
 }

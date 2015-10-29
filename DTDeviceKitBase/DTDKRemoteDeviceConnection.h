@@ -8,10 +8,13 @@
 
 #import "DVTInvalidation.h"
 
-@class DTDKRemoteDeviceToken, DTXConnection, DVTPinger, DVTStackBacktrace, NSArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
+@class DTDKRemoteDeviceToken, DTXConnection, DVTDispatchLock, DVTPinger, DVTStackBacktrace, NSArray, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
 @interface DTDKRemoteDeviceConnection : NSObject <DVTInvalidation>
 {
+    NSMutableArray *_pendingRequests;
+    DVTDispatchLock *_pendingRequestsLock;
+    DVTDispatchLock *_instrumentsLock;
     struct deque<double, std::__1::allocator<double>> _recentPings;
     DVTPinger *_pinger;
     NSObject<OS_dispatch_source> *_pingTimer;
@@ -65,7 +68,7 @@
 - (id)monitorConnection;
 - (void)_createPingTimerIfNecessary;
 - (id)fetchValueForDomain:(id)arg1 andKey:(id)arg2;
-- (id)_fetchValueForDomain:(id)arg1 andKey:(id)arg2;
+- (void)_drainPendingRequests;
 - (id)setValue:(id)arg1 forDomain:(id)arg2 andKey:(id)arg3;
 - (id)startHouseArrestServiceForAppIdentifier:(id)arg1;
 - (id)startFirstServiceOf:(id)arg1 unlockKeybag:(_Bool)arg2;

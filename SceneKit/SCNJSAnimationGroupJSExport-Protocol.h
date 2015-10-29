@@ -6,12 +6,19 @@
 
 #import "JSExport.h"
 
-@class CAMediaTimingFunction, NSArray;
+@class CAMediaTimingFunction, NSArray, NSString;
 
 @protocol SCNJSAnimationGroupJSExport <JSExport>
-+ (id)animationGroup;
+@property(copy) NSString *fillMode;
+@property BOOL autoreverses;
+@property double repeatDuration;
+@property float repeatCount;
+@property double timeOffset;
+@property float speed;
+@property double beginTime;
 @property(getter=isRemovedOnCompletion) BOOL removedOnCompletion;
 @property(retain) CAMediaTimingFunction *timingFunction;
+@property double duration;
 @property(copy) NSArray *animations;
 @end
 

@@ -8,29 +8,24 @@
 
 #import "NSMenuDelegate.h"
 
-@class DVTDelayedInvocation, IDENavigableItem, IDENavigableItemCoordinator, IDERunContextManager, NSString;
+@class NSString;
 
 @interface IDEDestinationMenuDelegate : NSObject <NSMenuDelegate>
 {
-    IDERunContextManager *_runContextManager;
-    IDENavigableItemCoordinator *_navigableItemCoordinator;
-    IDENavigableItem *_schemeNavigable;
-    DVTDelayedInvocation *_delayedInvocation;
 }
 
 + (void)_openMoreSimulators:(id)arg1;
-+ (void)addDownloadMoreSimulatorsIfNecessaryToMenu:(id)arg1 withRunContextManager:(id)arg2;
++ (void)_addSimulators:(id)arg1;
++ (void)addDownloadMoreSimulatorsIfNecessaryToMenu:(id)arg1 withRunContextManager:(id)arg2 includesSeparator:(BOOL)arg3;
++ (BOOL)addAddSimulatorsIfNecessaryToMenu:(id)arg1 withRunContextManager:(id)arg2;
++ (BOOL)simulatorsFromSimulatorPlatform:(id)arg1 arePresentInRunDestinations:(id)arg2;
 + (void)setSelectedNavigable:(id)arg1 withRunContextManager:(id)arg2;
 + (void)didUpdateRunDestinationMenu:(id)arg1 withRunContextManager:(id)arg2;
-+ (id)_currentRunContextManager;
-- (void).cxx_destruct;
-- (void)menuDidClose:(id)arg1;
 - (void)menuNeedsUpdate:(id)arg1;
-- (id)_destinationMenuItemsWithRunContextManager:(id)arg1;
+- (id)_destinationMenuItemsWithRunContextManager:(id)arg1 withSchemeNavigable:(id)arg2;
 - (id)_menuItemsForRunDestinationNavigable:(id)arg1;
 - (void)_setSelectedNavigable:(id)arg1;
-- (void)dealloc;
-- (id)init;
+- (id)_currentRunContextManager;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

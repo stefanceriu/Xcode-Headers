@@ -8,11 +8,11 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, IDEBatchFindQuery, IDENavigableItemCoordinator, NSString;
+@class DVTStackBacktrace, IDEBatchFindQuery, IDENavigableItemAsyncFilteringCoordinator, NSString;
 
 @interface IDEBatchFindResultUIState : NSObject <DVTInvalidation>
 {
-    IDENavigableItemCoordinator *_navigableItemCoordinator;
+    IDENavigableItemAsyncFilteringCoordinator *_navigableItemCoordinator;
     IDEBatchFindQuery *_query;
     long long _resultGroupIndex;
     long long _resultIndex;
@@ -22,7 +22,7 @@
 @property long long resultIndex; // @synthesize resultIndex=_resultIndex;
 @property long long resultGroupIndex; // @synthesize resultGroupIndex=_resultGroupIndex;
 @property(retain) IDEBatchFindQuery *query; // @synthesize query=_query;
-@property(readonly) IDENavigableItemCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
+@property(readonly) IDENavigableItemAsyncFilteringCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (id)initWithQuery:(id)arg1 navigableItemCoordinator:(id)arg2;

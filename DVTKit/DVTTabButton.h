@@ -52,7 +52,6 @@
 + (id)leftInactiveTabSeparatorImageForMainWindow;
 + (id)leftActiveTabSeparatorImageForNonMainWindow;
 + (id)leftActiveTabSeparatorImageForMainWindow;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (BOOL)_useRolloverAppearance;
 - (void)_updateToolTip;

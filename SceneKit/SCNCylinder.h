@@ -8,7 +8,6 @@
 
 @interface SCNCylinder : SCNGeometry
 {
-    id _reserved;
     double _cylinderradius;
     double _cylinderheight;
     double _cylinderradialSpan;
@@ -18,7 +17,6 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)cylinderWithRadius:(double)arg1 height:(double)arg2;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -37,11 +35,10 @@
 @property(nonatomic) long long heightSegmentCount;
 @property(nonatomic) double height;
 - (void)_syncObjCModel:(struct __C3DParametricGeometry *)arg1;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (id)presentationGeometry;
 - (id)presentationCylinder;
 - (id)initPresentationParametricGeometryWithParametricGeometryRef:(struct __C3DParametricGeometry *)arg1;
-- (void)dealloc;
 - (struct __C3DGeometry *)__createCFObject;
 - (id)initWithParametricGeometryRef:(struct __C3DParametricGeometry *)arg1;
 - (id)init;

@@ -8,18 +8,18 @@
 
 #import "iCloudItemProvider.h"
 
-@class NSMutableDictionary, NSRecursiveLock, NSString;
+@class NSCache, NSRecursiveLock, NSString;
 
 @interface iCloudUbiquityService : iCloudService <iCloudItemProvider>
 {
-    NSMutableDictionary *_itemCacheByItemID;
-    NSMutableDictionary *_itemCacheByLocalURL;
+    NSCache *_itemCacheByItemID;
+    NSCache *_itemCacheByLocalURL;
     NSRecursiveLock *_cacheLock;
 }
 
 @property(retain, nonatomic) NSRecursiveLock *cacheLock; // @synthesize cacheLock=_cacheLock;
-@property(retain, nonatomic) NSMutableDictionary *itemCacheByLocalURL; // @synthesize itemCacheByLocalURL=_itemCacheByLocalURL;
-@property(retain, nonatomic) NSMutableDictionary *itemCacheByItemID; // @synthesize itemCacheByItemID=_itemCacheByItemID;
+@property(retain, nonatomic) NSCache *itemCacheByLocalURL; // @synthesize itemCacheByLocalURL=_itemCacheByLocalURL;
+@property(retain, nonatomic) NSCache *itemCacheByItemID; // @synthesize itemCacheByItemID=_itemCacheByItemID;
 - (void).cxx_destruct;
 - (void)downloadItem:(id)arg1 destinationPath:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)accountInfoWithCompletionBlock:(CDUnknownBlockType)arg1;

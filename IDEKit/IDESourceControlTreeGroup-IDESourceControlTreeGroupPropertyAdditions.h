@@ -16,7 +16,6 @@
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 @property(readonly) BOOL inProgress;
 @property(readonly) NSNumber *progress;
-@property(readonly) BOOL navigableItem_isMajorGroup;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) NSString *navigableItem_name;
 
@@ -29,6 +28,7 @@
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 @end

@@ -9,35 +9,39 @@
 #import "DVTInvalidation.h"
 #import "IDEInternalBreakpointDelegate.h"
 
-@class DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEBreakpointBucket, IDEWorkspace, NSArray, NSMutableArray, NSMutableSet, NSString;
+@class DVTDispatchLock, DVTObservingToken, DVTStackBacktrace, IDEBreakpointBucket, IDEWorkspace, NSArray, NSMapTable, NSMutableArray, NSMutableSet, NSString;
 
 @interface IDEBreakpointManager : NSObject <IDEInternalBreakpointDelegate, DVTInvalidation>
 {
-    IDEWorkspace *_workspace;
     DVTObservingToken *_workspaceReferencedContainersToken;
     DVTObservingToken *_currentDebugSessionStateObserverToken;
-    DVTMapTable *_bucketsToObserverTokens;
+    NSMapTable *_bucketsToObserverTokens;
+    NSMutableArray *_userProjectBuckets;
+    IDEBreakpointBucket *_watchpointBucket;
+    NSMutableArray *_sharedProjectBuckets;
+    NSMapTable *_userToSharedBuckets;
+    NSMapTable *_sharedToUserBuckets;
+    NSMutableArray *_breakpoints;
+    DVTDispatchLock *_registrationLock;
+    unsigned long long _registrationNumber;
+    NSMutableArray *_breakpointsToBeInvalidated;
+    NSMutableSet *_breakpointObservers;
+    BOOL _breakpointsActivated;
     IDEBreakpointBucket *_defaultBucket;
     IDEBreakpointBucket *_userWorkspaceBucket;
-    NSMutableArray *_userProjectBuckets;
     IDEBreakpointBucket *_userGlobalBucket;
-    IDEBreakpointBucket *_watchpointBucket;
     IDEBreakpointBucket *_sharedWorkspaceBucket;
-    NSMutableArray *_sharedProjectBuckets;
-    DVTMapTable *_userToSharedBuckets;
-    DVTMapTable *_sharedToUserBuckets;
-    NSMutableArray *_breakpoints;
-    BOOL _breakpointsActivated;
-    NSMutableSet *_breakpointObservers;
+    IDEWorkspace *_workspace;
 }
 
 + (BOOL)_isBreakpointAtLocation:(id)arg1 location:(id)arg2;
 + (void)initialize;
-@property(readonly) IDEBreakpointBucket *sharedWorkspaceBucket; // @synthesize sharedWorkspaceBucket=_sharedWorkspaceBucket;
-@property(readonly) IDEBreakpointBucket *userGlobalBucket; // @synthesize userGlobalBucket=_userGlobalBucket;
-@property(readonly) IDEBreakpointBucket *userWorkspaceBucket; // @synthesize userWorkspaceBucket=_userWorkspaceBucket;
-@property(retain, nonatomic) IDEBreakpointBucket *defaultBucket; // @synthesize defaultBucket=_defaultBucket;
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
+@property(nonatomic) BOOL breakpointsActivated; // @synthesize breakpointsActivated=_breakpointsActivated;
+@property(retain) IDEBreakpointBucket *sharedWorkspaceBucket; // @synthesize sharedWorkspaceBucket=_sharedWorkspaceBucket;
+@property(readonly) IDEBreakpointBucket *userGlobalBucket; // @synthesize userGlobalBucket=_userGlobalBucket;
+@property(retain) IDEBreakpointBucket *userWorkspaceBucket; // @synthesize userWorkspaceBucket=_userWorkspaceBucket;
+@property(retain, nonatomic) IDEBreakpointBucket *defaultBucket; // @synthesize defaultBucket=_defaultBucket;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)internal_breakpointLocationsAdded:(id)arg1 removed:(id)arg2;
@@ -50,8 +54,8 @@
 - (void)_removeListenerFromBucketsBreakpointList:(id)arg1;
 - (BOOL)_canSetBreakpointAtURL:(id)arg1;
 - (void)setBreakpointShared:(id)arg1 shared:(BOOL)arg2;
-@property BOOL breakpointsActivated;
 - (id)fileBreakpointAtDocumentLocation:(id)arg1;
+- (void)registerDoingWorkOnBreakpoint:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (void)removeWatchpoint:(id)arg1;
 - (void)removeBreakpoint:(id)arg1;
 - (BOOL)_managesBucket:(id)arg1;

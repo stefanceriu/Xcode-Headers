@@ -11,7 +11,7 @@
 @interface IBGlassCanvasFrameBackground : NSObject
 {
     struct {
-        char showSelectionRing;
+        char frameIsSelected;
         char hasKeyLook;
         CDStruct_c519178c insetToGlass;
         CDStruct_c519178c glassToContentInset;
@@ -30,7 +30,7 @@
 @property(nonatomic) unsigned long long contentBorderStyle;
 @property(nonatomic) double glassCornerRadius;
 @property(nonatomic) BOOL hasKeyLook;
-@property(nonatomic) BOOL showSelectionRing;
+@property(nonatomic) BOOL frameIsSelected;
 
 @end
 

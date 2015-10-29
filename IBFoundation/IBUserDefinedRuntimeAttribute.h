@@ -32,13 +32,13 @@
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithKeyPath:(id)arg1 value:(id)arg2 isLocalized:(BOOL)arg3 andTypeIdentifier:(id)arg4;
 
 // Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) Class superclass;
 
 @end

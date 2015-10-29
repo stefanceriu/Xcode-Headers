@@ -28,7 +28,6 @@
 @property(readonly) NSSet *provisioningProfiles;
 @property(readonly) NSSet *certificates;
 - (id)displayCertificates;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)handleKeychainChanged:(id)arg1;
 - (void)dealloc;
 - (id)init;

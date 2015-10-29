@@ -21,6 +21,7 @@
 - (void).cxx_destruct;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
+- (id)description;
 - (long long)compare:(id)arg1;
 @property(readonly) NSString *buildVersionMinorLetter;
 @property(readonly) unsigned long long buildVersionMinorNumber;

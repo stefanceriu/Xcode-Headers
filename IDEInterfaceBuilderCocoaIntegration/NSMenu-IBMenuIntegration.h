@@ -7,6 +7,7 @@
 #import "NSMenu.h"
 
 @interface NSMenu (IBMenuIntegration)
++ (id)keyPathsForValuesAffectingIbInspectedUserInterfaceLayoutDirection;
 - (BOOL)ibUsesStandardIdentifierPropertySlice;
 - (BOOL)ibCanSupportIdentifierProperty;
 @property long long ibArchivedSystemMenuType;
@@ -15,6 +16,7 @@
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibQualifyingInfoForDefaultLabel;
 - (id)ibDefaultLabel;
+@property long long ibInspectedUserInterfaceLayoutDirection;
 - (void)setIbInspectedTitle:(id)arg1;
 - (id)ibInspectedTitle;
 - (void)setIbShadowedItemArray:(id)arg1;

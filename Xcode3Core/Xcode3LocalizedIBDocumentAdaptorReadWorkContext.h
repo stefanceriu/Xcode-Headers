@@ -6,36 +6,26 @@
 
 #import "IDELocalizationWorkContext.h"
 
-#import "IDELocalizationWorkReadStrings.h"
-#import "IDELocalizationWorkSystemTask.h"
+#import "IDELocalizationWorkProvider.h"
 
-@class DVTFilePath, DVTLocale, IDEFileReference, NSArray, NSDictionary, NSNumber, NSString, Xcode3LocalizedIBDocumentAdaptor;
+@class DVTLocale, IDEFileReference, IDELocalizationWorkReadStrings, NSString, Xcode3LocalizedIBDocumentAdaptor;
 
-@interface Xcode3LocalizedIBDocumentAdaptorReadWorkContext : IDELocalizationWorkContext <IDELocalizationWorkReadStrings, IDELocalizationWorkSystemTask>
+@interface Xcode3LocalizedIBDocumentAdaptorReadWorkContext : IDELocalizationWorkContext <IDELocalizationWorkProvider>
 {
-    DVTFilePath *IDELocalizationWork_path;
-    NSDictionary *IDELocalizationWork_strings;
-    NSDictionary *IDELocalizationWork_comments;
-    DVTFilePath *IDELocalizationWork_launchPath;
-    NSArray *IDELocalizationWork_arguments;
-    NSNumber *IDELocalizationWork_exitStatus;
     Xcode3LocalizedIBDocumentAdaptor *_adaptor;
     IDEFileReference *_fileReference;
     DVTLocale *_language;
     NSString *_tempPath;
+    IDELocalizationWorkReadStrings *_readContext;
 }
 
+@property(retain) IDELocalizationWorkReadStrings *readContext; // @synthesize readContext=_readContext;
 @property(retain) NSString *tempPath; // @synthesize tempPath=_tempPath;
 @property(retain) DVTLocale *language; // @synthesize language=_language;
 @property(retain) IDEFileReference *fileReference; // @synthesize fileReference=_fileReference;
 @property(retain) Xcode3LocalizedIBDocumentAdaptor *adaptor; // @synthesize adaptor=_adaptor;
-@property(retain) NSNumber *IDELocalizationWork_exitStatus; // @synthesize IDELocalizationWork_exitStatus;
-@property(retain) NSArray *IDELocalizationWork_arguments; // @synthesize IDELocalizationWork_arguments;
-@property(retain) DVTFilePath *IDELocalizationWork_launchPath; // @synthesize IDELocalizationWork_launchPath;
-@property(retain) NSDictionary *IDELocalizationWork_comments; // @synthesize IDELocalizationWork_comments;
-@property(retain) NSDictionary *IDELocalizationWork_strings; // @synthesize IDELocalizationWork_strings;
-@property(retain) DVTFilePath *IDELocalizationWork_path; // @synthesize IDELocalizationWork_path;
 - (void).cxx_destruct;
+- (id)work;
 - (void)primitiveInvalidate;
 
 @end

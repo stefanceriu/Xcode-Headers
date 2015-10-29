@@ -34,11 +34,13 @@
 + (BOOL)automaticallyNotifiesObserversOfSourceControlServerStatus;
 + (BOOL)automaticallyNotifiesObserversOfSourceControlLocalStatus;
 + (BOOL)automaticallyNotifiesObserversOfSubitems;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (id)keyPathsForValuesAffectingConflictStateForUpdateOrMerge;
 + (id)keyPathsForValuesAffectingSourceControlServerStatus;
 + (id)keyPathsForValuesAffectingSourceControlLocalStatus;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
+- (BOOL)_structureEditRemoveSubitemsShouldCloseDocumentsUnderPathWithoutSaving;
 @property(readonly, getter=isLocationKnown) BOOL locationKnown;
 - (BOOL)createNewSubgroupAtIndex:(unsigned long long)arg1;
 - (id)_availableNameBasedOn:(id)arg1;

@@ -7,7 +7,8 @@
 #import "NSArray.h"
 
 @interface NSArray (XCSUtilities)
-- (id)toJSONDataWithError:(id *)arg1;
+- (id)toJSONCompactWithError:(id *)arg1;
+- (id)toJSONCompact;
 - (id)toJSONWithError:(id *)arg1;
 - (id)toJSON;
 @end

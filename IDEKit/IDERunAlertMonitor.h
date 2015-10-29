@@ -17,6 +17,7 @@
     id _currentLaunchSessionTargetOutputNotificationObserver;
     id _pgoGenerationSucceededNotificationObserver;
     id _pgoGenerationFailedNotificationObserver;
+    id _coverageReportGenerationFailedNotificationObserver;
 }
 
 + (void)initialize;

@@ -7,6 +7,7 @@
 #import "NSImageCell.h"
 
 @interface NSImageCell (IBNSImageViewCellIntegration)
+- (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (void)ibSwizzledSetImage:(id)arg1;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;

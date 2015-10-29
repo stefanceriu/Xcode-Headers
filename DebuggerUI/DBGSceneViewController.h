@@ -9,95 +9,143 @@
 #import "DBGInteractiveSceneViewDelegate.h"
 #import "DBGRangeSliderDelegate.h"
 #import "DBGSceneCameraDelegate.h"
+#import "DVTInvalidation.h"
 #import "SCNSceneRendererDelegate.h"
 
-@class DBGHostNode, DBGLayoutConstraintOverlayImageProvider, DBGLayoutConstraintSet, DBGOffScreenPositionCalculator, DBGRangeSliderNode, DBGSceneCamera, DBGSceneNode, DBGSimpleNode, DVTObservingToken, NSMutableArray, NSString, SCNNode;
+@class DBGHostNode, DBGLayoutConstraintOverlayImageProvider, DBGLayoutConstraintSet, DBGNode, DBGRangeSliderNode, DBGSceneCamera, DBGViewDebuggerAdditionUIController, DVTObservingToken, DVTStackBacktrace, NSMutableSet, NSSet, NSString;
 
-@interface DBGSceneViewController : NSViewController <SCNSceneRendererDelegate, DBGInteractiveSceneViewDelegate, DBGSceneCameraDelegate, DBGRangeSliderDelegate>
+@interface DBGSceneViewController : NSViewController <SCNSceneRendererDelegate, DBGInteractiveSceneViewDelegate, DBGSceneCameraDelegate, DBGRangeSliderDelegate, DVTInvalidation>
 {
     DBGSceneCamera *_camera;
-    DBGSceneNode *_pivotNode;
-    SCNNode *_rotationNode;
-    SCNNode *_centeringNode;
+    DBGNode *_rotationNode;
     DBGHostNode *_rootHostNode;
     DBGRangeSliderNode *_rangeSliderNode;
     unsigned long long _rangeSliderLeft;
     unsigned long long _rangeSliderRight;
-    DBGSimpleNode *_highlightedNode;
+    NSSet *_highlightedNodes;
     DBGHostNode *_currentMasterView;
     DBGHostNode *_hostToRestoreAfterUnexplosion;
-    BOOL _isShowConstraintsEnabled;
-    BOOL _isIn3D;
-    BOOL _isClippingEnabled;
+    BOOL _mouseOverRangeSlider;
     struct CGPoint _panLeftover;
-    DBGOffScreenPositionCalculator *_offscreenPositionCalculator;
-    NSMutableArray *_selectedViewInstances;
-    NSMutableArray *_overlayNodes;
+    NSSet *_selectedViewInstances;
     DBGLayoutConstraintSet *_allConstraints;
     DBGLayoutConstraintOverlayImageProvider *_constraintOverlaySource;
     DVTObservingToken *_highlightedConstraintObserver;
+    NSMutableSet *_cameraFacingNodes;
+    BOOL _showOnCanvasRangeSlider;
+    id <DBGSceneViewControllerDataSourceProtocol> _dataSource;
+    BOOL _clippingEnabled;
+    BOOL _isIn3D;
+    BOOL _constraintsEnabled;
     BOOL _shouldHaveLineWidth;
     int _nodeContentMode;
     unsigned long long _numberOfZPlanes;
-    id <DBGSceneViewControllerDataSource> _dataSource;
     id <DBGSceneViewControllerDelegate> _delegate;
+    CDUnknownBlockType _mouseUpAfterDragBlock;
+    DBGViewDebuggerAdditionUIController *_debuggerUIController;
 }
 
++ (void)initialize;
+@property __weak DBGViewDebuggerAdditionUIController *debuggerUIController; // @synthesize debuggerUIController=_debuggerUIController;
+@property(copy) CDUnknownBlockType mouseUpAfterDragBlock; // @synthesize mouseUpAfterDragBlock=_mouseUpAfterDragBlock;
 @property(nonatomic) BOOL shouldHaveLineWidth; // @synthesize shouldHaveLineWidth=_shouldHaveLineWidth;
 @property(nonatomic) int nodeContentMode; // @synthesize nodeContentMode=_nodeContentMode;
 @property __weak id <DBGSceneViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain) id <DBGSceneViewControllerDataSource> dataSource; // @synthesize dataSource=_dataSource;
+@property(readonly) id <DBGSceneViewControllerDataSourceProtocol> dataSource; // @synthesize dataSource=_dataSource;
+@property(readonly, nonatomic) BOOL constraintsEnabled; // @synthesize constraintsEnabled=_constraintsEnabled;
 @property unsigned long long numberOfZPlanes; // @synthesize numberOfZPlanes=_numberOfZPlanes;
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
 - (void)renderer:(id)arg1 willRenderScene:(id)arg2 atTime:(double)arg3;
 - (void)cameraDidZoomTo100Percent;
 - (void)cameraIsUpdatingZoomFactor;
-- (void)moveTo2DCentered:(BOOL)arg1;
+- (void)moveTo2D:(BOOL)arg1;
+- (void)toggle2D3D;
 - (void)zoom100Percent;
 - (void)zoomOut;
 - (void)zoomIn;
+- (struct SCNVector3)adjustedPivotPoint;
 - (void)resetPivotNode;
 - (void)updatePivotNodeWithNode:(id)arg1 withHitLocation:(struct SCNVector3)arg2;
-- (void)enableClipping:(BOOL)arg1;
+- (void)setConstraintsEnabled:(BOOL)arg1;
 - (void)toggleClipping;
+@property(getter=isClippingEnabled) BOOL clippingEnabled; // @synthesize clippingEnabled=_clippingEnabled;
 - (void)updateRenderingOrderWithRootNode:(id)arg1;
 - (void)toggleShowConstraints;
+- (void)focusOnParent;
+- (void)focusOnSelectionOrChild;
+- (void)_navigateForUpArrowKey;
+- (void)_navigateForDownArrowKey;
+- (void)navigateSceneWithKeyboardEvent:(id)arg1;
 - (void)sceneViewDidChangeFrameSize;
-- (void)adjustCameraPanWithXValue:(double)arg1 YValue:(double)arg2;
-- (void)adjustCameraPositionWithXValue:(double)arg1 YValue:(double)arg2;
+- (void)transitionFrom3DTo2D;
+- (void)transitionFrom2DTo3D;
+@property BOOL isIn3D; // @synthesize isIn3D=_isIn3D;
+- (struct CGSize)modelSpacePixelSize;
+- (void)_adjustCameraPanWithXValue:(double)arg1 yValue:(double)arg2;
+- (void)animatedAdjustCameraPanWithXValue:(double)arg1 yValue:(double)arg2;
+- (void)adjustCameraPanWithXValue:(double)arg1 yValue:(double)arg2;
+- (void)panFromCenteredObject:(id)arg1 makingNewCenteredObject:(id)arg2 window:(id)arg3 zoom:(double)arg4;
+- (void)_animateToTransformOnMouseUp:(struct CATransform3D)arg1;
+- (struct CATransform3D)_applyRotationRails:(struct CATransform3D)arg1;
+- (struct CATransform3D)rotationTransformForDeltaX:(double)arg1 deltaY:(double)arg2;
+- (void)rotate3DViewsWithXValue:(double)arg1 yValue:(double)arg2;
 - (void)updateNodesWithUpdatedCameraZoomFactorBelowRootNode:(id)arg1;
 @property(readonly) double zoomFactor;
+- (void)adjustCameraZoomLevelWithValue:(double)arg1 towardsCursorLocation:(struct SCNVector3)arg2;
+- (void)autoHideSlider;
+- (void)mouseMovedAfterRest;
 - (void)adjustCameraZoomLevelWithValue:(double)arg1;
+- (void)toggleConstraintsAndSelect:(id)arg1;
+- (id)_modelViewForClickedNode:(id)arg1;
+- (void)printDescription:(id)arg1;
+- (void)focusOnNode:(id)arg1;
 - (void)hideViewsBelow:(id)arg1;
 - (void)hideViewsAbove:(id)arg1;
+- (BOOL)validateMenuItem:(id)arg1;
 - (void)hideViewsForNode:(id)arg1 withEvent:(id)arg2;
 - (id)menuForNode:(id)arg1 withEvent:(id)arg2;
+- (void)mouseRests;
 - (void)mouseUpAfterDrag;
 - (void)removeCurrentHighlight;
 - (void)mousedOverNode:(id)arg1;
+- (void)mouseClickedAndHitRangeSliderNode:(id)arg1 withEvent:(id)arg2;
 - (void)mouseDoubleClickedAndHitNode:(id)arg1 withEvent:(id)arg2;
 - (void)mouseClickedAndHitNode:(id)arg1 withEvent:(id)arg2;
+- (double)screenSpaceBetweenTicks;
+- (struct SCNVector3)_positionOnPlaneForZVectorStartingAtPoint:(struct SCNVector3)arg1 relativeToNode:(id)arg2;
+- (void)calculateVisiblePlanesAndUpdateRangeSlider;
+- (void)_adjustCameraFacingNodesForPixelPerfectRendering;
+- (BOOL)_adjustPixelPerfectAdjustingSubnode:(id)arg1;
+- (void)manageCameraFacingNode:(id)arg1;
 - (void)mouseUpAfterDraggingRangeSliderNode:(id)arg1;
+- (void)highlight3DPlaneWithIndex:(long long)arg1;
+- (void)rangeSliderDidUpdateSpacing:(id)arg1 from3DPlaneIndex:(long long)arg2;
 - (void)rangeSliderDidChange:(id)arg1;
 - (void)draggedRangeSliderNode:(id)arg1 withEvent:(id)arg2 locationInSceneView:(struct CGPoint)arg3;
 @property unsigned long long rangeSliderRight;
 @property unsigned long long rangeSliderLeft;
 - (void)distanceSliderChanged:(id)arg1;
-- (void)updatePresentedConstraintSet;
-- (BOOL)_selectedObjectsAreSameOrContainChildConstraints:(id)arg1;
+- (void)updateSpacingWithDistance:(double)arg1 aroundZPlaneIndex:(long long)arg2;
+- (struct CGPoint)_offsetForFocusedHierarchy;
+- (void)updatePresentedConstraintsForViewInstances:(id)arg1;
 - (void)updateWithSelectedViewObjects:(id)arg1;
+- (unsigned long long)zIndexForNode:(id)arg1;
 - (void)updateViewWithIdentifier:(id)arg1 withSnapshot:(id)arg2;
 - (void)_finishInitializationByUpdatingUIWithRootView:(id)arg1;
+- (void)_setupOrientationForModelObject:(id)arg1;
 - (void)initializeSceneWithRootView:(id)arg1;
-- (void)loadDataWithRootObject:(id)arg1 constraintSet:(id)arg2 viewInstanceCreationOptions:(id)arg3;
-- (void)dealloc;
+- (void)loadDataWithRootObject:(id)arg1 constraintSet:(id)arg2 debuggerUIController:(id)arg3 dataSourceManager:(id)arg4;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

@@ -9,7 +9,7 @@
 @interface IBXMLDecoderParserStringTable : NSObject
 {
     struct {
-        CDStruct_183601bc *buckets;
+        struct *buckets;
         unsigned long long capacity;
         unsigned long long count;
     } _hashTable;

@@ -17,9 +17,7 @@
 + (BOOL)_validatePropertyList:(id)arg1 errorString:(id *)arg2;
 + (id)_baselineRecordForBlueprint:(id)arg1 withRunDestinationRecord:(id)arg2 createIfNecessary:(BOOL)arg3 versionedFileManager:(id)arg4 filePath:(id *)arg5 error:(id *)arg6;
 + (id)baselineRecordForBlueprint:(id)arg1 withRunDestinationRecord:(id)arg2 createIfNecessary:(BOOL)arg3 versionedFileManager:(id)arg4 filePath:(id *)arg5 error:(id *)arg6;
-+ (id)baselineRecordForBlueprint:(id)arg1 withRunDestinationRecord:(id)arg2 filePath:(id *)arg3 error:(id *)arg4;
 + (id)_baselineRecordFilePathInBundleBaselineWithFilePath:(id)arg1 withRunDestinationRecord:(id)arg2 createIfNecessary:(BOOL)arg3 workspace:(id)arg4 versionedFileManager:(id)arg5 error:(id *)arg6;
-+ (id)_baselineRecordFilePathInBundleBaselineWithFilePath:(id)arg1 withRunDestinationRecord:(id)arg2 error:(id *)arg3;
 + (void)initialize;
 - (void).cxx_destruct;
 - (void)unionWithBundleBaselineRecord:(id)arg1;

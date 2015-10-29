@@ -16,9 +16,9 @@
 - (id)makeRepresentingConstraintWithProvider:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqualToAbstraction:(id)arg1;
-- (Class)representationClass;
-- (id)representationWithObjectRepresentationForObjectBlock:(CDUnknownBlockType)arg1;
 - (id)description;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithView:(id)arg1 contentSize:(double)arg2 attribute:(unsigned long long)arg3 huggingPriority:(double)arg4;
 
 @end

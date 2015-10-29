@@ -9,7 +9,7 @@
 @class IBAbstractSegueConnection, IBAbstractStoryboardSegueTemplate, IBSimulatedMetricsContainer, IBStoryboardDocument, IBStoryboardRelationshipSegue, NSImage, NSObject<IBPrimarySceneObject>, NSSet, NSString;
 
 @protocol IBPrimarySceneObject <NSObject>
-@property(copy, nonatomic) IBSimulatedMetricsContainer *inheritedSimulatedMetrics;
+@property(copy, nonatomic) NSString *ibExplicitStoryboardIdentifier;
 - (NSString *)ibShortDisplayName;
 - (BOOL)ibIsPrimarySceneObject:(NSObject<IBPrimarySceneObject> *)arg1 validSplitViewDetailWithSegue:(IBStoryboardRelationshipSegue *)arg2;
 - (BOOL)ibIsPrimarySceneObject:(NSObject<IBPrimarySceneObject> *)arg1 validSplitViewMasterWithSegue:(IBStoryboardRelationshipSegue *)arg2;
@@ -21,15 +21,13 @@
 - (void)ibWillResignSourceControllerForSegue:(IBAbstractSegueConnection *)arg1;
 - (void)ibDidBecomeSourceControllerForSegue:(IBAbstractSegueConnection *)arg1;
 - (IBSimulatedMetricsContainer *)ibInheritableMetricsForDownstreamController:(id <IBPrimarySceneObject>)arg1 viaSegue:(IBAbstractSegueConnection *)arg2;
-- (void)ibEffectiveSimulatedMetricsDidChange;
 - (NSSet *)ibOutgoingSeguesInDocument:(IBStoryboardDocument *)arg1;
 - (NSSet *)ibIncomingSeguesIncludingSelfOriginated:(BOOL)arg1;
-- (NSString *)ibEffectiveStoryboardIdentifier;
 - (NSImage *)ibImageForOwnedScene;
 
 @optional
 @property(nonatomic) BOOL ibInspectedIsDesignatedEntryPoint;
-- (NSString *)uniqueIdentifierForStoryboardCompilation;
+- (NSString *)ibUniqueIdentifierForStoryboardCompilation;
 - (void)ibPrepareTopLevelControllerForStoryboardCompilation;
 @end
 

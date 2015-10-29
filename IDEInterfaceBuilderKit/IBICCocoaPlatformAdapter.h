@@ -10,14 +10,20 @@
 {
 }
 
-- (id)imageSetRepsFromCatalog:(id)arg1 forOperation:(long long)arg2 withOptions:(id)arg3 populatingIssues:(id)arg4;
-- (void)compileImageCatalogCollection:(id)arg1 options:(id)arg2 queue:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
-- (void)compileImageSetReps:(id)arg1 options:(id)arg2 queue:(id)arg3 operation:(long long)arg4 completionHandler:(CDUnknownBlockType)arg5;
-- (id)compileAppIcon:(id)arg1 options:(id)arg2;
-- (id)imageCatalogCompilerOptionsFromToolArguments:(id)arg1 forCatalogCollection:(id)arg2 populatingIssues:(id)arg3;
+- (id)firstVersionSupportingThinning;
+- (id)firstVersionSupportingOnDemandResources;
+- (BOOL)canHostPDFContentOutsideOfCARFiles;
+- (void)compileCARItems:(id)arg1 tagSolutionSpace:(id)arg2 options:(id)arg3 queue:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (id)compileAppIconFromSelection:(id)arg1 options:(id)arg2;
+- (id)imageCatalogCompilerOptionsFromToolArguments:(id)arg1 forCatalogCollection:(id)arg2 populatingResults:(id)arg3;
+- (id)minimumDeploymentTargetSupportingAppIcons;
+- (id)minimumDeploymentTargetSupportingDataInCARFiles;
+- (id)minimumDeploymentTargetSupportingSpriteAtlasesInCARFiles;
 - (id)absoluteMinimumDeploymentTarget;
+- (id)minimumDeploymentTargetSupportingPDFInCARFiles;
+- (id)minimumDeploymentTargetSupportingJPGInCARFiles;
 - (id)minimumDeploymentTargetSupportingCARFiles;
-- (id)targetPlatform;
+- (id)targetPlatformForArguments:(id)arg1;
 - (id)defaultTargetDevices;
 
 @end

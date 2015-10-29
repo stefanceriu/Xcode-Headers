@@ -6,20 +6,17 @@
 
 #import "IDEDebugSession.h"
 
-@class DVTDispatchLock, DVTMapTable, DVTMutableOrderedDictionary, DVTObservingToken, DVTTextDocumentLocation, IDEConsoleAdaptor, IDELaunchSession, IDERunOperationWorker, NSArray, NSDate, NSDictionary, NSError, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
+@class DBGProcess, DVTDispatchLock, DVTMutableOrderedDictionary, DVTObservingToken, DVTTextDocumentLocation, IDEConsoleAdaptor, IDELaunchSession, IDERunOperationWorker, NSArray, NSDate, NSDictionary, NSError, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 
 @interface DBGDebugSession : IDEDebugSession
 {
     NSMapTable *_breakpointsToTokenSets;
     NSMapTable *_locationsToTokenSets;
     NSMapTable *_watchpointsToTokenSets;
-    BOOL _debuggerShouldAttachToTarget;
-    NSMutableSet *_dataValuesObservers;
-    DVTMapTable *_breakpointsToIdentifiers;
-    DVTMapTable *_locationsToIdentifiers;
-    DVTMapTable *_watchpointsToIdentifiers;
+    NSMapTable *_breakpointsToIdentifiers;
+    NSMapTable *_locationsToIdentifiers;
+    NSMapTable *_watchpointsToIdentifiers;
     DVTDispatchLock *_breakpointsAndWatchpointsToIdentifiersLock;
-    NSMutableSet *_profileDataObservers;
     NSMutableArray *_CPUFirstIndicators;
     NSDictionary *_CPUDistribution;
     DVTMutableOrderedDictionary *_CPUUsagesForThreadDictionary;
@@ -31,13 +28,13 @@
     NSMutableArray *_memoryMeasurements;
     NSMutableArray *_energyMeasurements;
     int _logFD;
-    DVTObservingToken *_targetOutputStateObservingToken;
     DVTObservingToken *_targetControlStateObservingToken;
     DVTObservingToken *_breakpontsActivationObservingToken;
     DVTObservingToken *_breakpointListObserverToken;
-    DVTObservingToken *_hasExitCodeObserverToken;
+    BOOL _debuggerShouldAttachToTarget;
     int _state;
     int _coalescedState;
+    int _memoryDebuggingState;
     IDELaunchSession *_launchSession;
     DVTTextDocumentLocation *_instructionPointerLocation;
     IDERunOperationWorker *_debugLauncher;
@@ -70,6 +67,7 @@
 @property unsigned long long memoryAnonymousHigh; // @synthesize memoryAnonymousHigh=_memoryAnonymousHigh;
 @property unsigned long long memoryRPRVTLow; // @synthesize memoryRPRVTLow=_memoryRPRVTLow;
 @property unsigned long long memoryRPRVTHigh; // @synthesize memoryRPRVTHigh=_memoryRPRVTHigh;
+@property int memoryDebuggingState; // @synthesize memoryDebuggingState=_memoryDebuggingState;
 @property(readonly) NSDate *loggingInitializedDate; // @synthesize loggingInitializedDate=_loggingInitializedDate;
 @property(copy) NSError *alertError; // @synthesize alertError=_alertError;
 @property(copy) NSString *heapText; // @synthesize heapText=_heapText;
@@ -94,7 +92,6 @@
 - (id)launchSession;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (BOOL)_shouldIgnoreOutputExitString;
 @property(readonly) NSString *totalRunningTime;
 - (void)setCurrentEnergyMeasurement:(id)arg1;
 - (void)setCurrentMemoryMeasurement:(id)arg1;
@@ -105,9 +102,6 @@
 - (id)CPUUsageThreadNameForThreadID:(id)arg1;
 - (void)setCPUUsageThreadName:(id)arg1 forThreadID:(id)arg2;
 - (void)setCurrentCPUFirstIndicator:(id)arg1;
-- (void)deregisterProfileDataObserver:(id)arg1;
-- (void)registerProfileDataObserver:(id)arg1;
-@property(readonly) BOOL hasProfileDataObservers;
 - (BOOL)isWatchpointValid:(id)arg1;
 - (BOOL)isBreakpointValid:(id)arg1;
 - (void)setIdentifier:(unsigned long long)arg1 forWatchpoint:(id)arg2;
@@ -128,17 +122,14 @@
 - (id)commandsExpectingExpressions;
 - (BOOL)canContinueToLocation:(id)arg1 withinBlockAtRange:(struct _NSRange)arg2;
 - (void)forceRefreshPausedStates;
-- (id)localizedStringForState:(int)arg1;
 - (void)completeString:(id)arg1 resultHandler:(CDUnknownBlockType)arg2;
-- (void)deregisterDataValuesObserver:(id)arg1;
-- (void)registerDataValuesObserver:(id)arg1;
-@property(readonly) BOOL hasDataValuesObservers;
 - (id)supportedDataValueFormatsForDataValue:(id)arg1;
 - (BOOL)consoleShouldTrackInputHistory;
+- (void)evaluateExpression:(id)arg1 threadID:(unsigned long long)arg2 stackFrameID:(unsigned long long)arg3 queue:(id)arg4 options:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
 - (void)evaluateExpression:(id)arg1 threadID:(unsigned long long)arg2 stackFrameID:(unsigned long long)arg3 queue:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
-- (void)evaluateExpression:(id)arg1 threadID:(unsigned long long)arg2 stackFrameID:(unsigned long long)arg3 queue:(id)arg4 resultHandler:(CDUnknownBlockType)arg5;
 - (void)executeDebuggerCommand:(id)arg1 threadID:(unsigned long long)arg2 stackFrameID:(unsigned long long)arg3;
 - (id)verifyStackFrameForDisassembly:(id)arg1;
+- (void)removeToBeInvalidatedStackFramesForDisassembly:(id)arg1;
 - (BOOL)addStackFrameForDisassembly:(id)arg1;
 - (void)requestLoadDylibAtPath:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)requestMovePCInStackFrame:(id)arg1 toLineNumber:(unsigned long long)arg2;
@@ -165,16 +156,7 @@
 - (void)_delayedSetState;
 - (void)_recreateBreakpointIfNeccessary:(id)arg1;
 - (void)_createBreakpointIfNeccessary:(id)arg1;
-- (void)_handleTargetProcessStateChanged;
-- (void)_handleLaunchSessionTargetOutputStateChanged;
-- (void)_outputExitString;
-- (void)_invalidateAfterOutputExitString;
-- (void)_handleExceptionBreakpointExceptionNameChanged:(id)arg1;
-- (void)_handleExceptionBreakpointStopOnStyleChanged:(id)arg1;
-- (void)_handleExceptionBreakpointScopeChanged:(id)arg1;
-- (void)_handleSymbolicBreakpointModuleNameChanged:(id)arg1;
-- (void)_handleSymbolicBreakpointSymbolNameChanged:(id)arg1;
-- (void)_handleFileBreakpointLocationChanged:(id)arg1;
+- (void)_handleProcessStateChanged;
 - (void)_handleBreakpointIgnoreCountChanged:(id)arg1;
 - (void)_handleBreakpointConditionChanged:(id)arg1;
 - (void)_handleBreakpointEnablementChanged:(id)arg1;
@@ -191,7 +173,7 @@
 - (void)_addLocationObservers:(id)arg1;
 - (void)_removeBreakpointObservers:(id)arg1;
 - (void)_addBreakpointObservers:(id)arg1;
-- (void)setProcess:(id)arg1;
+@property(retain, nonatomic) DBGProcess *process; // @dynamic process;
 - (id)initWithDebugLauncher:(id)arg1;
 
 // Remaining properties

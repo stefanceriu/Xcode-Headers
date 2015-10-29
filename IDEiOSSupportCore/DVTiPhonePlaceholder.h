@@ -10,9 +10,8 @@
 {
 }
 
-- (id)name;
-- (id)nativeArchitecture;
-- (id)platform;
+- (id)proxiedDevices;
+- (BOOL)canBeWatchCompanion;
 
 @end
 

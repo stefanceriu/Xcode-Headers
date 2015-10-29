@@ -17,6 +17,10 @@
 }
 
 + (BOOL)finishCompilingDocument:(id)arg1 withOutputPath:(id)arg2 options:(id)arg3 error:(id *)arg4;
++ (BOOL)shouldCopyDeviceSpecificStringsFilesForDocument:(id)arg1;
++ (BOOL)shouldCompileDeviceSpecificTopLevelPackagesForDocument:(id)arg1;
++ (BOOL)copyStringsFiles:(id)arg1 forDocument:(id)arg2 compiledToPath:(id)arg3 addTargetDeviceSuffix:(BOOL)arg4 options:(id)arg5 error:(id *)arg6;
++ (BOOL)writeCompiledPackage:(id)arg1 toPath:(id)arg2 options:(id)arg3 error:(id *)arg4;
 + (id)compileContentsOfDocument:(id)arg1 options:(id)arg2 error:(id *)arg3;
 + (id)productPathExtension;
 + (void)initialize;

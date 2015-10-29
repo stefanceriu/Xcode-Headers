@@ -10,7 +10,9 @@
 {
 }
 
+- (void)verifyTextFieldPreferredMaxLayoutWidthUsingAutomaticMode;
 - (void)verifyTextViewFrames;
+- (void)restoreMenuDefaultLayoutDirection;
 - (id)verify;
 
 @end

@@ -7,55 +7,84 @@
 #import <IDEKit/IDEViewController.h>
 
 #import "DVTReplacementViewDelegate.h"
-#import "IDESharedTests_RootObject.h"
+#import "IDETestReport_RootObject.h"
 
-@class DVTBorderedView, DVTChoice, DVTObservingToken, DVTReplacementView, DVTTabChooserView, IDEEditorDocument, IDELogAndTestsEditor, IDESchemeActionRunDestinationRecord, NSArray, NSMutableSet, NSString;
+@class DVTBorderedView, DVTChoice, DVTObservingToken, DVTReplacementView, DVTTabChooserView, IDEEditorDocument, IDELogAndTestsEditor, IDESchemeActionRunDestinationRecord, NSArray, NSMutableSet, NSSet, NSString;
 
-@interface IDELogTestsViewController : IDEViewController <DVTReplacementViewDelegate, IDESharedTests_RootObject>
+@interface IDELogTestsViewController : IDEViewController <DVTReplacementViewDelegate, IDETestReport_RootObject>
 {
-    NSMutableSet *_passingTestGroups;
-    NSMutableSet *_failingTestGroups;
+    NSMutableSet *_passingTestGroups_inFlight;
+    NSMutableSet *_failingTestGroups_inFlight;
     NSMutableSet *_performanceMetrics;
-    NSArray *_performanceMetricsForDisplay;
     NSArray *_allTests;
     NSArray *_failingTests;
     NSArray *_passingTests;
     IDESchemeActionRunDestinationRecord *_runDestinationRecord;
     id <DVTCancellable> _buildLogObserver;
     DVTChoice *_testsChoice;
+    id _coverageReportGenerationObserver;
     IDEEditorDocument *_document;
     IDELogAndTestsEditor *_hostEditor;
-    NSArray *_currentSelectedItems;
+    NSArray *_currentlyExpandedTestItemIdentifiers;
+    NSArray *_currentlyExpandedCoverageItemIdentifiers;
     NSArray *_currentSelectedDocumentLocations;
+    NSArray *_currentSelectedItems;
+    NSArray *_performanceMetricsForDisplay;
+    NSSet *_passingTestGroups;
+    NSSet *_failingTestGroups;
     DVTBorderedView *_borderedView;
     DVTTabChooserView *_tabChooserView;
     DVTReplacementView *_replacementView;
     DVTObservingToken *_choiceUpdateToken;
+    DVTObservingToken *_currentSelectedDocumentLocationsToken;
+    DVTObservingToken *_currentSelectedItemsToken;
+    DVTObservingToken *_expandedCoverageItemsObservationToken;
+    DVTObservingToken *_expandedTestItemsObservationToken;
+    DVTChoice *_coverageTab;
 }
 
+@property(retain, nonatomic) DVTChoice *coverageTab; // @synthesize coverageTab=_coverageTab;
+@property(retain) DVTObservingToken *expandedTestItemsObservationToken; // @synthesize expandedTestItemsObservationToken=_expandedTestItemsObservationToken;
+@property(retain) DVTObservingToken *expandedCoverageItemsObservationToken; // @synthesize expandedCoverageItemsObservationToken=_expandedCoverageItemsObservationToken;
+@property(retain) DVTObservingToken *currentSelectedItemsToken; // @synthesize currentSelectedItemsToken=_currentSelectedItemsToken;
+@property(retain) DVTObservingToken *currentSelectedDocumentLocationsToken; // @synthesize currentSelectedDocumentLocationsToken=_currentSelectedDocumentLocationsToken;
 @property(retain) DVTObservingToken *choiceUpdateToken; // @synthesize choiceUpdateToken=_choiceUpdateToken;
 @property __weak DVTReplacementView *replacementView; // @synthesize replacementView=_replacementView;
 @property __weak DVTTabChooserView *tabChooserView; // @synthesize tabChooserView=_tabChooserView;
 @property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
-@property(readonly, copy, nonatomic) NSArray *currentSelectedDocumentLocations; // @synthesize currentSelectedDocumentLocations=_currentSelectedDocumentLocations;
-@property(readonly, copy, nonatomic) NSArray *currentSelectedItems; // @synthesize currentSelectedItems=_currentSelectedItems;
+@property(copy, nonatomic) NSSet *failingTestGroups; // @synthesize failingTestGroups=_failingTestGroups;
+@property(copy, nonatomic) NSSet *passingTestGroups; // @synthesize passingTestGroups=_passingTestGroups;
+@property(copy, nonatomic) NSArray *performanceMetricsForDisplay; // @synthesize performanceMetricsForDisplay=_performanceMetricsForDisplay;
+@property(copy, nonatomic) NSArray *currentSelectedItems; // @synthesize currentSelectedItems=_currentSelectedItems;
+@property(retain, nonatomic) NSArray *currentSelectedDocumentLocations; // @synthesize currentSelectedDocumentLocations=_currentSelectedDocumentLocations;
+@property(retain, nonatomic) NSArray *currentlyExpandedCoverageItemIdentifiers; // @synthesize currentlyExpandedCoverageItemIdentifiers=_currentlyExpandedCoverageItemIdentifiers;
+@property(retain, nonatomic) NSArray *currentlyExpandedTestItemIdentifiers; // @synthesize currentlyExpandedTestItemIdentifiers=_currentlyExpandedTestItemIdentifiers;
 @property __weak IDELogAndTestsEditor *hostEditor; // @synthesize hostEditor=_hostEditor;
 @property(retain, nonatomic) IDEEditorDocument *document; // @synthesize document=_document;
 - (void).cxx_destruct;
-- (id)ide_sharedTests_includeGroupsWithPassedTests:(BOOL)arg1 includeFailingTests:(BOOL)arg2 includeOnlyPerfTests:(BOOL)arg3;
+@property(readonly, nonatomic) BOOL ide_testReport_test_lazyTestRunFetchesUseNewBatchAPI;
+@property(readonly, nonatomic) BOOL ide_testReport_test_fetchesTestRunsLazily;
+- (id)ide_testReport_rootObject_includeGroupsWithPassedTests:(BOOL)arg1 includeFailingTests:(BOOL)arg2 includeOnlyPerfTests:(BOOL)arg3;
 - (id)testGroupsIncludePassingTests:(BOOL)arg1 includeFailingTests:(BOOL)arg2 includeOnlyPerfTests:(BOOL)arg3;
-@property(readonly, copy, nonatomic) NSArray *ide_sharedTests_perfMetricNames;
+@property(readonly, copy, nonatomic) NSArray *ide_testReport_rootObject_perfMetricNames;
+@property(readonly, copy, nonatomic) NSArray *ide_testReport_rootObject_devices;
+- (id)coverageReportViewController;
+- (id)coverageResultsViewController;
 - (id)sharedTestsViewController;
 - (id)logEditor;
+- (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
-- (void)processTestSummaryGroup:(id)arg1 parentGroup:(id)arg2;
-- (void)processTestSummary:(id)arg1 logTestsViewTestGroup:(id)arg2;
-- (void)processTestableSummary:(id)arg1 logTestsViewTestGroup:(id)arg2 parentGroup:(id)arg3;
+- (void)processTestSummaryGroup:(id)arg1 testableSummary:(id)arg2 parentGroup:(id)arg3;
+- (void)processTestSummary:(id)arg1 testableSummary:(id)arg2 logTestsViewTestGroup:(id)arg3;
+- (void)processTestableSummary:(id)arg1 testableSummary:(id)arg2 logTestsViewTestGroup:(id)arg3 parentGroup:(id)arg4;
 - (void)refreshTestableDataFromDocument;
 - (void)showTestForClassName:(id)arg1 methodName:(id)arg2;
 - (void)showLogEditor;
 - (void)primitiveInvalidate;
 - (void)viewWillUninstall;
+- (void)viewDidInstall;
+@property(readonly) NSString *currentSelectedChoiceIdentifier;
+- (void)selectChoiceWithIdentifier:(id)arg1;
 - (void)loadView;
 
 // Remaining properties

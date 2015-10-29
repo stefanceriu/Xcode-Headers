@@ -6,12 +6,15 @@
 
 #import "DVTToolbarViewController.h"
 
+@class IDEActivityView;
+
 @interface _IDEActivityViewToolbarViewController : DVTToolbarViewController
 {
+    IDEActivityView *_activityView;
 }
 
+- (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (id)invalidateableView;
 - (id)initWithToolbarItemIdentifier:(id)arg1 window:(id)arg2;
 
 @end

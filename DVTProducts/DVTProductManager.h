@@ -39,10 +39,9 @@
 - (void)_handleLocationErrors:(id)arg1;
 - (void)_handleLocationErrors:(id)arg1 fromSource:(id)arg2;
 - (void)_ensureProductHasCrashPointSources:(id)arg1;
-- (void)_ensureProductsHasCrashPointSources:(id)arg1;
+- (void)_ensureProductVersionHasCrashPointSources:(id)arg1 forProduct:(id)arg2;
 - (void)_setProductOwnershipAndLocationResult:(id)arg1 forSource:(id)arg2;
 - (void)_startLocating;
-- (id)_cacheLock;
 - (void)refreshProducts;
 - (id)sources;
 - (void)primitiveInvalidate;

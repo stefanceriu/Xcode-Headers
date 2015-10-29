@@ -45,7 +45,6 @@
 @property BOOL inProgress; // @synthesize inProgress=_inProgress;
 - (id)successImage;
 - (void)endSheet;
-- (void)alertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)displayError:(id)arg1;
 - (void)beginSheetForWindow:(id)arg1;
 - (id)windowNibName;

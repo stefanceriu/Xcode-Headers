@@ -12,6 +12,7 @@
 {
     IDEAttributedStringControl *_attributedStringControl;
     IDEInspectorKeyPath *_valueKeyPath;
+    IDEInspectorKeyPath *_fontDataSourceKeyPath;
 }
 
 - (void).cxx_destruct;

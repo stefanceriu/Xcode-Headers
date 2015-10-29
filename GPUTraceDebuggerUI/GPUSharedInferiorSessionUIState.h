@@ -14,6 +14,7 @@
     NSMutableDictionary *_textStorageDict;
     NSMutableDictionary *_resourceAttributesDict;
     DVTObservingToken *_traceSessionObservation;
+    DVTObservingToken *_inferiorSessionToken;
     BOOL _displayedOnceInNavigator;
 }
 

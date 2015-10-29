@@ -23,7 +23,7 @@
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 @property(nonatomic) BOOL temporarilyCreatedForGeniusFinder; // @synthesize temporarilyCreatedForGeniusFinder=_temporarilyCreatedForGeniusFinder;
 @property(copy, nonatomic) NSArray *disassemblyItems; // @synthesize disassemblyItems=_disassemblyItems;
-@property(readonly) DBGThread *thread; // @synthesize thread=_thread;
+@property(retain) DBGThread *thread; // @synthesize thread=_thread;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 @property(readonly) NSImage *navigableItem_image;

@@ -24,7 +24,7 @@
 - (id)presetFormatters;
 
 // Remaining properties
-@property(readonly) IBInspectorViewController *inspectorController;
+@property(readonly) IBInspectorViewController *inspectorController; // @dynamic inspectorController;
 
 @end
 

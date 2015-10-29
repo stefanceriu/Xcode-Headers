@@ -6,19 +6,19 @@
 
 #import <IDEKit/IDESourceControlMultiChooserItem.h>
 
-@class IDESourceControlBranch, IDESourceControlRepository, NSString;
+@class DVTSourceControlBranch, DVTSourceControlRemoteRepository, NSDictionary;
 
 @interface IDESourceControlRepositoryChooserItem : IDESourceControlMultiChooserItem
 {
-    IDESourceControlBranch *_currentBranch;
-    NSString *_trackingRemoteName;
-    NSString *_trackingBranchName;
-    IDESourceControlRepository *_selectedRemote;
-    IDESourceControlBranch *_selectedBranch;
+    DVTSourceControlBranch *_currentBranch;
+    DVTSourceControlBranch *_trackingBranch;
+    DVTSourceControlRemoteRepository *_selectedRemote;
+    DVTSourceControlBranch *_selectedBranch;
+    NSDictionary *_remotes;
 }
 
-@property(retain) IDESourceControlBranch *selectedBranch; // @synthesize selectedBranch=_selectedBranch;
-@property(retain) IDESourceControlRepository *selectedRemote; // @synthesize selectedRemote=_selectedRemote;
+@property(retain) DVTSourceControlBranch *selectedBranch; // @synthesize selectedBranch=_selectedBranch;
+@property(retain) DVTSourceControlRemoteRepository *selectedRemote; // @synthesize selectedRemote=_selectedRemote;
 - (void).cxx_destruct;
 - (void)setSelectedItem:(id)arg1;
 - (void)fetchRemotesWithCompletionBlock:(CDUnknownBlockType)arg1;

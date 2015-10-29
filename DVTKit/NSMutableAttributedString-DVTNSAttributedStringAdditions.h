@@ -7,6 +7,7 @@
 #import "NSMutableAttributedString.h"
 
 @interface NSMutableAttributedString (DVTNSAttributedStringAdditions)
+- (void)dvt_urlifyAttributedStringWithLinkColor:(id)arg1;
 - (void)dvt_urlifyAttributedString;
 @end
 

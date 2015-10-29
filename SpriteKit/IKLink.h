@@ -25,7 +25,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) float angleInitial; // @synthesize angleInitial=_angleInitial;
 @property(nonatomic) union _GLKVector2 position; // @synthesize position=_position;
 @property(retain, nonatomic) SKNode *node; // @synthesize node=_node;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)rotateByAngle:(float)arg1;
 - (double)normalizeAngle:(double)arg1;

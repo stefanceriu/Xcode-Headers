@@ -7,7 +7,7 @@
 #import "IBDocumentLayoutConstraintAbstraction.h"
 
 @interface IBDocumentLayoutConstraintAbstraction (IBDocumentLayoutConstraintAbstraction)
-+ (id)ibDefaultImageForInstance:(id)arg1;
++ (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
 - (id)ibMemberToHighlightInUI;
 - (id)ibDefaultLabel;
 @end

@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <XCSCore/XCSObject.h>
 
 @class NSArray, NSNumber, NSString, XCSTestResult;
 
-@interface XCSPerfMetricTestResult : NSObject
+@interface XCSPerfMetricTestResult : XCSObject
 {
     BOOL _passed;
     NSString *name;
@@ -27,7 +27,7 @@
     unsigned long long _deviceCount;
 }
 
-+ (id)perfMetricResultWithTestResult:(id)arg1 name:(id)arg2 identifier:(id)arg3 type:(unsigned long long)arg4 unit:(id)arg5 iterations:(id)arg6 baseline:(id)arg7 maxPercentRegression:(double)arg8 maxPercentRelativeStandardDeviation:(double)arg9 hasPassed:(BOOL)arg10;
++ (id)perfMetricResultWithTestResult:(id)arg1 name:(id)arg2 identifier:(id)arg3 type:(unsigned long long)arg4 unit:(id)arg5 iterations:(id)arg6 baseline:(id)arg7 maxPercentRegression:(double)arg8 maxPercentRelativeStandardDeviation:(double)arg9 hasPassed:(BOOL)arg10 validationErrors:(id *)arg11;
 @property(nonatomic) unsigned long long deviceCount; // @synthesize deviceCount=_deviceCount;
 @property(nonatomic) __weak XCSTestResult *testResult; // @synthesize testResult=_testResult;
 @property(retain, nonatomic) NSArray *iterations; // @synthesize iterations=_iterations;
@@ -46,12 +46,12 @@
 - (void).cxx_destruct;
 - (void)_setRelativeStandardDeviationWithIterations:(struct NSArray *)arg1;
 - (void)_setAverageMinMaxForPerfMetricWithIterations:(struct NSArray *)arg1;
-- (BOOL)_validateWithTestResult:(id)arg1 name:(id)arg2 identifier:(id)arg3 type:(unsigned long long)arg4 unit:(id)arg5 iterations:(id)arg6 baseline:(id)arg7 hasPassed:(BOOL)arg8;
+- (BOOL)_validateWithTestResult:(id)arg1 name:(id)arg2 identifier:(id)arg3 type:(unsigned long long)arg4 unit:(id)arg5 iterations:(id)arg6 baseline:(id)arg7 hasPassed:(BOOL)arg8 validationErrors:(id *)arg9;
 - (id)saveRepresentationHumanReadable:(BOOL)arg1;
 - (id)saveRepresentation;
 - (id)dictionaryRepresentation;
 - (id)description;
-- (id)initWithTestResult:(id)arg1 name:(id)arg2 identifier:(id)arg3 type:(unsigned long long)arg4 unit:(id)arg5 iterations:(id)arg6 baseline:(id)arg7 maxPercentRegression:(double)arg8 maxRelativeStandardDeviation:(double)arg9 hasPassed:(BOOL)arg10;
+- (id)initWithTestResult:(id)arg1 name:(id)arg2 identifier:(id)arg3 type:(unsigned long long)arg4 unit:(id)arg5 iterations:(id)arg6 baseline:(id)arg7 maxPercentRegression:(double)arg8 maxRelativeStandardDeviation:(double)arg9 hasPassed:(BOOL)arg10 validationErrors:(id *)arg11;
 
 @end
 

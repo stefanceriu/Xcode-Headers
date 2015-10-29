@@ -10,9 +10,8 @@
 {
 }
 
-+ (id)boldToolTipFont;
++ (id)toolTipFontBold;
 + (id)toolTipFont;
-+ (id)attributedToolTipStringForString:(id)arg1;
 + (struct CGPoint)toolTipPositionForMouseLocation:(struct CGPoint)arg1;
 + (void)orderOutToolTip;
 + (void)fadeOut:(id)arg1;

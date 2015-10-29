@@ -6,7 +6,7 @@
 
 #import <IBFoundation/IBICCatalogMutator.h>
 
-@class IBICAbstractCatalogItem, NSData, NSString;
+@class IBICAbstractCatalogItem, NSData, NSNumber, NSString;
 
 @interface IBICRemoveMutator : IBICCatalogMutator
 {
@@ -19,6 +19,7 @@
     BOOL _wasBrokenReference;
     NSData *_pendingManifestData;
     NSString *_pendingManifestPath;
+    NSNumber *_originalIndex;
 }
 
 - (void).cxx_destruct;

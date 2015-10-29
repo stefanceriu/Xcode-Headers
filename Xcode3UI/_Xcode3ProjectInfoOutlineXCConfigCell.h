@@ -13,7 +13,6 @@
     NSImage *_image;
 }
 
-@property(copy) NSImage *image; // @synthesize image=_image;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)_drawIndicatorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
@@ -21,6 +20,8 @@
 - (struct CGRect)_computeTitleRectForAttributedTitleAndImageRect:(struct CGRect)arg1 inFrame:(struct CGRect)arg2;
 - (struct CGRect)_computeImageRectInFrame:(struct CGRect)arg1;
 - (id)initTextCell:(id)arg1 pullsDown:(BOOL)arg2;
+- (id)image;
+- (void)setImage:(id)arg1;
 
 @end
 

@@ -33,6 +33,7 @@
 }
 
 + (void)_logMissingProviderForFileDataType:(id)arg1;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (long long)defaultMaxConcurrentOperationCount;
 + (id)logAspect;
 + (void)initialize;
@@ -67,6 +68,7 @@
 - (void)_scheduleSaveForTypes:(unsigned long long)arg1;
 - (void)_saveTextIndexForTypes:(unsigned long long)arg1;
 - (void)_loadTextIndex;
+- (CDUnknownBlockType)_validationBlock;
 - (void)primitiveInvalidate;
 - (void)dealloc;
 - (id)initWithWorkspace:(id)arg1;

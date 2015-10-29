@@ -16,6 +16,7 @@
 
 @interface IDEPreferencesController : NSWindowController <NSToolbarDelegate, NSWindowRestoration, DVTStatefulObject, DVTStateRepositoryDelegate, DVTReplacementViewDelegate>
 {
+    struct CGRect _targetWindowFrame;
     DVTReplacementView *_paneReplacementView;
     DVTExtension *_currentExtension;
     DVTStateRepository *_stateRepository;
@@ -26,8 +27,8 @@
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (void)restoreWindowWithIdentifier:(id)arg1 state:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 + (id)defaultPreferencesController;
-@property(readonly) DVTDelayedInvocation *stateSavingInvocation; // @synthesize stateSavingInvocation=_stateSavingInvocation;
 @property(retain) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
+@property(readonly) DVTDelayedInvocation *stateSavingInvocation; // @synthesize stateSavingInvocation=_stateSavingInvocation;
 @property(readonly) DVTStateRepository *stateRepository; // @synthesize stateRepository=_stateRepository;
 @property(retain) DVTExtension *currentExtension; // @synthesize currentExtension=_currentExtension;
 @property(retain) DVTReplacementView *paneReplacementView; // @synthesize paneReplacementView=_paneReplacementView;
@@ -39,6 +40,7 @@
 - (void)revertStateWithDictionary:(id)arg1;
 - (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
+- (void)replacementView:(id)arg1 willInstallViewController:(id)arg2;
 - (void)stateRepositoryDidChange:(id)arg1;
 - (void)selectPreviousTab:(id)arg1;
 - (void)selectNextTab:(id)arg1;

@@ -6,43 +6,45 @@
 
 #import "DVTViewController.h"
 
-#import "XCSUIStatusBadgeClickHandler.h"
+@class DVTScrollView, NSButton, NSPopUpButton, NSTextField, XCSBot, XCSUIBotSummaryStatsFetcher, XCSUIStatusBadge, XCSUIStatusBadgesView;
 
-@class NSPopUpButton, NSString, NSTextField, XCSBot, XCSUIStatusBadge, XCSUIStatusBadgesView;
-
-@interface XCSUIBotSummaryStatusAndIssueCountsViewController : DVTViewController <XCSUIStatusBadgeClickHandler>
+@interface XCSUIBotSummaryStatusAndIssueCountsViewController : DVTViewController
 {
     XCSUIStatusBadge *_commitsStatusBadge;
     XCSUIStatusBadge *_newTestsBadge;
     XCSUIStatusBadge *_issueAverageBadge;
     XCSUIStatusBadge *_streakBadge;
+    XCSUIStatusBadge *_codeCoverageBadge;
+    XCSUIBotSummaryStatsFetcher *_statsFetcher;
     XCSBot *_bot;
+    NSButton *_botDetailsButton;
     NSTextField *_schemeField;
     NSTextField *_latestIntegration;
     NSTextField *_duration;
     XCSUIStatusBadgesView *_issuesBadgeView;
     NSPopUpButton *_statsTimePeriodPopUpButton;
+    DVTScrollView *_issuesBadgeScrollView;
 }
 
+@property __weak DVTScrollView *issuesBadgeScrollView; // @synthesize issuesBadgeScrollView=_issuesBadgeScrollView;
 @property __weak NSPopUpButton *statsTimePeriodPopUpButton; // @synthesize statsTimePeriodPopUpButton=_statsTimePeriodPopUpButton;
 @property __weak XCSUIStatusBadgesView *issuesBadgeView; // @synthesize issuesBadgeView=_issuesBadgeView;
 @property __weak NSTextField *duration; // @synthesize duration=_duration;
 @property __weak NSTextField *latestIntegration; // @synthesize latestIntegration=_latestIntegration;
 @property __weak NSTextField *schemeField; // @synthesize schemeField=_schemeField;
+@property __weak NSButton *botDetailsButton; // @synthesize botDetailsButton=_botDetailsButton;
 @property(retain, nonatomic) XCSBot *bot; // @synthesize bot=_bot;
 - (void).cxx_destruct;
+- (void)copyBotID:(id)arg1;
+- (void)toggleBotID:(id)arg1;
 - (void)statsTimePeriodPopupChanged:(id)arg1;
 - (void)fetchStatsSinceDate:(id)arg1;
 - (void)_updateBotStatsBadgesWithStats:(id)arg1;
 - (void)refreshUI;
 - (void)primitiveInvalidate;
+- (void)setIssuesBadgeViewFrameWidth;
+- (void)issuesBadgeScrollViewFrameDidChange:(id)arg1;
 - (void)loadView;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

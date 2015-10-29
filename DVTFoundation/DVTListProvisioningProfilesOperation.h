@@ -6,11 +6,16 @@
 
 #import <DVTFoundation/DVTTeamOperationBase.h>
 
+@class NSSet;
+
 @interface DVTListProvisioningProfilesOperation : DVTTeamOperationBase
 {
+    NSSet *_profileRecords;
 }
 
 + (id)_operationWithSingleTeamToken:(id)arg1 andPlatform:(id)arg2;
+@property(retain, nonatomic) NSSet *profileRecords; // @synthesize profileRecords=_profileRecords;
+- (void).cxx_destruct;
 
 @end
 

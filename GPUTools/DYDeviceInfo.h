@@ -20,6 +20,7 @@
     NSString *_productType;
     NSString *_version;
     NSString *_build;
+    NSString *_metalVersion;
     DYGPUToolsVersionInfo *_gputoolsVersionInfo;
     NSArray *_supportedGraphicsAPIInfos;
     CDStruct_e4c1f684 _mainScreenDescriptor;
@@ -30,6 +31,7 @@
 @property(nonatomic) CDStruct_e4c1f684 mainScreenDescriptor; // @synthesize mainScreenDescriptor=_mainScreenDescriptor;
 @property(retain, nonatomic) DYGPUToolsVersionInfo *gputoolsVersionInfo; // @synthesize gputoolsVersionInfo=_gputoolsVersionInfo;
 @property(nonatomic) unsigned int nativePointerSize; // @synthesize nativePointerSize=_nativePointerSize;
+@property(retain, nonatomic) NSString *metalVersion; // @synthesize metalVersion=_metalVersion;
 @property(retain, nonatomic) NSString *build; // @synthesize build=_build;
 @property(retain, nonatomic) NSString *version; // @synthesize version=_version;
 @property(retain, nonatomic) NSString *productType; // @synthesize productType=_productType;
@@ -39,7 +41,7 @@
 @property(nonatomic) int platform; // @synthesize platform=_platform;
 - (BOOL)supportsCapabilitiesOfGraphicsAPI:(id)arg1 allowedClass:(Class)arg2;
 - (BOOL)versionIsOlderThan:(id)arg1;
-@property(readonly, nonatomic) BOOL isiOSPlatform;
+@property(readonly, nonatomic) BOOL isEmbeddedPlatform;
 @property(readonly, nonatomic) BOOL sharedPermanentIdentifier; // @dynamic sharedPermanentIdentifier;
 - (void)encodeWithCoder:(id)arg1;
 - (id)debugDescription;

@@ -6,22 +6,29 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class DVTSourceControlAuthor, DVTSourceControlRevision, DVTSourceControlWorkingCopy, NSDate, NSDictionary, NSString;
 
-@interface DVTSourceControlLogItem : NSObject <NSSecureCoding>
+@interface DVTSourceControlLogItem : NSObject <NSSecureCoding, NSCopying>
 {
+    BOOL _complete;
     DVTSourceControlAuthor *_author;
     DVTSourceControlRevision *_revision;
     NSDate *_date;
     NSString *_message;
     NSDictionary *_pathsWithStatus;
     DVTSourceControlWorkingCopy *_workingCopy;
+    NSDictionary *_fileRenames;
+    NSString *_currentFilepath;
 }
 
 + (id)sharedUnversionedLogItem;
 + (BOOL)supportsSecureCoding;
+@property(getter=isComplete) BOOL complete; // @synthesize complete=_complete;
+@property(readonly) NSString *currentFilepath; // @synthesize currentFilepath=_currentFilepath;
+@property(retain, nonatomic) NSDictionary *fileRenames; // @synthesize fileRenames=_fileRenames;
 @property(retain) DVTSourceControlWorkingCopy *workingCopy; // @synthesize workingCopy=_workingCopy;
 @property(retain) NSDictionary *pathsWithStatus; // @synthesize pathsWithStatus=_pathsWithStatus;
 @property(retain) NSString *message; // @synthesize message=_message;
@@ -29,10 +36,18 @@
 @property(retain) DVTSourceControlRevision *revision; // @synthesize revision=_revision;
 @property(retain) DVTSourceControlAuthor *author; // @synthesize author=_author;
 - (void).cxx_destruct;
+- (long long)compareToLogItem:(id)arg1;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly) NSString *identifier;
 - (id)description;
+- (id)loadCompleteLogItemWithCompletionBlock:(CDUnknownBlockType)arg1;
 @property(readonly, getter=isUnversionedLogItem) BOOL unversionedLogItem;
+- (id)initWithAuthor:(id)arg1 revision:(id)arg2 date:(id)arg3 message:(id)arg4 workingCopy:(id)arg5;
+- (id)initWithAuthor:(id)arg1 revision:(id)arg2 date:(id)arg3 message:(id)arg4 pathsWithStatus:(id)arg5 workingCopy:(id)arg6 fileRenames:(id)arg7;
 - (id)initWithAuthor:(id)arg1 revision:(id)arg2 date:(id)arg3 message:(id)arg4 pathsWithStatus:(id)arg5 workingCopy:(id)arg6;
+- (id)initIncompleteLogItemWithAuthor:(id)arg1 revision:(id)arg2 date:(id)arg3 workingCopy:(id)arg4;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 

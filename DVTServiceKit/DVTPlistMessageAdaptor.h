@@ -22,7 +22,7 @@
 - (id)readRequestFromCommunicationSocket:(id)arg1 error:(id *)arg2;
 - (void)connectionHasDataAvailable:(id)arg1;
 - (void)connectionAccepted:(id)arg1;
-- (void)registerForEvents:(id)arg1;
+- (void)registerForEventsWithSockets:(id)arg1;
 - (id)init;
 
 @end

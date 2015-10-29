@@ -8,19 +8,19 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTHashTable, DVTStackBacktrace, IDEPathCell, NSSet, NSString;
+@class DVTStackBacktrace, IDEPathCell, NSHashTable, NSSet, NSString;
 
 @interface IDEPathCellNavigableItemObserver : NSObject <DVTInvalidation>
 {
     IDEPathCell *_owner;
-    DVTHashTable *_observedItems;
+    NSHashTable *_observedItems;
 }
 
 + (void)initialize;
 - (void).cxx_destruct;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)tearDownObservingForItems:(id)arg1;
-- (void)setupObservingForItems:(id)arg1;
+- (void)_tearDownObservingForItems:(id)arg1;
+- (void)_setupObservingForItems:(id)arg1;
 @property(readonly) NSSet *observedItems;
 - (void)primitiveInvalidate;
 - (id)initWithOwner:(id)arg1;

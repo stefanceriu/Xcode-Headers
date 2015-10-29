@@ -8,6 +8,7 @@
 
 @interface IDESourceControlDocumentLocation (IDESourceControlDocumentLocationAdditions)
 - (id)exportDocumentUsingTemplateDocument:(id)arg1 completionBlock:(CDUnknownBlockType)arg2 primaryBehavior:(BOOL)arg3;
+- (id)exportDocumentUsingTemplateDocument:(id)arg1 fromWorkspace:(id)arg2 completionBlock:(CDUnknownBlockType)arg3 primaryBehavior:(BOOL)arg4;
 - (id)_exportTmpVersionFromOriginalDocument:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 @end
 

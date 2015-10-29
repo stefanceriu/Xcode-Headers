@@ -26,6 +26,7 @@
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (void)cancel;
 - (id)initWithInterval:(double)arg1 leeway:(double)arg2 andCallback:(CDUnknownBlockType)arg3;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -17,6 +17,7 @@
 @property(nonatomic) BOOL drawsWithActiveAppearance; // @synthesize drawsWithActiveAppearance=_drawsWithActiveAppearance;
 - (void).cxx_destruct;
 - (id)preparedCellAtColumn:(long long)arg1 row:(long long)arg2;
+- (BOOL)shouldDrawRowFocusedActiveAndSelected:(long long)arg1;
 - (void)viewWillDraw;
 - (void)highlightSelectionInClipRect:(struct CGRect)arg1;
 - (struct CGRect)highlightRectForRow:(long long)arg1;

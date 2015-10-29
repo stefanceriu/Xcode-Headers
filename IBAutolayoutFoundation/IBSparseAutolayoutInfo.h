@@ -8,11 +8,10 @@
 
 #import "IBAutolayoutInfoProvider.h"
 #import "IBBinaryArchiving.h"
-#import "NSCoding.h"
 
 @class IBMutableIdentityDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 
-@interface IBSparseAutolayoutInfo : NSObject <IBAutolayoutInfoProvider, NSCoding, IBBinaryArchiving>
+@interface IBSparseAutolayoutInfo : NSObject <IBAutolayoutInfoProvider, IBBinaryArchiving>
 {
     IBMutableIdentityDictionary *_parentByObjectMap;
     IBMutableIdentityDictionary *_childrenByObjectMap;
@@ -20,22 +19,18 @@
     NSMutableDictionary *_propertiesByDomainThenObjectMap;
     NSMutableSet *_objectsWithAnyViewPropertiesSet;
     NSMutableArray *_arbitrationUnits;
-    BOOL _allowsIllegalAutolayoutStates;
     Class _autolayoutFrameDecisionDriverClass;
     long long _userInterfaceLayoutDirection;
     Class _symbolicLayoutConstantClass;
-    Class _layoutConstraintClass;
     Class _layoutConstantClass;
     Class _autolayoutEngineClass;
     Class _arbitrationUnitClass;
 }
 
 + (id)sparseInfoByTransformingObjectsInSparseInfo:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
-@property(readonly, nonatomic) BOOL allowsIllegalAutolayoutStates; // @synthesize allowsIllegalAutolayoutStates=_allowsIllegalAutolayoutStates;
 @property(readonly, nonatomic) Class arbitrationUnitClass; // @synthesize arbitrationUnitClass=_arbitrationUnitClass;
 @property(readonly, nonatomic) Class autolayoutEngineClass; // @synthesize autolayoutEngineClass=_autolayoutEngineClass;
 @property(readonly, nonatomic) Class layoutConstantClass; // @synthesize layoutConstantClass=_layoutConstantClass;
-@property(readonly, nonatomic) Class layoutConstraintClass; // @synthesize layoutConstraintClass=_layoutConstraintClass;
 @property(readonly, nonatomic) Class symbolicLayoutConstantClass; // @synthesize symbolicLayoutConstantClass=_symbolicLayoutConstantClass;
 @property(readonly, nonatomic) long long userInterfaceLayoutDirection; // @synthesize userInterfaceLayoutDirection=_userInterfaceLayoutDirection;
 @property(readonly, nonatomic) Class autolayoutFrameDecisionDriverClass; // @synthesize autolayoutFrameDecisionDriverClass=_autolayoutFrameDecisionDriverClass;
@@ -45,6 +40,22 @@
 - (id)arbitrationUnitForObject:(id)arg1;
 - (id)allArbitrationUnits;
 - (void)registerArbitrationUnit:(id)arg1;
+- (void)setPriorityForPlaceholderAmbiguousSubviewVerticalConstraints:(double)arg1 forView:(id)arg2;
+- (double)priorityForPlaceholderAmbiguousSubviewVerticalConstraintsForView:(id)arg1;
+- (void)setPriorityForPlaceholderAmbiguousSubviewHorizontalConstraints:(double)arg1 forView:(id)arg2;
+- (double)priorityForPlaceholderAmbiguousSubviewHorizontalConstraintsForView:(id)arg1;
+- (void)setPriorityForPlaceholderUninitializedSubviewVerticalConstraints:(double)arg1 forView:(id)arg2;
+- (double)priorityForPlaceholderUninitializedSubviewVerticalConstraintsForView:(id)arg1;
+- (void)setPriorityForPlaceholderUninitializedSubviewHorizontalConstraints:(double)arg1 forView:(id)arg2;
+- (double)priorityForPlaceholderUninitializedSubviewHorizontalConstraintsForView:(id)arg1;
+- (void)setView:(id)arg1 shouldInstallPlaceholderSizeConstraintsOnSubviewInsteadOfReceiver:(BOOL)arg2;
+- (BOOL)viewShouldInstallPlaceholderSizeConstraintsOnSubviewInsteadOfReceiver:(id)arg1;
+- (void)setView:(id)arg1 shouldGeneratePlaceHolderSizeConstraintsWhenAmbiguous:(BOOL)arg2;
+- (BOOL)viewShouldGeneratePlaceholderSizeConstraintsWhenAmbiguous:(id)arg1;
+- (void)setView:(id)arg1 shouldGeneratePlaceholderSizeConstraintsForUninitializedSubviews:(BOOL)arg2;
+- (BOOL)viewShouldGeneratePlaceholderSizeConstraintsForUninitializedSubviews:(id)arg1;
+- (void)setView:(id)arg1 shouldGeneratePlaceholderPositionConstraintsForUninitializedSubviews:(BOOL)arg2;
+- (BOOL)viewShouldGeneratePlaceholderPositionConstraintsForUninitializedSubviews:(id)arg1;
 - (void)setView:(id)arg1 hasAnyAmbiguity:(BOOL)arg2;
 - (BOOL)viewHasAnyAmbiguity:(id)arg1;
 - (void)setView:(id)arg1 hasCandidateReferencingConstraints:(BOOL)arg2;
@@ -71,6 +82,8 @@
 - (unsigned long long)customSubviewLayoutStrategyForView:(id)arg1;
 - (void)setInsetToDesignableContentArea:(CDStruct_c519178c)arg1 forView:(id)arg2;
 - (CDStruct_c519178c)insetToDesignableContentAreaForView:(id)arg1;
+- (void)setView:(id)arg1 derivesDesignTimeDefaultIntrinsicContentSize:(BOOL)arg2;
+- (BOOL)viewDerivesDesignTimeDefaultIntrinsicContentSize:(id)arg1;
 - (void)setView:(id)arg1 derivesInternalConstraintsBasedUponInitialFrameSize:(BOOL)arg2;
 - (BOOL)viewDerivesInternalConstraintsBasedUponInitialFrameSize:(id)arg1;
 - (void)setViewWithSuperviewOwnedLayout:(id)arg1 allowsSizingConstraints:(BOOL)arg2;
@@ -83,6 +96,7 @@
 - (id)containerWidgetTypeForView:(id)arg1;
 - (void)setWidgetType:(id)arg1 forView:(id)arg2;
 - (id)widgetTypeForView:(id)arg1;
+- (id)layoutRuleWidgetTypePrefix;
 - (id)objectsFromAncestor:(id)arg1 toObject:(id)arg2;
 - (id)topLevelObjectForObject:(id)arg1;
 - (id)topLevelObjects;
@@ -99,10 +113,8 @@
 - (id)sparseInfoOfClass:(Class)arg1 byTransformingObjectsUsingBlock:(CDUnknownBlockType)arg2;
 - (id)sparseInfoByTransformingObjectsUsingBlock:(CDUnknownBlockType)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
-- (id)initWithCoder:(id)arg1;
-- (id)initWithUserInterfaceLayoutDirection:(long long)arg1 layoutConstraintClass:(Class)arg2 layoutConstantClass:(Class)arg3 symbolicLayoutConstantClass:(Class)arg4 arbitrationUnitClass:(Class)arg5 autolayoutEngineClass:(Class)arg6 autolayoutFrameDecisionDriverClass:(Class)arg7 allowsIllegalAutolayoutStates:(BOOL)arg8;
+- (id)initWithUserInterfaceLayoutDirection:(long long)arg1 layoutConstantClass:(Class)arg2 symbolicLayoutConstantClass:(Class)arg3 arbitrationUnitClass:(Class)arg4 autolayoutEngineClass:(Class)arg5 autolayoutFrameDecisionDriverClass:(Class)arg6;
 - (id)init;
 
 // Remaining properties

@@ -35,6 +35,7 @@
 - (id)binding;
 - (id)category;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)description;
 - (BOOL)isEqual:(id)arg1;
 - (id)initWithDictionary:(id)arg1 category:(id)arg2;
 

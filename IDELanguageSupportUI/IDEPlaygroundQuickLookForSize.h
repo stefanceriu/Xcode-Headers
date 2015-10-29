@@ -17,6 +17,7 @@
 - (id)quickLookViewForUnadornedView;
 - (id)quickLookViewForResultsView;
 - (id)quickLookViewForNaturalSize;
+@property(readonly) DVTSizeViewController *sizeViewController;
 - (id)initWithObjectReflection:(id)arg1;
 
 @end

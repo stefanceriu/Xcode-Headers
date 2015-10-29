@@ -6,21 +6,18 @@
 
 #import <Xcode3UI/Xcode3TargetCoordinator.h>
 
-@class IDENavigableItemCoordinator, Xcode3BuildPhase;
+@class Xcode3BuildPhase;
 
 @interface Xcode3TargetLinkedFrameworksCoordinator : Xcode3TargetCoordinator
 {
-    IDENavigableItemCoordinator *_navigableItemCoordinator;
 }
 
-- (void).cxx_destruct;
 - (BOOL)insertItemsIntoGroup:(id)arg1 atRow:(unsigned long long)arg2 structureEditingTarget:(id)arg3 contextConfigurationBlock:(CDUnknownBlockType)arg4;
 - (BOOL)hasLinkedFrameworkWithName:(id)arg1;
 - (void)unlinkFrameworkWithName:(id)arg1;
 - (BOOL)linkFrameworkWithName:(id)arg1 error:(id *)arg2;
 - (id)projectRootGroup;
 @property(readonly) Xcode3BuildPhase *buildPhase;
-- (void)primitiveInvalidate;
 - (id)initWithTarget:(id)arg1;
 
 @end

@@ -10,14 +10,16 @@
 
 @interface IDEEnergyAdditionGuidance : NSObject
 {
-    unsigned char _glyphIndex;
+    BOOL _isOSXAppNapGuidance;
     BOOL _hidden;
     NSString *_message;
     NSArray *_applicableTemplates;
+    unsigned long long _verticalPosition;
 }
 
 @property(nonatomic, getter=isHidden) BOOL hidden; // @synthesize hidden=_hidden;
-@property(nonatomic) unsigned char glyphIndex; // @synthesize glyphIndex=_glyphIndex;
+@property(nonatomic) BOOL isOSXAppNapGuidance; // @synthesize isOSXAppNapGuidance=_isOSXAppNapGuidance;
+@property(nonatomic) unsigned long long verticalPosition; // @synthesize verticalPosition=_verticalPosition;
 @property(retain, nonatomic) NSArray *applicableTemplates; // @synthesize applicableTemplates=_applicableTemplates;
 @property(retain, nonatomic) NSString *message; // @synthesize message=_message;
 - (void).cxx_destruct;

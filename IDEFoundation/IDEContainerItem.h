@@ -36,6 +36,10 @@
 @property(readonly) NSString *path; // @synthesize path=_path;
 @property(readonly) DVTReferenceResolver *resolver; // @synthesize resolver=_resolver;
 - (void).cxx_destruct;
+- (id)knownAssetTags;
+- (id)assetTags;
+- (void)setAssetTags:(id)arg1;
+- (BOOL)canHaveAssetTags;
 - (void)primitiveInvalidate;
 - (void)_takePathAndResolutionStrategiesFromContainerItem:(id)arg1;
 @property(readonly) DVTFilePath *expectedFilePath;
@@ -92,6 +96,7 @@
 - (id)relativePathForPath:(id)arg1 resolutionStrategies:(id)arg2;
 - (id)initWithPath:(id)arg1 resolutionStrategies:(id)arg2;
 - (id)init;
+- (BOOL)structuredEditingAcceptsInsertionIntoGroup:(id)arg1;
 - (void)dvt_encodeRelationshipsWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;

@@ -12,8 +12,7 @@
 
 @interface SCNGeometryElement : NSObject <NSSecureCoding>
 {
-    id _reserved;
-    // Error parsing type: ^{__C3DMeshElement={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__CFData}III^{__C3DMeshElement}CBc^{__C3DMeshSource}[2]}, name: _meshElement
+    // Error parsing type: ^{__C3DMeshElement={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__CFData}III^{__C3DMeshElement}CCCc^v^{__C3DMeshSource}[2]}, name: _meshElement
     NSData *_elementData;
     long long _primitiveType;
     long long _primitiveCount;
@@ -21,11 +20,11 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)geometryElementWithData:(id)arg1 primitiveType:(long long)arg2 primitiveCount:(long long)arg3 bytesPerIndex:(long long)arg4;
++ (id)geometryElementWithMDLSubmesh:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
--     // Error parsing type: ^{__C3DMeshElement={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__CFData}III^{__C3DMeshElement}CBc^{__C3DMeshSource}[2]}16@0:8, name: meshElement
+-     // Error parsing type: ^{__C3DMeshElement={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__CFData}III^{__C3DMeshElement}CCCc^v^{__C3DMeshSource}[2]}16@0:8, name: meshElement
 @property(readonly, nonatomic) long long bytesPerIndex;
 @property(readonly, nonatomic) long long primitiveCount;
 @property(readonly, nonatomic) long long primitiveType;
@@ -33,7 +32,7 @@
 - (id)initWithData:(id)arg1 primitiveType:(long long)arg2 primitiveCount:(long long)arg3 bytesPerIndex:(long long)arg4;
 - (void)dealloc;
 - (id)init;
--     // Error parsing type: @24@0:8^{__C3DMeshElement={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__CFData}III^{__C3DMeshElement}CBc^{__C3DMeshSource}[2]}16, name: initWithMeshElement:
+-     // Error parsing type: @24@0:8^{__C3DMeshElement={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__CFData}III^{__C3DMeshElement}CCCc^v^{__C3DMeshSource}[2]}16, name: initWithMeshElement:
 
 @end
 

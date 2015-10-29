@@ -6,8 +6,6 @@
 
 #import <IDEInterfaceBuilderKit/IBDocumentGroupMemberWrapper.h>
 
-@class IBStoryboardDocument;
-
 @interface IBStoryboardGroupMemberWrapper : IBDocumentGroupMemberWrapper
 {
 }
@@ -21,7 +19,7 @@
 - (void)didAddOrRemoveDescendantConnection:(id)arg1;
 - (id)entryPointIndicatorMemberWrappers;
 - (id)originatedSegueMemberWrappers;
-@property(readonly) IBStoryboardDocument *document;
+- (id)document;
 
 @end
 

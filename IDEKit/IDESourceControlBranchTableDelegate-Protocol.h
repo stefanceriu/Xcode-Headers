@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IDESourceControlBranch, IDEWorkspace, NSError;
+@class DVTSourceControlBranch, IDEWorkspace, NSError;
 
 @protocol IDESourceControlBranchTableDelegate <NSObject>
 
@@ -15,6 +15,6 @@
 - (IDEWorkspace *)workspace;
 - (void)didRemoveBranch;
 - (void)willRemoveBranch;
-- (void)setSelectedBranch:(IDESourceControlBranch *)arg1;
+- (void)setSelectedBranch:(DVTSourceControlBranch *)arg1;
 @end
 

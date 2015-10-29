@@ -24,6 +24,7 @@
     unsigned long long _linkButtonBehavior;
 }
 
++ (id)linkButtonImage;
 @property unsigned long long linkButtonBehavior; // @synthesize linkButtonBehavior=_linkButtonBehavior;
 @property BOOL showChooserButton; // @synthesize showChooserButton=_showChooserButton;
 @property BOOL chooseDir; // @synthesize chooseDir=_chooseDir;

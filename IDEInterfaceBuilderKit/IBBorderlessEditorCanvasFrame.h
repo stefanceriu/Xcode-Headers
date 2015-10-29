@@ -6,20 +6,45 @@
 
 #import <IDEInterfaceBuilderKit/IBEditorCanvasFrame.h>
 
+@class NSView;
+
 @interface IBBorderlessEditorCanvasFrame : IBEditorCanvasFrame
 {
     BOOL _fortifiesShadow;
     BOOL _drawsShadow;
+    BOOL _fillsContentRect;
+    BOOL _showsBorder;
+    BOOL _hasEdgeKnobs;
+    double _contentCornerRadius;
+    NSView *_headerView;
+    double _headerHeight;
+    double _headerCornerRadius;
 }
 
+@property(nonatomic) double headerCornerRadius; // @synthesize headerCornerRadius=_headerCornerRadius;
+@property(nonatomic) double headerHeight; // @synthesize headerHeight=_headerHeight;
+@property(retain, nonatomic) NSView *headerView; // @synthesize headerView=_headerView;
+@property(nonatomic) double contentCornerRadius; // @synthesize contentCornerRadius=_contentCornerRadius;
+@property(nonatomic) BOOL hasEdgeKnobs; // @synthesize hasEdgeKnobs=_hasEdgeKnobs;
+@property(nonatomic) BOOL showsBorder; // @synthesize showsBorder=_showsBorder;
+@property(nonatomic) BOOL fillsContentRect; // @synthesize fillsContentRect=_fillsContentRect;
 @property(nonatomic) BOOL drawsShadow; // @synthesize drawsShadow=_drawsShadow;
 @property(nonatomic) BOOL fortifiesShadow; // @synthesize fortifiesShadow=_fortifiesShadow;
+- (void).cxx_destruct;
+- (struct CGSize)sizeForKnob:(CDUnion_31865a80)arg1;
+- (struct CGRect)knobPerimeter;
 - (void)drawRect:(struct CGRect)arg1;
+- (BOOL)shouldDragFrameWithMouseDown:(id)arg1;
 - (void)hasKeyLookDidChange;
+- (id)boundingRectsForBandSelectionHitTesting;
 - (struct CGRect)boundsForHitTesting;
+- (void)layoutBottomUp;
+- (void)didLayoutSubview:(id)arg1;
 - (CDStruct_c519178c)contentInset;
-- (id)fortifiedShadowColor;
+- (void)setFrameIsSelected:(BOOL)arg1;
+- (id)effectiveStrokeColor;
 - (id)shadow;
+- (void)setContentViewCornerRadius:(double)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

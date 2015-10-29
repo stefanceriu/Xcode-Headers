@@ -12,7 +12,6 @@
 
 @optional
 - (struct _NSRange)outlineView:(NSOutlineView *)arg1 initialSelectionRangeForCell:(NSCell *)arg2 proposedRange:(struct _NSRange)arg3;
-- (NSArray *)outlineView:(NSOutlineView *)arg1 shouldCollapseTrayForItem:(id)arg2;
 - (NSArray *)outlineView:(NSOutlineView *)arg1 childItemsForItem:(id)arg2;
 - (BOOL)outlineView:(NSOutlineView *)arg1 isGroupHeaderItem:(id)arg2;
 @end

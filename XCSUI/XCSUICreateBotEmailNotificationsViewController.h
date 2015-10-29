@@ -8,12 +8,14 @@
 
 #import "XCSUICreateBotTriggerChildViewController.h"
 
-@class NSButton, NSTokenField, XCSTrigger;
+@class DVTSourceControlWorkspaceBlueprint, NSButton, NSTokenField, XCSTrigger;
 
 @interface XCSUICreateBotEmailNotificationsViewController : NSViewController <XCSUICreateBotTriggerChildViewController>
 {
     XCSTrigger *_trigger;
+    DVTSourceControlWorkspaceBlueprint *_blueprint;
     NSButton *_sendToCommittersCheckbox;
+    NSButton *_committerOptionsButton;
     NSTokenField *_emailTokenField;
     NSButton *_includeIssueBreakdownsCheckbox;
     NSButton *_includeCommitMessagesCheckbox;
@@ -22,7 +24,9 @@
 @property(nonatomic) __weak NSButton *includeCommitMessagesCheckbox; // @synthesize includeCommitMessagesCheckbox=_includeCommitMessagesCheckbox;
 @property(nonatomic) __weak NSButton *includeIssueBreakdownsCheckbox; // @synthesize includeIssueBreakdownsCheckbox=_includeIssueBreakdownsCheckbox;
 @property(nonatomic) __weak NSTokenField *emailTokenField; // @synthesize emailTokenField=_emailTokenField;
+@property(nonatomic) __weak NSButton *committerOptionsButton; // @synthesize committerOptionsButton=_committerOptionsButton;
 @property(nonatomic) __weak NSButton *sendToCommittersCheckbox; // @synthesize sendToCommittersCheckbox=_sendToCommittersCheckbox;
+@property(retain) DVTSourceControlWorkspaceBlueprint *blueprint; // @synthesize blueprint=_blueprint;
 - (void).cxx_destruct;
 - (void)controlTextDidChange:(id)arg1;
 - (BOOL)tokenField:(id)arg1 hasMenuForRepresentedObject:(id)arg2;
@@ -38,6 +42,7 @@
 - (id)_personForEmailString:(id)arg1;
 - (id)_personForEmailAddress:(id)arg1;
 - (id)_emailAddressFromString:(id)arg1;
+- (void)showCommitterOptionsSheet:(id)arg1;
 - (void)commitChanges:(id)arg1;
 - (void)saveTrigger;
 @property(retain) XCSTrigger *trigger;

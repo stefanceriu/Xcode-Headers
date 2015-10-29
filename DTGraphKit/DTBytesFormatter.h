@@ -13,6 +13,7 @@
 + (id)stringForObjectValue:(id)arg1;
 + (id)stringFromNumber:(id)arg1;
 + (id)stringForLongLong:(long long)arg1;
++ (id)magnitudeFormatter;
 + (void)initialize;
 - (id)stringForObjectValue:(id)arg1;
 - (id)stringFromNumber:(id)arg1;

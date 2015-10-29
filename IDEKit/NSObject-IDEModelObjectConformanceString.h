@@ -9,6 +9,6 @@
 @class NSString;
 
 @interface NSObject (IDEModelObjectConformanceString)
-@property(readonly) NSString *navigableItem_conformanceString;
+@property(readonly, nonatomic) NSString *navigableItem_conformanceString;
 @end
 

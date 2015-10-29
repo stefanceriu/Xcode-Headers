@@ -61,7 +61,7 @@
 - (void)_undoManagerDidUndoChangeNotification:(id)arg1;
 - (BOOL)shouldChangeTextInRanges:(id)arg1 replacementStrings:(id)arg2;
 - (void)keyDown:(id)arg1;
-- (void)_sendKeyImmediatelyIfNecessary:(id)arg1;
+- (void)_sendKeyImmediatelyIfNecessary:(id)arg1 event:(id)arg2;
 - (void)_moveInsertionPointToEnd;
 - (id)userEnteredTextAfterPromptUpToLocation:(unsigned long long)arg1;
 - (id)userEnteredTextAfterPrompt;

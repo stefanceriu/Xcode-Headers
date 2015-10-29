@@ -9,10 +9,14 @@
 #import "IDEFilePickerViewDelegate.h"
 #import "IDETestsInTestableObserver.h"
 
-@class DVTBorderedView, DVTChoice, DVTGradientImageButton, DVTNotificationToken, DVTObservingToken, DVTOutlineView, DVTSearchField, DVTTabChooserView, IDEArgumentsCapsuleSheetController, IDECapsuleListView, IDEDebuggerSpecifier, IDEEnvironmentVariablesCapsuleSheetController, IDEScheme, IDESimulateLocationMenuController, IDETestSchemeAction, IDEWorkspace, NSArray, NSPopUpButton, NSString, NSTabView, NSTableColumn, NSTextField;
+@class DVTBorderedView, DVTChoice, DVTGradientImageButton, DVTNotificationToken, DVTObservingToken, DVTOutlineView, DVTSearchField, DVTTabChooserView, IDEArgumentsCapsuleSheetController, IDECapsuleListView, IDEDebuggerSpecifier, IDEEnvironmentVariablesCapsuleSheetController, IDEScheme, IDESimulateLocationMenuController, IDETestSchemeAction, IDEWorkspace, NSArray, NSButton, NSButtonCell, NSLayoutConstraint, NSMatrix, NSPopUpButton, NSString, NSTabView, NSTableColumn, NSTextField, NSView;
 
 @interface IDETestRunPhaseSheetController : IDEViewController <IDEFilePickerViewDelegate, IDETestsInTestableObserver>
 {
+    NSButton *_debugExecutableCheckbox;
+    NSButton *_codeCoverageCheckbox;
+    NSMatrix *_debugProcessAsMatrix;
+    NSButtonCell *_debugProcessAsMeButtonCell;
     DVTOutlineView *_outlineView;
     DVTGradientImageButton *_addButton;
     DVTGradientImageButton *_deleteButton;
@@ -27,13 +31,13 @@
     NSTabView *_tabView;
     NSTableColumn *_deviceAppDataPackagesColumn;
     NSTableColumn *_locationColumn;
+    NSView *_buttonBar;
     DVTChoice *_infoChoice;
     DVTChoice *_conditionsChoice;
+    DVTChoice *_diagnosticsChoice;
     IDEArgumentsCapsuleSheetController *_argumentsViewController;
     IDEEnvironmentVariablesCapsuleSheetController *_environmentVariablesViewController;
-    IDEScheme *_runContext;
     IDEWorkspace *_workspace;
-    IDETestSchemeAction *_runPhase;
     NSArray *_debuggerSpecifiers;
     NSString *_filterString;
     DVTObservingToken *_testableReferenceObserver;
@@ -42,11 +46,21 @@
     DVTObservingToken *_runContextObservingToken;
     DVTNotificationToken *_buildablesToken;
     IDESimulateLocationMenuController *_simulateLocationMenuController;
+    BOOL _supportsDebugAsDifferentUser;
+    IDEScheme *_runContext;
+    IDETestSchemeAction *_runPhase;
+    NSLayoutConstraint *_tabSwitcherBarHeightConstraint;
+    NSLayoutConstraint *_infoTabSearchFieldHeightConstraint;
 }
 
++ (id)keyPathsForValuesAffectingAllowEnablingAddressSanitizer;
++ (id)keyPathsForValuesAffectingDebuggerHasBeenSelected;
 + (void)initialize;
+@property __weak NSLayoutConstraint *infoTabSearchFieldHeightConstraint; // @synthesize infoTabSearchFieldHeightConstraint=_infoTabSearchFieldHeightConstraint;
+@property __weak NSLayoutConstraint *tabSwitcherBarHeightConstraint; // @synthesize tabSwitcherBarHeightConstraint=_tabSwitcherBarHeightConstraint;
 @property(retain) IDETestSchemeAction *runPhase; // @synthesize runPhase=_runPhase;
 @property(retain) IDEScheme *runContext; // @synthesize runContext=_runContext;
+@property BOOL supportsDebugAsDifferentUser; // @synthesize supportsDebugAsDifferentUser=_supportsDebugAsDifferentUser;
 @property(retain) DVTTabChooserView *tabChooser; // @synthesize tabChooser=_tabChooser;
 @property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
 @property(retain, nonatomic) NSArray *debuggerSpecifiers; // @synthesize debuggerSpecifiers=_debuggerSpecifiers;
@@ -77,7 +91,7 @@
 - (BOOL)isTestEditable:(id)arg1;
 - (id)testableReferenceForTest:(id)arg1;
 - (BOOL)canExpandTestableReference:(id)arg1;
-- (void)workspaceReferencedTestablesChanged;
+- (void)allTestablesChanged;
 - (void)testablesChanged:(id)arg1;
 - (void)testsChanged:(id)arg1;
 - (id)_iconForBuildable:(id)arg1;
@@ -86,8 +100,16 @@
 - (void)_updateMacroExpansionRunnablePopUpSelection;
 - (void)_updateMacroExpansionRunnablePopUp;
 - (void)_selectedSchemeChanged:(id)arg1;
+- (void)chooseDebugProcessAs:(id)arg1;
 @property(retain) IDEDebuggerSpecifier *selectedDebuggerSpecifier;
 - (void)_setLauncherBasedOnSelectedDebugger;
+- (void)_updateDebuggerFromOldDebugger:(id)arg1;
+- (void)selectDebugExecutable:(id)arg1;
+- (void)_setupDebugOptions;
+- (void)_updateDebugCheckboxes;
+- (void)_updateDebugOptionsEnablement;
+- (BOOL)allowEnablingAddressSanitizer;
+- (BOOL)debuggerHasBeenSelected;
 @property(retain) IDEWorkspace *workspace;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)deleteBlueprintsAction:(id)arg1;

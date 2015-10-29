@@ -19,6 +19,7 @@
 + (id)addressForPosixSharedMemoryWithName:(id)arg1;
 + (id)schemes;
 @property(readonly, nonatomic) struct DTXSharedMemory *sharedMemory; // @synthesize sharedMemory=_shm;
+- (id)permittedBlockCompressionTypes;
 - (id)localAddresses;
 - (void)disconnect;
 - (unsigned long long)transmit:(const void *)arg1 ofLength:(unsigned long long)arg2;

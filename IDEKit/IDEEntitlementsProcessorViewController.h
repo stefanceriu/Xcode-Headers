@@ -4,21 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEKit/IDEViewController.h>
+#import <IDEKit/IDEDistributionOptionsSliceViewController.h>
 
-@class IDEDistributionMethod, NSDictionary;
+@class NSDictionary;
 
-@interface IDEEntitlementsProcessorViewController : IDEViewController
+@interface IDEEntitlementsProcessorViewController : IDEDistributionOptionsSliceViewController
 {
-    IDEDistributionMethod *_distributionMethod;
     NSDictionary *_itemToProcessorMap;
 }
 
++ (Class)correspondingProcessorClass;
 + (Class)viewControllerClassForEntitlementsProcessorClass:(Class)arg1;
 @property(readonly, nonatomic) NSDictionary *itemToProcessorMap; // @synthesize itemToProcessorMap=_itemToProcessorMap;
-@property(readonly, nonatomic) IDEDistributionMethod *distributionMethod; // @synthesize distributionMethod=_distributionMethod;
 - (void).cxx_destruct;
-- (id)initWithDistributionMethod:(id)arg1 itemToProcessorMap:(id)arg2;
+- (id)providedOutputContextPropertyNames;
+- (id)requiredInputContextPropertyNames;
+- (BOOL)needsInteraction;
+- (void)_createProcessors;
+- (id)initWithContext:(id)arg1;
 
 @end
 

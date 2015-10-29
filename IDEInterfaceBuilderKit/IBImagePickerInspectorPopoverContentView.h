@@ -12,6 +12,7 @@
 {
     NSStackView *_verticalStackView;
     NSArray *_images;
+    NSArray *_representedObjects;
     NSArray *_toolTips;
     long long _columns;
     id <IBImagePickerInspectorPopoverContentViewDelegate> _delegate;
@@ -21,6 +22,7 @@
 @property(nonatomic) __weak id <IBImagePickerInspectorPopoverContentViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) long long columns; // @synthesize columns=_columns;
 @property(copy, nonatomic) NSArray *toolTips; // @synthesize toolTips=_toolTips;
+@property(copy, nonatomic) NSArray *representedObjects; // @synthesize representedObjects=_representedObjects;
 @property(copy, nonatomic) NSArray *images; // @synthesize images=_images;
 - (void).cxx_destruct;
 - (void)layout;

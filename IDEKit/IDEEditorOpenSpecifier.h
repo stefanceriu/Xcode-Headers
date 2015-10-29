@@ -6,10 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, IDENavigableItemArchivableRepresentation, NSString, NSURL;
+@class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDENavigableItemArchivableRepresentation, NSString, NSURL;
 
 @interface IDEEditorOpenSpecifier : NSObject
 {
+    DVTStackBacktrace *_creationBacktrace;
     IDENavigableItemArchivableRepresentation *_archivableRepresentation;
     DVTDocumentLocation *_locationToSelect;
     NSURL *_documentURL;

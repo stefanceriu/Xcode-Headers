@@ -8,14 +8,7 @@
 
 @interface IBNSViewTracker : IBViewTracker
 {
-    BOOL _shouldResizeLikeWindow;
 }
-
-- (void)placeSubviewForAutolayoutDocumentApplyingConstraintsInLayoutFrame:(struct CGRect)arg1;
-- (BOOL)shouldPinEditorCanvasFrameForResizing;
-- (BOOL)shouldSizeUsingFrameDeciderForEvent:(id)arg1;
-- (id)generateFrameDeciderForPlacingSubviewInFrameWithStrategy:(CDStruct_7ddbbeae)arg1;
-- (id)initWithTrackedView:(id)arg1 measurementTarget:(id)arg2 frameController:(id)arg3 knob:(long long)arg4;
 
 @end
 

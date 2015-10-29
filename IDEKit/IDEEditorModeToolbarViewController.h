@@ -8,42 +8,40 @@
 
 #import "NSMenuDelegate.h"
 
-@class DVTBindingToken, DVTObservingToken, DVTRolloverTracker, DVTSegmentedControl, NSMenu, NSString;
+@class DVTBindingToken, DVTNotificationToken, DVTObservingToken, DVTSegmentedControl, NSMenu, NSString;
 
 @interface IDEEditorModeToolbarViewController : DVTToolbarViewController <NSMenuDelegate>
 {
     DVTObservingToken *_editorModeObservingToken;
     DVTObservingToken *_editorSubmodeObservingToken;
     DVTBindingToken *_workspaceIsIdleToken;
-    id _segmentedControllVersionEditorEnabledToken;
-    DVTRolloverTracker *_segmentedControllRolloverTracker;
+    DVTNotificationToken *_segmentedControllVersionEditorEnabledToken;
     DVTSegmentedControl *_editorSegmentedControl;
+    NSMenu *_assistantEditorModeMenu;
     NSMenu *_versionEditorModeMenu;
 }
 
 - (void).cxx_destruct;
+- (SEL)_selectorForCurrentAssistantMode;
+- (void)_showAssistantAllVerticalMode:(id)arg1;
+- (void)_showAssistantAllHorizontalMode:(id)arg1;
+- (void)_showAssistantOnBottomMode:(id)arg1;
+- (void)_showAssistantOnRightMode:(id)arg1;
 - (void)_showVersionLogMode:(id)arg1;
 - (void)_showVersionBlameMode:(id)arg1;
 - (void)_showVersionComparisonMode:(id)arg1;
 - (void)_segmentStateDidChange:(id)arg1;
 - (void)_setEditorModeForMenuItem:(id)arg1;
 - (void)_updateVersionEditorMenuForSubmode:(int)arg1;
-- (void)_setVersionEditorSubmode:(int)arg1;
 - (void)_setEditorMode:(int)arg1;
 - (long long)_stateForMenuItemTag:(long long)arg1 editorModeClass:(Class)arg2 classAccessor:(SEL)arg3 instanceAccessor:(SEL)arg4;
 - (id)_editorModeViewController;
+- (id)_activeTabController;
 - (id)menuForMenuFormRepresentation;
-- (void)primitiveInvalidate;
 - (id)_create1010AndLaterControl;
-- (id)_createPre1010Control;
-- (void)menuDidClose:(id)arg1;
+- (void)menuWillOpen:(id)arg1;
+- (void)primitiveInvalidate;
 - (id)initWithToolbarItemIdentifier:(id)arg1 window:(id)arg2;
-- (id)_imageFactoryForImageNamed:(id)arg1;
-- (id)_editorVersionLogsImageFactory;
-- (id)_editorVersionComparisonImageFactory;
-- (id)_editorVersionBlameImageFactory;
-- (id)_editorGeniusImageFactory;
-- (id)_editorBasicImageFactory;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

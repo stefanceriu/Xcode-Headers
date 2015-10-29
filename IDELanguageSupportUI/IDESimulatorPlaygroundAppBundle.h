@@ -12,7 +12,6 @@
 
 @interface IDESimulatorPlaygroundAppBundle : NSObject <IDEPlaygroundAppBundle>
 {
-    BOOL _valid;
     DVTFilePath *_appBundlePath;
     NSString *_executableSubpath;
     NSString *_bundleIdentifier;
@@ -21,7 +20,6 @@
     DVTDevice *_device;
 }
 
-@property(getter=isValid) BOOL valid; // @synthesize valid=_valid;
 @property(retain) DVTDevice *device; // @synthesize device=_device;
 @property(retain) DVTFilePath *containerPath; // @synthesize containerPath=_containerPath;
 @property(readonly) DVTFilePath *resourcesDirectoryPath; // @synthesize resourcesDirectoryPath=_resourcesDirectoryPath;
@@ -29,7 +27,6 @@
 @property(readonly, copy) NSString *executableSubpath; // @synthesize executableSubpath=_executableSubpath;
 @property(readonly) DVTFilePath *appBundlePath; // @synthesize appBundlePath=_appBundlePath;
 - (void).cxx_destruct;
-- (void)dealloc;
 - (BOOL)cleanUpAppBundle:(id *)arg1;
 - (id)initWithAppBundlePath:(id)arg1 executableSubpath:(id)arg2 bundleIdentifier:(id)arg3 resourcesDirectoryPath:(id)arg4 device:(id)arg5;
 

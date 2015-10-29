@@ -6,21 +6,26 @@
 
 #import "NSView.h"
 
-@class NSTextField;
+@class IDEPlaygroundQuickLookSingleLineTextView;
 
 @interface IDEPlaygroundQuickLookSingleLineView : NSView
 {
+    BOOL _needsUpdatedConstraints;
+    BOOL _labelNeedsUpdate;
     NSView *_iconView;
-    NSTextField *_label;
+    id <IDEPlaygroundQuickLookProvider> _quickLookProvider;
+    IDEPlaygroundQuickLookSingleLineTextView *_label;
 }
 
-@property(readonly) NSTextField *label; // @synthesize label=_label;
+@property(retain) IDEPlaygroundQuickLookSingleLineTextView *label; // @synthesize label=_label;
+@property(retain, nonatomic) id <IDEPlaygroundQuickLookProvider> quickLookProvider; // @synthesize quickLookProvider=_quickLookProvider;
 @property(readonly) NSView *iconView; // @synthesize iconView=_iconView;
 - (void).cxx_destruct;
-- (id)_createLabel;
-- (void)_rebuildUsingQuickLookProvider:(id)arg1;
-- (void)_updateUsingQuickLookProvider:(id)arg1;
-- (id)_initWithFrame:(struct CGRect)arg1 quickLookProvider:(id)arg2;
+- (void)layout;
+- (void)_updateLabel;
+- (void)_updateIconView;
+- (void)_updateViews;
+- (id)initWithFrame:(struct CGRect)arg1;
 
 @end
 

@@ -7,5 +7,8 @@
 #import "IBICLaunchImageSet.h"
 
 @interface IBICLaunchImageSet (DisplayAdditions)
+- (id)detachedSlottedAssetRepByAcceptingPasteboardObject:(id)arg1 forRepIdentifier:(id)arg2;
+- (id)includedAttributeUtilitySlicesForChild:(id)arg1;
+- (id)typeIcon;
 @end
 

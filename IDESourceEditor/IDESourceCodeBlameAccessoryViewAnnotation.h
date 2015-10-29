@@ -6,14 +6,14 @@
 
 #import "DVTAccessoryViewAnnotation.h"
 
-@class IDESourceCodeBlameItem;
+@class DVTSourceControlBlameItem;
 
 @interface IDESourceCodeBlameAccessoryViewAnnotation : DVTAccessoryViewAnnotation
 {
-    IDESourceCodeBlameItem *_blameItem;
+    DVTSourceControlBlameItem *_blameItem;
 }
 
-@property(retain) IDESourceCodeBlameItem *blameItem; // @synthesize blameItem=_blameItem;
+@property(retain) DVTSourceControlBlameItem *blameItem; // @synthesize blameItem=_blameItem;
 - (void).cxx_destruct;
 
 @end

@@ -6,9 +6,12 @@
 
 #import "NSCollectionView.h"
 
-@class NSColor;
+@class NSCollectionViewLayout, NSColor;
 
 @interface NSCollectionView (IBNSCollectionViewIntegration)
++ (id)keyPathsForValuesAffectingIbInspectedGridLayout;
++ (id)keyPathsForValuesAffectingIbInspectedFlowLayout;
++ (id)keyPathsForValuesAffectingIbInspectedLayoutMode;
 + (id)keyPathsForValuesAffectingIbShadowedHasSecondaryBackgroundColor;
 - (BOOL)ibShouldUseConstraintsInsteadOfAutoresizingWhenChildOfClipView;
 @property(copy) NSColor *ibArchivedSecondaryBackgroundColor;
@@ -20,6 +23,13 @@
 - (void)setIbShadowedPrimaryBackgroundColor:(id)arg1;
 - (id)ibShadowedPrimaryBackgroundColor;
 - (void)setIbShadowedBackgroundColor:(id)arg1 atIndex:(unsigned long long)arg2;
+- (id)ibInspectedGridLayout;
+- (id)ibInspectedFlowLayout;
+@property(retain) NSCollectionViewLayout *ibShadowedCollectionViewLayout;
+@property BOOL ibShadowedAllowsEmptySelection;
+- (void)setIbInspectedLayoutMode:(long long)arg1;
+- (long long)ibInspectedLayoutMode;
+- (BOOL)ibInspectedRuntimeDoesNotSupportLayouts;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 @end

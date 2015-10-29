@@ -38,15 +38,14 @@
 + (id)uniformWithName:(id)arg1 float:(float)arg2;
 + (id)uniformWithName:(id)arg1;
 @property unsigned long long _seed; // @synthesize _seed;
-@property(readonly) NSString *name; // @synthesize name=_name;
-- (id).cxx_construct;
+@property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-@property(readonly) long long uniformType;
+@property(readonly, nonatomic) long long uniformType;
 @property float floatValue;
-@property(retain) SKTexture *textureValue;
+@property(retain, nonatomic) SKTexture *textureValue;
 @property union _GLKMatrix4 floatMatrix4Value;
 @property union _GLKMatrix3 floatMatrix3Value;
 @property union _GLKMatrix2 floatMatrix2Value;

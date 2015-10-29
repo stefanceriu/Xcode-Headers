@@ -35,6 +35,7 @@
 + (SCNAction *)moveBy:(struct SCNVector3)arg1 duration:(double)arg2;
 + (SCNAction *)moveByX:(double)arg1 y:(double)arg2 z:(double)arg3 duration:(double)arg4;
 @property(nonatomic) double speed;
+@property(nonatomic) CDUnknownBlockType timingFunction;
 @property(nonatomic) long long timingMode;
 @property(nonatomic) double duration;
 - (id)copy;

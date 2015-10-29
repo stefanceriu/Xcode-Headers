@@ -65,7 +65,7 @@
 - (struct CGRect)layoutRectForView:(id)arg1;
 - (struct CGRect)clippingRectForClippingToView:(id)arg1;
 - (void)clearTrackingIndicators;
-- (void)setTrackedSize:(struct CGSize)arg1 forViewRectangle:(struct CGRect)arg2 fromKnob:(long long)arg3 showingBoundsIndicator:(BOOL)arg4 showsTrackingKnob:(BOOL)arg5;
+- (void)setTrackedSize:(struct CGSize)arg1 forViewRectangle:(struct CGRect)arg2 fromKnob:(CDUnion_31865a80)arg3 showingBoundsIndicator:(BOOL)arg4 showsTrackingKnob:(BOOL)arg5;
 - (void)setTrackedKnobRect:(struct CGRect)arg1;
 - (void)setTrackingIndicatorLayoutInfo:(id)arg1;
 - (void)setHintedTrackedViewRectangle:(struct CGRect)arg1;

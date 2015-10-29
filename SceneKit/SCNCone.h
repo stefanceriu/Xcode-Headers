@@ -8,7 +8,6 @@
 
 @interface SCNCone : SCNGeometry
 {
-    id _reserved;
     double _conetopRadius;
     double _conebottomRadius;
     double _coneheight;
@@ -18,7 +17,6 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)coneWithTopRadius:(double)arg1 bottomRadius:(double)arg2 height:(double)arg3;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -36,11 +34,10 @@
 @property(nonatomic) double height;
 @property(nonatomic) double bottomRadius;
 - (void)_syncObjCModel:(struct __C3DParametricGeometry *)arg1;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (id)presentationGeometry;
 - (id)presentationCone;
 - (id)initPresentationParametricGeometryWithParametricGeometryRef:(struct __C3DParametricGeometry *)arg1;
-- (void)dealloc;
 - (struct __C3DGeometry *)__createCFObject;
 - (id)initWithParametricGeometryRef:(struct __C3DParametricGeometry *)arg1;
 - (id)init;

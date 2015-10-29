@@ -25,6 +25,7 @@
 
 - (void).cxx_destruct;
 - (void)controlTextDidChange:(id)arg1;
+- (void)validateTextChange;
 - (void)allowUserInput:(BOOL)arg1;
 - (id)previewSummary;
 - (id)userInput;

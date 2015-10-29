@@ -22,6 +22,7 @@
     id <IDEProjectItemStatusViewDelegate> _delegate;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 @property __weak id <IDEProjectItemStatusViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) int status; // @synthesize status=_status;

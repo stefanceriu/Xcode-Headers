@@ -10,8 +10,5 @@
 {
 }
 
-+ (id)handlerForAction:(SEL)arg1 withSelectionSource:(id)arg2;
-+ (id)_emptyAppCachesCommandHandler;
-
 @end
 

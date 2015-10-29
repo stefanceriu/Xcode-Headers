@@ -10,6 +10,7 @@
 {
 }
 
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)addIndexesInRange:(struct _XRIndexRange)arg1;
 - (void)addIndex:(unsigned long long)arg1;
 - (void)_addRange:(struct _XRIndexRange)arg1;

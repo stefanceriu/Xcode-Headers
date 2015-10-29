@@ -10,8 +10,6 @@
 + (void)ibSynthesizeShadowedProperties;
 + (id)ibSynthesizeControllerKeyPaths;
 + (void)ibInstallAccessorsForShadowedKeys:(id)arg1;
-- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
-- (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (BOOL)ibShadowedControllerBoolAttribute;
 - (void)setIbShadowedControllerBoolAttribute:(BOOL)arg1;
 - (id)ibShadowedControllerObjectAttribute;

@@ -21,8 +21,8 @@
 - (BOOL)rejectAppleScriptContentReturningError:(id *)arg1;
 - (BOOL)readFromIB2InfoWrapper:(id)arg1 error:(id *)arg2;
 - (BOOL)prepareForReadingWithIB2DependencyNibWrapper:(id)arg1 error:(id *)arg2;
-- (BOOL)readObjectesFromTypeStreamedIB2Archive:(id)arg1 error:(id *)arg2;
-- (BOOL)readObjectesFromKeyedIB2Archive:(id)arg1 error:(id *)arg2;
+- (BOOL)readObjectsFromTypeStreamedIB2Archive:(id)arg1 error:(id *)arg2;
+- (BOOL)readObjectsFromKeyedIB2Archive:(id)arg1 error:(id *)arg2;
 - (id)initWithDocument:(id)arg1;
 
 // Remaining properties

@@ -6,12 +6,13 @@
 
 #import <IDEKit/IDEActivityReporter.h>
 
-@class DVTMapTable;
+@class DVTNotificationToken, NSMapTable;
 
 @interface IDEBatchFindActivityReporter : IDEActivityReporter
 {
-    DVTMapTable *_queryToObservers;
-    id _queryCreationObserer;
+    NSMapTable *_queryToObservers;
+    DVTNotificationToken *_queryCreationObserver;
+    DVTNotificationToken *_queryDeletionObserver;
 }
 
 + (void)initialize;

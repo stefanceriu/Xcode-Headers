@@ -10,8 +10,9 @@
 {
 }
 
-+ (id)processingStep;
-- (_Bool)processWithContext:(id)arg1 andError:(id *)arg2;
+- (_Bool)runWithError:(id *)arg1;
+- (id)providedOutputContextPropertyNames;
+- (id)requiredInputContextPropertyNames;
 - (id)name;
 
 @end

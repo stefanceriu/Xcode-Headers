@@ -28,6 +28,8 @@
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, getter=isCompleteForTags) BOOL completeForTags;
+@property(readonly, getter=isCompleteForBranches) BOOL completeForBranches;
 - (id)dictionaryRepresentationWithOptions:(unsigned long long)arg1;
 - (id)initWithDictionary:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

@@ -18,15 +18,15 @@
     NSArray *_documentLocations;
     BOOL _didChangeDocument;
     DVTExtension *_editorDocumentExtension;
-    NSString *_editorDocumentIdentifier;
     DVTFileDataType *_fileDataType;
     NSArray *_finders;
     NSArray *_geniusCategories;
-    NSDictionary *_geniusResults;
-    unsigned long long _numberOfGeniusResults;
     NSArray *_geniusResultsObservingTokens;
     BOOL _ignoreGeniusResultsUpdates;
     BOOL _idle;
+    NSDictionary *_geniusResults;
+    unsigned long long _numberOfGeniusResults;
+    NSString *_editorDocumentIdentifier;
 }
 
 + (BOOL)automaticallyNotifiesObserversOfGeniusResults;

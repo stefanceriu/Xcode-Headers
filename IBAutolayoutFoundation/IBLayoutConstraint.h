@@ -6,15 +6,17 @@
 
 #import "NSObject.h"
 
+#import "IBBinaryArchiving.h"
 #import "IBLayoutConstraintRepresentation.h"
 #import "NSCoding.h"
 #import "NSCopying.h"
 
 @class IBLayoutConstant, IBLayoutConstraintMultiplier, NSObject<IBAutolayoutItem>, NSString;
 
-@interface IBLayoutConstraint : NSObject <NSCopying, NSCoding, IBLayoutConstraintRepresentation>
+@interface IBLayoutConstraint : NSObject <NSCopying, NSCoding, IBLayoutConstraintRepresentation, IBBinaryArchiving>
 {
     BOOL _contentTypeNeedsToBeInferred;
+    BOOL _scoringTypeNeedsToBeInferred;
     BOOL _placeholder;
     NSObject<IBAutolayoutItem> *_firstItem;
     unsigned long long _firstAttribute;
@@ -28,27 +30,20 @@
     long long _contentType;
     long long _scoringClass;
     double _scoringType;
+    NSString *_identifier;
 }
 
 + (id)dvt_keysToSkipWeakReferenceObservingValidation;
 + (Class)archivableRepresentationClass;
-+ (id)keyPathsForValuesAffectingUserDefined;
 + (id)keyPathsForValuesAffectingContentType;
 + (double)minimumPriority;
 + (double)maximumPriority;
 + (id)constraintsWithVisualFormat:(id)arg1 options:(unsigned long long)arg2 metrics:(id)arg3 views:(id)arg4 layoutInfo:(id)arg5;
-+ (id)explicitLayoutConstraintWithItem:(id)arg1 attribute:(unsigned long long)arg2 constant:(id)arg3 layoutInfo:(id)arg4;
-+ (id)explicitLayoutConstraintWithFirstItem:(id)arg1 firstAttribute:(unsigned long long)arg2 relation:(long long)arg3 secondItem:(id)arg4 secondAttribute:(unsigned long long)arg5 constant:(id)arg6 layoutInfo:(id)arg7;
-+ (id)systemRequiredLayoutConstraintWithItem:(id)arg1 attribute:(unsigned long long)arg2 constant:(id)arg3 layoutInfo:(id)arg4;
-+ (id)systemRequiredLayoutConstraintWithFirstItem:(id)arg1 firstAttribute:(unsigned long long)arg2 relation:(long long)arg3 secondItem:(id)arg4 secondAttribute:(unsigned long long)arg5 constant:(id)arg6 layoutInfo:(id)arg7;
-+ (id)userDefinedLayoutConstraintWithItem:(id)arg1 attribute:(unsigned long long)arg2 constant:(id)arg3 layoutInfo:(id)arg4;
-+ (id)userDefinedLayoutConstraintWithFirstItem:(id)arg1 firstAttribute:(unsigned long long)arg2 relation:(long long)arg3 secondItem:(id)arg4 secondAttribute:(unsigned long long)arg5 constant:(id)arg6 layoutInfo:(id)arg7;
 + (id)explicitLayoutConstraintWithItem:(id)arg1 attribute:(unsigned long long)arg2 constant:(id)arg3;
 + (id)explicitLayoutConstraintWithFirstItem:(id)arg1 firstAttribute:(unsigned long long)arg2 relation:(long long)arg3 secondItem:(id)arg4 secondAttribute:(unsigned long long)arg5 constant:(id)arg6;
 + (id)systemRequiredLayoutConstraintWithItem:(id)arg1 attribute:(unsigned long long)arg2 constant:(id)arg3;
 + (id)systemRequiredLayoutConstraintWithFirstItem:(id)arg1 firstAttribute:(unsigned long long)arg2 relation:(long long)arg3 secondItem:(id)arg4 secondAttribute:(unsigned long long)arg5 constant:(id)arg6;
-+ (id)userDefinedLayoutConstraintWithItem:(id)arg1 attribute:(unsigned long long)arg2 constant:(id)arg3;
-+ (id)userDefinedLayoutConstraintWithFirstItem:(id)arg1 firstAttribute:(unsigned long long)arg2 relation:(long long)arg3 secondItem:(id)arg4 secondAttribute:(unsigned long long)arg5 constant:(id)arg6;
+@property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(nonatomic, getter=isPlaceholder) BOOL placeholder; // @synthesize placeholder=_placeholder;
 @property(nonatomic) double scoringType; // @synthesize scoringType=_scoringType;
 @property(nonatomic) long long scoringClass; // @synthesize scoringClass=_scoringClass;
@@ -75,6 +70,7 @@
 - (CDStruct_474337f7)relativeGeometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2;
 - (CDStruct_474337f7)absoluteGeometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2 ofItem:(id)arg3 attribute:(unsigned long long)arg4;
 - (void)enumerateItems:(CDUnknownBlockType)arg1;
+- (unsigned long long)attributeReferencingItem:(id)arg1;
 - (id)itemNotMatchingItem:(id)arg1;
 - (id)constraintByReplacingView:(id)arg1 withView:(id)arg2 andReplacingView:(id)arg3 withView:(id)arg4;
 - (id)constraintByReplacingView:(id)arg1 withView:(id)arg2;
@@ -94,8 +90,6 @@
 @property(readonly, nonatomic) id secondItemRepresentation;
 @property(readonly, nonatomic) id firstItemRepresentation;
 - (id)archivableRepresentationWithRepresentationForItemBlock:(CDUnknownBlockType)arg1;
-- (void)setScoringType:(double)arg1 andScoringClass:(long long)arg2 basedUponLayoutInfo:(id)arg3;
-@property(nonatomic, getter=isUserDefined) BOOL userDefined;
 @property(readonly, nonatomic, getter=isAbsolute) BOOL absolute;
 @property(readonly, copy) NSString *description;
 - (id)descriptionOfComponents;
@@ -104,6 +98,8 @@
 - (long long)inferredContentType;
 - (id)initWithNSLayoutConstraint:(id)arg1 layoutInfo:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (id)initWithBinaryUnarchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithRepresentation:(id)arg1 itemForItemRepresentationBlock:(CDUnknownBlockType)arg2;

@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEEditorDocument, IDESourceControlDocumentLocation, IDESourceControlWorkingTreeItem, IDEWorkspace, NSArray, NSString;
+@class DVTObservingToken, DVTSourceControlRevision, DVTSourceControlWorkingCopy, DVTStackBacktrace, IDEEditorDocument, IDESourceControlDocumentLocation, IDEWorkspace, NSArray, NSObject<OS_dispatch_queue>, NSString;
 
 @interface IDESourceCodeBlameController : NSObject <DVTInvalidation>
 {
@@ -17,27 +17,26 @@
     IDEEditorDocument *_editorDocument;
     NSString *_revision;
     NSArray *_blameItems;
-    IDESourceControlWorkingTreeItem *_workingTreeItem;
     double _oldestTime;
     double _newestTime;
-    id <DVTInvalidation> _blameRequest;
-    id <DVTInvalidation> _logRequest;
-    DVTMapTable *_revisionToItem;
+    id <DVTSourceControlCancellable> _blameRequest;
     id <IDESourceCodeBlameControllerDelegate> _delegate;
     NSString *_specificUnavailabilityDescription;
     NSString *_genericUnavailabilityDescription;
     DVTObservingToken *_localStatusUpdateToken;
     DVTObservingToken *_sourceControlLocalStatusToken;
+    id <DVTSourceControlCancellable> _logLoadingToken;
+    NSObject<OS_dispatch_queue> *_logLoadingQueue;
     BOOL _loading;
     BOOL _isBlameAvailableForRevision;
     BOOL _showBaseButton;
     BOOL _blameItemsAreValid;
     BOOL _editorTextViewBoundsChanged;
-    NSString *_selectedRevision;
+    DVTSourceControlRevision *_selectedRevision;
 }
 
 + (void)initialize;
-@property(retain) NSString *selectedRevision; // @synthesize selectedRevision=_selectedRevision;
+@property(retain) DVTSourceControlRevision *selectedRevision; // @synthesize selectedRevision=_selectedRevision;
 @property BOOL editorTextViewBoundsChanged; // @synthesize editorTextViewBoundsChanged=_editorTextViewBoundsChanged;
 @property(readonly) NSString *genericUnavailabilityDescription; // @synthesize genericUnavailabilityDescription=_genericUnavailabilityDescription;
 @property(readonly) NSString *specificUnavailabilityDescription; // @synthesize specificUnavailabilityDescription=_specificUnavailabilityDescription;
@@ -54,11 +53,12 @@
 @property(retain, nonatomic) IDESourceControlDocumentLocation *sourceDocLocation; // @synthesize sourceDocLocation=_sourceDocLocation;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (void)_loadCommitMessages;
+- (void)loadLogItem:(id)arg1 fromAnnotationViewController:(id)arg2;
 - (void)_retrieveBlameEntries;
 - (void)removeFromComparisonEditor;
-- (void)_registerWorkingTreeItemObservations;
-@property(readonly) IDESourceControlWorkingTreeItem *workingTreeItem; // @synthesize workingTreeItem=_workingTreeItem;
+- (id)workingTreeItem;
+@property(readonly) NSString *relativeFilePath;
+@property(readonly) DVTSourceControlWorkingCopy *workingCopy;
 - (void)updateSourceDocLocation:(id)arg1 documentHasUnsavedChanges:(BOOL)arg2;
 - (id)initWithSourceControlLocation:(id)arg1 workspace:(id)arg2 editorDocument:(id)arg3;
 

@@ -17,6 +17,7 @@
     BOOL _preserveOldLogs;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 - (BOOL)preserveOldLogs;
 - (void).cxx_destruct;
@@ -31,6 +32,7 @@
 - (void)_saveLog:(id)arg1 logRecord:(id)arg2 toPath:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (BOOL)_saveCacheWithError:(id *)arg1;
 - (id)_cachePath;
+- (id)coverageReportFilePathForActivityLogSection:(id)arg1;
 - (id)testableSummariesPlistFilePathForActivityLogSection:(id)arg1;
 - (id)rootDirectoryPath;
 - (void)primitiveInvalidate;

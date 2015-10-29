@@ -8,15 +8,14 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTDispatchLock, DVTFilePath, DVTMapTable, DVTNotificationToken, DVTObservingToken, DVTSourceControlWorkspace, DVTSourceControlWorkspaceBlueprint, DVTStackBacktrace, IDEContainerQuery, IDELogStore, IDESourceControlManager, IDESourceControlRequest, IDEWorkspace, NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSTimer;
+@class DVTDispatchLock, DVTFilePath, DVTNotificationToken, DVTObservingToken, DVTSourceControlWorkspace, DVTSourceControlWorkspaceBlueprint, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDEContainerQuery, IDELogStore, IDESourceControlManager, IDESourceControlRequest, IDEWorkspace, NSArray, NSDate, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSTimer;
 
 @interface IDESourceControlWorkspaceMonitor : NSObject <DVTInvalidation>
 {
-    IDESourceControlManager *_sourceControlManager;
     IDEWorkspace *_workspace;
     IDEContainerQuery *_query;
+    DVTTimeSlicedMainThreadWorkQueue *_fileReferenceProcessingQueue;
     NSMutableDictionary *_workspaceSCMInfo;
-    NSMutableSet *_fileRefSet;
     NSMutableSet *_workspaceFolders;
     NSObject<OS_dispatch_queue> *_scanningQueue;
     BOOL _resumedScanningQueue;
@@ -28,26 +27,13 @@
     DVTDispatchLock *_workingTreesLock;
     NSMutableSet *_workingTreeBranchTokens;
     DVTDispatchLock *_workingTreeBranchTokensLock;
-    DVTMapTable *_workspaceRootForWorkingTreeMapTable;
     DVTDispatchLock *_workspaceRootMapTableLock;
     IDELogStore *_logStore;
     DVTObservingToken *_containerQueryMatchesObserver;
     NSOperationQueue *_scmFileEventQueue;
-    NSObject<OS_dispatch_queue> *_scmQueue;
-    NSObject<OS_dispatch_group> *_scmGroup;
     IDESourceControlRequest *_sourceControlInfoRequest;
-    double _serverStatusUpdateInterval;
-    NSTimer *_statusUpdateTimer;
     NSString *_developerFolderPathString;
-    BOOL _localStatusCheckingEnabled;
-    BOOL _remoteStatusCheckingEnabled;
-    BOOL _idleNotificationPosted;
-    BOOL _hasConfiguredTBTForWorkingCopies;
-    BOOL _hasMergedProjectData;
     unsigned long long _workingTreesCount;
-    unsigned long long _workingTreesConfigured;
-    BOOL _shouldAskForNewWorkingCopies;
-    BOOL _shouldSaveLegacyBlueprint;
     DVTDispatchLock *_derivedDataLock;
     DVTFilePath *_derivedDataFilePath;
     DVTObservingToken *_deriviedDataObservationToken;
@@ -56,38 +42,39 @@
     DVTFilePath *_productsFilePath;
     DVTObservingToken *_productsObservationToken;
     DVTNotificationToken *_sourceControlEnabledToken;
+    BOOL _localStatusCheckingEnabled;
+    BOOL _remoteStatusCheckingEnabled;
     DVTSourceControlWorkspace *_sourceControlWorkspace;
+    IDESourceControlManager *_sourceControlManager;
+    double _serverStatusUpdateInterval;
     unsigned long long _state;
     DVTSourceControlWorkspaceBlueprint *_cachedBlueprint;
+    NSTimer *_statusUpdateTimer;
+    NSMapTable *_workspaceRootForWorkingTreeMapTable;
 }
 
 + (id)keyPathsForValuesAffectingLogRecords;
 + (id)keyPathsForValuesAffectingDidScanWorkspace;
 + (id)keyPathsForValuesAffectingIsPerformingInitialWorkspaceScan;
 + (void)initialize;
+@property(readonly) NSMapTable *workspaceRootForWorkingTreeMapTable; // @synthesize workspaceRootForWorkingTreeMapTable=_workspaceRootForWorkingTreeMapTable;
+@property(retain) NSTimer *statusUpdateTimer; // @synthesize statusUpdateTimer=_statusUpdateTimer;
 @property(retain) DVTSourceControlWorkspaceBlueprint *cachedBlueprint; // @synthesize cachedBlueprint=_cachedBlueprint;
-@property unsigned long long state; // @synthesize state=_state;
-@property(retain) DVTSourceControlWorkspace *sourceControlWorkspace; // @synthesize sourceControlWorkspace=_sourceControlWorkspace;
-@property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 @property(retain) IDELogStore *logStore; // @synthesize logStore=_logStore;
-@property(copy) NSTimer *statusUpdateTimer; // @synthesize statusUpdateTimer=_statusUpdateTimer;
+@property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
+@property unsigned long long state; // @synthesize state=_state;
+@property(nonatomic) BOOL remoteStatusCheckingEnabled; // @synthesize remoteStatusCheckingEnabled=_remoteStatusCheckingEnabled;
+@property(nonatomic) BOOL localStatusCheckingEnabled; // @synthesize localStatusCheckingEnabled=_localStatusCheckingEnabled;
 @property double serverStatusUpdateInterval; // @synthesize serverStatusUpdateInterval=_serverStatusUpdateInterval;
-@property(readonly) DVTMapTable *workspaceRootForWorkingTreeMapTable; // @synthesize workspaceRootForWorkingTreeMapTable=_workspaceRootForWorkingTreeMapTable;
 @property(retain) IDESourceControlManager *sourceControlManager; // @synthesize sourceControlManager=_sourceControlManager;
+@property(retain) DVTSourceControlWorkspace *sourceControlWorkspace; // @synthesize sourceControlWorkspace=_sourceControlWorkspace;
 - (void).cxx_destruct;
 - (void)loadSourceControlLogsForWorkspace:(id)arg1;
 - (void)updateLogsWithRequest:(id)arg1;
 @property(readonly) NSArray *logRecords;
 - (id)rootDirectoryOfAllWorkingCopies;
-- (unsigned long long)stateForWorkingCopyConfiguration:(id)arg1;
-- (unsigned long long)stateForRemoteRepository:(id)arg1;
-- (unsigned long long)stateForWorkingTree:(id)arg1;
-- (void)setState:(unsigned long long)arg1 forWorkingCopyConfigurationStateDictionary:(id)arg2;
-- (void)setState:(unsigned long long)arg1 forRemoteRepository:(id)arg2;
-- (void)setState:(unsigned long long)arg1 forWorkingTree:(id)arg2;
 - (void)checkForMissingCheckouts;
-- (void)checkForAdditionalCheckouts;
-- (void)writeToSCMInfoToWorkspaceWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (void)writeSCMInfoToWorkspace;
 - (void)saveSCMInfo;
 - (id)getSCMInfoObjectforKey:(id)arg1;
 - (void)setSCMInfoObject:(id)arg1 forSCMKey:(id)arg2;
@@ -105,10 +92,8 @@
 - (void)_updateServerStatusForWorkingTreesWithForce:(BOOL)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)forceUpdateServerStatusForWorkingTreesWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)updateServerStatusForWorkingTrees;
-@property BOOL remoteStatusCheckingEnabled; // @synthesize remoteStatusCheckingEnabled=_remoteStatusCheckingEnabled;
 - (void)endPeriodicServerStatusUpdates;
 - (void)beginPeriodicServerStatusUpdates;
-@property BOOL localStatusCheckingEnabled; // @synthesize localStatusCheckingEnabled=_localStatusCheckingEnabled;
 - (void)endObservingWorkingTree:(id)arg1;
 - (void)beginObservingWorkingTree:(id)arg1;
 - (id)itemsWithStatusInWorkspaceForWorkingTree:(id)arg1;
@@ -117,19 +102,23 @@
 - (id)rootDirectoryFilePathInWorkspaceForWorkingTree:(id)arg1;
 - (void)_scanFinished;
 - (void)startScanningWorkspace:(id)arg1;
+- (void)warnToCommitBefore:(id)arg1 warnedBy:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)setSuppressCommitAlert:(BOOL)arg1;
 - (void)_startScanningWorkspace:(id)arg1;
-- (void)_processFileRefsBatch:(id)arg1;
+- (void)_processFileReference:(id)arg1;
 - (void)upgradedWorkingCopy:(id)arg1;
 - (void)scanForWorkingCopyInFilePath:(id)arg1;
 - (void)addWorkspaceFilePathToCheck:(id)arg1;
-- (void)scanWorkspaceFolders;
+- (void)_scanWorkspaceFolders;
+- (void)_requestScanWorkspaceFolders;
 - (BOOL)_filePathIsInDerivedDataFolder:(id)arg1;
 @property(readonly) BOOL didScanWorkspace;
 @property(readonly) BOOL isPerformingInitialWorkspaceScan;
 - (void)addWorkingTree:(id)arg1;
 - (void)_sortWorkingCopies;
-@property(readonly) NSArray *workingTrees; // @synthesize workingTrees=_workingTrees;
-@property(readonly) NSArray *workingCopiesNeedingUpgrade; // @synthesize workingCopiesNeedingUpgrade=_workingCopiesNeedingUpgrade;
+@property(readonly) NSArray *workingCopies;
+@property(readonly) NSArray *workingTrees;
+@property(readonly) NSArray *workingCopiesNeedingUpgrade;
 - (void)primitiveInvalidate;
 - (void)_disableSourceControlMonitor;
 - (id)initWithSCMManager:(id)arg1;

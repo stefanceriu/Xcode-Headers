@@ -34,6 +34,7 @@
 @property(readonly, nonatomic, getter=isStringSummarizationFinished) BOOL stringSummarizationFinished;
 @property(readonly, nonatomic, getter=isDrawingFinished) BOOL drawingFinished;
 @property(readonly, nonatomic) struct DTTimelineDecorationContainer *container;
+- (void)dealloc;
 - (id)initWithTile:(id)arg1 container:(struct DTTimelineDecorationContainer *)arg2 decorator:(id)arg3 eta:(id)arg4;
 - (void)_timerFired:(id)arg1;
 

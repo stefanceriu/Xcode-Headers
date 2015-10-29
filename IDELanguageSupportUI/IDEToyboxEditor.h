@@ -8,34 +8,49 @@
 
 #import "IDEToyboxStackViewDelegate.h"
 
-@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, IDEPlaygroundEditor, IDEToy, IDEToybox, IDEToyboxStackView, NSDate, NSScrollView, NSString;
+@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, IDEPlaygroundEditor, IDEToy, IDEToybox, IDEToyboxStackView, IDEToyboxTimelineLoadingView, NSDate, NSScrollView, NSString, NSView;
 
 @interface IDEToyboxEditor : IDEEditor <IDEToyboxStackViewDelegate>
 {
+    DVTBorderedView *_borderedView;
     id <DVTCancellable> _clipViewFillToken;
-    DVTBorderedView *_editorView;
+    NSView *_editorView;
     NSScrollView *_scrollView;
     IDEToyboxStackView *_toyboxStackView;
     IDEToybox *_toybox;
     IDEPlaygroundEditor *_currentPrimaryEditor;
     DVTObservingToken *_currentPrimaryEditorObservingToken;
     DVTObservingToken *_toyboxObservingToken;
-    DVTObservingToken *_toyboxExecutionInProgressObservingToken;
+    DVTObservingToken *_toyboxExecutionIsInProgressObservingToken;
+    DVTObservingToken *_toyboxToysObservingToken;
     DVTNotificationToken *_fontAndColorSettingsChangeObservingToken;
     NSDate *_selectedResultDisplayDate;
+    IDEToyboxTimelineLoadingView *_launchingIndicatorView;
 }
 
 + (id)keyPathsForValuesAffectingSelectedToy;
 + (BOOL)automaticallyNotifiesObserversOfSelectedToy;
+@property(retain) IDEToyboxTimelineLoadingView *launchingIndicatorView; // @synthesize launchingIndicatorView=_launchingIndicatorView;
 @property(retain, nonatomic) NSDate *selectedResultDisplayDate; // @synthesize selectedResultDisplayDate=_selectedResultDisplayDate;
 - (void).cxx_destruct;
+- (void)_removeLaunchingIndicatorView;
+- (void)_showLaunchingIndicatorView;
+- (long long)countToysInTimeline;
+- (void)_dismissLaunchingIndicatorIfNecessary;
+- (void)_dismissLaunchingIndicator;
+- (void)_presentLaunchingIndicatorIfNecessary;
+- (void)_toyboxExecutionIsInProgressDidChange;
+- (void)_toyboxToysDidChange;
+- (void)_unregisterObservationsForToybox;
+- (void)_registerObservationsForToybox:(id)arg1;
+- (void)_documentDidChangeToybox:(id)arg1;
+- (void)registerForDocumentToyboxChanges;
 - (void)primitiveInvalidate;
 - (void)_fontAndColorSourceTextSettingsChanged;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 @property(retain, nonatomic) IDEToy *selectedToy;
 - (void)loadView;
-- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

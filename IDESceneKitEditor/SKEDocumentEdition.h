@@ -6,16 +6,18 @@
 
 #import "NSObject.h"
 
-@class IDEEditorDocument<SKEDocumentProtocol>;
-
 @interface SKEDocumentEdition : NSObject
 {
-    IDEEditorDocument<SKEDocumentProtocol> *_document;
+    id <SKEDocumentProtocol> _document;
+    SKEDocumentEdition *_revertingEdition;
 }
 
 - (void).cxx_destruct;
+- (id)reverseEdition;
+- (void)revertWithObject:(id)arg1;
 - (BOOL)revert;
 - (BOOL)apply;
+@property(readonly) id <SKEDocumentProtocol> document;
 - (id)initWithDocument:(id)arg1;
 
 @end

@@ -7,10 +7,11 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation.h"
+#import "WebFrameLoadDelegate.h"
 
 @class DVTPerformanceMetric, DVTSourceExpression, DVTStackBacktrace, DVTViewController, IDEQuickHelpQueryResult, NSString, WebView;
 
-@interface IDEQuickHelpController : NSObject <DVTInvalidation>
+@interface IDEQuickHelpController : NSObject <WebFrameLoadDelegate, DVTInvalidation>
 {
     DVTSourceExpression *_selectedSourceExpression;
     NSString *_quickHelpContent;

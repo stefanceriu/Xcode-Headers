@@ -20,6 +20,7 @@
 - (long long)autodetectedFormatForPackaging;
 - (BOOL)supportsPackagingAsFormat:(long long)arg1;
 - (id)packager;
+- (id)teamIdentifier;
 @property(readonly) DVTFilePath *inAppContentPath;
 
 @end

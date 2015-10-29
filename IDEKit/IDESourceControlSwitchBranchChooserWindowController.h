@@ -8,7 +8,7 @@
 
 #import "IDESourceControlWindowController.h"
 
-@class DVTBindingToken, DVTReplacementView, DVTSearchField, IDESourceControlSwitchOperationInfo, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSButton, NSString, NSTextField, NSWindow;
+@class DVTBindingToken, DVTBorderedView, DVTReplacementView, DVTSearchField, IDESourceControlSwitchOperationInfo, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSButton, NSString, NSTextField, NSWindow;
 
 @interface IDESourceControlSwitchBranchChooserWindowController : NSWindowController <IDESourceControlWindowController>
 {
@@ -23,11 +23,13 @@
     BOOL _inProgress;
     DVTBindingToken *_filterBindingToken;
     IDESourceControlWorkspaceUIHandler *_workspaceUIHandler;
+    DVTBorderedView *_borderedView;
     DVTReplacementView *_replacementView;
 }
 
 + (id)keyPathsForValuesAffectingCanContinue;
 @property __weak DVTReplacementView *replacementView; // @synthesize replacementView=_replacementView;
+@property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property __weak IDESourceControlWorkspaceUIHandler *workspaceUIHandler; // @synthesize workspaceUIHandler=_workspaceUIHandler;
 @property BOOL inProgress; // @synthesize inProgress=_inProgress;
 @property(retain) IDESourceControlSwitchOperationInfo *operationInfo; // @synthesize operationInfo=_operationInfo;

@@ -6,55 +6,91 @@
 
 #import "NSResponder.h"
 
-@class DTTimelineGraph, NSCursor, NSTrackingArea;
+#import "DTTimelineMouseStateValidatorDelegate.h"
 
-@interface DTTimelineMouseEventsResponder : NSResponder
+@class DTTimelineGraph, DTTimelineMouseStateValidator, DTTimelinePlane, NSEvent, NSString, NSTimer, NSTrackingArea;
+
+@interface DTTimelineMouseEventsResponder : NSResponder <DTTimelineMouseStateValidatorDelegate>
 {
     DTTimelineGraph *_timelineGraph;
-    BOOL _inDragEvent;
-    double _startDragX;
-    double _selectionStartX;
-    double _selectionEndX;
-    BOOL _overSelectionStart;
-    BOOL _overSelectionEnd;
+    DTTimelineMouseStateValidator *_mouseStateValidator;
     NSTrackingArea *_trackingArea;
-    NSCursor *_resizeLeftRightCursor;
-    double _scrollingDeltaXTotal;
+    double _filterStartX;
+    double _filterEndX;
+    double _zoomIndicatorStartX;
     long long _magnifyGestureCenter;
-    BOOL _userDraggedMouseSinceMouseDown;
-    BOOL _shiftKeyPressedOnMouseDown;
-    struct CGPoint _cursorPositionOnMouseDown;
-    struct CGPoint _cursorPositionOnMouseDownRelativeToTimelineGraph;
+    BOOL _mouseDraggedSinceMouseDown;
+    NSEvent *_mouseDownEvent;
+    DTTimelinePlane *_resizingPlane;
+    NSTimer *_longPressTimer;
     id <DTTimelineGraphDelegate> _delegate;
 }
 
 @property(nonatomic) __weak id <DTTimelineGraphDelegate> delegate; // @synthesize delegate=_delegate;
-- (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)magnifyWithEvent:(id)arg1;
-- (void)_magnifyGraph:(double)arg1;
-- (void)mouseExited:(id)arg1;
-- (void)mouseMoved:(id)arg1;
-- (BOOL)_shouldDisplayInspectionInfoForEvent:(id)arg1;
-- (void)mouseUp:(id)arg1;
-- (void)_handleNonPlaneSelectionClick:(id)arg1;
-- (void)mouseDragged:(id)arg1;
-- (void)_updateZoomWithDragDelta:(double)arg1 focusPoint:(struct CGPoint)arg2;
-- (void)mouseDown:(id)arg1;
-- (BOOL)_shiftKeyPressed;
-- (void)scrollWheel:(id)arg1;
-- (void)_selectFrom:(double)arg1 to:(double)arg2;
-- (long long)_rationalizeSelectionOffset:(long long)arg1;
-- (BOOL)_eventInLabelOverlayArea:(id)arg1;
-- (BOOL)_eventInRuler:(id)arg1;
+- (void)_dragInspectionPointEvent:(id)arg1;
+- (void)_endLongPressDragAtEvent:(id)arg1;
+- (void)_longPressDragToEvent:(id)arg1;
+- (BOOL)_startLongPressDragAtEvent:(id)arg1;
+- (void)_resizePlane:(id)arg1 event:(id)arg2;
+- (void)_zoomOutBasedOnZoomIndicator;
+- (void)_zoomInToZoomIndicator;
+- (void)_cancelZoom;
+- (void)_displayZoomIndicatorFrom:(double)arg1 to:(double)arg2;
+- (void)_setRangeIndicatorState:(unsigned long long)arg1;
+- (void)_clickFromEvent:(id)arg1;
+- (void)_magnifyBy:(double)arg1;
+- (void)_finishFiltering;
+- (void)_applyFilterFrom:(double)arg1 to:(double)arg2;
+- (void)_clearInspectionInfo;
+- (void)_displayInspectionInfoForEvent:(id)arg1;
+- (void)_moveVerticalScrollerByY:(double)arg1;
+- (void)_moveHorizontalScrollerByX:(double)arg1;
+- (void)_moveByY:(double)arg1;
+- (void)_moveByX:(double)arg1;
+- (BOOL)_mouseIsOverDisclosureTriangle:(id)arg1 groupPlane:(out id *)arg2;
+- (BOOL)_mouseIsOverResizablePlaneBorder:(id)arg1;
+- (id)_planeToResizeForEvent:(id)arg1;
+- (BOOL)_mouseIsOverFilterEnd:(id)arg1;
+- (BOOL)_mouseIsOverFilterStart:(id)arg1;
+- (BOOL)_mouseIsInLabelOverlayArea:(id)arg1;
+- (BOOL)_mouseIsInBottomPinnedPlane:(id)arg1;
+- (BOOL)_mouseIsInRuler:(id)arg1;
+- (BOOL)_mouseIsInHoverArea:(id)arg1;
+- (BOOL)_mouseIsOverGraph:(id)arg1;
+- (void)_updateFilterStateFromTimeline;
+- (long long)_maxOffset;
 - (double)_rulerHeight;
+- (long long)_rationalizeSelectionOffset:(long long)arg1;
 - (double)_localYFromEvent:(id)arg1;
 - (double)_localXFromEvent:(id)arg1;
 - (struct CGPoint)_localPointFromEvent:(id)arg1;
-- (void)_moveByY:(double)arg1;
-- (void)_moveByX:(double)arg1;
-- (long long)_maxOffset;
+- (BOOL)_controlKeyPressed;
+- (BOOL)_shiftKeyPressed;
+- (BOOL)_optionKeyPressed;
+- (void)_fireLongPressTimer:(id)arg1;
+- (void)_cancelLongPressTimer;
+- (void)_startLongPressTimerWithEvent:(id)arg1;
+- (void)_mouseDragTransitionToState:(unsigned long long)arg1 event:(id)arg2;
+- (void)_setIdleStateBasedOnEvent:(id)arg1;
+- (void)scrollWheel:(id)arg1;
+- (void)magnifyWithEvent:(id)arg1;
+- (void)mouseDragged:(id)arg1;
+- (void)mouseMoved:(id)arg1;
+- (void)mouseUp:(id)arg1;
+- (void)mouseDown:(id)arg1;
+- (void)mouseExited:(id)arg1;
+- (void)mouseEntered:(id)arg1;
+- (void)flagsChanged:(id)arg1;
+- (void)mouseStateValidator:(id)arg1 didTransistionToState:(unsigned long long)arg2 fromState:(unsigned long long)arg3 event:(id)arg4;
+- (void)_assertOrLogInvalidStateInEvent:(id)arg1;
 - (id)initWithTimelineGraph:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

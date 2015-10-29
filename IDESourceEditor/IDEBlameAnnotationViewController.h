@@ -36,11 +36,9 @@
     BOOL _uncommitted;
     NSColor *_titleColor;
     NSColor *_subtitleColor;
+    NSColor *_subtitleLinkColor;
 }
 
-+ (id)keyPathsForValuesAffectingDisplayLogItemDate;
-+ (id)keyPathsForValuesAffectingDisplayLogItemAuthorName;
-+ (id)keyPathsForValuesAffectingDisplayLogItemMessage;
 + (BOOL)_hasLightBackround;
 + (id)annotationHighlightGradient;
 + (id)annotationHighlightColor;
@@ -50,16 +48,17 @@
 + (id)_fontWithDefaultMessageFontSize;
 + (double)_defaultMessageFontSize;
 + (id)defaultViewNibName;
-@property(retain) NSColor *subtitleColor; // @synthesize subtitleColor=_subtitleColor;
-@property(retain) NSColor *titleColor; // @synthesize titleColor=_titleColor;
-@property BOOL uncommitted; // @synthesize uncommitted=_uncommitted;
-@property(retain) IDESourceCodeBlameController *blameController; // @synthesize blameController=_blameController;
-@property long long fontSize; // @synthesize fontSize=_fontSize;
-@property(retain) IDEBlameAnnotationAgeBarView *ageBar; // @synthesize ageBar=_ageBar;
-@property(retain) NSButton *actionButton; // @synthesize actionButton=_actionButton;
-@property(retain) NSTextField *messageTextField; // @synthesize messageTextField=_messageTextField;
-@property(retain) IDEBlameAnnotationBorderedView *borderedView; // @synthesize borderedView=_borderedView;
-@property(retain) NSView *primaryView; // @synthesize primaryView=_primaryView;
+@property(retain, nonatomic) NSColor *subtitleLinkColor; // @synthesize subtitleLinkColor=_subtitleLinkColor;
+@property(retain, nonatomic) NSColor *subtitleColor; // @synthesize subtitleColor=_subtitleColor;
+@property(retain, nonatomic) NSColor *titleColor; // @synthesize titleColor=_titleColor;
+@property(nonatomic) BOOL uncommitted; // @synthesize uncommitted=_uncommitted;
+@property(retain, nonatomic) IDESourceCodeBlameController *blameController; // @synthesize blameController=_blameController;
+@property(nonatomic) long long fontSize; // @synthesize fontSize=_fontSize;
+@property(retain, nonatomic) IDEBlameAnnotationAgeBarView *ageBar; // @synthesize ageBar=_ageBar;
+@property(retain, nonatomic) NSButton *actionButton; // @synthesize actionButton=_actionButton;
+@property(retain, nonatomic) NSTextField *messageTextField; // @synthesize messageTextField=_messageTextField;
+@property(retain, nonatomic) IDEBlameAnnotationBorderedView *borderedView; // @synthesize borderedView=_borderedView;
+@property(retain, nonatomic) NSView *primaryView; // @synthesize primaryView=_primaryView;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)_layoutView;
@@ -76,8 +75,10 @@
 - (BOOL)detailShouldShowOpenBlameView;
 - (void)openBlameView;
 - (void)openComparisonView;
-@property double relativeAge; // @synthesize relativeAge=_relativeAge;
+@property(nonatomic) double relativeAge; // @synthesize relativeAge=_relativeAge;
 - (id)displayLogItemDate;
+- (void)refreshDisplay;
+- (void)_refresh;
 - (id)displayLogItemAuthorName;
 - (id)displayLogItemMessage;
 - (void)viewWillUninstall;

@@ -6,25 +6,24 @@
 
 #import <XCSCore/XCSObject.h>
 
-@class NSImage, NSString;
+@class NSString;
 
 @interface XCSDevice : XCSObject
 {
 }
 
-+ (id)deviceWithName:(id)arg1 identifier:(id)arg2 deviceUDID:(id)arg3 deviceECID:(id)arg4 serialNumber:(id)arg5 deviceType:(id)arg6 modelName:(id)arg7 modelCode:(id)arg8 architecture:(id)arg9 osVersion:(id)arg10 processor:(id)arg11 modelUTI:(id)arg12 platformIdentifier:(id)arg13 isSimulator:(BOOL)arg14 displaySize:(id)arg15 isRetina:(BOOL)arg16 isConnected:(BOOL)arg17 isSupported:(BOOL)arg18 enabledForDevelopment:(BOOL)arg19 validationErrors:(id *)arg20;
-- (BOOL)_validateName:(id)arg1 identifier:(id)arg2 deviceUDID:(id)arg3 deviceECID:(id)arg4 serialNumber:(id)arg5 deviceType:(id)arg6 modelName:(id)arg7 modelCode:(id)arg8 architecture:(id)arg9 osVersion:(id)arg10 processor:(id)arg11 modelUTI:(id)arg12 platformIdentifier:(id)arg13 isSimulator:(BOOL)arg14 displaySize:(id)arg15 isRetina:(BOOL)arg16 isConnected:(BOOL)arg17 isSupported:(BOOL)arg18 enabledForDevelopment:(BOOL)arg19 validationErrors:(id *)arg20;
++ (id)deviceWithName:(id)arg1 identifier:(id)arg2 deviceUDID:(id)arg3 deviceECID:(id)arg4 serialNumber:(id)arg5 deviceType:(id)arg6 modelName:(id)arg7 modelCode:(id)arg8 architecture:(id)arg9 osVersion:(id)arg10 processor:(id)arg11 modelUTI:(id)arg12 platformIdentifier:(id)arg13 isSimulator:(BOOL)arg14 displaySize:(id)arg15 isRetina:(BOOL)arg16 isConnected:(BOOL)arg17 isSupported:(BOOL)arg18 isTrusted:(BOOL)arg19 enabledForDevelopment:(BOOL)arg20 activeProxiedDevice:(id)arg21 validationErrors:(id *)arg22;
+- (BOOL)_validateName:(id)arg1 identifier:(id)arg2 deviceUDID:(id)arg3 deviceECID:(id)arg4 serialNumber:(id)arg5 deviceType:(id)arg6 modelName:(id)arg7 modelCode:(id)arg8 architecture:(id)arg9 osVersion:(id)arg10 processor:(id)arg11 modelUTI:(id)arg12 platformIdentifier:(id)arg13 isSimulator:(BOOL)arg14 displaySize:(id)arg15 isRetina:(BOOL)arg16 isConnected:(BOOL)arg17 isSupported:(BOOL)arg18 enabledForDevelopment:(BOOL)arg19 activeProxiedDevice:(id)arg20 validationErrors:(id *)arg21;
+- (long long)architectureType;
 - (id)saveRepresentationHumanReadable:(BOOL)arg1;
 - (id)saveRepresentation;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)initWithName:(id)arg1 identifier:(id)arg2 deviceUDID:(id)arg3 deviceECID:(id)arg4 serialNumber:(id)arg5 deviceType:(id)arg6 modelName:(id)arg7 modelCode:(id)arg8 architecture:(id)arg9 osVersion:(id)arg10 processor:(id)arg11 modelUTI:(id)arg12 platformIdentifier:(id)arg13 isSimulator:(BOOL)arg14 displaySize:(id)arg15 isRetina:(BOOL)arg16 isConnected:(BOOL)arg17 isSupported:(BOOL)arg18 enabledForDevelopment:(BOOL)arg19 validationErrors:(id *)arg20;
-- (BOOL)isPlatformASimulator;
-- (id)imageDataWithSize:(struct CGSize)arg1;
-@property(nonatomic) NSImage *image; // @dynamic image;
+- (id)initWithName:(id)arg1 identifier:(id)arg2 deviceUDID:(id)arg3 deviceECID:(id)arg4 serialNumber:(id)arg5 deviceType:(id)arg6 modelName:(id)arg7 modelCode:(id)arg8 architecture:(id)arg9 osVersion:(id)arg10 processor:(id)arg11 modelUTI:(id)arg12 platformIdentifier:(id)arg13 isSimulator:(BOOL)arg14 displaySize:(id)arg15 isRetina:(BOOL)arg16 isConnected:(BOOL)arg17 isSupported:(BOOL)arg18 isTrusted:(BOOL)arg19 enabledForDevelopment:(BOOL)arg20 activeProxiedDevice:(id)arg21 validationErrors:(id *)arg22;
 
 // Remaining properties
+@property(copy, nonatomic) XCSDevice *activeProxiedDevice; // @dynamic activeProxiedDevice;
 @property(copy, nonatomic) NSString *architecture; // @dynamic architecture;
 @property(nonatomic, getter=isConnected) BOOL connected; // @dynamic connected;
 @property(copy, nonatomic) NSString *deviceECID; // @dynamic deviceECID;
@@ -45,6 +44,7 @@
 @property(copy, nonatomic) NSString *serialNumber; // @dynamic serialNumber;
 @property(nonatomic, getter=isSimulator) BOOL simulator; // @dynamic simulator;
 @property(nonatomic, getter=isSupported) BOOL supported; // @dynamic supported;
+@property(nonatomic, getter=isTrusted) BOOL trusted; // @dynamic trusted;
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "IDEAutoImportable.h"
 
-@class DVTFilePath, DVTSourceCodeLanguage, DVTSourceCodeSymbolKind, IDEIndexCollection, NSString;
+@class DVTFilePath, DVTSourceCodeLanguage, DVTSourceCodeSymbolKind, IDEIndexCollection, NSObject<IDEIndexQueryProvider>, NSString;
 
 @interface IDEIndexSymbol : IDEIndexSymbolOccurrence <IDEAutoImportable>
 {
@@ -22,6 +22,7 @@
     long long _rawLanguage;
     BOOL _haveModelOccurrence;
     BOOL _isVirtual;
+    BOOL _isSystem;
     NSString *_moduleName;
 }
 
@@ -32,6 +33,7 @@
 + (id)newSymbolOfRawKind:(long long)arg1 kind:(id)arg2 rawLanguage:(long long)arg3 language:(id)arg4 name:(id)arg5 resolution:(id)arg6 forQueryProvider:(id)arg7;
 + (Class)classForSymbolKind:(id)arg1;
 @property(copy, nonatomic) NSString *moduleName; // @synthesize moduleName=_moduleName;
+@property(nonatomic) BOOL isSystem; // @synthesize isSystem=_isSystem;
 @property(nonatomic) BOOL isVirtual; // @synthesize isVirtual=_isVirtual;
 @property(readonly, nonatomic) long long rawLanguage; // @synthesize rawLanguage=_rawLanguage;
 @property(readonly, nonatomic) DVTSourceCodeLanguage *symbolLanguage; // @synthesize symbolLanguage=_symbolLanguage;
@@ -66,6 +68,7 @@
 - (void)setModelOccurrence:(id)arg1;
 - (id)modelOccurrence;
 @property(readonly, nonatomic, getter=isInProject) BOOL inProject;
+@property(readonly, nonatomic) BOOL navigationPrefersDefinition;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
 @property(readonly, copy) NSString *description;
@@ -73,6 +76,7 @@
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
+@property(readonly, nonatomic) NSObject<IDEIndexQueryProvider> *queryProvider; // @dynamic queryProvider;
 @property(readonly) Class superclass;
 
 @end

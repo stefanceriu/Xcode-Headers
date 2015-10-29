@@ -13,7 +13,7 @@
 @interface IDESchemeActionTestableSummary : IDESchemeActionAbstractTestSummaryObject <IDESchemeActionTestSummaryContainer>
 {
     NSMutableArray *_tests;
-    NSString *_blueprintProviderPath;
+    NSString *_blueprintProviderRelativePath;
     NSString *_blueprintName;
 }
 
@@ -24,7 +24,7 @@
 + (BOOL)includeDummyTestSummaryInTestableSummary;
 + (void)initialize;
 @property(copy) NSString *blueprintName; // @synthesize blueprintName=_blueprintName;
-@property(copy) NSString *blueprintProviderPath; // @synthesize blueprintProviderPath=_blueprintProviderPath;
+@property(copy) NSString *blueprintProviderRelativePath; // @synthesize blueprintProviderRelativePath=_blueprintProviderRelativePath;
 - (void).cxx_destruct;
 - (BOOL)isSummaryForSameTestableAsSummary:(id)arg1;
 - (BOOL)updateWithDictionaryRepresentation:(id)arg1;
@@ -32,10 +32,11 @@
 @property(readonly) NSArray *containedTestSummaries;
 - (id)dictionaryRepresentation;
 - (id)addNewTestSummaryGroupWithName:(id)arg1 identifier:(id)arg2;
-- (id)addNewTestSummaryWithName:(id)arg1 identifier:(id)arg2 status:(unsigned long long)arg3 failureSummaries:(id)arg4 performanceMetrics:(id)arg5;
+- (id)addNewTestSummaryWithName:(id)arg1 identifier:(id)arg2 status:(unsigned long long)arg3 failureSummaries:(id)arg4 performanceMetrics:(id)arg5 activitySummaries:(id)arg6;
 - (unsigned long long)status;
+- (void)loadAttachmentsFromDirectory:(id)arg1;
 - (id)initWithDictionaryRepresentation:(id)arg1;
-- (id)initWithName:(id)arg1 blueprintProviderPath:(id)arg2 blueprintName:(id)arg3;
+- (id)initWithName:(id)arg1 blueprintProviderRelativePath:(id)arg2 blueprintName:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

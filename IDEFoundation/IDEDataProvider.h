@@ -6,12 +6,19 @@
 
 #import "NSObject.h"
 
+@class NSMutableDictionary;
+
 @interface IDEDataProvider : NSObject
 {
+    NSMutableDictionary *_initialQueryTimeForPidDictionary;
 }
 
 + (id)sharedDataProvider;
+- (void).cxx_destruct;
+- (id)initialQueryTimeForPidDictionary;
+- (id)stopSamplingForPIDs:(id)arg1;
 - (id)captureAttributes:(id)arg1 forPIDs:(id)arg2;
+- (id)startSamplingForPIDs:(id)arg1;
 - (id)supportedAttributes;
 
 @end

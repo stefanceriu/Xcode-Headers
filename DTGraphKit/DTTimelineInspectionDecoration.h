@@ -19,7 +19,6 @@
 @property(nonatomic, getter=isClickable) BOOL clickable; // @synthesize clickable=_clickable;
 @property(readonly, nonatomic) struct DTTimelineRepresentativeDecoration representedDecorationInfo; // @synthesize representedDecorationInfo=_representedDecorationInfo;
 @property(copy, nonatomic) NSAttributedString *summary; // @synthesize summary=_summary;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) struct XRTimeRange range;
 - (id)init;

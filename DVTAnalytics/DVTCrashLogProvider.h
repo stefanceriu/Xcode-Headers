@@ -30,6 +30,7 @@
 - (void)addCrashLogs:(id)arg1;
 - (void)_flushInMemoryCache;
 - (id)crashLogSavingQueue;
+- (id)init;
 - (id)initWithCacheDirectory:(id)arg1;
 
 // Remaining properties

@@ -13,6 +13,7 @@
 @interface IDEIssueGroup (IDEKitAdditions) <IDEKeyDrivenNavigableItemRepresentedObject>
 + (id)keyPathsForValuesAffectingNavigableItem_image;
 + (id)keyPathsForValuesAffectingNavigableItem_name;
++ (id)keyPathsForValuesAffectingImage;
 + (void)handleProductSettingsDidChangeNotification:(id)arg1;
 + (id)issueGroupForBlueprint:(id)arg1;
 + (void)_rememberBlueprint:(id)arg1 forIssueGroup:(id)arg2;

@@ -12,17 +12,22 @@
 {
     NSMutableArray *_regions;
     NSMapTable *_mallocZoneStatisticsMap;
+    BOOL _hasFractionalPageSizes;
 }
 
+- (id)descriptionForRegionTotalsWithOptions:(unsigned long long)arg1 memorySizeDivisor:(unsigned int)arg2;
 - (id)descriptionForRegionTotalsWithOptions:(unsigned long long)arg1;
-- (id)descriptionForMallocZoneTotalsWithOptions:(unsigned long long)arg1;
+- (id)descriptionForMallocZoneTotalsWithOptions:(unsigned long long)arg1 memorySizeDivisor:(unsigned int)arg2;
 - (id)descriptionForRange:(struct _VMURange)arg1 options:(unsigned long long)arg2;
 - (id)descriptionForRange:(struct _VMURange)arg1;
+- (BOOL)hasFractionalPageSizes;
 - (id)regions;
 - (void)dealloc;
+- (id)initWithGraph:(id)arg1 options:(unsigned long long)arg2;
 - (id)initWithTask:(unsigned int)arg1;
 - (id)initWithTask:(unsigned int)arg1 options:(unsigned long long)arg2;
 - (id)initWithTask:(unsigned int)arg1 pid:(int)arg2 options:(unsigned long long)arg3;
+- (id)init;
 
 @end
 

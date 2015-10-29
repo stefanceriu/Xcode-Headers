@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <XCSCore/XCSObject.h>
 
 @class NSArray, NSString, XCSCommit;
 
-@interface XCSContributor : NSObject
+@interface XCSContributor : XCSObject
 {
     XCSCommit *_commit;
     NSString *_name;
@@ -29,7 +29,7 @@
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)initWithContents:(id)arg1 validationErrors:(id *)arg2;
+- (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 - (id)initWithName:(id)arg1 displayName:(id)arg2 emails:(id)arg3 validationErrors:(id *)arg4;
 
 @end

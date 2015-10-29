@@ -7,11 +7,11 @@
 #import "NSWindowController.h"
 
 #import "DVTInvalidation.h"
-#import "NSTextFieldDelegate.h"
+#import "NSSearchFieldDelegate.h"
 
 @class DVTMutableOrderedDictionary, DVTSearchField, DVTStackBacktrace, IDEAppChooserModelObject, IDERunDestination, IDEScheme, IDESchemeCommand, NSArray, NSArrayController, NSButton, NSIndexSet, NSLock, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSProgressIndicator, NSString, NSTableView, NSWindow;
 
-@interface IDEAppChooserWindowController : NSWindowController <NSTextFieldDelegate, DVTInvalidation>
+@interface IDEAppChooserWindowController : NSWindowController <DVTInvalidation, NSSearchFieldDelegate>
 {
     NSLock *_foundAppsLock;
     CDUnknownBlockType _completionHandler;
@@ -21,6 +21,7 @@
     unsigned long long _type;
     NSWindow *_sheet;
     BOOL _haveFoundAtLeastOneUserAppOnDevice;
+    NSWindow *_parentWindow;
     NSArray *_orderedChooserApplications;
     NSString *_filterString;
     IDEAppChooserModelObject *_selectedApplicationModelObject;
@@ -38,11 +39,11 @@
     NSArray *_suggestedApps;
     NSArray *_installedApplications;
     DVTMutableOrderedDictionary *_orderedRecentsByURL;
-    NSArray *_recentApplicationURLs;
+    NSArray *_recentApplicationItems;
 }
 
 + (void)initialize;
-@property(readonly) NSArray *recentApplicationURLs; // @synthesize recentApplicationURLs=_recentApplicationURLs;
+@property(readonly) NSArray *recentApplicationItems; // @synthesize recentApplicationItems=_recentApplicationItems;
 @property(retain, nonatomic) DVTMutableOrderedDictionary *orderedRecentsByURL; // @synthesize orderedRecentsByURL=_orderedRecentsByURL;
 @property(retain, nonatomic) NSArray *installedApplications; // @synthesize installedApplications=_installedApplications;
 @property(copy) NSArray *suggestedApps; // @synthesize suggestedApps=_suggestedApps;
@@ -66,7 +67,6 @@
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (BOOL)tableView:(id)arg1 isGroupRow:(long long)arg2;
 - (void)primitiveInvalidate;
-- (void)didEndSheet:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)awakeFromNib;
 - (void)windowDidLoad;
 - (void)browseAction:(id)arg1;
@@ -76,13 +76,14 @@
 - (id)selectedRunnable;
 - (id)_predicateFromFilterString:(id)arg1;
 - (id)_recentAppsKey;
-- (id)_modelObjectFromURL:(id)arg1;
+- (id)_modelObjectFromURL:(id)arg1 displayName:(id)arg2 bundleID:(id)arg3;
 - (id)_imageFromURL:(id)arg1;
 - (id)_displayNameFromURL:(id)arg1;
 - (id)_modelObjectFromApplication:(id)arg1;
+- (void)_applyFilesystemPropertiesIfPossibleToModelObject:(id)arg1;
 - (id)_realBundleIDForModelObject:(id)arg1;
 - (id)_attachToExistingBundleIDPathExtension;
-- (void)_findRecentApplicationsFromURLs:(id)arg1;
+- (void)_findRecentAppsFromRecentItems:(id)arg1;
 - (id)_addApplicationsAndReturnUniqueURLs:(id)arg1;
 - (id)_sentinelApplicationsForDebuggingAppExtensionsOnDevice:(id)arg1;
 - (void)_findLaunchersForDevice:(id)arg1;

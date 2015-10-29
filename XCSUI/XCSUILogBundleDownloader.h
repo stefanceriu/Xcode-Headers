@@ -16,6 +16,8 @@
 + (id)sharedDownloader;
 - (void).cxx_destruct;
 - (void)cancelDownloadForToken:(id)arg1;
+- (id)downloadAllLogsForIntegration:(id)arg1 toDirectory:(id)arg2 progressBlock:(CDUnknownBlockType)arg3;
+- (id)fileNameForIntegration:(id)arg1;
 - (id)downloadAllLogsForIntegration:(id)arg1 windowForSheets:(id)arg2 progressBlock:(CDUnknownBlockType)arg3;
 - (id)init;
 

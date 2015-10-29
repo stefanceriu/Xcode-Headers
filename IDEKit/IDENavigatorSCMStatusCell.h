@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSActionCell.h"
+#import "NSTextFieldCell.h"
 
 @class NSAttributedString, NSString;
 
-@interface IDENavigatorSCMStatusCell : NSActionCell
+@interface IDENavigatorSCMStatusCell : NSTextFieldCell
 {
     NSString *_localStatus;
     NSString *_serverStatus;
@@ -19,17 +19,18 @@
 
 + (void)initialize;
 @property BOOL hidden; // @synthesize hidden=_hidden;
+@property(copy, nonatomic) NSString *serverStatus; // @synthesize serverStatus=_serverStatus;
+@property(copy, nonatomic) NSString *localStatus; // @synthesize localStatus=_localStatus;
 - (void).cxx_destruct;
+- (struct CGSize)cellSizeForBounds:(struct CGRect)arg1;
 - (struct CGSize)cellSize;
-@property(copy) NSString *serverStatus;
-@property(copy) NSString *localStatus;
+- (struct CGSize)_singleItemMaxSize;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (id)_bezelPathInRect:(struct CGRect)arg1;
 - (void)_drawStatusString:(id)arg1 inPathRect:(struct CGRect)arg2 view:(id)arg3;
-- (id)_validateServerStatusAttributedString;
-- (void)_clearServerStatusAttributedString;
-- (id)_validateLocalStatusAttributedString;
-- (void)_clearLocalStatusAttributedString;
+- (id)_fontForSize:(double)arg1 bold:(BOOL)arg2;
+- (id)_createServerStatusAttributedString;
+- (id)_createLocalStatusAttributedString;
 - (id)init;
 
 @end

@@ -30,7 +30,6 @@
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)effectiveStoryboardIdentifierPrefix;
 - (id)init;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
@@ -47,6 +46,7 @@
 - (Class)ibEditorClass;
 - (id)ibDefaultItemForNewInstances;
 - (id)ibDefaultViewForNewInstances;
+- (BOOL)ibCanRemoveChildren:(id)arg1;
 - (id)ibRelationshipSegueTrackingViewProperties;
 - (id)ibRelationshipSegueTrackingItemLocalizableProperties;
 - (id)ibRelationshipSegueTrackingItemProperties;

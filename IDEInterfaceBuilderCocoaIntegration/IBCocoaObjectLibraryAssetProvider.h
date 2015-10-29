@@ -21,13 +21,12 @@
     IBObjectLibraryAsset *collectionViewItemAsset;
     IBObjectLibraryAsset *containerViewAsset;
     IBObjectLibraryAsset *openGLViewAsset;
-    IBObjectLibraryAsset *standardConfigureToolbarItemAsset;
     IBObjectLibraryAsset *standardFontToolbarItemAsset;
     IBObjectLibraryAsset *standardColorToolbarItemAsset;
-    IBObjectLibraryAsset *standardSeparatorToolbarItemAsset;
     IBObjectLibraryAsset *standardSpaceToolbarItemAsset;
     IBObjectLibraryAsset *standardPrintToolbarItemAsset;
     IBObjectLibraryAsset *standardFlexibleSpaceToolbarItemAsset;
+    IBObjectLibraryAsset *gradientButtonAsset;
     IBObjectLibraryAsset *multilineBorderedTextFieldAsset;
     IBObjectLibraryAsset *multilineLabelAsset;
     IBObjectLibraryAsset *labelAsset;
@@ -42,13 +41,14 @@
     IBObjectLibraryAsset *enterFullScreenAsset;
     IBObjectLibraryAsset *pageControllerAsset;
     IBObjectLibraryAsset *tabViewController;
+    IBObjectLibraryAsset *verticalSplitView;
     IBObjectLibraryAsset *verticalSplitViewController;
+    IBObjectLibraryAsset *horizontalSplitView;
     IBObjectLibraryAsset *horizontalSplitViewController;
     IBCocoaPopoverObjectLibraryAsset *popoverAsset;
     IBObjectLibraryAsset *tableViewAsset;
     IBObjectLibraryAsset *outlineViewAsset;
     IBCocoaSourceListObjectLibraryAsset *sourceListAsset;
-    IBObjectLibraryAsset *byteCountFormatter;
     IBObjectLibraryAsset *textMenuAsset;
     IBObjectLibraryAsset *fontMenuAsset;
     IBObjectLibraryAsset *formatMenuAsset;
@@ -58,6 +58,8 @@
     IBObjectLibraryAsset *helpMenuAsset;
     IBObjectLibraryAsset *editMenuAsset;
     IBObjectLibraryAsset *findMenuAsset;
+    IBObjectLibraryAsset *abPeoplePickerViewAsset;
+    IBObjectLibraryAsset *abPersonViewAsset;
 }
 
 - (void).cxx_destruct;
@@ -66,7 +68,9 @@
 - (id)windowAssetForWindowObjectAsset:(id)arg1;
 - (void)document:(id)arg1 didAddDraggedObjects:(id)arg2 fromDraggedObjectLibraryAsset:(id)arg3;
 - (void)didAddMenuItemAsset:(id)arg1 withProducts:(id)arg2 toDocument:(id)arg3;
+- (void)didAddGradientButtonAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (void)didAddTableViewAssetProducts:(id)arg1 toDocument:(id)arg2;
+- (void)didAddSplitViewAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (void)didAddSourceListAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (void)didAddPopoverAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (void)didAddEnterFullScreenAssetProducts:(id)arg1 toDocument:(id)arg2;
@@ -80,6 +84,7 @@
 - (void)didAddTextFieldWithNumberFormatterAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (void)didAddOpenGLViewAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (id)createViewControllerFromAsset:(id)arg1 inContainerOrDocument:(id)arg2;
+- (void)_addItemPrototypeToCollectionViewAsset:(id)arg1 inDocument:(id)arg2;
 - (void)didAddCollectionViewAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (void)didAddDrawerAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (BOOL)isMenuItemAsset:(id)arg1;

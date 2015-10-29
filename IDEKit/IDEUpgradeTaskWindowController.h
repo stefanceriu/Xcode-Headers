@@ -10,7 +10,7 @@
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 
-@class DVTStackBacktrace, DVTTableView, IDEContainer, IDENavigableItemCoordinator, IDENavigatorDataCell, IDEWorkspace, NSButton, NSImageCell, NSMutableArray, NSString;
+@class DVTStackBacktrace, DVTTableView, IDEContainer, IDENavigableItemCoordinator, IDENavigatorDataCell, IDEWorkspace, NSButton, NSImageCell, NSMutableArray, NSString, NSWindow;
 
 @interface IDEUpgradeTaskWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, DVTInvalidation>
 {
@@ -29,6 +29,7 @@
     BOOL _displayingResults;
     IDENavigableItemCoordinator *_navigableItemCoordinator;
     CDUnknownBlockType _completionBlock;
+    NSWindow *_hostWindow;
 }
 
 + (id)_nilUpgradeTask;
@@ -56,7 +57,7 @@
 - (void)windowDidLoad;
 - (BOOL)_loadAllUpgradeTasks;
 - (id)_navigableItemForNilUpgradeTask;
-- (void)_sheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)_updateTasksSheetDidEndWithReturnCode:(long long)arg1;
 - (void)beginSheetForWindow:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)initWithWorkspace:(id)arg1 container:(id)arg2 blueprintProvider:(id)arg3;
 - (void)primitiveInvalidate;

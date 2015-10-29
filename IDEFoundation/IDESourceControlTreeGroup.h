@@ -21,7 +21,6 @@
 @property(readonly) NSMutableArray *mutableChildren; // @dynamic mutableChildren;
 @property(copy) NSArray *children; // @dynamic children;
 - (id)sparseChildren;
-- (void)computeChildrenIfNeeded;
 - (id)ideModelObjectTypeIdentifier;
 
 @end

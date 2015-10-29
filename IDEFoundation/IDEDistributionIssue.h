@@ -15,7 +15,7 @@
 }
 
 + (id)issuesFromErrors:(id)arg1 withSeverity:(int)arg2;
-+ (id)issuesFromITunesResponse:(id)arg1 errorContext:(id)arg2;
++ (id)issuesFromITunesResponse:(id)arg1;
 @property(readonly) NSError *error; // @synthesize error=_error;
 @property(readonly) int severity; // @synthesize severity=_severity;
 - (void).cxx_destruct;

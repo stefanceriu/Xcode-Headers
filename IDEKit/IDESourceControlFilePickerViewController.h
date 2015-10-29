@@ -6,33 +6,38 @@
 
 #import "DVTViewController.h"
 
-#import "IDEFilePickerViewDelegate.h"
+#import "NSOutlineViewDataSource.h"
+#import "NSOutlineViewDelegate.h"
 
-@class DVTBorderedView, IDESourceControlStructureViewController, NSArray, NSMutableArray, NSProgressIndicator, NSString;
+@class DVTBorderedView, DVTOutlineView, DVTSourceControlPathLocation, DVTSourceControlRepository, NSMutableDictionary, NSString;
 
-@interface IDESourceControlFilePickerViewController : DVTViewController <IDEFilePickerViewDelegate>
+@interface IDESourceControlFilePickerViewController : DVTViewController <NSOutlineViewDataSource, NSOutlineViewDelegate>
 {
     DVTBorderedView *_borderedView;
-    IDESourceControlStructureViewController *_filePickerViewController;
-    NSProgressIndicator *_spinner;
     CDUnknownBlockType _completionBlock;
-    NSMutableArray *_loadingObservations;
-    id _tmpItemToScrollToVisible;
-    BOOL _needsToWaitForChildren;
-    BOOL _onlySelectGroups;
-    BOOL _hasLoadedRequiredChildren;
+    id <DVTSourceControlCancellable> _currentToken;
+    DVTSourceControlRepository *_repository;
+    DVTSourceControlPathLocation *_root;
+    NSMutableDictionary *_cachedPaths;
+    DVTOutlineView *_outlineView;
+    id <IDESourceControlFilePickerDelegate> _delegate;
 }
 
-@property(nonatomic) BOOL hasLoadedRequiredChildren; // @synthesize hasLoadedRequiredChildren=_hasLoadedRequiredChildren;
-@property(nonatomic) BOOL onlySelectGroups; // @synthesize onlySelectGroups=_onlySelectGroups;
 @property(copy) CDUnknownBlockType completionBlock; // @synthesize completionBlock=_completionBlock;
+@property(retain) id <IDESourceControlFilePickerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)choose:(id)arg1;
-- (void)setRootRepository:(id)arg1 withExpandedItems:(id)arg2 visibleItem:(id)arg3;
-- (void)scrollItemToVisible:(id)arg1;
-@property(copy) NSArray *expandedItems;
-- (void)setRootRepository:(id)arg1;
+- (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
+- (double)outlineView:(id)arg1 heightOfRowByItem:(id)arg2;
+- (BOOL)outlineView:(id)arg1 shouldExpandItem:(id)arg2;
+- (long long)outlineView:(id)arg1 numberOfChildrenOfItem:(id)arg2;
+- (BOOL)outlineView:(id)arg1 isItemExpandable:(id)arg2;
+- (id)outlineView:(id)arg1 child:(long long)arg2 ofItem:(id)arg3;
+- (void)setRepository:(id)arg1;
+- (void)displayError:(id)arg1;
+- (void)stopLoading;
+- (void)startLoading;
 - (void)awakeFromNib;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 

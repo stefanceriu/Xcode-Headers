@@ -25,7 +25,7 @@
 - (id)marshalledUserDefinedRuntimeAttributeKeyValuePairs;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)drawPlaceholder:(struct CGRect)arg1;
-- (BOOL)usesCachedImageBasedDrawing;
+- (BOOL)prefersCachedImageBasedDrawing;
 - (BOOL)ibCanEmbedDirectlyInSplitView;
 - (BOOL)ibWantsEditorCanvasFrameContentBorder;
 - (id)ibRuntimeClassName;

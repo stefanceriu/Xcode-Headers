@@ -118,10 +118,12 @@ struct ComputeCommandEncoder<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
 
 struct ComputePipelineState<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _objectID;
+    struct DYStateElement<std::__1::basic_string<char>, GPUTools::SM::MTL::StateBaseDefault> _mLabel;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mError;
     struct DYStateElement<GPUTools::SM::MTL::BindingPoint<GPUTools::SM::MTL::Function<GPUTools::SM::MTL::DefaultBaseObjectTypes>, unsigned long long>, GPUTools::SM::MTL::StateBaseDefault> _mFunction;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mThreadExecutionWidth;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mMaxTotalThreadsPerThreadgroup;
+    struct DYStateElement<GPUTools::SM::MTL::StateBool, GPUTools::SM::MTL::StateBaseDefault> _mThreadGroupSizeIsMultipleOfThreadExecutionWidth;
     struct unordered_map<unsigned long long, std::__1::vector<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::allocator<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>>>, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, std::__1::vector<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::allocator<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>>>>>> _argumentTypeToArgumentsMap;
 };
 
@@ -252,6 +254,7 @@ struct Device<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _deviceID;
     StateMirrorManager_4613010e *_manager;
     struct unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> _ownedReceiverSet;
+    struct DYStateElement<std::__1::basic_string<char>, GPUTools::SM::MTL::StateBaseDefault> _mName;
 };
 
 struct Function {
@@ -286,6 +289,7 @@ struct GPUMTLBindPoint {
     unsigned int _field2;
     unsigned int _field3;
     int _field4;
+    unsigned long long _field5;
 };
 
 struct GPUMTLBlendChannelSetup {
@@ -308,11 +312,16 @@ struct Library<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     struct DYStateElement<std::__1::basic_string<char>, GPUTools::SM::MTL::StateBaseDefault> _mLabel;
     struct DYStateElement<GPUTools::SM::MTL::StateBool, GPUTools::SM::MTL::StateBaseDefault> _mFastMathEnabled;
     struct DYStateElement<GPUTools::SM::MTL::StateBool, GPUTools::SM::MTL::StateBaseDefault> _mDebuggingEnabled;
+    struct DYStateElement<unsigned int, GPUTools::SM::MTL::StateBaseDefault> _mDenormsEnabled;
+    struct DYStateElement<unsigned int, GPUTools::SM::MTL::StateBaseDefault> _mNativeDoubleEnabled;
+    struct DYStateElement<unsigned int, GPUTools::SM::MTL::StateBaseDefault> _mCubemapArrayEnabled;
+    struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mLanguageVersion;
     struct unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> _ownedFunctionIDs;
     _Bool _onlineCompiled;
     _Bool _defaultLibrary;
     NSMutableSet *_sourceURLs;
     NSDictionary *_preprocessorMacros;
+    _Bool _optionsExist;
 };
 
 struct ObjectTrackingMap<GPUTools::SM::MTL::BlitCommandEncoder<GPUTools::SM::MTL::DefaultBaseObjectTypes>, unsigned long long> {
@@ -381,7 +390,7 @@ struct ParallelRenderCommandEncoder<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mRootResource;
     struct DYStateElement<GPUTools::SM::MTL::StateBool, GPUTools::SM::MTL::StateBaseDefault> _mEncodingEnded;
     struct unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> _ownedRenderCommandEncoderIDs;
-    RenderPassDescriptor_f3ef942a _renderPassDescriptor;
+    RenderPassDescriptor_5fd82e83 _renderPassDescriptor;
 };
 
 struct PassthroughBase {
@@ -414,20 +423,23 @@ struct RenderCommandEncoder<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     struct DYStateElement<float, GPUTools::SM::MTL::StateBaseDefault> _mDepthBias;
     struct DYStateElement<float, GPUTools::SM::MTL::StateBaseDefault> _mDepthSlopeScale;
     struct DYStateElement<float, GPUTools::SM::MTL::StateBaseDefault> _mDepthClamp;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mDepthClipMode;
     struct DYStateElement<GPUTools::SM::VecN<unsigned long long, 4>, GPUTools::SM::MTL::StateBaseDefault> _mScissorRect;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mTriangleFillMode;
     struct DYStateElement<GPUTools::SM::VecN<float, 4>, GPUTools::SM::MTL::StateBaseDefault> _mBlendColor;
     struct DYStateElement<GPUTools::SM::MTL::BindingPoint<GPUTools::SM::MTL::DepthStencilState<GPUTools::SM::MTL::DefaultBaseObjectTypes>, unsigned long long>, GPUTools::SM::MTL::StateBaseDefault> _mDepthStencilState;
-    struct DYStateElement<long long, GPUTools::SM::MTL::StateBaseDefault> _mStencilReferenceValue;
+    struct DYStateElement<long long, GPUTools::SM::MTL::StateBaseDefault> _mStencilFrontReferenceValue;
+    struct DYStateElement<long long, GPUTools::SM::MTL::StateBaseDefault> _mStencilBackReferenceValue;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mVisibilityResultMode;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mVisibilityResultOffset;
     struct DYStateElement<GPUTools::SM::MTL::StateBool, GPUTools::SM::MTL::StateBaseDefault> _mEncodingEnded;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mRootResource;
     _Bool _isCreatedByCommandBuffer;
     _Bool _isCreatedByParallelRenderCommandEncoder;
+    _Bool _isFragmentRenderCommandEncoder;
     struct bitset<32> _vertexSamplerLODMinMaxBitSet;
     struct bitset<32> _fragmentSamplerLODMinMaxBitSet;
-    RenderPassDescriptor_f3ef942a _renderPassDescriptor;
+    RenderPassDescriptor_5fd82e83 _renderPassDescriptor;
 };
 
 struct RenderPassAttachmentDescriptor<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
@@ -443,14 +455,16 @@ struct RenderPassAttachmentDescriptor<GPUTools::SM::MTL::DefaultBaseObjectTypes>
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mLoadAction;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mStoreAction;
     struct DYStateElement<GPUTools::SM::VecN<double, 4>, GPUTools::SM::MTL::StateBaseDefault> _mClearValue;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mDepthResolveFilter;
 };
 
 struct RenderPassDescriptor<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _objectID;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mWidth;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mHeight;
+    struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mRenderTargetArrayLength;
     struct DYStateElement<GPUTools::SM::MTL::BindingPoint<GPUTools::SM::MTL::Buffer<GPUTools::SM::MTL::DefaultBaseObjectTypes>, unsigned long long>, GPUTools::SM::MTL::StateBaseDefault> _mVisibilityResultBuffer;
-    RenderPassAttachmentDescriptor_6b1b57e7 _attachments[10];
+    RenderPassAttachmentDescriptor_8c91cb7e _attachments[10];
 };
 
 struct RenderPipelineAttachmentDescriptor<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
@@ -479,6 +493,7 @@ struct RenderPipelineState<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mDepthAttachmentPixelFormat;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mStencilAttachmentPixelFormat;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mError;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mInputPrimitiveTopology;
     RenderPipelineAttachmentDescriptor_08890bb5 _renderPipelineAttachmentDescriptors[8];
     VertexDescriptor_e5d3aa79 _vertexDescriptor;
     struct unordered_map<unsigned long long, std::__1::vector<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::allocator<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>>>, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, std::__1::vector<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::allocator<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>>>>>> _vertexArgumentTypeToArgumentsMap;
@@ -500,6 +515,8 @@ struct Sampler<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     struct DYStateElement<float, GPUTools::SM::MTL::StateBaseDefault> _mLodMinClamp;
     struct DYStateElement<float, GPUTools::SM::MTL::StateBaseDefault> _mLodMaxClamp;
     struct DYStateElement<std::__1::basic_string<char>, GPUTools::SM::MTL::StateBaseDefault> _mLabel;
+    struct DYStateElement<unsigned int, GPUTools::SM::MTL::StateBaseDefault> _mLodAverage;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mCompareFunction;
 };
 
 struct StateBool {
@@ -521,7 +538,7 @@ struct StateMirrorManager<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
 struct Texture<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _objectID;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mPurgeableState;
-    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mResourceOptions;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mUsage;
     struct DYStateElement<std::__1::basic_string<char>, GPUTools::SM::MTL::StateBaseDefault> _mLabel;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mType;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mPixelFormat;
@@ -534,6 +551,8 @@ struct Texture<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mIOSurfaceRef;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mIOSurfacePlane;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mRootResource;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mStorageMode;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mCPUCacheMode;
     struct vector<GPUTools::SM::MTL::TextureSlice<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::allocator<GPUTools::SM::MTL::TextureSlice<GPUTools::SM::MTL::DefaultBaseObjectTypes>>> _textureSlices;
     struct unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> _ownedTextureIDs;
     _Bool _isTextureView;
@@ -1311,12 +1330,14 @@ typedef struct ComputeCommandEncoder<GPUTools::SM::MTL::DefaultBaseObjectTypes> 
 
 typedef struct ComputePipelineState<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _objectID;
+    struct DYStateElement<std::__1::basic_string<char>, GPUTools::SM::MTL::StateBaseDefault> _mLabel;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mError;
     struct DYStateElement<GPUTools::SM::MTL::BindingPoint<GPUTools::SM::MTL::Function<GPUTools::SM::MTL::DefaultBaseObjectTypes>, unsigned long long>, GPUTools::SM::MTL::StateBaseDefault> _mFunction;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mThreadExecutionWidth;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mMaxTotalThreadsPerThreadgroup;
+    struct DYStateElement<GPUTools::SM::MTL::StateBool, GPUTools::SM::MTL::StateBaseDefault> _mThreadGroupSizeIsMultipleOfThreadExecutionWidth;
     struct unordered_map<unsigned long long, std::__1::vector<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::allocator<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>>>, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, std::__1::vector<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::allocator<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>>>>>> _argumentTypeToArgumentsMap;
-} ComputePipelineState_33f4e92c;
+} ComputePipelineState_82a05cab;
 
 typedef struct DepthStencilState<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _objectID;
@@ -1356,7 +1377,8 @@ typedef struct Device<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _deviceID;
     StateMirrorManager_4613010e *_manager;
     struct unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> _ownedReceiverSet;
-} Device_4a5f6283;
+    struct DYStateElement<std::__1::basic_string<char>, GPUTools::SM::MTL::StateBaseDefault> _mName;
+} Device_5cef99fc;
 
 typedef struct Function<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _objectID;
@@ -1373,12 +1395,17 @@ typedef struct Library<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     struct DYStateElement<std::__1::basic_string<char>, GPUTools::SM::MTL::StateBaseDefault> _mLabel;
     struct DYStateElement<GPUTools::SM::MTL::StateBool, GPUTools::SM::MTL::StateBaseDefault> _mFastMathEnabled;
     struct DYStateElement<GPUTools::SM::MTL::StateBool, GPUTools::SM::MTL::StateBaseDefault> _mDebuggingEnabled;
+    struct DYStateElement<unsigned int, GPUTools::SM::MTL::StateBaseDefault> _mDenormsEnabled;
+    struct DYStateElement<unsigned int, GPUTools::SM::MTL::StateBaseDefault> _mNativeDoubleEnabled;
+    struct DYStateElement<unsigned int, GPUTools::SM::MTL::StateBaseDefault> _mCubemapArrayEnabled;
+    struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mLanguageVersion;
     struct unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> _ownedFunctionIDs;
     _Bool _onlineCompiled;
     _Bool _defaultLibrary;
     NSMutableSet *_sourceURLs;
     NSDictionary *_preprocessorMacros;
-} Library_c21f3395;
+    _Bool _optionsExist;
+} Library_fcf3a16e;
 
 typedef struct ParallelRenderCommandEncoder<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _objectID;
@@ -1386,8 +1413,8 @@ typedef struct ParallelRenderCommandEncoder<GPUTools::SM::MTL::DefaultBaseObject
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mRootResource;
     struct DYStateElement<GPUTools::SM::MTL::StateBool, GPUTools::SM::MTL::StateBaseDefault> _mEncodingEnded;
     struct unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> _ownedRenderCommandEncoderIDs;
-    RenderPassDescriptor_f3ef942a _renderPassDescriptor;
-} ParallelRenderCommandEncoder_eaba1480;
+    RenderPassDescriptor_5fd82e83 _renderPassDescriptor;
+} ParallelRenderCommandEncoder_874a9a1a;
 
 typedef struct RenderCommandEncoder<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _objectID;
@@ -1415,21 +1442,24 @@ typedef struct RenderCommandEncoder<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     struct DYStateElement<float, GPUTools::SM::MTL::StateBaseDefault> _mDepthBias;
     struct DYStateElement<float, GPUTools::SM::MTL::StateBaseDefault> _mDepthSlopeScale;
     struct DYStateElement<float, GPUTools::SM::MTL::StateBaseDefault> _mDepthClamp;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mDepthClipMode;
     struct DYStateElement<GPUTools::SM::VecN<unsigned long long, 4>, GPUTools::SM::MTL::StateBaseDefault> _mScissorRect;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mTriangleFillMode;
     struct DYStateElement<GPUTools::SM::VecN<float, 4>, GPUTools::SM::MTL::StateBaseDefault> _mBlendColor;
     struct DYStateElement<GPUTools::SM::MTL::BindingPoint<GPUTools::SM::MTL::DepthStencilState<GPUTools::SM::MTL::DefaultBaseObjectTypes>, unsigned long long>, GPUTools::SM::MTL::StateBaseDefault> _mDepthStencilState;
-    struct DYStateElement<long long, GPUTools::SM::MTL::StateBaseDefault> _mStencilReferenceValue;
+    struct DYStateElement<long long, GPUTools::SM::MTL::StateBaseDefault> _mStencilFrontReferenceValue;
+    struct DYStateElement<long long, GPUTools::SM::MTL::StateBaseDefault> _mStencilBackReferenceValue;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mVisibilityResultMode;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mVisibilityResultOffset;
     struct DYStateElement<GPUTools::SM::MTL::StateBool, GPUTools::SM::MTL::StateBaseDefault> _mEncodingEnded;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mRootResource;
     _Bool _isCreatedByCommandBuffer;
     _Bool _isCreatedByParallelRenderCommandEncoder;
+    _Bool _isFragmentRenderCommandEncoder;
     struct bitset<32> _vertexSamplerLODMinMaxBitSet;
     struct bitset<32> _fragmentSamplerLODMinMaxBitSet;
-    RenderPassDescriptor_f3ef942a _renderPassDescriptor;
-} RenderCommandEncoder_1e21ccb5;
+    RenderPassDescriptor_5fd82e83 _renderPassDescriptor;
+} RenderCommandEncoder_516b45a3;
 
 typedef struct RenderPassAttachmentDescriptor<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _objectID;
@@ -1444,15 +1474,17 @@ typedef struct RenderPassAttachmentDescriptor<GPUTools::SM::MTL::DefaultBaseObje
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mLoadAction;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mStoreAction;
     struct DYStateElement<GPUTools::SM::VecN<double, 4>, GPUTools::SM::MTL::StateBaseDefault> _mClearValue;
-} RenderPassAttachmentDescriptor_6b1b57e7;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mDepthResolveFilter;
+} RenderPassAttachmentDescriptor_8c91cb7e;
 
 typedef struct RenderPassDescriptor<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _objectID;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mWidth;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mHeight;
+    struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mRenderTargetArrayLength;
     struct DYStateElement<GPUTools::SM::MTL::BindingPoint<GPUTools::SM::MTL::Buffer<GPUTools::SM::MTL::DefaultBaseObjectTypes>, unsigned long long>, GPUTools::SM::MTL::StateBaseDefault> _mVisibilityResultBuffer;
-    RenderPassAttachmentDescriptor_6b1b57e7 _attachments[10];
-} RenderPassDescriptor_f3ef942a;
+    RenderPassAttachmentDescriptor_8c91cb7e _attachments[10];
+} RenderPassDescriptor_5fd82e83;
 
 typedef struct RenderPipelineAttachmentDescriptor<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mPixelFormat;
@@ -1480,11 +1512,12 @@ typedef struct RenderPipelineState<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mDepthAttachmentPixelFormat;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mStencilAttachmentPixelFormat;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mError;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mInputPrimitiveTopology;
     RenderPipelineAttachmentDescriptor_08890bb5 _renderPipelineAttachmentDescriptors[8];
     VertexDescriptor_e5d3aa79 _vertexDescriptor;
     struct unordered_map<unsigned long long, std::__1::vector<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::allocator<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>>>, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, std::__1::vector<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::allocator<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>>>>>> _vertexArgumentTypeToArgumentsMap;
     struct unordered_map<unsigned long long, std::__1::vector<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::allocator<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>>>, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, std::__1::vector<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::allocator<GPUTools::SM::MTL::Argument<GPUTools::SM::MTL::DefaultBaseObjectTypes>>>>>> _fragmentArgumentTypeToArgumentsMap;
-} RenderPipelineState_4551ebb0;
+} RenderPipelineState_2531dade;
 
 typedef struct Sampler<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _objectID;
@@ -1499,7 +1532,9 @@ typedef struct Sampler<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     struct DYStateElement<float, GPUTools::SM::MTL::StateBaseDefault> _mLodMinClamp;
     struct DYStateElement<float, GPUTools::SM::MTL::StateBaseDefault> _mLodMaxClamp;
     struct DYStateElement<std::__1::basic_string<char>, GPUTools::SM::MTL::StateBaseDefault> _mLabel;
-} Sampler_33396e8c;
+    struct DYStateElement<unsigned int, GPUTools::SM::MTL::StateBaseDefault> _mLodAverage;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mCompareFunction;
+} Sampler_4521416c;
 
 typedef struct StateMirrorManager<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     struct unordered_map<unsigned long long, std::__1::unique_ptr<GPUTools::SM::MTL::Device<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::default_delete<GPUTools::SM::MTL::Device<GPUTools::SM::MTL::DefaultBaseObjectTypes>>>, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, std::__1::unique_ptr<GPUTools::SM::MTL::Device<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::default_delete<GPUTools::SM::MTL::Device<GPUTools::SM::MTL::DefaultBaseObjectTypes>>>>>> _deviceMap;
@@ -1512,7 +1547,7 @@ typedef struct StateMirrorManager<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
 typedef struct Texture<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     unsigned long long _objectID;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mPurgeableState;
-    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mResourceOptions;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mUsage;
     struct DYStateElement<std::__1::basic_string<char>, GPUTools::SM::MTL::StateBaseDefault> _mLabel;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mType;
     struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mPixelFormat;
@@ -1525,11 +1560,13 @@ typedef struct Texture<GPUTools::SM::MTL::DefaultBaseObjectTypes> {
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mIOSurfaceRef;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mIOSurfacePlane;
     struct DYStateElement<unsigned long long, GPUTools::SM::MTL::StateBaseDefault> _mRootResource;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mStorageMode;
+    struct DYStateElement<GPUTools::SM::MTL::StateEnum, GPUTools::SM::MTL::StateBaseDefault> _mCPUCacheMode;
     struct vector<GPUTools::SM::MTL::TextureSlice<GPUTools::SM::MTL::DefaultBaseObjectTypes>, std::__1::allocator<GPUTools::SM::MTL::TextureSlice<GPUTools::SM::MTL::DefaultBaseObjectTypes>>> _textureSlices;
     struct unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> _ownedTextureIDs;
     _Bool _isTextureView;
     _Bool _isBufferBacked;
-} Texture_cb848a8d;
+} Texture_f24102c5;
 
 typedef struct VecN<float, 4> {
     float mData[4];

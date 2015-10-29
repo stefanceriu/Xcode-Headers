@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTButtonTextField, NSButton, NSDictionary, NSObject<IBAutolayoutItem>, NSSet;
+@class DVTButtonTextField, NSButton, NSDictionary, NSObject<IBAutolayoutItem>, NSSet, NSTextField;
 
 @interface IBAutolayoutConstraintAdditionTypeConfig : NSObject
 {
@@ -14,6 +14,8 @@
     BOOL _enabled;
     DVTButtonTextField *_textField;
     NSButton *_checkBox;
+    NSButton *_overlayButton;
+    NSTextField *_label;
     NSSet *_constraints;
     NSDictionary *_orderedNearestNeighborsToDistance;
     NSObject<IBAutolayoutItem> *_selectedNearestNeighbor;
@@ -26,6 +28,8 @@
 @property(nonatomic) BOOL enabled; // @synthesize enabled=_enabled;
 @property(nonatomic) BOOL shouldAdd; // @synthesize shouldAdd=_shouldAdd;
 @property(copy, nonatomic) NSSet *constraints; // @synthesize constraints=_constraints;
+@property(retain, nonatomic) NSTextField *label; // @synthesize label=_label;
+@property(retain, nonatomic) NSButton *overlayButton; // @synthesize overlayButton=_overlayButton;
 @property(retain, nonatomic) NSButton *checkBox; // @synthesize checkBox=_checkBox;
 @property(retain, nonatomic) DVTButtonTextField *textField; // @synthesize textField=_textField;
 - (void).cxx_destruct;

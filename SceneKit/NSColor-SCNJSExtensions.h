@@ -8,7 +8,6 @@
 
 @interface NSColor (SCNJSExtensions)
 + (id)color:(double)arg1:(double)arg2:(double)arg3:(double)arg4;
-+ (id)SCNJSExportProtocol;
 - (double)a;
 - (double)b;
 - (double)g;

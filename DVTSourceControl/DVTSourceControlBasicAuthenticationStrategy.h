@@ -24,11 +24,15 @@
 @property(copy) NSString *username; // @synthesize username=_username;
 @property BOOL usernameDefinedFromURL; // @synthesize usernameDefinedFromURL=_usernameDefinedFromURL;
 - (void).cxx_destruct;
+- (unsigned long long)type;
 - (id)description;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithURLDefinedUsername:(id)arg1 URLDefinedPassword:(id)arg2;
 - (id)initWithURLDefinedUsername:(id)arg1 password:(id)arg2;
 - (id)initWithUsername:(id)arg1 password:(id)arg2;
+- (id)init;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 

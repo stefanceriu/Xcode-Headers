@@ -10,11 +10,10 @@
 #import "IBPrimarySceneObject.h"
 #import "NSCoding.h"
 
-@class IBSimulatedMetricsContainer, NSArray, NSDictionary, NSString, NSWindowTemplate;
+@class NSArray, NSDictionary, NSString, NSWindowTemplate;
 
 @interface IBNSWindowController : NSObject <IBDocumentArchiving, IBPrimarySceneObject, NSCoding>
 {
-    IBSimulatedMetricsContainer *_inheritedSimulatedMetrics;
     BOOL _encodeAsRuntimeInstance;
     NSString *_explicitStoryboardIdentifier;
     NSDictionary *_storyboardSegueDestinationOptions;
@@ -35,10 +34,10 @@
 @property(retain) NSWindowTemplate *window; // @synthesize window=_window;
 - (void).cxx_destruct;
 @property(copy) NSString *explicitStoryboardIdentifier;
-- (id)effectiveStoryboardIdentifierPrefix;
 - (void)unarchivePlaceholderTable:(id)arg1;
 - (void)archivePlaceholderTable:(id)arg1;
 - (void)ibPrepareTopLevelControllerForStoryboardCompilation;
+- (id)ibUniqueIdentifierForStoryboardCompilation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (Class)classForDocumentArchiver:(id)arg1;
@@ -70,20 +69,16 @@
 - (void)ibDidBecomeSourceControllerForSegue:(id)arg1;
 - (id)ibInheritableMetricsForDownstreamController:(id)arg1 viaSegue:(id)arg2;
 - (void)ibDidBecomeControllerForCompilationGroup;
-- (id)ibEffectiveStoryboardIdentifier;
+@property(copy, nonatomic) NSString *ibExplicitStoryboardIdentifier;
 - (void)ibResizeToEffectiveSimulatedSizeForSceneTreeDragImageNode;
-@property(copy, nonatomic) IBSimulatedMetricsContainer *inheritedSimulatedMetrics;
-- (void)ibEffectiveSimulatedMetricsDidChange;
 - (id)ibImageForOwnedScene;
 @property(nonatomic) BOOL ibInspectedIsDesignatedEntryPoint;
-- (void)ibDidExtractObjects:(id)arg1 fromPasteboard:(id)arg2 intoDocument:(id)arg3 context:(id)arg4;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (void)ibRemoveChildren:(id)arg1;
 - (struct CGRect)ibRectForChild:(id)arg1 inFrameController:(id)arg2;
 - (id)ibEditorCanvasFrameControllerForDocument:(id)arg1;
 - (Class)ibEditorClass;
 - (id)ibPasteboardTypes;
-- (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (id)ibTypeNameForDefaultLabel;
 - (id)ibTitleForEditor;
 - (BOOL)ibRequiresOutletToStoryboard;

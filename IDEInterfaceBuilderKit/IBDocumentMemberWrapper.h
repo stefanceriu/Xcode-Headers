@@ -35,6 +35,7 @@
 - (void)document:(id)arg1 willRemoveChildObject:(id)arg2 fromMember:(id)arg3;
 - (void)document:(id)arg1 willAddChildObject:(id)arg2 toMember:(id)arg3;
 - (void)document:(id)arg1 willRemoveMember:(id)arg2;
+- (void)refreshDisplayValues;
 - (void)didFinishChangingChildWrappersToConsistentState;
 - (id)registerChildWrappersDidChangeBlock:(CDUnknownBlockType)arg1;
 - (void)unregisterDidChangeBlock:(CDUnknownBlockType)arg1;

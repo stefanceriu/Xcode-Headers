@@ -33,6 +33,7 @@
 @property(readonly, nonatomic) NSString *defaultContainerID;
 - (void)_setKeyValueStoreID:(id)arg1 postAssignmentBlock:(CDUnknownBlockType)arg2;
 - (id)ubiquityContainerIDs;
+@property(readonly) BOOL supportsCloudDocs;
 @property(readonly) BOOL allowsCloudKit;
 - (void)_setServiceIDs:(id)arg1 postAssignmentBlock:(CDUnknownBlockType)arg2;
 - (void)_setProperty:(id)arg1 instanceVariable:(id *)arg2 value:(id)arg3 postAssignmentBlock:(CDUnknownBlockType)arg4;

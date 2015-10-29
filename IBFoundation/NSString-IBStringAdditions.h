@@ -9,12 +9,14 @@
 @interface NSString (IBStringAdditions)
 + (id)ib_stringWithListComponentsJoinedByCommasAndAnd:(id)arg1;
 + (id)ib_UUIDString;
+- (id)ib_capitalizedString;
+- (struct _NSRange)ib_rangeForSuffixOfLength:(long long)arg1;
 - (struct _NSRange)ib_range;
 - (id)ib_stringWithEachLinePrefixedByString:(id)arg1;
-- (id)ib_substringAfterLastOccurenceOfString:(id)arg1;
-- (id)ib_substringBeforeLastOccurenceOfString:(id)arg1;
-- (id)ib_substringAfterFirstOccurenceOfString:(id)arg1;
-- (id)ib_substringBeforeFirstOccurenceOfString:(id)arg1;
+- (id)ib_substringAfterLastOccurrenceOfString:(id)arg1;
+- (id)ib_substringBeforeLastOccurrenceOfString:(id)arg1;
+- (id)ib_substringAfterFirstOccurrenceOfString:(id)arg1;
+- (id)ib_substringBeforeFirstOccurrenceOfString:(id)arg1;
 - (id)ib_stringByStrippingCommonWordPrefixWithString:(id)arg1;
 - (void)ib_invokeWithAccessToFileSystemRepresentation:(CDUnknownBlockType)arg1;
 - (id)ib_onlyPathComponent;
@@ -28,7 +30,9 @@
 - (BOOL)ib_isComposedEntirelyOfCharactersFromSet:(id)arg1;
 - (BOOL)ib_isRange:(struct _NSRange)arg1 composedEntirelyOfCharactersFromSet:(id)arg2;
 - (id)ib_UTF8Representation;
+- (id)ib_stringByLowercasingFirstCharacter;
 - (id)ib_stringByDeletingSuffix:(id)arg1;
+- (id)ib_stringByDeletingPrefix:(id)arg1;
 - (id)ib_stringByPrependingString:(id)arg1;
 - (id)ib_stringByAppendingPathComponents:(id)arg1;
 - (id)ib_stringByRemovingCharactersFromSet:(id)arg1;

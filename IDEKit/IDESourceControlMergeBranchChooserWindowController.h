@@ -6,12 +6,12 @@
 
 #import "NSWindowController.h"
 
-#import "IDESourceControlBranchTableDelegate.h"
+#import "IDESourceControlBranchTableDelegate_Legacy.h"
 #import "IDESourceControlWindowController.h"
 
 @class DVTBindingToken, DVTReplacementView, DVTSearchField, IDESourceControlBranch, IDESourceControlMergeOperationInfo, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSButton, NSString, NSTextField, NSWindow;
 
-@interface IDESourceControlMergeBranchChooserWindowController : NSWindowController <IDESourceControlWindowController, IDESourceControlBranchTableDelegate>
+@interface IDESourceControlMergeBranchChooserWindowController : NSWindowController <IDESourceControlWindowController, IDESourceControlBranchTableDelegate_Legacy>
 {
     NSButton *_chooseButton;
     NSTextField *_messageTextField;

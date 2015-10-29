@@ -13,6 +13,7 @@
 - (struct CGPoint)dvt_flooredLocationInWindow;
 - (struct CGPoint)dvt_flooredLocationInView:(id)arg1;
 - (BOOL)dvt_isDragEventAnIntentialLeftDragWithRespectToMouseDown:(id)arg1;
+- (BOOL)dvt_isOptionalRevealGesture;
 - (BOOL)dvt_isRevealGesture;
 - (BOOL)dvt_isControlKeyDown;
 - (BOOL)dvt_isCommandKeyDown;

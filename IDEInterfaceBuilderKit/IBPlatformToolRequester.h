@@ -6,18 +6,16 @@
 
 #import "NSObject.h"
 
-#import "IBAsynchronousRequester.h"
+@class IBLiveViewsManager, IBMutableOrderedDictionary, IBSemaphore, IBTargetRuntime, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
 
-@class IBLiveViewsManager, IBMutableOrderedDictionary, IBSemaphore, IBTargetRuntime, NSMutableDictionary, NSMutableSet, NSNumber, NSObject<OS_dispatch_queue>, NSString;
-
-@interface IBPlatformToolRequester : NSObject <IBAsynchronousRequester>
+@interface IBPlatformToolRequester : NSObject
 {
     IBTargetRuntime *_targetRuntime;
-    NSNumber *_scaleFactor;
+    double _scaleFactor;
     id <IBPlatformToolRequestProcessor> _requestProcessor;
     IBMutableOrderedDictionary *_pendingRequestsByID;
     IBSemaphore *_waitingRequestSemaphore;
-    NSMutableDictionary *_finishedRequestsByID;
+    IBMutableOrderedDictionary *_finishedRequestsByID;
     NSMutableSet *_cancelledRequestIDs;
     NSObject<OS_dispatch_queue> *_processingQueue;
     NSString *_waitingRequestID;
@@ -28,18 +26,13 @@
 @property(readonly, nonatomic) IBLiveViewsManager *liveViewsManager; // @synthesize liveViewsManager=_liveViewsManager;
 - (void).cxx_destruct;
 - (void)processRequests;
+- (id)_connectToToolProxyReturningFailedLoadResult:(id *)arg1;
 - (void)processResults;
 - (BOOL)waitForRequestWithID:(id)arg1 timeout:(id)arg2;
 - (void)cancelRequestWithID:(id)arg1;
-- (id)issueRequestWithData:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (id)issueRequestWithData:(id)arg1 diagnosticsBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)initWithTargetRuntime:(id)arg1 scaleFactor:(id)arg2 liveViewsManager:(id)arg3 batchSize:(long long)arg4 requestProcessor:(id)arg5;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

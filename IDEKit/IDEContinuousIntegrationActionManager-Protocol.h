@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IDEWorkspace, NSString, NSURL;
+@class IDEWorkspace, IDEWorkspaceTabController, NSString, NSURL;
 
 @protocol IDEContinuousIntegrationActionManager <NSObject>
 - (void)hostedRepositoriesOnService:(id)arg1 completionHandler:(void (^)(NSArray *, NSError *))arg2;
@@ -17,7 +17,7 @@
 - (BOOL)canUserCreateAndDeleteBotsOnServiceForBotOrIntegration:(id)arg1;
 - (BOOL)canUserCreateBotsOnAnyService;
 - (NSString *)projectNameInBlueprintForBot:(id)arg1;
-- (id)serviceMatchingHostName:(NSString *)arg1;
+- (void)serviceMatchingHostName:(NSString *)arg1 withTimeout:(double)arg2 completionBlock:(void (^)(BOOL, NSError *, id))arg3;
 - (void)fetchIntegrationForId:(NSString *)arg1 onService:(id)arg2 withCompletionBlock:(void (^)(BOOL, NSError *, id))arg3;
 - (void)fetchBotForBotId:(NSString *)arg1 onService:(id)arg2 withCompletionBlock:(void (^)(BOOL, NSError *, id))arg3;
 - (void)deleteIntegration:(id)arg1 withCompletionBlock:(void (^)(BOOL, NSError *, NSString *, NSString *))arg2;
@@ -25,5 +25,6 @@
 - (void)deleteBot:(id)arg1 workspace:(IDEWorkspace *)arg2 withCompletionBlock:(void (^)(BOOL, NSError *, NSString *, NSString *))arg3;
 - (void)integrationsForBot:(id)arg1 max:(unsigned long long)arg2 sortNewestFirst:(BOOL)arg3 completionHandler:(void (^)(NSArray *, NSError *))arg4;
 - (void)integrateBot:(id)arg1 cleanFirst:(BOOL)arg2 completionHandler:(void (^)(BOOL, NSError *, NSString *, NSString *))arg3;
+- (void)showBotEditorForWorkspaceTabController:(IDEWorkspaceTabController *)arg1 bot:(id)arg2 editingMode:(long long)arg3 completionBlock:(void (^)(BOOL, NSError *, NSArray *))arg4;
 @end
 

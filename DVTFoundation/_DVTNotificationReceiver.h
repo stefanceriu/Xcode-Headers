@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSOperationQueue;
+@class DVTStackBacktrace, NSOperationQueue, NSString;
 
 @interface _DVTNotificationReceiver : NSObject
 {
@@ -15,6 +15,8 @@
     NSOperationQueue *_queue;
     CDUnknownBlockType _block;
     BOOL _registeredWithBlock;
+    DVTStackBacktrace *_creationBacktrace;
+    NSString *_notificationName;
 }
 
 - (void).cxx_destruct;

@@ -14,8 +14,8 @@
 
 + (Class)ibDropTargetResolverClass;
 - (id)acceptDragInfo:(id)arg1 context:(id)arg2;
-- (void)dropTargetResolver:(id)arg1 dropGravity:(long long)arg2 insertionIndexDidChange:(long long)arg3;
-- (void)dropTargetResolver:(id)arg1 dropGravity:(long long)arg2 insertionIndexWillChange:(long long)arg3;
+- (void)dropTargetResolver:(id)arg1 insertionIndexDidChange:(long long)arg2;
+- (void)dropTargetResolver:(id)arg1 insertionIndexWillChange:(long long)arg2;
 - (void)reattachDraggedObjects:(id)arg1 dragContext:(id)arg2;
 - (void)detachDraggedObjects:(id)arg1 dragContext:(id)arg2;
 - (void)dragSelectedViewsWithMouseDown:(id)arg1 andMouseDragged:(id)arg2;

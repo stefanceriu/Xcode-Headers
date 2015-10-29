@@ -6,27 +6,23 @@
 
 #import "SCNLight.h"
 
-@class NSImage, NSString;
-
 @interface SCNLight (SceneKit_SKEAdditions)
-+ (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
-+ (id)keyPathsForValuesAffectingIde_displayName;
+@property(readonly) BOOL ske_isBakable;
+@property(readonly) BOOL ide_isProbe;
 @property float ide_shadowFarClipping;
 @property float ide_shadowNearClipping;
-- (BOOL)ide_cannotCastShadow;
-- (BOOL)ide_canCastShadow;
+@property(readonly) BOOL ide_cannotCastShadow;
+@property(readonly) BOOL ide_canCastShadow;
 @property float ide_spotOuterAngle;
 @property float ide_spotInnerAngle;
 @property float ide_attenuationFalloffExponent;
 @property float ide_attenuationEnd;
 @property float ide_attenuationStart;
-- (BOOL)ide_supportsOrthographicScale;
-- (BOOL)ide_supportsIlluminationCone;
-- (BOOL)ide_supportsAttenuation;
-@property(readonly) NSImage *ide_icon;
-- (void)setIde_typeNumber:(long long)arg1;
-- (long long)ide_typeNumber;
-- (id)ske_undoKVOKeypaths;
-@property(readonly) NSString *ide_displayName;
+@property(readonly) BOOL ide_supportsOrthographicScale;
+@property(readonly) BOOL ide_supportsColor;
+@property(readonly) BOOL ide_supportsIlluminationCone;
+@property(readonly) BOOL ide_supportsAttenuation;
+@property long long ske_modeNumber;
+@property long long ske_typeNumber;
 @end
 

@@ -55,6 +55,7 @@
 @property(readonly, nonatomic) unsigned long long width; // @synthesize width=_width;
 @property(readonly, nonatomic) unsigned int genericFormat; // @synthesize genericFormat=_genericFormat;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long cachingCost;
 - (void)_processTextureImageUploadInfo:(const struct Function *)arg1;
 - (id)uncompressedData;
 @property(readonly, nonatomic) NSData *palette; // @dynamic palette;

@@ -7,56 +7,51 @@
 #import <IDEKit/IDEOutlineBasedNavigator.h>
 
 #import "DVTOutlineViewDelegate.h"
+#import "DVTTableRowViewMouseInsideDelegate.h"
 #import "IDERefactoringExpressionSource.h"
 #import "IDETestingSelection.h"
 #import "NSMenuDelegate.h"
 #import "NSOutlineViewDelegate.h"
 
-@class IDENavigatorDataCell, IDETestNavigatorOutlineView, IDETestNavigatorTestStatusCell, NSCell, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSScrollView, NSSet, NSString;
+@class IDENavigatorOutlineView, IDESelection, IDEWorkspaceTabController, NSDictionary, NSMutableArray, NSMutableSet, NSSet, NSString;
 
-@interface IDETestNavigator : IDEOutlineBasedNavigator <NSOutlineViewDelegate, NSMenuDelegate, IDETestingSelection, IDERefactoringExpressionSource, DVTOutlineViewDelegate>
+@interface IDETestNavigator : IDEOutlineBasedNavigator <DVTTableRowViewMouseInsideDelegate, NSOutlineViewDelegate, NSMenuDelegate, IDETestingSelection, IDERefactoringExpressionSource, DVTOutlineViewDelegate>
 {
-    IDENavigatorDataCell *_defaultCell;
-    IDETestNavigatorTestStatusCell *_testStatusCell;
-    NSCell *_runStatusCell;
-    NSCell *_placeHolderCell;
     NSDictionary *_previouslyRestoredStateDictionary;
     BOOL _restoringState;
     NSMutableSet *_expandedItems;
     NSDictionary *_expandedItemNamesBeforeFiltering;
     NSMutableSet *_collapsedItems;
     NSDictionary *_collapsedItemNamesBeforeFiltering;
-    NSMutableDictionary *_cachedSummariesForTestables;
-    NSMutableDictionary *_cachedEnabledStatesByUniqueIdentifier;
     NSMutableArray *_stateChangeObservingTokens;
     NSString *_testNamePatternString;
     BOOL _mouseIsWithinStatusRect;
-    long long _rowUnderMouse;
+    long long _rowForWhichRunWasPressed;
     BOOL _showFailingTestsOnly;
     BOOL _showSchemeTestablesOnly;
     BOOL _isRunningTests;
     long long _loadingProgress;
-    NSScrollView *_scrollView;
 }
 
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (void)initialize;
 @property BOOL isRunningTests; // @synthesize isRunningTests=_isRunningTests;
 @property(retain, nonatomic) NSString *testNamePatternString; // @synthesize testNamePatternString=_testNamePatternString;
 @property(nonatomic) BOOL showSchemeTestablesOnly; // @synthesize showSchemeTestablesOnly=_showSchemeTestablesOnly;
 @property(nonatomic) BOOL showFailingTestsOnly; // @synthesize showFailingTestsOnly=_showFailingTestsOnly;
-@property(retain) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(readonly) long long loadingProgress; // @synthesize loadingProgress=_loadingProgress;
 - (void).cxx_destruct;
-- (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
-- (void)_setSummaryOfTestable:(id)arg1 forCell:(id)arg2 inSchemeAction:(id)arg3;
+- (void)tableRowView:(id)arg1 mouseInside:(BOOL)arg2;
+- (void)_handleRunTestButtonPressed:(id)arg1;
+- (void)_updateStatusViewForTableCellView:(id)arg1;
+- (void)_configureStandardTableViewCell:(id)arg1 toNavItemsRepresentedObject:(id)arg2;
+- (id)_tableCellViewForTestNavItem:(id)arg1;
+- (id)_tableCellViewForTestableNavItem:(id)arg1;
+- (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
+- (id)outlineView:(id)arg1 rowViewForItem:(id)arg2;
+- (id)_summaryOfTestable:(id)arg1;
 - (int)_countOfTestsFor:(id)arg1 excluded:(int *)arg2 failed:(int *)arg3 inSchemeAction:(id)arg4;
-- (BOOL)_cachedIsEnabled:(id)arg1 inSchemeAction:(id)arg2;
-- (void)_setState:(unsigned long long)arg1 pendingRun:(BOOL)arg2 forCell:(id)arg3;
-- (id)_defaultCell;
-- (id)_placeholderStatusCell;
-- (id)_runStatusCell;
-- (id)_testStatusCell;
 - (void)outlineViewItemDidCollapse:(id)arg1;
 - (void)outlineViewItemDidExpand:(id)arg1;
 - (id)filterButtonAccessibilityDescription;
@@ -70,6 +65,8 @@
 - (id)testingExpressionUsingContextMenu:(BOOL)arg1;
 - (id)refactoringExpressionUsingContextMenu:(BOOL)arg1;
 - (void)_updateFilterPredicate;
+- (void)_updateTableCellViewsUIState:(id)arg1;
+- (void)_updateTableCellViewsUIStateForNavItem:(id)arg1;
 - (void)_updateSchemeFilter;
 - (void)setFilterPredicate:(id)arg1;
 - (id)filterDefinitionIdentifier;
@@ -90,12 +87,9 @@
 - (BOOL)isLoadingComplete;
 - (void)configureStateSavingObservers;
 - (id)openSpecifierForNavigableItem:(id)arg1 error:(id *)arg2;
-- (void)mouseExited:(id)arg1;
-- (void)mouseMoved:(id)arg1;
-- (void)_clearRunnableRows;
-- (BOOL)_updateRunnableRowsForEvent:(id)arg1;
 - (BOOL)_itemHasSubTests:(id)arg1;
 - (id)_localizedString:(id)arg1;
+- (void)_updateEnablednessForTableCellView:(id)arg1;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)loadView;
@@ -106,14 +100,17 @@
 
 // Remaining properties
 @property(copy) NSSet *collapsedItems; // @dynamic collapsedItems;
+@property(readonly, copy) IDESelection *contextMenuSelection;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(copy) NSSet *expandedItems; // @dynamic expandedItems;
 @property(readonly) unsigned long long hash;
 @property(readonly, copy) NSMutableSet *mutableCollapsedItems; // @dynamic mutableCollapsedItems;
 @property(readonly, copy) NSMutableSet *mutableExpandedItems; // @dynamic mutableExpandedItems;
-@property(retain) IDETestNavigatorOutlineView *outlineView; // @dynamic outlineView;
+@property(retain) IDENavigatorOutlineView *outlineView; // @dynamic outlineView;
+@property(readonly, copy) IDESelection *outputSelection;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic) IDEWorkspaceTabController *workspaceTabController;
 
 @end
 

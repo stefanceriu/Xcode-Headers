@@ -19,6 +19,7 @@
 @property BOOL groupsAreEditable; // @synthesize groupsAreEditable=_groupsAreEditable;
 @property BOOL assetsAreEditable; // @synthesize assetsAreEditable=_assetsAreEditable;
 - (void).cxx_destruct;
+- (id)description;
 - (BOOL)containsAsset:(id)arg1;
 - (id)assets;
 - (long long)numberOfAssets;

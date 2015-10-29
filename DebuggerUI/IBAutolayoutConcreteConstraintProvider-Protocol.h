@@ -8,6 +8,5 @@
 
 @protocol IBAutolayoutConcreteConstraintProvider <NSObject>
 @property(readonly, nonatomic) Class layoutConstantClass;
-@property(readonly, nonatomic) Class layoutConstraintClass;
 @end
 

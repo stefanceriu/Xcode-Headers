@@ -4,17 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IBFoundation/IBICMultipartImageRepSlot.h>
+#import <IBFoundation/IBICImageSlot.h>
 
 @class IBICScale, IBICSize;
 
-@interface IBICIconSetRepSlot : IBICMultipartImageRepSlot
+@interface IBICIconSetRepSlot : IBICImageSlot
 {
     IBICSize *_size;
     IBICScale *_scale;
 }
 
-+ (id)defaultSlot;
 + (id)orderedComponentClasses;
 + (id)slotWithSize:(id)arg1 scale:(id)arg2;
 + (id)slotForFileName:(id)arg1;
@@ -23,7 +22,7 @@
 @property(readonly) IBICSize *size; // @synthesize size=_size;
 - (void).cxx_destruct;
 - (id)requiredPixelSize;
-- (id)suggestedRepNameForMultipartImageSetName:(id)arg1;
+- (id)outputFileNameGivenBaseName:(id)arg1 andExtension:(id)arg2;
 - (id)detailAreaKey;
 - (id)requiredFileName;
 - (long long)compareDisplayOrder:(id)arg1;

@@ -32,6 +32,7 @@
 - (long long)autodetectedFormatForPackaging;
 - (BOOL)supportsPackagingAsFormat:(long long)arg1;
 @property(readonly) IDEArchivePackager *packager;
+@property(readonly) NSString *teamIdentifier;
 @property(readonly) NSString *shortBundleVersionString;
 @property(readonly) NSString *bundleVersion;
 @property(readonly) NSString *bundleIdentifier;

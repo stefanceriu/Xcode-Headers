@@ -17,8 +17,6 @@
     DVTExtension *_currentConsoleExtension;
     DVTExtension *_currentVariablesViewExtension;
     DVTObservingToken *_launchSessionObserver;
-    DVTObservingToken *_miniDebuggerModeObserver;
-    DVTObservingToken *_debugSessionStateObservingToken;
     BOOL _shouldOnlyAllowConsole;
 }
 
@@ -28,13 +26,14 @@
 @property(readonly) IDEConsoleArea *consoleArea;
 - (void)_launchSessionChanged:(id)arg1;
 @property(retain) DVTExtension *currentConsoleExtension; // @dynamic currentConsoleExtension;
-- (void)_updateShouldOnlyAllowConsole;
 - (void)_cancelAndNilOutObservers;
 - (void)primitiveInvalidate;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)activateConsole;
 - (BOOL)canActivateConsole;
+- (void)reloadConsole;
+- (BOOL)canReloadConsole;
 - (void)clearConsole;
 - (BOOL)canClearConsole;
 - (id)stateSavingIdentifier;

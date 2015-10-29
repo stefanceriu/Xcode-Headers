@@ -8,19 +8,20 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTDispatchLock, DVTStackBacktrace, IDELaunchSession, NSString;
+@class DVTStackBacktrace, IDEExecutionRunnableTracker, IDELaunchSession, IDERunOperationWorkerGroup, NSString;
 
 @interface IDERunOperationWorker : NSObject <DVTInvalidation>
 {
     NSString *_extensionIdentifier;
     IDELaunchSession *_launchSession;
-    id <IDERunOperationWorkerDelegate> _runOperation;
-    id <IDERunOperationWorkerTracker> _runnableTracker;
-    DVTDispatchLock *_lock;
+    IDERunOperationWorkerGroup *_workerGroup;
+    BOOL _isLongTerm;
+    IDEExecutionRunnableTracker *_runnableTracker;
 }
 
 + (void)initialize;
-@property(retain) id <IDERunOperationWorkerTracker> runnableTracker; // @synthesize runnableTracker=_runnableTracker;
+@property BOOL isLongTerm; // @synthesize isLongTerm=_isLongTerm;
+@property(retain, nonatomic) IDEExecutionRunnableTracker *runnableTracker; // @synthesize runnableTracker=_runnableTracker;
 @property(readonly) IDELaunchSession *launchSession; // @synthesize launchSession=_launchSession;
 @property(readonly) NSString *extensionIdentifier; // @synthesize extensionIdentifier=_extensionIdentifier;
 - (void).cxx_destruct;
@@ -30,8 +31,10 @@
 - (id)notFinishedReasonWithDepth:(unsigned long long)arg1;
 - (void)finishedWithError:(id)arg1;
 - (void)start;
-- (void)setRunOperation:(id)arg1;
+- (void)startNextWorkerFromCompletedWorker:(id)arg1 error:(id)arg2;
+- (void)setWorkerGroup:(id)arg1;
 - (id)initWithExtensionIdentifier:(id)arg1 launchSession:(id)arg2;
+- (id)init;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

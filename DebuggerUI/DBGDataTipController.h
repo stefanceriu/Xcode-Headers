@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DBGDataTipPopoverViewController, DBGDebugSession, DBGFloatingControlWindow, DVTNotificationToken, DVTObservingToken, DVTSourceExpression, DVTStackBacktrace, IDEViewController<IDESourceExpressionSource>, NSString, NSWindow;
+@class DBGDataTipPopoverViewController, DBGDebugSession, DVTNotificationToken, DVTObservingToken, DVTSourceExpression, DVTStackBacktrace, IDEViewController<IDESourceExpressionSource>, NSString, NSWindow;
 
 @interface DBGDataTipController : NSObject <DVTInvalidation>
 {
@@ -17,7 +17,6 @@
     struct CGPoint _lastHandledMouseLocation;
     struct CGPoint _lastDataTipedMouseLocation;
     DVTSourceExpression *_currentMousedOverExpression;
-    DBGFloatingControlWindow *_dataTipWindow;
     NSWindow *_contextWindow;
     id _mouseMonitor;
     id _scrollMonitor;
@@ -33,11 +32,11 @@
 }
 
 + (void)initialize;
-+ (CDUnknownBlockType)getInfoForAction:(int)arg1 image:(id *)arg2;
 + (BOOL)mouseOverDataTipContext;
 + (BOOL)mouseOverDataTipInWindow:(id)arg1 includeBuffer:(BOOL)arg2;
 + (BOOL)_mouseOverDataTipInWindow:(id)arg1 includeBuffer:(BOOL)arg2 mouseLocation:(struct CGPoint)arg3;
 + (BOOL)mouseOverWindow:(id)arg1;
++ (id)_indexSymbolForDVTSourceExpression:(id)arg1 contents:(id)arg2 index:(id)arg3;
 @property(retain) DVTSourceExpression *pendingExpression; // @synthesize pendingExpression=_pendingExpression;
 @property(retain) DVTSourceExpression *currentMousedOverExpression; // @synthesize currentMousedOverExpression=_currentMousedOverExpression;
 @property(retain, nonatomic) IDEViewController<IDESourceExpressionSource> *expressionSource; // @synthesize expressionSource=_expressionSource;
@@ -45,17 +44,10 @@
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (BOOL)mouseOverDataTip:(BOOL)arg1;
-- (void)_evaluateExpression:(id)arg1;
-- (void)_stepOver:(id)arg1 toLocation:(id)arg2;
-- (void)_stepUntil:(id)arg1 toLocation:(id)arg2;
-- (void)_stepOutOf:(id)arg1;
-- (void)_stepInto:(id)arg1;
 - (void)_monitorMouseEvents;
-- (void)_handleTipAction:(int)arg1 forExpression:(id)arg2 location:(id)arg3 atFrame:(struct CGRect)arg4;
 - (BOOL)_isMouseOverDataTipOrChildPopoverWindow:(id)arg1;
 - (void)_dataValueDidUpdate:(id)arg1 forExpression:(id)arg2 atFrame:(struct CGRect)arg3 indexSymbol:(id)arg4;
 - (id)_iconForIndexSymbol:(id)arg1;
-- (id)_indexSymbolForDVTSourceExpression:(id)arg1 contents:(id)arg2;
 - (void)_handleDataTip:(id)arg1 atFrame:(struct CGRect)arg2;
 - (void)_handleDataTipWindowWillClose;
 - (void)_closeDataTipWindow;

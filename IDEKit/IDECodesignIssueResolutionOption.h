@@ -19,6 +19,7 @@
 @property(readonly) BOOL requiresUserInteraction; // @synthesize requiresUserInteraction=_requiresUserInteraction;
 @property(readonly) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
+@property(readonly) BOOL requiresUserApprovalButOtherwiseAutomatic;
 - (id)invokeOptionWithWindowOrNil:(id)arg1;
 - (id)initWithLogAspect:(id)arg1;
 

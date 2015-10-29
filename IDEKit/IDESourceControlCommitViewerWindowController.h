@@ -10,7 +10,7 @@
 #import "NSLayoutManagerDelegate.h"
 #import "NSSplitViewDelegate.h"
 
-@class DVTBorderedView, DVTObservingToken, IDENavigableItemCoordinator, IDEReviewFilesViewController, IDESourceControlCommitViewerComparisonEditorDataSource, IDESourceControlCommitViewerNavigatorDataSource, IDESourceControlLogItem, IDESourceControlRepository, IDESourceControlTreeItem, NSArray, NSSplitView, NSString, NSTextView;
+@class DVTBorderedView, DVTFilePath, DVTObservingToken, DVTSourceControlLogItem, IDENavigableItemAsyncFilteringCoordinator, IDEReviewFilesViewController, IDESourceControlCommitViewerComparisonEditorDataSource, IDESourceControlCommitViewerNavigatorDataSource, IDESourceControlReviewFilesDataSource, IDEWorkspace, NSArray, NSMutableArray, NSSplitView, NSString, NSTextView;
 
 @interface IDESourceControlCommitViewerWindowController : NSWindowController <NSSplitViewDelegate, IDEReviewFilesViewControllerDelegate, NSLayoutManagerDelegate>
 {
@@ -19,50 +19,61 @@
     NSSplitView *_splitView;
     NSTextView *_commitTextView;
     IDEReviewFilesViewController *_reviewFilesViewController;
-    IDESourceControlTreeItem *_initialSelection;
+    NSString *_initialSelection;
     IDESourceControlCommitViewerNavigatorDataSource *_navigatorDataSource;
-    IDENavigableItemCoordinator *_coordinator;
+    IDENavigableItemAsyncFilteringCoordinator *_coordinator;
     IDESourceControlCommitViewerNavigatorDataSource *_fileSystemDataSource;
     IDESourceControlCommitViewerComparisonEditorDataSource *_comparisonEditorDataSource;
-    IDESourceControlRepository *_repository;
-    NSArray *_itemsWithStatus;
-    IDESourceControlLogItem *_logItem;
+    DVTSourceControlLogItem *_logItem;
     struct CGRect _commitMessageRect;
     double _commitMessageSplitMaxHeight;
     BOOL _initialSplitPositionHasHappened;
     DVTObservingToken *_comparisonEditorObservingToken;
-    NSString *_startingRevision;
+    id <DVTSourceControlCancellable> _leftFileOperation;
+    id <DVTSourceControlCancellable> _rightFileOperation;
+    BOOL leftFileLoaded;
+    BOOL rightFileLoaded;
+    DVTFilePath *filePathToLoad;
+    IDESourceControlReviewFilesDataSource *_workspaceDataSource;
+    IDEWorkspace *_workspace;
+    NSMutableArray *_documents;
+    NSMutableArray *_treeNodes;
 }
 
-+ (void)runPreviewSheetForWindow:(id)arg1 viewingCommit:(id)arg2 onRepository:(id)arg3 itemsWithStatus:(id)arg4 withInitialSelection:(id)arg5 fromRevision:(id)arg6;
-+ (void)runPreviewSheetForWindow:(id)arg1 viewingCommit:(id)arg2 onRepository:(id)arg3 itemsWithStatus:(id)arg4 withInitialSelection:(id)arg5;
-@property(retain) NSString *startingRevision; // @synthesize startingRevision=_startingRevision;
-@property(retain) IDESourceControlTreeItem *initialSelection; // @synthesize initialSelection=_initialSelection;
-@property(retain) IDESourceControlLogItem *logItem; // @synthesize logItem=_logItem;
-@property(retain) NSArray *itemsWithStatus; // @synthesize itemsWithStatus=_itemsWithStatus;
-@property(retain) IDESourceControlRepository *repository; // @synthesize repository=_repository;
++ (void)runPreviewSheetForWindow:(id)arg1 viewingCommit:(id)arg2 withInitialSelection:(id)arg3;
++ (void)initialize;
+@property(retain) NSString *initialSelection; // @synthesize initialSelection=_initialSelection;
+@property(retain) DVTSourceControlLogItem *logItem; // @synthesize logItem=_logItem;
 - (void).cxx_destruct;
+- (void)dealloc;
 - (BOOL)splitView:(id)arg1 shouldAdjustSizeOfSubview:(id)arg2;
 - (double)splitView:(id)arg1 constrainMinCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
 - (BOOL)splitView:(id)arg1 canCollapseSubview:(id)arg2;
 - (void)sheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)ok:(id)arg1;
+- (id)loadRevision:(id)arg1 filePath:(id)arg2 fileDocumentLocation:(id)arg3 completionBlock:(CDUnknownBlockType)arg4 diffSide:(unsigned long long)arg5 waitForBothRevisions:(BOOL)arg6 loadPriorRevision:(BOOL)arg7;
+- (void)setEditorMessages:(id)arg1;
 - (void)willOpenDocumentLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (void)lastRevisionOnRepository:(id)arg1 forAbsolutePath:(id)arg2 StartingWithRevision:(id)arg3 withCompletionBlock:(CDUnknownBlockType)arg4;
-- (id)_temporaryFileLocationForRepository:(id)arg1 remoteAbsolutePath:(id)arg2 revisionNumber:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (void)cancelOperations;
+- (id)_temporaryFileLocationForRepository:(id)arg1 remotePath:(id)arg2 revisionLocation:(id)arg3 exportPriorRevisionOfFile:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (id)workspaceDataSource;
 - (void)_configureDataSources;
 - (void)setInitialSelection:(id)arg1 forNavigatorOutlineView:(id)arg2;
 - (id)treeItemFilterPredicate;
 - (void)layoutManager:(id)arg1 didCompleteLayoutForTextContainer:(id)arg2 atEnd:(BOOL)arg3;
 - (double)_positionOfSplitterWithCommitMessageRect:(struct CGRect)arg1;
 - (void)_runSheetForWindow:(id)arg1;
+- (id)_workspaceFromWindow:(id)arg1;
 - (id)windowNibName;
+- (id)initWithWindow:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, copy) NSMutableArray *mutableTreeNodes; // @dynamic mutableTreeNodes;
 @property(readonly) Class superclass;
+@property(readonly, copy, nonatomic) NSArray *treeNodes; // @dynamic treeNodes;
 
 @end
 

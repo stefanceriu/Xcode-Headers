@@ -30,8 +30,6 @@
 - (void)setWindowsMenu:(id)arg1;
 - (void)menuNeedsUpdate:(id)arg1;
 - (void)reportException:(id)arg1;
-- (void)_enableFloatingDebugger;
-- (id)_findDebuggingWorkspaceWindowOrFrontmostWorkspaceWindow;
 - (BOOL)restoreWindowWithIdentifier:(id)arg1 state:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)setSdefSupport_activeWorkspaceDocument:(id)arg1;
 - (id)sdefSupport_activeWorkspaceDocument;

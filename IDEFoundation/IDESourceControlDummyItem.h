@@ -10,10 +10,10 @@
 
 @interface IDESourceControlDummyItem : NSObject
 {
-    NSString *name;
+    NSString *_name;
 }
 
-@property(retain) NSString *name; // @synthesize name;
+@property(retain) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 
 @end

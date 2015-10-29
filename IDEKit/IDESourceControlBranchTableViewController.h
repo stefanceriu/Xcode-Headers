@@ -9,7 +9,7 @@
 #import "DVTDynamicTableViewDataSource.h"
 #import "DVTDynamicTableViewDelegate.h"
 
-@class DVTBorderedView, DVTDynamicTableView, DVTGradientImageButton, DVTScrollView, DVTSearchField, IDEControlGroup, IDESourceControlBranch, IDESourceControlMultipleStepInvalidationToken, IDESourceControlWorkingTree, NSArray, NSDictionary, NSString;
+@class DVTBorderedView, DVTDynamicTableView, DVTGradientImageButton, DVTScrollView, DVTSearchField, DVTSourceControlBranch, DVTSourceControlRepository, DVTSourceControlWorkingCopy, IDEControlGroup, NSArray, NSDictionary, NSString;
 
 @interface IDESourceControlBranchTableViewController : DVTViewController <DVTDynamicTableViewDelegate, DVTDynamicTableViewDataSource>
 {
@@ -20,31 +20,32 @@
     IDEControlGroup *_controlGroup;
     DVTSearchField *_filterField;
     DVTScrollView *_scrollView;
-    NSArray *_items;
-    NSDictionary *_branchesByRepository;
-    NSArray *_filteredItems;
-    NSDictionary *_filteredBranchesByRepository;
+    NSArray *_branches;
+    NSDictionary *_remoteBranches;
+    NSArray *_filteredBranches;
+    NSDictionary *_filteredRemoteBranches;
     BOOL _showRemoteBranches;
-    BOOL _showSpecificBranches;
     BOOL _hideBranchHistory;
-    IDESourceControlWorkingTree *_workingTree;
+    DVTSourceControlRepository *_repository;
     NSString *_filterString;
-    IDESourceControlMultipleStepInvalidationToken *_branchLoadingToken;
-    id <DVTInvalidation> _deleteBranchToken;
+    id <DVTSourceControlCancellable> _branchLoadingToken;
+    id <DVTSourceControlCancellable> _deleteBranchToken;
     BOOL _showCurrentBranch;
     BOOL _showLoading;
     BOOL _isLoading;
     DVTDynamicTableView *_tableView;
-    IDESourceControlBranch *_selectedBranch;
-    IDESourceControlBranch *_currentBranch;
+    DVTSourceControlWorkingCopy *_workingCopy;
+    DVTSourceControlBranch *_selectedBranch;
+    DVTSourceControlBranch *_currentBranch;
     id <IDESourceControlBranchTableDelegate> _delegate;
 }
 
 + (id)keyPathsForValuesAffectingCanRemoveBranch;
 @property BOOL isLoading; // @synthesize isLoading=_isLoading;
 @property __weak id <IDESourceControlBranchTableDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain) IDESourceControlBranch *currentBranch; // @synthesize currentBranch=_currentBranch;
-@property(retain) IDESourceControlBranch *selectedBranch; // @synthesize selectedBranch=_selectedBranch;
+@property(retain) DVTSourceControlBranch *currentBranch; // @synthesize currentBranch=_currentBranch;
+@property(retain) DVTSourceControlBranch *selectedBranch; // @synthesize selectedBranch=_selectedBranch;
+@property(readonly) DVTSourceControlWorkingCopy *workingCopy; // @synthesize workingCopy=_workingCopy;
 @property BOOL showLoading; // @synthesize showLoading=_showLoading;
 @property BOOL hideBranchHistory; // @synthesize hideBranchHistory=_hideBranchHistory;
 @property BOOL showCurrentBranch; // @synthesize showCurrentBranch=_showCurrentBranch;
@@ -67,11 +68,12 @@
 - (void)removeBranch:(id)arg1;
 @property(readonly) BOOL canRemoveBranch;
 - (void)addBranch:(id)arg1;
-- (void)showBranches:(id)arg1 forRepository:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
-- (void)showAllBranchesForWorkingTree:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
+- (void)showAllBranchesForRemoteRepository:(id)arg1 branchAndTagLocations:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
+- (void)showAllBranchesForWorkingCopy:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
+- (void)showBranches:(id)arg1 selectedBranch:(id)arg2;
 - (void)_stopLoading;
 - (void)_startLoading;
-@property(readonly) IDESourceControlWorkingTree *workingTree; // @synthesize workingTree=_workingTree;
+@property(readonly) DVTSourceControlRepository *repository;
 @property BOOL showRemoteBranches;
 @property BOOL showAddRemoveButtons;
 @property BOOL hideFilterField;

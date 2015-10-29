@@ -15,12 +15,14 @@
     IBLayoutManager *layoutManager;
     IBEditorFrameLayoutGuideGeneratorDelegate *layoutGuideGeneratorDelegate;
     NSMutableArray *cachedUserGuides;
+    NSMutableArray *cachedSystemGuides;
     DVTDelayedInvocation *guideInvocation;
     IBViewTracker *activeViewTracker;
     id <DVTInvalidation> hiddenViewDrawingToken;
     BOOL observingHiddenState;
     DVTNotificationToken *showingLayoutRectsNotification;
     DVTNotificationToken *showingBoundsRectsNotification;
+    DVTNotificationToken *showingPlaceholderBackgroundsNotification;
     BOOL hasHiddenViewsInViewSubgraph;
 }
 
@@ -28,7 +30,7 @@
 @property(retain) IBViewTracker *activeViewTracker; // @synthesize activeViewTracker;
 - (void).cxx_destruct;
 - (void)resetCursorRects;
-@property(readonly) IBLayoutManager *layoutManager;
+@property(readonly, nonatomic) IBLayoutManager *layoutManager;
 @property(readonly) IBEditorFrameLayoutGuideGeneratorDelegate *layoutGuideGeneratorDelegate;
 - (unsigned long long)dragObjects:(id)arg1 withImage:(id)arg2 inMouseDownEvent:(id)arg3 mouseDraggedEvent:(id)arg4 imageLocation:(struct CGPoint)arg5 allowedOperations:(unsigned long long)arg6 editor:(id)arg7 draggingSourceContext:(id)arg8;
 - (void)sendEvent:(id)arg1;
@@ -36,11 +38,13 @@
 - (void)trackMeasurementLinesFromObjects:(id)arg1 toObject:(id)arg2 withEvent:(id)arg3;
 - (void)editorDidChangeSelection:(id)arg1;
 - (id)relativeMeasurementViewForObject:(id)arg1;
+- (void)takeShowingPlaceholderBackgroundsFromDocumentEditor:(id)arg1;
 - (void)takeShowingBoundsRectanglesFromDocumentEditor:(id)arg1;
 - (void)takeShowingLayoutRectanglesFromDocumentEditor:(id)arg1;
 - (void)noteDescendant:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
 - (void)drawHiddenViews;
 - (BOOL)interceptDecoratorActionEvent:(id)arg1;
+@property(readonly) NSArray *systemLayoutGuides;
 @property(readonly) NSArray *userLayoutGuides;
 - (void)validateUserGuidesIfNeeded;
 - (void)validateUserGuides:(id)arg1;

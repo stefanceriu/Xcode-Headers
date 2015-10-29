@@ -50,7 +50,7 @@
 - (id)structureAreaExpansionPreferencesKey;
 - (id)highlightProviders;
 - (void)setDrawsWithActiveLook:(BOOL)arg1;
-@property(retain, nonatomic) IDEViewController<IBHybridStructureSelectionProvider> *currentStructureProvider;
+@property(retain, nonatomic) IDEViewController<IBHybridStructureSelectionProvider> *currentStructureProvider; // @dynamic currentStructureProvider;
 @property(readonly, nonatomic) IDEViewController<IBHybridStructureSelectionProvider> *lastStructureSelectionProvider;
 - (id)currentFilterFieldWantingStructureProvider;
 - (id)stateSavingIdentifier;

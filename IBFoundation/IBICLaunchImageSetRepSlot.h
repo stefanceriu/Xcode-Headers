@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IBFoundation/IBICMultipartImageRepSlot.h>
+#import <IBFoundation/IBICImageSlot.h>
 
 @class IBICDeviceOrientation, IBICExtent, IBICIdiom, IBICScale, IBICSubtype, IBICSystemVersion;
 
-@interface IBICLaunchImageSetRepSlot : IBICMultipartImageRepSlot
+@interface IBICLaunchImageSetRepSlot : IBICImageSlot
 {
     IBICIdiom *_idiom;
     IBICDeviceOrientation *_deviceOrientation;
@@ -19,7 +19,6 @@
 }
 
 + (id)orderedComponentClasses;
-+ (id)defaultSlot;
 + (id)slotWithIdiom:(id)arg1 subtype:(id)arg2 scale:(id)arg3 deviceOrientation:(id)arg4 extent:(id)arg5 minimumSystemVersion:(id)arg6;
 @property(readonly) IBICExtent *extent; // @synthesize extent=_extent;
 @property(readonly) IBICSystemVersion *minimumSystemVersion; // @synthesize minimumSystemVersion=_minimumSystemVersion;
@@ -29,8 +28,8 @@
 @property(readonly) IBICIdiom *idiom; // @synthesize idiom=_idiom;
 - (void).cxx_destruct;
 - (id)requiredPixelSize;
-- (id)suggestedRepNameForMultipartImageSetName:(id)arg1;
-- (id)baseFileNameForVersionedInfoPlistEntryForMultipartImageSetName:(id)arg1;
+- (id)outputFileNameGivenBaseName:(id)arg1 andExtension:(id)arg2;
+- (id)baseFileNameForVersionedInfoPlistEntryForSlottedAssetSetName:(id)arg1;
 - (id)pixelSize;
 - (id)detailAreaKey;
 - (long long)compareDisplayOrder:(id)arg1;

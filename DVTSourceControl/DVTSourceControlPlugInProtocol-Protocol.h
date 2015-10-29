@@ -6,26 +6,56 @@
 
 #import "NSObject.h"
 
-@class DVTSourceControlBranch, DVTSourceControlBranchAndTagLocations, DVTSourceControlRemoteRepository, DVTSourceControlRepository, DVTSourceControlRevision, DVTSourceControlRevisionLocation, DVTSourceControlWorkingCopy, NSArray, NSString, NSURL;
+@class DVTSourceControlBranch, DVTSourceControlBranchAndTagLocations, DVTSourceControlPathLocation, DVTSourceControlRemoteRepository, DVTSourceControlRepository, DVTSourceControlRevision, DVTSourceControlRevisionLocation, DVTSourceControlWorkingCopy, NSArray, NSDictionary, NSString, NSURL;
 
 @protocol DVTSourceControlPlugInProtocol <NSObject>
-- (void)createWorkingCopyFromRepository:(DVTSourceControlRemoteRepository *)arg1 location:(DVTSourceControlRevisionLocation *)arg2 branchAndTagLocations:(DVTSourceControlBranchAndTagLocations *)arg3 localAddress:(NSURL *)arg4 completionBlock:(void (^)(DVTSourceControlWorkingCopy *, NSError *))arg5;
+- (void)createWorkingCopyFromRepository:(DVTSourceControlRemoteRepository *)arg1 location:(DVTSourceControlRevisionLocation *)arg2 branchAndTagLocations:(DVTSourceControlBranchAndTagLocations *)arg3 localAddress:(NSURL *)arg4 progressIdentifier:(NSString *)arg5 completionBlock:(void (^)(DVTSourceControlWorkingCopy *, NSError *))arg6;
 - (void)validateAuthenticationOfRemoteRepository:(DVTSourceControlRemoteRepository *)arg1 location:(DVTSourceControlRevisionLocation *)arg2 branchAndTagLocations:(DVTSourceControlBranchAndTagLocations *)arg3 completionBlock:(void (^)(NSError *))arg4;
+- (void)uploadCommitsToRemoteRepository:(DVTSourceControlRemoteRepository *)arg1 fromLocalRepository:(DVTSourceControlRepository *)arg2 remoteBranch:(DVTSourceControlBranch *)arg3 completionBlock:(void (^)(NSError *))arg4;
+- (void)downloadUpdatesFromRemoteRepository:(DVTSourceControlRemoteRepository *)arg1 toRepository:(DVTSourceControlRepository *)arg2 completionBlock:(void (^)(NSError *))arg3;
+- (void)repositoryURLRootForRepository:(DVTSourceControlRemoteRepository *)arg1 completionBlock:(void (^)(NSURL *, DVTSourceControlPathLocation *, NSError *))arg2;
+- (void)createRepositoryAtFileURL:(NSURL *)arg1 completionBlock:(void (^)(DVTSourceControlRepository *, NSError *))arg2;
+- (void)automaticallyDetectBranchAndTagLocationsForRepository:(DVTSourceControlRepository *)arg1 fromPath:(DVTSourceControlPathLocation *)arg2 completionBlock:(void (^)(DVTSourceControlRevisionLocation *, DVTSourceControlBranchAndTagLocations *, NSError *))arg3;
+- (void)removeRemoteRepositoryNamed:(NSString *)arg1 fromRepository:(DVTSourceControlRepository *)arg2 completionBlock:(void (^)(NSError *))arg3;
 - (void)addRemoteRepository:(DVTSourceControlRemoteRepository *)arg1 withName:(NSString *)arg2 toRepository:(DVTSourceControlRepository *)arg3 completionBlock:(void (^)(NSError *))arg4;
-- (void)remoteBranchFromRepository:(DVTSourceControlRepository *)arg1 forBranch:(DVTSourceControlBranch *)arg2 completionBlock:(void (^)(DVTSourceControlBranch *, NSString *, NSError *))arg3;
+- (void)remoteBranchFromRepository:(DVTSourceControlRepository *)arg1 forBranch:(DVTSourceControlBranch *)arg2 completionBlock:(void (^)(DVTSourceControlBranch *, NSError *))arg3;
 - (void)listRemoteRepositoriesForRepository:(DVTSourceControlRepository *)arg1 completionBlock:(void (^)(DVTSourceControlRemoteRepository *, NSDictionary *, NSError *))arg2;
+- (void)diffRepository:(DVTSourceControlRepository *)arg1 fromLocation:(DVTSourceControlRevisionLocation *)arg2 againstLocation:(DVTSourceControlRevisionLocation *)arg3 branchAndTagLocations:(DVTSourceControlBranchAndTagLocations *)arg4 completionBlock:(void (^)(NSDictionary *, NSError *))arg5;
+- (void)removeBranch:(DVTSourceControlBranch *)arg1 fromRepository:(DVTSourceControlRepository *)arg2 andRemoteRepository:(DVTSourceControlRemoteRepository *)arg3 branchAndTagLocations:(DVTSourceControlBranchAndTagLocations *)arg4 completionBlock:(void (^)(NSError *))arg5;
+- (void)addBranch:(DVTSourceControlBranch *)arg1 fromBranch:(DVTSourceControlBranch *)arg2 toRepository:(DVTSourceControlRepository *)arg3 branchAndTagLocations:(DVTSourceControlBranchAndTagLocations *)arg4 completionBlock:(void (^)(DVTSourceControlBranch *, NSError *))arg5;
+- (void)ancestorRevisionInRepository:(DVTSourceControlRepository *)arg1 ofBranch:(DVTSourceControlBranch *)arg2 otherBranch:(DVTSourceControlBranch *)arg3 branchAndTagLocations:(DVTSourceControlBranchAndTagLocations *)arg4 completionBlock:(void (^)(DVTSourceControlRevision *, NSError *))arg5;
+- (void)parentBranchesOfBranch:(DVTSourceControlBranch *)arg1 inRepository:(DVTSourceControlRepository *)arg2 branchAndTagLocations:(DVTSourceControlBranchAndTagLocations *)arg3 completionBlock:(void (^)(DVTSourceControlBranch *, NSArray *, NSError *))arg4;
+- (void)listRemoteBranchesOfRepository:(DVTSourceControlRepository *)arg1 branchAndTagLocations:(DVTSourceControlBranchAndTagLocations *)arg2 completionBlock:(void (^)(NSArray *, NSDictionary *, NSError *))arg3;
 - (void)listBranchesOfRepository:(DVTSourceControlRepository *)arg1 branchAndTagLocations:(DVTSourceControlBranchAndTagLocations *)arg2 completionBlock:(void (^)(NSArray *, NSError *))arg3;
+- (void)listSubpathsOfRepository:(DVTSourceControlRepository *)arg1 atPath:(DVTSourceControlPathLocation *)arg2 completionBlock:(void (^)(NSArray *, NSError *))arg3;
 - (void)revisionOfLocation:(DVTSourceControlRevisionLocation *)arg1 inRepository:(DVTSourceControlRepository *)arg2 branchAndTagLocations:(DVTSourceControlBranchAndTagLocations *)arg3 completionBlock:(void (^)(DVTSourceControlRevision *, NSError *))arg4;
 - (void)headRevisionOfRepository:(DVTSourceControlRepository *)arg1 completionBlock:(void (^)(DVTSourceControlRevision *, NSError *))arg2;
 - (void)identifierOfRepositoryForWorkingCopy:(DVTSourceControlWorkingCopy *)arg1 completionBlock:(void (^)(NSString *, NSError *))arg2;
-- (void)upgradeWorkingCopy:(DVTSourceControlWorkingCopy *)arg1 completionBlock:(void (^)(NSError *))arg2;
+- (void)upgradeWorkingCopy:(DVTSourceControlWorkingCopy *)arg1 progressIdentifier:(NSString *)arg2 completionBlock:(void (^)(NSError *))arg3;
 - (void)baseRevisionOfWorkingCopy:(DVTSourceControlWorkingCopy *)arg1 completionBlock:(void (^)(DVTSourceControlRevision *, NSError *))arg2;
+- (void)switchLocation:(DVTSourceControlRevisionLocation *)arg1 ofWorkingCopy:(DVTSourceControlWorkingCopy *)arg2 completionBlock:(void (^)(DVTSourceControlRevisionLocation *, NSError *))arg3;
 - (void)currentLocationOfWorkingCopy:(DVTSourceControlWorkingCopy *)arg1 completionBlock:(void (^)(DVTSourceControlRevisionLocation *, NSError *))arg2;
-- (void)historyOfWorkingCopy:(DVTSourceControlWorkingCopy *)arg1 fromRevision:(DVTSourceControlRevision *)arg2 toRevision:(DVTSourceControlRevision *)arg3 maximumLogItems:(long long)arg4 completionBlock:(void (^)(NSArray *, NSError *))arg5;
+- (void)historyOfWorkingCopy:(DVTSourceControlWorkingCopy *)arg1 fromRevision:(DVTSourceControlRevision *)arg2 toRevision:(DVTSourceControlRevision *)arg3 inclusionType:(unsigned long long)arg4 maximumLogItems:(long long)arg5 searchString:(NSString *)arg6 searchType:(unsigned long long)arg7 progressIdentifier:(NSString *)arg8 completionBlock:(void (^)(NSArray *, NSError *))arg9;
 - (void)forceUpdateWorkingCopy:(DVTSourceControlWorkingCopy *)arg1 fromRepository:(DVTSourceControlRemoteRepository *)arg2 completionBlock:(void (^)(NSError *))arg3;
+- (void)mergeBranch:(DVTSourceControlBranch *)arg1 intoWorkingCopy:(DVTSourceControlWorkingCopy *)arg2 completionBlock:(void (^)(NSError *))arg3;
+- (void)historyOfFile:(NSString *)arg1 inWorkingCopy:(DVTSourceControlWorkingCopy *)arg2 fromRevisionLocation:(DVTSourceControlRevisionLocation *)arg3 toRevision:(DVTSourceControlRevision *)arg4 inclusionType:(unsigned long long)arg5 maximumLogItems:(long long)arg6 searchString:(NSString *)arg7 searchType:(unsigned long long)arg8 progressIdentifier:(NSString *)arg9 completionBlock:(void (^)(NSArray *, NSError *))arg10;
+- (void)blameFile:(NSString *)arg1 inWorkingCopy:(DVTSourceControlWorkingCopy *)arg2 fromRevisionLocation:(DVTSourceControlRevisionLocation *)arg3 completionBlock:(void (^)(NSArray *, NSError *))arg4;
+- (void)exportFile:(NSString *)arg1 inWorkingCopy:(DVTSourceControlWorkingCopy *)arg2 forParentOfRevision:(DVTSourceControlRevision *)arg3 completionBlock:(void (^)(NSURL *, NSError *))arg4;
+- (void)exportFile:(NSString *)arg1 inWorkingCopy:(DVTSourceControlWorkingCopy *)arg2 fromRevisionLocation:(DVTSourceControlRevisionLocation *)arg3 toDirectory:(NSURL *)arg4 completionBlock:(void (^)(NSURL *, NSError *))arg5;
+- (void)commitFiles:(NSArray *)arg1 inWorkingCopy:(DVTSourceControlWorkingCopy *)arg2 message:(NSString *)arg3 completionBlock:(void (^)(DVTSourceControlRevision *, NSError *))arg4;
+- (void)markAsResolvedFiles:(NSArray *)arg1 inWorkingCopy:(DVTSourceControlWorkingCopy *)arg2 completionBlock:(void (^)(NSError *))arg3;
+- (void)discardAllChangesInWorkingCopy:(DVTSourceControlWorkingCopy *)arg1 completionBlock:(void (^)(NSError *))arg2;
+- (void)discardChangesInFiles:(NSArray *)arg1 inWorkingCopy:(DVTSourceControlWorkingCopy *)arg2 completionBlock:(void (^)(NSError *))arg3;
+- (void)createDirectory:(NSString *)arg1 withIntermediateDirectories:(BOOL)arg2 attributes:(NSDictionary *)arg3 inWorkingCopy:(DVTSourceControlWorkingCopy *)arg4 completionBlock:(void (^)(NSError *))arg5;
+- (void)moveFiles:(NSArray *)arg1 toFilePaths:(NSArray *)arg2 inWorkingCopy:(DVTSourceControlWorkingCopy *)arg3 completionBlock:(void (^)(NSError *))arg4;
+- (void)copyFiles:(NSArray *)arg1 toFilePaths:(NSArray *)arg2 inWorkingCopy:(DVTSourceControlWorkingCopy *)arg3 completionBlock:(void (^)(NSError *))arg4;
+- (void)removeFiles:(NSArray *)arg1 inWorkingCopy:(DVTSourceControlWorkingCopy *)arg2 completionBlock:(void (^)(NSError *))arg3;
+- (void)addFiles:(NSArray *)arg1 inWorkingCopy:(DVTSourceControlWorkingCopy *)arg2 completionBlock:(void (^)(NSError *))arg3;
 - (void)filesAndStatusOfWorkingCopy:(DVTSourceControlWorkingCopy *)arg1 withRemoteStatus:(BOOL)arg2 completionBlock:(void (^)(NSDictionary *, NSDictionary *, NSError *))arg3;
 - (void)scanForWorkingCopiesInPotentialWorkingCopies:(NSArray *)arg1 completionBlock:(void (^)(NSArray *))arg2;
 - (void)scanForWorkingCopiesInFolderPaths:(NSArray *)arg1 traversingUp:(BOOL)arg2 completionBlock:(void (^)(NSArray *))arg3;
+- (void)keychainNameFromURL:(NSURL *)arg1 completionBlock:(void (^)(NSString *, unsigned long long, NSString *, NSError *))arg2;
 - (void)sourceControlSystemWithCompletionBlock:(void (^)(DVTSourceControlSystem *))arg1;
+- (void)operationsFinished;
 @end
 

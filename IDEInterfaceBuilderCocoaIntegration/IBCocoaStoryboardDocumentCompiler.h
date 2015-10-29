@@ -11,17 +11,15 @@
     BOOL _instantiatedSegueTemplates;
 }
 
-- (id)infoPlistDictionaryForCompiledPackageWithViewControllerNibMap:(id)arg1;
+- (void)finishPopulatingInfoPlist:(id)arg1;
+- (void)populateInfoPlist:(id)arg1 withCompilationResult:(id)arg2;
 - (id)localOptionsForTarget:(id)arg1 withCompilerOptions:(id)arg2;
 - (id)targetRuntimeCompilationTargetsForCompilerOptions:(id)arg1;
-- (id)compileCompilationUnit:(id)arg1 options:(id)arg2 forSceneCompilationGroup:(id)arg3;
+- (id)compileCompilationUnit:(id)arg1 options:(id)arg2 forSceneCompilationGroup:(id)arg3 error:(id *)arg4;
 - (id)outletNameForPrimarySceneObject;
 - (id)compiledPackageVersion;
 - (BOOL)storyboardsAreAvailableForCompilationTargetReturningError:(id *)arg1;
 - (id)storyboardPlaceholderIdentifier;
-- (id)infoPlistDesignatedEntryPointIdentifierKey;
-- (id)infoPlistPackageVersionKey;
-- (id)infoPlistViewControllerIdentifierToNibNameMapKey;
 
 @end
 

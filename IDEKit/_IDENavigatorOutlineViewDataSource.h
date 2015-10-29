@@ -10,24 +10,22 @@
 #import "NSOutlineViewDataSource.h"
 #import "NSOutlineViewDelegate.h"
 
-@class DVTMapTable, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, DVTWeakInterposer, IDENICFilterProxy, IDENavigatorOutlineView, NSArray, NSHashTable, NSString;
+@class DVTNotificationToken, DVTStackBacktrace, DVTWeakInterposer, IDENICFilterProxy, IDENavigableItemFilter, IDENavigatorOutlineView, NSArray, NSHashTable, NSMapTable, NSString;
 
 @interface _IDENavigatorOutlineViewDataSource : NSObject <NSOutlineViewDataSource, NSOutlineViewDelegate, DVTInvalidation>
 {
     id _expandedItems;
     id _rootItems;
-    DVTObservingToken *_filterProgressObserver;
     DVTNotificationToken *_navigableItemGraphObserver;
     DVTNotificationToken *_navigableItemPropertyObserver;
     DVTNotificationToken *_forgottenNavigableItemsObserver;
-    DVTMapTable *_navItemChangeCountByItem;
+    NSMapTable *_navItemChangeCountByItem;
     IDENICFilterProxy *_coordinatorFilteredItems;
     unsigned long long _numberOfRowsBeforeExpandOrCollapse;
-    BOOL _didWarnForUnusualRowHeight;
-    IDENavigatorOutlineView *_outlineView;
     id _realObject;
     DVTWeakInterposer *_realObjectInterposer;
     double _currentModifiedExpansionTimestamp;
+    IDENavigableItemFilter *_lastFilter;
     struct {
         unsigned int realDataSourceRespondsTo_child_ofItem:1;
         unsigned int realDataSourceRespondsTo_childItemsForItem:1;
@@ -40,13 +38,10 @@
         unsigned int realDelegateRespondsTo_dataCell_forTableColumn_item:1;
         unsigned int realDelegateRespondsTo_ItemDidExpand:1;
         unsigned int realDelegateRespondsTo_ItemDidCollapse:1;
-        unsigned int realDelegateRespondsTo_ItemDidExpandTray:1;
-        unsigned int realDelegateRespondsTo_ItemDidCollapseTray:1;
         unsigned int realDelegateRespondsTo_heightOfRowByItem:1;
         unsigned int realDelegateRespondsTo_shouldShowOutlineCellForItem:1;
         unsigned int realDelegateRespondsTo_shouldExpandItem:1;
         unsigned int realDelegateRespondsTo_shouldCollapseItem:1;
-        unsigned int realDelegateRespondsTo_shouldCollapseTrayForItem:1;
         unsigned int realDelegateRespondsTo_outlineViewSelectionDidChange:1;
         unsigned int realDelegateRespondsTo_toolTipForCell:1;
         unsigned int realDelegateRespondsTo_isGroupHeaderItem:1;
@@ -56,6 +51,7 @@
         unsigned int accessingChildItemsForItem:1;
         unsigned int _pad:8;
     } _idenovdsFlags;
+    IDENavigatorOutlineView *_outlineView;
 }
 
 + (void)initialize;
@@ -84,20 +80,19 @@
 - (long long)outlineView:(id)arg1 numberOfChildrenOfItem:(id)arg2;
 - (BOOL)outlineView:(id)arg1 isItemExpandable:(id)arg2;
 - (id)outlineView:(id)arg1 child:(long long)arg2 ofItem:(id)arg3;
-- (void)primitiveInvalidate;
 - (id)forwardingTargetForSelector:(SEL)arg1;
 - (BOOL)respondsToSelector:(SEL)arg1;
-- (double)outlineView:(id)arg1 trayOpenAmountForItem:(id)arg2;
 - (id)childItemsForItem:(id)arg1;
 - (void)refreshFilterPredicate;
 @property(retain) id realObject;
 @property(copy) NSArray *rootItems;
-- (void)processNavigableItemDidForgetNotification:(id)arg1;
-- (void)processNavigableItemGraphChangeNotification:(id)arg1;
+- (void)_processNavigableItemDidForgetNotification:(id)arg1;
+- (void)_processNavigableItemGraphChangeNotification:(id)arg1;
 - (void)_clearExpandedItems;
 - (BOOL)notifyingRealDelegateOfExpandOrCollapse;
 - (id)objectInOutlineViewDataSourceRootItemsAtIndex:(long long)arg1;
 - (long long)countOfOutlineViewDataSourceRootItems;
+- (void)primitiveInvalidate;
 - (id)initWithOutlineView:(id)arg1 realObject:(id)arg2;
 
 // Remaining properties

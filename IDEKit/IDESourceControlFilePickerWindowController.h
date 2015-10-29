@@ -6,31 +6,41 @@
 
 #import "NSWindowController.h"
 
-@class DVTBorderedView, IDESourceControlFilePickerViewController, IDESourceControlTreeGroup, NSArray, NSString, NSTextField, NSWindow;
+#import "IDESourceControlFilePickerDelegate.h"
 
-@interface IDESourceControlFilePickerWindowController : NSWindowController
+@class DVTBorderedView, DVTSourceControlPathLocation, DVTSourceControlRepository, IDESourceControlFilePickerViewController, NSButton, NSString, NSTextField, NSWindow;
+
+@interface IDESourceControlFilePickerWindowController : NSWindowController <IDESourceControlFilePickerDelegate>
 {
     DVTBorderedView *_filePickerBorderedView;
     NSTextField *_messageTextField;
+    NSButton *_doneButton;
     NSWindow *_parentWindow;
     IDESourceControlFilePickerViewController *_filePickerViewController;
-    IDESourceControlTreeGroup *_rootGroup;
-    NSArray *_expandedItems;
-    id _visibleItem;
+    DVTSourceControlRepository *_repository;
+    DVTSourceControlPathLocation *_expandedLocation;
     NSString *_messageText;
 }
 
 @property(copy) NSString *messageText; // @synthesize messageText=_messageText;
-@property(retain) id visibleItem; // @synthesize visibleItem=_visibleItem;
-@property(copy) NSArray *expandedItems; // @synthesize expandedItems=_expandedItems;
-@property(retain) IDESourceControlTreeGroup *rootGroup; // @synthesize rootGroup=_rootGroup;
+@property(copy) DVTSourceControlPathLocation *expandedLocation; // @synthesize expandedLocation=_expandedLocation;
+@property(retain) DVTSourceControlRepository *repository; // @synthesize repository=_repository;
 - (void).cxx_destruct;
 - (void)filePickerSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)cancel:(id)arg1;
 - (void)choose:(id)arg1;
 - (void)beginSheetForWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)windowDidLoad;
+- (void)displayError:(id)arg1;
+- (void)stopLoading;
+- (void)startLoading;
 - (id)windowNibName;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

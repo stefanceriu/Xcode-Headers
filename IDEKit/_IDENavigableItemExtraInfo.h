@@ -11,12 +11,12 @@
 @interface _IDENavigableItemExtraInfo : NSObject
 {
     DVTExtension *_representedExtension;
-    NSMapTable *_navigableItemsByRepresentedObject;
     NSString *_childItemsKeyPath;
+    NSMapTable *_navigableItemsByRepresentedObject;
 }
 
-@property(copy) NSString *childItemsKeyPath; // @synthesize childItemsKeyPath=_childItemsKeyPath;
 @property(readonly) NSMapTable *navigableItemsByRepresentedObject; // @synthesize navigableItemsByRepresentedObject=_navigableItemsByRepresentedObject;
+@property(copy) NSString *childItemsKeyPath; // @synthesize childItemsKeyPath=_childItemsKeyPath;
 @property(retain) DVTExtension *representedExtension; // @synthesize representedExtension=_representedExtension;
 - (void).cxx_destruct;
 - (id)init;

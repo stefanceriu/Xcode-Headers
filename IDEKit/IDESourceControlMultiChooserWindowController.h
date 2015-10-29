@@ -18,6 +18,7 @@
     NSTextField *_messageTextField;
     IDEWorkspace *_workspace;
     NSArray *_workingTrees;
+    NSArray *_workingCopies;
     NSArray *_workingTreeItems;
     NSArray *_items;
     NSOperationQueue *_operationQueue;
@@ -49,6 +50,7 @@
 @property int requestType; // @synthesize requestType=_requestType;
 @property(copy) CDUnknownBlockType continuationBlock; // @synthesize continuationBlock=_continuationBlock;
 @property(readonly) NSArray *items; // @synthesize items=_items;
+@property(copy) NSArray *workingCopies; // @synthesize workingCopies=_workingCopies;
 @property(copy) NSArray *workingTreeItems; // @synthesize workingTreeItems=_workingTreeItems;
 @property(copy) NSArray *workingTrees; // @synthesize workingTrees=_workingTrees;
 @property(retain) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
@@ -73,10 +75,8 @@
 - (id)selectedItems;
 - (void)displayError:(id)arg1;
 - (void)displayErrorAndCancel:(id)arg1;
-- (void)displayErrorAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)updateCanContinue;
 - (id)successImage;
-- (void)setupPopUpMenus;
 - (void)selectBranch:(id)arg1;
 - (void)setupPopUpMenuForItem:(id)arg1;
 - (void)_updateStatusForChooserItem:(id)arg1;
@@ -84,7 +84,6 @@
 - (void)setupItems;
 - (id)_operationalItemsForWorkingTree:(id)arg1;
 - (void)setupText;
-- (id)workingTreeForLocation:(id)arg1;
 - (void)beginSheetForWindow:(id)arg1;
 - (id)windowNibName;
 

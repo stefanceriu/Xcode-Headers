@@ -6,17 +6,22 @@
 
 #import "DVTDocumentLocation.h"
 
-@class SKNode;
+@class GTFActionModel, SKActionEditorNavigableRepresentedNode, SKNode;
 
 @interface SKDocumentLocation : DVTDocumentLocation
 {
-    SKNode *_node;
+    id _skobject;
 }
 
-@property(readonly) __weak SKNode *node; // @synthesize node=_node;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL isSKActionEditorNavigableRepresentedNode;
+@property(readonly, nonatomic) SKActionEditorNavigableRepresentedNode *asSKActionEditorNavigableRepresentedNode;
+@property(readonly, nonatomic) BOOL isGTFAction;
+@property(readonly, nonatomic) GTFActionModel *asGTFAction;
+@property(readonly, nonatomic) BOOL isSKNode;
+@property(readonly, nonatomic) SKNode *asSKNode;
 - (id)description;
-- (id)initWithDocumentURL:(id)arg1 withNode:(id)arg2;
+- (id)initWithDocumentURL:(id)arg1 withSKObject:(id)arg2;
 
 @end
 

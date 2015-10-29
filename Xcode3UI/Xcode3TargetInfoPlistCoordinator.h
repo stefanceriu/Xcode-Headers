@@ -6,9 +6,11 @@
 
 #import <Xcode3UI/Xcode3TargetCoordinator.h>
 
-@class DVTFilePath, NSDictionary, PBXTarget;
+#import "IDEInfoPlistCoordination.h"
 
-@interface Xcode3TargetInfoPlistCoordinator : Xcode3TargetCoordinator
+@class DVTFilePath, NSDictionary, NSString, PBXTarget;
+
+@interface Xcode3TargetInfoPlistCoordinator : Xcode3TargetCoordinator <IDEInfoPlistCoordination>
 {
     NSDictionary *_infoPlistDictionary;
     DVTFilePath *_infoPlistAssociateFilePath;
@@ -22,6 +24,7 @@
 - (void)removeRequiredCapabilityWithKey:(id)arg1;
 - (void)addRequiredCapabilityWithKey:(id)arg1;
 - (BOOL)requiredCapabilitiesStateForKey:(id)arg1;
+- (void)removePlistSetting:(id)arg1;
 - (void)removeValue:(id)arg1 fromArrayForPlistSetting:(id)arg2;
 - (void)addValue:(id)arg1 toArrayForPlistSetting:(id)arg2;
 - (void)setValue:(id)arg1 forPlistSetting:(id)arg2;
@@ -30,6 +33,12 @@
 - (id)_infoPlistDictionary;
 - (void)primitiveInvalidate;
 - (id)initWithTarget:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

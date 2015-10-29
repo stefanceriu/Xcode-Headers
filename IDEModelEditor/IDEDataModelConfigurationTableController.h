@@ -10,23 +10,23 @@
 #import "IDECapsuleViewDelegate.h"
 #import "NSTableViewDelegate.h"
 
-@class DVTMapTable, DVTNotificationToken, IDEDataModelConfigurationEditor, NSArrayController, NSImage, NSIndexSet, NSString, XDTableView;
+@class DVTNotificationToken, IDEDataModelConfigurationEditor, NSArrayController, NSImage, NSIndexSet, NSMapTable, NSString, XDTableView;
 
 @interface IDEDataModelConfigurationTableController : IDEDMEditorController <NSTableViewDelegate, IDECapsuleViewController, IDECapsuleViewDelegate>
 {
     NSArrayController *entitiesArrayController;
     NSArrayController *configurationsArrayController;
     XDTableView *tableView;
-    DVTMapTable *_tableColumnsByIdentifier;
+    NSMapTable *_tableColumnsByIdentifier;
     NSIndexSet *_selectedInnerEntityIndexes;
     DVTNotificationToken *_findObservationToken;
     IDEDataModelConfigurationEditor *_parentEditor;
 }
 
 + (id)keyPathsForValuesAffectingSelectedConfigurationIndexes;
-+ (id)keyPathsForValuesAffectingSelection;
 + (id)keyPathsForValuesAffectingSelectedConfigurations;
 + (id)keyPathsForValuesAffectingSelectedInnerEntities;
++ (id)keyPathsForValuesAffectingSelection;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)keyPathsForValuesAffectingCanRemoveItems;
 @property(retain) IDEDataModelConfigurationEditor *parentEditor; // @synthesize parentEditor=_parentEditor;

@@ -45,7 +45,6 @@
 - (void)primitiveInvalidate;
 - (BOOL)isObjectBuiltInXIBPlaceholder:(id)arg1;
 - (id)platform;
-- (BOOL)supportsInternationalizationReturningError:(id *)arg1;
 - (id)initWithDocument:(id)arg1;
 
 @end

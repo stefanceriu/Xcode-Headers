@@ -6,11 +6,9 @@
 
 #import <DebuggerUI/DBGNode.h>
 
-#import "DBGHostNodeDelegate.h"
+@class DBGInteractiveSceneView, DBGSceneNode, DBGTrueSpacingBox, NSMutableArray, NSMutableDictionary;
 
-@class DBGInteractiveSceneView, DBGSceneNode, DBGTrueSpacingBox, NSMutableArray, NSMutableDictionary, NSString;
-
-@interface DBGHostNode : DBGNode <DBGHostNodeDelegate>
+@interface DBGHostNode : DBGNode
 {
     DBGInteractiveSceneView *_sceneView;
     DBGTrueSpacingBox *_trueSpacingBox;
@@ -19,17 +17,14 @@
     NSMutableArray *_subHostNodes;
     int _explosionStyle;
     DBGSceneNode *_rootViewNode;
-    id <DBGHostNodeDelegate> _delegate;
     NSMutableDictionary *_nodesByZPosition;
 }
 
 @property(readonly) NSMutableDictionary *nodesByZPosition; // @synthesize nodesByZPosition=_nodesByZPosition;
 @property int explosionStyle; // @synthesize explosionStyle=_explosionStyle;
-@property __weak id <DBGHostNodeDelegate> delegate; // @synthesize delegate=_delegate;
 @property __weak DBGSceneNode *rootViewNode; // @synthesize rootViewNode=_rootViewNode;
 - (void).cxx_destruct;
 - (unsigned long long)updateRenderingOrderRecursively:(BOOL)arg1 withRenderingOrderRangeStartingAt:(unsigned long long)arg2;
-- (void)childNodeDidUpdate;
 - (void)updateNodeAppearenceAfterConstraintsUpdate:(BOOL)arg1 selectedItemCount:(unsigned long long)arg2;
 - (void)updateContraintsOnHostedNodes:(BOOL)arg1;
 - (void)removeContraintsOnHostedNodes:(BOOL)arg1;
@@ -37,6 +32,7 @@
 - (unsigned long long)zOrderIndexOfNode:(id)arg1;
 - (id)zOrderKeysSortedByZPosition;
 - (id)nodeInZMaxPlane;
+- (id)nodesInZPlaneWithIndex:(int)arg1;
 - (void)updateVisibleViewsWithRangeFromIndex:(int)arg1 toIndex:(int)arg2 animated:(BOOL)arg3;
 - (unsigned long long)hideViewsBehindNode:(id)arg1;
 - (unsigned long long)hideViewsAboveNode:(id)arg1;
@@ -58,12 +54,6 @@
 - (BOOL)needsTrueSpacingExplosion;
 - (void)explodeAnimated:(BOOL)arg1;
 - (id)initWithRootView:(id)arg1 host:(id)arg2 inSceneView:(id)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

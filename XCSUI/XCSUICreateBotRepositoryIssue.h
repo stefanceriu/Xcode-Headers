@@ -12,15 +12,19 @@
 {
     BOOL _selected;
     NSError *_issue;
+    unsigned long long _type;
     DVTSourceControlRemoteRepository *_repository;
     NSString *_workingCopyLocation;
     unsigned long long _resolution;
+    NSString *_issueFingerprint;
 }
 
+@property(readonly) NSString *issueFingerprint; // @synthesize issueFingerprint=_issueFingerprint;
 @property unsigned long long resolution; // @synthesize resolution=_resolution;
 @property BOOL selected; // @synthesize selected=_selected;
 @property(readonly) NSString *workingCopyLocation; // @synthesize workingCopyLocation=_workingCopyLocation;
 @property(readonly) __weak DVTSourceControlRemoteRepository *repository; // @synthesize repository=_repository;
+@property unsigned long long type; // @synthesize type=_type;
 @property(readonly) NSError *issue; // @synthesize issue=_issue;
 - (void).cxx_destruct;
 @property(readonly) NSString *issueDisplayString;

@@ -21,7 +21,7 @@
 - (void)loadView;
 
 // Remaining properties
-@property(readonly, nonatomic) Xcode3ApplicationGroupsItemModel *model;
+@property(readonly, nonatomic) Xcode3ApplicationGroupsItemModel *model; // @dynamic model;
 
 @end
 

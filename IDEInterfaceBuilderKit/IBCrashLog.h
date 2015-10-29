@@ -11,6 +11,7 @@
 @interface IBCrashLog : NSObject
 {
     DVTMutableOrderedDictionary *_dataBlocksByName;
+    NSString *_filePath;
     NSDictionary *_attributes;
     NSString *_processName;
     NSString *_processPID;
@@ -25,6 +26,7 @@
 @property(readonly) NSString *processPID; // @synthesize processPID=_processPID;
 @property(readonly) NSString *processName; // @synthesize processName=_processName;
 @property(readonly) NSDictionary *attributes; // @synthesize attributes=_attributes;
+@property(readonly) NSString *filePath; // @synthesize filePath=_filePath;
 - (void).cxx_destruct;
 - (void)_postProcessCommonAttributes;
 - (void)_parseLogFromContents:(id)arg1;
@@ -33,6 +35,7 @@
 @property(readonly) NSString *applicationSpecificInformation;
 @property(readonly) NSString *dyldErrorMessage;
 @property(readonly) NSString *crashedThreadBacktrace;
+@property(readonly) NSString *diagnosticsDescription;
 - (id)description;
 - (id)initWithContentsOfFile:(id)arg1;
 

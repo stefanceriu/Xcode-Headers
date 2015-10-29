@@ -8,7 +8,7 @@
 
 #import "DTTimelineGraphDelegate.h"
 
-@class CALayer, DTTimelineGraphLayoutManager, DTTimelineGraphPlaneManager, DTTimelineMouseEventsResponder, DTTimelinePlane, DTTimelinePlaneDynamicRangeUpdateAnimation, NSArray, NSMutableDictionary, NSString, NSTimer;
+@class CALayer, DTTimelineGraphLayoutManager, DTTimelineGraphPlaneManager, DTTimelineMouseEventsResponder, DTTimelinePlane, DTTimelinePlaneDynamicRangeUpdateAnimation, NSArray, NSMutableDictionary, NSSet, NSString, NSTimer;
 
 @interface DTTimelineGraph : NSView <DTTimelineGraphDelegate>
 {
@@ -27,18 +27,29 @@
     NSMutableDictionary *_establishedDynamicRangesGroups;
     unsigned long long _unadjustedOffset;
     BOOL _nanosecondsPerPointSet;
-    double _yOffset;
+    double _unroundedUserSuppliedYOffset;
+    BOOL _displayHorizontalScroller;
+    BOOL _displayVerticalScroller;
+    BOOL _isFirstResponder;
     id <DTTimelineGraphDelegate> _delegate;
     unsigned long long _currentInspectionTime;
     unsigned long long _nanosecondsPerPoint;
-    unsigned long long _planeSelectionDepth;
-    DTTimelinePlane *_selectedPlane;
+    NSSet *_selectedPlanes;
+    id <NSAccessibility> _accessibilityProvider;
+    unsigned long long _rangeIndicatorState;
     struct XRTimeRange _selectedTimeRange;
+    struct XRTimeRange _zoomIndicatorTimeRange;
 }
 
++ (BOOL)dt_shouldAllowImplicitAction:(id)arg1;
+@property(readonly, nonatomic) BOOL isFirstResponder; // @synthesize isFirstResponder=_isFirstResponder;
+@property(nonatomic) BOOL displayVerticalScroller; // @synthesize displayVerticalScroller=_displayVerticalScroller;
+@property(nonatomic) BOOL displayHorizontalScroller; // @synthesize displayHorizontalScroller=_displayHorizontalScroller;
+@property(nonatomic) unsigned long long rangeIndicatorState; // @synthesize rangeIndicatorState=_rangeIndicatorState;
+@property(nonatomic) struct XRTimeRange zoomIndicatorTimeRange; // @synthesize zoomIndicatorTimeRange=_zoomIndicatorTimeRange;
+@property(nonatomic) __weak id <NSAccessibility> accessibilityProvider; // @synthesize accessibilityProvider=_accessibilityProvider;
 @property(readonly, nonatomic) DTTimelineGraphPlaneManager *planeManager; // @synthesize planeManager=_planeManager;
-@property(nonatomic) __weak DTTimelinePlane *selectedPlane; // @synthesize selectedPlane=_selectedPlane;
-@property(nonatomic) unsigned long long planeSelectionDepth; // @synthesize planeSelectionDepth=_planeSelectionDepth;
+@property(copy, nonatomic) NSSet *selectedPlanes; // @synthesize selectedPlanes=_selectedPlanes;
 @property(nonatomic) unsigned long long nanosecondsPerPoint; // @synthesize nanosecondsPerPoint=_nanosecondsPerPoint;
 @property(nonatomic) struct XRTimeRange selectedTimeRange; // @synthesize selectedTimeRange=_selectedTimeRange;
 @property(nonatomic) unsigned long long currentInspectionTime; // @synthesize currentInspectionTime=_currentInspectionTime;
@@ -49,16 +60,33 @@
 @property(readonly, nonatomic) DTTimelinePlane *topPinnedPlane; // @synthesize topPinnedPlane=_topPinnedPlane;
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (id)accessibilityHitTest:(struct CGPoint)arg1;
+- (id)accessibilityIdentifier;
+- (id)accessibilityTitleUIElement;
+- (id)accessibilityRole;
+- (id)accessibilityContents;
+- (id)accessibilityChildren;
+- (BOOL)isAccessibilitySelectorAllowed:(SEL)arg1;
 - (void)_generatePlaneLayoutMap;
 - (const unordered_map_c1fbcd3c *)_planeLayoutMap;
 - (void)clearInspectionInfo;
 - (void)displayInspectionInfoForNanosecond:(unsigned long long)arg1;
 - (void)setNextResponder:(id)arg1;
 - (void)viewDidMoveToWindow;
+- (void)_updateSelectedPlanesColors;
+- (id)menuForEvent:(id)arg1;
+- (void)resignKeyWindow;
+- (void)becomeKeyWindow;
+- (BOOL)resignFirstResponder;
+- (BOOL)becomeFirstResponder;
+- (BOOL)canBecomeKeyView;
 - (BOOL)acceptsFirstResponder;
+- (void)inputHandlerForGraph:(id)arg1 requestsHeight:(double)arg2 forPlane:(id)arg3;
+- (void)inputHandlerForGraph:(id)arg1 unhandledClickAtTime:(unsigned long long)arg2 onPlanes:(id)arg3;
+- (void)inputHandlerForGraph:(id)arg1 requestsCollapsingGroupPlane:(id)arg2;
+- (void)inputHandlerForGraph:(id)arg1 requestsExpandingGroupPlane:(id)arg2;
 - (void)inputHandlerRequestsToClearInspectionInfoForGraph:(id)arg1;
 - (void)inputHandlerForGraph:(id)arg1 requestsDisplayInspectionInfoForNanosecond:(unsigned long long)arg2 atX:(double)arg3;
-- (void)inputHandlerForGraph:(id)arg1 requestsSelectedPlane:(id)arg2;
 - (void)inputHandlerForGraph:(id)arg1 requestsNanosecondsPerPoint:(unsigned long long)arg2;
 - (void)inputHandlerRequestsToClearCurrentInspectionTimeForGraph:(id)arg1;
 - (void)inputHandlerForGraph:(id)arg1 requestsCurrentInspectionTime:(unsigned long long)arg2;
@@ -67,9 +95,11 @@
 - (void)inputHandlerForGraph:(id)arg1 requestsSelectedTimeRange:(struct XRTimeRange)arg2;
 - (void)inputHandlerForGraph:(id)arg1 requestYOffset:(double)arg2;
 - (void)inputHandlerForGraph:(id)arg1 requestsNanosecondOffset:(long long)arg2;
+- (BOOL)getPointInView:(out struct CGPoint *)arg1 visibility:(out char *)arg2 plane:(id)arg3 time:(long long)arg4;
 - (void)_addBottomBorderLayer:(id)arg1;
 - (void)_addDecorationSummaryLayer:(id)arg1;
-- (id)_planeAtPoint:(struct CGPoint)arg1;
+- (id)_resizablePlaneForRect:(struct CGRect)arg1;
+- (id)_planesUnderPoint:(struct CGPoint)arg1;
 - (void)_setOverlayPlane:(id)arg1;
 - (void)_setBackgroundPlane:(id)arg1;
 - (void)_setBottomPinnedPlane:(id)arg1;
@@ -79,21 +109,36 @@
 - (id)_establishedDynamicRangePeerOfPlane:(id)arg1;
 - (id)_createDynamicRangeAnimation;
 - (id)_decoratedPlanes;
+- (void)_enumerateNonPinnedPlanes:(CDUnknownBlockType)arg1;
 - (void)_enumerateTopLevelPlanes:(CDUnknownBlockType)arg1;
 - (void)_dynamicRangeShouldBeRecomputed;
 - (void)_didChangeContext;
+- (void)_displayScrollbarsWithDelayedHide;
+- (void)moveVerticalScrollerByY:(double)arg1;
+- (void)moveHorizontalScrollerByX:(double)arg1;
+- (void)_hideScollbars;
+@property(readonly, nonatomic) BOOL mouseIsOverVerticalScroller;
+@property(readonly, nonatomic) BOOL mouseIsOverHorizontalScroller;
+- (void)viewWillMoveToWindow:(id)arg1;
+- (double)_computedHeight;
 - (unsigned long long)scaleNeededToDisplayAllData;
+- (unsigned long long)scaleNeededToDisplayDuration:(unsigned long long)arg1;
 - (long long)matchingOffsetForNanosecondsPerPoint:(inout unsigned long long *)arg1 centeredAtTime:(long long)arg2;
 @property(nonatomic) double yOffset;
+- (void)_updateYOffsetIfNeeded;
 @property(nonatomic) BOOL animateChanges;
+- (void)enumeratesPlanesHavingKey:(id)arg1 block:(CDUnknownBlockType)arg2;
 @property(nonatomic) unsigned long long duration;
 - (long long)lastVisibleNanosecond;
 - (void)invalidateTimeRange:(struct XRTimeRange)arg1 plane:(id)arg2;
 - (void)invalidateTimeRange:(struct XRTimeRange)arg1;
 - (void)clearCurrentInspectionTime;
+@property(readonly, copy, nonatomic) NSString *rangeIndicatorDescription;
+- (void)clearZoomIndicator;
 - (void)clearSelectedTimeRange;
 @property(readonly, nonatomic) long long midpointNanosecondOffset;
 @property(nonatomic) long long nanosecondOffset;
+- (void)_updateNanosecondOffsetIfNeeded;
 - (void)_screenChangeNotification:(id)arg1;
 @property(readonly, nonatomic) NSArray *planes; // @synthesize planes=_planes;
 - (void)dealloc;

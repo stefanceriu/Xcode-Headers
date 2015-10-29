@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTDispatchLock, DVTMapTable, NSMutableArray, NSObject<OS_dispatch_queue>, _IDEPlaygroundDataSerializationRead;
+@class DVTDispatchLock, NSMapTable, NSMutableArray, NSObject<OS_dispatch_queue>, _IDEPlaygroundDataSerializationRead;
 
 @interface IDEPlaygroundDataSerializationCoordinator : NSObject
 {
@@ -15,7 +15,7 @@
     NSMutableArray *_pendingReads;
     _IDEPlaygroundDataSerializationRead *_currentRead;
     NSObject<OS_dispatch_queue> *_readEventQueue;
-    DVTMapTable *_playgroundPathsToSerializationOperations;
+    NSMapTable *_playgroundPathsToSerializationOperations;
     BOOL ioOperationInProgress;
 }
 

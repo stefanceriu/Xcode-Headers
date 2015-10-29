@@ -10,24 +10,24 @@
 
 @interface IDEOutlineBasedNavigator : IDENavigator
 {
-    id _rootItemObservingToken;
-    IDENavigatorOutlineView *_outlineView;
-    NSArray *_objects;
     NSArray *_selectedObjects;
+    IDENavigatorOutlineView *_outlineView;
     id <IDEOpenRequest> _lastOpenRequest;
 }
 
++ (id)keyPathsForValuesAffectingFilterProgress;
++ (id)keyPathsForValuesAffectingObjects;
 + (void)initialize;
 @property(retain) id <IDEOpenRequest> lastOpenRequest; // @synthesize lastOpenRequest=_lastOpenRequest;
-@property(retain) NSArray *objects; // @synthesize objects=_objects;
 @property(retain) IDENavigatorOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 - (void).cxx_destruct;
+- (long long)filterProgress;
 - (id)contextMenuSelection;
+- (void)willForgetNavigableItems:(id)arg1;
 - (void)primitiveInvalidate;
-- (void)updateBoundContent;
-- (void)_setupRootNavigableItemObserving;
-- (void)_clearRootNavigableItemObserving;
-- (void)updateOutlineViewContents;
+- (void)viewWillUninstall;
+- (void)viewDidInstall;
+@property(readonly, nonatomic) NSArray *objects;
 - (void)_openNavigableItem:(id)arg1 eventType:(unsigned long long)arg2;
 - (void)openDoubleClickedNavigableItemsAction:(id)arg1;
 - (void)openClickedNavigableItemAction:(id)arg1;

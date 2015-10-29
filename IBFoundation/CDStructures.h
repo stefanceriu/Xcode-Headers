@@ -30,6 +30,13 @@ struct IBObjectIDHashEntry_tag {
     id _field2;
 };
 
+struct _IBEdgeInsets {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+};
+
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
@@ -45,6 +52,12 @@ typedef struct {
 } CDStruct_70511ce9;
 
 typedef struct {
+    char _field1;
+    char _field2;
+    char _field3;
+} CDStruct_550fdc95;
+
+typedef struct {
     double minX;
     double minY;
     double maxX;
@@ -54,7 +67,21 @@ typedef struct {
 typedef struct {
     double _field1;
     double _field2;
+    double _field3;
+} CDStruct_39925896;
+
+typedef struct {
+    double _field1;
+    double _field2;
 } CDStruct_c3b9c2ee;
+
+typedef struct {
+    long long _field1;
+    void *_field2[128];
+    void **_field3;
+    long long _field4;
+    long long _field5;
+} CDStruct_dbbaf529;
 
 typedef struct {
     long long _field1;
@@ -65,4 +92,11 @@ typedef struct {
     struct CGPoint _field1;
     struct CGPoint _field2;
 } CDStruct_d0b1bdbd;
+
+#pragma mark Typedef'd Unions
+
+typedef union {
+    CDStruct_912cb5d2 _field1;
+    long long _field2[2];
+} CDUnion_42e99c75;
 

@@ -12,10 +12,11 @@
 - (NSImage *)equalSizeBadge;
 - (NSImage *)greaterThanOrEqualToBadge;
 - (NSImage *)lessThanOrEqualToBadge;
-- (NSImage *)constraintBadgeImageForLabel:(NSString *)arg1 tintColor:(NSColor *)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_c519178c *)arg4;
-- (NSImage *)badgeImageForAspectRatioConstraint:(IBLayoutConstraint *)arg1 attribute:(unsigned long long)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_c519178c *)arg4;
-- (NSImage *)badgeImageForMisplacedConstraint:(IBLayoutConstraint *)arg1 constantDelta:(double)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_c519178c *)arg4;
-- (NSImage *)badgeImageForConflictingConstraint:(IBLayoutConstraint *)arg1 returningBadgeSize:(struct CGSize *)arg2 badgeInset:(CDStruct_c519178c *)arg3;
+- (NSImage *)constraintBadgeImageForLabel:(NSString *)arg1 tintColor:(NSColor *)arg2 drawSelected:(BOOL)arg3 returningBadgeSize:(struct CGSize *)arg4 badgeInset:(CDStruct_c519178c *)arg5;
+- (NSImage *)badgeImageForAspectRatioConstraint:(IBLayoutConstraint *)arg1 drawSelected:(BOOL)arg2 attribute:(unsigned long long)arg3 returningBadgeSize:(struct CGSize *)arg4 badgeInset:(CDStruct_c519178c *)arg5;
+- (NSImage *)badgeImageForMisplacedConstraint:(IBLayoutConstraint *)arg1 drawSelected:(BOOL)arg2 constantDelta:(double)arg3 returningBadgeSize:(struct CGSize *)arg4 badgeInset:(CDStruct_c519178c *)arg5;
+- (NSImage *)badgeImageForAmbiguousConstraint:(IBLayoutConstraint *)arg1 drawSelected:(BOOL)arg2 constantDelta:(double)arg3 returningBadgeSize:(struct CGSize *)arg4 badgeInset:(CDStruct_c519178c *)arg5;
+- (NSImage *)badgeImageForConflictingConstraint:(IBLayoutConstraint *)arg1 drawSelected:(BOOL)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_c519178c *)arg4;
 - (struct CGRect)rectIncludingBadgeForDrawable:(IBAutolayoutConstraintDrawable *)arg1;
 - (BOOL)isShowingResizeKnobs;
 - (NSString *)badgeLabelForAbstraction:(IBAbstractLayoutConstraintAbstraction *)arg1 atIndex:(unsigned long long)arg2 isConflicting:(BOOL)arg3 isAmbiguous:(BOOL)arg4 isMisplaced:(BOOL)arg5;

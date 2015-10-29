@@ -11,17 +11,19 @@
 #import "SCNAnimatable.h"
 #import "SCNTechniqueSupport.h"
 
-@class NSString, SCNMaterialProperty, SCNOrderedDictionary, SCNTechnique;
+@class MDLLightProbe, NSArray, NSString, SCNMaterialProperty, SCNOrderedDictionary, SCNTechnique;
 
 @interface SCNLight : NSObject <SCNAnimatable, SCNTechniqueSupport, NSCopying, NSSecureCoding>
 {
-    id _reserved;
     struct __C3DLight *_light;
     unsigned int _isPresentationInstance:1;
     unsigned int _goboProjectShadows:1;
     unsigned int _castsShadow:1;
     unsigned int _usesDeferredShadows:1;
     unsigned int _usesModulatedMode:1;
+    unsigned int _baked:1;
+    unsigned int _shouldBakeDirectLighting:1;
+    unsigned int _shouldBakeIndirectLighting:1;
     SCNOrderedDictionary *_animations;
     NSString *_name;
     NSString *_type;
@@ -35,51 +37,66 @@
     double _zNear;
     double _zFar;
     double _shadowBias;
-    float _attenuations[6];
+    float _attenuationStartDistance;
+    float _attenuationEndDistance;
+    float _attenuationFalloffExponent;
+    float _spotInnerAngle;
+    float _spotOuterAngle;
+    float _spotFalloffExponent;
     SCNMaterialProperty *_gobo;
     SCNTechnique *_technique;
+    MDLLightProbe *_mkLightProbe;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)lightWithLightRef:(struct __C3DLight *)arg1;
 + (id)light;
++ (id)lightWithMDLLightProbe:(id)arg1;
++ (id)lightWithMDLLight:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)_didDecodeSCNLight:(id)arg1;
 - (void)_customDecodingOfSCNLight:(id)arg1;
 - (void)_customEncodingOfSCNLight:(id)arg1;
 @property(readonly, nonatomic) SCNMaterialProperty *gobo;
-- (double)spotFalloffExponent;
-- (void)setSpotFalloffExponent:(double)arg1;
-@property(nonatomic) double spotOuterAngle;
-@property(nonatomic) double spotInnerAngle;
-@property(nonatomic) double attenuationFalloffExponent;
-@property(nonatomic) double attenuationEndDistance;
-@property(nonatomic) double attenuationStartDistance;
-@property(nonatomic) struct CGSize shadowMapSize;
+@property(nonatomic) long long shadowMode;
 @property(nonatomic) double zNear;
 @property(nonatomic) double zFar;
 - (void)setUsesModulatedMode:(BOOL)arg1;
 - (BOOL)usesModulatedMode;
 - (void)setUsesDeferredShadows:(BOOL)arg1;
 - (BOOL)usesDeferredShadows;
-@property(nonatomic) long long shadowMode;
+@property(copy, nonatomic) NSString *type;
+@property(copy, nonatomic) SCNTechnique *technique;
+@property(nonatomic) double spotOuterAngle;
+@property(nonatomic) double spotInnerAngle;
+- (void)setSpotFalloffExponent:(double)arg1;
+- (double)spotFalloffExponent;
 @property(nonatomic) unsigned long long shadowSampleCount;
 @property(nonatomic) double shadowRadius;
+@property(nonatomic) struct CGSize shadowMapSize;
 @property(retain, nonatomic) id shadowColor;
 @property(nonatomic) double shadowBias;
 @property(nonatomic) double orthographicScale;
 @property(retain, nonatomic) id color;
 @property(nonatomic) unsigned long long categoryBitMask;
 @property(nonatomic) BOOL castsShadow;
+- (void)setBaked:(BOOL)arg1;
+- (BOOL)isBaked;
+@property(nonatomic) double attenuationStartDistance;
+@property(nonatomic) double attenuationFalloffExponent;
+@property(nonatomic) double attenuationEndDistance;
+- (void)setShouldBakeIndirectLighting:(BOOL)arg1;
+- (BOOL)shouldBakeIndirectLighting;
+- (void)setShouldBakeDirectLighting:(BOOL)arg1;
+- (BOOL)shouldBakeDirectLighting;
+- (void)setMkLightProbe:(id)arg1;
+- (id)mkLightProbe;
 - (id)attributeForKey:(id)arg1;
 - (void)setAttribute:(id)arg1 forKey:(id)arg2;
-@property(copy, nonatomic) SCNTechnique *technique;
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
-@property(copy, nonatomic) NSString *type;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (BOOL)isAnimationForKeyPaused:(id)arg1;
 - (void)removeAnimationForKey:(id)arg1 fadeOutDuration:(double)arg2;
@@ -88,7 +105,7 @@
 - (void)_pauseAnimation:(BOOL)arg1 forKey:(id)arg2;
 - (id)animationForKey:(id)arg1;
 - (void)_syncObjCAnimations;
-- (id)animationKeys;
+@property(readonly) NSArray *animationKeys;
 - (void)removeAnimationForKey:(id)arg1;
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;

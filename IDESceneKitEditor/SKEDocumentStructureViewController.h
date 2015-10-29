@@ -9,15 +9,13 @@
 #import "NSOutlineViewDataSource.h"
 #import "SKEOutlineViewDelegate.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTNotificationToken, DVTSearchField, IDEControlGroup, IDENavigableItemCoordinator, NSString, SKEDocumentNavigableItem, SKEDocumentViewController, SKEOutlineView;
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTNotificationToken, DVTObservingToken, DVTSearchField, IDEControlGroup, NSString, SKEOutlineView, SKESceneEditor;
 
 @interface SKEDocumentStructureViewController : IDEViewController <SKEOutlineViewDelegate, NSOutlineViewDataSource>
 {
-    SKEDocumentNavigableItem *_entitiesTopLevelItem;
-    SKEDocumentNavigableItem *_sceneGraphTopLevelItem;
     NSString *_filterString;
-    DVTNotificationToken *_selectionToken;
-    IDENavigableItemCoordinator *_navigableItemCoordinator;
+    DVTNotificationToken *_outlineViewSelectionObservingToken;
+    DVTObservingToken *_documentSelectedItemsObservingToken;
     DVTGradientImagePopUpButton *_actionPopUpButton;
     DVTGradientImageButton *_addButton;
     DVTGradientImageButton *_deleteButton;
@@ -26,26 +24,34 @@
     DVTSearchField *_searchField;
     IDEControlGroup *_controlGroup;
     BOOL _isObservingDocument;
-    SKEDocumentViewController *_documentEditorViewController;
+    SKESceneEditor *_sceneEditor;
 }
 
++ (id)keyPathsForValuesAffectingShouldEnableActionPopUpButton;
++ (id)keyPathsForValuesAffectingShouldEnableDeleteButton;
++ (id)keyPathsForValuesAffectingShouldEnableAddButton;
 @property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
-@property(retain, nonatomic) SKEDocumentViewController *documentEditorViewController; // @synthesize documentEditorViewController=_documentEditorViewController;
+@property(retain, nonatomic) SKESceneEditor *sceneEditor; // @synthesize sceneEditor=_sceneEditor;
 - (void).cxx_destruct;
-- (void)removeNodePropertyParticleSystem:(id)arg1;
-- (void)addNodePropertyParticleSystem:(id)arg1;
-- (void)removeNodePropertyCamera:(id)arg1;
-- (void)addNodePropertyCamera:(id)arg1;
-- (void)removeNodePropertyLight:(id)arg1;
-- (void)addNodePropertyLight:(id)arg1;
+- (BOOL)shouldEnableActionPopUpButton;
+- (BOOL)shouldEnableDeleteButton;
+- (BOOL)shouldEnableAddButton;
+- (id)targetNodesForActionButton;
+- (void)removeNodePropertyAction:(id)arg1;
+- (void)addNodePropertyAction:(id)arg1;
 - (void)flattenNode:(id)arg1;
 - (void)duplicateNode:(id)arg1;
 - (void)deleteNode:(id)arg1;
+- (id)targetNodesForDeleteButton;
 - (void)addNewChildNode:(id)arg1;
+- (id)targetNodesForAddButton;
 - (void)showNodeContextualMenuForInitialEvent:(id)arg1;
-- (id)contextualMenuForMemberWrapper:(id)arg1;
+- (id)contextualMenuForReceiver:(id)arg1 isInGearMenu:(BOOL)arg2;
 - (BOOL)validateMenuItem:(id)arg1;
-- (id)targetNodeForActionSender:(id)arg1 withFallbackIfNoSelection:(id)arg2;
+- (id)targetNodesForActionSender:(id)arg1 withFallbackIfNoSelection:(id)arg2;
+- (id)memberForEventInOutlineView:(id)arg1;
+- (id)outlineView:(id)arg1 attributeIconsForItem:(id)arg2;
+- (BOOL)outlineView:(id)arg1 isItemEditable:(id)arg2;
 - (BOOL)outlineView:(id)arg1 doCommandBySelector:(SEL)arg2;
 - (BOOL)outlineView:(id)arg1 shouldSelectItem:(id)arg2;
 - (BOOL)outlineView:(id)arg1 isHeaderItem:(id)arg2;
@@ -68,7 +74,7 @@
 - (void)registerForSceneGraphInvalidationNotifications;
 - (id)groupInvalidationNotificationNames;
 - (void)outlineViewSelectionDidChange;
-- (void)selectLocations:(id)arg1;
+- (void)updateOutlineViewSelection;
 - (id)libraryNavigableItemForLocation:(id)arg1;
 - (id)sceneGraphNavigableItemForLocation:(id)arg1;
 - (id)navigableItemForLocation:(id)arg1 inNavigables:(id)arg2;
@@ -78,6 +84,7 @@
 - (void)viewDidInstall;
 - (void)configureSearchField;
 - (void)configureBorderedView;
+- (void)configureActionMenuForReceiver:(id)arg1;
 - (void)configureActionMenu;
 - (void)configureControlGroup;
 - (void)configureOutlineView;

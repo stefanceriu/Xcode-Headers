@@ -6,11 +6,10 @@
 
 #import "NSObject.h"
 
-@class DVTPerformanceTestOutput, DVTTestPerformanceMetricOutput, NSString;
+@class DVTTestPerformanceMetricOutput, NSString;
 
 @protocol IDEOCUnitTestOutputParserDelegate <NSObject>
 - (void)testDidOutput:(NSString *)arg1;
-- (void)testCaseDidProducePerformanceOutput:(DVTPerformanceTestOutput *)arg1 rawOutput:(NSString *)arg2;
 - (void)testCaseDidFailForTestClass:(NSString *)arg1 method:(NSString *)arg2 withMessage:(NSString *)arg3 file:(NSString *)arg4 line:(long long)arg5 rawOutput:(NSString *)arg6;
 - (void)testCaseDidFinishForTestClass:(NSString *)arg1 method:(NSString *)arg2 withStatus:(NSString *)arg3 duration:(double)arg4 rawOutput:(NSString *)arg5;
 - (void)testCaseDidMeasurePerformanceMetricForTestClass:(NSString *)arg1 method:(NSString *)arg2 performanceMetric:(DVTTestPerformanceMetricOutput *)arg3 rawOutput:(NSString *)arg4;

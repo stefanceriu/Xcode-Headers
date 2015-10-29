@@ -6,17 +6,15 @@
 
 #import "NSObject.h"
 
-@class DVTFileDataType, DVTFilePath, IDEAnalysisTool, IDELaunchParametersSnapshot, IDEProfileOperation, IDERunDestination, NSArray, NSString;
+@class DVTFileDataType, DVTFilePath, DVTOperation, IDEAnalysisTool, IDELaunchParametersSnapshot, IDERunDestination, NSArray, NSString;
 
 @protocol IDEAnalysisToolService <NSObject>
 + (IDEAnalysisTool *)analysisToolWithIdentifier:(NSString *)arg1 platformIdentifier:(NSString *)arg2;
 + (NSArray *)analysisToolsForPlatformIdentifier:(NSString *)arg1;
 @property(retain) IDELaunchParametersSnapshot *launchParameters;
 @property(copy) IDERunDestination *runDestination;
-@property(copy) DVTFilePath *runnableBuildProductPath;
-@property(copy) DVTFilePath *runnableLocation;
 @property(retain) IDEAnalysisTool *analysisTool;
-- (IDEProfileOperation *)operationWithWorkingDirectory:(DVTFilePath *)arg1 workspaceFilePath:(DVTFilePath *)arg2 projectFilePath:(DVTFilePath *)arg3 outError:(id *)arg4;
+- (DVTOperation *)operationWithWorkingDirectory:(DVTFilePath *)arg1 workspaceFilePath:(DVTFilePath *)arg2 projectFilePath:(DVTFilePath *)arg3 outError:(id *)arg4;
 - (void)setAttachRunnablePID:(int)arg1 applicationName:(NSString *)arg2;
 - (id)initWithRunnableUTIType:(DVTFileDataType *)arg1;
 @end

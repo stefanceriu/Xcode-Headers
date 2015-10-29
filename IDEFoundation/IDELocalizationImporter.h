@@ -30,8 +30,7 @@
 }
 
 + (void)initialize;
-+ (id)importerFromURL:(id)arg1 container:(id)arg2 sourceLanguage:(id)arg3 onNeedsResolutions:(CDUnknownBlockType)arg4;
-+ (id)importWorkForContext:(id)arg1;
++ (id)importerFromURL:(id)arg1 container:(id)arg2 sourceLanguage:(id)arg3 allowProjectChanges:(BOOL)arg4 onNeedsReview:(CDUnknownBlockType)arg5;
 @property(copy) CDUnknownBlockType onCompletedBlock; // @synthesize onCompletedBlock=_onCompletedBlock;
 @property(copy) CDUnknownBlockType onErrorBlock; // @synthesize onErrorBlock=_onErrorBlock;
 @property(readonly) NSString *workTitle; // @synthesize workTitle=_workTitle;
@@ -42,7 +41,7 @@
 - (void)cancel;
 - (void)start;
 - (void)primitiveInvalidate;
-- (id)initWithImportWork:(id)arg1 withContext:(id)arg2;
+- (id)initWithImportContext:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

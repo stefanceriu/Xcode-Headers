@@ -6,12 +6,10 @@
 
 #import "DBGStackFrame.h"
 
-#import "DBGLLDBInvalidation.h"
-
-@class NSArray, NSMutableSet, NSString;
+@class NSArray, NSMutableSet;
 
 __attribute__((visibility("hidden")))
-@interface DBGLLDBStackFrame : DBGStackFrame <DBGLLDBInvalidation>
+@interface DBGLLDBStackFrame : DBGStackFrame
 {
     struct SBFrame _lldbFrame;
     struct SBValueList _lldbVariables;
@@ -20,14 +18,15 @@ __attribute__((visibility("hidden")))
     NSArray *_locals;
     NSArray *_arguments;
     NSArray *_fileStatics;
+    NSArray *_globals;
     NSArray *_registers;
     NSMutableSet *_expressionDataValuesToInvalidate;
     struct _opaque_pthread_t *_sessionThreadIdentifier;
-    BOOL _markedForInvalidationFromTheSessionThread;
     BOOL _hasInitializedDisassembly;
 }
 
-@property BOOL markedForInvalidationFromTheSessionThread; // @synthesize markedForInvalidationFromTheSessionThread=_markedForInvalidationFromTheSessionThread;
++ (BOOL)supportsInvalidationPrevention;
+@property(copy, nonatomic) NSArray *globals; // @synthesize globals=_globals;
 @property(copy, nonatomic) NSArray *fileStatics; // @synthesize fileStatics=_fileStatics;
 @property(copy, nonatomic) NSArray *registers; // @synthesize registers=_registers;
 @property(copy, nonatomic) NSArray *arguments; // @synthesize arguments=_arguments;
@@ -39,6 +38,7 @@ __attribute__((visibility("hidden")))
 - (id)dataValuesToInvalidate;
 - (id)_lldbSession;
 - (void)_getRegistersFromLLDBOnSessionThread;
+- (void)_getGlobalsFromLLDBOnSessionThread;
 - (void)_getFileStaticsFromLLDBOnSessionThread;
 - (void)_getLocalsFromLLDBOnSessionThread;
 - (void)_getArgumentsFromLLDBOnSessionThread;
@@ -48,18 +48,11 @@ __attribute__((visibility("hidden")))
 - (id)_findSymbolWithName:(id)arg1 symbolKind:(id)arg2 atLocation:(id)arg3;
 - (void)_getAllFrameVariablesOnLLDBSessionThread;
 - (void)_addSessionThreadAction:(CDUnknownBlockType)arg1;
-- (id)_weakSelf;
 - (BOOL)_isSessionThread;
-- (void)_assertNotMarkedForInvalidationAndOnSessionThread;
+- (void)_assertOnSessionThread;
 - (void)_setReturnValueFromInitIfNecessary;
 - (struct SBFrame)lldbFrame;
 - (id)initWithParentThread:(id)arg1 frameNumber:(id)arg2 framePointer:(id)arg3 name:(id)arg4 lldbFrame:(struct SBFrame)arg5;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

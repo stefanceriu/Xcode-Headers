@@ -25,6 +25,10 @@
 @property(readonly, nonatomic) SCNPhysicsWorld *physicsWorld;
 @property(readonly, nonatomic) SCNNode *rootNode;
 @property(readonly) NSArray *particleSystems;
+- (id)valueForKeyPath:(NSString *)arg1;
+- (id)valueForKey:(NSString *)arg1;
+- (void)setValue:(id)arg1 forKey:(NSString *)arg2;
+- (void)setValue:(id)arg1 forKeyPath:(NSString *)arg2;
 - (BOOL)writeToURL:(NSURL *)arg1 options:(NSDictionary *)arg2 delegate:(id <SCNSceneExportDelegate>)arg3 progressHandler:(void (^)(float, NSError *, char *))arg4;
 - (void)setAttribute:(id)arg1 forKey:(NSString *)arg2;
 - (id)attributeForKey:(NSString *)arg1;

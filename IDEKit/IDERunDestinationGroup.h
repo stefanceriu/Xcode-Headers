@@ -16,7 +16,7 @@
     NSArray *_runDestinations;
 }
 
-+ (id)groupsFromRunDestinations:(id)arg1;
++ (id)groupsFromRunDestinations:(id)arg1 scheme:(id)arg2;
 @property(readonly) NSArray *runDestinations; // @synthesize runDestinations=_runDestinations;
 @property(readonly) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;

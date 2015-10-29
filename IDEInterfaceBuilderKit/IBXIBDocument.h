@@ -12,7 +12,8 @@
 
 + (Class)metricsInferrerClass;
 + (Class)libraryAssetProviderClassForIdiom:(id)arg1;
-+ (BOOL)wantsContainerViewInLibrary;
++ (int)libraryInclusionStatusForExternalPrimarySceneObject;
++ (int)libraryInclusionStatusForContainerView;
 + (BOOL)wantsViewControllersAtTopOfLibrary;
 + (BOOL)supportsPrototypeObjects;
 - (id)firstResponderForConnectingToObject:(id)arg1;
@@ -23,7 +24,7 @@
 - (id)archivingSchema;
 - (id)hybridPackageType;
 - (id)preferredFileType;
-- (BOOL)supportsLaunchScreen;
+- (BOOL)canHaveMultipleTopLevelObjectsInLaunchScreen;
 - (BOOL)supportsUserDefinedRuntimeAttributesForObject:(id)arg1;
 - (BOOL)isObjectBuiltInPlaceholder:(id)arg1;
 - (id)connectToSourceCandidatesForConnectingToObject:(id)arg1 preferredCandidates:(id *)arg2;
@@ -41,7 +42,7 @@
 - (id)primaryControllerForGeniusFinder;
 - (id)filesOwner;
 - (id)firstResponder;
-- (id)initWithType:(id)arg1 targetRuntime:(id)arg2 transientPasteboardDocument:(BOOL)arg3 error:(id *)arg4;
+- (id)initWithType:(id)arg1 targetRuntime:(id)arg2 transientPasteboardDocument:(BOOL)arg3 enableAutomaticAutolayoutStatusUpdating:(BOOL)arg4 error:(id *)arg5;
 - (BOOL)supportedInferredMetricsPriorToXcode6;
 
 @end

@@ -6,10 +6,9 @@
 
 #import "NSObject.h"
 
-@class IBStoryboardDocument, NSObject<IBPrimarySceneObject>, NSString;
+@class NSString;
 
 @protocol IBStoryboardEntryPointIndicator <NSObject>
-- (void)ibTransferToObject:(NSObject<IBPrimarySceneObject> *)arg1 fromObject:(NSObject<IBPrimarySceneObject> *)arg2 inDocument:(IBStoryboardDocument *)arg3;
 - (NSString *)ibStoryboardEntryPointIndicatorCanvasTitle;
 @end
 

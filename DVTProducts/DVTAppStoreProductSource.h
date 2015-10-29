@@ -25,10 +25,8 @@
 @property(retain, nonatomic) DVTDelayedInvocation *delayedRefreshInvocation; // @synthesize delayedRefreshInvocation=_delayedRefreshInvocation;
 @property(retain, nonatomic) DVTFilePath *productsRootDirectory; // @synthesize productsRootDirectory=_productsRootDirectory;
 - (void).cxx_destruct;
-- (id)_binaryInfoForVersion:(id)arg1;
-- (id)_productVersionForExtension:(id)arg1 productType:(unsigned long long)arg2 adamId:(id)arg3 appStoreStatus:(unsigned long long)arg4 supportedDeviceTypes:(id)arg5 supportedOSVersions:(id)arg6;
-- (id)_supportedDeviceTypesForAppVersion:(id)arg1 productType:(unsigned long long)arg2;
-- (id)_symbolInfoForVersion:(id)arg1 session:(id)arg2 error:(id *)arg3;
+- (id)_binaryInfosForVersion:(id)arg1;
+- (id)_supportedDeviceTypesForAppVersion:(id)arg1 productCategory:(id)arg2;
 - (id)_productFromAppDescription:(id)arg1 versionDescriptions:(id)arg2 session:(id)arg3 coordinator:(id)arg4 errors:(id *)arg5;
 - (id)_productsForAccount:(id)arg1 coordinator:(id)arg2;
 - (id)_productsFromITunesWithCoordinator:(id)arg1;
@@ -41,7 +39,7 @@
 - (id)updateCacheWithResult:(id)arg1;
 - (id)readProductsFromCacheWithCoordinator:(id)arg1;
 - (id)appIconPathForProduct:(id)arg1;
-- (id)filePathForProduct:(id)arg1 withVersion:(id)arg2 andBuild:(id)arg3;
+- (id)filePathForProductVersion:(id)arg1 parentProduct:(id)arg2;
 - (id)filePathForProduct:(id)arg1;
 - (id)_cacheAndNetworkLock;
 - (void)primitiveInvalidate;

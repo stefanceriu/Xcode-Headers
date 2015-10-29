@@ -7,7 +7,7 @@
 #import "NSImage.h"
 
 @interface NSImage (SCNAddition)
-- (struct CGSize)SCNSize;
+- (struct CGSize)NSSize;
 - (BOOL)SCNFixDPI;
 @end
 

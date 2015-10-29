@@ -4,15 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEFoundation/IDEDistributionProcessingStep.h>
+#import <IDEFoundation/IDEDistributionItemProcessingStep.h>
 
-@interface IDEDistributionSymbolsStep : IDEDistributionProcessingStep
+@interface IDEDistributionSymbolsStep : IDEDistributionItemProcessingStep
 {
 }
 
-+ (id)processingStepWithDistributionItem:(id)arg1;
-- (_Bool)processWithContext:(id)arg1 andError:(id *)arg2;
+- (_Bool)runWithError:(id *)arg1;
+- (_Bool)shouldSkip;
 - (BOOL)shouldProcessSymbolsForItem:(id)arg1 archive:(id)arg2;
+- (id)providedOutputContextPropertyNames;
+- (id)requiredInputContextPropertyNames;
 - (id)name;
 
 @end

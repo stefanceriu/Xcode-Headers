@@ -31,8 +31,6 @@
 - (void)selectDistributionMethod:(id)arg1;
 - (void)selectDistributionMethodWrapper:(id)arg1;
 - (void)loadView;
-- (id)providedOutputContextPropertyNames;
-- (id)requiredInputContextPropertyNames;
 - (id)distributionSelectionDescription;
 - (BOOL)canGoNext;
 - (BOOL)canGoPrevious;

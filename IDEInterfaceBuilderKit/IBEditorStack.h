@@ -10,13 +10,13 @@
 
 @interface IBEditorStack : NSObject
 {
-    NSMutableArray *editorStack;
-    IBEditorCanvasFrameController *baseFrameController;
+    NSMutableArray *_editorStack;
     id <IBEditorStackDelegate> _delegate;
+    IBEditorCanvasFrameController *_baseFrameController;
 }
 
+@property(readonly) IBEditorCanvasFrameController *baseFrameController; // @synthesize baseFrameController=_baseFrameController;
 @property id <IBEditorStackDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly) IBEditorCanvasFrameController *baseFrameController; // @synthesize baseFrameController;
 - (void).cxx_destruct;
 - (void)closeAllEditors;
 - (void)closeTopmostEditor;

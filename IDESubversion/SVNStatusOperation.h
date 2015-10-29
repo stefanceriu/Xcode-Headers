@@ -10,7 +10,6 @@
 {
 }
 
-+ (void)setupFilePath:(id)arg1 asUnversionedWithDictionary:(id)arg2;
 - (void)parseData;
 - (id)initWithRequest:(id)arg1;
 

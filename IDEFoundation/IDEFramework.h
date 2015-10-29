@@ -10,6 +10,7 @@
 {
 }
 
++ (BOOL)isOnlyUsedForUserInteraction;
 + (id)containerTypeDisplayName;
 + (BOOL)_THREAD_shouldAddFileWithName:(id)arg1;
 + (void)initialize;

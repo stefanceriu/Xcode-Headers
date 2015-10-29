@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "DVTInvalidation.h"
 #import "IDEIndexDatabaseDelegate.h"
 
-@class DVTDispatchLock, DVTFilePath, IDEIndexDatabase, IDEIndexQPManager, IDEIndexingEngine, IDEIndexingPrebuildController, IDEWorkspace, NSDate, NSMutableDictionary, NSSet, NSString;
+@class DVTDispatchLock, DVTFilePath, DVTObservingToken, DVTStackBacktrace, IDEIndexDatabase, IDEIndexQPManager, IDEIndexingEngine, IDEIndexingPrebuildController, IDEWorkspace, NSDate, NSMutableDictionary, NSSet, NSString;
 
-@interface IDEIndex : NSObject <IDEIndexDatabaseDelegate>
+@interface IDEIndex : NSObject <IDEIndexDatabaseDelegate, DVTInvalidation>
 {
     IDEWorkspace *_workspace;
     DVTFilePath *_databaseFile;
@@ -29,12 +30,13 @@
     DVTDispatchLock *_pchCreationLock;
     NSMutableDictionary *_pchFiles;
     NSDate *_lastErrorTime;
-    BOOL _isInvalid;
     BOOL _isCancelled;
     BOOL _isInErrorRecoveryMode;
     BOOL _isReadOnly;
     BOOL _cleanedUpOldPCHs;
-    BOOL _didSetKeyPathObservers;
+    DVTObservingToken *_indexFolderPathObservingToken;
+    DVTObservingToken *_activeRunContextObservingToken;
+    DVTObservingToken *_activeRunDestinationObservingToken;
     id _indexableFileWasAddedNotificationObservingToken;
     id _indexableFileWillBeRemovedNotificationObservingToken;
     id _indexableDidRenameFileNotificationObservingToken;
@@ -47,10 +49,13 @@
 + (id)resolutionForName:(id)arg1 kind:(id)arg2 containerName:(id)arg3;
 + (id)pathToClang;
 + (id)_dataSourceExtensionForFile:(id)arg1 withLanguage:(id)arg2;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
++ (BOOL)supportsInvalidationPrevention;
 + (void)createIndexForWorkspace:(id)arg1 withState:(id)arg2;
 + (id)_databaseFolderForWorkspace:(id)arg1;
 + (void)syncPerformBlockOnMainThread:(CDUnknownBlockType)arg1;
 + (void)initialize;
++ (BOOL)searchQualifiedNames;
 + (BOOL)includeAutoImportResults;
 + (id)schedulingLogAspect;
 + (id)clangInvocationLogAspect;
@@ -58,10 +63,10 @@
 + (id)deferredMetricLogAspect;
 + (id)metricLogAspect;
 + (id)logAspect;
-@property(retain) IDEIndexingPrebuildController *prebuildController; // @synthesize prebuildController=_prebuildController;
 @property(readonly, nonatomic) DVTFilePath *databaseFile; // @synthesize databaseFile=_databaseFile;
-@property(readonly, nonatomic) IDEIndexDatabase *database; // @synthesize database=_workspaceDatabase;
 @property(readonly, nonatomic) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
+@property(retain) IDEIndexingPrebuildController *prebuildController; // @synthesize prebuildController=_prebuildController;
+@property(readonly, nonatomic) IDEIndexDatabase *database; // @synthesize database=_workspaceDatabase;
 - (void).cxx_destruct;
 - (id)symbolDumpForFile:(id)arg1;
 - (id)targetIdentifiersForFile:(id)arg1;
@@ -114,7 +119,7 @@
 - (void)gatherProductHeadersForIndexable:(id)arg1;
 - (long long)purgeCount;
 - (void)purgeFileCaches;
-- (void)close;
+- (void)primitiveInvalidate;
 - (void)editorWillSaveFile:(id)arg1;
 - (void)expediteIndexing;
 - (void)_stopIndexing;
@@ -132,17 +137,17 @@
 - (void)registerObject:(id)arg1;
 - (void)postNotificationName:(id)arg1;
 - (void)postNotificationName:(id)arg1 userInfo:(id)arg2;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)setIndexState:(id)arg1;
 - (id)indexState;
 @property(readonly) DVTFilePath *workspaceBuildProductsDirPath;
 @property(readonly) DVTFilePath *headerMapFilePath;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)setKeyPathObservers:(id)arg1;
 - (BOOL)isCurrentForWorkspace:(id)arg1;
 - (void)beginTextIndexing;
 - (id)initWithFolder:(id)arg1;
 - (id)initWithFolder:(id)arg1 forWorkspace:(id)arg2 withState:(id)arg3;
+- (void)_cleanupOldIndexFoldersForWorkspace:(id)arg1 preservingFolders:(id)arg2;
 - (void)_cleanupOldIndexFoldersForWorkspace:(id)arg1;
 - (double)_atime:(struct stat *)arg1;
 - (BOOL)_stat:(struct stat *)arg1 filePath:(id)arg2;
@@ -171,6 +176,7 @@
 - (id)allSymbolsMatchingKind:(id)arg1 workspaceOnly:(BOOL)arg2;
 - (id)allSymbolsMatchingKind:(id)arg1;
 - (id)testMethodsForClasses:(id)arg1;
+- (id)testCaseBaseClasses;
 - (id)allSubClassesForClasses:(id)arg1;
 - (id)allSymbolsMatchingNames:(id)arg1 kind:(id)arg2;
 - (id)allSymbolsMatchingName:(id)arg1 kind:(id)arg2;
@@ -205,6 +211,14 @@
 - (id)_localizedPhraseForDependentObjCCompilationUnit:(id)arg1 errorLanguages:(id)arg2 sharedLanguageIdentifier:(id)arg3 sharedIndexableObject:(id)arg4;
 - (id)_localizedDescriptionForObjCCompilationUnit:(id)arg1 errorLanguages:(id)arg2;
 - (BOOL)_errorLanguages:(id *)arg1 forFilePath:(id)arg2 indexableObjects:(id)arg3;
+
+// Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

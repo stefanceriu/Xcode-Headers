@@ -20,7 +20,6 @@
     IDEActivityReportLayer *_currentActivityReportLayer;
     CALayer *_reportLayerContainerLayer;
     CALayer *_backgroundLayer;
-    CALayer *_backgroundColorLayer;
     CALayer *_reportLayerTree;
     IDEActivityPopUpWindowController *_popUpController;
     DVTObservingToken *_popUpControllerIsValidToken;
@@ -71,10 +70,6 @@
 - (id)_buildReportLayerTree;
 - (id)_backgroundLayer;
 - (void)_updateCurrentActivityReportForWindowActivationState;
-- (void)_updateHighlightColorForWindowActivationState;
-- (void)_updateBackgroundColorForWindowActivationState;
-- (id)_highlightColor;
-- (id)_backgroundColor;
 - (id)clickableLayerAtPoint:(struct CGPoint)arg1;
 - (struct CGRect)insetReportLayerBounds;
 - (struct CGRect)insetRootLayerBounds;

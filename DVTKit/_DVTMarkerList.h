@@ -17,7 +17,7 @@
 
 - (void).cxx_destruct;
 - (id)markRectList;
-- (long long)numMarkRects;
+- (unsigned long long)numMarkRects;
 - (struct CGRect)addMark:(double)arg1;
 - (void)clearMarks;
 - (struct CGRect)markRect;

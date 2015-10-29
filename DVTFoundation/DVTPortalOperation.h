@@ -45,7 +45,7 @@
 - (void)_failure:(id)arg1;
 - (void)main;
 - (void)start;
-- (void)addSuboperations:(id)arg1 withQueue:(id)arg2;
+- (void)addSuboperations:(id)arg1;
 - (double)_retryDelay;
 - (unsigned long long)_maxRetryAttempts;
 - (_Bool)_shouldRetryOnServiceError:(id)arg1;

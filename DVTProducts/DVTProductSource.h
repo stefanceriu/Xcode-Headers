@@ -28,6 +28,7 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithProductManager:(id)arg1;
+- (id)init;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

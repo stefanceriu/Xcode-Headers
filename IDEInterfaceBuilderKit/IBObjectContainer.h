@@ -83,6 +83,7 @@
 - (id)attributePlaceholderForObject:(id)arg1 withName:(id)arg2;
 - (void)removeAttributePlaceholder:(id)arg1;
 - (void)addAttributePlaceholder:(id)arg1;
+- (void)replaceConnection:(id)arg1 withConnectionOfSameOrigin:(id)arg2 context:(id)arg3;
 - (void)replaceConnection:(id)arg1 withConnectionOfSameOrigin:(id)arg2;
 - (void)removeConnection:(id)arg1;
 - (void)removeConnections:(id)arg1;
@@ -91,6 +92,7 @@
 - (void)removeConnectionFromTables:(id)arg1;
 - (id)connectionForConnectionID:(id)arg1;
 - (id)connectionIDForConnection:(id)arg1;
+- (void)replaceConnection:(id)arg1 withConnection:(id)arg2 context:(id)arg3;
 - (void)replaceConnection:(id)arg1 withConnection:(id)arg2;
 - (id)connectionsBeforeConnection:(id)arg1;
 - (long long)indexOfConnection:(id)arg1;
@@ -118,6 +120,7 @@
 - (id)objectForObjectID:(id)arg1;
 - (id)objectIDForObject:(id)arg1;
 - (BOOL)areObjectsSiblings:(id)arg1;
+- (id)childrenOfParentOfObject:(id)arg1;
 - (id)childrenOfObject:(id)arg1;
 - (long long)numberOfChildrenOfObject:(id)arg1;
 - (id)parentOfObject:(id)arg1;

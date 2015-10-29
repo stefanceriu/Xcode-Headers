@@ -22,6 +22,7 @@
 - (id)subscriptRepresentation;
 - (long long)compare:(id)arg1;
 - (BOOL)evaluateInScope:(id)arg1;
+- (BOOL)evaluateForParameterValues:(id)arg1;
 @property(readonly) NSString *valuePattern;
 @property(readonly) DVTMacroDefinitionConditionParameter *parameter;
 - (BOOL)isEqual:(id)arg1;

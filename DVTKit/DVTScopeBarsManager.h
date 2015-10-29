@@ -9,13 +9,13 @@
 #import "DVTInvalidation.h"
 #import "NSAnimationDelegate.h"
 
-@class DVTMapTable, DVTStackBacktrace, NSArray, NSMutableArray, NSString, NSViewAnimation;
+@class DVTStackBacktrace, NSArray, NSMapTable, NSMutableArray, NSString, NSViewAnimation;
 
 @interface DVTScopeBarsManager : NSObject <DVTInvalidation, NSAnimationDelegate>
 {
     id <DVTScopeBarHost> _host;
     NSMutableArray *_scopeBarControllers;
-    DVTMapTable *_contentHeightObservers;
+    NSMapTable *_contentHeightObservers;
     NSViewAnimation *_currentAnimation;
     CDUnknownBlockType _currentCompletionBlock;
     int _borderSides;

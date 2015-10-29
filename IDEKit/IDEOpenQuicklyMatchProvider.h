@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IDEOpenQuicklyContext, IDEOpenQuicklyPattern, IDEWorkspace, NSArray, NSMutableArray;
+@class DVTOpenQuicklyPattern, IDEOpenQuicklyContext, IDEWorkspace, NSArray, NSMutableArray;
 
 @interface IDEOpenQuicklyMatchProvider : NSObject
 {
@@ -23,7 +23,7 @@
 - (void)contextDidChange;
 - (void)startCalculatingMatches;
 - (void)addMatches:(id)arg1;
-@property(readonly) IDEOpenQuicklyPattern *pattern;
+@property(readonly) DVTOpenQuicklyPattern *pattern;
 @property(readonly) IDEWorkspace *workspace;
 - (id)initWithSearchContext:(id)arg1;
 

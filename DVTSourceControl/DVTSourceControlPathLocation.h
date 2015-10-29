@@ -15,6 +15,7 @@
 
 + (BOOL)supportsSecureCoding;
 + (id)defaultImage;
++ (id)rootPathLocation;
 @property(retain) NSString *relativePath; // @synthesize relativePath=_relativePath;
 - (void).cxx_destruct;
 - (id)description;
@@ -25,12 +26,14 @@
 - (id)initWithDictionary:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)pathLocationByAppendingPath:(id)arg1;
+@property(readonly, getter=isDirectory) BOOL directory;
 - (id)initWithRelativePath:(id)arg1;
 - (id)_init;
 - (id)initWithRevision:(id)arg1;
 - (id)init;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)parentPathLocation;
 
 @end
 

@@ -17,7 +17,6 @@
 - (void)_tryToDragFromTabIndex:(long long)arg1 withLeftMouseDown:(id)arg2 andLeftMouseDragged:(id)arg3;
 - (id)_dragImageOfTabViewItems:(id)arg1 clickedItemIndex:(long long)arg2 dragLocation:(struct CGPoint *)arg3;
 - (id)acceptDragInfo:(id)arg1 context:(id)arg2;
-- (id)_acceptDragInfo:(id)arg1 context:(id)arg2;
 - (void)_reorderTabs:(id)arg1 toInsertionIndex:(long long)arg2;
 - (void)_reorderTab:(long long)arg1 toInsertionIndex:(long long)arg2;
 - (long long)_hitTabViewIndexForEvent:(id)arg1;

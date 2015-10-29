@@ -8,41 +8,44 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTHashTable, DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEIssueLogRecordsGroup, IDEIssueProviderSession, IDEWorkspace, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet, NSString;
+@class DVTObservingToken, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDEBuildParameters, IDEIssueLogRecordsGroup, IDEIssueProviderSession, IDEWorkspace, NSArray, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet, NSString;
 
 @interface IDEIssueManager : NSObject <DVTInvalidation>
 {
-    IDEWorkspace *_workspace;
     NSMutableArray *_issueProviders;
-    DVTMapTable *_providerContextToProvisionInfoMap;
-    DVTMapTable *_issueToProviderContextMap;
+    NSMapTable *_providerContextToProvisionInfoMap;
+    NSMapTable *_issueToProviderContextMap;
     NSMutableArray *_issueGroups;
-    DVTMapTable *_identifierToGroupIndex;
-    DVTMapTable *_issueToGroupsIndex;
+    NSMapTable *_identifierToGroupIndex;
+    NSMapTable *_issueToGroupsIndex;
     NSMutableSet *_issuesThatWillBeRemoved;
     NSMutableArray *_vendedIssuesWithNoDocument;
     NSMutableSet *_issuesWithNoDocument;
     NSMutableArray *_documentURLsWithVendedIssues;
     NSMutableDictionary *_documentURLToIssueSummaryDict;
-    DVTHashTable *_allDocumentURLObservers;
+    NSHashTable *_allDocumentURLObservers;
     unsigned long long _nextIssueSequenceNumber;
-    DVTMapTable *_providerToSessionObservationToken;
+    NSMapTable *_providerToSessionObservationToken;
     unsigned long long _nextGroupSequenceNumber;
-    DVTMapTable *_identifierToGroupSequenceNumberIndex;
+    NSMapTable *_identifierToGroupSequenceNumberIndex;
     IDEIssueProviderSession *_lastSchemeActionSession;
     NSMutableSet *_lastSchemeActionIssues;
     id _issueFixedObserver;
-    BOOL _liveIssuesEnabled;
     id _liveIssuesEnabledObserver;
-    IDEIssueLogRecordsGroup *_issueLogRecordsGroup;
-    DVTHashTable *_cachedBlueprintsForActiveScheme;
-    DVTHashTable *_cachedContainersForActiveScheme;
+    DVTTimeSlicedMainThreadWorkQueue *_buildableDependencyFinderQueue;
+    IDEBuildParameters *_cachedBuildParamsForFindingBuildDependencies;
+    NSMutableSet *_buildablesAlreadyCheckedForDependencies;
+    NSHashTable *_cachedBlueprintsForActiveScheme;
+    NSHashTable *_cachedContainersForActiveScheme;
     int _currentIssueFilterStyle;
     id _issueFilterStyleObserver;
     id _schemeBuildablesObserver;
     DVTObservingToken *_activeSchemeObserver;
     DVTObservingToken *_runDestinationObserver;
     DVTObservingToken *_implicitDependenciesObserver;
+    BOOL _liveIssuesEnabled;
+    IDEWorkspace *_workspace;
+    IDEIssueLogRecordsGroup *_issueLogRecordsGroup;
 }
 
 + (id)issueManagerLogAspect;
@@ -61,6 +64,7 @@
 - (void)_delayedValidateGroupIdentifiers;
 - (void)_updateVendedIssues;
 - (void)_updateContainersAndBlueprintsForActiveScheme;
+- (void)_findDependencyForBuildable:(id)arg1;
 - (void)_updateIssueFilterStyle;
 - (void)_needsUpdateInResponseToFilterChanges;
 - (void)_coalescedUpdateInResponseToFilterChanges;

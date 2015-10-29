@@ -25,6 +25,7 @@
 }
 
 + (void)initialize;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 @property(nonatomic) BOOL lastCompletedUserVisiblePersistentSchemeBasedReportShouldBeInvalidated; // @synthesize lastCompletedUserVisiblePersistentSchemeBasedReportShouldBeInvalidated=_lastCompletedUserVisiblePersistentSchemeBasedReportShouldBeInvalidated;
 @property(retain, nonatomic) IDEActivityReport *lastCompletedUserVisiblePersistentSchemeBasedReport; // @synthesize lastCompletedUserVisiblePersistentSchemeBasedReport=_lastCompletedUserVisiblePersistentSchemeBasedReport;
 @property(copy, nonatomic) NSArray *orderedActivityReports; // @synthesize orderedActivityReports=_orderedActivityReports;

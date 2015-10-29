@@ -14,13 +14,12 @@
 {
 }
 
-- (id)backgroundOperationIdentifier;
-- (id)performRequestOnBackgroundThreadWithData:(id)arg1 platformTool:(id)arg2;
+- (id)toolDescriptionForProcessingRequestsWithTargetRuntime:(id)arg1 role:(long long)arg2 scaleFactor:(double)arg3;
+- (id)performRequestOnBackgroundThreadWithData:(id)arg1 diagnosticsBlock:(CDUnknownBlockType)arg2 platformTool:(id)arg3;
 - (struct CGColorSpace *)colorSpace;
-- (void)assertRenderingFailureWithShortMessage:(id)arg1 exceptionMessage:(id)arg2 exception:(id)arg3;
-- (id)classNamesFoFailedRequests:(id)arg1;
-- (id)issueRuests:(id)arg1 toTool:(id)arg2;
-- (id)resultsAfterFailingToLoadLiveViewBundlesWithResult:(id)arg1 forRequests:(id)arg2;
+- (id)classNamesForFailedRequestsSeparatedByComma:(id)arg1;
+- (id)issueRequests:(id)arg1 toTool:(id)arg2;
+- (id)resultsAfterFailingToLaunchPlatformToolWithResult:(id)arg1 forRequests:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

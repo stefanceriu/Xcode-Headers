@@ -30,10 +30,7 @@
 - (void)switchBranchWorkingCopyCommand:(id)arg1;
 - (void)newBranchWorkingCopyCommand:(id)arg1;
 - (id)workingCopyMenuObjectForMenuItem:(id)arg1;
-- (void)viewPatchesCommand:(id)arg1;
-- (void)createPatchCommand:(id)arg1;
 - (void)viewSourceControl:(id)arg1;
-- (void)quickCheckoutCommand:(id)arg1;
 - (void)forceRefreshLocalAndRemoteStatusChecking;
 - (void)refreshFileStatusCommand:(id)arg1;
 - (void)resolvedCommand:(id)arg1;
@@ -44,8 +41,6 @@
 - (void)commitSelectedFilesCommand:(id)arg1;
 - (void)updateFiles:(id)arg1 showingVersionEditor:(BOOL)arg2;
 - (void)revertWorkingCopiesCommand:(id)arg1;
-- (void)mergeBranchesCommand:(id)arg1;
-- (void)switchBranchesCommand:(id)arg1;
 - (void)pushCommand:(id)arg1;
 - (void)updateSelectedFilesWithVECommand:(id)arg1;
 - (void)updateSelectedFilesCommand:(id)arg1;
@@ -53,6 +48,7 @@
 - (void)updateCommand:(id)arg1;
 - (void)updateSelectedFiles:(BOOL)arg1 showingVersionEditor:(BOOL)arg2;
 - (void)commitCommand:(id)arg1;
+- (void)createWorkingCopyCommand:(id)arg1;
 - (void)presentWaitingForInitialScanToCompleteWithContinuationBlock:(CDUnknownBlockType)arg1;
 - (void)presentInvalidSelectionError;
 - (void)presentNoSelectionError;
@@ -69,7 +65,6 @@
 - (id)filePathsOfSelectedNavigableItemsWithStatus:(int)arg1;
 - (id)selectedNavigableItemArchivableRepresentations;
 - (void)displayError:(id)arg1;
-- (void)addWindowController:(id)arg1;
 - (BOOL)initialWorkspaceScanIsComplete;
 - (CDUnknownBlockType)continuationBlock;
 - (id)workspace;

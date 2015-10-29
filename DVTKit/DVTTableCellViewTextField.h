@@ -11,18 +11,21 @@
 @interface DVTTableCellViewTextField : NSTextField
 {
     NSString *_stringValueBeforeEditing;
+    BOOL _forceIsEditableToNo;
 }
 
 + (Class)cellClass;
 - (void).cxx_destruct;
 - (void)setNeedsDisplay;
 - (void)setFrame:(struct CGRect)arg1;
-- (id)enclosingTableCellView;
+- (id)_enclosingTableCellView;
 - (BOOL)abortEditing;
 - (void)textDidEndEditing:(id)arg1;
 - (void)textDidChange:(id)arg1;
 - (void)textDidBeginEditing:(id)arg1;
 - (struct CGSize)intrinsicContentSize;
+- (BOOL)isEditable;
+- (BOOL)allowsVibrancy;
 
 @end
 

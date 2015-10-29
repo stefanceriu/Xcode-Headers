@@ -12,17 +12,15 @@
 {
 }
 
-+ (id)portalTeamWithTeamID:(id)arg1 teamName:(id)arg2 identityCertificateID:(id)arg3 macProgramEnabled:(BOOL)arg4 iOSProgramEnabled:(BOOL)arg5 enabledDeviceIDs:(id)arg6;
-- (BOOL)_validateTeamID:(id)arg1 teamName:(id)arg2 identityCertificateID:(id)arg3 macProgramEnabled:(BOOL)arg4 iOSProgramEnabled:(BOOL)arg5 enabledDeviceIDs:(id)arg6;
-- (id)_initWithTeamID:(id)arg1 teamName:(id)arg2 identityCertificateID:(id)arg3 macProgramEnabled:(BOOL)arg4 iOSProgramEnabled:(BOOL)arg5 enabledDeviceIDs:(id)arg6;
++ (id)portalTeamWithTeamID:(id)arg1 teamName:(id)arg2 identityCertificateID:(id)arg3 enabledDeviceIDs:(id)arg4 validationErrors:(id *)arg5;
+- (BOOL)_validateTeamID:(id)arg1 teamName:(id)arg2 identityCertificateID:(id)arg3 enabledDeviceIDs:(id)arg4 validationErrors:(id *)arg5;
+- (id)_initWithTeamID:(id)arg1 teamName:(id)arg2 identityCertificateID:(id)arg3 enabledDeviceIDs:(id)arg4 validationErrors:(id *)arg5;
 - (id)dictionaryRepresentation;
 - (id)initWithContents:(id)arg1 validationErrors:(id *)arg2;
 
 // Remaining properties
 @property(copy, nonatomic) NSArray *enabledDeviceIDs; // @dynamic enabledDeviceIDs;
-@property(nonatomic) BOOL iOSProgramEnabled; // @dynamic iOSProgramEnabled;
 @property(copy, nonatomic) NSString *identityCertificateID; // @dynamic identityCertificateID;
-@property(nonatomic) BOOL macProgramEnabled; // @dynamic macProgramEnabled;
 @property(copy, nonatomic) NSString *teamID; // @dynamic teamID;
 @property(copy, nonatomic) NSString *teamName; // @dynamic teamName;
 

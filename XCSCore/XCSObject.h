@@ -19,6 +19,7 @@
     NSMutableDictionary *_infoRemoved;
 }
 
++ (BOOL)_verifyInfoParameter:(id)arg1 allowEmptyDictionary:(BOOL)arg2 validationErrors:(id *)arg3;
 + (id)objectsFromDictionaries:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 + (void)_setupObservablePropertiesForClass:(Class)arg1;
 + (void)_setupAccessorsForClass:(Class)arg1;

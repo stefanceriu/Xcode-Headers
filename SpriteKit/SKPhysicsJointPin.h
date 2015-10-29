@@ -24,7 +24,6 @@
 @property(nonatomic) double upperAngleLimit; // @synthesize upperAngleLimit=_upperAngleLimit;
 @property(nonatomic) double lowerAngleLimit; // @synthesize lowerAngleLimit=_lowerAngleLimit;
 @property(nonatomic) BOOL shouldEnableLimits; // @synthesize shouldEnableLimits=_shouldEnableLimits;
-- (id).cxx_construct;
 
 @end
 

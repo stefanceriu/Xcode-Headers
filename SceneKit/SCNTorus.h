@@ -8,7 +8,6 @@
 
 @interface SCNTorus : SCNGeometry
 {
-    id _reserved;
     double _torusringRadius;
     double _toruspipeRadius;
     double _torusradialSpan;
@@ -18,7 +17,6 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)torusWithRingRadius:(double)arg1 pipeRadius:(double)arg2;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -37,11 +35,10 @@
 @property(nonatomic) long long pipeSegmentCount;
 @property(nonatomic) double pipeRadius;
 - (void)_syncObjCModel:(struct __C3DParametricGeometry *)arg1;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (id)presentationGeometry;
 - (id)presentationTorus;
 - (id)initPresentationParametricGeometryWithParametricGeometryRef:(struct __C3DParametricGeometry *)arg1;
-- (void)dealloc;
 - (struct __C3DGeometry *)__createCFObject;
 - (id)initWithParametricGeometryRef:(struct __C3DParametricGeometry *)arg1;
 - (id)init;

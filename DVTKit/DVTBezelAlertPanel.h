@@ -18,6 +18,7 @@
     NSTimer *_fadeTimer;
 }
 
++ (id)addBezelText:(id)arg1 toImageView:(id)arg2;
 + (void)initialize;
 @property double fadeDuration; // @synthesize fadeDuration=_fadeDuration;
 @property double duration; // @synthesize duration=_duration;
@@ -30,6 +31,9 @@
 - (BOOL)isOpaque;
 - (id)initWithIcon:(id)arg1 message:(id)arg2 controlView:(id)arg3 duration:(double)arg4;
 - (id)initWithIcon:(id)arg1 message:(id)arg2 parentWindow:(id)arg3 duration:(double)arg4;
+- (id)effectViewForBezel;
+- (id)_cornerMask;
+- (float)_backdropBleedAmount;
 - (id)accessibilityAttributeValue:(id)arg1;
 
 @end

@@ -17,17 +17,18 @@
     NSView *_leftContentView;
     NSView *_rightContentView;
     NSViewAnimation *_viewAnimation;
+    BOOL _removed;
     CDUnknownBlockType _populationBlock;
     NSObject<OS_dispatch_queue> *_popQ;
-    BOOL _removed;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 + (id)dynamicTableRowViewUsingSplitViewStyle:(int)arg1;
 + (id)keyPathsForValuesAffectingSelected;
-@property(getter=isRemoved) BOOL removed; // @synthesize removed=_removed;
 @property(retain) NSObject<OS_dispatch_queue> *popQ; // @synthesize popQ=_popQ;
 @property(copy) CDUnknownBlockType populationBlock; // @synthesize populationBlock=_populationBlock;
+@property(getter=isRemoved) BOOL removed; // @synthesize removed=_removed;
 @property(retain) NSViewAnimation *viewAnimation; // @synthesize viewAnimation=_viewAnimation;
 @property(retain) NSView *rightContentView; // @synthesize rightContentView=_rightContentView;
 @property(retain) NSView *leftContentView; // @synthesize leftContentView=_leftContentView;

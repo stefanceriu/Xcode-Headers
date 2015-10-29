@@ -22,6 +22,7 @@
     BOOL _toyIsHighlighted;
     CDUnknownBlockType _mouseTrackingHandler;
     CDUnknownBlockType _mouseDownHandler;
+    CDUnknownBlockType _rightMouseDownHandler;
     NSColor *_backgroundColor;
     NSColor *_selectedBorderColor;
     CDUnknownBlockType _mouseDragHandler;
@@ -30,6 +31,7 @@
 @property(copy) CDUnknownBlockType mouseDragHandler; // @synthesize mouseDragHandler=_mouseDragHandler;
 @property(retain, nonatomic) NSColor *selectedBorderColor; // @synthesize selectedBorderColor=_selectedBorderColor;
 @property(retain, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+@property(copy) CDUnknownBlockType rightMouseDownHandler; // @synthesize rightMouseDownHandler=_rightMouseDownHandler;
 @property(copy) CDUnknownBlockType mouseDownHandler; // @synthesize mouseDownHandler=_mouseDownHandler;
 @property(copy) CDUnknownBlockType mouseTrackingHandler; // @synthesize mouseTrackingHandler=_mouseTrackingHandler;
 @property(nonatomic) BOOL toyIsHighlighted; // @synthesize toyIsHighlighted=_toyIsHighlighted;
@@ -42,7 +44,7 @@
 - (void)mouseDragged:(id)arg1;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
-- (void)mouseUp:(id)arg1;
+- (void)rightMouseDown:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)resetCursorRects;
 - (id)hitTest:(struct CGPoint)arg1;

@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, DVTSimpleXMLWriter, NSArray;
+@class DVTSimpleXMLWriter, NSArray, NSMapTable;
 
 @interface DVTXMLArchiver : NSObject
 {
     DVTSimpleXMLWriter *_writer;
-    DVTMapTable *_classesToElementNames;
+    NSMapTable *_classesToElementNames;
     id _delegate;
     id _context;
     NSArray *_extraAttributes;

@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-#import "DVTInvalidation.h"
+#import "NSCopying.h"
 
-@class DVTAnalyticsAppIdentifier, DVTCrashPointParameters, DVTFilePath, DVTStackBacktrace, NSMapTable, NSString;
+@class DVTAnalyticsAppIdentifier, DVTCrashPointParameters, DVTFilePath, NSMapTable, NSString;
 
-@interface DVTCrashPointAppStoreSource : NSObject <DVTInvalidation>
+@interface DVTCrashPointAppStoreSource : NSObject <NSCopying>
 {
     DVTAnalyticsAppIdentifier *_appIdentifier;
+    NSString *_appExtensionPointIdentifier;
     NSMapTable *_filterToSourceMap;
     NSMapTable *_identifierToCrashPointRecordObservedMap;
     DVTCrashPointParameters *_parameters;
@@ -21,15 +22,17 @@
 
 + (id)_timestampLock;
 + (void)invalidateCachedTimestamps;
-+ (void)initialize;
 @property(readonly) DVTFilePath *cachePath; // @synthesize cachePath=_cachePath;
 @property(readonly) DVTCrashPointParameters *parameters; // @synthesize parameters=_parameters;
 @property(readonly) NSMapTable *identifierToCrashPointRecordObservedMap; // @synthesize identifierToCrashPointRecordObservedMap=_identifierToCrashPointRecordObservedMap;
 @property(readonly) NSMapTable *filterToSourceMap; // @synthesize filterToSourceMap=_filterToSourceMap;
+@property(readonly) NSString *appExtensionPointIdentifier; // @synthesize appExtensionPointIdentifier=_appExtensionPointIdentifier;
 @property(readonly) DVTAnalyticsAppIdentifier *appIdentifier; // @synthesize appIdentifier=_appIdentifier;
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)_populateParametersToSourceMap;
 - (id)_crashPointRecordForIdentifier:(id)arg1;
+- (void)dealloc;
 - (void)_setUserDataObservationTokenForCrashPointRecord:(id)arg1;
 - (id)pathOfCrashPointRecordForCrashPointIdentifier:(id)arg1;
 - (id)cachedCrashPointsForFilter:(id)arg1 error:(id *)arg2;
@@ -39,17 +42,8 @@
 - (void)cacheLastRefreshDate:(id)arg1 forFilter:(id)arg2;
 - (id)crashPointRecordForIdentifier:(id)arg1 summary:(id)arg2;
 - (id)parameterizedSourceForFilter:(id)arg1;
-- (void)primitiveInvalidate;
-- (id)initWithAppIdentifier:(id)arg1 parameters:(id)arg2 cachePath:(id)arg3;
-
-// Remaining properties
-@property(retain) DVTStackBacktrace *creationBacktrace;
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly) Class superclass;
-@property(readonly, nonatomic, getter=isValid) BOOL valid;
+- (id)initWithAppIdentifier:(id)arg1 appExtensionPointIdentifier:(id)arg2 parameters:(id)arg3 cachePath:(id)arg4;
+- (id)init;
 
 @end
 

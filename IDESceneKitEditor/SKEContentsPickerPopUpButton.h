@@ -27,13 +27,14 @@
     id <DVTCancellable> _windowActivationObservation;
     id _contentsValueBindingController;
     NSString *_contentsValueBindingKeyPath;
-    DVTObservingToken *_contentsValueBindingObservation;
+    DVTObservingToken *_contentsValueBindingObservingToken;
     BOOL _acceptsNil;
     BOOL _acceptsNonFilePathImages;
     BOOL _enabled;
     BOOL _active;
     BOOL _highlighted;
     id _contents;
+    NSString *_placeholderString;
     id _target;
     SEL _action;
     id <SKEContentsPickerPopUpButtonDataSource> _delegate;
@@ -41,6 +42,9 @@
 }
 
 + (id)imageStateDictionaryForControlSize:(unsigned long long)arg1;
++ (BOOL)contentsIsNonFilePathImage:(id)arg1;
++ (BOOL)contentsIsImage:(id)arg1;
++ (BOOL)contentsIsColor:(id)arg1;
 @property(nonatomic, getter=isHighlighted) BOOL highlighted; // @synthesize highlighted=_highlighted;
 @property(nonatomic, getter=isActive) BOOL active; // @synthesize active=_active;
 @property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
@@ -48,6 +52,7 @@
 @property __weak id <SKEContentsPickerPopUpButtonDataSource> delegate; // @synthesize delegate=_delegate;
 @property SEL action; // @synthesize action=_action;
 @property(retain) id target; // @synthesize target=_target;
+@property(copy, nonatomic) NSString *placeholderString; // @synthesize placeholderString=_placeholderString;
 @property(retain, nonatomic) id contents; // @synthesize contents=_contents;
 @property BOOL acceptsNonFilePathImages; // @synthesize acceptsNonFilePathImages=_acceptsNonFilePathImages;
 @property BOOL acceptsNil; // @synthesize acceptsNil=_acceptsNil;
@@ -58,11 +63,12 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (void)drawContentsLabel;
 - (void)drawContents;
+- (BOOL)wantsSeparator;
 - (void)drawPopUpButtonArrows;
 - (void)drawFocusRing;
 - (id)effectiveAttributedTitle;
-- (id)attributedTitleForTitle:(id)arg1;
-- (id)titleAttributes;
+- (id)attributedTitleForTitle:(id)arg1 titleIsPlaceholder:(BOOL)arg2;
+- (id)titleAttributes:(BOOL)arg1;
 - (double)wellHeight;
 - (id)effectiveImageForControlPart:(unsigned long long)arg1;
 - (id)effectivePopUpButtonArrowsRightCapImage;
@@ -70,8 +76,8 @@
 - (double)verticalMenuOffset;
 - (void)sizeRectsForDrawing;
 - (double)verticalTitleOffset;
-- (double)baseline;
-- (double)heightThatFits;
+@property(readonly) double baseline;
+@property(readonly) double heightThatFits;
 - (double)widthForPopUpButton;
 - (CDStruct_d2b197d1)shadowInset;
 - (struct CGRect)insetRectForWellRect:(struct CGRect)arg1;
@@ -115,10 +121,13 @@
 - (BOOL)isShowingTitle;
 - (id)titleFont;
 - (id)effectiveSwatchBorderColor;
-- (id)effectiveTextColor;
+- (id)effectiveTextColor:(BOOL)arg1;
 - (BOOL)contentsIsAllowedNil;
+- (id)contentsAsNSImage;
+- (BOOL)contentsIsNonFilePathImage;
 - (BOOL)contentsIsImage;
 - (BOOL)contentsIsColor;
+- (BOOL)canAcceptContents:(id)arg1;
 @property BOOL acceptsColors;
 @property BOOL acceptsImages;
 - (void)encodeWithCoder:(id)arg1;

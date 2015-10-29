@@ -6,16 +6,16 @@
 
 #import <IDEFoundation/IDEActivityLogSectionRecorder.h>
 
-@class DVTMapTable, IDEActivityLogSection, NSMutableArray;
+@class IDEActivityLogSection, NSMapTable, NSMutableArray;
 
 @interface IDECommandLineBuildLogRecorder : IDEActivityLogSectionRecorder
 {
     NSMutableArray *_activeSections;
-    DVTMapTable *_emittedSubsectionsBySection;
+    NSMapTable *_emittedSubsectionsBySection;
 }
 
 + (void)initialize;
-@property(retain) DVTMapTable *emittedSubsectionsBySection; // @synthesize emittedSubsectionsBySection=_emittedSubsectionsBySection;
+@property(retain) NSMapTable *emittedSubsectionsBySection; // @synthesize emittedSubsectionsBySection=_emittedSubsectionsBySection;
 @property(retain) NSMutableArray *activeSections; // @synthesize activeSections=_activeSections;
 - (void).cxx_destruct;
 - (void)noteDescendantLogSectionDidClose:(id)arg1 inSupersection:(id)arg2;

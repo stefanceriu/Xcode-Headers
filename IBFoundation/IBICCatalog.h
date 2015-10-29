@@ -10,14 +10,17 @@
 {
 }
 
++ (id)fileExtensionsToAllowInUnstructuredImport;
++ (id)contentReferenceTypeName;
++ (Class)requiredParentClass;
++ (id)catalogItemFileExtension;
++ (id)classNameComponents;
++ (id)defaultInstanceForIdioms:(id)arg1 enforceStrictIdioms:(BOOL)arg2;
+- (CDStruct_550fdc95)taggingSupport;
 - (void)replaceChildrenWithDiskContent:(id)arg1;
-- (BOOL)canBeEmbeddedInFolder;
-- (BOOL)canHaveChildren;
-- (id)displayName;
 - (id)allIconSets;
 - (id)allImageSets;
 - (id)catalog;
-- (id)descriptionShortClassName;
 
 @end
 

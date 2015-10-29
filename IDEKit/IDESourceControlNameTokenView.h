@@ -24,10 +24,8 @@
     double _fontSize;
     BOOL _isBold;
     unsigned long long _alignment;
-    CDUnknownBlockType _clickCallbackBlock;
 }
 
-@property(copy) CDUnknownBlockType clickCallbackBlock; // @synthesize clickCallbackBlock=_clickCallbackBlock;
 @property __weak NSObject<IDESourceControlNameTokenViewDelegate> *delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;

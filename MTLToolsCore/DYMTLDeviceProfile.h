@@ -23,6 +23,7 @@
 @property(readonly, nonatomic) NSArray *supportedFeatureSets; // @synthesize supportedFeatureSets=_supportedFeatureSets;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
+- (id)initWithDevice:(id)arg1;
 - (BOOL)supportsCapabilitiesOfGraphicsAPI:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;

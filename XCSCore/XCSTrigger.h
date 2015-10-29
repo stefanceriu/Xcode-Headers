@@ -12,10 +12,11 @@
 {
 }
 
-+ (id)triggerWithType:(unsigned long long)arg1 name:(id)arg2 phase:(unsigned long long)arg3 conditions:(id)arg4 scriptBody:(id)arg5 emailConfiguration:(id)arg6;
-- (BOOL)_validateType:(unsigned long long)arg1 name:(id)arg2 phase:(unsigned long long)arg3 conditions:(id)arg4 scriptBody:(id)arg5 emailConfiguration:(id)arg6;
++ (id)triggerWithType:(unsigned long long)arg1 name:(id)arg2 phase:(unsigned long long)arg3 conditions:(id)arg4 scriptBody:(id)arg5 emailConfiguration:(id)arg6 validationErrors:(id *)arg7;
+- (BOOL)_validateType:(unsigned long long)arg1 name:(id)arg2 phase:(unsigned long long)arg3 conditions:(id)arg4 scriptBody:(id)arg5 emailConfiguration:(id)arg6 validationErrors:(id *)arg7;
 - (BOOL)shouldExecuteForIntegration:(id)arg1;
-- (id)initWithType:(unsigned long long)arg1 name:(id)arg2 phase:(unsigned long long)arg3 conditions:(id)arg4 scriptBody:(id)arg5 emailConfiguration:(id)arg6 service:(id)arg7;
+- (unsigned long long)executionReasonForIntegration:(id)arg1;
+- (id)initWithType:(unsigned long long)arg1 name:(id)arg2 phase:(unsigned long long)arg3 conditions:(id)arg4 scriptBody:(id)arg5 emailConfiguration:(id)arg6 service:(id)arg7 validationErrors:(id *)arg8;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 
 // Remaining properties

@@ -15,6 +15,7 @@
 
 @interface IDEPathCell : NSPathCell <DVTFilteringMenuDelegate, NSMenuDelegate, NSDraggingSource, DVTInvalidation>
 {
+    struct CGSize _cachedSizeWanted;
     NSMenu *_trackingMenu;
     IDEPathComponentCell *_clickedIDEPathComponentCell;
     IDEPathCellNavigableItemObserver *_itemObserver;
@@ -22,8 +23,6 @@
     NSMutableSet *_cellsWithDirtyImages;
     NSMutableSet *_cellsWithDirtyNames;
     DVTDelayedInvocation *_dirtyCellInvocation;
-    int _borderSides;
-    int _gradientStyle;
     struct {
         unsigned int _lastComponentFillsWidth:1;
         unsigned int _delegateRespondsToShouldSeparateDisplayOfChildItemsForItem:1;
@@ -31,13 +30,15 @@
         unsigned int _delegateRespondsToShouldPopUpMenuForPathComponentCell:1;
         unsigned int _delegateRespondsToBeginDrag:1;
         unsigned int _delegateRespondsToTitleForPathComponentCellAtIndex:1;
+        unsigned int _delegateRespondsToPerformAlternateReveal:1;
         unsigned int _delegateProvidesMenuItems:1;
         unsigned int _delegateProvidesAccessibilityDescriptions:1;
         unsigned int _delegateProvidesToolTips:1;
         unsigned int _delegateResponseToTextAlignmentForTitleOfPathComponentCellAtIndex:1;
     } _idePathCellFlags;
     BOOL _needsToUpdateComponentCells;
-    struct CGSize _cachedSizeWanted;
+    int _gradientStyle;
+    int _borderSides;
 }
 
 + (void)initialize;
@@ -69,7 +70,7 @@
 - (void)_openURLInFinder:(id)arg1;
 - (void)popUpMenuForComponentCell:(id)arg1 inRect:(struct CGRect)arg2 ofView:(id)arg3;
 - (void)_handlePressureClickForCell:(id)arg1;
-- (BOOL)_wantsPressureEventForCell:(id)arg1;
+- (BOOL)_revealInPopover:(id)arg1 ofCell:(id)arg2 fromFrame:(struct CGRect)arg3 ofView:(id)arg4;
 - (id)_urlForItem:(id)arg1;
 - (void)_populatePopUpMenuWithPath:(id)arg1 withURL:(id)arg2;
 - (void)_populatePopUpMenu:(id)arg1 withItems:(id)arg2;

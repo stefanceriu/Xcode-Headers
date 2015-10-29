@@ -15,7 +15,7 @@
 
 @property(retain) NSString *schemeName; // @synthesize schemeName=_schemeName;
 - (void).cxx_destruct;
-- (unsigned long long)products_productType;
+- (id)products_productCategory;
 
 @end
 

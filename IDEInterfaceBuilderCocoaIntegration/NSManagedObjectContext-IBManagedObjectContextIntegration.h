@@ -7,7 +7,6 @@
 #import "NSManagedObjectContext.h"
 
 @interface NSManagedObjectContext (IBManagedObjectContextIntegration)
-- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibDefaultFiniteStalenessInterval;
 - (void)setIbInspectedStalenessInterval:(id)arg1;
 - (id)ibInspectedStalenessInterval;

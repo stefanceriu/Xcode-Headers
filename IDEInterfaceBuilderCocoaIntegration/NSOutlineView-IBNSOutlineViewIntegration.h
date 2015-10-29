@@ -11,7 +11,6 @@
 - (void)setIbInspectedUserInterfaceLayoutDirection:(long long)arg1;
 - (long long)ibInspectedUserInterfaceLayoutDirection;
 - (void)setIbInspectedNumberOfTableColumns:(long long)arg1;
-- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)ibRemoveChildren:(id)arg1;
 - (BOOL)ibCanRemoveChildren:(id)arg1;
 @end

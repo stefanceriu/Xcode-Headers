@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class DVTCodesignParameterSnapshot, NSString;
 
 @protocol IDEArchivePackagerIdentityToken <NSObject>
+- (DVTCodesignParameterSnapshot *)codesignParameterSnapshotIncludingProfile:(BOOL)arg1;
 - (id <IDEArchivePackagerIdentityToken>)relatedTokenForKey:(NSString *)arg1;
 - (int)status;
 - (NSString *)displayName;

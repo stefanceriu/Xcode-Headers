@@ -11,6 +11,7 @@
 }
 
 + (id)stringForObjectValue:(id)arg1;
++ (id)valueUnitStringForNanoseconds:(unsigned long long)arg1;
 + (id)stringForNanoseconds:(unsigned long long)arg1;
 + (void)initialize;
 - (id)stringForObjectValue:(id)arg1;

@@ -8,11 +8,11 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTDispatchLock, DVTFilePath, DVTHashTable, DVTStackBacktrace, IBLiveViewsManager, IBPlatform, NSDictionary, NSString;
+@class DVTDispatchLock, DVTFilePath, DVTStackBacktrace, IBLiveViewsManager, IBPlatform, NSDictionary, NSHashTable, NSString;
 
 @interface IBLiveViewsBundle : NSObject <DVTInvalidation>
 {
-    DVTHashTable *_weakObserversHashTable;
+    NSHashTable *_weakObserversHashTable;
     DVTDispatchLock *_accessLock;
     long long _lockCount;
     DVTFilePath *_builtFilePath;

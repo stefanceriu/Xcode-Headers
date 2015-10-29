@@ -11,31 +11,30 @@
 #import "NSMenuDelegate.h"
 #import "NSOutlineViewDelegate.h"
 
-@class DVTNotificationToken, DVTObservingToken, IDEBreakpointCell, IDEBreakpointNavigatorModel, IDENavigatorDataCell, NSArray, NSMenu, NSMutableSet, NSPasteboard, NSString;
+@class DVTObservingToken, IDEBreakpointIcon, IDEBreakpointManager, IDEBreakpointNavigatorModel, NSArray, NSMenu, NSMutableSet, NSPasteboard, NSString;
 
 @interface IDEBreakpointNavigator : IDEOutlineBasedNavigator <IDEBreakpointObserver, IDEBreakpointNavigatorModelObserver, NSOutlineViewDelegate, NSMenuDelegate>
 {
-    IDENavigatorDataCell *_defaultCell;
-    IDENavigatorDataCell *_breakpointBucketCell;
-    IDENavigatorDataCell *_breakpointCell;
-    IDEBreakpointCell *_breakpointImageSubCell;
     NSMutableSet *_collapsedItems;
     NSMutableSet *_collapsedItemsBeforeFiltering;
     IDEBreakpointNavigatorModel *_model;
-    BOOL _enabledBreakpointsFilteringEnabled;
-    NSString *_filterString;
     BOOL _restoringState;
+    IDEBreakpointIcon *_breakpointIcon;
     DVTObservingToken *_selectedObjectsListToken;
-    DVTNotificationToken *_navigableItemsForgottenNotification;
     NSArray *_draggedItems;
     NSPasteboard *_draggedPasteboard;
+    BOOL _enabledBreakpointsFilteringEnabled;
+    IDEBreakpointManager *_breakpointManager;
+    NSString *_filterString;
     NSMenu *_addBreakpointMenu;
 }
 
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 @property(retain) NSMenu *addBreakpointMenu; // @synthesize addBreakpointMenu=_addBreakpointMenu;
 @property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
 @property(nonatomic) BOOL enabledBreakpointsFilteringEnabled; // @synthesize enabledBreakpointsFilteringEnabled=_enabledBreakpointsFilteringEnabled;
+@property(retain, nonatomic) IDEBreakpointManager *breakpointManager; // @synthesize breakpointManager=_breakpointManager;
 - (void).cxx_destruct;
 - (id)_collapsedItemsAsNameTree;
 - (void)_setCollapsedItemsFromNameTree:(id)arg1;
@@ -63,35 +62,26 @@
 - (void)menuNeedsUpdate:(id)arg1;
 - (unsigned long long)_itemDepth:(id)arg1;
 - (void)_setCollapsedItems:(id)arg1;
-- (void)_breakpointImageClicked:(id)arg1;
-- (struct CGRect)_breakpointImageStatusCellRect:(long long)arg1;
-- (BOOL)_wasBreakpointIconClickedAtCurrentPoint;
-- (id)_breakpointCellForBreakpoint:(id)arg1;
-- (id)_breakpointBucketCell;
-- (id)_defaultCell;
-- (id)outlineView:(id)arg1 toolTipForCell:(id)arg2 rect:(struct CGRect *)arg3 tableColumn:(id)arg4 item:(id)arg5 mouseLocation:(struct CGPoint)arg6;
 - (void)outlineViewItemDidCollapse:(id)arg1;
 - (void)outlineViewItemDidExpand:(id)arg1;
-- (BOOL)outlineView:(id)arg1 shouldSelectItem:(id)arg2;
-- (BOOL)outlineView:(id)arg1 shouldTrackCell:(id)arg2 forTableColumn:(id)arg3 item:(id)arg4;
 - (BOOL)outlineView:(id)arg1 doCommandBySelector:(SEL)arg2;
-- (void)_updateBreakpointImageCellSubForBreakpoint:(id)arg1 selected:(BOOL)arg2;
-- (void)outlineView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 item:(id)arg4;
-- (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
+- (void)outlineView:(id)arg1 didRemoveRowView:(id)arg2 forRow:(long long)arg3;
+- (void)willForgetNavigableItems:(id)arg1;
+- (void)_bindImageAndTitleOfTableViewCell:(id)arg1 toNavItemsRepresentedObject:(id)arg2;
+- (id)_tableCellViewForFileBreakpointGroupNavItem:(id)arg1;
+- (id)_tableCellViewForBreakpointGroupNavItem:(id)arg1;
+- (void)_breakpointButtonClicked:(id)arg1;
+- (id)_tableCellViewForBreakpointNavItem:(id)arg1;
+- (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
 - (BOOL)outlineView:(id)arg1 acceptDrop:(id)arg2 item:(id)arg3 childIndex:(long long)arg4;
 - (unsigned long long)outlineView:(id)arg1 validateDrop:(id)arg2 proposedItem:(id)arg3 proposedChildIndex:(long long)arg4;
 - (BOOL)outlineView:(id)arg1 writeItems:(id)arg2 toPasteboard:(id)arg3;
-- (BOOL)outlineView:(id)arg1 isGroupHeaderItem:(id)arg2;
 - (id)_nonWatchpointItems:(id)arg1;
 - (void)_moveBreakpointsForNavigableItems:(id)arg1 toBucket:(id)arg2;
 - (void)_moveRightClickedBreakpointsToBucket:(id)arg1;
 - (void)breakpointWasRemoved:(id)arg1;
 - (void)breakpointWasAdded:(id)arg1;
-- (void)watchpointEnablementChanged:(id)arg1;
 - (void)breakpointLocationsAdded:(id)arg1 removed:(id)arg2;
-- (void)breakpointLocationEnablementChanged:(id)arg1;
-- (void)breakpointEnablementChanged:(id)arg1;
-- (void)breakpointsActivationStateChanged;
 - (void)_clearDraggedItems;
 - (void)_selectItemNearDeletedItemIndex:(long long)arg1 parentItem:(id)arg2;
 - (long long)_smallestRowIndexOfNavigableItemInArray:(id)arg1;
@@ -110,7 +100,6 @@
 - (void)_updateFilterPredicate;
 - (id)_breakpointsForNavigableItems:(id)arg1;
 - (id)_breakpointsForNavigableItem:(id)arg1;
-- (id)_breakpointManager;
 - (void)setRootNavigableItem:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)viewWillUninstall;

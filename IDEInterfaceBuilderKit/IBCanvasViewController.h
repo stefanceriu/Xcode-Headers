@@ -12,7 +12,7 @@
 #import "IBSelectionProvider.h"
 #import "IDEWorkspaceTabControllerCursorRectInterceptor.h"
 
-@class DVTDelayedInvocation, DVTDraggedImageState, DVTMutableOrderedSet, DVTObservingToken, DVTStackView_AppKitAutolayout, IBAbstractDocumentEditor, IBCancellationToken, IBCanvasControllerLayoutGuideGeneratorDelegate, IBCanvasScrollView, IBCanvasView, IBDelegatedCanvasOverlay, IBHitDetectionMap, IBLayoutGuideDrawingHandler, IBLayoutManager, IBMutableIdentityDictionary, NSDate, NSMutableArray, NSMutableSet, NSNumber, NSSegmentedControl, NSString, NSView, NSViewController<DVTInvalidation>;
+@class DVTDelayedInvocation, DVTDraggedImageState, DVTMutableOrderedSet, DVTObservingToken, DVTStackView_AppKitAutolayout, IBAbstractDocumentEditor, IBCancellationToken, IBCanvasControllerLayoutGuideGeneratorDelegate, IBCanvasScrollView, IBCanvasView, IBDelegatedCanvasOverlay, IBHitDetectionMap, IBLayoutGuideDrawingHandler, IBLayoutManager, IBMutableIdentityDictionary, NSDate, NSMutableArray, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSegmentedControl, NSString, NSView, NSViewController<DVTInvalidation>;
 
 @interface IBCanvasViewController : IDEViewController <IBEditorStackDelegate, IBCanvasViewDelegate, IBSelectionProvider, IBHighlightProvider, IDEWorkspaceTabControllerCursorRectInterceptor>
 {
@@ -40,12 +40,15 @@
     DVTDraggedImageState *imageState;
     NSMutableArray *expansionTokens;
     NSNumber *lastOverviewZoomFactor;
+    unsigned long long _embedInStackSegmentIndex;
     NSSegmentedControl *actionAreaButton;
-    DVTObservingToken *useAutolayoutObservingToken;
+    DVTObservingToken *usesAutolayoutObservingToken;
     DVTObservingToken *_useConfigurationsObservingToken;
     IBCancellationToken *developmentTargetObservingToken;
+    DVTObservingToken *_currentSelectedItemsToken;
     NSViewController<DVTInvalidation> *_configurationChooser;
     NSMutableSet *_objectsGettingAutopositioned;
+    NSMutableOrderedSet *_keyFrameObservers;
     IBAbstractDocumentEditor *documentEditor;
     DVTStackView_AppKitAutolayout *_canvasContainerView;
 }
@@ -68,7 +71,6 @@
 - (void)measureFPSWhileInvoking:(CDUnknownBlockType)arg1;
 - (void)updateConfigurationsActionArea;
 - (void)updateAutoLayoutActionArea;
-- (void)_configureAutolayoutActionAreaForIllegalStatesState;
 - (void)didClickActionAreaButton:(id)arg1;
 - (void)refreshButtonBarImagesForEditedConfiguration;
 - (void)refreshAutolayoutActionAreaButtonsForEditedConfiguration;
@@ -98,6 +100,7 @@
 - (void)canvasView:(id)arg1 didAutopositionCanvasFrame:(id)arg2;
 - (void)canvasView:(id)arg1 willAutopositionCanvasFrame:(id)arg2;
 - (void)canvasView:(id)arg1 canvasFrameDidChangeLayout:(id)arg2;
+- (id)registerKeyFrameObserver:(CDUnknownBlockType)arg1;
 - (void)canvasView:(id)arg1 canvasFrameDidBecomeKey:(id)arg2;
 - (void)canvasView:(id)arg1 canvasFrameDidResignKey:(id)arg2;
 - (void)promoteToActiveSelectionProvider;
@@ -134,7 +137,7 @@
 - (void)invalidateCursorRects;
 - (void)cursorUpdate:(id)arg1;
 - (void)cursorUpdateWithPoint:(struct CGPoint)arg1;
-- (void)addCursorRect:(struct CGRect)arg1 cursor:(id)arg2 forObject:(id)arg3;
+- (void)addCursorRect:(struct CGRect)arg1 cursor:(id)arg2 forObject:(id)arg3 useForegroundLayer:(BOOL)arg4;
 - (BOOL)tryToInsertContentsOfPasteboardIntoForemostEditorOrTopLevel:(id)arg1;
 - (BOOL)canAcceptTopLevelInsertionOfPasteboard:(id)arg1;
 - (id)keyEditor;
@@ -174,9 +177,10 @@
 - (double)toggledZoomFactor;
 - (double)maxPreferredZoomFactor;
 - (double)minPreferredZoomFactor;
-- (double)nextPreferredZoomFactorInDirection:(double)arg1;
+- (double)nextPreferredZoomFactorInDirection:(unsigned long long)arg1;
 - (id)preferredZoomLevelForZoomFactor:(double)arg1;
 - (long long)preferredZoomLevelIndexForZoomFactor:(double)arg1;
+- (BOOL)editorCanvasFrameController:(id)arg1 interceptDoubleClickedEvent:(id)arg2;
 - (void)editorCanvasFrame:(id)arg1 wasClickedWithEvent:(id)arg2;
 - (void)editorDidChangeSelection:(id)arg1;
 - (void)editedTopLevelObjectsDidChange;
@@ -191,8 +195,6 @@
 - (void)toggleZoomWithMouseEvent:(id)arg1;
 - (void)zoomToFactor:(double)arg1 withEvent:(id)arg2 animated:(BOOL)arg3;
 - (void)zoomToFactor:(double)arg1 anchor:(struct CGPoint)arg2 animated:(BOOL)arg3 userInitiated:(BOOL)arg4;
-- (void)canvasView:(id)arg1 gestureDidEndWithEvent:(id)arg2;
-- (void)canvasView:(id)arg1 gestureDidBeginWithEvent:(id)arg2;
 - (void)endGesture;
 - (void)beginGesture;
 - (void)jumpToDefinitionWithShiftPlusAlternate:(id)arg1;
@@ -225,6 +227,7 @@
 - (void)setSelectedCanvasFramesFromSelectedObjects:(id)arg1;
 - (id)canvasFrameToSelectForObject:(id)arg1;
 - (void)setSelectedConnectionsFromSelectedMembers:(id)arg1;
+- (void)setEffectiveSelectedConnections:(id)arg1;
 - (void)documentEditor:(id)arg1 pullSelection:(id)arg2;
 - (void)documentEditor:(id)arg1 selectMembers:(id)arg2 takeFocus:(BOOL)arg3 zoomIfNeeded:(BOOL)arg4;
 @property(readonly, nonatomic) BOOL onlySupportsDocumentObjectMembers;
@@ -262,15 +265,12 @@
 - (id)createFrameControllerForObject:(id)arg1;
 - (void)preformCloseForCanvasFrameController:(id)arg1 event:(id)arg2;
 - (id)editorStackForObject:(id)arg1;
-- (id)selectObjectsInEditor:(id)arg1 makeKey:(BOOL)arg2 takeFocus:(BOOL)arg3 orderFront:(BOOL)arg4 scrollToVisible:(BOOL)arg5 zoomToLevel:(id)arg6 animate:(BOOL)arg7;
-- (id)selectObjectsInEditor:(id)arg1 makeKey:(BOOL)arg2 orderFront:(BOOL)arg3 scrollToVisible:(BOOL)arg4 zoomToLevel:(id)arg5 animate:(BOOL)arg6;
-- (id)selectObjectInEditor:(id)arg1 makeKey:(BOOL)arg2 orderFront:(BOOL)arg3 scrollToVisible:(BOOL)arg4 zoomToLevel:(id)arg5 animate:(BOOL)arg6;
+- (id)selectObjectsInEditor:(id)arg1 scrollSettings:(id)arg2;
+- (id)selectObjectInEditor:(id)arg1 scrollSettings:(id)arg2;
 - (void)selectMembersAfterPasteboardAction:(id)arg1;
 - (void)becomeSelectionProviderAndSelectMembers:(id)arg1 allowReconfiguration:(BOOL)arg2 makeKey:(BOOL)arg3 takeFocus:(BOOL)arg4 orderFront:(BOOL)arg5 scrollToVisible:(BOOL)arg6 zoomToLevel:(id)arg7 animate:(BOOL)arg8;
-- (id)openEditorForObject:(id)arg1 makeKey:(BOOL)arg2 orderFront:(BOOL)arg3 scrollToVisible:(BOOL)arg4 zoomToLevel:(id)arg5 animate:(BOOL)arg6;
-- (id)openEditorForObject:(id)arg1 closingSubEditors:(BOOL)arg2 makeKey:(BOOL)arg3 takeFocus:(BOOL)arg4 orderFront:(BOOL)arg5 scrollToVisible:(BOOL)arg6 zoomToLevel:(id)arg7 animate:(BOOL)arg8;
-- (id)openEditorForObject:(id)arg1 closingSubEditors:(BOOL)arg2 makeKey:(BOOL)arg3 orderFront:(BOOL)arg4 scrollToVisible:(BOOL)arg5 zoomToLevel:(id)arg6 animate:(BOOL)arg7;
-- (void)scrollObjectsToVisible:(id)arg1 inEditorCanvasFrame:(id)arg2 zoomToLevel:(id)arg3 animate:(BOOL)arg4;
+- (id)openEditorForObject:(id)arg1 closingSubEditors:(BOOL)arg2 scrollSettings:(id)arg3;
+- (void)scrollObjectsToVisible:(id)arg1 inEditorCanvasFrame:(id)arg2 zoomToLevel:(id)arg3 shouldCenter:(BOOL)arg4 animate:(BOOL)arg5;
 - (void)editorStack:(id)arg1 closeFrameController:(id)arg2;
 - (void)editorStack:(id)arg1 addCanvasFrame:(id)arg2;
 - (id)editorStack:(id)arg1 instantiateFrameControllerForObject:(id)arg2;

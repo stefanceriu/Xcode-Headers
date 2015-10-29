@@ -6,12 +6,18 @@
 
 #import <Xcode3UI/Xcode3UpgradeProjectTask.h>
 
+@class NSString;
+
 @interface Xcode3OnlyUpgradeActiveArchSetting : Xcode3UpgradeProjectTask
 {
+    NSString *_configurationName;
 }
 
 + (id)analyzeInContext:(id)arg1;
+@property(copy) NSString *configurationName; // @synthesize configurationName=_configurationName;
+- (void).cxx_destruct;
 - (BOOL)upgrade;
+- (id)initWithTitle:(id)arg1 subtitle:(id)arg2 context:(id)arg3 configurationName:(id)arg4;
 
 @end
 

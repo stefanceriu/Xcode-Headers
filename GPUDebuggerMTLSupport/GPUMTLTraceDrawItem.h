@@ -10,6 +10,9 @@ __attribute__((visibility("hidden")))
 @interface GPUMTLTraceDrawItem : GPUMTLTraceDisplayableItem
 {
     BOOL _dummyDrawItem;
+    unsigned long long _commandBufferIndex;
+    unsigned long long _commandEncoderIndex;
+    unsigned long long _drawCallIndex;
 }
 
 - (BOOL)showAsAPIItem;
@@ -22,6 +25,8 @@ __attribute__((visibility("hidden")))
 - (void)_displaySetLoadIsComplete:(id)arg1;
 - (id)_startLoadingDisplaySet;
 - (void)setDecodedFunctionPointer:(shared_ptr_e8134367)arg1;
+- (id)generateLabel;
+- (id)initWithController:(id)arg1 parent:(id)arg2 deviceID:(unsigned long long)arg3 functionIndex:(int)arg4 displayIndex:(int)arg5 commandBufferIndex:(unsigned long long)arg6 commandEncoderIndex:(unsigned long long)arg7 drawCallIndex:(unsigned long long)arg8;
 
 @end
 

@@ -44,6 +44,13 @@ struct CGSize {
     double height;
 };
 
+struct DBGPerformanceViewDebuggingStats {
+    unsigned long long nodeCount;
+    double totalTime;
+    double averageTime;
+    double maxTime;
+};
+
 struct _NSRange {
     unsigned long long location;
     unsigned long long length;

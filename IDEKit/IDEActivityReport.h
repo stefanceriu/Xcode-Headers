@@ -9,40 +9,43 @@
 #import "DVTInvalidation.h"
 #import "DVTProgressReporting.h"
 
-@class DVTStackBacktrace, DVTSystemActivityToken, NSArray, NSDictionary, NSImage, NSString;
+@class DVTStackBacktrace, DVTSystemActivityToken, NSArray, NSDictionary, NSString;
 
 @interface IDEActivityReport : NSObject <DVTProgressReporting, DVTInvalidation>
 {
-    NSArray *_completionSummaryStringSegments;
-    NSString *_completionSummaryString;
     int _options;
+    DVTSystemActivityToken *_systemActivityToken;
+    NSString *_title;
+    NSArray *_titleSegments;
+    NSString *_completionSummaryString;
+    NSArray *_completionSummaryStringSegments;
     long long _progress;
     double _timestamp;
     double _displayPriority;
-    NSArray *_titleSegments;
-    NSString *_title;
-    NSImage *_image;
     unsigned long long _fileIOPriority;
     CDUnknownBlockType _fileIOCoordinatorBlock;
     double _fileIOThrottleFactor;
-    DVTSystemActivityToken *_systemActivityToken;
+    CDUnknownBlockType _userDidRequestCancellationHandlerBlock;
 }
 
 + (id)keyPathsForValuesAffectingPaused;
 + (BOOL)automaticallyNotifiesObserversOfFileIOThrottleFactor;
 + (id)keyPathsForValuesAffectingCompleted;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
+@property(copy) CDUnknownBlockType userDidRequestCancellationHandlerBlock; // @synthesize userDidRequestCancellationHandlerBlock=_userDidRequestCancellationHandlerBlock;
 @property(readonly) double fileIOThrottleFactor; // @synthesize fileIOThrottleFactor=_fileIOThrottleFactor;
 @property(readonly, copy) CDUnknownBlockType fileIOCoordinatorBlock; // @synthesize fileIOCoordinatorBlock=_fileIOCoordinatorBlock;
 @property unsigned long long fileIOPriority; // @synthesize fileIOPriority=_fileIOPriority;
-@property(copy) NSArray *completionSummaryStringSegments; // @synthesize completionSummaryStringSegments=_completionSummaryStringSegments;
-@property(copy) NSString *completionSummaryString; // @synthesize completionSummaryString=_completionSummaryString;
 @property double displayPriority; // @synthesize displayPriority=_displayPriority;
 @property(readonly) double timestamp; // @synthesize timestamp=_timestamp;
-@property(readonly) NSImage *image; // @synthesize image=_image;
 @property long long progress; // @synthesize progress=_progress;
+@property(copy) NSArray *completionSummaryStringSegments; // @synthesize completionSummaryStringSegments=_completionSummaryStringSegments;
+@property(copy) NSString *completionSummaryString; // @synthesize completionSummaryString=_completionSummaryString;
 @property(copy, nonatomic) NSArray *titleSegments; // @synthesize titleSegments=_titleSegments;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
+@property(readonly) int options; // @synthesize options=_options;
 - (void).cxx_destruct;
 @property(readonly) NSString *stringValue;
 @property(readonly) BOOL paused;
@@ -57,14 +60,13 @@
 @property(readonly, getter=isUserRequested) BOOL userRequested;
 @property(readonly, getter=isCancelable) BOOL cancelable;
 @property(readonly, getter=isCompleted) BOOL completed;
-@property(readonly) int options; // @synthesize options=_options;
 @property(readonly) NSDictionary *dictionaryRepresentation;
 @property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
 - (id)init;
 - (id)initWithDictionaryRepresentation:(id)arg1;
-- (id)initWithTitle:(id)arg1 titleSegments:(id)arg2 options:(int)arg3 image:(id)arg4 fileIOPriority:(unsigned long long)arg5 fileIOCoordinatorBlock:(CDUnknownBlockType)arg6;
-- (id)_initWithTitle:(id)arg1 titleSegments:(id)arg2 options:(int)arg3 image:(id)arg4 fileIOPriority:(unsigned long long)arg5 fileIOCoordinatorBlock:(CDUnknownBlockType)arg6 unarchived:(BOOL)arg7;
+- (id)initWithTitle:(id)arg1 titleSegments:(id)arg2 options:(int)arg3 fileIOPriority:(unsigned long long)arg4 fileIOCoordinatorBlock:(CDUnknownBlockType)arg5;
+- (id)_initWithTitle:(id)arg1 titleSegments:(id)arg2 options:(int)arg3 fileIOPriority:(unsigned long long)arg4 fileIOCoordinatorBlock:(CDUnknownBlockType)arg5 unarchived:(BOOL)arg6;
 - (void)setProgressAsNSNumber:(id)arg1;
 
 // Remaining properties

@@ -19,6 +19,7 @@
 @property BOOL forceYUp;
 - (BOOL)writeToFile:(id)arg1 atomically:(BOOL)arg2;
 - (id)initWithContentsOfFile:(id)arg1 error:(id *)arg2;
+- (id)init;
 
 @end
 

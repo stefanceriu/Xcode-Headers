@@ -17,7 +17,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) SKScene *scene; // @synthesize scene=_scene;
 - (void)dealloc;
 - (BOOL)isOpaque;
-- (id)textureSourceForContext:(void *)arg1;
+- (id)textureSource;
 
 @end
 

@@ -16,12 +16,15 @@
     IDEWorkspaceDocument *_workspaceDocument;
     BOOL _settingCurrentStackFrameFromUIGesture;
     BOOL _isNavigatingToViewDebuggerDocument;
+    BOOL _isNavigatingToMemoryGraphDebuggerDocument;
     DVTObservingToken *_currentStackFrameFramePointerObservingToken;
     DVTObservingToken *_currentStackFrameDisassemblyObservingToken;
     DVTObservingToken *_viewDebuggerOpenRequestStateObservingToken;
+    DVTObservingToken *_memoryGraphDebuggerOpenRequestStateObservingToken;
     DBGDataTipController *_dataTipController;
     DBGDebugSession *_debugSession;
     IDEEditorOpenSpecifier *_viewDebuggerOpenSpecifierToOpenWhenPaused;
+    IDEEditorOpenSpecifier *_memoryGraphDebuggerOpenSpecifierToOpenWhenPaused;
 }
 
 + (void)initialize;
@@ -29,6 +32,7 @@
 + (id)descendantItemForRepresentedObject:(id)arg1 inRootNavigableItem:(id)arg2;
 + (id)_descendantItemForRepresentedObject:(id)arg1 inRootNavigableItem:(id)arg2;
 + (id)parentThreadInUIForStackFrame:(id)arg1;
+@property(retain) IDEEditorOpenSpecifier *memoryGraphDebuggerOpenSpecifierToOpenWhenPaused; // @synthesize memoryGraphDebuggerOpenSpecifierToOpenWhenPaused=_memoryGraphDebuggerOpenSpecifierToOpenWhenPaused;
 @property(retain) IDEEditorOpenSpecifier *viewDebuggerOpenSpecifierToOpenWhenPaused; // @synthesize viewDebuggerOpenSpecifierToOpenWhenPaused=_viewDebuggerOpenSpecifierToOpenWhenPaused;
 @property(retain) DBGDebugSession *debugSession; // @synthesize debugSession=_debugSession;
 @property(retain) DBGDataTipController *dataTipController; // @synthesize dataTipController=_dataTipController;
@@ -41,6 +45,9 @@
 - (void)quickLookProviderForDataValue:(id)arg1 quickLookProviderHandler:(CDUnknownBlockType)arg2;
 - (void)_userWantsRerunFromConsole:(id)arg1;
 - (void)_userWantsQuitFromConsole:(id)arg1;
+- (id)_openMemoryGraphDebuggerDocumentLocation:(id)arg1 inWorkspaceTabController:(id)arg2 withEventType:(unsigned long long)arg3;
+- (void)openMemoryGraphDebuggerInstanceItem:(id)arg1 inWorkspaceTabController:(id)arg2 withEventType:(unsigned long long)arg3;
+- (void)openMemoryGraphDebugger:(id)arg1 withEventType:(unsigned long long)arg2;
 - (id)_openViewDebuggerDocumentLocation:(id)arg1 inWorkspaceTabController:(id)arg2 withEventType:(unsigned long long)arg3;
 - (void)openViewDebuggerViewObject:(id)arg1 inWorkspaceTabController:(id)arg2 withEventType:(unsigned long long)arg3;
 - (void)openViewDebugger:(id)arg1 withEventType:(unsigned long long)arg2;
@@ -61,10 +68,12 @@
 - (void)_navigateEditorToStackFramesSourceFile:(id)arg1;
 - (void)_handleCurrentStackFrameChanged;
 - (void)_updateFileBreakpointsLocation;
+- (void)_navigateEditorToMemoryGraphDebuggerInActiveTab;
 - (void)_navigateEditorToViewDebuggerInActiveTab;
 - (void)_navigateEditorToCurrentStackFrame;
 - (int)_navigationModeForActiveWorkspaceTabController;
 - (id)_activeWorkspaceTabController;
+@property(readonly) BOOL isViewingMemoryGraphDebuggerDocument;
 @property(readonly) BOOL isViewingViewDebuggerDocument;
 - (id)initWithLaunchSession:(id)arg1 workspaceDocument:(id)arg2;
 

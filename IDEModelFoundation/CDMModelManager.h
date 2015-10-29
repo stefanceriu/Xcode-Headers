@@ -10,6 +10,7 @@
 {
 }
 
++ (id)modelForURL:(id)arg1 error:(id *)arg2;
 + (id)stringRepresentationOfModelObject:(id)arg1;
 
 @end

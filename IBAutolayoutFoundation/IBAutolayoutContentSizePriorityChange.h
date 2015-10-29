@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSObject<IBAutolayoutItem>;
+#import "IBBinaryArchiving.h"
 
-@interface IBAutolayoutContentSizePriorityChange : NSObject
+@class NSObject<IBAutolayoutItem>, NSString;
+
+@interface IBAutolayoutContentSizePriorityChange : NSObject <IBBinaryArchiving>
 {
     NSObject<IBAutolayoutItem> *_view;
     unsigned long long _type;
@@ -21,12 +23,17 @@
 - (void).cxx_destruct;
 @property(readonly, nonatomic) BOOL affectsContentCompressionResistancePriority;
 @property(readonly, nonatomic) BOOL affectsContentHuggingPriority;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (BOOL)isEqualToContentSizePriorityChange:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (id)representationWithObjectRepresentationForObjectBlock:(CDUnknownBlockType)arg1;
-- (id)initWithRepresentation:(id)arg1 objectForObjectRepresentationBlock:(CDUnknownBlockType)arg2;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithView:(id)arg1 type:(unsigned long long)arg2 priority:(double)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

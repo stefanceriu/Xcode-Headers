@@ -6,31 +6,38 @@
 
 #import <IDEFoundation/IDELocalizationWorkContext.h>
 
+#import "IDELocalizationWorkProvider.h"
+
 @class IDEContainer<IDELocalizedContainer>, IDELocalizationLanguageExportContext, IDELocalizationLanguageImportContext, IDELocalizationXLIFFComparisonContext, NSString, NSURL;
 
-@interface IDELocalizationImporterContext : IDELocalizationWorkContext
+@interface IDELocalizationImporterContext : IDELocalizationWorkContext <IDELocalizationWorkProvider>
 {
-    BOOL _resolved;
+    BOOL _allowProjectChanges;
+    BOOL _shouldContinue;
     NSURL *_sourceUrl;
     IDEContainer<IDELocalizedContainer> *_container;
     NSString *_sourceLanguage;
+    CDUnknownBlockType _onNeedsReview;
+    IDELocalizationXLIFFComparisonContext *_comparison;
     NSString *_targetLanguage;
-    CDUnknownBlockType _onNeedsResolutions;
     IDELocalizationLanguageExportContext *_languageExportContext;
     IDELocalizationLanguageImportContext *_languageImportContext;
-    IDELocalizationXLIFFComparisonContext *_comparison;
 }
 
-@property BOOL resolved; // @synthesize resolved=_resolved;
-@property(retain) IDELocalizationXLIFFComparisonContext *comparison; // @synthesize comparison=_comparison;
++ (id)contextWithParent:(id)arg1 sourceUrl:(id)arg2 container:(id)arg3 sourceLanguage:(id)arg4 allowProjectChanges:(BOOL)arg5 onNeedsReview:(CDUnknownBlockType)arg6;
+@property BOOL shouldContinue; // @synthesize shouldContinue=_shouldContinue;
 @property(retain) IDELocalizationLanguageImportContext *languageImportContext; // @synthesize languageImportContext=_languageImportContext;
 @property(retain) IDELocalizationLanguageExportContext *languageExportContext; // @synthesize languageExportContext=_languageExportContext;
-@property(copy) CDUnknownBlockType onNeedsResolutions; // @synthesize onNeedsResolutions=_onNeedsResolutions;
 @property(retain) NSString *targetLanguage; // @synthesize targetLanguage=_targetLanguage;
+@property(retain) IDELocalizationXLIFFComparisonContext *comparison; // @synthesize comparison=_comparison;
+@property(copy) CDUnknownBlockType onNeedsReview; // @synthesize onNeedsReview=_onNeedsReview;
+@property BOOL allowProjectChanges; // @synthesize allowProjectChanges=_allowProjectChanges;
 @property(retain) NSString *sourceLanguage; // @synthesize sourceLanguage=_sourceLanguage;
 @property(retain) IDEContainer<IDELocalizedContainer> *container; // @synthesize container=_container;
 @property(retain) NSURL *sourceUrl; // @synthesize sourceUrl=_sourceUrl;
 - (void).cxx_destruct;
+- (id)writeWorkWithFileChanges:(BOOL)arg1;
+- (id)work;
 - (void)primitiveInvalidate;
 
 @end

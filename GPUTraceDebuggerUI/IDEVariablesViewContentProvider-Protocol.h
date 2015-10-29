@@ -22,7 +22,6 @@
 @optional
 @property(readonly) BOOL loadingNewVariablesInBackground;
 - (int)formatterSizeStyle;
-- (BOOL)showCellExpansion;
 - (int)compoundNodeFormatterModeForItem:(IDEVariablesViewNode *)arg1 atRow:(long long)arg2;
 - (NSDictionary *)statusCellsDictionary;
 - (NSImage *)imageToUseInDefaultQuickLookForNode:(IDEVariablesViewNode *)arg1;

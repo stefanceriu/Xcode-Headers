@@ -6,9 +6,12 @@
 
 #import "NSBundle.h"
 
-@class DVTPlatform, NSString;
+@class NSString;
 
 @interface NSBundle (DVTNSBundleAdditions)
++ (id)dvt_rawInfoDictionaryForBundleAtPath:(id)arg1 error:(id *)arg2;
++ (id)dvt_filteredInfoDictionaryForBundleAtPath:(id)arg1 error:(id *)arg2;
++ (id)dvt_uncachedPathForResource:(id)arg1 ofType:(id)arg2 atBundlePath:(id)arg3;
 + (id)_uncachedValueForKey:(struct __CFString *)arg1 atURL:(id)arg2;
 + (id)_uncachedBundleStringForKey:(struct __CFString *)arg1 AtURL:(id)arg2;
 + (id)dvt_uncachedExtensionInfoAtPath:(id)arg1;
@@ -16,7 +19,9 @@
 + (id)dvt_uncachedBundleIdentifierAtPath:(id)arg1;
 + (id)dvt_uncachedBundleExecutableAtURL:(id)arg1;
 + (id)dvt_uncachedBundleIdentifierAtURL:(id)arg1;
++ (id)dvt_platformFamilyForBundleAtPath:(id)arg1 error:(id *)arg2;
++ (id)dvt_platformForBundleAtPath:(id)arg1 error:(id *)arg2;
++ (id)dvt_executablePathForBundleAtPath:(id)arg1;
 @property(readonly, nonatomic) NSString *dvt_contentsPath;
-@property(readonly, nonatomic) DVTPlatform *dvt_platform;
 @end
 

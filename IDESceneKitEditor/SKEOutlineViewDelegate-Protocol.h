@@ -6,9 +6,11 @@
 
 #import "DVTOutlineViewDelegate.h"
 
-@class NSOutlineView;
+@class NSArray, SKEOutlineView;
 
 @protocol SKEOutlineViewDelegate <DVTOutlineViewDelegate>
-- (BOOL)outlineView:(NSOutlineView *)arg1 isHeaderItem:(id)arg2;
+- (NSArray *)outlineView:(SKEOutlineView *)arg1 attributeIconsForItem:(id <SKEDocumentMember>)arg2;
+- (BOOL)outlineView:(SKEOutlineView *)arg1 isItemEditable:(id <SKEDocumentMember>)arg2;
+- (BOOL)outlineView:(SKEOutlineView *)arg1 isHeaderItem:(id)arg2;
 @end
 

@@ -13,16 +13,16 @@ __attribute__((visibility("hidden")))
 {
     BOOL _offline;
     IDEEditorDocument *_document;
-    const Library_c21f3395 *_library;
+    const Library_fcf3a16e *_library;
     unsigned long long _deviceID;
 }
 
 @property(readonly) unsigned long long deviceID; // @synthesize deviceID=_deviceID;
-@property(readonly) const Library_c21f3395 *library; // @synthesize library=_library;
+@property(readonly) const Library_fcf3a16e *library; // @synthesize library=_library;
 @property(readonly) IDEEditorDocument *document; // @synthesize document=_document;
 @property(readonly) BOOL offline; // @synthesize offline=_offline;
 - (void).cxx_destruct;
-- (id)initWithLibrary:(const Library_c21f3395 *)arg1 fromDocument:(id)arg2 onDevice:(unsigned long long)arg3;
+- (id)initWithLibrary:(const Library_fcf3a16e *)arg1 fromDocument:(id)arg2 onDevice:(unsigned long long)arg3;
 
 @end
 

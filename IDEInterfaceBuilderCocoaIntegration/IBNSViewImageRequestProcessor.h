@@ -10,9 +10,8 @@
 {
 }
 
-- (void)assertRenderingFailureWithShortMessage:(id)arg1 exceptionMessage:(id)arg2 exception:(id)arg3;
-- (id)classNamesFoFailedRequests:(id)arg1;
-- (id)issueRuests:(id)arg1 toTool:(id)arg2;
+- (id)classNamesForFailedRequestsSeparatedByComma:(id)arg1;
+- (id)issueRequests:(id)arg1 toTool:(id)arg2;
 - (struct CGColorSpace *)colorSpace;
 
 @end

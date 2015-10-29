@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTDelayedInvocation, DVTMapTable, NSArray, NSMutableArray, NSMutableSet;
+@class DVTDelayedInvocation, NSArray, NSMapTable, NSMutableArray, NSMutableSet;
 
 @interface DVTPreferenceSetManager : NSObject
 {
@@ -16,7 +16,7 @@
     NSMutableArray *_userPreferenceSets;
     NSMutableArray *_availablePreferenceSets;
     id <DVTPreferenceSet> _currentPreferenceSet;
-    DVTMapTable *_preferenceSetObserverTokens;
+    NSMapTable *_preferenceSetObserverTokens;
     DVTDelayedInvocation *_autosavePreferenceSetsInvocation;
 }
 

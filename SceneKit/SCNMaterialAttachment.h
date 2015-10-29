@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     NSDictionary *options;
 }
 
++ (id)materialAttachmentWithGLKTextureInfo:(id)arg1;
 @property(copy, nonatomic) NSDictionary *options; // @synthesize options;
 @property(nonatomic) struct CGSize size; // @synthesize size;
 @property(nonatomic) void *context; // @synthesize context;

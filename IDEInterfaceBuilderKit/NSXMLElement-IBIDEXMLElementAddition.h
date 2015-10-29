@@ -7,6 +7,8 @@
 #import "NSXMLElement.h"
 
 @interface NSXMLElement (IBIDEXMLElementAddition)
++ (id)ib_elementWithName:(id)arg1 attributesWithDictionary:(id)arg2 children:(id)arg3;
++ (id)ib_elementWithName:(id)arg1 attributesWithDictionary:(id)arg2;
 + (id)ib_elementWithName:(id)arg1 attributes:(id)arg2;
 + (id)ib_elementWithName:(id)arg1 namespaces:(id)arg2 attributes:(id)arg3;
 + (id)ib_elementWithName:(id)arg1 stringValue:(id)arg2 attributes:(id)arg3;

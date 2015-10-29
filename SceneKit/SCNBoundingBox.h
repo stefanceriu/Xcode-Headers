@@ -13,7 +13,6 @@ __attribute__((visibility("hidden")))
     struct SCNVector3 max;
 }
 
-+ (id)SCNJSExportProtocol;
 @property(nonatomic) struct SCNVector3 max; // @synthesize max;
 @property(nonatomic) struct SCNVector3 min; // @synthesize min;
 - (id)description;

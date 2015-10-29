@@ -12,7 +12,6 @@
 - (void)adjustMinimumBrowserSizeForInspectedProperty:(id)arg1;
 - (void)setIbShadowedDefaultNewColumnWidth:(long long)arg1;
 - (long long)ibShadowedDefaultNewColumnWidth;
-- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibWidgetType;
 - (BOOL)ibHasSingleCell;
 @end

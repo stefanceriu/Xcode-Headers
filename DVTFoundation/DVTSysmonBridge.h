@@ -12,7 +12,7 @@
 {
     BOOL _hasStarted;
     BOOL _isDisconnected;
-    id <DVTSysmonBridgeDelegate> _delegate;
+    id <DVTSysmonBridgeDelegate><DVTInvalidation> _delegate;
     NSDate *_currentSampleTimestamp;
     NSObject<OS_sysmon_request> *_sysmonRequest;
     NSObject<OS_sysmon_row> *_currentRow;
@@ -23,7 +23,7 @@
 @property(nonatomic) NSObject<OS_sysmon_row> *currentRow; // @synthesize currentRow=_currentRow;
 @property(retain, nonatomic) NSObject<OS_sysmon_request> *sysmonRequest; // @synthesize sysmonRequest=_sysmonRequest;
 @property(retain, nonatomic) NSDate *currentSampleTimestamp; // @synthesize currentSampleTimestamp=_currentSampleTimestamp;
-@property(nonatomic) __weak id <DVTSysmonBridgeDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <DVTSysmonBridgeDelegate><DVTInvalidation> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)dealloc;
 - (void)disconnect;

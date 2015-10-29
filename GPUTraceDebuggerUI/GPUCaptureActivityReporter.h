@@ -17,6 +17,7 @@ __attribute__((visibility("hidden")))
 + (void)initialize;
 - (void).cxx_destruct;
 - (void)_handleTraceInferiorSessionStateChange:(id)arg1;
+- (void)_replaceActivityReportWithSession:(id)arg1 withTitle:(id)arg2 andProgressType:(long long)arg3;
 - (void)_cancelActivityForTraceInferiorSession:(id)arg1;
 - (id)initWithWorkspace:(id)arg1;
 

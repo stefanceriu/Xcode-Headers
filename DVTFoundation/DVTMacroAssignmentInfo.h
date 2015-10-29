@@ -20,6 +20,7 @@
 @property(readonly) id <DVTMacroExpansion> value; // @synthesize value=_value;
 @property(readonly) NSString *macroName; // @synthesize macroName=_macroName;
 - (void).cxx_destruct;
+- (id)description;
 - (id)initWithMacroName:(id)arg1 value:(id)arg2 conditionSet:(id)arg3;
 
 @end

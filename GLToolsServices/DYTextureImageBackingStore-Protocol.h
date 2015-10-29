@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "DYCacheableResource.h"
 #import "NSObject.h"
 
 @class NSData;
 
-@protocol DYTextureImageBackingStore <NSObject>
+@protocol DYTextureImageBackingStore <NSObject, DYCacheableResource>
 @property(retain, nonatomic) NSData *uncompressedData;
 @property(retain, nonatomic) NSData *data;
 @end

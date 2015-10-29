@@ -8,20 +8,16 @@
 
 #import "NSAnimationDelegate.h"
 
-@class NSString, NSView, NSViewAnimation;
+@class NSString;
 
 @interface IBNSWindowEditor : IBEditor <NSAnimationDelegate>
 {
     id <DVTInvalidation> resourcesDidUpdateToken;
-    BOOL shouldAnimateInToolbarConfigurationSheet;
-    BOOL isAnimatingInToolbarConfigurationSheet;
-    NSViewAnimation *showToolbarSheetAnimation;
-    NSView *showToolbarClippingViewContainer;
     BOOL toolbarSheetIsUp;
 }
 
 - (void).cxx_destruct;
-- (void)resizeFrameViewWithEvent:(id)arg1 fromEditorCanvasFrameKnob:(long long)arg2;
+- (void)resizeFrameViewWithEvent:(id)arg1 fromEditorCanvasFrameKnob:(CDUnion_42e99c75)arg2;
 - (CDStruct_d2b197d1)canvasAlignmentInsetForEditorFrame;
 - (BOOL)childEditorShouldDrawActivationDarkening:(id)arg1;
 - (BOOL)isChildToolbarEditor:(id)arg1;
@@ -31,7 +27,6 @@
 - (void)selectionOwner:(id)arg1 didSelect:(id)arg2 andDeselect:(id)arg3;
 - (void)didActivate;
 - (void)willEditChild:(id)arg1 inFrameController:(id)arg2;
-- (void)animationDidEnd:(id)arg1;
 - (void)positionChildEditorFrame;
 - (BOOL)shouldCloseWithEvent:(id)arg1;
 - (BOOL)shouldDragFrameWithMouseDownInEditedRect:(id)arg1;

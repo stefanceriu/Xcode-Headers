@@ -17,7 +17,6 @@
 
 + (id)sectionsFromData:(id)arg1 error:(id *)arg2;
 @property(readonly) NSData *data; // @synthesize data=_data;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 @property(readonly) NSArray *contentLines;
 @property(readonly) NSString *contents;

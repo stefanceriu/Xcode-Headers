@@ -14,25 +14,26 @@
     XCSIntegrationIssueDiff *_warnings;
     XCSIntegrationIssueDiff *_analyzerWarnings;
     XCSIntegrationIssueDiff *_testFailures;
+    NSArray *_triggerErrors;
     NSArray *_buildServiceErrors;
     NSArray *_buildServiceWarnings;
 }
 
-+ (id)integrationIssuesWithIssues:(id)arg1 previousIssues:(id)arg2 buildServiceIssues:(id)arg3;
-+ (id)integrationIssuesWithErrors:(id)arg1 warnings:(id)arg2 analyzerWarnings:(id)arg3 testFailures:(id)arg4 buildServiceErrors:(id)arg5 buildServiceWarnings:(id)arg6;
++ (id)integrationIssuesWithErrors:(id)arg1 warnings:(id)arg2 analyzerWarnings:(id)arg3 testFailures:(id)arg4 triggerErrors:(id)arg5 buildServiceErrors:(id)arg6 buildServiceWarnings:(id)arg7 validationErrors:(id *)arg8;
 @property(readonly, nonatomic) NSArray *buildServiceWarnings; // @synthesize buildServiceWarnings=_buildServiceWarnings;
 @property(readonly, nonatomic) NSArray *buildServiceErrors; // @synthesize buildServiceErrors=_buildServiceErrors;
+@property(readonly, nonatomic) NSArray *triggerErrors; // @synthesize triggerErrors=_triggerErrors;
 @property(readonly, nonatomic) XCSIntegrationIssueDiff *testFailures; // @synthesize testFailures=_testFailures;
 @property(readonly, nonatomic) XCSIntegrationIssueDiff *analyzerWarnings; // @synthesize analyzerWarnings=_analyzerWarnings;
 @property(readonly, nonatomic) XCSIntegrationIssueDiff *warnings; // @synthesize warnings=_warnings;
 @property(readonly, nonatomic) XCSIntegrationIssueDiff *errors; // @synthesize errors=_errors;
 - (void).cxx_destruct;
 - (id)issuesForContributorNames:(id)arg1;
-- (BOOL)_validateErrors:(id)arg1 warnings:(id)arg2 analyzerWarnings:(id)arg3 testFailures:(id)arg4 buildServiceErrors:(id)arg5 buildServiceWarnings:(id)arg6;
+- (BOOL)_validateErrors:(id)arg1 warnings:(id)arg2 analyzerWarnings:(id)arg3 testFailures:(id)arg4 triggerErrors:(id)arg5 buildServiceErrors:(id)arg6 buildServiceWarnings:(id)arg7 validationErrors:(id *)arg8;
 - (id)saveRepresentation;
 - (id)dictionaryRepresentation;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)initWithErrors:(id)arg1 warnings:(id)arg2 analyzerWarnings:(id)arg3 testFailures:(id)arg4 buildServiceErrors:(id)arg5 buildServiceWarnings:(id)arg6;
+- (id)initWithErrors:(id)arg1 warnings:(id)arg2 analyzerWarnings:(id)arg3 testFailures:(id)arg4 triggerErrors:(id)arg5 buildServiceErrors:(id)arg6 buildServiceWarnings:(id)arg7 validationErrors:(id *)arg8;
 
 @end
 

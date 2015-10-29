@@ -6,11 +6,11 @@
 
 #import <IDEInterfaceBuilderKit/IBResourceValueTransformer.h>
 
-@class DVTMapTable;
+@class NSMapTable;
 
 @interface IBCIImageResourceValueTransformer : IBResourceValueTransformer
 {
-    DVTMapTable *_uniquingTable;
+    NSMapTable *_uniquingTable;
 }
 
 + (id)sharedInstance;

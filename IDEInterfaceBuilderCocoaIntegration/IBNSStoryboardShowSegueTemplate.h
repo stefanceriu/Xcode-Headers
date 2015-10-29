@@ -11,17 +11,17 @@
 
 @class NSString;
 
-@interface IBNSStoryboardShowSegueTemplate : IBNSStoryboardSegueTemplate <IBDocumentArchiving, NSCoding>
+@interface IBNSStoryboardShowSegueTemplate : IBNSStoryboardSegueTemplate <NSCoding, IBDocumentArchiving>
 {
     NSString *_uniqueControllerIdentifier;
 }
 
 @property(retain) NSString *uniqueControllerIdentifier; // @synthesize uniqueControllerIdentifier=_uniqueControllerIdentifier;
 - (void).cxx_destruct;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

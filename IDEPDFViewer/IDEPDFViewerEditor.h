@@ -34,7 +34,7 @@
 - (void)pdf_twoPages:(id)arg1;
 - (void)pdf_singlePageContinuous:(id)arg1;
 - (void)pdf_singlePage:(id)arg1;
-- (void)pdf_actualSize:(id)arg1;
+- (void)pdf_zoomActualSize:(id)arg1;
 - (void)pdf_automaticallyResize:(id)arg1;
 - (void)basicFindBarLostFocus:(id)arg1;
 - (BOOL)basicFindBar:(id)arg1 findPreviousByWrapping:(BOOL)arg2;

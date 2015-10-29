@@ -23,6 +23,7 @@
 
 + (id)_extensionsWithIdentifier:(id)arg1 predicate:(id)arg2;
 + (BOOL)shouldInstantiateInLaunchSession:(id)arg1;
++ (BOOL)_isLinkedToCapturableFrameworks:(id)arg1 withPlatformID:(id)arg2;
 + (void)initialize;
 @property(retain, nonatomic) IDELaunchSession *launchSession; // @synthesize launchSession=_launchSession;
 @property BOOL isFakeDebugSession; // @synthesize isFakeDebugSession=_isFakeDebugSession;
@@ -37,6 +38,7 @@
 - (void)processFinalLaunchParameters:(id)arg1;
 - (id)adjustedLaunchParametersForLaunchParameters:(id)arg1;
 - (BOOL)_loadInferiorSession:(id)arg1 forAppWithName:(id)arg2 error:(id *)arg3;
+- (void)_displayAlertWithError:(id)arg1;
 - (id)initInLaunchSession:(id)arg1 withAppDisplayName:(id)arg2 runDestination:(id)arg3 fromExtension:(id)arg4;
 
 // Remaining properties

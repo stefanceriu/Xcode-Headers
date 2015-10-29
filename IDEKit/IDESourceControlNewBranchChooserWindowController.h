@@ -8,14 +8,14 @@
 
 #import "IDESourceControlWindowController.h"
 
-@class IDESourceControlBranch, IDESourceControlSwitchOperationInfo, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSString, NSWindow;
+@class DVTSourceControlRevisionLocation, IDESourceControlSwitchOperationInfo, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSString, NSWindow;
 
 @interface IDESourceControlNewBranchChooserWindowController : IDESourceControlNewBranchWindowController <IDESourceControlWindowController>
 {
     IDEWorkspace *_workspace;
     IDESourceControlSwitchOperationInfo *_operationInfo;
     NSWindow *_parentWindow;
-    IDESourceControlBranch *_currentBranch;
+    DVTSourceControlRevisionLocation *_currentBranch;
     id <DVTInvalidation> _token;
     BOOL _inProgress;
     IDESourceControlWorkspaceUIHandler *_workspaceUIHandler;

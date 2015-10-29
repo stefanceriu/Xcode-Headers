@@ -6,10 +6,13 @@
 
 #import <IDEFoundation/IDEDistributionMethod.h>
 
+@class DVTPlatform;
+
 @interface IDEDistributionMethodAppStore : IDEDistributionMethod
 {
 }
 
+@property(readonly) DVTPlatform *supportedPlatform;
 - (BOOL)requiresDeveloperAccount;
 - (BOOL)isAppStoreBound;
 - (id)orderedDistributionStepClassNamesForTask:(int)arg1;

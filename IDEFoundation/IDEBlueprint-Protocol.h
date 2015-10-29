@@ -7,7 +7,7 @@
 #import "IDEIntegrityLogDataSource.h"
 #import "NSObject.h"
 
-@class DVTFilePath, DVTSDK, DVTSourceCodeLanguage, IDEBuildParameters, IDEContainer<IDEBlueprintProvider>, IDEContainer<IDECustomDataStoring>, IDEFileReference, IDEGroup, IDETestBlueprintHostSettings, IDEWorkspaceArenaSnapshot, NSArray, NSArray<DVTMacroExpansion>, NSSet, NSString;
+@class DVTFilePath, DVTSDK, DVTSourceCodeLanguage, DVTToolsVersion, IDEBuildParameters, IDEContainer<IDEBlueprintProvider>, IDEContainer<IDECustomDataStoring>, IDEFileReference, IDEGroup, IDETestBlueprintHostSettings, IDEWorkspaceArenaSnapshot, NSArray, NSArray<DVTMacroExpansion>, NSDictionary, NSSet, NSString;
 
 @protocol IDEBlueprint <NSObject, IDEIntegrityLogDataSource>
 @property(readonly, copy) NSString *blueprintIdentifier;
@@ -25,10 +25,16 @@
 - (IDEContainer<IDEBlueprintProvider> *)blueprintProvider;
 
 @optional
+@property(readonly) NSSet *knownAssetTags;
+@property(readonly) DVTToolsVersion *createdOnToolsVersion;
 @property(copy) NSString *developmentTeam;
 @property(readonly, getter=isUnitTest) BOOL unitTest;
+@property(retain) IDETestBlueprintHostSettings *testBlueprintUITestingTargetAppSettings;
 @property(retain) IDETestBlueprintHostSettings *testBlueprintHostSettings;
-- (DVTFilePath *)bundleBaselineRecordFilePathWithError:(id *)arg1;
+- (void)removeTagsFromKnownAssetTags:(NSSet *)arg1;
+- (void)addTagsToKnownAssetTags:(NSSet *)arg1;
+- (NSDictionary *)infoDictionaryForConfiguration:(NSString *)arg1;
+- (DVTFilePath *)bundleBaselineRecordFilePath;
 - (NSString *)pathToLargestAssetCatalogAppIconPassingTest:(BOOL (^)(NSDictionary *))arg1;
 - (NSArray<DVTMacroExpansion> *)additionalOverridingCompilerArgumentsForSourceCodeBuildFileReference:(IDEFileReference *)arg1;
 - (void)setOverridingAdditionalCompilerArguments:(NSArray<DVTMacroExpansion> *)arg1 forSourceCodeBuildFileReference:(IDEFileReference *)arg2;
@@ -49,6 +55,8 @@
 - (BOOL)isMixedTarget;
 - (BOOL)configureToBuildWithOptimizationProfileReturningErrorString:(id *)arg1;
 - (BOOL)isConfiguredToBuildWithOptimizationProfile;
+- (void)updateLastSwiftMigrationToCurrent;
+- (BOOL)lastSwiftMigrationIsCurrent;
 - (void)convertToUseModernUnitTests;
 - (void)convertToUseModernObjCSyntax;
 - (void)convertToUseARC;

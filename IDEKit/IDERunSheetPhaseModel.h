@@ -19,8 +19,9 @@
 
 + (void)initialize;
 + (id)keyPathsForValuesAffectingNavigableItem_subtitle;
++ (id)keyPathsForValuesAffectingNavigableItem_name;
 + (id)keyPathsForValuesAffectingRunPhase;
-@property(readonly) NSArray *subphases; // @synthesize subphases=_subphases;
+@property(retain) NSArray *subphases; // @synthesize subphases=_subphases;
 @property(retain) IDERunSheetController *controller; // @synthesize controller=_controller;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;

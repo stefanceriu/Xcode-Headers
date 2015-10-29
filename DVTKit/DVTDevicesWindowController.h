@@ -7,14 +7,15 @@
 #import "NSWindowController.h"
 
 #import "DVTSplitViewDelegate.h"
+#import "DVTTabChooserViewDelegate.h"
 #import "NSMenuDelegate.h"
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 #import "NSWindowDelegate.h"
 
-@class DVTBorderedView, DVTDelayedInvocation, DVTDeviceProvisioningProfilesSheetController, DVTDevicesWindowContentAreaViewController, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTLozengeTextField, DVTObservingToken, DVTScrollView, DVTSearchField, DVTSplitView, DVTStackView_ML, DVTTableView, DVTViewController<DVTDevicesWindowConsoleViewController>, NSArray, NSArrayController, NSButton, NSIndexSet, NSMenuItem, NSMutableDictionary, NSMutableSet, NSSet, NSString;
+@class DVTBorderedView, DVTDelayedInvocation, DVTDeviceProvisioningProfilesSheetController, DVTDevicesWindowContentAreaViewController, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTLozengeTextField, DVTObservingToken, DVTOnboardingTutorialController, DVTScrollView, DVTSearchField, DVTSplitView, DVTStackView_ML, DVTTabChooserView, DVTTableView, DVTViewController<DVTDevicesWindowConsoleViewController>, NSArray, NSArrayController, NSButton, NSIndexSet, NSMenu, NSMenuItem, NSMutableDictionary, NSMutableSet, NSSet, NSString, NSWindow;
 
-@interface DVTDevicesWindowController : NSWindowController <DVTSplitViewDelegate, NSTableViewDataSource, NSTableViewDelegate, NSMenuDelegate, NSWindowDelegate>
+@interface DVTDevicesWindowController : NSWindowController <DVTSplitViewDelegate, DVTTabChooserViewDelegate, NSTableViewDataSource, NSTableViewDelegate, NSMenuDelegate, NSWindowDelegate>
 {
     DVTObservingToken *_devicesObserver;
     NSMutableDictionary *_deviceObservationTokens;
@@ -23,6 +24,9 @@
     BOOL _updatingDevicesForDisplay;
     DVTLozengeTextField *_emptyContentView;
     DVTDeviceProvisioningProfilesSheetController *_provisioningProfilesSheet;
+    DVTObservingToken *_selectedDeviceProxiedDeviceObserver;
+    NSArray *_savedConsoleTabChoices;
+    NSString *_savedConsoleTabSelectedChoiceTitle;
     BOOL _consoleVisible;
     BOOL _consoleSplitVisible;
     NSMutableSet *_devices;
@@ -35,11 +39,11 @@
     DVTSplitView *_mainSplitView;
     DVTSplitView *_contentSplitView;
     DVTBorderedView *_pocketFooterBorderedView;
-    DVTBorderedView *_consoleHeaderBorderedView;
+    DVTTabChooserView *_consoleHeaderTabChooserView;
     DVTBorderedView *_consoleFooterView;
     DVTBorderedView *_contentBorderedView;
     DVTStackView_ML *_consoleAreaStack;
-    DVTGradientImageButton *_addSimulatorButton;
+    DVTGradientImagePopUpButton *_addSimulatorButton;
     DVTGradientImagePopUpButton *_gearButton;
     DVTGradientImageButton *_consoleButton;
     NSButton *_consoleClearButton;
@@ -51,11 +55,19 @@
     NSMenuItem *_deleteSimMenuItem;
     DVTDevicesWindowContentAreaViewController *_contentAreaViewController;
     DVTScrollView *_scrollView;
+    NSMenu *_devicesMenu;
+    NSMenu *_addDevicesMenu;
+    NSWindow *_tutorialWindow;
+    DVTOnboardingTutorialController *_tutorialController;
     DVTViewController<DVTDevicesWindowConsoleViewController> *_consoleViewController;
 }
 
 + (id)sharedDevicesWindowController;
 @property(retain) DVTViewController<DVTDevicesWindowConsoleViewController> *consoleViewController; // @synthesize consoleViewController=_consoleViewController;
+@property(retain) DVTOnboardingTutorialController *tutorialController; // @synthesize tutorialController=_tutorialController;
+@property(retain) NSWindow *tutorialWindow; // @synthesize tutorialWindow=_tutorialWindow;
+@property __weak NSMenu *addDevicesMenu; // @synthesize addDevicesMenu=_addDevicesMenu;
+@property __weak NSMenu *devicesMenu; // @synthesize devicesMenu=_devicesMenu;
 @property __weak DVTScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(retain) DVTDevicesWindowContentAreaViewController *contentAreaViewController; // @synthesize contentAreaViewController=_contentAreaViewController;
 @property(retain) NSMenuItem *deleteSimMenuItem; // @synthesize deleteSimMenuItem=_deleteSimMenuItem;
@@ -67,11 +79,11 @@
 @property(retain) NSButton *consoleClearButton; // @synthesize consoleClearButton=_consoleClearButton;
 @property(retain) DVTGradientImageButton *consoleButton; // @synthesize consoleButton=_consoleButton;
 @property(retain) DVTGradientImagePopUpButton *gearButton; // @synthesize gearButton=_gearButton;
-@property(retain) DVTGradientImageButton *addSimulatorButton; // @synthesize addSimulatorButton=_addSimulatorButton;
+@property(retain) DVTGradientImagePopUpButton *addSimulatorButton; // @synthesize addSimulatorButton=_addSimulatorButton;
 @property(retain) DVTStackView_ML *consoleAreaStack; // @synthesize consoleAreaStack=_consoleAreaStack;
 @property(retain) DVTBorderedView *contentBorderedView; // @synthesize contentBorderedView=_contentBorderedView;
 @property(retain) DVTBorderedView *consoleFooterView; // @synthesize consoleFooterView=_consoleFooterView;
-@property(retain) DVTBorderedView *consoleHeaderBorderedView; // @synthesize consoleHeaderBorderedView=_consoleHeaderBorderedView;
+@property(retain) DVTTabChooserView *consoleHeaderTabChooserView; // @synthesize consoleHeaderTabChooserView=_consoleHeaderTabChooserView;
 @property(retain) DVTBorderedView *pocketFooterBorderedView; // @synthesize pocketFooterBorderedView=_pocketFooterBorderedView;
 @property(retain) DVTSplitView *contentSplitView; // @synthesize contentSplitView=_contentSplitView;
 @property(retain) DVTSplitView *mainSplitView; // @synthesize mainSplitView=_mainSplitView;
@@ -86,6 +98,7 @@
 @property(retain) NSMutableSet *devices; // @synthesize devices=_devices;
 - (void).cxx_destruct;
 - (void)menuWillOpen:(id)arg1;
+- (void)tabChooserView:(id)arg1 userDidChooseChoice:(id)arg2;
 - (void)splitViewDidEndLiveResize:(id)arg1;
 - (void)splitViewDidResizeSubviews:(id)arg1;
 - (struct CGRect)splitView:(id)arg1 effectiveRect:(struct CGRect)arg2 forDrawnRect:(struct CGRect)arg3 ofDividerAtIndex:(long long)arg4;
@@ -107,6 +120,7 @@
 - (void)saveConsole:(id)arg1;
 - (void)clearConsole:(id)arg1;
 - (void)toggleConsole:(id)arg1;
+- (void)addNewDevice:(id)arg1;
 - (void)addSimulator:(id)arg1;
 - (id)_simulatorLocator;
 @property(readonly) NSSet *supportedFileDataTypeIdentifiers;
@@ -124,6 +138,8 @@
 @property(copy, nonatomic) NSString *selectedDeviceIdentifier;
 - (id)_contextuallySelectedDevice;
 - (id)_selectedDevice;
+- (void)_syncConsoleTabSelectedChoice;
+- (void)_syncConsoleTabChoicesForSummaryViewController:(id)arg1;
 - (void)_syncSelectionToDeviceIdentifier:(id)arg1;
 - (id)_deviceWithIdentifier:(id)arg1;
 - (void)_selectDeviceWithIdentifierInDevicesTable:(id)arg1;
@@ -133,6 +149,7 @@
 - (void)_updateDeviceDisplayWithDelay:(BOOL)arg1;
 - (void)_stopObservingDeviceAvailabilty;
 - (void)_startObservingDeviceAvailabilty;
+- (void)beginOnboardingTutorialSheet;
 - (BOOL)openFileURL:(id)arg1 withFileType:(id)arg2 error:(id *)arg3;
 - (struct CGRect)window:(id)arg1 willPositionSheet:(id)arg2 usingRect:(struct CGRect)arg3;
 - (void)windowWillClose:(id)arg1;

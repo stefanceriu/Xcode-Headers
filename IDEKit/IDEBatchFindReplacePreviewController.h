@@ -11,30 +11,30 @@
 #import "NSCacheDelegate.h"
 #import "NSSplitViewDelegate.h"
 
-@class DVTBorderedView, DVTDynamicTableView, DVTMapTable, DVTObservingToken, DVTPerformanceMetric, DVTReplacementView, IDEBatchFindNavigator, IDEBatchFindResultSet, IDEBatchFindResultsOutlineController, NSArray, NSMutableArray, NSMutableDictionary, NSSet, NSString;
+@class DVTBorderedView, DVTDynamicTableView, DVTObservingToken, DVTPerformanceMetric, DVTReplacementView, IDEBatchFindNavigator, IDEBatchFindResultSet, IDEBatchFindResultsOutlineController, NSArray, NSMapTable, NSMutableArray, NSMutableDictionary, NSSet, NSString;
 
 @interface IDEBatchFindReplacePreviewController : IDEViewController <DVTDynamicTableViewDataSource, DVTDynamicTableViewDelegate, NSSplitViewDelegate, NSCacheDelegate>
 {
     DVTReplacementView *_resultsReplacementView;
     NSArray *_orderedGroupNavigables;
-    DVTMapTable *_previewProviderByGroupNavigable;
+    NSMapTable *_previewProviderByGroupNavigable;
     NSMutableArray *_rowViewObserverTokens;
+    NSMutableArray *_bindingTokens;
     NSMutableDictionary *_rowViewCache;
     NSMutableArray *_rowViews;
     NSString *_replaceString;
     DVTDynamicTableView *_dynamicTableView;
     DVTBorderedView *_bottomBorder;
-    DVTMapTable *_disclosedTokenMapTable;
+    NSMapTable *_disclosedTokenMapTable;
     DVTObservingToken *_resultSetWatcher;
-    DVTObservingToken *_checkedResultsWatcher;
     DVTObservingToken *_selectionWatcher;
-    BOOL _viewFirstLayedOut;
     BOOL _hasSelectedItems;
     BOOL _hasCheckedItems;
     BOOL _executingCheckedResultNavigablesObserver;
     BOOL _isViewReadyToPopulateTable;
     IDEBatchFindNavigator *_findNavigator;
     DVTPerformanceMetric *_rebuildSectionsPerfMetric;
+    IDEBatchFindResultSet *_resultSetToInstallWhenViewIsReady;
 }
 
 + (id)logAspect;
@@ -42,18 +42,19 @@
 + (id)_orderedPreviewExtensionsSupportingType:(id)arg1;
 + (id)_allPreviewExtensions;
 + (void)initialize;
+@property(retain) IDEBatchFindResultSet *resultSetToInstallWhenViewIsReady; // @synthesize resultSetToInstallWhenViewIsReady=_resultSetToInstallWhenViewIsReady;
 @property BOOL hasCheckedItems; // @synthesize hasCheckedItems=_hasCheckedItems;
 @property(retain) IDEBatchFindNavigator *findNavigator; // @synthesize findNavigator=_findNavigator;
 @property BOOL hasSelectedItems; // @synthesize hasSelectedItems=_hasSelectedItems;
-@property(retain) DVTMapTable *disclosedTokenMapTable; // @synthesize disclosedTokenMapTable=_disclosedTokenMapTable;
+@property(retain) NSMapTable *disclosedTokenMapTable; // @synthesize disclosedTokenMapTable=_disclosedTokenMapTable;
 @property(retain) DVTBorderedView *bottomBorder; // @synthesize bottomBorder=_bottomBorder;
 @property(retain) DVTDynamicTableView *dynamicTableView; // @synthesize dynamicTableView=_dynamicTableView;
 @property(retain) DVTReplacementView *resultsReplacementView; // @synthesize resultsReplacementView=_resultsReplacementView;
 @property(retain) NSString *replaceString; // @synthesize replaceString=_replaceString;
 - (void).cxx_destruct;
-- (void)_setupMiniNavigator;
 - (long long)dynamicTableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
 - (long long)numberOfSectionsInDynamicTableView:(id)arg1;
+- (void)_udpateHasCheckedItems;
 - (double)dynamicTableView:(id)arg1 heightForHeaderInSection:(long long)arg2;
 - (id)dynamicTableView:(id)arg1 viewForHeaderInSection:(long long)arg2;
 - (double)dynamicTableView:(id)arg1 heightForRow:(long long)arg2 inSection:(long long)arg3;
@@ -66,12 +67,11 @@
 - (void)updateBoundReplaceString;
 - (id)dvtExtraBindings;
 - (void)_scrollNavigableVisible:(id)arg1;
-@property(copy) NSSet *resultNavigablesToReplace;
+@property(readonly, copy) NSSet *resultNavigablesToReplace;
 @property(retain) IDEBatchFindResultSet *resultSet;
 @property(readonly) IDEBatchFindResultsOutlineController *resultsOutlineController;
 @property(getter=isViewReadyToPopulateTable) BOOL viewIsReadyToPopulateTable;
 - (void)primitiveInvalidate;
-- (void)layoutComplete;
 - (void)viewDidInstall;
 - (void)loadView;
 

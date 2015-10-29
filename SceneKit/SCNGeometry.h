@@ -16,7 +16,6 @@
 
 @interface SCNGeometry : NSObject <SCNAnimatable, SCNBoundingVolume, SCNShadable, NSCopying, NSSecureCoding>
 {
-    id _geometryReserved;
     struct __C3DGeometry *_geometry;
     unsigned int _isPresentationInstance:1;
     NSMutableArray *_materials;
@@ -33,10 +32,10 @@
 
 + (BOOL)supportsSecureCoding;
 + (BOOL)resolveInstanceMethod:(SEL)arg1;
-+ (id)SCNJSExportProtocol;
 + (id)geometryWithSources:(id)arg1 elements:(id)arg2;
 + (id)geometry;
 + (id)geometryWithGeometryRef:(struct __C3DGeometry *)arg1;
++ (id)geometryWithMDLMesh:(id)arg1;
 + (id)floorWithOptions:(id)arg1;
 + (id)torusWithRingRadius:(double)arg1 pipeRadius:(double)arg2 options:(id)arg3;
 + (id)capsuleWithRadius:(double)arg1 height:(double)arg2 options:(id)arg3;
@@ -59,7 +58,7 @@
 - (void)_pauseAnimation:(BOOL)arg1 forKey:(id)arg2;
 - (id)animationForKey:(id)arg1;
 - (void)_syncObjCAnimations;
-- (id)animationKeys;
+@property(readonly) NSArray *animationKeys;
 - (void)removeAnimationForKey:(id)arg1;
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
@@ -67,21 +66,21 @@
 - (void)__removeAnimation:(id)arg1 forKey:(id)arg2;
 - (struct __C3DAnimationManager *)animationManager;
 - (void *)__CFObject;
-- (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
-- (id)valueForUndefinedKey:(id)arg1;
+@property(retain, nonatomic) SCNProgram *program;
 - (void)handleUnbindingOfSymbol:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)handleBindingOfSymbol:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
-- (id)shaderModifiersUniformNames;
 @property(copy, nonatomic) NSDictionary *shaderModifiers;
-@property(retain, nonatomic) SCNProgram *program;
 - (void)_setupShadableHelperIfNeeded;
+- (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
+- (id)valueForUndefinedKey:(id)arg1;
+- (void)_unifyNormals;
 - (struct __C3DMaterial *)materialRef;
 - (struct __C3DMaterial *)materialRefCreateIfNeeded;
 @property(retain, nonatomic) SCNGeometrySource *edgeCreasesSource;
 @property(retain, nonatomic) SCNGeometryElement *edgeCreasesElement;
 @property(nonatomic) unsigned long long subdivisionLevel;
 @property(copy, nonatomic) NSArray *levelsOfDetail;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (BOOL)parseSpecialKey:(id)arg1 withPath:(id)arg2 intoDestination:(id *)arg3 remainingPath:(id *)arg4;
 - (void)setPrimitiveType:(long long)arg1;
 - (long long)primitiveType;
@@ -108,6 +107,8 @@
 - (id)keyForNodeAttributes;
 - (id)scene;
 - (struct __C3DScene *)sceneRef;
+- (id)interleavedCopy;
+- (id)mutableCopy;
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)_setupObjCModelFrom:(id)arg1;
@@ -119,8 +120,10 @@
 - (BOOL)getBoundingBoxMin:(struct SCNVector3 *)arg1 max:(struct SCNVector3 *)arg2;
 - (id)geometryElementAtIndex:(long long)arg1;
 @property(readonly, nonatomic) long long geometryElementCount;
+@property(readonly, nonatomic) NSArray *geometryElements;
 - (id)geometrySourceForSemantic:(id)arg1;
 - (id)geometrySourcesForSemantic:(id)arg1;
+@property(readonly, nonatomic) NSArray *geometrySources;
 - (BOOL)isPausedOrPausedByInheritance;
 - (id)presentationInstance;
 - (id)presentationGeometry;
@@ -140,6 +143,8 @@
 - (id)initWithGeometryRef:(struct __C3DGeometry *)arg1;
 - (id)init;
 - (void)setValueForKey:(id)arg1 optionKey:(id)arg2 options:(id)arg3;
+- (id)debugQuickLookData;
+- (id)debugQuickLookObject;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

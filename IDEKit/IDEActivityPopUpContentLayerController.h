@@ -44,6 +44,7 @@
 - (void)showCompletionStatusForCompletedReport:(id)arg1;
 - (void)makeSureIssuesLayerIsVisible;
 - (void)stopObservingActivityReports;
+- (unsigned long long)visiblePopupReportCount;
 - (void)updateDisplayedReports;
 - (void)addReportToPopUp:(id)arg1;
 - (void)removeReportFromPopUp:(id)arg1;

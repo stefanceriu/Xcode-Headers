@@ -7,7 +7,6 @@
 #import "NSCell.h"
 
 @interface NSCell (DVTOutlineViewCellDelegation)
-- (void)dvt_handleMouseDown:(id)arg1 forCellRect:(struct CGRect)arg2 inView:(id)arg3;
 - (struct CGRect)dvt_frameOfOutlineCellForBounds:(struct CGRect)arg1 proposedFrame:(struct CGRect)arg2;
 @end
 

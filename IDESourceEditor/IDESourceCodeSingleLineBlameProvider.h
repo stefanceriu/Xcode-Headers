@@ -27,7 +27,7 @@
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)blameItemsForLine:(long long)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
-- (void)_findlameItemsForLine:(long long)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
+- (void)_findBlameItemsForLine:(long long)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (id)initWithSourceCodeEditor:(id)arg1;
 
 // Remaining properties

@@ -8,6 +8,7 @@
 
 @interface IBICIconSetRep (DisplayAdditions)
 + (id)emptyThumbnailIcon;
-- (void)generateThumbnailCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)generateThumbnailWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (id)typeIcon;
 @end
 

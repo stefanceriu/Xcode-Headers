@@ -7,7 +7,6 @@
 @class NSString;
 
 @protocol XDMappingCompilerCallback
-- (NSString *)targetVersion;
 - (BOOL)continueGeneration;
 - (void)addWarningForElement:(id)arg1 prefix:(NSString *)arg2 message:(NSString *)arg3 category:(int)arg4;
 - (void)addErrorForElement:(id)arg1 prefix:(NSString *)arg2 message:(NSString *)arg3 category:(int)arg4;

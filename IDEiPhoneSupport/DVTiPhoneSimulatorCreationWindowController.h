@@ -6,7 +6,7 @@
 
 #import "DVTPagingSheetWindowController.h"
 
-@class DVTBorderedView, DVTObservingToken, NSArray, NSArrayController, NSPopUpButton, NSString, SimRuntime;
+@class DVTBorderedView, DVTObservingToken, DVTWatchSimulatorDeviceType, NSArray, NSArrayController, NSColor, NSPopUpButton, NSTextField, SimRuntime;
 
 @interface DVTiPhoneSimulatorCreationWindowController : DVTPagingSheetWindowController
 {
@@ -14,24 +14,36 @@
     NSArray *_deviceTypes;
     NSArrayController *_deviceTypesArrayController;
     NSPopUpButton *_runtimesPopUpButton;
+    NSTextField *_appleWatchLabel;
+    NSPopUpButton *_appleWatchPopUpButton;
+    NSArray *_watchDeviceTypes;
+    DVTWatchSimulatorDeviceType *_selectedWatchDeviceType;
     DVTBorderedView *_borderedView;
-    NSString *_simulatorName;
+    NSTextField *_simulatorNameField;
     NSArray *_supportedSimRuntimes;
     SimRuntime *_selectedRuntime;
 }
 
-+ (id)keyPathsForValuesAffectingSimulatorName;
++ (id)keyPathsForValuesAffectingAppleWatchLabelColor;
++ (id)keyPathsForValuesAffectingShouldEnableWatchPopUp;
 + (id)keyPathsForValuesAffectingSelectedDeviceType;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 @property(retain) SimRuntime *selectedRuntime; // @synthesize selectedRuntime=_selectedRuntime;
 @property(copy) NSArray *supportedSimRuntimes; // @synthesize supportedSimRuntimes=_supportedSimRuntimes;
-@property(copy) NSString *simulatorName; // @synthesize simulatorName=_simulatorName;
+@property(retain) NSTextField *simulatorNameField; // @synthesize simulatorNameField=_simulatorNameField;
 @property(retain) DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
+@property(retain) DVTWatchSimulatorDeviceType *selectedWatchDeviceType; // @synthesize selectedWatchDeviceType=_selectedWatchDeviceType;
+@property(copy) NSArray *watchDeviceTypes; // @synthesize watchDeviceTypes=_watchDeviceTypes;
+@property(retain) NSPopUpButton *appleWatchPopUpButton; // @synthesize appleWatchPopUpButton=_appleWatchPopUpButton;
+@property(retain) NSTextField *appleWatchLabel; // @synthesize appleWatchLabel=_appleWatchLabel;
 @property(retain) NSPopUpButton *runtimesPopUpButton; // @synthesize runtimesPopUpButton=_runtimesPopUpButton;
 @property(retain) NSArrayController *deviceTypesArrayController; // @synthesize deviceTypesArrayController=_deviceTypesArrayController;
 @property(retain) NSArray *deviceTypes; // @synthesize deviceTypes=_deviceTypes;
 - (void).cxx_destruct;
 - (void)_determineSupportedSimRuntimes;
 - (void)changedSelectedDeviceType;
+@property(readonly, nonatomic) NSColor *appleWatchLabelColor;
+@property(readonly, nonatomic) BOOL shouldEnableWatchPopUp;
 - (id)selectedDeviceType;
 - (void)primitiveInvalidate;
 - (void)selectRuntime:(id)arg1;

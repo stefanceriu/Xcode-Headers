@@ -6,7 +6,7 @@
 
 #import <DebuggerUI/DBGNode.h>
 
-@class DBGInteractiveSceneView, DBGLayoutConstraint, DBGSceneNode, DBGViewInstance, IBAutolayoutConstraintDrawable;
+@class DBGInteractiveSceneView, DBGLayoutConstraint, DBGSceneCamera, DBGSceneNode, DBGSimpleNode, DBGViewInstance, IBAutolayoutConstraintDrawable, NSMutableArray;
 
 @interface DBGAutoLayoutConstraintNode : DBGNode
 {
@@ -17,41 +17,46 @@
     struct SCNVector3 _endPoint;
     DBGViewInstance *_firstItem;
     DBGViewInstance *_secondItem;
+    NSMutableArray *_geometriesBelongingToConstraint;
     struct CGRect _rootViewRect;
     BOOL _pointingUpOrRight;
-    BOOL _drawablesAreFlipped;
     BOOL _selected;
     BOOL _highlighted;
     DBGSceneNode *_firstItemNode;
     DBGSceneNode *_secondItemNode;
     DBGLayoutConstraint *_modelObject;
+    DBGSimpleNode *_constraintStartNode;
+    DBGSimpleNode *_constraintEndNode;
+    DBGSceneCamera *_sceneCamera;
 }
 
+@property __weak DBGSceneCamera *sceneCamera; // @synthesize sceneCamera=_sceneCamera;
+@property(retain, nonatomic) DBGSimpleNode *constraintEndNode; // @synthesize constraintEndNode=_constraintEndNode;
+@property(retain, nonatomic) DBGSimpleNode *constraintStartNode; // @synthesize constraintStartNode=_constraintStartNode;
 @property(retain) DBGLayoutConstraint *modelObject; // @synthesize modelObject=_modelObject;
 @property __weak DBGSceneNode *secondItemNode; // @synthesize secondItemNode=_secondItemNode;
 @property __weak DBGSceneNode *firstItemNode; // @synthesize firstItemNode=_firstItemNode;
 - (void).cxx_destruct;
-- (void)setFilterEnabled:(BOOL)arg1;
 - (void)setHighlighted:(BOOL)arg1;
 - (void)setSelected:(BOOL)arg1;
 - (void)removeFromParentNode;
-- (void)addSelectableCylinderGeometryToConstraintNode:(id)arg1 start:(struct SCNVector3)arg2 end:(struct SCNVector3)arg3;
-- (void)addSelectableCylinderGeometryToConstraintNode:(id)arg1 forIBLine:(CDStruct_e3b9714e)arg2;
-- (id)dashImageWithDashLength:(double)arg1 dashSpacing:(double)arg2 lineWidth:(double)arg3 color:(id)arg4;
+- (void)addSelectableCylinderGeometryToConstraintNode:(id)arg1 startAnchorNode:(id)arg2 endAnchorNode:(id)arg3 lengthPadding:(double)arg4;
 - (BOOL)constraintProjectionLineNeedsBeams;
 - (BOOL)constraintNeedsProjectionLine;
 - (BOOL)firstAndScecondItemInDifferentPlanes;
 - (void)updateProjectionLines;
+- (void)_addProjectionLineAtConstraintsEnd:(BOOL)arg1;
+- (void)addProjectionLines;
 - (id)limitedSpaceDualTBeamGeometryFromDrawable:(id)arg1;
+- (void)positionStartNode:(id)arg1 endNode:(id)arg2 withLine:(CDStruct_e3b9714e)arg3;
 - (id)iBeamGeometryFromDrawable:(id)arg1;
 - (id)alignmentLineGeometryFromDrawable:(id)arg1;
 - (id)connectionLineGeometryFromDrawable:(id)arg1;
 - (id)lineGeometryWithStart:(struct SCNVector3)arg1 end:(struct SCNVector3)arg2;
 - (id)lineGeometryFromIBLine:(CDStruct_e3b9714e)arg1 isConstraintLine:(BOOL)arg2;
-- (CDStruct_e3b9714e)normalizeLine:(CDStruct_e3b9714e)arg1;
 - (id)geometryFromDrawable:(id)arg1;
 - (void)addGuideLine:(CDStruct_e3b9714e)arg1 guidelineIsLeftOrBottom:(BOOL)arg2 color:(id)arg3 rootViewRect:(struct CGRect)arg4 firstItem:(id)arg5 secondItem:(id)arg6;
-- (id)initWithDrawable:(id)arg1 strokeColor:(id)arg2 guideLineColor:(id)arg3 rootViewRect:(struct CGRect)arg4 drawablesAreFlipped:(BOOL)arg5 firstItem:(id)arg6 secondItem:(id)arg7 constraintModel:(id)arg8 sceneView:(id)arg9;
+- (id)initWithDrawable:(id)arg1 guideLineColor:(id)arg2 rootViewRect:(struct CGRect)arg3 firstItem:(id)arg4 secondItem:(id)arg5 constraintModel:(id)arg6 sceneView:(id)arg7;
 
 @end
 

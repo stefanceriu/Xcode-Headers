@@ -13,10 +13,10 @@
 @interface IDEUnitTestsModernizationReviewChangesFile : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     DVTFilePath *_filePath;
+    NSString *_name;
     NSImage *_image;
     DVTDocumentLocation *_contentDocumentLocation;
     DVTFileDataType *_documentType;
-    NSString *_name;
 }
 
 + (id)keyPathsForValuesAffectingNavigableItem_name;

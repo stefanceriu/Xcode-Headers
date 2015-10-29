@@ -59,6 +59,7 @@
 - (id)name;
 - (BOOL)isSearchable;
 - (long long)nodeID;
+- (BOOL)isValid;
 - (void)invalidate;
 - (void)dealloc;
 - (id)_dumpStr;

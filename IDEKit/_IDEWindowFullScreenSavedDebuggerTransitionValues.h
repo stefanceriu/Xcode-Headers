@@ -12,17 +12,13 @@
     BOOL _shouldReturnToFullScreen;
     int _oldState;
     int _newState;
-    int _oldMode;
-    int _newMode;
 }
 
-@property int newMode; // @synthesize newMode=_newMode;
-@property int oldMode; // @synthesize oldMode=_oldMode;
 @property int newState; // @synthesize newState=_newState;
 @property int oldState; // @synthesize oldState=_oldState;
 @property BOOL shouldReturnToFullScreen; // @synthesize shouldReturnToFullScreen=_shouldReturnToFullScreen;
 @property BOOL valid; // @synthesize valid=_valid;
-- (void)recordReturnToFullScreen:(BOOL)arg1 oldState:(int)arg2 newState:(int)arg3 oldMode:(int)arg4 newMode:(int)arg5;
+- (void)_recordReturnToFullScreen:(BOOL)arg1 oldState:(int)arg2 newState:(int)arg3;
 - (id)description;
 
 @end

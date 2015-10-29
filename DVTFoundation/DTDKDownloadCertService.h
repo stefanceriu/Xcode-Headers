@@ -12,7 +12,6 @@
 {
 }
 
-+ (id)keyPathsForValuesAffectingCertificateSerialNumbers;
 + (id)keyPathsForValuesAffectingCertificateContents;
 + (id)keyPathsForValuesAffectingCertificates;
 + (id)serviceForCertificateType:(unsigned long long)arg1 team:(id)arg2 andPlatform:(id)arg3;

@@ -11,6 +11,7 @@
 @interface IBPlatformToolRequest : NSObject
 {
     CDUnknownBlockType _completionBlock;
+    CDUnknownBlockType _diagnosticsBlock;
     NSString *_requestID;
     id _requestData;
     id _resultData;
@@ -19,10 +20,11 @@
 @property(retain) id resultData; // @synthesize resultData=_resultData;
 @property(readonly) id requestData; // @synthesize requestData=_requestData;
 @property(readonly, copy) NSString *requestID; // @synthesize requestID=_requestID;
+@property(readonly, copy) CDUnknownBlockType diagnosticsBlock; // @synthesize diagnosticsBlock=_diagnosticsBlock;
 @property(readonly, copy) CDUnknownBlockType completionBlock; // @synthesize completionBlock=_completionBlock;
 - (void).cxx_destruct;
 - (void)runCompletionBlock;
-- (id)initWithRequestID:(id)arg1 data:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)initWithRequestID:(id)arg1 data:(id)arg2 diagnosticsBlock:(CDUnknownBlockType)arg3 completionBlock:(CDUnknownBlockType)arg4;
 
 @end
 

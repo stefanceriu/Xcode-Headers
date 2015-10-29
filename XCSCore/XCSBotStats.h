@@ -60,8 +60,10 @@
     NSNumber *_testsMaximum;
     NSNumber *_testsMinimum;
     NSNumber *_testsStdDev;
+    NSNumber *_codeCoveragePercentageDelta;
 }
 
+@property(retain, nonatomic) NSNumber *codeCoveragePercentageDelta; // @synthesize codeCoveragePercentageDelta=_codeCoveragePercentageDelta;
 @property(retain, nonatomic) NSNumber *testsStdDev; // @synthesize testsStdDev=_testsStdDev;
 @property(retain, nonatomic) NSNumber *testsMinimum; // @synthesize testsMinimum=_testsMinimum;
 @property(retain, nonatomic) NSNumber *testsMaximum; // @synthesize testsMaximum=_testsMaximum;

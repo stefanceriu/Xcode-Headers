@@ -13,6 +13,7 @@
     IDEPOEmptyView *_emptyView;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 - (void).cxx_destruct;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setEmptyString:(id)arg1;

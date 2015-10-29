@@ -25,6 +25,7 @@
 @property(readonly, copy) NSAttributedString *descriptionText;
 @property(readonly, copy) NSString *displayText;
 @property(readonly, copy) NSString *displayType;
+@property double fuzzyMatchingScore;
 @property(readonly) unsigned long long hash;
 @property(readonly) NSImage *highlightedStatusIcon;
 @property(readonly, copy) NSString *name;

@@ -6,17 +6,12 @@
 
 #import "SCNParticleSystem.h"
 
-@class NSGradient, NSImage, NSString, SCNParticlePropertyController;
+@class NSGradient, SCNParticlePropertyController;
 
 @interface SCNParticleSystem (SceneKit_SKEAdditions)
 + (id)keyPathsForValuesAffectingIde_hasNullStretchFactor;
 + (id)keyPathsForValuesAffectingIde_spreadingAngleHasAnEffect;
 + (id)keyPathsForValuesAffectingIde_emittingDirectionHasAnEffect;
-+ (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
-- (void)setIde_particleAngleVariation:(double)arg1;
-- (double)ide_particleAngleVariation;
-- (void)setIde_particleAngle:(double)arg1;
-- (double)ide_particleAngle;
 @property(retain) SCNParticlePropertyController *ide_particleSizeController;
 @property(retain) NSGradient *ide_particleColorController;
 @property(retain) SCNParticlePropertyController *ide_latestNonNilParticleColorController;
@@ -24,22 +19,14 @@
 @property(readonly) BOOL ide_doesNotHaveParticleColorController;
 @property(retain) id ide_particleImage;
 @property(readonly) BOOL ide_hasNullStretchFactor;
-- (void)setIde_emitterShapeSphereRadius:(float)arg1;
-@property(readonly) float ide_emitterShapeSphereRadius;
-- (void)setIde_emitterShapePlaneHeight:(float)arg1;
-@property(readonly) float ide_emitterShapePlaneHeight;
-- (void)setIde_emitterShapePlaneWidth:(float)arg1;
-@property(readonly) float ide_emitterShapePlaneWidth;
-- (void)setIde_emitterShapeCylinderRadius:(float)arg1;
-@property(readonly) float ide_emitterShapeCylinderRadius;
-- (void)setIde_emitterShapeCylinderHeight:(float)arg1;
-@property(readonly) float ide_emitterShapeCylinderHeight;
-- (void)setIde_emitterShapeBoxLength:(float)arg1;
-@property(readonly) float ide_emitterShapeBoxLength;
-- (void)setIde_emitterShapeBoxHeight:(float)arg1;
-@property(readonly) float ide_emitterShapeBoxHeight;
-- (void)setIde_emitterShapeBoxWidth:(float)arg1;
-@property(readonly) float ide_emitterShapeBoxWidth;
+@property float ide_emitterShapeSphereRadius;
+@property float ide_emitterShapePlaneHeight;
+@property float ide_emitterShapePlaneWidth;
+@property float ide_emitterShapeCylinderRadius;
+@property float ide_emitterShapeCylinderHeight;
+@property float ide_emitterShapeBoxLength;
+@property float ide_emitterShapeBoxHeight;
+@property float ide_emitterShapeBoxWidth;
 @property(readonly) BOOL ide_emitterShapeTypeIsSphere;
 @property(readonly) BOOL ide_emitterShapeTypeIsPlane;
 @property(readonly) BOOL ide_emitterShapeTypeIsCylinder;
@@ -47,14 +34,5 @@
 @property unsigned long long ide_emitterShapeType;
 @property(readonly) BOOL ide_spreadingAngleHasAnEffect;
 @property(readonly) BOOL ide_emittingDirectionHasAnEffect;
-@property(readonly) NSString *ide_displayName;
-@property(readonly) NSImage *ide_icon;
-- (id)ske_undoKVOKeypaths;
-
-// Remaining properties
-@property double particleAngle; // @dynamic particleAngle;
-@property double particleAngleVariation; // @dynamic particleAngleVariation;
-@property double particleInitialAngle; // @dynamic particleInitialAngle;
-@property double particleInitialAngleVariation; // @dynamic particleInitialAngleVariation;
 @end
 

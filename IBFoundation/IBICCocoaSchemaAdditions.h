@@ -29,6 +29,7 @@
 }
 
 - (void).cxx_destruct;
+- (void)registerDataSetSlots:(id)arg1;
 - (void)registerAppIconSetSlots:(id)arg1;
 - (void)registerIconSetSlots:(id)arg1;
 - (void)registerImageSetSlots:(id)arg1;

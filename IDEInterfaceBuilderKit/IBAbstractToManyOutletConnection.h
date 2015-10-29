@@ -31,7 +31,7 @@
 - (id)displayGroupIdentifierFromReferenceEndPoint:(id)arg1;
 - (BOOL)isCatchAllPrototypeForDisplayGroup;
 - (BOOL)isExclusiveTo:(id)arg1 inObjectContainer:(id)arg2;
-- (id)exclusitivityHintInObjectContainer:(id)arg1;
+- (id)exclusivityHintInObjectContainer:(id)arg1;
 - (BOOL)validateDestination:(id)arg1;
 - (BOOL)validateSource:(id)arg1;
 - (id)missingComponents;

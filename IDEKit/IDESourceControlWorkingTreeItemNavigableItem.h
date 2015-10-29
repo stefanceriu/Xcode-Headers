@@ -10,8 +10,5 @@
 {
 }
 
-+ (id)keyPathsForValuesAffectingChildRepresentedObjects;
-- (id)childRepresentedObjects;
-
 @end
 

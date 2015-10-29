@@ -27,6 +27,7 @@
 @property(readonly, copy) NSString *displayName;
 @property(readonly, copy) NSNumber *frameNumber;
 @property(readonly, copy) NSString *name;
+- (id)init;
 - (id)initWithStackFrames:(id)arg1;
 
 // Remaining properties

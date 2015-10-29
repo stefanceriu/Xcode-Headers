@@ -6,10 +6,12 @@
 
 #import "NSTextFieldCell.h"
 
-@class NSTextStorage;
+@class NSLayoutManager, NSTextContainer, NSTextStorage;
 
 @interface DVTTableCellViewMultiLineTextFieldCell : NSTextFieldCell
 {
+    NSTextContainer *_textContainer;
+    NSLayoutManager *_layoutManager;
     BOOL _replaceNewlinesWithVisibleCharacter;
     NSTextStorage *_textStorage;
     struct _NSRange _rangeToEnsureIsVisible;
@@ -29,6 +31,9 @@
 - (void)setObjectValue:(id)arg1;
 - (void)update;
 - (void)_provideTextComponentsGivenTextStorage:(id)arg1 containerSize:(struct CGSize)arg2 handler:(CDUnknownBlockType)arg3;
+- (void)_dvtTableCellViewMultiLineTextFieldCell_commonInit;
+- (id)initWithCoder:(id)arg1;
+- (id)init;
 
 @end
 

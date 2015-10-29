@@ -9,13 +9,21 @@
 @class CAMediaTimingFunction, NSArray, NSString;
 
 @protocol SCNJSKeyframeAnimationJSExport <JSExport>
-+ (id)keyframeAnimationWithKeyPath:(NSString *)arg1;
++ (id)animationWithKeyPath:(NSString *)arg1;
+@property(copy) NSString *fillMode;
+@property BOOL autoreverses;
+@property double repeatDuration;
+@property float repeatCount;
+@property double timeOffset;
+@property float speed;
+@property double beginTime;
 @property(copy) NSArray *biasValues;
 @property(copy) NSArray *continuityValues;
 @property(copy) NSArray *tensionValues;
 @property(copy) NSString *calculationMode;
 @property(copy) NSArray *timingFunctions;
 @property(copy) NSArray *keyTimes;
+@property double duration;
 @property struct CGPath *path;
 @property(copy) NSArray *values;
 @property(getter=isRemovedOnCompletion) BOOL removedOnCompletion;

@@ -6,20 +6,11 @@
 
 #import <IDEKit/IDEInspectorProperty.h>
 
-@class IDEInspectorKeyPath, NSString;
-
 @interface IDEInspectorAbstractActionProperty : IDEInspectorProperty
 {
-    IDEInspectorKeyPath *_titleKeyPath;
-    NSString *_title;
 }
 
 + (Class)propertyClassForPropertyDefinition:(id)arg1;
-- (void).cxx_destruct;
-- (void)setupRefreshTriggersAndConfigure;
-- (void)refresh;
-- (void)refreshTarget:(id)arg1;
-- (void)refreshTitle:(id)arg1;
 
 @end
 

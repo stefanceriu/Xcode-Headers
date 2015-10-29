@@ -13,6 +13,7 @@
 @interface IBICPasteboardManager : NSObject <DVTInvalidation>
 {
     NSString *_localPasteboarParentIDType;
+    NSString *_localPasteboarItemIDType;
     IBICCatalogDocument *_document;
 }
 
@@ -20,19 +21,20 @@
 + (void)initialize;
 @property(readonly) IBICCatalogDocument *document; // @synthesize document=_document;
 - (void).cxx_destruct;
+- (id)localDragMovedItems:(id)arg1;
 - (id)parentsOfDocumentLocalDragMovedItems:(id)arg1;
+- (id)documentLocalItemsForDragInfo:(id)arg1 typeName:(id)arg2;
 - (unsigned long long)dragOperationForDragInfo:(id)arg1 insertingIntoItem:(id)arg2 destinationAllowedOperations:(unsigned long long)arg3;
 - (unsigned long long)dragItems:(id)arg1 inWindow:(id)arg2 withDraggedImageState:(id)arg3 mouseDownEvent:(id)arg4;
 - (BOOL)canDragItems:(id)arg1;
 - (void)addItems:(id)arg1 toPasteboard:(id)arg2;
 - (id)pasteboardTypesForItems:(id)arg1;
 - (id)decodeCatalogContentFromPasteboard:(id)arg1;
-- (id)cobbleTogetherCatalogFromContentAtPath:(id)arg1;
-- (void)importContentFromPaths:(id)arg1 intoCatalog:(id)arg2;
+- (id)cobbleTogetherCatalogItemsFromContentAtPath:(id)arg1;
+- (void)populateItems:(id)arg1 withContentFromPaths:(id)arg2;
 - (id)decodeCatalogItemsFromPasteboard:(id)arg1;
-- (void)importContentFromPath:(id)arg1 intoCatalogFolder:(id)arg2 populatingImageRepPaths:(id)arg3;
-- (void)importMultipartImages:(id)arg1 intoFolder:(id)arg2;
-- (id)multipartImagesFromPaths:(id)arg1;
+- (void)scanForNativeCatalogItemSourcesInPath:(id)arg1 populatingReadItems:(id)arg2 andCollectingLoosePaths:(id)arg3;
+- (void)populateItems:(id)arg1 fromLooseFilesAtPaths:(id)arg2;
 - (id)pathsFromPasteboard:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithDocument:(id)arg1;

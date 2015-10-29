@@ -21,6 +21,7 @@
 - (BOOL)ibShadowedSplitViewIntegralizesInUserSpace;
 - (void)setIbShadowedSplitViewAlwaysLaysOutAccordingToAlignmentRects:(BOOL)arg1;
 - (BOOL)ibShadowedSplitViewAlwaysLaysOutAccordingToAlignmentRects;
+- (BOOL)ibChildAutolayoutItem:(id)arg1 hasOwnedSizeLayoutInDocument:(id)arg2;
 - (BOOL)ibChildViewHasCustomLayoutButAllowsAlignmentConstraints:(id)arg1;
 - (BOOL)ibChildViewHasCustomLayoutButAllowsSpacingConstraints:(id)arg1;
 - (BOOL)ibChildViewHasCustomLayoutButAllowsEqualSizeConstraints:(id)arg1;
@@ -42,6 +43,7 @@
 - (BOOL)ibShadowedVertical;
 - (void)ibSetValue:(id)arg1 forInsertingPasteboardObjectsIntoToManyRelationship:(id)arg2 document:(id)arg3 insertionContext:(id)arg4;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
+- (id)ibPasteboardTypes;
 - (id)ibDividerHitTestRects;
 - (void)ibDidAddToDocument:(id)arg1 phase:(unsigned long long)arg2;
 - (void)ibCustomizeForInsertionIntoNSView:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;
@@ -61,6 +63,9 @@
 - (BOOL)ibIsChildViewUserSizable:(id)arg1;
 - (void)setIbShadowedHoldingPriorities:(id)arg1;
 - (id)ibShadowedHoldingPriorities;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
+- (void)setIbExternalArrangesAllSubviews:(BOOL)arg1;
+- (BOOL)ibExternalArrangesAllSubviews;
 - (void)setIbShadowedSubviews:(id)arg1;
 - (Class)ibEditorClass;
 - (BOOL)ibIsNSAppearanceContainer;

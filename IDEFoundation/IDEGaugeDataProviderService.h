@@ -6,11 +6,12 @@
 
 #import "DVTDeviceService.h"
 
-@class DVTMutableOrderedDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
+@class DVTMutableOrderedDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSSet;
 
 @interface IDEGaugeDataProviderService : DVTDeviceService
 {
     DVTMutableOrderedDictionary *_coordinatorsByPID;
+    NSSet *_startedPids;
     NSObject<OS_dispatch_queue> *_serialQueue;
     NSObject<OS_dispatch_source> *_timer;
     _Bool _suspended;
@@ -19,7 +20,9 @@
 + (id)observableAttributes;
 + (id)capability;
 - (void).cxx_destruct;
+- (id)stopSamplingForPIDs:(id)arg1;
 - (id)sampleAttributes:(id)arg1 forPIDs:(id)arg2;
+- (id)startSamplingForPIDs:(id)arg1;
 - (void)stopSampling;
 - (void)resumeSampling;
 - (void)pauseSampling;

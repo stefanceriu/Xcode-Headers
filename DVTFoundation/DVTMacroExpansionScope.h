@@ -16,6 +16,8 @@
     DVTMacroDefinitionTable *_macroDefnTable;
     NSDictionary *_condParamValues;
     NSDictionary *_allCondParamValues;
+    NSDictionary *_condParamFallbackValues;
+    NSDictionary *_allCondParamFallbackValues;
     unsigned int _expansionOptions:8;
     unsigned int _defnLevel:8;
     unsigned int _highestDefnLevel:8;
@@ -35,6 +37,7 @@
 + (id)newWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3;
 + (id)newWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3 definitionLevelsToClear:(id)arg4 conditionParameterValues:(id)arg5;
 + (id)newWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3 definitionLevelsToClear:(id)arg4 conditionParameterValues:(id)arg5 expansionOptions:(unsigned long long)arg6;
++ (id)newWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3 definitionLevelsToClear:(id)arg4 conditionParameterValues:(id)arg5 conditionParameterFallbackValues:(id)arg6 expansionOptions:(unsigned long long)arg7;
 - (void).cxx_destruct;
 - (void)appendDebugDescriptionToStringBuilder:(struct DVTStringBuilder *)arg1 indent:(unsigned long long)arg2;
 - (id)nextScopeForOwnDefinitionLevel;
@@ -47,6 +50,7 @@
 - (id)descriptionWithLocale:(id)arg1 indent:(unsigned long long)arg2;
 - (void)appendAdditionalContentToStringBuilder:(struct DVTStringBuilder *)arg1 indent:(unsigned long long)arg2;
 - (id)allMacroNames;
+- (id)allConditionParameterValues;
 - (id)valueForConditionParameter:(id)arg1;
 - (long long)definitionLevel;
 - (id)macroDefinitionTable;
@@ -59,6 +63,7 @@
 - (id)init;
 - (void)dealloc;
 - (id)initWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3 definitionLevelsToClear:(id)arg4 conditionParameterValues:(id)arg5 expansionOptions:(unsigned long long)arg6;
+- (id)initWithParentScope:(id)arg1 macroDefinitionTable:(id)arg2 definitionLevel:(unsigned long long)arg3 definitionLevelsToClear:(id)arg4 conditionParameterValues:(id)arg5 conditionParameterFallbackValues:(id)arg6 expansionOptions:(unsigned long long)arg7;
 - (id)evaluateMacroExpression:(id)arg1 asStringListForLiteralStringValue:(id)arg2;
 - (id)evaluateMacroExpression:(id)arg1 asStringForLiteralStringValue:(id)arg2;
 - (BOOL)evaluatedBooleanValueForMacroExpression:(id)arg1;
@@ -67,6 +72,7 @@
 - (BOOL)evaluatedBooleanValueForMacroNamed:(id)arg1;
 - (id)evaluatedStringListValueForMacroNamed:(id)arg1;
 - (id)evaluatedStringValueForMacroNamed:(id)arg1;
+- (id)evaluatedStringValueForMacroNamed:(id)arg1 returningFallbackConditionsUsed:(id *)arg2;
 - (id)lookupValueForMacroName:(id)arg1 hash:(unsigned int)arg2 withCursor:(struct DVTMacroNameLookupCursor *)arg3;
 - (BOOL)_isDeallocating;
 - (BOOL)_tryRetain;

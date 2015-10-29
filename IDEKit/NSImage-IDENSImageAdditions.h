@@ -20,7 +20,7 @@
 + (id)ide_sourceControlRevision;
 + (id)ide_sourceControlBranch;
 + (id)ide_sourceControlWorkingCopy;
++ (id)ide_sourceControlRepository16;
 + (id)ide_sourceControlRepository;
-+ (id)ide_assistantBackgroundImage;
 @end
 

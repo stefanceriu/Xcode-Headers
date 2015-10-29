@@ -12,6 +12,7 @@
 {
     DBGViewDebuggerAdditionUIController *_currentUIController;
     id <DVTCancellable> _currentUIControllerObserver;
+    id <DVTCancellable> _currentUIControllerIsValidObserver;
     NSButton *_viewDebuggingButton;
 }
 

@@ -7,12 +7,13 @@
 #import "NSObject.h"
 
 #import "IBDropTargetResolverDelegate.h"
+#import "IBSceneUpdateRequestConfiguring.h"
 #import "IBSelectionOwnerDelegate.h"
 #import "NSUserInterfaceValidations.h"
 
 @class DVTNotificationToken, IBDecodedPasteboardContent, IBDelegatedCanvasOverlay, IBDocument, IBDragAndDropInsertionIndicator, IBDropTargetResolver, IBEditorCanvasFrameController, IBMutableIdentityDictionary, IBSelectionOwner, NSBezierPath, NSDictionary, NSSet, NSString;
 
-@interface IBEditor : NSObject <IBSelectionOwnerDelegate, IBDropTargetResolverDelegate, NSUserInterfaceValidations>
+@interface IBEditor : NSObject <IBSelectionOwnerDelegate, IBDropTargetResolverDelegate, IBSceneUpdateRequestConfiguring, NSUserInterfaceValidations>
 {
     IBSelectionOwner *selection;
     IBEditorCanvasFrameController *frameController;
@@ -24,6 +25,7 @@
     id <DVTInvalidation> selctionDrawingToken;
     id <DVTInvalidation> activationDarkeningToken;
     IBMutableIdentityDictionary *selectionMasks;
+    IBMutableIdentityDictionary *unclippedSelectionMasks;
     NSObject *editedObject;
     NSBezierPath *activationHighlightPath;
     BOOL recalculateActivationPath;
@@ -54,6 +56,7 @@
 @property(getter=isClosed) BOOL closed; // @synthesize closed;
 @property(copy, nonatomic) NSSet *selectionPriorToEventRouting; // @synthesize selectionPriorToEventRouting;
 - (void).cxx_destruct;
+- (void)configureSceneUpdateRequest:(id)arg1;
 - (void)setSecondaryGrowthDirection:(long long)arg1 forDragAndDropPoliciesWithRelation:(id)arg2;
 - (void)setPrimaryGrowthDirection:(long long)arg1 forDragAndDropPoliciesWithRelation:(id)arg2;
 - (void)dropTargetResolver:(id)arg1 orderedRelation:(id)arg2 insertionIndexDidChange:(long long)arg3;
@@ -69,9 +72,11 @@
 - (BOOL)childEditorShouldDrawActivationDarkening:(id)arg1;
 - (void)drawSelectionMasks;
 - (BOOL)objectHasSelectionIndicatorOtherThanMask:(id)arg1;
+- (void)drawUnclippedSelectionHighlightForObject:(id)arg1;
 - (void)drawSelectionHighlightForObject:(id)arg1;
 - (struct CGRect)highlightRectForObject:(id)arg1;
 - (struct CGRect)windowClippingRectForHighlightingObject:(id)arg1;
+- (id)buildHighlightMaskForObject:(id)arg1 withMaskColor:(id)arg2;
 - (id)buildHighlightMaskForObject:(id)arg1;
 - (id)highlightColorForObject:(id)arg1;
 - (void)clipOverlayViewToView:(id)arg1 inset:(struct CGSize)arg2;
@@ -87,7 +92,6 @@
 - (void)resetCursorRects;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)fakeActionForValidatingTitleOfAutolayoutIssuesMenuAllItemsHeader:(id)arg1;
-- (BOOL)documentAllowsIllegalAutolayoutStates;
 - (BOOL)canSizeSelectionToFit;
 - (void)clearAndAddSuggestedConstraintsInArbitrationUnit:(id)arg1;
 - (void)clearAndAddSuggestedConstraints:(id)arg1;
@@ -111,6 +115,7 @@
 - (id)viewsForPerformingAutolayoutMenuCommand:(BOOL)arg1;
 - (id)objectsForPerformingMenuCommand;
 - (void)positionChildEditorFrame;
+- (BOOL)shouldGuessNextSelectionOnDelete;
 - (void)pasteAttributes:(id)arg1;
 - (void)performDuplicate:(id)arg1;
 - (void)performClear:(id)arg1;
@@ -153,9 +158,9 @@
 - (void)documentDidSave;
 - (void)documentWillSave;
 - (id)connectionSourceForEvent:(id)arg1;
-- (void)resizeFrameViewWithEvent:(id)arg1 fromEditorCanvasFrameKnob:(long long)arg2;
-- (void)didResizeEditedObjectOrAncestorEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(long long)arg3;
-- (void)willResizeEditedObjectOrAncestorEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(long long)arg3;
+- (void)resizeFrameViewWithEvent:(id)arg1 fromEditorCanvasFrameKnob:(CDUnion_31865a80)arg2;
+- (void)didResizeEditedObjectOrAncestorEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(CDUnion_31865a80)arg3;
+- (void)willResizeEditedObjectOrAncestorEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(CDUnion_31865a80)arg3;
 - (CDStruct_c519178c)canvasAlignmentInsetForEditorFrame;
 - (BOOL)shouldCloseWithEvent:(id)arg1;
 - (BOOL)shouldDragFrameWithMouseDownInEditedRect:(id)arg1;
@@ -198,7 +203,7 @@
 - (id)selectedFontsForFontPanel;
 - (id)targetsForFloatingPanels;
 - (void)didChangeShowingSelectionHighlights:(id)arg1;
-- (void)setSelectionMask:(id)arg1 forObject:(id)arg2;
+- (id)selectionUnclippedMaskForObject:(id)arg1 withColor:(id)arg2;
 - (id)selectionMaskForObject:(id)arg1;
 - (void)canvasKeyStateDidChange;
 - (void)didClose;

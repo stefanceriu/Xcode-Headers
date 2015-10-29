@@ -62,7 +62,6 @@ __attribute__((visibility("hidden")))
 - (void)outlineViewItemDidExpand:(id)arg1;
 - (void)outlineViewItemWillExpand:(id)arg1;
 - (void)_updateConstraints:(BOOL)arg1;
-- (void)_loadedOutlineViewClipBoundsChanged:(id)arg1;
 - (BOOL)outlineView:(id)arg1 shouldEditTableColumn:(id)arg2 item:(id)arg3;
 - (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
 - (id)outlineView:(id)arg1 rowViewForItem:(id)arg2;

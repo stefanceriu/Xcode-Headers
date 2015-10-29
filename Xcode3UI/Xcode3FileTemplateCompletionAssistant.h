@@ -6,7 +6,7 @@
 
 #import "IDETemplateCompletionAssistant.h"
 
-@class DVTTableView, NSSet, Xcode3TargetMembershipDataSource;
+@class DVTTableView, Xcode3TargetMembershipDataSource;
 
 @interface Xcode3FileTemplateCompletionAssistant : IDETemplateCompletionAssistant
 {
@@ -15,8 +15,7 @@
 }
 
 - (void).cxx_destruct;
-@property(readonly) NSSet *iOSDeploymentTargets;
-@property(readonly) NSSet *macOSDeploymentTargets;
+- (id)selectedBuildables;
 - (void)didInstantiateItems:(id)arg1;
 - (void)instantiateFileTemplatesWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)destinationManagerGroupDidChange:(id)arg1;

@@ -12,6 +12,8 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct CGPath;
+
 struct CGPoint {
     double x;
     double y;
@@ -67,7 +69,11 @@ struct PKDebugDrawPacket {
     struct vector<PKDebugDrawPacket::color4, std::__1::allocator<PKDebugDrawPacket::color4>> _colors;
 };
 
-struct PKPath;
+struct PKPath {
+    float _field1;
+    struct vector<PKPoint, std::__1::allocator<PKPoint>> _field2;
+    struct CGPath *_field3;
+};
 
 struct PKPhysicsShape {
     struct b2FixtureDef _field1;

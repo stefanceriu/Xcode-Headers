@@ -15,7 +15,6 @@
     NSString *_value;
 }
 
-+ (id)environmentEntriesForLegacyValues:(id)arg1;
 @property(getter=isEnabled) BOOL enabled; // @synthesize enabled=_isEnabled;
 @property(copy) NSString *value; // @synthesize value=_value;
 @property(copy) NSString *key; // @synthesize key=_key;

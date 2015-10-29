@@ -15,7 +15,7 @@
 }
 
 @property(nonatomic) float orderPriority; // @synthesize orderPriority=_orderPriority;
-@property(retain, nonatomic) NSArray *userDefinedRuntimeAttributes; // @synthesize userDefinedRuntimeAttributes=_userDefinedRuntimeAttributes;
+@property(copy, nonatomic) NSArray *userDefinedRuntimeAttributes; // @synthesize userDefinedRuntimeAttributes=_userDefinedRuntimeAttributes;
 - (void).cxx_destruct;
 - (id)archiveConnection;
 - (void)encodeWithCoder:(id)arg1;

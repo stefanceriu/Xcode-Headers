@@ -10,7 +10,7 @@
 #import "IDEFilterControlBarTarget.h"
 #import "NSMenuDelegate.h"
 
-@class DVTBorderedView, DVTCrashPoint, DVTCrashPointSource, DVTDelayedInvocation, DVTDispatchLock, DVTObservingToken, DVTTableView, DVTUserDefaultsLeastRecentlyUsedCache, IDECrashPointSourceSelector, IDECrashPointsViewController, IDEFilterControlBar, NSArray, NSArrayController, NSIndexSet, NSScrollView, NSString;
+@class DVTBorderedView, DVTCrashPoint, DVTCrashPointSourceCollection, DVTDelayedInvocation, DVTDispatchLock, DVTObservingToken, DVTTableView, DVTUserDefaultsLeastRecentlyUsedCache, IDECrashPointSourceCollectionSelector, IDECrashPointsViewController, IDEFilterControlBar, NSArray, NSArrayController, NSCountedSet, NSIndexSet, NSMutableDictionary, NSScrollView, NSString;
 
 @interface IDECrashPointSourceListViewController : IDEViewController <IDEFilterControlBarTarget, DVTTableViewDelegate, NSMenuDelegate>
 {
@@ -19,7 +19,7 @@
     BOOL _updatingCrashPointsForDisplay;
     IDECrashPointsViewController *_crashPointsViewController;
     DVTCrashPoint *_selectedCrashPoint;
-    IDECrashPointSourceSelector *_sourceSelector;
+    IDECrashPointSourceCollectionSelector *_sourceCollectionSelector;
     NSIndexSet *_crashPointsTableSelectionIndexes;
     NSArrayController *_crashPointsController;
     DVTTableView *_crashPointsTableView;
@@ -27,24 +27,28 @@
     DVTBorderedView *_crashPointsBorderedView;
     IDEFilterControlBar *_crashPointsFilterControlBar;
     DVTBorderedView *_borderedView;
-    DVTBorderedView *_crashPointSourceSelectorBorder;
+    DVTBorderedView *_crashPointSourceCollectionSelectorBorder;
     NSString *_searchString;
     DVTDispatchLock *_crashPointSourceLock;
     DVTDelayedInvocation *_delayedUpdateCrashPointsInvocation;
     NSArray *_crashPointsForDisplay;
     DVTUserDefaultsLeastRecentlyUsedCache *_selectedCrashPointCache;
+    NSMutableDictionary *_representativeCrashPointSourceToDispatchLockDict;
+    NSCountedSet *_crashPointAppStoreSourcesRetainCounts;
     DVTObservingToken *_selectedObjectsObservingToken;
     DVTObservingToken *_selectedProductObservingToken;
-    DVTObservingToken *_selectedCrashPointSourceObservingToken;
+    DVTObservingToken *_selectedCrashPointSourceCollectionObservingToken;
     DVTObservingToken *_crashPointsObserver;
 }
 
-+ (id)keyPathsForValuesAffectingSelectedCrashPointSource;
++ (id)keyPathsForValuesAffectingSelectedCrashPointSourceCollection;
 + (id)keyPathsForValuesAffectingCrashPointsFilterPredicate;
 @property(retain) DVTObservingToken *crashPointsObserver; // @synthesize crashPointsObserver=_crashPointsObserver;
-@property(retain) DVTObservingToken *selectedCrashPointSourceObservingToken; // @synthesize selectedCrashPointSourceObservingToken=_selectedCrashPointSourceObservingToken;
+@property(retain) DVTObservingToken *selectedCrashPointSourceCollectionObservingToken; // @synthesize selectedCrashPointSourceCollectionObservingToken=_selectedCrashPointSourceCollectionObservingToken;
 @property(retain) DVTObservingToken *selectedProductObservingToken; // @synthesize selectedProductObservingToken=_selectedProductObservingToken;
 @property(retain) DVTObservingToken *selectedObjectsObservingToken; // @synthesize selectedObjectsObservingToken=_selectedObjectsObservingToken;
+@property(retain, nonatomic) NSCountedSet *crashPointAppStoreSourcesRetainCounts; // @synthesize crashPointAppStoreSourcesRetainCounts=_crashPointAppStoreSourcesRetainCounts;
+@property(retain, nonatomic) NSMutableDictionary *representativeCrashPointSourceToDispatchLockDict; // @synthesize representativeCrashPointSourceToDispatchLockDict=_representativeCrashPointSourceToDispatchLockDict;
 @property(getter=isUpdatingCrashPointsForDisplay) BOOL updatingCrashPointsForDisplay; // @synthesize updatingCrashPointsForDisplay=_updatingCrashPointsForDisplay;
 @property(getter=isRestoringSelectedCrashPoint) BOOL restoringSelectedCrashPoint; // @synthesize restoringSelectedCrashPoint=_restoringSelectedCrashPoint;
 @property(retain) DVTUserDefaultsLeastRecentlyUsedCache *selectedCrashPointCache; // @synthesize selectedCrashPointCache=_selectedCrashPointCache;
@@ -52,7 +56,7 @@
 @property(retain) DVTDelayedInvocation *delayedUpdateCrashPointsInvocation; // @synthesize delayedUpdateCrashPointsInvocation=_delayedUpdateCrashPointsInvocation;
 @property(retain, nonatomic) DVTDispatchLock *crashPointSourceLock; // @synthesize crashPointSourceLock=_crashPointSourceLock;
 @property(copy) NSString *searchString; // @synthesize searchString=_searchString;
-@property __weak DVTBorderedView *crashPointSourceSelectorBorder; // @synthesize crashPointSourceSelectorBorder=_crashPointSourceSelectorBorder;
+@property __weak DVTBorderedView *crashPointSourceCollectionSelectorBorder; // @synthesize crashPointSourceCollectionSelectorBorder=_crashPointSourceCollectionSelectorBorder;
 @property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property __weak IDEFilterControlBar *crashPointsFilterControlBar; // @synthesize crashPointsFilterControlBar=_crashPointsFilterControlBar;
 @property __weak DVTBorderedView *crashPointsBorderedView; // @synthesize crashPointsBorderedView=_crashPointsBorderedView;
@@ -61,7 +65,7 @@
 @property __weak NSArrayController *crashPointsController; // @synthesize crashPointsController=_crashPointsController;
 @property(retain, nonatomic) NSIndexSet *crashPointsTableSelectionIndexes; // @synthesize crashPointsTableSelectionIndexes=_crashPointsTableSelectionIndexes;
 @property(getter=isBusy) BOOL busy; // @synthesize busy=_busy;
-@property(retain) IDECrashPointSourceSelector *sourceSelector; // @synthesize sourceSelector=_sourceSelector;
+@property(retain) IDECrashPointSourceCollectionSelector *sourceCollectionSelector; // @synthesize sourceCollectionSelector=_sourceCollectionSelector;
 @property(retain) DVTCrashPoint *selectedCrashPoint; // @synthesize selectedCrashPoint=_selectedCrashPoint;
 @property(readonly) __weak IDECrashPointsViewController *crashPointsViewController; // @synthesize crashPointsViewController=_crashPointsViewController;
 - (void).cxx_destruct;
@@ -73,12 +77,15 @@
 - (BOOL)_isGroupRow:(unsigned long long)arg1;
 - (id)_previousTopCrashesAttributedTitle;
 - (void)refresh;
-- (void)_updateCrashPointsFromNetworkWithCallback:(CDUnknownBlockType)arg1;
-- (void)_updateCrashPointsFromCacheWithCallback:(CDUnknownBlockType)arg1;
-- (id)_appStoreCrashPointSource;
+- (void)_updateCrashPointsFromNetworkForCrashPointSources:(id)arg1 onDispatchLock:(id)arg2 withCallback:(CDUnknownBlockType)arg3;
+- (void)_updateCrashPointsForSource:(id)arg1 fromNetworkWithErrors:(id *)arg2;
+- (void)_updateCrashPointsFromCacheForCrashPointSources:(id)arg1 onDispatchLock:(id)arg2 withCallback:(CDUnknownBlockType)arg3;
 - (BOOL)_shouldRefreshFromNetwork;
 - (void)_setBusyOnMainThread:(BOOL)arg1;
-- (void)_updateCrashPointSourceData;
+- (void)_updateCrashPointSourceCollectionData;
+- (void)releaseAppStoreSources:(id)arg1;
+- (void)retainAppStoreSources:(id)arg1;
+- (id)dispatchLockForRepresentativeCrashPointSource:(id)arg1;
 - (void)_restoreCrashPointSourceListScrollPosition;
 - (void)_restoreSelectedCrashPoint;
 - (void)_saveSelectedCrashPoint;
@@ -86,12 +93,12 @@
 - (void)productsContextMenu_showCrashPointInFinder:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (id)crashPointsFilterPredicate;
-@property(readonly) DVTCrashPointSource *selectedCrashPointSource;
+@property(readonly) DVTCrashPointSourceCollection *selectedCrashPointSourceCollection;
 @property BOOL showsUnresolvedCrashPointsOnly;
 - (id)filterButtonMenu;
 - (id)filterDefinitionIdentifier;
 - (id)selectedCrashPointFromSelectedIndex:(id)arg1;
-- (void)viewDidInstall;
+- (void)viewDidLoad;
 - (void)loadView;
 - (void)primitiveInvalidate;
 - (id)initWithCrashPointsViewController:(id)arg1;

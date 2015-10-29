@@ -6,10 +6,11 @@
 
 #import "NSObject.h"
 
-@class DBGSceneNode, DBGViewSurface, NSArray, NSImage, NSString;
+@class DBGSceneNode, DBGViewDebuggerAdditionUIController, DBGViewSurface, NSArray, NSImage, NSString;
 
 @interface DBGViewInstance : NSObject
 {
+    id _snapshot;
     BOOL _selected;
     BOOL _highlighted;
     BOOL _showFlattened;
@@ -22,12 +23,13 @@
     int _zOffset;
     NSString *_identifier;
     unsigned long long _viewRenderingOrder;
-    id _snapshot;
     NSImage *_flattenedSnapshot;
     NSArray *_subviews;
     DBGViewInstance *_superview;
     DBGSceneNode *_node;
     DBGViewSurface *_modelObject;
+    DBGViewDebuggerAdditionUIController *_debuggerUIController;
+    unsigned long long _flattenMode;
     struct CGPoint _contentOffset;
     struct CGPoint _anchorPoint;
     struct CGPoint _position;
@@ -42,16 +44,17 @@
 }
 
 + (BOOL)useLayersDirectly;
+@property unsigned long long flattenMode; // @synthesize flattenMode=_flattenMode;
 @property BOOL isFlipped; // @synthesize isFlipped=_isFlipped;
 @property BOOL isIOS; // @synthesize isIOS=_isIOS;
 @property BOOL hidden; // @synthesize hidden=_hidden;
 @property int zOffset; // @synthesize zOffset=_zOffset;
+@property(nonatomic) __weak DBGViewDebuggerAdditionUIController *debuggerUIController; // @synthesize debuggerUIController=_debuggerUIController;
 @property(nonatomic) __weak DBGViewSurface *modelObject; // @synthesize modelObject=_modelObject;
 @property(nonatomic) __weak DBGSceneNode *node; // @synthesize node=_node;
 @property(nonatomic) __weak DBGViewInstance *superview; // @synthesize superview=_superview;
 @property(retain, nonatomic) NSArray *subviews; // @synthesize subviews=_subviews;
 @property(retain, nonatomic) NSImage *flattenedSnapshot; // @synthesize flattenedSnapshot=_flattenedSnapshot;
-@property(retain, nonatomic) id snapshot; // @synthesize snapshot=_snapshot;
 @property BOOL isCurrentMasterView; // @synthesize isCurrentMasterView=_isCurrentMasterView;
 @property unsigned long long viewRenderingOrder; // @synthesize viewRenderingOrder=_viewRenderingOrder;
 @property struct CGRect resultingClippingRect; // @synthesize resultingClippingRect=_resultingClippingRect;
@@ -78,9 +81,16 @@
 @property BOOL selected; // @synthesize selected=_selected;
 - (void)updateSnapshot;
 - (void)_reorientLayer:(id)arg1 fromiOS:(BOOL)arg2;
-- (id)_renderedLayer:(id)arg1;
+- (id)_snapshotWithChildrenIfNecessary:(id)arg1;
+@property(retain, nonatomic) id snapshot;
 - (void)_updateSnapshot:(id)arg1;
-- (id)initWithViewSurface:(id)arg1 superview:(id)arg2 options:(id)arg3;
+- (void)_updateSnapshotWithLayer:(id)arg1 forViewSurface:(id)arg2;
+@property(readonly) BOOL uninteresting;
+- (void)updateChildren;
+- (void)_sortSubviewsOfSurface:(id)arg1 outSubviewsToAdd:(id)arg2 outSubviewsToRemove:(id)arg3;
+- (void)_sortFlattenedSubviewsOfSurface:(id)arg1 outSubviewsToAdd:(id)arg2 outSubviewsToRemove:(id)arg3;
+- (id)subviewInstanceForSurface:(id)arg1;
+- (id)initWithViewSurface:(id)arg1 superview:(id)arg2 debuggerUIController:(id)arg3 flattenMode:(unsigned long long)arg4;
 
 @end
 

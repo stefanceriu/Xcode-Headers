@@ -13,7 +13,7 @@
 #import "NSDraggingDestination.h"
 #import "NSUserInterfaceValidations.h"
 
-@class DVTStackBacktrace, IBAbstractDocumentEditor, IBActionForwardingResponder, IBCancellationToken, IBCanvasViewController, IBDelegatedCanvasOverlay, IBDocument, IBEditor, IBEditorCanvasFrame, IBFieldEditor, IBHitDetectionMap, IBInlineStringEditingContext, IBLayoutManager, IBNavigationMenuController, IBTargetIdentifier, NSDate, NSEvent, NSSet, NSString;
+@class DVTStackBacktrace, IBAbstractDocumentEditor, IBActionForwardingResponder, IBCancellationToken, IBCanvasViewController, IBDelegatedCanvasOverlay, IBDocument, IBEditor, IBEditorCanvasFrame, IBFieldEditor, IBHitDetectionMap, IBInlineStringEditingContext, IBInvalidationToken, IBLayoutManager, IBNavigationMenuController, IBTargetIdentifier, NSDate, NSEvent, NSMutableSet, NSSet, NSString;
 
 @interface IBEditorCanvasFrameController : NSObject <IBDelegatedCanvasOverlayDelegate, IBEndPointProvider, NSUserInterfaceValidations, NSDraggingDestination, IBDocumentArbitrationResponder, DVTInvalidation>
 {
@@ -49,28 +49,41 @@
     NSSet *objectsShowingTargetIdentifier;
     IBDelegatedCanvasOverlay *overlayView;
     id <DVTInvalidation> dragAndDropDrawingToken;
+    NSMutableSet *_dependentSiblingEditorFrameControllers;
+    BOOL _haveRunFirstSceneUpdate;
+    IBInvalidationToken *_loadingToken;
+    BOOL _opensEditorsWithKeyEvents;
+    IBEditorCanvasFrameController *_prerequisiteSiblingEditorFrameController;
+    NSObject *_baseEditedObject;
 }
 
 + (void)initialize;
-@property(copy) NSEvent *lastRightMouseDown; // @synthesize lastRightMouseDown;
-@property(copy) NSEvent *lastLeftMouseDown; // @synthesize lastLeftMouseDown;
+@property(retain, nonatomic) NSObject *baseEditedObject; // @synthesize baseEditedObject=_baseEditedObject;
+@property __weak IBEditorCanvasFrameController *prerequisiteSiblingEditorFrameController; // @synthesize prerequisiteSiblingEditorFrameController=_prerequisiteSiblingEditorFrameController;
+@property(retain) NSSet *dependentSiblingEditorFrameControllers; // @synthesize dependentSiblingEditorFrameControllers=_dependentSiblingEditorFrameControllers;
+@property BOOL opensEditorsWithKeyEvents; // @synthesize opensEditorsWithKeyEvents=_opensEditorsWithKeyEvents;
+@property(copy, nonatomic) NSEvent *lastRightMouseDown; // @synthesize lastRightMouseDown;
+@property(copy, nonatomic) NSEvent *lastLeftMouseDown; // @synthesize lastLeftMouseDown;
 @property(nonatomic, getter=isDropInProgress) BOOL dropInProgress; // @synthesize dropInProgress;
 @property(copy) NSDate *lastDragMouseMovedTime; // @synthesize lastDragMouseMovedTime;
-@property(retain) IBAbstractDocumentEditor *documentEditor; // @synthesize documentEditor;
-@property(retain) IBEditor *baseEditor; // @synthesize baseEditor;
-@property(retain) IBDocument *document; // @synthesize document;
+@property(retain, nonatomic) IBAbstractDocumentEditor *documentEditor; // @synthesize documentEditor;
+@property(retain, nonatomic) IBEditor *baseEditor; // @synthesize baseEditor;
+@property(retain, nonatomic) IBDocument *document; // @synthesize document;
 @property(retain, nonatomic) IBEditorCanvasFrame *editorCanvasFrame; // @synthesize editorCanvasFrame;
 - (void).cxx_destruct;
+- (id)runSynchronousSceneUpdateForRoot:(id)arg1;
+- (void)populateSceneUpdates:(id)arg1 forUpdatingSceneWithRoot:(id)arg2 sceneUpdateManager:(id)arg3;
+- (id)_makeSceneUpdateRequestForRoot:(id)arg1 returningScaleFactor:(id *)arg2;
 - (void)document:(id)arg1 willRunArbitrationOfUnits:(id)arg2;
-- (void)didResizeEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(long long)arg3;
-- (void)willResizeEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(long long)arg3;
+- (void)prepareToResizeFrameWithTracker:(id)arg1;
+- (void)didResizeEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(CDUnion_31865a80)arg3;
+- (void)willResizeEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(CDUnion_31865a80)arg3;
 - (void)recursivelyVisitEditorsStartingAtEditedObject:(id)arg1 callingBlockForEachVisitedEditor:(CDUnknownBlockType)arg2;
-@property(readonly) IBLayoutManager *layoutManager;
+@property(readonly, nonatomic) IBLayoutManager *layoutManager;
 - (void)sendEvent:(id)arg1;
 - (BOOL)decoratorActionsShouldInterceptEvent:(id)arg1;
 - (BOOL)decoratorActionsShouldInterceptEventAtPoint:(struct CGPoint)arg1;
 - (id)connectionSourceForEvent:(id)arg1;
-- (id)initialEndPointForPossibleEndPoints:(id)arg1 givenSelection:(id)arg2;
 - (id)descendantEditorClickPassthroughTarget;
 - (BOOL)shouldDragFrameWithMouseDownInContentRect:(id)arg1;
 - (CDUnknownBlockType)willTrackWithMouseDownEvent:(id)arg1;
@@ -78,7 +91,7 @@
 - (BOOL)openEditorWithKeyEvent:(id)arg1;
 - (id)nextTabTargetRelativeToObject:(id)arg1 forEvent:(id)arg2;
 - (id)tabOrderedChidren;
-- (void)showSelectionMenuForEvent:(id)arg1;
+- (void)showNavigationMenuForEvent:(id)arg1;
 - (id)navigationMenuController;
 - (BOOL)actionAreaInterceptedEvent:(id)arg1;
 - (BOOL)interceptDecoratorActionEvent:(id)arg1;
@@ -115,6 +128,7 @@
 - (void)delegateDrawingDragAndDropInsertionHints;
 - (id)lastDragTarget;
 - (void)updateLastDragTargetEditedObject:(id)arg1 fromDraggingInfo:(id)arg2;
+- (id)updateLastDragRespectingDragModifierFlagsForTargetEditedObject:(id)arg1 fromDraggingInfo:(id)arg2;
 - (void)concludeDragOperation:(id)arg1;
 - (BOOL)performDragOperation:(id)arg1;
 - (void)dragTarget:(id)arg1 didAcceptDraggedObjects:(id)arg2 fromDragInfo:(id)arg3 context:(id)arg4;
@@ -122,6 +136,7 @@
 - (void)draggingEnded:(id)arg1;
 - (void)draggingExited:(id)arg1;
 - (unsigned long long)draggingUpdated:(id)arg1;
+- (BOOL)isDragLocationWithinTheDraggingSourceEditedObject:(id)arg1;
 - (unsigned long long)draggingEntered:(id)arg1;
 - (BOOL)autoscrollEditedContentWithExternalDragEvent:(id)arg1 animate:(BOOL)arg2;
 - (BOOL)shouldBlockDragsUntilHoldFromDragginEntered;
@@ -147,11 +162,18 @@
 - (void)trackMeasurementsWithEvent:(id)arg1 atPoint:(struct CGPoint)arg2;
 - (void)displayLockedMemberAlertForMembers:(id)arg1;
 - (void)invalidateCursorRects;
+- (void)addCursorRect:(struct CGRect)arg1 cursor:(id)arg2 forObject:(id)arg3 useForegroundLayer:(BOOL)arg4 clipToParentViews:(BOOL)arg5;
 - (void)addCursorRect:(struct CGRect)arg1 cursor:(id)arg2 forObject:(id)arg3;
 - (void)didResetCursorRects;
 - (void)resetCursorRects;
 - (void)willResetCursorRects;
 - (void)positionChildEditorFrames;
+- (BOOL)isEligibleForBandSelection;
+- (BOOL)shouldIncludeParentWhenScrollingToVisible;
+- (id)orderedDependentSiblingEditorFrameControllers;
+- (void)removeDependentSiblingEditorFrameController:(id)arg1;
+- (void)addDependentSiblingEditorFrameController:(id)arg1;
+@property(readonly, copy) NSString *description;
 - (id)overlayView;
 - (id)accessibilityDescriptionForEditedObject;
 - (id)accessibilityUniqueIDForEditedObject;
@@ -169,7 +191,7 @@
 - (void)depthFirstSearchForObjectsAtPoint:(struct CGPoint)arg1 criteria:(long long)arg2 fromObject:(id)arg3 clippedRect:(struct CGRect)arg4 clippingRectForChildren:(struct CGRect)arg5 addingObjectsToArray:(id)arg6;
 - (struct CGRect)rectClippedToViewAncestorsForChild:(id)arg1 ofParent:(id)arg2;
 - (struct CGRect)clipRect:(struct CGRect)arg1 toViewAncestorsOfObject:(id)arg2;
-- (id)delegatedCanvasOverlay:(id)arg1 hitTest:(struct CGPoint)arg2;
+- (id)delegatedCanvasOverlay:(id)arg1 hitTest:(struct CGPoint)arg2 inCoordinatesSpaceOfView:(id)arg3;
 - (void)decrementTargetIdentifierUseCount;
 - (void)incrementTargetIdentifierUseCount;
 - (void)primitiveInvalidate;
@@ -194,16 +216,15 @@
 - (BOOL)wouldEditObject:(id)arg1;
 - (id)objectsFromBackToFrontForCriteria:(long long)arg1;
 - (void)enumerateChildrenOfObject:(id)arg1 criteria:(long long)arg2 fromBackToFrontWithBlock:(CDUnknownBlockType)arg3;
-- (id)baseEditedObject;
 - (struct CGRect)unclippedRectForObject:(id)arg1;
 - (struct CGRect)rectForBaseEditedObject;
 - (id)canvasView;
-@property(readonly) IBCanvasViewController *canvasViewController;
+@property(readonly, nonatomic) IBCanvasViewController *canvasViewController;
+- (id)init;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;

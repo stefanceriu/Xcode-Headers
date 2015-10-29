@@ -20,7 +20,7 @@
 + (id)arbitrationUnitForObject:(id)arg1 withLayoutInfo:(id)arg2;
 + (void)_recursivelyBuildArbitrationUnitsAndAddToOrderedSet:(id)arg1 nextObject:(id)arg2 currentUnit:(id)arg3 withLayoutInfo:(id)arg4 stoppingAtLeaves:(BOOL)arg5;
 + (id)arbitrationUnitRootForObject:(id)arg1 withLayoutInfo:(id)arg2;
-+ (BOOL)_objectShouldBeArbitrationUnitRoot:(id)arg1 withLayoutInfo:(id)arg2;
++ (BOOL)objectShouldBeArbitrationUnitRoot:(id)arg1 withLayoutInfo:(id)arg2;
 
 @end
 

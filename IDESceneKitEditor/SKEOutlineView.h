@@ -10,10 +10,10 @@
 {
     CDUnknownBlockType _rightOrCtrlLeftClickHandler;
     CDUnknownBlockType _rightOrCtrlLeftDragHandler;
-    CDUnknownBlockType _mouseDownHandler;
+    CDUnknownBlockType _leftClickHandler;
 }
 
-@property(copy) CDUnknownBlockType mouseDownHandler; // @synthesize mouseDownHandler=_mouseDownHandler;
+@property(copy) CDUnknownBlockType leftClickHandler; // @synthesize leftClickHandler=_leftClickHandler;
 @property(copy) CDUnknownBlockType rightOrCtrlLeftDragHandler; // @synthesize rightOrCtrlLeftDragHandler=_rightOrCtrlLeftDragHandler;
 @property(copy) CDUnknownBlockType rightOrCtrlLeftClickHandler; // @synthesize rightOrCtrlLeftClickHandler=_rightOrCtrlLeftClickHandler;
 - (void).cxx_destruct;

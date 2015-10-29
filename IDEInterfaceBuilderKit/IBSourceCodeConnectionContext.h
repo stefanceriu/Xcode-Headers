@@ -44,7 +44,6 @@
     struct _NSRange _range;
 }
 
-+ (Class)sourceCodeGeneratorClass;
 + (id)targetCandidatesForContainingClassNamed:(id)arg1 toObject:(id)arg2 document:(id)arg3 preferredTarget:(id *)arg4;
 + (id)defaultType;
 @property(retain) NSError *insertionError; // @synthesize insertionError=_insertionError;

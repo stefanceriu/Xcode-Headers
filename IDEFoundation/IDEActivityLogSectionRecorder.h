@@ -6,17 +6,17 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, DVTPointerArray, IDEActivityLogSection, NSMutableArray, NSMutableDictionary;
+@class IDEActivityLogSection, NSMapTable, NSMutableArray, NSMutableDictionary, NSPointerArray;
 
 @interface IDEActivityLogSectionRecorder : NSObject
 {
-    DVTPointerArray *_parentRecorders;
+    NSPointerArray *_parentRecorders;
     NSMutableArray *_childRecorders;
     IDEActivityLogSection *_section;
     NSMutableArray *_observations;
     NSMutableArray *_changesToPost;
     BOOL _hasScheduledChangePosting;
-    DVTMapTable *_rememberedMessagesByKey;
+    NSMapTable *_rememberedMessagesByKey;
     struct _NSRange _mostRecentTextRange;
     CDUnknownBlockType _completionBlock;
     NSMutableDictionary *_severityToLimitTable;
@@ -53,6 +53,7 @@
 - (BOOL)hasReachedAllMessageLimits;
 - (BOOL)hasReachedMessageLimitForSeverity:(unsigned long long)arg1;
 - (void)setMessageLimit:(unsigned long long)arg1 forSeverity:(unsigned long long)arg2;
+- (unsigned long long)messageLimitForSeverity:(unsigned long long)arg1;
 - (void)setLocalizedResultString:(id)arg1;
 - (void)setWasFetchedFromCache:(BOOL)arg1;
 - (void)setIsQuiet:(BOOL)arg1;
@@ -67,6 +68,7 @@
 - (id)rememberedMessageForKey:(id)arg1;
 - (void)addCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)section;
+- (void)_performOrderedAsyncBlock:(CDUnknownBlockType)arg1;
 - (id)initWithLogSection:(id)arg1;
 
 @end

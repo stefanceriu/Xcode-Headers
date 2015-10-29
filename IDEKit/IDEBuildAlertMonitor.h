@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEBuildOperation, IDEIssue, IDEWorkspaceDocument, NSString;
+@class DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEBuildOperation, IDEIssue, IDEWorkspaceDocument, NSMapTable, NSString;
 
 @interface IDEBuildAlertMonitor : NSObject <DVTInvalidation>
 {
@@ -24,7 +24,7 @@
     BOOL _stopped;
     BOOL _alertedIssue;
     BOOL _cleanupWhenDoneRecording;
-    DVTMapTable *_existingIssues;
+    NSMapTable *_existingIssues;
     IDEIssue *_firstIssue;
 }
 

@@ -26,6 +26,7 @@
 - (void).cxx_destruct;
 - (BOOL)launchAndActivateHelperApplication:(id *)arg1;
 @property(readonly) NSRunningApplication *runningApplication;
+- (id)description;
 - (id)initWithBundlePath:(id)arg1;
 @property(readonly, copy) NSURL *bundleURL;
 

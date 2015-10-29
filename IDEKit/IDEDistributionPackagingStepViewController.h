@@ -12,9 +12,6 @@
 
 + (BOOL)skipStepForContext:(id)arg1 assistantDirection:(int)arg2;
 - (void)viewDidInstall;
-- (id)providedOutputContextPropertyNames;
-- (id)requiredInputContextPropertyNames;
-@property(readonly) BOOL wantsDryRun;
 - (BOOL)canGoPrevious;
 - (BOOL)canGoNext;
 - (id)title;

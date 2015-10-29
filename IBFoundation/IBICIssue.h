@@ -19,6 +19,7 @@
     long long _classification;
 }
 
++ (id)conflictIssueForItem:(id)arg1 onName:(id)arg2;
 + (id)descriptionForSeverity:(long long)arg1;
 + (id)descriptionForClassification:(long long)arg1;
 + (id)noticeWithCatalogItem:(id)arg1 classification:(long long)arg2 message:(id)arg3;

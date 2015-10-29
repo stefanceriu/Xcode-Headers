@@ -13,7 +13,6 @@
 
 @interface SCNPhysicsShape : NSObject <NSCopying, NSSecureCoding>
 {
-    id _reserved;
     id _referenceObject;
     NSDictionary *_options;
     NSArray *_transforms;
@@ -23,16 +22,22 @@
 
 + (BOOL)supportsSecureCoding;
 + (id)defaultShapeForGeometry:(id)arg1;
-+ (id)SCNJSExportProtocol;
 + (id)shapeWithShapes:(id)arg1 transforms:(id)arg2;
 + (id)shapeWithNode:(id)arg1 options:(id)arg2;
 + (id)shapeWithGeometry:(id)arg1 options:(id)arg2;
+@property(readonly, nonatomic) id sourceObject; // @synthesize sourceObject=_referenceObject;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (void)_customDecodingOfSCNPhysicsShape:(id)arg1;
+- (void)_customEncodingOfSCNPhysicsShape:(id)arg1;
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (struct btCollisionShape *)_handle;
 - (void)_setTransforms:(id)arg1;
+@property(readonly, nonatomic) NSArray *transforms;
+@property(readonly, nonatomic) NSDictionary *options;
+- (void)setReferenceObject:(id)arg1;
+- (id)referenceObject;
 - (void)dealloc;
 - (id)initWithCachedObject:(void *)arg1 options:(id)arg2;
 - (id)initWithContent:(id)arg1 options:(id)arg2;

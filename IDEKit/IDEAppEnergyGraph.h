@@ -8,8 +8,10 @@
 
 @interface IDEAppEnergyGraph : IDEBarGraph
 {
+    BOOL _hasOSXAppNapGuidance;
 }
 
+@property(nonatomic) BOOL hasOSXAppNapGuidance; // @synthesize hasOSXAppNapGuidance=_hasOSXAppNapGuidance;
 - (double)xLabelSpacing;
 - (Class)graphClass;
 

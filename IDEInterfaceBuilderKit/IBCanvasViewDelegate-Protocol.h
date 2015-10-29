@@ -31,8 +31,6 @@
 - (void)canvasView:(IBCanvasView *)arg1 willRemoveCanvasFrame:(IBCanvasFrame *)arg2;
 - (NSValue *)canvasView:(IBCanvasView *)arg1 lastKnownAnchorForCanvasFrame:(IBCanvasFrame *)arg2;
 - (void)canvasView:(IBCanvasView *)arg1 selectionDidChange:(NSSet *)arg2;
-- (void)canvasView:(IBCanvasView *)arg1 gestureDidEndWithEvent:(NSEvent *)arg2;
-- (void)canvasView:(IBCanvasView *)arg1 gestureDidBeginWithEvent:(NSEvent *)arg2;
 - (void)canvasView:(IBCanvasView *)arg1 userDidMagnifyWithEvent:(NSEvent *)arg2;
 - (void)canvasView:(IBCanvasView *)arg1 userDidDoubleClickInEmptyArea:(NSEvent *)arg2;
 - (void)canvasView:(IBCanvasView *)arg1 userDidClickInEmptyArea:(NSEvent *)arg2;

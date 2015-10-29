@@ -13,6 +13,7 @@
     BOOL _intrinsicSizeIsInvalid;
 }
 
++ (BOOL)isCompatibleWithResponsiveScrolling;
 - (void)scrollWheel:(id)arg1;
 - (void)tile;
 - (void)updateConstraints;

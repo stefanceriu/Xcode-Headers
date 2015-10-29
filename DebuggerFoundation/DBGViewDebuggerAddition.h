@@ -30,6 +30,7 @@
 - (id)adjustedLaunchParametersForLaunchParameters:(id)arg1;
 - (id)_viewDebuggingDylibPath:(id)arg1;
 - (void)_loadViewDebuggingDylibIfNecessary;
+@property(readonly) NSString *targetPlatform;
 - (void)initiateViewDebugging;
 - (id)initInLaunchSession:(id)arg1 withAppDisplayName:(id)arg2 runDestination:(id)arg3 fromExtension:(id)arg4;
 

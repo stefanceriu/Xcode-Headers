@@ -6,15 +6,18 @@
 
 #import "NSView.h"
 
-@class NSArray, NSMenu, NSMutableArray, SKDocumentViewController, SKEditView, SKNode, SKScene;
+#import "DVTInvalidation.h"
+#import "SKDocumentDelegate.h"
+#import "SKSceneDelegate.h"
 
-@interface EditOverlayView : NSView
+@class DVTStackBacktrace, NSArray, NSMenu, NSMutableArray, NSString, SKDocumentViewController, SKEditView, SKNode, SKScene;
+
+@interface EditOverlayView : NSView <DVTInvalidation, SKSceneDelegate, SKDocumentDelegate>
 {
     BOOL _isMidCommand;
     SKScene *_pausePlaySceneCopy;
     SKNode *_selectedNode;
     NSMutableArray *_selectedNodes;
-    NSMutableArray *_copiedNodes;
     BOOL _isTrackingTouch;
     BOOL _isPBDragging;
     BOOL _isObjectMoved;
@@ -29,6 +32,7 @@
     struct CGColor *_blackColor;
     struct CGColor *_whiteColor;
     struct CGColor *_goldColor;
+    struct CGColor *_greenColor;
     struct CGColor *_snappingColor;
     struct CGColor *_selectionColor;
     struct CGColor *_selectionFillColor;
@@ -45,7 +49,6 @@
     struct CGPoint rh;
     struct CGPoint ap;
     BOOL _drawingSelection;
-    int _handleBeingManipulated;
     BOOL _snappingInX;
     BOOL _snappingInY;
     float _snapXValue;
@@ -66,14 +69,32 @@
     NSMenu *_rightClickContextMenu;
     int _touchMoveCount;
     NSMutableArray *_observedNodes;
-    BOOL _firstCenter;
+    int _handleBeingManipulated;
+    SKNode *_manipulatedNode;
+    NSMutableArray *_selectedObjectPopovers;
+    long long _lastEnabledFeatureState;
+    long long _lastEnabledPropertyManipulationState;
+    struct map<std::__1::basic_string<char>, CGImage *, std::__1::less<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, CGImage *>>> _overlayImageMap;
+    double _cachedViewScale;
+    struct CGPoint _cachedViewTranslation;
+    struct CGPoint _userViewTranslation;
+    struct CGPoint _lastViewTranslation;
+    double _lastViewScale;
+    int _numPastesSinceLastCopy;
     BOOL _enabled;
     SKScene *_scene;
     SKEditView *_skEditView;
     SKDocumentViewController *_documentViewController;
+    id <EditOverlayDelegate> _delegate;
+    long long _enabledFeatures;
+    long long _enabledPropertyManipulations;
 }
 
 + (id)getEditOverlayViewModeDisplayName:(int)arg1;
++ (void)initialize;
+@property(nonatomic) long long enabledPropertyManipulations; // @synthesize enabledPropertyManipulations=_enabledPropertyManipulations;
+@property(nonatomic) long long enabledFeatures; // @synthesize enabledFeatures=_enabledFeatures;
+@property(nonatomic) __weak id <EditOverlayDelegate> delegate; // @synthesize delegate=_delegate;
 @property int editorMode; // @synthesize editorMode=_editorMode;
 @property(nonatomic) __weak SKDocumentViewController *documentViewController; // @synthesize documentViewController=_documentViewController;
 @property(retain, nonatomic) NSArray *selectedNodes; // @synthesize selectedNodes=_selectedNodes;
@@ -93,27 +114,37 @@
 - (void)delete:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
+- (void)didEvaluateActionsForScene:(id)arg1;
 - (void)thunkPhysicsRecursive:(id)arg1;
-- (void)didPerformActions;
+- (void)processNodeMoveQueue;
 - (void)resetPolygonEditor;
 - (void)bringSelectedNodesToFront;
 - (void)pushSelectedNodesToBack;
-- (void)undoEvent:(id)arg1;
+- (void)handleSceneUndoEvent:(id)arg1;
 - (void)contextMenuAddNodePressed;
 - (id)info:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)unobserveAllNodesAndChildren;
+- (void)observeAllNodesAndChildren;
+- (void)nodeTextureDidChange:(id)arg1;
+- (void)nodeNameDidChange:(id)arg1;
 - (void)unobserveNode:(id)arg1;
 - (void)observeNode:(id)arg1;
 - (float)getGlobalZForNode:(id)arg1;
 - (id)getNodeToSelectAtPoint:(struct CGPoint)arg1;
 - (void)toggleSelectNode:(id)arg1;
+- (void)_deselectAllNodesSkipSync:(BOOL)arg1;
 - (void)deselectAllNodes;
+- (void)closeSelectedNodeNamePopover:(id)arg1;
+- (void)cleanupSelectedObjectPopovers;
 - (void)deselectNode:(id)arg1;
+- (void)updateSelectionPopover;
+- (void)_selectNode:(id)arg1 updateSelectionPopover:(BOOL)arg2 skipSync:(BOOL)arg3;
 - (void)selectNode:(id)arg1;
 - (void)drawBoundsBox;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)drawSceneBounds;
+- (void)drawFrustumForCamera:(id)arg1;
 - (void)drawNodeOverlayImageRecursive:(id)arg1;
 - (void)drawParentChildLines;
 - (void)drawSelectionRect;
@@ -124,11 +155,19 @@
 - (void)drawAnchorPointHandle;
 - (void)drawRotationHandle;
 - (BOOL)point:(struct CGPoint)arg1 isWithinRadius:(double)arg2 ofPoint:(struct CGPoint)arg3;
-- (void)togglePlayPause:(id)arg1;
+- (void)liveReloadScene;
+- (BOOL)togglePlayPause;
+- (void)restoreSelectionFromUIDs:(id)arg1;
+- (id)selectionUIDs;
+- (void)reloadSceneState;
+- (void)_transferPersistantPropertiesFromScene:(id)arg1 toScene:(id)arg2;
+- (void)saveSceneState;
 - (BOOL)isClickingOnHandle:(struct CGPoint)arg1;
 - (BOOL)isOpaque;
 - (void)pan:(float)arg1 deltaY:(float)arg2;
+- (void)refreshZoomState;
 - (void)restoreZoomToNative;
+- (void)restoreZoomToNativeMaintainCenter;
 - (void)zoom:(float)arg1 towardScenePosition:(struct CGPoint)arg2;
 - (void)zoom:(float)arg1;
 - (void)doSnappingForNodeMovement:(id)arg1 lastPosition:(struct CGPoint)arg2;
@@ -164,6 +203,8 @@
 - (BOOL)resignFirstResponder;
 - (BOOL)becomeFirstResponder;
 - (BOOL)acceptsFirstResponder;
+- (void)assignNodeUID:(id)arg1;
+- (void)setActionsOnNodeAndChildren:(id)arg1;
 - (void)addNode:(id)arg1;
 - (void)pasteCopiedNode:(id)arg1;
 - (void)copySelectedNode:(id)arg1;
@@ -171,12 +212,33 @@
 - (void)duplicateSelectedNode:(id)arg1;
 - (void)deleteSelectedNode:(id)arg1;
 - (void)syncDocumentViewController:(id)arg1;
-- (id)getSelectedOverlayImageForNode:(id)arg1;
-- (id)getOverlayImageForNode:(id)arg1;
+- (BOOL)canPropertyBeManipulated:(long long)arg1;
+- (BOOL)isFeatureEnabled:(long long)arg1;
+- (void)setFeatureDisabled:(long long)arg1;
+@property int handleBeingManipulated;
+- (long long)handleTypeToProperty:(int)arg1;
+- (struct CGImage *)getSelectedOverlayImageForNode:(id)arg1;
+- (struct CGImage *)getOverlayImageForNode:(id)arg1;
+- (struct CGImage *)getOverlayImageForImageName:(id)arg1;
+- (void)releaseOverlayImages;
 - (id)getOverlayTextColorForNodeName:(id)arg1;
+- (BOOL)doesNodeTypeDrawAnchor:(id)arg1;
+- (BOOL)canNodeTypeResize:(id)arg1;
+- (BOOL)canNodeTypeRotate:(id)arg1;
+- (BOOL)isIconRepresentedNode:(id)arg1;
 - (void)endCommand;
 - (void)beginCommand;
+- (void)primitiveInvalidate;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

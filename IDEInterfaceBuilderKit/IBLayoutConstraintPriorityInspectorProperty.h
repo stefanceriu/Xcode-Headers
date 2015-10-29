@@ -16,7 +16,7 @@
 - (id)makeEditingController;
 
 // Remaining properties
-@property(readonly, nonatomic) IBLayoutConstraintPriorityEditingController *editingController;
+@property(readonly, nonatomic) IBLayoutConstraintPriorityEditingController *editingController; // @dynamic editingController;
 
 @end
 

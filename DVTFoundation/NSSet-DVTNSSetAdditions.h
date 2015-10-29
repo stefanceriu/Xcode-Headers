@@ -18,6 +18,7 @@
 - (id)dvt_setByApplyingBlockStrictly:(CDUnknownBlockType)arg1;
 - (id)dvt_setByApplyingBlock:(CDUnknownBlockType)arg1;
 - (id)dvt_setByApplyingSelector:(SEL)arg1;
+- (id)dvt_setByRemovingObject:(id)arg1;
 - (id)dvt_setBySubtractingSet:(id)arg1;
 - (id)dvt_setByIntersectingSet:(id)arg1;
 - (Class)dvt_mutableClass;

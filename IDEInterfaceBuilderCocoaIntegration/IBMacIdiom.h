@@ -20,14 +20,15 @@
 - (id)storyboardPrimarySceneObjectPasteboardType;
 - (id)viewPasteboardType;
 - (id)objectPasteboardType;
-- (Class)storyboardMainEntryPointIndicatorClass;
 - (Class)storyboardAssetProviderClass;
 - (Class)xibAssetProviderClass;
 - (Class)storyboardVerifierClass;
 - (Class)xibVerifierClass;
 - (double)defaultOverviewZoomFactor;
 - (id)pluginName;
+- (id)platform;
 - (id)icon;
+- (id)idiomName;
 - (id)identifier;
 
 @end

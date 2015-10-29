@@ -23,6 +23,7 @@
     CDUnknownBlockType _standardErrorFeedbackBlock;
 }
 
++ (void)setupFilePath:(id)arg1 asUnversionedWithDictionary:(id)arg2 blacklistedFiles:(id)arg3;
 + (id)_authenticationAgentExecutablePath;
 + (id)sourceControlTaskOperationLogAspect;
 @property(copy) CDUnknownBlockType standardErrorFeedbackBlock; // @synthesize standardErrorFeedbackBlock=_standardErrorFeedbackBlock;

@@ -18,7 +18,7 @@
 @property double doubleRowIssueHeight; // @synthesize doubleRowIssueHeight=_doubleRowIssueHeight;
 @property double singleRowIssueHeight; // @synthesize singleRowIssueHeight=_singleRowIssueHeight;
 @property int maxIssuesPerCollapsedSection; // @synthesize maxIssuesPerCollapsedSection=_maxIssuesPerCollapsedSection;
-- (void)distributeNewIssues:(id)arg1 unresolvedIssues:(id)arg2 resolvedIssues:(id)arg3 buildServiceIssues:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (void)distributeNewIssues:(id)arg1 unresolvedIssues:(id)arg2 resolvedIssues:(id)arg3 triggerIssues:(id)arg4 buildServiceIssues:(id)arg5 silencedIssues:(id)arg6 completionBlock:(CDUnknownBlockType)arg7;
 - (double)heightRequiredToShowIssues:(id)arg1;
 
 @end

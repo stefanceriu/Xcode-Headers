@@ -12,13 +12,14 @@
 {
     NSString *_keyPath;
     id _object;
-    id _value;
+    id _newValue;
+    id _oldValue;
 }
 
 - (void).cxx_destruct;
 - (BOOL)revert;
 - (BOOL)apply;
-- (id)initWithDocument:(id)arg1 object:(id)arg2 value:(id)arg3 keyPath:(id)arg4;
+- (id)initWithDocument:(id)arg1 object:(id)arg2 newValue:(id)arg3 oldValue:(id)arg4 keyPath:(id)arg5;
 
 @end
 

@@ -28,8 +28,10 @@
     double _scoringType;
     long long _scoringClass;
     long long _contentType;
+    NSString *_identifier;
 }
 
+@property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(readonly, nonatomic) long long contentType; // @synthesize contentType=_contentType;
 @property(readonly, nonatomic) long long scoringClass; // @synthesize scoringClass=_scoringClass;
 @property(readonly, nonatomic) double scoringType; // @synthesize scoringType=_scoringType;

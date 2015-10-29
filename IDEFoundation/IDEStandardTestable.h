@@ -34,6 +34,7 @@
 - (id)supertestForTestWithIdentifier:(id)arg1;
 - (id)supertestForTestWithIdentifier:(id)arg1 createIfNeeded:(BOOL)arg2;
 - (id)nameForTestWithIdentifier:(id)arg1;
+- (id)testForIdentifier:(id)arg1 location:(id)arg2 createIfNeeded:(BOOL)arg3;
 - (id)testForIdentifier:(id)arg1 createIfNeeded:(BOOL)arg2;
 - (id)testForIdentifier:(id)arg1;
 - (id)identifierForTestClass:(id)arg1 method:(id)arg2;
@@ -41,6 +42,7 @@
 - (void)_updateLocationOfTest:(id)arg1 oldLocation:(id)arg2;
 @property(readonly) NSSet *testFiles;
 - (id)testsInFile:(id)arg1;
+- (id)targetApplicationBuildableForWorkspace:(id)arg1;
 - (id)parentBuildableInWorkspace:(id)arg1;
 - (id)testHostBuildableInWorkspace:(id)arg1;
 - (id)primaryBuildable;
@@ -48,7 +50,8 @@
 - (void)waitUntilTestSearchIsFinished;
 @property(readonly) BOOL isSearchingForTests;
 - (void)searchForTestsInWorkspace:(id)arg1;
-- (id)newTestRunner;
+- (id)newTestRunnerWithTestingSpecifier:(id)arg1 executionEnvironment:(id)arg2 buildOperation:(id)arg3 withBuildParameters:(id)arg4 runDestination:(id)arg5 error:(id *)arg6;
+@property(readonly) BOOL isUITest;
 @property(readonly) BOOL usesXCTest;
 @property(readonly) NSString *name;
 @property(readonly) id <IDETestableProvider> testableProvider;

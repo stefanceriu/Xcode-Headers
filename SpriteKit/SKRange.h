@@ -28,6 +28,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithLowerLimit:(double)arg1 upperLimit:(double)arg2;
+- (id)init;
 
 @end
 

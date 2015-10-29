@@ -27,7 +27,6 @@
 @property(retain) NSMutableDictionary *futures; // @synthesize futures=_futures;
 @property struct sockaddr_storage addr; // @synthesize addr=_addr;
 @property double timeout; // @synthesize timeout=_timeout;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)ping;
 - (void)_promiseWithSequenceNumber:(unsigned long long)arg1 endedAt:(double)arg2;

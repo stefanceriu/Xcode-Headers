@@ -6,12 +6,11 @@
 
 #import "NSWindowController.h"
 
-@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, DVTRolloverImageButton, DVTScrollView, DVTTableView, IDEButtonWithBackgroundColor, IDEFirstLaunchExperienceViewController, IDEInfiniteLineBox, IDERecentsHelper, IDEWelcomeWindowHighlightButton, NSArrayController, NSBox, NSImageView, NSProgressIndicator, NSString, NSTextField, NSTrackingArea, NSView;
+@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, DVTRolloverImageButton, DVTScrollView, DVTTableView, IDEButtonWithBackgroundColor, IDEFirstLaunchExperienceViewController, IDERecentsHelper, IDEWelcomeWindowHighlightButton, NSArrayController, NSBox, NSProgressIndicator, NSString, NSTextField, NSTrackingArea, NSView;
 
 @interface IDEWelcomeWindowController : NSWindowController
 {
     DVTTableView *_projectsTableView;
-    NSBox *_verticalDivider;
     IDEWelcomeWindowHighlightButton *_newProjectAssistantButton;
     IDEWelcomeWindowHighlightButton *_sourceControlButton;
     NSTextField *_newProjectAssistantButtonTitle;
@@ -30,54 +29,48 @@
     id <IDEWelcomeWindowButtonProvider> _secretButtonProvider;
     BOOL _transientControlsHidden;
     NSArrayController *_projectsArrayController;
-    NSImageView *_welcomeToXcodeImage;
     NSTextField *_welcomeToXcodeLabel_10_10;
     NSTextField *_versionLabel;
-    IDEInfiniteLineBox *_verticalFadeLine;
     DVTRolloverImageButton *_closeButton;
     DVTScrollView *_projectsScrollView;
     IDEButtonWithBackgroundColor *_showWindowCheckbox;
     IDEButtonWithBackgroundColor *_openAnotherProjectButton;
+    IDEWelcomeWindowHighlightButton *_createPlaygroundButton;
+    NSTextField *_createPlaygroundButtonTitle;
     NSBox *_buttonSeparatorOne;
     NSBox *_buttonSeparatorTwo;
     NSBox *_buttonSeparatorThree;
     NSBox *_buttonSeparatorFour;
     DVTBorderedView *_openAnotherProjectContainerView;
-    IDEWelcomeWindowHighlightButton *_specialButton;
-    NSTextField *_specialButtonTitle;
-    NSTextField *_specialButtonSubtitle;
 }
 
 + (BOOL)_canCoexistWithWindow:(id)arg1;
 + (BOOL)wantsReopenedWelcomeWindow;
 + (id)sharedWelcomeWindowController;
 + (void)initialize;
-@property __weak NSTextField *specialButtonSubtitle; // @synthesize specialButtonSubtitle=_specialButtonSubtitle;
-@property __weak NSTextField *specialButtonTitle; // @synthesize specialButtonTitle=_specialButtonTitle;
-@property __weak IDEWelcomeWindowHighlightButton *specialButton; // @synthesize specialButton=_specialButton;
 @property __weak DVTBorderedView *openAnotherProjectContainerView; // @synthesize openAnotherProjectContainerView=_openAnotherProjectContainerView;
 @property __weak NSBox *buttonSeparatorFour; // @synthesize buttonSeparatorFour=_buttonSeparatorFour;
 @property __weak NSBox *buttonSeparatorThree; // @synthesize buttonSeparatorThree=_buttonSeparatorThree;
 @property __weak NSBox *buttonSeparatorTwo; // @synthesize buttonSeparatorTwo=_buttonSeparatorTwo;
 @property __weak NSBox *buttonSeparatorOne; // @synthesize buttonSeparatorOne=_buttonSeparatorOne;
+@property __weak NSTextField *createPlaygroundButtonTitle; // @synthesize createPlaygroundButtonTitle=_createPlaygroundButtonTitle;
+@property __weak IDEWelcomeWindowHighlightButton *createPlaygroundButton; // @synthesize createPlaygroundButton=_createPlaygroundButton;
 @property __weak IDEButtonWithBackgroundColor *openAnotherProjectButton; // @synthesize openAnotherProjectButton=_openAnotherProjectButton;
 @property __weak IDEButtonWithBackgroundColor *showWindowCheckbox; // @synthesize showWindowCheckbox=_showWindowCheckbox;
 @property __weak DVTScrollView *projectsScrollView; // @synthesize projectsScrollView=_projectsScrollView;
 @property __weak DVTRolloverImageButton *closeButton; // @synthesize closeButton=_closeButton;
-@property __weak IDEInfiniteLineBox *verticalFadeLine; // @synthesize verticalFadeLine=_verticalFadeLine;
 @property __weak NSTextField *versionLabel; // @synthesize versionLabel=_versionLabel;
 @property __weak NSTextField *welcomeToXcodeLabel_10_10; // @synthesize welcomeToXcodeLabel_10_10=_welcomeToXcodeLabel_10_10;
-@property __weak NSImageView *welcomeToXcodeImage; // @synthesize welcomeToXcodeImage=_welcomeToXcodeImage;
 @property(nonatomic) BOOL transientControlsHidden; // @synthesize transientControlsHidden=_transientControlsHidden;
 @property(retain) NSArrayController *projectsArrayController; // @synthesize projectsArrayController=_projectsArrayController;
 - (void).cxx_destruct;
-- (id)_lookupSecretButtonProvider;
 - (void)_windowDidBecomeKeyOrMain:(id)arg1;
 - (void)_addWindowNotificationObservers;
 - (void)_removeWindowNotificationObservers;
 - (void)doSpecialButtonAction:(id)arg1;
 - (void)openSourceControl:(id)arg1;
 - (void)openNewProjectAssistant:(id)arg1;
+- (void)createNewPlayground:(id)arg1;
 - (void)openSelected:(id)arg1;
 - (void)_openURL:(id)arg1;
 - (void)closeWelcomeWindow:(id)arg1;
@@ -97,7 +90,6 @@
 - (void)_updateProjectsTableViewEmptyContentString;
 - (void)_configureWindowControlEyeCandy;
 - (void)_configureWindow;
-- (void)_configureWindowLauncherButtons;
 - (void)windowDidLoad;
 - (void)_setProgressIndicatorVisible:(BOOL)arg1;
 - (void)windowWillLoad;

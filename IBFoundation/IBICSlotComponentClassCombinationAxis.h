@@ -6,13 +6,11 @@
 
 #import "NSObject.h"
 
-#import "IBICPseudoXMLGeneration.h"
-#import "NSCoding.h"
 #import "NSCopying.h"
 
 @class NSArray, NSString;
 
-@interface IBICSlotComponentClassCombinationAxis : NSObject <IBICPseudoXMLGeneration, NSCoding, NSCopying>
+@interface IBICSlotComponentClassCombinationAxis : NSObject <NSCopying>
 {
     NSString *_identifier;
     Class _slotComponentClass;
@@ -28,20 +26,11 @@
 @property(readonly, nonatomic) Class slotComponentClass; // @synthesize slotComponentClass=_slotComponentClass;
 @property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-- (id)ibic_pseudoXMLWithIndent:(unsigned long long)arg1;
-- (id)ibic_pseudoXML;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-@property(readonly) unsigned long long hash;
+- (unsigned long long)hash;
 - (BOOL)isEqualToSlotClassCombination:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (id)initWithSlotComponentClassCombinationCombination:(id)arg1 identifier:(id)arg2 title:(id)arg3 displayOrder:(double)arg4 slotComponentClass:(Class)arg5;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) Class superclass;
 
 @end
 

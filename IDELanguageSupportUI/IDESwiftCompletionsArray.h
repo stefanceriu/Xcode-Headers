@@ -14,7 +14,6 @@
     unsigned long long _itemCount;
 }
 
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (unsigned long long)indexOfFirstObjectWithCaseInsensitivePrefix:(const char *)arg1 length:(unsigned long long)arg2;
 - (void)enumerateSourceKitObjectsInRange:(struct _NSRange)arg1 usingBlock:(CDUnknownBlockType)arg2;

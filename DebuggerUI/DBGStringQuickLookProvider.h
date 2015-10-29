@@ -25,8 +25,8 @@
 - (void)writeAtomicallyToTemporaryFile:(id)arg1;
 - (id)extensionForTemporaryFile;
 - (void)cancelLoading;
-- (void)_updateTextViewFromData;
-- (void)loadView;
+- (void)_updateTextViewUsingStringOrAttributedString:(id)arg1;
+- (void)_didFinshLoadingWithStringOrAttributedString:(id)arg1;
 - (id)initWithDataValue:(id)arg1 options:(id)arg2;
 
 @end

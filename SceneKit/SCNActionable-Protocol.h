@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSString, SCNAction;
+@class NSArray, NSString, SCNAction;
 
 @protocol SCNActionable <NSObject>
+@property(readonly, nonatomic) NSArray *actionKeys;
+@property(readonly, nonatomic) BOOL hasActions;
 - (void)removeAllActions;
 - (void)removeActionForKey:(NSString *)arg1;
 - (SCNAction *)actionForKey:(NSString *)arg1;
-- (BOOL)hasActions;
 - (void)runAction:(SCNAction *)arg1 forKey:(NSString *)arg2 completionHandler:(void (^)(void))arg3;
 - (void)runAction:(SCNAction *)arg1 forKey:(NSString *)arg2;
 - (void)runAction:(SCNAction *)arg1 completionHandler:(void (^)(void))arg2;

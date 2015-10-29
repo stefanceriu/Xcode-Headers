@@ -8,35 +8,40 @@
 
 #import "NSSecureCoding.h"
 
-@class NSString;
+@class NSSet, NSString;
 
 @interface DVTSourceControlSystem : NSObject <NSSecureCoding>
 {
-    BOOL _supportsMultipleRemoteRepositories;
     BOOL _hasLocalRepository;
-    BOOL _repositoriesAreBrowsable;
-    BOOL _supportsPartialWorkingCopies;
+    BOOL _supportsMultipleRemoteRepositories;
+    BOOL _supportsPathLocation;
+    BOOL _repositoryURLIncludesSubpath;
     BOOL _requiresLocationsForBranchesAndTags;
     BOOL _isLegacyPlugIn;
     NSString *_name;
     NSString *_version;
     NSString *_workingCopyFolderIdentifier;
+    NSSet *_URLHintStrings;
+    unsigned long long _supportedAuthenticationTypes;
     NSString *_plugInIdentifier;
     NSString *_nonLegacyIdentifier;
 }
 
 + (BOOL)supportsSecureCoding;
 + (id)sourceControlSystemsWithCompletionBlock:(CDUnknownBlockType)arg1;
++ (id)bestGuessSystemForURL:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 + (id)cachedSourceControlSystems;
 + (id)systemWithIdentifier:(id)arg1;
 @property(copy) NSString *nonLegacyIdentifier; // @synthesize nonLegacyIdentifier=_nonLegacyIdentifier;
 @property(readonly) BOOL isLegacyPlugIn; // @synthesize isLegacyPlugIn=_isLegacyPlugIn;
 @property(copy) NSString *plugInIdentifier; // @synthesize plugInIdentifier=_plugInIdentifier;
+@property unsigned long long supportedAuthenticationTypes; // @synthesize supportedAuthenticationTypes=_supportedAuthenticationTypes;
 @property BOOL requiresLocationsForBranchesAndTags; // @synthesize requiresLocationsForBranchesAndTags=_requiresLocationsForBranchesAndTags;
-@property BOOL supportsPartialWorkingCopies; // @synthesize supportsPartialWorkingCopies=_supportsPartialWorkingCopies;
-@property BOOL repositoriesAreBrowsable; // @synthesize repositoriesAreBrowsable=_repositoriesAreBrowsable;
-@property BOOL hasLocalRepository; // @synthesize hasLocalRepository=_hasLocalRepository;
+@property BOOL repositoryURLIncludesSubpath; // @synthesize repositoryURLIncludesSubpath=_repositoryURLIncludesSubpath;
+@property BOOL supportsPathLocation; // @synthesize supportsPathLocation=_supportsPathLocation;
 @property BOOL supportsMultipleRemoteRepositories; // @synthesize supportsMultipleRemoteRepositories=_supportsMultipleRemoteRepositories;
+@property BOOL hasLocalRepository; // @synthesize hasLocalRepository=_hasLocalRepository;
+@property(retain) NSSet *URLHintStrings; // @synthesize URLHintStrings=_URLHintStrings;
 @property(retain) NSString *workingCopyFolderIdentifier; // @synthesize workingCopyFolderIdentifier=_workingCopyFolderIdentifier;
 @property(retain) NSString *version; // @synthesize version=_version;
 @property(retain) NSString *name; // @synthesize name=_name;
@@ -46,13 +51,14 @@
 - (id)description;
 @property(readonly, getter=isUsable) BOOL usable;
 - (BOOL)isIsLegacyPlugIn;
-- (id)initWithName:(id)arg1 plugInIdentifier:(id)arg2 version:(id)arg3 legacyPlugInForIdentifier:(id)arg4 workingCopyFolderIdentifier:(id)arg5 supportsMultipleRemoteRepositories:(BOOL)arg6 hasLocalRepository:(BOOL)arg7 repositoriesAreBrowsable:(BOOL)arg8 supportsPartialWorkingCopies:(BOOL)arg9 requiresLocationsForBranchesAndTags:(BOOL)arg10;
-- (id)initWithName:(id)arg1 plugInIdentifier:(id)arg2 version:(id)arg3 workingCopyFolderIdentifier:(id)arg4 supportsMultipleRemoteRepositories:(BOOL)arg5 hasLocalRepository:(BOOL)arg6 repositoriesAreBrowsable:(BOOL)arg7 supportsPartialWorkingCopies:(BOOL)arg8 requiresLocationsForBranchesAndTags:(BOOL)arg9;
+- (id)initWithName:(id)arg1 plugInIdentifier:(id)arg2 version:(id)arg3 legacyPlugInForIdentifier:(id)arg4 workingCopyFolderIdentifier:(id)arg5 URLHintStrings:(id)arg6 hasLocalRepository:(BOOL)arg7 supportsMultipleRemoteRepositories:(BOOL)arg8 supportsPathLocation:(BOOL)arg9 repositoryURLIncludesSubpath:(BOOL)arg10 requiresLocationsForBranchesAndTags:(BOOL)arg11 supportedAuthenticationTypes:(unsigned long long)arg12;
+- (id)initWithName:(id)arg1 plugInIdentifier:(id)arg2 version:(id)arg3 workingCopyFolderIdentifier:(id)arg4 URLHintStrings:(id)arg5 hasLocalRepository:(BOOL)arg6 supportsMultipleRemoteRepositories:(BOOL)arg7 supportsPathLocation:(BOOL)arg8 repositoryURLIncludesSubpath:(BOOL)arg9 requiresLocationsForBranchesAndTags:(BOOL)arg10 supportedAuthenticationTypes:(unsigned long long)arg11;
 - (id)_init;
 - (id)init;
+- (id)keychainNameFromURL:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-@property(readonly) NSString *pluginIdentifier;
+- (id)pluginIdentifier;
 
 @end
 

@@ -6,44 +6,21 @@
 
 #import <IDEKit/IDENavigableItem.h>
 
-@class DVTHashTable, NSHashTable, NSMutableSet, NSPredicate;
+@class NSHashTable;
 
 @interface IDENICFilterProxy : IDENavigableItem
 {
-    DVTHashTable *_itemsToFilterAfterDelay;
     NSHashTable *_rootItems;
-    DVTHashTable *_itemsWithComputedArrangedChildItems;
-    NSMutableSet *_pendingItems;
-    NSPredicate *_proxyFilterPredicate;
-    double _filterStartTime;
-    BOOL _isInvalidated;
-    BOOL _isFiltering;
-    BOOL _isSuspended;
 }
 
 @property(readonly) NSHashTable *rootItems; // @synthesize rootItems=_rootItems;
 - (void).cxx_destruct;
-- (id)parentForItem:(id)arg1;
-- (void)addPendingItem:(id)arg1;
-- (BOOL)shouldFilterChildItemsOfItem:(id)arg1;
-- (BOOL)canUseIncrementalFilteringBasedOnPredicate:(id)arg1;
-@property(getter=isFiltering) BOOL filtering;
-- (void)resumeFiltering;
-- (void)suspendFiltering;
-- (id)_itemsWithComputedArrangedChildItems;
-- (void)handleObjectGraphUpdateNotification:(id)arg1;
-- (void)updateArrangedChildItemsForItem:(id)arg1;
-- (void)computeArrangedChildItemsForItem:(id)arg1;
-- (void)_delayedComputeArrangedChildItems;
-- (id)arrangeItems:(id)arg1;
-- (id)filterPredicate;
-- (void)setFilterPredicate:(id)arg1;
+- (BOOL)_alwaysBypassFilter;
 - (id)_childItems;
 - (id)childItems;
 - (BOOL)isLeaf;
 - (id)description;
-- (void)primitiveInvalidate;
-- (void)setItems:(id)arg1;
+- (void)_setItems:(id)arg1;
 - (id)initWithRepresentedObject:(id)arg1;
 
 @end

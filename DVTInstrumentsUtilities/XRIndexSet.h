@@ -7,8 +7,9 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
+#import "NSMutableCopying.h"
 
-@interface XRIndexSet : NSObject <NSCopying>
+@interface XRIndexSet : NSObject <NSCopying, NSMutableCopying>
 {
     struct _XRIndexRange _range;
     struct _XRIndexRange *_rangeArray;
@@ -26,6 +27,7 @@
 - (unsigned long long)firstIndex;
 - (unsigned long long)count;
 - (unsigned long long)_queryRange:(struct _XRIndexRange)arg1;
+- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)dealloc;
 - (id)initWithIndexes:(struct _XRIndexRange)arg1;

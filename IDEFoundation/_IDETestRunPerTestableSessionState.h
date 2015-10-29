@@ -10,6 +10,7 @@
 
 @interface _IDETestRunPerTestableSessionState : NSObject
 {
+    id <IDETestingSpecifier> _testingSpecifier;
     NSArray *_skippedTestIDList;
     NSMutableSet *_skippedTestIDs;
     NSMutableSet *_pendingRunTestIDs;
@@ -20,11 +21,12 @@
 @property(readonly, retain) NSMutableSet *pendingRunTestIDs; // @synthesize pendingRunTestIDs=_pendingRunTestIDs;
 @property(readonly, retain) NSMutableSet *skippedTestIDs; // @synthesize skippedTestIDs=_skippedTestIDs;
 @property(readonly, retain) NSArray *skippedTestIDList; // @synthesize skippedTestIDList=_skippedTestIDList;
+@property(readonly) id <IDETestingSpecifier> testingSpecifier; // @synthesize testingSpecifier=_testingSpecifier;
 - (void).cxx_destruct;
 - (BOOL)_testIsPendingRun:(id)arg1;
 - (void)_updateStatisticsForTestable:(id)arg1;
 - (void)_addRunTest:(id)arg1;
-- (id)initWithSkippedTestList:(id)arg1;
+- (id)initWithTestingSpecifier:(id)arg1;
 
 @end
 

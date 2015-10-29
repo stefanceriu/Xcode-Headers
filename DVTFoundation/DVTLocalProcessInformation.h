@@ -18,6 +18,7 @@
 + (id)_blacklistedProcesses;
 + (id)_currentProcessIDsAsNumbers;
 + (id)currentProcessInformations;
++ (id)_processInformationsFilteredBy:(CDUnknownBlockType)arg1;
 + (id)_archNameForExecutableArchitecture:(int)arg1;
 @property(copy, nonatomic) NSString *firstApplicationArgument; // @synthesize firstApplicationArgument=_firstApplicationArgument;
 @property(copy, nonatomic) NSString *requestedApplicationName; // @synthesize requestedApplicationName=_requestedApplicationName;

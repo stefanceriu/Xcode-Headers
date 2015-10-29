@@ -36,7 +36,7 @@
 - (void).cxx_destruct;
 - (id)arbitrateWithOptions:(id)arg1;
 - (void)resolveMutuallyExclusiveConstraintsRemovedDuringEngineBootstrapping;
-- (id)constraintsToUpgradeAfterRemovingRedundantConstraintsWithOptions:(id)arg1;
+- (void)removingRedundantConstraintsWithOptions:(id)arg1;
 - (BOOL)addApplicableCandidateConstraints:(id *)arg1;
 - (void)_updateUnsatisfiedConstraintConstantsIfNeeded;
 - (id)logArbitrationFailureAndReturnMessageForReason:(id)arg1;

@@ -19,6 +19,7 @@
     CDUnknownBlockType _disconnectBlock;
 }
 
+- (int)supportedDirections;
 - (void)disconnect;
 - (unsigned long long)transmit:(const void *)arg1 ofLength:(unsigned long long)arg2;
 - (void)setupWithIncomingDescriptor:(int)arg1 outgoingDescriptor:(int)arg2 disconnectBlock:(CDUnknownBlockType)arg3;

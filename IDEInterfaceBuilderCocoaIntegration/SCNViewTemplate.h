@@ -19,11 +19,13 @@
     BOOL _allowsCameraControl;
     BOOL _ibWantsMultisampling;
     BOOL _encodeAsRuntimeInstance;
+    int _ibPreferredRenderingAPI;
     NSColor *_backgroundColor;
     NSString *_ibSceneName;
 }
 
 @property BOOL encodeAsRuntimeInstance; // @synthesize encodeAsRuntimeInstance=_encodeAsRuntimeInstance;
+@property(nonatomic) int ibPreferredRenderingAPI; // @synthesize ibPreferredRenderingAPI=_ibPreferredRenderingAPI;
 @property(nonatomic) BOOL ibWantsMultisampling; // @synthesize ibWantsMultisampling=_ibWantsMultisampling;
 @property(nonatomic) BOOL allowsCameraControl; // @synthesize allowsCameraControl=_allowsCameraControl;
 @property(copy, nonatomic) NSString *ibSceneName; // @synthesize ibSceneName=_ibSceneName;
@@ -41,6 +43,7 @@
 - (id)ibTypeNameForDefaultLabel;
 - (id)ibRuntimeClassName;
 - (void)drawRect:(struct CGRect)arg1;
+- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 

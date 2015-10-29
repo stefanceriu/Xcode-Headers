@@ -13,13 +13,13 @@
 
 @interface IDEBreakpointBucket : NSObject <DVTXMLUnarchiving, DVTInvalidation>
 {
-    int _type;
-    IDEContainer<DVTCustomDataStoring> *_archivingContainer;
     DVTCustomDataSpecifier *_archivingDataSpecifier;
     NSString *_archivingContainerItemBaseStandardizedPathString;
-    NSString *_displayName;
     NSMutableArray *_breakpoints;
     BOOL _currentlyDecoding;
+    int _type;
+    IDEContainer<DVTCustomDataStoring> *_archivingContainer;
+    NSString *_displayName;
 }
 
 + (id)keyPathsForValuesAffectingDisplayName;
@@ -27,7 +27,7 @@
 + (id)userGlobalBucket:(id *)arg1;
 + (void)initialize;
 @property(copy, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
-@property(readonly) IDEContainer<DVTCustomDataStoring> *archivingContainer; // @synthesize archivingContainer=_archivingContainer;
+@property(retain) IDEContainer<DVTCustomDataStoring> *archivingContainer; // @synthesize archivingContainer=_archivingContainer;
 @property(readonly) int type; // @synthesize type=_type;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;

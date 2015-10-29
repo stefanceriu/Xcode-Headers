@@ -23,6 +23,8 @@
 }
 
 + (BOOL)automaticallyNotifiesObserversOfCurrentRevision;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (id)_revisionLock;
 + (void)initialize;
 @property unsigned long long conflictStateForUpdateOrMerge; // @synthesize conflictStateForUpdateOrMerge=_conflictStateForUpdateOrMerge;

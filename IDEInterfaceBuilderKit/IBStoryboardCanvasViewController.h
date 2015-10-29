@@ -8,7 +8,7 @@
 
 #import "IBStoryboardCanvasBackgroundOverlayViewDelegate.h"
 
-@class DVTDelayedInvocation, DVTMutableOrderedSet, IBMutableIdentityDictionary, IBStoryboardCanvasBackgroundOverlayView, IBStoryboardCanvasFrame, NSArray, NSObject<IBStoryboardEntryPointIndicator>, NSString;
+@class DVTDelayedInvocation, DVTMutableOrderedSet, IBMutableIdentityDictionary, IBStoryboardCanvasBackgroundOverlayView, IBStoryboardSceneCanvasFrame, NSArray, NSObject<IBStoryboardEntryPointIndicator>, NSString;
 
 @interface IBStoryboardCanvasViewController : IBCanvasViewController <IBStoryboardCanvasBackgroundOverlayViewDelegate>
 {
@@ -18,7 +18,7 @@
     DVTMutableOrderedSet *_flattenedAggregatorsToOriginatedLinkPathsMap;
     DVTDelayedInvocation *_openTopLevelStoryboardableObjectsInvocation;
     DVTDelayedInvocation *_showingDockInFramesInvocation;
-    IBStoryboardCanvasFrame *_canvasFrameShowingDock;
+    IBStoryboardSceneCanvasFrame *_canvasFrameShowingDock;
     NSObject<IBStoryboardEntryPointIndicator> *_draggedEntryPointIndicator;
     NSArray *_selectedEntryPointIndicators;
     IBStoryboardCanvasBackgroundOverlayView *_backgroundOverlayView;
@@ -27,22 +27,21 @@
 @property(retain, nonatomic) IBStoryboardCanvasBackgroundOverlayView *backgroundOverlayView; // @synthesize backgroundOverlayView=_backgroundOverlayView;
 @property(copy, nonatomic) NSArray *selectedEntryPointIndicators; // @synthesize selectedEntryPointIndicators=_selectedEntryPointIndicators;
 @property(retain, nonatomic) NSObject<IBStoryboardEntryPointIndicator> *draggedEntryPointIndicator; // @synthesize draggedEntryPointIndicator=_draggedEntryPointIndicator;
-@property(retain, nonatomic) IBStoryboardCanvasFrame *canvasFrameShowingDock; // @synthesize canvasFrameShowingDock=_canvasFrameShowingDock;
+@property(retain, nonatomic) IBStoryboardSceneCanvasFrame *canvasFrameShowingDock; // @synthesize canvasFrameShowingDock=_canvasFrameShowingDock;
 - (void).cxx_destruct;
 - (void)canvasViewRunResizeTest:(id)arg1;
 - (id)canvasFrameToSelectForObject:(id)arg1;
-- (BOOL)editorCanvasFrameController:(id)arg1 interceptDoubleClickedEvent:(id)arg2;
 - (void)editorCanvasFrame:(id)arg1 wasClickedWithEvent:(id)arg2;
 - (BOOL)shouldAddSelectableObjectCursorRectsForFrameController:(id)arg1;
 - (BOOL)frameController:(id)arg1 shouldDragFrameWithMouseDownInContentRect:(id)arg2 suggestedShouldDrag:(BOOL)arg3;
 - (void)canvasBackgroundOverlayView:(id)arg1 userDidBandSelectCanvasLinkPaths:(id)arg2;
-- (void)selectEntryPointIndicator:(id)arg1;
+- (void)updateSelectionAfterClickingInitialViewControllerCanvasLink:(id)arg1;
 - (void)canvasBackgroundOverlayView:(id)arg1 canvasLinkPathWasClicked:(id)arg2 withMouseDownEvent:(id)arg3;
 - (void)beginDraggingInitialSceneCanvasLink:(id)arg1 withEvent:(id)arg2 canvasLinkPath:(id)arg3;
 - (id)nearestSceneFrameControllerToPoint:(struct CGPoint)arg1;
 - (id)sceneFrameControllersFromBackToFront;
 - (void)canvasBackgroundOverlayView:(id)arg1 canvasLinkPathWasDoubleClicked:(id)arg2 withMouseDownEvent:(id)arg3;
-- (BOOL)documentEditor:(id)arg1 canSelectMembers:(id)arg2;
+- (BOOL)canSelectMembers:(id)arg1;
 - (void)documentEditor:(id)arg1 deselectMembers:(id)arg2;
 - (id)canvasView:(id)arg1 decoratorRectForCanvasFrame:(id)arg2;
 - (void)canvasView:(id)arg1 canvasFrameDidChangeLayout:(id)arg2;
@@ -56,15 +55,17 @@
 - (long long)insertionIndexForDragInfo:(id)arg1;
 - (id)draggedImageStateForObjects:(id)arg1 pasteboard:(id)arg2;
 - (void)relayoutCanvasLinkPathsForCanvasLinks:(id)arg1;
+- (void)createCanvasLinksFromFrames:(id)arg1 objectsToCanvasFrames:(id)arg2;
+- (void)createLinkPathsOnDestinationEdge:(id)arg1 ofType:(unsigned long long)arg2 linkPackToHalfLinkPath:(id)arg3 objectsToCanvasFrames:(id)arg4;
+- (void)createSourceHalfLinkPathsOnEdge:(id)arg1 ofType:(unsigned long long)arg2 linkPackToHalfLinkPath:(id)arg3 objectsToCanvasFrames:(id)arg4;
+- (id)sortHooksOnEdge:(id)arg1 ofType:(unsigned long long)arg2 linkPackToHalfLinkPath:(id)arg3 objectsToCanvasFrames:(id)arg4;
+- (id)canvasFrameMappingFromCanvasLinks:(id)arg1 objectsToCanvasFrames:(id)arg2;
+- (void)addLinkPack:(id)arg1 toFrame:(id)arg2 edgeType:(unsigned long long)arg3 framesToEdges:(id)arg4;
 - (id)buildObjectsToCanvasFramesMap;
-- (id)hooksFromCanvasLinkPacks:(id)arg1 forEdge:(unsigned long long)arg2 ofType:(int)arg3 objectsToCanvasFrames:(id)arg4;
-- (CDStruct_4bcfbbae)edgePairFromCanvasLink:(id)arg1 objectsToCanvasFrames:(id)arg2;
-- (id)canvasLinkPathsByFlatteningAggregatorsToOriginatedCanvasLinkPathsMap:(id)arg1;
-- (id)linkPathForCanvasLink:(id)arg1 connectingFrame:(id)arg2 withFrame:(id)arg3 originationPointIndex:(long long)arg4 originationPointCount:(long long)arg5 convergencePointIndex:(long long)arg6 convergencePointCount:(long long)arg7;
-- (id)canvasLinkPathForSegue:(id)arg1 connectingFrame:(id)arg2 withFrame:(id)arg3 originationPointIndex:(long long)arg4 originationPointCount:(long long)arg5 convergencePointIndex:(long long)arg6 convergencePointCount:(long long)arg7;
+- (id)linkPathForCanvasLink:(id)arg1 connectingFrame:(id)arg2 withFrame:(id)arg3 originationPointIndex:(long long)arg4 originationPointCount:(long long)arg5 convergencePointIndex:(long long)arg6 convergencePointCount:(long long)arg7 packIndex:(long long)arg8 packCount:(long long)arg9;
+- (id)canvasLinkPathForSegue:(id)arg1 connectingFrame:(id)arg2 withFrame:(id)arg3 originationPointIndex:(long long)arg4 originationPointCount:(long long)arg5 convergencePointIndex:(long long)arg6 convergencePointCount:(long long)arg7 packIndex:(long long)arg8 packCount:(long long)arg9;
 - (CDStruct_4bcfbbae)canvasLinkPathEdgeTypesForConnectingFrame:(id)arg1 withFrame:(id)arg2;
 - (CDStruct_4bcfbbae)canvasLinkPathEdgeTypesForConnectingRect:(struct CGRect)arg1 withRect:(struct CGRect)arg2;
-- (id)canvasLinkPathAggregatingObjectForObject:(id)arg1;
 - (void)setSeguesToAnimatedOpacities:(id)arg1;
 - (double)opacityForCanvasLinkForSegue:(id)arg1;
 - (id)produceCanvasLinksForBackgroundOverlay;
@@ -103,7 +104,7 @@
 - (id)storyboardDocumentEditor;
 - (void)takeFocus;
 - (void)scheduleOpenTopLevelStoryboardableObjects;
-- (id)storyboardCanvasFrameForViewController:(id)arg1;
+- (id)storyboardCanvasFrameForPrimarySceneObject:(id)arg1;
 - (id)canvasFrameForLastInteractedWithScene;
 - (void)primitiveInvalidate;
 - (void)viewDidInstall;

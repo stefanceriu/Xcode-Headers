@@ -6,48 +6,73 @@
 
 #import "NSObject.h"
 
-@class CALayer, CIFilter, DTTimelineGraph, DTTimelineGraphLayoutManagerLayerDelegate, NSSet;
+@class CALayer, CATextLayer, CIFilter, DTTimelineGraph, DTTimelineGraphLayoutManagerLayerDelegate, NSSet;
 
 @interface DTTimelineGraphLayoutManager : NSObject
 {
     DTTimelineGraph *_timelineGraph;
     DTTimelineGraphLayoutManagerLayerDelegate *_layerDelegate;
     CALayer *_inspectionPointLayer;
+    CALayer *_summaryInspectionPointLayer;
     CALayer *_leftSelectionIndicatorLayer;
     CALayer *_rightSelectionIndicatorLayer;
     CALayer *_leftSelectionPointLayer;
     CALayer *_rightSelectionPointLayer;
     CALayer *_inspectionSummaryLayer;
+    CALayer *_leftZoomIndicationPointLayer;
+    CALayer *_zoomIndicationLayer;
+    CALayer *_rightZoomIndicationPointLayer;
+    CATextLayer *_rangeInfoTextLayer;
+    CALayer *_rangeInfoLayer;
+    CALayer *_horizontalScrollerLayer;
+    CALayer *_verticalScrollerLayer;
+    CALayer *_labelBackgroundLayer;
+    CALayer *_labelRightBorderLayer;
     CIFilter *_colorEffect;
     BOOL _displayInspectionSummary;
     unsigned long long _inspectionInfoSummaryTime;
     NSSet *_inspectionSummaryContainers;
     double _computedHeight;
     NSSet *_visiblePlanes;
-    struct shared_ptr<std::__1::unordered_map<int, CGRect, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, CGRect>>>> _planeLayoutMapRef;
     BOOL _animateChanges;
 }
 
 @property(nonatomic) BOOL animateChanges; // @synthesize animateChanges=_animateChanges;
-- (id).cxx_construct;
 - (void).cxx_destruct;
-- (const unordered_map_c1fbcd3c *)planeLayoutMap;
-- (double)computedHeight;
-- (void)addBottomBorderLayer:(id)arg1;
+- (struct CGPoint)_localMousePoint;
+- (void)_layoutLabelBackground:(id)arg1;
+- (void)_layoutLabelRightBorder:(id)arg1;
+- (BOOL)_shouldShowVerticalScrollerWithOffset:(double)arg1 scrollableHeight:(double)arg2 contentHeight:(double)arg3;
+- (BOOL)_shouldShowHorizontalScrollerWithOffset:(long long)arg1 scrollableWidthInNanoseconds:(unsigned long long)arg2 duration:(unsigned long long)arg3;
+- (void)_layoutVerticalScroller:(id)arg1;
+- (void)_layoutHorizontalScroller:(id)arg1;
+- (void)_layoutScrollers:(id)arg1;
+- (void)_layoutRangeInfo:(id)arg1;
+- (void)_layoutInspectionSummary:(id)arg1;
+- (void)_layoutInspectionPoint:(id)arg1;
+- (void)_layoutZoomIndicator:(id)arg1;
+- (void)_layoutSelection:(id)arg1;
+- (void)_positionPlane:(id)arg1 includeBottomBorder:(BOOL)arg2;
+- (void)_positionFullHeightPlane:(id)arg1;
+- (void)_positionBottomBorderForPlane:(id)arg1;
+- (void)_positionTopBorderForPlane:(id)arg1;
+- (void)_updateVisiblePlanes:(id)arg1;
 - (void)clearInspectionSummary;
 - (void)displayInspectionSummaryForNanosecond:(unsigned long long)arg1;
 - (void)addDecorationSummaryLayer:(id)arg1;
-- (id)planeAtPoint:(struct CGPoint)arg1;
-- (void)layoutSublayersOfLayer:(id)arg1;
-- (void)_positionFullHeightPlane:(id)arg1;
-- (void)_positionPlane:(id)arg1 includeBottomBorder:(BOOL)arg2;
-- (void)_positionBottomBorderForPlane:(id)arg1;
+- (BOOL)_mouseIsOverScroller:(id)arg1;
+- (double)verticalScrollerScale;
+- (double)horizontalScrollerScale;
+@property(readonly, nonatomic) BOOL mouseIsOverVerticalScroller;
+@property(readonly, nonatomic) BOOL mouseIsOverHorizontalScroller;
+- (id)resizablePlaneForRect:(struct CGRect)arg1;
+- (id)planesUnderPoint:(struct CGPoint)arg1;
+- (void)addBottomBorderLayer:(id)arg1;
+- (void)_addPlane:(id)arg1 toMap:(unordered_map_c1fbcd3c *)arg2 distanceFromTop:(double)arg3;
+- (double)computedHeight;
+- (const unordered_map_c1fbcd3c *)planeLayoutMap;
 - (void)generatePlaneLayoutMap;
-- (void)_addPlaneToMap:(id)arg1 distanceFromTop:(double)arg2;
-- (void)_udpateVisiblePlanes:(id)arg1;
-- (void)_layoutInspectionSummary:(id)arg1;
-- (void)_layoutSelection:(id)arg1;
-- (void)_layoutInspectionPoint:(id)arg1;
+- (void)layoutSublayersOfLayer:(id)arg1;
 - (id)initWithTimelineGraph:(id)arg1;
 
 @end

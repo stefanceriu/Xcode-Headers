@@ -25,6 +25,8 @@
 @property(readonly) DVTVersion *buildOSVersion;
 @property(readonly) unsigned long long buildOSActualVersion;
 @property(readonly) unsigned long long buildOSMajorVersion;
+@property(readonly) unsigned long long toolsBetaVersion;
+@property(readonly) BOOL isBeta;
 @property(readonly) DVTBuildVersion *toolsBuildVersion;
 @property(readonly) DVTToolsVersion *toolsVersion;
 @property(readonly) BOOL isAppleInternal;

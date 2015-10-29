@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSDictionary;
+@class NSArray, NSDictionary, NSString;
 
 @protocol DVTSourceControlPlugInCallbackProtocol <NSObject>
-- (void)progressStatus:(int)arg1 withDictionary:(NSDictionary *)arg2;
+- (void)incrementalLogStatus:(NSArray *)arg1 info:(NSDictionary *)arg2 progressIdentifier:(NSString *)arg3;
+- (void)progressStatus:(long long)arg1 withDictionary:(NSDictionary *)arg2 progressIdentifier:(NSString *)arg3;
 @end
 

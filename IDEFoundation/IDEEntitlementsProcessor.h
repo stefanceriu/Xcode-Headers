@@ -16,14 +16,17 @@
     IDEEntitlementsDictionary *_itemEntitlements;
 }
 
++ (id)availableOptionsForPropertyList;
 @property(readonly, nonatomic) IDEEntitlementsDictionary *itemEntitlements; // @synthesize itemEntitlements=_itemEntitlements;
 @property(readonly, nonatomic) IDEEntitlementsDictionary *profileEntitlements; // @synthesize profileEntitlements=_profileEntitlements;
 @property(readonly, nonatomic) IDEDistributionItem *distributionItem; // @synthesize distributionItem=_distributionItem;
 @property(readonly, nonatomic) IDEDistributionMethod *distributionMethod; // @synthesize distributionMethod=_distributionMethod;
 - (void).cxx_destruct;
 - (BOOL)runWithError:(id *)arg1;
+- (BOOL)loadFromPropertyList:(id)arg1 error:(id *)arg2;
 @property(readonly, nonatomic) BOOL needsInteraction;
 - (id)initWithDistributionMethod:(id)arg1 distributionItem:(id)arg2 profileEntitlements:(id)arg3 itemEntitlements:(id)arg4;
+- (id)init;
 
 @end
 

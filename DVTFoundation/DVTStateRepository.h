@@ -8,7 +8,7 @@
 
 #import "NSKeyedUnarchiverDelegate.h"
 
-@class DVTMapTable, DVTStateToken, NSMutableDictionary, NSString;
+@class DVTStateToken, NSMapTable, NSMutableDictionary, NSString;
 
 @interface DVTStateRepository : NSObject <NSKeyedUnarchiverDelegate>
 {
@@ -16,7 +16,7 @@
     DVTStateRepository *_parentRepository;
     DVTStateToken *_parentToken;
     NSMutableDictionary *_currentState;
-    DVTMapTable *_tokenByIdentifierMapping;
+    NSMapTable *_tokenByIdentifierMapping;
     id <DVTStateRepositoryDelegate> _delegate;
 }
 

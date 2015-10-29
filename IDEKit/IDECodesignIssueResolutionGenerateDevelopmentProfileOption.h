@@ -6,19 +6,19 @@
 
 #import <IDEKit/IDECodesignIssueResolutionAbstractGenerateProfileOption.h>
 
-@class DVTAppIDFeatures, NSSet;
+@class NSSet;
 
 @interface IDECodesignIssueResolutionGenerateDevelopmentProfileOption : IDECodesignIssueResolutionAbstractGenerateProfileOption
 {
     NSSet *_requiredCodesignableDevices;
-    DVTAppIDFeatures *_requiredFeatures;
+    NSSet *_appIDRequirements;
 }
 
-@property(retain) DVTAppIDFeatures *requiredFeatures; // @synthesize requiredFeatures=_requiredFeatures;
+@property(retain) NSSet *appIDRequirements; // @synthesize appIDRequirements=_appIDRequirements;
 @property(retain) NSSet *requiredCodesignableDevices; // @synthesize requiredCodesignableDevices=_requiredCodesignableDevices;
 - (void).cxx_destruct;
 - (id)invokeOptionWithWindowOrNil:(id)arg1;
-- (id)initWithPortalSource:(id)arg1 account:(id)arg2 signingCertificate:(id)arg3 platformIdentifier:(id)arg4 bundleIdentifiers:(id)arg5 requiredCodesignableDevices:(id)arg6 requiedFeatures:(id)arg7 logAspect:(id)arg8;
+- (id)initWithPortalSource:(id)arg1 account:(id)arg2 signingCertificate:(id)arg3 platformIdentifier:(id)arg4 appIDRequirements:(id)arg5 requiredCodesignableDevices:(id)arg6 logAspect:(id)arg7;
 
 @end
 

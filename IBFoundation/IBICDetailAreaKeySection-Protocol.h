@@ -4,12 +4,8 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSCopying.h"
-#import "NSObject.h"
+#import "IBICDetailAreaKeyGroupIdentifier.h"
 
-@class IBICMultipartImageRepSlotComponent;
-
-@protocol IBICDetailAreaKeySection <NSObject, NSCopying>
-- (IBICMultipartImageRepSlotComponent *)ib_onlyComponent;
+@protocol IBICDetailAreaKeySection <IBICDetailAreaKeyGroupIdentifier>
 @end
 

@@ -14,6 +14,7 @@
     BOOL _showErrors;
     BOOL _showWarnings;
     BOOL _showAnalysis;
+    BOOL _isSilencedIssues;
     NSString *_issuesTitle;
     NSArray *_allIssues;
     NSArray *_scaledIssues;
@@ -23,6 +24,7 @@
 }
 
 + (id)issuesSectionWithTitle:(id)arg1 allIssues:(id)arg2 scaledIssues:(id)arg3;
+@property(nonatomic) BOOL isSilencedIssues; // @synthesize isSilencedIssues=_isSilencedIssues;
 @property(nonatomic) BOOL showAnalysis; // @synthesize showAnalysis=_showAnalysis;
 @property(nonatomic) BOOL showWarnings; // @synthesize showWarnings=_showWarnings;
 @property(nonatomic) BOOL showErrors; // @synthesize showErrors=_showErrors;

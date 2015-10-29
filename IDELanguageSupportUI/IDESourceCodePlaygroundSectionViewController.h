@@ -16,8 +16,8 @@
     IDESourceCodePlaygroundSectionContainerView *_containerView;
     DVTNotificationToken *_textViewFrameChangeNotificationToken;
     DVTObservingToken *_boxContentIsDisclosedObserveingToken;
+    BOOL _initialSetupDone;
     BOOL _resizingContainerView;
-    BOOL _finishedLoading;
     IDESourceCodePlaygroundSection *_playgroundSection;
     IDEPlaygroundEditor *_playgroundEditor;
     IDEPlaygroundSourceTextScrollView *_scrollView;
@@ -28,7 +28,6 @@
 @property(readonly) IDESourceCodePlaygroundSectionExecutionResultVisualization *executionResultVisualization; // @synthesize executionResultVisualization=_executionResultVisualization;
 @property(readonly) IDEPlaygroundTextView *textView; // @synthesize textView=_textView;
 @property(readonly) IDEPlaygroundSourceTextScrollView *scrollView; // @synthesize scrollView=_scrollView;
-@property BOOL finishedLoading; // @synthesize finishedLoading=_finishedLoading;
 @property(readonly) IDEPlaygroundEditor *playgroundEditor; // @synthesize playgroundEditor=_playgroundEditor;
 @property(readonly) IDESourceCodePlaygroundSection *playgroundSection; // @synthesize playgroundSection=_playgroundSection;
 - (void).cxx_destruct;

@@ -12,7 +12,7 @@ __attribute__((visibility("hidden")))
 }
 
 + (struct CGImage *)copyProcessedImageSource:(id)arg1;
-- (void)generateTextureAtlasImages:(id)arg1 outputDictionary:(id *)arg2;
+- (void)generateTextureAtlasImages:(id)arg1 outputDictionary:(id *)arg2 forcePOT:(BOOL)arg3;
 - (id)processPackedTextureAtlas:(const vector_c74fc2b3 *)arg1 suffix:(id)arg2 packer:(shared_ptr_7747cbe3)arg3 sortedTrimArray:(const vector_ea45b3ba *)arg4 sortedTextureArray:(const vector_65e381fc *)arg5;
 - (id)generateMetaData;
 - (id)getTextureFileList:(id)arg1 modDate:(id *)arg2;

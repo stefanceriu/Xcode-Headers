@@ -66,7 +66,7 @@
 @property(readonly) IDECrashPointDetailViewController *detailViewController;
 - (id)busyReason;
 - (BOOL)busy;
-- (void)viewDidInstall;
+- (void)viewDidLoad;
 - (void)loadView;
 - (void)primitiveInvalidate;
 

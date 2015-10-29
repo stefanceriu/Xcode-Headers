@@ -6,11 +6,9 @@
 
 #import <IDEFoundation/IDEExecutionTracker.h>
 
-#import "IDERunOperationWorkerTracker.h"
+@class IDERunOperationWorker;
 
-@class IDERunOperationWorker, NSString;
-
-@interface IDEExecutionRunnableTracker : IDEExecutionTracker <IDERunOperationWorkerTracker>
+@interface IDEExecutionRunnableTracker : IDEExecutionTracker
 {
     IDERunOperationWorker *_worker;
     BOOL _finishedRunning;
@@ -18,16 +16,12 @@
 
 - (void).cxx_destruct;
 - (id)notFinishedReasonWithDepth:(unsigned long long)arg1;
+- (void)executionWantsHold:(BOOL)arg1 withError:(id)arg2;
 - (void)runningDidFinish:(id)arg1 withError:(id)arg2;
 - (void)cancel;
 - (BOOL)isFinished;
 - (id)initWithWorker:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)init;
 
 @end
 

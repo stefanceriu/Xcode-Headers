@@ -40,6 +40,7 @@
 - (void)changeColor:(id)arg1;
 - (double)_rampLocationOfPoint:(struct CGPoint)arg1;
 - (struct CGRect)_colorRampRect;
+- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)ensurePanelExclusive;
 - (SEL)action;

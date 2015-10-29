@@ -10,12 +10,13 @@
 
 @interface IDEArchive : NSObject
 {
-    DVTFilePath *_path;
     NSMutableDictionary *_infoDictionary;
-    IDEArchivedContent *_archivedContent;
     BOOL _savePending;
-    BOOL _estimateInProgress;
     NSArray *_topLevelDistributionItems;
+    BOOL _symbolDownloadInProgress;
+    BOOL _estimateInProgress;
+    DVTFilePath *_path;
+    IDEArchivedContent *_archivedContent;
     NSString *_archiveSize;
 }
 
@@ -26,9 +27,9 @@
 + (id)_archivePathOverride;
 + (id)_archivePlistPathForArchivePath:(id)arg1;
 + (void)_copySCMBlueprintFromWorkspace:(id)arg1 toArchiveWithPath:(id)arg2 usingFileManager:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
-+ (BOOL)_copyWatchKitSupportFromDirectory:(id)arg1 toArchiveWithPath:(id)arg2 usingFileManager:(id)arg3 error:(id *)arg4;
-+ (BOOL)_copySwiftSupportFromDirectory:(id)arg1 toArchiveWithPath:(id)arg2 usingFileManager:(id)arg3 error:(id *)arg4;
++ (BOOL)_copyAppleProvidedContentFromDirectory:(id)arg1 toArchiveWithPath:(id)arg2 usingFileManager:(id)arg3 error:(id *)arg4;
 + (BOOL)_copyProductDefinitionPlistFromDirectory:(id)arg1 toArchiveWithPath:(id)arg2 usingFileManager:(id)arg3 error:(id *)arg4;
++ (BOOL)_copyBCSymbolMapsFromDirectory:(id)arg1 toArchiveWithPath:(id)arg2 usingFileManager:(id)arg3 error:(id *)arg4;
 + (BOOL)_copydSYMsFromDirectory:(id)arg1 toArchiveWithPath:(id)arg2 usingFileManager:(id)arg3 error:(id *)arg4;
 + (id)_createArchiveWithName:(id)arg1 usingFileManager:(id)arg2 error:(id *)arg3;
 + (id)_folderPathForArchiveWithDate:(id)arg1;
@@ -43,6 +44,7 @@
 + (id)_dSYMDirectoryPathForArchivePath:(id)arg1;
 + (id)keyPathsForValuesAffectingProductsDirectoryPath;
 + (id)_productsDirectoryPathForArchivePath:(id)arg1;
++ (id)keyPathsForValuesAffectingCanDownloadSymbols;
 @property BOOL estimateInProgress; // @synthesize estimateInProgress=_estimateInProgress;
 @property(readonly) IDEArchivedContent *archivedContent; // @synthesize archivedContent=_archivedContent;
 @property(retain) DVTFilePath *path; // @synthesize path=_path;
@@ -54,6 +56,8 @@
 - (void)setObject:(id)arg1 forEnterpriseDistributionKey:(id)arg2;
 @property(copy) NSDictionary *enterpriseDistributionManifest;
 @property(readonly) NSString *archiveSize; // @synthesize archiveSize=_archiveSize;
+- (void)addDownloadedSymbolUUID:(id)arg1;
+@property(readonly, copy) NSArray *downloadedSymbolUUIDs;
 @property(copy) NSString *statusString;
 @property(copy) NSString *comment;
 @property long long estimatedAppStoreFileSize;
@@ -67,10 +71,13 @@
 @property(readonly) DVTFilePath *dSYMDirectoryPath;
 @property(readonly) DVTFilePath *productsDirectoryPath;
 @property(readonly) NSMutableDictionary *infoDictionary;
+@property BOOL symbolDownloadInProgress; // @synthesize symbolDownloadInProgress=_symbolDownloadInProgress;
+@property(readonly) BOOL canDownloadSymbols;
+@property(readonly) BOOL canSubmitIgnoringFreeProvisioning;
 @property(readonly) BOOL canSubmit;
 @property(readonly) BOOL canExport;
 @property(readonly) BOOL canValidate;
-- (BOOL)_canPerformTask:(int)arg1;
+- (BOOL)_canPerformTask:(int)arg1 ignoreFreeProvisioning:(BOOL)arg2;
 @property(readonly) IDEArchivedApplication *application;
 - (id)_initWithPath:(id)arg1 infoDictionary:(id)arg2;
 

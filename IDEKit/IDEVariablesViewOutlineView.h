@@ -10,6 +10,8 @@
 {
 }
 
+- (void)drawRow:(long long)arg1 clipRect:(struct CGRect)arg2;
+- (void)_yellowHighlightRow:(long long)arg1;
 - (void)endUpdates;
 - (void)reloadItem:(id)arg1 reloadChildren:(BOOL)arg2;
 - (void)reloadData;

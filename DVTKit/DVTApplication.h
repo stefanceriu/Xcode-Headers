@@ -6,11 +6,11 @@
 
 #import "NSApplication.h"
 
-@class DVTHashTable;
+@class NSHashTable;
 
 @interface DVTApplication : NSApplication
 {
-    DVTHashTable *_actionMonitors;
+    NSHashTable *_actionMonitors;
 }
 
 + (void)adjustApplicationIconForEnvironment:(BOOL)arg1;

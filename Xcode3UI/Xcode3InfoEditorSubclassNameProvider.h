@@ -19,6 +19,7 @@
 }
 
 + (void)initialize;
++ (id)subclassesForClassnames:(id)arg1 inWorkspace:(id)arg2;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 @property(readonly) NSArray *listContents;

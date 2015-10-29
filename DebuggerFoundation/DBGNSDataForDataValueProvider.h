@@ -20,8 +20,12 @@
     BOOL _autoHandleExceptions;
     DBGNSDataForDataValueProviderOptions *_options;
     DBGDataValue *_dataDataValue;
+    double _timeToEvaluateExpression;
+    double _timeToReadData;
 }
 
+@property double timeToReadData; // @synthesize timeToReadData=_timeToReadData;
+@property double timeToEvaluateExpression; // @synthesize timeToEvaluateExpression=_timeToEvaluateExpression;
 @property(readonly) BOOL autoHandleExceptions; // @synthesize autoHandleExceptions=_autoHandleExceptions;
 @property(retain) DBGDataValue *dataDataValue; // @synthesize dataDataValue=_dataDataValue;
 @property(retain) DBGNSDataForDataValueProviderOptions *options; // @synthesize options=_options;

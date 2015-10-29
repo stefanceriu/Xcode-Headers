@@ -7,6 +7,9 @@
 #import "NSSliderCell.h"
 
 @interface NSSliderCell (IBNSSliderCellIntegration)
++ (id)keyPathsForValuesAffectingibShouldShowTickPositionVertical;
++ (id)keyPathsForValuesAffectingibShouldShowTickPositionHorizontal;
++ (id)keyPathsForValuesAffectingIbInspectedDoubleValue;
 @property unsigned long long ibArchivedTickMarkPosition;
 - (Class)ibPreferredControlClass;
 - (unsigned long long)ibPreferredMatrixMode;
@@ -14,9 +17,13 @@
 - (id)ibWidgetType;
 - (Class)ibEditorClass;
 - (id)ibOrderedSnapshotAttributesKeyPaths;
+- (BOOL)ibShouldShowTickPositionVertical;
+- (BOOL)ibShouldShowTickPositionHorizontal;
 - (void)setIbInspectedMinValue:(double)arg1;
 - (double)ibInspectedMinValue;
 - (void)setIbInspectedMaxValue:(double)arg1;
 - (double)ibInspectedMaxValue;
+- (void)setIbInspectedDoubleValue:(double)arg1;
+- (double)ibInspectedDoubleValue;
 @end
 

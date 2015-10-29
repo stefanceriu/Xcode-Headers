@@ -10,11 +10,11 @@
 #import "DVTReplacementViewDelegate.h"
 #import "NSWindowDelegate.h"
 
-@class DVTBindingToken, DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTStackBacktrace, IDESourceControlWorkingTree, IDESourceControlWorkspaceConfigNavigator, IDEWorkspace, NSArray, NSButton, NSSearchField, NSString, NSTabView, NSTextField, NSTimer, NSView;
+@class DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTSearchField, DVTSourceControlWorkspace, DVTSplitView, DVTStackBacktrace, IDESourceControlWorkspaceConfigNavigator, IDEWorkspace, NSArray, NSButton, NSString, NSTabView, NSTextField, NSView;
 
 @interface IDESourceControlWorkspaceHistoryWindowController : NSWindowController <DVTInvalidation, DVTReplacementViewDelegate, NSWindowDelegate>
 {
-    IDEWorkspace *_workspace;
+    unsigned long long _searchType;
     NSTextField *_titleField;
     DVTReplacementView *_logReplacementView;
     NSView *_sourceListView;
@@ -22,18 +22,15 @@
     NSTabView *_tabView;
     DVTBorderedView *_detailBorderedView;
     NSButton *_doneButton;
-    NSSearchField *_searchField;
+    DVTSearchField *_searchField;
     DVTSplitView *_splitView;
     BOOL _hidesSourceList;
-    DVTBindingToken *_logSourceTreeItemsBindingToken;
     id _didScanToken;
-    NSTimer *_searchTimer;
     DVTObservingToken *_outlineViewSelectionToken;
-    int _searchType;
+    NSArray *previousSelectedObjects;
     BOOL _isScanningForWorkingCopies;
-    NSArray *_workingTrees;
-    NSArray *_selectedWorkingTrees;
-    IDESourceControlWorkingTree *_selectedWorkingTree;
+    IDEWorkspace *_workspace;
+    DVTSourceControlWorkspace *_scmWorkspace;
     NSString *_startingSearchRevision;
     NSString *_endingSearchRevision;
 }
@@ -41,23 +38,17 @@
 + (void)initialize;
 @property(copy) NSString *endingSearchRevision; // @synthesize endingSearchRevision=_endingSearchRevision;
 @property(copy) NSString *startingSearchRevision; // @synthesize startingSearchRevision=_startingSearchRevision;
-@property(retain) IDESourceControlWorkingTree *selectedWorkingTree; // @synthesize selectedWorkingTree=_selectedWorkingTree;
-@property(retain) NSArray *selectedWorkingTrees; // @synthesize selectedWorkingTrees=_selectedWorkingTrees;
-@property(retain) NSArray *workingTrees; // @synthesize workingTrees=_workingTrees;
+@property(retain) DVTSourceControlWorkspace *scmWorkspace; // @synthesize scmWorkspace=_scmWorkspace;
 @property BOOL isScanningForWorkingCopies; // @synthesize isScanningForWorkingCopies=_isScanningForWorkingCopies;
 @property(retain) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)_updateSearchForRevision;
 - (void)updateSearchMenuState;
-@property int searchType;
+@property unsigned long long searchType;
 - (void)updateSearchPlaceholderString;
-- (void)selectSearchType:(id)arg1;
-- (void)controlTextDidChange:(id)arg1;
-- (void)_scheduleSearchWithString:(id)arg1;
-- (void)_updateToolbarSearchResultsWithSearchString:(id)arg1;
+- (void)beginSearch:(id)arg1;
 - (id)logViewController;
-- (void)sheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)done:(id)arg1;
 - (void)beginSheetForWindow:(id)arg1;
 - (void)_waitForWorkspaceScan;
@@ -65,8 +56,10 @@
 - (double)splitView:(id)arg1 constrainMaxCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
 - (double)splitView:(id)arg1 constrainMinCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
 - (BOOL)splitView:(id)arg1 canCollapseSubview:(id)arg2;
-- (void)_loadWorkingTrees;
+- (void)_loadWorkingCopies;
+- (void)selectSearchType:(id)arg1;
 - (void)loadWindow;
+- (id)_logViewController;
 - (id)windowNibName;
 - (id)initWithWindow:(id)arg1;
 

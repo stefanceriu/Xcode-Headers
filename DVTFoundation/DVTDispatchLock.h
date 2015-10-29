@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "DVTLocking.h"
+
 @class NSObject<OS_dispatch_queue>, NSString;
 
-@interface DVTDispatchLock : NSObject
+@interface DVTDispatchLock : NSObject <DVTLocking>
 {
     NSObject<OS_dispatch_queue> *_queue;
 }
@@ -27,11 +29,12 @@
 - (void)performLockedReaderBlock:(CDUnknownBlockType)arg1;
 - (void)asyncPerformLockedBlock:(CDUnknownBlockType)arg1;
 - (void)performLockedBlock:(CDUnknownBlockType)arg1;
-@property(readonly) BOOL isRecursive;
 @property(readonly) NSString *debugName;
 - (void)dealloc;
 - (id)initWithDebugName:(id)arg1;
 - (id)initWithDebugName:(id)arg1 isRecursive:(BOOL)arg2;
+- (void)dvt_asyncPerformLockedBlock:(CDUnknownBlockType)arg1;
+- (void)dvt_performLockedBlock:(CDUnknownBlockType)arg1;
 
 @end
 

@@ -29,9 +29,9 @@
 - (void)didDeleteOrReplaceParagraphForAnnotation:(id)arg1;
 - (void)providerWillUninstall;
 @property IDESourceCodePlaygroundSection *playgroundSection;
-- (void)mergeAccessoryViewAnnotations:(id)arg1;
 - (void)_updateQuickLookForAnnotation:(id)arg1;
 - (void)_removeAccessoryViewAnnotationsForLoggerResults:(id)arg1;
+- (void)_removeAllAccessoryViewAnnotations;
 - (void)resetEditor:(id)arg1;
 - (void)_insertAccessoryViewAnnotationForExecutionResult:(id)arg1;
 

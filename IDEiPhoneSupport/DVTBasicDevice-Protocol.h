@@ -6,14 +6,24 @@
 
 #import "DVTCodesignableDevice.h"
 
-@class NSString;
+@class DTXConnection, DVTPlatform, NSError, NSString;
 
 @protocol DVTBasicDevice <DVTCodesignableDevice>
+@property(readonly) _Bool deviceIsBusy;
+@property(readonly) NSError *unavailabilityError;
+@property(readonly, getter=isAvailable) BOOL available;
+@property(readonly) BOOL isProxiedDevice;
+@property(readonly, copy) NSString *nativeArchitecture;
+@property(readonly) DVTPlatform *platform;
+@property(readonly, copy, nonatomic) NSString *operatingSystemVersionWithBuildNumber;
 @property(readonly, copy) NSString *operatingSystemBuild;
 @property(readonly, copy) NSString *operatingSystemVersion;
 @property(readonly, copy) NSString *processorDescription;
 @property(readonly, copy, nonatomic) NSString *modelUTI;
 @property(readonly, copy, nonatomic) NSString *modelCode;
 @property(readonly, copy, nonatomic) NSString *modelName;
+
+@optional
+- (DTXConnection *)primaryInstrumentsServer;
 @end
 

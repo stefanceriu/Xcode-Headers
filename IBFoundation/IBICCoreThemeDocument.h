@@ -6,27 +6,27 @@
 
 #import "NSObject.h"
 
-@class CoreThemeDocument, IBICCatalogCompilerOptions, NSString;
+@class CoreThemeDocument, IBICCatalogCompilerOptions, NSDictionary, NSString;
 
 @interface IBICCoreThemeDocument : NSObject
 {
     CoreThemeDocument *_document;
     NSString *_exclusiveScratchDirectory;
     BOOL _importedContent;
+    NSDictionary *_coreUIAssetPacks;
     IBICCatalogCompilerOptions *_catalogCompilerOptions;
 }
 
 + (id)makeTemporaryDocumentWithOptions:(id)arg1 returningError:(id *)arg2;
++ (void)applyMinimumDeploymentFromOptions:(id)arg1 toCoreThemeDocument:(id)arg2;
 + (BOOL)isMigrationError:(id)arg1;
 + (void)initialize;
 @property(retain, nonatomic) IBICCatalogCompilerOptions *catalogCompilerOptions; // @synthesize catalogCompilerOptions=_catalogCompilerOptions;
 - (void).cxx_destruct;
-- (void)distillToPath:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)setContent:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)distillWithOptions:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)setContent:(id)arg1 tagSolutionSpace:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (BOOL)registerAssetPackIfNeeded:(id)arg1 forItem:(id)arg2 withTagSolver:(id)arg3 error:(id *)arg4;
 - (id)_createSoftlinkToWorkaroundRadar17523681ForImageRep:(id)arg1 error:(id *)arg2;
-- (long long)coreUIResizingModeForResizingBehavior:(id)arg1;
-- (long long)coreUIRenditionTypeForResizingBehavior:(id)arg1;
-- (CDStruct_c519178c)coreUINamedAssetImportEdgeInsetsForResizingBehavior:(id)arg1;
 - (void)logAssets;
 - (void)logAsset:(id)arg1;
 - (void)logAssetImport:(id)arg1;

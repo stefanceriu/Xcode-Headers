@@ -22,6 +22,7 @@
 - (void)_startFileFinderOperation;
 - (void)setState:(int)arg1;
 - (void)start;
+- (void)primitiveInvalidate;
 - (id)initWithSearchCriteria:(id)arg1 forWorkspace:(id)arg2 inController:(id)arg3;
 
 // Remaining properties

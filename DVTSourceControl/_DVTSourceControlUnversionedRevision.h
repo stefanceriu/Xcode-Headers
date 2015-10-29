@@ -11,7 +11,11 @@
 }
 
 - (id)description;
+- (BOOL)isPlaceholderRevision;
 - (BOOL)isUnversionedRevision;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)_init;
 - (id)init;
 

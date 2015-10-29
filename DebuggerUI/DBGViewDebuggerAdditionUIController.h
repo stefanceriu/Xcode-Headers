@@ -9,16 +9,20 @@
 #import "DVTStatefulObject.h"
 #import "IDEDebuggingAdditionUIController.h"
 
-@class DBGViewDebuggerAddition, DVTExtension, DVTStackBacktrace, DVTStateToken, IDEWorkspaceTabController, NSString;
+@class DBGViewDebuggerAddition, DBGViewSurface, DVTExtension, DVTStackBacktrace, DVTStateToken, IDEWorkspaceTabController, NSLock, NSString;
 
 @interface DBGViewDebuggerAdditionUIController : NSObject <DVTStatefulObject, IDEDebuggingAdditionUIController>
 {
     IDEWorkspaceTabController *_workspaceTabController;
+    NSLock *_nodesRenderingLock;
+    long long _nodesRendering;
     BOOL _userHasRequestedViewDebugging;
     BOOL _shouldAutoSwitchDebugNavigatorContentMode;
     BOOL _showsOnlyInterestingViewObjects;
     BOOL _showsOnlyVisibleViewObjects;
     DBGViewDebuggerAddition *_debuggingAddition;
+    long long _userInterfaceState;
+    DBGViewSurface *_focusedHierarchyRootObject;
     DVTExtension *_extension;
     DVTStateToken *_stateToken;
 }
@@ -27,15 +31,20 @@
 + (void)initialize;
 @property(retain) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
 @property(readonly) DVTExtension *extension; // @synthesize extension=_extension;
+@property(retain, nonatomic) DBGViewSurface *focusedHierarchyRootObject; // @synthesize focusedHierarchyRootObject=_focusedHierarchyRootObject;
 @property(nonatomic) BOOL showsOnlyVisibleViewObjects; // @synthesize showsOnlyVisibleViewObjects=_showsOnlyVisibleViewObjects;
 @property(nonatomic) BOOL showsOnlyInterestingViewObjects; // @synthesize showsOnlyInterestingViewObjects=_showsOnlyInterestingViewObjects;
 @property(nonatomic) BOOL shouldAutoSwitchDebugNavigatorContentMode; // @synthesize shouldAutoSwitchDebugNavigatorContentMode=_shouldAutoSwitchDebugNavigatorContentMode;
+@property(nonatomic) long long userInterfaceState; // @synthesize userInterfaceState=_userInterfaceState;
 @property(nonatomic) BOOL userHasRequestedViewDebugging; // @synthesize userHasRequestedViewDebugging=_userHasRequestedViewDebugging;
 @property(readonly) DBGViewDebuggerAddition *debuggingAddition; // @synthesize debuggingAddition=_debuggingAddition;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
+- (void)proceedToReady:(id)arg1;
+- (void)delayReady:(id)arg1;
+- (void)resetToLoading:(id)arg1;
 - (id)initWithWorkspaceTabController:(id)arg1 withDebuggingAddition:(id)arg2 forExtension:(id)arg3;
 
 // Remaining properties

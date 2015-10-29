@@ -12,8 +12,6 @@
 {
     DVTBindingHelper *_bindingHelper;
     NSArray *_statusCategoryNames;
-    NSColor *_subtitleTextColor;
-    NSColor *_inactiveTitleTextColor;
     NSDictionary *_statusCellsByCategoryName;
     NSFont *_subtitleFont;
     NSImage *_image;
@@ -35,6 +33,7 @@
     BOOL _alwaysReserveSpaceForStatusItems;
     BOOL _showSecondarySelection;
     int _secondarySelectionStyle;
+    NSColor *_inactiveTitleTextColor;
     double _statusItemEdgeMargin;
 }
 
@@ -42,14 +41,13 @@
 @property(nonatomic) int secondarySelectionStyle; // @synthesize secondarySelectionStyle=_secondarySelectionStyle;
 @property(nonatomic) BOOL showSecondarySelection; // @synthesize showSecondarySelection=_showSecondarySelection;
 @property double statusItemEdgeMargin; // @synthesize statusItemEdgeMargin=_statusItemEdgeMargin;
+@property(copy, nonatomic) NSColor *inactiveTitleTextColor; // @synthesize inactiveTitleTextColor=_inactiveTitleTextColor;
 @property BOOL alwaysReserveSpaceForStatusItems; // @synthesize alwaysReserveSpaceForStatusItems=_alwaysReserveSpaceForStatusItems;
 @property long long titleAndSubTitleLeftEdgeSpacing; // @synthesize titleAndSubTitleLeftEdgeSpacing=_titleAndSubTitleLeftEdgeSpacing;
 @property int subtitleLayout; // @synthesize subtitleLayout=_subtitleLayout;
 @property int emphasizeMarkerStyle; // @synthesize emphasizeMarkerStyle=_emphasizeMarkerStyle;
 @property BOOL drawsEmphasizeMarker; // @synthesize drawsEmphasizeMarker=_drawsEmphasizeMarker;
 @property long long subtitleSpacing; // @synthesize subtitleSpacing=_subtitleSpacing;
-@property(copy, nonatomic) NSColor *inactiveTitleTextColor; // @synthesize inactiveTitleTextColor=_inactiveTitleTextColor;
-@property(copy, nonatomic) NSColor *subtitleTextColor; // @synthesize subtitleTextColor=_subtitleTextColor;
 @property(copy, nonatomic) NSFont *subtitleFont; // @synthesize subtitleFont=_subtitleFont;
 @property(copy) NSString *subtitle; // @synthesize subtitle=_subtitle;
 @property(copy) NSArray *statusCategoryNames; // @synthesize statusCategoryNames=_statusCategoryNames;
@@ -84,7 +82,7 @@
 - (struct CGRect)_statusCellsRectsForBounds:(struct CGRect)arg1 rects:(id)arg2;
 - (struct CGRect)progressIndicatorRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)subtitleRectForBounds:(struct CGRect)arg1;
-- (struct CGRect)subtitleBoundingRectWithSize:(struct CGSize)arg1 options:(unsigned long long)arg2;
+- (struct CGRect)subtitleBoundingRectWithSize:(struct CGSize)arg1 options:(long long)arg2;
 - (struct CGRect)titleRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)fullLineTitleRectForBounds:(struct CGRect)arg1;
 - (struct CGSize)_attributedStringValueSize;
@@ -110,8 +108,10 @@
 - (void)updateBoundTitle;
 @property(copy) NSString *title; // @dynamic title;
 - (void)setHighlighted:(BOOL)arg1;
+@property(readonly, copy, nonatomic) NSColor *subtitleTextColor;
 @property(readonly, copy) NSColor *titleTextColor;
 - (BOOL)_controlViewHasFocusOrIsSourceList;
+- (id)ancestorTableView;
 - (void)setFont:(id)arg1;
 - (id)dvtExtraBindings;
 - (id)copyWithZone:(struct _NSZone *)arg1;

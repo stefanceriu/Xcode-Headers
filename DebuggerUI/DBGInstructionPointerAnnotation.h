@@ -8,12 +8,13 @@
 
 #import "DVTMessageBubbleAnnotationDelegate.h"
 
-@class DBGDebugSession, DVTObservingToken, DVTTextDocumentLocation, IDEWorkspaceWindowController, NSImage, NSString;
+@class DBGDebugSession, DVTObservingToken, DVTTextDocumentLocation, IDEStackFrame, IDEWorkspaceWindowController, NSImage, NSString;
 
 @interface DBGInstructionPointerAnnotation : DVTMessageBubbleAnnotation <DVTMessageBubbleAnnotationDelegate>
 {
     IDEWorkspaceWindowController *_workspaceWindowController;
     DBGDebugSession *_debugSession;
+    IDEStackFrame *_stackFrame;
     NSImage *_icon;
     DVTTextDocumentLocation *_preDragAnnotationLocation;
     DVTObservingToken *_theadNameObserverToken;
@@ -24,14 +25,13 @@
 + (id)dvt_instructionPointerPathWithSize:(struct CGSize)arg1 tipWidth:(double)arg2;
 + (id)dvt_instructionPointerPathWithSize:(struct CGSize)arg1;
 + (id)_dvt_instructionPointerImageForSize:(struct CGSize)arg1 fillColor:(id)arg2;
-+ (id)_createAnnotationTheme;
 - (void).cxx_destruct;
 - (id)annotationDisplayDescription;
 - (id)annotationDisplayName;
-- (void)_moveInstructionPointerAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)_moveInstructionPointerToAnnotationLocation;
 - (void)didMoveAnnotation:(id)arg1;
 - (unsigned long long)annotation:(id)arg1 willMoveToParagraphNumber:(unsigned long long)arg2;
+- (id)_themeBasedOnCurrentThreadState;
 - (id)_iconForRect:(struct CGRect)arg1;
 - (void)drawSidebarMarkerIconInRect:(struct CGRect)arg1 textView:(id)arg2;
 - (struct CGRect)sidebarMarkerRectForFirstLineRect:(struct CGRect)arg1;

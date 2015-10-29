@@ -11,6 +11,7 @@
 @interface DTDKDeveloperPortalService : NSObject
 {
     DVTDeveloperPortalResponseWrapper *_responseWrapper;
+    _Bool _ignoreSession;
     _Bool _success;
     int _remainingLoginAttempts;
     DVTLogAspect *_logAspect;
@@ -26,13 +27,8 @@
 + (id)_service:(id)arg1 requestPropertyList:(id)arg2;
 + (id)_createRequestDictionary;
 + (id)guaranteedComprehensiveResponseKeys;
-+ (_Bool)_useSSL;
-+ (id)_certBasedServiceHostname;
-+ (id)_serviceHostname;
-+ (id)_serviceClientID;
 + (id)_serviceVersion;
 + (id)alloc;
-+ (void)initialize;
 @property _Bool success; // @synthesize success=_success;
 @property(copy) NSError *error; // @synthesize error=_error;
 @property(copy) NSDictionary *responseDictionary; // @synthesize responseDictionary=_responseDictionary;
@@ -41,6 +37,7 @@
 @property(copy) NSMutableURLRequest *request; // @synthesize request=_request;
 @property int remainingLoginAttempts; // @synthesize remainingLoginAttempts=_remainingLoginAttempts;
 @property(retain) DVTPortalOperationToken *token; // @synthesize token=_token;
+@property _Bool ignoreSession; // @synthesize ignoreSession=_ignoreSession;
 @property(retain) DVTDeveloperAccountSession *session; // @synthesize session=_session;
 - (void).cxx_destruct;
 @property(retain) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
@@ -51,6 +48,7 @@
 - (id)_errorInfo;
 - (BOOL)_handlePortalResultCode:(long long)arg1;
 - (void)_internalParseResponse:(id)arg1 data:(id)arg2;
+- (void)_parseResponse:(id)arg1 data:(id)arg2;
 - (void)_internalExecute;
 @property(readonly) DVTDeveloperAccount *account;
 @property(readonly, nonatomic) DVTDeveloperPortalResponseWrapper *responseWrapper;
@@ -58,6 +56,8 @@
 - (id)uuid;
 @property(readonly) _Bool synchronous;
 - (id)init;
+- (id)_userAgent;
+- (id)_clientID;
 
 @end
 

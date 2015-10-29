@@ -53,8 +53,7 @@
 - (id)loadAssetsFromAssetProvider:(id)arg1;
 - (void)prepareObjectLibraryAssetForAssetCreation:(id)arg1 fromProvider:(id)arg2;
 - (id)createLibraryAssetForObjectAsset:(id)arg1 inNamespace:(id)arg2;
-- (id)createDetailedDescriptionFromAsset:(id)arg1;
-- (id)createImageFromObjectAsset:(id)arg1;
+- (id)_createImageFromObjectAsset:(id)arg1;
 - (id)objectLibraryAssetsFromNibContent:(id)arg1 fromProvider:(id)arg2;
 - (BOOL)shouldIncludeObjectLibraryAsset:(id)arg1 fromProvider:(id)arg2;
 - (id)objectPasteboardType;

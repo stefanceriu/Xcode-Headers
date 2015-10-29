@@ -8,15 +8,17 @@
 
 #import "DVTCancellable.h"
 
-@class NSString;
+@class DVTStackBacktrace, NSString;
 
 @interface DVTBlockBasedCancellationToken : NSObject <DVTCancellable>
 {
-    unsigned char _cancelled;
     CDUnknownBlockType _block;
+    DVTStackBacktrace *_creationBacktrace;
+    unsigned char _cancelled;
 }
 
 - (void).cxx_destruct;
+- (void)dealloc;
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (void)cancel;
 - (id)initWithBlock:(CDUnknownBlockType)arg1;

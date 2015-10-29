@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class DTiPhoneSimulatorApplicationSpecifier, DTiPhoneSimulatorSystemRoot, NSArray, NSDictionary, NSFileHandle, NSNumber, NSString, SimDevice, SimRuntime;
+@class DTiPhoneSimulatorApplicationSpecifier, DTiPhoneSimulatorSystemRoot, DVTSimulatorApplication, NSArray, NSDictionary, NSFileHandle, NSNumber, NSString, SimDevice, SimRuntime;
 
 @interface DTiPhoneSimulatorSessionConfig : NSObject <NSCopying>
 {
@@ -59,6 +59,7 @@
 - (void).cxx_destruct;
 - (id)description;
 @property(retain, nonatomic) DTiPhoneSimulatorSystemRoot *simulatedSystemRoot;
+@property(readonly, nonatomic) DVTSimulatorApplication *simulatorApplication;
 @property(retain, nonatomic) SimDevice *device; // @synthesize device=_device;
 @property(readonly, copy) NSDictionary *toolSpawnOptions;
 @property(readonly, copy) NSDictionary *appLaunchOptions;

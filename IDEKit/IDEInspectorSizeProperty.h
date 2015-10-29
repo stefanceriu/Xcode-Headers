@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDEInspectorProperty.h>
 
-@class IDEInspectorKeyPath, NSButton, NSStepper, NSString, NSTextField;
+@class IDEInspectorKeyPath, NSButton, NSNumberFormatter, NSStepper, NSString, NSTextField;
 
 @interface IDEInspectorSizeProperty : IDEInspectorProperty
 {
@@ -15,6 +15,9 @@
     IDEInspectorKeyPath *_nonNilValueObjectKeyPath;
     NSString *_nilPlaceholder;
     BOOL _allowsNilValues;
+    BOOL _allowsNegativeValues;
+    long long _checkStateForNonNil;
+    long long _checkStateForNil;
     NSTextField *_widthTextField;
     NSTextField *_heightTextField;
     NSStepper *_widthStepper;
@@ -22,8 +25,10 @@
     NSTextField *_widthLabel;
     NSTextField *_heightLabel;
     NSButton *_hasValueCheckBox;
+    NSNumberFormatter *_sizeFormatter;
 }
 
+@property(retain, nonatomic) NSNumberFormatter *sizeFormatter; // @synthesize sizeFormatter=_sizeFormatter;
 @property(retain, nonatomic) NSButton *hasValueCheckBox; // @synthesize hasValueCheckBox=_hasValueCheckBox;
 @property(retain, nonatomic) NSTextField *heightLabel; // @synthesize heightLabel=_heightLabel;
 @property(retain, nonatomic) NSTextField *widthLabel; // @synthesize widthLabel=_widthLabel;

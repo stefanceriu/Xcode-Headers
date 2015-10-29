@@ -15,6 +15,7 @@
 
 @property(copy, nonatomic) NSAttributedString *string; // @synthesize string=_string;
 - (void).cxx_destruct;
+- (void)setContentsScale:(double)arg1;
 - (void)drawInContext:(struct CGContext *)arg1;
 - (struct CGSize)preferredFrameSize;
 

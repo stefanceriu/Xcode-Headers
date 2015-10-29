@@ -10,7 +10,7 @@
 #import "DVTServicesJSONSerialization.h"
 #import "NSCopying.h"
 
-@class DVTProductCoordinator, DVTProductIdentifier, DVTProductVersion, DVTStackBacktrace, NSArray, NSString, NSURL;
+@class DVTProductCategory, DVTProductCoordinator, DVTProductIdentifier, DVTProductVersion, DVTStackBacktrace, NSArray, NSString, NSURL;
 
 @interface DVTProduct : NSObject <DVTServicesJSONSerialization, DVTInvalidation, NSCopying>
 {
@@ -20,6 +20,8 @@
 }
 
 + (id)objectFromFilePath:(id)arg1 withCoordinator:(id)arg2 error:(id *)arg3;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
++ (id)keyPathsForValuesAffectingProductCategory;
 + (id)keyPathsForValuesAffectingCacheImageURL;
 + (id)keyPathsForValuesAffectingImageURL;
 + (id)keyPathsForValuesAffectingName;
@@ -35,6 +37,7 @@
 - (id)JSONRepresentation;
 - (void)primitiveInvalidate;
 @property(readonly, copy) NSString *description;
+@property(readonly) DVTProductCategory *productCategory;
 @property(readonly) NSURL *cacheImageURL;
 @property(readonly) NSURL *imageURL;
 @property(readonly) NSString *name;
@@ -45,6 +48,7 @@
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)_initWithCoordinator:(id)arg1 productIdentifier:(id)arg2 productVersions:(id)arg3;
+- (id)init;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

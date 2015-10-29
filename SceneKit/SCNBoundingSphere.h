@@ -13,7 +13,6 @@ __attribute__((visibility("hidden")))
     double radius;
 }
 
-+ (id)SCNJSExportProtocol;
 @property(nonatomic) double radius; // @synthesize radius;
 @property(nonatomic) struct SCNVector3 center; // @synthesize center;
 - (id)description;

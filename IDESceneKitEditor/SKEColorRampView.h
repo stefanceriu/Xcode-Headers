@@ -6,10 +6,13 @@
 
 #import "NSView.h"
 
-@class NSGradient;
+#import "IDEInspectorPropertyEnablable.h"
 
-@interface SKEColorRampView : NSView
+@class NSGradient, NSString;
+
+@interface SKEColorRampView : NSView <IDEInspectorPropertyEnablable>
 {
+    BOOL _enabled;
     NSGradient *_gradient;
     long long _selectedMarkerIndex;
     unsigned long long _selectionState;
@@ -40,6 +43,17 @@
 - (id)gradientByRemovingColorAtIndex:(unsigned long long)arg1;
 - (id)gradientByAddingColor:(id)arg1 atLocation:(double)arg2 index:(unsigned long long *)arg3;
 @property(retain) NSGradient *gradient;
+- (void)setEnabled:(BOOL)arg1;
+- (BOOL)isEnabled;
+- (id)initWithFrame:(struct CGRect)arg1;
+- (id)initWithCoder:(id)arg1;
+- (void)commonInit;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

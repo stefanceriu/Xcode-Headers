@@ -6,11 +6,19 @@
 
 #import <IDEKit/IDELaunchActionOptionViewController.h>
 
+@class IDEScheme, NSMenu;
+
 @interface IDEOpenGLESOptionsController : IDELaunchActionOptionViewController
 {
+    NSMenu *_menu;
+    IDEScheme *_scheme;
 }
 
 + (BOOL)availableForScheme:(id)arg1;
+- (void).cxx_destruct;
+- (void)primitiveInvalidate;
+- (void)loadView;
+- (id)initWithScheme:(id)arg1;
 
 @end
 

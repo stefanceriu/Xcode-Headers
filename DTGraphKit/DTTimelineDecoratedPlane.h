@@ -6,49 +6,50 @@
 
 #import <DTGraphKit/DTTimelinePlane.h>
 
-@class DTTimelineDecorator, DTTimelineGraphInfoSummaryLabelLayer, NSAttributedString, NSColor, NSImage, NSMapTable, NSString;
+@class DTTimelineDecorator, DTTimelineGraphInfoSummaryLabelLayer, NSAttributedString, NSColor, NSFont, NSImage, NSMapTable, NSString;
 
 @interface DTTimelineDecoratedPlane : DTTimelinePlane
 {
     NSMapTable *_tilesByIdx;
     double _oldTileWidth;
-    struct CGSize _defaultDrawableIconSize;
     DTTimelineGraphInfoSummaryLabelLayer *_infoSummaryLabelLayer;
     BOOL _dynamicRangeValid;
     BOOL _skipFaultingInTiles;
     DTTimelineDecorator *_decorator;
-    NSColor *_defaultDrawableColor;
-    NSImage *_defaultDrawableIcon;
     NSString *_dynamicRangePeerGroup;
     NSAttributedString *_summary;
     struct DTTimelineGraphDynamicRange _minimalDynamicRange;
     struct DTTimelineGraphDynamicRange _maximumDynamicRange;
 }
 
++ (id)planeWithHeight:(double)arg1 decorator:(id)arg2;
 + (id)planeWithDecorator:(id)arg1;
 @property(retain, nonatomic) NSAttributedString *summary; // @synthesize summary=_summary;
 @property(copy, nonatomic) NSString *dynamicRangePeerGroup; // @synthesize dynamicRangePeerGroup=_dynamicRangePeerGroup;
 @property(nonatomic) struct DTTimelineGraphDynamicRange maximumDynamicRange; // @synthesize maximumDynamicRange=_maximumDynamicRange;
 @property(nonatomic) struct DTTimelineGraphDynamicRange minimalDynamicRange; // @synthesize minimalDynamicRange=_minimalDynamicRange;
-@property(nonatomic) struct CGSize defaultDrawableIconSize; // @synthesize defaultDrawableIconSize=_defaultDrawableIconSize;
-@property(nonatomic) NSImage *defaultDrawableIcon; // @synthesize defaultDrawableIcon=_defaultDrawableIcon;
-@property(copy, nonatomic) NSColor *defaultDrawableColor; // @synthesize defaultDrawableColor=_defaultDrawableColor;
 @property(readonly, nonatomic) DTTimelineDecorator *decorator; // @synthesize decorator=_decorator;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_didMoveOutOfView;
 - (void)_willMoveIntoView;
 - (id)_decorationSummaryLayer;
+- (void)_enumeratesPlanesHavingKey:(id)arg1 stopPtr:(char *)arg2 block:(CDUnknownBlockType)arg3;
+- (void)ignoreTimeBoundsCheck;
+- (id)_unselectedTextColor;
+- (id)_selectedTextColor;
 - (void)makeOpaqueWithBackgroundColor:(id)arg1;
+- (void)setContentIsOptional;
 - (id)visibleStringSummaries;
-- (void)setHeight:(double)arg1;
-- (double)height;
+- (void)_setHeight:(double)arg1;
 @property(nonatomic) BOOL decoratesMajorMinorTicks;
 @property(nonatomic) unsigned long long intervalBarWidth;
+@property(nonatomic) double intervalRoundedRectRadius;
 @property(nonatomic) double intervalVisualSpacing;
 @property(nonatomic) unsigned long long intervalDisplayType;
+@property(nonatomic) unsigned long long intervalLabelConflictResolutionType;
 @property(nonatomic) unsigned long long intervalConflictResolutionType;
 @property(nonatomic) unsigned long long pointDisplayType;
+@property(nonatomic) unsigned long long pointLabelConflictResolutionType;
 @property(nonatomic) unsigned long long pointConflictResolutionType;
 - (BOOL)dynamicRangeWasSet;
 - (void)setDynamicRange:(struct DynamicRange)arg1;
@@ -58,11 +59,18 @@
 - (id)_decoratedPlanes;
 - (void)_contextChanged;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+@property(retain, nonatomic) NSFont *defaultDrawableFont;
+@property(nonatomic) struct CGSize defaultDrawableIconSize;
+@property(retain, nonatomic) NSImage *defaultDrawableIcon;
+@property(copy, nonatomic) NSColor *defaultDrawableTextColor;
+@property(copy, nonatomic) NSColor *defaultDrawableColor;
 - (void)dealloc;
 - (id)init;
+- (id)initWithHeight:(double)arg1;
+- (id)initWithHeight:(double)arg1 decorator:(id)arg2;
 - (id)initWithDecorator:(id)arg1;
 - (void)_invalidateTimeRange:(struct XRTimeRange)arg1;
-- (void)_clearTileCache;
+- (void)_redecorateTiles;
 - (void)_setPosition:(struct CGPoint)arg1 size:(struct CGSize)arg2;
 - (void)_layoutTiles;
 - (void)_removeFromContext;

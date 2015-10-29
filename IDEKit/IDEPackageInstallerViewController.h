@@ -21,6 +21,7 @@
     NSTextView *_errorTextView;
     NSScrollView *_errorTextScrollView;
     NSTextField *_needToRestartXcodeLabel;
+    NSButton *_cancelQuitAppsButton;
     NSWindow *_appsToQuitSheet;
     NSButton *_quitAllButton;
     NSTextField *_descriptionLabel;
@@ -33,13 +34,11 @@
     CDUnknownBlockType _installationCompleteButtonHandler;
     NSArray *_appsThatNeedToBeQuitBeforeInstallCanProceed;
     CDUnknownBlockType installationCompleteHandler;
-    NSArray *_packagesToInstall;
     NSImageView *_imageView;
 }
 
 + (void)initialize;
 @property __weak NSImageView *imageView; // @synthesize imageView=_imageView;
-@property(readonly) NSArray *packagesToInstall; // @synthesize packagesToInstall=_packagesToInstall;
 @property(copy) NSArray *appsThatNeedToBeQuitBeforeInstallCanProceed; // @synthesize appsThatNeedToBeQuitBeforeInstallCanProceed=_appsThatNeedToBeQuitBeforeInstallCanProceed;
 @property(copy) CDUnknownBlockType installationCompleteButtonHandler; // @synthesize installationCompleteButtonHandler=_installationCompleteButtonHandler;
 @property(copy) CDUnknownBlockType installationCompleteHandler; // @synthesize installationCompleteHandler;
@@ -61,6 +60,7 @@
 - (void)showRestartDescriptionLabel;
 - (void)setInstallationCompleteButtonTitle:(id)arg1;
 - (id)packagesToDisplay;
+@property(readonly) NSArray *packagesToInstall;
 - (BOOL)backgroundDownloadInProgress;
 - (BOOL)needToInstallPackages;
 - (void)_checkForAlertAllApp;

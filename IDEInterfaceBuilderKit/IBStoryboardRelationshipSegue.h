@@ -14,7 +14,7 @@
 
 + (id)prototypeConnectionsFromObject:(id)arg1 toObject:(id)arg2;
 + (id)prototypeConnectionsForObject:(id)arg1;
-+ (id)ibDefaultImageForInstance:(id)arg1;
++ (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
 + (id)classIdentifier;
 + (id)menuLabelForConnection:(id)arg1;
 + (id)relationshipSegueWithKeyPath:(id)arg1 from:(id)arg2 to:(id)arg3;
@@ -23,12 +23,14 @@
 + (BOOL)isObjectValidSource:(id)arg1;
 - (id)displayGroupIdentifierForDragFromObject:(id)arg1 toObject:(id)arg2;
 - (id)missingComponents;
+- (void)populateSegueTemplates:(id)arg1 andOutletsForCompiledDocument:(id)arg2;
 - (BOOL)validateDestination:(id)arg1;
 - (BOOL)validateSource:(id)arg1;
 - (id)badgeImage;
 - (id)displayValuesWithRespectToPrototype:(id)arg1 inDocument:(id)arg2;
 - (BOOL)isExclusiveTo:(id)arg1 inObjectContainer:(id)arg2;
 - (BOOL)isValidForDocument:(id)arg1 message:(id *)arg2;
+- (id)_descriptionSubstringForLabel;
 - (id)displayDescriptionInDocument:(id)arg1;
 - (id)userPresentableLabel;
 - (id)_relationshipDescription;

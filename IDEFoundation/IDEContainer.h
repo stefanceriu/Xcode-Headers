@@ -12,7 +12,7 @@
 #import "IDEReadOnlyItem.h"
 #import "IDEUpgradeableItem.h"
 
-@class DVTExtension, DVTFilePath, DVTMapTable, DVTOperation, DVTStackBacktrace, IDEActivityLogSection, IDEGroup, IDEWorkspace, NSDictionary, NSMapTable, NSMutableDictionary, NSMutableSet, NSString, NSTimer, NSURL;
+@class DVTExtension, DVTFilePath, DVTOperation, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDEActivityLogSection, IDEGroup, IDEWorkspace, NSDictionary, NSMapTable, NSMutableDictionary, NSString, NSTimer, NSURL;
 
 @interface IDEContainer : DVTModelObject <DVTInvalidation, IDEIntegrityLogDataSource, IDEReadOnlyItem, DVTDirectoryBasedCustomDataStoreDelegate, IDEUpgradeableItem>
 {
@@ -25,12 +25,12 @@
     DVTOperation *_willReadOperation;
     DVTOperation *_readOperation;
     DVTOperation *_didReadOperation;
-    id <DVTCancellable> _resolvePendingFilesCancellableToken;
+    DVTTimeSlicedMainThreadWorkQueue *_mainThreadTimeSlicedQueue;
+    DVTTimeSlicedMainThreadWorkQueue *_pendingFileReferenceResolvingQueue;
     int _activity;
     int _transitionActivity;
     NSMutableDictionary *_sessionIdentifiersToFilePaths;
     NSMutableDictionary *_containerLoadingTokens;
-    NSMutableSet *_pendingFileReferences;
     NSDictionary *_containerDataFilePaths;
     int _autosaveBehavior;
     int _saveIssue;
@@ -39,10 +39,12 @@
     NSMutableDictionary *_filePathToReadOnlyItemMap;
     NSMapTable *_readOnlyItemToStatusObserverMap;
     id <IDEContainerDelegate> _containerDelegate;
-    DVTMapTable *_pendingFilePathChangeDictionary;
+    NSMapTable *_pendingFilePathChangeDictionary;
     int _readOnlyStatus;
     BOOL _hasTransitionedToIdle;
     BOOL _containerEdited;
+    BOOL _validForSchemeBuildableReferences;
+    BOOL _transitioningToNewFilePath;
 }
 
 + (BOOL)_shouldTrackReadOnlyStatus;
@@ -52,6 +54,7 @@
 + (void)setReloadingDelegate:(id)arg1;
 + (id)errorPresenter;
 + (void)setErrorPresenter:(id)arg1;
++ (BOOL)isOnlyUsedForUserInteraction;
 + (BOOL)supportsMultipleInstancesPerFilePath;
 + (BOOL)automaticallyNotifiesObserversOfFilePath;
 + (BOOL)automaticallyNotifiesObserversOfActivity;
@@ -61,10 +64,12 @@
 + (double)_defaltSlowAutosaveDelay;
 + (double)_defaltAutosaveDelay;
 + (BOOL)automaticallyNotifiesObserversOfContainerEdited;
++ (void)_addContainerWithPendingChanges:(id)arg1;
 + (void)resumeFilePathChangeNotifications;
 + (void)suspendFilePathChangeNotifications;
 + (id)_containersWithPendingFilePathChanges;
 + (BOOL)_observeContainerDataFilePathsForChanges;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (id)_containerForSessionIdentifier:(id)arg1;
 + (void)_invalidateContainer:(id)arg1;
 + (void)_releaseContainer:(id)arg1;
@@ -88,11 +93,13 @@
 + (id)containerExtensionForFileDataType:(id)arg1;
 + (id)containerLoadingModelObjectGraph;
 + (void)initialize;
+@property(getter=isTransitioningToNewFilePath) BOOL transitioningToNewFilePath; // @synthesize transitioningToNewFilePath=_transitioningToNewFilePath;
 @property int readOnlyStatus; // @synthesize readOnlyStatus=_readOnlyStatus;
 @property(readonly) IDEGroup *rootGroup; // @synthesize rootGroup=_rootGroup;
 @property(copy, nonatomic) DVTFilePath *itemBaseFilePath; // @synthesize itemBaseFilePath=_itemBaseFilePath;
 @property(readonly) DVTFilePath *filePath; // @synthesize filePath=_filePath;
 @property(readonly) DVTExtension *extension; // @synthesize extension=_extension;
+@property(readonly, nonatomic, getter=isValidForSchemeBuildableReferences) BOOL validForSchemeBuildableReferences; // @synthesize validForSchemeBuildableReferences=_validForSchemeBuildableReferences;
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 @property(readonly) id <IDEContainerCore> containerCore; // @synthesize containerCore=_containerCore;
 @property(retain) id <IDEContainerDelegate> containerDelegate; // @synthesize containerDelegate=_containerDelegate;
@@ -111,10 +118,12 @@
 - (void)debugPrintStructure;
 - (void)debugPrintInnerStructure;
 @property(readonly, copy) NSString *description;
+- (void)_enqueueWorkItem:(CDUnknownBlockType)arg1;
 - (void)collectMessageTracerStatisticsIntoDictionary:(id)arg1;
 @property(readonly) IDEActivityLogSection *integrityLog;
 - (void)analyzeModelIntegrity;
 - (void)enumerateUpgradeTasksWithBlock:(CDUnknownBlockType)arg1;
+@property(readonly) BOOL supportsOnDemandResources;
 @property(readonly, getter=isFolderLike) BOOL folderLike;
 @property(readonly, getter=isMajorGroup) BOOL majorGroup;
 @property(readonly, getter=isEditable) BOOL editable;
@@ -131,6 +140,7 @@
 - (void)_respondToFileChangeOnDiskWithFilePath:(id)arg1;
 - (void)_makeAbsoluteFileReferencesInGroup:(id)arg1 relativeToFolderFilePath:(id)arg2 withPathString:(id)arg3;
 @property(readonly) NSString *displayName;
+@property(readonly, copy) NSString *workspaceParentRelativePath;
 - (void)_setTransitioningToNewFilePath:(BOOL)arg1;
 - (void)_setExtension:(id)arg1;
 - (void)_didUpdateActivity;
@@ -172,6 +182,7 @@
 - (void)releaseContainer;
 - (void)retainContainer;
 - (void)_saveContainerIfNeeded;
+- (BOOL)canSaveContainer;
 - (id)init;
 - (id)initWithFilePath:(id)arg1 extension:(id)arg2 workspace:(id)arg3 options:(id)arg4 error:(id *)arg5;
 - (void)_removeSubcontainer:(id)arg1;
@@ -180,7 +191,7 @@
 - (void)_removeContainerLoadingTokenForContainer:(id)arg1;
 - (void)_locateFileReferencesRecursively;
 - (void)_clearPendingFileReferencesAndContainerLoadingTokens;
-- (void)_scheduleResolvePendingFileReferencesOperation;
+- (void)_resolveFileReference:(id)arg1;
 - (void)_handleContainerResolutionFailureForFileReference:(id)arg1;
 - (void)_locateFileReferencesRecursivelyInGroup:(id)arg1;
 - (void)_removePendingFileReference:(id)arg1;

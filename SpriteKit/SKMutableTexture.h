@@ -17,10 +17,9 @@
 }
 
 + (id)mutableTextureWithSize:(struct CGSize)arg1;
-- (id).cxx_construct;
 - (void)dealloc;
 - (id)description;
-- (void)load;
+- (shared_ptr_bb77cfd9)_backingTexture;
 - (void)modifyPixelDataWithBlock:(CDUnknownBlockType)arg1;
 - (id)initWithSize:(struct CGSize)arg1 pixelFormat:(int)arg2;
 - (id)initWithSize:(struct CGSize)arg1;

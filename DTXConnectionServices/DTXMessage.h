@@ -11,6 +11,7 @@
 @interface DTXMessage : NSObject
 {
     int _messageType;
+    int _compressionType;
     int _status;
     CDUnknownBlockType _destructor;
     const char *_internalBuffer;
@@ -27,6 +28,7 @@
     NSDictionary *_auxiliaryPromoted;
 }
 
++ (_Bool)extractSerializedCompressionInfoFromBuffer:(const char *)arg1 length:(unsigned long long)arg2 compressionType:(int *)arg3 uncompressedLength:(unsigned long long *)arg4 compressedDataOffset:(unsigned long long *)arg5;
 + (id)message;
 + (id)messageWithSelector:(SEL)arg1 objectArguments:(id)arg2;
 + (id)messageWithSelector:(SEL)arg1 typesAndArguments:(int)arg2;
@@ -35,6 +37,7 @@
 + (id)messageWithPrimitive:(void *)arg1;
 + (id)messageWithError:(id)arg1;
 + (id)messageWithObject:(id)arg1;
++ (void)setReportCompressionBlock:(CDUnknownBlockType)arg1;
 + (void)initialize;
 @property(readonly, nonatomic) unsigned long long cost; // @synthesize cost=_cost;
 @property(nonatomic) int errorStatus; // @synthesize errorStatus=_status;
@@ -46,7 +49,7 @@
 @property(nonatomic) unsigned int identifier; // @synthesize identifier=_identifier;
 @property(readonly, nonatomic) unsigned long long serializedLength;
 - (void)serializedFormExpectingReply:(BOOL)arg1 apply:(CDUnknownBlockType)arg2;
-- (id)initWithSerializedForm:(const char *)arg1 length:(unsigned long long)arg2 destructor:(CDUnknownBlockType)arg3;
+- (id)initWithSerializedForm:(const char *)arg1 length:(unsigned long long)arg2 destructor:(CDUnknownBlockType)arg3 compressor:(id)arg4;
 - (void)invokeWithTarget:(id)arg1 replyChannel:(id)arg2 validator:(CDUnknownBlockType)arg3;
 - (BOOL)shouldInvokeWithTarget:(id)arg1;
 @property(readonly, nonatomic) BOOL isBarrier;
@@ -75,6 +78,7 @@
 - (id)newReplyWithError:(id)arg1;
 - (id)newReplyWithObject:(id)arg1;
 - (id)newReply;
+- (void)compressWithCompressor:(id)arg1 usingType:(int)arg2 forCompatibilityWithVersion:(long long)arg3;
 - (id)description;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

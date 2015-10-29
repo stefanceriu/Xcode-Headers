@@ -6,38 +6,20 @@
 
 #import "NSButtonCell.h"
 
-@class NSShadow;
-
 @interface DVTGradientImageButtonCell : NSButtonCell
 {
-    NSShadow *_imageShadow;
+    BOOL _usedAsRadioButton;
     int _gradientStyle;
     int _borderSides;
-    int _highlightSides;
-    BOOL _showsState;
-    BOOL _suppressLeftBorderForTabStyles;
-    BOOL _enableGradientStylBorderSuppression;
-    BOOL _useButtonImageCenteringHack;
-    BOOL _usedAsRadioButton;
-    BOOL _alwaysShowColorPunchOut;
 }
 
-@property BOOL alwaysShowColorPunchOut; // @synthesize alwaysShowColorPunchOut=_alwaysShowColorPunchOut;
 @property BOOL usedAsRadioButton; // @synthesize usedAsRadioButton=_usedAsRadioButton;
-@property BOOL useButtonImageCenteringHack; // @synthesize useButtonImageCenteringHack=_useButtonImageCenteringHack;
-@property BOOL enableGradientStylBorderSuppression; // @synthesize enableGradientStylBorderSuppression=_enableGradientStylBorderSuppression;
-@property BOOL suppressLeftBorderForTabStyles; // @synthesize suppressLeftBorderForTabStyles=_suppressLeftBorderForTabStyles;
-@property(nonatomic) BOOL showsState; // @synthesize showsState=_showsState;
-@property(copy) NSShadow *imageShadow; // @synthesize imageShadow=_imageShadow;
-@property int highlightSides; // @synthesize highlightSides=_highlightSides;
 @property int borderSides; // @synthesize borderSides=_borderSides;
 @property(nonatomic) int gradientStyle; // @synthesize gradientStyle=_gradientStyle;
-- (void).cxx_destruct;
 - (BOOL)_isTabStyleCell;
-- (BOOL)_shouldUseColorPunchOutStyleForGradientStyle;
+- (BOOL)_shouldUseColorPunchOutStyle;
 - (void)_setGradientStyle:(int)arg1;
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (void)drawImage:(id)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
 - (void)setTitle:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initImageCell:(id)arg1;

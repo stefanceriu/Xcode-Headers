@@ -25,6 +25,7 @@
 @property(copy) NSString *filterMatchString; // @synthesize filterMatchString=_filterMatchString;
 @property int mode; // @synthesize mode=_mode;
 - (void).cxx_destruct;
+- (id)_inactiveColor;
 - (id)_summaryTextColor:(BOOL)arg1;
 - (id)_summaryTextColor;
 - (id)_textColor;
@@ -42,12 +43,12 @@
 - (id)_typeString:(id)arg1;
 - (id)_nameOnlyString:(id)arg1;
 - (id)_nameString:(id)arg1;
+- (double)_adjustedFontSize:(double)arg1;
 - (id)nameFont;
 - (id)summaryFont;
 - (id)changedFont;
 - (id)valueFont;
 - (id)rawValueFont;
-- (id)_sizeFont:(id)arg1;
 - (BOOL)getObjectValue:(id *)arg1 forString:(id)arg2 errorDescription:(id *)arg3;
 - (id)attributedStringForObjectValue:(id)arg1 withDefaultAttributes:(id)arg2;
 - (id)stringForObjectValue:(id)arg1;

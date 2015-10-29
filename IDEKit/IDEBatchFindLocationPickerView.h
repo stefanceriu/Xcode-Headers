@@ -10,31 +10,31 @@
 #import "NSOutlineViewDataSource.h"
 #import "NSOutlineViewDelegate.h"
 
-@class DVTObservingToken, DVTStackBacktrace, IDEBatchFindLocationOutlineView, IDENavigableItem, IDENavigableItemCoordinator, IDENavigatorDataCell, IDEWorkspace, NSArray, NSButtonCell, NSMutableSet, NSPredicate, NSScrollView, NSSearchField, NSString, NSTextFieldCell;
+@class DVTObservingToken, DVTStackBacktrace, IDEBatchFindLocationOutlineView, IDENavigableItem, IDENavigableItemAsyncFilteringCoordinator, IDENavigatorDataCell, IDEWorkspace, NSArray, NSButtonCell, NSMutableSet, NSPredicate, NSScrollView, NSSearchField, NSString, NSTextFieldCell;
 
 @interface IDEBatchFindLocationPickerView : DVTBorderedView <NSOutlineViewDelegate, NSOutlineViewDataSource, DVTInvalidation>
 {
-    IDENavigableItemCoordinator *_navigableItemCoordinator;
+    IDENavigableItemAsyncFilteringCoordinator *_navigableItemCoordinator;
     NSString *_fileNameFilterString;
     NSPredicate *_allowedFileFilterPredicate;
     NSPredicate *_selectableItemPredicate;
-    NSPredicate *_selectableFileFilterPredicate;
     NSArray *_rootItems;
-    id _target;
     IDENavigatorDataCell *_plainObjectCell;
     IDENavigatorDataCell *_scopeObjectCell;
     NSTextFieldCell *_headerObjectCell;
     NSButtonCell *_editingStatusCell;
     NSTextFieldCell *_statusCell;
-    id <IDEBatchFindLocationPickerViewDelegate> _delegate;
     NSArray *_realSelectedItems;
-    BOOL _canChooseGroups;
     IDENavigableItem *_lastNavigableItemComputed;
     NSArray *_lastComputedChildItems;
     DVTObservingToken *_selectionObserverToken;
+    BOOL _canChooseGroups;
+    NSPredicate *_selectableFileFilterPredicate;
     NSScrollView *_scrollView;
     IDEBatchFindLocationOutlineView *_outlineView;
     NSSearchField *_searchField;
+    id _target;
+    id <IDEBatchFindLocationPickerViewDelegate> _delegate;
     NSMutableSet *_groupsFilteredIn;
     NSString *_filterString;
     IDEWorkspace *_workspace;
@@ -54,6 +54,9 @@
 @property(retain) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 @property(retain, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
 @property(retain) NSMutableSet *groupsFilteredIn; // @synthesize groupsFilteredIn=_groupsFilteredIn;
+@property(retain, nonatomic) id <IDEBatchFindLocationPickerViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain) id target; // @synthesize target=_target;
+@property(nonatomic) BOOL canChooseGroups; // @synthesize canChooseGroups=_canChooseGroups;
 @property(retain) NSSearchField *searchField; // @synthesize searchField=_searchField;
 @property(retain) IDEBatchFindLocationOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 @property(retain) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
@@ -61,11 +64,8 @@
 @property(copy, nonatomic) NSPredicate *_selectableItemPredicate; // @synthesize _selectableItemPredicate;
 @property(copy) NSArray *_realSelectedItems; // @synthesize _realSelectedItems;
 @property(copy) NSString *_fileNameFilterString; // @synthesize _fileNameFilterString;
-@property(retain, nonatomic) id <IDEBatchFindLocationPickerViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(copy, nonatomic) NSPredicate *selectableNavigableItemFilter; // @synthesize selectableNavigableItemFilter=_selectableFileFilterPredicate;
 @property(copy, nonatomic) NSPredicate *allowedNavigableItemFilter; // @synthesize allowedNavigableItemFilter=_allowedFileFilterPredicate;
-@property(retain) id target; // @synthesize target=_target;
-@property(nonatomic) BOOL canChooseGroups; // @synthesize canChooseGroups=_canChooseGroups;
 - (void).cxx_destruct;
 - (id)_defaultEmptyContentString;
 - (id)outlineView:(id)arg1 childItemsForItem:(id)arg2;
@@ -86,7 +86,7 @@
 - (id)plainObjectCell;
 - (void)viewDidMoveToSuperview;
 - (void)primitiveInvalidate;
-@property(retain) IDENavigableItemCoordinator *navigableItemCoordinator;
+@property(retain) IDENavigableItemAsyncFilteringCoordinator *navigableItemCoordinator;
 - (id)filterPredicate;
 - (void)ensureItemsAreVisible:(id)arg1;
 @property(retain) NSArray *selectedItems;

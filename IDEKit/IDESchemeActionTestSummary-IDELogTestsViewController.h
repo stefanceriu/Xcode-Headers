@@ -7,9 +7,9 @@
 #import "IDESchemeActionTestSummary.h"
 
 @interface IDESchemeActionTestSummary (IDELogTestsViewController)
-- (id)ide_sharedTests_UUID;
-- (id)ide_sharedTests_statusImage;
-- (id)ide_sharedTests_testName;
-- (id)ide_sharedTests_perfMetrics;
+- (id)ide_testReport_test_UUID;
+- (id)ide_testReport_test_statusImage;
+- (id)ide_testReport_test_testName;
+- (id)ide_testReport_test_perfMetrics;
 @end
 

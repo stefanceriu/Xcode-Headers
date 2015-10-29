@@ -14,10 +14,11 @@
 {
     CDStruct_3b0d17db _obj;
     double _priority;
+    double _fuzzyMatchingScore;
 }
 
+@property double fuzzyMatchingScore; // @synthesize fuzzyMatchingScore=_fuzzyMatchingScore;
 @property double priority; // @synthesize priority=_priority;
-- (id).cxx_construct;
 - (unsigned long long)leadingCharactersToReplaceFromString:(id)arg1 location:(unsigned long long)arg2;
 - (void)infoViewControllerWithWidth:(double)arg1 context:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 @property(readonly) NSArray *associatedUSRs;

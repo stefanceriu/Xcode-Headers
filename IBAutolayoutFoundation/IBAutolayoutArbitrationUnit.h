@@ -6,14 +6,16 @@
 
 #import "NSObject.h"
 
+#import "IBBinaryArchiving.h"
+
 @class NSArray, NSMutableSet, NSSet, NSString;
 
-@interface IBAutolayoutArbitrationUnit : NSObject
+@interface IBAutolayoutArbitrationUnit : NSObject <IBBinaryArchiving>
 {
     NSMutableSet *_objects;
     NSArray *_objectsOrderedBreadthFirst;
-    id <IBAutolayoutInfoProvider> _layoutInfo;
     id _rootObject;
+    id <IBAutolayoutInfoProvider> _layoutInfo;
 }
 
 + (id)topMostObjectOfClass:(Class)arg1 inLineageToArbitrationUnitRootContainingObject:(id)arg2 withLayoutInfo:(id)arg3;
@@ -22,9 +24,9 @@
 + (id)arbitrationUnitsAtAndBelowObject:(id)arg1 withLayoutInfo:(id)arg2;
 + (id)arbitrationUnitsForObjects:(id)arg1 withLayoutInfo:(id)arg2;
 + (id)arbitrationUnitForObject:(id)arg1 withLayoutInfo:(id)arg2;
+@property(readonly) id <IBAutolayoutInfoProvider> layoutInfo; // @synthesize layoutInfo=_layoutInfo;
 @property(readonly, copy) NSSet *objects; // @synthesize objects=_objects;
 @property(readonly) id rootObject; // @synthesize rootObject=_rootObject;
-@property(readonly) id <IBAutolayoutInfoProvider> layoutInfo; // @synthesize layoutInfo=_layoutInfo;
 - (void).cxx_destruct;
 - (id)engineEvaluatedConstantValuesOfConstraints:(id)arg1 error:(id *)arg2;
 - (BOOL)doesChangingPriorityOfConstraint:(id)arg1 to:(double)arg2 preventClippingContentOfView:(id)arg3 inEngine:(id)arg4;
@@ -32,10 +34,12 @@
 - (id)constraintsAffectingLayoutOfView:(id)arg1 forOrientations:(unsigned long long)arg2 inEngine:(id)arg3;
 - (id)constraintsAffectingLayoutOfView:(id)arg1 forOrientations:(unsigned long long)arg2;
 - (id)computeStatusFromEngine:(id)arg1;
+- (id)computeViewToLayoutFramesFromEngine:(id)arg1;
 - (void)_updateUninitializedAmbiguityStatusForMutableEffectiveAmbiguousViewStatusGroups:(id)arg1;
 - (id)_makeAmbiguityGroupForAmbiguityStatus:(id)arg1 orientationMask:(unsigned long long)arg2;
 - (id)_ambiguityStatusGroupsFromAmbiguousViewsToAmbiguityStatus:(id)arg1 engine:(id)arg2;
-- (id)_ambiguousViewGroupsByViewForOrientation:(unsigned long long)arg1 ambiguousViewsToAmbiguityStatus:(id)arg2 engine:(id)arg3 originalAmbiguityStatusMasksByView:(id)arg4;
+- (id)_viewsOrderedBreadthFirstSearchIncludedInSet:(id)arg1;
+- (id)_ambiguousViewGroupsByViewForOrientation:(unsigned long long)arg1 ambiguousViewsToAmbiguityStatus:(id)arg2 ambiguousViewsOrderedAnscestorToChild:(id)arg3 engine:(id)arg4 originalAmbiguityStatusMasksByView:(id)arg5;
 - (void)_determineAndAddAmbiguityGroupingForView:(id)arg1 relativeToView:(id)arg2 toMutableAmbiguousViewGroupsByView:(id)arg3 inOrientation:(unsigned long long)arg4 givenAmbiguityStatusMasksByViewAtBeginningOfPass:(id)arg5 engine:(id)arg6;
 - (BOOL)_ambiguityWasResolvedForAtLeastOneViewInGroupOfAmbiguousViews:(id)arg1 givenOriginalAmbiguityStatusMasksByView:(id)arg2 orientationMask:(unsigned long long)arg3 engine:(id)arg4;
 - (BOOL)_ambiguityWasResolvedForView:(id)arg1 inOrientation:(unsigned long long)arg2 givenOriginalAmbiguityStatusMasksByView:(id)arg3 engine:(id)arg4;
@@ -47,13 +51,14 @@
 - (id)_findContentSizePriorityChangesResolvingAmbiguityFromGroupOfAmbiguousViews:(id)arg1 forOrientationMask:(unsigned long long)arg2 engine:(id)arg3;
 - (id)_findInequalityConstraintsResolvingAmbiguityFromGroupOfAmbiguousViews:(id)arg1 constraintAbstractionsAffectingLayout:(id)arg2 forOrientationMask:(unsigned long long)arg3 engine:(id)arg4;
 - (id)_captureAmbiguityStatusByViewForViews:(id)arg1 fromEngine:(id)arg2;
+- (id)computeViewToLayoutFramesWithDerivedDesignTimeDefaultIntrinsicContentSizes;
 - (id)computeStatus;
 - (id)runArbitrationWithOptions:(id)arg1;
 - (id)arbitrateWithOptions:(id)arg1;
 - (void)_dispatchWillArbitrateMessageToObjectsInUnit;
 - (void)_recursiveDispatchWillArbitrateMessageToObject:(id)arg1 parent:(id)arg2;
 - (void)addObject:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly, copy) NSArray *objectsOrderedBreadthFirst; // @synthesize objectsOrderedBreadthFirst=_objectsOrderedBreadthFirst;
 - (void)updateObjectsOrderedBreadthFirst;
@@ -62,10 +67,13 @@
 - (id)_firstAncestorOfObject:(id)arg1 passingPredicate:(CDUnknownBlockType)arg2;
 - (BOOL)containsObject:(id)arg1;
 @property(readonly, copy) NSString *debugDescription;
-- (id)description;
-- (id)representationWithRepresentationForObjectBlock:(CDUnknownBlockType)arg1;
-- (id)initWithRepresentation:(id)arg1 layoutInfo:(id)arg2 objectForRepresentationBlock:(CDUnknownBlockType)arg3;
+@property(readonly, copy) NSString *description;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithRootObject:(id)arg1 layoutInfo:(id)arg2;
+
+// Remaining properties
+@property(readonly) Class superclass;
 
 @end
 

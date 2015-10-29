@@ -56,6 +56,7 @@
 - (id)shaderSourceForProgramInfo:(id)arg1 atFunctionIndex:(unsigned int)arg2;
 - (id)_drawCallInfoWithProgramInfo:(id)arg1 atFunctionIndex:(unsigned int)arg2;
 - (void)calculateRealTimeInfoWithGPUTime:(double)arg1;
+- (void)calculateRealDrawCallTimeInfo;
 - (id)programPipelineInfoWithId:(unsigned long long)arg1;
 - (id)programInfoWithId:(unsigned long long)arg1;
 - (id)drawCallInfoWithFunctionIndex:(unsigned int)arg1;

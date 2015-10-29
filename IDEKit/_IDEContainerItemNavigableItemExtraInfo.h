@@ -6,14 +6,14 @@
 
 #import <IDEKit/_IDENavigableItemExtraInfo.h>
 
-@class DVTMapTable;
+@class NSMapTable;
 
 @interface _IDEContainerItemNavigableItemExtraInfo : _IDENavigableItemExtraInfo
 {
-    DVTMapTable *_observersByModelObjectGraph;
+    NSMapTable *_observersByModelObjectGraph;
 }
 
-@property(readonly) DVTMapTable *_observersByModelObjectGraph; // @synthesize _observersByModelObjectGraph;
+@property(readonly) NSMapTable *_observersByModelObjectGraph; // @synthesize _observersByModelObjectGraph;
 - (void).cxx_destruct;
 - (void)configureObservingForModelObjectGraph:(id)arg1;
 - (void)processModelObjectGraphNotification:(id)arg1;

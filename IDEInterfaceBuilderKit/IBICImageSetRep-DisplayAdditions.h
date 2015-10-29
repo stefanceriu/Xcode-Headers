@@ -6,9 +6,21 @@
 
 #import "IBICImageSetRep.h"
 
-@interface IBICImageSetRep (DisplayAdditions)
+#import "IBICImageMediaResourceProvider.h"
+
+@class NSString;
+
+@interface IBICImageSetRep (DisplayAdditions) <IBICImageMediaResourceProvider>
 + (id)keyPathsForValuesAffectingIbInspectedAlignmentInsets;
+- (id)mediaResource;
+- (BOOL)shouldIncludeInMediaLibrary;
+- (void)populateChildrenForInclusionInMediaLibrary:(id)arg1;
 @property(nonatomic) struct NSEdgeInsets ibInspectedAlignmentInsets;
-- (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 @end
 

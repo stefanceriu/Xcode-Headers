@@ -6,29 +6,33 @@
 
 #import "NSSegmentedControl.h"
 
-@class NSMutableArray;
+@class NSMutableArray, NSTrackingArea;
 
 @interface DVTSegmentedControl : NSSegmentedControl
 {
     NSMutableArray *_alternateImages;
+    NSTrackingArea *_trackingArea;
     BOOL _shouldDrawMenuIndictor;
     BOOL _bordered;
+    BOOL _shouldDrawAsRollover;
     double _menuIndicatorInset;
 }
 
 + (id)toolbarSegmentedControlWithImages:(id)arg1 trackingMode:(unsigned long long)arg2;
 + (id)toolbarSegmentedControlWithTrackingMode:(unsigned long long)arg1 images:(id)arg2 alternateImages:(id)arg3;
+@property BOOL shouldDrawAsRollover; // @synthesize shouldDrawAsRollover=_shouldDrawAsRollover;
 @property(getter=isBordered) BOOL bordered; // @synthesize bordered=_bordered;
 @property double menuIndicatorInset; // @synthesize menuIndicatorInset=_menuIndicatorInset;
 @property BOOL shouldDrawMenuIndictor; // @synthesize shouldDrawMenuIndictor=_shouldDrawMenuIndictor;
 - (void).cxx_destruct;
-- (BOOL)wantsDefaultClipping;
-- (void)setNeedsDisplay:(BOOL)arg1;
+- (void)mouseExited:(id)arg1;
+- (void)mouseEntered:(id)arg1;
 - (void)applyDVTStyleWithTrackingMode:(unsigned long long)arg1;
 - (void)setAlternateImage:(id)arg1 forSegment:(long long)arg2;
 - (id)alternateImageForSegment:(long long)arg1;
 - (id)_getImageInArray:(id)arg1 forSegment:(long long)arg2;
 - (void)_setImage:(id)arg1 inArray:(id)arg2 forSegment:(long long)arg3;
+- (void)updateTrackingAreas;
 - (id)initWithFrame:(struct CGRect)arg1;
 @property BOOL useAnyDrawingStyle;
 @property BOOL useRadioDrawingStyle;

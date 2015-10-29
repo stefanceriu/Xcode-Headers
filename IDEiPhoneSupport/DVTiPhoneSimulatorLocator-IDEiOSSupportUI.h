@@ -7,6 +7,5 @@
 #import "DVTiPhoneSimulatorLocator.h"
 
 @interface DVTiPhoneSimulatorLocator (IDEiOSSupportUI)
-- (void)_presentSimValidationError:(id)arg1;
 @end
 

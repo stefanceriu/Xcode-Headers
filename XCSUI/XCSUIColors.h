@@ -10,6 +10,10 @@
 {
 }
 
++ (id)codeCoverageStrokeColor;
++ (id)codeCoverageFillColor;
++ (id)noTestsStrokeColor;
++ (id)noTestsFillColor;
 + (id)analysisIssueStrokeColor;
 + (id)analysisIssueFillColor;
 + (id)warningStrokeColor;

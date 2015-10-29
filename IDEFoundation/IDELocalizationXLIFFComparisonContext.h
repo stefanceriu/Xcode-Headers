@@ -15,19 +15,20 @@
     NSURL *_destinationURL;
 }
 
-@property(retain) NSURL *destinationURL; // @synthesize destinationURL=_destinationURL;
++ (id)contextWithDestinationURL:(id)arg1;
 @property(readonly) NSArray *filesWithChanges; // @synthesize filesWithChanges=_filesWithChanges;
 @property(readonly) NSArray *issues; // @synthesize issues=_issues;
+@property(retain) NSURL *destinationURL; // @synthesize destinationURL=_destinationURL;
 - (void).cxx_destruct;
-- (void)recordFileChangeForImportUrl:(id)arg1 exportUrl:(id)arg2 original:(id)arg3 foundInProject:(BOOL)arg4;
-- (void)recordExtraTranslationUnit:(id)arg1 appendedIncomingRange:(struct _NSRange)arg2 appendedProjectRange:(struct _NSRange)arg3 importUrl:(id)arg4 exportUrl:(id)arg5;
-- (void)recordMissingTranslationUnit:(id)arg1 appendedIncomingRange:(struct _NSRange)arg2 appendedProjectRange:(struct _NSRange)arg3 importUrl:(id)arg4 exportUrl:(id)arg5;
+- (void)recordFileChangeForFile:(id)arg1 importUrl:(id)arg2 exportUrl:(id)arg3 foundInProject:(BOOL)arg4;
 - (void)recordMissingFile:(id)arg1 appendedIncomingRange:(struct _NSRange)arg2 appendedProjectRange:(struct _NSRange)arg3 importUrl:(id)arg4 exportUrl:(id)arg5;
 - (void)recordExtraFile:(id)arg1 appendedIncomingRange:(struct _NSRange)arg2 appendedProjectRange:(struct _NSRange)arg3 importUrl:(id)arg4 exportUrl:(id)arg5;
-- (void)recordEmptyTarget:(id)arg1 appendedIncomingRange:(struct _NSRange)arg2 appendedProjectRange:(struct _NSRange)arg3 importUrl:(id)arg4 exportUrl:(id)arg5;
-- (void)recordMismatchedSource:(id)arg1 projectStringValue:(id)arg2 appendedIncomingRange:(struct _NSRange)arg3 appendedProjectRange:(struct _NSRange)arg4 importUrl:(id)arg5 exportUrl:(id)arg6;
+- (void)recordExtraTUInFile:(id)arg1 idString:(id)arg2 appendedIncomingRange:(struct _NSRange)arg3 appendedProjectRange:(struct _NSRange)arg4 importUrl:(id)arg5 exportUrl:(id)arg6;
+- (void)recordMissingTUInFile:(id)arg1 idString:(id)arg2 appendedIncomingRange:(struct _NSRange)arg3 appendedProjectRange:(struct _NSRange)arg4 importUrl:(id)arg5 exportUrl:(id)arg6;
+- (void)recordEmptyTargetInFile:(id)arg1 idString:(id)arg2 appendedIncomingRange:(struct _NSRange)arg3 appendedProjectRange:(struct _NSRange)arg4 importUrl:(id)arg5 exportUrl:(id)arg6;
+- (void)recordMismatchedSourceInFile:(id)arg1 idString:(id)arg2 incomingStringValue:(id)arg3 projectStringValue:(id)arg4 appendedIncomingRange:(struct _NSRange)arg5 appendedProjectRange:(struct _NSRange)arg6 importUrl:(id)arg7 exportUrl:(id)arg8;
 - (void)recordIssue:(int)arg1 message:(id)arg2 appendedIncomingRange:(struct _NSRange)arg3 appendedProjectRange:(struct _NSRange)arg4 importUrl:(id)arg5 exportUrl:(id)arg6;
-- (void)reset;
+- (id)init;
 
 @end
 

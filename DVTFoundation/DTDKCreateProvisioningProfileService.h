@@ -16,8 +16,8 @@
 + (id)keyPathsForValuesAffectingEncodedProfile;
 + (id)keyPathsForValuesAffectingProvisioningProfileID;
 + (id)keyPathsForValuesAffectingProfileDictionary;
-+ (id)serviceForTeam:(id)arg1 andPlatform:(id)arg2 profileName:(id)arg3 appIDID:(id)arg4 deviceIDs:(id)arg5 certificateIDs:(id)arg6 distributionType:(id)arg7;
-+ (id)serviceForTeam:(id)arg1 andPlatform:(id)arg2 profileName:(id)arg3 appIDID:(id)arg4 deviceIDs:(id)arg5 certificateIDs:(id)arg6;
++ (id)serviceForTeam:(id)arg1 andPlatform:(id)arg2 subPlatform:(id)arg3 profileName:(id)arg4 appIDID:(id)arg5 deviceIDs:(id)arg6 includeAllDevices:(BOOL)arg7 certificateIDs:(id)arg8 distributionType:(id)arg9;
++ (id)serviceForTeam:(id)arg1 andPlatform:(id)arg2 subPlatform:(id)arg3 profileName:(id)arg4 appIDID:(id)arg5 deviceIDs:(id)arg6 includeAllDevices:(BOOL)arg7 certificateIDs:(id)arg8;
 @property(readonly) NSData *encodedProfile;
 @property(readonly) NSString *provisioningProfileID;
 @property(readonly) NSDictionary *profileDictionary;

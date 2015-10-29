@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, DVTObservingToken, DVTTextCompletionSession, DVTWeakInterposer, NSString;
+@class DVTObservingToken, DVTTextCompletionSession, DVTWeakInterposer, NSMapTable, NSString;
 
 @interface DVTTextCompletionInlinePreviewController : NSObject
 {
     DVTTextCompletionSession *_session;
     DVTObservingToken *_sessionSelectionObserver;
     DVTWeakInterposer *_previousSelectedItem_dvtWeakInterposer;
-    DVTMapTable *_previewTextPerItem;
+    NSMapTable *_previewTextPerItem;
     NSString *_replacedUserPrefix;
     struct _NSRange _previewRange;
     struct _NSRange _ghostComplementRange;
@@ -21,8 +21,12 @@
     BOOL _adjustingPreviewText;
     BOOL _adjustingPreviewCursorLocation;
     BOOL _invalidatingTextDisplay;
+    NSString *_previewText;
+    id <DVTTextCompletionItem> _theSelectedItem;
 }
 
+@property __weak id <DVTTextCompletionItem> theSelectedItem; // @synthesize theSelectedItem=_theSelectedItem;
+@property(retain) NSString *previewText; // @synthesize previewText=_previewText;
 @property(readonly) BOOL invalidatingTextDisplay; // @synthesize invalidatingTextDisplay=_invalidatingTextDisplay;
 @property(readonly) BOOL adjustingPreviewCursorLocation; // @synthesize adjustingPreviewCursorLocation=_adjustingPreviewCursorLocation;
 @property(readonly) BOOL adjustingPreviewText; // @synthesize adjustingPreviewText=_adjustingPreviewText;

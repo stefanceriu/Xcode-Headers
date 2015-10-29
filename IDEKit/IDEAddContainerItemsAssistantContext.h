@@ -19,6 +19,7 @@
     NSArray *_containerItems;
     NSString *_buildToolPath;
     NSString *_buildArgumentsString;
+    CDUnknownBlockType _validationBlock;
     CDUnknownBlockType _prepareBlock;
 }
 
@@ -26,6 +27,7 @@
 + (id)_containerAddingItemsAssistantExtensionForContainer:(id)arg1;
 + (void)initialize;
 @property(copy) CDUnknownBlockType prepareBlock; // @synthesize prepareBlock=_prepareBlock;
+@property(copy) CDUnknownBlockType validationBlock; // @synthesize validationBlock=_validationBlock;
 @property(copy) NSString *buildArgumentsString; // @synthesize buildArgumentsString=_buildArgumentsString;
 @property(copy) NSString *buildToolPath; // @synthesize buildToolPath=_buildToolPath;
 @property BOOL shouldHideCopyFilesToTargetGroupSwitchButton; // @synthesize shouldHideCopyFilesToTargetGroupSwitchButton=_shouldHideCopyFilesToTargetGroupSwitchButton;
@@ -39,6 +41,7 @@
 @property(readonly) NSString *actualAssistantIdentifier;
 @property BOOL copyFilesToTargetGroup;
 @property BOOL createGroupsForFolders;
+@property(readonly) BOOL isTargetingPlayground;
 @property(readonly) BOOL isTargetingFolder;
 - (id)description;
 - (void)dealloc;

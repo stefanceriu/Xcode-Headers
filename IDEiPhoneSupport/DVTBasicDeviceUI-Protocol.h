@@ -9,6 +9,7 @@
 @class NSArray, NSImage;
 
 @protocol DVTBasicDeviceUI <DVTBasicDevice>
+@property(readonly) int deviceWindowCategory;
 @property(readonly) BOOL showCompanionUI;
 @property(readonly) NSImage *image;
 @property(readonly) NSArray *deviceSummaryPropertyDictionaries;

@@ -15,7 +15,6 @@ __attribute__((visibility("hidden")))
     struct _NSRange _range;
 }
 
-- (id).cxx_construct;
 - (id)subdataWithRange:(struct _NSRange)arg1;
 - (const void *)bytes;
 - (unsigned long long)length;

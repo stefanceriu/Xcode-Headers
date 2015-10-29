@@ -15,11 +15,13 @@
     IDEIssueManager *_issueManager;
     DVTExtension *_extension;
     IDEIssueProviderSession *_session;
+    IDEIssueProviderSession *_currentProviderSession;
 }
 
 + (int)providerType;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
-@property(retain) IDEIssueProviderSession *_session; // @synthesize _session;
+@property(retain) IDEIssueProviderSession *currentProviderSession; // @synthesize currentProviderSession=_currentProviderSession;
 @property(readonly) DVTExtension *extension; // @synthesize extension=_extension;
 @property(retain) IDEIssueManager *issueManager; // @synthesize issueManager=_issueManager;
 - (void).cxx_destruct;
@@ -31,8 +33,11 @@
 - (void)endProviderSession;
 - (void)startProviderSession;
 - (id)displayNameForIssueTypeIdentifier:(id)arg1;
+- (void)removeIssues:(id)arg1 forProviderContext:(id)arg2 providerSession:(id)arg3;
 - (void)removeIssues:(id)arg1 forProviderContext:(id)arg2;
+- (void)addIssues:(id)arg1 forProviderContext:(id)arg2 providerSession:(id)arg3 container:(id)arg4 blueprint:(id)arg5;
 - (void)addIssues:(id)arg1 forProviderContext:(id)arg2 container:(id)arg3 blueprint:(id)arg4;
+- (void)setIssues:(id)arg1 forProviderContext:(id)arg2 providerSession:(id)arg3 container:(id)arg4 blueprint:(id)arg5;
 - (void)setIssues:(id)arg1 forProviderContext:(id)arg2 container:(id)arg3 blueprint:(id)arg4;
 @property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;

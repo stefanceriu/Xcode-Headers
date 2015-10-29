@@ -19,9 +19,11 @@
     double _priority;
     NSString *_name;
     NSImage *_icon;
+    double _fuzzyMatchingScore;
 }
 
 + (id)infoViewControllerFont;
+@property double fuzzyMatchingScore; // @synthesize fuzzyMatchingScore=_fuzzyMatchingScore;
 @property(readonly) NSImage *icon; // @synthesize icon=_icon;
 @property(readonly, copy) NSAttributedString *descriptionText; // @synthesize descriptionText=_descriptionText;
 @property(readonly, copy) NSString *completionText; // @synthesize completionText=_completionText;

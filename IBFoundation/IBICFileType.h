@@ -4,35 +4,31 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IBFoundation/IBICMultipartImageRepSlotComponent.h>
-
-#import "IBICPseudoXMLGeneration.h"
-#import "NSCoding.h"
+#import "NSObject.h"
 
 @class NSArray, NSString;
 
-@interface IBICFileType : IBICMultipartImageRepSlotComponent <IBICPseudoXMLGeneration, NSCoding>
+@interface IBICFileType : NSObject
 {
-    BOOL _renderThumbnailWithQuickLook;
+    BOOL _renderThumbnailWithImageIO;
+    NSString *_title;
+    NSString *_identifier;
+    double _displayOrder;
     NSArray *_extensions;
 }
 
-+ (id)fileTypeWithIdentifier:(id)arg1 title:(id)arg2 extensions:(id)arg3 displayOrder:(double)arg4 renderThumbnailWithQuickLook:(BOOL)arg5;
-@property(readonly, nonatomic) BOOL renderThumbnailWithQuickLook; // @synthesize renderThumbnailWithQuickLook=_renderThumbnailWithQuickLook;
++ (id)fileTypeWithIdentifier:(id)arg1 title:(id)arg2 extensions:(id)arg3 displayOrder:(double)arg4 renderThumbnailWithImageIO:(BOOL)arg5;
+@property(readonly, nonatomic) BOOL renderThumbnailWithImageIO; // @synthesize renderThumbnailWithImageIO=_renderThumbnailWithImageIO;
 @property(readonly, nonatomic) NSArray *extensions; // @synthesize extensions=_extensions;
+@property(readonly, nonatomic) double displayOrder; // @synthesize displayOrder=_displayOrder;
+@property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly, nonatomic) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
-- (void)ibic_appendAdditionalPseudoXMLAttrbutes:(id)arg1;
-- (id)ibic_pseudoXML;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
+- (long long)comparePrecedence:(id)arg1;
+- (id)description;
+- (id)preferredExtension;
 - (BOOL)isValidFileExtension:(id)arg1;
-- (id)initWithIdentifier:(id)arg1 title:(id)arg2 extensions:(id)arg3 displayOrder:(double)arg4 renderThumbnailWithQuickLook:(BOOL)arg5;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)initWithIdentifier:(id)arg1 title:(id)arg2 extensions:(id)arg3 displayOrder:(double)arg4 renderThumbnailWithImageIO:(BOOL)arg5;
 
 @end
 

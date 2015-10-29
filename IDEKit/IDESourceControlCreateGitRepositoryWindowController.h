@@ -23,7 +23,6 @@
 @property __weak IDESourceControlWorkspaceUIHandler *workspaceUIHandler; // @synthesize workspaceUIHandler=_workspaceUIHandler;
 - (void).cxx_destruct;
 - (void)createGitRepositoryForFilePath:(id)arg1 pushingToServer:(id)arg2;
-- (void)alertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)displayError:(id)arg1;
 - (void)sheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)beginSheetForWindow:(id)arg1;

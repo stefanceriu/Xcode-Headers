@@ -26,9 +26,7 @@
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
-@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
-@property(readonly) struct DYShaderProfilerTiming shaderTime;
 @property(readonly) Class superclass;
 @end
 

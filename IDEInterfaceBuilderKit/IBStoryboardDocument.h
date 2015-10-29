@@ -6,28 +6,28 @@
 
 #import <IDEInterfaceBuilderKit/IBDocument.h>
 
-@class DVTMutableOrderedSet, IBStoryboardGlobalEntryPointIndicator, IBStoryboardMetricsInferrer, NSObject<IBPrimarySceneObject>, NSObject<IBStoryboardEntryPointIndicator>;
+@class DVTMutableOrderedSet, IBStoryboardGlobalEntryPointIndicator, IBStoryboardMetricsInferrer, NSDictionary, NSObject<IBPrimarySceneObject>;
 
 @interface IBStoryboardDocument : IBDocument
 {
-    IBStoryboardGlobalEntryPointIndicator *_designatedEntryPointIndicator;
+    NSDictionary *_globalEntryPointKeyPathsToIndicators;
     DVTMutableOrderedSet *_segueConnections;
-    NSObject<IBPrimarySceneObject> *_designatedEntryPoint;
 }
 
 + (Class)documentGroupMemberWrapperClass;
 + (Class)metricsInferrerClass;
 + (Class)libraryAssetProviderClassForIdiom:(id)arg1;
-+ (BOOL)wantsContainerViewInLibrary;
++ (int)libraryInclusionStatusForExternalPrimarySceneObject;
++ (int)libraryInclusionStatusForContainerView;
 + (BOOL)wantsViewControllersAtTopOfLibrary;
 + (BOOL)supportsPrototypeObjects;
-@property(readonly, nonatomic) NSObject<IBStoryboardEntryPointIndicator> *designatedEntryPointIndicator; // @synthesize designatedEntryPointIndicator=_designatedEntryPointIndicator;
-@property(retain, nonatomic) NSObject<IBPrimarySceneObject> *designatedEntryPoint; // @synthesize designatedEntryPoint=_designatedEntryPoint;
 - (void).cxx_destruct;
 - (BOOL)isStoryboardDocument;
+- (id)replacePrimarySceneObjects:(id)arg1 withReferencesToStoryboardNamed:(id)arg2 preservingInstantiationBehavior:(BOOL)arg3;
+- (id)makeExternalPlaceholderForPrimarySceneObject:(id)arg1 storyboardName:(id)arg2;
+- (void)refactorPrimarySceneObjects:(id)arg1 intoDuplicateStoryboard:(id)arg2;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
-- (Class)preferredEditorCanvasFrameClass;
-- (Class)preferredViewEditorCanvasFrameControllerClass;
+- (Class)defaultCanvasFrameClassForObject:(id)arg1;
 - (Class)compilerClass;
 - (id)pathExtensionForCompiledPackage;
 - (id)storyboardScenePasteboardType;
@@ -39,10 +39,10 @@
 - (id)hybridPackageEditableDocumentFilename;
 - (id)hybridPackageType;
 - (id)preferredFileType;
-- (BOOL)supportsLaunchScreen;
+- (BOOL)canHaveMultipleTopLevelObjectsInLaunchScreen;
 - (BOOL)supportsUserDefinedRuntimeAttributesForObject:(id)arg1;
 - (void)objectContainer:(id)arg1 didRemoveObject:(id)arg2 fromParent:(id)arg3;
-- (void)unarchivePlatformIndependentDataWithUnarchiver:(id)arg1;
+- (BOOL)unarchivePlatformIndependentDataWithUnarchiver:(id)arg1 error:(id *)arg2;
 - (void)unarchiveDesignatedEntryPointWithUnarchiver:(id)arg1;
 - (void)archivePlatformIndependentDataWithDocumentArchiver:(id)arg1;
 - (void)unarchiveTopLevelObjects:(id)arg1;
@@ -68,6 +68,7 @@
 - (id)relationshipSeguesBetweenSource:(id)arg1 andDestinationViewController:(id)arg2;
 - (id)reachableControllers;
 - (CDUnknownBlockType)snapshotViewControllerSegueDestinationProviderForSeguesMatchingPredicate:(CDUnknownBlockType)arg1;
+- (CDUnknownBlockType)snapshotViewControllerSegueDestinationProviderForSourceSegueMap:(id)arg1;
 - (id)sourceViewControllerToSegueMapForSeguesMatchingPredicate:(CDUnknownBlockType)arg1;
 - (id)insertChildrenFromDraggingInfo:(id)arg1 ofType:(id)arg2 intoSceneGroup:(id)arg3 atIndex:(long long)arg4 context:(id)arg5;
 - (id)addOrMoveChildrenFromPasteboard:(id)arg1 ofType:(id)arg2 toSceneGroup:(id)arg3 context:(id)arg4;
@@ -77,7 +78,9 @@
 - (BOOL)isBuiltInPlaceholder:(id)arg1 forSceneGroup:(id)arg2;
 - (void)removeObjects:(id)arg1;
 - (id)sceneGroupMemberWrapperForObject:(id)arg1;
-- (void)setGlobalEntryPoint:(id)arg1 withIndicator:(id)arg2 objectInspectedKeyPath:(id)arg3 storageChangeBlock:(CDUnknownBlockType)arg4;
+@property(retain, nonatomic) NSObject<IBPrimarySceneObject> *designatedEntryPoint;
+- (id)globalEntryPointIndicatorForKeyPath:(id)arg1;
+@property(readonly, nonatomic) IBStoryboardGlobalEntryPointIndicator *designatedEntryPointIndicator;
 - (void)makeSceneForPrimarySceneObject:(id)arg1;
 - (void)addSceneExitPlaceholderToSceneGroup:(id)arg1;
 - (id)firstResponderForSceneGroup:(id)arg1;
@@ -113,7 +116,7 @@
 - (id)defaultPreviewedObject;
 
 // Remaining properties
-@property(readonly, nonatomic) IBStoryboardMetricsInferrer *metricsInferrer;
+@property(readonly, nonatomic) IBStoryboardMetricsInferrer *metricsInferrer; // @dynamic metricsInferrer;
 
 @end
 

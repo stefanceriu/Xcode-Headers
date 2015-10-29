@@ -9,7 +9,6 @@
 @class DVTFilePath, NSString;
 
 @protocol IDEPlaygroundAppBundle <NSObject>
-@property(readonly, getter=isValid) BOOL valid;
 @property(readonly) DVTFilePath *containerPath;
 @property(readonly, copy) NSString *bundleIdentifier;
 @property(readonly, copy) NSString *executableSubpath;

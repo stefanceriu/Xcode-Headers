@@ -11,12 +11,12 @@
 #import "IDEOrganizerSource.h"
 #import "NSSplitViewDelegate.h"
 
-@class DVTBorderedView, DVTDelayedInvocation, DVTFilePath, DVTGradientImagePopUpButton, DVTObservingToken, DVTReplacementView, DVTScrollView, DVTSearchField, IDENavigableItemCoordinator, IDENavigatorDataCell, IDENavigatorOutlineView, NSArrayController, NSMenu, NSMetadataQuery, NSOperationQueue, NSPredicate, NSSet, NSString, NSView, NSViewController;
+@class DVTBorderedView, DVTDelayedInvocation, DVTFilePath, DVTGradientImagePopUpButton, DVTObservingToken, DVTReplacementView, DVTScrollView, DVTSearchField, IDENavigableItemAsyncFilteringCoordinator, IDENavigatorDataCell, IDENavigatorOutlineView, NSArrayController, NSMenu, NSMetadataQuery, NSOperationQueue, NSPredicate, NSSet, NSString, NSView, NSViewController;
 
 @interface IDEProjectsOrganizerViewController : IDEViewController <NSSplitViewDelegate, IDENavigatorOutlineViewDelegate, DVTReplacementViewDelegate, IDEOrganizerSource>
 {
     IDENavigatorOutlineView *_outlineView;
-    IDENavigableItemCoordinator *_navigableItemCoordinator;
+    IDENavigableItemAsyncFilteringCoordinator *_navigableItemCoordinator;
     IDENavigatorDataCell *_dataCell;
     NSMenu *_contextualMenu;
     DVTBorderedView *_filterBar;
@@ -64,7 +64,7 @@
 - (BOOL)splitView:(id)arg1 shouldAdjustSizeOfSubview:(id)arg2;
 - (double)splitView:(id)arg1 constrainMaxCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
 - (double)splitView:(id)arg1 constrainMinCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
-- (void)deleteProjectAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)_deleteProjectAlertDidEnd:(id)arg1 returnCode:(long long)arg2 projects:(id)arg3;
 - (void)deleteAction:(id)arg1;
 - (void)revealAction:(id)arg1;
 - (void)openAction:(id)arg1;

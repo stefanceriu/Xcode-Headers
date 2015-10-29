@@ -6,9 +6,12 @@
 
 #import "NSSegmentedCell.h"
 
+@class NSImage, NSNumber, NSString;
+
 @interface NSSegmentedCell (IBNSSegmentedControlInspectorIntegration)
 + (id)keyPathsForValuesAffectingIbInspectedWidthForInspectedSegment;
 + (id)keyPathsForValuesAffectingIbInspectedIsSelectedForInspectedSegment;
++ (id)keyPathsForValuesAffectingIbInspectedCanSelectSegment;
 + (id)keyPathsForValuesAffectingIbInspectedIsEnabledForInspectedSegment;
 + (id)keyPathsForValuesAffectingIbInspectedTagForInspectedSegment;
 + (id)keyPathsForValuesAffectingIbInspectedImageScalingForInspectedSegment;
@@ -26,22 +29,15 @@
 - (long long)ibInspectedSegmentStyle;
 - (void)setIbInspectedTrackingMode:(unsigned long long)arg1;
 - (unsigned long long)ibInspectedTrackingMode;
-- (void)setIbInspectedIsSelectedForInspectedSegment:(BOOL)arg1;
-- (BOOL)ibInspectedIsSelectedForInspectedSegment;
-- (void)setIbInspectedIsEnabledForInspectedSegment:(BOOL)arg1;
-- (BOOL)ibInspectedIsEnabledForInspectedSegment;
-- (void)setIbInspectedTagForInspectedSegment:(long long)arg1;
-- (long long)ibInspectedTagForInspectedSegment;
-- (void)setIbInspectedImageScalingForInspectedSegment:(unsigned long long)arg1;
-- (unsigned long long)ibInspectedImageScalingForInspectedSegment;
-- (void)setIbInspectedImageForInspectedSegment:(id)arg1;
-- (id)ibInspectedImageForInspectedSegment;
-- (void)setIbInspectedLabelForInspectedSegment:(id)arg1;
-- (id)ibInspectedLabelForInspectedSegment;
-- (void)setIbInspectedToolTipForInspectedSegment:(id)arg1;
-- (id)ibInspectedToolTipForInspectedSegment;
+@property(nonatomic) BOOL ibInspectedIsSelectedForInspectedSegment;
+- (BOOL)ibInspectedCanSelectSegment;
+@property(nonatomic) BOOL ibInspectedIsEnabledForInspectedSegment;
+@property(nonatomic) long long ibInspectedTagForInspectedSegment;
+@property(nonatomic) unsigned long long ibInspectedImageScalingForInspectedSegment;
+@property(retain, nonatomic) NSImage *ibInspectedImageForInspectedSegment;
+@property(retain, nonatomic) NSString *ibInspectedLabelForInspectedSegment;
+@property(retain, nonatomic) NSString *ibInspectedToolTipForInspectedSegment;
 - (long long)ibInspectedSegmentValue;
-- (void)setIbExternalInspectedSegment:(id)arg1;
-- (id)ibExternalInspectedSegment;
+@property(retain, nonatomic) NSNumber *ibExternalInspectedSegment;
 @end
 

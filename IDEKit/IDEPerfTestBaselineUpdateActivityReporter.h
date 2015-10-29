@@ -6,13 +6,13 @@
 
 #import <IDEKit/IDEActivityReporter.h>
 
-@class DVTMapTable;
+@class NSMapTable;
 
 @interface IDEPerfTestBaselineUpdateActivityReporter : IDEActivityReporter
 {
     id _updateStartedObserver;
     id _updateFinishedObserver;
-    DVTMapTable *_baselineRecordsToActivityReports;
+    NSMapTable *_baselineRecordsToActivityReports;
 }
 
 + (void)initialize;

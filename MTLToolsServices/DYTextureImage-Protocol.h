@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "DYCacheableResource.h"
 #import "NSObject.h"
 
 @class NSData, NSString;
 
-@protocol DYTextureImage <NSObject>
+@protocol DYTextureImage <NSObject, DYCacheableResource>
 + (NSString *)textureImageKeyForLevel:(unsigned int)arg1 layer:(unsigned int)arg2;
 @property(readonly, nonatomic) unsigned long long offset;
 @property(readonly, nonatomic) NSData *data;

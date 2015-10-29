@@ -11,8 +11,6 @@
 @class NSString, NSValue, NSView, NSViewController;
 
 @interface NSWindowTemplate (IBWindowTemplateIntegration) <IBCocoaCustomObject>
-+ (id)keyPathsForValuesAffectingIbInspectedDefaultContentMaxSize;
-+ (id)keyPathsForValuesAffectingIbInspectedDefaultContentMinSize;
 + (id)keyPathsForValuesAffectingIbInspectedContentRectHeight;
 + (id)keyPathsForValuesAffectingIbInspectedContentRectWidth;
 + (id)keyPathsForValuesAffectingIbInspectedContentRectMinYnonNilValue;
@@ -20,6 +18,10 @@
 + (id)keyPathsForValuesAffectingIbInspectedContentRectMinXnonNilValue;
 + (id)keyPathsForValuesAffectingIbInspectedContentRectMinX;
 + (id)keyPathsForValuesAffectingIbInspectedDocument;
++ (id)keyPathsForValuesAffectingIbInspectedFullscreenWindowTitles;
++ (id)keyPathsForValuesAffectingIbInspectedFullscreenWindowValues;
++ (id)keyPathsForValuesAffectingIbInspectedTilingTitles;
++ (id)keyPathsForValuesAffectingIbInspectedTilingValues;
 + (id)keyPathsForValuesAffectingIbInspectedTexturedBackgroundStyle;
 + (id)keyPathsForValuesAffectingIbInspectedDocumentModalStyle;
 + (id)keyPathsForValuesAffectingIbInspectedPanelStyle;
@@ -40,6 +42,7 @@
 + (id)keyPathsForValuesAffectingIbShadowedIsRestorable;
 + (id)keyPathsForValuesAffectingIbShadowedAnimationBehavior;
 + (id)keyPathsForValuesAffectingIbShadowedCollectionBehavior;
++ (id)keyPathsForValuesAffectingIbInspectedCollectionBehavior;
 + (id)ibBorderedWindowTemplateWithClassName:(id)arg1;
 + (id)ibContentBorderThicknessKeyPaths;
 + (void)ibPopulateAdditionalInspectors:(id)arg1 forCategory:(id)arg2;
@@ -52,8 +55,6 @@
 - (void)ibArchiveContentBorderThickness:(id)arg1;
 - (struct CGRect)ibContentRectWithAutoPositionMaskApplied;
 - (struct CGRect)ibCurrentScreenLayoutFrame;
-- (struct CGSize)ibInspectedDefaultContentMaxSize;
-- (struct CGSize)ibInspectedDefaultContentMinSize;
 @property(nonatomic) double ibInspectedContentRectHeight;
 @property(nonatomic) double ibInspectedContentRectWidth;
 - (void)setIbInspectedContentRectMinY:(id)arg1;
@@ -65,6 +66,13 @@
 - (void)setIbInspectedAutoPositionMask:(unsigned long long)arg1;
 - (unsigned long long)ibInspectedAutoPositionMask;
 - (id)ibInspectedDocument;
+- (id)ibInspectedFullscreenWindowTitles;
+- (id)ibInspectedFullscreenWindowValues;
+- (BOOL)ibInspectedSupportsFullscreenPrimaryWindow;
+- (id)ibInspectedTilingTitles;
+- (id)ibInspectedTilingValues;
+- (BOOL)ibInspectedSupportsAllowsTiling;
+- (BOOL)ibIsUtilityOrHudForStyle:(unsigned long long)arg1;
 - (void)setIbInspectedTexturedBackgroundStyle:(BOOL)arg1;
 - (BOOL)ibInspectedTexturedBackgroundStyle;
 - (void)setIbInspectedDocumentModalStyle:(BOOL)arg1;
@@ -105,17 +113,18 @@
 @property BOOL ibShadowedIsRestorable;
 @property long long ibShadowedAnimationBehavior;
 @property unsigned long long ibShadowedCollectionBehavior;
+- (void)setIbInspectedCollectionBehavior:(unsigned long long)arg1;
+- (unsigned long long)ibInspectedCollectionBehavior;
 @property unsigned long long ibShadowedAutoPositionMask;
 - (void)setIbExternalAutoPositionCentersVertical:(BOOL)arg1;
 - (BOOL)ibExternalAutoPositionCentersVertical;
 - (void)setIbExternalAutoPositionCentersHorizontal:(BOOL)arg1;
 - (BOOL)ibExternalAutoPositionCentersHorizontal;
+@property(copy) NSValue *ibShadowedMaxFullScreenContentSize;
+@property(copy) NSValue *ibShadowedMinFullScreenContentSize;
 @property(copy) NSValue *ibShadowedContentMaxSize;
 @property(copy) NSValue *ibShadowedContentMinSize;
 @property BOOL ibExternalVisibleAtLaunch;
-- (struct CGSize)ibEffectiveContentMaxSizeForWindowTemplate;
-- (struct CGSize)ibEffectiveContentMaxSizeForWindow;
-- (struct CGSize)ibEffectiveContentMinSize;
 - (struct CGSize)ibContentSizeForFrameSize:(struct CGSize)arg1 inDocument:(id)arg2;
 - (struct CGSize)ibFrameSizeForContentSize:(struct CGSize)arg1 inDocument:(id)arg2;
 - (struct CGRect)ibFrameRectForContentRect:(struct CGRect)arg1 inDocument:(id)arg2;
@@ -170,6 +179,7 @@
 - (id)ibLocalAttributeKeyPaths;
 - (id)ibLocalChildToOneRelationshipsKeyPaths;
 - (id)ibLocalToOneRelationshipsKeyPaths;
+- (id)_ibNSWindowToOneRelationshipKeyPaths;
 - (BOOL)ibIsNSAppearanceContainer;
 - (id)ibInheritedAppearance;
 - (Class)ibSwizzledWindowClassForNibInstantiate;

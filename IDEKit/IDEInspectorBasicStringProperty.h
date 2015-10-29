@@ -15,6 +15,8 @@
     IDEInspectorKeyPath *_valueKeyPath;
     IDEInspectorKeyPath *_enabledKeyPath;
     IDEInspectorKeyPath *_editableKeyPath;
+    Class _valueTransformerClass;
+    BOOL _isExplanitoryText;
     BOOL _allowsNilValues;
     BOOL _editable;
     BOOL _textFieldIsConfiguredAsEditable;

@@ -18,6 +18,7 @@
 
 @property BOOL canFinish; // @synthesize canFinish=_canFinish;
 - (void).cxx_destruct;
+- (void)reallyFinishWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)finishWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)viewDidInstall;
 - (void)loadView;

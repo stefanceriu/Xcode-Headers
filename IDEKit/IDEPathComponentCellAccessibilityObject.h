@@ -10,10 +10,10 @@
 
 @interface IDEPathComponentCellAccessibilityObject : NSObject
 {
-    IDEPathComponentCell *_componentCell;
     NSString *_role;
     id _pathCell;
     NSString *_description;
+    IDEPathComponentCell *_componentCell;
 }
 
 @property(readonly) IDEPathComponentCell *componentCell; // @synthesize componentCell=_componentCell;

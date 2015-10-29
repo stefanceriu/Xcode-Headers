@@ -6,7 +6,7 @@
 
 #import <IDELanguageSupportUI/IDEToy.h>
 
-@class IDEViewToyRemoteViewDescription, NSArray, NSImage, NSMutableArray, NSObject<OS_dispatch_source>, NSString;
+@class IDEViewToyRemoteViewDescription, NSArray, NSImage, NSMutableArray, NSObject<OS_dispatch_source>, NSString, NSView;
 
 @interface IDEViewToy : IDEToy
 {
@@ -17,24 +17,31 @@
     NSMutableArray *_windowImagesForCurrentGeneration;
     NSImage *_viewSnapshot;
     BOOL _lastExecutionDidComplete;
+    BOOL _processPlaygroundDataEnabled;
     NSString *_subjectIdentifier;
+    NSView *_viewToSnapshot;
     unsigned long long _remoteViewState;
     IDEViewToyRemoteViewDescription *_remoteViewDescription;
     struct CGSize _lastRemoteViewSize;
 }
 
+@property BOOL processPlaygroundDataEnabled; // @synthesize processPlaygroundDataEnabled=_processPlaygroundDataEnabled;
 @property(readonly) NSImage *viewSnapshot; // @synthesize viewSnapshot=_viewSnapshot;
 @property struct CGSize lastRemoteViewSize; // @synthesize lastRemoteViewSize=_lastRemoteViewSize;
 @property(retain) IDEViewToyRemoteViewDescription *remoteViewDescription; // @synthesize remoteViewDescription=_remoteViewDescription;
 @property(readonly) unsigned long long remoteViewState; // @synthesize remoteViewState=_remoteViewState;
 @property(readonly) BOOL lastExecutionDidComplete; // @synthesize lastExecutionDidComplete=_lastExecutionDidComplete;
+@property(retain) NSView *viewToSnapshot; // @synthesize viewToSnapshot=_viewToSnapshot;
 @property(readonly, copy) NSString *subjectIdentifier; // @synthesize subjectIdentifier=_subjectIdentifier;
 - (void).cxx_destruct;
 - (BOOL)shouldDisplayInTimeline;
 - (BOOL)isLiveToy;
+- (BOOL)_shouldCaptureAllImagesForCurrentGeneration;
+- (void)captureImage:(struct CGImage *)arg1 size:(struct CGSize)arg2 captureDate:(id)arg3;
 - (void)processPlaygroundResult:(id)arg1;
 - (void)executionGenerationDidEndAndCompleted:(BOOL)arg1;
 - (void)executionGenerationWillEnd;
+- (struct CGImage *)newImageCapturedFromRemoteWindow;
 - (void)beginExecutionGeneration:(unsigned long long)arg1;
 - (void)setToybox:(id)arg1;
 @property(readonly) NSArray *windowImagesForCurrentGeneration;

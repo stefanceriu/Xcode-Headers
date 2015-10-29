@@ -18,9 +18,7 @@
 + (id)keyPathsForValuesAffectingAreProfilesLoaded;
 + (id)defaultManager;
 - (void).cxx_destruct;
-- (BOOL)installHostProfiles:(id)arg1 error:(id *)arg2;
-- (id)profileWithData:(id)arg1;
-- (id)profileWithURL:(id)arg1;
+- (void)installHostProfiles:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (id)profileWithData:(id)arg1 error:(id *)arg2;
 - (id)profileWithURL:(id)arg1 error:(id *)arg2;
 @property(readonly) id provider; // @synthesize provider=_provider;
@@ -33,6 +31,7 @@
 @property(readonly) NSSet *expiringProfiles;
 @property(readonly) NSSet *allProfiles;
 @property(readonly) BOOL areProfilesLoaded;
+- (id)allProfiles_sync;
 - (void)forceProfileLoading;
 
 @end

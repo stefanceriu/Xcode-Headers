@@ -32,7 +32,6 @@
 - (id)toolTip;
 - (id)displayName;
 - (id)runnableUTIType:(id *)arg1;
-- (BOOL)requiresPairedProxyDevice;
 - (BOOL)hasRunnablePath;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;
 - (id)initWithRemotePath:(id)arg1 bundleIdentifier:(id)arg2;

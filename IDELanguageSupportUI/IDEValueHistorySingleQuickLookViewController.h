@@ -6,12 +6,13 @@
 
 #import <IDELanguageSupportUI/IDEValueHistoryToyViewController.h>
 
-@class NSView;
+@class IDEPlaygroundQuickLookController, NSView;
 
 @interface IDEValueHistorySingleQuickLookViewController : IDEValueHistoryToyViewController
 {
     BOOL _playgroundIsExecuting;
     BOOL _playgroundDidCompleteLastExecution;
+    IDEPlaygroundQuickLookController *_currentQuickLookController;
     struct CGSize _cachedPreferredSize;
     NSView *_containerView;
     NSView *_quickLookView;
@@ -30,6 +31,7 @@
 - (double)preferredVerticalInset;
 - (double)preferredHorizontalInset;
 - (struct CGSize)preferredContentSizeConstrainedToSize:(struct CGSize)arg1;
+- (unsigned long long)representationType;
 - (void)viewDidLoad;
 
 @end

@@ -6,40 +6,58 @@
 
 #import "SCNView.h"
 
-@class SCNNode;
+@class DBGSceneViewController, SCNNode;
 
 @interface DBGInteractiveSceneView : SCNView
 {
     SCNNode *lastNodeMousedOver;
     BOOL _mouseDownIsClick;
-    struct CGPoint _mousePosition;
-    struct CGPoint _lastMousePosition;
+    struct SCNVector3 _mousePosition3D;
     SCNNode *_activeRangeSliderNode;
+    BOOL _mouseIsResting;
+    BOOL _mouseIsDragging;
+    BOOL _isDragModifierKeyPressed;
+    int _draggingDirection;
+    BOOL _constraintsEnabled;
     int _nodeContentMode;
+    DBGSceneViewController *_sceneViewController;
     id <DBGInteractiveSceneViewDelegate> _eventDelegate;
 }
 
+@property(nonatomic) BOOL constraintsEnabled; // @synthesize constraintsEnabled=_constraintsEnabled;
 @property(nonatomic) int nodeContentMode; // @synthesize nodeContentMode=_nodeContentMode;
 @property __weak id <DBGInteractiveSceneViewDelegate> eventDelegate; // @synthesize eventDelegate=_eventDelegate;
+@property __weak DBGSceneViewController *sceneViewController; // @synthesize sceneViewController=_sceneViewController;
 - (void).cxx_destruct;
 - (void)setFrame:(struct CGRect)arg1;
+- (void)keyDown:(id)arg1;
 - (float)projectedAreaOfNode:(id)arg1;
-- (id)appropriateNodeFromHitTestResult:(id)arg1;
+- (id)resultingNodeFromFollowingHitTestForwardsOfNode:(id)arg1;
 - (id)appropriateResultFromHitTestResults:(id)arg1;
+- (id)resultingNodeFromHitTestResults:(id)arg1;
 - (id)menuForEvent:(id)arg1;
+- (void)adjustCameraZoomLevelWithValue:(double)arg1;
 - (void)magnifyWithEvent:(id)arg1;
+- (void)resetMouseResting;
 - (void)scrollWheel:(id)arg1;
 - (void)mouseDragged:(id)arg1;
 - (void)mouseExited:(id)arg1;
 - (void)mouseMoved:(id)arg1;
+- (BOOL)substantialMouseMovementWithEvent:(id)arg1;
 - (void)mouseUp:(id)arg1;
 - (void)mouseDown:(id)arg1;
+- (BOOL)simpleNodeRespondsToHitTests:(id)arg1;
 - (id)filterHitTestResults:(id)arg1 hitLocation:(struct CGPoint)arg2;
 - (id)filteredHitTestResultsFromGestureRecognizer:(id)arg1;
 - (id)filteredHitTestResultsFromEvent:(id)arg1;
 - (id)_filteredHitTestResultFromLocation:(struct CGPoint)arg1;
 - (BOOL)nodeIsPartOfRangeSlider:(id)arg1;
 - (id)rangeSliderNodeInHitTestResults:(id)arg1;
+- (void)mouseRestingTimerFired;
+- (void)removeMouseRestingTimer;
+- (void)resetMouseRestingTimer;
+- (void)_initialSetup;
+- (id)initWithFrame:(struct CGRect)arg1 options:(id)arg2;
 - (id)init;
 
 @end

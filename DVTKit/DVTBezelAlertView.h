@@ -25,6 +25,7 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)isFlipped;
 - (void)tile;
+- (BOOL)allowsVibrancy;
 - (id)initWithIcon:(id)arg1 message:(id)arg2;
 
 @end

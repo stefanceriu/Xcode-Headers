@@ -34,6 +34,7 @@
     unsigned long long _storedNumberOfLines;
     DVTDelayedInvocation *_scriptChangeDelayedInvocation;
     DVTNotificationToken *_frameChangeToken;
+    id <DVTCancellable> _rebuildToken;
 }
 
 @property unsigned long long _storedNumberOfLines; // @synthesize _storedNumberOfLines;

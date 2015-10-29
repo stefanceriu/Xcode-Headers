@@ -13,7 +13,6 @@
 
 @interface SCNPhysicsVehicleWheel : NSObject <NSCopying, NSSecureCoding>
 {
-    id _reserved;
     SCNNode *_node;
     SCNPhysicsVehicle *_vehicle;
     int _wheelIndex;
@@ -32,9 +31,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)wheelWithNode:(id)arg1;
-- (id).cxx_construct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)copy;

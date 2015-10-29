@@ -11,7 +11,6 @@ __attribute__((visibility("hidden")))
 {
 }
 
-- (struct _VMURange)largestUnusedWithInUse:(id)arg1;
 - (id)subtract:(id)arg1 mergeRanges:(BOOL)arg2;
 - (void)_mergeAllBitsOfRange:(struct _VMURange)arg1 excludingRanges:(id)arg2 mergeRanges:(BOOL)arg3;
 - (void)mergeRanges:(id)arg1 excludingRanges:(id)arg2;

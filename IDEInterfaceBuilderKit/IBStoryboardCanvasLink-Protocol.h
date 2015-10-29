@@ -9,10 +9,12 @@
 @class NSObject<IBPrimarySceneObject>;
 
 @protocol IBStoryboardCanvasLink <NSObject>
+@property(readonly) BOOL canvasLinkShouldDrawPath;
 @property(readonly) BOOL canvasLinkWantsExclusiveHook;
 @property(readonly) BOOL canvasLinkRequiresSourceCanvasFrame;
 @property(readonly) NSObject<IBPrimarySceneObject> *canvasLinkDestination;
 @property(readonly) NSObject<IBPrimarySceneObject> *canvasLinkSource;
+@property(readonly) NSObject<IBPrimarySceneObject> *source;
 - (BOOL)isSelectable;
 @end
 

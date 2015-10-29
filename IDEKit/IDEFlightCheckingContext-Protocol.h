@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class NSError;
+@class DVTDeveloperAccount, NSError;
 
 @protocol IDEFlightCheckingContext <NSObject>
 @property BOOL shouldResolveLongRunningFlightChecks;
 - (void)handleError:(NSError *)arg1;
+- (BOOL)ensureValidAccount:(DVTDeveloperAccount *)arg1 error:(id *)arg2;
 - (void)performBlockRequiringAccountAndTeamSelection:(void (^)(BOOL))arg1;
 @end
 

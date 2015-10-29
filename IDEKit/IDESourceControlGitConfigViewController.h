@@ -9,7 +9,7 @@
 #import "NSOutlineViewDataSource.h"
 #import "NSOutlineViewDelegate.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTTableView, IDEControlGroup, IDESourceControlCreateGitRepositoryOperationInfo, IDESourceControlOperationWindow, IDESourceControlWorkingCopyConfiguration, IDESourceControlWorkingTree, NSArray, NSButton, NSImage, NSMenuItem, NSMutableArray, NSOperationQueue, NSPopUpButton, NSString, NSTextField, NSWindow;
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTSourceControlWorkingCopy, DVTTableView, IDEControlGroup, IDESourceControlCreateRemoteOperationInfo, IDESourceControlOperationWindow, IDESourceControlWorkingCopyConfiguration, NSArray, NSButton, NSImage, NSMenuItem, NSMutableArray, NSOperationQueue, NSPopUpButton, NSString, NSTextField, NSWindow;
 
 @interface IDESourceControlGitConfigViewController : DVTViewController <NSOutlineViewDataSource, NSOutlineViewDelegate>
 {
@@ -22,8 +22,9 @@
     NSTextField *_remoteNameField;
     NSTextField *_remoteAddressField;
     NSButton *_newRemoteOKButton;
-    IDESourceControlWorkingTree *_workingTree;
     IDESourceControlWorkingCopyConfiguration *_workingCopyConfiguration;
+    DVTSourceControlWorkingCopy *_workingCopy;
+    NSMutableArray *_remoteNames;
     NSMutableArray *_remotes;
     NSMutableArray *_remotesToDelete;
     IDESourceControlOperationWindow *_createRemoteWindow;
@@ -32,7 +33,7 @@
     NSMenuItem *_loadingItem;
     DVTObservingToken *_serversObservingToken;
     NSOperationQueue *_operationQueue;
-    IDESourceControlCreateGitRepositoryOperationInfo *_operationInfo;
+    IDESourceControlCreateRemoteOperationInfo *_operationInfo;
     NSTextField *_createRemoteWindowStatusText;
     BOOL _shouldHideServerWarningButton;
     BOOL _canCreateQueryComplete;
@@ -67,8 +68,8 @@
 - (void)createNewRemote:(id)arg1;
 - (void)cancelCreateRemote:(id)arg1;
 - (void)okCreateRemote:(id)arg1;
+- (BOOL)hasOrigin;
 - (void)createRemoteGitRepositoryForWorkingCopy:(id)arg1 withName:(id)arg2 localRemoteName:(id)arg3 pushingToServer:(id)arg4 withCompletionBlock:(CDUnknownBlockType)arg5;
-- (void)displayCannotCreateRepositorySheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)displayCannotCreateRepositorySheet:(id)arg1;
 - (void)_checkCanCreateRepository;
 - (void)addNewServerAction:(id)arg1;
@@ -79,11 +80,7 @@
 - (BOOL)tableView:(id)arg1 shouldEditTableColumn:(id)arg2 row:(long long)arg3;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
-- (void)_setupViewsWithWorkingTrees;
-- (id)currentWCC;
-- (void)updateBoundWorkingCopyConfiguration;
-- (void)updateBoundWorkingTree;
-- (id)dvtExtraBindings;
+- (void)showRemotesForWorkingCopy:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (void)loadView;
 
 // Remaining properties

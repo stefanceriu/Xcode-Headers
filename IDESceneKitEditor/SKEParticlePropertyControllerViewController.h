@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "DVTPopoverContentViewController.h"
+#import <IDESceneKitEditor/SKECurveViewController.h>
 
 #import "SKEAnimationEditorViewDelegate.h"
 
 @class NSMenuItem, NSMutableDictionary, NSPopUpButton, NSString, SCNParticlePropertyController, SKEAnimationEditorView;
 
-@interface SKEParticlePropertyControllerViewController : DVTPopoverContentViewController <SKEAnimationEditorViewDelegate>
+@interface SKEParticlePropertyControllerViewController : SKECurveViewController <SKEAnimationEditorViewDelegate>
 {
     SKEAnimationEditorView *_animationEditorView;
     NSPopUpButton *_curveTypePopUpButton;
@@ -22,6 +22,7 @@
     id <SKEParticlePropertyControllerViewControllerDelegate> _delegate;
 }
 
++ (id)emptyParticlePropertyController;
 @property __weak id <SKEParticlePropertyControllerViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)didSelectPreset:(id)arg1;

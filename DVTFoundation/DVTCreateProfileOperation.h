@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)operationWithSingleTeamToken:(id)arg1 profileName:(id)arg2 appId:(id)arg3 devices:(id)arg4 andCertificates:(id)arg5;
++ (id)operationWithSingleTeamToken:(id)arg1 profileName:(id)arg2 appId:(id)arg3 devices:(id)arg4 includeAllDevices:(BOOL)arg5 subPlatform:(id)arg6 andCertificates:(id)arg7;
 
 @end
 

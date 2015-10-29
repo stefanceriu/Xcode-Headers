@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEInterfaceBuilderCocoaIntegration/IBNSDateFormatterSlice.h>
+#import <IDEInterfaceBuilderCocoaIntegration/IBNSDateFormatterInspectorProperty.h>
 
 @class NSSet, NSTokenField;
 
-@interface IBNSDateFormatterPreTenFourInspectorProperty : IBNSDateFormatterSlice
+@interface IBNSDateFormatterPreTenFourInspectorProperty : IBNSDateFormatterInspectorProperty
 {
     NSTokenField *_oldPresetTokenField01;
     NSTokenField *_oldPresetTokenField02;

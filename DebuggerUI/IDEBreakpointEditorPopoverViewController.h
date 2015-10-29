@@ -9,13 +9,13 @@
 #import "IDEBreakpointActionRowDelegate.h"
 #import "NSPopoverDelegate.h"
 
-@class DVTExtension, DVTMapTable, DVTStackView_AppKitAutolayout, IDEBreakpoint, NSPopover, NSString, NSTextField, NSView, NSViewController<IDEBreakpointEditor>;
+@class DVTExtension, DVTStackView_AppKitAutolayout, IDEBreakpoint, NSMapTable, NSPopover, NSString, NSTextField, NSView, NSViewController<IDEBreakpointEditor>;
 
 @interface IDEBreakpointEditorPopoverViewController : NSViewController <NSPopoverDelegate, IDEBreakpointActionRowDelegate>
 {
     IDEBreakpoint *_breakpoint;
     NSView *_initialFirstResponder;
-    DVTMapTable *_actionRowViewsToObservationTokens;
+    NSMapTable *_actionRowViewsToObservationTokens;
     DVTExtension *_breakpointEditorExtension;
     NSViewController<IDEBreakpointEditor> *_breakpointSpecificViewController;
     NSTextField *_conditionTextField;

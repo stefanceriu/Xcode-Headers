@@ -11,6 +11,7 @@
 + (id)dateWithRFC822Format:(id)arg1;
 + (id)dateWithISO8601Format:(id)arg1;
 + (id)dateWithISO8061Format:(id)arg1;
+- (id)UTCYearMonthDayHourMinuteSecondsComponents;
 - (id)yearMonthDayHourMinuteSecondsComponents;
 - (id)dateTime;
 - (id)dateStamp;

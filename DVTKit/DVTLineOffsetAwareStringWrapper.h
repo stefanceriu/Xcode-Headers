@@ -19,6 +19,7 @@
 + (BOOL)supportsSecureCoding;
 @property(readonly, copy) NSString *string; // @synthesize string=_string;
 - (void).cxx_destruct;
+- (id)debugDescription;
 - (void)dealloc;
 - (struct _NSRange)characterRangeFromDocumentLocation:(id)arg1;
 - (id)convertLocationToUTF8EncodedLocation:(id)arg1;

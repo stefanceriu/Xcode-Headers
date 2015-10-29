@@ -6,39 +6,36 @@
 
 #import "DBGDataValue.h"
 
-#import "DBGLLDBInvalidation.h"
-
-@class DBGLLDBDataType, DBGLLDBStackFrame, NSArray, NSMutableArray, NSString;
+@class DBGLLDBDataType, NSArray, NSMutableArray, NSString;
 
 __attribute__((visibility("hidden")))
-@interface DBGLLDBDataValue : DBGDataValue <DBGLLDBInvalidation>
+@interface DBGLLDBDataValue : DBGDataValue
 {
-    DBGLLDBDataValue *_parent;
+    BOOL _isDictionarySynthesizedParent;
     DBGLLDBDataType *_dbgStaticType;
     struct SBValue _lldbValueObject;
-    struct SBValue _lldbValueObject_masked;
-    struct SBValue _lldbValueObject_masked2;
-    NSMutableArray *_childValues;
-    BOOL _childValuesCountValid;
-    NSString *_name_str;
-    NSString *_value_str;
-    NSString *_masked_value_str;
-    NSString *_summary_str;
-    NSString *_expr_path_str;
     int _lldbFormat;
-    BOOL _value_has_changed;
-    BOOL _uses_masked_value;
-    BOOL _in_scope;
-    BOOL _hasChildValues;
+    NSMutableArray *_childValues;
+    NSString *_expr_path_str;
+    NSArray *_classNameHierarchy;
     BOOL _requested_children;
     BOOL _requestedSummary;
+    BOOL _summaryHasBeenFetched_mainThreadOnly;
+    BOOL _requestedFullSummary;
+    BOOL _fullSummaryHasBeenFetched_mainThreadOnly;
     BOOL _representsNilObjectiveCObject;
     BOOL _representsNullObjectPointer;
     BOOL _mightRespondToSelectors;
-    NSArray *_classNameHierarchy;
-    BOOL _markedForInvalidationFromTheSessionThread;
-    BOOL _isDictionarySynthesizedParent;
-    BOOL _shouldUsePlaceholderChildDataValues;
+    BOOL _value_has_changed;
+    BOOL _childValuesCountValid;
+    BOOL _hasChildValues;
+    BOOL _in_scope;
+    NSString *_name;
+    NSString *_value_str;
+    NSString *_summary_str;
+    NSString *_fullSummary;
+    DBGDataValue *_parent;
+    struct _NSRange _fetchRange;
 }
 
 + (id)_dataValueWithDisplayName:(id)arg1 tag:(unsigned long long)arg2;
@@ -46,20 +43,22 @@ __attribute__((visibility("hidden")))
 + (int)dynamicValueType;
 + (id)_persistenceKeyForValueWithName:(id)arg1 inStackFrame:(id)arg2;
 + (int)_persistedLLDBFormatForValueName:(id)arg1 inStackFrame:(id)arg2;
++ (BOOL)supportsInvalidationPrevention;
 + (void)initialize;
-@property(readonly) BOOL shouldUsePlaceholderChildDataValues; // @synthesize shouldUsePlaceholderChildDataValues=_shouldUsePlaceholderChildDataValues;
-@property BOOL markedForInvalidationFromTheSessionThread; // @synthesize markedForInvalidationFromTheSessionThread=_markedForInvalidationFromTheSessionThread;
-- (id)parent;
+@property struct _NSRange fetchRange; // @synthesize fetchRange=_fetchRange;
 - (id)staticType;
-@property BOOL childValuesCountValid; // @synthesize childValuesCountValid=_childValuesCountValid;
-@property(retain, nonatomic) NSArray *childValues; // @synthesize childValues=_childValues;
-- (BOOL)hasChildValues;
 - (BOOL)inScope;
+- (id)parent;
+@property(copy, nonatomic) NSString *fullSummary; // @synthesize fullSummary=_fullSummary;
 @property(copy, nonatomic) NSString *summary; // @synthesize summary=_summary_str;
+- (BOOL)hasChildValues;
+@property BOOL childValuesCountValid; // @synthesize childValuesCountValid=_childValuesCountValid;
 - (BOOL)valueHasChanged;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
+- (BOOL)isMemoryFault;
 - (id)_dataValueFormatForLLDBFormat:(int)arg1;
 - (void)_persistLLDBFormat:(id)arg1;
 - (id)_classNameHierarchyStartingWithType:(struct SBType)arg1;
@@ -71,45 +70,43 @@ __attribute__((visibility("hidden")))
 - (BOOL)_calculateRepresentsNilObjectiveCObject;
 - (BOOL)representsNilObjectiveCObject;
 - (void)watch;
-- (id)realName;
 - (BOOL)wantsToProvideSummary;
 - (id)_createNSStringForCString:(const char *)arg1;
-@property(readonly, copy) NSString *description;
+- (id)description;
 - (id)_lldbValueObjectDescription;
 - (id)_lldbValueDescription;
 - (id)lldbDescription;
 - (void)setFormat:(id)arg1;
 - (id)format;
 - (const char *)valueAsCString;
+- (void)rawDataWithHandler:(CDUnknownBlockType)arg1;
 - (id)primitiveChildValues;
-- (void)_childValueDidFault:(id)arg1 childIndex:(unsigned long long)arg2;
+- (void)_faultNextSetOfChildValuesStartingAtIndex:(unsigned long long)arg1;
 - (void)_setChildValuesToArrayOfPlaceholders;
 - (void)_setChildValuesToArrayOfActualChildren;
 - (void)_fetchChildValuesFromLLDBOnSessionThreadIfNecessary;
 - (void)childWithName:(id)arg1 foundChild:(CDUnknownBlockType)arg2;
+- (void)_setChildValuesWithKVO:(id)arg1;
+- (id)childValues;
+- (void)loadedFullSummary:(CDUnknownBlockType)arg1;
+- (void)loadedSummary:(CDUnknownBlockType)arg1;
+- (void)_fetchFullSummaryFromLLDBOnSessionThreadIfNecessary;
 - (id)_calculateSummaryForDictionaryElement;
 - (id)_calculateSummary;
 - (void)_fetchSummaryFromLLDBOnSessionThreadIfNecessary;
 - (id)value;
-@property(copy, nonatomic) NSString *name; // @synthesize name=_name_str;
 - (BOOL)dynamicTypeHasChanged;
 - (BOOL)summaryHasChanged;
 - (void)setValue:(id)arg1;
 - (id)blockStartAddress;
 - (id)expressionPath;
 - (void)_addSessionThreadAction:(CDUnknownBlockType)arg1;
-- (id)_weakSelf;
 - (id)_lldbSession;
 - (BOOL)_isSessionThread;
-- (void)_assertNotMarkedForInvalidationAndOnSessionThread;
-@property(readonly) DBGLLDBStackFrame *lldbStackFrame;
+- (void)_assertOnSessionThread;
+- (id)lldbStackFrame;
 - (id)initWithLLDBValueObject:(struct SBValue)arg1 forStackFrame:(id)arg2 withParent:(id)arg3 updateSummary:(BOOL)arg4;
 - (id)initWithLLDBValueObject:(struct SBValue)arg1 forStackFrame:(id)arg2 withParent:(id)arg3;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

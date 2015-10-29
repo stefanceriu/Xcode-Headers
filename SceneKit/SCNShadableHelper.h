@@ -8,12 +8,11 @@
 
 #import "NSSecureCoding.h"
 
-@class NSArray, NSDictionary, SCNProgram;
+@class NSDictionary, SCNProgram;
 
 __attribute__((visibility("hidden")))
 @interface SCNShadableHelper : NSObject <NSSecureCoding>
 {
-    NSDictionary *_uniformNameToType;
     id _owner;
     SCNProgram *_program;
     NSDictionary *_shaderModifiers;
@@ -28,24 +27,18 @@ __attribute__((visibility("hidden")))
 - (void)_customDecodingOfSCNShadableHelper:(id)arg1;
 - (void)_customEncodingOfSCNShadableHelper:(id)arg1;
 - (void *)__CFObject;
-- (void)_setC3DProgramAndStartObservingUniforms;
+- (void)_setC3DProgram;
 - (void)_setC3DProgramDelegate;
 - (void)_updateAllC3DProgramInputs;
 - (void)_updateC3DProgramInputForSymbol:(id)arg1;
 - (void)_updateC3DProgramInput:(struct __C3DFXGLSLProgram *)arg1 forSymbol:(id)arg2;
 - (struct __C3DFXGLSLProgram *)_programFromPassAtIndex:(long long)arg1;
-- (struct __C3DFXGLSLProfile *)_GLSLProfile;
+- (struct __C3DFXTechnique *)_technique;
 - (void)_programDidChange:(id)arg1;
-- (void)_kvoUpdateUniformNamed:(id)arg1 ofType:(short)arg2 immediate:(BOOL)arg3;
-- (void)_setUniform:(id)arg1 withC3DValue:(struct __C3DValue *)arg2;
-- (void)_stopObservingUniforms;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)handleUnbindingOfSymbol:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)handleBindingOfSymbol:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
-- (void)_startObservingUniformsOfC3DShaderModifiers:(id)arg1;
-@property(readonly, nonatomic) NSArray *shaderModifiersUniformNames;
 @property(copy, nonatomic) NSDictionary *shaderModifiers;
-- (void)_startObservingProgramUniforms:(id)arg1;
+- (void)_shaderModifiersDidChange;
 - (void)_unbindValueForSymbol:(id)arg1 atLocation:(unsigned int)arg2 programID:(unsigned int)arg3 node:(id)arg4 renderer:(id)arg5;
 - (BOOL)_bindValueForSymbol:(id)arg1 atLocation:(unsigned int)arg2 programID:(unsigned int)arg3 node:(id)arg4 renderer:(id)arg5;
 - (BOOL)isOpaque;
@@ -53,9 +46,7 @@ __attribute__((visibility("hidden")))
 - (void)_stopObservingProgram;
 - (void)_startObservingProgram;
 @property(readonly, nonatomic) id owner;
-- (void)finalize;
 - (void)dealloc;
-- (void)commonDestroy;
 - (void)ownerWillDie;
 - (id)initWithOwner:(id)arg1;
 

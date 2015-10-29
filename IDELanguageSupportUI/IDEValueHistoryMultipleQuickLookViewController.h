@@ -6,12 +6,13 @@
 
 #import <IDELanguageSupportUI/IDEValueHistoryToyViewController.h>
 
-@class DVTStackView_ML, NSScrollView;
+@class DVTStackView_ML, NSMutableArray, NSScrollView;
 
 @interface IDEValueHistoryMultipleQuickLookViewController : IDEValueHistoryToyViewController
 {
     BOOL _playgroundIsExecuting;
     BOOL _playgroundDidCompleteLastExecution;
+    NSMutableArray *_quickLookViewControllers;
     struct CGSize _cachedPreferredSize;
     NSScrollView *_scrollView;
     DVTStackView_ML *_documentView;
@@ -30,6 +31,7 @@
 - (id)alternateIconImage;
 - (id)iconImage;
 - (struct CGSize)preferredContentSizeConstrainedToSize:(struct CGSize)arg1;
+- (unsigned long long)representationType;
 - (void)viewDidLoad;
 
 @end

@@ -12,20 +12,18 @@
 {
 }
 
-+ (id)versionInfoWithServer:(id)arg1 xcode:(id)arg2 os:(id)arg3 sdkMac:(id)arg4 sdkiOS:(id)arg5 couchDB:(id)arg6 node:(id)arg7 xcodeServer:(id)arg8 validationErrors:(id *)arg9;
-- (BOOL)validateVersionInfoWithServer:(id)arg1 xcode:(id)arg2 os:(id)arg3 sdkMac:(id)arg4 sdkiOS:(id)arg5 couchDB:(id)arg6 node:(id)arg7 xcodeServer:(id)arg8 validationErrors:(id *)arg9;
++ (id)versionInfoWithServer:(id)arg1 xcode:(id)arg2 os:(id)arg3 couchDB:(id)arg4 node:(id)arg5 xcodeServer:(id)arg6 validationErrors:(id *)arg7;
+- (BOOL)validateVersionInfoWithServer:(id)arg1 xcode:(id)arg2 os:(id)arg3 couchDB:(id)arg4 node:(id)arg5 xcodeServer:(id)arg6 validationErrors:(id *)arg7;
 - (id)saveRepresentationHumanReadable:(BOOL)arg1;
 - (id)saveRepresentation;
 - (id)dictionaryRepresentation;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)initVersionInfoWithID:(id)arg1 rev:(id)arg2 tinyID:(id)arg3 docType:(id)arg4 service:(id)arg5 server:(id)arg6 xcode:(id)arg7 os:(id)arg8 sdkMac:(id)arg9 sdkiOS:(id)arg10 couchDB:(id)arg11 node:(id)arg12 xcodeServer:(id)arg13 validationErrors:(id *)arg14;
+- (id)initVersionInfoWithID:(id)arg1 rev:(id)arg2 tinyID:(id)arg3 docType:(id)arg4 service:(id)arg5 server:(id)arg6 xcode:(id)arg7 os:(id)arg8 couchDB:(id)arg9 node:(id)arg10 xcodeServer:(id)arg11 validationErrors:(id *)arg12;
 
 // Remaining properties
 @property(copy, nonatomic) NSString *couchDB; // @dynamic couchDB;
 @property(copy, nonatomic) NSString *node; // @dynamic node;
 @property(copy, nonatomic) NSString *os; // @dynamic os;
-@property(copy, nonatomic) NSString *sdkMac; // @dynamic sdkMac;
-@property(copy, nonatomic) NSString *sdkiOS; // @dynamic sdkiOS;
 @property(copy, nonatomic) NSString *server; // @dynamic server;
 @property(copy, nonatomic) NSString *xcode; // @dynamic xcode;
 @property(copy, nonatomic) NSString *xcodeServer; // @dynamic xcodeServer;

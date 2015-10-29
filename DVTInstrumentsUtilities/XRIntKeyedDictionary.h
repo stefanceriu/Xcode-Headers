@@ -24,6 +24,7 @@
 - (unsigned long long)count;
 - (void)enumerateObjectsAndIntegerKeys:(CDUnknownBlockType)arg1;
 - (id)allObjects;
+- (void)removeAllObjects;
 - (void)removeObjectForIntegerKey:(unsigned long long)arg1;
 - (void)setObject:(id)arg1 forIntegerKey:(unsigned long long)arg2;
 - (void)setObject:(id)arg1 forIntergerKey:(unsigned long long)arg2;

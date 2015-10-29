@@ -16,10 +16,12 @@
     NSTabView *tabView;
     IDEDataModelBrowserEditor *browserViewController;
     IDEDataModelDiagramEditor *diagramViewController;
+    id <IDEDataModelEditorController> _activeEditor;
 }
 
 + (id)keyPathsForValuesAffectingSelection;
 + (id)keyPathsForValuesAffectingModel;
+@property(retain) id <IDEDataModelEditorController> activeEditor; // @synthesize activeEditor=_activeEditor;
 - (void).cxx_destruct;
 - (void)discardEditing;
 - (BOOL)commitEditingForAction:(int)arg1 errors:(id)arg2;
@@ -35,7 +37,6 @@
 - (void)copy:(id)arg1;
 - (void)selectEditor:(id)arg1;
 - (void)takeFocus;
-- (id)activeEditor;
 - (id)rootEditor;
 - (id)allSubViewControllers;
 - (id)identifier;

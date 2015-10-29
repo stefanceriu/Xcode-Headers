@@ -15,6 +15,8 @@
     IDEInspectorKeyPath *_nonNilValueObjectKeyPath;
     NSString *_nilPlaceholder;
     BOOL _allowsNilValues;
+    long long _checkStateForNonNil;
+    long long _checkStateForNil;
     NSTextField *_xTextField;
     NSTextField *_yTextField;
     NSStepper *_xStepper;
@@ -44,6 +46,8 @@
 - (id)nibName;
 - (void)loadView;
 - (void)setupRefreshTriggersAndConfigure;
+- (id)stringForYLabel;
+- (id)stringForXLabel;
 - (BOOL)allowsNilValues;
 
 @end

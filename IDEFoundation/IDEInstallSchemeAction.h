@@ -23,7 +23,8 @@
 + (BOOL)allowInstallSchemeAction;
 @property(copy) NSArray *killProcessList; // @synthesize killProcessList=_killProcessList;
 @property(copy) NSString *customInstallName; // @synthesize customInstallName=_customInstallName;
-@property(copy) NSString *buildConfiguration; // @synthesize buildConfiguration=_buildConfiguration;
+- (void)setBuildConfiguration:(id)arg1;
+- (id)buildConfiguration;
 - (void).cxx_destruct;
 - (void)setKillProcessesFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setCustomInstallNameFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;

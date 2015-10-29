@@ -24,7 +24,6 @@
 @property(readonly, nonatomic) struct CGPoint contactPoint; // @synthesize contactPoint=_contactPoint;
 @property(readonly, nonatomic) SKPhysicsBody *bodyB; // @synthesize bodyB=_bodyB;
 @property(readonly, nonatomic) SKPhysicsBody *bodyA; // @synthesize bodyA=_bodyA;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 
 @end

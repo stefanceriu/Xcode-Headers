@@ -28,7 +28,7 @@
 @property(nonatomic) long long status; // @synthesize status=_status;
 @property(retain, nonatomic) NSArray *children; // @synthesize children=_children;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
-@property(retain, nonatomic) XCSTestObjectPlaceholder *parent; // @synthesize parent=_parent;
+@property(nonatomic) __weak XCSTestObjectPlaceholder *parent; // @synthesize parent=_parent;
 @property(retain, nonatomic) XCSIntegration *integration; // @synthesize integration=_integration;
 - (void).cxx_destruct;
 - (BOOL)_validateWithIntegration:(id)arg1 name:(id)arg2 keyPath:(id)arg3 validationErrors:(id *)arg4;

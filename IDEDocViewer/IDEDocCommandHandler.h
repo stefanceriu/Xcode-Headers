@@ -32,7 +32,7 @@
 + (void)showDocumentationForHelpItem:(id)arg1;
 + (id)contextHelpMenuItemForHelpID:(id)arg1;
 + (id)sharedDocViewerWindowController;
-- (void)actualSize:(id)arg1;
+- (void)zoomActualSize:(id)arg1;
 - (void)zoomOut:(id)arg1;
 - (void)zoomIn:(id)arg1;
 - (void)showContinuousIntegrationGuide:(id)arg1;

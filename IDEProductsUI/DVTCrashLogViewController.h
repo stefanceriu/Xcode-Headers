@@ -90,6 +90,7 @@
 - (BOOL)stackFrameHasSymbols:(id)arg1;
 - (BOOL)stackFrameIsCrashedFrame:(id)arg1;
 - (BOOL)isCrashingThread:(id)arg1;
+- (id)_presumedBundleIdentifier;
 - (id)_presumedAppName;
 - (unsigned long long)compressionPadding;
 - (void)scrollViewBoundsDidChange:(id)arg1;

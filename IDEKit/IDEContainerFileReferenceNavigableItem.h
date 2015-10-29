@@ -19,7 +19,6 @@
     NSString *_scmAggregateLocalStatus;
     NSString *_scmAggregateServerStatus;
     NSArray *_subitems;
-    BOOL _isMajorGroup;
     BOOL _isRecursiveContainerReference;
 }
 
@@ -33,17 +32,14 @@
 @property(readonly) NSString *aggregateSourceControlServerStatus;
 @property(readonly) NSString *aggregateSourceControlLocalStatus;
 - (void)updateAttributes;
-- (long long)progress;
 - (BOOL)coordinatorFilteringShouldFilterChildItems;
 - (BOOL)_shouldResetChildItemsOnDocumentClose;
 - (void)updateChildRepresentedObjects;
 - (id)childRepresentedObjects;
-- (BOOL)isMajorGroup;
 - (BOOL)isLeaf;
 - (void)_setParentItem:(id)arg1;
 - (BOOL)isDocumentNavigableItem;
 - (void)primitiveInvalidate;
-- (id)initWithRepresentedObject:(id)arg1;
 
 @end
 

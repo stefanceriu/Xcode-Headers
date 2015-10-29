@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "IBImageCatalogFileManager.h"
+#import "IBICCatalogFileManager.h"
 
 @class IDEVersionedFileManager, NSString;
 
-@interface IBIDEImageCatalogFileManager : NSObject <IBImageCatalogFileManager>
+@interface IBIDEImageCatalogFileManager : NSObject <IBICCatalogFileManager>
 {
     IDEVersionedFileManager *_fileManager;
 }

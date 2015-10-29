@@ -53,7 +53,7 @@
 - (void)ibTakeSnapshotValues:(id)arg1 inConfiguration:(id)arg2;
 - (id)ibDefaultFontForCurrentConfiguration;
 - (BOOL)ibTitleEditsSelf;
-- (BOOL)ibIsBaselineAtIndex:(long long)arg1 inMotionWithKnob:(long long)arg2;
+- (BOOL)ibIsBaselineAtIndex:(long long)arg1 inMotionWithKnob:(CDUnion_42e99c75)arg2;
 - (id)ibBaselineForFrame:(struct CGRect)arg1 atIndex:(long long)arg2;
 - (id)ibBaselineCount;
 - (id)ibWidgetType;

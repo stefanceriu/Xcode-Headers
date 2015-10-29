@@ -14,6 +14,7 @@
 - (NSString *)contentDelegateUIExtensionIdentifier;
 
 @optional
+@property(readonly) NSString *subtitle;
 @property(readonly, nonatomic) NSArray *loadedCodeModules;
 @property(readonly, nonatomic) IDEDebugSession *parentDebugSession;
 @end

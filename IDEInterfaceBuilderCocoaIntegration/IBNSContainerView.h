@@ -15,7 +15,7 @@
     BOOL _encodeAsRuntimeInstance;
 }
 
-+ (BOOL)ibShouldBeIncludedInLibraryForTargetRuntime:(id)arg1 andDocumentClass:(Class)arg2;
++ (int)ibLibraryInclusionStatusForTargetRuntime:(id)arg1 andDocumentClass:(Class)arg2 assetIdentifier:(id)arg3;
 @property BOOL encodeAsRuntimeInstance; // @synthesize encodeAsRuntimeInstance=_encodeAsRuntimeInstance;
 - (void)drawRect:(struct CGRect)arg1;
 - (Class)classForDocumentArchiver:(id)arg1;
@@ -32,7 +32,6 @@
 - (id)ibDefaultSegueTrigger;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
 - (id)ibSupportsMultipleSeguesFromTrigger;
-- (BOOL)ibSizesToFillContainerViews;
 - (id)ibQualifyingInfoForDefaultLabel;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (id)ibTypeNameForDefaultLabel;

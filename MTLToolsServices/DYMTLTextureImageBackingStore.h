@@ -20,6 +20,7 @@
 @property(retain, nonatomic) NSData *uncompressedData; // @synthesize uncompressedData=_uncompressedData;
 @property(retain, nonatomic) NSData *data; // @synthesize data=_data;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long cachingCost;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

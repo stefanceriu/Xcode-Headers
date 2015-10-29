@@ -8,13 +8,13 @@
 
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTMapTable, DVTObservingToken, IDEFileReference, IDEWorkspace, NSArray, NSImage, NSMutableArray, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTObservingToken, IDEFileReference, IDEWorkspace, NSArray, NSImage, NSMapTable, NSMutableArray, NSString;
 
 @interface DBGDisassemblyItemExecutionEnvironmentWrapper : IDENavigableItemDomainProvider <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     IDEWorkspace *_workspace;
     NSMutableArray *_processWrappers;
-    DVTMapTable *_launchSessionsProcessToObserverTokens;
+    NSMapTable *_launchSessionsProcessToObserverTokens;
     DVTObservingToken *_launchSessionObserver;
     DVTObservingToken *_workspacesLaunchSessionsObserver;
     DVTObservingToken *_workspaceValidObserver;

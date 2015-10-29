@@ -9,9 +9,11 @@
 @class NSArray, NSDictionary, NSImage, NSPasteboard, NSURL, NSView, NSWindow;
 
 @protocol NSDraggingInfo <NSObject>
+@property(readonly) long long springLoadingHighlight;
 @property long long numberOfValidItemsForDrop;
 @property BOOL animatesToDestination;
 @property long long draggingFormation;
+- (void)resetSpringLoading;
 - (void)enumerateDraggingItemsWithOptions:(unsigned long long)arg1 forView:(NSView *)arg2 classes:(NSArray *)arg3 searchOptions:(NSDictionary *)arg4 usingBlock:(void (^)(NSDraggingItem *, long long, char *))arg5;
 - (NSArray *)namesOfPromisedFilesDroppedAtDestination:(NSURL *)arg1;
 - (void)slideDraggedImageTo:(struct CGPoint)arg1;

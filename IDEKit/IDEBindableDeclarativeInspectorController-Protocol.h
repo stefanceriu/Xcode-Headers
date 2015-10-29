@@ -16,6 +16,7 @@
 @property(readonly) NSBundle *bundle;
 
 @optional
+- (NSString *)filePathForExternalInspectorContentWithIdentifier:(NSString *)arg1;
 - (NSAttributedString *)attributedTitleForSliverElement:(NSXMLElement *)arg1;
 - (NSView *)accessoryViewForInspectorProperty:(IDEInspectorProperty *)arg1;
 - (id)aggregateReplacementBySettingValue:(id)arg1 forKeyPath:(NSString *)arg2 onObject:(id)arg3 fromKeyPath:(NSString *)arg4 ofObject:(id)arg5;

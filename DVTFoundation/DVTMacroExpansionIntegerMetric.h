@@ -18,7 +18,6 @@
 @property(readonly) unsigned long long *sampleCounts; // @synthesize sampleCounts=_sampleCounts;
 @property(readonly) struct _NSRange valueRange; // @synthesize valueRange=_valueRange;
 @property(readonly) NSString *label; // @synthesize label=_label;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)longDescription;
 - (void)addValue:(unsigned long long)arg1;

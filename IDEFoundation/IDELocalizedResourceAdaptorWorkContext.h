@@ -13,6 +13,8 @@
     IDELocalizedResourceAdaptor *_adaptor;
 }
 
++ (id)contextWithParent:(id)arg1 adaptor:(id)arg2;
++ (id)contextWithParent:(id)arg1 dryRun:(BOOL)arg2 adaptor:(id)arg3;
 @property(retain) IDELocalizedResourceAdaptor *adaptor; // @synthesize adaptor=_adaptor;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;

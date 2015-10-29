@@ -6,19 +6,20 @@
 
 #import "NSObject.h"
 
-@class DVT_VMUClassInfoMap, DVT_VMUNonOverlappingRangeArray, NSHashTable, NSMapTable, NSMutableSet;
+@class DVT_VMUClassInfoMap, DVT_VMUNonOverlappingRangeArray, NSHashTable, NSMapTable, NSMutableDictionary, NSMutableSet;
 
 @interface DVT_VMUObjectIdentifier : NSObject
 {
     unsigned int _task;
     struct _CSTypeRef _symbolicator;
     CDUnknownBlockType _memoryReader;
-    DVT_VMUClassInfoMap *_isaToClassInfo;
-    DVT_VMUClassInfoMap *_cfTypeIDtoClassInfo;
+    DVT_VMUClassInfoMap *_realizedIsaToClassInfo;
     DVT_VMUClassInfoMap *_unrealizedClassInfos;
+    NSMutableDictionary *_nonobjectClassInfosDict;
     unsigned long long _coreFoundationCFTypeIsa;
     unsigned long long _foundationCFTypeIsa;
     unsigned long long _swiftClassCount;
+    unsigned long long _cfClassCount;
     CDUnknownBlockType _isaTranslator;
     unsigned long long *_nonPointerIndexMapping;
     void *_remoteObjectBuffer;
@@ -31,6 +32,7 @@
     DVT_VMUNonOverlappingRangeArray *_targetProcessVMranges;
 }
 
+@property(readonly, nonatomic) DVT_VMUClassInfoMap *realizedClasses; // @synthesize realizedClasses=_realizedIsaToClassInfo;
 - (id)classInfoForCFType:(struct __CFRuntimeBase *)arg1;
 - (id)classInfoForIsaPointer:(unsigned long long)arg1;
 - (id)classInfoForObject:(unsigned long long)arg1;
@@ -39,6 +41,7 @@
 - (id)labelForMemory:(void *)arg1 length:(unsigned long long)arg2 usingHandlerBlock:(CDUnknownBlockType)arg3;
 - (id)labelForMallocBlock:(struct _VMURange)arg1 usingHandlerBlock:(CDUnknownBlockType)arg2;
 - (id)labelForMallocBlock:(struct _VMURange)arg1;
+- (id)labelForOSTransaction:(id)arg1;
 - (id)labelForNSInlineData:(id)arg1;
 - (id)labelForNSConcreteMutableData:(id)arg1;
 - (id)labelForNSConcreteData:(id)arg1;
@@ -68,6 +71,7 @@
 - (id)_faultClass:(unsigned long long)arg1 ofType:(int)arg2;
 - (id)classInfoForMemory:(void *)arg1 length:(unsigned long long)arg2;
 - (id)classInfoForNonobjectMemory:(void *)arg1 length:(unsigned long long)arg2;
+- (id)_classInfoWithNonobjectType:(id)arg1 binaryPath:(id)arg2;
 - (id)classInfoForObjectWithRange:(struct _VMURange)arg1;
 - (id)nullClassInfo;
 - (void)enumerateAllClassInfosWithBlock:(CDUnknownBlockType)arg1;

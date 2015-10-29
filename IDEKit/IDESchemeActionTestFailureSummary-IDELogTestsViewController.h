@@ -6,14 +6,14 @@
 
 #import "IDESchemeActionTestFailureSummary.h"
 
-#import "IDESharedTests_FailureSummary.h"
+#import "IDETestReport_FailureSummary.h"
 
 @class NSString;
 
-@interface IDESchemeActionTestFailureSummary (IDELogTestsViewController) <IDESharedTests_FailureSummary>
-@property(readonly, nonatomic) long long ide_sharedTests_lineNumber;
-@property(readonly, copy, nonatomic) NSString *ide_sharedTests_fileName;
-@property(readonly, copy, nonatomic) NSString *ide_sharedTests_message;
+@interface IDESchemeActionTestFailureSummary (IDELogTestsViewController) <IDETestReport_FailureSummary>
+@property(readonly, nonatomic) long long ide_testReport_failureSummary_lineNumber;
+@property(readonly, copy, nonatomic) NSString *ide_testReport_failureSummary_fileName;
+@property(readonly, copy, nonatomic) NSString *ide_testReport_failureSummary_message;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

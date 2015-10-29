@@ -14,7 +14,7 @@ __attribute__((visibility("hidden")))
 
 @property(retain, nonatomic) id delegate; // @synthesize delegate=_delegate;
 - (BOOL)isOpaque;
-- (id)textureSourceForContext:(void *)arg1;
+- (id)textureSource;
 - (void)dealloc;
 
 @end

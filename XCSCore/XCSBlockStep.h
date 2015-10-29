@@ -10,6 +10,7 @@
 {
 }
 
++ (void)parallelBlocks:(id)arg1 timeout:(double)arg2 completionHandler:(CDUnknownBlockType)arg3;
 + (void)stepWithBlocks:(id)arg1 timeout:(double)arg2 completionHandler:(CDUnknownBlockType)arg3;
 
 @end

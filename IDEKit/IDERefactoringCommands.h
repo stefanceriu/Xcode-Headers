@@ -45,7 +45,6 @@
 - (void)refactorRename:(id)arg1;
 - (void)refactor:(id)arg1 contextMenu:(BOOL)arg2;
 - (BOOL)_validateTransformation:(id)arg1 contextMenu:(BOOL)arg2 error:(id *)arg3;
-- (void)genericAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (id)init;
 
 // Remaining properties

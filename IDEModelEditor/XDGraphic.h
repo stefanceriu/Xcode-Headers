@@ -10,7 +10,7 @@
 #import "NSCoding.h"
 #import "XDGraphNode.h"
 
-@class DVTMapTable, DVTStackBacktrace, NSMutableArray, NSString, XDDiagramStorage, XDGraphicContentsEditor, XDGraphicID;
+@class DVTStackBacktrace, NSMapTable, NSMutableArray, NSString, XDDiagramStorage, XDGraphicContentsEditor, XDGraphicID;
 
 @interface XDGraphic : NSObject <NSCoding, XDGraphNode, DVTInvalidation>
 {
@@ -26,7 +26,7 @@
     id _contents;
     double _contentsPadding;
     NSMutableArray *_connections;
-    DVTMapTable *_drawingStyleByClass;
+    NSMapTable *_drawingStyleByClass;
     id _objectValue;
     int _trackKnobPosition;
     XDGraphicContentsEditor *_contentsEditor;

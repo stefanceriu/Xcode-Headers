@@ -13,14 +13,12 @@
 
 @interface SCNLevelOfDetail : NSObject <NSCopying, NSSecureCoding>
 {
-    id _reserved;
     struct __C3DLOD *_lod;
     long long _mode;
     SCNGeometry *_geometry;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)levelOfDetailWithGeometry:(id)arg1 worldSpaceDistance:(double)arg2;
 + (id)levelOfDetailWithGeometry:(id)arg1 screenSpaceRadius:(double)arg2;
 - (id)initWithCoder:(id)arg1;
@@ -38,7 +36,6 @@
 - (void *)__CFObject;
 - (id)initWithGeometry:(id)arg1 thresholdMode:(long long)arg2 thresholdValue:(id)arg3;
 - (id)initWithGeometry:(id)arg1 thresholdMode:(long long)arg2 lod:(struct __C3DLOD *)arg3;
-- (id)init;
 - (void)_setupWithGeometry:(id)arg1 thresholdMode:(long long)arg2 value:(double)arg3;
 - (void)dealloc;
 

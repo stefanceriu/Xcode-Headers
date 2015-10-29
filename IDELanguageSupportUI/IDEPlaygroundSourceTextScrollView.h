@@ -25,7 +25,7 @@
 }
 
 + (BOOL)isCompatibleWithResponsiveScrolling;
-@property(nonatomic) __weak IDEPlaygroundEditor *playgroundEditor; // @synthesize playgroundEditor=_playgroundEditor;
+@property(retain, nonatomic) IDEPlaygroundEditor *playgroundEditor; // @synthesize playgroundEditor=_playgroundEditor;
 @property(copy) NSString *boxTitle; // @synthesize boxTitle=_boxTitle;
 @property double contentViewBottomMargin; // @synthesize contentViewBottomMargin=_contentViewBottomMargin;
 @property double contentViewTopMargin; // @synthesize contentViewTopMargin=_contentViewTopMargin;
@@ -40,7 +40,6 @@
 - (void)scrollWheel:(id)arg1;
 - (void)tile;
 - (void)tileBoxContentView;
-- (void)dealloc;
 - (struct CGRect)_disclosureTriangleRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)titleRectForBounds:(struct CGRect)arg1;
 @property(getter=isDisclosed) BOOL disclosed; // @synthesize disclosed=_disclosed;

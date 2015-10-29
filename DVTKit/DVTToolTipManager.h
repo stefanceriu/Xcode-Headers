@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, NSTimer;
+@class NSMapTable, NSTimer;
 
 @interface DVTToolTipManager : NSObject
 {
-    DVTMapTable *registeredViews;
+    NSMapTable *registeredViews;
     id eventMonitor;
     NSTimer *timer;
     long long enabledBlocks;

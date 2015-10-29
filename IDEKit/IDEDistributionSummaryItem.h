@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTLogAspect, NSAttributedString, NSDictionary, NSImage, NSString;
+@class DVTFilePath, DVTLogAspect, NSAttributedString, NSDictionary, NSImage, NSString;
 
 @interface IDEDistributionSummaryItem : NSObject
 {
@@ -16,14 +16,14 @@
     NSImage *_icon;
     NSDictionary *_entitlements;
     NSString *_provisioningProfileName;
-    NSString *_provisioningProfilePath;
+    DVTFilePath *_provisioningProfilePath;
     DVTLogAspect *_logAspect;
 }
 
 + (id)summaryItemWithDVTFilePath:(id)arg1 icon:(id)arg2 entitlements:(id)arg3 provisioningProfile:(id)arg4 logAspect:(id)arg5;
 @property(readonly) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
 @property BOOL disclosed; // @synthesize disclosed=_disclosed;
-@property(readonly) NSString *provisioningProfilePath; // @synthesize provisioningProfilePath=_provisioningProfilePath;
+@property(readonly) DVTFilePath *provisioningProfilePath; // @synthesize provisioningProfilePath=_provisioningProfilePath;
 @property(readonly) NSString *provisioningProfileName; // @synthesize provisioningProfileName=_provisioningProfileName;
 @property(readonly) NSDictionary *entitlements; // @synthesize entitlements=_entitlements;
 @property(readonly) NSImage *icon; // @synthesize icon=_icon;

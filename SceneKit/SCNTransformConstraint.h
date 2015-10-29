@@ -8,10 +8,8 @@
 
 @interface SCNTransformConstraint : SCNConstraint
 {
-    id _reserved;
 }
 
-+ (id)SCNJSExportProtocol;
 + (id)transformConstraintInWorldSpace:(BOOL)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;

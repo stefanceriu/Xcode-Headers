@@ -8,5 +8,6 @@
 
 @interface DVTiPhoneSimulatorLocator (UIAdditions)
 - (void)beginDeviceCreationAssistantWithWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (BOOL)canCreateDevices;
 @end
 

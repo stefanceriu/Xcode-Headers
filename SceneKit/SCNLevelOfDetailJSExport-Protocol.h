@@ -6,7 +6,7 @@
 
 #import "JSExport.h"
 
-@class SCNGeometry;
+@class NSString, SCNGeometry;
 
 @protocol SCNLevelOfDetailJSExport <JSExport>
 + (id)levelOfDetailWithGeometry:(SCNGeometry *)arg1 worldSpaceDistance:(double)arg2;
@@ -15,5 +15,9 @@
 @property(readonly) double screenSpaceRadius;
 @property(readonly) SCNGeometry *geometry;
 - (id)copy;
+- (id)valueForKeyPath:(NSString *)arg1;
+- (id)valueForKey:(NSString *)arg1;
+- (void)setValue:(id)arg1 forKey:(NSString *)arg2;
+- (void)setValue:(id)arg1 forKeyPath:(NSString *)arg2;
 @end
 

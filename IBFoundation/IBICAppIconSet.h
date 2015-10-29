@@ -4,31 +4,37 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IBFoundation/IBICMappedMultipartImage.h>
+#import <IBFoundation/IBICSlottedAsset.h>
 
-@interface IBICAppIconSet : IBICMappedMultipartImage
+@interface IBICAppIconSet : IBICSlottedAsset
 {
     BOOL _preRendered;
 }
 
-+ (id)pluralTypeNameForIssues;
-+ (id)typeNameForIssues;
-+ (id)fileExtension;
-+ (id)defaultInstanceForPlatforms:(id)arg1;
-+ (id)defaultImageName;
-+ (double)currentContentsJSONVersionNumber;
-+ (double)latestUnderstoodContentsJSONVersionNumber;
-+ (double)earliestUnderstoodContentsJSONVersionNumber;
-+ (Class)imageRepClass;
++ (id)importPriority;
++ (id)contentReferenceTypeName;
++ (id)classNameComponents;
++ (id)catalogItemFileExtension;
++ (id)defaultInstanceForIdioms:(id)arg1 enforceStrictIdioms:(BOOL)arg2;
++ (id)defaultName;
++ (Class)assetRepClass;
 @property(nonatomic, getter=isPreRendered) BOOL preRendered; // @synthesize preRendered=_preRendered;
-- (id)descriptionShortClassName;
-- (id)contentsDictionary;
-- (id)readContentsJSONFromSnapshot:(id)arg1 results:(id)arg2;
-- (id)suggestedFileNameForImageRepInSlot:(id)arg1;
+- (BOOL)requiresRootNamespace;
+- (void)manifestArchivist:(id)arg1 populateManifestEntry:(id)arg2 forChild:(id)arg3;
+- (BOOL)manifestArchivist:(id)arg1 childHasDataToRecordInManifest:(id)arg2;
+- (void)manifestArchivist:(id)arg1 applyPropertiesFromChildEntry:(id)arg2 toChild:(id)arg3 results:(id)arg4;
+- (void)manifestArchivist:(id)arg1 populateManifest:(id)arg2;
+- (void)manifestArchivist:(id)arg1 applyPropertiesFromManifest:(id)arg2;
+- (BOOL)manifestArchivist:(id)arg1 validateManifestChildEntry:(id)arg2 results:(id)arg3;
+- (BOOL)manifestArchivist:(id)arg1 validateManifest:(id)arg2 results:(id)arg3;
+- (id)effectiveModificationDateForCARCompiler;
+- (id)initializeManifestArchivist;
+- (id)intrinsicallyOrderedChildren;
+- (id)children;
+- (id)assetRepForStructuredIdentifier:(id)arg1;
 - (id)childForIdentifier:(id)arg1;
-- (id)imageRepForIdentifier:(id)arg1;
-- (id)imageRepForImageRepIdentifier:(id)arg1;
-- (id)imageRepForSlot:(id)arg1;
+- (id)assetRepForIdentifier:(id)arg1;
+- (id)assetRepForSlot:(id)arg1;
 
 @end
 

@@ -12,12 +12,16 @@
 
 @interface DVTSourceControlMultiCancellable : NSBlockOperation <DVTSourceControlCancellable>
 {
-    id <DVTSourceControlCancellable> _currentCancelable;
+    id <DVTSourceControlCancellable> _currentCancellable;
+    BOOL suppressAuthenticationFailure;
+    id context;
 }
 
-@property(retain) id <DVTSourceControlCancellable> currentCancelable; // @synthesize currentCancelable=_currentCancelable;
+@property __weak id context; // @synthesize context;
+@property BOOL suppressAuthenticationFailure; // @synthesize suppressAuthenticationFailure;
 - (void).cxx_destruct;
 - (void)cancel;
+@property(retain) id <DVTSourceControlCancellable> currentCancellable;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

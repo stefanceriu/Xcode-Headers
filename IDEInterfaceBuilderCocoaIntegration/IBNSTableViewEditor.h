@@ -23,9 +23,9 @@
 - (BOOL)interceptEvent:(id)arg1;
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;
 - (BOOL)areKnobsLockedForObject:(id)arg1;
-- (CDStruct_fa3e0eee)activeKnobRectsForObject:(id)arg1;
+- (CDStruct_b58c4854)activeKnobRectsForObject:(id)arg1;
 - (id)viewForClippingToWhenDrawingSelectionKnobsForObject:(id)arg1;
-- (void)resizeChild:(id)arg1 fromKnob:(long long)arg2 withEvent:(id)arg3;
+- (void)resizeChild:(id)arg1 fromKnob:(CDUnion_42e99c75)arg2 withEvent:(id)arg3;
 - (void)tryToDragTableColumn:(id)arg1 withLeftMouseDown:(id)arg2 andLeftMouseDragged:(id)arg3;
 - (void)detachDraggedObjects:(id)arg1 dragContext:(id)arg2;
 - (void)reattachDraggedObjects:(id)arg1 dragContext:(id)arg2;

@@ -15,7 +15,7 @@
 - (id)initWithEditorItemModel:(id)arg1 portalInfoDelegate:(id)arg2;
 
 // Remaining properties
-@property(readonly, nonatomic) IDEHealthKitItemModel *model;
+@property(readonly, nonatomic) IDEHealthKitItemModel *model; // @dynamic model;
 
 @end
 

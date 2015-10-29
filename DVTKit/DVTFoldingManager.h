@@ -6,17 +6,21 @@
 
 #import "NSObject.h"
 
-@class DVTTextFold;
+#import "DVTInvalidation.h"
 
-@interface DVTFoldingManager : NSObject
+@class DVTStackBacktrace, DVTTextFold, NSString;
+
+@interface DVTFoldingManager : NSObject <DVTInvalidation>
 {
     DVTTextFold *_topLevelFold;
     id <DVTFoldingManagerDelegate> delegate;
 }
 
++ (void)initialize;
 @property(retain, nonatomic) DVTTextFold *topLevelFold; // @synthesize topLevelFold=_topLevelFold;
 @property __weak id <DVTFoldingManagerDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
+- (id)fixedSelectionRangesForRanges:(id)arg1 affinity:(unsigned long long)arg2 inTextView:(id)arg3;
 - (id)adjustFoldsForRange:(struct _NSRange)arg1 changeInLength:(long long)arg2;
 - (id)foldsEnclosingRange:(struct _NSRange)arg1;
 - (id)lastFoldTouchingCharacterIndex:(unsigned long long)arg1;
@@ -35,12 +39,22 @@
 - (void)unfoldRange:(struct _NSRange)arg1;
 - (void)unfoldAtCharacterIndex:(unsigned long long)arg1;
 - (void)unfoldAll;
-- (void)unfoldPlaceholdersInRange:(struct _NSRange)arg1;
-- (void)foldPlaceholderInRange:(struct _NSRange)arg1 withLabel:(id)arg2;
+- (void)unfoldInlineFoldsInRange:(struct _NSRange)arg1;
+- (void)foldInlineText:(id)arg1 inRange:(struct _NSRange)arg2 tokenType:(id)arg3;
 - (void)foldRange:(struct _NSRange)arg1;
 - (void)_applyFoldsRecursively:(id)arg1;
+- (void)primitiveInvalidate;
 - (id)initWithRange:(struct _NSRange)arg1;
 - (id)init;
+
+// Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

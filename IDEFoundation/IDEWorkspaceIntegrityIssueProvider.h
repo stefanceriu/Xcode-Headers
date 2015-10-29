@@ -6,17 +6,17 @@
 
 #import <IDEFoundation/IDEIssueProvider.h>
 
-@class DVTMapTable, DVTObservingToken;
+@class DVTObservingToken, NSMapTable;
 
 @interface IDEWorkspaceIntegrityIssueProvider : IDEIssueProvider
 {
     id _modelObjectDidChangeObserver;
     DVTObservingToken *_referencedContainersObserverToken;
-    DVTMapTable *_referencedContainersToIssueObserverTokensMapTable;
-    DVTMapTable *_referencedContainersToProviderContextsMapTable;
+    NSMapTable *_referencedContainersToIssueObserverTokensMapTable;
+    NSMapTable *_referencedContainersToProviderContextsMapTable;
     DVTObservingToken *_blueprintsObserverToken;
-    DVTMapTable *_blueprintsToIssueObserverTokensMapTable;
-    DVTMapTable *_blueprintsToProviderContextsMapTable;
+    NSMapTable *_blueprintsToIssueObserverTokensMapTable;
+    NSMapTable *_blueprintsToProviderContextsMapTable;
 }
 
 + (int)providerType;

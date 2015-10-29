@@ -8,13 +8,14 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTDelayedInvocation, DVTNotificationToken, DVTStackBacktrace, IBDocument, IBMutableIdentityDictionary, NSDictionary, NSMutableSet, NSString;
+@class DVTDelayedInvocation, DVTNotificationToken, DVTStackBacktrace, IBDocument, IBMutableIdentityDictionary, NSArray, NSDictionary, NSMutableSet, NSString;
 
 @interface IBDocumentIssueGenerator : NSObject <DVTInvalidation>
 {
     IBDocument *_document;
     BOOL _allIssuesAreInvalid;
     IBMutableIdentityDictionary *_membersToIssues;
+    NSArray *_globalIssues;
     NSMutableSet *_parentsWithPendingChildIssueCalculations;
     NSMutableSet *_membersWithPendingIssueCalculations;
     NSMutableSet *_classNamesWithPendingIssueCalculations;
@@ -30,11 +31,15 @@
 @property(nonatomic, getter=isShuttingDown) BOOL shuttingDown; // @synthesize shuttingDown=_shuttingDown;
 @property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
 - (void).cxx_destruct;
-@property(readonly) NSDictionary *warnings;
+@property(readonly) NSArray *allWarnings;
+@property(readonly) NSArray *globalWarnings;
+@property(readonly) NSDictionary *warningsByMember;
+- (void)ensureIssuesAreValid;
 - (void)validateIssues:(id)arg1;
 - (id)aggregateMembersNeedingRefreshedIssues;
 - (void)clearPendingIssueCalculationsTables;
 - (void)updateIssuesForMembers:(id)arg1;
+- (BOOL)updateGlobalIssues;
 - (BOOL)effectiveIssuesAreEnabled;
 - (void)notifyObservers;
 - (void)invalidateIssuesForConnection:(id)arg1;

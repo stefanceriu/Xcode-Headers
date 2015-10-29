@@ -26,6 +26,7 @@
 @property(retain) IDECodesignIssueResolutionPortalSource *portal; // @synthesize portal=_portal;
 - (void).cxx_destruct;
 - (id)invokeOptionWithWindowOrNil:(id)arg1;
+- (BOOL)requiresUserApprovalButOtherwiseAutomatic;
 - (BOOL)requiresUserInteraction;
 - (id)name;
 - (id)initWithPortalSource:(id)arg1 account:(id)arg2 portalTeamID:(id)arg3 certificiateKind:(id)arg4 platformIdentifier:(id)arg5 certificateToRevokeSerialNumberOrNil:(id)arg6 logAspect:(id)arg7;

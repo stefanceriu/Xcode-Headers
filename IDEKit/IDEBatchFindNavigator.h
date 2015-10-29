@@ -13,14 +13,13 @@
 #import "NSPopoverDelegate.h"
 #import "NSTextFieldDelegate.h"
 
-@class DVTBorderedView, DVTFindPatternTextField, DVTReplacementView, DVTSplitViewItem, DVTStackView_ML, IDEBatchFindLocationPickerView, IDEBatchFindQuery, IDEBatchFindReplaceButtonLayoutView, IDEBatchFindReplaceableSheetController, IDEBatchFindResultsOutlineController, IDEBatchFindStrategiesController, IDEBatchFindTwoButtonLayout, IDENavigableItem, IDENavigableItemCoordinator, IDEPathControl, IDEProgressSearchField, NSArray, NSAttributedString, NSButton, NSColor, NSMenu, NSMutableArray, NSPopUpButton, NSPopUpButtonCell, NSString, NSTextField, NSView;
+@class DVTBorderedView, DVTFindPatternTextField, DVTLayoutView_ML, DVTSplitViewItem, DVTStackView_ML, IDEBatchFindLocationPickerView, IDEBatchFindQuery, IDEBatchFindReplaceButtonLayoutView, IDEBatchFindReplaceableSheetController, IDEBatchFindResultsOutlineController, IDEBatchFindStrategiesController, IDEBatchFindTwoButtonLayout, IDECallHierarchyViewController, IDENavigableItem, IDENavigableItemCoordinator, IDEPathControl, IDEProgressSearchField, NSArray, NSAttributedString, NSButton, NSMenu, NSMutableArray, NSPopUpButton, NSPopUpButtonCell, NSString, NSTextField, NSView;
 
 @interface IDEBatchFindNavigator : IDENavigator <NSTextFieldDelegate, NSPopoverDelegate, NSAnimationDelegate, IDEProgressSearchFieldCommandDelegate, IDEProgressSearchFieldDelegate, DVTFindPatternManager>
 {
     DVTStackView_ML *searchContentView;
     DVTBorderedView *topBorderView;
     DVTBorderedView *bottomBorderView;
-    DVTReplacementView *_contentView;
     DVTStackView_ML *bottomStackView;
     NSView *replaceView;
     IDEBatchFindReplaceButtonLayoutView *replaceButtonView;
@@ -34,7 +33,6 @@
     NSButton *_scopeButton;
     DVTSplitViewItem *_contentViewSplitViewItem;
     DVTSplitViewItem *_locationPickerSplitViewItem;
-    double _statusCellHeight;
     NSMutableArray *_observerTokens;
     int _findMode;
     NSAttributedString *_findAttributedString;
@@ -57,8 +55,6 @@
     BOOL _configurationControllerInited;
     IDEBatchFindStrategiesController *_configurationController;
     IDEBatchFindQuery *_activeQuery;
-    NSString *_lastFindString;
-    BOOL _findStringValid;
     NSArray *_rootNavigables;
     IDENavigableItem *_selectedNavigable;
     IDENavigableItemCoordinator *_findMenuNavigableItemCoordinator;
@@ -66,20 +62,24 @@
     int _firstLevelIndex;
     int _secondLevelIndex;
     int _thirdLevelIndex;
-    BOOL _deferredInvalidationOfObservers;
     NSArray *_strategiesControllerObjects;
     NSArray *_criteriaEditorObjects;
-    NSColor *_filterControlBackgroundColor;
     BOOL _startSearchAfterHidingLocationPicker;
+    IDECallHierarchyViewController *_callHierarchyViewController;
+    BOOL _findStringValid;
     BOOL _showingLocationPicker;
     IDEBatchFindLocationPickerView *_locationPicker;
     NSPopUpButton *_matchCaseButton;
+    DVTLayoutView_ML *_contentView;
     IDEBatchFindTwoButtonLayout *_twoButtonLayout;
+    NSString *_lastFindString;
+    IDEBatchFindResultsOutlineController *_resultsOutlineController;
     NSPopUpButtonCell *_matchCasePopUpButtonCell;
     NSMenu *_matchCasePopUpMenu;
-    IDEBatchFindResultsOutlineController *_resultsOutlineController;
 }
 
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (id)keyPathsForValuesAffectingCanShowReplacePreview;
 + (id)keyPathsForValuesAffectingCanReplaceAll;
 + (id)_keyPathsForValuesAffectingCanReplaceAllAndCanShowReplacePreview;
@@ -88,24 +88,24 @@
 + (id)keyPathsForValuesAffectingFindString;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)defaultViewNibName;
+@property(retain) NSMenu *matchCasePopUpMenu; // @synthesize matchCasePopUpMenu=_matchCasePopUpMenu;
+@property(retain) NSPopUpButtonCell *matchCasePopUpButtonCell; // @synthesize matchCasePopUpButtonCell=_matchCasePopUpButtonCell;
 @property(retain) IDENavigableItemCoordinator *findMenuNavigableItemCoordinator; // @synthesize findMenuNavigableItemCoordinator=_findMenuNavigableItemCoordinator;
 @property(readonly) NSArray *rootNavigables; // @synthesize rootNavigables=_rootNavigables;
 @property(retain, nonatomic) IDEBatchFindResultsOutlineController *resultsOutlineController; // @synthesize resultsOutlineController=_resultsOutlineController;
 @property(retain, nonatomic) IDEBatchFindStrategiesController *configurationController; // @synthesize configurationController=_configurationController;
 @property(retain) IDEBatchFindQuery *activeQuery; // @synthesize activeQuery=_activeQuery;
+@property(nonatomic) BOOL showingLocationPicker; // @synthesize showingLocationPicker=_showingLocationPicker;
+@property(nonatomic) BOOL findStringValid; // @synthesize findStringValid=_findStringValid;
+@property(copy, nonatomic) NSString *lastFindString; // @synthesize lastFindString=_lastFindString;
 @property(copy) NSString *statusString; // @synthesize statusString=_statusString;
 @property(copy) NSString *statusTitle; // @synthesize statusTitle=_statusTitle;
 @property(copy, nonatomic) NSAttributedString *replaceAttributedString; // @synthesize replaceAttributedString=_replaceAttributedString;
 @property(copy, nonatomic) NSString *findResultFilterString; // @synthesize findResultFilterString=_findResultFilterString;
-@property(retain) NSMenu *matchCasePopUpMenu; // @synthesize matchCasePopUpMenu=_matchCasePopUpMenu;
-@property(retain) NSPopUpButtonCell *matchCasePopUpButtonCell; // @synthesize matchCasePopUpButtonCell=_matchCasePopUpButtonCell;
 @property(retain) IDEBatchFindTwoButtonLayout *twoButtonLayout; // @synthesize twoButtonLayout=_twoButtonLayout;
-@property(retain) DVTReplacementView *contentView; // @synthesize contentView=_contentView;
+@property(retain) DVTLayoutView_ML *contentView; // @synthesize contentView=_contentView;
 @property(retain) NSPopUpButton *matchCaseButton; // @synthesize matchCaseButton=_matchCaseButton;
 @property(retain) IDEBatchFindLocationPickerView *locationPicker; // @synthesize locationPicker=_locationPicker;
-@property(nonatomic) BOOL showingLocationPicker; // @synthesize showingLocationPicker=_showingLocationPicker;
-@property(nonatomic) BOOL findStringValid; // @synthesize findStringValid=_findStringValid;
-@property(copy, nonatomic) NSString *lastFindString; // @synthesize lastFindString=_lastFindString;
 @property(copy, nonatomic) NSAttributedString *findAttributedString; // @synthesize findAttributedString=_findAttributedString;
 @property(nonatomic) int findMode; // @synthesize findMode=_findMode;
 - (void).cxx_destruct;
@@ -125,6 +125,7 @@
 - (id)filterDefinitionIdentifier;
 - (id)control:(id)arg1 textView:(id)arg2 completions:(id)arg3 forPartialWordRange:(struct _NSRange)arg4 indexOfSelectedItem:(long long *)arg5;
 - (void)_cancelFindOperation;
+- (void)_cancelCallHierarchyOperations;
 - (void)_startFindOperation;
 - (void)_replaceResults:(id)arg1 withString:(id)arg2;
 - (void)_doReplaceOnResults:(id)arg1;
@@ -173,9 +174,11 @@
 @property(readonly) BOOL canShowReplacePreview;
 @property(readonly) BOOL canReplaceAll;
 @property(readonly) BOOL canReplace;
+- (void)_updateContentView;
 - (void)updateScopeItems:(id)arg1;
 - (BOOL)pathControlIsEnabled;
 - (void)sizeToFitWithAnimation:(BOOL)arg1;
+@property(nonatomic) int findType;
 @property(copy) NSString *replaceString;
 @property(copy, nonatomic) NSString *findString;
 - (void)sanitizeStrings;
@@ -183,9 +186,15 @@
 - (void)revertStateWithDictionary:(id)arg1;
 - (BOOL)delegateFirstResponder;
 - (void)updatePathbar;
+- (void)_updatePlaceholder;
 @property(retain) IDENavigableItem *selectedNavigable;
 - (void)updateMenuState:(id)arg1 forLevel:(int)arg2;
 - (void)_setSelectedNavigable:(id)arg1;
+- (void)showCallHierarchyForSymbol:(id)arg1;
+- (void)_setRootSymbolsForCallHierarchy:(id)arg1;
+- (void)showCallHierarchyForFindString:(id)arg1;
+- (void)_addHistoryItemForCallHierarchy:(id)arg1;
+- (void)_showCallHierarchyForFindString:(id)arg1;
 - (void)viewDidInstall;
 - (void)viewWillUninstall;
 - (void)loadView;

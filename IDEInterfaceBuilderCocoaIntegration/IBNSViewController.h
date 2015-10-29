@@ -44,7 +44,6 @@
 - (id)storyboardSegueTemplates;
 - (id)explicitStoryboardIdentifier;
 - (void)setExplicitStoryboardIdentifier:(id)arg1;
-- (id)effectiveStoryboardIdentifierPrefix;
 - (void)setInheritedSimulatedMetrics:(id)arg1;
 - (id)inheritedSimulatedMetrics;
 - (struct CGSize)effectiveSimulatedViewSize;
@@ -53,6 +52,7 @@
 - (void)unarchivePlaceholderTable:(id)arg1;
 - (void)archivePlaceholderTable:(id)arg1;
 - (void)ibPrepareTopLevelControllerForStoryboardCompilation;
+- (id)ibUniqueIdentifierForStoryboardCompilation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (Class)classForDocumentArchiver:(id)arg1;
@@ -76,6 +76,8 @@
 - (struct CGSize)effectiveSimulatedContentSize;
 - (id)ibEditorCanvasFrameControllerForDocument:(id)arg1;
 - (BOOL)ibChildEditsWithSingleClick:(id)arg1;
+- (BOOL)ibIsValidCocoaEmbedSegueDestination;
+- (BOOL)ibAllowsEditingTitle;
 - (BOOL)ibRequiresOutletToStoryboard;
 - (Class)ibEditorClass;
 - (id)ibPasteboardTypes;

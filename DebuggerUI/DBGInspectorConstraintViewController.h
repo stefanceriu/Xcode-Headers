@@ -28,6 +28,7 @@
 @property(retain, nonatomic) NSTextField *constraintCategoryField; // @synthesize constraintCategoryField=_constraintCategoryField;
 @property(retain, nonatomic) NSTextField *constraintFormulaField; // @synthesize constraintFormulaField=_constraintFormulaField;
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
 @property BOOL constraintIsAffecting;
 - (id)constraintIcon;
 - (void)updateTextAndImageFields;

@@ -20,7 +20,6 @@
 - (void)_mouseEnteredOrExited:(BOOL)arg1 event:(id)arg2;
 - (void)addTrackingAreasForView:(id)arg1 inFrame:(struct CGRect)arg2 withUserInfo:(id)arg3 mouseLocation:(struct CGPoint)arg4;
 - (void)_iterateStatusCellsRectsInControlView:(id)arg1 inFrame:(struct CGRect)arg2 withCallback:(CDUnknownBlockType)arg3;
-- (id)titleDropShadow;
 - (id)subtitleFont;
 - (void)setFont:(id)arg1;
 - (struct CGRect)dvt_frameOfOutlineCellForBounds:(struct CGRect)arg1 proposedFrame:(struct CGRect)arg2;

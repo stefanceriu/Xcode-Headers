@@ -10,7 +10,6 @@
 
 @interface SCNPhysicsContact : NSObject
 {
-    id _reserved;
     SCNNode *_nodeA;
     SCNNode *_nodeB;
     struct SCNVector3 _contactPoint;
@@ -20,9 +19,7 @@
     long long _updateCount;
 }
 
-+ (id)SCNJSExportProtocol;
 + (id)_contactWithManifold:(const struct btPersistentManifold *)arg1 index:(long long)arg2;
-- (id).cxx_construct;
 - (BOOL)_shouldPostUpdate;
 - (void)_prepareUpdate;
 @property(readonly, nonatomic) double penetrationDistance;
@@ -32,10 +29,10 @@
 @property(readonly, nonatomic) SCNNode *nodeB;
 @property(readonly, nonatomic) SCNNode *nodeA;
 - (void)_setupWithManifold:(const struct btPersistentManifold *)arg1 index:(long long)arg2 point:(const struct btManifoldPoint *)arg3;
+- (void)_fillNodeA:(id)arg1 nodeB:(id)arg2;
 - (void)_fillNodeA:(id)arg1 nodeB:(id)arg2 contactPoint:(struct SCNVector3)arg3 collisionImpulse:(struct SCNVector3)arg4 distance:(double)arg5;
 - (id)description;
 - (void)dealloc;
-- (id)init;
 
 @end
 

@@ -15,6 +15,7 @@
 
 @property(retain, nonatomic) DBGLayoutConstraint *constraintModel; // @synthesize constraintModel=_constraintModel;
 - (void).cxx_destruct;
+- (id)multiplier;
 
 @end
 

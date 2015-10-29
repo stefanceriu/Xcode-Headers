@@ -10,7 +10,6 @@
 + (id)keyPathsForValuesAffectingIbInspectedDoubleValue;
 - (Class)ibPreferredControlClass;
 - (id)ibTypeNameForDefaultLabel;
-- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibWidgetType;
 - (id)ibOrderedSnapshotAttributesKeyPaths;
 - (void)setIbInspectedDoubleValue:(double)arg1;

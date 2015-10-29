@@ -21,9 +21,6 @@
 - (void)updateWithURL:(id)arg1 node:(id)arg2 webView:(id)arg3;
 - (id)idedocnavigator_identifier;
 - (id)contextMenuSelectedNavItems;
-- (void)primitiveInvalidate;
-- (void)viewDidInstall;
-- (void)loadView;
 - (id)domainIdentifier;
 
 @end

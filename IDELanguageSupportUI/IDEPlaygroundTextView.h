@@ -6,7 +6,7 @@
 
 #import "DVTSourceTextView.h"
 
-@class IDEPlaygroundLayoutManager, IDEPlaygroundTextContainer, IDEToybox, NSDate, NSMapTable;
+@class DVTNotificationToken, IDEPlaygroundLayoutManager, IDEPlaygroundTextContainer, IDESourceCodePlaygroundSectionAnnotationViewController, IDEToybox, NSMapTable;
 
 @interface IDEPlaygroundTextView : DVTSourceTextView
 {
@@ -16,6 +16,8 @@
     NSMapTable *_accessoryViewAnnotationToToyHostingViewControllerMap;
     NSMapTable *_toyHostingViewControllerToObserverTokenMap;
     NSMapTable *_accessoryViewAnnotationToAssociatedToyObserverMap;
+    IDESourceCodePlaygroundSectionAnnotationViewController *_currentlyHighlightedViewController;
+    DVTNotificationToken *_colorPanelColorChangeNotificationToken;
     IDEToybox *_toybox;
 }
 
@@ -29,6 +31,8 @@
 - (void)layout;
 - (void)layoutManager:(id)arg1 didUnfoldRange:(struct _NSRange)arg2;
 - (void)layoutManager:(id)arg1 didFoldRange:(struct _NSRange)arg2;
+- (id)directoriesForLiteralFoldInLayoutManager:(id)arg1;
+- (id)foldingTokenTypesForLayoutManager:(id)arg1;
 - (struct CGSize)_maximumViewSizeForToyHostingViewControllers;
 - (void)_layoutToyViewControllers;
 - (void)_updateLayoutForAccessoryViewAnnotation:(id)arg1;
@@ -41,16 +45,30 @@
 - (void)_updateToyHostingViewControllerForAccessoryViewAnnotation:(id)arg1;
 - (void)_removeAssociatedToyObserverForAccessoryViewAnnotation:(id)arg1;
 - (void)_addAssociatedToyObserverForAccessoryViewAnnotation:(id)arg1;
+- (id)resultMenuContext;
 - (BOOL)_textContainerContainsAccessoryViewAnnotation:(id)arg1;
 - (struct _NSRange)_characterRangeAssociatedWithToy:(id)arg1;
 - (struct _NSRange)_characterRangeAssociatedWithToys:(id)arg1;
 - (id)_sectionAccessoryViewAnnotationForToy:(id)arg1;
 - (void)setToysVisibleForSelection:(BOOL)arg1;
-- (long long)menuInfoForSelectedToys;
 - (id)toyAnnotationsForCharacterRange:(struct _NSRange)arg1;
+- (void)mouseMoved:(id)arg1;
 - (void)scrollWheel:(id)arg1;
 - (void)mouseDown:(id)arg1;
-@property(copy, nonatomic) NSDate *resultDisplayDate;
+- (void)doubleClickedOnCell:(id)arg1 inRect:(struct CGRect)arg2 atIndexInToken:(unsigned long long)arg3;
+- (void)presentObjectLiteralPickerForFilePath:(id)arg1;
+- (void)presentObjectLiteralPickerForColor:(id)arg1 addDefaultColorToken:(BOOL)arg2;
+- (void)presentObjectLiteralPickerForTextFold:(id)arg1;
+- (BOOL)insertObjectLiteralSyntaxForObjects:(id)arg1 selectLastObjectLiteral:(BOOL)arg2;
+- (void)handleColorPanelColorChangeNotification:(id)arg1;
+- (BOOL)handleLiteralInsertionFromPasteboard:(id)arg1;
+- (BOOL)readSelectionFromPasteboard:(id)arg1 type:(id)arg2;
+- (unsigned long long)validateDraggingOperation:(id)arg1;
+- (BOOL)performDragOperation:(id)arg1;
+- (BOOL)prepareForDragOperation:(id)arg1;
+- (unsigned long long)draggingUpdated:(id)arg1;
+- (unsigned long long)draggingEntered:(id)arg1;
+- (id)acceptableDragTypes;
 - (void)setAccessoryAnnotationWidth:(double)arg1;
 - (void)deleteBackward:(id)arg1;
 - (void)didChangeText;
@@ -59,6 +77,7 @@
 - (void)didAddAnnotations:(id)arg1;
 - (void)_centeredScrollRectToVisible:(struct CGRect)arg1 forceCenter:(BOOL)arg2;
 - (void)setWrapsLines:(BOOL)arg1;
+- (void)setPageGuideColumn:(unsigned long long)arg1;
 - (id)description;
 - (id)completionController;
 - (void)_loadColorsFromCurrentTheme;
@@ -69,6 +88,8 @@
 - (void)setNeedsDisplayInRect:(struct CGRect)arg1 avoidAdditionalLayout:(BOOL)arg2;
 - (void)setTextContainerInset:(struct CGSize)arg1;
 - (void)setFrameSize:(struct CGSize)arg1;
+- (id)makeBackingLayer;
+- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1 textContainer:(id)arg2;
 
 // Remaining properties

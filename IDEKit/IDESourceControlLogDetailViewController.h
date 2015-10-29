@@ -8,7 +8,7 @@
 
 #import "IDESourceControlLogFilesChangedViewDelegate.h"
 
-@class IDESourceControlLogFilesChangedView, IDESourceControlLogItem, IDESourceControlRepository, IDESourceControlTreeItem, NSArray, NSBox, NSButton, NSImageView, NSPopover, NSProgressIndicator, NSScrollView, NSString, NSTextField, NSTextView;
+@class DVTSourceControlLogItem, IDESourceControlLogFilesChangedView, NSArray, NSBox, NSButton, NSImageView, NSPopover, NSProgressIndicator, NSScrollView, NSString, NSTextField, NSTextView;
 
 @interface IDESourceControlLogDetailViewController : NSViewController <IDESourceControlLogFilesChangedViewDelegate>
 {
@@ -25,18 +25,17 @@
     NSBox *_topBorder;
     NSBox *_bottomBorder;
     NSPopover *_popover;
-    IDESourceControlLogItem *_logItem;
+    DVTSourceControlLogItem *_logItem;
     NSString *_filePath;
-    IDESourceControlRepository *_filesChangedRepository;
     NSArray *_itemsWithStatus;
     id <IDESourceControlLogDetailDelegate> _delegate;
-    IDESourceControlTreeItem *_currentFile;
+    NSString *_currentFileRelativePath;
 }
 
 + (id)logDetailAspect;
 - (void).cxx_destruct;
 - (void)cleanup;
-@property(retain) IDESourceControlLogItem *logItem;
+@property(retain) DVTSourceControlLogItem *logItem;
 - (void)loadView;
 - (void)_displayLogInfo;
 - (void)_loadLogMessage;
@@ -47,7 +46,7 @@
 - (void)showComparison:(id)arg1;
 - (void)showBlame:(id)arg1;
 - (void)viewChanges:(id)arg1;
-- (id)initWithLogItem:(id)arg1 filePath:(id)arg2 delegate:(id)arg3 popover:(id)arg4;
+- (id)initWithLogItem:(id)arg1 relativeFilePath:(id)arg2 delegate:(id)arg3 popover:(id)arg4;
 - (id)initWithFilePath:(id)arg1 delegate:(id)arg2 popover:(id)arg3;
 
 // Remaining properties

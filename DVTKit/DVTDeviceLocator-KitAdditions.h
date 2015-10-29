@@ -8,5 +8,6 @@
 
 @interface DVTDeviceLocator (KitAdditions)
 - (void)beginDeviceCreationAssistantWithWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+@property(readonly) BOOL canCreateDevices;
 @end
 

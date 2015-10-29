@@ -9,12 +9,12 @@
 @class CAAnimation, NSArray, NSString;
 
 @protocol SCNAnimatable <NSObject>
+@property(readonly) NSArray *animationKeys;
 - (void)removeAnimationForKey:(NSString *)arg1 fadeOutDuration:(double)arg2;
 - (BOOL)isAnimationForKeyPaused:(NSString *)arg1;
 - (void)resumeAnimationForKey:(NSString *)arg1;
 - (void)pauseAnimationForKey:(NSString *)arg1;
 - (CAAnimation *)animationForKey:(NSString *)arg1;
-- (NSArray *)animationKeys;
 - (void)removeAnimationForKey:(NSString *)arg1;
 - (void)removeAllAnimations;
 - (void)addAnimation:(CAAnimation *)arg1 forKey:(NSString *)arg2;

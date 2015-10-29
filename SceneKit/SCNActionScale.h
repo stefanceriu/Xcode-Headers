@@ -15,6 +15,8 @@ __attribute__((visibility("hidden")))
 + (id)scaleTo:(double)arg1 duration:(double)arg2;
 + (id)scaleBy:(double)arg1 duration:(double)arg2;
 + (BOOL)supportsSecureCoding;
+- (BOOL)isRelative;
+- (id)parameters;
 - (id)reversedAction;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;

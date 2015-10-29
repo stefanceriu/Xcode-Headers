@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class CAGradientLayer, CALayer, CATextLayer, DTTimelineGraph, NSColor, NSDictionary, NSImage, NSString;
+@class CALayer, DTTimelineGraph, DTTimelineGraphPlaneLabelLayer, DTTimelineGroupPlane, NSDictionary, NSImage, NSMenu, NSString;
 
 @interface DTTimelinePlane : NSObject
 {
@@ -14,50 +14,93 @@
     struct TimelineViewContext *_ctx;
     CALayer *_layer;
     double _height;
-    CAGradientLayer *_labelLayer;
+    CALayer *_labelLayer;
     CALayer *_iconLayer;
-    CATextLayer *_displayNameLayer;
+    CALayer *_iconContextGlyphLayer;
+    DTTimelineGraphPlaneLabelLayer *_displayNameLayer;
     CALayer *_bottomBorderLayer;
-    NSColor *_backgroundColor;
+    CALayer *_topBorderLayer;
+    double _baseZPosition;
+    BOOL _resizable;
     BOOL _selected;
     BOOL _displayBottomBorder;
+    BOOL _displayTopBorder;
     BOOL _hideLabel;
+    BOOL _hidden;
+    BOOL _drawFullLengthBorder;
     int _serialNumber;
     NSString *_displayName;
     NSString *_displayDescription;
+    NSImage *_icon;
+    unsigned long long _iconLocation;
+    NSMenu *_iconContextMenu;
     unsigned long long _displayNameType;
+    DTTimelineGroupPlane *_groupPlane;
     NSDictionary *_userInfo;
     DTTimelineGraph *_timelineGraph;
 }
 
 + (BOOL)_baseClassCanAskForDefaultsDuringInit;
-+ (id)_selectedBackGroundEndGradientColor;
-+ (id)_defaultSelectedBackGroundColor;
-+ (id)_backgroundEndGradientColor;
-+ (id)_defaultBackgroundColor;
+@property(nonatomic) BOOL drawFullLengthBorder; // @synthesize drawFullLengthBorder=_drawFullLengthBorder;
+@property(nonatomic) BOOL hidden; // @synthesize hidden=_hidden;
 @property(nonatomic) BOOL hideLabel; // @synthesize hideLabel=_hideLabel;
+@property(nonatomic) BOOL displayTopBorder; // @synthesize displayTopBorder=_displayTopBorder;
 @property(nonatomic) BOOL displayBottomBorder; // @synthesize displayBottomBorder=_displayBottomBorder;
-@property(nonatomic) __weak DTTimelineGraph *timelineGraph; // @synthesize timelineGraph=_timelineGraph;
 @property(nonatomic) BOOL selected; // @synthesize selected=_selected;
+@property(nonatomic) __weak DTTimelineGraph *timelineGraph; // @synthesize timelineGraph=_timelineGraph;
 @property(copy, nonatomic) NSDictionary *userInfo; // @synthesize userInfo=_userInfo;
+@property(nonatomic) __weak DTTimelineGroupPlane *groupPlane; // @synthesize groupPlane=_groupPlane;
+@property(nonatomic) BOOL resizable; // @synthesize resizable=_resizable;
 @property(nonatomic) unsigned long long displayNameType; // @synthesize displayNameType=_displayNameType;
 @property(readonly, nonatomic) int serialNumber; // @synthesize serialNumber=_serialNumber;
-@property(nonatomic) double height; // @synthesize height=_height;
-@property(retain, nonatomic) NSString *displayDescription; // @synthesize displayDescription=_displayDescription;
-@property(retain, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
+@property(retain, nonatomic) NSMenu *iconContextMenu; // @synthesize iconContextMenu=_iconContextMenu;
+@property(nonatomic) unsigned long long iconLocation; // @synthesize iconLocation=_iconLocation;
+@property(retain, nonatomic) NSImage *icon; // @synthesize icon=_icon;
+@property(copy, nonatomic) NSString *displayDescription; // @synthesize displayDescription=_displayDescription;
+@property(copy, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (unordered_map_c1fbcd3c)_populatePlaneLayoutMap:(unordered_map_c1fbcd3c)arg1 offsetFromTop:(double)arg2;
+- (BOOL)_containsPlane:(id)arg1;
+- (void)_enumeratesPlanesHavingKey:(id)arg1 stopPtr:(char *)arg2 block:(CDUnknownBlockType)arg3;
+- (void)_enumeratePlanesWithStopPtr:(char *)arg1 block:(CDUnknownBlockType)arg2;
+- (void)enumeratesPlanesHavingKey:(id)arg1 block:(CDUnknownBlockType)arg2;
+- (id)_planesUnderPoint:(struct CGPoint)arg1;
+- (void)_populatePlaneLayoutMap:(unordered_map_c1fbcd3c *)arg1 offsetFromTop:(double)arg2;
+- (BOOL)_wantsBottomBorderLayerWhenInGroupPlane;
+- (id)_topBorderLayer;
 - (id)_bottomBorderLayer;
 - (id)_labelLayer;
+- (id)_backgroundColor;
+- (void)_invalidateLabel;
+- (id)_labelIconLayer;
 - (void)_didMoveOutOfView;
 - (void)_willMoveIntoView;
 - (id)actionForLayer:(id)arg1 forKey:(id)arg2;
-@property(retain, nonatomic) NSColor *backgroundColor;
-- (id)_planeAtPoint:(struct CGPoint)arg1 currentDepth:(unsigned long long)arg2 maxDepth:(unsigned long long)arg3;
+- (BOOL)_isGroupPlane;
+- (void)_updateSelectionColors;
+- (void)_updateBorders:(id)arg1 selected:(BOOL)arg2;
+- (BOOL)_drawTopBorderAsSelected;
+- (BOOL)_drawBottomBorderAsSelected;
+- (BOOL)_drawBordersAsSelected;
+- (id)_borderColor;
+- (id)_topGroupPlane;
+- (BOOL)selfOrAncestorIsSelected;
+@property(readonly, nonatomic) BOOL ancestorIsSelected;
+- (id)_unselectedTextColor;
+- (id)_unselectedDisclosureColor;
+- (id)_selectedTextColor;
+- (id)_selectedBackgroundColor;
+- (id)_immediatelyPriorSiblingPlane;
+@property(nonatomic) double baseZPosition;
+- (void)_setHeight:(double)arg1;
+@property(readonly, nonatomic) struct CGRect accessibilityLabelFrame;
+@property(readonly, nonatomic) struct CGRect accessibilityFrame;
+@property(readonly, nonatomic) double height;
+- (BOOL)_pointIntersectsDisclosureGlyph:(struct CGPoint)arg1 groupPlane:(out id *)arg2;
 @property(readonly, nonatomic) CALayer *layer;
 - (id)description;
-@property(retain, nonatomic) NSImage *icon;
+- (void)dealloc;
+- (id)initWithHeight:(double)arg1;
 - (id)init;
 - (void)_removeFromContext;
 - (id)_decoratedPlanes;
@@ -66,6 +109,9 @@
 - (void)_invalidateTimeRange:(struct XRTimeRange)arg1;
 - (void)_setPosition:(struct CGPoint)arg1 size:(struct CGSize)arg2;
 - (void)_layoutLabelLayerAtPlanePosition:(struct CGPoint)arg1 planeSize:(struct CGSize)arg2;
+- (void)_layoutLabelLayerAtPlanePosition:(struct CGPoint)arg1 planeSize:(struct CGSize)arg2 centerLabelWithin:(double)arg3;
+- (void)_updateIconAndLabelLayerZPosition;
+- (double)_centerOfLabelWithin:(double)arg1;
 
 @end
 

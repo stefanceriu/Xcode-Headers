@@ -42,7 +42,7 @@
 - (id)referencesToSymbol:(id)arg1 inContext:(id)arg2 withCurrentFileContentDictionary:(id)arg3 forIndex:(id)arg4;
 - (id)symbolsUsedInContext:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;
 - (id)symbolsOccurrencesInContext:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;
-- (BOOL)_setOccurrenceForCursor:(CDStruct_a94d320b)arg1 symbol:(id)arg2 index:(id)arg3;
+- (BOOL)_setOccurrenceForCursor:(CDStruct_a94d320b)arg1 originalCursor:(CDStruct_a94d320b)arg2 symbol:(id)arg3 index:(id)arg4;
 - (id)processedSymbolsInContext:(id)arg1 initFunction:(CDUnknownBlockType)arg2 visitorFunction:(CDUnknownBlockType)arg3 includeSymbolLocations:(BOOL)arg4 withCurrentFileContentDictionary:(id)arg5 forIndex:(id)arg6;
 - (id)codeDiagnosticsAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;
 - (id)parsedCodeCommentAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, DVTSourceCodeLanguage, DVTWeakInterposer, NSArray, NSMutableArray, NSMutableSet, NSOperationQueue;
+@class DVTSourceCodeLanguage, DVTWeakInterposer, NSArray, NSMapTable, NSMutableArray, NSMutableSet, NSOperationQueue;
 
 @interface DVTTextCompletionDataSource : NSObject
 {
@@ -15,7 +15,7 @@
     NSMutableArray *_strategies;
     NSMutableSet *_strategyObservers;
     NSOperationQueue *_completionsGeneratorQueue;
-    DVTMapTable *_lastGeneratedCompletionItemsPerStrategy;
+    NSMapTable *_lastGeneratedCompletionItemsPerStrategy;
 }
 
 @property(retain, nonatomic) DVTSourceCodeLanguage *language; // @synthesize language=_language;

@@ -14,7 +14,6 @@ __attribute__((visibility("hidden")))
     BOOL _enabled;
     unsigned long long _state;
     unsigned long long _iteration;
-    BOOL _jitteringSupported;
     BOOL _restartSourceIsSuspended;
     id <SCNJittererDelegate> _delegate;
     NSObject<OS_dispatch_source> *_restartSource;

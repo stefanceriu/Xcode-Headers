@@ -7,20 +7,17 @@
 #import "NSObject.h"
 
 #import "IBBinaryArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBSparseInsetWrapper : NSObject <NSCoding, IBBinaryArchiving>
+@interface IBSparseInsetWrapper : NSObject <IBBinaryArchiving>
 {
     CDStruct_c519178c _inset;
 }
 
 @property(readonly) CDStruct_c519178c inset; // @synthesize inset=_inset;
 - (void)encodeWithBinaryArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (id)initWithInset:(CDStruct_c519178c)arg1;
 
 // Remaining properties

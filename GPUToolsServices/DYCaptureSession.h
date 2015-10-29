@@ -49,6 +49,7 @@
 @property(nonatomic) BOOL automaticallyDeleteArchiveOnFailure; // @synthesize automaticallyDeleteArchiveOnFailure=_automaticallyDeleteArchiveOnFailure;
 @property(readonly, retain, nonatomic) DYCaptureArchive *archive; // @synthesize archive=_archive;
 - (void).cxx_destruct;
+- (void)_replaceArchive:(id)arg1;
 - (void)_postProcessArchive;
 - (void)_saveAPISpecificData:(id)arg1;
 - (void)_setupFinalConfigurationDictionary:(id)arg1;

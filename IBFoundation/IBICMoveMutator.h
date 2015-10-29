@@ -26,7 +26,6 @@
     NSString *_destinationPendingManifestPath;
 }
 
-+ (id)moveMutatorsWithItems:(id)arg1 destinationParent:(id)arg2 makeNamesUnique:(BOOL)arg3;
 + (id)moveMutatorForChangingFileName:(id)arg1 fileName:(id)arg2;
 - (void).cxx_destruct;
 - (id)mutationDescription;

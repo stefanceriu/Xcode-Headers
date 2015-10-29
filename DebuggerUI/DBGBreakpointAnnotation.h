@@ -6,13 +6,13 @@
 
 #import "DVTTextAnnotation.h"
 
-@class DVTObservingToken, IDEBreakpointIcon, IDEWorkspaceWindowController;
+@class DVTObservingToken, IDEBreakpointIcon, IDEWorkspaceDocument;
 
 @interface DBGBreakpointAnnotation : DVTTextAnnotation
 {
-    IDEWorkspaceWindowController *_workspaceWindowController;
+    IDEWorkspaceDocument *_workspaceDocument;
     IDEBreakpointIcon *_icon;
-    DVTObservingToken *_workspaceWindowControllerObserver;
+    DVTObservingToken *_workspaceDocumentObserver;
     DVTObservingToken *_breakpointShouldBeEnabledObserver;
     DVTObservingToken *_breakpointLocationOrAddressObserver;
 }
@@ -29,9 +29,9 @@
 - (struct CGRect)sidebarMarkerRectForFirstLineRect:(struct CGRect)arg1;
 - (void)setLocation:(id)arg1;
 - (void)annotationWillUninstall;
-- (id)_initWithWorkspaceWindowController:(id)arg1 breakpoint:(id)arg2;
-- (id)initWithWorkspaceWindowController:(id)arg1 addressBreakpoint:(id)arg2 inMemoryDocumentURL:(id)arg3;
-- (id)initWithWorkspaceWindowController:(id)arg1 fileBreakpoint:(id)arg2;
+- (id)_initWithWorkspaceDocument:(id)arg1 breakpoint:(id)arg2;
+- (id)initWithWorkspaceDocument:(id)arg1 addressBreakpoint:(id)arg2 inMemoryDocumentURL:(id)arg3;
+- (id)initWithWorkspaceDocument:(id)arg1 fileBreakpoint:(id)arg2;
 
 @end
 

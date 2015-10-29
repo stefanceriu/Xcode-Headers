@@ -15,6 +15,7 @@
 + (id)ib_collectionWithObject:(id)arg1;
 + (id)ib_emptyCollection;
 + (Class)ib_mutableClass;
+- (void)ib_getObjects:(id *)arg1;
 - (void)ib_removeObjectsInReceiverFromArray:(id)arg1;
 - (void)ib_removeObjectsInReceiverFromOrderedSet:(id)arg1;
 - (void)ib_removeObjectsInReceiverFromSet:(id)arg1;
@@ -39,6 +40,8 @@
 - (id)ib_collectionByInsertingObject:(id)arg1 atIndex:(long long)arg2;
 - (id)ib_collectionByAddingObject:(id)arg1;
 - (id)ib_collectionByMappingBlock:(CDUnknownBlockType)arg1;
+- (id)ib_collectionByMappingAndFilteringWithBlock:(CDUnknownBlockType)arg1;
+- (id)ib_orderedSetByMappingAndFilteringWithBlock:(CDUnknownBlockType)arg1;
 - (id)ib_orderedSetByMappingBlock:(CDUnknownBlockType)arg1;
 - (id)ib_collectionByFilteringUsingBlock:(CDUnknownBlockType)arg1;
 - (id)ib_collectionByRemovingNulls;
@@ -57,6 +60,8 @@
 - (id)ib_objectsConformingToProtocol:(id)arg1;
 - (id)ib_objectsOfClass:(Class)arg1;
 - (id)ib_orderedSetByFilteringUsingBlock:(CDUnknownBlockType)arg1;
+- (id)ib_orderedSetByMoveObjectsAtIndexes:(id)arg1 toIndex:(long long)arg2;
+- (id)ib_orderedSetByInsertingObject:(id)arg1 atIndex:(long long)arg2;
 - (id)ib_orderedSetByAddingObject:(id)arg1;
 - (id)ib_orderedSetByRemovingObjects:(id)arg1;
 - (id)ib_orderedSetByRemovingObject:(id)arg1;

@@ -6,10 +6,13 @@
 
 #import <IDELanguageSupportUI/IDEToyViewController.h>
 
-@class DVTNotificationToken, DVTObservingToken, IDEToyHostingTitleView, NSArray, NSMutableArray, NSView, NSView<IDEToyHostingView>;
+#import "DVTChooserViewDelegate.h"
 
-@interface IDEToyHostingViewController : IDEToyViewController
+@class DVTNotificationToken, DVTObservingToken, IDEToyHostingTitleView, NSArray, NSMutableArray, NSString, NSView, NSView<IDEToyHostingView>;
+
+@interface IDEToyHostingViewController : IDEToyViewController <DVTChooserViewDelegate>
 {
+    NSMutableArray *_mutableToyViewControllers;
     DVTObservingToken *_currentResultsObservingToken;
     DVTObservingToken *_executionIsInProgressObservingToken;
     DVTObservingToken *_toyboxResultDisplayDateObservationToken;
@@ -28,26 +31,28 @@
     BOOL _needsPersistedSelectionRestoration;
     BOOL _allowDragResizing;
     BOOL _displayCloseButton;
+    BOOL _drawRoundedCorners;
     BOOL _allowHighlight;
     BOOL _allowSelection;
     BOOL _alwaysEnableUserInteraction;
+    unsigned long long _selectedRepresentationIndex;
     NSView<IDEToyHostingView> *_toyHostingView;
     IDEToyHostingTitleView *_toyHostingTitleView;
     NSView *_toyHostingContentView;
-    NSMutableArray *_toyViewControllers;
     NSArray *_currentToyViewControllerConstraints;
     struct CGSize _minimumViewSize;
     struct CGSize _maximumViewSize;
 }
 
-@property(retain, nonatomic) NSArray *currentToyViewControllerConstraints; // @synthesize currentToyViewControllerConstraints=_currentToyViewControllerConstraints;
-@property(retain, nonatomic) NSMutableArray *toyViewControllers; // @synthesize toyViewControllers=_toyViewControllers;
++ (void)initialize;
+@property(retain) NSArray *currentToyViewControllerConstraints; // @synthesize currentToyViewControllerConstraints=_currentToyViewControllerConstraints;
 @property(retain) NSView *toyHostingContentView; // @synthesize toyHostingContentView=_toyHostingContentView;
 @property(retain) IDEToyHostingTitleView *toyHostingTitleView; // @synthesize toyHostingTitleView=_toyHostingTitleView;
 @property(retain) NSView<IDEToyHostingView> *toyHostingView; // @synthesize toyHostingView=_toyHostingView;
 @property(nonatomic, getter=shouldAlwaysEnableUserInteraction) BOOL alwaysEnableUserInteraction; // @synthesize alwaysEnableUserInteraction=_alwaysEnableUserInteraction;
 @property(nonatomic, getter=shouldAllowSelection) BOOL allowSelection; // @synthesize allowSelection=_allowSelection;
 @property(nonatomic, getter=shouldAllowHighlight) BOOL allowHighlight; // @synthesize allowHighlight=_allowHighlight;
+@property(nonatomic, getter=shouldDrawRoundedCorners) BOOL drawRoundedCorners; // @synthesize drawRoundedCorners=_drawRoundedCorners;
 @property(nonatomic, getter=shouldDisplayCloseButton) BOOL displayCloseButton; // @synthesize displayCloseButton=_displayCloseButton;
 @property(nonatomic, getter=shouldAllowDragResizing) BOOL allowDragResizing; // @synthesize allowDragResizing=_allowDragResizing;
 @property(nonatomic) struct CGSize maximumViewSize; // @synthesize maximumViewSize=_maximumViewSize;
@@ -58,22 +63,32 @@
 - (void)updateViewHeight:(double)arg1;
 - (void)resizeToFitToyPreferredContentSizeRestrictToHeight:(BOOL)arg1;
 - (void)resizeToFitToyPreferredContentSize;
+- (void)lockToSize:(struct CGSize)arg1;
 - (void)tearDownConstraintsForCurrentToyView;
 - (void)setupConstraintsForToyView:(id)arg1;
 - (void)updateToyViewControllerForSelectedIndex;
-- (void)updateSegmentedControl;
+- (void)updateChooserView;
 - (void)replaceToyViewControllersInRange:(struct _NSRange)arg1 withToyViewControllers:(id)arg2;
 - (void)replaceToyViewControllerInstanceOfClass:(Class)arg1 atIndex:(unsigned long long)arg2;
 - (void)updateToyViewControllerInstancesForceUpdate:(BOOL)arg1;
+- (void)renderResultsForceRedraw:(BOOL)arg1 renderImmediately:(BOOL)arg2;
 - (void)renderResultsForceRedraw:(BOOL)arg1;
 - (void)playgroundExecutionEndedAndCompleted:(BOOL)arg1;
 - (void)playgroundExecutionStarted;
-- (void)segmentedControlWasClicked:(id)arg1;
+- (void)chooserView:(id)arg1 userDidSelectChoices:(id)arg2;
+@property unsigned long long selectedRepresentationIndex; // @synthesize selectedRepresentationIndex=_selectedRepresentationIndex;
+- (void)selectGraphRepresentation:(id)arg1;
+- (void)selectMultipleRepresentation:(id)arg1;
+- (void)selectSingleRepresentation:(id)arg1;
+- (void)displayRepresentation:(unsigned long long)arg1;
+- (BOOL)canDisplayRepresentation:(unsigned long long)arg1;
+- (unsigned long long)currentRepresentation;
 - (void)closeButtonWasClicked:(id)arg1;
 - (id)currentToyViewController;
 - (void)setDelegate:(id)arg1;
 - (void)setTitleForDisplay:(id)arg1;
 - (void)setResultDisplayDate:(id)arg1;
+- (void)displayContextualMenuForEvent:(id)arg1;
 - (void)_deregisterMouseHandling;
 - (void)registerMouseHandling_InlineToys;
 - (void)registerMouseHandling_DefaultToys;
@@ -82,12 +97,12 @@
 - (void)registerForNotifications;
 - (void)_deregisterResultsExecutionObservation;
 - (void)registerResultsExecutionObservation;
+- (double)titleViewHeight;
 - (struct CGSize)sizeByRemovingContentViewPadding:(struct CGSize)arg1;
 - (struct CGSize)sizeByAddingContentViewPadding:(struct CGSize)arg1;
 - (double)verticalContentViewPadding;
 - (double)horizontalContentViewPadding;
 - (struct CGSize)maximumContentSize;
-- (struct CGSize)minimumContentSize;
 - (struct CGSize)preferredContentSizeConstrainedToSize:(struct CGSize)arg1;
 - (struct CGSize)preferredContentSize;
 - (double)maximumClampedViewHeight:(double)arg1;
@@ -97,6 +112,7 @@
 - (double)maximumClampedViewWidth:(double)arg1;
 - (double)minimumClampedViewWidth:(double)arg1;
 - (void)updateUserInteractionEnabled;
+- (void)updateCornerRadius;
 - (void)updateCloseButtonVisibility;
 - (void)_pushToyPersistentSelectionIndex;
 - (void)_pushToyPersistentViewSizing;
@@ -110,6 +126,13 @@
 - (void)viewDidLoad;
 - (BOOL)shouldDisplayInTimeline;
 - (id)initWithToy:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
+@property(readonly) NSArray *toyViewControllers; // @dynamic toyViewControllers;
 
 @end
 

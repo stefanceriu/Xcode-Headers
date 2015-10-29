@@ -22,7 +22,6 @@
 - (void)verifySplitViewsInCanvasAreLayingOutAutolayoutFriendlyOnZinOrLater;
 - (id)verifyPopUpContentObjectBindings;
 - (void)verifyPopoversContentViewController;
-- (void)verifyNonAmbiguousLayouts;
 - (void)verifyAMPathPopUpButtonMenus;
 - (void)verifyPredicateEditorChildren;
 - (void)verifySegmentedControlStyles;

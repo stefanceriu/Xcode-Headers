@@ -9,11 +9,10 @@
 #import "NSSecureCoding.h"
 #import "SCNAnimatable.h"
 
-@class NSColor, NSString, SCNOrderedDictionary;
+@class NSArray, NSColor, NSString, SCNOrderedDictionary;
 
 @interface SCNMaterialProperty : NSObject <SCNAnimatable, NSSecureCoding>
 {
-    id _reserved;
     unsigned int _isPresentationInstance:1;
     unsigned int _isCommonProfileProperty:1;
     id _parent;
@@ -38,10 +37,10 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)copyImageFromC3DImage:(struct __C3DImage *)arg1;
 + (id)_copyImageFromC3DImage:(struct __C3DImage *)arg1;
 + (struct __C3DImage *)copyC3DImageFromImage:(id)arg1;
++ (struct __C3DImage *)copyC3DImageFromImage:(id)arg1 autoCubemap:(BOOL)arg2;
 + (struct __C3DImage *)_copyC3DImageFromImageData:(id)arg1 typeID:(unsigned long long)arg2;
 + (id)materialPropertyWithContents:(id)arg1;
 - (id)initWithCoder:(id)arg1;
@@ -54,6 +53,7 @@
 - (void)_updateMaterialProceduralContents:(id)arg1;
 - (void)_updateMaterialLayer:(id)arg1;
 - (void)_updateMaterialSKTexture:(id)arg1;
+- (void)_updateMaterialMTLTexture:(id)arg1;
 - (void)_updateMaterialSKScene:(id)arg1;
 - (void)_layerDidChange:(id)arg1;
 - (void)_updateMaterialAttachment:(id)arg1;
@@ -73,7 +73,7 @@
 - (void)_pauseAnimation:(BOOL)arg1 forKey:(id)arg2;
 - (id)animationForKey:(id)arg1;
 - (void)_syncObjCAnimations;
-- (id)animationKeys;
+@property(readonly) NSArray *animationKeys;
 - (void)removeAnimationForKey:(id)arg1;
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
@@ -81,7 +81,7 @@
 - (void)__removeAnimation:(id)arg1 forKey:(id)arg2;
 - (struct __C3DAnimationManager *)animationManager;
 - (void *)__CFObject;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (struct __C3DTextureSampler *)textureSampler;
 - (struct __C3DEffectCommonProfile *)commonProfile;
 - (struct __C3DEffectSlot *)effectSlot;
@@ -91,6 +91,8 @@
 - (int)propertyType;
 - (id)slotName;
 @property(nonatomic) struct CATransform3D contentsTransform;
+- (id)mtlTexture;
+- (void)setMtlTexture:(id)arg1;
 - (id)proceduralContents;
 - (void)setProceduralContents:(id)arg1;
 @property(nonatomic) double maxAnisotropy;
@@ -108,6 +110,7 @@
 - (void)setImage:(id)arg1;
 - (id)attachment;
 - (void)setAttachment:(id)arg1;
+- (BOOL)_supportsCubeMaps;
 @property(nonatomic) long long wrapT;
 @property(nonatomic) long long wrapS;
 @property(retain, nonatomic) id borderColor;
@@ -127,7 +130,8 @@
 - (void)_clearContents;
 - (id)_animationPathForKey:(id)arg1;
 - (struct __C3DEffectSlot *)effectSlotCreateIfNeeded:(BOOL)arg1;
-- (void)synchronizeCustomPropertyWithParent:(id)arg1 andCustomName:(id)arg2;
+- (void)linkCustomPropertyWithParent:(id)arg1 andCustomName:(id)arg2;
+- (void)unlinkCustomPropertyWithParent:(id)arg1;
 - (void)_setParent:(id)arg1;
 - (void)dealloc;
 - (void)__allocateContentTransformIfNeeded;

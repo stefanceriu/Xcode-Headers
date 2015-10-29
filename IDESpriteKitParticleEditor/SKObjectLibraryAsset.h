@@ -4,29 +4,20 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import "DVTLibraryAsset.h"
 
 #import "NSCoding.h"
 
-@class NSImage, NSString, SKNode;
-
-@interface SKObjectLibraryAsset : NSObject <NSCoding>
+@interface SKObjectLibraryAsset : DVTLibraryAsset <NSCoding>
 {
-    SKNode *_node;
-    NSImage *_image;
-    NSString *_title;
-    NSString *_subtitle;
-    NSString *_summary;
 }
 
-@property(copy) NSString *summary; // @synthesize summary=_summary;
-@property(copy) NSString *subtitle; // @synthesize subtitle=_subtitle;
-@property(copy) NSString *title; // @synthesize title=_title;
-@property(retain) NSImage *image; // @synthesize image=_image;
-@property(retain, nonatomic) SKNode *node; // @synthesize node=_node;
-- (void).cxx_destruct;
++ (id)assetWithSKObject:(id)arg1 title:(id)arg2 subTitle:(id)arg3 summary:(id)arg4 image:(id)arg5;
++ (id)assetWithSKObject:(id)arg1 title:(id)arg2 subTitle:(id)arg3 summary:(id)arg4 image:(id)arg5 withUDID:(id)arg6;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (id)initWithSKObject:(id)arg1 title:(id)arg2 subTitle:(id)arg3 summary:(id)arg4 image:(id)arg5;
+- (id)initWithSKObject:(id)arg1 title:(id)arg2 subTitle:(id)arg3 summary:(id)arg4 image:(id)arg5 withUDID:(id)arg6;
 
 @end
 

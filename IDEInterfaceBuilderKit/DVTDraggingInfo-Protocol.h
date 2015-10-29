@@ -9,13 +9,13 @@
 @class DVTDraggedImageState, NSDictionary, NSSet;
 
 @protocol DVTDraggingInfo <NSDraggingInfo>
+@property(nonatomic) unsigned long long draggingModifierFlags;
+@property(nonatomic) struct CGSize draggingSnapOffset;
 @property(retain, nonatomic) NSSet *draggingSnapGuides;
+@property(nonatomic) BOOL draggedImageStateNeedsUpdate;
 - (void)invalidateObjectAtEndOfDragLoop:(id <DVTInvalidation>)arg1;
 - (struct CGPoint)draggingLocationOnScreen;
 - (NSDictionary *)draggingSourceContext;
-- (void)setDraggedImageStateNeedsUpdate:(BOOL)arg1;
-- (struct CGSize)draggingStickiness;
-- (void)setDraggingStickiness:(struct CGSize)arg1;
 - (DVTDraggedImageState *)draggedImageState;
 @end
 

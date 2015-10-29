@@ -6,14 +6,16 @@
 
 #import "NSObject.h"
 
+#import "DVTSourceControlDisplayable.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
 @class NSString;
 
-@interface DVTSourceControlRevision : NSObject <NSSecureCoding, NSCopying>
+@interface DVTSourceControlRevision : NSObject <NSSecureCoding, NSCopying, DVTSourceControlDisplayable>
 {
     NSString *_identifier;
+    NSString *__displayName;
 }
 
 + (id)sharedInitialRevision;
@@ -21,16 +23,25 @@
 + (id)sharedHeadRevision;
 + (id)sharedUnversionedRevision;
 + (BOOL)supportsSecureCoding;
++ (id)defaultImage;
+@property(retain) NSString *_displayName; // @synthesize _displayName=__displayName;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, getter=isPlaceholderRevision) BOOL placeholderRevision;
 @property(readonly, getter=isUnversionedRevision) BOOL unversionedRevision;
-- (id)description;
+@property(readonly, copy) NSString *description;
+@property(readonly) NSString *displayName;
+- (id)initWithIdentifier:(id)arg1 displayName:(id)arg2;
 - (id)initWithIdentifier:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

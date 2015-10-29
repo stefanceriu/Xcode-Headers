@@ -27,7 +27,6 @@
 @property(nonatomic) unsigned long long index; // @synthesize index=_index;
 @property(nonatomic) unsigned long long address; // @synthesize address=_address;
 @property(retain, nonatomic) DYSymbolicator *symbolicator; // @synthesize symbolicator=_symbolicator;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)shortFormat;
 - (id)fullFormat;

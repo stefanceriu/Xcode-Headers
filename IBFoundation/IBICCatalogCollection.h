@@ -6,28 +6,31 @@
 
 #import "NSObject.h"
 
-@class NSArray;
+@class NSArray, NSSet;
 
 @interface IBICCatalogCollection : NSObject
 {
-    NSArray *_imageCatalogs;
+    NSArray *_imageCatalogsOrderedByPath;
+    NSSet *_imageCatalogs;
 }
 
 + (id)collectionWithImageCatalogPaths:(id)arg1 results:(id)arg2;
-@property(readonly) NSArray *imageCatalogs; // @synthesize imageCatalogs=_imageCatalogs;
++ (id)catalogsFromPaths:(id)arg1 results:(id)arg2;
+@property(readonly) NSSet *imageCatalogs; // @synthesize imageCatalogs=_imageCatalogs;
+@property(readonly) NSArray *imageCatalogsOrderedByPath; // @synthesize imageCatalogsOrderedByPath=_imageCatalogsOrderedByPath;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSSet *allTags;
+- (id)itemsFromCatalogPathsToIdentifierPaths:(id)arg1;
+- (id)catalogPathsToIdentifierPathsForItems:(id)arg1;
 - (id)debugDescription;
 - (id)description;
-- (id)launchImageRepsWithName:(id)arg1 options:(id)arg2 populatingIssues:(id)arg3;
-- (id)appIconSetRepsWithName:(id)arg1 options:(id)arg2 populatingIssues:(id)arg3;
-- (id)iconSetRepsForCompilingWithOptions:(id)arg1 populatingIssues:(id)arg2;
-- (id)imageSetRepsForCompilingWithOptions:(id)arg1 populatingIssues:(id)arg2;
-- (id)multipartImageRepsForCompilingMultipartImagesOfClass:(Class)arg1 withImageName:(id)arg2 options:(id)arg3 populatingIssues:(id)arg4;
-- (id)findEmptyPlaceholderForMultipartImageOfClass:(Class)arg1 withName:(id)arg2 error:(id *)arg3;
-- (id)allMultipartImagesOfClass:(Class)arg1 withName:(id)arg2;
-- (id)multipartImageRepsForCompilingMultipartImagesOfClass:(Class)arg1 imageFilter:(CDUnknownBlockType)arg2 options:(id)arg3 populatingIssues:(id)arg4;
-@property(readonly) NSArray *absoluteImageCatalogPaths;
+- (id)findEmptyPlaceholderForSlottedAssetOfClass:(Class)arg1 withName:(id)arg2 error:(id *)arg3;
+- (id)allSlottedAssetsOfClass:(Class)arg1 withName:(id)arg2;
+- (id)allCatalogItemsOfClass:(Class)arg1;
+- (id)slottedAssetRepsForCompilingSlottedAssetsOfClass:(Class)arg1 options:(id)arg2 ignoringItems:(id)arg3 populatingIssues:(id)arg4 slottedAssetFilter:(CDUnknownBlockType)arg5;
+- (id)catalogForAbsolutePath:(id)arg1;
 - (id)initWithImageCatalogs:(id)arg1;
+- (id)catalogCollectionByAddingCatalogsAtPaths:(id)arg1 results:(id)arg2;
 
 @end
 

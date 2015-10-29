@@ -12,7 +12,6 @@
 
 - (void)terminate;
 - (void)start;
-- (void)_setFinishedRunningWithError:(id)arg1;
 
 @end
 

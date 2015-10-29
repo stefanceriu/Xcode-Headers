@@ -11,6 +11,7 @@
 }
 
 + (BOOL)supportsSecureCoding;
+- (id)keychainNameFromURL:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)description;
 - (BOOL)isUsable;
 - (id)initWithPlugInIdentifier:(id)arg1;

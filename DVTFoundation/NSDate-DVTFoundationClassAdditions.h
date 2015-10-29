@@ -7,6 +7,8 @@
 #import "NSDate.h"
 
 @interface NSDate (DVTFoundationClassAdditions)
+- (id)dvt_descriptionWithDateFormat:(id)arg1;
+- (id)dvt_dateStringRelativeToTodayWithDateStyle:(unsigned long long)arg1 timeStyle:(unsigned long long)arg2 capitalizeFirstLetter:(BOOL)arg3;
 - (id)dvt_dateStringRelativeToTodayWithDateStyle:(unsigned long long)arg1 timeStyle:(unsigned long long)arg2;
 @end
 

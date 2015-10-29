@@ -10,7 +10,8 @@
 {
 }
 
-+ (id)supportedPlatform;
++ (id)supportedPlatforms;
+- (BOOL)signPlaygroundAppAtPath:(id)arg1 error:(id *)arg2;
 - (id)playgroundAppBundleForAppAtPath:(id)arg1 withExecutableSubpath:(id)arg2 bundleIdentifier:(id)arg3;
 - (id)constructPlaygroundAppBundleInDirectoryAtPath:(id)arg1 error:(id *)arg2;
 - (id)createFileWrapperForPlaygroundAppReturningRelativeExecutablePath:(id *)arg1 bundleIdentifier:(id *)arg2 error:(id *)arg3;

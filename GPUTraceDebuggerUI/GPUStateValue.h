@@ -23,11 +23,12 @@
     BOOL itemDescriptionHasChanged;
     NSMutableArray *_childValues;
     BOOL _itemDescriptionHasChanged;
+    BOOL _childValuesCountValid;
     NSString *_itemSummary;
 }
 
+@property BOOL childValuesCountValid; // @synthesize childValuesCountValid=_childValuesCountValid;
 @property(copy) NSString *itemSummary; // @synthesize itemSummary=_itemSummary;
-@property(retain) NSArray *childValues; // @synthesize childValues=_childValues;
 @property BOOL itemDescriptionHasChanged; // @synthesize itemDescriptionHasChanged=_itemDescriptionHasChanged;
 @property(copy) NSString *itemDescription; // @synthesize itemDescription=_itemDescription;
 @property BOOL typeHasChanged; // @synthesize typeHasChanged=_typeHasChanged;
@@ -43,8 +44,7 @@
 - (id)_contentDescription;
 - (id)_contentDescriptionWithChildValuesAtLevel:(unsigned long long)arg1;
 @property(readonly, copy) NSString *description;
-- (BOOL)isMemoryFault;
-@property(readonly) BOOL childValuesCountValid;
+@property(readonly) BOOL isMemoryFault;
 @property(readonly) BOOL hasChildValues;
 @property(readonly) BOOL inScope;
 @property(readonly) BOOL isValueEditable;
@@ -52,6 +52,7 @@
 - (void)replaceChildValueAtIndex:(unsigned long long)arg1 withValue:(id)arg2;
 - (void)addChildValues:(id)arg1;
 - (void)addChildValue:(id)arg1;
+@property(copy) NSArray *childValues;
 - (void)setStateValue:(id)arg1 withName:(id)arg2 withType:(id)arg3 withItemDescription:(id)arg4;
 
 // Remaining properties

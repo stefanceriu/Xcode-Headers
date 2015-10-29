@@ -21,7 +21,7 @@
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 + (BOOL)isAbstractType;
 + (id)validSegueClassesFromSource:(id)arg1 toDestination:(id)arg2 inDocument:(id)arg3;
-+ (id)typeDisplayName;
++ (id)kindDisplayNameForConnectionMenu;
 + (id)menuLabelForConnection:(id)arg1;
 + (BOOL)isOrderedRelativeToUniformInstances;
 + (double)displayOrderPriority;
@@ -35,20 +35,29 @@
 @property(readonly) NSObject<IBPrimarySceneObject> *canvasLinkDestination;
 @property(readonly) NSObject<IBPrimarySceneObject> *canvasLinkSource;
 - (id)instantiateSegueTemplate;
+- (id)effectiveSegueForSelection;
+- (BOOL)representsMultipleSegues;
+- (BOOL)pathShouldBeDashed;
+@property(readonly) BOOL canvasLinkShouldDrawPath;
 - (id)badgeImage;
 - (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
 - (id)segueAttributeInspectorExtensionIdentifier;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
+- (BOOL)shouldArchiveKind;
 - (Class)classForDocumentArchiver:(id)arg1;
 - (id)archiveKeyForLabel;
+- (BOOL)shouldShowInDocumentStructure;
+- (void)populateSegueTemplates:(id)arg1 andOutletsForCompiledDocument:(id)arg2;
 - (id)ibUserHostableDocumentClasses;
 - (id)ibDocumentationClassName;
 - (id)displayGroupIdentifierFromReferenceEndPoint:(id)arg1;
 - (id)explicitDisplayNameWithRespectToPredecessors:(id)arg1;
 - (id)displayValuesWithRespectToPrototype:(id)arg1 inDocument:(id)arg2;
+- (id)kindDisplayName;
 - (id)displayDescriptionInDocument:(id)arg1;
-- (id)exclusitivityHintInObjectContainer:(id)arg1;
+- (id)ibDefaultLabel;
+- (id)exclusivityHintInObjectContainer:(id)arg1;
 - (BOOL)isValidForDocument:(id)arg1 message:(id *)arg2;
 - (id)equivalentPrototypeWithRespectToEquivalentEndPoint:(id)arg1 inDocument:(id)arg2;
 - (BOOL)isPrototypeFor:(id)arg1;
@@ -60,7 +69,6 @@
 - (long long)compareToPrototype:(id)arg1 predecessors:(id)arg2 predecessorsForSelf:(id)arg3 document:(id)arg4;
 - (long long)compareToConnectionForPrototypeMenu:(id)arg1;
 - (id)userPresentableLabel;
-@property(readonly, copy) NSString *description;
 - (void)copyInstanceStateToClone:(id)arg1 withContext:(id)arg2;
 - (id)ibRuntimeClassName;
 - (id)targetRuntime;
@@ -69,13 +77,15 @@
 - (id)sourcePrimarySceneObject;
 - (id)destinationPrimarySceneObjectOrNil;
 - (id)destinationPrimarySceneObject;
-- (id)init;
+- (id)initWithSource:(id)arg1 label:(id)arg2 destination:(id)arg3;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSObject<IBPrimarySceneObject> *source;
 @property(readonly) Class superclass;
 
 @end

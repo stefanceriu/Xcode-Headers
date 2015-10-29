@@ -8,43 +8,21 @@
 
 #import "IDEPlaygroundSectionViewController.h"
 
-@class DVTNotificationToken, DVTObservingToken, IDEDocumentationPlaygroundSection, IDEPlaygroundEditor, NSArray, NSString, WebView;
+@class IDEDocumentationPlaygroundSection, IDEDocumentationPlaygroundWebViewController, IDEPlaygroundEditor, NSArray, NSString;
 
 @interface IDEDocumentationPlaygroundSectionViewController : IDEViewController <IDEPlaygroundSectionViewController>
 {
-    BOOL _finishedLoading;
-    BOOL _sizingToContent;
+    IDEDocumentationPlaygroundWebViewController *_webViewController;
     IDEPlaygroundEditor *_playgroundEditor;
     IDEDocumentationPlaygroundSection *_playgroundSection;
-    WebView *_webView;
-    DVTNotificationToken *_webHTMLViewFrameChangeNotificationToken;
-    DVTNotificationToken *_webViewFrameChangeNotificationToken;
-    DVTNotificationToken *_fontAndColorSettingsChangedNotificationToken;
-    DVTObservingToken *_accessoryAnnotationWidthObservingToken;
-    DVTObservingToken *_quarantinedDocumentObservingToken;
 }
 
 + (void)initialize;
-@property BOOL sizingToContent; // @synthesize sizingToContent=_sizingToContent;
-@property(retain) DVTObservingToken *quarantinedDocumentObservingToken; // @synthesize quarantinedDocumentObservingToken=_quarantinedDocumentObservingToken;
-@property(retain) DVTObservingToken *accessoryAnnotationWidthObservingToken; // @synthesize accessoryAnnotationWidthObservingToken=_accessoryAnnotationWidthObservingToken;
-@property(retain) DVTNotificationToken *fontAndColorSettingsChangedNotificationToken; // @synthesize fontAndColorSettingsChangedNotificationToken=_fontAndColorSettingsChangedNotificationToken;
-@property(retain) DVTNotificationToken *webViewFrameChangeNotificationToken; // @synthesize webViewFrameChangeNotificationToken=_webViewFrameChangeNotificationToken;
-@property(retain) DVTNotificationToken *webHTMLViewFrameChangeNotificationToken; // @synthesize webHTMLViewFrameChangeNotificationToken=_webHTMLViewFrameChangeNotificationToken;
-@property(retain) WebView *webView; // @synthesize webView=_webView;
 @property(retain) IDEDocumentationPlaygroundSection *playgroundSection; // @synthesize playgroundSection=_playgroundSection;
-@property BOOL finishedLoading; // @synthesize finishedLoading=_finishedLoading;
 @property(readonly) IDEPlaygroundEditor *playgroundEditor; // @synthesize playgroundEditor=_playgroundEditor;
 - (void).cxx_destruct;
-- (id)webView:(id)arg1 resource:(id)arg2 willSendRequest:(id)arg3 redirectResponse:(id)arg4 fromDataSource:(id)arg5;
-- (void)primitiveInvalidate;
-- (void)webView:(id)arg1 decidePolicyForNavigationAction:(id)arg2 request:(id)arg3 frame:(id)arg4 decisionListener:(id)arg5;
-- (id)webView:(id)arg1 contextMenuItemsForElement:(id)arg2 defaultMenuItems:(id)arg3;
-- (void)webView:(id)arg1 didFinishLoadForFrame:(id)arg2;
 - (void)loadView;
-- (id)_htmlPostamble;
-- (id)_htmlPreamble;
-- (void)_sizeToDoc;
+- (void)primitiveInvalidate;
 - (id)initWithDocumentationPlaygroundSection:(id)arg1 editor:(id)arg2;
 
 // Remaining properties

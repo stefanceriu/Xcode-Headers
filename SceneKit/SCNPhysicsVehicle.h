@@ -18,7 +18,6 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)vehicleWithChassisBody:(id)arg1 wheels:(id)arg2;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -26,6 +25,7 @@
 - (id)valueForKeyPath:(id)arg1;
 - (void)setValue:(id)arg1 forKeyPath:(id)arg2;
 - (id)wheelAtIndex:(unsigned long long)arg1;
+- (BOOL)hasReferenceToPhysicsBody:(id)arg1;
 @property(readonly, nonatomic) double speedInKilometersPerHour;
 - (void)_update;
 - (void)_handleCreateIfNeeded:(BOOL)arg1;

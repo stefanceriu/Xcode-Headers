@@ -6,11 +6,11 @@
 
 #import "NSTableColumn.h"
 
-@class DVTMapTable;
+@class NSMapTable;
 
 @interface DVTImageAndTextColumn : NSTableColumn
 {
-    DVTMapTable *_progressIndicators;
+    NSMapTable *_progressIndicators;
     id _outlineViewCollapseObservation;
     id _outlineViewExpandObservation;
     struct {

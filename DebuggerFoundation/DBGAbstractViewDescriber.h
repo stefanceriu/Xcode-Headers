@@ -13,6 +13,8 @@
 @interface DBGAbstractViewDescriber : NSObject <DBGViewDescriber>
 {
     NSMutableDictionary *_classNameToPropertyEntryArrayMap;
+    NSMutableDictionary *_layerTreesByIdentifier;
+    BOOL _persistLayerTree;
     DBGDebugSession *_debugSession;
     NSDictionary *_inferiorClassMap;
     NSURL *_url;
@@ -22,6 +24,7 @@
 + (BOOL)shouldInstantiateInLaunchSession:(id)arg1;
 + (id)viewDebuggingDylibPathForLaunchSession:(id)arg1;
 @property(retain) NSURL *url; // @synthesize url=_url;
+@property BOOL persistLayerTree; // @synthesize persistLayerTree=_persistLayerTree;
 @property(retain) NSDictionary *inferiorClassMap; // @synthesize inferiorClassMap=_inferiorClassMap;
 @property(retain) DBGDebugSession *debugSession; // @synthesize debugSession=_debugSession;
 - (void).cxx_destruct;
@@ -29,17 +32,22 @@
 - (void)primitiveInvalidate;
 - (id)_createPropertyEntriesForClassName:(id)arg1;
 - (id)_propertyEntriesForClassName:(id)arg1;
-- (id)structuresForInspectableExpressions;
 - (id)propertyEntriesForViewObject:(id)arg1;
+- (id)unarchiveLayerForView:(id)arg1 fromData:(id)arg2;
+- (void)writeCAARToDiskIfNecessary:(id)arg1;
+- (id)layerForView:(id)arg1;
+- (void)logDebugStringWithFormat:(id)arg1;
 - (id)launchSession;
 - (id)associatedProcessUUID;
 - (void)getDataValueForExpression:(id)arg1 handler:(CDUnknownBlockType)arg2;
+- (void)printDescriptionOfViewObjectToConsole:(id)arg1;
 - (void)_asyncAttributedStringFromDataValueSummary:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)asyncStringFromDataValueSummary:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (id)stringFromSummary:(id)arg1;
 - (void)_asyncAskForInspectableArrayFromDataValue:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (BOOL)inspectableValueForDataValue:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (id)classHierarchyForClass:(id)arg1;
+- (id)targetKitFamilyIdentifier;
 - (id)targetPlatformFamilyIdentifier;
 - (id)targetPlatform;
 - (void)_runExpressionToGetChildForKey:(id)arg1 inferiorPointerExpression:(id)arg2 list:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
@@ -48,10 +56,13 @@
 - (id)_parentWindowForViewObject:(id)arg1;
 - (id)constraintsReferencingViewObject:(id)arg1;
 - (id)constraintsAffectingViewObject:(id)arg1;
+- (unsigned long long)shouldChild:(id)arg1 flattenIntoParent:(id)arg2;
 - (BOOL)isViewObjectInteresting:(id)arg1;
 @property(readonly) NSString *classNameForDefaultViewIcon;
+- (id)_primaryWindowFromWindows:(id)arg1 keyWindowPointer:(id)arg2;
 - (id)_platformFamilyIdentifier;
-- (id)collectLayerViewsFromPlistArray:(id)arg1;
+- (void)writePlistDataIfNecessary:(id)arg1;
+- (void)handleFetchedViewInfo:(id)arg1 resultHandler:(CDUnknownBlockType)arg2;
 - (void)fetchViewInfo:(CDUnknownBlockType)arg1 resultHandler:(CDUnknownBlockType)arg2;
 - (id)viewWindowObjectsFromDictionary:(id)arg1;
 - (id)initWithDebugSession:(id)arg1;

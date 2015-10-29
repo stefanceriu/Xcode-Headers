@@ -61,6 +61,7 @@
 @property(readonly, nonatomic) id <DYTextureImage> firstValidTextureImage; // @synthesize firstValidTextureImage=_firstValidTextureImage;
 @property(readonly, nonatomic) unsigned int mipmapLevelsUsedMask; // @synthesize mipmapLevelsUsedMask=_mipmapLevelsUsedMask;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long cachingCost;
 - (id)cubemapLabelForFaceIndex:(int)arg1;
 @property(readonly, nonatomic) BOOL isFlipped;
 @property(readonly, nonatomic) BOOL isCubemap; // @dynamic isCubemap;

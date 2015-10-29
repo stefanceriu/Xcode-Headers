@@ -8,11 +8,12 @@
 
 #import "IDEContinuousIntegrationCreateEditBotWindowController.h"
 
-@class NSMutableArray, NSString;
+@class DVTObservingToken, NSMutableArray, NSString;
 
 @interface XCSUICreateBotAssistantContextWindowController : IDEAssistantWindowController <IDEContinuousIntegrationCreateEditBotWindowController>
 {
     CDUnknownBlockType _createBotCompletionBlockCopy;
+    DVTObservingToken *_sourceControlWorkspaceObserver;
     NSMutableArray *_completionPreprocessors;
     NSMutableArray *_completionPreprocessorExecutionStack;
 }
@@ -21,12 +22,15 @@
 @property(retain) NSMutableArray *completionPreprocessors; // @synthesize completionPreprocessors=_completionPreprocessors;
 - (void).cxx_destruct;
 - (void)drainPreprocessorOrContinueWithSender:(id)arg1;
+- (void)goBack:(id)arg1;
 - (void)goNextOrFinish:(id)arg1;
 - (void)addGoForwardPreprocessor:(CDUnknownBlockType)arg1;
 - (BOOL)attemptRecoveryFromError:(id)arg1 optionIndex:(unsigned long long)arg2;
+- (void)attemptRecoveryFromError:(id)arg1 optionIndex:(unsigned long long)arg2 delegate:(id)arg3 didRecoverSelector:(SEL)arg4 contextInfo:(void *)arg5;
+- (void)didPresentErrorWithRecovery:(BOOL)arg1 contextInfo:(void *)arg2;
 - (void)doneLoadingSourceControlBlueprint:(id)arg1;
-- (void)beginSessionModalForWorkspaceTabController:(id)arg1 hostWindow:(id)arg2 editingBot:(id)arg3 withCompletionBlock:(CDUnknownBlockType)arg4;
-- (void)beginSessionModalForWorkspaceTabController:(id)arg1 hostWindow:(id)arg2 editingBot:(id)arg3 editingMode:(long long)arg4 withCompletionBlock:(CDUnknownBlockType)arg5;
+- (void)beginSessionModalForWorkspaceTabController:(id)arg1 redefineBot:(id)arg2 hostWindow:(id)arg3 withCompletionBlock:(CDUnknownBlockType)arg4;
+- (void)beginSessionModalForWorkspaceTabController:(id)arg1 hostWindow:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 @property(readonly) CDUnknownBlockType completionBlock;
 
 // Remaining properties

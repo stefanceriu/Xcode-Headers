@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSObject<IBAutolayoutItem>;
+#import "IBBinaryArchiving.h"
 
-@interface IBAutolayoutAmbiguityStatus : NSObject
+@class NSObject<IBAutolayoutItem>, NSString;
+
+@interface IBAutolayoutAmbiguityStatus : NSObject <IBBinaryArchiving>
 {
     NSObject<IBAutolayoutItem> *_view;
     unsigned long long _ambiguityStatusMask;
@@ -39,14 +41,18 @@
 @property(readonly, nonatomic, getter=isUninitialized) BOOL uninitialized;
 @property(readonly, nonatomic, getter=isAmbiguousExcludingUninitialized) BOOL ambiguousExcludingUninitialized;
 @property(readonly, nonatomic, getter=isAmbiguous) BOOL ambiguous;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (BOOL)isEqualToAmbiguityStatus:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (id)ambiguityStatusBySettingUninitialized:(BOOL)arg1;
-- (id)representationWithObjectRepresentationForObjectBlock:(CDUnknownBlockType)arg1;
-- (id)initWithRepresentation:(id)arg1 objectForObjectRepresentationBlock:(CDUnknownBlockType)arg2;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithView:(id)arg1 ambiguityStatusMask:(unsigned long long)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

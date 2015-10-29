@@ -17,6 +17,7 @@
 - (id)quickLookViewForUnadornedView;
 - (id)quickLookViewForResultsView;
 - (id)quickLookViewForNaturalSize;
+@property(readonly) DVTRectViewController *rectViewController;
 - (id)initWithObjectReflection:(id)arg1;
 
 @end

@@ -4,31 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDELanguageSupportUI/IDEPlaygroundSection.h>
+#import <IDELanguageSupportUI/IDEPlaygroundDocumentSection.h>
 
-@class NSString, NSURL;
+@class DVTFilePath, NSString;
 
-@interface IDEDocumentationPlaygroundSection : IDEPlaygroundSection
+@interface IDEDocumentationPlaygroundSection : IDEPlaygroundDocumentSection
 {
     NSString *_documentationContents;
-    NSURL *_documentationURL;
-    NSString *_documentationRelativePath;
+    DVTFilePath *_filePath;
 }
 
 + (id)contentPathsToPreserveOnSave;
-+ (id)xmlElementName;
-@property(copy, nonatomic) NSString *documentationRelativePath; // @synthesize documentationRelativePath=_documentationRelativePath;
-@property(copy) NSURL *documentationURL; // @synthesize documentationURL=_documentationURL;
+@property(readonly) DVTFilePath *filePath; // @synthesize filePath=_filePath;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *documentationContentsWithoutComments;
 @property(readonly, copy) NSString *documentationContents;
-- (id)stringConstructingFileWrapper:(id)arg1;
-- (id)xmlElementConstructingFileWrapper:(id)arg1;
+- (id)content;
 - (id)viewControllerForDisplayingPlaygroundSectionInEditor:(id)arg1;
-- (void)_updateDocumentationURL;
+- (id)initWithFilePath:(id)arg1 inPlaygroundDocument:(id)arg2;
 - (id)initWithDocumentationContents:(id)arg1 identifier:(id)arg2 inPlaygroundDocument:(id)arg3;
-- (id)initWithXMLElement:(id)arg1 enclosingFileWrapper:(id)arg2 inPlaygroundDocument:(id)arg3;
-- (id)initWithRelativePathToDocumentation:(id)arg1 identifier:(id)arg2 inPlaygroundDocument:(id)arg3;
 
 @end
 

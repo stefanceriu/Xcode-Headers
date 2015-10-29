@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class DVTDispatchLock, DVTMapTable, DVTObservingToken, IDEWorkspace;
+@class DVTDispatchLock, DVTObservingToken, IDEWorkspace, NSMapTable;
 
 @interface IBAnnotationDataCache : NSObject
 {
     IDEWorkspace *workspace;
-    DVTMapTable *documentToAnnotationData;
+    NSMapTable *documentToAnnotationData;
     DVTDispatchLock *documentToAnnotationDataLock;
     id indexDidChangeNotificationToken;
     id documentWillCloseNotificationToken;

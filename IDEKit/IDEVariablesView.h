@@ -15,13 +15,8 @@
 
 @interface IDEVariablesView : IDEViewController <NSOutlineViewDataSource, NSMenuDelegate, DVTOutlineViewDelegate, IDEScopeableView>
 {
-    id <IDEVariablesViewContentProvider> _contentProvider;
     IDEVariableViewRootNode *_root;
-    NSMapTable *_variableNodeToObservationToken;
-    IDEVariablesViewStateManager *_stateManager;
-    long long _selectedScopeTag;
-    BOOL _showsType;
-    BOOL _showsRawValues;
+    NSMapTable *_variableNodesToObservationTokens;
     double _timeLodingIndicatorWasShown;
     NSPopover *_currentPopover;
     IDEVariablesViewQuickLookPopover *_quickLookPopover;
@@ -34,10 +29,9 @@
     DVTObservingToken *_viewModeObservationToken;
     DVTNotificationToken *_outlineViewHiddenObservationToken;
     DVTObservingToken *_loadingNewVariablesInBackgroundObservationToken;
-    id _outlineViewSelectionObserver;
+    DVTNotificationToken *_outlineViewSelectionObserver;
     BOOL _viewWasInstalled;
     BOOL _restoringExpandedState;
-    BOOL _scopeBarVisible;
     struct {
         unsigned int delegateRespondsToNodeWasDoubleClicked:1;
         unsigned int delegateRespondsToLoadingNewVariablesInBackground:1;
@@ -49,13 +43,17 @@
         unsigned int delegateRespondsToMenuNeedsUpdate:1;
         unsigned int delegateRespondsToStatusCellsDictionary:1;
         unsigned int delegateRespondsToCompoundNodeFormatterModeForItem:1;
-        unsigned int delegateRespondsToShowCellExpansion:1;
-        unsigned int ovShowCellExpansion:1;
     } _vvFlags;
     NSArray *_statusCellsCache;
     NSArray *_statusCellCategoriesCache;
     int _formatterSizeStyle;
+    BOOL _scopeBarVisible;
+    BOOL _showsType;
+    BOOL _showsRawValues;
     DVTScopeBarView *_scopeBarView;
+    id <IDEVariablesViewContentProvider> _contentProvider;
+    IDEVariablesViewStateManager *_stateManager;
+    long long _selectedScopeTag;
     DVTOutlineView *_outlineView;
     unsigned long long _textAlignment;
     NSView *_topContentContainerView;
@@ -81,18 +79,17 @@
 @property __weak DVTBorderedView *containerView; // @synthesize containerView=_containerView;
 @property __weak NSView *topContentContainerView; // @synthesize topContentContainerView=_topContentContainerView;
 @property unsigned long long textAlignment; // @synthesize textAlignment=_textAlignment;
-@property(retain) DVTOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 @property BOOL showsRawValues; // @synthesize showsRawValues=_showsRawValues;
 @property BOOL showsType; // @synthesize showsType=_showsType;
 @property(nonatomic) BOOL scopeBarVisible; // @synthesize scopeBarVisible=_scopeBarVisible;
+@property(retain) DVTOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 @property(nonatomic) long long selectedScopeTag; // @synthesize selectedScopeTag=_selectedScopeTag;
-@property(readonly) IDEVariablesViewStateManager *stateManager; // @synthesize stateManager=_stateManager;
+@property(retain) IDEVariablesViewStateManager *stateManager; // @synthesize stateManager=_stateManager;
 @property(retain, nonatomic) id <IDEVariablesViewContentProvider> contentProvider; // @synthesize contentProvider=_contentProvider;
 @property(retain) DVTScopeBarView *scopeBarView; // @synthesize scopeBarView=_scopeBarView;
 - (void).cxx_destruct;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
-- (BOOL)outlineView:(id)arg1 shouldShowCellExpansionForTableColumn:(id)arg2 item:(id)arg3;
 - (void)outlineViewSelectionDidChange:(id)arg1;
 - (BOOL)_wasStatusCellItemClickedAtCurrentPoint;
 - (BOOL)selectionShouldChangeInOutlineView:(id)arg1;

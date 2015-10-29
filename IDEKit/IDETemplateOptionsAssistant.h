@@ -17,10 +17,10 @@
     NSMutableDictionary *_controlsForOptionIds;
     BOOL _canGoForward;
     NSTextField *_firstTextField;
-    NSArray *_allSortedOptions;
+    NSArray *_sortedPrimaryOptions;
 }
 
-@property(readonly) NSArray *allSortedOptions; // @synthesize allSortedOptions=_allSortedOptions;
+@property(readonly) NSArray *sortedPrimaryOptions; // @synthesize sortedPrimaryOptions=_sortedPrimaryOptions;
 @property(retain) NSTextField *firstTextField; // @synthesize firstTextField=_firstTextField;
 @property BOOL canGoForward; // @synthesize canGoForward=_canGoForward;
 - (void).cxx_destruct;
@@ -35,7 +35,8 @@
 - (id)additionalOptions;
 - (double)requiredViewSpacingForOption:(id)arg1;
 - (id)createLabelForOption:(id)arg1;
-- (id)createControlForOption:(id)arg1;
+- (id)createControlForOption:(id)arg1 withOptionArray:(id)arg2;
+- (id)_valueProvidingOptionForOption:(id)arg1 fromOptionArray:(id)arg2;
 - (void)_setControl:(id)arg1 forOptionIdentifier:(id)arg2;
 - (id)controlForOptionIdentifier:(id)arg1;
 - (void)_setAccessibilityForCell:(id)arg1 withOption:(id)arg2 prefix:(id)arg3;

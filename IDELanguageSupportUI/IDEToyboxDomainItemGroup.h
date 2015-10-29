@@ -8,27 +8,27 @@
 
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTMapTable, IDEFileReference, NSArray, NSImage, NSMutableArray, NSString;
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSMapTable, NSMutableArray, NSString;
 
 @interface IDEToyboxDomainItemGroup : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSMutableArray *_toyboxItems;
-    DVTMapTable *_workspaceToItemMapTable;
-    DVTMapTable *_workspaceToInvalidationObserverTable;
+    NSMapTable *_documentToItemMapTable;
+    NSMapTable *_documentToObserverTable;
 }
 
 + (id)sharedItemGroup;
 + (void)initialize;
 - (void).cxx_destruct;
 @property(readonly) NSString *navigableItem_name;
-- (id)itemForFileURL:(id)arg1 inWorkspace:(id)arg2;
+- (id)itemForDocument:(id)arg1;
 - (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly) NSMutableArray *mutableToyboxItems; // @dynamic mutableToyboxItems;
+@property(readonly, copy) NSMutableArray *mutableToyboxItems; // @dynamic mutableToyboxItems;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;

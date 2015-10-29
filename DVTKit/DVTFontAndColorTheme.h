@@ -8,7 +8,7 @@
 
 #import "DVTPreferenceSet.h"
 
-@class DVTCustomDataSpecifier, DVTPointerArray, DVTStackBacktrace, NSColor, NSFont, NSImage, NSString, NSURL;
+@class DVTCustomDataSpecifier, DVTStackBacktrace, NSColor, NSFont, NSImage, NSPointerArray, NSString, NSURL;
 
 @interface DVTFontAndColorTheme : NSObject <DVTPreferenceSet>
 {
@@ -30,6 +30,23 @@
     NSColor *_sourceTextTokenizedBackgroundColor;
     NSColor *_sourceTextTokenizedBorderSelectedColor;
     NSColor *_sourceTextTokenizedBackgroundSelectedColor;
+    NSColor *_markupTextBackgroundColor;
+    NSColor *_markupTextBorderColor;
+    NSColor *_markupTextNormalColor;
+    NSColor *_markupTextStrongColor;
+    NSColor *_markupTextEmphasisColor;
+    NSColor *_markupTextPrimaryHeadingColor;
+    NSColor *_markupTextSecondaryHeadingColor;
+    NSColor *_markupTextOtherHeadingColor;
+    NSColor *_markupTextLinkColor;
+    NSFont *_markupTextNormalFont;
+    NSFont *_markupTextStrongFont;
+    NSFont *_markupTextEmphasisFont;
+    NSFont *_markupTextPrimaryHeadingFont;
+    NSFont *_markupTextSecondaryHeadingFont;
+    NSFont *_markupTextOtherHeadingFont;
+    NSFont *_markupTextLinkFont;
+    NSFont *_markupTextCodeFont;
     NSColor *_consoleTextBackgroundColor;
     NSColor *_consoleTextSelectionColor;
     NSColor *_consoleTextSecondarySelectionColor;
@@ -47,8 +64,8 @@
     NSColor *_debuggerInstructionPointerColor;
     NSColor *_sourcePlainTextColor;
     NSFont *_sourcePlainTextFont;
-    DVTPointerArray *_syntaxColorsByNodeType;
-    DVTPointerArray *_syntaxFontsByNodeType;
+    NSPointerArray *_syntaxColorsByNodeType;
+    NSPointerArray *_syntaxFontsByNodeType;
     NSColor *_sourceTextCompletionPreviewColor;
     BOOL _builtIn;
     BOOL _loadedData;
@@ -75,8 +92,8 @@
 + (id)preferenceSetsManager;
 + (void)initialize;
 @property(readonly) BOOL loadedData; // @synthesize loadedData=_loadedData;
-@property(readonly) DVTPointerArray *syntaxFontsByNodeType; // @synthesize syntaxFontsByNodeType=_syntaxFontsByNodeType;
-@property(readonly) DVTPointerArray *syntaxColorsByNodeType; // @synthesize syntaxColorsByNodeType=_syntaxColorsByNodeType;
+@property(readonly) NSPointerArray *syntaxFontsByNodeType; // @synthesize syntaxFontsByNodeType=_syntaxFontsByNodeType;
+@property(readonly) NSPointerArray *syntaxColorsByNodeType; // @synthesize syntaxColorsByNodeType=_syntaxColorsByNodeType;
 @property(nonatomic) BOOL hasMultipleSourceTextFonts; // @synthesize hasMultipleSourceTextFonts=_hasMultipleSourceTextFonts;
 @property BOOL contentNeedsSaving; // @synthesize contentNeedsSaving=_contentNeedsSaving;
 @property(retain) DVTCustomDataSpecifier *customDataSpecifier; // @synthesize customDataSpecifier=_customDataSpecifier;
@@ -84,6 +101,7 @@
 @property(retain) NSImage *image; // @synthesize image=_image;
 @property(copy) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
+- (BOOL)hasLightBackground;
 - (void)setFont:(id)arg1 forNodeTypes:(id)arg2;
 - (void)setColor:(id)arg1 forNodeTypes:(id)arg2;
 - (void)_setColorOrFont:(id)arg1 forNodeTypes:(id)arg2;
@@ -106,6 +124,23 @@
 - (void)setConsoleTextInsertionPointColor:(id)arg1;
 - (void)setConsoleTextSelectionColor:(id)arg1;
 - (void)setConsoleTextBackgroundColor:(id)arg1;
+- (void)setMarkupTextCodeFont:(id)arg1;
+- (void)setMarkupTextLinkFont:(id)arg1;
+- (void)setMarkupTextOtherHeadingFont:(id)arg1;
+- (void)setMarkupTextSecondaryHeadingFont:(id)arg1;
+- (void)setMarkupTextPrimaryHeadingFont:(id)arg1;
+- (void)setMarkupTextEmphasisFont:(id)arg1;
+- (void)setMarkupTextStrongFont:(id)arg1;
+- (void)setMarkupTextNormalFont:(id)arg1;
+- (void)setMarkupTextLinkColor:(id)arg1;
+- (void)setMarkupTextOtherHeadingColor:(id)arg1;
+- (void)setMarkupTextSecondaryHeadingColor:(id)arg1;
+- (void)setMarkupTextPrimaryHeadingColor:(id)arg1;
+- (void)setMarkupTextEmphasisColor:(id)arg1;
+- (void)setMarkupTextStrongColor:(id)arg1;
+- (void)setMarkupTextNormalColor:(id)arg1;
+- (void)setMarkupTextBorderColor:(id)arg1;
+- (void)setMarkupTextBackgroundColor:(id)arg1;
 - (void)setSourceTextInvisiblesColor:(id)arg1;
 - (void)setSourceTextInsertionPointColor:(id)arg1;
 - (void)setSourceTextSelectionColor:(id)arg1;
@@ -126,6 +161,23 @@
 @property(readonly) NSColor *consoleTextSecondarySelectionColor;
 @property(readonly) NSColor *consoleTextSelectionColor;
 @property(readonly) NSColor *consoleTextBackgroundColor;
+@property(readonly) NSFont *markupTextCodeFont;
+@property(readonly) NSFont *markupTextLinkFont;
+@property(readonly) NSFont *markupTextOtherHeadingFont;
+@property(readonly) NSFont *markupTextSecondaryHeadingFont;
+@property(readonly) NSFont *markupTextPrimaryHeadingFont;
+@property(readonly) NSFont *markupTextEmphasisFont;
+@property(readonly) NSFont *markupTextStrongFont;
+@property(readonly) NSFont *markupTextNormalFont;
+@property(readonly) NSColor *markupTextLinkColor;
+@property(readonly) NSColor *markupTextOtherHeadingColor;
+@property(readonly) NSColor *markupTextSecondaryHeadingColor;
+@property(readonly) NSColor *markupTextPrimaryHeadingColor;
+@property(readonly) NSColor *markupTextEmphasisColor;
+@property(readonly) NSColor *markupTextStrongColor;
+@property(readonly) NSColor *markupTextNormalColor;
+@property(readonly) NSColor *markupTextBorderColor;
+@property(readonly) NSColor *markupTextBackgroundColor;
 @property(readonly) NSColor *sourceTextTokenizedBackgroundSelectedColor;
 @property(readonly) NSColor *sourceTextTokenizedBorderSelectedColor;
 @property(readonly) NSColor *sourceTextTokenizedBackgroundColor;

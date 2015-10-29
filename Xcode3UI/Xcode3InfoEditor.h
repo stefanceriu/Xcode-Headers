@@ -34,6 +34,7 @@
 }
 
 + (BOOL)canInspectBlueprint:(id)arg1;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (id)localizedSourceListItemEditorName;
 + (void)initialize;
 @property struct CGRect currentSelectionFrame; // @synthesize currentSelectionFrame=_currentSelectionFrame;

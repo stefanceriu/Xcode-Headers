@@ -12,7 +12,6 @@
 
 @interface SCNGeometrySource : NSObject <NSSecureCoding>
 {
-    id _reserved;
     struct __C3DMeshSource *_meshSource;
     NSData *_data;
     NSString *_semantic;
@@ -22,10 +21,10 @@
     long long _bytesPerComponent;
     long long _dataOffset;
     long long _dataStride;
+    unsigned char _mkSemantic;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)geometrySourceWithTextureCoordinates:(const struct CGPoint *)arg1 count:(long long)arg2;
 + (id)geometrySourceWithNormals:(const struct SCNVector3 *)arg1 count:(long long)arg2;
 + (id)geometrySourceWithVertices:(const struct SCNVector3 *)arg1 count:(long long)arg2;
@@ -35,6 +34,7 @@
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (struct __C3DMeshSource *)meshSource;
+- (void)_clearC3DCache;
 - (short)baseTypeForDataFormat;
 @property(readonly, nonatomic) long long dataStride;
 @property(readonly, nonatomic) long long dataOffset;
@@ -44,6 +44,8 @@
 @property(readonly, nonatomic) long long vectorCount;
 @property(readonly, nonatomic) NSString *semantic;
 @property(readonly, nonatomic) NSData *data;
+- (void)setMkSemantic:(id)arg1;
+- (id)mkSemantic;
 - (id)initWithData:(id)arg1 semantic:(id)arg2 vectorCount:(long long)arg3 floatComponents:(BOOL)arg4 componentsPerVector:(long long)arg5 bytesPerComponent:(long long)arg6 dataOffset:(long long)arg7 dataStride:(long long)arg8;
 - (id)description;
 - (void)dealloc;

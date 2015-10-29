@@ -8,10 +8,12 @@
 
 @interface NSColor (NSColor)
 + (id)colorWithComponentRGBA:(CDStruct_818bb265)arg1;
++ (id)colorWithVectorRGBA: /* Error: Ran out of types for this method. */;
 - (double)alpha;
 - (double)blue;
 - (double)green;
 - (double)red;
+-     // Error parsing type: 16@0:8, name: vectorRGBA
 - (double)brightness;
 - (double)saturation;
 - (double)hue;

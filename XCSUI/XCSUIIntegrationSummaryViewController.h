@@ -8,7 +8,7 @@
 
 #import "XCSBotSupportingEditorHostedViewController.h"
 
-@class DVTLozengeTextField, DVTReplacementView, DVTStackView_ML, NSArray, NSString, XCSBot, XCSBotSupportingEditor, XCSIntegration, _XCSUIIntegrationSummaryScrollView;
+@class DVTLozengeTextField, DVTReplacementView, DVTStackView_ML, NSArray, NSString, XCSBot, XCSBotSupportingEditor, XCSIntegration, XCSUIProgressReplacementView, _XCSUIIntegrationSummaryScrollView;
 
 @interface XCSUIIntegrationSummaryViewController : DVTViewController <XCSBotSupportingEditorHostedViewController>
 {
@@ -22,13 +22,14 @@
     NSString *_errorCount;
     NSString *_warningCount;
     NSString *_issueCount;
-    DVTReplacementView *_statusAndIssuesReplacementView;
+    DVTReplacementView *_statusBadgesReplacementView;
     DVTReplacementView *_productsReplacementView;
     DVTReplacementView *_devicesReplacementView;
     DVTStackView_ML *_stackView;
     long long _currentIntegrationStep;
     _XCSUIIntegrationSummaryScrollView *_scrollView;
-    DVTReplacementView *_reflightReplacementView;
+    DVTReplacementView *_reflightOrProgressReplacementView;
+    XCSUIProgressReplacementView *_issuesReplacementView;
     DVTReplacementView *_errorView;
     DVTLozengeTextField *_errorTextField;
 }
@@ -37,13 +38,14 @@
 + (id)keyPathsForValuesAffectingCurrentSelectedItems;
 @property __weak DVTLozengeTextField *errorTextField; // @synthesize errorTextField=_errorTextField;
 @property __weak DVTReplacementView *errorView; // @synthesize errorView=_errorView;
-@property __weak DVTReplacementView *reflightReplacementView; // @synthesize reflightReplacementView=_reflightReplacementView;
+@property(retain) XCSUIProgressReplacementView *issuesReplacementView; // @synthesize issuesReplacementView=_issuesReplacementView;
+@property __weak DVTReplacementView *reflightOrProgressReplacementView; // @synthesize reflightOrProgressReplacementView=_reflightOrProgressReplacementView;
 @property __weak _XCSUIIntegrationSummaryScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property long long currentIntegrationStep; // @synthesize currentIntegrationStep=_currentIntegrationStep;
 @property __weak DVTStackView_ML *stackView; // @synthesize stackView=_stackView;
 @property __weak DVTReplacementView *devicesReplacementView; // @synthesize devicesReplacementView=_devicesReplacementView;
 @property __weak DVTReplacementView *productsReplacementView; // @synthesize productsReplacementView=_productsReplacementView;
-@property __weak DVTReplacementView *statusAndIssuesReplacementView; // @synthesize statusAndIssuesReplacementView=_statusAndIssuesReplacementView;
+@property __weak DVTReplacementView *statusBadgesReplacementView; // @synthesize statusBadgesReplacementView=_statusBadgesReplacementView;
 @property(copy) NSString *issueCount; // @synthesize issueCount=_issueCount;
 @property(copy) NSString *warningCount; // @synthesize warningCount=_warningCount;
 @property(copy) NSString *errorCount; // @synthesize errorCount=_errorCount;
@@ -58,12 +60,13 @@
 - (void)selectDocumentLocations:(id)arg1;
 - (void)refreshUI;
 - (void)updateReplacementViews;
-- (void)configureStatusAndDeviceInstalledReplacementViews;
+- (void)configureIssuesInstalledReplacementView;
 - (void)sizeStatusIsssueViewFit;
+- (id)statusViewController;
 - (id)inflightViewController;
 - (id)devicesViewController;
 - (id)productsViewController;
-- (id)statusAndIssueCountsViewController;
+- (id)issuesViewController;
 @property(readonly, copy) NSArray *currentSelectedItems;
 - (void)primitiveInvalidate;
 - (void)viewDidInstall;

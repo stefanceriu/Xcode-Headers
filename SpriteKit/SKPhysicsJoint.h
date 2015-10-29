@@ -25,7 +25,6 @@
 @property(readonly, nonatomic) struct CGVector reactionForce; // @synthesize reactionForce;
 @property(retain, nonatomic) SKPhysicsBody *bodyB; // @synthesize bodyB;
 @property(retain, nonatomic) SKPhysicsBody *bodyA; // @synthesize bodyA;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

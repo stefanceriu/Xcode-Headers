@@ -29,6 +29,7 @@
 @property(readonly, nonatomic) unsigned long long length; // @synthesize length=_length;
 @property(readonly, nonatomic) NSData *data; // @synthesize data=_data;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long cachingCost;
 - (id)initWithResourceObject:(id)arg1 functionStream:(id)arg2 dataResolver:(CDUnknownBlockType)arg3;
 - (id)_initWithBuffer:(id)arg1 isStatic:(BOOL)arg2;
 - (id)initWithProperties:(id)arg1;

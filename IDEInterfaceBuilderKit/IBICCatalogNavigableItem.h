@@ -32,7 +32,7 @@
 - (id)name;
 - (id)representedObject;
 - (void)imageCatalogItemDidChangeDisplayOrderedChildren:(id)arg1;
-- (void)imageCatalogItem:(id)arg1 didChangeDisplayProperty:(id)arg2;
+- (void)imageCatalogItemDidChangeDisplayProperties:(id)arg1;
 - (void)imageCatalogItem:(id)arg1 didChangeKey:(id)arg2 fromValue:(id)arg3 toValue:(id)arg4;
 - (void)imageCatalogItemDiskContentsDidChange:(id)arg1;
 - (void)refreshContentIfNeededWithChangeToItem:(id)arg1;

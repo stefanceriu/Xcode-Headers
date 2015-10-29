@@ -6,16 +6,14 @@
 
 #import <IDEKit/IDEViewController.h>
 
-@class DVTOutlineView, NSArray, NSMutableArray;
+@class DVTOutlineView, DVTSourceControlWorkspace, NSArray, NSMutableArray;
 
 @interface IDESourceControlWorkspaceConfigNavigator : IDEViewController
 {
     DVTOutlineView *_outlineView;
+    DVTSourceControlWorkspace *_scmWorkspace;
     NSArray *_selectedObjects;
-    NSArray *_workingTrees;
-    NSArray *_missingConfigurations;
     NSMutableArray *_currentItems;
-    id _finishedUpgradingObserverToken;
 }
 
 @property(readonly) NSArray *selectedObjects; // @synthesize selectedObjects=_selectedObjects;
@@ -32,8 +30,7 @@
 - (id)outlineView:(id)arg1 child:(long long)arg2 ofItem:(id)arg3;
 - (long long)outlineView:(id)arg1 numberOfChildrenOfItem:(id)arg2;
 - (void)doubleClickAction:(id)arg1;
-@property NSArray *missingConfigurations;
-@property NSArray *workingTrees;
+@property DVTSourceControlWorkspace *sourceControlWorkspace;
 - (void)viewDidInstall;
 
 @end

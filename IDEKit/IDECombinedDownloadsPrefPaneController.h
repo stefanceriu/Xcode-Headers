@@ -9,11 +9,11 @@
 #import "IDECapsuleListViewDataSource.h"
 #import "IDECapsuleViewDelegate.h"
 
-@class DVTBorderedView, DVTDownloadableManager, DVTMapTable, IDECapsuleListView, IDEDownloadableCapsuleViewController, IDEDownloadableContentTypeGroup, NSArray, NSButton, NSProgressIndicator, NSString, NSTextField, NSTimer;
+@class DVTBorderedView, DVTDownloadableManager, IDECapsuleListView, IDEDownloadableCapsuleViewController, IDEDownloadableContentTypeGroup, NSArray, NSButton, NSMapTable, NSProgressIndicator, NSString, NSTextField, NSTimer;
 
 @interface IDECombinedDownloadsPrefPaneController : IDEViewController <IDECapsuleListViewDataSource, IDECapsuleViewDelegate>
 {
-    DVTMapTable *_downloadItemsByDownloadable;
+    NSMapTable *_downloadItemsByDownloadable;
     DVTDownloadableManager *_downloadableManager;
     NSArray *_availableDownloads;
     NSTimer *_messageTimer;

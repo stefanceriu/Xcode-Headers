@@ -17,7 +17,7 @@
 @property(retain) NSSet *observers; // @synthesize observers=_observers;
 @property(retain) IBNSRelationshipSegueModeledViewControllerView *viewControllerEditorView; // @synthesize viewControllerEditorView=_viewControllerEditorView;
 - (void).cxx_destruct;
-- (void)resizeFrameViewWithEvent:(id)arg1 fromEditorCanvasFrameKnob:(long long)arg2;
+- (void)resizeFrameViewWithEvent:(id)arg1 fromEditorCanvasFrameKnob:(CDUnion_42e99c75)arg2;
 - (id)viewEditorFrameController;
 - (id)modelView;
 - (id)editorView;

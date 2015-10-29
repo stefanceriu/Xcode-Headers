@@ -17,7 +17,7 @@
     long long _httpAccessType;
 }
 
-+ (id)hostedRepositoryWithName:(id)arg1 readAccessExternalIDs:(id)arg2 writeAccessExternalIDs:(id)arg3 posixPermissions:(long long)arg4 httpAccessType:(long long)arg5;
++ (id)hostedRepositoryWithName:(id)arg1 readAccessExternalIDs:(id)arg2 writeAccessExternalIDs:(id)arg3 posixPermissions:(long long)arg4 httpAccessType:(long long)arg5 validationErrors:(id *)arg6;
 @property(nonatomic) long long httpAccessType; // @synthesize httpAccessType=_httpAccessType;
 @property(nonatomic) long long posixPermissions; // @synthesize posixPermissions=_posixPermissions;
 @property(retain, nonatomic) NSArray *writeAccessExternalIDs; // @synthesize writeAccessExternalIDs=_writeAccessExternalIDs;
@@ -28,7 +28,7 @@
 - (id)saveRepresentation;
 - (id)dictionaryRepresentation;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)initWithName:(id)arg1 readAccessExternalIDs:(id)arg2 writeAccessExternalIDs:(id)arg3 posixPermissions:(long long)arg4 httpAccessType:(long long)arg5;
+- (id)initWithName:(id)arg1 readAccessExternalIDs:(id)arg2 writeAccessExternalIDs:(id)arg3 posixPermissions:(long long)arg4 httpAccessType:(long long)arg5 validationErrors:(id *)arg6;
 
 @end
 

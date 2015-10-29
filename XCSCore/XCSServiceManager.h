@@ -22,7 +22,7 @@
 - (id)_localCachePath:(id *)arg1;
 - (id)serviceMatchingClientUUID:(id)arg1;
 - (void)removeService:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
-- (void)addService:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
+- (void)addNewService:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 
 @end
 

@@ -32,7 +32,6 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) struct GPUValueRange maxRange; // @synthesize maxRange=_maxRange;
 @property(nonatomic) NSColor *baselineColor; // @synthesize baselineColor=_baselineColor;
 @property(nonatomic) NSColor *currentColor; // @synthesize currentColor=_currentColor;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)drawGraphInRect:(struct CGRect)arg1;
 - (void)drawRect:(struct CGRect)arg1;

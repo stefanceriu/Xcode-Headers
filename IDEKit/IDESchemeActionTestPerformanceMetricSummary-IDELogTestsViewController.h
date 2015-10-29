@@ -6,25 +6,24 @@
 
 #import "IDESchemeActionTestPerformanceMetricSummary.h"
 
-#import "IDESharedTests_PerfMetric.h"
+#import "IDETestReport_PerfMetric.h"
 
 @class NSArray, NSNumber, NSString;
 
-@interface IDESchemeActionTestPerformanceMetricSummary (IDELogTestsViewController) <IDESharedTests_PerfMetric>
-@property(readonly, copy, nonatomic) NSString *ide_sharedTests_baselineIdentifier;
-@property(readonly, nonatomic) NSNumber *ide_sharedTests_maxPercentRelativeStandardDeviation;
-@property(readonly, nonatomic) double ide_sharedTests_maxPercentImprovement;
-@property(readonly, nonatomic) NSNumber *ide_sharedTests_maxPercentRegression;
-@property(readonly, nonatomic) NSArray *ide_sharedTests_iterations;
-@property(readonly, nonatomic) NSNumber *ide_sharedTests_baseline;
-@property(readonly, nonatomic) double ide_sharedTests_rsd;
-@property(readonly, nonatomic) double ide_sharedTests_max;
-@property(readonly, nonatomic) double ide_sharedTests_min;
-@property(readonly, nonatomic) double ide_sharedTests_avg;
-@property(readonly, copy, nonatomic) NSString *ide_sharedTests_unit;
-- (id)ide_sharedTests_testClassName;
-@property(readonly, copy, nonatomic) NSString *ide_sharedTests_perfMetricIdentifier;
-@property(readonly, copy, nonatomic) NSString *ide_sharedTests_name;
+@interface IDESchemeActionTestPerformanceMetricSummary (IDELogTestsViewController) <IDETestReport_PerfMetric>
+@property(readonly, copy, nonatomic) NSString *ide_testReport_perfMetric_baselineIdentifier;
+@property(readonly, nonatomic) NSNumber *ide_testReport_perfMetric_maxPercentRelativeStandardDeviation;
+@property(readonly, nonatomic) double ide_testReport_perfMetric_maxPercentImprovement;
+@property(readonly, nonatomic) NSNumber *ide_testReport_perfMetric_maxPercentRegression;
+@property(readonly, nonatomic) NSArray *ide_testReport_perfMetric_iterations;
+@property(readonly, nonatomic) NSNumber *ide_testReport_perfMetric_baseline;
+@property(readonly, nonatomic) double ide_testReport_perfMetric_rsd;
+@property(readonly, nonatomic) double ide_testReport_perfMetric_max;
+@property(readonly, nonatomic) double ide_testReport_perfMetric_min;
+@property(readonly, nonatomic) double ide_testReport_perfMetric_avg;
+@property(readonly, copy, nonatomic) NSString *ide_testReport_perfMetric_unit;
+@property(readonly, copy, nonatomic) NSString *ide_testReport_perfMetric_identifier;
+@property(readonly, copy, nonatomic) NSString *ide_testReport_perfMetric_name;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

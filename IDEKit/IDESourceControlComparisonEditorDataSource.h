@@ -7,18 +7,21 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation.h"
-#import "IDEComparisonEditorDataSource.h"
+#import "IDEWorkspaceComparisonEditorDataSource.h"
 
-@class DVTStackBacktrace, IDEEditorDocument, NSOperationQueue, NSString;
+@class DVTStackBacktrace, IDEEditorDocument, IDEWorkspace, NSOperationQueue, NSString;
 
-@interface IDESourceControlComparisonEditorDataSource : NSObject <IDEComparisonEditorDataSource, DVTInvalidation>
+@interface IDESourceControlComparisonEditorDataSource : NSObject <IDEWorkspaceComparisonEditorDataSource, DVTInvalidation>
 {
     IDEEditorDocument *_originalDocument;
     NSOperationQueue *_navItemQueue;
+    IDEWorkspace *_workspace;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 + (id)dataSourceLogAspect;
+@property(retain) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 @property(retain) IDEEditorDocument *originalDocument; // @synthesize originalDocument=_originalDocument;
 - (void).cxx_destruct;
 - (id)documentForAncestorDocumentLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;

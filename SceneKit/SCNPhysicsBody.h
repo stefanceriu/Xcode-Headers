@@ -13,7 +13,6 @@
 
 @interface SCNPhysicsBody : NSObject <NSCopying, NSSecureCoding>
 {
-    id _reserved;
     SCNNode *_node;
     double _mass;
     double _charge;
@@ -28,21 +27,22 @@
     struct SCNVector3 _velocityFactor;
     struct SCNVector3 _angularVelocityFactor;
     struct SCNVector3 _velocity;
+    BOOL _ignoreGravity;
+    BOOL _explicitMomentOfInertia;
+    struct SCNVector3 _momentOfInertia;
     unsigned long long _categoryBitMask;
     unsigned long long _collisionBitMask;
-    BOOL _resting;
+    unsigned long long _contactTestBitMask;
     BOOL _allowsResting;
     BOOL _isDefaultShape;
     struct btRigidBody *_body;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)kinematicBody;
 + (id)dynamicBody;
 + (id)staticBody;
 + (id)bodyWithType:(long long)arg1 shape:(id)arg2;
-- (id).cxx_construct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)_didDecodeSCNPhysicsBody:(id)arg1;
@@ -65,10 +65,13 @@
 @property(nonatomic) struct SCNVector3 angularVelocityFactor;
 @property(nonatomic) struct SCNVector3 velocityFactor;
 @property(nonatomic) struct SCNVector4 angularVelocity;
+@property(nonatomic, getter=isAffectedByGravity) BOOL affectedByGravity;
 @property(nonatomic) struct SCNVector3 velocity;
+@property(nonatomic) unsigned long long contactTestBitMask;
 @property(nonatomic) unsigned long long collisionBitMask;
 @property(nonatomic) unsigned long long categoryBitMask;
 @property(retain, nonatomic) SCNPhysicsShape *physicsShape;
+- (struct btCollisionShape *)_shapeHandleWithShape:(id)arg1 owner:(id)arg2;
 @property(nonatomic) double angularDamping;
 @property(nonatomic) double damping;
 @property(nonatomic) double rollingFriction;
@@ -77,6 +80,9 @@
 @property(nonatomic) BOOL allowsResting;
 @property(readonly, nonatomic) BOOL isResting;
 @property(nonatomic) double charge;
+@property(nonatomic) BOOL usesDefaultMomentOfInertia;
+@property(nonatomic) struct SCNVector3 momentOfInertia;
+- (BOOL)respondsToCollision;
 @property(nonatomic) double mass;
 @property(nonatomic) long long type;
 - (void)dealloc;

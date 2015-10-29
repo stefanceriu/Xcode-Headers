@@ -19,6 +19,7 @@
 @property(readonly) BOOL backgroundDownloadInProgress; // @synthesize backgroundDownloadInProgress=_backgroundDownloadInProgress;
 - (void).cxx_destruct;
 - (id)_genericErrorMessage;
+- (id)_badPackageErrorMessage;
 - (id)_notEnoughSpaceErrorMessage;
 - (id)errorMessageForError:(id)arg1;
 - (id)_errorAttributes;

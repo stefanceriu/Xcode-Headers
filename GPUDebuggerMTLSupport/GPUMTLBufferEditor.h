@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     DYRenderingAttributes *_renderingAttributes;
     double _minColumnWidth;
     BOOL _isPopulated;
+    BOOL _isIndexBuffer;
     BOOL _showOffset;
     GPUDataTableView *_vboView;
     NSPopUpButton *_displayFormatPopup;

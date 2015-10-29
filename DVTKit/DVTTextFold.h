@@ -6,23 +6,38 @@
 
 #import "NSObject.h"
 
-@class NSAttributedString, NSMutableArray, NSString;
+#import "DVTInvalidation.h"
 
-@interface DVTTextFold : NSObject
+@class DVTStackBacktrace, NSAttributedString, NSMutableArray, NSString, NSTextAttachmentCell;
+
+@interface DVTTextFold : NSObject <DVTInvalidation>
 {
     struct _NSRange _relativeLocation;
     DVTTextFold *_parent;
     NSMutableArray *_children;
-    NSString *_label;
     unsigned long long _foldStyle;
+    NSTextAttachmentCell *_attachmentCell;
+    id _representedObject;
 }
 
++ (id)keyPathsForValuesAffectingReplacementRange;
++ (id)keyPathsForValuesAffectingDisplayString;
 + (id)foldsFromString:(id)arg1;
 + (id)decodeFold:(id)arg1 forParent:(id)arg2;
-@property unsigned long long foldStyle; // @synthesize foldStyle=_foldStyle;
++ (Class)_webViewAttachmentCellClass;
++ (Class)_inlineTokenAttachmentCellClass;
++ (void)initialize;
+@property(retain) id representedObject; // @synthesize representedObject=_representedObject;
+@property(readonly) unsigned long long foldStyle; // @synthesize foldStyle=_foldStyle;
 - (void).cxx_destruct;
+- (struct _NSRange)fixedSelectionRangeForRange:(struct _NSRange)arg1 affinity:(unsigned long long)arg2 inTextView:(id)arg3;
+- (unsigned long long)foldingTypesetter:(id)arg1 shouldUseControlCharacterAction:(unsigned long long)arg2 remainingNominalParagraphRange:(struct _NSRange *)arg3 andParagraphSeparatorRange:(struct _NSRange *)arg4 charactarIndex:(unsigned long long)arg5 layoutManager:(id)arg6 string:(id)arg7;
+- (struct CGRect)foldingTypesetter:(id)arg1 shouldUseBoundingBox:(struct CGRect)arg2 forControlGlyphAtIndex:(unsigned long long)arg3 textContainer:(id)arg4 proposedLineFragment:(struct CGRect)arg5 glyphPosition:(struct CGPoint)arg6 characterIndex:(unsigned long long)arg7;
+- (struct CGRect)foldingLayoutManager:(id)arg1 shouldUseBoundingRect:(struct CGRect)arg2 forGlyphRange:(struct _NSRange)arg3 inTextContainer:(id)arg4;
 @property(readonly) NSAttributedString *foldedIconString;
-@property(copy) NSString *label;
+@property(readonly) NSTextAttachmentCell *attachmentCell; // @synthesize attachmentCell=_attachmentCell;
+@property(readonly) struct _NSRange replacementRange;
+@property(readonly) NSString *displayString;
 @property(readonly) NSMutableArray *children;
 @property(readonly) unsigned long long numberOfChildren;
 - (id)removeChildren:(id)arg1;
@@ -40,16 +55,27 @@
 - (id)allFoldsTouchingRange:(struct _NSRange)arg1;
 - (id)inlineFoldsTouchingRange:(struct _NSRange)arg1;
 - (id)blockFoldsTouchingRange:(struct _NSRange)arg1;
+- (void)enumerateDescendantsWithOptions:(unsigned long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (BOOL)deleteAsToken;
 - (BOOL)isCharacterFoldedAtIndex:(unsigned long long)arg1;
 - (BOOL)rangeIsInsideAFold:(struct _NSRange)arg1;
 - (void)offsetBy:(long long)arg1;
 @property struct _NSRange range;
 - (BOOL)validate;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)innerDescription:(id)arg1;
 @property(readonly) NSString *stringValue;
 - (id)_pList;
-- (id)initWithRange:(struct _NSRange)arg1;
+- (void)primitiveInvalidate;
+- (id)initWithRepresentedObject:(id)arg1 range:(struct _NSRange)arg2 style:(unsigned long long)arg3;
+
+// Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

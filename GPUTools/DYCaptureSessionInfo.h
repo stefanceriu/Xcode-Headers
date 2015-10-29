@@ -39,8 +39,9 @@
 @property(readonly, nonatomic) unsigned int version; // @synthesize version=_version;
 @property(readonly, retain, nonatomic) DYDeviceInfo *controlDeviceInfo; // @synthesize controlDeviceInfo=_controlDeviceInfo;
 @property(readonly, retain, nonatomic) DYDeviceInfo *deviceInfo; // @synthesize deviceInfo=_deviceInfo;
-- (BOOL)canPlaybackOnDeviceWithInfo:(id)arg1 limitBackwardsCompatibility:(BOOL)arg2;
-- (BOOL)canPlaybackOnDeviceWithInfo:(id)arg1 limitBackwardsCompatibility:(BOOL)arg2 withBlock:(CDUnknownBlockType)arg3;
+- (BOOL)canPlaybackOnDeviceWithInfo:(id)arg1 limitBackwardsCompatibility:(BOOL)arg2 isInternal:(BOOL)arg3;
+- (BOOL)_isBackwardsCompatible:(id)arg1 isInternal:(BOOL)arg2;
+- (BOOL)canPlaybackOnDeviceWithInfo:(id)arg1 limitBackwardsCompatibility:(BOOL)arg2 isInternal:(BOOL)arg3 withBlock:(CDUnknownBlockType)arg4;
 - (id)labelForThreadID:(unsigned long long)arg1;
 - (id)labelForQueueID:(unsigned long long)arg1;
 - (int)linkTimeVersionForLibrary:(id)arg1;

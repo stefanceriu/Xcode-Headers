@@ -10,6 +10,8 @@
 {
 }
 
+- (BOOL)isPlaceholderRevision;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)_initWithIdentifier:(id)arg1;
 - (id)init;
 

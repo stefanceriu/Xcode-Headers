@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, IDEContainer, IDEIssueProvider, NSArray, NSMutableArray, NSSet;
+@class IDEContainer, IDEIssueProvider, NSArray, NSMapTable, NSMutableArray, NSSet;
 
 @interface IDEIssueGroup : NSObject
 {
@@ -14,10 +14,10 @@
     IDEContainer *_container;
     id <IDEBlueprint> _blueprint;
     NSMutableArray *_issueFileGroups;
-    DVTMapTable *_issueFileGroupsIndex;
+    NSMapTable *_issueFileGroupsIndex;
     NSMutableArray *_issuesWithNoFile;
     NSMutableArray *_issueTypeGroups;
-    DVTMapTable *_issueTypeGroupsIndex;
+    NSMapTable *_issueTypeGroupsIndex;
     unsigned long long _testFailureCount;
     unsigned long long _errorCount;
     unsigned long long _warningCount;

@@ -72,15 +72,19 @@ struct NSView {
     } _field14;
 };
 
-#pragma mark Typedef'd Structures
-
-typedef struct {
+struct _IBEdgeInsets {
     double _field1;
     double _field2;
     double _field3;
-    char _field4;
-    char _field5;
-} CDStruct_961d3510;
+    double _field4;
+};
+
+struct _NSRange {
+    unsigned long long _field1;
+    unsigned long long _field2;
+};
+
+#pragma mark Typedef'd Structures
 
 typedef struct {
     double minX;
@@ -116,4 +120,14 @@ typedef struct {
         double length;
     } range;
 } CDStruct_8f194ad9;
+
+#pragma mark Typedef'd Unions
+
+typedef union {
+    struct {
+        long long _field1;
+        long long _field2;
+    } _field1;
+    long long _field2[2];
+} CDUnion_42e99c75;
 

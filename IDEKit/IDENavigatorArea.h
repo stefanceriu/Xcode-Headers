@@ -10,35 +10,35 @@
 #import "DVTStatefulObject.h"
 #import "IDENavigatorOutlineViewLoadingDelegate.h"
 
-@class DVTBorderedView, DVTChooserView, DVTExtension, DVTObservingToken, DVTReplacementView, DVTStateToken, IDENavigatorFilterControlBar, NSArrayController, NSMutableDictionary, NSString;
+@class DVTBorderedView, DVTChooserView, DVTExtension, DVTObservingToken, DVTReplacementView, DVTStateToken, IDENavigatorFilterControlBar, IDEWorkspace, NSArrayController, NSMutableDictionary, NSString;
 
 @interface IDENavigatorArea : IDEViewController <IDENavigatorOutlineViewLoadingDelegate, DVTReplacementViewDelegate, DVTStatefulObject>
 {
     DVTChooserView *_chooserView;
-    DVTReplacementView *_replacementView;
-    NSArrayController *_extensionsController;
-    DVTExtension *_currentExtension;
-    NSMutableDictionary *_perNavigatorCache;
-    NSString *_nonMiniDebuggingModeExtensionIdentifier;
     DVTObservingToken *_workspaceActivityObservingToken;
-    DVTObservingToken *_inMiniDebuggingModeObservingToken;
-    BOOL _didLoadInitialNavigator;
-    BOOL _isInvalidating;
     DVTObservingToken *_editorSelectedItemObservingToken;
     DVTObservingToken *_currentNavigatorObservingToken;
     id <DVTCancellable> _updateFocusedEditorSelectedItemToken;
+    NSMutableDictionary *_perNavigatorCache;
+    BOOL _didLoadInitialNavigator;
+    BOOL _isInvalidating;
     IDENavigatorFilterControlBar *_filterControlBar;
-    DVTBorderedView *_containerBorderedView;
+    DVTReplacementView *_replacementView;
+    NSArrayController *_extensionsController;
+    DVTExtension *_currentExtension;
+    DVTBorderedView *_borderedView;
 }
 
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)keyPathsForValuesAffectingCurrentNavigator;
 + (id)navigatorsForContext:(id)arg1;
-@property __weak DVTBorderedView *containerBorderedView; // @synthesize containerBorderedView=_containerBorderedView;
-@property(readonly) IDENavigatorFilterControlBar *filterControlBar; // @synthesize filterControlBar=_filterControlBar;
++ (id)keyPathsForValuesAffectingWorkspace;
+@property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property(retain, nonatomic) DVTExtension *currentExtension; // @synthesize currentExtension=_currentExtension;
 @property(retain) NSArrayController *extensionsController; // @synthesize extensionsController=_extensionsController;
+@property(retain) DVTReplacementView *replacementView; // @synthesize replacementView=_replacementView;
+@property(readonly) IDENavigatorFilterControlBar *filterControlBar; // @synthesize filterControlBar=_filterControlBar;
 - (void).cxx_destruct;
 - (double)minimumContentWidth;
 - (void)commitStateToDictionary:(id)arg1;
@@ -46,11 +46,9 @@
 - (void)_setCurrentExtensionIdentifier:(id)arg1;
 - (id)_currentExtensionIdentifier;
 - (BOOL)delegateFirstResponder;
-- (void)_inMiniDebuggingModeChanged;
 @property(readonly) NSString *currentNavigatorIdentifier;
 - (id)currentNavigator;
 - (void)_clearPerNavigatorCache;
-- (void)_cancelWorkspaceActivityObserving;
 - (void)showNavigatorWithIdentifier:(id)arg1;
 - (void)viewWillUninstall;
 - (void)_handleCurrentNavigatorChanged;
@@ -67,7 +65,10 @@
 - (void)primitiveInvalidate;
 - (id)_imageForNavigator:(id)arg1 withName:(id)arg2;
 - (void)loadView;
+- (void)_rebuildNavigatorOptions;
+- (id)_playgroundExcludedNavigators;
 - (id)supportedContext;
+@property(readonly) IDEWorkspace *workspace;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

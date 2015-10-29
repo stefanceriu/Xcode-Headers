@@ -14,6 +14,8 @@
 @interface DVTAnalyticsAppIdentifier : NSObject <DVTAnalyticsServiceURLComponentProviding, DVTServicesJSONSerialization>
 {
     BOOL _isBeta;
+    NSString *_platformSDKIdentifier;
+    NSString *_analyticsPlatformIdentifier;
     NSString *_adamId;
     NSString *_bundleIdentifier;
     NSString *_version;
@@ -21,7 +23,10 @@
 }
 
 + (id)objectFromJSONRepresentation:(id)arg1 error:(id *)arg2;
-+ (id)appIdentifierWithAdamId:(id)arg1 bundleIdentifier:(id)arg2 version:(id)arg3 buildNumber:(id)arg4 isBeta:(BOOL)arg5;
++ (BOOL)hasValidAnalyticsPlatformIdentifierForPlatformSDKIdentifier:(id)arg1;
++ (id)analyticsPlatformIdentifierForPlatformSDKIdentifier:(id)arg1;
++ (id)platformSDKIdentifierForAnalyticsPlatformIdentifier:(id)arg1;
++ (id)appIdentifierWithAdamId:(id)arg1 bundleIdentifier:(id)arg2 version:(id)arg3 buildNumber:(id)arg4 isBeta:(BOOL)arg5 platformSDKIdentifierOrNil:(id)arg6;
 @property(readonly) BOOL isBeta; // @synthesize isBeta=_isBeta;
 @property(readonly) NSString *buildNumber; // @synthesize buildNumber=_buildNumber;
 @property(readonly) NSString *version; // @synthesize version=_version;
@@ -34,6 +39,8 @@
 @property(readonly) NSArray *pathComponents;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
+@property(readonly) NSString *analyticsPlatformIdentifier; // @synthesize analyticsPlatformIdentifier=_analyticsPlatformIdentifier;
+@property(retain) NSString *platformSDKIdentifier; // @synthesize platformSDKIdentifier=_platformSDKIdentifier;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

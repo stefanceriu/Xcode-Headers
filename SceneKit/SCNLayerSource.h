@@ -17,7 +17,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) CALayer *layer; // @synthesize layer=_layer;
 - (void)dealloc;
 - (BOOL)isOpaque;
-- (id)textureSourceForContext:(void *)arg1;
+- (id)textureSource;
 
 @end
 

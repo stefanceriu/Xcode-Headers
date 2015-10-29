@@ -23,6 +23,7 @@
 - (BOOL)ibShadowedUsingManagedProxy;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibResolvedTypeNameForControllerKey:(id)arg1;
+- (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 
 // Remaining properties
 @property BOOL ibShadowedAutomaticallyPreparesContent; // @dynamic ibShadowedAutomaticallyPreparesContent;

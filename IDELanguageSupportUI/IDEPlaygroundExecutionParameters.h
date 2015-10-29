@@ -23,11 +23,11 @@
     CDUnknownBlockType _playgroundExpressionCompleteBlock;
     CDUnknownBlockType _playgroundDataHandlerBlock;
     IDEPlaygroundPreparationParameters *_preparationParameters;
-    unsigned long long _autoTerminationDelay;
+    NSNumber *_autoTerminationDelay;
 }
 
 + (BOOL)supportsSecureCoding;
-@property(readonly) unsigned long long autoTerminationDelay; // @synthesize autoTerminationDelay=_autoTerminationDelay;
+@property(readonly) NSNumber *autoTerminationDelay; // @synthesize autoTerminationDelay=_autoTerminationDelay;
 @property(readonly) IDEPlaygroundPreparationParameters *preparationParameters; // @synthesize preparationParameters=_preparationParameters;
 @property(readonly) CDUnknownBlockType playgroundDataHandlerBlock; // @synthesize playgroundDataHandlerBlock=_playgroundDataHandlerBlock;
 @property(readonly) CDUnknownBlockType playgroundExpressionCompleteBlock; // @synthesize playgroundExpressionCompleteBlock=_playgroundExpressionCompleteBlock;
@@ -40,9 +40,10 @@
 @property(readonly, copy) DVTLineOffsetAwareStringWrapper *sourceCodePreambleToExecute; // @synthesize sourceCodePreambleToExecute=_sourceCodePreambleToExecute;
 @property(readonly, copy) DVTLineOffsetAwareStringWrapper *sourceCodeToExecute; // @synthesize sourceCodeToExecute=_sourceCodeToExecute;
 - (void).cxx_destruct;
+- (id)debugDescription;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithSourceCodeToExecute:(id)arg1 sourceCodePreambleToExecute:(id)arg2 documentFileURL:(id)arg3 documentContentTimestamp:(id)arg4 autoTerminationDelay:(unsigned long long)arg5 executionPreparationParameters:(id)arg6 playgroundReportResultBlock:(CDUnknownBlockType)arg7 playgroundReportConsoleItemBlock:(CDUnknownBlockType)arg8 playgroundExecutionWillFinishBlock:(CDUnknownBlockType)arg9 playgroundExpressionCompleteBlock:(CDUnknownBlockType)arg10 playgroundDataHandlerBlock:(CDUnknownBlockType)arg11 errorHandlerBlock:(CDUnknownBlockType)arg12;
+- (id)initWithSourceCodeToExecute:(id)arg1 sourceCodePreambleToExecute:(id)arg2 documentFileURL:(id)arg3 documentContentTimestamp:(id)arg4 autoTerminationDelay:(id)arg5 executionPreparationParameters:(id)arg6 playgroundReportResultBlock:(CDUnknownBlockType)arg7 playgroundReportConsoleItemBlock:(CDUnknownBlockType)arg8 playgroundExecutionWillFinishBlock:(CDUnknownBlockType)arg9 playgroundExpressionCompleteBlock:(CDUnknownBlockType)arg10 playgroundDataHandlerBlock:(CDUnknownBlockType)arg11 errorHandlerBlock:(CDUnknownBlockType)arg12;
 
 @end
 

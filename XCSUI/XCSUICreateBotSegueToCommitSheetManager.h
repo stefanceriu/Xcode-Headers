@@ -10,6 +10,7 @@
 
 @interface XCSUICreateBotSegueToCommitSheetManager : NSObject
 {
+    BOOL _shouldIntegrateImmediately;
     IDEWorkspace *_workspace;
     NSWindow *_workspaceWindow;
     XCSService *_service;
@@ -22,6 +23,7 @@
 + (void)doIntegrateImmediatelyForServer:(id)arg1 andBotGUID:(id)arg2;
 + (void)showWillNeedToCommitAlertForWindow:(id)arg1 schemeWithName:(id)arg2 error:(id)arg3;
 + (void)showWillNeedToCommitAlertForWindow:(id)arg1 schemeWithName:(id)arg2;
+@property(nonatomic) BOOL shouldIntegrateImmediately; // @synthesize shouldIntegrateImmediately=_shouldIntegrateImmediately;
 @property(retain, nonatomic) IDEScheme *scheme; // @synthesize scheme=_scheme;
 @property(retain, nonatomic) NSString *botGUID; // @synthesize botGUID=_botGUID;
 @property(retain, nonatomic) NSMapTable *workingCopiesToRemoteRepositories; // @synthesize workingCopiesToRemoteRepositories=_workingCopiesToRemoteRepositories;
@@ -33,6 +35,7 @@
 - (void)_prepareAndRunCommitSheetWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)prepareAndRunCommitSheet;
 - (id)init;
+- (id)initWithBotDefinitionContext:(id)arg1 window:(id)arg2;
 - (id)initWithCreateBotAssistantContext:(id)arg1;
 
 @end

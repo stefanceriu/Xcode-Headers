@@ -6,23 +6,25 @@
 
 #import "NSMutableDictionary.h"
 
-@class DVTMapTable, DVTMutableOrderedSet;
+@class DVTMutableOrderedSet, NSMapTable;
 
 @interface DVTMutableOrderedDictionary : NSMutableDictionary
 {
     DVTMutableOrderedSet *set;
-    DVTMapTable *backingMapTable;
+    NSMapTable *backingMapTable;
 }
 
 - (void).cxx_destruct;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)keyAtIndex:(long long)arg1;
 - (id)allKeys;
 - (id)lastValue;
 - (id)lastKey;
 - (id)firstValue;
 - (id)firstKey;
 - (void)removeObjectForKey:(id)arg1;
+- (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
 - (void)setObject:(id)arg1 forKey:(id)arg2;
 - (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
 - (id)keyEnumerator;

@@ -10,7 +10,6 @@
 {
 }
 
-- (void)_passwordSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)_showPasswordSheetForDeveloperProfileAtURL:(id)arg1 accountProviders:(id)arg2 window:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)importDeveloperProfileWithAccountProviders:(id)arg1 window:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)importDeveloperProfileFromFilePath:(id)arg1 withAccountProviders:(id)arg2 window:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;

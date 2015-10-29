@@ -14,6 +14,7 @@
     IDEInspectorKeyPath *_menuItemsKeyPath;
     NSString *_title;
     IDEInspectorKeyPath *_titleKeyPath;
+    IDEInspectorKeyPath *_targetKeyPath;
     NSPopUpButton *_pullDown;
 }
 
@@ -23,9 +24,10 @@
 - (void)refresh;
 - (id)staticMenuItems;
 - (void)applyMenuItemsToPullDown:(id)arg1;
-- (void)refreshTarget:(id)arg1;
+- (void)refreshTarget;
 - (void)refreshTitle:(id)arg1;
 - (double)baseline;
+- (void)broadcastAction:(id)arg1;
 
 @end
 

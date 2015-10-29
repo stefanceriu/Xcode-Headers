@@ -8,8 +8,6 @@
 
 @interface SKEditorScene : SKScene
 {
-    float _oldXScale;
-    float _oldYScale;
 }
 
 - (void)didChangeSize:(struct CGSize)arg1;

@@ -6,18 +6,21 @@
 
 #import "NSObject.h"
 
-@class DTTimelineDecoratedPlane;
+@class DTTimelineDecoratedPlane, XRIntKeyedDictionary;
 
 @interface DTTimelineInspectionDecorationContainer : NSObject
 {
     struct map<XRTimeRange, DTTimelineInspectionDecoration *, std::__1::less<XRTimeRange>, std::__1::allocator<std::__1::pair<const XRTimeRange, DTTimelineInspectionDecoration *>>> _decorationsByTimeRange;
+    XRIntKeyedDictionary *_associatedObjects;
     DTTimelineDecoratedPlane *_plane;
 }
 
 @property(nonatomic) __weak DTTimelineDecoratedPlane *plane; // @synthesize plane=_plane;
+@property(retain, nonatomic) XRIntKeyedDictionary *associatedObjects; // @synthesize associatedObjects=_associatedObjects;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)decorationAtTime:(unsigned long long)arg1;
+- (id)objectForLabel:(unsigned long long)arg1;
 - (void)addDecorationsFromContainer:(struct DTTimelineDecorationContainer *)arg1;
 - (void)decorate:(CDUnknownBlockType)arg1;
 - (id)init;

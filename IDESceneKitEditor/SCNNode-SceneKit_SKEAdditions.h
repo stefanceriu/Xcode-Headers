@@ -6,29 +6,37 @@
 
 #import "SCNNode.h"
 
-@class NSImage, NSString, SCNParticleSystem;
+@class NSString, SCNParticleSystem;
 
 @interface SCNNode (SceneKit_SKEAdditions)
-+ (id)keyPathsForValuesAffectingIde_displayName;
-+ (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
-- (BOOL)ide_canBenefitFromFlattening;
++ (id)keyPathsForValuesAffectingSke_eulerAngles;
++ (id)keyPathsForValuesAffectingSke_worldPosition;
+- (struct SCNVector3)ske_worldBoundingBoxDimensions;
+- (struct SCNVector3)ske_localBoundingBoxDimensions;
+@property(nonatomic) long long ske_referenceLoadingPolicy;
+- (id)ske_nodeReferenceExpectedFilePath;
+- (void)setSke_referenceName:(id)arg1;
+- (id)ske_referenceName;
+@property(readonly) BOOL ske_isReferenceOrUnderAReference;
+@property(readonly) BOOL ske_isReference;
+- (id)ske_copyAndAutoUnshareAttributes;
+- (void)ske_autoUnshareAttributes;
+@property unsigned long long ske_physicsFieldType;
+- (BOOL)ske_hasPhysics;
+@property unsigned long long ske_physicsType;
+@property(readonly) BOOL ide_canBenefitFromFlattening;
 - (BOOL)ide_hasNodeAttributes;
-- (BOOL)hasPotentialPointOfView;
-- (BOOL)isPotentialPointOfView;
-- (id)statusInfo;
-- (unsigned long long)ide_attributesInfo;
-@property(readonly) BOOL ide_shouldAppearInSceneGraph;
+@property(readonly) BOOL hasPotentialPointOfView;
+@property(readonly, getter=isPotentialPointOfView) BOOL potentialPointOfView;
 @property(readonly) BOOL ide_shouldBeRemovedFromSceneGraphUponSave;
 @property double ide_rotationAngle;
+@property struct SCNVector3 ske_eulerAngles;
 @property struct SCNVector3 ide_rotationAxis;
-@property(readonly) NSImage *ide_icon;
+@property struct SCNVector3 ske_worldPosition;
 @property(retain) NSString *ide_visualizedParticleSystemFileName;
 @property(retain) SCNParticleSystem *ide_visualizedParticleSystem;
 @property(retain) SCNParticleSystem *ide_firstParticleSystem;
-- (long long)polygonCount;
-@property(readonly) NSString *ide_displayName;
-- (id)ske_undoKVOKeypaths;
-- (long long)ide_renderingOrder;
-- (void)setIde_renderingOrder:(long long)arg1;
+@property(readonly) long long polygonCount;
+@property long long ide_renderingOrder;
 @end
 

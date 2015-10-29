@@ -15,13 +15,13 @@
     DVTObservingToken *_typeGroupsObservingToken;
 }
 
++ (id)keyPathsForValuesAffectingSubtitle;
 - (void).cxx_destruct;
 - (id)subtitle;
 - (id)keyPathsAffectingValueForSubtitle;
 - (id)childRepresentedObjects;
 - (void)primitiveInvalidate;
 - (BOOL)isLeaf;
-- (BOOL)isMajorGroup;
 
 @end
 

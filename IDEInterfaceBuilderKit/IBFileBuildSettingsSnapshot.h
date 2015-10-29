@@ -39,8 +39,10 @@
 @property(readonly) BOOL allBuildablesAreUsingAutomaticReferencingCounting;
 - (id)cachedValuesForBuildSetting:(id)arg1;
 - (BOOL)isEmpty;
+- (id)listValuesForBuildSetting:(id)arg1;
 - (id)valuesForBuildSetting:(id)arg1;
-- (id)valuesForBuildSettingByBuildableThenConfiguration:(id)arg1;
+- (id)valuesForBuildSetting:(id)arg1 type:(int)arg2;
+- (id)valuesForBuildSettingByBuildableThenConfiguration:(id)arg1 type:(int)arg2;
 - (id)buildParametersForConfiguration:(id)arg1 ofBuildable:(id)arg2;
 - (id)initWithBuildables:(id)arg1 buildParametersByBuildableThenConfiguration:(id)arg2;
 

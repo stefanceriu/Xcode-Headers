@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class SCNView;
+@class NSMutableArray, SCNView;
 
 @interface SCNEventHandler : NSObject
 {
-    id _reserved;
     SCNView *_view;
+    struct __IOHIDManager *_hidManager;
+    NSMutableArray *_controllers;
 }
 
 - (BOOL)wantsRedraw;

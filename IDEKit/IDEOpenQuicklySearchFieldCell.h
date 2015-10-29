@@ -11,6 +11,7 @@
 }
 
 + (double)_keyboardDelayForPartialSearchString:(id)arg1;
+- (double)progressIndicatorWidth;
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (struct CGRect)cancelButtonRectForBounds:(struct CGRect)arg1;
 

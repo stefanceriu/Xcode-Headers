@@ -13,35 +13,51 @@
 
 @interface SKShader : NSObject <NSCopying, NSCoding>
 {
-    _Bool _builtInUniformsDirty;
-    _Bool _programIsDirty;
-    double _prevUniformUpdateTime;
     NSMutableArray *_uniforms;
+    NSArray *_attributes;
     NSMutableDictionary *_uniformData;
     NSString *_source;
-    struct xglProgram *_xglProgram;
+    NSString *_fileName;
+    shared_ptr_394c00aa _backingProgram;
+    map_a51e33c7 _attributeBuffers;
 }
 
 + (id)shaderWithFileNamed:(id)arg1;
 + (id)shaderWithSource:(id)arg1 uniforms:(id)arg2;
 + (id)shaderWithSource:(id)arg1;
 + (id)shader;
+- (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)_getShaderCompilationLog;
-@property struct xglProgram *_xglProgram;
+- (id)_getMetalFragmentFunctionName;
+- (id)_getMetalVertexOutDefinition;
+- (id)_generateMetalSource;
+@property(readonly) shared_ptr_d7c0f433 _commands;
+- (shared_ptr_d7c0f433)_commandsForBatchOffset:(int)arg1 count:(int)arg2;
+@property(readonly) shared_ptr_394c00aa _backingProgram;
+- (BOOL)_backingProgramIsDirty;
 - (BOOL)isValid;
 @property(readonly) NSArray *_textureUniforms;
-- (struct xglProgram *)_updateUniforms;
-- (struct xglProgram *)_syncUniformsForTime:(double)arg1;
-- (void)_createProgram;
 - (void)removeUniformNamed:(id)arg1;
 - (id)uniformNamed:(id)arg1;
 - (void)addUniform:(id)arg1;
 @property(copy) NSArray *uniforms;
+- (id)fullMetalFragmentSource;
+- (id)fullMetalVertexSource;
+- (id)fullFragmentSource;
+- (id)fullVertexSource;
+- (void)generateFragmentAttributeDeclares:(id *)arg1;
+- (void)generateVertexAttributeDeclares:(id *)arg1 statements:(id *)arg2;
+- (id)fragmentPreludeMetal;
+- (id)fragmentPrelude;
 @property(copy) NSString *source;
+- (void)dealloc;
+@property(readonly) map_a51e33c7 *_attributeBuffers;
+- (void)setAttributes:(id)arg1;
+- (id)attributes;
 - (id)initWithSource:(id)arg1 uniforms:(id)arg2;
 - (id)initWithSource:(id)arg1;
 - (id)init;

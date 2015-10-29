@@ -13,12 +13,14 @@
     BOOL _useProportionalBorderWidth;
     BOOL _circularStyle;
     BOOL _drawsBackground;
+    BOOL _drawsBorder;
     BOOL _selected;
     NSColor *_color;
     double _proportionalInset;
 }
 
 @property(nonatomic) BOOL selected; // @synthesize selected=_selected;
+@property(nonatomic) BOOL drawsBorder; // @synthesize drawsBorder=_drawsBorder;
 @property(nonatomic) BOOL drawsBackground; // @synthesize drawsBackground=_drawsBackground;
 @property(nonatomic) BOOL circularStyle; // @synthesize circularStyle=_circularStyle;
 @property(nonatomic) double proportionalInset; // @synthesize proportionalInset=_proportionalInset;
@@ -28,6 +30,7 @@
 - (void)_drawRectangleStyle;
 - (void)_drawCircularStyle;
 - (void)drawRect:(struct CGRect)arg1;
+@property(readonly) NSColor *colorForDrawing;
 - (void)dvt_colorSwatchView_common_init;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;

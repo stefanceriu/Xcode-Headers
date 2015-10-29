@@ -27,6 +27,7 @@
 - (id)verticalScroller;
 - (void)awakeFromNib;
 - (void)dealloc;
+- (void)teardown;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 

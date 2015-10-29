@@ -8,7 +8,7 @@
 
 #import "NSMenuDelegate.h"
 
-@class DVTNotificationToken, DVTObservingToken, DVTPointerArray, DVTSourceTextView, NSArray, NSIndexSet, NSMenu, NSString, NSTrackingArea;
+@class DVTNotificationToken, DVTObservingToken, DVTSourceTextView, NSArray, NSIndexSet, NSMenu, NSPointerArray, NSString, NSTrackingArea;
 
 @interface DVTComparisonSplitView : DVTSplitView <NSMenuDelegate>
 {
@@ -16,7 +16,7 @@
     NSTrackingArea *_trackingArea;
     struct CGRect *_switchRectArray;
     struct CGRect *_menuRectArray;
-    DVTPointerArray *_swoops;
+    NSPointerArray *_swoops;
     NSArray *_diffDescriptors;
     NSIndexSet *_modifiedDiffDescriptorIndexes;
     NSIndexSet *_hiddenDiffDescriptorIndexes;

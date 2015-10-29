@@ -6,29 +6,27 @@
 
 #import "NSObject.h"
 
-#import "NSURLDownloadDelegate.h"
+#import "NSURLSessionDownloadDelegate.h"
 
 @class NSString;
 
-@interface XCSUIIntegrationAssetDownloadDelegate : NSObject <NSURLDownloadDelegate>
+@interface XCSUIIntegrationAssetDownloadDelegate : NSObject <NSURLSessionDownloadDelegate>
 {
-    long long _expectedContentLength;
-    long long _downloadedBytes;
-    NSString *_destination;
+    NSString *_destinationFilePath;
     CDUnknownBlockType _callback;
+    NSString *_destinationDirectory;
+    NSString *_destinationFile;
 }
 
+@property(copy) NSString *destinationFile; // @synthesize destinationFile=_destinationFile;
+@property(copy) NSString *destinationDirectory; // @synthesize destinationDirectory=_destinationDirectory;
 @property(copy) CDUnknownBlockType callback; // @synthesize callback=_callback;
-@property(copy) NSString *destination; // @synthesize destination=_destination;
-@property long long downloadedBytes; // @synthesize downloadedBytes=_downloadedBytes;
-@property long long expectedContentLength; // @synthesize expectedContentLength=_expectedContentLength;
 - (void).cxx_destruct;
-- (BOOL)download:(id)arg1 shouldDecodeSourceDataOfMIMEType:(id)arg2;
-- (void)download:(id)arg1 didReceiveDataOfLength:(unsigned long long)arg2;
-- (void)download:(id)arg1 didCreateDestination:(id)arg2;
-- (void)download:(id)arg1 didReceiveResponse:(id)arg2;
-- (void)download:(id)arg1 didFailWithError:(id)arg2;
-- (void)downloadDidFinish:(id)arg1;
+- (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
+- (void)URLSession:(id)arg1 downloadTask:(id)arg2 didWriteData:(long long)arg3 totalBytesWritten:(long long)arg4 totalBytesExpectedToWrite:(long long)arg5;
+- (void)URLSession:(id)arg1 downloadTask:(id)arg2 didFinishDownloadingToURL:(id)arg3;
+- (void)unzipArchiveAtPath:(id)arg1;
+- (void)URLSession:(id)arg1 task:(id)arg2 didReceiveChallenge:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

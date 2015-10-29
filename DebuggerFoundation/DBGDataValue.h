@@ -14,14 +14,8 @@
 
 @interface DBGDataValue : NSObject <DBGLazyObservableDictionaryDelegate, IDEDataValue, DVTInvalidation>
 {
-    DBGStackFrame *_stackFrame;
-    DBGDataType *_dynamicType;
     DBGDataType *_previousDynamicType;
-    int _valueValidity;
-    BOOL _containsFunctionExpressions;
-    DBGDataValueSummaryFormatter *_summaryFormatter;
     NSMutableSet *_requestedChildrenByName;
-    DBGLazyObservableDictionary *_lazyChildValuesByName;
     BOOL _needToUpdateSummaryFormatter;
     BOOL _formattedSummaryHasAnyChanges;
     NSString *_logicalValue;
@@ -30,6 +24,12 @@
     DVTObservingToken *_valueObserver;
     DVTObservingToken *_inScopeObserver;
     DVTObservingToken *_childValuesObservationToken;
+    BOOL _containsFunctionExpressions;
+    int _valueValidity;
+    DBGStackFrame *_stackFrame;
+    DBGDataType *_dynamicType;
+    DBGDataValueSummaryFormatter *_summaryFormatter;
+    DBGLazyObservableDictionary *_lazyChildValuesByName;
 }
 
 + (void)initialize;
@@ -42,16 +42,21 @@
 + (id)keyPathsForValuesAffectingLogicalValue;
 + (id)kvoChildPathForValuePath:(id)arg1;
 @property(retain, nonatomic) DBGLazyObservableDictionary *lazyChildValuesByName; // @synthesize lazyChildValuesByName=_lazyChildValuesByName;
+@property(retain, nonatomic) DBGDataValueSummaryFormatter *summaryFormatter; // @synthesize summaryFormatter=_summaryFormatter;
 @property BOOL containsFunctionExpressions; // @synthesize containsFunctionExpressions=_containsFunctionExpressions;
 @property int valueValidity; // @synthesize valueValidity=_valueValidity;
 @property(readonly) DBGDataType *dynamicType; // @synthesize dynamicType=_dynamicType;
 @property(readonly) DBGStackFrame *stackFrame; // @synthesize stackFrame=_stackFrame;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
+@property(readonly) BOOL isMemoryFault;
 - (id)_contentDescription;
 - (id)_contentDescriptionWithChildValuesAtLevel:(unsigned long long)arg1;
 @property(readonly, copy) NSString *description;
 - (id)_paddingForLevel:(unsigned long long)arg1;
+- (void)loadedFullSummary:(CDUnknownBlockType)arg1;
+- (void)loadedSummary:(CDUnknownBlockType)arg1;
+@property(readonly, copy) NSString *fullSummary;
 - (id)primitiveChildValues;
 - (void)_handleChildValuesChanged;
 - (id)valueForKey:(id)arg1 forLazyDictionary:(id)arg2;
@@ -62,14 +67,12 @@
 @property(readonly) BOOL representsNullObjectPointer;
 @property(readonly) BOOL representsNilObjectiveCObject;
 - (void)watch;
-@property(readonly) NSString *realName;
 - (void)childWithName:(id)arg1 foundChild:(CDUnknownBlockType)arg2;
 @property(readonly) BOOL childValuesCountValid;
 - (void)loadedChildValues:(CDUnknownBlockType)arg1;
-@property(readonly) NSArray *childValues;
+@property(readonly, copy) NSArray *childValues;
 @property(readonly) BOOL hasChildValues;
 @property(readonly) BOOL inScope;
-@property(retain) DBGDataValueSummaryFormatter *summaryFormatter; // @synthesize summaryFormatter=_summaryFormatter;
 - (void)_updateSummaryFormatterIfNecessary;
 - (void)_updateSummaryFormatter;
 - (BOOL)wantsToProvideSummary;
@@ -95,14 +98,14 @@
 @property(readonly) BOOL dynamicTypeHasChanged;
 @property(readonly) BOOL summaryHasChanged;
 @property(retain) DBGDataValueFormat *format;
-@property(readonly) NSString *blockStartAddress;
-@property(readonly) NSString *summary;
+@property(readonly, copy) NSString *blockStartAddress;
+@property(readonly, copy) NSString *summary;
 - (void)primitiveSetDynamicType:(id)arg1;
 - (id)simpleTypeName;
 - (void)setDynamicType:(id)arg1;
 @property(readonly) DBGDataType *staticType;
-@property(readonly) NSString *expressionPath;
-@property(readonly) NSMutableSet *requestedChildrenByName; // @synthesize requestedChildrenByName=_requestedChildrenByName;
+@property(readonly, copy) NSString *expressionPath;
+@property(readonly) NSMutableSet *requestedChildrenByName;
 - (id)initWithStackFrame:(id)arg1;
 - (id)init;
 

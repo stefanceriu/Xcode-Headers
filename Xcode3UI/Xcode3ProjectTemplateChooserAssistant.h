@@ -10,6 +10,7 @@
 {
 }
 
++ (BOOL)showsCrossPlatformSection;
 + (id)supportedTemplateKind;
 
 @end

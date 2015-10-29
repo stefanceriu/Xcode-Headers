@@ -9,6 +9,5 @@
 @interface Xcode3Project (Xcode3ProjectNameRefactoring)
 - (void)_changeContainerFilePath:(id)arg1 inContext:(id)arg2;
 - (void)_renameProjectOldName:(id)arg1 newName:(id)arg2 inContext:(id)arg3;
-- (void)_renameProjectSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 @end
 

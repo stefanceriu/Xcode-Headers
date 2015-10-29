@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDENavigator.h>
 
-@class DVTBorderedView, DVTChooserView, DVTDocumentLocation, IDENavigatorFilterControlBar, IDENavigatorOutlineView, IDEReviewFilesButtonCell, IDEReviewFilesImageCell, IDESelection, NSArray, NSIndexSet, NSMenu, NSMutableArray, NSMutableIndexSet, NSMutableSet, NSString, NSTabView;
+@class DVTBorderedView, DVTChooserView, DVTDocumentLocation, IDENavigatorFilterControlBar, IDENavigatorOutlineView, IDEReviewFilesButtonCell, IDEReviewFilesImageCell, NSArray, NSIndexSet, NSMenu, NSMutableArray, NSMutableIndexSet, NSMutableSet, NSString, NSTabView;
 
 @interface IDEReviewFilesNavigator : IDENavigator
 {
@@ -40,11 +40,13 @@
     NSString *_filterString;
     BOOL _showFilter;
     BOOL _showCheckboxes;
+    BOOL _supportsWorkspaceNavigator;
 }
 
 + (id)keyPathsForValuesAffectingFilterPredicate;
 + (void)initialize;
 + (id)keyPathsForValuesAffectingCheckedFilePaths;
+@property BOOL supportsWorkspaceNavigator; // @synthesize supportsWorkspaceNavigator=_supportsWorkspaceNavigator;
 @property(copy) NSString *filterString; // @synthesize filterString=_filterString;
 @property(retain) NSMutableSet *mixedStateFilePaths; // @synthesize mixedStateFilePaths=_mixedStateFilePaths;
 @property BOOL showCheckboxes; // @synthesize showCheckboxes=_showCheckboxes;
@@ -82,7 +84,7 @@
 - (void)uncheckItemsAtFilePaths:(id)arg1;
 - (void)checkItemsAtFilePaths:(id)arg1;
 - (void)refreshItemsAtFilePaths:(id)arg1;
-@property(readonly, copy) IDESelection *contextMenuSelection;
+- (id)contextMenuSelection;
 @property(retain) NSMenu *contextMenu;
 - (id)filterPredicate;
 - (void)updateSelectedDocumentLocation;

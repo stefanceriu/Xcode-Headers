@@ -7,6 +7,9 @@
 #import "NSAlert.h"
 
 @interface NSAlert (DVTNSAlertAdditions)
++ (id)dvt_alertWithMessageText:(id)arg1 buttonTitles:(id)arg2 informativeTextWithFormat:(id)arg3;
++ (id)dvt_alertWithMessageText:(id)arg1 buttonTitles:(id)arg2 informativeText:(id)arg3;
++ (id)dvt_alertWithMessageText:(id)arg1;
 - (void)dvt_beginAlertModalForWindow:(id)arg1 allowSheetOverSheet:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)dvt_beginAlertModalForWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 @end

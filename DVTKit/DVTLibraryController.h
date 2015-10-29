@@ -99,7 +99,6 @@
 - (BOOL)tileViewIsFirstResponder;
 @property(readonly) DVTLibraryDetailController *currentDetailController;
 - (id)detailPopUpContentController;
-- (struct CGSize)draggingStickiness:(id)arg1;
 - (id)draggedImageState:(id)arg1;
 - (void)draggingEnded:(id)arg1;
 - (void)concludeDragOperation:(id)arg1;

@@ -8,10 +8,12 @@
 
 #import "SKNodeWithShader.h"
 
-@class NSImage, NSNumber, NSString, NSURL, SKNode, SKShader;
+@class NSNumber, NSString, NSURL, SKNode, SKShader;
 
 @interface SKSpriteNode (InspectorAdditions) <SKNodeWithShader>
++ (id)keyPathsForValuesAffectingNormalMapImageName;
 + (id)keyPathsForValuesAffectingZRotationDeg;
++ (id)keyPathsForValuesAffectingTextureImageName;
 + (id)keyPathsForValuesAffectingHasPhysicsBody;
 - (id)ide_undoKVOKeypaths;
 - (void)setNilValueForKey:(id)arg1;
@@ -21,10 +23,11 @@
 @property(nonatomic) double normalMapContrast;
 @property(nonatomic) double normalMapSmoothness;
 - (void)refreshNormalMap;
-- (void)setNormalMapImage:(id)arg1;
-- (id)normalMapImage;
+@property(retain, nonatomic) NSString *normalMapImageName;
 @property(retain, nonatomic) NSURL *customSpriteShader;
 @property(nonatomic) float spriteKitEditorMass;
+@property(nonatomic) double physicsBodyInitialVelocityY;
+@property(nonatomic) double physicsBodyInitialVelocityX;
 @property(nonatomic) double physicsBodyAngularDamping;
 @property(nonatomic) double physicsBodyLinearDamping;
 @property(nonatomic) double physicsBodyRestitution;
@@ -37,10 +40,11 @@
 @property(retain, nonatomic) NSNumber *skEditorShadowCastBitMask;
 @property(retain, nonatomic) NSNumber *skEditorLightingBitMask;
 @property(retain, nonatomic) NSNumber *skEditorFieldMask;
+@property(retain, nonatomic) NSNumber *skEditorContactMask;
 @property(retain, nonatomic) NSNumber *skEditorCollisionMask;
 @property(retain, nonatomic) NSNumber *skEditorCategoryMask;
 @property(nonatomic) int physicsBodyType;
-@property(retain, nonatomic) NSImage *textureImage;
+@property(retain, nonatomic) NSString *textureImageName;
 - (BOOL)hasPhysicsBody;
 @property(retain, nonatomic) SKNode *parentRef;
 @property(readonly, nonatomic) __weak SKNode *selfRef;

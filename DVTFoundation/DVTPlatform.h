@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTExtendedPlatformInfo, DVTFilePath, DVTHashTable, DVTPlatformFamily, DVTVersion, NSArray, NSDictionary, NSSet, NSString;
+#import "NSCopying.h"
 
-@interface DVTPlatform : NSObject
+@class DVTExtendedPlatformInfo, DVTFilePath, DVTPlatformFamily, DVTVersion, NSArray, NSDictionary, NSHashTable, NSSet, NSString;
+
+@interface DVTPlatform : NSObject <NSCopying>
 {
     NSString *_identifier;
     NSArray *_alternateNames;
@@ -22,7 +24,7 @@
     DVTFilePath *_iconPath;
     NSDictionary *_propertyListDictionary;
     NSDictionary *_internalPropertyListDictionary;
-    DVTHashTable *_SDKs;
+    NSHashTable *_SDKs;
     NSDictionary *_deviceProperties;
     NSString *_platformVersion;
 }
@@ -57,6 +59,7 @@
 @property(readonly, copy) NSArray *alternateNames; // @synthesize alternateNames=_alternateNames;
 @property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;

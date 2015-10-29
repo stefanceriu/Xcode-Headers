@@ -6,15 +6,14 @@
 
 #import <SpriteKit/SKEffectNode.h>
 
-@class NSColor, NSMutableArray, NSMutableDictionary, PKPhysicsWorld, SKPhysicsBody, SKPhysicsWorld, SKView;
+@class AVAudioEngine, AVAudioEnvironmentNode, NSColor, NSMapTable, NSMutableArray, PKPhysicsWorld, SKCameraNode, SKNode, SKPhysicsBody, SKPhysicsWorld, SKView;
 
 @interface SKScene : SKEffectNode
 {
     double _lastUpdate;
     double _pausedTime;
     struct CGRect _visibleRect;
-    long long _scaleMode;
-    NSMutableDictionary *_touchMap;
+    NSMapTable *_touchMap;
     NSMutableArray *_allChildenWithConstraints;
     struct CGRect _bounds;
     BOOL _isSetup;
@@ -22,10 +21,15 @@
     BOOL _usesExplicitRender;
     SKPhysicsBody *_scenePinBody;
     id _view;
+    // Error parsing type: ^{SKCSceneNode=^^?@B{unordered_map<std::__1::basic_string<char>, SKAttributeValue *, std::__1::hash<std::__1::basic_string<char> >, std::__1::equal_to<std::__1::basic_string<char> >, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, SKAttributeValue *> > >={__hash_table<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, std::__1::hash<std::__1::basic_string<char> >, true>, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, std::__1::equal_to<std::__1::basic_string<char> >, true>, std::__1::allocator<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *> > >={unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *> > >={__compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> **, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *> > >=^^{__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *>}{__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *> >={__compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *> >=Q}}}}{__compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> > >={__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *>=^{__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *>}}}{__compressed_pair<unsigned long, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, std::__1::hash<std::__1::basic_string<char> >, true> >=Q}{__compressed_pair<float, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, std::__1::equal_to<std::__1::basic_string<char> >, true> >=f}}}@@^{SKCNode}{vector<SKCNode *, std::__1::allocator<SKCNode *> >=^^{SKCNode}^^{SKCNode}{__compressed_pair<SKCNode **, std::__1::allocator<SKCNode *> >=^^{SKCNode}}}{vector<SKCNode *, std::__1::allocator<SKCNode *> >=^^{SKCNode}^^{SKCNode}{__compressed_pair<SKCNode **, std::__1::allocator<SKCNode *> >=^^{SKCNode}}}{vector<SKCNode *, std::__1::allocator<SKCNode *> >=^^{SKCNode}^^{SKCNode}{__compressed_pair<SKCNode **, std::__1::allocator<SKCNode *> >=^^{SKCNode}}}@QfB{list<SKCAction *, std::__1::allocator<SKCAction *> >={__list_node_base<SKCAction *, void *>=^{__list_node<SKCAction *, void *>}^{__list_node<SKCAction *, void *>}}{__compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<SKCAction *, void *> > >=Q}}{list<SKCAction *, std::__1::allocator<SKCAction *> >={__list_node_base<SKCAction *, void *>=^{__list_node<SKCAction *, void *>}^{__list_node<SKCAction *, void *>}}{__compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<SKCAction *, void *> > >=Q}}B@{shared_ptr<PKPath>=^{PKPath}^{__shared_weak_count}}BqBffBB{?=[4]}{?=[4]}@B@{shared_ptr<jet_framebuffer>=^{jet_framebuffer}^{__shared_weak_count}}{shared_ptr<jet_texture>=^{jet_texture}^{__shared_weak_count}}{shared_ptr<jet_texture>=^{jet_texture}^{__shared_weak_count}}{shared_ptr<jet_texture>=^{jet_texture}^{__shared_weak_count}}BIBBq^{SKCSpriteNode}^{SKCSpriteNode}}, name: _skcSceneNode
+    SKNode *_listener;
+    AVAudioEngine *_audioEngine;
     BOOL __needsUpdate;
     BOOL __needsRender;
     SKPhysicsWorld *_physicsWorld;
+    SKCameraNode *_camera;
     id <SKSceneDelegate> _delegate;
+    AVAudioEnvironmentNode *_avAudioEnvironmentNode;
     PKPhysicsWorld *__pkPhysicsWorld;
 }
 
@@ -33,11 +37,11 @@
 + (id)sceneWithContentsOfFile:(id)arg1;
 + (id)sceneWithSize:(struct CGSize)arg1;
 @property(retain, nonatomic) PKPhysicsWorld *_pkPhysicsWorld; // @synthesize _pkPhysicsWorld=__pkPhysicsWorld;
+@property(retain, nonatomic) AVAudioEnvironmentNode *avAudioEnvironmentNode; // @synthesize avAudioEnvironmentNode=_avAudioEnvironmentNode;
 @property BOOL _needsRender; // @synthesize _needsRender=__needsRender;
 @property BOOL _needsUpdate; // @synthesize _needsUpdate=__needsUpdate;
 @property(nonatomic) id <SKSceneDelegate> delegate; // @synthesize delegate=_delegate;
-@property(nonatomic) long long scaleMode; // @synthesize scaleMode=_scaleMode;
-- (id).cxx_construct;
+@property(nonatomic) __weak SKCameraNode *camera; // @synthesize camera=_camera;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) __weak SKView *view;
 - (void)setPaused:(BOOL)arg1;
@@ -52,6 +56,7 @@
 - (void)didMoveToView:(id)arg1;
 - (void)_didMoveToView:(id)arg1;
 @property(readonly, nonatomic) SKPhysicsWorld *physicsWorld; // @synthesize physicsWorld=_physicsWorld;
+- (struct CGRect)frame;
 @property(nonatomic) struct CGSize size;
 @property(nonatomic) struct CGPoint visibleRectCenter;
 @property(nonatomic) struct CGSize visibleRectSize;
@@ -71,11 +76,20 @@
 - (void)setScale:(double)arg1;
 - (void)setPosition:(struct CGPoint)arg1;
 - (struct CGPoint)position;
+- (void)_didMakeBackingNode;
+-     // Error parsing type: ^{SKCNode=^^?@B{unordered_map<std::__1::basic_string<char>, SKAttributeValue *, std::__1::hash<std::__1::basic_string<char> >, std::__1::equal_to<std::__1::basic_string<char> >, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, SKAttributeValue *> > >={__hash_table<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, std::__1::hash<std::__1::basic_string<char> >, true>, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, std::__1::equal_to<std::__1::basic_string<char> >, true>, std::__1::allocator<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *> > >={unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *> > >={__compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> **, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *> > >=^^{__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *>}{__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *> >={__compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *> >=Q}}}}{__compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> > >={__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *> *>=^{__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, void *>}}}{__compressed_pair<unsigned long, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, std::__1::hash<std::__1::basic_string<char> >, true> >=Q}{__compressed_pair<float, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, SKAttributeValue *>, std::__1::equal_to<std::__1::basic_string<char> >, true> >=f}}}@@^{SKCNode}{vector<SKCNode *, std::__1::allocator<SKCNode *> >=^^{SKCNode}^^{SKCNode}{__compressed_pair<SKCNode **, std::__1::allocator<SKCNode *> >=^^{SKCNode}}}{vector<SKCNode *, std::__1::allocator<SKCNode *> >=^^{SKCNode}^^{SKCNode}{__compressed_pair<SKCNode **, std::__1::allocator<SKCNode *> >=^^{SKCNode}}}{vector<SKCNode *, std::__1::allocator<SKCNode *> >=^^{SKCNode}^^{SKCNode}{__compressed_pair<SKCNode **, std::__1::allocator<SKCNode *> >=^^{SKCNode}}}@QfB{list<SKCAction *, std::__1::allocator<SKCAction *> >={__list_node_base<SKCAction *, void *>=^{__list_node<SKCAction *, void *>}^{__list_node<SKCAction *, void *>}}{__compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<SKCAction *, void *> > >=Q}}{list<SKCAction *, std::__1::allocator<SKCAction *> >={__list_node_base<SKCAction *, void *>=^{__list_node<SKCAction *, void *>}^{__list_node<SKCAction *, void *>}}{__compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<SKCAction *, void *> > >=Q}}B@{shared_ptr<PKPath>=^{PKPath}^{__shared_weak_count}}BqBffBB{?=[4]}{?=[4]}}16@0:8, name: _makeBackingNode
+- (void)set_anchorPoint:(struct CGPoint)arg1;
 @property(nonatomic) struct CGPoint anchorPoint;
+@property(readonly, retain, nonatomic) AVAudioEngine *audioEngine;
+@property(nonatomic) __weak SKNode *listener;
+@property(nonatomic) long long scaleMode;
+- (struct CGPoint)convertPointToParent:(struct CGPoint)arg1;
+- (struct CGPoint)convertPointFromParent:(struct CGPoint)arg1;
 @property(retain, nonatomic) NSColor *backgroundColor;
 - (void)_removeConstraintsForNode:(id)arg1;
 - (void)_registerConstraintsForNode:(id)arg1;
 - (BOOL)_hasConstraints;
+- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithSize:(struct CGSize)arg1;
 - (id)init;
@@ -85,6 +99,8 @@
 @property BOOL _usesExplicitRender;
 @property BOOL _usesExplicitUpdate;
 - (void)didContinueContact:(id)arg1;
+- (void)willRenderContent;
+- (void)_willMoveFromView:(id)arg1;
 
 @end
 

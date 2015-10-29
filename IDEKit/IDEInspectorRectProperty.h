@@ -15,6 +15,8 @@
     IDEInspectorKeyPath *_nonNilValueObjectKeyPath;
     IDEInspectorKeyPath *_insetKeyPath;
     IDEInspectorKeyPath *_insetObjectKeyPath;
+    long long _checkStateForNonNil;
+    long long _checkStateForNil;
     NSString *_nilPlaceholder;
     BOOL _allowsNilValues;
     NSTextField *_xTextField;

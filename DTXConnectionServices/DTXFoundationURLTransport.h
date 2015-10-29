@@ -6,23 +6,24 @@
 
 #import <DTXConnectionServices/DTXTransport.h>
 
-#import "NSURLConnectionDataDelegate.h"
+#import "NSURLSessionDelegate.h"
 
-@class NSString, NSURLConnection;
+@class NSString, NSURLSession, NSURLSessionDataTask;
 
-@interface DTXFoundationURLTransport : DTXTransport <NSURLConnectionDataDelegate>
+@interface DTXFoundationURLTransport : DTXTransport <NSURLSessionDelegate>
 {
-    NSURLConnection *_urlConnection;
+    NSURLSession *_session;
+    NSURLSessionDataTask *_dataTask;
 }
 
 + (id)schemes;
 - (void)disconnect;
+- (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
 - (unsigned long long)transmit:(const void *)arg1 ofLength:(unsigned long long)arg2;
-- (void)connectionDidFinishLoading:(id)arg1;
-- (void)_releaseURLConnection;
-- (void)connection:(id)arg1 didReceiveData:(id)arg2;
-- (id)connection:(id)arg1 willCacheResponse:(id)arg2;
+- (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveData:(id)arg3;
+- (void)_shutDownSession;
 - (id)initWithRemoteAddress:(id)arg1;
+- (int)supportedDirections;
 - (id)initWithLocalAddress:(id)arg1;
 
 // Remaining properties

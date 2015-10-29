@@ -12,6 +12,7 @@
 {
     IDEWorkspace *_workspace;
     DVTObservingToken *_debuggingAdditionsObservation;
+    DVTObservingToken *_workspaceControllerToken;
     NSMapTable *_debuggingAdditionsObserversMap;
     GPUTraceGroupItem *_rootResourceGroup;
     GPUTraceProgramGroup *_rootProgramGroup;

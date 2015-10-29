@@ -11,7 +11,6 @@
     CDUnknownBlockType _block;
 }
 
-+ (id)SCNJSExportProtocol;
 -     // Error parsing type: ^{c3dPhysicsField=^^?{?=[4]}{?=[4]}fffIBBBBf}16@0:8, name: _createField
 @property CDUnknownBlockType block;
 - (void)dealloc;

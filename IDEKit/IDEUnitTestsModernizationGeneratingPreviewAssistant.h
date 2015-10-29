@@ -16,8 +16,6 @@
 + (id)keyPathsForValuesAffectingCanGoForward;
 @property(copy) NSString *message; // @synthesize message=_message;
 - (void).cxx_destruct;
-- (void)_buildErrorsAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
-- (void)_noSourceChangesNecessaryAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)loadView;
 - (BOOL)canGoBack;
 - (BOOL)canGoForward;

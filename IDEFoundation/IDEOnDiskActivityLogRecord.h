@@ -28,7 +28,9 @@
 }
 
 + (id)keyPathsForValuesAffectingIsRecording;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 @property(retain, nonatomic) IDEActivityLogSection *recorderLog; // @synthesize recorderLog=_recorderLog;
 @property(nonatomic) double timeStoppedRecording; // @synthesize timeStoppedRecording=_timeStoppedRecording;
 - (void).cxx_destruct;
@@ -39,6 +41,7 @@
 - (double)timeStartedRecording;
 - (id)title;
 - (id)domainType;
+- (id)identifier;
 - (id)uniqueIdentifier;
 - (BOOL)isRecording;
 - (void)_setRemovedState;
@@ -50,6 +53,8 @@
 - (void)primitiveInvalidate;
 - (id)initWithUUID:(id)arg1 store:(id)arg2 cacheEntry:(id)arg3 updatedCache:(char *)arg4 error:(id *)arg5;
 - (id)initWithLog:(id)arg1 entityIdentifier:(id)arg2 store:(id)arg3;
+- (id)coverageReport;
+- (id)coverageReportFilePath;
 - (id)testableSummariesPlistFilePath;
 
 // Remaining properties

@@ -13,7 +13,6 @@
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
 - (id)ibWidgetType;
-- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibOrderedSnapshotAttributesKeyPaths;
 - (void)setIbInspectedImage:(id)arg1;
 - (id)ibInspectedImage;

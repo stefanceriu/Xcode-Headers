@@ -9,6 +9,7 @@
 @class IDERunDestination;
 
 @protocol IDERunDestinationRepresentedObject <NSObject>
+@property(readonly) BOOL isWatchDestination;
 @property(readonly) IDERunDestination *runDestination;
 @end
 

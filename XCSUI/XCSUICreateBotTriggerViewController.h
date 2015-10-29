@@ -35,7 +35,7 @@
 @property(readonly) BOOL canRemove;
 @property(readonly, copy) NSString *titleForDisplay;
 - (void)configureViewHierarchy;
-- (id)initWithTrigger:(id)arg1;
+- (id)initWithTrigger:(id)arg1 blueprint:(id)arg2;
 
 // Remaining properties
 @property BOOL canAddItems;

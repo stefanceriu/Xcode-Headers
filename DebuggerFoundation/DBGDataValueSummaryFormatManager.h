@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, NSMutableDictionary;
+@class NSMapTable, NSMutableDictionary;
 
 @interface DBGDataValueSummaryFormatManager : NSObject
 {
-    DVTMapTable *_sessionSpecificData;
+    NSMapTable *_sessionSpecificData;
     NSMutableDictionary *_summaryFormatsByType;
     NSMutableDictionary *_userDefinedFormatters;
     BOOL _hasUnhandledArchiveData;

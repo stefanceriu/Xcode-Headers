@@ -19,6 +19,7 @@
 @property double progress; // @synthesize progress=_progress;
 - (void).cxx_destruct;
 - (void)viewDidInstall;
+- (id)iTunesPlatformForArchive:(id)arg1 session:(id)arg2 error:(id *)arg3;
 - (id)providedOutputContextPropertyNames;
 - (id)requiredInputContextPropertyNames;
 - (BOOL)canGoPrevious;

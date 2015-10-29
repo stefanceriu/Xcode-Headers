@@ -18,18 +18,19 @@
 
 + (id)keyPathsForValuesAffectingPrimaryChildItem;
 + (id)keyPathsForValuesAffectingToolTip;
-+ (id)keyPathsForValuesAffectingFileReference;
 + (id)keyPathsForValuesAffectingDefaultReference;
++ (id)keyPathsForValuesAffectingVariantGroup;
 - (void).cxx_destruct;
 - (BOOL)showSubitems;
+- (id)_navigableItemForExternalDrag;
 @property(readonly) IDENavigableItem *primaryChildItem;
 - (id)toolTip;
-- (id)textColor;
 - (id)contentDocumentLocation;
 - (id)documentType;
-- (id)fileReference;
+- (id)textColor;
 - (id)image;
 - (id)defaultReference;
+- (id)variantGroup;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -20,8 +20,10 @@
     double _priority;
     NSString *_name;
     BOOL _notRecommended;
+    double _fuzzyMatchingScore;
 }
 
+@property double fuzzyMatchingScore; // @synthesize fuzzyMatchingScore=_fuzzyMatchingScore;
 @property double priority; // @synthesize priority=_priority;
 @property(readonly) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;

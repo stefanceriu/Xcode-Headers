@@ -7,6 +7,8 @@
 #import "SimDeviceType.h"
 
 @interface SimDeviceType (DVTAdditions)
+- (id)dvt_platform;
+- (id)dvt_deviceClass;
 - (id)dvt_latestRuntime;
 - (id)dvt_supportedArchs;
 - (id)dvt_supportedArchStrings;

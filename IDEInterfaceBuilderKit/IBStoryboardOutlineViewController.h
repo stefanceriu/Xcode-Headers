@@ -19,6 +19,8 @@
 - (void)buildWrapperTreeCreatingRootIfNecessary;
 - (Class)outlineViewControllerItemClassForMemberWrapper:(id)arg1;
 - (BOOL)outlineView:(id)arg1 isGroupHeaderItem:(id)arg2;
+- (BOOL)centerTopLevelObjectInEditorSelection;
+- (id)childrenSelectionForGroupMember:(id)arg1;
 - (BOOL)outlineView:(id)arg1 shouldSelectItem:(id)arg2;
 - (BOOL)canMoveAllObjects:(id)arg1;
 - (id)tellObject:(id)arg1 toAcceptPasteboard:(id)arg2 withContext:(id)arg3 selectNewChildren:(BOOL)arg4;

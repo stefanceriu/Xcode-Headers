@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class IBLayoutConstant, IBLayoutConstraintMultiplier, NSObject<IBLayoutConstraintRepresentation>;
+@class IBLayoutConstant, IBLayoutConstraintMultiplier, NSObject<IBLayoutConstraintRepresentation>, NSString;
 
 @protocol IBLayoutConstraintRepresentation <NSObject>
+@property(readonly, copy, nonatomic) NSString *identifier;
 @property(readonly, nonatomic, getter=isPlaceholder) BOOL placeholder;
 @property(readonly, nonatomic) double scoringType;
 @property(readonly, nonatomic) long long scoringClass;

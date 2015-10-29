@@ -21,7 +21,6 @@ __attribute__((visibility("hidden")))
 
 @property(nonatomic) struct CGPoint normalizedPosition; // @synthesize normalizedPosition=_normalizedPosition;
 @property(retain, nonatomic) NSString *displayedText; // @synthesize displayedText=_displayedText;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)fadeToOpacity:(double)arg1 overTime:(double)arg2;
 - (void)layout;

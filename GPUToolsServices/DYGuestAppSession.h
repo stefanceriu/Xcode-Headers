@@ -76,7 +76,6 @@
 @property(readonly, retain, nonatomic) DYTransport *transport; // @synthesize transport=_transport;
 @property(readonly, retain, nonatomic) DYDevice *device; // @synthesize device=_device;
 @property(readonly, retain, nonatomic) DYGuestApp *guestApp; // @synthesize guestApp=_guestApp;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)newCaptureSessionWithArchive:(id)arg1;
 - (void)setValue:(id)arg1 forOverride:(id)arg2;
@@ -114,6 +113,7 @@
 @property(readonly, retain, nonatomic) NSDictionary *finalLaunchEnvironment; // @dynamic finalLaunchEnvironment;
 - (void)dispatchOnceRunning:(struct dispatch_queue_s *)arg1 block:(CDUnknownBlockType)arg2;
 - (id)launch;
+- (id)launchDebugServerWithEnvironment:(id)arg1 andLaunchPath:(id)arg2 andPort:(id)arg3;
 - (void)_applyBuiltinEnvironmentMutation:(id)arg1;
 - (id)_makeLaunchDictionary;
 - (void)registerFinalLaunchDictionaryMutator:(CDUnknownBlockType)arg1;

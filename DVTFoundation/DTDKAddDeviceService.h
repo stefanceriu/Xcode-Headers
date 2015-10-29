@@ -16,7 +16,7 @@
 + (id)keyPathsForValuesAffectingDeviceNumber;
 + (id)keyPathsForValuesAffectingDeviceName;
 + (id)keyPathsForValuesAffectingDevice;
-+ (id)serviceForTeam:(id)arg1 andPlatform:(id)arg2 withDeviceIndentifier:(id)arg3 name:(id)arg4;
++ (id)serviceForTeam:(id)arg1 andPlatform:(id)arg2 withDeviceIndentifier:(id)arg3 name:(id)arg4 portalDeviceClass:(id)arg5;
 - (BOOL)_handlePortalResultCode:(long long)arg1;
 @property(readonly) NSString *deviceID;
 @property(readonly) NSString *deviceNumber;

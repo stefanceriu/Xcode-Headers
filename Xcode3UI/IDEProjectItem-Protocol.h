@@ -9,6 +9,7 @@
 @class NSImage, NSSet, NSString;
 
 @protocol IDEProjectItem <NSObject>
+@property(readonly, nonatomic, getter=isAvailableWithFreeProvisioning) BOOL availableWithFreeProvisioning;
 @property(readonly, nonatomic) NSSet *entitlements;
 @property(readonly, nonatomic) NSString *appIDFeatureName;
 @property(readonly, nonatomic) NSString *identifier;

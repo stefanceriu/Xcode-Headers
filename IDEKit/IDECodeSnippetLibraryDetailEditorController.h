@@ -21,7 +21,6 @@
 + (id)keyPathsForValuesAffectingCanRemoveCompletionScope;
 + (id)keyPathsForValuesAffectingCanAddCompletionScope;
 + (id)keyPathsForValuesAffectingCompletionScopeRowValues;
-+ (id)keyPathsForValuesAffectingEditedCodeSnippet;
 + (void)initialize;
 - (void).cxx_destruct;
 - (void)didChangeCurrentDetailController;

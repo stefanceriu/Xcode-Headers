@@ -6,13 +6,24 @@
 
 #import <IDESceneKitEditor/SKEStaticTableViewInspector.h>
 
+@class DVTGradientImageButton;
+
 @interface SKEGeometrySourcesInspector : SKEStaticTableViewInspector
 {
+    DVTGradientImageButton *_deleteButton;
+    DVTGradientImageButton *_quickLookButton;
 }
 
++ (BOOL)wantsEditionBar;
++ (id)tableColumnTitles;
+- (void).cxx_destruct;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
+- (void)deleteAction:(id)arg1;
+- (void)quickLookAction:(id)arg1;
+- (void)configureEditionBar;
 - (void)viewDidInstall;
 - (void)loadView;
+- (void)primitiveInvalidate;
 
 @end
 

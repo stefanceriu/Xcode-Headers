@@ -8,6 +8,5 @@
 
 @interface DVTTeamRecord (DTDeviceKitExtensions)
 - (void)pruneInstalledProvisioningProfiles;
-- (void)installProvisioningProfiles;
 @end
 

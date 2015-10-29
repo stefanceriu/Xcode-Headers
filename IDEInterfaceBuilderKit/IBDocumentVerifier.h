@@ -20,7 +20,8 @@
 - (void)verifyViewsHaveCorrectFrames;
 - (id)verifyRootObjectRootsAllObjects;
 - (void)verifyFramesInSyncForViewsForAutoresizingMasks;
-- (void)verifyXcode5ContentViews;
+- (void)verifyXcodeContentViews;
+- (void)verifyIfXcodeRequiresAnUpgradePromptToXcode7;
 - (void)verifyIDGenerationStrategy;
 - (void)verifyTranslatesAutoresizingMaskIntoConstraints;
 - (void)verifyConstraints;
@@ -28,7 +29,7 @@
 - (id)verifyNoDanglingSubviews;
 - (id)verifyViewCCRHPriorities;
 - (id)verificationMessageForResolvingConflictBetweenConnections:(id)arg1 byKeepingConnection:(id)arg2;
-- (id)connectionsGroupedByExclusitivityHints;
+- (id)connectionsGroupedByExclusivityHints;
 - (id)verifyExclusiveConnections;
 - (id)verifyIllegalEditorSizes;
 - (id)verify;

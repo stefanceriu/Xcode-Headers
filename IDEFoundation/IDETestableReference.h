@@ -9,24 +9,30 @@
 #import "DVTXMLUnarchiving.h"
 #import "IDETestingSpecifier.h"
 
-@class IDEDeviceAppDataReference, IDELocationScenarioReference, IDEScheme, IDESchemeBuildableReference, NSArray, NSMutableArray, NSString;
+@class DVTObservingToken, IDEDeviceAppDataReference, IDELocationScenarioReference, IDEScheme, IDESchemeBuildableReference, NSArray, NSMutableArray, NSSet, NSString;
 
 @interface IDETestableReference : NSObject <IDETestingSpecifier, DVTXMLUnarchiving>
 {
+    id <IDETestable> _testable;
+    DVTObservingToken *_testableObservingToken;
     IDESchemeBuildableReference *_buildableReference;
-    NSMutableArray *_skippedTests;
+    NSMutableArray *_mutableSkippedTests;
     IDEDeviceAppDataReference *_deviceAppDataReference;
     IDELocationScenarioReference *_locationScenarioReference;
     BOOL _skipped;
 }
 
 + (id)keyPathsForValuesAffectingScheme;
-+ (void)initialize;
++ (id)_testableForBuildableReference:(id)arg1;
 @property(retain) IDELocationScenarioReference *locationScenarioReference; // @synthesize locationScenarioReference=_locationScenarioReference;
 @property(retain) IDEDeviceAppDataReference *deviceAppDataReference; // @synthesize deviceAppDataReference=_deviceAppDataReference;
 @property BOOL skipped; // @synthesize skipped=_skipped;
 @property(readonly) IDESchemeBuildableReference *buildableReference; // @synthesize buildableReference=_buildableReference;
 - (void).cxx_destruct;
+@property(readonly, copy) NSSet *adHocTests;
+- (void)disableTest:(id)arg1;
+- (void)enableTest:(id)arg1;
+@property(readonly, copy) NSArray *skippedTests;
 - (void)setSkippedFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addLocationScenarioReference:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addDeviceAppData:(id)arg1 fromXMLUnarchiver:(id)arg2;
@@ -41,13 +47,12 @@
 - (id)testable;
 @property(readonly, copy) NSString *description;
 - (id)init;
+- (id)initWithBuildable:(id)arg1 scheme:(id)arg2;
 - (id)initWithTestable:(id)arg1 scheme:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly) unsigned long long hash;
-@property(readonly) NSMutableArray *mutableSkippedTests; // @dynamic mutableSkippedTests;
-@property(copy) NSArray *skippedTests; // @dynamic skippedTests;
 @property(readonly) Class superclass;
 
 @end

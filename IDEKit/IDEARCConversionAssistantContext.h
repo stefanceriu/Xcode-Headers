@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDEMigrationAssistantContext.h>
 
-@class DVTMapTable, NSArray, NSMutableArray;
+@class NSArray, NSMapTable, NSMutableArray;
 
 @interface IDEARCConversionAssistantContext : IDEMigrationAssistantContext
 {
@@ -16,7 +16,7 @@
     long long _numIncompatibilityErrors;
     BOOL _wasContinueBuildingAfterErrors;
     BOOL _shouldRemoveContinueBuildingAfterErrors;
-    DVTMapTable *_convertedFilePathForOriginalFilePathMapTable;
+    NSMapTable *_convertedFilePathForOriginalFilePathMapTable;
 }
 
 + (void)initialize;

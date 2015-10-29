@@ -112,6 +112,7 @@
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)clearBox2DData;
+@property(readonly, nonatomic) struct PKPath *volume;
 @property(nonatomic) shared_ptr_2aaf3a07 outline;
 @property(nonatomic) struct b2Body *_body;
 @property(nonatomic) struct b2BodyDef _bodyDef;

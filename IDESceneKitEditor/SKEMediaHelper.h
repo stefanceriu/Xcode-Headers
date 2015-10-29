@@ -6,21 +6,31 @@
 
 #import "NSObject.h"
 
-@class SKEDocument;
+@class SKESceneDocument;
 
 @interface SKEMediaHelper : NSObject
 {
-    SKEDocument *_document;
+    SKESceneDocument *_document;
 }
 
++ (id)genericPreviewForSceneAtURL:(id)arg1 size:(struct CGSize)arg2 asynchronousPreviewGenerationCompletionHandler:(CDUnknownBlockType)arg3;
++ (id)previewForSceneAtURL:(id)arg1 size:(struct CGSize)arg2;
++ (id)genericPreviewForScene:(id)arg1 size:(struct CGSize)arg2 asynchronousPreviewGenerationCompletionHandler:(CDUnknownBlockType)arg3;
++ (id)previewForScene:(id)arg1 size:(struct CGSize)arg2;
++ (id)genericPreviewForNode:(id)arg1 size:(struct CGSize)arg2 asynchronousPreviewGenerationCompletionHandler:(CDUnknownBlockType)arg3;
++ (id)previewForNode:(id)arg1 size:(struct CGSize)arg2;
 + (id)missingMediaImage;
 + (void)endObservationOfFilePathForAssociatedObject:(id)arg1;
 + (void)beginObservationOfFilePath:(id)arg1 forAssociatedObject:(id)arg2 block:(CDUnknownBlockType)arg3;
 + (void)observeContentsOfMaterialProperty:(id)arg1;
 + (id)contentsOfMaterialProperty:(id)arg1;
 + (void)setContents:(id)arg1 ofMaterialProperty:(id)arg2;
++ (id)relativePathForImagePath:(id)arg1;
++ (id)absolutePathForImagePath:(id)arg1;
 + (void)refreshImageContentsOfMaterialProperty:(id)arg1;
 - (void).cxx_destruct;
+- (void)observeAllReferenceNodesInDocument;
+- (void)observeContentsOfAllParticleSystemsInDocument;
 - (void)sanitizeAllMaterialsInDocument;
 - (void)performBlockBySettingAllMissingContentsToTheirWantedContents:(CDUnknownBlockType)arg1;
 - (id)init;

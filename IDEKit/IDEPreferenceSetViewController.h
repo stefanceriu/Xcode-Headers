@@ -10,7 +10,7 @@
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTImageAndTextColumn, DVTMapTable, DVTObservingToken, DVTPreferenceSetManager, DVTScrollView, IDEControlGroup, NSArray, NSArrayController, NSMenuItem, NSString, NSTableView;
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTImageAndTextColumn, DVTObservingToken, DVTPreferenceSetManager, DVTScrollView, IDEControlGroup, NSArray, NSArrayController, NSMapTable, NSMenuItem, NSString, NSTableView;
 
 @interface IDEPreferenceSetViewController : IDEViewController <NSTableViewDelegate, NSTableViewDataSource, NSMenuDelegate>
 {
@@ -26,7 +26,7 @@
     NSArrayController *_prefSetsArrayController;
     DVTScrollView *_scrollView;
     DVTPreferenceSetManager *_preferenceSetManager;
-    DVTMapTable *_observerTokensForPreferenceSetsMapTable;
+    NSMapTable *_observerTokensForPreferenceSetsMapTable;
     DVTObservingToken *_availablePreferenceSetsObserver;
     DVTObservingToken *_currentPreferenceSetObserver;
     BOOL _hasBeenSetup;

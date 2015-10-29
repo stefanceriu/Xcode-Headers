@@ -89,8 +89,8 @@
 - (void)setCanSelectPrevious:(BOOL)arg1;
 - (BOOL)canSelectPrevious;
 - (void)setDifferenceMenu:(id)arg1;
-- (void)explainRevertSelectedDifferenceAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)revertSelectedDifference;
+- (BOOL)canRevertMenuItemDifference:(id)arg1;
 - (BOOL)canRevertSelectedDifference;
 - (void)copyDiff;
 - (BOOL)canCopyDiff;
@@ -122,7 +122,9 @@
 - (id)keyEditor;
 - (void)keyDown:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
+- (void)comparisonContextMenu_revertDiffDescriptor:(id)arg1;
 - (void)comparisonContextMenu_revertSelectedDiffDescriptor:(id)arg1;
+- (void)_comparisonContextMenu_revertDiffDescriptor:(id)arg1 selected:(BOOL)arg2;
 - (void)comparisonContextMenu_toggleIgnoreWhitespace:(id)arg1;
 - (void)comparisonContextMenu_copyDiff:(id)arg1;
 

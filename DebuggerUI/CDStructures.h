@@ -44,6 +44,11 @@ struct CGSize {
     double height;
 };
 
+struct CLLocationCoordinate2D {
+    double _field1;
+    double _field2;
+};
+
 struct NSView {
     Class _field1;
     id _field2;
@@ -97,6 +102,13 @@ struct SCNVector3 {
     double z;
 };
 
+struct _IBEdgeInsets {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+};
+
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
@@ -115,4 +127,14 @@ typedef struct {
     struct CGPoint _field1;
     struct CGPoint _field2;
 } CDStruct_e3b9714e;
+
+#pragma mark Typedef'd Unions
+
+typedef union {
+    struct {
+        long long _field1;
+        long long _field2;
+    } _field1;
+    long long _field2[2];
+} CDUnion_42e99c75;
 

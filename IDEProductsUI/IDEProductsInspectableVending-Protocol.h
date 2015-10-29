@@ -12,5 +12,8 @@
 @property(readonly) id <IDEProductsInspectable> currentInspectable;
 @property(readonly) BOOL shouldShowNoSelection;
 - (void)handleAction:(NSString *)arg1 fromInspectable:(id <IDEProductsInspectable>)arg2;
+
+@optional
+@property(readonly, nonatomic) BOOL vendorIsBusy;
 @end
 

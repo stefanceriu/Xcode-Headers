@@ -18,6 +18,7 @@
     BOOL _isCancelling;
 }
 
+@property(readonly) BOOL isCancelling; // @synthesize isCancelling=_isCancelling;
 - (void).cxx_destruct;
 - (void)_clientCancellationTimeout;
 - (void)cancelTrackedClients;

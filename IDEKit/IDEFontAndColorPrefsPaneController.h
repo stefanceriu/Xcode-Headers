@@ -8,7 +8,7 @@
 
 #import "NSTableViewDelegate.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTScrollView, DVTTabChooserView, NSArray, NSArrayController, NSColor, NSFont, NSObjectController, NSString, NSTableView, NSView;
+@class DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTScrollView, DVTTabChooserView, NSArray, NSArrayController, NSColor, NSFont, NSObjectController, NSString, NSTableView, NSTextField, NSView;
 
 @interface IDEFontAndColorPrefsPaneController : IDEViewController <NSTableViewDelegate>
 {
@@ -19,16 +19,22 @@
     NSArrayController *_categoriesArrayController;
     NSObjectController *_currentThemeObjectController;
     DVTBorderedView *_generalColorView;
+    DVTBorderedView *_fontContainerView;
     NSView *_sourceEditorGeneralView;
+    NSView *_markupGeneralView;
     NSView *_consoleGeneralView;
+    NSView *_fullFontPickerView;
+    NSView *_familyOnlyFontPickerView;
     NSArray *_fontAndColorItems;
     DVTObservingToken *_selectedTabObserver;
     DVTObservingToken *_backgroundColorObserver;
     DVTObservingToken *_selectionIndexesObserver;
     DVTScrollView *_scrollView;
+    NSTextField *_measuringField;
 }
 
 + (void)initialize;
+@property(retain) NSTextField *measuringField; // @synthesize measuringField=_measuringField;
 @property(retain) DVTScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(readonly) NSArrayController *categoriesArrayController; // @synthesize categoriesArrayController=_categoriesArrayController;
 @property(retain) NSArray *fontAndColorItems; // @synthesize fontAndColorItems=_fontAndColorItems;
@@ -36,9 +42,13 @@
 - (void)changeFont:(id)arg1;
 - (void)chooseFont:(id)arg1;
 - (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
-- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
+- (id)tableView:(id)arg1 rowViewForRow:(long long)arg2;
+- (void)_refreshRowViewSelectionColor:(id)arg1;
+- (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
+- (void)_configureTextField:(id)arg1 forItem:(id)arg2;
 - (id)_theme;
 - (void)_sourceTextColorsChanged:(id)arg1;
+- (void)_resetAllRowHeights;
 - (void)_updateBindingsBasedOnSelectedTab;
 - (void)_handleTabChanged;
 - (void)_initTabChooserView;

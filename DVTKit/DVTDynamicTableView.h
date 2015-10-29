@@ -9,11 +9,11 @@
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 
-@class DVTMapTable, NSString;
+@class NSMapTable, NSString;
 
 @interface DVTDynamicTableView : DVTTableView <NSTableViewDelegate, NSTableViewDataSource>
 {
-    DVTMapTable *_viewsInVisibleRows;
+    NSMapTable *_viewsInVisibleRows;
     long long _dynEditingRow;
     long long _editingCount;
     long long _lastNumSections;

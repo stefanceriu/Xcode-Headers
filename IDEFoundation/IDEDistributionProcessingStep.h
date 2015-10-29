@@ -4,33 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <IDEFoundation/IDEDistributionStep.h>
 
-@class DVTExtension, IDEDistributionItem, NSArray, NSString;
+@class NSString;
 
-@interface IDEDistributionProcessingStep : NSObject
+@interface IDEDistributionProcessingStep : IDEDistributionStep
 {
-    DVTExtension *_extension;
-    _Bool _supportsDryRun;
-    IDEDistributionItem *_distributionItem;
-    NSArray *_inputs;
-    NSArray *_outputs;
 }
 
-+ (id)processingStepWithExtension:(id)arg1;
-+ (id)processingStepWithExtension:(id)arg1 andDistributionItem:(id)arg2;
-@property(copy) NSArray *outputs; // @synthesize outputs=_outputs;
-@property(copy) NSArray *inputs; // @synthesize inputs=_inputs;
-@property(readonly) _Bool supportsDryRun; // @synthesize supportsDryRun=_supportsDryRun;
-@property(readonly) IDEDistributionItem *distributionItem; // @synthesize distributionItem=_distributionItem;
-- (void).cxx_destruct;
-@property(readonly, copy) NSString *name;
-- (_Bool)isAllowedOutput:(id)arg1;
-- (_Bool)isRequiredInput:(id)arg1;
-- (id)requiredInputs;
-- (_Bool)isAllowedInput:(id)arg1;
-- (_Bool)processWithContext:(id)arg1 andError:(id *)arg2;
-- (id)initWithExtension:(id)arg1 andDistributionItem:(id)arg2;
++ (_Bool)runsPerThinningVariant;
++ (_Bool)runsPerDistributionItem;
++ (_Bool)supportsDryRun;
++ (id)providedOutputContextPropertyNames;
++ (id)requiredInputContextPropertyNames;
+@property(readonly) NSString *name;
+- (id)providedOutputContextPropertyNames;
+- (id)requiredInputContextPropertyNames;
+- (_Bool)runWithError:(id *)arg1;
+- (_Bool)shouldSkip;
 
 @end
 

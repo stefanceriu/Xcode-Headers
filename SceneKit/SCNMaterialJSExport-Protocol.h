@@ -26,6 +26,8 @@
 @property(copy, nonatomic) NSString *lightingModelName;
 @property(nonatomic) double transparency;
 @property(nonatomic) double shininess;
+@property(readonly, nonatomic) SCNMaterialProperty *selfIllumination;
+@property(readonly, nonatomic) SCNMaterialProperty *ambientOcclusion;
 @property(readonly, nonatomic) SCNMaterialProperty *normal;
 @property(readonly, nonatomic) SCNMaterialProperty *multiply;
 @property(readonly, nonatomic) SCNMaterialProperty *reflective;
@@ -35,6 +37,10 @@
 @property(readonly, nonatomic) SCNMaterialProperty *ambient;
 @property(readonly, nonatomic) SCNMaterialProperty *diffuse;
 @property(copy, nonatomic) NSString *name;
+- (id)valueForKeyPath:(NSString *)arg1;
+- (id)valueForKey:(NSString *)arg1;
+- (void)setValue:(id)arg1 forKey:(NSString *)arg2;
+- (void)setValue:(id)arg1 forKeyPath:(NSString *)arg2;
 - (id)copy;
 - (void)resumeAnimationForKey:(NSString *)arg1;
 - (void)pauseAnimationForKey:(NSString *)arg1;

@@ -6,18 +6,18 @@
 
 #import "NSObject.h"
 
-@class DVTPointerArray;
+@class NSPointerArray;
 
 @interface _DVTLogObjectsRequest : NSObject
 {
-    DVTPointerArray *_remainingObjects;
+    NSPointerArray *_remainingObjects;
     double _initialRequestTimeInterval;
     double _lastRequestTimeInterval;
 }
 
 @property double lastRequestTimeInterval; // @synthesize lastRequestTimeInterval=_lastRequestTimeInterval;
 @property double initialRequestTimeInterval; // @synthesize initialRequestTimeInterval=_initialRequestTimeInterval;
-@property(retain) DVTPointerArray *remainingObjects; // @synthesize remainingObjects=_remainingObjects;
+@property(retain) NSPointerArray *remainingObjects; // @synthesize remainingObjects=_remainingObjects;
 - (void).cxx_destruct;
 
 @end

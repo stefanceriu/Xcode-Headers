@@ -13,6 +13,7 @@
 - (id)_buildPropertyEditor;
 - (id)objectValueForExpandedString:(id)arg1 orValue:(id)arg2;
 - (void)addMenuItemsToPopUpCell:(id)arg1;
+- (id)_platformNamesSortDescriptors;
 
 @end
 

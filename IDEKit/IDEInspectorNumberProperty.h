@@ -11,6 +11,7 @@
 @interface IDEInspectorNumberProperty : IDEInspectorProperty
 {
     double _increment;
+    double _incrementMagnitude;
     BOOL _allowsNilValues;
     BOOL _enabled;
     BOOL _showsNilValueControl;

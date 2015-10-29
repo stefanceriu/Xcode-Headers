@@ -14,9 +14,9 @@
 }
 
 + (void)initialize;
-- (id)parseMessage;
+- (id)parseMessageWithExceptionHandler:(CDUnknownBlockType)arg1;
 - (void)dealloc;
-- (id)initWithMessageHandler:(CDUnknownBlockType)arg1;
+- (id)initWithMessageHandler:(CDUnknownBlockType)arg1 andParseExceptionHandler:(CDUnknownBlockType)arg2;
 
 @end
 

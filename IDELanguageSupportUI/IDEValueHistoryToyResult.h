@@ -6,11 +6,10 @@
 
 #import <IDELanguageSupportUI/IDETimestampedPlaygroundResult.h>
 
-@class IDEPlaygroundQuickLookController, NSString;
+@class NSString;
 
 @interface IDEValueHistoryToyResult : IDETimestampedPlaygroundResult
 {
-    IDEPlaygroundQuickLookController *_quickLookController;
     id <IDEPlaygroundLoggerLogEntry> _toyValue;
     NSString *_label;
 }
@@ -18,7 +17,7 @@
 @property(readonly, copy) NSString *label; // @synthesize label=_label;
 @property(readonly) id <IDEPlaygroundLoggerLogEntry> toyValue; // @synthesize toyValue=_toyValue;
 - (void).cxx_destruct;
-@property(readonly) IDEPlaygroundQuickLookController *quickLookController;
+- (id)createQuickLookController;
 - (id)initWithSubjectIdentifier:(id)arg1 resultDate:(id)arg2 toyValue:(id)arg3 resultLabel:(id)arg4;
 - (id)initWithChannelIdentifier:(id)arg1 subjectIdentifier:(id)arg2 sequenceNumber:(unsigned long long)arg3;
 

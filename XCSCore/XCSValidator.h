@@ -10,11 +10,12 @@
 
 @interface XCSValidator : NSObject
 {
-    NSMutableArray *_privateErrors;
     NSArray *_errors;
+    NSMutableArray *_privateErrors;
 }
 
 + (void)validate:(id)arg1 usingSchema:(id)arg2 identifier:(id)arg3 class:(Class)arg4 selector:(SEL)arg5 completionHandler:(CDUnknownBlockType)arg6;
+@property(retain, nonatomic) NSMutableArray *privateErrors; // @synthesize privateErrors=_privateErrors;
 @property(copy, nonatomic) NSArray *errors; // @synthesize errors=_errors;
 - (void).cxx_destruct;
 - (void)_addError:(id)arg1 identifier:(id)arg2 class:(Class)arg3 selector:(SEL)arg4;
@@ -60,6 +61,7 @@
 - (void)explainWithClass:(Class)arg1 selector:(SEL)arg2;
 - (id)description;
 - (id)json;
+- (BOOL)isValidWithErrors:(id *)arg1;
 @property(readonly, copy, nonatomic) NSError *lastError;
 - (void)addErrorMessage:(id)arg1 selector:(SEL)arg2 identifier:(id)arg3 class:(Class)arg4 selector:(SEL)arg5;
 - (id)init;

@@ -13,6 +13,7 @@
 @interface IBOrderedRelationshipDragAndDropPolicy : NSObject <IBDragAndDropInsertionIndicatorDelegate>
 {
     id _representedObject;
+    BOOL _usesConfinementRectForDropIndicatorRect;
     id <IBDragAndDropPolicyDelegate> _delegate;
     NSString *_relationKeyPath;
     long long _primaryGrowthDirection;
@@ -23,6 +24,7 @@
 
 @property(readonly) NSSet *pasteboardTypes; // @synthesize pasteboardTypes=_pasteboardTypes;
 @property(nonatomic) long long orderedRelationInsertionIndex; // @synthesize orderedRelationInsertionIndex=_orderedRelationInsertionIndex;
+@property(nonatomic) BOOL usesConfinementRectForDropIndicatorRect; // @synthesize usesConfinementRectForDropIndicatorRect=_usesConfinementRectForDropIndicatorRect;
 @property(nonatomic) long long secondaryGrowthDirection; // @synthesize secondaryGrowthDirection=_secondaryGrowthDirection;
 @property(nonatomic) long long primaryGrowthDirection; // @synthesize primaryGrowthDirection=_primaryGrowthDirection;
 @property(readonly) NSString *relationKeyPath; // @synthesize relationKeyPath=_relationKeyPath;
@@ -41,7 +43,7 @@
 - (double)distanceInDirection:(long long)arg1 betweenPoint:(struct CGPoint)arg2 andRect:(struct CGRect)arg3;
 - (BOOL)hasSecondaryGrowthDirection;
 @property(readonly, nonatomic) unsigned long long orderedRelationInsertionEdge;
-- (struct CGRect)confinementRect;
+@property(readonly, nonatomic) struct CGRect confinementRect;
 - (struct CGRect)dragAndDropInsertionIndicator:(id)arg1 dragAlignmentRectForRelatedObject:(id)arg2;
 - (struct CGRect)dragAlignmentRectForRelatedObject:(id)arg1;
 - (struct CGRect)dropRectForDragAndDropInsertionIndicator:(id)arg1;

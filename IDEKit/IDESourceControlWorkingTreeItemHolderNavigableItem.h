@@ -14,6 +14,7 @@
 }
 
 - (void).cxx_destruct;
+- (BOOL)_alwaysBypassFilter;
 - (void)primitiveInvalidate;
 - (id)initWithRepresentedObject:(id)arg1;
 

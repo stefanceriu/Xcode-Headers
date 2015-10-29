@@ -46,7 +46,7 @@
 - (id)ibPreferredSizeForSize:(struct CGSize)arg1 suggestedWidth:(char *)arg2 suggestedHeight:(char *)arg3 scaleAxesIndependently:(char *)arg4;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (BOOL)ibWantsBoundsIndicatorDuringTracking;
-- (BOOL)ibIsBaselineAtIndex:(long long)arg1 inMotionWithKnob:(long long)arg2;
+- (BOOL)ibIsBaselineAtIndex:(long long)arg1 inMotionWithKnob:(CDUnion_42e99c75)arg2;
 - (id)ibBaselineCount;
 - (id)ibWidgetType;
 - (void)setIbInspectedAlternateImage:(id)arg1;
@@ -58,6 +58,7 @@
 - (void)setIbInspectedImagePosition:(unsigned long long)arg1;
 - (unsigned long long)ibInspectedImagePosition;
 @property unsigned long long ibShadowedImagePosition;
+- (BOOL)ibShowSpringLoaded;
 - (unsigned long long)ibInspectedMaxAcceleratorLevelMinimumValue;
 - (unsigned long long)ibInspectedMaxAcceleratorLevelMaximumValue;
 - (BOOL)ibInspectedMaxAcceleratorLevelIsVisible;
@@ -67,7 +68,6 @@
 @property long long ibShadowedStyle;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (void)ibAwakeInDocument:(id)arg1;
-- (id)ibLocalConstraintInvalidatingAttributeKeyPaths;
 - (id)ibLocalLocalizableStringsAttributeKeyPaths;
 - (id)ibLocalAdditionalLocalizableAttributeKeyPaths;
 - (id)ibButtonLocalLocalizableStringsAttributeKeyPaths;

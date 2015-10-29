@@ -4,48 +4,58 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <IDEiOSSupportCore/DVTBasicProxiediOSDevice.h>
 
-#import "DVTBasicDevice.h"
+@class DTDKRemoteDeviceToken, DVTProxiedDeviceSymbolsCoordinator;
 
-@class DTDKRemoteDeviceToken, NSSet, NSString;
-
-@interface DVTProxiediOSDevice : NSObject <DVTBasicDevice>
+@interface DVTProxiediOSDevice : DVTBasicProxiediOSDevice
 {
     DTDKRemoteDeviceToken *_token;
+    DVTProxiedDeviceSymbolsCoordinator *_symbolsCoordinator;
 }
 
++ (id)keyPathsForValuesAffectingIsAvailable;
++ (id)keyPathsForValuesAffectingDeviceIsBusy;
++ (id)keyPathsForValuesAffectingNativeArchitecture;
 + (id)keyPathsForValuesAffectingProcessorDescription;
++ (id)keyPathsForValuesAffectingOperatingSystemVersionWithBuildNumber;
++ (id)keyPathsForValuesAffectingAdjustedOperatingSystemVersion;
 + (id)keyPathsForValuesAffectingOperatingSystemBuild;
 + (id)keyPathsForValuesAffectingOperatingSystemVersion;
 + (id)keyPathsForValuesAffectingModelCode;
 + (id)keyPathsForValuesAffectingModelUTI;
 + (id)keyPathsForValuesAffectingModelName;
-+ (id)keyPathsForValuesAffectingNameForDeveloperPortal;
 + (id)keyPathsForValuesAffectingName;
 + (id)keyPathsForValuesAffectingIdentifier;
+@property(retain) DVTProxiedDeviceSymbolsCoordinator *symbolsCoordinator; // @synthesize symbolsCoordinator=_symbolsCoordinator;
 @property(readonly) DTDKRemoteDeviceToken *token; // @synthesize token=_token;
 - (void).cxx_destruct;
-@property(readonly) BOOL supportsProvisioning;
-@property(readonly, copy) NSString *platformIdentifier;
-@property(readonly, copy) NSString *processorDescription;
-@property(readonly, copy) NSString *operatingSystemBuild;
-@property(readonly, copy) NSString *operatingSystemVersion;
-@property(readonly, copy, nonatomic) NSString *modelCode;
-@property(readonly, copy, nonatomic) NSString *modelUTI;
-@property(readonly, copy, nonatomic) NSString *modelName;
-@property(readonly, copy) NSString *nameForDeveloperPortal;
-@property(readonly, copy) NSString *name;
-@property(readonly, copy) NSString *identifier;
+- (BOOL)deviceSupportsBuildable:(id)arg1 buildParameters:(id)arg2 error:(id *)arg3;
+- (id)unavailabilityError;
+- (BOOL)isAvailable;
+- (_Bool)deviceIsBusy;
+- (id)primaryInstrumentsServer;
+- (id)supportedDeviceFamilies;
+- (BOOL)isProxiedDevice;
+- (id)nativeArchitecture;
+- (id)platform;
+- (BOOL)supportsProvisioning;
+- (id)platformIdentifier;
+- (id)processorDescription;
+- (id)operatingSystemVersionWithBuildNumber;
+- (id)adjustedOperatingSystemVersion;
+- (id)operatingSystemBuild;
+- (id)operatingSystemVersion;
+- (id)modelCode;
+- (id)modelUTI;
+- (id)modelName;
+- (id)name;
+- (id)identifier;
 - (BOOL)isEqual:(id)arg1;
-@property(readonly) unsigned long long hash;
-@property(readonly, copy) NSSet *proxiedDevices;
+- (unsigned long long)hash;
+- (id)proxiedDevices;
+- (void)wasProxiedToDevice:(id)arg1;
 - (id)initWithToken:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) Class superclass;
 
 @end
 

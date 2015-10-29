@@ -11,18 +11,20 @@
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTStackBacktrace, DVTTextCompletionSession, DVTTextCompletionTableView, DVTTextCompletionWindowResizeAnimation, DVTViewController<DVTInvalidation>, NSDictionary, NSScrollView, NSString, NSTableColumn, NSTextField, NSView, NSViewAnimation;
+@class DVTBorderedView, DVTObservingToken, DVTStackBacktrace, DVTTextCompletionSession, DVTTextCompletionWindowResizeAnimation, DVTViewController<DVTInvalidation>, NSDictionary, NSScrollView, NSString, NSTableColumn, NSTableView, NSTextField, NSViewAnimation;
 
 @interface DVTTextCompletionListWindowController : NSWindowController <DVTInvalidation, NSTableViewDataSource, NSTableViewDelegate, NSAnimationDelegate>
 {
     NSTextField *_messagesField;
-    DVTTextCompletionTableView *_completionsTableView;
+    NSTableView *_completionsTableView;
     NSTableColumn *_iconColumn;
     NSTableColumn *_typeColumn;
     NSTableColumn *_titleColumn;
     NSScrollView *_completionsScrollView;
     DVTBorderedView *_quickHelpView;
-    NSView *_divider;
+    DVTBorderedView *_divider;
+    NSTextField *completionUserText;
+    NSTextField *fuzzyCompletionDivider;
     DVTTextCompletionSession *_session;
     struct CGRect _referenceFrameInView;
     DVTTextCompletionWindowResizeAnimation *_resizeAnimation;
@@ -36,9 +38,29 @@
     BOOL _showingWindow;
     BOOL _shouldIgnoreSelectionChange;
     BOOL _quickHelpOnTop;
+    BOOL _showingAboveText;
+    BOOL _completionsOnTop;
+    BOOL _completionSelectionHasQuickView;
+    float _completionLabelPadding;
+    float _titleOriginX;
+    int _previousMode;
+    DVTBorderedView *_contentView;
+    NSTableColumn *_leftPaddingColumn;
+    struct CGSize _completionsTextSize;
 }
 
++ (id)_nonSelectedTypeColor;
++ (id)_nonSelectedTitleColor;
 + (void)initialize;
+@property __weak NSTableColumn *leftPaddingColumn; // @synthesize leftPaddingColumn=_leftPaddingColumn;
+@property __weak DVTBorderedView *contentView; // @synthesize contentView=_contentView;
+@property int previousMode; // @synthesize previousMode=_previousMode;
+@property float titleOriginX; // @synthesize titleOriginX=_titleOriginX;
+@property BOOL completionSelectionHasQuickView; // @synthesize completionSelectionHasQuickView=_completionSelectionHasQuickView;
+@property BOOL completionsOnTop; // @synthesize completionsOnTop=_completionsOnTop;
+@property float completionLabelPadding; // @synthesize completionLabelPadding=_completionLabelPadding;
+@property struct CGSize completionsTextSize; // @synthesize completionsTextSize=_completionsTextSize;
+@property BOOL showingAboveText; // @synthesize showingAboveText=_showingAboveText;
 @property(nonatomic) int hideReason; // @synthesize hideReason=_hideReason;
 @property(readonly) DVTTextCompletionSession *session; // @synthesize session=_session;
 @property(readonly) BOOL showingWindow; // @synthesize showingWindow=_showingWindow;
@@ -57,7 +79,6 @@
 - (void)close;
 - (void)_loadColorsFromCurrentTheme;
 - (void)_themeColorsChanged:(id)arg1;
-- (id)_iconShadow;
 - (id)_notRecommendedAttributes;
 - (id)_usefulPrefixAttributes;
 - (id)_messageTextAttributes;
@@ -66,6 +87,9 @@
 - (void)_updateSelectedRow;
 - (void)_updateCurrentDisplayState;
 - (void)_updateCurrentDisplayStateForQuickHelp;
+- (void)hideFuzzyCompletionElements;
+- (void)completionsOnTopIsNo;
+- (void)completionsOnTopIsYes;
 - (void)_startDelayedAnimation;
 - (void)_doubleClickOnRow:(id)arg1;
 - (void)animationDidEnd:(id)arg1;

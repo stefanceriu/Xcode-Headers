@@ -4,24 +4,23 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IDEInspectorViewController.h"
+#import <IDESceneKitEditor/SKEInspectorViewController.h>
 
-@class SCNGeometry, SCNLight, SCNView;
+@class NSMutableArray, SCNView;
 
-@interface SKEMaterialPreviewInspector : IDEInspectorViewController
+@interface SKEMaterialPreviewInspector : SKEInspectorViewController
 {
     SCNView *_previewView;
-    SCNGeometry *_previewObject;
-    SCNLight *_ambientLight;
+    NSMutableArray *_observingTokens;
 }
 
++ (id)previewForMaterial:(id)arg1;
++ (void)configurePreviewScene:(id)arg1 withMaterial:(id)arg2;
++ (id)previewScene;
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
 - (void)loadView;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
-- (void)setContent:(id)arg1;
 - (void)viewDidInstall;
-- (void)configurePreviewScene;
-- (void)configureAmbientLightFromMainScene;
 - (void)configureMaterialByDefaultingIfNeeded;
 
 @end

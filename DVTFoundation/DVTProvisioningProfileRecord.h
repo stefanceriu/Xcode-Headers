@@ -12,8 +12,10 @@
 {
 }
 
+- (BOOL)isActive;
 
 // Remaining properties
+@property(retain, nonatomic) NSString *appIdId; // @dynamic appIdId;
 @property(retain, nonatomic) NSDate *dateExpire; // @dynamic dateExpire;
 @property(retain, nonatomic) NSString *name; // @dynamic name;
 @property(retain, nonatomic) NSString *proProPlatform; // @dynamic proProPlatform;
@@ -24,5 +26,6 @@
 @property(retain, nonatomic) NSString *type; // @dynamic type;
 @property(retain, nonatomic) NSString *uuid; // @dynamic uuid;
 @property(retain, nonatomic) NSString *version; // @dynamic version;
+
 @end
 

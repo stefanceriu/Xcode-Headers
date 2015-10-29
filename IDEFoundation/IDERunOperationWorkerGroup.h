@@ -6,35 +6,29 @@
 
 #import <IDEFoundation/IDERunOperationWorker.h>
 
-#import "IDERunOperationWorkerDelegate.h"
-#import "IDERunOperationWorkerTracker.h"
+@class DVTDispatchLock, NSArray, NSMutableSet;
 
-@class NSArray, NSString;
-
-@interface IDERunOperationWorkerGroup : IDERunOperationWorker <IDERunOperationWorkerDelegate, IDERunOperationWorkerTracker>
+@interface IDERunOperationWorkerGroup : IDERunOperationWorker
 {
     NSArray *_subworkers;
-    unsigned long long _finishedSubworkers;
+    NSMutableSet *_completedWorkers;
     BOOL _shouldStartNextWorker;
     unsigned long long _currentWorkerIndex;
+    DVTDispatchLock *_subworkersLock;
 }
 
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-@property(readonly, copy) NSString *description;
+- (id)description;
 - (void)allSubworkersDidFinishWithError:(id)arg1;
-- (void)runningDidFinish:(id)arg1 withError:(id)arg2;
-- (void)workerDidComplete:(id)arg1 withError:(id)arg2;
+- (void)finishedWithError:(id)arg1;
+- (void)finishFromCompletedWorker:(id)arg1 error:(id)arg2;
+- (void)startNextWorkerFromCompletedWorker:(id)arg1 error:(id)arg2;
 - (void)terminate;
 - (void)start;
 - (void)_startNextWorker;
-- (id)initWithExtensionIdentifier:(id)arg1 launchSession:(id)arg2;
 - (id)initWithWorkers:(id)arg1 launchSession:(id)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)initWithExtensionIdentifier:(id)arg1 launchSession:(id)arg2;
 
 @end
 

@@ -24,7 +24,7 @@
 - (void)userChooseSwatch:(id)arg1;
 - (id)clickedColor;
 - (BOOL)isFlipped;
-- (id)initWithTitle:(id)arg1 andColors:(id)arg2;
+- (id)initWithTitle:(id)arg1 andColors:(id)arg2 suggestedColors:(id)arg3;
 - (id)attributedTitleForTitle:(id)arg1;
 - (id)titleAttributes;
 - (id)titleFont;

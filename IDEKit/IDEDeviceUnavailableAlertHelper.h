@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IDERunContextManager, NSAlert, NSError, NSString, NSWindow;
+@class DVTDevice, IDERunContextManager, NSAlert, NSError, NSString, NSWindow;
 
 @interface IDEDeviceUnavailableAlertHelper : NSObject
 {
@@ -17,8 +17,10 @@
     CDUnknownBlockType _availabilityHandler;
     NSAlert *_alert;
     IDERunContextManager *_runContextManager;
+    DVTDevice *_device;
 }
 
+@property(retain) DVTDevice *device; // @synthesize device=_device;
 @property(retain) IDERunContextManager *runContextManager; // @synthesize runContextManager=_runContextManager;
 @property(retain) NSAlert *alert; // @synthesize alert=_alert;
 @property(copy) CDUnknownBlockType availabilityHandler; // @synthesize availabilityHandler=_availabilityHandler;

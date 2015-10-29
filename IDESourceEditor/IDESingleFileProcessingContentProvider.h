@@ -26,6 +26,7 @@
 - (void)generateContentForURL:(id)arg1 waitingBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)_kickOffContentGenerationWithFilePath:(id)arg1 schemeCommand:(id)arg2;
 - (void)_observeGeneratedFileNotificationsForFilePath:(id)arg1;
+- (void)primitiveInvalidate;
 
 @end
 

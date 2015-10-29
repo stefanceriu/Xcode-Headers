@@ -18,7 +18,8 @@
 + (void)insertsynthesizedMacrosIntoOverridingProperties:(id)arg1;
 + (id)keyPathsForValuesAffectingSubtitle;
 + (BOOL)shouldAllowCustomPhaseActions;
-@property(copy) NSString *buildConfiguration; // @synthesize buildConfiguration=_buildConfiguration;
+- (void)setBuildConfiguration:(id)arg1;
+- (id)buildConfiguration;
 - (void).cxx_destruct;
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;

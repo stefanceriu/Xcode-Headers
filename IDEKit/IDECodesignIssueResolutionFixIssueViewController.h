@@ -17,6 +17,9 @@
 - (void).cxx_destruct;
 - (void)invokeResolutionOption:(id)arg1;
 - (void)diagnoseIssue;
+- (BOOL)_isValidProvisioningTeam:(id)arg1 forDeveloper:(id)arg2;
+- (BOOL)_hasValidTeamAndAccountSelection;
+- (id)_portalPlatformIdentifier;
 - (void)viewDidInstall;
 
 @end

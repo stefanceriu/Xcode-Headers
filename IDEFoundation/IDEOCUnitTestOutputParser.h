@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTRegularExpression, NSArray, NSObject<OS_dispatch_queue>;
+@class DVTRegularExpression, NSObject<OS_dispatch_queue>;
 
 @interface IDEOCUnitTestOutputParser : NSObject
 {
@@ -18,13 +18,11 @@
     DVTRegularExpression *_testCaseMeasuredPerformanceMetricRegex;
     DVTRegularExpression *_testCaseFinishedRegex;
     DVTRegularExpression *_testCaseFailedRegex;
-    NSArray *_performanceTestParsers;
     NSObject<OS_dispatch_queue> *_processingQueue;
     NSObject<OS_dispatch_queue> *_delegateQueue;
     BOOL _outputsToConsole;
 }
 
-+ (BOOL)_initializedForUserInteraction;
 + (void)_initializeRegularExpressionsIfNeeded;
 @property BOOL outputsToConsole; // @synthesize outputsToConsole=_outputsToConsole;
 @property __weak id <IDEOCUnitTestOutputParserDelegate> delegate; // @synthesize delegate=_delegate;

@@ -13,8 +13,6 @@
 @interface IDEDataModelDocumentInspector : IDEDataModelInspectorController <IDEInspectorAccessibilitySupport>
 {
     NSArray *developmentVersionMenuItems;
-    NSArray *macOSXDeploymentVersionMenuItems;
-    NSArray *iOSDeploymentVersionMenuItems;
     NSArrayController *versionsArrayController;
     NSArray *_versionGroupItems;
 }
@@ -22,10 +20,7 @@
 + (id)keyPathsForValuesAffectingDevelopmentVersionTitle;
 + (id)keyPathsForValuesAffectingModelVersionIdentifier;
 + (id)keyPathsForValuesAffectingCanChooseModelVersion;
-+ (id)keyPathsForValuesAffectingIOSDeploymentTargetTitle;
 @property(copy) NSArray *developmentVersionMenuItems; // @synthesize developmentVersionMenuItems;
-@property(copy) NSArray *iOSDeploymentVersionMenuItems; // @synthesize iOSDeploymentVersionMenuItems;
-@property(copy) NSArray *macOSXDeploymentVersionMenuItems; // @synthesize macOSXDeploymentVersionMenuItems;
 - (void).cxx_destruct;
 @property(readonly) NSString *developmentVersionTitle;
 - (void)takeToolsVersion:(id)arg1;
@@ -40,10 +35,6 @@
 - (id)_versionGroup;
 - (BOOL)canChooseModelVersion;
 - (void)refreshTargetMenus;
-@property(readonly) NSString *iOSDeploymentTargetTitle;
-@property(readonly) NSString *macOSXDeploymentTargetTitle;
-- (void)takeDeploymentTarget:(id)arg1;
-@property(readonly) BOOL iOSDevelopmentEnabled;
 - (void)loadView;
 - (id)humanReadableNameForInspectorKeyPath:(id)arg1;
 

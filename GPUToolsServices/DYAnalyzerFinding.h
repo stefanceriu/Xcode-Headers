@@ -10,7 +10,7 @@
 #import "NSCopying.h"
 #import "NSObject.h"
 
-@class NSIndexSet, NSMutableDictionary, NSMutableIndexSet, NSMutableString, NSString;
+@class NSArray, NSIndexSet, NSMutableDictionary, NSMutableIndexSet, NSMutableString, NSString;
 
 @interface DYAnalyzerFinding : NSObject <NSCopying, NSCoding, NSObject>
 {
@@ -30,9 +30,11 @@
     int _granularity;
     unsigned long long _graphicsEngineID;
     unsigned long long _resourceGroupID;
+    NSArray *_subfindings;
 }
 
 + (id)_findingLevelString:(int)arg1;
+@property(retain, nonatomic) NSArray *subfindings; // @synthesize subfindings=_subfindings;
 @property(retain, nonatomic) id <NSCoding><NSCopying><NSObject> additionalData; // @synthesize additionalData=_additionalData;
 @property(readonly, copy, nonatomic) NSMutableDictionary *statistics; // @synthesize statistics=_statistics;
 @property(nonatomic) unsigned int drawCallNum; // @synthesize drawCallNum=_drawCallNum;

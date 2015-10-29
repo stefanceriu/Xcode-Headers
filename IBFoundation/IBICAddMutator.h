@@ -6,7 +6,7 @@
 
 #import <IBFoundation/IBICCatalogMutator.h>
 
-@class IBICAbstractCatalogItem, NSData, NSFileWrapper, NSString, NSURL;
+@class IBICAbstractCatalogItem, NSData, NSFileWrapper, NSNumber, NSString, NSURL;
 
 @interface IBICAddMutator : IBICCatalogMutator
 {
@@ -20,6 +20,7 @@
     NSString *_originalFileName;
     NSData *_pendingManifestData;
     NSString *_pendingManifestPath;
+    NSNumber *_optionalIndex;
 }
 
 - (void).cxx_destruct;
@@ -27,7 +28,7 @@
 - (id)mutationDescription;
 - (void)applyToDiskWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)applyToModel;
-- (id)initWithItem:(id)arg1 parent:(id)arg2 namingStrategy:(long long)arg3 stategyOptions:(id)arg4;
+- (id)initWithItem:(id)arg1 parent:(id)arg2 atOptionalIndex:(id)arg3 namingStrategy:(long long)arg4 stategyOptions:(id)arg5;
 
 @end
 

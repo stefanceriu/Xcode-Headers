@@ -170,6 +170,8 @@
 - (void)showRevision:(id)arg1;
 - (void)compareCurrentRevisionToRevision:(id)arg1;
 - (void)compareRevisionChange:(id)arg1;
+- (void)setupFrameResizeObservation;
+- (void)cancelFrameResizeToken;
 - (void)_setupSupportViews;
 - (void)_cleanupSupportViews;
 - (void)_editorDocumentDirtyStatusDidChange:(id)arg1;

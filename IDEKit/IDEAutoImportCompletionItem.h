@@ -20,8 +20,10 @@
     NSString *_name;
     unsigned long long _partialSelectorCount;
     NSAttributedString *_descriptionText;
+    double _fuzzyMatchingScore;
 }
 
+@property double fuzzyMatchingScore; // @synthesize fuzzyMatchingScore=_fuzzyMatchingScore;
 @property(nonatomic) unsigned long long partialSelectorCount; // @synthesize partialSelectorCount=_partialSelectorCount;
 @property(readonly, copy) NSArray *additionalCompletions; // @synthesize additionalCompletions=_additionalCompletions;
 - (void).cxx_destruct;

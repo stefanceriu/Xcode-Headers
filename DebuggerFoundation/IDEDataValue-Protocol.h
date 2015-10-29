@@ -9,8 +9,9 @@
 @class NSArray, NSString;
 
 @protocol IDEDataValue <NSObject>
+@property(readonly) BOOL isMemoryFault;
 @property(readonly) BOOL childValuesCountValid;
-@property(readonly) NSArray *childValues;
+@property(readonly, copy) NSArray *childValues;
 @property(readonly) BOOL hasChildValues;
 @property(readonly) BOOL inScope;
 @property(readonly) BOOL itemDescriptionHasChanged;

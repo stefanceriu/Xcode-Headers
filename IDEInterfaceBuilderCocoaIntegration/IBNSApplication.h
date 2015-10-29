@@ -9,11 +9,10 @@
 #import "IBDocumentArchiving.h"
 #import "IBPrimarySceneObject.h"
 
-@class IBSimulatedMetricsContainer, NSMenu, NSString;
+@class NSMenu, NSString;
 
 @interface IBNSApplication : IBNSCustomObject <IBDocumentArchiving, IBPrimarySceneObject>
 {
-    IBSimulatedMetricsContainer *_inheritedSimulatedMetrics;
     NSMenu *_mainMenu;
 }
 
@@ -31,7 +30,7 @@
 - (id)ibSegueTemplateSceneControllerOutletDestination;
 - (struct CGRect)ibRectForChild:(id)arg1 inFrameController:(id)arg2;
 - (id)ibEditorCanvasFrameControllerForDocument:(id)arg1;
-- (BOOL)ibCanBecomeEntryPointForIndicator:(id)arg1;
+- (BOOL)ibCanBecomeEntryPointForIndicator:(id)arg1 inStoryboard:(id)arg2;
 - (id)ibShortDisplayName;
 - (BOOL)ibIsPrimarySceneObject:(id)arg1 validSplitViewDetailWithSegue:(id)arg2;
 - (BOOL)ibIsPrimarySceneObject:(id)arg1 validSplitViewMasterWithSegue:(id)arg2;
@@ -39,21 +38,17 @@
 - (BOOL)ibCanBeValidRelationshipDestination;
 - (BOOL)ibCanBeValidTriggerSegueDestination;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
-- (void)ibDidExtractObjects:(id)arg1 fromPasteboard:(id)arg2 intoDocument:(id)arg3 context:(id)arg4;
 - (void)ibDidBecomeControllerForCompilationGroup;
 - (void)ibAddStoryboardSegueTemplate:(id)arg1;
 - (BOOL)ibSegueTemplatesAreTopLevel;
 - (void)ibUpstreamController:(id)arg1 didBecomeDestinationOfSegue:(id)arg2;
 - (void)ibWillResignSourceControllerForSegue:(id)arg1;
 - (void)ibDidBecomeSourceControllerForSegue:(id)arg1;
-- (id)explicitStoryboardIdentifier;
+@property(copy, nonatomic) NSString *ibExplicitStoryboardIdentifier;
 - (void)setExplicitStoryboardIdentifier:(id)arg1;
 - (void)ibResizeToEffectiveSimulatedSizeForSceneTreeDragImageNode;
 - (id)ibInheritableMetricsForDownstreamController:(id)arg1 viaSegue:(id)arg2;
-@property(copy, nonatomic) IBSimulatedMetricsContainer *inheritedSimulatedMetrics;
-- (void)ibEffectiveSimulatedMetricsDidChange;
 - (BOOL)ibRequiresOutletToFilesOwner;
-- (id)ibEffectiveStoryboardIdentifier;
 - (id)ibDefaultImage;
 - (id)ibImageForOwnedScene;
 - (id)ibRuntimeClassName;

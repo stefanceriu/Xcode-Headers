@@ -6,19 +6,19 @@
 
 #import <IDEKit/IDEOpenQuicklyMatchProvider.h>
 
-@class IDEOpenQuicklyDataSource, IDEOpenQuicklyPattern, NSArray;
+@class DVTOpenQuicklyPattern, IDEOpenQuicklyDataSource, NSArray;
 
 @interface IDEOpenQuicklySimplePathMatchProvider : IDEOpenQuicklyMatchProvider
 {
     NSArray *_searchPaths;
     id <DVTCancellable> _dataSourceMatchObserver;
-    IDEOpenQuicklyPattern *_previousPattern;
+    DVTOpenQuicklyPattern *_previousPattern;
     IDEOpenQuicklyDataSource *_dataSource;
 }
 
 + (id)keyPathsForValuesAffectingIdle;
 @property(retain) IDEOpenQuicklyDataSource *dataSource; // @synthesize dataSource=_dataSource;
-@property(retain) IDEOpenQuicklyPattern *previousPattern; // @synthesize previousPattern=_previousPattern;
+@property(retain) DVTOpenQuicklyPattern *previousPattern; // @synthesize previousPattern=_previousPattern;
 - (void).cxx_destruct;
 - (void)contextDidChange;
 - (void)finishCalculatingMatches;

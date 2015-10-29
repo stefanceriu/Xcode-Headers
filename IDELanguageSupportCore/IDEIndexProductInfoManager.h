@@ -18,7 +18,6 @@
 }
 
 + (id)sharedManager;
-+ (void)initialize;
 - (void).cxx_destruct;
 - (void)informSourceKit:(struct sourcekitd_uid_s *)arg1 productInfo:(id)arg2 productBlock:(CDUnknownBlockType)arg3;
 - (void)reregisterProductInfo:(id)arg1 settings:(id)arg2;

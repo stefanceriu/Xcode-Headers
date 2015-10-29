@@ -75,13 +75,14 @@
 - (unsigned long long)addSpacerItemInContainer:(id)arg1 initialLayoutFrame:(struct CGRect)arg2 generatingConstraintsForAttributes:(unsigned long long *)arg3 attributeCount:(unsigned long long)arg4;
 - (CDUnknownBlockType)_spacerViewConstraintGenerationBlockForAttributes:(unsigned long long *)arg1 attributeCount:(unsigned long long)arg2;
 - (unsigned long long)_addSpacerItemWithRepresentedSuperview:(id)arg1 initialLayoutFrame:(struct CGRect)arg2 constraintGenerationBlock:(CDUnknownBlockType)arg3;
-- (void)invalidateConstraintsForRepresentedViews:(id)arg1;
+- (void)invalidateConstraintsForRepresentedItems:(id)arg1;
 - (void)updateConstraintsIfNeeded;
 - (void)layoutIfNeeded;
 @property(readonly) Class spacerItemClass;
 - (id)debugDescription;
 @property BOOL shouldIntegralize;
 @property(readonly) NSISEngine *internalEngine;
+@property(readonly) BOOL allowsDerivedDesignTimeDefaultIntrinsicContentSize;
 @property(readonly) BOOL allowsResizingTopLevelView;
 - (void)setAllowsResizingTopLevelView:(BOOL)arg1;
 @property(readonly) NSSet *allRealConstraintsIncludingThoseRemovedDuringBootstrapping;
@@ -106,8 +107,7 @@
 - (void)mapLayoutEngineView:(id)arg1 toCanvasView:(id)arg2;
 - (id)realViewForRepresentedView:(id)arg1;
 - (id)representedViewForRealView:(id)arg1;
-- (id)allRepresentedViewsInEngine;
-- (void)_recursivelyAddSubviewsOfView:(id)arg1 toMutableArray:(id)arg2;
+- (id)representedItemsOrderedBreadthFirst;
 @property(readonly) NSArray *realViewsOrderedBreadthFirst;
 @property(readonly) id <IBAutolayoutInfoProvider> layoutInfo; // @synthesize layoutInfo;
 - (void)performInternalEngineModificationsAndAssertOnUnsatisfiableConstraintsIfNeededDuring:(CDUnknownBlockType)arg1 withUnsatisfiableConstraintsHandler:(CDUnknownBlockType)arg2;

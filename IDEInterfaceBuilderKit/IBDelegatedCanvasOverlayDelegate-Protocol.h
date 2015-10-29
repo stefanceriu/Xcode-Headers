@@ -9,6 +9,6 @@
 @class IBDelegatedCanvasOverlay, NSView;
 
 @protocol IBDelegatedCanvasOverlayDelegate <NSObject>
-- (NSView *)delegatedCanvasOverlay:(IBDelegatedCanvasOverlay *)arg1 hitTest:(struct CGPoint)arg2;
+- (NSView *)delegatedCanvasOverlay:(IBDelegatedCanvasOverlay *)arg1 hitTest:(struct CGPoint)arg2 inCoordinatesSpaceOfView:(NSView *)arg3;
 @end
 

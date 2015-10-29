@@ -27,6 +27,7 @@
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)debugDescription;
+- (id)archiveRepresentation;
 - (id)keyPathsForValuesAffectingDisplayName;
 - (id)keyPathsForValuesAffectingUrl;
 

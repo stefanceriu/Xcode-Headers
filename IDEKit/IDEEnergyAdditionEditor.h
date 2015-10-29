@@ -8,14 +8,16 @@
 
 #import "IDEDebugGaugeReportContentDelegate.h"
 #import "IDEDebugGaugeReportTopSectionContentDelegate.h"
-#import "IDEGraphDelegate.h"
+#import "IDEEnergyAnnotatedBarGraphDelegate.h"
 
-@class DVTMeterView, IDEAppEnergyGraph, IDEEnergyAddition, IDEEnergyAdditionGuidance, NSImageView, NSString, NSTextField, NSView;
+@class DVTMeterView, DVTObservingToken, IDEAppEnergyGraph, IDEEnergyAddition, IDEEnergyAdditionGuidance, IDEEnergyLogScoreFormatter, NSImageView, NSString, NSTextField, NSView;
 
-@interface IDEEnergyAdditionEditor : IDEDebugGaugeReportEditor <IDEDebugGaugeReportContentDelegate, IDEDebugGaugeReportTopSectionContentDelegate, IDEGraphDelegate>
+@interface IDEEnergyAdditionEditor : IDEDebugGaugeReportEditor <IDEDebugGaugeReportContentDelegate, IDEDebugGaugeReportTopSectionContentDelegate, IDEEnergyAnnotatedBarGraphDelegate>
 {
+    IDEEnergyLogScoreFormatter *_scoreFormatter;
     float _observedLogScoreMin;
     float _observedLogScoreMax;
+    DVTObservingToken *_energyMeasurementsObserverToken;
     IDEEnergyAddition *_addition;
     unsigned long long _lastMetricsDeltaCount;
     IDEAppEnergyGraph *_cpuWasteGraph;
@@ -64,11 +66,13 @@
 - (id)translateValue:(id)arg1 keypath:(id)arg2;
 - (id)gradientForColor:(id)arg1;
 - (id)colorForChartNamed:(id)arg1;
+- (id)categoryTitles;
 - (void)primitiveInvalidate;
 - (void)timeProfileTemplate:(id)arg1;
 - (void)microProfileTemplate:(id)arg1;
 - (void)findPollingTemplate:(id)arg1;
 - (void)findTimersTemplate:(id)arg1;
+- (void)_launchWithTemplate:(id)arg1;
 - (void)_handleMetricsUpdate:(id)arg1;
 - (id)topSectionComponentEntries;
 - (id)topSectionTitle;

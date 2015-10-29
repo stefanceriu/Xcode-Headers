@@ -8,8 +8,8 @@
 
 @interface SCNFloor : SCNGeometry
 {
-    id _reserved;
     unsigned int _isPresentationInstance:1;
+    unsigned int _usesCustomScaleFactor:1;
     float _reflectivity;
     float _reflectionFalloffStart;
     float _reflectionFalloffEnd;
@@ -18,7 +18,6 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)floor;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -35,7 +34,7 @@
 @property(nonatomic) double reflectionResolutionScaleFactor;
 @property(nonatomic) double reflectionFalloffStart;
 @property(nonatomic) double reflectionFalloffEnd;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (struct __C3DFloor *)floorRef;
 - (void)dealloc;
 - (id)init;

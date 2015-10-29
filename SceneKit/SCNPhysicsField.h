@@ -13,7 +13,6 @@
 
 @interface SCNPhysicsField : NSObject <NSCopying, NSSecureCoding>
 {
-    void *_reserved;
     struct SCNVector3 _halfExtent;
     double _strength;
     double _falloffExponent;
@@ -31,7 +30,8 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
++ (double)_displayScaleFactor;
++ (void)_setDisplayScaleFactor:(double)arg1;
 + (id)magneticField;
 + (id)electricField;
 + (id)springField;
@@ -43,14 +43,16 @@
 + (id)customFieldWithEvaluationBlock:(CDUnknownBlockType)arg1;
 + (id)dragField;
 + (id)field;
-- (id).cxx_construct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (struct SCNVector3)evalAtLocation:(struct SCNVector3)arg1;
 -     // Error parsing type: ^{c3dPhysicsField=^^?{?=[4]}{?=[4]}fffIBBBBf}16@0:8, name: _handle
 - (id)_owner;
 - (void)_setWorld:(id)arg1;
 - (void)_setOwner:(id)arg1;
 - (void)_removeOwner;
+- (BOOL)supportsOffset;
+- (BOOL)supportsDirection;
 @property(nonatomic) struct SCNVector3 direction;
 @property(nonatomic) struct SCNVector3 offset;
 @property(nonatomic, getter=isExclusive) BOOL exclusive;

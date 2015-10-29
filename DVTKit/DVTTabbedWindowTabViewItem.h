@@ -22,6 +22,7 @@
     DVTScrollableTabButton *_scrollableTabButton;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 @property(nonatomic) __weak DVTScrollableTabButton *scrollableTabButton; // @synthesize scrollableTabButton=_scrollableTabButton;
 @property(copy, nonatomic) NSString *searchFieldText; // @synthesize searchFieldText=_searchFieldText;

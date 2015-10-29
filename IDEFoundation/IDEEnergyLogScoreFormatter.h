@@ -8,11 +8,20 @@
 
 @interface IDEEnergyLogScoreFormatter : NSFormatter
 {
+    long long _zeroThreshold;
+    long long _lowThreshold;
+    long long _highThreshold;
 }
 
-+ (id)defaultFormatter;
+@property long long highThreshold; // @synthesize highThreshold=_highThreshold;
+@property long long lowThreshold; // @synthesize lowThreshold=_lowThreshold;
+@property long long zeroThreshold; // @synthesize zeroThreshold=_zeroThreshold;
 - (BOOL)getObjectValue:(out id *)arg1 forString:(id)arg2 errorDescription:(out id *)arg3;
 - (id)stringForObjectValue:(id)arg1;
+- (id)attributedStringForObjectValue:(id)arg1 withDefaultAttributes:(id)arg2;
+- (id)greenColor;
+- (id)yellowColor;
+- (id)redColor;
 
 @end
 

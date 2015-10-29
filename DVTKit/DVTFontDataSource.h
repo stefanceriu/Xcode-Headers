@@ -36,6 +36,7 @@
 - (id)fontTextField:(id)arg1 descriptionForFamily:(id)arg2;
 - (id)fontTextField:(id)arg1 descriptionForValue:(id)arg2 type:(int *)arg3;
 - (id)fontTextField:(id)arg1 fontNamesForFontFamily:(id)arg2;
+- (id)fontTextField:(id)arg1 fontNamesForFont:(id)arg2;
 - (id)fontFamiliesForFontTextField:(id)arg1;
 - (id)fontValuesForFontTextField:(id)arg1;
 - (id)init;

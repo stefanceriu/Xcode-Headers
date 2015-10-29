@@ -4,18 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IBFoundation/IBICMultipartImageRepSlotComponent.h>
+#import <IBFoundation/IBICSlotComponent.h>
 
-#import "NSCoding.h"
-
-@interface IBICPlatform : IBICMultipartImageRepSlotComponent <NSCoding>
+@interface IBICPlatform : IBICSlotComponent
 {
 }
 
 + (id)contentsJSONKey;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (BOOL)isEqualToSchemaImageRepIDComponent:(id)arg1;
+- (BOOL)isEqualToSlotComponent:(id)arg1;
 - (BOOL)isEqualToPlatform:(id)arg1;
 
 @end

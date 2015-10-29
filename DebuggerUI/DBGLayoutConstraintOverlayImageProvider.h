@@ -10,26 +10,27 @@
 #import "IBLayoutConstraintDrawingDestination.h"
 #import "IBLayoutConstraintStatusProvider.h"
 
-@class DBGInteractiveSceneView, DBGLayoutConstraintSet, DBGSceneViewControllerDataSource, NSMutableDictionary, NSString;
+@class DBGInteractiveSceneView, DBGLayoutConstraintSet, NSMutableDictionary, NSString;
 
 @interface DBGLayoutConstraintOverlayImageProvider : NSObject <IBAutolayoutConcreteConstraintProvider, IBLayoutConstraintDrawingDestination, IBLayoutConstraintStatusProvider>
 {
     DBGLayoutConstraintSet *_constraintSet;
-    DBGSceneViewControllerDataSource *_sceneViewDataSource;
+    NSMutableDictionary *_constraintBadgeImageCachesByTintColor;
+    NSMutableDictionary *_selectedConstraintBadgeImageCachesByTintColor;
+    id <DBGSceneViewControllerDataSourceProtocol> _sceneViewDataSource;
     DBGInteractiveSceneView *_sceneView;
     NSMutableDictionary *_presentedConstraintNodes;
 }
 
-+ (id)bezierPathWithLineFromPoint:(struct CGPoint)arg1 toPoint:(struct CGPoint)arg2;
 @property(retain, nonatomic) NSMutableDictionary *presentedConstraintNodes; // @synthesize presentedConstraintNodes=_presentedConstraintNodes;
 @property __weak DBGInteractiveSceneView *sceneView; // @synthesize sceneView=_sceneView;
-@property __weak DBGSceneViewControllerDataSource *sceneViewDataSource; // @synthesize sceneViewDataSource=_sceneViewDataSource;
+@property __weak id <DBGSceneViewControllerDataSourceProtocol> sceneViewDataSource; // @synthesize sceneViewDataSource=_sceneViewDataSource;
 - (void).cxx_destruct;
 - (BOOL)isSelectableConstraint:(id)arg1;
 - (BOOL)isSelectedConstraint:(id)arg1;
 - (BOOL)isConflictingConstraint:(id)arg1;
 @property(readonly, nonatomic) Class layoutConstantClass;
-@property(readonly, nonatomic) Class layoutConstraintClass;
+- (Class)layoutConstraintClass;
 - (double)valueOfAttribute:(unsigned long long)arg1 forView:(id)arg2 inCoordinateSpaceOfView:(id)arg3 withUserInterfaceLayoutDirection:(long long)arg4;
 - (struct CGRect)rectForDrawable:(id)arg1;
 - (struct CGRect)rectForLimitedSpaceDualTBeamForDrawable:(id)arg1;
@@ -39,10 +40,16 @@
 - (id)equalSizeBadge;
 - (id)greaterThanOrEqualToBadge;
 - (id)lessThanOrEqualToBadge;
-- (id)constraintBadgeImageForLabel:(id)arg1 tintColor:(id)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_d2b197d1 *)arg4;
-- (id)badgeImageForAspectRatioConstraint:(id)arg1 attribute:(unsigned long long)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_d2b197d1 *)arg4;
-- (id)badgeImageForMisplacedConstraint:(id)arg1 constantDelta:(double)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_d2b197d1 *)arg4;
-- (id)badgeImageForConflictingConstraint:(id)arg1 returningBadgeSize:(struct CGSize *)arg2 badgeInset:(CDStruct_d2b197d1 *)arg3;
+- (id)constraintBadgeImageForRelationshipImage:(id)arg1;
+- (id)constraintBadgeImageForLabel:(id)arg1 tintColor:(id)arg2 drawSelected:(BOOL)arg3 returningBadgeSize:(struct CGSize *)arg4 badgeInset:(CDStruct_d2b197d1 *)arg5;
+- (id)badgeImageForAspectRatioConstraint:(id)arg1 drawSelected:(BOOL)arg2 attribute:(unsigned long long)arg3 returningBadgeSize:(struct CGSize *)arg4 badgeInset:(CDStruct_d2b197d1 *)arg5;
+- (id)badgeImageForMisplacedConstraint:(id)arg1 drawSelected:(BOOL)arg2 constantDelta:(double)arg3 returningBadgeSize:(struct CGSize *)arg4 badgeInset:(CDStruct_d2b197d1 *)arg5;
+- (id)badgeImageForAmbiguousConstraint:(id)arg1 drawSelected:(BOOL)arg2 constantDelta:(double)arg3 returningBadgeSize:(struct CGSize *)arg4 badgeInset:(CDStruct_d2b197d1 *)arg5;
+- (id)badgeImageForConflictingConstraint:(id)arg1 drawSelected:(BOOL)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_d2b197d1 *)arg4;
+- (id)_cachedConstraintBadgeImageByTintColor:(id)arg1 drawSelected:(BOOL)arg2 label:(id)arg3;
+- (void)_setCachedConstraintBadgeImage:(id)arg1 forTintColor:(id)arg2 drawSelected:(BOOL)arg3 label:(id)arg4;
+- (id)_scalableBaseConstraintBadgeImageWithTintColor:(id)arg1 drawSelected:(BOOL)arg2 returningBadgeSize:(struct CGSize *)arg3 badgeInset:(CDStruct_d2b197d1 *)arg4 supportedScaleFactors:(id *)arg5;
+- (struct CGRect)rectForDrawableBadge:(id)arg1;
 - (struct CGRect)rectIncludingBadgeForDrawable:(id)arg1;
 - (BOOL)isShowingResizeKnobs;
 - (id)badgeLabelForAbstraction:(id)arg1 atIndex:(unsigned long long)arg2 isConflicting:(BOOL)arg3 isAmbiguous:(BOOL)arg4 isMisplaced:(BOOL)arg5;
@@ -51,19 +58,6 @@
 - (long long)userInterfaceLayoutDirection;
 - (id)constraintOverlayView;
 - (struct CGRect)layoutRectInOverlayCoordinatesForConstraintItem:(id)arg1;
-- (void)drawRelativeConstraintAlignmentLineWithLine:(CDStruct_e3b9714e)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5 edgeBias:(id)arg6;
-- (void)drawLimitedSpaceDualTBeamWithDrawable:(id)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5;
-- (void)drawLimitedSpaceConnectionWithLine:(CDStruct_e3b9714e)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5;
-- (void)drawGuideLine:(CDStruct_e3b9714e)arg1;
-- (struct CGRect)rectForGuideLine:(CDStruct_e3b9714e)arg1;
-- (void)drawConstraintDrawable:(id)arg1;
-- (id)effectiveShadowForConstraintDrawable:(id)arg1;
-- (id)selectableConstraintShadow;
-- (id)selectedConstraintShadow;
-- (id)effectiveStrokeColorForConstraintDrawable:(id)arg1;
-- (void)drawConstraintStraightLine:(CDStruct_e3b9714e)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5 edgeBias:(id)arg6;
-- (void)drawIBeamWithLine:(CDStruct_e3b9714e)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5;
-- (id)dashedBezierPathLineForLine:(CDStruct_e3b9714e)arg1 withThickness:(double)arg2 onDashLength:(double)arg3 offDashLength:(double)arg4 phase:(double)arg5 edgeBias:(id)arg6;
 - (void)updateConstraintNodesUsingConstraintSet:(id)arg1 forRootViewRect:(struct CGRect)arg2;
 - (id)_generateConstraintAbstractionsFromConstraintSet;
 - (id)initWithConstraintSet:(id)arg1;

@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <XCSCore/XCSObject.h>
 
 @class NSArray, NSNumber, NSString, XCSTest;
 
-@interface XCSTestPerfMetric : NSObject
+@interface XCSTestPerfMetric : XCSObject
 {
     BOOL passed;
     XCSTest *test;
@@ -39,10 +39,11 @@
 @property(readonly, nonatomic) unsigned long long type; // @synthesize type;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier;
 @property(readonly, copy, nonatomic) NSString *name; // @synthesize name;
-@property(retain, nonatomic) XCSTest *test; // @synthesize test;
+@property(nonatomic) __weak XCSTest *test; // @synthesize test;
 - (void).cxx_destruct;
 - (BOOL)_validateWithName:(id)arg1 identifier:(id)arg2 type:(unsigned long long)arg3 unit:(id)arg4 passed:(BOOL)arg5 avg:(double)arg6 min:(double)arg7 max:(double)arg8 rsd:(double)arg9 baseline:(id)arg10 maxPercentRegression:(id)arg11 maxPercentRelativeStandardDeviation:(id)arg12 iterations:(struct NSArray *)arg13 errors:(id *)arg14;
 - (id)saveRepresentationHumanReadable:(BOOL)arg1;
+- (id)saveRepresentation;
 - (id)description;
 - (BOOL)setTest:(id)arg1 error:(id *)arg2;
 - (id)initWithName:(id)arg1 contents:(id)arg2 validationErrors:(id *)arg3;

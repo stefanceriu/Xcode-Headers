@@ -12,15 +12,17 @@
 
 @interface IDEMultipleValuesOnRowQuickLookProvider : NSObject <IDEPlaygroundQuickLookProvider>
 {
-    NSString *_plainTitle;
+    NSAttributedString *_cachedAttributedTitle;
+    unsigned long long _iterations;
 }
 
-@property(copy) NSString *plainTitle; // @synthesize plainTitle=_plainTitle;
+@property(nonatomic) unsigned long long iterations; // @synthesize iterations=_iterations;
 - (void).cxx_destruct;
 - (id)quickLookViewForResultsView;
 - (id)quickLookViewForNaturalSize;
 @property(readonly, copy) NSAttributedString *attributedTitle;
 @property(readonly) NSView *iconView;
+- (id)plainTitle;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

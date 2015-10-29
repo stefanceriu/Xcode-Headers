@@ -6,13 +6,18 @@
 
 #import "NSObject.h"
 
+@class NSMapTable, NSObject<OS_dispatch_queue>;
+
 @interface IDEPlaygroundDataHandler : NSObject
 {
+    NSObject<OS_dispatch_queue> *_dataHandlingQueue;
+    NSMapTable *_dataHandlerToIdentifierMapTable;
 }
 
-+ (void)handlePlaygroundData:(id)arg1 metaData:(id)arg2 dataIdentifier:(id)arg3 resultDate:(id)arg4 version:(unsigned long long)arg5 executionParameters:(id)arg6;
-+ (id)dataHandlerForIdentifier:(id)arg1;
-- (BOOL)handleData:(id)arg1 metaData:(id)arg2 version:(unsigned long long)arg3 executionParameters:(id)arg4 resultDate:(id)arg5 error:(id *)arg6;
++ (id)sharedInstance;
+- (void).cxx_destruct;
+- (void)handlePlaygroundData:(id)arg1 metaData:(id)arg2 dataIdentifier:(id)arg3 resultDate:(id)arg4 version:(unsigned long long)arg5 executionParameters:(id)arg6;
+- (id)init;
 
 @end
 

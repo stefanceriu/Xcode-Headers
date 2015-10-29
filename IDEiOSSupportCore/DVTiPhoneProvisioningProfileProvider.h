@@ -12,12 +12,14 @@
 
 + (id)keyPathsForValuesAffectingAllProfiles;
 + (id)keyPathsForValuesAffectingAreProfilesLoaded;
-- (BOOL)installHostProfiles:(id)arg1 error:(id *)arg2;
+- (id)profileWithUUID:(id)arg1;
+- (void)installHostProfiles:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (id)profileWithData:(id)arg1 error:(id *)arg2;
 - (id)profileWithURL:(id)arg1 error:(id *)arg2;
 - (BOOL)isProfileExpiringWithCodeSigningIdentity:(id)arg1 profileName:(id *)arg2;
 - (id)expiringProfilesInExpansionContext:(id)arg1;
 - (id)expiringProfiles;
+- (id)allProfiles_sync;
 - (id)allProfiles;
 - (BOOL)areProfilesLoaded;
 - (void)forceProfileLoading;

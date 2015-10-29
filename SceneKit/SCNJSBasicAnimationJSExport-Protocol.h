@@ -9,9 +9,17 @@
 @class CAMediaTimingFunction, NSString;
 
 @protocol SCNJSBasicAnimationJSExport <JSExport>
-+ (id)basicAnimationWithKeyPath:(NSString *)arg1;
++ (id)animationWithKeyPath:(NSString *)arg1;
+@property(copy) NSString *fillMode;
+@property BOOL autoreverses;
+@property double repeatDuration;
+@property float repeatCount;
+@property double timeOffset;
+@property float speed;
+@property double beginTime;
 @property(getter=isRemovedOnCompletion) BOOL removedOnCompletion;
 @property(retain) CAMediaTimingFunction *timingFunction;
+@property double duration;
 @property(getter=isCumulative) BOOL cumulative;
 @property(getter=isAdditive) BOOL additive;
 @property(copy) NSString *keyPath;

@@ -7,7 +7,7 @@
 #import "IBSystemLayoutConstraintAbstraction.h"
 
 @interface IBSystemLayoutConstraintAbstraction (IBSystemLayoutConstraintAbstraction)
-+ (id)ibDefaultImageForInstance:(id)arg1;
++ (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
 - (id)ibDefaultLabel;
 @end
 

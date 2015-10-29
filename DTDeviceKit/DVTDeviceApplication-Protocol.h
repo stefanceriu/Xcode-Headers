@@ -10,7 +10,7 @@
 
 @protocol DVTDeviceApplication <DVTDeviceApplicationItem>
 @property(readonly) BOOL isHidden;
-@property(readonly) NSSet *rootContainerApplicationItems;
+@property(readonly, copy) NSSet *rootContainerApplicationItems;
 @property(readonly) BOOL isFairPlayEncrypted;
 @property(readonly) NSString *bundleIdentifier;
 @property(readonly) NSString *version;

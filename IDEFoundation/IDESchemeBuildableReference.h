@@ -72,6 +72,7 @@
 @property(copy) NSString *cachedBlueprintName;
 @property(copy) NSString *buildableIdentifier;
 @property(readonly, copy) NSString *description;
+- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initFromXMLUnarchiver:(id)arg1 archiveVersion:(float)arg2;
 - (id)initWithBuildable:(id)arg1 scheme:(id)arg2 willBeArchived:(BOOL)arg3;

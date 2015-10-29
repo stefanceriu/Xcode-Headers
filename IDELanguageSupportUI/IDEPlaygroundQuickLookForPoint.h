@@ -16,6 +16,7 @@
 - (void).cxx_destruct;
 - (id)quickLookViewForResultsView;
 - (id)quickLookViewForNaturalSize;
+@property(readonly) DVTPointViewController *pointViewController;
 - (id)initWithObjectReflection:(id)arg1;
 
 @end

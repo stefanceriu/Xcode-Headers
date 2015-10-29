@@ -10,18 +10,18 @@
 
 @interface IDESwiftMigrationTarget : IDEMigrationTarget
 {
+    BOOL _enabled;
     IDESwiftMigrationAssistantContext *_assistantContext;
     NSString *_title;
     NSString *_subTitle;
-    BOOL _fileOveridesARCSetting;
-    BOOL _enabled;
 }
 
 @property BOOL enabled; // @synthesize enabled=_enabled;
 @property(readonly, copy) NSString *subTitle; // @synthesize subTitle=_subTitle;
 @property(readonly, copy) NSString *title; // @synthesize title=_title;
-@property(readonly) IDESwiftMigrationAssistantContext *assistantContext; // @synthesize assistantContext=_assistantContext;
+@property(retain) IDESwiftMigrationAssistantContext *assistantContext; // @synthesize assistantContext=_assistantContext;
 - (void).cxx_destruct;
+@property(readonly) BOOL migratorHasBeenRun;
 - (void)updateBuildSettings;
 - (id)initWithBlueprint:(id)arg1 assistantContext:(id)arg2;
 

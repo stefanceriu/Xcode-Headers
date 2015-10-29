@@ -6,15 +6,19 @@
 
 #import "IDELibraryController.h"
 
-@class NSMutableArray;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSString;
 
 @interface SKObjectLibraryController : IDELibraryController
 {
-    NSMutableArray *_objectsForSKLibrary;
-    NSMutableArray *_userObjectsForSKLibrary;
-    BOOL _allowObjectLibrary;
+    NSMutableDictionary *_targetObjectsCacheForSKLibrary;
+    NSString *_currentCustomGroupIdentifier;
+    NSString *_currentSKLibraryTitle;
+    NSArray *_currentStaticObjectsForSKLibrary;
+    NSArray *_currentDynamicObjectsForSKLibrary;
+    NSMutableArray *_currentUserObjectsForSKLibrary;
 }
 
++ (id)activeController;
 - (void).cxx_destruct;
 - (id)editorViewControllerForAsset:(id)arg1;
 - (BOOL)canRemoveAsset:(id)arg1;
@@ -25,11 +29,13 @@
 - (void)populatePasteboard:(id)arg1 withAssets:(id)arg2;
 - (BOOL)canCreateAssetsFromPasteboard:(id)arg1 targetingLibrarySourceIdentifier:(id *)arg2;
 - (id)readableAssetPasteboardTypes;
+@property(readonly, nonatomic) BOOL allowObjectLibrary;
 - (void)libraryDidLoad;
-- (id)createLibraryAssetForNode:(id)arg1 title:(id)arg2 subTitle:(id)arg3 summary:(id)arg4 image:(id)arg5 withUDID:(id)arg6;
-- (id)createLibraryAssetForNode:(id)arg1 title:(id)arg2 subTitle:(id)arg3 summary:(id)arg4 image:(id)arg5;
+- (void)refreshAssetsFromDocument:(id)arg1;
 - (void)activeEditorDocumentDidChange:(id)arg1;
+- (void)clearCurrentCustomGroupIdentifier;
 - (void)populateObjectLibrary;
+- (void)updateObjectsLibraryArrayForSKDocument:(id)arg1 forceUpdate:(BOOL)arg2;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 @end

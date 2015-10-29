@@ -24,6 +24,8 @@
 - (void)encodePlatformSpecificDocumentProperties:(id)arg1;
 - (void)unarchivePlatformSpecificDocumentProperties:(id)arg1;
 - (void)archivePlatformSpecificDocumentProperties:(id)arg1;
+- (void)asynchronouslyPreflightShowingDocumentUIForScaleFactor:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (BOOL)preflightUnarchivingDocumentReturningError:(id *)arg1;
 - (id)customFontFilenamesPlistKey;
 - (void)repopulateCustomFontFilenames:(id)arg1;
 - (id)allCustomFontFilenames;
@@ -48,13 +50,11 @@
 - (id)documentCIImageNamed:(id)arg1 usingSizeValueForPlaceholderImageIfNeeded:(id)arg2;
 - (void)frameDecider:(id)arg1 didPropagateFrameSize:(struct CGSize)arg2 toView:(id)arg3;
 - (void)frameDecider:(id)arg1 didPropagateFrame:(struct CGRect)arg2 toView:(id)arg3;
-- (void)finishChangingTargetRuntimeInCompiledIntermediateDocument;
 - (Class)externalReferencePlaceholderClass;
 - (BOOL)isObjectBuiltInXIBPlaceholder:(id)arg1;
 - (id)storyboardExitPlaceholder;
 - (id)storyboardFirstResponderPlaceholder;
 - (id)connectToSourceTeardownMethodCounterpartsForContext:(id)arg1;
-- (BOOL)supportsInternationalizationReturningError:(id *)arg1;
 @property(readonly) IBPlatform *platform;
 - (void)primitiveInvalidate;
 - (id)initWithDocument:(id)arg1;

@@ -8,7 +8,7 @@
 
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTFindResult, IDEBatchFindCandidateFile, IDEFileReference, IDEIndexSymbol, NSDate, NSImage, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTFindResult, IDEBatchFindCandidateFile, IDEBatchFindResultGroup, IDEFileReference, IDEIndexSymbol, NSDate, NSImage, NSString;
 
 @interface IDEBatchFindResult : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
@@ -17,21 +17,22 @@
     BOOL _wholeWordCalculated;
     IDEIndexSymbol *_symbol;
     IDEBatchFindCandidateFile *_foundInFile;
-    BOOL _backingFileChangedOnDisk;
     NSDate *_resultTime;
-    BOOL _needToTruncateHead;
-    int _computedDetailLevel;
-    int _columnWidth;
-    struct CGSize _computedSize;
+    NSString *_displayTitle;
+    struct _NSRange _matchRange;
+    unsigned long long _matchOccurance;
+    BOOL _shouldShowAsLocked;
+    BOOL _shouldIncludeInReplacement;
+    BOOL _doesParentsBackingFileExist;
+    IDEBatchFindResultGroup *_parentFindResultGroup;
 }
 
-+ (id)findResultsSortedByFileByDocumentLocation:(id)arg1;
 + (id)keyPathsForValuesAffectingDisplayImage;
-@property BOOL needToTruncateHead; // @synthesize needToTruncateHead=_needToTruncateHead;
-@property int columnWidth; // @synthesize columnWidth=_columnWidth;
-@property int computedDetailLevel; // @synthesize computedDetailLevel=_computedDetailLevel;
-@property struct CGSize computedSize; // @synthesize computedSize=_computedSize;
-@property BOOL backingFileChangedOnDisk; // @synthesize backingFileChangedOnDisk=_backingFileChangedOnDisk;
++ (id)findResultsSortedByFileByDocumentLocation:(id)arg1;
+@property BOOL doesParentsBackingFileExist; // @synthesize doesParentsBackingFileExist=_doesParentsBackingFileExist;
+@property(nonatomic) __weak IDEBatchFindResultGroup *parentFindResultGroup; // @synthesize parentFindResultGroup=_parentFindResultGroup;
+@property(nonatomic) BOOL shouldIncludeInReplacement; // @synthesize shouldIncludeInReplacement=_shouldIncludeInReplacement;
+@property BOOL shouldShowAsLocked; // @synthesize shouldShowAsLocked=_shouldShowAsLocked;
 @property(retain) IDEIndexSymbol *symbol; // @synthesize symbol=_symbol;
 @property(readonly) IDEBatchFindCandidateFile *foundInFile; // @synthesize foundInFile=_foundInFile;
 @property(readonly) DVTFindResult *findResult; // @synthesize findResult=_findResult;
@@ -39,7 +40,6 @@
 @property(readonly) NSString *formattedStringRepresentation;
 @property(readonly) NSImage *statusImage;
 @property(readonly) NSImage *displayImage;
-@property(readonly) struct _NSRange displayFocusRange;
 @property(readonly) NSString *displayTitle;
 @property(readonly) struct _NSRange matchRange;
 @property(readonly) struct _NSRange symbolRange;

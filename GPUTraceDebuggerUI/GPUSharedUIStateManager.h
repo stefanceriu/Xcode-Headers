@@ -18,7 +18,7 @@
 - (void).cxx_destruct;
 - (void)invalidateSharedStateForObject:(id)arg1;
 - (id)sharedStateForWorkspace:(id)arg1;
-- (id)sharedStateForWorkspaceTabController:(id)arg1;
+- (id)sharedStateForWorkspaceTabController:(id)arg1 allowCreate:(BOOL)arg2;
 - (id)sharedStateForInferiorSession:(id)arg1;
 - (id)sharedStateForObject:(id)arg1;
 - (id)transferSharedStateForObject:(id)arg1 toObj:(id)arg2;

@@ -4,42 +4,51 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IDEEditorDocument.h"
+#import "GTFActionDocument.h"
 
-#import "DVTTextFindable.h"
 #import "IDEDocumentStructureProviding.h"
+#import "IDEMediaLibraryDelegate.h"
 #import "NSKeyedUnarchiverDelegate.h"
 
-@class NSArray, NSObject<OS_dispatch_queue>, NSString, SKDocumentViewController, SKEditorRoot, SKEditorScene;
+@class GTFActionTimelineModel, NSArray, NSObject<OS_dispatch_queue>, NSString, NSURL, SKDocumentEditor;
 
-@interface SKDocument : IDEEditorDocument <IDEDocumentStructureProviding, DVTTextFindable, NSKeyedUnarchiverDelegate>
+@interface SKDocument : GTFActionDocument <IDEDocumentStructureProviding, IDEMediaLibraryDelegate, NSKeyedUnarchiverDelegate>
 {
-    SKEditorRoot *_pseudoRoot;
     BOOL _pauseAttrObserver;
     NSObject<OS_dispatch_queue> *_syncQueue;
-    SKEditorScene *_scene;
-    id _editingTarget;
-    SKDocumentViewController *_inspectionDocumentController;
+    BOOL _usesActions;
+    BOOL _isSceneEditor;
+    id <SKEditingTarget> _editingTarget;
+    NSURL *_workspaceURL;
+    SKDocumentEditor *_documentEditor;
+    GTFActionTimelineModel *_inspectedAction;
+    id <SKDocumentDelegate> _delegate;
 }
 
++ (id)keyPathsForValuesAffectingIdeTopLevelStructureObjects;
++ (id)currentWorkspaceBaseURL;
++ (id)fetchFileUrlFromWorkSpace:(id)arg1;
++ (id)nextUID;
 + (id)documentForNode:(id)arg1;
 + (void)removeDocumentInstance:(id)arg1;
 + (void)addDocumentInstance:(id)arg1;
 + (id)documents;
-@property(nonatomic) __weak SKDocumentViewController *inspectionDocumentController; // @synthesize inspectionDocumentController=_inspectionDocumentController;
-@property(readonly) id editingTarget; // @synthesize editingTarget=_editingTarget;
-@property(readonly) SKEditorScene *scene; // @synthesize scene=_scene;
+@property(nonatomic) __weak id <SKDocumentDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain, nonatomic) GTFActionTimelineModel *inspectedAction; // @synthesize inspectedAction=_inspectedAction;
+@property(readonly, nonatomic) BOOL isSceneEditor; // @synthesize isSceneEditor=_isSceneEditor;
+@property(nonatomic) __weak SKDocumentEditor *documentEditor; // @synthesize documentEditor=_documentEditor;
+@property(readonly) id <SKEditingTarget> editingTarget; // @synthesize editingTarget=_editingTarget;
 - (void).cxx_destruct;
-- (void)setNewScene:(id)arg1;
-- (void)setSceneSize:(struct CGSize)arg1;
+- (void)mediaLibraryController:(id)arg1 populatePasteboard:(id)arg2 withMediaResourceVariantSets:(id)arg3;
 - (BOOL)canSave;
 @property(readonly) NSArray *ideTopLevelStructureObjects;
 - (BOOL)writeToURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (BOOL)readFromURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
-- (void)refreshTexturesForScene:(id)arg1;
-- (id)recreateTextureForName:(id)arg1;
-- (id)reloadTextureFromFile:(id)arg1;
 - (Class)unarchiver:(id)arg1 cannotDecodeObjectOfClassName:(id)arg2 originalClasses:(id)arg3;
+- (BOOL)ensureDocumentBundle;
+@property(readonly, nonatomic) NSURL *workspaceURL; // @synthesize workspaceURL=_workspaceURL;
+- (void)undoEvent:(id)arg1;
+- (void)createSceneUndoEvent:(id)arg1;
 - (void)stopUndoObservationsOf:(id)arg1;
 - (void)startUndoObservationsOf:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
@@ -49,17 +58,18 @@
 - (void)undoWithKVCUndoRecord:(id)arg1;
 - (void)setupUndoManager:(id)arg1;
 - (void)teardownUndoManager:(id)arg1;
+- (long long)actionEditorClientDocumentType;
 - (void)editorDocumentWillClose;
 - (void)prepareForDocumentClose;
 - (void)dealloc;
 - (id)init;
+- (void)updateChangeCount:(unsigned long long)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
-@property unsigned long long supportedMatchingOptions;
 
 @end
 

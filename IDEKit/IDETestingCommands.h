@@ -20,6 +20,10 @@
 + (id)_sharedHandler;
 @property(retain) id <IDESelectionSource> selectionSource; // @synthesize selectionSource=_selectionSource;
 - (void).cxx_destruct;
+- (void)runTestToHereThenRecordUITest:(id)arg1;
+- (void)stopRecordingUITest:(id)arg1;
+- (void)startRecordingUITestHere:(id)arg1;
+- (void)toggleRecordingUITest:(id)arg1;
 - (void)contextMenu_profileTest:(id)arg1;
 - (void)contextMenu_runTest:(id)arg1;
 - (void)profileAgain:(id)arg1;

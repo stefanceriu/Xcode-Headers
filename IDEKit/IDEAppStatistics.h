@@ -11,14 +11,16 @@
 }
 
 + (void)recordDocDownloadInteraction:(id)arg1;
++ (void)recordDocViewNavigationForURL:(id)arg1;
++ (id)_setOfNavigatedSchemesUsedByDocViewer;
 + (void)recordAppDidShutdown:(id)arg1;
 + (void)recordAppAboutToShutdown;
 + (void)scheduleAppReportWithStartTime:(double)arg1;
 + (void)recordAppUsedGPUDebugger;
-+ (void)performAppReportWithStartupDuration:(double)arg1;
++ (void)_performAppReportWithStartupDuration:(double)arg1;
 + (id)_diskTypes;
 + (id)_diskTypeFor:(struct __DADisk *)arg1 withDiskManager:(id)arg2;
-+ (unsigned long long)memInUse;
++ (unsigned long long)_memInUse;
 + (unsigned long long)_totalRam;
 
 @end

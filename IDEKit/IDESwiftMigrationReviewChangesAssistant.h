@@ -9,13 +9,12 @@
 #import "IDEComparisonEditorDataSource.h"
 #import "IDEReviewFilesDataSource.h"
 
-@class DVTBorderedView, DVTMapTable, DVTObservingToken, IDENavigableItemCoordinator, IDENavigatorDataCell, IDEReviewFilesViewController, NSArray, NSMutableSet, NSObject<OS_dispatch_semaphore>, NSOperationQueue, NSString;
+@class DVTBorderedView, DVTObservingToken, IDENavigableItemAsyncFilteringCoordinator, IDENavigatorDataCell, IDEReviewFilesViewController, NSArray, NSMapTable, NSMutableSet, NSObject<OS_dispatch_semaphore>, NSOperationQueue, NSString;
 
 @interface IDESwiftMigrationReviewChangesAssistant : IDEAssistant <IDEReviewFilesDataSource, IDEComparisonEditorDataSource>
 {
-    DVTMapTable *_editorDocumentByFilePath;
-    NSArray *_flatNavigableItems;
-    IDENavigableItemCoordinator *_flatFileNavItemCoordinator;
+    NSMapTable *_editorDocumentByFilePath;
+    IDENavigableItemAsyncFilteringCoordinator *_navItemCoordinator;
     IDENavigatorDataCell *_containerFileReferenceDataCell;
     IDENavigatorDataCell *_groupDataCell;
     IDENavigatorDataCell *_fileReferenceDataCell;
@@ -28,10 +27,15 @@
     unsigned long long _numCheckedFilePaths;
     NSObject<OS_dispatch_semaphore> *_completionSemaphore;
     NSMutableSet *_bindingTokens;
+    NSArray *_workspaceNavigableItems;
+    NSArray *_flatNavigableItems;
+    NSArray *_originalFilePaths;
 }
 
 + (id)keyPathsForValuesAffectingCanFinish;
+@property(copy) NSArray *originalFilePaths; // @synthesize originalFilePaths=_originalFilePaths;
 @property(copy) NSArray *flatNavigableItems; // @synthesize flatNavigableItems=_flatNavigableItems;
+@property(copy) NSArray *workspaceNavigableItems; // @synthesize workspaceNavigableItems=_workspaceNavigableItems;
 - (void).cxx_destruct;
 - (BOOL)shouldSelectFirstDiff;
 - (id)navigableItemsForSecondaryDocumentLocation:(id)arg1 usingNavigableItemCoordinator:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
@@ -39,6 +43,7 @@
 - (id)documentForSecondaryDocumentLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)documentForPrimaryDocumentLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)_documentForLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (BOOL)reviewFilesNavigator:(id)arg1 outlineView:(id)arg2 showCheckboxForNavigableItem:(id)arg3;
 - (id)reviewFilesNavigator:(id)arg1 documentLocationForNavigableItem:(id)arg2;
 - (id)reviewFilesNavigator:(id)arg1 outlineView:(id)arg2 dataCellForNavigableItem:(id)arg3;
 - (id)_fileReferenceCell;
@@ -46,16 +51,14 @@
 - (id)_containerFileReferenceCell;
 @property(readonly, copy) NSArray *issueNavigableItems;
 - (id)fileSystemNavigableItems;
-@property(readonly, copy) NSArray *workspaceNavigableItems;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
+- (BOOL)navItemRepresentsOriginalFile:(id)arg1;
 - (void)loadView;
 - (id)_snapshotContainerItem:(id)arg1 customizationBlock:(CDUnknownBlockType)arg2;
 - (void)_setInitialSelectionForNavigatorOutlineView:(id)arg1;
 - (BOOL)_selectedTargetsContainFilePath:(id)arg1;
-- (void)_snapshotAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)finishWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)_editorDocument:(id)arg1 didSave:(BOOL)arg2 contextInfo:(void *)arg3;
 - (void)_convertedEditorDocument:(id)arg1 didSave:(BOOL)arg2 contextInfo:(void *)arg3;
 - (void)_applyChanges;
 - (void)_updateBuildSettingsAndFinish;

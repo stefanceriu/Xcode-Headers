@@ -42,17 +42,17 @@
 @property(retain) id <DBGViewDescriber> viewDescriber; // @synthesize viewDescriber=_viewDescriber;
 - (void).cxx_destruct;
 - (id)ideModelObjectTypeIdentifier;
-- (void)willInflateChildMemberList:(id)arg1;
+- (void)_willInflateChildMemberList:(id)arg1;
 - (void)_inflateObjectIfNecessary;
 - (BOOL)_isInflated;
 - (id)recursiveDescription;
 - (id)_collectSubViewDescriptions:(id)arg1 level:(long long)arg2;
 @property(readonly, copy) NSString *description;
-@property(readonly, nonatomic) id object;
+@property(retain, nonatomic) id object;
 @property NSArray *childViewObjects;
 @property(readonly) NSString *identifier;
 - (void)primitiveInvalidate;
-- (id)initWithViewDescriber:(id)arg1 dictionary:(id)arg2;
+- (id)initWithViewDescriber:(id)arg1 parent:(id)arg2 dictionary:(id)arg3;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

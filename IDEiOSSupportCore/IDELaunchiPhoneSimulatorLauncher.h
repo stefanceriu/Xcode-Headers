@@ -7,17 +7,16 @@
 #import "IDERunOperationWorker.h"
 
 #import "DTMISProcessControlServiceAuthorizedAPI.h"
-#import "IDERunOperationWorkerChaining.h"
 
 @class DTXChannel, DVTDispatchLock, DVTObservingToken, DVTiPhoneSimulator, IDEPseudoTerminal, NSString;
 
-@interface IDELaunchiPhoneSimulatorLauncher : IDERunOperationWorker <IDERunOperationWorkerChaining, DTMISProcessControlServiceAuthorizedAPI>
+@interface IDELaunchiPhoneSimulatorLauncher : IDERunOperationWorker <DTMISProcessControlServiceAuthorizedAPI>
 {
     BOOL _debugSessionStarted;
     BOOL _responsibleForTermination;
     BOOL _setUpSimulatorSessionForAttaching;
     BOOL _terminateCalled;
-    BOOL _notifiedTracker;
+    BOOL _executionEndedCalled;
     DVTDispatchLock *_lifeCycleLock;
     DVTObservingToken *_debugSessionStateObservingToken;
     BOOL _launchingToDebug;
@@ -26,22 +25,21 @@
     DTXChannel *_launchServiceChannel;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 @property(retain) DTXChannel *launchServiceChannel; // @synthesize launchServiceChannel=_launchServiceChannel;
 @property(retain) IDEPseudoTerminal *pty; // @synthesize pty=_pty;
 @property(retain) DVTiPhoneSimulator *device; // @synthesize device=_device;
 @property(getter=isLaunchingToDebug) BOOL launchingToDebug; // @synthesize launchingToDebug=_launchingToDebug;
 - (void).cxx_destruct;
-- (void)_showTodayView;
 - (BOOL)_willUseExistingProcess:(id)arg1;
 - (void)pidDiedCallback:(id)arg1;
 - (void)_cancelProcessControlChannel;
 - (id)_instrumentsProcessControlChannel;
-- (void)launchCompleteWithAppPID:(int)arg1 simulatorPID:(int)arg2;
+- (void)launchCompleteWithAppPID:(int)arg1;
 - (void)executionDidEnd;
 - (void)terminate;
 - (void)start;
 - (void)_setUpSimulatorSessionForAttaching;
-- (void)_finishCurrentWorkAndNotifyTracker:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithExtensionIdentifier:(id)arg1 launchSession:(id)arg2;
 

@@ -8,37 +8,42 @@
 
 #import "SCNSceneRendererDelegate.h"
 
-@class NSEvent, NSString, SCNNode, SCNRenderer;
+@class NSString, SCNNode;
 
 @interface SKESceneView : SCNView <SCNSceneRendererDelegate>
 {
     BOOL _mouseDragged;
+    BOOL _editable;
     long long _mouseClickCount;
     struct CGPoint _mouseClickLocation;
-    struct CGSize size;
-    SCNRenderer *offscreenRenderer;
-    NSEvent *_cachedMouseDownEvent;
-    unsigned int _texture;
-    BOOL _multisamplingEnabled;
     id <SKESceneViewDelegate> _selectionDelegate;
 }
 
 @property __weak id <SKESceneViewDelegate> selectionDelegate; // @synthesize selectionDelegate=_selectionDelegate;
-@property(nonatomic) BOOL multisamplingEnabled; // @synthesize multisamplingEnabled=_multisamplingEnabled;
 - (void).cxx_destruct;
-- (void)keyUp:(id)arg1;
-- (void)keyDown:(id)arg1;
+@property(nonatomic, getter=isMultisamplingEnabled) BOOL multisamplingEnabled;
+- (void)focusNode:(id)arg1;
+- (void)cancelOperation:(id)arg1;
+- (void)deselectSelection;
+- (void)deleteBackward:(id)arg1;
+- (void)deleteForward:(id)arg1;
+- (void)deleteSelection;
 - (void)mouseUp:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)mouseDragged:(id)arg1;
+- (void)keyDown:(id)arg1;
 - (BOOL)performDragOperation:(id)arg1;
 - (unsigned long long)draggingEntered:(id)arg1;
 - (unsigned long long)draggingUpdated:(id)arg1;
 @property __weak SCNNode *cameraNode;
+@property(nonatomic, getter=isEditable) BOOL editable;
+- (BOOL)_isEditor;
 - (id)makeBackingLayer;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)dealloc;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+- (void)commonInit;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

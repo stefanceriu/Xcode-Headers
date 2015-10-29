@@ -39,7 +39,7 @@
 @property(getter=isFlipped) BOOL flipped; // @synthesize flipped;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
-- (struct CGRect)destinationRectForContentWithSize:(struct CGSize)arg1 knob:(long long)arg2 offset:(struct CGPoint)arg3;
+- (struct CGRect)destinationRectForContentWithSize:(struct CGSize)arg1 knob:(CDUnion_31865a80)arg2 offset:(struct CGPoint)arg3;
 - (void)awakeAfterUsingDocumentUnarchiver:(id)arg1;
 - (void)recacheOpaque;
 - (struct CGSize)effectiveTextAttributedStringSize;

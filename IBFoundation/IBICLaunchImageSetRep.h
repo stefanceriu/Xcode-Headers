@@ -4,25 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IBFoundation/IBICMultipartImageRep.h>
+#import <IBFoundation/IBICSlottedAbstractImageRep.h>
 
-@interface IBICLaunchImageSetRep : IBICMultipartImageRep
+@interface IBICLaunchImageSetRep : IBICSlottedAbstractImageRep
 {
 }
 
-+ (Class)multiplartImageClass;
++ (id)contentReferenceTypeName;
++ (Class)slottedAssetClass;
 + (Class)repIdentifierClass;
-+ (id)imageRepWithSlot:(id)arg1 fileName:(id)arg2 andUnassigned:(BOOL)arg3;
-+ (id)imageRepWithRepIdentifier:(id)arg1;
++ (id)assetRepWithSlot:(id)arg1 fileName:(id)arg2 explicitlyUnassigned:(BOOL)arg3;
++ (id)assetRepWithRepIdentifier:(id)arg1;
 - (BOOL)isMinimallyFitForCompiling;
 - (BOOL)isImageDataSizedProperly;
 - (id)baseFileNameForVersionedInfoPlistEntry;
-- (id)descriptionShortClassName;
 - (void)setSlot:(id)arg1;
 - (id)slot;
-- (id)structuredIdentifier;
 - (id)parent;
 - (id)initWithSlot:(id)arg1;
+- (BOOL)populateNamedAssetImportInfo:(id)arg1 allCompiledItems:(id)arg2 error:(id *)arg3;
 
 @end
 

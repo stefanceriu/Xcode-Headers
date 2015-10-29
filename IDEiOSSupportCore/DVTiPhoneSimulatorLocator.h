@@ -15,7 +15,11 @@
     id <DVTCancellable> _notificationToken;
 }
 
++ (id)deviceLocator;
+@property(readonly) SimDeviceSet *deviceSet; // @synthesize deviceSet=_deviceSet;
 - (void).cxx_destruct;
+- (void)unpairDevice:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)pairCompanionDevice:(id)arg1 withGizmoDevice:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)deleteDevice:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (BOOL)matchDevice:(id)arg1 againstOptions:(id)arg2 genericOnly:(BOOL)arg3 allowAliases:(BOOL)arg4;
 - (BOOL)validateDeviceSpecifierOptions:(id)arg1 genericOnly:(BOOL)arg2 allowMultipleMatches:(BOOL)arg3 error:(id *)arg4;
@@ -24,6 +28,7 @@
 - (id)platforms;
 - (id)deviceLocationScheme;
 - (void)stopLocating;
+- (id)deviceForSimDevice:(id)arg1;
 - (void)startLocating;
 
 @end

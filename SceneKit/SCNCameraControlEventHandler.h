@@ -10,13 +10,10 @@
 
 @interface SCNCameraControlEventHandler : SCNEventHandler
 {
-    id _dReserved;
     SCNNode *_freeViewCameraNode;
     struct CGPoint _initialPoint;
     // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]), name: _initialMatrix
     float _initialZoom;
-    float _savedZfar;
-    float _savedZnear;
     float _originalFovX;
     float _originalFovY;
     float _originalOrthoScale;
@@ -29,25 +26,30 @@
     double _lastDragTime;
     long long _stickyAxis;
     // Error parsing type: {C3DSphere="vector"}, name: _viewedObjectSphere
-    unsigned int _hasCheckedIfViewingAnObject:1;
-    unsigned int _isViewingAnObject:1;
     unsigned int _isViewedObjectSphereComputed:1;
-    unsigned int _automaticCameraTarget:1;
+    unsigned int _hasAutomaticCameraTarget:1;
+    unsigned int _automaticCameraTargetUpToDate:1;
     unsigned int _inertia:1;
+    unsigned int _didEverFocusNode:1;
+    unsigned int _allowsTranslation:1;
+    unsigned int _pinchShouldMoveCamera:1;
     unsigned int _alternateMode:1;
     unsigned int _upDirIsSet:1;
     unsigned int _gimbalLockMode:1;
     unsigned int _inertiaRunning:1;
-    int _mode;
-    struct SCNVector3 _gimbalLockVector;
+    long long _browseMode;
     // Error parsing type: , name: _upDir
     struct SCNVector3 _cameraTarget;
+    struct SCNVector3 _autoCameraTarget;
+    float _browseScaleFactor;
     double _friction;
     struct CGPoint _totalDragWithInertia;
     struct CGPoint _inertiaVelocity;
     double _lastSimulationTime;
 }
 
++ (struct CATransform3D)matrixWithNoRoll:(struct CATransform3D)arg1;
++     // Error parsing type: 24@0:8@16, name: frontVectorWithPointOfView:
 - (BOOL)mouseUp:(id)arg1;
 - (BOOL)mouseDragged:(id)arg1;
 - (void)_computeStickyAxisIfNeeded:(struct CGPoint)arg1;
@@ -56,9 +58,9 @@
 - (BOOL)magnifyWithEvent:(id)arg1;
 - (BOOL)scrollWheel:(id)arg1;
 - (float)_scrollWheelMultiplier;
-- (void)updateCameraTargetIfNeeded;
 - (void)_translateTo:(struct CGPoint)arg1;
 - (void)_rotateWithDrag:(struct CGPoint)arg1 mode:(long long)arg2 stickyAxis:(long long)arg3;
+- (void)clearRoll;
 - (void)_beginTranslateAtLocation:(struct CGPoint)arg1;
 -     // Error parsing type: 16@0:8, name: frontVector
 - (struct C3DSphere)viewedObjectSphere;
@@ -82,20 +84,27 @@
 - (void)zoomBy:(float)arg1;
 - (void)zoomBy:(float)arg1 animate:(BOOL)arg2;
 - (void)rotateOf:(double)arg1;
-- (BOOL)isViewingAnObject;
+- (void)updateBrowseScaleFactor;
+- (void)_resetBrowseScaleFactor;
+- (double)_browseScale;
 - (float)_translationCoef;
+- (void)computeAutomaticTargetPoint;
+- (struct SCNVector3)cameraAutomaticTargetPoint;
 - (void)_switchToFreeViewCamera;
 - (void)_installFreeViewCameraIfNeeded;
 - (void)_prepareFreeViewCamera;
 - (BOOL)_freeCameraActivated;
 - (void)_resetFreeViewCamera;
 @property long long stickyAxis;
+- (void)focusNode:(id)arg1;
 @property struct SCNVector3 cameraTarget;
 @property BOOL automaticCameraTarget;
+- (void)invalidateCameraTarget;
 @property struct SCNVector3 gimbalLockVector;
 @property BOOL gimbalLockMode;
 @property double friction;
 @property BOOL enableInertia;
+@property BOOL allowsTranslation;
 - (void)dealloc;
 - (id)init;
 

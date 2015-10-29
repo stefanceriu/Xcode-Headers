@@ -6,28 +6,34 @@
 
 #import "NSObject.h"
 
+#import "IBBinaryArchiving.h"
+
 @class NSError, NSString;
 
-@interface IBAutolayoutArbitrationResult : NSObject
+@interface IBAutolayoutArbitrationResult : NSObject <IBBinaryArchiving>
 {
     id <IBCollection> _constraintsToAdd;
     id <IBCollection> _constraintsToRemove;
-    id <IBCollection> _constraintsToUpgrade;
     NSError *_error;
     NSString *_engineDescription;
 }
 
 @property(readonly, nonatomic) NSString *engineDescription; // @synthesize engineDescription=_engineDescription;
 @property(readonly, nonatomic) NSError *error; // @synthesize error=_error;
-@property(readonly, nonatomic) id <IBCollection> constraintsToUpgrade; // @synthesize constraintsToUpgrade=_constraintsToUpgrade;
 @property(readonly, nonatomic) id <IBCollection> constraintsToRemove; // @synthesize constraintsToRemove=_constraintsToRemove;
 @property(readonly, nonatomic) id <IBCollection> constraintsToAdd; // @synthesize constraintsToAdd=_constraintsToAdd;
 - (void).cxx_destruct;
-- (id)representationWithObjectRepresentationForObjectBlock:(CDUnknownBlockType)arg1;
-- (id)initWithRepresentation:(id)arg1 layoutConstraintClass:(Class)arg2 objectForObjectRepresentationBlock:(CDUnknownBlockType)arg3;
 @property(readonly, nonatomic, getter=isErrorResult) BOOL errorResult;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithError:(id)arg1 engineDescription:(id)arg2;
-- (id)initWithConstraintsToAdd:(id)arg1 constraintsToRemove:(id)arg2 constraintsToUpgrade:(id)arg3;
+- (id)initWithConstraintsToAdd:(id)arg1 constraintsToRemove:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -17,8 +17,8 @@
     NSString *_platformIdentifier;
 }
 
-+ (id)codesignableDeviceWithDeviceRecord:(id)arg1;
-+ (id)codesignableDeviceWithName:(id)arg1 identifier:(id)arg2 andPlatformIdentifier:(id)arg3;
++ (id)codesignableDeviceWithDeviceRecord:(id)arg1 dvtPlatformIdentifier:(id)arg2;
++ (id)codesignableDeviceWithName:(id)arg1 identifier:(id)arg2 dvtPlatformIdentifier:(id)arg3;
 @property(readonly, copy) NSString *platformIdentifier; // @synthesize platformIdentifier=_platformIdentifier;
 @property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
 @property(readonly, copy) NSString *name; // @synthesize name=_name;

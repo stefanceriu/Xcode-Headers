@@ -26,7 +26,6 @@
 + (id)keyPathsForValuesAffectingSubtitle;
 + (id)keyPathsForValuesAffectingNavigableItem_contentDocumentLocation;
 + (id)keyPathsForValuesAffectingNavigableItem_documentType;
-+ (id)keyPathsForValuesAffectingNavigableItem_image;
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 + (void)initialize;
 @property(retain, nonatomic) NSArray *observationTokens; // @synthesize observationTokens=_observationTokens;

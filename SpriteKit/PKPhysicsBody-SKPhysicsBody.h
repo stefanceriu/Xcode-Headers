@@ -9,6 +9,7 @@
 @class SKNode;
 
 @interface PKPhysicsBody (SKPhysicsBody)
+- (BOOL)isKindOfClass:(Class)arg1;
 - (id)_descriptionClassName;
 @property(readonly, nonatomic) __weak SKNode *node;
 @end

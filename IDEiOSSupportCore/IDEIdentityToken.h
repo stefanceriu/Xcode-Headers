@@ -29,6 +29,7 @@
 @property(readonly) id <DVTProvisioningProfile> provisioningProfile; // @synthesize provisioningProfile=_provisioningProfile;
 @property(readonly) DVTSigningCertificate *certificate; // @synthesize certificate=_certificate;
 - (void).cxx_destruct;
+- (id)codesignParameterSnapshotIncludingProfile:(BOOL)arg1;
 - (long long)compare:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;

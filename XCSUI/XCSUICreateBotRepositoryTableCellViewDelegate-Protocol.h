@@ -6,11 +6,9 @@
 
 #import "NSObject.h"
 
-@class NSArray;
+@class XCSUICreateBotRepositoryIssue;
 
 @protocol XCSUICreateBotRepositoryTableCellViewDelegate <NSObject>
-- (BOOL)resolvingCertificateIssues;
-- (void)updateCredentialsToResolveIssues:(NSArray *)arg1;
-- (void)ignoreIssues:(NSArray *)arg1;
+- (void)updateCredentialsToResolveIssue:(XCSUICreateBotRepositoryIssue *)arg1;
 @end
 

@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTMapTable, DVTStackBacktrace, IDEActivityLogSection, IDEBreakpointManager, IDEBuildOperation, IDEExecutionTracker, IDEInMemoryLogStore, IDELaunchSession, IDELogStore, IDEWorkspace, IDEWorkspaceArena, NSArray, NSCountedSet, NSMapTable, NSMutableArray, NSMutableOrderedSet, NSOperationQueue, NSSet, NSString;
+@class DVTStackBacktrace, IDEActivityLogSection, IDEBreakpointManager, IDEBuildOperation, IDEExecutionTracker, IDEInMemoryLogStore, IDELaunchSession, IDELogStore, IDEWorkspace, IDEWorkspaceArena, NSArray, NSCountedSet, NSMapTable, NSMutableArray, NSMutableOrderedSet, NSOperationQueue, NSSet, NSString;
 
 @interface IDEExecutionEnvironment : NSObject <DVTInvalidation>
 {
@@ -23,12 +23,11 @@
     unsigned long long _disableSubmissionOfBuildOperationsCount;
     NSString *_disableBuildSubmissionsReason;
     NSMutableArray *_launchSessions;
+    NSMapTable *_launchSessionStateObservationTokens;
     NSMapTable *_launchSessionRunnablePIDObservationTokens;
-    IDELaunchSession *_currentLaunchSession;
-    DVTMapTable *_productNamesToBuildableProductsMapping;
     IDELogStore *_logStore;
     IDEInMemoryLogStore *_interfaceBuilderLogStore;
-    DVTMapTable *_ibLogsByBuildable;
+    NSMapTable *_ibLogsByBuildable;
     BOOL _handlingLaunchSessionStateChange;
     BOOL _settingLaunchSessionForTabChange;
     IDEWorkspace *_workspace;
@@ -36,28 +35,34 @@
     IDEWorkspaceArena *_workspaceArena;
     id <IDEClientTracking> _clientTracker;
     IDELaunchSession *_selectedLaunchSession;
-    IDEBreakpointManager *_breakpointManager;
-    DVTMapTable *_productNameStemsToBuildableProductsMapping;
+    IDELaunchSession *_currentLaunchSession;
+    NSMapTable *_productNamesToBuildableProductsMapping;
+    NSMapTable *_productNameStemsToBuildableProductsMapping;
+    NSMapTable *_productModuleNamesToBuildableProductsMapping;
     id <IDEPreBuildSavingDelegate> _preBuildSavingDelegate;
+    NSMapTable *_operationGroupSuboperationObserversByExecutionTracker;
     NSOperationQueue *_operationQueue;
 }
 
 + (BOOL)automaticallyNotifiesObserversOfCurrentLaunchSession;
 + (id)keyPathsForValuesAffectingLatestBuildLog;
 + (id)keyPathsForValuesAffectingLogRecords;
++ (id)keyPathsForValuesAffectingBreakpointManager;
 + (BOOL)automaticallyNotifiesObserversForCurrentExecutionTracker;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (void)initialize;
 @property(retain) NSOperationQueue *operationQueue; // @synthesize operationQueue=_operationQueue;
+@property(retain) NSMapTable *operationGroupSuboperationObserversByExecutionTracker; // @synthesize operationGroupSuboperationObserversByExecutionTracker=_operationGroupSuboperationObserversByExecutionTracker;
 @property(retain) id <IDEPreBuildSavingDelegate> preBuildSavingDelegate; // @synthesize preBuildSavingDelegate=_preBuildSavingDelegate;
-@property(copy) DVTMapTable *productNameStemsToBuildableProductsMapping; // @synthesize productNameStemsToBuildableProductsMapping=_productNameStemsToBuildableProductsMapping;
-@property(retain, nonatomic) IDEBreakpointManager *breakpointManager; // @synthesize breakpointManager=_breakpointManager;
+@property(copy) NSMapTable *productModuleNamesToBuildableProductsMapping; // @synthesize productModuleNamesToBuildableProductsMapping=_productModuleNamesToBuildableProductsMapping;
+@property(copy) NSMapTable *productNameStemsToBuildableProductsMapping; // @synthesize productNameStemsToBuildableProductsMapping=_productNameStemsToBuildableProductsMapping;
+@property(copy) NSMapTable *productNamesToBuildableProductsMapping; // @synthesize productNamesToBuildableProductsMapping=_productNamesToBuildableProductsMapping;
 @property(retain, nonatomic) IDELaunchSession *currentLaunchSession; // @synthesize currentLaunchSession=_currentLaunchSession;
 @property(retain, nonatomic) IDELaunchSession *selectedLaunchSession; // @synthesize selectedLaunchSession=_selectedLaunchSession;
 @property(retain) id <IDEClientTracking> clientTracker; // @synthesize clientTracker=_clientTracker;
 @property(retain) IDEWorkspaceArena *workspaceArena; // @synthesize workspaceArena=_workspaceArena;
 @property(retain) IDEExecutionTracker *currentExecutionTracker; // @synthesize currentExecutionTracker=_currentExecutionTracker;
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
-@property(copy) DVTMapTable *productNamesToBuildableProductsMapping; // @synthesize productNamesToBuildableProductsMapping=_productNamesToBuildableProductsMapping;
 @property(readonly) int lastBuildResult; // @synthesize lastBuildResult=_lastBuildResult;
 @property(readonly) int buildState; // @synthesize buildState=_buildState;
 @property(readonly) NSArray *queuedBuildOperationInfos; // @synthesize queuedBuildOperationInfos=_queuedBuildOperationInfos;
@@ -70,7 +75,6 @@
 - (void)_setStatusDisplayNameForLaunchSession:(id)arg1;
 - (void)_setStatusDisplayNamesForExecutionTracker;
 - (void)_noteLaunchSessionTargetOutputStateChanged:(id)arg1;
-- (void)_addSyntheticLaunchSessionForDebuggingAdditionRun:(id)arg1;
 - (void)_setSelectedLaunchSessionForTabChange:(id)arg1;
 - (void)promoteXPCExecutionTrackerForDisplay:(id)arg1;
 @property(readonly) NSArray *interfaceBuilderLogs;
@@ -80,15 +84,18 @@
 - (id)executeOperation:(id)arg1 withCommandName:(id)arg2 invocationRecord:(id)arg3 error:(id *)arg4;
 - (id)executeOperation:(id)arg1 withCommandName:(id)arg2 serviceTier:(int)arg3 invocationRecord:(id)arg4 error:(id *)arg5;
 - (void)_startNextQueuedBuildOperationIfNecessary;
+- (void)_addSuboperationObservationToken:(id)arg1 forExecutionTracker:(id)arg2;
 - (void)_startOperationForTracker:(id)arg1 commandName:(id)arg2 operationIncludesBuild:(BOOL)arg3;
+- (void)_handleRunOperation:(id)arg1 addExecutionTrackerToDisplayList:(char *)arg2;
 @property(readonly) BOOL canSubmitBuildOperations;
-- (void)enableSubmissionOfBuildOperations;
+- (void)enableSubmissionOfBuildOperationsWithReason:(id)arg1;
 - (void)disableSubmissionOfBuildOperationsWithReason:(id)arg1;
 @property(readonly) int currentBuildOperationServiceTier;
 @property(readonly) BOOL hasUserInitiatedBuildOperations;
 @property(readonly) BOOL hasQueuedBuildOperations;
 @property(readonly) NSSet *queuedBuildOperations;
 @property(readonly) NSArray *executionTrackersOfOperationsWithBuilds;
+@property(readonly) IDEBreakpointManager *breakpointManager;
 - (void)primitiveInvalidate;
 - (id)initWithWorkspaceArena:(id)arg1;
 

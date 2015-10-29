@@ -20,6 +20,8 @@ struct _XRIndexRange {
     unsigned long long length;
 };
 
+struct __hash_node<const void *, void *>;
+
 struct __hash_node<std::__1::__hash_value_type<unsigned long long, id>, void *>;
 
 struct __va_list_tag {
@@ -27,6 +29,17 @@ struct __va_list_tag {
     unsigned int _field2;
     void *_field3;
     void *_field4;
+};
+
+struct unique_ptr<std::__1::__hash_node<const void *, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<const void *, void *>*>>> {
+    struct __compressed_pair<std::__1::__hash_node<const void *, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<const void *, void *>*>>> {
+        struct __hash_node<const void *, void *> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<const void *, void *>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<const void *, void *>*>> {
+                unsigned long long __first_;
+            } __data_;
+        } __second_;
+    } __ptr_;
 };
 
 struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, id>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, id>, void *>*>>> {
@@ -52,6 +65,23 @@ struct unordered_map<unsigned long long, id, std::__1::hash<unsigned long long>,
             unsigned long long __first_;
         } __p2_;
         struct __compressed_pair<float, std::__1::__unordered_map_equal<unsigned long long, std::__1::__hash_value_type<unsigned long long, id>, std::__1::equal_to<unsigned long long>, true>> {
+            float __first_;
+        } __p3_;
+    } __table_;
+};
+
+struct unordered_set<const void *, std::__1::hash<const void *>, std::__1::equal_to<const void *>, std::__1::allocator<const void *>> {
+    struct __hash_table<const void *, std::__1::hash<const void *>, std::__1::equal_to<const void *>, std::__1::allocator<const void *>> {
+        struct unique_ptr<std::__1::__hash_node<const void *, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<const void *, void *>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<const void *, void *>*>, std::__1::allocator<std::__1::__hash_node<const void *, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<const void *, void *>*> {
+                struct __hash_node<const void *, void *> *__next_;
+            } __first_;
+        } __p1_;
+        struct __compressed_pair<unsigned long, std::__1::hash<const void *>> {
+            unsigned long long __first_;
+        } __p2_;
+        struct __compressed_pair<float, std::__1::equal_to<const void *>> {
             float __first_;
         } __p3_;
     } __table_;

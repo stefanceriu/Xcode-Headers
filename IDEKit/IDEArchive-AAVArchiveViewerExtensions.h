@@ -12,9 +12,6 @@
 - (id)aav_validateForDirectDistribution;
 @property(readonly) NSString *aav_identifierLabel;
 @property(readonly) IDEArchivePackager *aav_packager;
-@property(readonly) _Bool aav_canExport;
-@property(readonly) _Bool aav_canSubmit;
-@property(readonly) _Bool aav_canValidate;
 @property(readonly) NSImage *aav_displayIcon;
 @property(readonly) NSArray *aav_displayIcons;
 - (id)aav_version;

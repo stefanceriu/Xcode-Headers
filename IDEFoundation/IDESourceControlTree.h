@@ -20,6 +20,7 @@
     NSString *_cachedFirstRevision;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 + (id)treeLoadingModelObjectGraph;
 @property(copy) NSString *cachedFirstRevision; // @synthesize cachedFirstRevision=_cachedFirstRevision;
@@ -34,7 +35,6 @@
 - (id)copyRepository;
 - (id)description;
 - (BOOL)containsItemAtLocation:(id)arg1;
-- (id)firstRevisionWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)subclass_createRootNode;
 - (void)primitiveInvalidate;
 - (id)dictionaryRepresentation;

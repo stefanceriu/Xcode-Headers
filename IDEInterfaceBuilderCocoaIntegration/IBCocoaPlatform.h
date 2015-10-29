@@ -10,17 +10,29 @@
 {
 }
 
++ (Class)idiomClass;
++ (id)targetRuntimes;
++ (id)targetRuntimeWithIdentifier:(id)arg1;
 - (BOOL)supportsLaunchScreen;
 - (Class)previewGeniusResultsItemGroupClass;
+- (id)infoPlistDesignatedEntryPointIdentifierKey;
+- (id)infoPlistPackageVersionKey;
+- (id)infoPlistReferencedBundleIdentifierKey;
+- (id)infoPlistReferencedStoryboardNameKey;
+- (id)infoPlistReferencedControllerIdentifierKey;
+- (id)infoPlistViewControllerIdentifierToExternalStoryboardReferenceMapKey;
+- (id)infoPlistViewControllerIdentifierToNibNameMapKey;
 - (id)xibPackageContentFileNames;
+- (BOOL)shouldBackwardsDeployStoryboardReferencesWithDeploymentTarget:(id)arg1;
 - (id)typeIdentifierForPreservingContentsWhenWritingDocument;
 - (id)xibHybridPackageType;
 - (id)xibHybridPackageEditableDocumentFilename;
 - (id)xibPreferredFileType;
 - (Class)userDefinedRuntimeAttributesPlaceholderClass;
+- (void)populateGlobalEntryPointIndicators:(id)arg1 withTargetRuntime:(id)arg2;
 - (Class)fallbackSegueClassForUnknownSegueKind;
+- (Class)externalPrimarySceneObjectClass;
 - (Class)simulatedMetricsContainerClass;
-- (id)containerObserverForInterfaceBuilderDocumentsIdentifier;
 - (Class)resourceManagerClass;
 - (void)prepareToDecodeDocumentContentWithKeyedUnarchiver:(id)arg1;
 - (void)prepareToDecodeDocumentContentWithTypeStreamedUnarchiver:(id)arg1;
@@ -30,7 +42,6 @@
 - (void)unarchivePlatformDependentDocumentManagedDataForObject:(id)arg1 withDocumentUnarchiver:(id)arg2;
 - (void)archivePlatformDependentDocumentManagedDataForObject:(id)arg1 withDocumentArchiver:(id)arg2;
 - (id)autolayoutDescriptiveTextForPriority:(float)arg1;
-- (id)autolayoutStatusRequesterForTargetRuntime:(id)arg1 liveViewsManager:(id)arg2;
 - (Class)arbitrationUnitClass;
 - (Class)autolayoutEngineClass;
 - (BOOL)hasRemoteSimulator;
@@ -49,22 +60,21 @@
 - (id)xibApplicationMemberID;
 - (id)xibFirstResponderMemberID;
 - (id)xibFilesOwnerMemberID;
+- (BOOL)rendersLibraryAssetIconsFromContent;
 - (id)segueTemplateToControllerKeyPath;
 - (id)defaultStoryboardSegueClassName;
 - (long long)allSystemsTarget;
 - (id)defaultTargetRuntimeForArchiving;
-- (Class)idiomClass;
 - (Class)targetRuntimeClass;
-- (id)targetRuntimes;
 - (id)targetRuntimeWithArchiveIdentifier:(id)arg1 variantIdentifier:(id)arg2;
-- (id)targetRuntimeWithIdentifier:(id)arg1;
 - (BOOL)downgradingToAutoIncrementingIDsIsEnabled;
 - (BOOL)shouldOpenDocument:(id)arg1 error:(id *)arg2;
 - (id)systemDocumentDependency;
 - (id)interfaceBuilderDocumentDependency;
+- (BOOL)supportsInternationalizationWithSystemTarget:(long long)arg1 returningError:(id *)arg2;
 - (id)deploymentVersionBuildSetting;
-- (id)buildSettingIdentifier;
-- (id)baseInterfaceBuilderDocumentType;
+- (id)buildSystemPlatformIdentifier;
+- (id)buildSystemPlatformName;
 - (Class)documentPlatformAdapterClass;
 - (id)operatingSystemName;
 - (id)identifier;

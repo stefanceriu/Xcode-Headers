@@ -24,6 +24,7 @@
     NSString *_appVersion;
     NSString *_appBuild;
     NSString *_isBeta;
+    NSString *_platformSDKIdentifier;
     NSString *_crashPointId;
     NSArray *_deviceFamilies;
     NSArray *_osVersions;
@@ -41,6 +42,7 @@
 @property(retain) NSArray *osVersions; // @synthesize osVersions=_osVersions;
 @property(retain) NSArray *deviceFamilies; // @synthesize deviceFamilies=_deviceFamilies;
 @property(retain) NSString *crashPointId; // @synthesize crashPointId=_crashPointId;
+@property(retain) NSString *platformSDKIdentifier; // @synthesize platformSDKIdentifier=_platformSDKIdentifier;
 @property(retain) NSString *isBeta; // @synthesize isBeta=_isBeta;
 @property(retain) NSString *appBuild; // @synthesize appBuild=_appBuild;
 @property(retain) NSString *appVersion; // @synthesize appVersion=_appVersion;

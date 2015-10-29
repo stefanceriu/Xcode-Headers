@@ -14,13 +14,14 @@
 {
     DVTWeakInterposer *_window_dvtWeakInterposer;
     DVTObservingToken *_firstResponderObservingToken;
+    DVTObservingToken *_mainViewControllerIsValidObservingToken;
     DVTViewController *_mainViewController;
 }
 
 + (void)initialize;
-@property(retain) DVTViewController *mainViewController; // @synthesize mainViewController=_mainViewController;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
+@property(retain) DVTViewController *mainViewController;
 - (id)initWithWindow:(id)arg1;
 @property __weak NSWindow *window;
 

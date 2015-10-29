@@ -10,7 +10,7 @@
 #import "IDEFilterControlBarTarget.h"
 #import "NSTextFieldDelegate.h"
 
-@class DVTBorderedView, DVTChoice, DVTGradientImageButton, DVTImageAndTextCell, DVTObservingToken, DVTOutlineView, DVTReplacementView, DVTSDK, DVTScrollView, DVTSourceExpression, DVTSourceLanguageService, DVTSplitView, DVTStackBacktrace, DVTStateToken, DVTTabChooserView, IDEFilterControlBar, IDENavigableItemCoordinator, IDEUpgradeTaskWindowController, NSArray, NSMutableArray, NSPopUpButton, NSString, NSTableColumn, NSTreeController, NSView, NSViewController, Xcode3ProjectEditorTopBarView, Xcode3TargetEditingGroup;
+@class DVTBorderedView, DVTChoice, DVTGradientImageButton, DVTImageAndTextCell, DVTObservingToken, DVTOutlineView, DVTReplacementView, DVTSDK, DVTScrollView, DVTSourceExpression, DVTSourceLanguageService, DVTSplitView, DVTStackBacktrace, DVTStateToken, DVTTabChooserView, IDEFilterControlBar, IDENavigableItemCoordinator, IDENavigableItemSyncFilteringCoordinator, IDEUpgradeTaskWindowController, NSArray, NSMutableArray, NSPopUpButton, NSString, NSTableColumn, NSTreeController, NSView, NSViewController, Xcode3ProjectEditorTopBarView, Xcode3TargetEditingGroup;
 
 @interface Xcode3ProjectEditor : IDEEditor <NSTextFieldDelegate, DVTSourceExpressionSource, IDEFilterControlBarTarget>
 {
@@ -27,7 +27,7 @@
     DVTChoice *_selectedChoice;
     Class _previousProjectEditorClass;
     Class _previousTargetEditorClass;
-    IDENavigableItemCoordinator *_navigableItemCoordinator;
+    IDENavigableItemSyncFilteringCoordinator *_navigableItemCoordinator;
     NSMutableArray *_contents;
     DVTImageAndTextCell *titleCell;
     DVTImageAndTextCell *itemCell;

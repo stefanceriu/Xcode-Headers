@@ -4,12 +4,20 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class SCNNode, SKESceneView;
+#import "NSObject.h"
 
-@protocol SKESceneViewDelegate
-- (SCNNode *)selectedNodeForSceneView:(SKESceneView *)arg1;
-- (void)sceneViewBeganFreeBrowsing:(SKESceneView *)arg1;
-- (void)sceneView:(SKESceneView *)arg1 droppedContent:(id)arg2 onNode:(SCNNode *)arg3 geometryIndex:(long long)arg4;
-- (void)sceneView:(SKESceneView *)arg1 didSelectNode:(SCNNode *)arg2 geometryIndex:(long long)arg3;
+@class NSArray, NSEvent, SCNNode, SKEPasteboardItem, SKESceneView;
+
+@protocol SKESceneViewDelegate <NSObject>
+- (void)sceneView:(SKESceneView *)arg1 didRequestDeletionOfNodeSubselection:(NSArray *)arg2;
+- (void)sceneView:(SKESceneView *)arg1 didRequestDeletionOfNodes:(NSArray *)arg2;
+- (void)sceneViewDidRequestDeselectionOfAllNodes:(SKESceneView *)arg1;
+- (void)sceneViewDidBeginFreeBrowsing:(SKESceneView *)arg1;
+- (BOOL)sceneView:(SKESceneView *)arg1 shouldAcceptDroppedExternalDocumentURLs:(NSArray *)arg2;
+- (BOOL)sceneView:(SKESceneView *)arg1 shouldAcceptContentsOfDroppedPasteboardItem:(SKEPasteboardItem *)arg2;
+- (BOOL)sceneView:(SKESceneView *)arg1 didDropPasteboardItem:(SKEPasteboardItem *)arg2 onNode:(SCNNode *)arg3 dropLocation:(struct SCNVector3)arg4;
+- (BOOL)sceneView:(SKESceneView *)arg1 didDropSceneURLs:(NSArray *)arg2 onNode:(SCNNode *)arg3 dropLocation:(struct SCNVector3)arg4 wantsReferences:(BOOL)arg5;
+- (BOOL)sceneView:(SKESceneView *)arg1 didDropContent:(id)arg2 onNode:(SCNNode *)arg3 geometryIndex:(long long)arg4;
+- (void)sceneView:(SKESceneView *)arg1 didSelectNode:(SCNNode *)arg2 geometryIndex:(long long)arg3 event:(NSEvent *)arg4;
 @end
 

@@ -7,17 +7,14 @@
 #import "DVTInvalidation.h"
 #import "NSObject.h"
 
-@class DVTExtension, IDELaunchSession, IDEWorkspaceTabController, NSCell, NSMenu;
+@class DVTExtension, IDEWorkspaceTabController, NSCell, NSMenu;
 
 @protocol IDEDebuggingAdditionUIController <NSObject, DVTInvalidation>
 - (DVTExtension *)extension;
 - (id)initWithWorkspaceTabController:(IDEWorkspaceTabController *)arg1 withDebuggingAddition:(id <IDEDebuggingAddition>)arg2 forExtension:(DVTExtension *)arg3;
 
 @optional
-- (void)openSelectedNavigableItem:(id)arg1 withEventType:(unsigned long long)arg2;
-- (IDELaunchSession *)launchSessionForSelectedRepresentedObject:(id)arg1;
 - (NSCell *)trayCellForNavigationProcessHeader;
-- (BOOL)wantsTrayAreaForNavigationProcessHeader;
 - (NSMenu *)debugSubmenu;
 - (BOOL)shouldReplaceDebugSubmenu;
 @end

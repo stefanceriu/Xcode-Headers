@@ -7,6 +7,5 @@
 #import "IBICAppIconSetRep.h"
 
 @interface IBICAppIconSetRep (DisplayAdditions)
-- (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
 @end
 

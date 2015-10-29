@@ -7,7 +7,6 @@
 #import "NSSearchField.h"
 
 @interface NSSearchField (IBSearchFieldCellIntegration)
-- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)setIbInspectedControlSize:(unsigned long long)arg1;
 @end
 

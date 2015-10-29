@@ -6,7 +6,7 @@
 
 #import <IDEInterfaceBuilderKit/IBArgumentsContainer.h>
 
-@class NSArray, NSMutableArray, NSString;
+@class NSArray, NSDictionary, NSMutableArray, NSString;
 
 @interface IBImageCatalogToolArgumentsContainer : IBArgumentsContainer
 {
@@ -19,7 +19,9 @@
     BOOL _printNoticeMessages;
     BOOL _printMessageCategoryInfo;
     BOOL _compressPNGs;
-    BOOL _forceImagesOnWrite;
+    BOOL _enableOnDemandResources;
+    BOOL _dumpAssets;
+    BOOL _enableIncrementalDistill;
     NSString *_platformName;
     NSString *_compilationOutputPath;
     NSString *_partialInfoPlistOutputPath;
@@ -28,9 +30,19 @@
     NSString *_minimumDeploymentTarget;
     NSString *_exportDependencyInfoPath;
     NSString *_commonAssetRepositoryFileName;
+    NSString *_filterForDeviceModel;
+    NSString *_filterForDeviceOSVersion;
+    NSString *_optimization;
+    NSString *_targetName;
+    NSDictionary *_assetPackOutputSpecifications;
 }
 
+@property(copy) NSDictionary *assetPackOutputSpecifications; // @synthesize assetPackOutputSpecifications=_assetPackOutputSpecifications;
 @property(copy) NSArray *targetDevices; // @synthesize targetDevices=_targetDevices;
+@property(copy) NSString *targetName; // @synthesize targetName=_targetName;
+@property(copy) NSString *optimization; // @synthesize optimization=_optimization;
+@property(copy) NSString *filterForDeviceOSVersion; // @synthesize filterForDeviceOSVersion=_filterForDeviceOSVersion;
+@property(copy) NSString *filterForDeviceModel; // @synthesize filterForDeviceModel=_filterForDeviceModel;
 @property(copy) NSString *commonAssetRepositoryFileName; // @synthesize commonAssetRepositoryFileName=_commonAssetRepositoryFileName;
 @property(copy) NSString *exportDependencyInfoPath; // @synthesize exportDependencyInfoPath=_exportDependencyInfoPath;
 @property(copy) NSString *minimumDeploymentTarget; // @synthesize minimumDeploymentTarget=_minimumDeploymentTarget;
@@ -39,7 +51,9 @@
 @property(copy) NSString *partialInfoPlistOutputPath; // @synthesize partialInfoPlistOutputPath=_partialInfoPlistOutputPath;
 @property(copy) NSString *compilationOutputPath; // @synthesize compilationOutputPath=_compilationOutputPath;
 @property(copy) NSString *platformName; // @synthesize platformName=_platformName;
-@property BOOL forceImagesOnWrite; // @synthesize forceImagesOnWrite=_forceImagesOnWrite;
+@property BOOL enableIncrementalDistill; // @synthesize enableIncrementalDistill=_enableIncrementalDistill;
+@property BOOL dumpAssets; // @synthesize dumpAssets=_dumpAssets;
+@property BOOL enableOnDemandResources; // @synthesize enableOnDemandResources=_enableOnDemandResources;
 @property BOOL compressPNGs; // @synthesize compressPNGs=_compressPNGs;
 @property BOOL printMessageCategoryInfo; // @synthesize printMessageCategoryInfo=_printMessageCategoryInfo;
 @property BOOL printNoticeMessages; // @synthesize printNoticeMessages=_printNoticeMessages;
@@ -50,10 +64,10 @@
 @property BOOL printVersion; // @synthesize printVersion=_printVersion;
 - (void).cxx_destruct;
 - (BOOL)supportsMultipleInputDocuments;
-- (long long)outputFormatArgumentCode;
 - (id)objectOptionsThatRequireInputDocuments;
 - (id)booleanOptionsThatRequireInputDocuments;
 - (id)optionIndex;
+- (void)interpretOption:(id)arg1 optionalParameter:(id)arg2 collectingErrors:(id)arg3;
 - (id)init;
 
 @end

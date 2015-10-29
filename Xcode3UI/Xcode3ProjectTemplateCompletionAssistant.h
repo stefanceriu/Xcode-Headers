@@ -28,6 +28,8 @@
 - (id)finalURLForSelectedURL:(id)arg1;
 - (id)configuredSavePanel;
 - (void)viewDidInstall;
+- (void)awakeFromNib;
+- (void)_updateViewsDisplayed;
 - (void)primitiveInvalidate;
 - (BOOL)shouldShowAccessoryView;
 

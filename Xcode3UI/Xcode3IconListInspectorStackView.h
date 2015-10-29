@@ -6,13 +6,30 @@
 
 #import "DVTStackView_ML.h"
 
-@interface Xcode3IconListInspectorStackView : DVTStackView_ML
+#import "DVTInvalidation.h"
+
+@class DVTStackBacktrace, NSString, Xcode3IconListInspectorCoordinator;
+
+@interface Xcode3IconListInspectorStackView : DVTStackView_ML <DVTInvalidation>
 {
+    Xcode3IconListInspectorCoordinator *_coordinator;
 }
 
++ (void)initialize;
+- (void).cxx_destruct;
 - (struct CGSize)sizeForPulledSubviewMagnitude:(double)arg1;
 - (struct CGPoint)pushedOriginForSubview:(id)arg1 position:(double)arg2;
 - (struct CGSize)pushedSizeForSubview:(id)arg1;
+- (void)primitiveInvalidate;
+
+// Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

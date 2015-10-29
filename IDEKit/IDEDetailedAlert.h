@@ -33,9 +33,6 @@
 - (void).cxx_destruct;
 - (long long)runModal;
 - (void)beginSheetModalForWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)_handlerSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
-- (void)beginSheetModalForWindow:(id)arg1 modalDelegate:(id)arg2 didEndSelector:(SEL)arg3 contextInfo:(void *)arg4;
-- (void)didEndAlert:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)defaultButtonAction:(id)arg1;
 - (void)alternateButtonAction:(id)arg1;
 - (void)finishWithCode:(long long)arg1;

@@ -11,7 +11,6 @@
 __attribute__((visibility("hidden")))
 @interface SCNDisplayLink : NSObject
 {
-    id _reserved;
     unsigned int _displayID;
     struct _CGLPixelFormatObject *_pixelFormat;
     struct __CVDisplayLink *_cvDisplayLink;
@@ -29,6 +28,7 @@ __attribute__((visibility("hidden")))
 
 - (void)displayIDDidChange:(unsigned int)arg1;
 - (BOOL)_isInvalidated;
+- (void)setNeedsDisplay;
 - (void)invalidate;
 - (void)_teardown;
 - (void)_resume;
@@ -42,7 +42,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic, getter=isPaused) BOOL paused;
 - (void)dealloc;
 - (void)willDie;
-- (id)initWithOwner:(id)arg1 context:(struct _CGLContextObject *)arg2 pixelFormat:(struct _CGLPixelFormatObject *)arg3 displayID:(unsigned int)arg4 queue:(id)arg5 block:(CDUnknownBlockType)arg6;
+- (id)initWithOwner:(id)arg1 context:(struct _CGLContextObject *)arg2 pixelFormat:(struct _CGLPixelFormatObject *)arg3 asynchronous:(BOOL)arg4 displayID:(unsigned int)arg5 queue:(id)arg6 block:(CDUnknownBlockType)arg7;
 - (id)init;
 
 @end

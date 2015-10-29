@@ -4,19 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEFoundation/IDEDistributionProcessingStep.h>
+#import <IDEFoundation/IDEDistributionProcessingPackagingStep.h>
 
 @class NSString;
 
-@interface IDEDistributionCreateIPAStep : IDEDistributionProcessingStep
+@interface IDEDistributionCreateIPAStep : IDEDistributionProcessingPackagingStep
 {
     NSString *name;
 }
 
-+ (id)processingStep;
++ (id)packagePathExtension;
++ (_Bool)runsPerThinningVariant;
++ (_Bool)supportsDryRun;
++ (BOOL)wantsPayloadDir;
 @property(copy) NSString *name; // @synthesize name;
 - (void).cxx_destruct;
-- (_Bool)processWithContext:(id)arg1 andError:(id *)arg2;
+- (_Bool)runWithError:(id *)arg1;
+- (id)providedOutputContextPropertyNames;
+- (id)requiredInputContextPropertyNames;
 
 @end
 

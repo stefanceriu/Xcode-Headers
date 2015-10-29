@@ -26,6 +26,7 @@
 - (id)alternateIconImage;
 - (id)iconImage;
 - (struct CGSize)preferredContentSizeConstrainedToSize:(struct CGSize)arg1;
+- (unsigned long long)representationType;
 - (void)viewDidLoad;
 
 @end

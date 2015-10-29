@@ -9,7 +9,8 @@
 @class NSArray;
 
 @interface CAAnimation (SceneKitAdditions)
-@property(retain, nonatomic) NSArray *animationEvents;
++ (id)scnAnimationNamed:(id)arg1;
+@property(copy, nonatomic) NSArray *animationEvents;
 - (void)setCommitsOnCompletion:(BOOL)arg1;
 - (BOOL)commitsOnCompletion;
 @property double fadeOutDuration;

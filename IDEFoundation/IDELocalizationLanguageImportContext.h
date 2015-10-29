@@ -15,6 +15,7 @@
     NSXMLDocument *_importXLIFF;
 }
 
++ (id)contextWithParent:(id)arg1 sourceUrl:(id)arg2 container:(id)arg3 importXLIFF:(id)arg4;
 @property(retain) NSXMLDocument *importXLIFF; // @synthesize importXLIFF=_importXLIFF;
 @property(retain) IDEContainer<IDELocalizedContainer> *container; // @synthesize container=_container;
 @property(retain) NSURL *sourceUrl; // @synthesize sourceUrl=_sourceUrl;

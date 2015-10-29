@@ -12,10 +12,13 @@
 
 - (id)packagingStepIdentifier;
 - (id)requiredProfileEntitlements;
+- (id)provisioningProfilePlatform;
 - (BOOL)wantsProvisioningProfiles;
 - (id)installerCertificateKind;
 - (id)certificateKind;
 - (id)shortTitle;
+- (id)supportedPlatform;
+- (id)appStoreName;
 - (_Bool)supportsDistributionOfArchive:(id)arg1;
 
 @end

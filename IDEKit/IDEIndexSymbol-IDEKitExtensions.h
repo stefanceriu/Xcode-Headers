@@ -9,6 +9,8 @@
 @interface IDEIndexSymbol (IDEKitExtensions)
 - (void)infoViewControllerWithWidth:(double)arg1 context:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (BOOL)notRecommended;
+- (void)setFuzzyMatchingScore:(double)arg1;
+- (double)fuzzyMatchingScore;
 - (void)setPriority:(long long)arg1;
 - (long long)priority;
 - (unsigned long long)priorityComparatorKind;

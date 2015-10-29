@@ -8,7 +8,7 @@
 
 #import "Xcode3SourceListItemEditor.h"
 
-@class DVTSourceExpression, DVTStackView_ML, IDEContainerQuery, NSArray, NSMutableDictionary, NSString, PBXNativeTarget, Xcode3CodesignTroubleshootingViewController, Xcode3ProjectEditor;
+@class DVTPlatform, DVTSourceExpression, DVTStackView_ML, IDEContainerQuery, NSArray, NSMutableDictionary, NSString, PBXNativeTarget, Xcode3CodesignTroubleshootingViewController, Xcode3ProjectEditor;
 
 @interface Xcode3TargetEditor : IDEViewController <Xcode3SourceListItemEditor>
 {
@@ -23,6 +23,7 @@
 }
 
 + (id)keyPathsForValuesAffectingTargetNibFiles;
++ (id)platformForTarget:(id)arg1;
 + (id)validValuesForBuildSetting:(id)arg1 inTarget:(id)arg2;
 + (void)setValue:(id)arg1 forBuildSetting:(id)arg2 inTarget:(id)arg3;
 + (id)valueForBuildSetting:(id)arg1 inTarget:(id)arg2;
@@ -38,6 +39,7 @@
 @property(retain, nonatomic) id <IDEBlueprint> inspectedBlueprint; // @synthesize inspectedBlueprint=_inspectedBlueprint;
 @property(retain) Xcode3ProjectEditor *projectEditor; // @synthesize projectEditor=_projectEditor;
 - (void).cxx_destruct;
+- (id)protocolConformingProviderForProtocolName:(id)arg1;
 - (void)showAlertForIncorrectTargetedDeviceFamilyForWatch;
 - (BOOL)correctTargetedDeviceFamilyForWatch;
 - (void)showLaunchImageAlertForImageName:(id)arg1;
@@ -55,7 +57,8 @@
 - (void)setDefaultCodeSigningIdentity;
 - (id)fileReferenceForFileName:(id)arg1;
 - (void)convertToImageTable:(id)arg1;
-- (void)populateAssetCatalogPopUpMenu:(id)arg1 forImageType:(int)arg2;
+- (void)populateAssetCatalogPopUpButton:(id)arg1 forImageType:(int)arg2 includeAssetCatalogOptionMenuItem:(BOOL)arg3 selectedImageSet:(id)arg4;
+- (void)setAssetCatalogValueInPopUpButton:(id)arg1 forImageType:(int)arg2;
 - (void)navigateToSelectedAssetCatalogForImageType:(int)arg1;
 - (void)convertToAssetCatalogForImageType:(int)arg1 imageModelsToMigrate:(id)arg2 optionalImageType:(int)arg3 optionalImageModelsToMigrate:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (void)_convertImageType:(int)arg1 imageModels:(id)arg2 toAssetCatalogAtPath:(id)arg3;
@@ -87,12 +90,14 @@
 - (id)rawValueForTargetBuildSetting:(id)arg1;
 - (id)_rawValueForBuildSetting:(id)arg1 inConfigurationList:(id)arg2;
 - (id)valueForBuildSetting:(id)arg1;
+- (void)removePlistSetting:(id)arg1;
 - (void)setValue:(id)arg1 forPlistSetting:(id)arg2;
 - (id)valueForPlistSetting:(id)arg1 ofType:(Class)arg2;
 - (BOOL)plistFileExists;
 - (BOOL)plistSettingsAreValid;
 - (id)inspectedProductTypeIdentifier;
 - (BOOL)isAWatchAppExtensionEditor;
+- (BOOL)isAWatchKit2ExtensionEditor;
 - (BOOL)isAWatchAppEditor;
 - (BOOL)isAFrameworkEditor;
 - (BOOL)isAnAppExtensionEditor;
@@ -105,6 +110,7 @@
 - (void)loadView;
 - (void)_refreshEditor:(id)arg1;
 - (Class)targetSummaryEditorClass;
+@property(readonly) DVTPlatform *platform;
 - (void)primitiveInvalidate;
 
 // Remaining properties

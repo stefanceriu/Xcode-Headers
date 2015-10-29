@@ -7,9 +7,16 @@
 #import "NSURL.h"
 
 @interface NSURL (DVTSourceControlNSURLAdditions)
+- (id)dvtscm_lastPathComponent;
+- (id)dvtscm_lastPathComponentNoExtension;
+- (BOOL)dvtscm_sameServerAs:(id)arg1;
+- (id)dvtscm_serverURL;
+- (BOOL)dvtscm_isValid;
+- (BOOL)dvtscm_isSCPURI;
 - (id)dvtscm_scpURL;
 - (id)dvtscm_anonymousURL;
 - (id)dvtscm_path;
+- (id)dvtscm_port;
 - (id)dvtscm_host;
 - (id)dvtscm_scheme;
 - (id)dvtscm_password;

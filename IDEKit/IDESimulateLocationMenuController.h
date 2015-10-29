@@ -10,6 +10,7 @@
 {
 }
 
+- (id)fileExtension;
 - (id)uti;
 - (id)doNothingItemRepresentedObject;
 - (id)doNothingItemTitle;

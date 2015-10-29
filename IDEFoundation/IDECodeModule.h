@@ -38,6 +38,7 @@
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 pathString:(id)arg2;
+- (id)init;
 
 @end
 

@@ -8,10 +8,11 @@
 
 #import "IDEDebuggingAdditionUIController.h"
 
-@class DVTExtension, DVTStackBacktrace, IDEWorkspaceTabController, NSString, iCloudDebuggingTrayCell;
+@class DVTExtension, DVTStackBacktrace, IDEGaugeDocumentLocation, IDEWorkspaceTabController, NSString, iCloudDebuggingTrayCell;
 
 @interface iCloudDebuggingAdditionUIController : NSObject <IDEDebuggingAdditionUIController>
 {
+    IDEGaugeDocumentLocation *_gaugeDocumentLocation;
     id <IDEDebuggingAddition> _debuggingAddition;
     DVTExtension *_extension;
     IDEWorkspaceTabController *_workspaceTabController;
@@ -25,12 +26,7 @@
 @property(retain, nonatomic) id <IDEDebuggingAddition> debuggingAddition; // @synthesize debuggingAddition=_debuggingAddition;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (void)openLocation:(id)arg1 withEventType:(unsigned long long)arg2;
-- (void)openController:(id)arg1 withEventType:(unsigned long long)arg2;
-- (void)openSelectedNavigableItem:(id)arg1 withEventType:(unsigned long long)arg2;
-- (id)launchSessionForSelectedRepresentedObject:(id)arg1;
 - (id)trayCellForNavigationProcessHeader;
-- (BOOL)wantsTrayAreaForNavigationProcessHeader;
 - (id)controller;
 - (id)initWithWorkspaceTabController:(id)arg1 withDebuggingAddition:(id)arg2 forExtension:(id)arg3;
 

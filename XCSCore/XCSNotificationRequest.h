@@ -6,23 +6,23 @@
 
 #import <XCSCore/XCSObject.h>
 
-@class NSArray, XCSIntegrationIssues, XCSTrigger;
+@class NSArray, XCSTrigger;
 
 @interface XCSNotificationRequest : XCSObject
 {
+    BOOL _allClear;
     XCSTrigger *_trigger;
-    XCSIntegrationIssues *_issues;
     NSArray *_recipients;
 }
 
-+ (id)notificationRequestWithTrigger:(id)arg1 issues:(id)arg2 recipients:(id)arg3;
++ (id)notificationRequestWithTrigger:(id)arg1 recipients:(id)arg2 allClear:(BOOL)arg3;
+@property(readonly, nonatomic) BOOL allClear; // @synthesize allClear=_allClear;
 @property(readonly, nonatomic) NSArray *recipients; // @synthesize recipients=_recipients;
-@property(readonly, nonatomic) XCSIntegrationIssues *issues; // @synthesize issues=_issues;
 @property(readonly, nonatomic) XCSTrigger *trigger; // @synthesize trigger=_trigger;
 - (void).cxx_destruct;
 - (id)saveRepresentation;
 - (id)dictionaryRepresentation;
-- (id)initWithTrigger:(id)arg1 issues:(id)arg2 recipients:(id)arg3;
+- (id)initWithTrigger:(id)arg1 recipients:(id)arg2 allClear:(BOOL)arg3;
 
 @end
 

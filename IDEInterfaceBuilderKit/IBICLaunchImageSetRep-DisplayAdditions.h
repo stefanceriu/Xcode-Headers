@@ -7,6 +7,5 @@
 #import "IBICLaunchImageSetRep.h"
 
 @interface IBICLaunchImageSetRep (DisplayAdditions)
-- (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
 @end
 

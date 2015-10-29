@@ -49,6 +49,7 @@
 @property(readonly, nonatomic) GPUGlobalStateManager *globalStateManager; // @dynamic globalStateManager;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)primitiveInvalidate;
+- (void)sortChildren;
 - (void)invalidateChildren;
 - (id)initWithController:(id)arg1 parent:(id)arg2 label:(id)arg3;
 

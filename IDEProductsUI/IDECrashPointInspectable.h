@@ -8,11 +8,11 @@
 
 #import "IDEProductsInspectable.h"
 
-@class DVTCrashLog, DVTCrashPoint, NSString;
+@class DVTCrashLog, DVTCrashPoint, DVTProductCategory, NSString;
 
 @interface IDECrashPointInspectable : NSObject <IDEProductsInspectable>
 {
-    unsigned long long _productType;
+    DVTProductCategory *_productCategory;
     DVTCrashPoint *_crashPoint;
     DVTCrashLog *_crashLog;
 }
@@ -27,7 +27,7 @@
 - (id)inspectableIcon;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)initWithCrashPoint:(id)arg1 crashLog:(id)arg2 productType:(unsigned long long)arg3;
+- (id)initWithCrashPoint:(id)arg1 crashLog:(id)arg2 productCategory:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

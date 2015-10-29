@@ -4,17 +4,23 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IBAbstractMessageChannelInterfaceBuilderToolManager.h"
+#import "IBAbstractInterfaceBuilderPlatformToolManager.h"
 
-@interface IBCocoaToolManager : IBAbstractMessageChannelInterfaceBuilderToolManager
+@class IBPlatformToolDVTTaskExecutionContext;
+
+@interface IBCocoaToolManager : IBAbstractInterfaceBuilderPlatformToolManager
 {
+    IBPlatformToolDVTTaskExecutionContext *_sharedExecutionContext;
 }
 
 + (id)sharedInstance;
+- (void).cxx_destruct;
 - (void)enumerateToolsWithBlock:(CDUnknownBlockType)arg1;
-- (id)attachToToolForTargetRuntime:(id)arg1 isForLiveViews:(BOOL)arg2 scaleFactor:(id)arg3 queue:(id)arg4 assertOnFailureToAttach:(BOOL)arg5 assertOnPostLaunchRequestFailures:(BOOL)arg6 error:(id *)arg7;
-- (Class)messageChannelProxyClass;
-- (id)taskForAttachingToTargetRuntime:(id)arg1 isForLiveViews:(BOOL)arg2 scaleFactor:(id)arg3;
+- (id)launchNewToolWithDescription:(id)arg1 error:(id *)arg2 forReason:(CDUnknownBlockType)arg3;
+- (id)cachedToolWithDescription:(id)arg1 error:(id *)arg2 forReason:(CDUnknownBlockType)arg3;
+- (Class)toolProxyClass;
+- (id)executionContextForDescription:(id)arg1 error:(id *)arg2;
+- (id)contextForLaunchingToolWithDescription:(id)arg1 error:(id *)arg2;
 
 @end
 

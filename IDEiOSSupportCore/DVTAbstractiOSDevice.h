@@ -6,25 +6,27 @@
 
 #import "DVTDevice.h"
 
-@class NSMapTable;
+#import "DVTBasiciOSDevice.h"
 
-@interface DVTAbstractiOSDevice : DVTDevice
+@class DVTPlatform, NSError, NSMapTable, NSSet, NSString;
+
+@interface DVTAbstractiOSDevice : DVTDevice <DVTBasiciOSDevice>
 {
     NSMapTable *_workspaceInstallsInProgress;
 }
 
 + (id)nameForDeviceFamilyObject:(id)arg1;
-+ (id)setFromDeviceFamilyObject:(id)arg1;
-+ (id)numberFromObject:(id)arg1;
 - (void).cxx_destruct;
-- (id)recordedFramesMinimumVersionString;
+- (void)showTodayViewForExtensions:(id)arg1 pid:(int)arg2;
+- (id)serviceHubProcessControlChannel;
 - (id)iconImage;
 - (id)deviceClassForDisplay;
+- (BOOL)supportsBuildingThinnedResources;
 - (void)uninstallProvisioningProfile:(id)arg1;
 - (void)installProvisioningProfiles:(id)arg1;
 - (BOOL)canInstallProfile:(id)arg1;
 - (id)provisioningProfiles;
-- (BOOL)deviceIsBusy;
+@property(readonly) _Bool deviceIsBusy;
 - (id)taskForDeviceCommand:(id)arg1 withArguments:(id)arg2 error:(id *)arg3;
 - (void)installActivityDidEndInWorkspace:(id)arg1 withError:(id)arg2;
 - (void)installActivityInWorkspace:(id)arg1 operationInProgress:(id)arg2 details:(id)arg3;
@@ -53,7 +55,6 @@
 - (_Bool)copyBackActiveInstallsWithErrorString:(id *)arg1;
 - (id)activeInstallsPath;
 - (BOOL)canInstallBuildablesError:(id *)arg1;
-- (id)actualRunnablePathForRunnableLocation:(id)arg1;
 - (id)preferredSDKForDeviceOptions:(id)arg1 error:(id *)arg2;
 - (id)preferredArchitectureForDeviceOptions:(id)arg1 error:(id *)arg2;
 - (id)supportedArchitecturesForBuildable:(id)arg1 buildParameters:(id)arg2 error:(id *)arg3;
@@ -71,12 +72,35 @@
 - (void)setName:(id)arg1;
 - (_Bool)canRenameDevice;
 - (BOOL)shouldPresentDeviceForBuildable:(id)arg1 buildParameters:(id)arg2 error:(id *)arg3;
-- (BOOL)canBeWatchCompanion;
 - (_Bool)isWireless;
 @property(readonly) _Bool isPasscodeLocked;
 - (BOOL)isConcreteDevice;
 - (BOOL)isGenericDevice;
 - (id)initWithDeviceLocation:(id)arg1 extension:(id)arg2;
+
+// Remaining properties
+@property(readonly, getter=isAvailable) BOOL available;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly, copy) NSString *identifier;
+@property(readonly) BOOL isProxiedDevice;
+@property(readonly, copy, nonatomic) NSString *modelCode;
+@property(readonly, copy, nonatomic) NSString *modelName;
+@property(readonly, copy, nonatomic) NSString *modelUTI;
+@property(readonly, copy) NSString *name;
+@property(readonly, copy) NSString *nameForDeveloperPortal;
+@property(readonly, copy) NSString *nativeArchitecture;
+@property(readonly, copy) NSString *operatingSystemBuild;
+@property(readonly, copy) NSString *operatingSystemVersion;
+@property(readonly, copy, nonatomic) NSString *operatingSystemVersionWithBuildNumber;
+@property(readonly) DVTPlatform *platform;
+@property(readonly, copy) NSString *platformIdentifier;
+@property(readonly, copy) NSString *processorDescription;
+@property(readonly, copy) NSSet *proxiedDevices;
+@property(readonly) Class superclass;
+@property(readonly) BOOL supportsProvisioning;
+@property(readonly) NSError *unavailabilityError;
 
 @end
 

@@ -9,15 +9,22 @@
 @class IDELogNavigator, NSArray, NSString;
 
 @protocol IDEContinuousIntegrationLogNavigatorHelper <NSObject>
+- (NSString *)botObservableStatusChangedPropertyName;
+- (NSString *)integrationObservableStatusChangedPropertyName;
 - (int)statusOfIntegration:(id)arg1;
 - (BOOL)isIntegrationFinished:(id)arg1;
+- (id)documentLocationForLoadMoreItemWithNavigable:(id)arg1;
 - (void)additionalIntegrationsOnServerForBotNavigable:(id)arg1 completionBlock:(void (^)(unsigned long long, NSError *))arg2;
 - (void)loadMoreBotsInBotNavigable:(id)arg1 completionBlock:(void (^)(void))arg2;
 - (void)performAction:(SEL)arg1 forNavigableItemSelection:(NSArray *)arg2 withNavigator:(IDELogNavigator *)arg3;
 - (NSString *)titleForNavigableItemSelection:(NSArray *)arg1 action:(SEL)arg2;
 - (BOOL)navigableItemSelection:(NSArray *)arg1 allowsAction:(SEL)arg2;
 - (id <IDEKeyDrivenNavigableItemRepresentedObject>)navigableItemForIntegration:(id)arg1;
+- (id <IDEKeyDrivenNavigableItemRepresentedObject>)navigableItemForBotForGroupByTime:(id)arg1;
 - (id <IDEKeyDrivenNavigableItemRepresentedObject>)navigableItemForBot:(id)arg1;
+- (id <IDEKeyDrivenNavigableItemRepresentedObject>)navigableItemForService:(id)arg1;
+- (NSString *)botIdentifierForIntegrationNavigableItem:(id)arg1;
 - (NSArray *)legacyBotNavigablesForLegacyBots:(NSArray *)arg1;
+- (void)compoundStatusForIntegrationOrBot:(id)arg1 completionBlock:(void (^)(BOOL, BOOL, BOOL, BOOL, BOOL, BOOL, BOOL))arg2;
 @end
 

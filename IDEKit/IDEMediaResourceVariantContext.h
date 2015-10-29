@@ -8,12 +8,12 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTMapTable, DVTStackBacktrace, IDEMediaResourceFoldingStrategy, NSMutableDictionary, NSMutableSet, NSSet, NSString;
+@class DVTStackBacktrace, IDEMediaResourceFoldingStrategy, NSMapTable, NSMutableDictionary, NSMutableSet, NSSet, NSString;
 
 @interface IDEMediaResourceVariantContext : NSObject <DVTInvalidation>
 {
-    DVTMapTable *_repositoriesToMediaTypesToNamesToVaraintSets;
-    DVTMapTable *_repositoriesToObservationTokens;
+    NSMapTable *_repositoriesToMediaTypesToNamesToVaraintSets;
+    NSMapTable *_repositoriesToObservationTokens;
     NSMutableDictionary *_mediaTypesToVaraintSets;
     NSMutableSet *_variantSets;
     NSSet *_repositories;

@@ -18,7 +18,7 @@
 
 + (void)initialize;
 - (void).cxx_destruct;
-- (void)selectionMenuItemWasClicked:(id)arg1;
+- (void)navigationMenuItemWasClicked:(id)arg1;
 - (id)menuForObjects:(id)arg1;
 - (id)menuItemForObject:(id)arg1;
 - (id)menuItemAttributedTitleForObject:(id)arg1 highlighted:(BOOL)arg2;

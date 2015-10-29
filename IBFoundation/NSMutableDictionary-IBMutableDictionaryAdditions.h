@@ -21,6 +21,7 @@
 - (void)ib_setObject:(id)arg1 forKey:(id)arg2 inDictionaryForKey:(id)arg3 inDictionaryForKey:(id)arg4;
 - (void)ib_setObject:(id)arg1 forKey:(id)arg2 inDictionaryForKey:(id)arg3 subDictionaryClass:(Class)arg4;
 - (void)ib_setObject:(id)arg1 forKey:(id)arg2 inDictionaryForKey:(id)arg3;
+- (void)ib_setObjectIfNonNil:(id)arg1 forKey:(id)arg2 inDictionaryForKey:(id)arg3;
 - (void)ib_removeLastObjectFromArrayForKey:(id)arg1;
 - (void)ib_setObject:(id)arg1 forKey:(id)arg2 inDictionaryForKey:(id)arg3 inDictionaryForKey:(id)arg4 outerDictionaryClass:(Class)arg5;
 - (void)ib_removeObjectsForKeys:(id)arg1;

@@ -90,6 +90,13 @@ struct Token {
     long long _field6;
 };
 
+struct _IBEdgeInsets {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+};
+
 struct _NSRange {
     unsigned long long location;
     unsigned long long length;
@@ -117,13 +124,6 @@ struct option {
 #pragma mark Typedef'd Structures
 
 typedef struct {
-    SEL _field1;
-    SEL _field2;
-    SEL _field3;
-    long long _field4;
-} CDStruct_8b9402de;
-
-typedef struct {
     unsigned long long _field1;
     unsigned long long _field2;
 } CDStruct_4bcfbbae;
@@ -140,19 +140,14 @@ typedef struct {
     char _field2;
     unsigned long long _field3;
     long long _field4;
-    id _field5;
-} CDStruct_96d6799e;
+    char *_field5;
+    char *_field6;
+} CDStruct_071f1a99;
 
 typedef struct {
     char *_field1;
     long long _field2;
 } CDStruct_ac8ae556;
-
-typedef struct {
-    unsigned int isMutable:1;
-    unsigned int forceArbitrationAfterCompletion:1;
-    unsigned int invalidateDescendants:1;
-} CDStruct_c60c94c2;
 
 typedef struct {
     char isHorizontal;
@@ -162,11 +157,6 @@ typedef struct {
     char isDown;
     char isUp;
 } CDStruct_92d5623e;
-
-typedef struct {
-    char _field1;
-    char _field2;
-} CDStruct_7ddbbeae;
 
 typedef struct {
     double minX;
@@ -186,17 +176,9 @@ typedef struct {
 } CDStruct_6db0658e;
 
 typedef struct {
-    long long _field1;
-    long long _field2;
-} CDStruct_912cb5d2;
-
-typedef struct CDStruct_183601bc;
-
-typedef struct {
-    CDStruct_183601bc *_field1;
-    double _field2;
-    double _field3;
-} CDStruct_3d08495f;
+    long long x;
+    long long y;
+} CDStruct_f261e59c;
 
 typedef struct {
     struct {
@@ -218,9 +200,11 @@ typedef struct {
 } CDStruct_f6143a38;
 
 typedef struct {
-    struct CGRect _field1[8];
-    char _field2[8];
-} CDStruct_fa3e0eee;
+    struct {
+        struct CGRect _field1;
+        char _field2;
+    } _field1[3][3];
+} CDStruct_b58c4854;
 
 #pragma mark Typedef'd Unions
 
@@ -244,4 +228,9 @@ typedef union {
         double _field5;
     } _field2;
 } CDUnion_b8f7e27c;
+
+typedef union {
+    CDStruct_f261e59c ;
+    long long components[2];
+} CDUnion_31865a80;
 

@@ -82,6 +82,7 @@
 - (long long)numberOfRows;
 - (void)hightlightCapsuleView:(id)arg1;
 - (id)capsuleViewForCapsuleViewController:(id)arg1;
+- (void)startEditingCapsuleTitleAtRow:(long long)arg1;
 - (long long)rowForCapsuleView:(id)arg1;
 - (id)capsuleViewAtRow:(long long)arg1;
 - (void)didCompleteLayout;
@@ -111,6 +112,8 @@
 - (void)keyDown:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)_invalidateSubviewsSavingStateWithMap:(id)arg1;
+- (void)commonInit;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties

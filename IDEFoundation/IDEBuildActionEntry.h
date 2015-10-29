@@ -26,11 +26,8 @@
 }
 
 + (id)keyPathsForValuesAffectingCanRemoveEntry;
-+ (id)keyPathsForValuesAffectingCanEditBuildForProfiling;
 + (id)keyPathsForValuesAffectingShouldBuildForProfiling;
-+ (id)keyPathsForValuesAffectingCanEditBuildForRunning;
 + (id)keyPathsForValuesAffectingShouldBuildForRunning;
-+ (id)keyPathsForValuesAffectingCanEditBuildForTesting;
 + (id)keyPathsForValuesAffectingShouldBuildForTesting;
 @property(retain) IDEBuildSchemeAction *buildAction; // @synthesize buildAction=_buildAction;
 @property(readonly) IDESchemeBuildableReference *buildableReference; // @synthesize buildableReference=_buildableReference;
@@ -50,15 +47,10 @@
 - (void)enableBuildEntry;
 - (void)disableBuildEntry;
 @property(readonly) BOOL canRemoveEntry;
-@property(readonly) BOOL canEditBuildForAnalyzing;
 @property BOOL shouldBuildForAnalyzing;
-@property(readonly) BOOL canEditBuildForArchiving;
 @property BOOL shouldBuildForArchiving;
-@property(readonly) BOOL canEditBuildForProfiling;
 @property BOOL shouldBuildForProfiling;
-@property(readonly) BOOL canEditBuildForRunning;
 @property BOOL shouldBuildForRunning;
-@property(readonly) BOOL canEditBuildForTesting;
 @property BOOL shouldBuildForTesting;
 - (void)_makeExplicit;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;

@@ -8,11 +8,10 @@
 
 #import "IDEDebugGaugeReportTopSectionContentDelegate.h"
 #import "IDEGraphDelegate.h"
-#import "iCloudMonitorLineProcessor.h"
 
 @class DVTCapacitySegment, DVTMeterView, IDEPlotGraph, NSButton, NSByteCountFormatter, NSMutableString, NSString, NSTextField, NSView;
 
-@interface DBGGaugeMemoryEditor : DBGGaugeEditor <IDEDebugGaugeReportTopSectionContentDelegate, IDEGraphDelegate, iCloudMonitorLineProcessor>
+@interface DBGGaugeMemoryEditor : DBGGaugeEditor <IDEDebugGaugeReportTopSectionContentDelegate, IDEGraphDelegate>
 {
     NSView *_topSectionUtilizationView;
     DVTCapacitySegment *_remainderCapacitySegment;
@@ -69,7 +68,6 @@
 @property __weak NSView *topSectionSpeedometerView; // @synthesize topSectionSpeedometerView=_topSectionSpeedometerView;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (void)monitor:(id)arg1 didReceiveResponseCode:(unsigned long long)arg2 response:(id)arg3 forToken:(id)arg4 responseContinues:(BOOL)arg5;
 - (id)translateValue:(id)arg1 keypath:(id)arg2;
 - (id)colorForChartNamed:(id)arg1;
 - (id)topSectionTitleAccessoryView;

@@ -16,8 +16,7 @@
 }
 
 - (void).cxx_destruct;
-- (void)_warningUnsavedSheetDidDismiss:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
-- (void)_encodingSheetDidDismiss:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)_encodingSheetDidDismiss:(id)arg1 returnCode:(long long)arg2;
 - (void)_applyNewEncodingShouldConvert:(BOOL)arg1;
 - (void)refresh;
 - (void)userDidChangeValue:(id)arg1;

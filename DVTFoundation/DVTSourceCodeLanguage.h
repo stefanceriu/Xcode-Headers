@@ -30,6 +30,7 @@
 }
 
 + (id)sourceCodeLanguageForFileDataType:(id)arg1;
++ (id)sourceCodeLanguageForLanguageSpecificationIdentifier:(id)arg1;
 + (id)sourceCodeLanguageWithIdentifier:(id)arg1;
 + (id)sourceCodeLanguages;
 + (id)_sourceCodeLanguageForExtension:(id)arg1;

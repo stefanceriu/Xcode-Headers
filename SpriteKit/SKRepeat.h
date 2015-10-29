@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 - (id)reversedAction;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (id)subactions;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;

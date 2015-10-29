@@ -6,17 +6,19 @@
 
 #import "NSDocument.h"
 
+#import "DVTInvalidation.h"
 #import "DVTStateRepositoryDelegate.h"
 #import "DVTStatefulObject.h"
 #import "DVTTabbedWindowCreation.h"
 #import "IDEActiveRunContextStoring.h"
 #import "IDEMustCloseOnQuitDocument.h"
 #import "IDEPreBuildSavingDelegate.h"
+#import "IDETestManagerUITestingPermissionSheetDelegate.h"
 #import "IDEWorkspaceDelegate.h"
 
-@class DVTDelayedInvocation, DVTMapTable, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDESourceControlWorkspaceUIHandler, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
+@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDESourceControlWorkspaceUIHandler, IDEUIRecordingManager<DVTInvalidation>, IDEUITestingTCCPermissionWindowController, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 
-@interface IDEWorkspaceDocument : NSDocument <IDEActiveRunContextStoring, IDEWorkspaceDelegate, DVTTabbedWindowCreation, DVTStatefulObject, DVTStateRepositoryDelegate, IDEMustCloseOnQuitDocument, IDEPreBuildSavingDelegate>
+@interface IDEWorkspaceDocument : NSDocument <IDEActiveRunContextStoring, IDEWorkspaceDelegate, IDETestManagerUITestingPermissionSheetDelegate, DVTInvalidation, DVTTabbedWindowCreation, DVTStatefulObject, DVTStateRepositoryDelegate, IDEMustCloseOnQuitDocument, IDEPreBuildSavingDelegate>
 {
     DVTStackBacktrace *_invalidationBacktrace;
     DVTStateRepository *_stateRepository;
@@ -28,7 +30,7 @@
     NSMutableDictionary *_defaultEditorStateTree;
     NSMutableDictionary *_defaultPrimaryEditorFrameSizes;
     NSMutableSet *_editedDocuments;
-    DVTMapTable *_controllerForDebugSessionTable;
+    NSMapTable *_controllerForDebugSessionTable;
     DVTDelayedInvocation *_stateSavingDelayedInvocation;
     IDEActivityReportManager *_activityReportManager;
     IDESourceControlWorkspaceUIHandler *_sourceControlWorkspaceUIHandler;
@@ -39,27 +41,28 @@
     DVTObservingToken *_currentDebugSessionObserverToken;
     DVTNotificationToken *_applicationIsQuittingNotificationToken;
     DVTObservingToken *_currentExecutionTrackerObservingToken;
-    DVTMapTable *_hasGUIValueForLaunchSessionMap;
+    NSMapTable *_hasGUIValueForLaunchSessionMap;
     NSDictionary *_previousSessionActiveRunContextInfo;
     NSDictionary *_previousSessionActiveRunDestinationInfo;
     CDUnknownBlockType _upgradeCompletionBlock;
     NSMutableArray *_stateChangeObservingTokens;
     NSMutableDictionary *_tabStateContextForTabNameMap;
-    int _debuggingWindowBehavior;
     BOOL _lastWorkspaceWindowHasStartedClosing;
     BOOL _applicationIsTerminating;
     BOOL _isClosing;
     BOOL _isInvalidated;
-    BOOL _userWantsAppFocusInMiniDebugging;
-    BOOL _userWantsMiniDebuggingConsole;
     BOOL _didSetupUISubsystems;
     BOOL _isCheckingCanClose;
     id _openingPerformanceMetricIdentifier;
     DVTSystemActivityToken *_systemActivityToken;
     DVTObservingToken *_executionTrackerIsFinishedObservingToken;
+    DVTObservingToken *_executionTrackerWantsHoldObservingToken;
     DVTObservingToken *_executionEnvironmentCurrentBuildOperationObservingToken;
     DVTObservingToken *_simpleFilesFocusedObservingToken;
-    DVTStackBacktrace *_creationBacktrace;
+    DVTPerformanceMetric *_closingMetric;
+    BOOL _createdAsUntitled;
+    IDEUIRecordingManager<DVTInvalidation> *_uiRecordingManager;
+    IDEUITestingTCCPermissionWindowController *_TCCPermissionWindowController;
 }
 
 + (id)keyPathsForValuesAffectingUserWantsBreakpointsActivated;
@@ -71,17 +74,17 @@
 + (id)documentForWorkspace:(id)arg1;
 + (id)debuggerUIExtensionForLaunchSession:(id)arg1;
 + (id)documentTypeName;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (BOOL)autosavesDrafts;
 + (BOOL)autosavesInPlace;
 + (BOOL)preservesVersions;
 + (void)initialize;
-@property(retain) DVTStackBacktrace *creationBacktrace; // @synthesize creationBacktrace=_creationBacktrace;
+@property(retain) IDEUITestingTCCPermissionWindowController *TCCPermissionWindowController; // @synthesize TCCPermissionWindowController=_TCCPermissionWindowController;
+@property(nonatomic) BOOL createdAsUntitled; // @synthesize createdAsUntitled=_createdAsUntitled;
+@property(retain) IDEUIRecordingManager<DVTInvalidation> *uiRecordingManager; // @synthesize uiRecordingManager=_uiRecordingManager;
 @property(retain) IDESourceControlWorkspaceUIHandler *sourceControlWorkspaceUIHandler; // @synthesize sourceControlWorkspaceUIHandler=_sourceControlWorkspaceUIHandler;
 @property BOOL applicationIsTerminating; // @synthesize applicationIsTerminating=_applicationIsTerminating;
 @property(retain) NSMutableDictionary *tabStateContextForTabNameMap; // @synthesize tabStateContextForTabNameMap=_tabStateContextForTabNameMap;
-@property BOOL userWantsMiniDebuggingConsole; // @synthesize userWantsMiniDebuggingConsole=_userWantsMiniDebuggingConsole;
-@property BOOL userWantsAppFocusInMiniDebugging; // @synthesize userWantsAppFocusInMiniDebugging=_userWantsAppFocusInMiniDebugging;
-@property(nonatomic) int debuggingWindowBehavior; // @synthesize debuggingWindowBehavior=_debuggingWindowBehavior;
 @property(retain) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace; // @synthesize invalidationBacktrace=_invalidationBacktrace;
 - (void).cxx_destruct;
@@ -90,6 +93,7 @@
 - (id)storedRunContextName;
 - (id)activeRunDestinationInfo;
 - (id)activeRunContextInfo;
+- (void)displayWorkspaceSheetForUITestingPermissionWithReply:(CDUnknownBlockType)arg1;
 @property(copy) NSArray *orderedWindowControllerNames;
 @property BOOL userWantsBreakpointsActivated;
 @property(copy) NSDictionary *stateSavingDefaultEditorStatesForURLs;
@@ -127,9 +131,8 @@
 - (struct CGSize)_defaultPrimaryEditorFrameSizeForDocumentURL:(id)arg1;
 - (void)_cacheDefaultEditorStateDictionary:(id)arg1 forDocumentExtensionIdentifier:(id)arg2 forDocumentURL:(id)arg3;
 - (id)_defaultEditorStateDictionaryForDocumentExtensionIdentifier:(id)arg1 forDocumentURL:(id)arg2;
-- (id)_debuggingWindowBehaviorAsStringForMessageTracerReport;
 - (id)debugSessionControllerForLaunchSession:(id)arg1;
-- (void)activateTargetProcess;
+- (void)activateTargetProcessForLaunchSession:(id)arg1;
 - (void)_delayedActivateTargetProcess:(id)arg1;
 - (BOOL)_isXcodeActiveAndTargetInActivatableState:(id)arg1;
 - (void)_setAppIcon:(id)arg1 forLaunchSession:(id)arg2;
@@ -167,7 +170,7 @@
 - (void)_recordWorkspaceStatistics;
 - (BOOL)saveToURL:(id)arg1 ofType:(id)arg2 forSaveOperation:(unsigned long long)arg3 error:(id *)arg4;
 - (void)saveAsWorkspace:(id)arg1 showAlert:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (void)_upgradeAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)_upgradeAlertDidEnd:(id)arg1 returnCode:(long long)arg2;
 - (void)_workspaceDocument:(id)arg1 didSave:(BOOL)arg2 contextInfo:(void *)arg3;
 - (void)saveAsWorkspace:(id)arg1;
 - (BOOL)prepareSavePanel:(id)arg1;
@@ -186,6 +189,7 @@
 - (id)_dirtyDocuments;
 - (BOOL)_closeAfterSavingDirtyEditorDocumentsWithCancelButton:(BOOL)arg1;
 - (void)close;
+- (void)primitiveInvalidate;
 - (void)writeStateIfNeeded;
 - (BOOL)dvt_hasBeenEditedSinceLastUserInitiatedSave;
 @property(readonly, getter=isClosed) BOOL closed;
@@ -229,10 +233,12 @@
 - (BOOL)sdefSupport_breakpointsEnabled;
 
 // Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

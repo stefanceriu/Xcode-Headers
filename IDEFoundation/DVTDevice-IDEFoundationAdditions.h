@@ -7,15 +7,15 @@
 #import "DVTDevice.h"
 
 @interface DVTDevice (IDEFoundationAdditions)
-- (id)actualRunnablePathForRunnableLocation:(id)arg1;
-- (id)testingFrameworkPathsForBuildableProduct:(id)arg1 withBuildParameters:(id)arg2;
+- (Class)testingUIRecorderClass;
+@property(readonly) BOOL runningSupportedBuildForUITesting;
+@property(readonly) BOOL supportsUIRecording;
+@property(readonly) BOOL supportsUITesting;
+- (id)testingFrameworkPathForRunDestination:(id)arg1 usesXCTest:(BOOL)arg2 usesGC:(BOOL)arg3;
 - (id)deviceForRunningUnitTestsWithHost:(id)arg1 error:(id *)arg2;
 - (void)modifyTestingEnvironmentVariables:(id)arg1 host:(id)arg2 testBundlePath:(id)arg3;
 - (id)testArchitectureForBuildableProduct:(id)arg1 withBuildParameters:(id)arg2;
 - (id)testHostPathForBuildableProduct:(id)arg1 buildParameters:(id)arg2 outError:(id *)arg3;
-@property(readonly) BOOL supportsFileSpecifyingTestScopes;
-@property(readonly) BOOL supportsInverseTestScopes;
-@property(readonly) BOOL supportsMultipleTestScopes;
 - (id)analysisOperationWithAnalysisToolService:(id)arg1 location:(id)arg2 workingDirectory:(id)arg3 workspaceFilePath:(id)arg4 projectFilePath:(id)arg5 outError:(id *)arg6;
 - (void)createInstallWithName:(id)arg1 path:(id)arg2 buildables:(id)arg3 buildParameters:(id)arg4 killProcesses:(id)arg5 workspace:(id)arg6;
 - (BOOL)canInstallBuildablesError:(id *)arg1;

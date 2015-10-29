@@ -6,39 +6,88 @@
 
 #import "NSObject.h"
 
-@class IDERunnable, NSArray, NSMutableArray, NSMutableSet, NSSet;
+@class DVTFileDataType, DVTFilePath, IDEBuildOperation, IDEBuildParameters, IDEExecutionEnvironment, IDERunDestination, IDERunnable, IDETestOperationsObserver, NSArray, NSDictionary, NSMutableArray, NSMutableSet, NSSet, NSString;
 
 @interface IDETestRunner : NSObject
 {
-    NSMutableArray *_skippedTests;
     NSMutableArray *_testResults;
     NSMutableSet *_runningTests;
-    id <IDETestable> _testable;
-    IDERunnable *_host;
+    BOOL _usesXCTRunner;
+    BOOL _finished;
+    BOOL _hasStartedRunning;
     id <IDETestingSpecifier> _testingSpecifier;
+    id <IDEBuildableProduct> _buildableProduct;
+    IDEExecutionEnvironment *_executionEnvironment;
+    IDEBuildOperation *_buildOperation;
+    IDEBuildParameters *_buildParameters;
+    IDERunDestination *_runDestination;
+    DVTFilePath *_testBundleFilePath;
+    NSString *_launchName;
+    id <IDETestable> _testable;
+    NSArray *_skippedTests;
+    IDERunnable *_hostApplication;
+    IDERunnable *_testHostRunnable;
+    NSString *_testHostBuildSetting;
+    DVTFileDataType *_hostRunnableFileDataType;
+    IDETestOperationsObserver *_testsOperationsObserver;
+    NSMutableArray *_testResultStack;
+    double _testRunStartedTime;
 }
 
 + (void)initialize;
-@property(retain) IDERunnable *host; // @synthesize host=_host;
-@property(retain) id <IDETestingSpecifier> testingSpecifier; // @synthesize testingSpecifier=_testingSpecifier;
-@property(retain) id <IDETestable> testable; // @synthesize testable=_testable;
+@property BOOL hasStartedRunning; // @synthesize hasStartedRunning=_hasStartedRunning;
+@property double testRunStartedTime; // @synthesize testRunStartedTime=_testRunStartedTime;
+@property(retain) NSMutableArray *testResultStack; // @synthesize testResultStack=_testResultStack;
+@property(readonly) BOOL finished; // @synthesize finished=_finished;
+@property(retain) IDETestOperationsObserver *testsOperationsObserver; // @synthesize testsOperationsObserver=_testsOperationsObserver;
+@property(readonly) DVTFileDataType *hostRunnableFileDataType; // @synthesize hostRunnableFileDataType=_hostRunnableFileDataType;
+@property(readonly) BOOL usesXCTRunner; // @synthesize usesXCTRunner=_usesXCTRunner;
+@property(readonly) NSString *testHostBuildSetting; // @synthesize testHostBuildSetting=_testHostBuildSetting;
+@property(readonly) IDERunnable *testHostRunnable; // @synthesize testHostRunnable=_testHostRunnable;
+@property(readonly) IDERunnable *hostApplication; // @synthesize hostApplication=_hostApplication;
+@property(readonly) NSArray *skippedTests; // @synthesize skippedTests=_skippedTests;
+@property(readonly) id <IDETestable> testable; // @synthesize testable=_testable;
+@property(readonly) NSString *launchName; // @synthesize launchName=_launchName;
+@property(readonly) DVTFilePath *testBundleFilePath; // @synthesize testBundleFilePath=_testBundleFilePath;
+@property(readonly) IDERunDestination *runDestination; // @synthesize runDestination=_runDestination;
+@property(readonly) IDEBuildParameters *buildParameters; // @synthesize buildParameters=_buildParameters;
+@property(readonly) IDEBuildOperation *buildOperation; // @synthesize buildOperation=_buildOperation;
+@property(readonly) IDEExecutionEnvironment *executionEnvironment; // @synthesize executionEnvironment=_executionEnvironment;
+@property(readonly) id <IDEBuildableProduct> buildableProduct; // @synthesize buildableProduct=_buildableProduct;
+@property(readonly) id <IDETestingSpecifier> testingSpecifier; // @synthesize testingSpecifier=_testingSpecifier;
 - (void).cxx_destruct;
+- (void)testCaseDidFinishForTestClass:(id)arg1 method:(id)arg2 withStatus:(id)arg3 duration:(double)arg4 rawOutput:(id)arg5 sessionState:(id)arg6;
+- (void)testCaseDidFailForTestClass:(id)arg1 method:(id)arg2 withMessage:(id)arg3 file:(id)arg4 line:(long long)arg5 rawOutput:(id)arg6 sessionState:(id)arg7;
+- (void)testCaseDidMeasurePerformanceMetricForTestClass:(id)arg1 method:(id)arg2 performanceMetric:(id)arg3 rawOutput:(id)arg4 sessionState:(id)arg5;
+- (void)testDidOutput:(id)arg1 sessionState:(id)arg2;
+- (void)testCase:(id)arg1 method:(id)arg2 didFinishActivity:(id)arg3 sessionState:(id)arg4;
+- (void)testCase:(id)arg1 method:(id)arg2 willStartActivity:(id)arg3 sessionState:(id)arg4;
+- (void)testCaseDidStartForTestClass:(id)arg1 method:(id)arg2 rawOutput:(id)arg3 sessionState:(id)arg4;
+- (void)testSuiteDidFinish:(long long)arg1 withFailures:(long long)arg2 unexpected:(long long)arg3 testDuration:(double)arg4 totalDuration:(double)arg5 rawOutput:(id)arg6 sessionState:(id)arg7;
+- (void)testSuite:(id)arg1 willFinishAt:(id)arg2 rawOutput:(id)arg3 sessionState:(id)arg4;
+- (void)testSuite:(id)arg1 didStartAt:(id)arg2 rawOutput:(id)arg3 sessionState:(id)arg4;
+- (void)willFinishWithError:(id)arg1 didCancel:(BOOL)arg2 sessionState:(id)arg3;
+- (void)launchSessionStarted:(id)arg1;
+- (id)_testWithTestClass:(id)arg1 method:(id)arg2;
+- (id)testScopeWithAdditionalSkippedTests:(id)arg1 invert:(char *)arg2;
+- (id)pathForBuildableProduct:(id)arg1;
 - (void)willRunTest:(id)arg1;
 - (void)didRunTest:(id)arg1 withResult:(id)arg2;
-- (id)defaultTestArgumentsOperationForBuildParameters:(id)arg1 launchParameters:(id)arg2 runDestination:(id)arg3 workspace:(id)arg4 error:(id *)arg5 completionBlock:(CDUnknownBlockType)arg6;
-- (id)defaultTestEnvironmentVariablesForBuildParameters:(id)arg1 runDestination:(id)arg2 workspace:(id)arg3 error:(id *)arg4;
-- (id)testOperationsForExecutionEnvironment:(id)arg1 buildParameters:(id)arg2 runDestination:(id)arg3 workspace:(id)arg4 testOperationErrorBlock:(CDUnknownBlockType)arg5 error:(id *)arg6 launchParametersBlock:(CDUnknownBlockType)arg7;
-- (id)testOperationsForExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 runDestination:(id)arg4 workspace:(id)arg5 error:(id *)arg6 launchParametersBlock:(CDUnknownBlockType)arg7;
-- (id)testHostRunnableForRunDestination:(id)arg1 buildParameters:(id)arg2 outError:(id *)arg3;
+- (id)testOperationWithError:(id *)arg1 launchParametersBlock:(CDUnknownBlockType)arg2;
+- (id)configurationOperationForLaunchSession:(id)arg1 error:(id *)arg2;
+@property(readonly) NSDictionary *environmentVariablesForTesting;
+- (id)_hostBuildableProduct;
+- (BOOL)_isTestableBlueprint:(id)arg1;
+- (id)_computedHostApplication;
+- (id)_testHostRunnableWithError:(id *)arg1;
+- (id)initWithTestingSpecifier:(id)arg1 forBuildableProduct:(id)arg2 executionEnvironment:(id)arg3 buildOperation:(id)arg4 withBuildParameters:(id)arg5 runDestination:(id)arg6 error:(id *)arg7;
 - (id)init;
 
 // Remaining properties
 @property(readonly) NSMutableArray *mutableRunningTests; // @dynamic mutableRunningTests;
-@property(readonly) NSMutableArray *mutableSkippedTests; // @dynamic mutableSkippedTests;
 @property(readonly) NSMutableArray *mutableTestResults; // @dynamic mutableTestResults;
-@property(copy) NSSet *runningTests; // @dynamic runningTests;
-@property(copy) NSArray *skippedTests; // @dynamic skippedTests;
-@property(copy) NSArray *testResults; // @dynamic testResults;
+@property(readonly) NSSet *runningTests; // @dynamic runningTests;
+@property(readonly) NSArray *testResults; // @dynamic testResults;
 
 @end
 

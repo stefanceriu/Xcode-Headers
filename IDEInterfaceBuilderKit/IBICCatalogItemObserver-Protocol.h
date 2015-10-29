@@ -14,6 +14,7 @@
 - (void)imageCatalogItemDiskContentsDidChange:(IBICAbstractCatalogItem *)arg1;
 - (void)imageCatalogItemDidChangeDisplayOrderedChildren:(IBICAbstractCatalogItem *)arg1;
 - (void)imageCatalogItemWillChangeDisplayOrderedChildren:(IBICAbstractCatalogItem *)arg1;
+- (void)imageCatalogItemDidChangeDisplayProperties:(IBICAbstractCatalogItem *)arg1;
 - (void)imageCatalogItem:(IBICAbstractCatalogItem *)arg1 didChangeKey:(NSString *)arg2 fromValue:(id)arg3 toValue:(id)arg4;
 - (void)imageCatalogItem:(IBICAbstractCatalogItem *)arg1 willChangeKey:(NSString *)arg2 fromValue:(id)arg3 toValue:(id)arg4;
 @end

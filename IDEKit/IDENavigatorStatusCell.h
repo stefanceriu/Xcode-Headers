@@ -23,6 +23,7 @@
 @property struct CGSize baseImageSize; // @synthesize baseImageSize=_baseImageSize;
 @property unsigned long long imageScaling; // @synthesize imageScaling=_imageScaling;
 - (void).cxx_destruct;
+- (struct CGRect)scaledRectForDrawingImageWithSize:(struct CGSize)arg1 inFrame:(struct CGRect)arg2;
 - (struct CGSize)cellSize;
 - (struct CGSize)_cellTextSize;
 - (id)attributedStringValue;

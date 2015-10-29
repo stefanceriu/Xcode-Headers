@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class DVTSourceControlRemoteRepository, DVTSourceControlWorkingCopy, DVTSourceControlWorkspaceBlueprint, IDESourceControlWorkingTree, NSAttributedString, NSMenuItem, NSString;
+@class DVTSourceControlRemoteRepository, DVTSourceControlWorkingCopy, DVTSourceControlWorkspace, DVTSourceControlWorkspaceBlueprint, IDESourceControlWorkingTree, NSAttributedString, NSMenuItem, NSString;
 
 @interface IDESourceControlWorkingCopyMenuObject : NSObject
 {
     DVTSourceControlWorkingCopy *_workingCopy;
+    DVTSourceControlWorkspace *_sourceControlWorkspace;
     DVTSourceControlRemoteRepository *_remoteRepository;
     DVTSourceControlWorkspaceBlueprint *_blueprint;
     IDESourceControlWorkingTree *_workingTree;
@@ -27,7 +28,6 @@
 + (id)_branchImage;
 + (id)_workingCopyConfigurationImage;
 + (id)_workingCopyImage;
-@property(readonly) IDESourceControlWorkingTree *workingTree; // @synthesize workingTree=_workingTree;
 @property(readonly) DVTSourceControlWorkspaceBlueprint *blueprint; // @synthesize blueprint=_blueprint;
 @property(readonly) DVTSourceControlRemoteRepository *remoteRepository; // @synthesize remoteRepository=_remoteRepository;
 @property(readonly) DVTSourceControlWorkingCopy *workingCopy; // @synthesize workingCopy=_workingCopy;
@@ -37,7 +37,6 @@
 - (void)teardown;
 @property(readonly) NSMenuItem *menuItem;
 - (void)loadMenuItem;
-- (id)initWithWorkingTree:(id)arg1;
 - (id)initWithMissingRepository:(id)arg1 fromBlueprint:(id)arg2;
 - (id)initWithWorkingCopy:(id)arg1;
 

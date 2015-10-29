@@ -57,7 +57,6 @@
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 @property(nonatomic) BOOL deleteOnClose; // @synthesize deleteOnClose=_deleteOnClose;
 @property(readonly, nonatomic) struct __CFUUID *uuid; // @synthesize uuid=_uuid;
-- (id).cxx_construct;
 - (BOOL)acceptCaptureVisitor:(id)arg1;
 - (BOOL)adjunctFileExistsForFilename:(id)arg1 error:(id *)arg2;
 - (id)copyAdjunctDataForFilename:(id)arg1 error:(id *)arg2;

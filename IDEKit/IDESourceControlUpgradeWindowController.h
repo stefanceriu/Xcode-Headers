@@ -22,7 +22,6 @@
 @property __weak IDESourceControlWorkspaceUIHandler *workspaceUIHandler; // @synthesize workspaceUIHandler=_workspaceUIHandler;
 - (void).cxx_destruct;
 - (void)upgradeWorkingCopies:(id)arg1;
-- (void)alertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)displayError:(id)arg1;
 - (void)upgradeSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)beginSheetForWindow:(id)arg1;

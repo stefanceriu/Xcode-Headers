@@ -24,6 +24,7 @@
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 @property(readonly) NSString *displayName;
+- (BOOL)isSimilar:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (id)dictionaryRepresentationWithOptions:(unsigned long long)arg1;

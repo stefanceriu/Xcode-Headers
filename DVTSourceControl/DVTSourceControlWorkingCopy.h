@@ -6,14 +6,18 @@
 
 #import "NSObject.h"
 
+#import "DVTSourceControlDisplayable.h"
 #import "DVTSourceControlIdentifiable.h"
 #import "NSSecureCoding.h"
 
-@class DVTSourceControlBranchAndTagLocations, DVTSourceControlRemoteRepository, DVTSourceControlRepository, DVTSourceControlRevision, DVTSourceControlRevisionLocation, NSMutableSet, NSString, NSURL;
+@class DVTSourceControlBranchAndTagLocations, DVTSourceControlRemoteRepository, DVTSourceControlRepository, DVTSourceControlRevision, DVTSourceControlRevisionLocation, NSMapTable, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString, NSURL;
 
-@interface DVTSourceControlWorkingCopy : NSObject <DVTSourceControlIdentifiable, NSSecureCoding>
+@interface DVTSourceControlWorkingCopy : NSObject <DVTSourceControlIdentifiable, NSSecureCoding, DVTSourceControlDisplayable>
 {
     NSMutableSet *_cachedRemoteRepositories;
+    NSMapTable *_cachedLocalStatus;
+    NSMapTable *_cachedRemoteStatus;
+    NSObject<OS_dispatch_queue> *_cachedStatusChangeQueue;
     BOOL _needsUpgrade;
     NSString *__id;
     NSURL *_fileURL;
@@ -25,6 +29,7 @@
     DVTSourceControlRemoteRepository *_primaryRemoteRepository;
 }
 
++ (id)defaultImage;
 + (BOOL)supportsSecureCoding;
 + (id)scanForWorkingCopiesInFolderPaths:(id)arg1 traversingUp:(BOOL)arg2 usingSourceControlSystems:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 @property(readonly) DVTSourceControlRemoteRepository *primaryRemoteRepository; // @synthesize primaryRemoteRepository=_primaryRemoteRepository;
@@ -39,13 +44,42 @@
 - (void).cxx_destruct;
 - (id)upgradeWithProgressBlock:(CDUnknownBlockType)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)baseRevisionWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (id)switchLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)currentLocationWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (id)historyFromRevision:(id)arg1 toRevision:(id)arg2 maximumLogItems:(long long)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (id)historyFromRevision:(id)arg1 toRevision:(id)arg2 inclusionType:(unsigned long long)arg3 maximumLogItems:(long long)arg4 searchString:(id)arg5 searchType:(unsigned long long)arg6 incrementalLogBlock:(CDUnknownBlockType)arg7 completionBlock:(CDUnknownBlockType)arg8;
+- (id)updateWorkingCopyFromRepository:(id)arg1 location:(id)arg2 pathsToUpdate:(id)arg3 progressBlock:(CDUnknownBlockType)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (id)fastUpdateWorkingCopyFromRepository:(id)arg1 location:(id)arg2 progressBlock:(CDUnknownBlockType)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)forceUpdateWorkingCopyFromRepository:(id)arg1 progressBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)mergeBranch:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (id)historyOfFile:(id)arg1 revision:(id)arg2 toRevision:(id)arg3 inclusionType:(unsigned long long)arg4 maximumLogItems:(long long)arg5 incrementalLogBlock:(CDUnknownBlockType)arg6 completionBlock:(CDUnknownBlockType)arg7;
+- (id)historyOfFile:(id)arg1 fromRevision:(id)arg2 location:(id)arg3 toRevision:(id)arg4 inclusionType:(unsigned long long)arg5 maximumLogItems:(long long)arg6 incrementalLogBlock:(CDUnknownBlockType)arg7 completionBlock:(CDUnknownBlockType)arg8;
+- (id)historyOfFile:(id)arg1 fromRevisionLocation:(id)arg2 toRevision:(id)arg3 inclusionType:(unsigned long long)arg4 maximumLogItems:(long long)arg5 incrementalLogBlock:(CDUnknownBlockType)arg6 completionBlock:(CDUnknownBlockType)arg7;
+- (id)blameFile:(id)arg1 revision:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)blameFile:(id)arg1 revision:(id)arg2 fromLocation:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (id)blameFile:(id)arg1 fromRevisionLocation:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)exportFile:(id)arg1 revision:(id)arg2 toDirectory:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (id)exportFile:(id)arg1 revision:(id)arg2 fromLocation:(id)arg3 toDirectory:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (id)exportFile:(id)arg1 fromRevisionLocation:(id)arg2 toDirectory:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (id)exportFile:(id)arg1 forParentOfRevision:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)commitFiles:(id)arg1 message:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)markAsResolvedFiles:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (id)discardAllChangesWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (id)discardChangesInFiles:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (id)createDirectory:(id)arg1 withIntermediateDirectories:(BOOL)arg2 attributes:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (id)moveFiles:(id)arg1 toFilePaths:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)copyFiles:(id)arg1 toFilePaths:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)removeFiles:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (id)addFiles:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+@property(readonly) NSSet *cachedPathsWithRemoteStatus;
+@property(readonly) NSSet *cachedPathsWithLocalStatus;
+@property(readonly) NSSet *cachedPathsWithStatus;
+- (unsigned long long)cachedSourceControlRemoteStatusForFile:(id)arg1;
+- (unsigned long long)cachedSourceControlLocalStatusForFile:(id)arg1;
 - (id)filesAndStatusWithRemoteStatus:(BOOL)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)updateRepositoryIdentifierWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSString *displayName;
 @property(readonly, copy) NSString *description;
 - (id)initWithUpgradableFileURL:(id)arg1 repository:(id)arg2;
 - (id)initWithFileURL:(id)arg1 repository:(id)arg2 locationInRepository:(id)arg3 branchAndTagLocations:(id)arg4;
@@ -53,6 +87,7 @@
 - (id)initWithFileURL:(id)arg1 unidentifiableRepository:(id)arg2;
 - (id)initWithFileURL:(id)arg1 repository:(id)arg2;
 - (id)_initWithFileURL:(id)arg1 repository:(id)arg2 enforceRepositoryIdentifier:(BOOL)arg3;
+- (id)_init;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)__id;

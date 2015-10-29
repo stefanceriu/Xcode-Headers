@@ -10,6 +10,25 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct CATransform3D {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+    double _field5;
+    double _field6;
+    double _field7;
+    double _field8;
+    double _field9;
+    double _field10;
+    double _field11;
+    double _field12;
+    double _field13;
+    double _field14;
+    double _field15;
+    double _field16;
+};
+
 struct CGPoint {
     double x;
     double y;
@@ -31,12 +50,26 @@ struct SCNVector3 {
     double _field3;
 };
 
+struct SCNVector4 {
+    double _field1;
+    double _field2;
+    double _field3;
+    double _field4;
+};
+
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
 };
 
 #pragma mark Typedef'd Structures
+
+typedef struct {
+    unsigned long long type;
+    float quality;
+    float attenuationFactor;
+    unsigned long long destination;
+} CDStruct_862f26a3;
 
 typedef struct {
     double _field1;

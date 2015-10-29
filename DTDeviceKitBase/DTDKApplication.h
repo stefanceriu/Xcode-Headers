@@ -26,7 +26,7 @@
 + (id)applicationWithDeviceData:(id)arg1 andPlist:(id)arg2;
 + (id)keyPathsForValuesAffectingPropertyListRepresentation;
 @property(readonly) struct __AFCConnection *connection; // @synthesize connection=_connection;
-@property(retain) DTDKRemoteDeviceToken *deviceData; // @synthesize deviceData;
+@property __weak DTDKRemoteDeviceToken *deviceData; // @synthesize deviceData;
 @property(copy) NSDictionary *plist; // @synthesize plist=_plist;
 - (void).cxx_destruct;
 - (id)attributesOfItemAtPath:(id)arg1 error:(id *)arg2;

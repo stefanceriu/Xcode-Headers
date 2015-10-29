@@ -6,19 +6,26 @@
 
 #import "DTStackedBarGraph.h"
 
+@class NSString;
+
 @interface IDEEnergyAnnotatedBarGraph : DTStackedBarGraph
 {
+    id <IDEEnergyAnnotatedBarGraphDelegate> _modelDelegate;
+    BOOL _hasOSXAppNapGuidance;
+    BOOL _hasColorForGuidance;
+    NSString *_guidancePaddingString;
 }
 
++ (void)initialize;
+- (void).cxx_destruct;
 - (id)translateValue:(id)arg1 keypath:(id)arg2;
-- (id)paddingString;
-- (unsigned long long)longestGuidanceStringLength;
+- (id)_paddingString;
 - (id)labelAttributes;
 - (struct CGRect)calculateXAxisBoundsWithinBounds:(struct CGRect)arg1;
 - (BOOL)canDrawBeyondContentRect;
-- (id)guidanceTitles;
 - (void)addHorizontalLinesToBezierPath:(id)arg1 inStacks:(id)arg2 withHeight:(double)arg3;
 - (void)drawStacks:(id)arg1 rect:(struct CGRect)arg2;
+- (id)modelDelegate;
 
 @end
 

@@ -6,7 +6,7 @@
 
 #import <XCSCore/XCSObject.h>
 
-@class NSArray, NSString, XCSBotSCMBlueprint;
+@class NSArray, NSString, XCSBotSCMBlueprint, XCSDeviceSpecification;
 
 @interface XCSBotConfiguration : XCSObject
 {
@@ -14,20 +14,24 @@
     NSString *_userDescription;
 }
 
-+ (id)botConfigurationWithSchemeName:(id)arg1 builtFromClean:(unsigned long long)arg2 performsAnalyzeAction:(BOOL)arg3 performsTestAction:(BOOL)arg4 performsArchiveAction:(BOOL)arg5 triggers:(struct NSArray *)arg6 sourceControlBlueprint:(id)arg7 testingDestinationType:(unsigned long long)arg8 testingDeviceIDs:(id)arg9 scheduleType:(unsigned long long)arg10 periodicScheduleInterval:(unsigned long long)arg11 weeklyScheduleDay:(long long)arg12 hourOfIntegration:(unsigned long long)arg13 minutesAfterHourToIntegrate:(unsigned long long)arg14;
++ (id)botConfigurationWithSchemeName:(id)arg1 buildConfiguration:(id)arg2 builtFromClean:(unsigned long long)arg3 performsAnalyzeAction:(BOOL)arg4 performsTestAction:(BOOL)arg5 performsArchiveAction:(BOOL)arg6 codeCoveragePreference:(unsigned long long)arg7 exportsProductFromArchive:(BOOL)arg8 triggers:(struct NSArray *)arg9 sourceControlBlueprint:(id)arg10 testingDestinationType:(unsigned long long)arg11 testingDeviceIDs:(id)arg12 deviceSpecification:(id)arg13 scheduleType:(unsigned long long)arg14 periodicScheduleInterval:(unsigned long long)arg15 weeklyScheduleDay:(long long)arg16 hourOfIntegration:(unsigned long long)arg17 minutesAfterHourToIntegrate:(unsigned long long)arg18 validationErrors:(id *)arg19;
 @property(readonly, copy) NSString *userDescription; // @synthesize userDescription=_userDescription;
 @property(retain) XCSBotSCMBlueprint *sourceControlBlueprint; // @synthesize sourceControlBlueprint;
 - (void).cxx_destruct;
-- (BOOL)_validateSchemeName:(id)arg1 builtFromClean:(unsigned long long)arg2 performsAnalyzeAction:(BOOL)arg3 performsTestAction:(BOOL)arg4 performsArchiveAction:(BOOL)arg5 triggers:(struct NSArray *)arg6 sourceControlBlueprint:(id)arg7 testingDestinationType:(unsigned long long)arg8 testingDeviceIDs:(id)arg9 scheduleType:(unsigned long long)arg10 periodicScheduleInterval:(unsigned long long)arg11 weeklyScheduleDay:(long long)arg12 hourOfIntegration:(unsigned long long)arg13 minutesAfterHourToIntegrate:(unsigned long long)arg14;
+- (BOOL)_validateSchemeName:(id)arg1 buildConfiguration:(id)arg2 builtFromClean:(unsigned long long)arg3 performsAnalyzeAction:(BOOL)arg4 performsTestAction:(BOOL)arg5 performsArchiveAction:(BOOL)arg6 codeCoveragePreference:(unsigned long long)arg7 exportsProductFromArchive:(BOOL)arg8 triggers:(struct NSArray *)arg9 sourceControlBlueprint:(id)arg10 testingDestinationType:(unsigned long long)arg11 testingDeviceIDs:(id)arg12 deviceSpecification:(id)arg13 scheduleType:(unsigned long long)arg14 periodicScheduleInterval:(unsigned long long)arg15 weeklyScheduleDay:(long long)arg16 hourOfIntegration:(unsigned long long)arg17 minutesAfterHourToIntegrate:(unsigned long long)arg18 validationErrors:(id *)arg19;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)initWithSchemeName:(id)arg1 builtFromClean:(unsigned long long)arg2 performsAnalyzeAction:(BOOL)arg3 performsTestAction:(BOOL)arg4 performsArchiveAction:(BOOL)arg5 triggers:(struct NSArray *)arg6 sourceControlBlueprint:(id)arg7 testingDestinationType:(unsigned long long)arg8 testingDeviceIDs:(id)arg9 scheduleType:(unsigned long long)arg10 periodicScheduleInterval:(unsigned long long)arg11 weeklyScheduleDay:(long long)arg12 hourOfIntegration:(unsigned long long)arg13 minutesAfterHourToIntegrate:(unsigned long long)arg14;
+- (id)initWithSchemeName:(id)arg1 buildConfiguration:(id)arg2 builtFromClean:(unsigned long long)arg3 performsAnalyzeAction:(BOOL)arg4 performsTestAction:(BOOL)arg5 performsArchiveAction:(BOOL)arg6 codeCoveragePreference:(unsigned long long)arg7 exportsProductFromArchive:(BOOL)arg8 triggers:(struct NSArray *)arg9 sourceControlBlueprint:(id)arg10 testingDestinationType:(unsigned long long)arg11 testingDeviceIDs:(id)arg12 deviceSpecification:(id)arg13 scheduleType:(unsigned long long)arg14 periodicScheduleInterval:(unsigned long long)arg15 weeklyScheduleDay:(long long)arg16 hourOfIntegration:(unsigned long long)arg17 minutesAfterHourToIntegrate:(unsigned long long)arg18 validationErrors:(id *)arg19;
 - (id)saveRepresentationHumanReadable:(BOOL)arg1;
 - (id)saveRepresentation;
 - (id)dictionaryRepresentation;
 - (id)description;
 
 // Remaining properties
+@property NSString *buildConfiguration; // @dynamic buildConfiguration;
 @property unsigned long long builtFromClean; // @dynamic builtFromClean;
+@property unsigned long long codeCoveragePreference; // @dynamic codeCoveragePreference;
+@property XCSDeviceSpecification *deviceSpecification; // @dynamic deviceSpecification;
+@property BOOL exportsProductFromArchive; // @dynamic exportsProductFromArchive;
 @property unsigned long long hourOfIntegration; // @dynamic hourOfIntegration;
 @property unsigned long long minutesAfterHourToIntegrate; // @dynamic minutesAfterHourToIntegrate;
 @property BOOL performsAnalyzeAction; // @dynamic performsAnalyzeAction;

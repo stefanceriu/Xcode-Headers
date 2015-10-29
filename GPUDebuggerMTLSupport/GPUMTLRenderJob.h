@@ -25,6 +25,7 @@ __attribute__((visibility("hidden")))
 - (id)displayElementName;
 - (BOOL)isStencilDisplayElement;
 - (BOOL)isDepthDisplayElement;
+- (void)resolveWithTraceResourceItem:(id)arg1;
 - (id)initWithResource:(id)arg1 modelFactory:(id)arg2 attachmentIndex:(unsigned int)arg3 overlayResource:(id)arg4 framebuffer:(id)arg5;
 
 @end

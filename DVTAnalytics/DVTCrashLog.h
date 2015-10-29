@@ -61,6 +61,7 @@
 - (BOOL)_parseRawDataWithError:(id *)arg1;
 - (id)description;
 - (id)initWithData:(id)arg1 cachePath:(id)arg2 error:(id *)arg3;
+- (id)init;
 
 @end
 

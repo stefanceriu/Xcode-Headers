@@ -12,11 +12,11 @@
 
 @interface IDEIndexableMainThreadProxy : NSObject <IDEIndexable>
 {
-    id <IDEIndexable> _indexableObject;
     BOOL _respondsToSettingsForFiles;
     NSString *_cachedIdentifier;
     NSString *_cachedIndexName;
     NSDictionary *_cachedSettingsForFiles;
+    id <IDEIndexable> _indexableObject;
 }
 
 @property(retain) id <IDEIndexable> indexableObject; // @synthesize indexableObject=_indexableObject;

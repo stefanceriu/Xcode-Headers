@@ -124,7 +124,6 @@
 - (void)setupObservers;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
-- (void)_teardown;
 - (void)_setup;
 - (void)primitiveInvalidate;
 - (void)loadView;

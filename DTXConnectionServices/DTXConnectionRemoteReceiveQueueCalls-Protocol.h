@@ -9,6 +9,7 @@
 @class NSDictionary, NSString;
 
 @protocol DTXConnectionRemoteReceiveQueueCalls <DTXAllowedRPC>
+- (void)_notifyCompressionHint:(unsigned int)arg1 forChannelCode:(unsigned int)arg2;
 - (void)_setTracerState:(unsigned int)arg1;
 - (void)_channelCanceled:(unsigned int)arg1;
 - (void)_notifyOfPublishedCapabilities:(NSDictionary *)arg1;

@@ -11,60 +11,63 @@
 #import "NSFileManagerDelegate.h"
 #import "XCDTMobileIS_XPCDebuggingProcotol.h"
 
-@class DTXChannel, NSArray, NSDictionary, NSError, NSMutableDictionary, NSNumber, NSSet, NSString, SimDevice, SimDeviceType;
+@class DTAssetProviderService, DTXChannel, DTXConnection, DVTPlatform, DVTSimulatorApplication, NSArray, NSDictionary, NSNumber, NSObject<OS_dispatch_semaphore>, NSSet, NSString, SimDevice, SimDeviceType;
 
 @interface DVTiPhoneSimulator : DVTAbstractiOSDevice <NSFileManagerDelegate, IDERunDestinationFallbackSelectorDeviceInfo, DVTDeviceApplicationProvider, XCDTMobileIS_XPCDebuggingProcotol>
 {
-    id <DVTCancellable> _notificationToken;
-    _Bool _launchSucceeded;
-    NSError *_launchFailureError;
-    _Bool _didExitRecursionGuard;
-    NSMutableDictionary *_xpcStdoutFDForPid;
+    id <DVTCancellable> _deviceNotificationToken;
+    id <DVTCancellable> _deviceSetNotificationToken;
     NSString *_displayOrder;
+    struct __CFDictionary *_xpcStdoutFDForPid;
     NSString *_recordedFramesBacktraceRecordingDylibPath;
     NSSet *_applications;
     NSDictionary *_applicationsDict;
+    DTXConnection *_instrumentsConnection;
+    NSObject<OS_dispatch_semaphore> *_instrumentsConnectionSemaphore;
     int _simulatorPID;
+    DVTPlatform *_platform;
+    NSSet *_proxiedDevices;
     SimDevice *_device;
+    DVTSimulatorApplication *_simulatorApplication;
     DTXChannel *_xpcAttachServiceChannel;
+    DTXChannel *_xpcProxyAttachServiceChannel;
+    DTAssetProviderService *_assetProvider;
 }
 
 + (id)keyPathsForValuesAffectingState;
 + (id)simulatorWithDevice:(id)arg1;
 + (void)initialize;
-+ (void)_trackPid:(int)arg1 forDevice:(id)arg2;
++ (void)_trackPid:(int)arg1 forDevice:(id)arg2 launchService:(id)arg3;
 + (void)cleanUpSessionMap;
+@property(retain) DTAssetProviderService *assetProvider; // @synthesize assetProvider=_assetProvider;
+@property(retain) DTXChannel *xpcProxyAttachServiceChannel; // @synthesize xpcProxyAttachServiceChannel=_xpcProxyAttachServiceChannel;
 @property(retain) DTXChannel *xpcAttachServiceChannel; // @synthesize xpcAttachServiceChannel=_xpcAttachServiceChannel;
 @property int simulatorPID; // @synthesize simulatorPID=_simulatorPID;
+@property(readonly) DVTSimulatorApplication *simulatorApplication; // @synthesize simulatorApplication=_simulatorApplication;
 @property(retain) SimDevice *device; // @synthesize device=_device;
+- (id)platform;
 - (void).cxx_destruct;
 - (id)launchApplicationWithBundleIdentifier:(id)arg1 withArguments:(id)arg2 environment:(id)arg3 options:(id)arg4;
 - (BOOL)canInstallApplication;
 - (id)runExecutableAtPath:(id)arg1 withArguments:(id)arg2 environment:(id)arg3 options:(id)arg4 terminationHandler:(CDUnknownBlockType)arg5;
 - (BOOL)canRunExecutables;
-- (void)stopDebuggingXPCServices:(id)arg1;
+- (void)stopDebuggingXPCServices:(id)arg1 forPairedDevice:(BOOL)arg2;
 - (void)xpcServiceObserved:(id)arg1 withProcessIdentifier:(int)arg2 requestedByProcess:(int)arg3 options:(id)arg4;
 - (void)outputReceived:(id)arg1 fromProcess:(int)arg2 atTime:(unsigned long long)arg3;
-- (void)debugXPCServices:(id)arg1;
-- (BOOL)supportsUnhostedXPCServiceDebugging;
-- (BOOL)supportsXPCServiceDebugging;
+- (void)_debugXPCServices:(id)arg1 onChannel:(id)arg2 completionSemaphore:(id)arg3;
+- (void)debugXPCServices:(id)arg1 onPairedDevice:(BOOL)arg2 completionSemaphore:(id)arg3;
 - (id)primaryInstrumentsServer;
 - (BOOL)installApplicationWithLaunchSession:(id)arg1 error:(id *)arg2;
 - (id)_installedPathForBundleIdentifier:(id)arg1;
 - (id)makeTransportForTestManagerService:(id *)arg1;
 - (id)_waitForSimLaunchdToLoadENVAndReturnTestConnectionSocketPath:(id *)arg1;
-- (BOOL)requiresTestDaemonMediationForTestHostConnection;
 - (BOOL)supportsTestManagerDaemon;
+- (id)startAssetServerForApplicationAtPath:(id)arg1;
 - (id)testArchitectureForBuildableProduct:(id)arg1 withBuildParameters:(id)arg2;
 - (id)_availableArchitecturesForArchitecture:(id)arg1;
 - (id)deviceForRunningUnitTestsWithHost:(id)arg1 error:(id *)arg2;
 - (BOOL)testingShouldAttachDebuggerWithHost:(id)arg1;
-- (void)modifyTestingEnvironmentVariables:(id)arg1 host:(id)arg2 testBundlePath:(id)arg3;
-- (id)testingFrameworkPathsForBuildableProduct:(id)arg1 withBuildParameters:(id)arg2;
 - (id)testHostPathForBuildableProduct:(id)arg1 buildParameters:(id)arg2 outError:(id *)arg3;
-- (BOOL)supportsFileSpecifyingTestScopes;
-- (BOOL)supportsInverseTestScopes;
-- (BOOL)supportsMultipleTestScopes;
 - (id)taskForDeviceCommand:(id)arg1 withArguments:(id)arg2 error:(id *)arg3;
 - (id)systemBasePath;
 - (void)stopLocationSimulation;
@@ -72,6 +75,7 @@
 @property(readonly, copy) NSString *description;
 - (BOOL)attachedToTarget:(id)arg1 launchService:(id)arg2 error:(id *)arg3;
 - (BOOL)launchSimulatedExecutable:(id)arg1 launchService:(id)arg2 error:(id *)arg3;
+- (BOOL)_launchSimulatorAppForLaunchSession:(id)arg1 error:(id *)arg2;
 - (_Bool)_launchSimulatorAppWithExternalDisplayType:(long long)arg1 andError:(id *)arg2;
 - (_Bool)_launchSimulatorAppWithError:(id *)arg1;
 - (void)transferDirectionsFileToBundlePath:(id)arg1 launchService:(id)arg2;
@@ -95,7 +99,6 @@
 - (id)displayOrder;
 @property(readonly, copy) NSArray *supportedDeviceFamilies;
 - (id)deviceType;
-- (id)platform;
 - (BOOL)isAvailable;
 - (id)supportedArchitectures;
 - (id)nativeArchitecture;
@@ -107,14 +110,14 @@
 - (id)name;
 - (BOOL)canIgnore;
 - (BOOL)canRename;
-- (BOOL)showCompanionUI;
+- (BOOL)isProxiedDevice;
 - (id)proxiedDevices;
 - (BOOL)canBeWatchCompanion;
 - (id)modelCode;
-@property(readonly, nonatomic) BOOL ide_fallbackSelectorDeviceIsResizable;
 @property(readonly, nonatomic) NSString *ide_fallbackSelectorDeviceGroupingFamily;
 - (id)modelUTI;
 - (id)modelName;
+- (void)downloadOptimizationProfilesFromBundleIdentifier:(id)arg1 orPaths:(id)arg2 toFilePath:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (BOOL)supportsPGOReturningError:(id *)arg1;
 - (BOOL)supportsDisplayScaleOption;
 - (BOOL)supportsRoutingCoverageFile;

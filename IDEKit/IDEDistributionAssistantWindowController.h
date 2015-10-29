@@ -13,15 +13,16 @@
     BOOL _stepTransitionReentrancyGuard;
     Class _firstStepClass;
     IDEDistributionContext *_context;
-    IDEDistributionStepViewController *_distributionStep;
+    IDEDistributionStepViewController *_distributionStepViewController;
     DVTBorderedView *_stepContainerView;
 }
 
 + (id)keyPathsForValuesAffectingCanGoPrevious;
 + (id)keyPathsForValuesAffectingNextButtonTitle;
 + (void)beginAssistantWithArchive:(id)arg1 task:(int)arg2 window:(id)arg3;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 @property(retain) DVTBorderedView *stepContainerView; // @synthesize stepContainerView=_stepContainerView;
-@property(retain, nonatomic) IDEDistributionStepViewController *distributionStep; // @synthesize distributionStep=_distributionStep;
+@property(retain, nonatomic) IDEDistributionStepViewController *distributionStepViewController; // @synthesize distributionStepViewController=_distributionStepViewController;
 @property(retain) IDEDistributionContext *context; // @synthesize context=_context;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
@@ -37,7 +38,7 @@
 - (id)stepClasses;
 @property(readonly) BOOL canGoPrevious;
 @property(readonly) NSString *nextButtonTitle;
-- (BOOL)_isOnLastDistributionStep;
+- (BOOL)_isOnLastDistributionStepViewController;
 - (id)_onlyAvailableMethod;
 - (void)windowDidLoad;
 - (id)initWithArchive:(id)arg1 task:(int)arg2;

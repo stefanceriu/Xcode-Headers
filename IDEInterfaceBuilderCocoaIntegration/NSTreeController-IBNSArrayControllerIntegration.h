@@ -13,7 +13,6 @@
 - (BOOL)validateIbShadowedCountKeyPath:(id *)arg1 error:(id)arg2;
 - (BOOL)validateIbShadowedLeafKeyPath:(id *)arg1 error:(id)arg2;
 - (BOOL)validateIbShadowedChildrenKeyPath:(id *)arg1 error:(id)arg2;
-- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibResolvedTypeNameForControllerKey:(id)arg1;
 
 // Remaining properties

@@ -8,11 +8,10 @@
 
 #import "NSSecureCoding.h"
 
-@class NSMutableArray, SCNPhysicsContact, SCNScene;
+@class NSArray, NSMutableArray, NSMutableSet, SCNPhysicsContact, SCNScene;
 
 @interface SCNPhysicsWorld : NSObject <NSSecureCoding>
 {
-    id _reserved;
     struct btDiscreteDynamicsWorld *_world;
     struct btOverlappingPairCallback *_ghostPairCallback;
     struct btVehicleRaycaster *_vehicleRayCaster;
@@ -29,10 +28,10 @@
     NSMutableArray *_fields;
     double _elapsedTime;
     NSMutableArray *_behaviors;
+    NSMutableSet *_bodies;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
@@ -40,6 +39,8 @@
 - (void)_didDecodeSCNPhysicsWorld:(id)arg1;
 - (void)_customDecodingOfSCNPhysicsWorld:(id)arg1;
 - (void)_customEncodingOfSCNPhysicsWorld:(id)arg1;
+- (void)removePhysicsBody:(id)arg1 handle:(void *)arg2;
+- (void)addPhysicsBody:(id)arg1 nodeRef:(struct __C3DNode *)arg2 colGroup:(unsigned long long)arg3 colMask:(unsigned long long)arg4 colTest:(unsigned long long)arg5;
 - (void)_drawDebugInAuthoringEnvironment:(void *)arg1;
 - (void)_postCommandWithBlock:(CDUnknownBlockType)arg1;
 - (struct btDynamicsWorld *)handle;
@@ -52,6 +53,9 @@
 - (struct c3dAether *)_aetherHandle;
 - (void)_removeFieldFromWorld:(id)arg1;
 - (void)_addFieldToWorld:(id)arg1;
+- (id)_findFieldAttachedToNode:(id)arg1;
+- (void)_reset;
+- (void)enumerateBodiesUsingBlock:(CDUnknownBlockType)arg1;
 - (BOOL)_needsRedraw;
 - (void)updateCollisionPairs;
 - (id)convexSweepTestWithShape:(id)arg1 fromTransform:(struct CATransform3D)arg2 toTransform:(struct CATransform3D)arg3 options:(id)arg4;
@@ -59,7 +63,7 @@
 - (id)contactTestBetweenBody:(id)arg1 andBody:(id)arg2 options:(id)arg3;
 - (id)_rayTestWithSegmentFromPoint:(struct btVector3)arg1 toPoint:(struct btVector3)arg2 options:(id)arg3;
 - (id)rayTestWithSegmentFromPoint:(struct SCNVector3)arg1 toPoint:(struct SCNVector3)arg2 options:(id)arg3;
-- (id)allBehaviors;
+@property(readonly, nonatomic) NSArray *allBehaviors;
 - (void)removeAllBehaviors;
 - (void)removeBehavior:(id)arg1;
 - (void)addBehavior:(id)arg1;
@@ -69,9 +73,11 @@
 - (void)setScale:(double)arg1;
 @property(nonatomic) double speed;
 @property(nonatomic) struct SCNVector3 gravity;
+- (void)wakeUpAllBodies;
 - (void)sceneWillDie;
 - (void)dealloc;
 - (id)initWithScene:(id)arg1;
+- (void)commonInit;
 - (id)_physicsContact;
 - (void)_createDynamicWorld;
 - (void)_preTick:(double)arg1;

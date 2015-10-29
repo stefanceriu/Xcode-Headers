@@ -35,7 +35,6 @@
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 @property(readonly, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
-- (void)invalidateOldPendingBlocksThreads:(id)arg1;
 - (unsigned long long)numberOfPendingBlocks;
 - (void)setPrimitiveThreads:(id)arg1;
 @property(readonly, nonatomic, getter=isRecorded) BOOL recorded;

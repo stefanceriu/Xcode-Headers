@@ -11,10 +11,12 @@
 @class NSString;
 
 @interface NSSet (IBSetAdditions) <IBCollection>
++ (id)ib_setByUnioningCollections:(id)arg1;
 + (id)ib_setByUnioningCollection:(id)arg1 withCollection:(id)arg2;
 + (id)ib_collectionWithObject:(id)arg1;
 + (id)ib_emptyCollection;
 + (Class)ib_mutableClass;
+- (void)ib_getObjects:(id *)arg1;
 - (void)ib_removeObjectsInReceiverFromArray:(id)arg1;
 - (void)ib_removeObjectsInReceiverFromOrderedSet:(id)arg1;
 - (void)ib_removeObjectsInReceiverFromSet:(id)arg1;
@@ -51,6 +53,8 @@
 - (id)ib_setByRemovingObjects:(id)arg1;
 - (id)ib_setByAddingObjects:(id)arg1;
 - (id)ib_setByApplyingBlock:(CDUnknownBlockType)arg1;
+- (id)ib_collectionByMappingAndFilteringWithBlock:(CDUnknownBlockType)arg1;
+- (id)ib_setByMappingAndFilteringWithBlock:(CDUnknownBlockType)arg1;
 - (id)ib_setByMappingBlockAndAssertingOnNilMappedValue:(CDUnknownBlockType)arg1;
 - (id)ib_setByMappingBlock:(CDUnknownBlockType)arg1;
 - (id)ib_arrayByMappingBlock:(CDUnknownBlockType)arg1;

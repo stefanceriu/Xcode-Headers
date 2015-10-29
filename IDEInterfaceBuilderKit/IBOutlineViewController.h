@@ -27,7 +27,7 @@
     NSArray *_topLevelGroupsOtherThanPlaceholders;
     NSSet *_observedMemberWrappers;
     DVTObservingToken *_kvoFirstResponderToken;
-    DVTObservingToken *_kvoDocumentAllowsIllegalStatesToken;
+    DVTObservingToken *_kvoDocumentUsesAutolayoutToken;
     IBCancellationToken *_documentStatusObservingToken;
     DVTDelayedInvocation *_syncDelayedInvocation;
     IBOutlineViewImageAndTextCell *_prototypeCell;
@@ -35,6 +35,7 @@
     IBOutlineViewImageAndTextCell *_prototypeUninstalledObjectCell;
     NSMutableSet *_pendingObjectsToRefreshAutolayoutStatus;
     DVTDelayedInvocation *_autolayoutStatusDelayedInvocation;
+    BOOL _allowPushSelectionToOutlineViewNextInvocation;
     BOOL _allowDirectDropInOutlineView;
     long long _ignoreOutlineViewSelectionUpdates;
     IDEUtilityPlaceholderView *_placeholderView;
@@ -96,6 +97,7 @@
 - (id)springLoadedObjectInfoAtPoint:(struct CGPoint)arg1 inView:(id)arg2 withContext:(id)arg3 forDocument:(id)arg4;
 - (id)highlightObjects:(id)arg1 showLabels:(BOOL)arg2 successfulObjects:(id *)arg3;
 - (void)synchronizeOutlineViewSelection;
+- (void)selectMembers:(id)arg1 withOutlineExpansion:(BOOL)arg2;
 - (void)selectMembers:(id)arg1;
 - (void)pushRootGroupState;
 - (BOOL)shouldShowEmptyOutlinePlaceholder;
@@ -104,6 +106,8 @@
 - (void)recursivelyExpandItem:(id)arg1;
 - (void)outlineViewWasDoubleClicked:(id)arg1;
 - (void)outlineViewSelectionDidChange:(id)arg1;
+- (BOOL)centerTopLevelObjectInEditorSelection;
+- (id)childrenSelectionForGroupMember:(id)arg1;
 - (void)didSelectSingleSelectionSelectableVirtualItem:(id)arg1;
 - (id)singleSelectedSelectableVirtualOutlineViewControllerItem;
 - (id)readSelectedMembersFromOutlineView;

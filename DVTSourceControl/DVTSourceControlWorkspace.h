@@ -8,7 +8,7 @@
 
 #import "DVTSourceControlIdentifiable.h"
 
-@class DVTSourceControlWorkingCopy, NSMapTable, NSMutableOrderedSet, NSOperationQueue, NSOrderedSet, NSString;
+@class DVTSourceControlWorkingCopy, NSMapTable, NSMutableOrderedSet, NSOperationQueue, NSOrderedSet, NSString, NSURL;
 
 @interface DVTSourceControlWorkspace : NSObject <DVTSourceControlIdentifiable>
 {
@@ -24,15 +24,18 @@
 @property(copy) NSString *_id; // @synthesize _id=__id;
 - (void).cxx_destruct;
 - (id)blueprintWithRemoteRepositories:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+@property(readonly) NSURL *workspaceRootFolder;
 - (id)workingCopiesMissingFromBlueprint:(id)arg1;
 - (unsigned long long)compareToBlueprint:(id)arg1;
+- (BOOL)representsBlueprint:(id)arg1;
 - (id)blueprintWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)filesAndStatusWithRemoteStatus:(BOOL)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)historySinceRevisionedBlueprint:(id)arg1 maximumLogItems:(long long)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)workingCopyForRemoteRepository:(id)arg1 inBlueprint:(id)arg2;
-- (id)historyFromRevisions:(id)arg1 toRevisions:(id)arg2 maximumLogItems:(long long)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (id)historyFromRevisions:(id)arg1 toRevisions:(id)arg2 inclusionType:(unsigned long long)arg3 maximumLogItems:(long long)arg4 searchString:(id)arg5 searchType:(unsigned long long)arg6 incrementalLogBlock:(CDUnknownBlockType)arg7 completionBlock:(CDUnknownBlockType)arg8;
 @property(readonly) NSMapTable *initialRevisionsMapTable;
 @property(readonly) NSMapTable *baseRevisionsMapTable;
+@property(readonly) NSMapTable *headRevisionsMapTable;
 - (id)_revisionTableWithRevison:(id)arg1;
 - (id)forceUpdateWorkingCopiesFromBlueprint:(id)arg1 progressBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)forceUpdateWorkingCopiesFromRepositories:(id)arg1 progressBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;

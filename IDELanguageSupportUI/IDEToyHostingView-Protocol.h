@@ -9,6 +9,7 @@
 @protocol IDEToyHostingView
 @property(retain, nonatomic) NSColor *selectedBorderColor;
 @property(retain, nonatomic) NSColor *backgroundColor;
+@property(copy) CDUnknownBlockType rightMouseDownHandler;
 @property(copy) CDUnknownBlockType mouseDownHandler;
 @property(copy) CDUnknownBlockType mouseTrackingHandler;
 @property(nonatomic) BOOL toyIsHighlighted;

@@ -24,6 +24,7 @@
 - (id <IBOrderedCollection>)ib_collectionByAddingObject:(id)arg1;
 - (id <IBOrderedCollection>)ib_collectionByAddingObjectsFromCollection:(id <IBCollection>)arg1;
 - (id)ib_collectionByKeepingObjectsInSet:(NSSet *)arg1;
+- (id <IBOrderedCollection>)ib_collectionByMappingAndFilteringWithBlock:(id (^)(id))arg1;
 - (id <IBOrderedCollection>)ib_collectionByRemovingObjectsInSet:(NSSet *)arg1;
 - (id <IBOrderedCollection>)ib_collectionByRemovingObjectsFromCollection:(id <IBCollection>)arg1;
 - (id <IBOrderedCollection>)ib_collectionByMappingBlock:(id (^)(id))arg1;

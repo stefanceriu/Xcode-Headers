@@ -11,6 +11,7 @@
 @class NSImage, NSString;
 
 @interface DVTDeveloperAccount (IDEAccountPrefsAdditions) <IDEAccountPrefsPaneAccount>
++ (id)keyPathsForValuesAffectingAccountReachability;
 + (id)keyPathsForValuesAffectingAccountTitle;
 @property(readonly, nonatomic) long long accountReachability;
 @property(readonly, nonatomic) BOOL accountEnabled;

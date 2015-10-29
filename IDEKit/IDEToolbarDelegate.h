@@ -13,16 +13,16 @@
 
 @interface IDEToolbarDelegate : NSObject <NSToolbarDelegate, DVTInvalidation>
 {
+    NSMutableArray *_allToolbarControllers;
+    BOOL _allowsUserCustomization;
+    BOOL _autosavesConfiguration;
     NSString *_toolbarDefinitionIdentifier;
     NSWindow *_window;
     NSArray *_defaultItemIdentifiers;
     NSArray *_allowedItemIdentifiers;
     NSDictionary *_toolbarItemProviders;
-    BOOL _allowsUserCustomization;
-    BOOL _autosavesConfiguration;
     NSSet *_displayModes;
     NSSet *_sizeModes;
-    NSMutableArray *_allToolbarControllers;
 }
 
 + (unsigned long long)_sizeModeForString:(id)arg1 toolbarIdentifier:(id)arg2;

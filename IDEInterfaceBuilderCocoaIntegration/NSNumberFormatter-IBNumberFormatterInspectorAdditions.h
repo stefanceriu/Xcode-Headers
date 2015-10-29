@@ -10,8 +10,7 @@
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 + (id)keyPathsForValuesAffectingIbInspectedTenOhMaximum;
 + (id)keyPathsForValuesAffectingIbInspectedTenOhMinimum;
-+ (id)keyPathsForValuesAffectingIbInspectedStyle;
-+ (id)keyPathsForValuesAffectingIbExternalSampleStringValue;
++ (id)keyPathsForValuesAffectingIbInspectedNumberStyle;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (id)ibUnarchiveNilDefaultStringForKey:(id)arg1 withUnarchiver:(id)arg2 xcode5DefaultValue:(id)arg3;
@@ -22,11 +21,11 @@
 - (id)ibInspectedTenOhMaximum;
 - (void)setIbInspectedTenOhMinimum:(id)arg1;
 - (id)ibInspectedTenOhMinimum;
-- (void)setIbInspectedStyle:(long long)arg1;
-- (long long)ibInspectedStyle;
-- (id)ibExternalSampleStringValue;
-- (void)setIbExternalSampleNumber:(id)arg1;
-- (id)ibExternalSampleNumber;
+- (void)setIbInspectedNumberStyle:(long long)arg1;
+- (long long)ibInspectedNumberStyle;
+- (id)ibExternalSampleValueTooltipRelatedMethods;
+- (id)ibExternalSampleValueFormatted;
+- (id)ibExternalSampleValueDefault;
 - (void)setIbInspectedFormatterBehavior:(long long)arg1;
 - (long long)ibInspectedFormatterBehavior;
 - (BOOL)ibInspectedShowsNegativeNumbersInRed;

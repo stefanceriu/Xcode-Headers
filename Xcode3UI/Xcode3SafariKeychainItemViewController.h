@@ -34,7 +34,7 @@
 - (id)initWithEditorItemModel:(id)arg1 portalInfoDelegate:(id)arg2;
 
 // Remaining properties
-@property(readonly, nonatomic) Xcode3SafariKeychainItemModel *model;
+@property(readonly, nonatomic) Xcode3SafariKeychainItemModel *model; // @dynamic model;
 
 @end
 

@@ -8,54 +8,51 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTDelayedInvocation, DVTMapTable, DVTModelGraphTransactionScope, DVTStackBacktrace, NSHashTable, NSMapTable, NSMutableDictionary, NSMutableSet, NSString;
+@class DVTDelayedInvocation, DVTModelGraphTransactionScope, DVTStackBacktrace, NSHashTable, NSMapTable, NSMutableOrderedSet, NSString;
 
 @interface IDENavigableItemCoordinator : NSObject <DVTInvalidation>
 {
     NSHashTable *_coordinatedItems;
-    DVTMapTable *_documentsByNavItem;
+    NSMapTable *_documentsByNavItem;
     NSMapTable *_domainIdentifiersByNavItem;
-    DVTMapTable *_rootItemsByRepresentedObject;
-    DVTMapTable *_changeCountByNavItem;
-    NSMutableDictionary *_filteringProxiesByKey;
-    DVTDelayedInvocation *_delayedInvocation;
-    NSMutableSet *_pendingGraphChangedItems;
-    NSMutableSet *_pendingPropertyChangedItems;
-    NSHashTable *_pendingForgettingItems;
+    NSMapTable *_rootItemsByRepresentedObject;
+    DVTDelayedInvocation *_postPendingChangesInvocation;
+    NSMutableOrderedSet *_pendingGraphChangedItems;
+    NSMutableOrderedSet *_pendingArrangedGraphChangedItems;
+    NSMutableOrderedSet *_pendingPropertyChangedItems;
     DVTModelGraphTransactionScope *_transactionScope;
+    NSHashTable *_pendingForgettingItems;
     id <IDENavigableItemCoordinatorDelegate> _delegate;
-    struct __navigableItemCoordinatorFlags {
+    struct __nicFlags {
         unsigned int _delegateRespondsToDocumentForNavigableItem:1;
         unsigned int _hasWarnedAboutRootItemsCount:1;
-        unsigned int _reservedNavigableItemCoordinator:30;
-    } _navigableItemCoordinatorFlags;
+    } _nicFlags;
 }
 
++ (BOOL)temporaryItemForArchivableRepresentation:(id)arg1 forWorkspace:(id)arg2 error:(id *)arg3 inScope:(CDUnknownBlockType)arg4;
++ (void)temporaryItemInDomain:(id)arg1 forWorkspace:(id)arg2 inScope:(CDUnknownBlockType)arg3;
++ (void)temporaryItemForRepresentedObject:(id)arg1 inScope:(CDUnknownBlockType)arg2;
++ (void)_invalidateTemporaryCoordinator;
 + (void)initialize;
-+ (id)navigableItemFilteringPerformanceMetric;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 - (void).cxx_destruct;
-- (void)unhibernate;
-- (void)hibernate;
 - (void)forgetEditorDocument:(id)arg1;
 - (id)editorDocumentForNavigableItem:(id)arg1;
 - (void)_editorDocumentWillClose:(id)arg1;
 - (void)forgetNavigableItem:(id)arg1;
 - (void)forgetNavigableItems:(id)arg1;
-- (void)forgetItems:(id)arg1;
+- (void)_forgetItems:(id)arg1;
 - (void)closeDocumentsForItems:(id)arg1;
 - (void)_collectDescendants:(id)arg1 toForgetForItem:(id)arg2;
 - (void)registerNavigableItem:(id)arg1;
-- (id)filteredItemProxyForKey:(id)arg1;
-- (void)setFilteredItemProxy:(id)arg1 forKey:(id)arg2;
-- (id)_filteringProxiesByKey;
-- (id)filteredItemProxyForItems:(id)arg1;
-- (unsigned long long)changeCountForItem:(id)arg1;
-- (void)_noteNavigableItemChangedChildItems:(id)arg1;
-- (void)_incrementChangeCountForItem:(id)arg1;
-- (void)_noteNavigableItem:(id)arg1 valueWillChangeForProperty:(id)arg2;
-- (void)primitiveInvalidate;
-- (void)delayedPostGraphAndPropertyChangeNotifications:(id)arg1;
+- (id)_arrangedChildItemsOfItem:(id)arg1;
 - (void)processPendingChanges;
+- (void)_noteNavigableItem:(id)arg1 valueWillChangeForProperty:(id)arg2;
+- (void)_noteNavigableItemChangedArrangedChildItems:(id)arg1;
+- (void)_noteNavigableItemChangedChildItems:(id)arg1;
+- (void)_delayedPostGraphAndPropertyChangeNotifications;
+- (void)_unhibernate;
+- (void)_hibernate;
 - (void)_postNotificationNamed:(id)arg1 forChangedItems:(id)arg2;
 - (void)_postDidForgetNotificationAndPurgePendingForgottenItems;
 - (void)_postWillForgetNotification:(id)arg1;
@@ -74,6 +71,7 @@
 - (id)_navigableItemForFilePath:(id)arg1 inWorkspace:(id)arg2 withSeenFileReferences:(id)arg3 allowLeaf:(BOOL)arg4;
 - (id)structureNavigableItemForDocumentURL:(id)arg1 inWorkspace:(id)arg2 error:(id *)arg3;
 - (id)rootNavigableItemWithRepresentedObject:(id)arg1;
+- (void)primitiveInvalidate;
 - (id)init;
 
 // Remaining properties

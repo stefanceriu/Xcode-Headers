@@ -16,14 +16,14 @@
     IBTrackingIndicatorMagnitudeLayoutInfo *heightLayoutInfo;
 }
 
-+ (id)trackingIndicatorForSize:(struct CGSize)arg1 fromKnob:(long long)arg2 ofTrackedRect:(struct CGRect)arg3 constrainedToRect:(struct CGRect)arg4;
++ (id)trackingIndicatorForSize:(struct CGSize)arg1 fromKnob:(CDUnion_31865a80)arg2 ofTrackedRect:(struct CGRect)arg3 constrainedToRect:(struct CGRect)arg4;
 - (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToTrackingIndicatorLayoutInfo:(id)arg1;
 - (unsigned long long)hash;
 - (struct CGRect)boundingFrame;
 - (void)draw;
-- (id)initWithSize:(struct CGSize)arg1 fromKnob:(long long)arg2 ofTrackedRect:(struct CGRect)arg3 constrainedToRect:(struct CGRect)arg4;
+- (id)initWithSize:(struct CGSize)arg1 fromKnob:(CDUnion_31865a80)arg2 ofTrackedRect:(struct CGRect)arg3 constrainedToRect:(struct CGRect)arg4;
 
 @end
 

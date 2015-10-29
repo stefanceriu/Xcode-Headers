@@ -37,6 +37,8 @@
 - (void).cxx_destruct;
 - (id)defaultDesignatedRequirementsForIdentifier:(id)arg1;
 - (struct OpaqueSecCertificateRef *)certificateRef;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (BOOL)isExpired;
 - (id)serialNumber;
 - (id)sha1Hash;
@@ -50,6 +52,9 @@
 - (id)commonName;
 - (id)certificateKind;
 - (void)validate;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithPlist:(id)arg1;
+- (id)init;
 
 @end
 

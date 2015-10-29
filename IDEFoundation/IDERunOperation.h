@@ -7,25 +7,24 @@
 #import "DVTOperation.h"
 
 #import "IDEExecutingOperationTrackable.h"
-#import "IDERunOperationWorkerDelegate.h"
 
-@class IDELaunchSession, IDERunOperationWorker, NSMutableArray, NSString;
+@class DVTDisallowFinishToken, IDELaunchSession, IDERunOperationWorker, NSMutableArray, NSString;
 
-@interface IDERunOperation : DVTOperation <IDEExecutingOperationTrackable, IDERunOperationWorkerDelegate>
+@interface IDERunOperation : DVTOperation <IDEExecutingOperationTrackable>
 {
-    NSMutableArray *_trackers;
     NSMutableArray *_trackerObserverTokens;
     id <DVTCancellationBlockCompletion> _cancellationToken;
-    id _finishToken;
+    DVTDisallowFinishToken *_finishToken;
     BOOL _workaroundIsCancelled;
     IDERunOperationWorker *_worker;
+    NSMutableArray *_trackers;
 }
 
 + (id)keyPathsForValuesAffectingLaunchSession;
 + (id)keyPathsForValuesAffectingIsCancelled;
+@property(retain) NSMutableArray *trackers; // @synthesize trackers=_trackers;
 @property(retain) IDERunOperationWorker *worker; // @synthesize worker=_worker;
 @property BOOL workaroundIsCancelled; // @synthesize workaroundIsCancelled=_workaroundIsCancelled;
-@property(retain) NSMutableArray *trackers; // @synthesize trackers=_trackers;
 - (void).cxx_destruct;
 - (void)registerTracker:(id)arg1;
 - (void)_runningTrackerFinished:(id)arg1;
@@ -34,8 +33,8 @@
 - (void)cancel;
 - (BOOL)isCancelled;
 - (void)main;
-- (void)workerDidComplete:(id)arg1 withError:(id)arg2;
 - (id)initWithWorker:(id)arg1;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

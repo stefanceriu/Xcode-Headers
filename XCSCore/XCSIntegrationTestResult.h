@@ -4,17 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <XCSCore/XCSObject.h>
 
-@class NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, XCSService;
+@class NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, XCSCodeCoverageIntegration, XCSService;
 
-@interface XCSIntegrationTestResult : NSObject
+@interface XCSIntegrationTestResult : XCSObject
 {
+    XCSService *service;
     NSString *integrationID;
     NSString *revisionID;
     NSDate *date;
     struct NSArray *testedDevices;
-    XCSService *_service;
+    XCSCodeCoverageIntegration *coverage;
     NSArray *_testedDevicesIDs;
     NSMutableArray *_testResults;
     NSMutableDictionary *_testHierarchy;
@@ -22,30 +23,32 @@
     NSMutableArray *_perfMetricKeyPaths;
 }
 
-+ (id)integrationResultWithID:(id)arg1 revisionID:(id)arg2 date:(id)arg3 testedDevices:(struct NSArray *)arg4 service:(id)arg5;
++ (id)integrationResultWithID:(id)arg1 revisionID:(id)arg2 date:(id)arg3 testedDevices:(struct NSArray *)arg4 coverage:(id)arg5 service:(id)arg6 validationErrors:(id *)arg7;
 @property(retain, nonatomic) NSMutableArray *perfMetricKeyPaths; // @synthesize perfMetricKeyPaths=_perfMetricKeyPaths;
 @property(retain, nonatomic) NSMutableSet *perfMetricNames; // @synthesize perfMetricNames=_perfMetricNames;
 @property(retain, nonatomic) NSMutableDictionary *testHierarchy; // @synthesize testHierarchy=_testHierarchy;
 @property(retain, nonatomic) NSMutableArray *testResults; // @synthesize testResults=_testResults;
 @property(retain, nonatomic) NSArray *testedDevicesIDs; // @synthesize testedDevicesIDs=_testedDevicesIDs;
-@property(nonatomic) __weak XCSService *service; // @synthesize service=_service;
+@property(retain, nonatomic) XCSCodeCoverageIntegration *coverage; // @synthesize coverage;
 @property(retain, nonatomic) NSArray *testedDevices; // @synthesize testedDevices;
 @property(copy, nonatomic) NSDate *date; // @synthesize date;
 @property(copy, nonatomic) NSString *revisionID; // @synthesize revisionID;
 @property(copy, nonatomic) NSString *integrationID; // @synthesize integrationID;
+@property(nonatomic) __weak XCSService *service; // @synthesize service;
 - (void).cxx_destruct;
-- (BOOL)_validateWithUUID:(id)arg1 revisionID:(id)arg2 date:(id)arg3 testedDevices:(struct NSArray *)arg4 service:(id)arg5;
+- (BOOL)_validateWithUUID:(id)arg1 revisionID:(id)arg2 date:(id)arg3 testedDevices:(struct NSArray *)arg4 coverage:(id)arg5 service:(id)arg6 validationErrors:(id *)arg7;
 - (id)saveRepresentationHumanReadable:(BOOL)arg1;
 - (id)saveRepresentation;
 - (id)dictionaryRepresentation;
 - (id)description;
 - (long long)testedDeviceCount;
 - (BOOL)isTestedDeviceValid:(id)arg1;
-- (id)initWithID:(id)arg1 revisionID:(id)arg2 date:(id)arg3 testedDevices:(struct NSArray *)arg4 service:(id)arg5;
+- (id)initWithID:(id)arg1 revisionID:(id)arg2 date:(id)arg3 testedDevices:(struct NSArray *)arg4 coverage:(id)arg5 service:(id)arg6 validationErrors:(id *)arg7;
+- (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 - (void)importTestResultsCompleteIntegrationWithID:(id)arg1 testedDevices:(struct NSArray *)arg2 testHierarchy:(id)arg3 perfMetricNames:(id)arg4 perfMetricKeyPaths:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
 - (void)finalizeWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)addTestResult:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (id)testResultWithDevice:(id)arg1 keyPath:(id)arg2 date:(id)arg3 startTime:(double)arg4 endTime:(double)arg5 passed:(BOOL)arg6 failureSummaries:(id)arg7;
+- (id)testResultWithDevice:(id)arg1 keyPath:(id)arg2 date:(id)arg3 startTime:(double)arg4 endTime:(double)arg5 passed:(BOOL)arg6 failureSummaries:(id)arg7 testableBlueprintPath:(id)arg8 testableBlueprintName:(id)arg9 validationErrors:(id *)arg10;
 
 @end
 

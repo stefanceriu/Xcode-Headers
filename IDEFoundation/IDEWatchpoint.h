@@ -13,7 +13,6 @@
     NSString *_expression;
     NSString *_variableName;
     unsigned long long _address;
-    NSString *_hexAddress;
 }
 
 + (id)_displayStringForAddress:(unsigned long long)arg1;

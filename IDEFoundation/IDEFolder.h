@@ -17,6 +17,7 @@
     unsigned long long _readingCount;
 }
 
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (BOOL)supportsMultipleInstancesPerFilePath;
 + (BOOL)_observeContainerDataFilePathsForChanges;
 + (BOOL)_THREAD_shouldAddFileWithName:(id)arg1;

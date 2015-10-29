@@ -11,12 +11,24 @@
 @interface _XCSUIIssueSelectionManager : NSObject
 {
     NSMutableArray *_selectedIssues;
+    long long _anchorIndex;
+    long long _selectionDistance;
+    NSArray *_allIssues;
 }
 
+@property(retain) NSArray *allIssues; // @synthesize allIssues=_allIssues;
 - (void).cxx_destruct;
+- (void)copyIssues:(id)arg1;
+- (void)copyIssue:(id)arg1;
 @property(readonly, copy) NSArray *selectedIssues;
-- (void)mouseDownInIssueView:(id)arg1 extendSelection:(BOOL)arg2;
+- (void)_extendSelectionToIssueView:(id)arg1;
+- (void)mouseDownInIssueView:(id)arg1 selectionMode:(unsigned long long)arg2;
+- (void)_resetAnchorToIssueView:(id)arg1;
+- (void)rightClickInIssueView:(id)arg1;
 - (void)doubleClickInIssueView:(id)arg1;
+- (void)_selectIssues:(id)arg1;
+- (void)_deselectIssues:(id)arg1;
+- (void)_deselectAllIssues;
 
 @end
 

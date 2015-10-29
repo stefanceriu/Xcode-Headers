@@ -12,8 +12,6 @@
 
 @interface DBGThread (DBGNavigableItemPropertySupport) <DBGNavigableItemPerformance>
 + (id)keyPathsForValuesAffectingStatusIcon;
-- (double)heightOfRow;
-- (BOOL)isGroupHeader:(id)arg1;
 - (id)sortValue;
 @property(readonly) NSImage *statusIcon;
 @end

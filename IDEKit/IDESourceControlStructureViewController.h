@@ -8,7 +8,7 @@
 
 #import "DVTReplacementViewDelegate.h"
 
-@class DVTBindingToken, DVTImageAndTextCell, DVTReplacementView, IDENavigableItem, IDENavigableItemCoordinator, IDENavigatorOutlineView, IDESourceControlTree, NSArray, NSDateFormatter, NSObject<OS_dispatch_queue>, NSPredicate, NSSplitView, NSString;
+@class DVTBindingToken, DVTImageAndTextCell, DVTReplacementView, IDENavigableItem, IDENavigableItemAsyncFilteringCoordinator, IDENavigatorOutlineView, IDESourceControlTree, NSArray, NSDateFormatter, NSObject<OS_dispatch_queue>, NSPredicate, NSSplitView, NSString;
 
 @interface IDESourceControlStructureViewController : IDEViewController <DVTReplacementViewDelegate>
 {
@@ -20,7 +20,7 @@
     id _branchSwitchObserver;
     int _scopeByStatus;
     BOOL _showIgnoredFiles;
-    IDENavigableItemCoordinator *_navigableItemCoordinator;
+    IDENavigableItemAsyncFilteringCoordinator *_navigableItemCoordinator;
     IDENavigableItem *_rootNavigable;
     IDESourceControlTree *_sourceTree;
     id _selectedObject;

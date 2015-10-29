@@ -12,7 +12,7 @@
 #import "NSTableViewDelegate.h"
 #import "XDTableViewScrollDelegate.h"
 
-@class DVTMapTable, DVTNotificationToken, DVTObservingToken, IDEDMArrayController, IDEDMHighlightImageAndTextCell, IDEDataModelBrowserEditor, NSArray, NSArrayController, NSDictionary, NSImage, NSIndexSet, NSString, NSTableColumn, XDTableView;
+@class DVTNotificationToken, DVTObservingToken, IDEDMArrayController, IDEDMHighlightImageAndTextCell, IDEDataModelBrowserEditor, NSArray, NSArrayController, NSDictionary, NSImage, NSIndexSet, NSMapTable, NSString, NSTableColumn, XDTableView;
 
 @interface IDEDataModelPropertiesTableController : IDEDMEditorController <NSTableViewDelegate, XDTableViewScrollDelegate, IDEDMArrayControllerDelegate, IDECapsuleViewController, IDECapsuleViewDelegate>
 {
@@ -24,7 +24,7 @@
     NSArrayController *entityArrayController;
     IDEDMHighlightImageAndTextCell *propertyNameAndImageCell;
     NSArray *_selectedProperties;
-    DVTMapTable *_tableColumnsByIdentifier;
+    NSMapTable *_tableColumnsByIdentifier;
     BOOL _tableViewWasFirstResponder;
     DVTObservingToken *_modelObservationToken;
     DVTNotificationToken *_findObservationToken;

@@ -36,6 +36,7 @@
     CDUnknownBlockType _progressBlock;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 @property(copy) CDUnknownBlockType progressBlock; // @synthesize progressBlock=_progressBlock;
 @property(retain) IDESourceControlWorkingCopyConfiguration *wcc; // @synthesize wcc=_wcc;

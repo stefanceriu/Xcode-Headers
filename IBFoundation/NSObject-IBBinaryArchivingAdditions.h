@@ -8,8 +8,10 @@
 
 @interface NSObject (IBBinaryArchivingAdditions)
 + (id)decodeWithBinaryUnarchiver:(id)arg1;
+- (void)didFinishEncodingWithBinaryArchiver:(id)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (const char *)cStringClassNameForBinaryArchiver:(id)arg1;
+- (void)didFinishDecodingWithBinaryUnarchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
 @end
 

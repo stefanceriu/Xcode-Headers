@@ -6,23 +6,27 @@
 
 #import "DVTDocumentLocation.h"
 
-#import "NSCoding.h"
+@class NSString;
 
-@class NSString, SKEDocumentObjectMemberWrapper;
-
-@interface SKEDocumentLocation : DVTDocumentLocation <NSCoding>
+@interface SKEDocumentLocation : DVTDocumentLocation
 {
     NSString *_identifier;
+    NSString *_modelPath;
 }
 
-@property(readonly) id identifier; // @synthesize identifier=_identifier;
++ (id)URLForMember:(id)arg1 inDocumentAtURL:(id)arg2;
++ (id)memberWithURL:(id)arg1;
+@property(readonly, nonatomic) NSString *modelPath; // @synthesize modelPath=_modelPath;
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
+@property(readonly, nonatomic) id identifier;
 - (id)description;
-- (id)initWithDocumentURL:(id)arg1 identifier:(id)arg2;
-- (BOOL)isGroupLocation;
-@property(readonly) SKEDocumentObjectMemberWrapper *locatedMemberWrapper;
+- (id)initWithDocumentURL:(id)arg1 member:(id)arg2;
+@property(readonly, nonatomic, getter=isGroupLocation) BOOL groupLocation;
+- (id)locatedMemberWithScene:(id)arg1;
 
 @end
 

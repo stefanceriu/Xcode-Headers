@@ -12,6 +12,7 @@
 
 @interface IDEArchivesSectionViewController : IDEProductSectionViewController <DVTReplacementViewDelegate>
 {
+    BOOL _vendorIsBusy;
     DVTReplacementView *_replacementView;
     DVTObservingToken *_inspectableObserver;
     DVTObservingToken *_selectedProductObserver;
@@ -21,14 +22,15 @@
 @property(retain) DVTObservingToken *selectedProductObserver; // @synthesize selectedProductObserver=_selectedProductObserver;
 @property(retain) DVTObservingToken *inspectableObserver; // @synthesize inspectableObserver=_inspectableObserver;
 @property __weak DVTReplacementView *replacementView; // @synthesize replacementView=_replacementView;
+@property BOOL vendorIsBusy; // @synthesize vendorIsBusy=_vendorIsBusy;
 - (void).cxx_destruct;
 - (BOOL)shouldShowNoSelection;
+- (void)handleAction:(id)arg1 fromInspectable:(id)arg2;
+- (void)_updateTeams;
 - (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
 @property(readonly) IDEArchivesViewController *archivesViewController;
-- (void)handleAction:(id)arg1 fromInspectable:(id)arg2;
 - (void)_updateSectionView;
-- (void)viewDidInstall;
 - (BOOL)showEmptyView;
 - (void)primitiveInvalidate;
 - (void)viewDidLoad;

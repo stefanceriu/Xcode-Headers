@@ -10,13 +10,6 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
-struct LSItemInfoRecord {
-    unsigned int _field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    struct __CFString *_field4;
-};
-
 struct VMULabelUniquingDataForStringType {
     id _field1;
     id _field2;
@@ -30,8 +23,9 @@ struct _CSTypeRef {
 struct _VMUBlockNode {
     unsigned long long _field1;
     unsigned int :3;
+    unsigned int :2;
     unsigned int :36;
-    unsigned int :25;
+    unsigned int :23;
 };
 
 struct _VMUDirectedGraphEdge {
@@ -77,24 +71,14 @@ struct _VMURegionMap {
 };
 
 struct _VMURegionNode {
-    unsigned long long _field1;
-    unsigned long long _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    void *_field5;
-    unsigned long long _field6;
-    struct _VMURegionNode *_field7;
-    _Bool _field8;
-    _Bool _field9;
-    struct *_field10;
-    unsigned int _field11;
-    unsigned long long _field12;
-    unsigned long long _field13;
-    int _field14;
-    int _field15;
-    unsigned int _field16;
-    unsigned char _field17;
-    unsigned char _field18;
+    id _field1;
+    void *_field2;
+    unsigned long long _field3;
+    struct _VMURegionNode *_field4;
+    struct *_field5;
+    unsigned int _field6;
+    unsigned long long _field7;
+    unsigned long long _field8;
 };
 
 struct _VMUThreadNode {
@@ -104,10 +88,42 @@ struct _VMUThreadNode {
     unsigned long long *_field4;
 };
 
+struct _VMUVMRegionData {
+    unsigned long long _field1;
+    unsigned long long _field2;
+    unsigned int _field3;
+    int _field4;
+    int _field5;
+    unsigned int _field6;
+    unsigned int _field7;
+    unsigned int _field8;
+    unsigned int _field9;
+    unsigned int _field10;
+    int _field11;
+    unsigned int _field12;
+    unsigned char _field13;
+    unsigned char _field14;
+    unsigned char _field15;
+    unsigned int _field16;
+    unsigned int _field17;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :1;
+    unsigned int :28;
+    unsigned long long _field18;
+    unsigned long long _field19;
+    unsigned long long _field20;
+    unsigned long long _field21;
+    unsigned long long _field22;
+    unsigned long long _field23;
+    unsigned long long _field24;
+};
+
 struct _VMUZoneNode {
     unsigned long long _field1;
-    struct malloc_introspection_t *_field2;
-    id _field3;
+    id _field2;
+    struct malloc_introspection_t *_field3;
 };
 
 struct __CFRuntimeBase {

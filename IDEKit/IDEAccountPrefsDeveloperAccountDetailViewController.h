@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDEViewController.h>
 
-@class DVTBorderedView, DVTDeveloperRecord, DVTObservingToken, IDERollOverTableView, NSArrayController, NSError, NSImageView, NSPredicate, NSSet;
+@class DVTBorderedView, DVTDeveloperRecord, DVTObservingToken, IDERollOverTableView, NSArrayController, NSError, NSImageView, NSPredicate, NSSet, NSView;
 
 @interface IDEAccountPrefsDeveloperAccountDetailViewController : IDEViewController
 {
@@ -22,11 +22,22 @@
     NSPredicate *_fetchPredicate;
     NSImageView *_imageView;
     DVTBorderedView *_borderedView;
+    NSView *_credentialsView;
+    NSView *_passwordView;
+    NSView *_tokenView;
+    NSImageView *_errorImageView1;
+    NSImageView *_errorImageView2;
 }
 
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (id)keyPathsForValuesAffectingUserDescription;
 + (id)keyPathsForValuesAffectingPassword;
 + (id)keyPathsForValuesAffectingDeveloperAccount;
+@property __weak NSImageView *errorImageView2; // @synthesize errorImageView2=_errorImageView2;
+@property __weak NSImageView *errorImageView1; // @synthesize errorImageView1=_errorImageView1;
+@property(retain) NSView *tokenView; // @synthesize tokenView=_tokenView;
+@property(retain) NSView *passwordView; // @synthesize passwordView=_passwordView;
+@property __weak NSView *credentialsView; // @synthesize credentialsView=_credentialsView;
 @property(retain) DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property(retain) NSImageView *imageView; // @synthesize imageView=_imageView;
 @property(readonly) NSPredicate *fetchPredicate; // @synthesize fetchPredicate=_fetchPredicate;
@@ -37,11 +48,13 @@
 - (void)primitiveInvalidate;
 - (void)viewDidInstall;
 - (id)contextMenu;
+- (void)_refreshUI;
 - (void)setRepresentedObject:(id)arg1;
 - (void)viewDetails:(id)arg1;
 - (void)viewDetailsForTeam:(id)arg1;
 - (void)tableViewDoubleClicked:(id)arg1;
 - (void)updateEmptyContentString;
+- (void)signInAgain:(id)arg1;
 @property(retain) DVTDeveloperRecord *developer; // @synthesize developer=_developer;
 @property _Bool loadingTeams; // @synthesize loadingTeams=_loadingTeams;
 @property(copy) NSSet *teams; // @synthesize teams=_teams;

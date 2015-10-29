@@ -11,7 +11,6 @@
     void *_context;
 }
 
-- (BOOL)isRecursive;
 - (void)performLockedBlockAsyncUnlessRecursing:(CDUnknownBlockType)arg1;
 - (void)performLockedReaderBlock:(CDUnknownBlockType)arg1;
 - (void)performLockedBlock:(CDUnknownBlockType)arg1;

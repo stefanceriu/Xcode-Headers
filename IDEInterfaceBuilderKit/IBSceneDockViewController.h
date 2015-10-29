@@ -11,7 +11,7 @@
 #import "IBSelectionProvider.h"
 #import "IBStructureAreaDockViewDelegate.h"
 
-@class DVTMutableOrderedSet, DVTObservingToken, IBAbstractDocumentEditor, IBDecodedPasteboardContent, IBStructureAreaDockView, NSObject<IBPrimarySceneObject>, NSString;
+@class DVTMutableOrderedSet, DVTObservingToken, IBAbstractDocumentEditor, IBDecodedPasteboardContent, IBGroup, IBStoryboardDocument, IBStructureAreaDockView, NSObject<IBPrimarySceneObject>, NSString;
 
 @interface IBSceneDockViewController : IDEViewController <IBDockViewHighlightProviderDelegate, IBSelectionProvider, IBStructureAreaDockViewDelegate, IBEndPointProvider>
 {
@@ -19,8 +19,12 @@
     long long _highlightGenerationIncrementable;
     DVTObservingToken *_dockLabelObservationToken;
     DVTObservingToken *_kvoDocumentObservingToken;
+    id <DVTInvalidation> _activeLookObserver;
+    id <DVTInvalidation> _keyFrameObserver;
+    IBStoryboardDocument *_document;
+    IBGroup *_sceneGroup;
     IBAbstractDocumentEditor *_documentEditor;
-    NSObject<IBPrimarySceneObject> *_sceneViewController;
+    NSObject<IBPrimarySceneObject> *_priamrySceneObject;
     id <IBHighlightProvider> _highlightProvider;
     DVTMutableOrderedSet *_selectedObjects;
     IBStructureAreaDockView *_dockView;
@@ -29,7 +33,7 @@
 @property(retain) IBStructureAreaDockView *dockView; // @synthesize dockView=_dockView;
 @property(copy, nonatomic) DVTMutableOrderedSet *selectedObjects; // @synthesize selectedObjects=_selectedObjects;
 @property(readonly) id <IBHighlightProvider> highlightProvider; // @synthesize highlightProvider=_highlightProvider;
-@property(readonly) NSObject<IBPrimarySceneObject> *sceneViewController; // @synthesize sceneViewController=_sceneViewController;
+@property(readonly) NSObject<IBPrimarySceneObject> *priamrySceneObject; // @synthesize priamrySceneObject=_priamrySceneObject;
 @property(nonatomic) __weak IBAbstractDocumentEditor *documentEditor; // @synthesize documentEditor=_documentEditor;
 - (void).cxx_destruct;
 - (void)incrementHighlightGeneration;
@@ -69,8 +73,6 @@
 - (unsigned long long)dockView:(id)arg1 draggingUpdated:(id)arg2;
 - (void)updateInsertionIndicatorPairWithDragInfo:(id)arg1;
 - (id)insertionLocationForDragInfo:(id)arg1 initialSuggestion:(id)arg2;
-- (id)lastBuiltInObject;
-- (BOOL)isBuiltInObject:(id)arg1;
 - (void)clearCachedDecodedPasteboadContext;
 - (unsigned long long)dockView:(id)arg1 draggingEntered:(id)arg2;
 - (id)dockView:(id)arg1 draggedImageState:(id)arg2;
@@ -87,13 +89,12 @@
 - (void)userDidChangeSelection;
 - (BOOL)dockView:(id)arg1 shouldSelectObjectFromOverflowMenu:(id)arg2 inGroup:(id)arg3;
 - (BOOL)dockView:(id)arg1 shouldSelectObject:(id)arg2 inGroup:(id)arg3 withEvent:(id)arg4;
-- (BOOL)shouldSelectObjectImmediately:(id)arg1 withEvent:(id)arg2;
 - (id)dockView:(id)arg1 imageForRepresentedObject:(id)arg2 inGroup:(id)arg3;
 - (BOOL)dockView:(id)arg1 isShowingOpenIndicatorForRepresentedObject:(id)arg2 inGroup:(id)arg3;
 - (id)dockView:(id)arg1 titleForRepresentedObject:(id)arg2 inGroup:(id)arg3;
+- (id)requiredObjectForObjectID:(id)arg1;
 - (id)dockView:(id)arg1 representedObjectsForGroup:(id)arg2;
 - (long long)dockView:(id)arg1 minimumNumberOfItemsInGroup:(id)arg2;
-- (id)dockView:(id)arg1 titleOfRepresentedGroup:(id)arg2;
 - (id)dockViewRepresentedGroups:(id)arg1;
 - (void)dockViewWillValidateData:(id)arg1;
 - (void)openEditorAfterBeingSelectedInDock:(id)arg1;
@@ -106,18 +107,22 @@
 - (void)documentEditor:(id)arg1 pullSelection:(id)arg2;
 - (void)documentEditor:(id)arg1 selectMembers:(id)arg2 takeFocus:(BOOL)arg3 zoomIfNeeded:(BOOL)arg4;
 @property(readonly, nonatomic) BOOL onlySupportsDocumentObjectMembers;
+- (id)groupToOIDsMapForObjects:(id)arg1;
 - (void)didChangeSelectedObjects;
-- (id)utilityFloaterObjects;
-- (id)objectsAreaObjects;
+- (id)exitDockObjects;
+- (id)auxiliaryDockObjects;
+- (id)intrinsicDockObjects;
+- (id)dockGroupForObject:(id)arg1;
 - (id)dockedObjects;
-- (id)sceneGroup;
-- (id)document;
-- (void)setSceneViewController:(id)arg1;
+@property(readonly) IBGroup *sceneGroup;
 @property(readonly, nonatomic) NSString *selectionProviderSwitcherTitle;
+@property(readonly) IBStoryboardDocument *document;
 - (void)topLevelObjectsDidChange;
+- (void)refreshActiveLook;
+- (void)viewDidInstall;
 - (void)primitiveInvalidate;
 - (void)loadView;
-- (id)initWithSceneViewController:(id)arg1 documentEditor:(id)arg2;
+- (id)initWithPrimarySceneObject:(id)arg1 documentEditor:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

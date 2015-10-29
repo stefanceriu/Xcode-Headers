@@ -9,9 +9,9 @@
 @class NSData, NSString;
 
 @protocol SCNGeometrySourceJSExport <JSExport>
-+ (id)geometrySourceWithTextureCoordinates:(struct CGPoint *)arg1 count:(long long)arg2;
-+ (id)geometrySourceWithNormals:(struct SCNVector3 *)arg1 count:(long long)arg2;
-+ (id)geometrySourceWithVertices:(struct SCNVector3 *)arg1 count:(long long)arg2;
++ (id)geometrySourceWithTextureCoordinates:(const struct CGPoint *)arg1 count:(long long)arg2;
++ (id)geometrySourceWithNormals:(const struct SCNVector3 *)arg1 count:(long long)arg2;
++ (id)geometrySourceWithVertices:(const struct SCNVector3 *)arg1 count:(long long)arg2;
 + (id)geometrySourceWithData:(NSData *)arg1 semantic:(NSString *)arg2 vectorCount:(long long)arg3 floatComponents:(BOOL)arg4 componentsPerVector:(long long)arg5 bytesPerComponent:(long long)arg6 dataOffset:(long long)arg7 dataStride:(long long)arg8;
 @property(readonly, nonatomic) long long dataStride;
 @property(readonly, nonatomic) long long dataOffset;

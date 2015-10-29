@@ -23,8 +23,8 @@
     DBGViewSurface *_secondItem;
 }
 
-@property __weak DBGViewSurface *secondItem; // @synthesize secondItem=_secondItem;
-@property __weak DBGViewSurface *firstItem; // @synthesize firstItem=_firstItem;
+@property(retain) DBGViewSurface *secondItem; // @synthesize secondItem=_secondItem;
+@property(retain) DBGViewSurface *firstItem; // @synthesize firstItem=_firstItem;
 @property(copy, nonatomic) NSString *constraintIdentifier; // @synthesize constraintIdentifier=_constraintIdentifier;
 @property long long relation; // @synthesize relation=_relation;
 @property long long secondAttribute; // @synthesize secondAttribute=_secondAttribute;
@@ -33,13 +33,14 @@
 @property double multiplier; // @synthesize multiplier=_multiplier;
 @property double constant; // @synthesize constant=_constant;
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
 @property(readonly) long long contentType;
 - (id)displayName;
 @property(readonly) BOOL isVertical;
 @property(readonly) BOOL isHorizontal;
 @property(readonly) NSString *categoryString;
 - (id)formulaStringRelativeToItem:(id)arg1;
-- (id)initWithViewDescriber:(id)arg1 dictionary:(id)arg2;
+- (id)initWithViewDescriber:(id)arg1 parent:(id)arg2 dictionary:(id)arg3;
 
 @end
 

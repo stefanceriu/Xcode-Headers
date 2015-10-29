@@ -6,7 +6,11 @@
 
 #import "NSObject.h"
 
-@interface IDEMenuBuilder : NSObject
+#import "DVTMenuBuilder.h"
+
+@class NSString;
+
+@interface IDEMenuBuilder : NSObject <DVTMenuBuilder>
 {
 }
 
@@ -21,6 +25,12 @@
 + (id)menuForMenuDefinitionIdentifier:(id)arg1 forViewController:(id)arg2 extensionIdToMenuMap:(id *)arg3;
 + (id)menuForMenuDefinitionIdentifier:(id)arg1 extensionIdToMenuMap:(id *)arg2;
 + (id)_menuItemForMenuItemElement:(id)arg1 inMenuWithIdentifierUsedForDebugging:(id)arg2 forViewController:(id)arg3 fillingExtensionIdToMenuMap:(id)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

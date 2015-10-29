@@ -28,7 +28,7 @@ __attribute__((visibility("hidden")))
 @property(retain) SCNView *view;
 - (id)panel;
 - (struct __C3DFXContext *)fxContext;
--     // Error parsing type: ^{__C3DRendererContext={__CFRuntimeBase=Q[4C]I}iI(C3DVector2=[2f]{?=ff}{?=ff}{?=ff})(C3DVector2=[2f]{?=ff}{?=ff}{?=ff})IIIfI[3(C3DMatrix4x4=[16f][4])]^{__C3DTexture}^{__C3DStack}^vBBBBBI^{__CFDictionary}^{__CFDictionary}{C3DColor4=(?=[4f]{?=ffff})}^vq^{__C3DFXProgramObject}{__C3DRendererContextStats=IIIIIIIIIIIIIIIIIIIIIIIIddddddddddddddIIIIIIIIIIIIIIddd[60d]Idd}{Cache=[16I]Ii^{__C3DBlendStates}^{__C3DRasterizerStates}^{__C3DMesh}^{__C3DMeshElement}IIiI^viii}{?=[5I][5i][7{?=iII}][7I]^?^?^?^?^?^?^?^?^?^?}^{__C3DArray}II^{__CFArray}^{__C3DArray}I}16@0:8, name: rendererContext
+- (struct __C3DRendererContext *)rendererContext;
 - (struct __C3DEngineContext *)context;
 - (void)techniquesDidUpdate:(id)arg1;
 - (void)sceneDidChange;

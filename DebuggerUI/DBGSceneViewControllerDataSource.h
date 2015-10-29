@@ -6,26 +6,28 @@
 
 #import "NSObject.h"
 
-#import "DBGSceneViewControllerDataSource.h"
+#import "DBGSceneViewControllerDataSourceProtocol.h"
 
-@class NSDictionary, NSMutableArray, NSMutableDictionary, NSString;
+@class DBGViewDebuggerAdditionUIController, NSDictionary, NSMutableArray, NSMutableDictionary, NSString;
 
-@interface DBGSceneViewControllerDataSource : NSObject <DBGSceneViewControllerDataSource>
+@interface DBGSceneViewControllerDataSource : NSObject <DBGSceneViewControllerDataSourceProtocol>
 {
     NSDictionary *_plistDict;
     NSMutableDictionary *_viewInstacesDict;
     NSMutableArray *_allViews;
     NSString *_rootIdentifier;
     unsigned long long globalRenderingOrderCounter;
+    DBGViewDebuggerAdditionUIController *_debuggerUIController;
 }
 
+@property(retain) DBGViewDebuggerAdditionUIController *debuggerUIController; // @synthesize debuggerUIController=_debuggerUIController;
 - (void).cxx_destruct;
 - (id)allViews;
 - (id)viewWithIdentifier:(id)arg1;
 - (id)rootViewForHierarchyToDisplay;
 - (void)updateViewRenderingOrderWithRootViewInstance:(id)arg1;
-- (void)updateViewInstanceDictionaryWithViewInstance:(id)arg1;
-- (void)prepareDataWithRootViewSurface:(id)arg1 viewInstanceCreationOptions:(id)arg2;
+- (void)updateChildInstancesForInstance:(id)arg1;
+- (void)prepareDataWithRootViewSurface:(id)arg1 debuggerUIController:(id)arg2;
 
 @end
 

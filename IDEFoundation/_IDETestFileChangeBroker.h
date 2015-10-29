@@ -20,21 +20,22 @@
 
 + (void)initialize;
 - (void).cxx_destruct;
-- (void)_notifyWorkspaceReferencedTestableChanged;
+- (void)_notifyAllTestablesChanged;
 - (void)_notifyObserversTestsInFileUpdated;
-- (void)workspaceReferencedTestablesChanged;
+- (void)allTestablesChanged;
 - (void)testablesChanged:(id)arg1;
 - (void)testsChanged:(id)arg1;
 - (void)_updateObservation;
 - (void)removeTestFileObserver:(id)arg1;
 - (void)addTestFileObserver:(id)arg1;
+- (BOOL)_hasObservers;
+@property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
 - (id)initWithURL:(id)arg1 testManager:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;

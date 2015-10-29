@@ -6,19 +6,27 @@
 
 #import "NSTextField.h"
 
+@class NSNumber;
+
 @interface NSTextField (IBNSTextFieldIntegration)
-- (BOOL)ibInspectedCanInspectSetsMaxLayoutWidthAtFirstLayout;
-- (void)setIbInspectedSetsMaxLayoutWidthAtFirstLayout:(BOOL)arg1;
++ (id)keyPathsForValuesAffectingIbInspectedPreferredWidthMode;
+- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (void)decodePreferredMaxLayoutWidthForUnarchiver:(id)arg1;
+- (void)encodePreferredMaxLayoutWidthForArchiver:(id)arg1;
+- (void)setIbInspectedPreferredWidthMode:(long long)arg1;
+- (long long)ibInspectedPreferredWidthMode;
+@property(copy) NSNumber *ibExternalPreferredMaxLayoutWidth;
 - (void)ibCellDidChangeInspectedLineBreakMode:(id)arg1;
 - (void)setIbInspectedLineBreakMode:(long long)arg1;
 - (void)ibTextFieldCellDidChangeInspectorLayout:(id)arg1;
 - (void)_ibDidChangeTextFieldWrappingMode:(BOOL)arg1;
-- (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
+- (void)ibVerifyPreferredMaxLayoutWidthOnlyForLegacyStaticWrappingTextUsingAutomaticModeInDocument:(id)arg1;
 - (id)ibVerifyPreferredMaxLayoutWidthOnlyForMultilineLabelsInDocument:(id)arg1;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (void)ibPropagatePropertiesToCopyOfReceiver:(id)arg1 forLayoutEngine:(id)arg2;
+- (void)_setEffectivePreferredMaxLayoutWidthSettingsOnTextField:(id)arg1;
 - (void)ibEnableAutolayoutInDocument:(id)arg1 context:(id)arg2;
-- (BOOL)ibIsWrappingStaticTextLabel;
+@property(readonly) BOOL ibIsWrappingStaticTextLabel;
 - (void)ibSetContentCompressionResistancePriorityForTextWrapping;
 - (BOOL)ibPrefersToBeSizedToFitAfterEditingTitle;
 - (id)ibQualifyingInfoForDefaultLabel;
@@ -27,6 +35,5 @@
 - (struct CGSize)ibPreferredSize;
 - (struct CGSize)ibMaximumSize;
 - (struct CGSize)ibMinimumSize;
-- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 @end
 

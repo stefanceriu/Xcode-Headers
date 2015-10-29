@@ -25,7 +25,9 @@
 @property(readonly) __weak IBICOutlineViewItem *parent; // @synthesize parent=_parent;
 - (void).cxx_destruct;
 - (id)description;
-- (id)enclosingFolderIncludingReceiver;
+- (id)selectDragDestinationForItems:(id)arg1 andInsertionIndex:(long long *)arg2;
+- (BOOL)isFiltered;
+- (BOOL)childrenHaveIntrinsicOrder;
 - (id)outlineItemForDescendantCatalogItem:(id)arg1 applyingFilter:(BOOL)arg2;
 - (void)recursivelyPopulateExpandedItemIDs:(id)arg1;
 - (void)recursivelyApplyExpansionStateToOutlineView:(id)arg1;

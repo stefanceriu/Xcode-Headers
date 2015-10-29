@@ -40,6 +40,8 @@
     struct CGRect _scrollLayerBounds;
     struct CGColor *_titleLayerForegroundColor;
     struct CGColor *_titleLayerForegroundColorDark;
+    struct CGColor *_titleHighlightLayerColor;
+    struct CGColor *_titleHighlightLayerColorDark;
     id <GPURenderBufferViewStateCoordinationProtocol> _coordinator;
     unsigned int _stateFlags;
     GPURenderJob *_renderJob;
@@ -51,7 +53,6 @@
 @property(nonatomic) __weak id <GPURenderBufferViewStateCoordinationProtocol> coordinator; // @synthesize coordinator=_coordinator;
 @property(nonatomic) struct CGSize titleSize; // @synthesize titleSize=_titleSize;
 @property(retain, nonatomic) GPURenderJob *renderJob; // @synthesize renderJob=_renderJob;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)dumpImage:(id)arg1 asRaw:(BOOL)arg2;
 - (void)layout;

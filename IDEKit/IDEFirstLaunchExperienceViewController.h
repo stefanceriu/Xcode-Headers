@@ -6,12 +6,13 @@
 
 #import "NSViewController.h"
 
-@class DVTObservingToken, IDELicenseAgreementViewController, IDEPackageInstallerViewController, IDEWelcomeWindowTransitionHelper, NSImageView, NSView;
+@class DVTObservingToken, IDEEnableUITestingAccessViewController, IDELicenseAgreementViewController, IDEPackageInstallerViewController, IDEWelcomeWindowTransitionHelper, NSImageView, NSView;
 
 @interface IDEFirstLaunchExperienceViewController : NSViewController
 {
     IDELicenseAgreementViewController *_licenseViewController;
     IDEPackageInstallerViewController *_packageInstallerViewController;
+    IDEEnableUITestingAccessViewController *_enableUITestingAccessViewController;
     IDEWelcomeWindowTransitionHelper *_transitionHelper;
     NSImageView *_appImageView;
     NSView *_currentView;
@@ -29,6 +30,8 @@
 - (void)_replaceView:(id)arg1 withView:(id)arg2;
 - (void)_doneWithFirstLaunchExperience;
 - (void)_setCurrentView:(id)arg1;
+- (void)_promptForUITestingAccessIfNecessary;
+- (BOOL)_shouldPromptForUITestingAccess;
 - (void)_handlePackageInstallationComplete;
 - (void)_showPackagesToInstallIfNecessary;
 - (void)_showLicenseIfNecessary;

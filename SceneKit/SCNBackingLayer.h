@@ -19,6 +19,7 @@ __attribute__((visibility("hidden")))
 - (void)drawInContext:(struct CGContext *)arg1;
 - (void)drawInOpenGLContext:(id)arg1 pixelFormat:(id)arg2 forLayerTime:(double)arg3 displayTime:(const CDStruct_e50ab651 *)arg4;
 - (BOOL)canDrawInOpenGLContext:(id)arg1 pixelFormat:(id)arg2 forLayerTime:(double)arg3 displayTime:(const CDStruct_e50ab651 *)arg4;
+- (BOOL)_isRenderingForJittering;
 - (void)_cancelJitterRedisplay;
 - (void)_jitterRedisplayWithContext:(struct _CGLContextObject *)arg1;
 - (id)openGLContextForPixelFormat:(id)arg1;

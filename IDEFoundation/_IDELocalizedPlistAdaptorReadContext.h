@@ -4,26 +4,19 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEFoundation/IDELocalizationWorkContext.h>
+#import <IDEFoundation/IDELocalizationWorkReadStrings.h>
 
-#import "IDELocalizationWorkReadStrings.h"
+@class DVTLocale, IDELocalizedPlistAdaptor;
 
-@class DVTFilePath, DVTLocale, IDELocalizedPlistAdaptor, NSDictionary;
-
-@interface _IDELocalizedPlistAdaptorReadContext : IDELocalizationWorkContext <IDELocalizationWorkReadStrings>
+@interface _IDELocalizedPlistAdaptorReadContext : IDELocalizationWorkReadStrings
 {
-    DVTFilePath *IDELocalizationWork_path;
-    NSDictionary *IDELocalizationWork_strings;
-    NSDictionary *IDELocalizationWork_comments;
     IDELocalizedPlistAdaptor *_adaptor;
     DVTLocale *_language;
 }
 
++ (id)contextWithParent:(id)arg1 path:(id)arg2 adaptor:(id)arg3 language:(id)arg4;
 @property(retain) DVTLocale *language; // @synthesize language=_language;
 @property(retain) IDELocalizedPlistAdaptor *adaptor; // @synthesize adaptor=_adaptor;
-@property(retain) NSDictionary *IDELocalizationWork_comments; // @synthesize IDELocalizationWork_comments;
-@property(retain) NSDictionary *IDELocalizationWork_strings; // @synthesize IDELocalizationWork_strings;
-@property(retain) DVTFilePath *IDELocalizationWork_path; // @synthesize IDELocalizationWork_path;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 

@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTDelayedInvocation, DVTStackBacktrace, IDEOutlineViewGroupInfo, NSArray, NSHashTable, NSMutableArray, NSMutableIndexSet, NSPredicate, NSSet, NSString, _IDENavigatorOutlineViewDataSource;
+@class DVTDelayedInvocation, DVTNotificationToken, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, NSArray, NSHashTable, NSMapTable, NSMutableArray, NSMutableIndexSet, NSPredicate, NSSet, NSString, _IDENavigatorOutlineViewDataSource, _IDEOutlineViewGroupInfo;
 
 @interface IDENavigatorOutlineView : DVTOutlineView <DVTInvalidation>
 {
@@ -21,13 +21,18 @@
     NSString *_emptyContentStringCopy;
     SEL _keyAction;
     id <IDENavigatorOutlineViewLoadingDelegate> _loadingDelegate;
-    IDEOutlineViewGroupInfo *_groupInfo;
+    _IDEOutlineViewGroupInfo *_groupInfo;
+    NSMapTable *_cachedRowItemsToHeights;
     _IDENavigatorOutlineViewDataSource *_interposedDelegate;
     _IDENavigatorOutlineViewDataSource *_interposedDataSource;
     void *_keepSelfAliveUntilCancellationRef;
     BOOL _updatesDisplayOnlyInTrayCharts;
     BOOL _calledFromSetsNeedsDisplayOnlyInTrayCharts;
+    BOOL _isLiveScrolling;
     NSMutableArray *_entriesToRestoreToVisibleRect;
+    DVTNotificationToken *_variableRowHeightLiveScrollStartObserver;
+    DVTNotificationToken *_variableRowHeightLiveScrollEndObserver;
+    DVTDelayedInvocation *_variableRowHeightVisibleRowsHeightCalculatorInvocation;
     struct {
         unsigned int _needsToPushRowSelection:1;
         unsigned int _needsToRefreshBoundSelectedObjects:1;
@@ -35,7 +40,6 @@
         unsigned int _suspendRowHeightInvalidation:1;
         unsigned int _doingBatchExpand:1;
         unsigned int _filteringEnabled:1;
-        unsigned int _filteringActive:1;
         unsigned int _scrollSelectionToVisibleAfterRefreshingSelection:1;
         unsigned int _hasContent:1;
         unsigned int _didDrawContent:1;
@@ -45,22 +49,32 @@
         unsigned int _didPublishSelectedObjects:1;
         unsigned int _supportsTrackingAreasForCells:1;
         unsigned int _inSameRunloopForTrackingSelectionVisibleRect:1;
+        unsigned int _invalidating:1;
     } _idenovFlags;
+    BOOL _filteringActive;
     BOOL _supportsVariableHeightCells;
     BOOL _tracksSelectionVisibleRect;
     BOOL _disableSourceListSelectionStyle;
     NSSet *_editorSelectedNavigableItems;
+    long long _filterProgress;
     NSMutableIndexSet *_selectedIndexesToDrawAsUnselected;
+    DVTTimeSlicedMainThreadWorkQueue *_expandingItemsWorkQueue;
 }
 
++ (id)keyPathsForValuesAffectingFilteringActive;
++ (id)keyPathsForValuesAffectingEmptyContentString;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (void)initialize;
+@property(retain) DVTTimeSlicedMainThreadWorkQueue *expandingItemsWorkQueue; // @synthesize expandingItemsWorkQueue=_expandingItemsWorkQueue;
 @property(retain) NSMutableIndexSet *selectedIndexesToDrawAsUnselected; // @synthesize selectedIndexesToDrawAsUnselected=_selectedIndexesToDrawAsUnselected;
 @property(nonatomic) BOOL disableSourceListSelectionStyle; // @synthesize disableSourceListSelectionStyle=_disableSourceListSelectionStyle;
+@property(retain) id <IDENavigatorOutlineViewLoadingDelegate> loadingDelegate; // @synthesize loadingDelegate=_loadingDelegate;
+@property(readonly) long long filterProgress; // @synthesize filterProgress=_filterProgress;
 @property BOOL tracksSelectionVisibleRect; // @synthesize tracksSelectionVisibleRect=_tracksSelectionVisibleRect;
 @property(retain, nonatomic) NSSet *editorSelectedNavigableItems; // @synthesize editorSelectedNavigableItems=_editorSelectedNavigableItems;
-@property BOOL supportsVariableHeightCells; // @synthesize supportsVariableHeightCells=_supportsVariableHeightCells;
-@property(retain) id <IDENavigatorOutlineViewLoadingDelegate> loadingDelegate; // @synthesize loadingDelegate=_loadingDelegate;
+@property(nonatomic) BOOL supportsVariableHeightCells; // @synthesize supportsVariableHeightCells=_supportsVariableHeightCells;
 @property(nonatomic) SEL keyAction; // @synthesize keyAction=_keyAction;
+@property(readonly, getter=isFilteringActive) BOOL filteringActive; // @synthesize filteringActive=_filteringActive;
 @property(copy, nonatomic) NSPredicate *filterPredicate; // @synthesize filterPredicate=_filterPredicate;
 @property double groupHeaderRowHeight; // @synthesize groupHeaderRowHeight=_groupHeaderRowHeight;
 - (void).cxx_destruct;
@@ -69,26 +83,20 @@
 - (void)scrollSelectionToVisible;
 - (BOOL)scrollRectToVisible:(struct CGRect)arg1;
 - (struct _NSRange)initialSelectionRangeForCell:(id)arg1 proposedRange:(struct _NSRange)arg2;
-- (void)_drawGroupItemGradientInRect:(struct CGRect)arg1 borderSides:(int)arg2;
 - (struct CGRect)frameOfOutlineCellAtRow:(long long)arg1;
 - (struct CGRect)frameOfCellAtColumn:(long long)arg1 row:(long long)arg2;
 - (double)_indentationForRow:(long long)arg1 withLevel:(long long)arg2 isSourceListGroupRow:(BOOL)arg3;
-- (struct CGRect)adjustRect:(struct CGRect)arg1 forItem:(id)arg2 row:(long long)arg3 inGroupRange:(struct _NSRange)arg4;
 - (BOOL)groupWithRangeShouldDrawLeftDivider:(struct _NSRange)arg1;
-- (BOOL)groupWithRangeShouldDrawTopDivider:(struct _NSRange)arg1;
 - (struct _NSRange)rowRangeForEnclosingGroupOfItem:(id)arg1;
 - (struct _NSRange)rowRangeForEnclosingGroupOfTreeNode:(id)arg1;
 - (id)enclosingGroupItemForItem:(id)arg1;
 - (id)enclosingGroupInfoForRow:(long long)arg1;
 - (void)selectRowIndexes:(id)arg1 byExtendingSelection:(BOOL)arg2;
-- (void)highlightSelectionInClipRect:(struct CGRect)arg1;
-- (void)_drawSelectionForGroupItemInRect:(struct CGRect)arg1;
 - (void)setNeedsDisplayInRect:(struct CGRect)arg1;
 - (void)setNeedsDisplayOnlyInTrayCharts:(BOOL)arg1;
 - (BOOL)_hasExpandedGroups;
 - (BOOL)needsDisplayOnlyInTrayCharts;
 - (void)_setNeedsDisplayInSelectedRows;
-- (BOOL)dvt_highlightColorDependsOnWindowState;
 - (void)accessibilitySetSelectedRowsAttribute:(id)arg1;
 - (void)keyUp:(id)arg1;
 - (void)keyDown:(id)arg1;
@@ -100,10 +108,14 @@
 @property(copy) NSArray *rootItems;
 - (void)_updateRootItems:(id)arg1 sortDescriptors:(id)arg2;
 - (BOOL)isRootItem:(id)arg1;
-@property(readonly) id realDelegate;
+- (id)realDelegate;
 @property(readonly) id realDataSource;
 - (void)setDelegate:(id)arg1;
 - (void)setDataSource:(id)arg1;
+- (id)_cachedHeightOfItemOrNil:(id)arg1;
+- (double)_cachedOrDefaultHeightOfItem:(id)arg1;
+- (void)viewDidEndLiveResize;
+- (BOOL)_isVariableRowHeightViewBasedOutlineView;
 - (void)reloadData;
 - (void)reloadItem:(id)arg1 reloadChildren:(BOOL)arg2;
 - (void)_restoreEntriesToVisibleRect;
@@ -115,6 +127,8 @@
 - (id)itemBeingFullyReloaded;
 @property(readonly, getter=isReloadingItems) BOOL reloadingItems;
 - (BOOL)sendAction:(SEL)arg1 to:(id)arg2;
+- (void)_setSecondaryHighlight:(BOOL)arg1 forNavigableItem:(id)arg2;
+- (void)_updateSecondaryHighlightForViewBasedOutlineView:(id)arg1 newItems:(id)arg2;
 - (void)_refreshDisplayForItem:(id)arg1;
 - (void)updateBoundExpandedItems;
 - (void)updateBoundSelectedObjects;
@@ -129,7 +143,12 @@
 - (void)primitiveInvalidate;
 - (void)suspendEditingWhilePerformingBlock:(CDUnknownBlockType)arg1;
 - (id)_suspendEditing:(long long *)arg1;
+- (void)didRemoveRowView:(id)arg1 forRow:(long long)arg2;
+- (void)didAddRowView:(id)arg1 forRow:(long long)arg2;
+- (unsigned long long)_outlineTableColumnIndex;
+- (void)_recalculateAndCacheHeightForRowView:(id)arg1 row:(long long)arg2;
 - (void)noteAllRowHeightsMayHaveChanged;
+- (void)noteHeightOfRowsWithIndexesChanged:(id)arg1;
 - (void)setShouldSuspendPublishBoundSelectedObjects:(BOOL)arg1;
 - (BOOL)shouldSuspendPublishBoundSelectedObjects;
 - (void)concludeBatchRowUpdates;
@@ -145,12 +164,10 @@
 - (void)_expandAncestorsForItem:(id)arg1;
 - (void)setFilteringEnabled:(BOOL)arg1;
 - (BOOL)filteringEnabled;
-- (void)setFilteringActive:(BOOL)arg1;
-- (long long)filterProgress;
-@property(readonly, getter=isFilteringActive) BOOL filteringActive;
+- (BOOL)filteringActive;
 - (id)emptyContentString;
-- (void)setEmptyContentString:(id)arg1;
-- (void)_updateEmptyContentString;
+- (void)_updateCachedRowHeightsForVisibleRows;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)_ide_commonInit;

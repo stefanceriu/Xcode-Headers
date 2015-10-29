@@ -6,13 +6,16 @@
 
 #import <DVTFoundation/DVTPortalOperation.h>
 
-@interface DVTDownloadCertificateOperation : DVTPortalOperation
+#import "DVTCertificateRecordVendor.h"
+
+@interface DVTDownloadCertificateOperation : DVTPortalOperation <DVTCertificateRecordVendor>
 {
     BOOL _shouldRetryDownload;
 }
 
 + (id)operationWithSingleTeamToken:(id)arg1 certificateType:(unsigned long long)arg2 andPlatform:(id)arg3;
 @property(nonatomic) BOOL shouldRetryDownload; // @synthesize shouldRetryDownload=_shouldRetryDownload;
+- (id)certificateRecordsWithContext:(id)arg1;
 - (_Bool)_shouldRetryOnServiceError:(id)arg1;
 - (void)_failure:(id)arg1;
 

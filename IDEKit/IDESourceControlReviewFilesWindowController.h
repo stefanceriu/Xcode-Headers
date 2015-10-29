@@ -10,40 +10,44 @@
 #import "IDEReviewFilesViewControllerDelegate.h"
 #import "NSMenuDelegate.h"
 
-@class DVTObservingToken, IDENavigableItemCoordinator, IDEReviewFilesViewController, IDESourceControlRequest, IDEWorkspace, NSArray, NSMutableArray, NSString, NSWindow;
+@class DVTObservingToken, IDENavigableItemAsyncFilteringCoordinator, IDENavigableItemUniquingAsyncFilteringCoordinator, IDEReviewFilesViewController, IDESourceControlRequest, IDEWorkspace, NSArray, NSMutableArray, NSString, NSWindow;
 
 @interface IDESourceControlReviewFilesWindowController : NSWindowController <IDENavigableItemCoordinatorDelegate, IDEReviewFilesViewControllerDelegate, NSMenuDelegate>
 {
-    IDEReviewFilesViewController *_reviewFilesViewController;
-    IDEWorkspace *_workspace;
-    NSArray *_workingTrees;
-    NSArray *_files;
-    NSMutableArray *_workingTreeItems;
-    IDESourceControlRequest *_currentRequest;
-    IDENavigableItemCoordinator *_navigableItemCoordinator;
     NSWindow *_parentWindow;
+    NSMutableArray *_workingTreeItems;
     BOOL _hasSetupDefaultCheckedFilePaths;
     BOOL _settingDiffDescriptorToggledState;
-    BOOL _showIgnoredFiles;
     DVTObservingToken *_checkedFilePathsToken;
     DVTObservingToken *_mixedStateFilePathsToken;
     DVTObservingToken *_selectedViewIndexesToken;
     DVTObservingToken *_allDiffDescriptorsToggledStateToken;
+    BOOL _showIgnoredFiles;
+    IDEReviewFilesViewController *_reviewFilesViewController;
+    IDEWorkspace *_workspace;
+    NSArray *_workingTrees;
+    NSArray *_files;
+    IDESourceControlRequest *_currentRequest;
+    IDENavigableItemUniquingAsyncFilteringCoordinator *_workspaceNavigableItemCoordinator;
+    IDENavigableItemAsyncFilteringCoordinator *_fileSystemNavigableItemCoordinator;
+    IDENavigableItemAsyncFilteringCoordinator *_flatFileNavigableItemCoordinator;
 }
 
 + (id)containerFileTypesBlacklistedFromOutlineViewCompression;
 + (id)sourceControlReviewFilesWindowControllerLogAspect;
-@property(retain) NSWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
+@property(readonly) IDENavigableItemAsyncFilteringCoordinator *flatFileNavigableItemCoordinator; // @synthesize flatFileNavigableItemCoordinator=_flatFileNavigableItemCoordinator;
+@property(readonly) IDENavigableItemAsyncFilteringCoordinator *fileSystemNavigableItemCoordinator; // @synthesize fileSystemNavigableItemCoordinator=_fileSystemNavigableItemCoordinator;
+@property(readonly) IDENavigableItemUniquingAsyncFilteringCoordinator *workspaceNavigableItemCoordinator; // @synthesize workspaceNavigableItemCoordinator=_workspaceNavigableItemCoordinator;
 @property BOOL showIgnoredFiles; // @synthesize showIgnoredFiles=_showIgnoredFiles;
-@property(copy) NSArray *files; // @synthesize files=_files;
-@property(retain) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
-@property(copy) NSArray *workingTrees; // @synthesize workingTrees=_workingTrees;
 @property(retain) IDESourceControlRequest *currentRequest; // @synthesize currentRequest=_currentRequest;
+@property(copy) NSArray *files; // @synthesize files=_files;
+@property(copy) NSArray *workingTrees; // @synthesize workingTrees=_workingTrees;
+@property(retain) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 @property(readonly) IDEReviewFilesViewController *reviewFilesViewController; // @synthesize reviewFilesViewController=_reviewFilesViewController;
 - (void).cxx_destruct;
 - (void)uncheckAll:(id)arg1;
 - (void)checkAll:(id)arg1;
-- (void)revertChangesAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)_revertChangesAlertDidEnd:(id)arg1 returnCode:(long long)arg2 selectedFilePaths:(id)arg3;
 - (void)revertChanges:(id)arg1;
 - (id)filesPathsOfContextualMenuSelectedItems;
 - (id)selectedNavigableItemsofContextualMenu;
@@ -65,14 +69,14 @@
 - (id)flatNavigableItems;
 - (id)workingTreeNavigableItems;
 - (id)workspaceNavigableItems;
-@property(readonly) IDENavigableItemCoordinator *navigableItemCoordinator;
-@property(copy) NSMutableArray *workingTreeItems; // @synthesize workingTreeItems=_workingTreeItems;
+@property(copy) NSMutableArray *workingTreeItems;
 - (id)itemsForWorkingTree:(id)arg1;
 - (id)flatDataSource;
 - (id)fileSystemDataSource;
 - (id)workspaceDataSource;
 - (void)initDataSources;
 - (void)displayError:(id)arg1;
+- (void)displayError:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)beginReviewFiles;
 - (void)beginSheetForWindow:(id)arg1;
 - (void)setWindowSize;

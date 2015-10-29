@@ -9,6 +9,6 @@
 @class NSArray;
 
 @interface DVTProduct (CrashPointUI)
-@property(readonly, nonatomic) NSArray *crashPointUI_appStoreSources;
+@property(readonly) NSArray *crashPointUI_crashPointSourceCollections;
 @end
 

@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSString;
+@class DVTNotificationToken, DVTStackBacktrace, IDEToy, NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSString;
 
 @interface IDEToybox : NSObject <DVTInvalidation>
 {
@@ -20,17 +20,22 @@
     NSDate *_incomingLatestResultDate;
     unsigned long long _currentExecutionGeneration;
     BOOL _didClearAllRegisteredToys;
+    DVTNotificationToken *_playgroundDidHighlightToyNotificationToken;
+    DVTNotificationToken *_playgroundDidSelectToyNotificationToken;
     BOOL _includesLiveToy;
+    BOOL _liveViewRecordingEnabled;
     BOOL _executionIsInProgress;
     BOOL _isReplayingSerializedResults;
     BOOL _lastExpressionDidComplete;
     id <IDEToyboxDelegate> _delegate;
+    IDEToy *_highlightedToy;
+    IDEToy *_selectedToy;
     NSDate *_resultDisplayDate;
     NSDate *_dateOfEarliestResultForCurrentExecutionGeneration;
     NSDate *_dateOfLatestResultForCurrentExecutionGeneration;
 }
 
-+ (id)toyboxWithXMLElement:(id)arg1 enclosingFileWrapper:(id)arg2 delegate:(id)arg3 error:(id *)arg4;
++ (id)toyboxFromFilePath:(id)arg1 delegate:(id)arg2 error:(id *)arg3;
 + (void)initialize;
 @property BOOL lastExpressionDidComplete; // @synthesize lastExpressionDidComplete=_lastExpressionDidComplete;
 @property BOOL isReplayingSerializedResults; // @synthesize isReplayingSerializedResults=_isReplayingSerializedResults;
@@ -38,7 +43,10 @@
 @property(copy) NSDate *dateOfLatestResultForCurrentExecutionGeneration; // @synthesize dateOfLatestResultForCurrentExecutionGeneration=_dateOfLatestResultForCurrentExecutionGeneration;
 @property(copy) NSDate *dateOfEarliestResultForCurrentExecutionGeneration; // @synthesize dateOfEarliestResultForCurrentExecutionGeneration=_dateOfEarliestResultForCurrentExecutionGeneration;
 @property(copy) NSDate *resultDisplayDate; // @synthesize resultDisplayDate=_resultDisplayDate;
+@property(getter=isLiveViewRecordingEnabled) BOOL liveViewRecordingEnabled; // @synthesize liveViewRecordingEnabled=_liveViewRecordingEnabled;
 @property(readonly) BOOL includesLiveToy; // @synthesize includesLiveToy=_includesLiveToy;
+@property __weak IDEToy *selectedToy; // @synthesize selectedToy=_selectedToy;
+@property __weak IDEToy *highlightedToy; // @synthesize highlightedToy=_highlightedToy;
 @property(readonly) id <IDEToyboxDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)addTimelineItems:(id)arg1 fromXMLUnarchiver:(id)arg2;
@@ -46,7 +54,6 @@
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 - (id)xmlData;
-- (void)saveToPlaygroundXMLElement:(id)arg1 playgroundFileWrapper:(id)arg2;
 @property(readonly) BOOL hasArchivableData;
 - (void)primitiveInvalidate;
 - (void)unregisterToy:(id)arg1 forResultsForChannelIdentifier:(id)arg2 subjectIdentifier:(id)arg3;
@@ -60,6 +67,7 @@
 - (void)executionGenerationDidEndAndCompleted:(BOOL)arg1;
 - (void)executionGenerationWillEnd;
 - (void)beginExecutionGeneration:(unsigned long long)arg1 isReplayingSerializedResults:(BOOL)arg2;
+- (void)registerToyNotifications;
 - (id)initWithDelegate:(id)arg1;
 - (id)init;
 

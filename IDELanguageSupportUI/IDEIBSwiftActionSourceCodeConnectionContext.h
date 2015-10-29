@@ -11,7 +11,6 @@
 }
 
 + (id)defaultType;
-+ (Class)sourceCodeGeneratorClass;
 - (id)sourceCodeInsertionOptions;
 - (id)representativeCounterpart;
 - (BOOL)parseSourceLandmarkItem:(id)arg1;

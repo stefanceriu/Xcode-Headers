@@ -16,11 +16,17 @@
     NSSet *_embeddingPolicyExtensions;
 }
 
-+ (id)idiomForCompiledDocumentVariantIdentifier:(id)arg1;
++ (id)idiomExplicitlyTargetedByFilePath:(id)arg1;
++ (id)idiomForTargetDeviceIdentifier:(id)arg1;
 + (id)instanceWithIdentifier:(id)arg1;
 + (id)allInstances;
 + (id)sharedInstance;
 - (void).cxx_destruct;
+- (double)effectiveScaleFactorForPlatformToolDescriptionScaleFactor:(double)arg1;
+- (id)systemGuideSetsByIdentifier;
+- (id)guideSetForIdentifier:(id)arg1;
+- (id)designablesAgentApplicationName;
+- (id)designablesAgentName;
 - (void)populateVariantForResolvingMediaResources:(id)arg1 forDocument:(id)arg2;
 - (id)variantForResolvingMediaResourcesForDocument:(id)arg1;
 - (BOOL)allowsEditingConfigurations;
@@ -35,7 +41,6 @@
 - (id)extensionsForExtensionPoint:(id)arg1;
 - (BOOL)matchesExtension:(id)arg1;
 - (BOOL)wantsDefaultMatchesForExtension:(id)arg1;
-- (Class)storyboardMainEntryPointIndicatorClass;
 - (Class)storyboardVerifierClass;
 - (Class)xibVerifierClass;
 - (Class)storyboardCompilerClass;
@@ -58,19 +63,16 @@
 - (id)backwardsDeploymentConfiguration;
 - (BOOL)isInspectorCategoryExtensionApplicable:(id)arg1;
 - (BOOL)isApplicableForObjectLibraryAssetProviderExtension:(id)arg1;
-- (id)compiledFilePathForVariant:(id)arg1 originalOutputPath:(id)arg2;
-- (BOOL)shouldCopySeparateStringsFilesForDocument:(id)arg1 withTargetVariants:(id)arg2;
-- (BOOL)shouldCompileSeparateTopLevelPackagesForDocument:(id)arg1 withTargetVariants:(id)arg2;
-- (id)compiledDocumentVariantSuffixSeparator;
-- (id)explicitCompiledDocumentVariantIdentifierForOutputPath:(id)arg1;
-- (id)implicitCompiledVariantIdentifiersForDocument:(id)arg1;
-- (id)allCompiledDocumentVariantIdentifiers;
+- (BOOL)matchesFilePath:(id)arg1;
+- (id)filePathWithTargetDeviceSuffixForBaseFilePath:(id)arg1;
 - (id)unsupportedSegueClasses;
 - (id)inspectorSearchDataManager;
 - (BOOL)supportsConnectionClass:(Class)arg1;
 - (double)defaultOverviewZoomFactor;
 - (id)pluginName;
 - (id)icon;
+- (id)targetDeviceFileNameSuffix;
+- (id)buildSystemTargetDeviceIdentifier;
 - (id)idiomName;
 - (id)identifier;
 - (id)platform;

@@ -9,8 +9,8 @@
 @class DVTDeveloperAccount, NSData, NSString;
 
 @protocol DVTDirectoryServicesSessionDescription <NSObject>
-@property(readonly, copy) NSData *sessionData;
-@property(readonly, copy) NSString *sessionID;
+@property(readonly, copy, nonatomic) NSData *sessionData;
+@property(readonly, copy, nonatomic) NSString *sessionID;
 @property(readonly, nonatomic) DVTDeveloperAccount *account;
 @end
 

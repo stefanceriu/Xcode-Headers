@@ -27,9 +27,6 @@
     IDESourceControlUIHandler *_sourceControlUIHandler;
     DVTDelayedInvocation *_tabStateContextDelayedSaveInvocation;
     NSMutableDictionary *_tabStateContextForTabNameMap;
-    NSString *_licenseAgreementPath;
-    DVTObservingToken *_hotKeyToEnableFloatingDebuggerToken;
-    DVTObservingToken *_currentPreferenceSetObservationToken;
     DVTObservingToken *_lastActiveEditorToken;
     DVTNotificationToken *_lastActiveEditorContextNotificationToken;
     id _keyBindingSetWillActivateObserver;
@@ -52,7 +49,7 @@
 - (id)_tabStateContextForTabNameMapByInstantiatingIfNeeded;
 - (id)_tabStateContextForTabNameMapFromFilePath:(id)arg1;
 - (BOOL)_saveTabStateContextForTabNameMapToFilePath:(id)arg1;
-@property(readonly) NSString *licenseAgreementPath;
+- (id)licenseAgreementPathOfType:(id)arg1;
 @property(readonly) NSString *formattedApplicationVersion;
 - (void)updateDebugMenuIfNeeded;
 - (void)editorMenuWillOpen:(id)arg1;
@@ -86,8 +83,6 @@
 - (unsigned long long)_shouldTerminateClosingDocuments;
 - (void)menuNeedsUpdate:(id)arg1;
 - (void)menuWillOpen:(id)arg1;
-- (void)_updateGlobalHotKeyToEnableFloatingDebugger:(id)arg1;
-- (void)_currentPreferenceSetChanged;
 - (void)applicationDidFinishLaunching:(id)arg1;
 - (void)applicationIsTerminating:(id)arg1;
 - (void)_incrementCountForKey:(id)arg1 in:(id)arg2;

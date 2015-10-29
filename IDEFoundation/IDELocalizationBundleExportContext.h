@@ -6,9 +6,11 @@
 
 #import <IDEFoundation/IDELocalizationWorkContext.h>
 
+#import "IDELocalizationWorkProvider.h"
+
 @class IDEContainer<IDELocalizedContainer>, NSArray, NSString, NSURL;
 
-@interface IDELocalizationBundleExportContext : IDELocalizationWorkContext
+@interface IDELocalizationBundleExportContext : IDELocalizationWorkContext <IDELocalizationWorkProvider>
 {
     NSURL *_destinationUrl;
     IDEContainer<IDELocalizedContainer> *_container;
@@ -16,11 +18,13 @@
     NSArray *_targetLanguages;
 }
 
++ (id)contextWithParent:(id)arg1 destinationUrl:(id)arg2 container:(id)arg3 sourceLanguage:(id)arg4 targetLanguages:(id)arg5;
 @property(retain) NSArray *targetLanguages; // @synthesize targetLanguages=_targetLanguages;
 @property(retain) NSString *sourceLanguage; // @synthesize sourceLanguage=_sourceLanguage;
 @property(retain) IDEContainer<IDELocalizedContainer> *container; // @synthesize container=_container;
 @property(retain) NSURL *destinationUrl; // @synthesize destinationUrl=_destinationUrl;
 - (void).cxx_destruct;
+- (id)work;
 - (void)primitiveInvalidate;
 
 @end

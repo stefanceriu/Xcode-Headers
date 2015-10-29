@@ -6,23 +6,22 @@
 
 #import <IDEFoundation/IDEIssueProvider.h>
 
-@class DVTMapTable, DVTObservingToken, IDEBuildOperation, IDELogStore, NSMutableArray, NSMutableSet;
+@class DVTObservingToken, DVTTimeSlicedMainThreadWorkQueue, IDEBuildOperation, IDELogStore, NSMapTable, NSMutableSet;
 
 @interface IDEBuildIssueProvider : IDEIssueProvider
 {
-    DVTMapTable *_blueprintToLatestLogSectionObserverMap;
-    DVTMapTable *_buildLogToLogNotificationObserverMap;
-    DVTMapTable *_blueprintToLatestBuildLogSectionMap;
-    DVTMapTable *_blueprintToLogRecordsMap;
-    DVTMapTable *_blueprintToIssuesForFileMap;
-    DVTMapTable *_blueprintToAuxiliaryFilesForFileMap;
-    DVTMapTable *_haveRemovedIssuesForFileInBlueprintMap;
+    NSMapTable *_blueprintToLatestLogSectionObserverMap;
+    NSMapTable *_buildLogToLogNotificationObserverMap;
+    NSMapTable *_blueprintToLatestBuildLogSectionMap;
+    NSMapTable *_blueprintToLogRecordsMap;
+    NSMapTable *_blueprintToIssuesForFileMap;
+    NSMapTable *_blueprintToAuxiliaryFilesForFileMap;
+    NSMapTable *_haveRemovedIssuesForFileInBlueprintMap;
     DVTObservingToken *_activeBuildOperationStateObserverToken;
     IDEBuildOperation *_activeBuildOperation;
     NSMutableSet *_pendingLogSections;
     IDELogStore *_logStore;
-    BOOL _changeNotificationPending;
-    NSMutableArray *_pendingChanges;
+    DVTTimeSlicedMainThreadWorkQueue *_buildIssueChangesToPost;
 }
 
 + (int)providerType;

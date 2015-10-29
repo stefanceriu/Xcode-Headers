@@ -11,8 +11,11 @@
 @interface IDEInspectorListProperty : IDEInspectorProperty
 {
     IDEInspectorKeyPath *_listContentKeyPath;
+    IDEInspectorKeyPath *_correspondingObjectsKeyPath;
     IDEInspectorKeyPath *_valueKeyPath;
+    IDEInspectorKeyPath *_placeholderKeyPath;
     NSString *_placeholder;
+    BOOL _allowsNilValues;
     NSComboBox *_comboBox;
 }
 

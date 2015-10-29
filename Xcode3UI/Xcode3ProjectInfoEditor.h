@@ -81,6 +81,9 @@
 @property(readonly) NSArray *iOSProjectDeploymentOSVersions;
 @property(copy) id macOSProjectDeploymentOS;
 @property(readonly) NSArray *macOSProjectDeploymentOSVersions;
+- (void)setProjectDeploymentOS:(id)arg1 forPlatform:(id)arg2;
+- (id)projectDeploymentOSForPlatform:(id)arg1;
+- (id)projectDeploymentOSVersionsForPlatform:(id)arg1;
 - (void)changeIPhoneBaseSDK:(id)arg1;
 - (void)changeMacOSXBaseSDK:(id)arg1;
 - (void)internationalize:(id)arg1;
@@ -92,7 +95,6 @@
 - (void)addConfiguration:(id)arg1;
 - (void)addConfigurationFromEditorMenu:(id)arg1;
 - (void)beginSheetModalUsingAlert:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-- (void)alertWithCompletionBlockDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)buildSettingDidChange:(id)arg1;
 - (void)projectNameDidChange:(id)arg1;
 - (void)referenceWillBeRemovedFromProject:(id)arg1;
@@ -112,6 +114,7 @@
 - (id)_targetForAction:(SEL)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)tableViewSelectionDidChange:(id)arg1;
+- (void)updateForTableViewSelectionChange;
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (void)_removeBaseLocalization;

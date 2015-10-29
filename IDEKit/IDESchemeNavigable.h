@@ -10,7 +10,6 @@
 {
 }
 
-+ (id)iconForBuildable:(id)arg1 navigableItemCoordinator:(id)arg2;
 + (id)iconForBuildable:(id)arg1;
 + (id)schemeTitleErrorSuffixAttributedString;
 + (id)keyPathsForValuesAffectingName;
@@ -18,6 +17,7 @@
 - (BOOL)isLeaf;
 - (id)image;
 - (id)name;
+- (id)scheme;
 - (id)initWithRepresentedObject:(id)arg1;
 
 @end

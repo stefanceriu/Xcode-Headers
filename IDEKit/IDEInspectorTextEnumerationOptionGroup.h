@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class IDEInspectorKeyPath, NSArray;
+@class IDEInspectorKeyPath, NSArray, NSString;
 
 @interface IDEInspectorTextEnumerationOptionGroup : NSObject
 {
     BOOL _dynamic;
+    NSString *_title;
     IDEInspectorKeyPath *_valuesKeyPath;
     IDEInspectorKeyPath *_displayValueKeyPath;
     IDEInspectorKeyPath *_displayImagesKeyPath;
@@ -23,6 +24,7 @@
 @property(readonly) IDEInspectorKeyPath *displayImagesKeyPath; // @synthesize displayImagesKeyPath=_displayImagesKeyPath;
 @property(readonly) IDEInspectorKeyPath *displayValueKeyPath; // @synthesize displayValueKeyPath=_displayValueKeyPath;
 @property(readonly) IDEInspectorKeyPath *valuesKeyPath; // @synthesize valuesKeyPath=_valuesKeyPath;
+@property(readonly) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
 - (id)initWithXMLElement:(id)arg1 targettingInspectorProperty:(id)arg2;
 

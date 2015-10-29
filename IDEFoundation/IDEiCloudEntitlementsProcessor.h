@@ -12,7 +12,9 @@
 {
 }
 
++ (id)availableOptionsForPropertyList;
 - (BOOL)runWithError:(id *)arg1;
+- (BOOL)loadFromPropertyList:(id)arg1 error:(id *)arg2;
 @property(retain, nonatomic) NSString *selectedEnvironment;
 @property(readonly, nonatomic) NSArray *availableEnvironments;
 - (BOOL)isApplicable;

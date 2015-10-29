@@ -8,13 +8,13 @@
 
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTMapTable, IDEFileReference, NSArray, NSImage, NSMutableArray, NSString;
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSMapTable, NSMutableArray, NSString;
 
 @interface IDESingleFileProcessingItemGroup : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSMutableArray *_singleFileProcessingItems;
-    DVTMapTable *_workspaceToItemMapTable;
-    DVTMapTable *_workspaceToInvalidationObserverTable;
+    NSMapTable *_workspaceToItemMapTable;
+    NSMapTable *_workspaceToInvalidationObserverTable;
     DVTFileDataType *_type;
     NSString *_name;
     Class _contentProviderClass;

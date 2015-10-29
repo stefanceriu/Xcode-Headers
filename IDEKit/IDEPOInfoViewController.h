@@ -21,8 +21,8 @@
 }
 
 - (void).cxx_destruct;
-- (void)deleteAllSnapshotsAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
-- (void)deleteBuildArenaAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)_deleteAllSnapshotsAlertDidEndWithReturnCode:(long long)arg1;
+- (void)_deleteBuildArenaAlertDidEndWithReturnCode:(long long)arg1;
 - (void)deleteAllSnapshots:(id)arg1;
 - (void)deleteDerivedData:(id)arg1;
 - (void)primitiveInvalidate;

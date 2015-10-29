@@ -6,7 +6,7 @@
 
 #import <IDEFoundation/IDEArchivedContent.h>
 
-@class DVTFilePath, DVTPlatform, NSArray, NSString;
+@class DVTFilePath, DVTPlatform, NSString;
 
 @interface IDEArchivedApplication : IDEArchivedContent
 {
@@ -24,7 +24,6 @@
 - (BOOL)supportsPackagingAsFormat:(long long)arg1;
 - (id)packager;
 - (id)platformName;
-@property(readonly) NSArray *iconPaths;
 @property(readonly) DVTFilePath *applicationPath;
 @property(readonly) NSString *signingIdentity;
 

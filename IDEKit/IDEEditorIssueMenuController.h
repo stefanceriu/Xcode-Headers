@@ -14,6 +14,7 @@
 
 @interface IDEEditorIssueMenuController : NSObject <IDEEditorMenuStepperViewDelegate, NSMenuDelegate, DVTInvalidation>
 {
+    BOOL _menuIsShowing;
     IDEIssueManager *_issueManager;
     IDEEditorContext *_editorContext;
     IDEEditorMenuStepperView *_issueMenuView;
@@ -50,6 +51,8 @@
 - (void)_issueMenuAction:(id)arg1;
 - (void)_navigateToIssue:(id)arg1 fixIt:(BOOL)arg2;
 - (void)menuNeedsUpdate:(id)arg1;
+- (void)menuDidClose:(id)arg1;
+- (void)menuWillOpen:(id)arg1;
 - (void)_updateIssueMenuViewVisibility;
 - (id)issueMenuView;
 - (void)_updateIssues;

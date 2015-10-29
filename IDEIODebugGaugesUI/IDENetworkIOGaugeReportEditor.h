@@ -8,14 +8,14 @@
 
 #import "IDEDebugGaugeReportContentDelegate.h"
 #import "IDEDebugGaugeReportTopSectionContentDelegate.h"
+#import "IDEGaugeCollectedDataListeners.h"
 #import "IDEGraphDelegate.h"
-#import "IDEIOGaugeCollectedDataListeners.h"
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 
 @class IDEDebugGaugeReportByteStatisticsViewController, IDEDebugGaugeReportEntityListViewController, IDEDebugGaugeReportThroughputGaugeViewController, IDEDebugGaugeStatisticsByteRateFormatter, IDEGraphChart, IDENetworkIOGaugeDebuggingAddition, NSArray, NSButton, NSNumberFormatter, NSSegmentedControl, NSString;
 
-@interface IDENetworkIOGaugeReportEditor : IDEDebugGaugeReportEditor <NSTableViewDataSource, NSTableViewDelegate, IDEDebugGaugeReportContentDelegate, IDEDebugGaugeReportTopSectionContentDelegate, IDEGraphDelegate, IDEIOGaugeCollectedDataListeners>
+@interface IDENetworkIOGaugeReportEditor : IDEDebugGaugeReportEditor <NSTableViewDataSource, NSTableViewDelegate, IDEDebugGaugeReportContentDelegate, IDEDebugGaugeReportTopSectionContentDelegate, IDEGraphDelegate, IDEGaugeCollectedDataListeners>
 {
     BOOL _showPackets;
     IDENetworkIOGaugeDebuggingAddition *_debuggingAddition;

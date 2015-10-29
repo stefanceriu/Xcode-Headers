@@ -30,6 +30,7 @@
     GPUTraceSession *_traceSession;
 }
 
++ (Class)renderJobClass;
 + (Class)imageResourceSettingBubbleClass;
 + (Class)textureInfoBubbleClass;
 + (Class)depthStencilInfoBubbleClass;

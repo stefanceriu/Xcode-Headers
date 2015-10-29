@@ -6,13 +6,10 @@
 
 #import "NSObject.h"
 
-@class DVTDispatchLock, IDESourceControlExtension, IDESourceControlRepository, NSDate, NSMutableArray, NSString;
+@class DVTDispatchLock, DVTSourceControlBranchAndTagLocations, IDESourceControlExtension, IDESourceControlRepository, NSDate, NSMutableArray, NSString;
 
 @interface IDESourceControlWorkingCopyConfiguration : NSObject
 {
-    NSString *_relativeTrunkLocation;
-    NSString *_relativeBranchesLocation;
-    NSString *_relativeTagsLocation;
     NSMutableArray *_branches;
     DVTDispatchLock *_branchesLock;
     NSDate *_branchesInvalidationDate;
@@ -20,17 +17,18 @@
     NSString *_name;
     NSString *_uniqueIdentifier;
     IDESourceControlExtension *_sourceControlExtension;
+    DVTSourceControlBranchAndTagLocations *_branchAndTagLocations;
     NSString *_remoteDistributedOrigin;
 }
 
 @property(copy) NSString *remoteDistributedOrigin; // @synthesize remoteDistributedOrigin=_remoteDistributedOrigin;
+@property(retain) DVTSourceControlBranchAndTagLocations *branchAndTagLocations; // @synthesize branchAndTagLocations=_branchAndTagLocations;
 @property(retain) IDESourceControlExtension *sourceControlExtension; // @synthesize sourceControlExtension=_sourceControlExtension;
 @property(readonly) NSString *uniqueIdentifier; // @synthesize uniqueIdentifier=_uniqueIdentifier;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(retain) IDESourceControlRepository *repository; // @synthesize repository=_repository;
 - (void).cxx_destruct;
 - (id)removeBranchWithName:(id)arg1 message:(id)arg2 force:(BOOL)arg3 completionBlock:(CDUnknownBlockType)arg4;
-- (id)newBranchWithName:(id)arg1 source:(id)arg2 message:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)branchesForRemote:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (id)branchesWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)_branchesWithToken:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
@@ -40,16 +38,15 @@
 - (id)automaticallyConfigureSVNLocationsForOrigin:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (void)_automaticallyConfigureSVNLocationsForOrigin:(id)arg1 withToken:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)_searchRelativeLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-@property(copy) NSString *relativeTagsLocation; // @synthesize relativeTagsLocation=_relativeTagsLocation;
-@property(copy) NSString *relativeTrunkLocation; // @synthesize relativeTrunkLocation=_relativeTrunkLocation;
-@property(copy) NSString *relativeBranchesLocation; // @synthesize relativeBranchesLocation=_relativeBranchesLocation;
+@property(copy) NSString *relativeTagsLocation;
+@property(copy) NSString *relativeTrunkLocation;
+@property(copy) NSString *relativeBranchesLocation;
 - (id)_stripBaseURLOrStartingSlash:(id)arg1;
 - (id)tagsLocation;
 - (id)trunkLocation;
 - (id)branchesLocation;
 - (id)_createBranchingURLWithRelativePath:(id)arg1;
 - (id)removeRemoteWithName:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (id)newRemoteWithName:(id)arg1 location:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)remotesWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)description;
 @property(readonly) BOOL needsConfiguring;

@@ -22,12 +22,12 @@
     unsigned long long _rotation;
     unsigned long long _cpuCacheMode;
     unsigned long long _purgeableState;
-    unsigned long long _resourceOptions;
+    unsigned long long _storageMode;
     unsigned long long _sampleCount;
 }
 
 @property(readonly, nonatomic) unsigned long long sampleCount; // @synthesize sampleCount=_sampleCount;
-@property(readonly, nonatomic) unsigned long long resourceOptions; // @synthesize resourceOptions=_resourceOptions;
+@property(readonly, nonatomic) unsigned long long storageMode; // @synthesize storageMode=_storageMode;
 @property(readonly, nonatomic) unsigned long long purgeableState; // @synthesize purgeableState=_purgeableState;
 @property(readonly, nonatomic) unsigned long long cpuCacheMode; // @synthesize cpuCacheMode=_cpuCacheMode;
 @property(readonly, nonatomic) BOOL zeroFill; // @synthesize zeroFill=_zeroFill;
@@ -45,6 +45,7 @@
 @property(readonly, nonatomic) BOOL isCubemap; // @dynamic isCubemap;
 - (id)textureImageForMipmapLevel:(int)arg1 layer:(int)arg2;
 @property(readonly, nonatomic) id <DYTextureImage> firstValidTextureImage; // @dynamic firstValidTextureImage;
+@property(readonly, nonatomic) unsigned long long cachingCost;
 - (id)initWithResourceObject:(id)arg1 functionStream:(id)arg2 dataResolver:(CDUnknownBlockType)arg3;
 - (id)_initWithTexture:(id)arg1 isStatic:(BOOL)arg2;
 - (id)initWithProperties:(id)arg1;

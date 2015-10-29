@@ -28,6 +28,7 @@
     DVTPerformanceMetric *_currentMetric;
     int _pendingRequestState;
     BOOL _generatingCompletions;
+    double _startGeneratingCompletionsTime;
     BOOL _insertingFullCompletion;
     BOOL _insertingPartialCompletion;
     BOOL _hidingCompletions;
@@ -35,12 +36,25 @@
     BOOL _shownExplicitly;
     NSDictionary *_currentCompletionContext;
     NSArray *_highlyLikelyCompletions;
+    long long _fuzzyMode;
 }
 
 + (void)_addToRecentCompletions:(id)arg1;
++ (id)notRecommendedStrikeThroughColor;
++ (long long)defaultTextCompletionMode;
++ (void)setDefaultTextCompletionMode:(long long)arg1;
++ (id)infrequentTextCompletionsSetForLanguage:(id)arg1;
++ (id)infrequentTextCompletionsForLanguage:(id)arg1;
++ (id)frequentTextCompletionsSetForLanguage:(id)arg1;
++ (id)frequentTextCompletionsForLanguage:(id)arg1;
++ (id)_frequentTextCompletionsDictionaryForLanguage:(id)arg1;
++ (void)_appendFrequentTextCompletions:(id)arg1 named:(id)arg2 inBundle:(id)arg3;
 + (void)initialize;
 + (id)keyPathsForValuesAffectingReadyToShowCompletions;
+@property(readonly) long long fuzzyMode; // @synthesize fuzzyMode=_fuzzyMode;
+@property(copy) NSString *filteringPrefix; // @synthesize filteringPrefix=_filteringPrefix;
 @property(retain) NSArray *highlyLikelyCompletions; // @synthesize highlyLikelyCompletions=_highlyLikelyCompletions;
+@property(getter=isShownExplicitly) BOOL shownExplicitly; // @synthesize shownExplicitly=_shownExplicitly;
 @property(readonly, nonatomic) NSDictionary *currentCompletionContext; // @synthesize currentCompletionContext=_currentCompletionContext;
 @property BOOL autoCompleteTimerExpired; // @synthesize autoCompleteTimerExpired=_autoCompleteTimerExpired;
 @property(nonatomic) long long selectedCompletionIndex; // @synthesize selectedCompletionIndex=_selectedCompletionIndex;
@@ -65,9 +79,11 @@
 - (unsigned long long)_bestMatchInSortedArray:(id)arg1 usingPrefix:(id)arg2 highlyLikelyCompletions:(id)arg3;
 - (long long)_priorityBucketForItem:(id)arg1 usingPrefix:(id)arg2;
 - (double)_intrinsicPriorityForItem:(id)arg1 usingPrefix:(id)arg2;
+- (id)filterCompletionItems:(id)arg1 openQuicklyPattern:(id)arg2;
+- (id)_doFilterCompletionItems:(id)arg1 range:(struct _NSRange)arg2 openQuicklyPattern:(id)arg3;
 - (void)_setFilteringPrefix:(id)arg1 forceFilter:(BOOL)arg2;
 - (void)_ensureCompletionsUpToDate;
-- (void)_endCodeCompletionStatistic:(double)arg1;
+- (void)_endCodeCompletionStatistic;
 - (id)attributesForCompletionAtCharacterIndex:(unsigned long long)arg1 effectiveRange:(struct _NSRange *)arg2;
 - (BOOL)_gotUsefulCompletionsToShowInList:(id)arg1;
 - (BOOL)_shouldSetCursorLocation:(unsigned long long)arg1;
@@ -105,6 +121,7 @@
 - (id)_listWindowController;
 - (void)setPendingRequestState:(int)arg1;
 @property(readonly, getter=isShowingCompletions) BOOL showingCompletions;
+@property(readonly) BOOL shouldShowInlinePreview;
 - (id)initWithTextView:(id)arg1 atLocation:(unsigned long long)arg2 cursorLocation:(unsigned long long)arg3;
 - (id)init;
 

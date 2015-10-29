@@ -8,10 +8,11 @@
 
 #import "IDEDebuggingAdditionUIController.h"
 
-@class DVTExtension, DVTStackBacktrace, IDEDebugGaugeTrayCell, IDEEnergyAddition, IDEWorkspaceTabController, NSString;
+@class DVTExtension, DVTStackBacktrace, IDEDebugGaugeTrayCell, IDEEnergyAddition, IDEGaugeDocumentLocation, IDEWorkspaceTabController, NSString;
 
 @interface IDEEnergyAdditionUIController : NSObject <IDEDebuggingAdditionUIController>
 {
+    IDEGaugeDocumentLocation *_gaugeDocumentLocation;
     DVTExtension *_extension;
     IDEWorkspaceTabController *_workspaceTabController;
     IDEDebugGaugeTrayCell *_trayCell;
@@ -28,10 +29,7 @@
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)_handleMetricsUpdate:(id)arg1;
-- (void)openSelectedNavigableItem:(id)arg1 withEventType:(unsigned long long)arg2;
-- (id)launchSessionForSelectedRepresentedObject:(id)arg1;
 - (id)trayCellForNavigationProcessHeader;
-- (BOOL)wantsTrayAreaForNavigationProcessHeader;
 - (id)initWithWorkspaceTabController:(id)arg1 withDebuggingAddition:(id)arg2 forExtension:(id)arg3;
 
 // Remaining properties

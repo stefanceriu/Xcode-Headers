@@ -11,7 +11,6 @@
 }
 
 + (id)keyPathsForValuesAffectingSubtitle;
-- (BOOL)isMajorGroup;
 - (id)subtitle;
 
 @end

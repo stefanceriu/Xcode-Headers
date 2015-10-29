@@ -22,7 +22,6 @@ __attribute__((visibility("hidden")))
     struct dy_transport_message_unpack_s *_relayTmu;
 }
 
-- (id).cxx_construct;
 - (long long)_relayBuffer:(const void *)arg1 size:(unsigned long long)arg2;
 - (long long)_relayBufferInner:(const void *)arg1 size:(unsigned long long)arg2;
 - (long long)_sendMessage:(id)arg1 error:(id *)arg2;

@@ -6,23 +6,23 @@
 
 #import <DebuggerUI/DBGSimpleNode.h>
 
-@class DBGOffScreenPositionCalculator, NSMutableArray;
+@class NSMutableArray;
 
 @interface DBGNode : DBGSimpleNode
 {
     BOOL _ignoreForRepositioning;
+    int _zIndex;
     DBGSimpleNode *_contentHostNode;
     DBGSimpleNode *_attachmentHostNode;
     NSMutableArray *_nodesPositionInfluenced;
-    DBGOffScreenPositionCalculator *_positionCalculator;
 }
 
 + (id)nodeWithGeometry:(id)arg1;
 + (id)nodeWithIdentifier:(id)arg1;
 + (id)node;
-@property(retain) DBGOffScreenPositionCalculator *positionCalculator; // @synthesize positionCalculator=_positionCalculator;
 @property(retain) NSMutableArray *nodesPositionInfluenced; // @synthesize nodesPositionInfluenced=_nodesPositionInfluenced;
 @property BOOL ignoreForRepositioning; // @synthesize ignoreForRepositioning=_ignoreForRepositioning;
+@property int zIndex; // @synthesize zIndex=_zIndex;
 @property(retain) DBGSimpleNode *attachmentHostNode; // @synthesize attachmentHostNode=_attachmentHostNode;
 @property(retain) DBGSimpleNode *contentHostNode; // @synthesize contentHostNode=_contentHostNode;
 - (void).cxx_destruct;

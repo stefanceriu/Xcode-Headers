@@ -30,6 +30,7 @@ __attribute__((visibility("hidden")))
 - (void)_removeDebugAdditionObserversForLaunchSession:(id)arg1;
 - (id)logRecords;
 - (void)primitiveInvalidate;
+- (void)_cancelAllDebugAdditionObservers;
 - (id)initWithDomainItem:(id)arg1;
 
 @end

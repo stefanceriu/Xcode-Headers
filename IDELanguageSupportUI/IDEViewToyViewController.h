@@ -15,12 +15,14 @@
     NSView *_layerContainerView;
     CAPluginLayer *_pluginLayer;
     CALayer *_snapshotLayer;
+    struct CGSize _remoteViewSize;
 }
 
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
+- (void)viewWillLayout;
 - (void)updateViewForRemoteViewSize:(struct CGSize)arg1;
 - (void)loadView;
 - (void)switchToLayer:(id)arg1;
@@ -28,6 +30,7 @@
 - (double)preferredVerticalInset;
 - (double)preferredHorizontalInset;
 - (struct CGSize)preferredContentSizeConstrainedToSize:(struct CGSize)arg1;
+- (unsigned long long)representationType;
 - (id)titleForDisplay;
 @property(readonly) IDEViewToy *viewToy;
 

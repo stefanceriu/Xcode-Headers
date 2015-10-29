@@ -25,6 +25,7 @@
 - (id)responseBySendingRequestWithError:(id *)arg1;
 - (id)_urlSessionConfiguration;
 - (id)_additionalHTTPHeaders;
+- (id)_credentials;
 - (id)requestURL;
 - (id)_analyticsAPIVersion;
 - (id)_analyticsServiceHostname;

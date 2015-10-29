@@ -10,10 +10,14 @@
 #import "IDEDocContentView.h"
 #import "NSPopoverDelegate.h"
 #import "NSSplitViewDelegate.h"
+#import "WebFrameLoadDelegate.h"
+#import "WebPolicyDelegate.h"
+#import "WebResourceLoadDelegate.h"
+#import "WebUIDelegate.h"
 
 @class DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTSplitView, DVTSplitViewItem, DVTStackBacktrace, IDEDocContentAreaViewController, NSString, NSView, WebView;
 
-@interface IDEDocWebViewContentViewController : DVTViewController <NSPopoverDelegate, DOMEventListener, NSSplitViewDelegate, IDEDocContentView>
+@interface IDEDocWebViewContentViewController : DVTViewController <NSPopoverDelegate, DOMEventListener, NSSplitViewDelegate, WebFrameLoadDelegate, WebPolicyDelegate, WebUIDelegate, WebResourceLoadDelegate, IDEDocContentView>
 {
     double _cumulativeMagnifyDelta;
     short _stickyTextMagnifyGestureDirection;

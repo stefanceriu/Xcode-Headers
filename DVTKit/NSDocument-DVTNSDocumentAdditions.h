@@ -7,6 +7,7 @@
 #import "NSDocument.h"
 
 @interface NSDocument (DVTNSDocumentAdditions)
+- (BOOL)dvt_shouldShowDocumentDirtyState;
 - (BOOL)dvt_hasBeenEditedSinceLastUserInitiatedSave;
 @end
 

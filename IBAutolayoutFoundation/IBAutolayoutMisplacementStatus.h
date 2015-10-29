@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSObject<IBAutolayoutItem>;
+#import "IBBinaryArchiving.h"
 
-@interface IBAutolayoutMisplacementStatus : NSObject
+@class NSObject<IBAutolayoutItem>, NSString;
+
+@interface IBAutolayoutMisplacementStatus : NSObject <IBBinaryArchiving>
 {
     NSObject<IBAutolayoutItem> *_view;
     struct CGRect _expectedLayoutFrameOrBounds;
@@ -19,20 +21,27 @@
 @property(readonly, nonatomic) struct CGRect expectedLayoutFrameOrBounds; // @synthesize expectedLayoutFrameOrBounds=_expectedLayoutFrameOrBounds;
 @property(readonly, nonatomic) NSObject<IBAutolayoutItem> *view; // @synthesize view=_view;
 - (void).cxx_destruct;
+- (id)misplacementStatusByIgnoringSize;
+- (id)misplacementStatusByIgnoringPosition;
 - (BOOL)isEqualToMisplacementStatus:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
-- (id)description;
+@property(readonly) unsigned long long hash;
+@property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) BOOL hasAnyMisplacement;
 - (BOOL)hasMisplacedSizeInOrientation:(unsigned long long)arg1;
 - (BOOL)hasMisplacedPositionInOrientation:(unsigned long long)arg1;
 @property(readonly, nonatomic) BOOL hasMisplacedVerticalSize;
 @property(readonly, nonatomic) BOOL hasMisplacedHorizontalSize;
 @property(readonly, nonatomic) BOOL hasMisplacedVerticalPosition;
 @property(readonly, nonatomic) BOOL hasMisplacedHorizontalPosition;
-- (id)representationWithObjectRepresentationForObjectBlock:(CDUnknownBlockType)arg1;
-- (id)initWithRepresentation:(id)arg1 objectForObjectRepresentationBlock:(CDUnknownBlockType)arg2;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithView:(id)arg1 expectedLayoutFrameOrBounds:(struct CGRect)arg2 actualLayoutFrameOrBounds:(struct CGRect)arg3;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

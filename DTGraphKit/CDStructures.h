@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSCache, NSColor, NSImage, NSMutableDictionary;
+@class NSCache, NSColor, NSFont, NSImage, NSMutableDictionary;
 
 #pragma mark Blocks
 
@@ -55,11 +55,11 @@ struct DTTimelineDecorationContainer {
     _Bool _field2;
     unsigned long long _field3;
     struct deque<XRTimeRange, std::__1::allocator<XRTimeRange>> _field4;
-    float _field5;
-    struct XRTimeRange _field6;
-    struct DecorationContainer _field7;
-    struct Adder _field8;
-    struct unique_ptr<DTTimelineDecorationEnumerator, std::__1::default_delete<DTTimelineDecorationEnumerator>> _field9;
+    struct XRTimeRange _field5;
+    struct DecorationContainer _field6;
+    struct Adder _field7;
+    struct unique_ptr<DTTimelineDecorationEnumerator, std::__1::default_delete<DTTimelineDecorationEnumerator>> _field8;
+    id _field9;
     int _field10;
 };
 
@@ -74,27 +74,38 @@ struct DTTimelineRepresentativeDecoration {
     long long value;
     unsigned long long label;
     struct XRTimeRange timeRange;
-    unsigned long long decorationCount;
+    unsigned int decorationCount;
+    char heterogeneousLabel;
 };
 
 struct DecorationContainer {
     _Bool _field1;
-    struct TileMetrics _field2;
-    struct StringIslandSet _field3;
-    struct PointIslandSet _field4;
-    struct IntervalIslandSet _field5;
+    _Bool _field2;
+    struct TileMetrics _field3;
+    struct StringIslandSet _field4;
+    struct PointIslandSet _field5;
+    struct IntervalIslandSet _field6;
 };
 
 struct DrawablesSettings {
+    NSColor *defaultColor;
+    NSFont *defaultFont;
+    double defaultFontHeight;
+    NSColor *defaultTextColor;
+    NSImage *defaultImage;
+    struct CGSize defaultImageSize;
     struct {
         unsigned long long displayType;
         unsigned long long conflictResolutionType;
+        unsigned long long labelConflictResolutionType;
     } point;
     struct {
         unsigned long long displayType;
         unsigned long long conflictResolutionType;
+        unsigned long long labelConflictResolutionType;
         double visualSpacing;
         unsigned long long barWidth;
+        double roundedRectRadius;
     } interval;
 };
 
@@ -104,8 +115,8 @@ struct DynamicRange {
 };
 
 struct IntervalIslandSet {
-    struct TileMetrics *_field1;
-    struct map<DTTimelineInternal::Span, std::__1::shared_ptr<DTTimelineInternal::IntervalIsland>, std::__1::less<DTTimelineInternal::Span>, std::__1::allocator<std::__1::pair<const DTTimelineInternal::Span, std::__1::shared_ptr<DTTimelineInternal::IntervalIsland>>>> _field2;
+    struct map<DTTimelineInternal::Span, std::__1::shared_ptr<DTTimelineInternal::IntervalIsland>, std::__1::less<DTTimelineInternal::Span>, std::__1::allocator<std::__1::pair<const DTTimelineInternal::Span, std::__1::shared_ptr<DTTimelineInternal::IntervalIsland>>>> _field1;
+    struct TileMetrics *_field2;
     struct WingMetrics _field3;
 };
 
@@ -123,32 +134,31 @@ struct PlaneMetrics {
     struct DynamicRange _dynamicRange;
     struct ViewMetrics _currentViewMetrics;
     double _height;
-    NSColor *_color;
-    NSImage *_icon;
-    struct CGSize _iconSize;
     struct DrawablesSettings _drawablesSettings;
     char _decoratesMajorMinorTicks;
+    char _optionalContent;
+    char _ignoresTimeBoundsCheck;
     NSColor *_opaqueBackgroundColor;
     int _serialNumber;
+    double _maxStringWidthInPts;
 };
 
 struct PointIslandSet {
-    struct TileMetrics *_field1;
-    struct map<DTTimelineInternal::Span, std::__1::shared_ptr<DTTimelineInternal::PointIsland>, std::__1::less<DTTimelineInternal::Span>, std::__1::allocator<std::__1::pair<const DTTimelineInternal::Span, std::__1::shared_ptr<DTTimelineInternal::PointIsland>>>> _field2;
+    struct map<DTTimelineInternal::Span, std::__1::shared_ptr<DTTimelineInternal::PointIsland>, std::__1::less<DTTimelineInternal::Span>, std::__1::allocator<std::__1::pair<const DTTimelineInternal::Span, std::__1::shared_ptr<DTTimelineInternal::PointIsland>>>> _field1;
+    struct TileMetrics *_field2;
     struct WingMetrics _field3;
-    float _field4;
 };
 
 struct Span {
-    float _field1;
-    float _field2;
+    double _field1;
+    double _field2;
 };
 
 struct StringIslandSet {
-    struct TileMetrics *_field1;
-    struct map<DTTimelineInternal::Span, std::__1::shared_ptr<DTTimelineInternal::PointStringIsland>, std::__1::less<DTTimelineInternal::Span>, std::__1::allocator<std::__1::pair<const DTTimelineInternal::Span, std::__1::shared_ptr<DTTimelineInternal::PointStringIsland>>>> _field2;
+    struct map<DTTimelineInternal::Span, std::__1::shared_ptr<DTTimelineInternal::PointStringIsland>, std::__1::less<DTTimelineInternal::Span>, std::__1::allocator<std::__1::pair<const DTTimelineInternal::Span, std::__1::shared_ptr<DTTimelineInternal::PointStringIsland>>>> _field1;
+    struct TileMetrics *_field2;
     struct WingMetrics _field3;
-    float _field4;
+    double _field4;
 };
 
 struct TileMetrics {
@@ -175,15 +185,15 @@ struct ViewMetrics {
     unsigned long long _minorTickMarkDuration;
     unsigned long long _nanosecondsPerPoint;
     struct XRTimeRange _timeBounds;
-    struct shared_ptr<std::__1::unordered_map<int, CGRect, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, CGRect>>>> _planeLayoutMapPtr;
+    struct shared_ptr<const std::__1::unordered_map<int, CGRect, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, CGRect>>>> _planeLayoutMapPtr;
     double _visibleHeight;
     double _yOffset;
 };
 
 struct WingMetrics {
-    float _field1;
-    float _field2;
-    float _field3;
+    double _field1;
+    double _field2;
+    double _field3;
 };
 
 struct XRTimeRange {
@@ -196,7 +206,7 @@ struct _NSRange {
     unsigned long long _field2;
 };
 
-struct __hash_node<std::__1::__hash_value_type<float, NSImage *>, void *>;
+struct __hash_node<std::__1::__hash_value_type<double, NSImage *>, void *>;
 
 struct __hash_node<std::__1::__hash_value_type<int, CGRect>, void *>;
 
@@ -271,7 +281,7 @@ struct map<XRTimeRange, DTTimelineInspectionDecoration *, std::__1::less<XRTimeR
 
 struct pair<DTTimelineInternal::DynamicRange, NSArray *>;
 
-struct shared_ptr<std::__1::unordered_map<int, CGRect, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, CGRect>>>> {
+struct shared_ptr<const std::__1::unordered_map<int, CGRect, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, CGRect>>>> {
     unordered_map_c1fbcd3c *__ptr_;
     struct __shared_weak_count *__cntrl_;
 };
@@ -288,11 +298,11 @@ struct unique_ptr<DTTimelineDecorationEnumerator, std::__1::default_delete<DTTim
     } _field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<float, NSImage *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<float, NSImage *>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<float, NSImage *>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<float, NSImage *>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<float, NSImage *>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<float, NSImage *>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<float, NSImage *>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<double, NSImage *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<double, NSImage *>, void *>*>>> {
+    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<double, NSImage *>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<double, NSImage *>, void *>*>>> {
+        struct __hash_node<std::__1::__hash_value_type<double, NSImage *>, void *> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<double, NSImage *>, void *>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<double, NSImage *>, void *>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
@@ -321,18 +331,18 @@ struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned lon
     } __ptr_;
 };
 
-struct unordered_map<float, NSImage *, std::__1::hash<float>, std::__1::equal_to<float>, std::__1::allocator<std::__1::pair<const float, NSImage *>>> {
-    struct __hash_table<std::__1::__hash_value_type<float, NSImage *>, std::__1::__unordered_map_hasher<float, std::__1::__hash_value_type<float, NSImage *>, std::__1::hash<float>, true>, std::__1::__unordered_map_equal<float, std::__1::__hash_value_type<float, NSImage *>, std::__1::equal_to<float>, true>, std::__1::allocator<std::__1::__hash_value_type<float, NSImage *>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<float, NSImage *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<float, NSImage *>, void *>*>>> __bucket_list_;
-        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<float, NSImage *>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<float, NSImage *>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<float, NSImage *>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<float, NSImage *>, void *> *__next_;
+struct unordered_map<double, NSImage *, std::__1::hash<double>, std::__1::equal_to<double>, std::__1::allocator<std::__1::pair<const double, NSImage *>>> {
+    struct __hash_table<std::__1::__hash_value_type<double, NSImage *>, std::__1::__unordered_map_hasher<double, std::__1::__hash_value_type<double, NSImage *>, std::__1::hash<double>, true>, std::__1::__unordered_map_equal<double, std::__1::__hash_value_type<double, NSImage *>, std::__1::equal_to<double>, true>, std::__1::allocator<std::__1::__hash_value_type<double, NSImage *>>> {
+        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<double, NSImage *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<double, NSImage *>, void *>*>>> __bucket_list_;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<double, NSImage *>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<double, NSImage *>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<double, NSImage *>, void *>*> {
+                struct __hash_node<std::__1::__hash_value_type<double, NSImage *>, void *> *__next_;
             } __first_;
         } __p1_;
-        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<float, std::__1::__hash_value_type<float, NSImage *>, std::__1::hash<float>, true>> {
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<double, std::__1::__hash_value_type<double, NSImage *>, std::__1::hash<double>, true>> {
             unsigned long long __first_;
         } __p2_;
-        struct __compressed_pair<float, std::__1::__unordered_map_equal<float, std::__1::__hash_value_type<float, NSImage *>, std::__1::equal_to<float>, true>> {
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<double, std::__1::__hash_value_type<double, NSImage *>, std::__1::equal_to<double>, true>> {
             float __first_;
         } __p3_;
     } __table_;

@@ -10,27 +10,27 @@
 
 @interface IDEEditor : IDEViewController
 {
-    IDEEditorDocument *_document;
-    IDEEditorDocument *_documentForNavBarStructure;
-    IDEEditorContext *_editorContext;
     DVTFindBar *_findBar;
-    id <DVTTextFindable> _findableObject;
     DVTNotificationToken *_documentDidChangeNotificationToken;
     DVTNotificationToken *_documentForNavBarStructureDidChangeNotificationToken;
     DVTObservingToken *_documentFileURLObservingToken;
-    IDEFileTextSettings *_fileTextSettings;
-    id <IDEEditorDelegate> _delegate;
     BOOL _discardsFindResultsWhenContentChanges;
+    id <IDEEditorDelegate> _delegate;
+    IDEEditorDocument *_document;
+    IDEEditorDocument *_documentForNavBarStructure;
+    id <DVTTextFindable> _findableObject;
+    IDEFileTextSettings *_fileTextSettings;
+    IDEEditorContext *_editorContext;
 }
 
 + (BOOL)canProvideCurrentSelectedItems;
-@property(retain) id <IDEEditorDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain) IDEEditorContext *editorContext; // @synthesize editorContext=_editorContext;
 @property(retain, nonatomic) IDEFileTextSettings *fileTextSettings; // @synthesize fileTextSettings=_fileTextSettings;
 @property(retain, nonatomic) id <DVTTextFindable> findableObject; // @synthesize findableObject=_findableObject;
-@property(retain) IDEEditorContext *editorContext; // @synthesize editorContext=_editorContext;
-@property(retain) IDEEditorDocument *document; // @synthesize document=_document;
-@property(retain, nonatomic) IDEEditorDocument *documentForNavBarStructure; // @synthesize documentForNavBarStructure=_documentForNavBarStructure;
 @property BOOL discardsFindResultsWhenContentChanges; // @synthesize discardsFindResultsWhenContentChanges=_discardsFindResultsWhenContentChanges;
+@property(retain, nonatomic) IDEEditorDocument *documentForNavBarStructure; // @synthesize documentForNavBarStructure=_documentForNavBarStructure;
+@property(retain) IDEEditorDocument *document; // @synthesize document=_document;
+@property(retain) id <IDEEditorDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)relatedMenuItemsForNavItem:(id)arg1;
 - (void)didSetupEditor;

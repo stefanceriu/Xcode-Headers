@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, NSTimer;
+@class NSTimer;
 
 __attribute__((visibility("hidden")))
 @interface SKDisplayLink : NSObject
@@ -16,20 +16,15 @@ __attribute__((visibility("hidden")))
     SKDisplayLink *_keepAlive;
     unsigned long long _mode;
     BOOL _paused;
-    BOOL _asynchronous;
     long long _frameInterval;
     double _previousFrameTime;
     CDUnknownBlockType _block;
-    NSObject<OS_dispatch_queue> *_queue;
     float _averageFrameTime;
     long long _frameCount;
     double _frameCountBeginTime;
-    int _queuedFrameCount;
-    unsigned long long _maxQueuedFrameCount;
 }
 
-+ (id)displayLinkWithBlock:(CDUnknownBlockType)arg1 queue:(id)arg2;
-@property unsigned long long maxQueuedFrameCount; // @synthesize maxQueuedFrameCount=_maxQueuedFrameCount;
++ (id)displayLinkWithBlock:(CDUnknownBlockType)arg1;
 - (void).cxx_destruct;
 - (void)_nsTimerCallback;
 - (void)dealloc;
@@ -41,9 +36,8 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) unsigned long long mode;
 @property(nonatomic) long long frameInterval;
 @property(nonatomic, getter=isPaused) BOOL paused;
-@property(nonatomic) BOOL asynchronous;
 - (id)init;
-- (id)initWithBlock:(CDUnknownBlockType)arg1 queue:(id)arg2;
+- (id)initWithBlock:(CDUnknownBlockType)arg1;
 
 @end
 

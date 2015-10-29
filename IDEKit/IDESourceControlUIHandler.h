@@ -6,27 +6,57 @@
 
 #import "NSObject.h"
 
-@class IDESourceControlCertificateAuthenticator, NSDate, NSMutableArray, NSString;
+#import "DVTSourceControlAuthenticationFailureHandler.h"
 
-@interface IDESourceControlUIHandler : NSObject
+@class IDESourceControlCertificateAuthenticator, NSDate, NSString;
+
+@interface IDESourceControlUIHandler : NSObject <DVTSourceControlAuthenticationFailureHandler>
 {
     IDESourceControlCertificateAuthenticator *_authenticator;
     NSDate *_timeDeactivated;
-    NSMutableArray *_acceptedHostIPs;
-    NSMutableArray *_rejectedHostIPs;
     NSString *_showingHostIdentityConfirmationIP;
 }
 
++ (void)showAuthenticationAlertOnWindow:(id)arg1 account:(id)arg2 URL:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
++ (BOOL)haveAuthenticationCompletionBlockForURL:(id)arg1;
++ (void)addAuthenticationCompletionBlock:(CDUnknownBlockType)arg1 forURL:(id)arg2;
++ (id)authenticationCompletionBlocksForURL:(id)arg1;
++ (void)clearAuthenticationCompletionBlocksForURL:(id)arg1;
++ (id)authenticationCompletionBlocks;
++ (void)showFingerprintAlertOnWindow:(id)arg1 host:(id)arg2 fingerprint:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
++ (BOOL)haveFingerprintCompletionBlockForHost:(id)arg1;
++ (void)addFingerprintCompletionBlock:(CDUnknownBlockType)arg1 forHost:(id)arg2;
++ (id)fingerprintCompletionBlocksForHost:(id)arg1;
++ (void)clearFingerprintCompletionBlocksForHost:(id)arg1;
++ (id)fingerprintCompletionBlocks;
++ (void)rejectFingerprintFromHost:(id)arg1;
++ (BOOL)didRejectFingerprintFromHost:(id)arg1;
++ (id)rejectedFingerprintHosts;
++ (void)showCertificateAlertOnWindow:(id)arg1 URL:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
++ (BOOL)haveCertificateCompletionBlockForURL:(id)arg1;
++ (void)addCertificateCompletionBlock:(CDUnknownBlockType)arg1 forURL:(id)arg2;
++ (id)certificateCompletionBlocksForURL:(id)arg1;
++ (void)clearCertificateCompletionBlocksForURL:(id)arg1;
++ (id)certificateCompletionBlocks;
++ (void)rejectCertificateFromURL:(id)arg1;
++ (BOOL)didRejectCertificateFromURL:(id)arg1;
++ (id)rejectedCertificateURLs;
 - (void).cxx_destruct;
 - (void)showHostIdentityConfirmationNotification:(id)arg1;
 - (void)showCertificatePanelNotification:(id)arg1;
 - (void)sourceControlEnabled:(id)arg1;
 - (void)applicationDidDeactivate:(id)arg1;
 - (void)applicationDidActivate:(id)arg1;
-- (void)askToScanAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)askToScanWorkspaceNotification:(id)arg1;
 - (void)authenticationNeededNotification:(id)arg1;
+- (void)handleAuthenticationFailure:(id)arg1 forRepository:(id)arg2 context:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

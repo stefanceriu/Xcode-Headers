@@ -14,14 +14,12 @@
 {
     id _filterLeftButton;
     NSMutableArray *_toggleButtons;
-    BOOL _usesAutoLayout;
     DVTSearchField *_searchField;
     id <IDEFilterControlBarTarget> _filterTarget;
     NSString *_filterDefinitionIdentifier;
 }
 
 + (void)initialize;
-@property(nonatomic) BOOL usesAutoLayout; // @synthesize usesAutoLayout=_usesAutoLayout;
 @property(copy, nonatomic) NSString *filterDefinitionIdentifier; // @synthesize filterDefinitionIdentifier=_filterDefinitionIdentifier;
 @property(retain, nonatomic) id <IDEFilterControlBarTarget> filterTarget; // @synthesize filterTarget=_filterTarget;
 @property(retain) DVTSearchField *searchField; // @synthesize searchField=_searchField;
@@ -32,7 +30,6 @@
 - (void)_willSetFilterTarget;
 - (void)setUpFilterControls;
 - (id)imageNamed:(id)arg1 fromExtension:(id)arg2;
-- (id)newToggleButtonWithParameters:(id)arg1;
 - (id)filterDefinitionExtension;
 @property(copy) NSMenu *searchMenuTemplate;
 - (void)_updateSearchButtonCell;

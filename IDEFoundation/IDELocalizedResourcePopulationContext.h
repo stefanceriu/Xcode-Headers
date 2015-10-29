@@ -6,18 +6,24 @@
 
 #import <IDEFoundation/IDELocalizationWorkContext.h>
 
-@class IDEContainer<IDELocalizedContainer>, NSDictionary;
+#import "IDELocalizationWorkProvider.h"
 
-@interface IDELocalizedResourcePopulationContext : IDELocalizationWorkContext
+@class IDEContainer<IDELocalizedContainer>, NSDictionary, NSMutableDictionary;
+
+@interface IDELocalizedResourcePopulationContext : IDELocalizationWorkContext <IDELocalizationWorkProvider>
 {
+    NSMutableDictionary *_adaptorsByGroupIdentifier;
     IDEContainer<IDELocalizedContainer> *_container;
-    NSDictionary *_adaptorsByName;
 }
 
-@property(retain) NSDictionary *adaptorsByName; // @synthesize adaptorsByName=_adaptorsByName;
++ (id)contextWithParent:(id)arg1 container:(id)arg2;
 @property(retain) IDEContainer<IDELocalizedContainer> *container; // @synthesize container=_container;
+@property(readonly) NSDictionary *adaptorsByGroupIdentifier; // @synthesize adaptorsByGroupIdentifier=_adaptorsByGroupIdentifier;
 - (void).cxx_destruct;
+- (id)work;
 - (void)primitiveInvalidate;
+- (void)setAdaptor:(id)arg1 forGroupIdentifier:(id)arg2;
+- (id)init;
 
 @end
 

@@ -23,7 +23,7 @@
 - (id)init;
 
 // Remaining properties
-@property BOOL isUpdating;
+@property BOOL isUpdating; // @dynamic isUpdating;
 
 @end
 

@@ -22,9 +22,8 @@
 
 + (id)keyPathsForValuesAffectingInspectedAttributeType;
 + (id)keyPathsForValuesAffectingMaxValueObject;
-+ (id)keyPathsForValuesAffectingMaxValueString;
 + (id)keyPathsForValuesAffectingMinValueObject;
-+ (id)keyPathsForValuesAffectingMinValueString;
++ (id)keyPathsForValuesAffectingDefaultValueObject;
 @property(nonatomic) long long attributeType; // @synthesize attributeType;
 @property(copy, nonatomic) NSString *valueTransformerName; // @synthesize valueTransformerName;
 @property(copy, nonatomic) NSString *regularExpressionString; // @synthesize regularExpressionString;
@@ -52,13 +51,18 @@
 - (id)zeroDefaultAttributeTypes;
 - (id)numericalMinMaxAttributeTypes;
 - (long long)inspectedAttributeType;
-@property(copy) id maxValueObject;
-@property(copy) id minValueObject;
 - (id)maxValueObjectNonNilValue;
+@property(copy, nonatomic) id maxValueObject;
+@property(nonatomic) BOOL hasMaxValueObject;
 - (id)minValueObjectNonNilValue;
+@property(copy, nonatomic) id minValueObject;
+@property(nonatomic) BOOL hasMinValueObject;
 - (id)defaultValueObjectNonNilValue;
 @property(retain) id defaultValueObject;
-- (id)defaultValueObjectForString:(id)arg1 withType:(long long)arg2;
+@property(nonatomic) BOOL hasDefaultValueObject;
+- (id)stringForValueObject:(id)arg1 withType:(long long)arg2;
+- (id)valueObjectForString:(id)arg1 withType:(long long)arg2;
+- (id)_dateFormatter;
 - (void)cascadeChangesToLegacyAttribute:(id)arg1;
 - (id)initWithLegacyAttribute:(id)arg1 belongingToEntity:(id)arg2 inModel:(id)arg3;
 - (void)_registerUndoBlockForFoundAttribute:(CDUnknownBlockType)arg1;
@@ -68,7 +72,6 @@
 - (id)code_propertyTypeSwift;
 - (id)code_propertyTypePointer;
 - (id)validateStringValue:(id)arg1 asType:(unsigned long long)arg2;
-- (BOOL)willHangNaturalLanguageParser:(id)arg1;
 
 @end
 

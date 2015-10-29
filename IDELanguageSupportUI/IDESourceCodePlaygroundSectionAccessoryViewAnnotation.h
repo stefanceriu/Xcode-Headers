@@ -19,9 +19,6 @@
 - (void).cxx_destruct;
 - (id)currentStateInTextView:(id)arg1;
 - (void)drawLineHighlightInRect:(struct CGRect)arg1 textView:(id)arg2;
-- (void)setNeedsInvalidateWithoutLayout;
-- (void)setNeedsInvalidate;
-- (BOOL)wantsMergeAnnotations;
 - (id)initWithViewControllerClass:(Class)arg1;
 
 // Remaining properties

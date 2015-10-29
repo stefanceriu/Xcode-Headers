@@ -24,11 +24,10 @@
     NSDictionary *_additionalProperties;
     unsigned int _indexedNodeSpace;
     unsigned int _indexedEdges;
-    BOOL _insideSearch;
+    int _insideSearch;
     BOOL _inverted;
 }
 
-+ (void)initialize;
 + (id)_unarchivedObject:(id)arg1 options:(unsigned long long)arg2;
 + (id)_archivedObject:(id)arg1 options:(unsigned long long)arg2;
 + (void *)_copyUnarchived:(id)arg1 length:(unsigned long long *)arg2 options:(unsigned long long)arg3;
@@ -42,25 +41,27 @@
 - (id)subgraphWithMarkedNodes:(void *)arg1;
 - (void)invertEdges;
 - (void)_dumpAdjacencyList;
-- (void)stronglyConnectedComponentSearch:(CDUnknownBlockType)arg1;
 - (void)breadthFirstSearch:(unsigned int)arg1 nodeVisitBlock:(CDUnknownBlockType)arg2 edgeVisitBlock:(CDUnknownBlockType)arg3;
 - (void)depthFirstSearch:(unsigned int)arg1 nodeVisitBlock:(CDUnknownBlockType)arg2 edgeVisitBlock:(CDUnknownBlockType)arg3;
 - (void)_searchMainLoop:(unsigned int)arg1 action:(CDUnknownBlockType)arg2;
 - (void)withEdgeMarkingMap:(CDUnknownBlockType)arg1;
 - (void)withNodeMarkingMap:(CDUnknownBlockType)arg1;
 - (unsigned int)enumerateEdgesOfNode:(unsigned int)arg1 withBlock:(CDUnknownBlockType)arg2;
+- (unsigned int)_internalEnumerateEdgesOfNode:(unsigned int)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (unsigned int)enumerateEdgesWithBlock:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) unsigned int edgeCount;
+- (unsigned int)parentGroupForNode:(unsigned int)arg1;
+- (unsigned int)enumerateMembersOfGroupNode:(unsigned int)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (unsigned int)enumerateNodesWithBlock:(CDUnknownBlockType)arg1;
 - (void)_renameWithNodeMap:(unsigned int *)arg1 nodeNamespace:(unsigned int)arg2 edgeMap:(unsigned int *)arg3 edgeNamespace:(unsigned int)arg4;
 - (void)_renormalize;
 - (void)_adjustAdjacencyMap;
-- (BOOL)inverted;
-- (void)setInverted:(BOOL)arg1;
+@property(nonatomic) BOOL inverted;
 - (void)ungroupNode:(unsigned int)arg1;
 - (unsigned int)addGroupNodeForNodes:(const unsigned int *)arg1 count:(unsigned int)arg2;
 - (void)removeMarkedEdges:(void *)arg1;
 - (void)removeMarkedNodes:(void *)arg1;
+- (void *)_deadNodeMap;
 - (void)_faultDeadNodeMap;
 - (void)_removeEdges:(CDUnknownBlockType)arg1;
 - (unsigned int)addEdgeFromNode:(unsigned int)arg1 toNode:(unsigned int)arg2;
@@ -73,6 +74,9 @@
 - (id)initWithArchived:(id)arg1 options:(unsigned long long)arg2;
 - (id)initWithPlistRepresentation:(id)arg1;
 - (id)initWithNodes:(unsigned int)arg1;
+- (id)subgraphWithShortestPathsFromNode:(unsigned int)arg1 toNodes:(void *)arg2;
+- (void)markReachableNodesFromRoots:(void *)arg1 inMap:(void *)arg2;
+- (void)stronglyConnectedComponentSearch:(unsigned int)arg1 withRecorder:(CDUnknownBlockType)arg2;
 
 @end
 

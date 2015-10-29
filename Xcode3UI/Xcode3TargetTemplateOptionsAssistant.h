@@ -16,8 +16,9 @@
     IDECompletionDestinationManager *_destinationManager;
     NSPopUpButton *_targetPopUp;
     Xcode3Target *_selectedTarget;
-    NSString *_suggestedProductName;
     NSArray *_associatedTargetAllowableProductTypes;
+    NSArray *_associatedTargetAllowablePlatforms;
+    BOOL _associatedTargetIsRequired;
     BOOL _associatedTargetIsDependent;
     BOOL _associatedTargetIsTargetToBeTested;
     BOOL _associatedTargetNeedsProductBuildPhaseInjection;
@@ -39,7 +40,7 @@
 - (void)takeSelectedTargetFromMenuItem:(id)arg1;
 - (void)updateOptionConstraints;
 - (void)rebuildTargetPopupIfNeeded;
-- (void)updateDefaultPackageName;
+- (BOOL)_targetCanBeAssociatedTarget:(id)arg1;
 - (void)updateClassPrefix;
 - (void)finishWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (BOOL)alwaysShowFinish;
@@ -49,7 +50,7 @@
 - (BOOL)validatePackageName:(id)arg1 error:(id *)arg2;
 - (void)viewWillUninstall;
 - (BOOL)itemIsProject:(id)arg1;
-- (id)createControlForOption:(id)arg1;
+- (id)createControlForOption:(id)arg1 withOptionArray:(id)arg2;
 - (id)additionalOptions;
 - (void)primitiveInvalidate;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

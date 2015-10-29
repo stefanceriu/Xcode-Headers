@@ -8,20 +8,24 @@
 
 #import "IDETestingSpecifier.h"
 
-@class DVTObservingToken, IDEDeviceAppDataReference, IDELocationScenarioReference, NSArray, NSMutableArray, NSString;
+@class DVTObservingToken, IDEDeviceAppDataReference, IDELocationScenarioReference, NSArray, NSMutableArray, NSSet, NSString;
 
 @interface IDEConcreteTestingSpecifier : NSObject <IDETestingSpecifier>
 {
     id <IDETestable> _testable;
-    NSMutableArray *_skippedTests;
+    NSMutableArray *_mutableSkippedTests;
     IDEDeviceAppDataReference *_deviceAppDataReference;
     IDELocationScenarioReference *_locationScenarioReference;
     DVTObservingToken *_buildableValidityObservingToken;
+    NSSet *_adHocTests;
     BOOL _skipped;
 }
 
-+ (void)initialize;
 - (void).cxx_destruct;
+@property(copy) NSSet *adHocTests;
+- (void)disableTest:(id)arg1;
+- (void)enableTest:(id)arg1;
+@property(copy) NSArray *skippedTests;
 @property BOOL skipped;
 @property(retain) IDELocationScenarioReference *locationScenarioReference;
 @property(retain) IDEDeviceAppDataReference *deviceAppDataReference;
@@ -32,8 +36,6 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly) NSMutableArray *mutableSkippedTests; // @dynamic mutableSkippedTests;
-@property(copy) NSArray *skippedTests; // @dynamic skippedTests;
 @property(readonly) Class superclass;
 
 @end

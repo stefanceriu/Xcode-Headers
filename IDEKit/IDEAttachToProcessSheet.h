@@ -36,7 +36,6 @@
 - (void).cxx_destruct;
 - (void)_rememberEnteredProcessNameIfNecessary;
 - (void)_rememberDebugProcessAsSelection;
-- (void)_sheetDidEnd;
 - (void)_attachToProcessUsingProcessInformations:(id)arg1;
 - (void)attachToProcess:(id)arg1;
 - (void)cancel:(id)arg1;
@@ -44,6 +43,7 @@
 - (void)_updateUIBasedOnPIDTextFieldAfterDelay;
 - (void)_updateUIBasedOnPIDTextFieldUsingProcessInformations:(id)arg1;
 - (void)_updateUIBasedOnPIDTextField;
+- (BOOL)_runOnPairedDevice;
 - (id)_processInformationForProcessName:(id)arg1 processInformations:(id)arg2;
 - (id)_processInformationForUserEnteredText:(id)arg1;
 - (id)_processInformationForPID:(int)arg1 processInformations:(id)arg2;

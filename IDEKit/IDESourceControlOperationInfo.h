@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, IDESourceControlWorkingTree, IDEWorkspace, NSArray, NSOperationQueue, NSString;
+@class DVTSourceControlWorkingCopy, DVTStackBacktrace, IDESourceControlWorkingTree, IDEWorkspace, NSArray, NSOperationQueue, NSString, NSWindow;
 
 @interface IDESourceControlOperationInfo : NSObject <DVTInvalidation>
 {
@@ -16,10 +16,17 @@
     IDESourceControlWorkingTree *_workingTree;
     IDEWorkspace *_workspace;
     NSArray *_itemsToOperateOn;
+    NSWindow *_window;
+    DVTSourceControlWorkingCopy *_workingCopy;
+    id <DVTSourceControlCancellable> _currentCancellable;
 }
 
 + (id)containerFileTypesBlacklistedFromOutlineViewCompression;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
+@property(retain) id <DVTSourceControlCancellable> currentCancellable; // @synthesize currentCancellable=_currentCancellable;
+@property(retain) DVTSourceControlWorkingCopy *workingCopy; // @synthesize workingCopy=_workingCopy;
+@property __weak NSWindow *window; // @synthesize window=_window;
 @property(retain) NSArray *itemsToOperateOn; // @synthesize itemsToOperateOn=_itemsToOperateOn;
 @property(retain) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 @property(retain) IDESourceControlWorkingTree *workingTree; // @synthesize workingTree=_workingTree;

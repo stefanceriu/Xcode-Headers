@@ -18,8 +18,8 @@
     CDUnknownBlockType _observerBlock;
 }
 
-@property(readonly) unsigned long long observingOptions; // @synthesize observingOptions=_observingOptions;
 @property(readonly, copy) CDUnknownBlockType observerBlock; // @synthesize observerBlock=_observerBlock;
+@property(readonly) unsigned long long observingOptions; // @synthesize observingOptions=_observingOptions;
 @property(readonly) NSURL *documentURL; // @synthesize documentURL=_documentURL;
 - (void).cxx_destruct;
 - (void)cancel;

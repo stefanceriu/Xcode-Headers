@@ -16,8 +16,8 @@
     NSObject<OS_dispatch_queue> *_queue;
     NSObject<OS_dispatch_queue> *_resourceQueue;
     DVTObservingToken *_launchSessionStateObserverToken;
+    DVTObservingToken *_traceSessionStateObserverToken;
     IDELaunchSession *_launchSession;
-    NSString *_inferiorAppName;
     int _state;
     GPUDebuggerController *_debuggerController;
     GPUTraceSession *_currentTraceSession;
@@ -36,17 +36,23 @@
     BOOL _readyToCapture;
     BOOL _archiveFinalized;
     BOOL _finalizedOverview;
+    BOOL _isInvalidating;
+    BOOL _isRemoteDebuggingEnabled;
     unsigned int _deviceInterposeVersionGL;
     unsigned int _deviceInterposeVersionMetal;
     unsigned int _updatedResourcesChangeCount;
     NSString *_captureUnavailabilityReason;
+    NSString *_inferiorAppName;
 }
 
++ (BOOL)isRemoteDebuggingRequested:(id)arg1;
 + (id)GPUToolsDeviceFromDVTDevice:(id)arg1 error:(id *)arg2;
 + (void)initialize;
 + (id)logAspect;
 + (id)keyPathsForValuesAffectingTraceSession;
 @property unsigned int updatedResourcesChangeCount; // @synthesize updatedResourcesChangeCount=_updatedResourcesChangeCount;
+@property(readonly) NSString *inferiorAppName; // @synthesize inferiorAppName=_inferiorAppName;
+@property BOOL isRemoteDebuggingEnabled; // @synthesize isRemoteDebuggingEnabled=_isRemoteDebuggingEnabled;
 @property(readonly) NSString *captureUnavailabilityReason; // @synthesize captureUnavailabilityReason=_captureUnavailabilityReason;
 @property(readonly) unsigned int deviceInterposeVersionMetal; // @synthesize deviceInterposeVersionMetal=_deviceInterposeVersionMetal;
 @property(readonly) unsigned int deviceInterposeVersionGL; // @synthesize deviceInterposeVersionGL=_deviceInterposeVersionGL;
@@ -89,10 +95,13 @@
 - (void)_handleGraphicsAPIUsageUpdate:(BOOL)arg1;
 - (void)_recursivePollForGraphicsAPIUsage;
 - (id)prepareForLaunch:(id)arg1 error:(id *)arg2;
+- (BOOL)launchDebugServerWithError:(id *)arg1;
 @property(readonly) id <IDEDebugTopNavigableModel> process;
 - (void)primitiveInvalidate;
 - (void)releaseCurrentGPUTrace;
+- (id)GPUToolsDeviceFromDVTDevice:(id)arg1 error:(id *)arg2;
 @property(readonly) DYCaptureSessionInfo *captureSessionInfo; // @dynamic captureSessionInfo;
+- (id)initWithAppName:(id)arg1 launchSession:(id)arg2 controller:(id)arg3 launchCommand:(id)arg4 error:(id *)arg5;
 - (id)initWithAppName:(id)arg1 launchSession:(id)arg2 controller:(id)arg3 error:(id *)arg4;
 
 // Remaining properties

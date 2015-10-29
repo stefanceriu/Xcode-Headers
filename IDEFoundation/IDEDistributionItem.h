@@ -25,14 +25,14 @@
     NSDictionary *_archivedUserEntitlements;
 }
 
++ (id)platformForItemAtPath:(id)arg1 error:(id *)arg2;
 + (id)topLevelDistributionItemsFromProductsRoot:(id)arg1 logAspect:(id)arg2 error:(id *)arg3;
 + (id)_distributionItemForPath:(id)arg1 pathsToItems:(id)arg2 pathsToChildPaths:(id)arg3 logAspect:(id)arg4 error:(id *)arg5;
 + (id)flattenDistributionItems:(id)arg1;
 + (id)embeddedProvisioningProfileForItemAtPath:(id)arg1 error:(id *)arg2;
 + (id)canHaveProvisioningProfileForItemAtPath:(id)arg1 logAspect:(id)arg2 error:(id *)arg3;
-+ (unsigned int)machOFileTypeAtPath:(id)arg1 error:(id *)arg2;
++ (id)machOFileTypesAtPath:(id)arg1 error:(id *)arg2;
 + (id)archivedUserEntitlementsForItemAtPath:(id)arg1 error:(id *)arg2;
-+ (id)infoDictionaryForItemAtPath:(id)arg1 error:(id *)arg2;
 + (id)itemWithPath:(id)arg1 childItems:(id)arg2 logAspect:(id)arg3 error:(id *)arg4;
 @property(readonly, nonatomic) BOOL canHaveProvisioningProfile; // @synthesize canHaveProvisioningProfile=_canHaveProvisioningProfile;
 @property(readonly, nonatomic) NSDictionary *archivedUserEntitlements; // @synthesize archivedUserEntitlements=_archivedUserEntitlements;
@@ -46,6 +46,8 @@
 @property(readonly, nonatomic) DVTFilePath *machOPath; // @synthesize machOPath=_machOPath;
 @property(readonly, nonatomic) DVTFilePath *path; // @synthesize path=_path;
 - (void).cxx_destruct;
+- (id)platformWithError:(id *)arg1;
+@property(readonly) BOOL isAppleProvidedContent;
 - (id)debugDescription;
 - (id)description;
 - (unsigned long long)hash;
@@ -54,6 +56,7 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly, nonatomic) NSString *bundleID;
 - (id)initWithPath:(id)arg1 infoDictionary:(id)arg2 canHaveProvisioningProfile:(BOOL)arg3 teamID:(id)arg4 appID:(id)arg5 appIDWithoutPrefix:(id)arg6 entitlements:(id)arg7 archivedUserEntitlements:(id)arg8 childItems:(id)arg9;
+- (id)init;
 
 @end
 

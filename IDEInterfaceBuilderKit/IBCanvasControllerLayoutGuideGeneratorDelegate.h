@@ -23,12 +23,13 @@
 - (Class)symbolicLayoutConstantClassForLayoutGuideGenerator:(id)arg1;
 - (Class)layoutConstantClassForLayoutGuideGenerator:(id)arg1;
 - (long long)userInterfaceLayoutDirectionForLayoutGuideGenerator:(id)arg1;
+- (id)layoutRuleWidgetTypePrefix;
 - (unsigned long long)layoutGuideGenerator:(id)arg1 allowedEdgesForSiblingGuidesFromSelection:(id)arg2 toView:(id)arg3;
 - (BOOL)layoutGuideGenerator:(id)arg1 shouldConsiderSiblingGuidesFromSelection:(id)arg2 toView:(id)arg3 ofType:(long long)arg4;
 - (BOOL)layoutGuideGenerator:(id)arg1 shouldConsiderSelectionEdge:(unsigned int)arg2 toSiblingEdge:(unsigned int)arg3 guideFromSelection:(id)arg4 toView:(id)arg5;
-- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(unsigned int)arg2 ofAncestor:(id)arg3 fixedDuringResizingOfSubviews:(id)arg4 fromKnob:(long long)arg5;
-- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(unsigned int)arg2 ofSubview:(id)arg3 fixedInPositionOnWindowDuringResizeFromKnob:(long long)arg4;
-- (BOOL)layoutGuideGenerator:(id)arg1 isDistanceFromSubviewEdge:(unsigned int)arg2 ofSubview:(id)arg3 toSameEdgeOfSuperviewChangingOneToOneWithKnob:(long long)arg4;
+- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(unsigned int)arg2 ofAncestor:(id)arg3 fixedDuringResizingOfSubviews:(id)arg4 fromKnob:(CDUnion_31865a80)arg5;
+- (BOOL)layoutGuideGenerator:(id)arg1 isEdge:(unsigned int)arg2 ofSubview:(id)arg3 fixedInPositionOnWindowDuringResizeFromKnob:(CDUnion_31865a80)arg4;
+- (BOOL)layoutGuideGenerator:(id)arg1 isDistanceFromSubviewEdge:(unsigned int)arg2 ofSubview:(id)arg3 toSameEdgeOfSuperviewChangingOneToOneWithKnob:(CDUnion_31865a80)arg4;
 - (BOOL)layoutGuideGenerator:(id)arg1 isViewVerticallyResizable:(id)arg2;
 - (BOOL)layoutGuideGenerator:(id)arg1 isViewHorizontallyResizable:(id)arg2;
 - (CDStruct_c519178c)layoutGuideGenerator:(id)arg1 layoutInsetOfView:(id)arg2;
@@ -41,8 +42,8 @@
 - (id)layoutGuideGenerator:(id)arg1 viewsForSelectionToSubviewsGuides:(id)arg2;
 - (BOOL)layoutGuideGenerator:(id)arg1 shouldViewHaveContainedSubviewGuides:(id)arg2;
 - (id)layoutGuideGenerator:(id)arg1 siblingsForApplyingGuidesToViews:(id)arg2;
-- (id)layoutGuideGenerator:(id)arg1 baselinesForViews:(id)arg2 withSuggestedLayoutFrame:(struct CGRect)arg3 andKnobPosition:(long long)arg4;
-- (id)userLayoutGuidesForLayoutGuideGenerator:(id)arg1;
+- (id)layoutGuideGenerator:(id)arg1 baselinesForViews:(id)arg2 withSuggestedLayoutFrame:(struct CGRect)arg3 andKnobPosition:(CDUnion_31865a80)arg4;
+- (id)abstractUserLayoutGuidesForLayoutGuideGenerator:(id)arg1;
 - (id)layoutGuideGenerator:(id)arg1 viewForContainmentGuides:(id)arg2;
 - (void)wrapContentResizingOfView:(id)arg1 inFrame:(id)arg2 block:(CDUnknownBlockType)arg3;
 - (void)primitiveInvalidate;

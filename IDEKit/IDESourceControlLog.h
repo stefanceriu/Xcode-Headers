@@ -8,22 +8,26 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTDispatchLock, DVTPointerArray, DVTStackBacktrace, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
+@class DVTDispatchLock, DVTFilePath, DVTSourceControlBranch, DVTSourceControlWorkingCopy, DVTSourceControlWorkspace, DVTStackBacktrace, NSArray, NSMapTable, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
 @interface IDESourceControlLog : NSObject <DVTInvalidation>
 {
+    DVTSourceControlWorkspace *_sourceControlWorkspace;
+    DVTSourceControlWorkingCopy *_workingCopy;
+    NSString *_path;
+    DVTSourceControlBranch *_branch;
     NSMutableArray *_logRequests;
     DVTDispatchLock *_requestLock;
     DVTDispatchLock *_logItemsLock;
     NSMutableArray *_logItems;
-    NSArray *_sourceTreeItems;
-    DVTPointerArray *_lastRevisionsLoaded;
     NSObject<OS_dispatch_queue> *_queue;
     BOOL _displayFilesChanged;
     BOOL _datasourceExternal;
-    NSString *_branchName;
+    DVTFilePath *_subpath;
+    NSMapTable *_lastRevisionsLoaded;
     NSArray *_authors;
     NSString *_searchTerm;
+    unsigned long long _searchType;
     NSString *_startingRevision;
     NSString *_endingRevision;
     NSArray *_logContents;
@@ -35,28 +39,30 @@
 @property(retain) NSArray *logContents; // @synthesize logContents=_logContents;
 @property(copy) NSString *endingRevision; // @synthesize endingRevision=_endingRevision;
 @property(copy) NSString *startingRevision; // @synthesize startingRevision=_startingRevision;
+@property unsigned long long searchType; // @synthesize searchType=_searchType;
 @property(copy) NSString *searchTerm; // @synthesize searchTerm=_searchTerm;
 @property(retain) NSArray *authors; // @synthesize authors=_authors;
-@property(retain) NSString *branchName; // @synthesize branchName=_branchName;
+@property(readonly) NSMapTable *lastRevisionsLoaded; // @synthesize lastRevisionsLoaded=_lastRevisionsLoaded;
+@property(readonly) DVTSourceControlBranch *branch; // @synthesize branch=_branch;
+@property(readonly) DVTFilePath *subpath; // @synthesize subpath=_subpath;
 @property BOOL displayFilesChanged; // @synthesize displayFilesChanged=_displayFilesChanged;
 @property(readonly) NSArray *logItems; // @synthesize logItems=_logItems;
 - (void).cxx_destruct;
-- (void)previousLogItemOfRevision:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (void)logItemForRevision:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)_logItemForRevision:(id)arg1;
-- (id)loadLogItemsFromRevisions:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (id)_computeLogsWithResult:(id)arg1 indexOfSourceTree:(unsigned long long)arg2 startingRevision:(id)arg3 sourceTree:(id)arg4;
+- (id)loadLogItemsFromRevisions:(id)arg1 searchString:(id)arg2 searchType:(unsigned long long)arg3 incrementalLogBlock:(CDUnknownBlockType)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (id)createLogItemFromLogInfo:(id)arg1 withSourceTreeItem:(id)arg2;
 - (void)arrangeLogEntries:(id)arg1;
+- (unsigned long long)_lastIndexForWorkingCopy:(id)arg1;
 - (void)setLogContentsWithItems:(id)arg1;
 - (void)clearLog;
 - (void)cancelAllLogRequests;
 - (void)removeLogRequest:(id)arg1;
 - (void)addLogRequest:(id)arg1;
-- (void)_resetLastRevisionsLoaded;
-@property(retain) NSArray *sourceTreeItems;
+- (void)setWorkingCopy:(id)arg1 subpath:(id)arg2 branch:(id)arg3;
+@property(retain) DVTSourceControlWorkingCopy *workingCopy;
+- (void)_setWorkingCopy:(id)arg1;
+@property(retain) DVTSourceControlWorkspace *sourceControlWorkspace;
 - (void)primitiveInvalidate;
-@property(readonly) NSArray *lastRevisionsLoaded;
 - (id)init;
 
 // Remaining properties

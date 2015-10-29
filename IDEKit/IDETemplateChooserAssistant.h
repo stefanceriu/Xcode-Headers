@@ -8,7 +8,7 @@
 
 #import "DVTTileViewDelegate.h"
 
-@class DVTBorderedView, DVTImageAndTextCell, DVTSplitView, DVTTileView, DVTTileViewItem, IDENavigableItemCoordinator, IDENavigatorOutlineView, NSArrayController, NSString, NSTextField, NSView;
+@class DVTBorderedView, DVTImageAndTextCell, DVTSplitView, DVTTileView, DVTTileViewItem, IDENavigableItemAsyncFilteringCoordinator, IDENavigatorOutlineView, NSArrayController, NSString, NSTextField, NSView;
 
 @interface IDETemplateChooserAssistant : IDETemplateInstantiationAssistant <DVTTileViewDelegate>
 {
@@ -22,15 +22,16 @@
     NSView *_itemSelectionView;
     NSTextField *_itemTextField;
     NSView *_sourceListView;
-    IDENavigableItemCoordinator *_navigableItemCoordinator;
+    IDENavigableItemAsyncFilteringCoordinator *_navigableItemCoordinator;
 }
 
 + (id)keyPathsForValuesAffectingCanGoForward;
 + (id)keyPathsForValuesAffectingCollectionViewSelectionIndexes;
++ (BOOL)showsCrossPlatformSection;
 + (id)supportedTemplateKind;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
-@property(retain, nonatomic) IDENavigableItemCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
+@property(retain, nonatomic) IDENavigableItemAsyncFilteringCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
 @property(retain) NSView *sourceListView; // @synthesize sourceListView=_sourceListView;
 - (void).cxx_destruct;
 - (void)chooserTileViewShouldGoForward:(id)arg1;

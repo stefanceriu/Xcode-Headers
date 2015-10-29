@@ -14,7 +14,6 @@
 @interface Xcode3CodesigningSelectorModel : NSObject <IDECodesigningSettings, DVTInvalidation>
 {
     Xcode3TargetBuildSettingsCoordinator *_buildSettings;
-    BOOL _currentlyRefreshing;
     Xcode3Target *_target;
     BOOL automaticallySyncsWithPortal;
     int _intent;
@@ -29,7 +28,7 @@
 @property(nonatomic) int intent; // @synthesize intent=_intent;
 @property BOOL automaticallySyncsWithPortal; // @synthesize automaticallySyncsWithPortal;
 - (void).cxx_destruct;
-- (void)_refreshPortal:(BOOL)arg1;
+- (void)_refreshPortal;
 - (void)_writeCodeSigningBuildSetting:(int)arg1;
 - (void)buildSettingsChangedNotification:(id)arg1;
 @property(readonly, nonatomic) NSString *profile;

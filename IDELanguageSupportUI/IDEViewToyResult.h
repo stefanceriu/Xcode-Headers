@@ -14,14 +14,19 @@
     double _height;
     double _width;
     NSData *_imageData;
+    struct CGImage *_image;
 }
 
+@property(readonly) struct CGImage *image; // @synthesize image=_image;
 @property(readonly) NSData *imageData; // @synthesize imageData=_imageData;
 @property(readonly) double width; // @synthesize width=_width;
 @property(readonly) double height; // @synthesize height=_height;
 @property(readonly) long long windowNumber; // @synthesize windowNumber=_windowNumber;
 - (void).cxx_destruct;
-- (id)initWithWindowNumber:(long long)arg1 height:(double)arg2 width:(double)arg3 imageData:(id)arg4 subjectIdentifier:(id)arg5 resultDate:(id)arg6;
+- (void)dealloc;
+- (void)purgeImageData;
+- (id)imagelessCopy;
+- (id)initWithWindowNumber:(long long)arg1 height:(double)arg2 width:(double)arg3 image:(struct CGImage *)arg4 imageData:(id)arg5 subjectIdentifier:(id)arg6 resultDate:(id)arg7;
 - (id)initWithChannelIdentifier:(id)arg1 subjectIdentifier:(id)arg2 resultDate:(id)arg3;
 - (id)initWithChannelIdentifier:(id)arg1 subjectIdentifier:(id)arg2;
 

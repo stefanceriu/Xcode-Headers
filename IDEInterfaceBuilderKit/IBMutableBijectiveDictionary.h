@@ -8,12 +8,12 @@
 
 #import "NSCoding.h"
 
-@class DVTMapTable;
+@class NSMapTable;
 
 @interface IBMutableBijectiveDictionary : NSMutableDictionary <NSCoding>
 {
-    DVTMapTable *keyToObjectMap;
-    DVTMapTable *objectToKeyMap;
+    NSMapTable *keyToObjectMap;
+    NSMapTable *objectToKeyMap;
 }
 
 - (void).cxx_destruct;

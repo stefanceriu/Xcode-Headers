@@ -4,31 +4,42 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <XCSCore/XCSObject.h>
 
-@class NSDictionary, NSString, NSURL, XCSService;
+@class NSArray, NSDictionary, NSString, NSURL;
 
-@interface XCSIntegrationAsset : NSObject
+@interface XCSIntegrationAsset : XCSObject
 {
+    BOOL _allowAnonymousAccess;
+    NSString *_integrationID;
+    NSString *_fileName;
     NSString *_relativePath;
     unsigned long long _size;
     NSDictionary *_infoDictionary;
-    NSDictionary *_metadata;
-    XCSService *_service;
+    NSArray *_variantIds;
+    NSString *_productID;
 }
 
-@property __weak XCSService *service; // @synthesize service=_service;
-@property(retain) NSDictionary *metadata; // @synthesize metadata=_metadata;
++ (id)assetWithFileName:(id)arg1 relativePath:(id)arg2 infoDictionary:(id)arg3 allowAnonymousAccess:(BOOL)arg4 variantIds:(id)arg5 validationErrors:(id *)arg6;
++ (id)assetWithFileName:(id)arg1 relativePath:(id)arg2 allowAnonymousAccess:(BOOL)arg3 variantIds:(id)arg4 productID:(id)arg5 validationErrors:(id *)arg6;
++ (id)assetWithFileName:(id)arg1 relativePath:(id)arg2 allowAnonymousAccess:(BOOL)arg3 validationErrors:(id *)arg4;
++ (id)assetWithFileName:(id)arg1 validationErrors:(id *)arg2;
+@property(retain) NSString *productID; // @synthesize productID=_productID;
+@property(retain) NSArray *variantIds; // @synthesize variantIds=_variantIds;
+@property BOOL allowAnonymousAccess; // @synthesize allowAnonymousAccess=_allowAnonymousAccess;
 @property(retain) NSDictionary *infoDictionary; // @synthesize infoDictionary=_infoDictionary;
 @property unsigned long long size; // @synthesize size=_size;
 @property(retain) NSString *relativePath; // @synthesize relativePath=_relativePath;
+@property(retain) NSString *fileName; // @synthesize fileName=_fileName;
+@property(readonly) NSString *integrationID; // @synthesize integrationID=_integrationID;
 - (void).cxx_destruct;
 - (id)downloadURLForService:(id)arg1 friendly:(BOOL)arg2;
 @property(readonly) NSURL *downloadURL;
+- (id)saveRepresentation;
 - (id)dictionaryRepresentation;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)initWithRelativePath:(id)arg1 size:(unsigned long long)arg2 infoDictionary:(id)arg3 metadata:(id)arg4;
-- (id)init;
+- (BOOL)_validateFileName:(id)arg1 relativePath:(id)arg2 size:(unsigned long long)arg3 infoDictionary:(id)arg4 variantIds:(id)arg5 productID:(id)arg6 validationErrors:(id *)arg7;
+- (id)_initWithID:(id)arg1 revision:(id)arg2 fileName:(id)arg3 relativePath:(id)arg4 size:(unsigned long long)arg5 infoDictionary:(id)arg6 allowAnonymousAccess:(BOOL)arg7 variantIds:(id)arg8 productID:(id)arg9 validationErrors:(id *)arg10;
 
 @end
 

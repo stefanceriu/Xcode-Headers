@@ -31,8 +31,6 @@
 - (void)_handleLaunchSessionsAdded:(id)arg1;
 - (void)_handleLaunchSessionsRemoved:(id)arg1;
 - (void)_handleLaunchSessionsChanged:(id)arg1;
-- (id)_currentLaunchSession;
-- (id)_currentTabController;
 - (void)_setupObservationsForWorkspace:(id)arg1;
 - (id)initWithWorkspace:(id)arg1;
 

@@ -6,9 +6,14 @@
 
 #import "NSObject.h"
 
-@class DBGRangeSliderNode;
+@class DBGRangeSliderNode, DBGSimpleNode;
 
 @protocol DBGRangeSliderDelegate <NSObject>
+- (void)highlight3DPlaneWithIndex:(long long)arg1;
+- (void)rangeSliderDidUpdateSpacing:(DBGRangeSliderNode *)arg1 from3DPlaneIndex:(long long)arg2;
 - (void)rangeSliderDidChange:(DBGRangeSliderNode *)arg1;
+
+@optional
+- (void)manageCameraFacingNode:(DBGSimpleNode *)arg1;
 @end
 

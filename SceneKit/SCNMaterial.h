@@ -11,11 +11,10 @@
 #import "SCNAnimatable.h"
 #import "SCNShadable.h"
 
-@class NSDictionary, NSMutableDictionary, NSString, SCNMaterialProperty, SCNOrderedDictionary, SCNProgram, SCNShadableHelper;
+@class NSArray, NSDictionary, NSMutableDictionary, NSString, SCNMaterialProperty, SCNOrderedDictionary, SCNProgram, SCNShadableHelper;
 
 @interface SCNMaterial : NSObject <SCNAnimatable, SCNShadable, NSCopying, NSSecureCoding>
 {
-    id _reserved;
     struct __C3DMaterial *_material;
     SCNMaterialProperty *_ambient;
     SCNMaterialProperty *_diffuse;
@@ -25,6 +24,8 @@
     SCNMaterialProperty *_transparent;
     SCNMaterialProperty *_multiply;
     SCNMaterialProperty *_normal;
+    SCNMaterialProperty *_ambientOcclusion;
+    SCNMaterialProperty *_selfIllumination;
     SCNOrderedDictionary *_animations;
     NSString *_name;
     NSMutableDictionary *_valuesForUndefinedKeys;
@@ -44,27 +45,29 @@
     BOOL _writesToDepthBuffer;
     BOOL _readsFromDepthBuffer;
     long long _fillMode;
+    long long _blendMode;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
++ (id)materialNamed:(id)arg1;
++ (BOOL)resolveInstanceMethod:(SEL)arg1;
 + (BOOL)accessInstanceVariablesDirectly;
 + (id)materialWithContents:(id)arg1;
 + (id)materialWithColor:(id)arg1;
 + (id)material;
 + (id)materialWithMaterialRef:(struct __C3DMaterial *)arg1;
++ (id)materialWithMDLMaterial:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)_customEncodingOfSCNMaterial:(id)arg1;
 - (void)_customDecodingOfSCNMaterial:(id)arg1;
-- (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
-- (id)valueForUndefinedKey:(id)arg1;
+@property(retain, nonatomic) SCNProgram *program;
 - (void)handleUnbindingOfSymbol:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)handleBindingOfSymbol:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
-- (id)shaderModifiersUniformNames;
 @property(copy, nonatomic) NSDictionary *shaderModifiers;
-@property(retain, nonatomic) SCNProgram *program;
 - (void)_setupShadableHelperIfNeeded;
+- (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
+- (id)valueForUndefinedKey:(id)arg1;
 - (struct __C3DMaterial *)materialRefCreateIfNeeded;
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -76,7 +79,7 @@
 - (void)_pauseAnimation:(BOOL)arg1 forKey:(id)arg2;
 - (id)animationForKey:(id)arg1;
 - (void)_syncObjCAnimations;
-- (id)animationKeys;
+@property(readonly) NSArray *animationKeys;
 - (void)removeAnimationForKey:(id)arg1;
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
@@ -86,7 +89,7 @@
 - (void *)__CFObject;
 - (id)scene;
 - (struct __C3DScene *)sceneRef;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 property:(id)arg2;
 @property(readonly, copy) NSString *description;
 - (long long)fillMode;
@@ -104,12 +107,15 @@
 @property(nonatomic) BOOL locksAmbientWithDiffuse;
 @property(nonatomic, getter=isLitPerPixel) BOOL litPerPixel;
 @property(copy, nonatomic) NSString *lightingModelName;
+@property(nonatomic) long long blendMode;
 @property(nonatomic) double fresnelExponent;
 - (double)indexOfRefraction;
 - (void)setIndexOfRefraction:(double)arg1;
 @property(nonatomic) double transparency;
 @property(nonatomic) double shininess;
 @property(nonatomic) long long transparencyMode;
+@property(readonly, nonatomic) SCNMaterialProperty *selfIllumination;
+@property(readonly, nonatomic) SCNMaterialProperty *ambientOcclusion;
 @property(readonly, nonatomic) SCNMaterialProperty *normal;
 @property(readonly, nonatomic) SCNMaterialProperty *multiply;
 @property(readonly, nonatomic) SCNMaterialProperty *transparent;
@@ -138,6 +144,9 @@
 - (id)initPresentationMaterialWithMaterialRef:(struct __C3DMaterial *)arg1;
 - (id)initWithMaterialRef:(struct __C3DMaterial *)arg1;
 - (id)init;
+- (id)_integrateModelKitComputedMaps:(id)arg1 withGeometry:(id)arg2 node:(id)arg3 texturePathProvider:(CDUnknownBlockType)arg4 vertexAttributeNamed:(id)arg5 materialPropertyNamed:(id)arg6 filePath:(id)arg7;
+- (id)debugQuickLookData;
+- (id)debugQuickLookObject;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

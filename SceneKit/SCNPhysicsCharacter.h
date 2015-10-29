@@ -23,7 +23,6 @@
     SCNPhysicsWorld *_world;
 }
 
-- (id).cxx_construct;
 - (void)_handleCreateIfNeeded:(BOOL)arg1;
 - (void)_willRemoveFromPhysicsWorld:(id)arg1;
 - (void)_addToPhysicsWorld:(id)arg1;

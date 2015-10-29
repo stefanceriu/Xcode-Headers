@@ -6,20 +6,20 @@
 
 #import <XCSUI/XCSBotSupportingEditor.h>
 
-@class DVTChoice, DVTObservingToken;
+@class DVTObservingToken;
 
 @interface XCSBotIntegrationEditor : XCSBotSupportingEditor
 {
     DVTObservingToken *_botObserver;
     DVTObservingToken *_integrationObserver;
-    DVTChoice *_logsChoice;
 }
 
-@property(retain) DVTChoice *logsChoice; // @synthesize logsChoice=_logsChoice;
 - (void).cxx_destruct;
 - (void)showLogsTab:(id)arg1;
 - (id)integrationInProgressChoices;
 - (id)choices;
+- (void)selectDocumentLocations:(id)arg1;
+- (id)cachedChoiceWithTitle:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)viewDidInstall;
 - (void)loadView;

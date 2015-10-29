@@ -19,6 +19,7 @@
     NSMutableSet *_observedTestables;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 - (void).cxx_destruct;
 - (void)_processResult:(id)arg1;
 - (void)_addIssuesForTest:(id)arg1 issues:(id)arg2 isGeneric:(BOOL)arg3;
@@ -31,7 +32,7 @@
 - (id)displayNameForIssueTypeIdentifier:(id)arg1;
 - (void)testsChanged:(id)arg1;
 - (void)testablesChanged:(id)arg1;
-- (void)workspaceReferencedTestablesChanged;
+- (void)allTestablesChanged;
 - (void)_updateObservedTestablesForTest:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)_initWithWorkspace:(id)arg1;

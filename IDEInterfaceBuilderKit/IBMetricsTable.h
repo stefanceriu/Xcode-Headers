@@ -21,6 +21,7 @@
 - (void).cxx_destruct;
 - (CDStruct_c519178c)shadowForWidget:(id)arg1;
 - (struct CGSize)maximumLayoutSizeForWidget:(id)arg1;
+- (id)minimumLayoutSizeValueForWidget:(id)arg1;
 - (struct CGSize)minimumLayoutSizeForWidget:(id)arg1;
 - (id)initWithConstraints:(id)arg1 andShadowInsets:(id)arg2;
 

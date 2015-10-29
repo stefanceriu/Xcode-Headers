@@ -10,7 +10,7 @@
 #import "NSMenuDelegate.h"
 #import "Xcode3SourceListItemEditor.h"
 
-@class DVTBorderedView, DVTGradientImagePopUpButton, DVTObservingToken, DVTPerformanceMetric, DVTSourceExpression, DVTStateToken, IDECapsuleListView, IDEContainerQuery, NSArray, NSMutableArray, NSMutableSet, NSString, NSView, Xcode3BuildPhaseViewController, Xcode3ProjectEditor;
+@class DVTBorderedView, DVTGradientImagePopUpButton, DVTObservingToken, DVTPerformanceMetric, DVTSearchField, DVTSourceExpression, DVTStateToken, IDECapsuleListView, IDEContainerQuery, NSArray, NSMutableArray, NSMutableSet, NSScrollView, NSString, NSView, Xcode3BuildPhaseViewController, Xcode3ProjectEditor;
 
 @interface Xcode3BuildPhasesEditor : IDEViewController <Xcode3SourceListItemEditor, IDECapsuleListViewDataSource, NSMenuDelegate>
 {
@@ -40,6 +40,8 @@
     BOOL _restoringState;
     BOOL _buildingPhases;
     DVTPerformanceMetric *_metric;
+    NSScrollView *_buildPhasesScrollView;
+    DVTSearchField *_searchField;
 }
 
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
@@ -47,6 +49,8 @@
 + (BOOL)canInspectBlueprint:(id)arg1;
 + (id)viewControllerForBuildPhase:(id)arg1;
 + (id)localizedSourceListItemEditorName;
+@property __weak DVTSearchField *searchField; // @synthesize searchField=_searchField;
+@property __weak NSScrollView *buildPhasesScrollView; // @synthesize buildPhasesScrollView=_buildPhasesScrollView;
 @property(copy) NSArray *arrangedPhaseViewControllers; // @synthesize arrangedPhaseViewControllers=_arrangedPhaseViewControllers;
 @property(retain) IDEContainerQuery *rezFileQuery; // @synthesize rezFileQuery=_rezFileQuery;
 @property(copy, nonatomic) NSString *searchString; // @synthesize searchString=_searchString;

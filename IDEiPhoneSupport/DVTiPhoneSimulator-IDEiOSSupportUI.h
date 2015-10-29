@@ -10,6 +10,9 @@
 - (id)deviceSummaryPropertyDictionaries;
 - (void)_updateIconForPath:(id)arg1 launchSession:(id)arg2;
 - (id)_iconForApp:(id)arg1;
+- (BOOL)showCompanionUI;
+- (int)deviceWindowCategory;
+- (id)dvt_proxiedDeviceImage;
 - (id)image;
 @end
 

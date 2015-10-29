@@ -8,9 +8,10 @@
 
 @interface NSObject (IBMemberIntegration)
 + (id)ibClassDefaultImage;
-+ (id)ibDefaultImageForInstance:(id)arg1;
++ (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
 + (void)ibPopulateAdditionalInspectors:(id)arg1 forCategory:(id)arg2;
 + (long long)ibMemberType;
+- (void)ibPopulateRequiredDocumentCapabilities:(id)arg1;
 - (id)ibDefaultImage;
 - (id)ibUserHostableDocumentClasses;
 - (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;

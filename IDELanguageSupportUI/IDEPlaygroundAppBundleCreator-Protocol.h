@@ -6,18 +6,19 @@
 
 #import "NSObject.h"
 
-@class DVTDevice, DVTFilePath, DVTSDK, NSString, NSUUID;
+@class DVTDevice, DVTFilePath, DVTSDK, NSArray, NSString, NSUUID;
 
 @protocol IDEPlaygroundAppBundleCreator <NSObject>
 @property(readonly) DVTDevice *device;
 @property(readonly) DVTSDK *sdk;
-@property(readonly, copy) DVTFilePath *auxiliarySourceFrameworkSearchPath;
+@property(readonly, copy) NSArray *auxiliarySourceFrameworkLocations;
 @property(readonly, copy) DVTFilePath *frameworkSearchPath;
-@property(readonly, copy) DVTFilePath *resourcesPath;
+@property(readonly) NSArray *resourceSearchPaths;
+@property(readonly, copy) DVTFilePath *symlinkedResourcesPath;
 @property(readonly, copy) NSString *uniquingString;
 @property(readonly, copy) NSUUID *playgroundUUID;
 @property(readonly, copy) NSString *playgroundName;
 - (id <IDEPlaygroundAppBundle>)constructPlaygroundAppBundleInDirectoryAtPath:(DVTFilePath *)arg1 error:(id *)arg2;
-- (id)initWithPlaygroundName:(NSString *)arg1 UUID:(NSUUID *)arg2 uniquingString:(NSString *)arg3 resourcesPath:(DVTFilePath *)arg4 frameworkSearchPath:(DVTFilePath *)arg5 auxiliarySourceFrameworkSearchPath:(DVTFilePath *)arg6 sdk:(DVTSDK *)arg7 device:(DVTDevice *)arg8;
+- (id)initWithPlaygroundName:(NSString *)arg1 UUID:(NSUUID *)arg2 uniquingString:(NSString *)arg3 symlinkedResourcesPath:(DVTFilePath *)arg4 resourceSearchPaths:(NSArray *)arg5 frameworkSearchPath:(DVTFilePath *)arg6 auxiliarySourceFrameworkLocations:(NSArray *)arg7 sdk:(DVTSDK *)arg8 device:(DVTDevice *)arg9;
 @end
 

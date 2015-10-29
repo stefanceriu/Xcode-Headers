@@ -10,5 +10,6 @@
 
 @protocol IDEOpenQuicklyQueryDelegate <NSObject>
 - (void)openQuicklyQueryDidUpdate:(IDEOpenQuicklyQuery *)arg1;
+- (void)openQuicklyQueryWillUpdate:(IDEOpenQuicklyQuery *)arg1;
 @end
 

@@ -8,62 +8,53 @@
 
 #import "DVTProgressIndicatorProvidingView.h"
 
-@class DVTMapTable, NSArray, NSEvent, NSIndexSet, NSString, NSTextField, NSTextFieldCell, NSTrackingArea;
+@class NSArray, NSEvent, NSIndexSet, NSMapTable, NSString, NSTextField, NSTextFieldCell, NSTrackingArea;
 
 @interface DVTOutlineView : NSOutlineView <DVTProgressIndicatorProvidingView>
 {
     NSTextField *_emptyContentLabel;
     NSTextField *_emptyContentSublabel;
-    DVTMapTable *_progressIndicatorsByItem;
-    long long _maxAlternatingRowBackgroundLevelInGroupRow;
-    id <DVTCancellable> _mouseHoverDelayToken;
-    id <DVTCancellable> _mouseMovedDelayToken;
+    NSMapTable *_progressIndicatorsByItem;
     NSTrackingArea *_mouseHoverTrackingArea;
     NSTextFieldCell *_dataCellForGroupRow;
     NSString *_delegateClassName;
-    int _dvt_groupRowStyle;
-    int _indentationStyle;
     struct {
         unsigned int breaksCyclicSortDescriptors:1;
         unsigned int delegateRespondsToShouldMouseHover:1;
         unsigned int hasSetCustomNonLocalDraggingSourceOperationMask:1;
         unsigned int hasSetCustomLocalDraggingSourceOperationMask:1;
-        unsigned int revealsOutlineCellUnderHoveredMouseAfterDelay:1;
         unsigned int allowsSizingShorterThanClipView:1;
         unsigned int reserved:2;
     } _dvtOVFlags;
-    BOOL _groupRowBreaksAlternatingRowBackgroundCycle;
     unsigned long long _gridLineStyleBeforeEmptyContentStringShown;
     BOOL _skipGridLinesOnLastRow;
     BOOL _skipGridLinesOnCollapsedGroupRows;
     BOOL _drawsGridLinesForEmptyContent;
+    BOOL _wantsMouseEnteredExitedAndMovedEvents;
     int _emptyContentStringStyle;
+    int _indentationStyle;
     NSString *_emptyContentString;
     NSString *_emptyContentSubtitle;
-    NSIndexSet *_draggedRows;
     double _gridLineInset;
     NSEvent *_event;
     long long _rowUnderHoveredMouse;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 @property long long rowUnderHoveredMouse; // @synthesize rowUnderHoveredMouse=_rowUnderHoveredMouse;
 @property(retain) NSEvent *event; // @synthesize event=_event;
+@property BOOL wantsMouseEnteredExitedAndMovedEvents; // @synthesize wantsMouseEnteredExitedAndMovedEvents=_wantsMouseEnteredExitedAndMovedEvents;
 @property double gridLineInset; // @synthesize gridLineInset=_gridLineInset;
 @property BOOL drawsGridLinesForEmptyContent; // @synthesize drawsGridLinesForEmptyContent=_drawsGridLinesForEmptyContent;
 @property BOOL skipGridLinesOnCollapsedGroupRows; // @synthesize skipGridLinesOnCollapsedGroupRows=_skipGridLinesOnCollapsedGroupRows;
 @property BOOL skipGridLinesOnLastRow; // @synthesize skipGridLinesOnLastRow=_skipGridLinesOnLastRow;
 @property int indentationStyle; // @synthesize indentationStyle=_indentationStyle;
-@property int dvt_groupRowStyle; // @synthesize dvt_groupRowStyle=_dvt_groupRowStyle;
-@property(nonatomic) long long maxAlternatingRowBackgroundLevelInGroupRow; // @synthesize maxAlternatingRowBackgroundLevelInGroupRow=_maxAlternatingRowBackgroundLevelInGroupRow;
-@property(nonatomic) BOOL groupRowBreaksAlternatingRowBackgroundCycle; // @synthesize groupRowBreaksAlternatingRowBackgroundCycle=_groupRowBreaksAlternatingRowBackgroundCycle;
-@property(copy) NSIndexSet *draggedRows; // @synthesize draggedRows=_draggedRows;
 @property int emptyContentStringStyle; // @synthesize emptyContentStringStyle=_emptyContentStringStyle;
 @property(copy, nonatomic) NSString *emptyContentSubtitle; // @synthesize emptyContentSubtitle=_emptyContentSubtitle;
 @property(copy, nonatomic) NSString *emptyContentString; // @synthesize emptyContentString=_emptyContentString;
 - (void).cxx_destruct;
 - (unsigned long long)draggingSourceOperationMaskForLocal:(BOOL)arg1;
 - (void)setDraggingSourceOperationMask:(unsigned long long)arg1 forLocal:(BOOL)arg2;
-- (id)dragImageForRowsWithIndexes:(id)arg1 tableColumns:(id)arg2 event:(id)arg3 offset:(struct CGPoint *)arg4;
 - (void)concludeDragOperation:(id)arg1;
 - (void)draggingEnded:(id)arg1;
 - (unsigned long long)draggingUpdated:(id)arg1;
@@ -72,11 +63,10 @@
 - (void)mouseMoved:(id)arg1;
 - (void)_processMouseMovedEvent:(id)arg1;
 - (void)_updateDisplayOfItemUnderMouse;
-- (void)_clearMouseActivityDelayTokens;
 - (id)itemUnderHoveredMouse;
 - (void)setRowUnderHoveredMouseAndMarkForRedisplay:(long long)arg1;
 - (void)updateTrackingAreas;
-@property BOOL revealsOutlineCellUnderHoveredMouseAfterDelay;
+- (BOOL)_isViewBased;
 - (void)insertText:(id)arg1;
 - (void)doCommandBySelector:(SEL)arg1;
 - (void)keyDown:(id)arg1;
@@ -96,7 +86,6 @@
 - (void)_drawRowHeaderSeparatorInClipRect:(struct CGRect)arg1;
 - (void)drawGridInClipRect:(struct CGRect)arg1;
 - (void)_drawBackgroundForGroupRow:(long long)arg1 clipRect:(struct CGRect)arg2 isButtedUpRow:(BOOL)arg3;
-- (void)drawBackgroundInClipRect:(struct CGRect)arg1;
 - (struct CGRect)frameOfOutlineCellAtRow:(long long)arg1;
 - (struct CGRect)frameOfCellAtColumn:(long long)arg1 row:(long long)arg2;
 @property(readonly) NSArray *contextMenuSelectedItems;
@@ -109,12 +98,13 @@
 @property BOOL allowsSizingShorterThanClipView;
 @property BOOL breaksCyclicSortDescriptors;
 - (id)progressIndicatorForItem:(id)arg1 createIfNecessary:(BOOL)arg2 progressIndicatorStyle:(unsigned long long)arg3;
+- (void)setDelegate:(id)arg1;
 - (void)_registerNibWithName:(id)arg1 usingIdentifier:(id)arg2;
 - (void)registerDVTTableRowViewNibUsingIdentifier:(id)arg1;
 - (void)registerDVTTableCellViewMultiLineNibUsingIdentifier:(id)arg1;
 - (void)registerDVTTableCellViewTwoLineNibUsingIdentifier:(id)arg1;
 - (void)registerDVTTableCellViewOneLineNibUsingIdentifier:(id)arg1;
-- (void)setDelegate:(id)arg1;
+- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)dvt_commonInit;

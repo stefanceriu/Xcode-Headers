@@ -80,6 +80,7 @@
 @property(getter=isUserRemovable) BOOL userRemovable;
 @property(getter=isUserDraggable) BOOL userDraggable;
 @property(readonly) BOOL hasCaretRanges;
+- (void)synchronizeParagraphHash;
 - (void)synchronizeHighlightedRangesWithLocationsForTextStorage:(id)arg1;
 - (void)removeAllHighlightedRanges;
 - (void)removeHighlightedRange:(struct _NSRange)arg1;

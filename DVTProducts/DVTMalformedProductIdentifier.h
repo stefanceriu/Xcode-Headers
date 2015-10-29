@@ -6,11 +6,11 @@
 
 #import <DVTProducts/DVTProductIdentifier.h>
 
-@class NSString;
+@class DVTProductCategory, NSString;
 
 @interface DVTMalformedProductIdentifier : DVTProductIdentifier
 {
-    unsigned long long _productType;
+    DVTProductCategory *_productCategory;
     NSString *_bundleIdentifier;
     NSString *_name;
 }
@@ -19,13 +19,13 @@
 + (id)malformedProductIdentifierWithArchive:(id)arg1;
 @property(readonly) NSString *name; // @synthesize name=_name;
 - (id)bundleIdentifier;
-- (unsigned long long)productType;
+- (id)productCategory;
 - (void).cxx_destruct;
 - (id)JSONRepresentation;
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)initWithProductType:(unsigned long long)arg1 name:(id)arg2 bundleIdentifier:(id)arg3;
+- (id)initWithProductCategory:(id)arg1 name:(id)arg2 bundleIdentifier:(id)arg3;
 
 @end
 

@@ -21,7 +21,7 @@
 - (void)loadView;
 
 // Remaining properties
-@property(readonly, nonatomic) Xcode3OsloItemModel *model;
+@property(readonly, nonatomic) Xcode3OsloItemModel *model; // @dynamic model;
 
 @end
 

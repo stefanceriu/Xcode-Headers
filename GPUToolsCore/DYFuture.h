@@ -25,6 +25,7 @@
 - (void)resolveWithFuture:(id)arg1;
 - (void)timeoutAfter:(double)arg1 label:(id)arg2;
 @property(retain, nonatomic) NSError *error; // @dynamic error;
+- (void)_setError:(id)arg1;
 @property(retain, nonatomic) id result; // @dynamic result;
 - (void)_setResult:(id)arg1;
 - (int)intResult;

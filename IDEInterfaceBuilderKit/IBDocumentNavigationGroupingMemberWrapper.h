@@ -10,18 +10,20 @@
 
 @interface IBDocumentNavigationGroupingMemberWrapper : IBDocumentMemberWrapper
 {
-    NSString *groupIdentifier;
-    NSArray *childWrappers;
-    NSString *name;
-    NSImage *image;
-    id parentMember;
+    NSArray *_childWrappers;
+    NSImage *_image;
+    NSString *_name;
+    NSString *_groupIdentifier;
+    id _parentMember;
+    NSString *_backingToManyRelationship;
 }
 
-@property __weak id parentMember; // @synthesize parentMember;
-@property(readonly) NSString *groupIdentifier; // @synthesize groupIdentifier;
-@property(copy, nonatomic) NSArray *childWrappers; // @synthesize childWrappers;
+@property(readonly, nonatomic) NSString *backingToManyRelationship; // @synthesize backingToManyRelationship=_backingToManyRelationship;
+@property(nonatomic) __weak id parentMember; // @synthesize parentMember=_parentMember;
+@property(readonly, nonatomic) NSString *groupIdentifier; // @synthesize groupIdentifier=_groupIdentifier;
 - (id)name;
 - (id)image;
+@property(copy, nonatomic) NSArray *childWrappers; // @synthesize childWrappers=_childWrappers;
 - (void).cxx_destruct;
 - (id)acceptDrop:(id)arg1 childIndex:(long long)arg2;
 - (unsigned long long)dragOperationForDropInfo:(id)arg1 proposedIndex:(long long)arg2 acceptingIndex:(long long *)arg3 isAlternativeItem:(BOOL)arg4;
@@ -30,7 +32,7 @@
 - (id)navigableGroupIdentifier;
 - (id)identifier;
 - (BOOL)wrapsNormalDocumentObject;
-- (id)initWithIdentifier:(id)arg1 name:(id)arg2 image:(id)arg3 document:(id)arg4;
+- (id)initWithIdentifier:(id)arg1 name:(id)arg2 image:(id)arg3 backingToManyRelationship:(id)arg4 document:(id)arg5;
 
 @end
 

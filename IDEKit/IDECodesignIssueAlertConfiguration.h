@@ -14,6 +14,7 @@
 {
     BOOL _primaryButtonEnabled;
     BOOL _secondaryButtonEnabled;
+    BOOL _showCancelButton;
     NSString *_title;
     NSString *_message;
     NSString *_primaryButtonTitle;
@@ -23,6 +24,7 @@
 }
 
 + (void)initialize;
+@property BOOL showCancelButton; // @synthesize showCancelButton=_showCancelButton;
 @property(copy) CDUnknownBlockType secondaryAction; // @synthesize secondaryAction=_secondaryAction;
 @property(retain) NSString *secondaryButtonTitle; // @synthesize secondaryButtonTitle=_secondaryButtonTitle;
 @property BOOL secondaryButtonEnabled; // @synthesize secondaryButtonEnabled=_secondaryButtonEnabled;

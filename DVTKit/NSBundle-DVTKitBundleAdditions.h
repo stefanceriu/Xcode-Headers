@@ -6,7 +6,10 @@
 
 #import "NSBundle.h"
 
+@class NSArray;
+
 @interface NSBundle (DVTKitBundleAdditions)
+@property(readonly) NSArray *dvt_iconPaths;
 - (id)dvt_instantiateNibNibNamed:(id)arg1 owner:(id)arg2;
 @end
 

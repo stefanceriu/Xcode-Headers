@@ -32,7 +32,9 @@
 + (id)yellowGlassTextAnnotationThemeForVariant:(int)arg1;
 + (id)defaultTheme;
 + (id)_caretColor;
-+ (BOOL)_hasDarkBackround;
++ (id)greenTextAnnotationBaseHighlightColor;
++ (id)redTextAnnotationBaseHighlightColor;
++ (BOOL)hasDarkBackground;
 + (double)diffTextAnnotationAlphaAdjustmentForDarkTheme:(BOOL)arg1;
 + (void)initialize;
 @property(readonly) NSColor *textColor; // @synthesize textColor=_textColor;

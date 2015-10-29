@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTDelayedInvocation, DVTDispatchLock, DVTMapTable, DVTStackBacktrace, IBLiveViewsBundleBlueprintMap, IBMutableIdentityDictionary, NSCountedSet, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSString;
+@class DVTDelayedInvocation, DVTDispatchLock, DVTStackBacktrace, IBLiveViewsBundleBlueprintMap, IBMutableIdentityDictionary, NSCountedSet, NSMapTable, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSString;
 
 @interface IBLiveViewsManager : NSObject <DVTInvalidation>
 {
@@ -21,7 +21,9 @@
     NSMutableDictionary *_attachedRemoteToolProxiesByIdentifier;
     DVTDispatchLock *_attachedRemoteToolProxiesLock;
     IBMutableIdentityDictionary *_imageRequestersByTargetRuntime;
-    DVTMapTable *_buildOperationsToTrackers;
+    IBMutableIdentityDictionary *_sceneUpdateRequestersByTargetRuntimeThenScaleFactorThenFidelity;
+    NSMapTable *_buildOperationsToTrackers;
+    BOOL _startedInvalidating;
     BOOL _enabled;
     IBLiveViewsBundleBlueprintMap *_bundlesByBlueprintMap;
 }
@@ -32,11 +34,12 @@
 @property(retain) IBLiveViewsBundleBlueprintMap *bundlesByBlueprintMap; // @synthesize bundlesByBlueprintMap=_bundlesByBlueprintMap;
 @property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
 - (void).cxx_destruct;
-- (id)cachedRequestProxyAttachingIfNeededForTargetRuntime:(id)arg1 scaleFactor:(id)arg2 backgroundOperationIdentifier:(id)arg3 queue:(id)arg4 returningFailedLoadResult:(id *)arg5;
+- (id)cachedRequestProxyAttachingIfNeededWithDescription:(id)arg1 returningFailedLoadResult:(id *)arg2;
 - (BOOL)_INSIDE_LOCK_loadLiveViewsBundleBuiltInstances:(id)arg1 inTool:(id)arg2 returningFailedLoadResult:(id *)arg3;
-- (id)_INSIDE_LOCK_cachedRequestProxyAttachingIfNeededForTargetRuntime:(id)arg1 scaleFactor:(id)arg2 backgroundOperationIdentifier:(id)arg3 queue:(id)arg4;
+- (id)_INSIDE_LOCK_cachedRequestProxyAttachingIfNeededWithDescription:(id)arg1;
+- (id)sceneUpdateRequesterForTargetRuntime:(id)arg1 scaleFactor:(id)arg2 renderingFidelity:(long long)arg3;
 - (id)imageRequesterForTargetRuntime:(id)arg1 scaleFactor:(id)arg2;
-- (void)tearDownAllAttachedTools;
+- (void)tearDownAllAttachedToolsAndSpeculativelyRelaunchForNextSession;
 - (void)_INSIDE_LOCK_asynchronouslyLaunchToolsForIdentifiers:(id)arg1;
 - (id)_INSIDE_LOCK_shutdownAllAttachedTools;
 - (void)_mainThread_liveViewsBundle:(id)arg1 didFinishBuildingSuccessfullyToFilePath:(id)arg2 withBuildSettings:(id)arg3;
@@ -48,7 +51,6 @@
 - (BOOL)_shouldParallelizeBuild;
 - (BOOL)_shouldFindImplicitDependencies;
 - (id)runDestinationForBlueprint:(id)arg1 executionEnvironment:(id)arg2;
-- (id)preferredRunDestinationForPlatform:(id)arg1 givenValidRunDestinations:(id)arg2;
 - (id)_mainThread_deterministicallyPickConfigurationNameForBlueprint:(id)arg1;
 - (id)_mainThread_determineBlueprintsToRebuildMappedToContainingSourceCodeClassProviderForInvalidatedFilePaths:(id)arg1;
 - (id)_mainThread_blueprintsContainingLiveClassesForProvider:(id)arg1;

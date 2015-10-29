@@ -15,13 +15,13 @@
     NSView *_editorModeHostView;
     IDEEditorModeViewController *_editorModeViewController;
     int _editorMode;
-    int _nonMiniDebuggingModeExtensionIdentifier;
     int _versionEditorSubmode;
     DVTObservingToken *_workspaceActivityObserver;
     IDEEditorContext *_lastActiveEditorContext;
     IDEDebugBar *_activeDebuggerBar;
     IDEDebugArea *_activeDebuggerArea;
     NSMutableDictionary *_defaultPersistentRepresentations;
+    NSString *_currentDefaultDebugAreaExtensionID;
     DVTLayoutView_ML *_editorAreaAutoLayoutView;
     DVTLayoutView_ML *_debuggerAreaAutoLayoutView;
     DVTBorderedView *_debuggerBarBorderedView;
@@ -32,7 +32,6 @@
     DVTSplitViewItem *_debugAreaSplitViewItem;
     double _heightToReturnToDebuggerArea;
     id _launchSessionObserver;
-    DVTObservingToken *_inMiniDebuggingModeObservingToken;
     IDEWorkspaceTabControllerLayoutTree *_layoutTreeForNavigationHUD;
     IDEWorkspaceTabControllerLayoutTree *_oldLayoutTreeFromStateSaving;
     BOOL _didInstall;
@@ -55,6 +54,7 @@
 + (int)defaultVersionEditorSubmode;
 + (int)defaultEditorMode;
 + (BOOL)automaticallyNotifiesObserversOfLastActiveEditorContext;
++ (void)initialize;
 @property(retain) IDEEditorContext *navigationTargetedEditorContext; // @synthesize navigationTargetedEditorContext=_navigationTargetedEditorContext;
 @property(nonatomic) int versionEditorSubmode; // @synthesize versionEditorSubmode=_versionEditorSubmode;
 @property(nonatomic) int editorMode; // @synthesize editorMode=_editorMode;
@@ -78,8 +78,7 @@
 - (void)splitView:(id)arg1 resizeSubviewsWithOldSize:(struct CGSize)arg2;
 - (void)_resizeSubviewsForHeightIncrease:(double)arg1;
 - (void)_resizeSubviewsForHeightDecrease:(double)arg1;
-- (struct CGRect)splitView:(id)arg1 effectiveRect:(struct CGRect)arg2 forDrawnRect:(struct CGRect)arg3 ofDividerAtIndex:(long long)arg4;
-- (struct CGRect)splitView:(id)arg1 additionalEffectiveRectOfDividerAtIndex:(long long)arg2;
+- (id)splitView:(id)arg1 additionalEffectiveRectsOfDividerAtIndex:(long long)arg2;
 - (double)splitView:(id)arg1 constrainSplitPosition:(double)arg2 ofSubviewAt:(long long)arg3;
 - (BOOL)splitView:(id)arg1 canCollapseSubview:(id)arg2;
 - (double)splitView:(id)arg1 constrainMaxCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
@@ -115,6 +114,7 @@
 @property(readonly) IDEEditorContext *primaryEditorContext;
 - (void)_installDebugAreaWithExtensionID:(id)arg1 revertDebugAreaState:(BOOL)arg2;
 - (void)installDebugAreaWithExtensionID:(id)arg1;
+- (void)installNewDefaultDebugAreaWithExtensionID:(id)arg1;
 - (void)_installDefaultDebugAreaAndRevertDebugAreaState:(BOOL)arg1;
 - (void)installDefaultDebugArea;
 - (void)_setEditorMode:(int)arg1;
@@ -134,6 +134,8 @@
 - (void)_setAssistantEditorsLayout:(int)arg1;
 - (BOOL)_canChangeAssistantEditorsLayout;
 - (void)primitiveInvalidate;
+- (void)_updateDebugAreaAfterDocumentOpened;
+- (void)_updateDebugBarAfterDocumentOpened;
 - (void)loadView;
 - (void)_setEditorModeViewControllerWithPrimaryEditorContext:(id)arg1;
 

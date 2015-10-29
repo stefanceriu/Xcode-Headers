@@ -22,6 +22,7 @@
 - (struct CGPoint)dvt_convertPointFromScreen:(struct CGPoint)arg1;
 - (struct CGPoint)dvt_integralPointInBase:(struct CGPoint)arg1;
 - (struct CGRect)dvt_integralRectInBase:(struct CGRect)arg1;
+- (void)dvt_performAdditionalInvalidation;
 
 // Remaining properties
 @property(nonatomic, getter=isHidden) BOOL hidden;

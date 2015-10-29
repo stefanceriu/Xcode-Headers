@@ -11,6 +11,7 @@
 @interface NSWindow (DVTMainViewControllerMonitorAdditions)
 + (BOOL)automaticallyNotifiesObserversOfDvt_mainViewControllerMonitor;
 + (BOOL)automaticallyNotifiesObserversOfDvt_mainViewController;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 - (void)setDvt_mainViewControllerMonitor:(id)arg1;
 - (id)dvt_mainViewControllerMonitor;
 - (void)dvt_viewControllerWillUninstall:(id)arg1;

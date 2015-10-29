@@ -20,6 +20,7 @@
     DVTTypeCompletionHandler *typeCompletionHandler;
     IBConnectionPopUpMenuItemView *explanationItemsSeparator;
     IBConnectionPopUpMenuItemView *multipleSelectionExplanationItem;
+    IBConnectionPopUpMenuItemView *multipleSelectionAcceptItem;
     IBConnectionPopUpMenuItemView *alternateItemsExplanationItem;
     IBMutableIdentityDictionary *itemViewsByItem;
     IBMutableIdentityDictionary *itemsByItemView;
@@ -54,7 +55,7 @@
 - (id)backgroundColor;
 - (void)setTextColor:(id)arg1;
 - (void)configureScrollButtonImages:(id)arg1 upButton:(BOOL)arg2;
-- (id)initWithMenuItems:(id)arg1 showsStateImagesForItems:(id)arg2 allowsMultipleSelection:(BOOL)arg3 andMaxWidth:(double)arg4;
+- (id)initWithMenuItems:(id)arg1 showsStateImagesForItems:(id)arg2 allowsMultipleSelection:(BOOL)arg3 withMultipleSelectionAcceptsTitle:(id)arg4 andMaxWidth:(double)arg5;
 
 @end
 

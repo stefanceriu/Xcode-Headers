@@ -11,22 +11,26 @@
 #import "XCSUIStackedBarChartViewControllerDataSource.h"
 #import "XCSUIStackedBarChartViewControllerDelegate.h"
 
-@class DVTObservingToken, DVTReplacementView, DVTStackView_ML, NSArray, NSPopover, NSScrollView, NSString, XCSBot, XCSBotSupportingEditor, XCSIntegration, XCSUIIntegrationHistoryViewController, XCSUIReflightRequiredViewController, XCSUIStackedBarChartBar, XCSUIStackedBarChartViewController;
+@class DVTObservingToken, DVTReplacementView, DVTStackView_ML, NSArray, NSPopover, NSScrollView, NSString, XCSBot, XCSBotSupportingEditor, XCSIntegration, XCSUIInsetHorizontalDividerLine, XCSUIIntegrationHistoryViewController, XCSUIProgressReplacementView, XCSUIReflightRequiredViewController, XCSUIStackedBarChartBar, XCSUIStackedBarChartViewController, XCUIBotSummaryViewDataSource;
 
 @interface XCSUIBotSummaryViewController : DVTViewController <XCSUIStackedBarChartViewControllerDataSource, XCSUIStackedBarChartViewControllerDelegate, NSPopoverDelegate, XCSBotSupportingEditorHostedViewController>
 {
     XCSUIIntegrationHistoryViewController *_integrationHistoryViewController;
     XCSUIStackedBarChartViewController *_issueHistoryViewController;
     XCSUIStackedBarChartViewController *_unitTestHistoryViewController;
+    XCSUIStackedBarChartViewController *_codeCoverageHistoryViewController;
     XCSUIStackedBarChartBar *_warningsBar;
     XCSUIStackedBarChartBar *_issuesBar;
     XCSUIStackedBarChartBar *_errorsBar;
     XCSUIStackedBarChartBar *_successBar;
     XCSUIStackedBarChartBar *_failureBar;
-    NSArray *_integrationSummaries;
+    XCSUIStackedBarChartBar *_codeCoverageBar;
+    NSArray *_integrations;
     NSPopover *_graphPopover;
     DVTObservingToken *_botsObserver;
     XCSUIReflightRequiredViewController *_reflightViewController;
+    XCSUIInsetHorizontalDividerLine *_statusLineHistoryDividerLine;
+    XCUIBotSummaryViewDataSource *_summaryViewDataSource;
     XCSBotSupportingEditor *_botSupportingEditor;
     NSArray *_currentSelectedDocumentLocations;
     XCSIntegration *_integration;
@@ -38,18 +42,18 @@
     NSString *_scheduleSummary;
     NSString *_repositoriesSummary;
     DVTReplacementView *_statusReplacementView;
-    DVTReplacementView *_testsGraphReplacementView;
     DVTStackView_ML *_stackView;
     NSScrollView *_scrollView;
     DVTReplacementView *_reflightReplacementView;
+    XCSUIProgressReplacementView *_progressReplacementView;
 }
 
 + (BOOL)instancesCanContainDocumentLocation:(id)arg1;
 + (id)keyPathsForValuesAffectingCurrentSelectedItems;
+@property __weak XCSUIProgressReplacementView *progressReplacementView; // @synthesize progressReplacementView=_progressReplacementView;
 @property __weak DVTReplacementView *reflightReplacementView; // @synthesize reflightReplacementView=_reflightReplacementView;
 @property __weak NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property __weak DVTStackView_ML *stackView; // @synthesize stackView=_stackView;
-@property __weak DVTReplacementView *testsGraphReplacementView; // @synthesize testsGraphReplacementView=_testsGraphReplacementView;
 @property __weak DVTReplacementView *statusReplacementView; // @synthesize statusReplacementView=_statusReplacementView;
 @property(readonly, copy) NSString *repositoriesSummary; // @synthesize repositoriesSummary=_repositoriesSummary;
 @property(readonly, copy) NSString *scheduleSummary; // @synthesize scheduleSummary=_scheduleSummary;
@@ -66,12 +70,19 @@
 - (void)stackedBarChartViewController:(id)arg1 userClickedOnGraphColumn:(id)arg2 event:(id)arg3;
 - (void)stackedBarChartViewController:(id)arg1 userMouseExitedGraph:(id)arg2 event:(id)arg3;
 - (void)stackedBarChartViewController:(id)arg1 userMousedOverGraphColumn:(id)arg2 event:(id)arg3;
+- (id)stackedBarChartViewController:(id)arg1 getIntegrationIdForColumn:(unsigned long long)arg2;
+- (BOOL)stackedBarChartViewController:(id)arg1 isTestingEnabledForColumn:(unsigned long long)arg2;
+- (unsigned long long)stackedBarChartViewController:(id)arg1 codeCoveragePercentageDeltaForColumn:(unsigned long long)arg2;
+- (unsigned long long)stackedBarChartViewController:(id)arg1 codeCoveragePercentageForColumn:(unsigned long long)arg2;
+- (unsigned long long)stackedBarChartViewController:(id)arg1 codeCoveragePreferenceForColumn:(unsigned long long)arg2;
 - (id)stackedBarChartViewController:(id)arg1 labelForColumn:(unsigned long long)arg2;
 - (unsigned long long)stackedBarChartViewController:(id)arg1 countOfFailedTestsForColumn:(unsigned long long)arg2;
 - (unsigned long long)stackedBarChartViewController:(id)arg1 countOfPassedTestsForColumn:(unsigned long long)arg2;
 - (unsigned long long)stackedBarChartViewController:(id)arg1 countOfTestsForColumn:(unsigned long long)arg2;
 - (BOOL)stackedBarChartViewController:(id)arg1 didIntegrationGenerateWarningsOrIssuesForColumn:(unsigned long long)arg2;
 - (BOOL)stackedBarChartViewController:(id)arg1 didIntegrationFailWithBuildErrorsForColumn:(unsigned long long)arg2;
+- (BOOL)stackedBarChartViewController:(id)arg1 didIntegrationTriggerFailForColumn:(unsigned long long)arg2;
+- (BOOL)stackedBarChartViewController:(id)arg1 isBotCanceledForIntegrationForColumn:(unsigned long long)arg2;
 - (BOOL)stackedBarChartViewController:(id)arg1 didBotFailForIntegrationForColumn:(unsigned long long)arg2;
 - (BOOL)stackedBarChartViewController:(id)arg1 isRunningIntegrationForColumn:(unsigned long long)arg2;
 - (BOOL)stackedBarChartViewController:(id)arg1 isPendingIntegrationForColumn:(unsigned long long)arg2;
@@ -81,11 +92,11 @@
 - (void)selectDocumentLocations:(id)arg1;
 @property(readonly, copy) NSArray *currentSelectedItems;
 @property(readonly, copy) NSArray *currentSelectedDocumentLocations; // @synthesize currentSelectedDocumentLocations=_currentSelectedDocumentLocations;
-- (void)refreshUI;
 - (id)statusViewController;
-- (void)getFreshGraphData;
+- (void)refreshUIWithIntegrations:(id)arg1 botStats:(id)arg2 isCodeCoverageAPIAvailable:(long long)arg3;
 - (void)primitiveInvalidate;
 - (void)viewDidInstall;
+- (void)windowDidEndResize:(id)arg1;
 - (void)loadView;
 
 // Remaining properties

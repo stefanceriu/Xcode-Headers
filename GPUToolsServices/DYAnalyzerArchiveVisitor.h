@@ -18,12 +18,16 @@
 
 @property(readonly, retain, nonatomic) DYAnalyzerEngine *engine; // @synthesize engine=_engine;
 - (void).cxx_destruct;
+@property(nonatomic) BOOL unsorted; // @dynamic unsorted;
 - (void)abort;
 - (void)visitFunctionStreamFile:(id)arg1;
 - (void)performPreCaptureVisitActions;
 - (void)visitCaptureArchive:(id)arg1;
 - (void)processFunctionStream:(id)arg1;
 - (id)_loadEngineForAPI:(unsigned int)arg1 deviceInfo:(id)arg2;
+- (void)_runAnalyzerWithBlock:(CDUnknownBlockType)arg1;
+- (void)runAnalyzerProducingNoFindingsWithSingleFrameMode:(BOOL)arg1;
+- (id)generateFindingsAndAddTo:(id)arg1 singleFrameMode:(BOOL)arg2;
 - (id)initForArchive:(id)arg1;
 
 @end

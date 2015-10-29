@@ -6,22 +6,45 @@
 
 #import "IDERunOperationWorker.h"
 
-@class DVTiOSDevice;
+#import "DTMISProcessControlServiceAuthorizedAPI.h"
 
-@interface IDELaunchiPhoneLauncher : IDERunOperationWorker
+@class DTXChannel, DVTObservingToken, DVTiOSDevice, NSString;
+
+@interface IDELaunchiPhoneLauncher : IDERunOperationWorker <DTMISProcessControlServiceAuthorizedAPI>
 {
+    DTXChannel *_serviceHubProcessControlChannel;
+    DTXChannel *_assetServerChannel;
+    DVTObservingToken *_passcodeLockedToken;
+    BOOL _shouldSkipAppTermination;
+    BOOL _launchingToDebug;
     DVTiOSDevice *_device;
 }
 
+@property(getter=isLaunchingToDebug) BOOL launchingToDebug; // @synthesize launchingToDebug=_launchingToDebug;
 @property(retain) DVTiOSDevice *device; // @synthesize device=_device;
 - (void).cxx_destruct;
+- (id)_assetServerChannel;
+- (id)_assetServerConnection;
+- (void)setupAssetServerWithCompletion:(CDUnknownBlockType)arg1;
 - (BOOL)setupOptimizationProfileGeneration;
+- (void)primitiveInvalidate;
 - (void)terminate;
 - (void)_deviceWoke;
+- (void)pidDiedCallback:(id)arg1;
+- (void)_cancelServiceHubProcessControlChannel;
+- (id)_serviceHubProcessControlChannel;
+- (id)_bestPrimaryInstrumentsServer;
+- (void)_setupPlainLaunching;
+- (void)_setupDebugging;
+- (void)_continueStarting;
 - (void)start;
-- (BOOL)postCheckinActionShouldFinishOperationWorker;
-- (BOOL)shouldSetupDebugServer;
-- (void)_setFinishedRunningWithError:(id)arg1;
+- (void)_holdExecutionWithError:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

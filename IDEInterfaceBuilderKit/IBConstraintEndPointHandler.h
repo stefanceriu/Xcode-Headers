@@ -6,32 +6,41 @@
 
 #import <IDEInterfaceBuilderKit/IBAbstractConnectionEndPointHandler.h>
 
-@class IBAutolayoutConstraintAdditionValidationState;
+@class NSObject<IBIDEAutolayoutItem>;
 
 @interface IBConstraintEndPointHandler : IBAbstractConnectionEndPointHandler
 {
-    IBAutolayoutConstraintAdditionValidationState *_constraintAdditionValidationState;
+    NSObject<IBIDEAutolayoutItem> *_fromItem;
+    NSObject<IBIDEAutolayoutItem> *_toItem;
     struct CGPoint _startPoint;
     struct CGPoint _endPoint;
 }
 
-@property(readonly, nonatomic) IBAutolayoutConstraintAdditionValidationState *constraintAdditionValidationState; // @synthesize constraintAdditionValidationState=_constraintAdditionValidationState;
++ (void)setIncludeCenteringConstraintsForUsingCurrentConstants:(BOOL)arg1;
++ (BOOL)includeCenteringConstraintsForUsingCurrentConstants;
++ (void)setThresholdForUsingCurrentConstantForAlignmentConstraints:(id)arg1;
++ (id)thresholdForUsingCurrentConstantForAlignmentConstraints;
 @property(readonly, nonatomic) struct CGPoint endPoint; // @synthesize endPoint=_endPoint;
 @property(readonly, nonatomic) struct CGPoint startPoint; // @synthesize startPoint=_startPoint;
+@property(readonly, nonatomic) NSObject<IBIDEAutolayoutItem> *toItem; // @synthesize toItem=_toItem;
+@property(readonly, nonatomic) NSObject<IBIDEAutolayoutItem> *fromItem; // @synthesize fromItem=_fromItem;
 - (void).cxx_destruct;
 - (id)constraintsForConnectingFromObject:(id)arg1;
-- (id)_constraintsForConstraintConnectionType:(unsigned long long)arg1 context:(id)arg2;
-- (unsigned long long)_layoutAttributeForEdgeToContainerConstraintType:(unsigned long long)arg1;
 - (void)_addAspectRatioConstraintsToContext:(id)arg1;
 - (void)_addEqualSizeConstraintsToContext:(id)arg1;
 - (void)_addSiblingAlignmentConstraintsToContext:(id)arg1;
-- (void)_addContainerCenterAlignmentConstraintsToContext:(id)arg1;
-- (void)_addContainerSpacingAndAlignmentConstraintsToContext:(id)arg1;
+- (void)__addSiblingAlignmentConstraintMenuItemToContext:(id)arg1 attribute:(unsigned long long)arg2 overriddingTitle:(id)arg3 isAlternateItem:(BOOL)arg4 automaticallyAddCurrentConstantAlternateItem:(BOOL)arg5;
+- (void)_addAncestorCenterAlignmentConstraintsToContext:(id)arg1;
+- (void)__addAncestorCenterAlignmentConstraintMenuItemToContext:(id)arg1 attribute:(unsigned long long)arg2;
+- (void)_addAncestorSpacingConstraintsToContext:(id)arg1;
+- (void)__addAncestorSpacingConstraintToContext:(id)arg1 forAttribute:(unsigned long long)arg2;
+- (void)___addAncestorSpacingConstraintToContext:(id)arg1 forAttribute:(unsigned long long)arg2 ofEffectiveAncestorTargetedItem:(id)arg3;
+- (void)___addAncestorSpacingConstraintToContext:(id)arg1 forAttribute:(unsigned long long)arg2 effectiveAncestor:(id)arg3 effectiveDescendant:(id)arg4 onlyAddSingleItemAndAddAsAlternateOnly:(BOOL)arg5;
 - (void)_addExplicitSizeConstraintsToContext:(id)arg1;
 - (void)_addSiblingSpacingConstraintsToContext:(id)arg1;
 - (id)_connectionContextForPossibleConstraints;
 - (CDStruct_92d5623e)_computeLineOrientation;
-- (id)initWithDocument:(id)arg1 startPoint:(struct CGPoint)arg2 endPoint:(struct CGPoint)arg3 constraintAdditionValidationState:(id)arg4;
+- (id)initWithDocument:(id)arg1 fromItem:(id)arg2 atPoint:(struct CGPoint)arg3 toItem:(id)arg4 atPoint:(struct CGPoint)arg5;
 
 @end
 

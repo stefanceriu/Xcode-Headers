@@ -6,12 +6,11 @@
 
 #import "NSObject.h"
 
-@class IDEPlaygroundEditor, IDEPlaygroundSection, NSArray;
+@class IDEPlaygroundDocumentSection, IDEPlaygroundEditor, NSArray;
 
 @protocol IDEPlaygroundSectionViewController <NSObject>
-@property BOOL finishedLoading;
 @property(readonly) IDEPlaygroundEditor *playgroundEditor;
-@property(readonly) IDEPlaygroundSection *playgroundSection;
+@property(readonly) IDEPlaygroundDocumentSection *playgroundSection;
 
 @optional
 @property(readonly) NSArray *currentSelectedDocumentLocations;

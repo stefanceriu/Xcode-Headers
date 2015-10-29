@@ -9,7 +9,7 @@
 #import "DVTFilePathFieldCellDelegate.h"
 #import "DVTInvalidation.h"
 
-@class DVTFilePathField, DVTStackBacktrace, IDEWorkspace, NSButton, NSNumber, NSPopUpButton, NSString, NSTextField;
+@class DVTFilePathField, DVTStackBacktrace, IDEWorkspace, NSButton, NSNumber, NSPopUpButton, NSString, NSTextField, NSWindow;
 
 @interface IDEBuildFolderLocationSheetController : NSWindowController <DVTFilePathFieldCellDelegate, DVTInvalidation>
 {
@@ -33,6 +33,7 @@
     DVTFilePathField *_buildIntermediatesFolderFilePathLabel;
     NSTextField *_buildProductsFolderFilePathRelativeLabel;
     NSTextField *_buildIntermediatesFolderFilePathRelativeLabel;
+    NSWindow *_hostWindow;
 }
 
 + (id)keyPathsForValuesAffectingBuildIntermediatesFolderPath;
@@ -67,7 +68,7 @@
 @property(copy) NSNumber *customBuildLocationTypeIndex;
 - (void)buildStyleButtonPressed:(id)arg1;
 - (void)_updateControlsForCurrentLocationStyle;
-- (void)didEndSheet:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)_buildFolderLocationSheetDidEndWithReturnCode:(long long)arg1;
 - (void)closeSheet:(id)arg1;
 - (void)showSheetInWindow:(id)arg1;
 - (void)windowDidLoad;

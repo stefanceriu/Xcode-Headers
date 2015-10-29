@@ -4,13 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IBFoundation/IBICMultipartImageRepSlotComponent.h>
-
-#import "NSCoding.h"
+#import <IBFoundation/IBICSlotComponent.h>
 
 @class NSString;
 
-@interface IBICIdiom : IBICMultipartImageRepSlotComponent <NSCoding>
+@interface IBICIdiom : IBICSlotComponent
 {
     NSString *_platform;
     long long _coreUIIdiom;
@@ -24,10 +22,9 @@
 @property(readonly) long long coreUIIdiom; // @synthesize coreUIIdiom=_coreUIIdiom;
 @property(readonly) NSString *platform; // @synthesize platform=_platform;
 - (void).cxx_destruct;
-- (void)ibic_appendAdditionalPseudoXMLAttrbutes:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (BOOL)isEqualToSchemaImageRepIDComponent:(id)arg1;
+- (BOOL)isEqualToSlotComponent:(id)arg1;
 - (BOOL)isEqualToIdiom:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 platform:(id)arg4 coreUIIdiom:(long long)arg5 infoPlistSuffix:(id)arg6 displayOrder:(double)arg7;
 

@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)SCNJSExportProtocol;
+- (BOOL)supportsOffset;
 -     // Error parsing type: ^{c3dPhysicsField=^^?{?=[4]}{?=[4]}fffIBBBBf}16@0:8, name: _createField
 - (void)setDirection:(struct SCNVector3)arg1;
 - (struct SCNVector3)gravity;

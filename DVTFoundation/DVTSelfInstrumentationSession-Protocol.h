@@ -9,6 +9,7 @@
 @class NSString;
 
 @protocol DVTSelfInstrumentationSession <NSObject>
++ (NSString *)fileExtensionForTimeProfile;
 + (id)timeProfileSessionOrError:(id *)arg1;
 + (void)sendStopSignalWithName:(NSString *)arg1;
 + (void)sendPointSignalWithName:(NSString *)arg1;

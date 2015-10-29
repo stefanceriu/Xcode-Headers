@@ -9,12 +9,11 @@
 #import "DVTInfoPlistValueCellDelegate.h"
 #import "IDECapsuleListViewDataSource.h"
 
-@class DVTChoice, DVTDelayedInvocation, DVTInfoPlistValueCell, DVTStackView_ML, IDECapsuleListView, IDECodesigningSettingsViewController, IDETargetEditorSectionViewController, IDEViewController<IDECapsuleViewController>, IDEiOSIconsAndLaunchImagesViewController, NSArray, NSBox, NSButton, NSColor, NSComboBox, NSDictionary, NSMutableArray, NSPopUpButton, NSString, NSTextField, NSView;
+@class DVTChoice, DVTStackView_ML, IDECapsuleListView, IDECodesigningSettingsViewController, IDETargetEditorSectionViewController, IDEViewController<IDECapsuleViewController>, IDEiOSIconsAndLaunchImagesViewController, NSArray, NSBox, NSButton, NSColor, NSComboBox, NSDictionary, NSMutableArray, NSPopUpButton, NSString, NSTextField, NSView, Xcode3CodesignTroubleshootingViewController, Xcode3TargetEditor;
 
 @interface IDEiOSTargetEditor : IDEViewController <DVTInfoPlistValueCellDelegate, IDECapsuleListViewDataSource>
 {
     DVTChoice *_selectedDeviceTab;
-    id _appIdentifierFieldNotificationObserver;
     NSArray *_imageSections;
     IDECapsuleListView *_capsuleList;
     NSView *_codesigningSettingsView;
@@ -24,11 +23,11 @@
     NSTextField *_displayNameLabel;
     NSPopUpButton *_targetDevicePopup;
     NSComboBox *_deploymentOSCombo;
-    DVTInfoPlistValueCell *_appIdentifierCell;
-    NSTextField *_appIdentifierField;
+    NSTextField *_targetIdentifierField;
     IDEViewController<IDECapsuleViewController> *_identityViewController;
     IDEViewController<IDECapsuleViewController> *_standardDeploymentInfoViewController;
     IDEViewController<IDECapsuleViewController> *_imageViewController;
+    IDEViewController *_complicationsConfigurationViewController;
     DVTStackView_ML *_deploymentInfoStackView;
     NSBox *_universalSeparatorLine1;
     NSBox *_universalSeparatorLine2;
@@ -39,6 +38,16 @@
     NSView *_deploymentInfoiPadView;
     NSView *_deploymentInfoAppExtensionView;
     DVTStackView_ML *_identityStack;
+    DVTStackView_ML *_deploymentTargetDeviceFamilyStack;
+    NSView *_deploymentTargetDeviceFamilyStack_deploymentTarget;
+    NSView *_deploymentTargetDeviceFamilyStack_deviceFamily;
+    DVTStackView_ML *_iPhoneDeploymentInfoStack;
+    NSView *_iPhoneDeploymentInfoStack_mainInterface;
+    NSView *_iPhoneDeploymentInfoStack_deviceOrientation;
+    NSView *_iPhoneDeploymentInfoStack_statusBarStyle;
+    NSView *_iPhoneDeploymentInfoStack_statusBarHiding;
+    NSView *_iPhoneDeploymentInfoStack_requireFullScreen;
+    NSView *_iPhoneDeploymentInfoStack_spacer;
     IDEViewController<IDECapsuleViewController> *_frameworksViewController;
     IDEViewController<IDECapsuleViewController> *_embeddedBinariesViewController;
     NSView *_chooseInfoPListView;
@@ -48,13 +57,13 @@
     NSMutableArray *_subviewControllers;
     IDEiOSIconsAndLaunchImagesViewController *_iconsViewController;
     IDEiOSIconsAndLaunchImagesViewController *_launchImagesViewController;
-    IDEViewController *_codesignTroubleController;
-    DVTDelayedInvocation *_appIdentifierChangeInvocation;
+    Xcode3CodesignTroubleshootingViewController *_codesignTroubleController;
     BOOL _iPhoneStatusBarTintingAvailable;
     BOOL _iPhoneStatusBarTintingCustom;
     BOOL _iPhoneStatusBarTintingShowImage;
     BOOL _extensionWantsAppIconsAndLaunchImages;
-    id _targetViewController;
+    BOOL _subviewControllersNeedsRefresh;
+    Xcode3TargetEditor *_targetViewController;
     NSDictionary *_iconFilePathSetsByIconBaseName;
     NSArray *_targetIconFiles;
     NSString *_iPhoneStatusBarTintingStyle;
@@ -71,14 +80,17 @@
     IDETargetEditorSectionViewController *_extensionDeploymentSectionViewController;
 }
 
++ (id)keyPathsForValuesAffectingTargetIdentifier;
 + (BOOL)isPrimaFacieValidVersionString:(id)arg1;
 + (id)keyPathsForValuesAffectingIPadStatusBarHidden;
 + (id)keyPathsForValuesAffectingIPhoneStatusBarHidden;
++ (id)keyPathsForValuesAffectingRequiresFullScreen;
 + (id)keyPathsForValuesAffectingIPhoneStatusBarStyle;
 + (id)duplicateTarget:(id)arg1 withTargetController:(Class)arg2 handler:(CDUnknownBlockType)arg3;
 + (id)keyPathsForValuesAffectingSelectedDeviceTabs;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
+@property BOOL subviewControllersNeedsRefresh; // @synthesize subviewControllersNeedsRefresh=_subviewControllersNeedsRefresh;
 @property(retain) IDETargetEditorSectionViewController *extensionDeploymentSectionViewController; // @synthesize extensionDeploymentSectionViewController=_extensionDeploymentSectionViewController;
 @property BOOL extensionWantsAppIconsAndLaunchImages; // @synthesize extensionWantsAppIconsAndLaunchImages=_extensionWantsAppIconsAndLaunchImages;
 @property(retain) NSView *targetLaunchScreenFileSlice; // @synthesize targetLaunchScreenFileSlice=_targetLaunchScreenFileSlice;
@@ -97,7 +109,7 @@
 @property(readonly) BOOL iPhoneStatusBarTintingAvailable; // @synthesize iPhoneStatusBarTintingAvailable=_iPhoneStatusBarTintingAvailable;
 @property(copy) NSArray *targetIconFiles; // @synthesize targetIconFiles=_targetIconFiles;
 @property(retain, nonatomic) NSDictionary *iconFilePathSetsByIconBaseName; // @synthesize iconFilePathSetsByIconBaseName=_iconFilePathSetsByIconBaseName;
-@property(retain, nonatomic) id targetViewController; // @synthesize targetViewController=_targetViewController;
+@property(retain, nonatomic) Xcode3TargetEditor *targetViewController; // @synthesize targetViewController=_targetViewController;
 - (void).cxx_destruct;
 - (id)capsuleListView:(id)arg1 viewControllerForRow:(long long)arg2;
 - (long long)numberOfObjectsInCapsuleListView:(id)arg1;
@@ -111,6 +123,7 @@
 @property(readonly) id headerFont;
 @property(copy) NSArray *targetIPadOrientations;
 @property(copy) NSArray *targetIPhoneOrientations;
+@property(readonly) BOOL supportsDeviceOrientations;
 @property(copy) NSString *targetLaunchScreenFile;
 @property(copy) NSString *targetAppExtensionInterface;
 @property(copy) NSString *targetiPadInterface;
@@ -127,13 +140,15 @@
 @property BOOL allowAppExtensionAPIOnly;
 - (void)setTargetDisplayName:(id)arg1;
 @property(copy) NSString *targetDeploymentOS;
-- (BOOL)control:(id)arg1 textShouldEndEditing:(id)arg2;
-- (id)overridingConditionSetForARCHSExpansion;
 - (id)targetDisplayName;
 @property(copy) NSString *targetDevice;
 @property BOOL iPadStatusBarHidden;
 @property BOOL iPhoneStatusBarHidden;
+@property(nonatomic) BOOL requiresFullScreen;
+- (BOOL)supportsRequireFullScreen;
+@property(readonly) BOOL supportsUIStatusBarHidden;
 @property(copy) NSString *iPhoneStatusBarStyle;
+@property(readonly) BOOL supportsUIStatusBarStyle;
 - (void)pickInfoPlistFile:(id)arg1;
 - (id)deploymentOSVersions;
 @property BOOL iPadLandscape2;
@@ -153,13 +168,13 @@
 - (void)primitiveInvalidate;
 - (void)loadView;
 - (id)xcode3Target;
-- (void)_reloadCapsuleList;
+- (id)subviewControllers;
 @property(readonly) BOOL iPadTargeted;
 @property(readonly) BOOL iPhoneTargeted;
+@property(readonly) BOOL supportsBrandAssetsForAppIcon;
+@property(readonly) BOOL supportsTargetDeviceFamily;
 - (void)selectiPadDeploymentInfo:(id)arg1;
 - (void)selectiPhoneDeploymentInfo:(id)arg1;
-- (void)appIdentifierChanged:(id)arg1;
-- (void)refreshAppIdentifier;
 - (void)refreshExtensionBasedProperties;
 - (void)setIPadDisclosed:(BOOL)arg1;
 - (void)setIPhoneDisclosed:(BOOL)arg1;

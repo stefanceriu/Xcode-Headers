@@ -15,7 +15,7 @@
     NSString *_name;
     BOOL _hasDecodedObject;
     id _decodedObject;
-    BOOL _typeNameIsPreferredSidebarRepresentation;
+    BOOL _summaryIsPreferredSidebarRepresentation;
     NSString *_typeName;
     NSString *_summary;
     NSString *_tag;
@@ -23,20 +23,20 @@
     id <IDEPlaygroundLoggerObjectReflectionDecoder> _decoder;
 }
 
-+ (id)objectReflectionForTag:(id)arg1 typeName:(id)arg2 typeNameIsPreferredSidebarRepresentation:(BOOL)arg3 summary:(id)arg4 usingName:(id)arg5 andData:(id)arg6;
++ (id)objectReflectionForTag:(id)arg1 typeName:(id)arg2 summaryIsPreferredSidebarRepresentation:(BOOL)arg3 summary:(id)arg4 usingName:(id)arg5 andData:(id)arg6;
 @property(readonly) id <IDEPlaygroundLoggerObjectReflectionDecoder> decoder; // @synthesize decoder=_decoder;
 @property(readonly, copy) NSData *data; // @synthesize data=_data;
 @property(readonly, copy) NSString *tag; // @synthesize tag=_tag;
 @property(readonly, copy) NSString *summary; // @synthesize summary=_summary;
-@property(readonly) BOOL typeNameIsPreferredSidebarRepresentation; // @synthesize typeNameIsPreferredSidebarRepresentation=_typeNameIsPreferredSidebarRepresentation;
+@property(readonly) BOOL summaryIsPreferredSidebarRepresentation; // @synthesize summaryIsPreferredSidebarRepresentation=_summaryIsPreferredSidebarRepresentation;
 @property(readonly, copy) NSString *typeName; // @synthesize typeName=_typeName;
 @property(readonly, copy) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 @property(readonly, copy) NSAttributedString *attributedSummary;
 @property(readonly) id decodedObject;
-- (id)_initWithName:(id)arg1 tag:(id)arg2 typeName:(id)arg3 typeNameIsPreferredSidebarRepresentation:(BOOL)arg4 summary:(id)arg5 data:(id)arg6 decoder:(id)arg7;
-- (id)initWithName:(id)arg1 tag:(id)arg2 typeName:(id)arg3 typeNameIsPreferredSidebarRepresentation:(BOOL)arg4 summary:(id)arg5 data:(id)arg6;
+- (id)_initWithName:(id)arg1 tag:(id)arg2 typeName:(id)arg3 summaryIsPreferredSidebarRepresentation:(BOOL)arg4 summary:(id)arg5 data:(id)arg6 decoder:(id)arg7;
+- (id)initWithName:(id)arg1 tag:(id)arg2 typeName:(id)arg3 summaryIsPreferredSidebarRepresentation:(BOOL)arg4 summary:(id)arg5 data:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

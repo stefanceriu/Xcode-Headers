@@ -36,6 +36,8 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)isEmpty;
+- (BOOL)isInfinite;
 @property(readonly, nonatomic) struct CGPath *path;
 
 @end

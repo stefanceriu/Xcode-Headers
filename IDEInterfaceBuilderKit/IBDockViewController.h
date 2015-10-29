@@ -82,7 +82,6 @@
 - (id)objectIDsForGroup:(id)arg1;
 - (id)objectsForGroup:(id)arg1;
 - (long long)dockView:(id)arg1 minimumNumberOfItemsInGroup:(id)arg2;
-- (id)dockView:(id)arg1 titleOfRepresentedGroup:(id)arg2;
 - (id)dockViewRepresentedGroups:(id)arg1;
 - (void)dockViewWillValidateData:(id)arg1;
 - (void)loadView;

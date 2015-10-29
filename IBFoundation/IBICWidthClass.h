@@ -10,6 +10,7 @@
 {
 }
 
++ (id)fallbackContentsJSONKeys;
 + (id)contentsJSONKey;
 
 @end

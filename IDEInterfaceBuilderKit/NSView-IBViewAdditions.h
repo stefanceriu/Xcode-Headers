@@ -16,13 +16,14 @@
 - (id)ib_constraintsForMakingFlushWithSuperview;
 - (BOOL)isMouse:(struct CGPoint)arg1 inRect:(struct CGRect)arg2;
 - (id)firstAncestorPassingTest:(CDUnknownBlockType)arg1;
-- (void)scrollRectToVisible:(struct CGRect)arg1 animatingSynchronously:(BOOL)arg2 duration:(double)arg3;
-- (void)scrollRectToVisible:(struct CGRect)arg1 animatingSynchronously:(BOOL)arg2;
+- (void)scrollRectToVisible:(struct CGRect)arg1 shouldCenter:(BOOL)arg2 animatingSynchronously:(BOOL)arg3 duration:(double)arg4;
+- (void)scrollRectToVisible:(struct CGRect)arg1 shouldCenter:(BOOL)arg2 animatingSynchronously:(BOOL)arg3;
 - (struct CGRect)rectToScrollRectToVisible:(struct CGRect)arg1 keepingRectVisible:(struct CGRect)arg2;
+- (struct CGRect)intersectRectByAxisForRect:(struct CGRect)arg1 andRect:(struct CGRect)arg2;
 - (CDStruct_f6143a38)convertLine:(CDStruct_f6143a38)arg1 fromView:(id)arg2;
 - (CDStruct_f6143a38)convertLine:(CDStruct_f6143a38)arg1 toView:(id)arg2;
-- (long long)convertKnobPosition:(long long)arg1 fromView:(id)arg2;
-- (long long)convertKnobPosition:(long long)arg1 toView:(id)arg2;
+- (CDUnion_31865a80)convertKnobPosition:(CDUnion_31865a80)arg1 fromView:(id)arg2;
+- (CDUnion_31865a80)convertKnobPosition:(CDUnion_31865a80)arg1 toView:(id)arg2;
 - (unsigned long long)convertRectEdge:(unsigned long long)arg1 fromView:(id)arg2;
 - (unsigned long long)convertRectEdge:(unsigned long long)arg1 toView:(id)arg2;
 - (id)transformForConvertingPointsFromView:(id)arg1;

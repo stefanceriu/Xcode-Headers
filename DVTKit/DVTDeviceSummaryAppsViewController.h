@@ -43,7 +43,6 @@
 - (void)deleteApplications:(id)arg1;
 - (void)installApplications:(id)arg1;
 - (void)addApplication:(id)arg1;
-- (void)_asyncPresentError:(id)arg1;
 - (BOOL)tableView:(id)arg1 acceptDrop:(id)arg2 row:(long long)arg3 dropOperation:(unsigned long long)arg4;
 - (unsigned long long)tableView:(id)arg1 validateDrop:(id)arg2 proposedRow:(long long)arg3 proposedDropOperation:(unsigned long long)arg4;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;

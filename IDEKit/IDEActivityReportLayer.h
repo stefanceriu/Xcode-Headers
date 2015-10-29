@@ -8,12 +8,13 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTObservingToken, DVTStackBacktrace, IDEActivityProgressIndicatorLayer, IDEActivityReport, IDEActivityScrollingTextLayer, NSMutableArray, NSString;
+@class DVTObservingToken, DVTStackBacktrace, IDEActivityActionButtonLayer, IDEActivityProgressIndicatorLayer, IDEActivityReport, IDEActivityScrollingTextLayer, NSMutableArray, NSString;
 
 @interface IDEActivityReportLayer : CALayer <DVTInvalidation>
 {
     IDEActivityProgressIndicatorLayer *_progressIndicatorLayer;
     IDEActivityScrollingTextLayer *_scrollingTextLayer;
+    IDEActivityActionButtonLayer *_cancelButtonLayer;
     long long _displayStyle;
     IDEActivityReport *_activityReport;
     CALayer *_imageLayer;
@@ -37,12 +38,15 @@
 @property(nonatomic) long long displayStyle; // @synthesize displayStyle=_displayStyle;
 @property(retain, nonatomic) IDEActivityReport *activityReport; // @synthesize activityReport=_activityReport;
 - (void).cxx_destruct;
+- (double)spaceNeededForCancelButtonLayer;
+- (BOOL)shouldShowCancelButtonLayer;
 @property(readonly) BOOL indeterminateReportInProgress;
 - (id)keyPathsForValuesAffectingIndeterminateReportInProgress;
+- (void)updateVisibilityForCancelButtonAndAdjustLayoutIfNeeded;
 - (void)updateVisibilityForTextFieldAndAdjustLayoutIfNeeded;
 - (BOOL)shouldHideProgress;
-- (void)startObservingActivityReport;
-- (void)stopObservingActivityReport;
+- (void)_startObservingActivityReport;
+- (void)_stopObservingActivityReport;
 - (void)updateScrollingTextFieldStringValue;
 - (id)_workspace;
 - (void)_updatePaused:(BOOL)arg1;

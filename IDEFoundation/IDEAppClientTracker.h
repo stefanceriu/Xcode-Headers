@@ -17,6 +17,7 @@
 
 + (id)sharedAppClientTracker;
 - (void).cxx_destruct;
+@property(readonly) BOOL isCancelling;
 - (void)cancelTrackedClients;
 - (id)clientsNotSupportingCancellation;
 - (id)clientsRequiringCancellationPrompt;

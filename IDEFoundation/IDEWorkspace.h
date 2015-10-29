@@ -9,7 +9,7 @@
 #import "IDEClientTracking.h"
 #import "IDEIntegrityLogDataSource.h"
 
-@class DVTFilePath, DVTHashTable, DVTMapTable, DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEBatchFindManager, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer<IDECustomDataStoring>, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELocalizationManager, IDELogManager, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextIndex, IDEWorkspaceArena, IDEWorkspaceSharedSettings, IDEWorkspaceSnapshotManager, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableOrderedSet, NSMutableSet, NSSet, NSString;
+@class DVTFilePath, DVTObservingToken, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDEActivityLogSection, IDEBatchFindManager, IDEBreakpointManager, IDEConcreteClientTracker, IDEContainer<IDECustomDataStoring>, IDEContainerQuery, IDEDeviceInstallWorkspaceMonitor, IDEExecutionEnvironment, IDEIndex, IDEIssueManager, IDELocalizationManager, IDELogManager, IDERefactoring, IDERunContextManager, IDESourceControlWorkspaceMonitor, IDETestManager, IDETextIndex, IDEWorkspaceArena, IDEWorkspaceSharedSettings, IDEWorkspaceUpgradeTasksController, IDEWorkspaceUserSettings, NSArray, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableOrderedSet, NSMutableSet, NSSet, NSString;
 
 @interface IDEWorkspace : IDEXMLPackageContainer <IDEClientTracking, IDEIntegrityLogDataSource>
 {
@@ -20,15 +20,13 @@
     IDEContainerQuery *_containerQuery;
     DVTObservingToken *_containerQueryObservingToken;
     NSMutableSet *_referencedContainers;
-    DVTHashTable *_fileRefsWithContainerLoadingIssues;
+    NSHashTable *_fileRefsWithContainerLoadingIssues;
     IDEActivityLogSection *_containerLoadingIntegrityLog;
     NSMutableSet *_customDataStores;
     IDEWorkspaceUserSettings *_userSettings;
     IDEWorkspaceSharedSettings *_sharedSettings;
-    DVTMapTable *_blueprintProviderObserverMap;
+    NSMapTable *_blueprintProviderObserverMap;
     NSMutableSet *_referencedBlueprints;
-    DVTMapTable *_testableProviderObserverMap;
-    NSMutableSet *_referencedTestables;
     BOOL _initialContainerScanComplete;
     NSMutableArray *_referencedRunnableBuildableProducts;
     IDERunContextManager *_runContextManager;
@@ -45,12 +43,11 @@
     id _indexableFileUpdateNotificationToken;
     IDEIndex *_index;
     IDERefactoring *_refactoring;
-    DVTMapTable *_fileRefsToResolvedFilePaths;
-    NSMutableSet *_fileRefsToRegisterForIndexing;
+    NSMapTable *_fileRefsToResolvedFilePaths;
+    DVTTimeSlicedMainThreadWorkQueue *_fileReferenceForIndexingQueue;
     IDETextIndex *_textIndex;
     IDEDeviceInstallWorkspaceMonitor *_deviceInstallWorkspaceMonitor;
     IDESourceControlWorkspaceMonitor *_sourceControlWorkspaceMonitor;
-    IDEWorkspaceSnapshotManager *_snapshotManager;
     IDELocalizationManager *_localizationManager;
     DVTFilePath *_wrappedContainerPath;
     IDEContainer<IDECustomDataStoring> *_wrappedContainer;
@@ -59,7 +56,7 @@
     NSHashTable *_pendingReferencedFileReferences;
     NSHashTable *_pendingReferencedContainers;
     IDEConcreteClientTracker *_clientTracker;
-    DVTHashTable *_fileReferencesForProblem8727051;
+    NSHashTable *_fileReferencesForProblem8727051;
     DVTObservingToken *_finishedLoadingObservingToken;
     NSDictionary *_Problem9887530_preferredStructurePaths;
     BOOL _simpleFilesFocused;
@@ -82,8 +79,8 @@
     BOOL _hostsOnlyXcode3Project;
     BOOL _hostsOnlyPlayground;
     BOOL _isPotentiallyClosing;
-    long long _indexGenerationCounter;
     id <IDEContinuousIntegrationBotMonitor> _xcs2WorkspaceBotMonitor;
+    long long _indexGenerationCounter;
     id <IDEActiveRunContextStoring> _activeRunContextStore;
     IDEWorkspaceUpgradeTasksController *_deferredUpgradeTasksController;
 }
@@ -102,30 +99,31 @@
 + (id)rootElementName;
 + (BOOL)_shouldLoadUISubsystems;
 + (BOOL)automaticallyNotifiesObserversOfFileRefsWithContainerLoadingIssues;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (void)initialize;
 @property(retain) IDEWorkspaceUpgradeTasksController *deferredUpgradeTasksController; // @synthesize deferredUpgradeTasksController=_deferredUpgradeTasksController;
+@property(nonatomic) BOOL pendingFileReferencesAndContainers; // @synthesize pendingFileReferencesAndContainers=_pendingFileReferencesAndContainers;
 @property(retain) id <IDEActiveRunContextStoring> activeRunContextStore; // @synthesize activeRunContextStore=_activeRunContextStore;
+@property(readonly, nonatomic) long long indexGenerationCounter; // @synthesize indexGenerationCounter=_indexGenerationCounter;
 @property(nonatomic) BOOL isPotentiallyClosing; // @synthesize isPotentiallyClosing=_isPotentiallyClosing;
+@property BOOL isCleaningBuildFolder; // @synthesize isCleaningBuildFolder=_isCleaningBuildFolder;
 @property BOOL hostsOnlyPlayground; // @synthesize hostsOnlyPlayground=_hostsOnlyPlayground;
 @property BOOL hostsOnlyXcode3Project; // @synthesize hostsOnlyXcode3Project=_hostsOnlyXcode3Project;
 @property BOOL hostsOnlyWrappedContainer; // @synthesize hostsOnlyWrappedContainer=_hostsOnlyWrappedContainer;
+@property(readonly) DVTFilePath *wrappedContainerPath; // @synthesize wrappedContainerPath=_wrappedContainerPath;
 @property(readonly, nonatomic) BOOL postLoadingPerformanceMetricsAllowed; // @synthesize postLoadingPerformanceMetricsAllowed=_postLoadingPerformanceMetricsAllowed;
+@property(nonatomic) BOOL finishedLoading; // @synthesize finishedLoading=_finishedLoading;
 @property(retain, nonatomic) IDEWorkspaceSharedSettings *sharedSettings; // @synthesize sharedSettings=_sharedSettings;
 @property(retain, nonatomic) IDEWorkspaceUserSettings *userSettings; // @synthesize userSettings=_userSettings;
 @property(retain, nonatomic) id <IDEContinuousIntegrationBotMonitor> xcs2WorkspaceBotMonitor; // @synthesize xcs2WorkspaceBotMonitor=_xcs2WorkspaceBotMonitor;
-@property(readonly, nonatomic) long long indexGenerationCounter; // @synthesize indexGenerationCounter=_indexGenerationCounter;
-@property BOOL isCleaningBuildFolder; // @synthesize isCleaningBuildFolder=_isCleaningBuildFolder;
-@property(readonly) IDETextIndex *textIndex; // @synthesize textIndex=_textIndex;
-@property(nonatomic) BOOL finishedLoading; // @synthesize finishedLoading=_finishedLoading;
-@property(nonatomic) BOOL pendingFileReferencesAndContainers; // @synthesize pendingFileReferencesAndContainers=_pendingFileReferencesAndContainers;
-@property BOOL initialContainerScanComplete; // @synthesize initialContainerScanComplete=_initialContainerScanComplete;
 @property(retain) IDESourceControlWorkspaceMonitor *sourceControlWorkspaceMonitor; // @synthesize sourceControlWorkspaceMonitor=_sourceControlWorkspaceMonitor;
 @property(retain) IDEDeviceInstallWorkspaceMonitor *deviceInstallWorkspaceMonitor; // @synthesize deviceInstallWorkspaceMonitor=_deviceInstallWorkspaceMonitor;
 @property(readonly) IDERefactoring *refactoring; // @synthesize refactoring=_refactoring;
+@property(readonly) IDETextIndex *textIndex; // @synthesize textIndex=_textIndex;
 @property(retain) IDEIndex *index; // @synthesize index=_index;
-@property(retain, nonatomic) IDEWorkspaceArena *workspaceArena; // @synthesize workspaceArena=_workspaceArena;
-@property(readonly) DVTFilePath *wrappedContainerPath; // @synthesize wrappedContainerPath=_wrappedContainerPath;
 @property(retain) IDERunContextManager *runContextManager; // @synthesize runContextManager=_runContextManager;
+@property BOOL initialContainerScanComplete; // @synthesize initialContainerScanComplete=_initialContainerScanComplete;
+@property(retain, nonatomic) IDEWorkspaceArena *workspaceArena; // @synthesize workspaceArena=_workspaceArena;
 - (void).cxx_destruct;
 - (id)buildableProductsForBaseName:(id)arg1;
 - (void)_handleIndexablesChange:(id)arg1;
@@ -144,8 +142,6 @@
 - (void)_handleIndexableFilesChange:(id)arg1;
 - (void)_updateIndexableFiles:(id)arg1;
 - (id)_fileRefsToResolvedFilePaths;
-- (void)_processIndexRegistrationBatch:(id)arg1;
-- (void)_enqueueIndexRegistrationBatchNotification;
 - (void)_handleIndexableSourcesChange:(id)arg1;
 - (void)primitiveInvalidate;
 @property(readonly) IDEContainer<IDECustomDataStoring> *representingCustomDataStore;
@@ -168,26 +164,23 @@
 @property(retain) IDETestManager *testManager; // @dynamic testManager;
 - (void)setBatchFindManager:(id)arg1;
 @property(readonly) IDEBatchFindManager *batchFindManager;
-@property(retain) IDEWorkspaceSnapshotManager *snapshotManager; // @synthesize snapshotManager=_snapshotManager;
 @property(retain) IDEBreakpointManager *breakpointManager; // @dynamic breakpointManager;
-@property(readonly) IDEIssueManager *issueManager; // @synthesize issueManager=_issueManager;
+@property(readonly) IDEIssueManager *issueManager;
 - (void)_setupIssueManagerIfNeeded;
-@property(readonly) IDELogManager *logManager; // @synthesize logManager=_logManager;
+@property(readonly) IDELogManager *logManager;
 - (void)_setupLogManagerIfNeeded;
 - (id)blueprintsContainingFilePaths:(id)arg1;
 @property(readonly) NSArray *notificationPayloadFileReferences;
 @property(readonly) NSSet *customDataStores;
 @property(readonly) NSSet *referencedRunnableBuildableProducts;
-@property(readonly) NSSet *referencedTestables;
-@property(readonly) NSSet *referencedTestableProviders;
 @property(readonly) NSSet *referencedBlueprints;
 - (id)containerGraphOrderForBlueprintProviders:(id)arg1;
 @property(readonly) NSSet *referencedBlueprintProviders;
 @property(readonly) NSSet *referencedContainers;
 - (void)_referencedContainersDidUpdate;
 - (void)invokeChangingValueForKey:(id)arg1 fromSet:(id)arg2 toSet:(id)arg3 block:(CDUnknownBlockType)arg4;
-- (void)_referencedTestablesOfProvider:(id)arg1 didChange:(id)arg2;
 - (void)_referencedBlueprintsDidUpdateForProvider:(id)arg1;
+- (id)buildableProductsForProductWithModuleName:(id)arg1;
 - (id)buildableProductsForProductName:(id)arg1;
 - (void)_setupHeaderMapPath;
 - (void)_setupContainerQueries;
@@ -199,6 +192,7 @@
 - (void)_processFileReferencesForProblem8727051;
 - (void)_addFileReferenceForProblem8727051:(id)arg1;
 - (void)cancelTrackedClients;
+@property(readonly) BOOL isCancelling;
 - (id)clientsNotSupportingCancellation;
 - (id)clientsRequiringCancellationPrompt;
 - (id)registerUncancellableClientWithName:(id)arg1;
@@ -212,6 +206,7 @@
 - (void)_changeContainerFilePath:(id)arg1 inContext:(id)arg2;
 - (BOOL)_configureWrappedWorkspaceWithError:(id *)arg1;
 - (id)_wrappingContainerPath;
+- (id)_wrappedPlaygroundContainer;
 - (void)_setWrappedContainerPath:(id)arg1;
 - (id)initWithFilePath:(id)arg1 extension:(id)arg2 workspace:(id)arg3 options:(id)arg4 error:(id *)arg5;
 - (void)_buildProductsLocationDidChange;
@@ -219,6 +214,7 @@
 - (void)_checkIfHasFinishedLoading;
 - (void)_finishLoadingAsynchronously:(BOOL)arg1 shouldUpgradeFromSimpleFilesFocused:(BOOL)arg2;
 - (void)_setupWorkspaceArenaIfNeeded;
+- (void)_setUpBotMonitor;
 @property(readonly) IDEActivityLogSection *integrityLog;
 - (void)analyzeModelIntegrity;
 - (void)_setFileRefsWithContainerLoadingIssues:(id)arg1;
@@ -228,7 +224,6 @@
 - (void)_addPendingReferencedContainerPath:(id)arg1;
 - (void)_removePendingReferencedFileReference:(id)arg1;
 - (void)_addPendingReferencedFileReference:(id)arg1;
-@property(retain) id _applicationDelegate; // @dynamic _applicationDelegate;
 @property(retain) id <IDEWorkspaceDelegate> workspaceDelegate;
 - (id)_openingPerformanceMetricIdentifier;
 - (void)dvt_encodeRelationshipsWithXMLArchiver:(id)arg1 version:(id)arg2;
@@ -258,10 +253,13 @@
 - (id)patchesDirectory;
 
 // Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

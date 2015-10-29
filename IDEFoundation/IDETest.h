@@ -15,27 +15,28 @@
 {
     NSMutableSet *_subtests;
     NSMutableArray *_cachedArrangedSubtests;
-    NSMutableArray *_performanceMetricsForPreviousRun;
     BOOL _canHaveSubtests;
     BOOL _indexLocationWasSet;
     id <IDETestable> _testable;
     NSString *_identifier;
     NSString *_name;
-    NSArray *_errorLocations;
     IDETest *_supertest;
     DVTDocumentLocation *_indexLocation;
     NSArray *_recentErrorLocations;
 }
 
++ (BOOL)automaticallyNotifiesObserversForIndexLocationWasSet;
++ (BOOL)automaticallyNotifiesObserversForIndexLocation;
 + (id)keyPathsForValuesAffectingLocation;
 + (id)keyPathsForValuesAffectingIsAdHocRunnable;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 @property BOOL indexLocationWasSet; // @synthesize indexLocationWasSet=_indexLocationWasSet;
 @property(copy) NSArray *recentErrorLocations; // @synthesize recentErrorLocations=_recentErrorLocations;
 @property(copy, nonatomic) DVTDocumentLocation *indexLocation; // @synthesize indexLocation=_indexLocation;
 @property BOOL canHaveSubtests; // @synthesize canHaveSubtests=_canHaveSubtests;
 @property(readonly) IDETest *supertest; // @synthesize supertest=_supertest;
-@property(readonly, copy) NSArray *errorLocations; // @synthesize errorLocations=_errorLocations;
 @property(readonly, copy) NSString *name; // @synthesize name=_name;
 @property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
 @property(readonly) id <IDETestable> testable; // @synthesize testable=_testable;
@@ -45,15 +46,15 @@
 - (void)_primitiveAddSubtest:(id)arg1;
 - (void)_setErrorLocations:(id)arg1;
 - (void)_setIndexLocation:(id)arg1;
+- (void)_primitiveSetIndexLocation:(id)arg1;
+- (void)_setIndexLocation:(id)arg1 forSubtest:(id)arg2;
 @property(readonly, copy, nonatomic) DVTDocumentLocation *location; // @dynamic location;
-- (void)setPerformanceMetricsForPreviousRun:(id)arg1;
-- (id)performanceMetricsForPreviousRun;
 @property(readonly) BOOL isAdHocRunnable;
 - (long long)localizedStandardCompare:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly, copy) NSString *description;
-- (id)initWithTestable:(id)arg1 identifier:(id)arg2;
+- (id)initWithTestable:(id)arg1 identifier:(id)arg2 location:(id)arg3;
 - (void)primitiveInvalidate;
 - (BOOL)_isInFile:(id)arg1;
 

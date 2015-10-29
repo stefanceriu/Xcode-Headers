@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
-@class DVTFilePath, DVTObservingToken, IDEActivityLogSection, NSArray, NSError, NSMutableArray, NSString;
+@class DVTFilePath, DVTObservingToken, IDEActivityLogSection, IDESchemeActionCodeCoverage, NSArray, NSError, NSMutableArray, NSString;
 
 @interface IDESchemeActionResult : NSObject
 {
     DVTObservingToken *_logRecordingToken;
+    IDESchemeActionCodeCoverage *_coverageReport;
     NSMutableArray *_warningSummaries;
     NSMutableArray *_errorSummaries;
     NSMutableArray *_analyzerWarningSummaries;
@@ -19,6 +20,7 @@
     BOOL _localLogFileIsCurrent;
     BOOL _remoteLogNeedsFetch;
     BOOL _remoteTestSummaryNeedsFetch;
+    BOOL _remoteCodeCoverageNeedsFetch;
     int _status;
     NSString *_resultName;
     NSError *_error;
@@ -30,7 +32,10 @@
     unsigned long long _testsCount;
     unsigned long long _testsFailedCount;
     id _remoteTestSummaryIdentifier;
+    DVTFilePath *_localCodeCoverageFilePath;
+    id _remoteCodeCoverageIdentifier;
     NSString *_testSummaryPath;
+    NSString *_codeCoveragePath;
     NSString *_logPath;
     DVTFilePath *_localResultDirectoryFilePath;
     DVTFilePath *_creatingWorkspaceFilePath;
@@ -38,12 +43,16 @@
 
 + (int)actionResultStatusForString:(id)arg1;
 + (id)stringForActionResultStatus:(int)arg1;
-+ (id)testableSummariesForFilePath:(id)arg1 runDestinationRecord:(id *)arg2 error:(id *)arg3;
++ (id)testableSummariesForFilePath:(id)arg1 loadAttachments:(BOOL)arg2 runDestinationRecord:(id *)arg3 error:(id *)arg4;
 + (BOOL)automaticallyNotifiesObserversOfLog;
 @property(retain, nonatomic) DVTFilePath *creatingWorkspaceFilePath; // @synthesize creatingWorkspaceFilePath=_creatingWorkspaceFilePath;
 @property(retain, nonatomic) DVTFilePath *localResultDirectoryFilePath; // @synthesize localResultDirectoryFilePath=_localResultDirectoryFilePath;
 @property(copy, nonatomic) NSString *logPath; // @synthesize logPath=_logPath;
+@property(copy, nonatomic) NSString *codeCoveragePath; // @synthesize codeCoveragePath=_codeCoveragePath;
 @property(copy, nonatomic) NSString *testSummaryPath; // @synthesize testSummaryPath=_testSummaryPath;
+@property(nonatomic) BOOL remoteCodeCoverageNeedsFetch; // @synthesize remoteCodeCoverageNeedsFetch=_remoteCodeCoverageNeedsFetch;
+@property(copy, nonatomic) id remoteCodeCoverageIdentifier; // @synthesize remoteCodeCoverageIdentifier=_remoteCodeCoverageIdentifier;
+@property(retain, nonatomic) DVTFilePath *localCodeCoverageFilePath; // @synthesize localCodeCoverageFilePath=_localCodeCoverageFilePath;
 @property(nonatomic) BOOL remoteTestSummaryNeedsFetch; // @synthesize remoteTestSummaryNeedsFetch=_remoteTestSummaryNeedsFetch;
 @property(copy, nonatomic) id remoteTestSummaryIdentifier; // @synthesize remoteTestSummaryIdentifier=_remoteTestSummaryIdentifier;
 @property(nonatomic) unsigned long long testsFailedCount; // @synthesize testsFailedCount=_testsFailedCount;
@@ -64,6 +73,9 @@
 @property(retain, nonatomic) NSArray *errorSummaries; // @synthesize errorSummaries=_errorSummaries;
 @property(retain, nonatomic) NSArray *warningSummaries; // @synthesize warningSummaries=_warningSummaries;
 - (void).cxx_destruct;
+- (BOOL)updateLocalCodeCoverageWithRemoteCodeCoverage:(id)arg1 forSchemeActionRecord:(id)arg2 error:(id *)arg3;
+- (BOOL)saveCodeCoverageWithError:(id *)arg1;
+@property(readonly, copy, nonatomic) IDESchemeActionCodeCoverage *coverageReport;
 - (BOOL)updateLocalTestSummaryWithRemoteTestSummary:(id)arg1 forSchemeActionRecord:(id)arg2 error:(id *)arg3;
 - (BOOL)saveTestSummariesForTestableSummaryFilePath:(id)arg1 runDestinationRecord:(id)arg2 error:(id *)arg3;
 - (BOOL)saveTestSummariesForSchemeActionRecord:(id)arg1 error:(id *)arg2;

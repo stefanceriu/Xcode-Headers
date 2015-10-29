@@ -9,13 +9,14 @@
 #import "DVTMainViewControllerDrawingStrategyDelegate.h"
 #import "DVTStatefulObject.h"
 #import "IBICCatalogItemObserver.h"
+#import "IBICCommandMenuDelegate.h"
 #import "IBICSourceListOutlineViewDelegate.h"
 #import "IBSelectionChannelApplicator.h"
 #import "NSOutlineViewDataSource.h"
 
-@class DVTBorderedView, DVTDelayedInvocation, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTMainViewControllerDrawingStrategy, DVTSearchField, IBICCatalogDocumentEditor, IBICOutlineViewItem, IBICSourceListOutlineView, IBOutlineViewImageAndTextCell, IBSelectionChannel, IBSelectionChannelContext, NSArray, NSSet, NSString;
+@class DVTBorderedView, DVTDelayedInvocation, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTMainViewControllerDrawingStrategy, DVTSearchField, IBICCatalogDocumentEditor, IBICCommandMenuBuilder, IBICOutlineViewItem, IBICSourceListOutlineView, IBOutlineViewImageAndTextCell, IBSelectionChannel, IBSelectionChannelContext, NSArray, NSSet, NSString;
 
-@interface IBICCatalogSourceListController : IDEViewController <IBICCatalogItemObserver, IBSelectionChannelApplicator, NSOutlineViewDataSource, IBICSourceListOutlineViewDelegate, DVTStatefulObject, DVTMainViewControllerDrawingStrategyDelegate>
+@interface IBICCatalogSourceListController : IDEViewController <IBICCatalogItemObserver, IBSelectionChannelApplicator, NSOutlineViewDataSource, IBICSourceListOutlineViewDelegate, DVTStatefulObject, DVTMainViewControllerDrawingStrategyDelegate, IBICCommandMenuDelegate>
 {
     IBOutlineViewImageAndTextCell *_prototypeCell;
     IBOutlineViewImageAndTextCell *_prototypeGroupCell;
@@ -31,6 +32,8 @@
     NSArray *_filterComponents;
     IBICOutlineViewItem *_rootOutlineItem;
     BOOL _isApplyingExpansionState;
+    IBICCommandMenuBuilder *_addButtonMenuBuilder;
+    IBICCommandMenuBuilder *_contextClickMenuBuilder;
     IBICCatalogDocumentEditor *_documentEditor;
     IBSelectionChannel *_selectionChannel;
     IBICSourceListOutlineView *_outlineView;
@@ -59,32 +62,10 @@
 - (void)outlineViewSelectionDidChange:(id)arg1;
 - (id)catalogItemsForOutlineViewItems:(id)arg1;
 - (void)selectionChannel:(id)arg1 applySelection:(id)arg2 previousSelection:(id)arg3 context:(id)arg4;
+- (void)removeImageCatalogItemsBasedOnSourceItemsContext:(id)arg1;
 - (void)updateFilter:(id)arg1;
 - (BOOL)outlineView:(id)arg1 doCommandBySelector:(SEL)arg2;
-- (BOOL)validateUserInterfaceItem:(id)arg1;
-- (void)importImageCatalogContentFromProjectBasedOnOutlineClickContext:(id)arg1;
-- (void)importImageCatalogContentFromProjectBasedOnSelectionContext:(id)arg1;
-- (void)importImageCatalogContentBasedOnOutlineClickContext:(id)arg1;
-- (void)importImageCatalogContentBasedOnSelectionContext:(id)arg1;
-- (void)openWithExternalEditorBasedOnOutlineClickContext:(id)arg1;
-- (void)showInFinderBasedOnOutlineClickContext:(id)arg1;
-- (void)removeImageCatalogItemsBasedOnOutlineClickContext:(id)arg1;
-- (void)insertNewWrappingImageCatalogFolderBasedOnOutlineClickContext:(id)arg1;
-- (void)insertNewImageCatalogFolderBasedOnOutlineClickContext:(id)arg1;
-- (void)insertNewImageCatalogLaunchImageSetBasedOnOutlineClickContext:(id)arg1;
-- (void)insertNewImageCatalogAppIconSetBasedOnOutlineClickContext:(id)arg1;
-- (void)insertNewImageCatalogIconSetBasedOnOutlineClickContext:(id)arg1;
-- (void)insertNewImageCatalogImageSetBasedOnOutlineClickContext:(id)arg1;
-- (void)removeImageCatalogItemsBasedOnSourceItemsContext:(id)arg1;
-- (void)insertNewWrappingImageCatalogFolderBasedOnSourceItemsContext:(id)arg1;
-- (void)insertNewImageCatalogFolderBasedSourceItemsContext:(id)arg1;
-- (void)insertNewImageCatalogLaunchImageSetBasedSourceItemsContext:(id)arg1;
-- (void)insertNewImageCatalogAppIconSetBasedSourceItemsContext:(id)arg1;
-- (void)insertNewImageCatalogIconSetBasedSourceItemsContext:(id)arg1;
-- (void)insertNewImageCatalogImageSetBasedSourceItemsContext:(id)arg1;
-- (void)performMenuAction:(SEL)arg1;
-- (id)actionContextForType:(long long)arg1;
-- (BOOL)getActionInfo:(CDStruct_8b9402de *)arg1 forAction:(SEL)arg2;
+- (void)removeSelectedOutlineViewItems;
 - (id)sourceItemsActionContext;
 - (id)contextClickActionContext;
 - (void)outlineView:(id)arg1 draggingSession:(id)arg2 endedAtPoint:(struct CGPoint)arg3 operation:(unsigned long long)arg4;
@@ -119,7 +100,7 @@
 - (void)applyStateRestorationExpansionStateToOutlineItemsForBatchedUpdate;
 - (void)applyMakingSelectedItemsVisibleToOutlineItemsForBatchedUpdate;
 - (id)outlineViewItemsForCatalogItems:(id)arg1 applyingFilter:(BOOL)arg2;
-- (void)imageCatalogItem:(id)arg1 didChangeDisplayProperty:(id)arg2;
+- (void)imageCatalogItemDidChangeDisplayProperties:(id)arg1;
 - (void)imageCatalogItemDiskContentsDidChange:(id)arg1;
 - (void)documentEditorDidChangeSourceItems;
 - (void)imageCatalogItemWillChangeDisplayOrderedChildren:(id)arg1;
@@ -134,8 +115,8 @@
 - (void)loadView;
 - (void)configureOutlineView;
 - (void)configureFilterBar;
-- (id)outlineContextMenuItems;
-- (id)addButtonMenuItems;
+- (id)commandMenuBuilderActionContext:(id)arg1;
+- (id)commandMenuBuilderDocumentEditor:(id)arg1;
 - (void)configureSearchField;
 - (void)primitiveInvalidate;
 - (id)initWithDocumentEditor:(id)arg1;

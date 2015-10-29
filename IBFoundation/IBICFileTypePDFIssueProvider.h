@@ -6,18 +6,15 @@
 
 #import "NSObject.h"
 
-#import "IBICMultipartImageIssueProvider.h"
-#import "NSCoding.h"
+#import "IBICSlottedAssetIssueProvider.h"
 
 @class NSString;
 
-@interface IBICFileTypePDFIssueProvider : NSObject <NSCoding, IBICMultipartImageIssueProvider>
+@interface IBICFileTypePDFIssueProvider : NSObject <IBICSlottedAssetIssueProvider>
 {
 }
 
-- (id)initWithCoder:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (void)populateIssues:(id)arg1 forMultipartImage:(id)arg2 withContext:(id)arg3;
+- (void)populateIssues:(id)arg1 forSlottedAsset:(id)arg2 withContext:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

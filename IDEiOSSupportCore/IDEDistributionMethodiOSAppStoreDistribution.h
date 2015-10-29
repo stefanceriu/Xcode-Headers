@@ -13,6 +13,7 @@
 - (id)subtitle;
 - (id)title;
 - (int)supportedTask;
+- (double)sortOrder;
 
 @end
 

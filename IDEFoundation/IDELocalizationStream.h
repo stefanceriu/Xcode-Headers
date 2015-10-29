@@ -19,8 +19,9 @@
 }
 
 + (void)initialize;
-+ (id)streamForError:(id)arg1;
-+ (id)streamForValues:(id)arg1;
++ (id)streamWithError:(id)arg1;
++ (id)streamWithObjects:(id)arg1;
++ (id)emptyStream;
 + (id)withOnNextBlock:(CDUnknownBlockType)arg1 onErrorBlock:(CDUnknownBlockType)arg2 onCompletedBlock:(CDUnknownBlockType)arg3;
 @property BOOL wasStarted; // @synthesize wasStarted=_wasStarted;
 @property(retain) id <DVTCancellable> subscription; // @synthesize subscription=_subscription;
@@ -39,8 +40,8 @@
 - (id)asyncMap:(CDUnknownBlockType)arg1;
 - (id)map:(CDUnknownBlockType)arg1;
 - (id)disperse;
-- (id)collectInContext:(id)arg1 forKey:(id)arg2;
-- (id)collect;
+- (id)collectInContext:(id)arg1 forArrayKey:(id)arg2;
+- (id)collectInArray;
 - (id)collectIn:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (id)filter:(CDUnknownBlockType)arg1;
 

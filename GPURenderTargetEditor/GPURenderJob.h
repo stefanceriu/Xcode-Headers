@@ -27,6 +27,7 @@
 - (BOOL)isColor;
 - (BOOL)flipped;
 - (struct CGSize)imageSize;
+- (void)resolveWithTraceResourceItem:(id)arg1;
 - (id)initWithResource:(id)arg1 modelFactory:(id)arg2 renderingAttributes:(id)arg3 overlayResource:(id)arg4;
 
 // Remaining properties

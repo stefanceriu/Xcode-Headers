@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class DVTLocalComputer, DVTMapTable, NSMutableDictionary, NSMutableSet, NSSet;
+@class DVTLocalComputer, NSMapTable, NSMutableDictionary, NSMutableSet, NSSet;
 
 @interface DVTDeviceManager : NSObject
 {
     NSMutableDictionary *_locatorTrackers;
-    DVTMapTable *_observingTokens;
+    NSMapTable *_observingTokens;
     NSMutableSet *_availableDevices;
     DVTLocalComputer *_localComputer;
 }
@@ -20,9 +20,9 @@
 + (void)initialize;
 - (void).cxx_destruct;
 - (id)deviceLocatorForDeviceType:(id)arg1;
-- (id)searchForDevicesWithType:(id)arg1 options:(id)arg2 timeout:(double)arg3 architectures:(id *)arg4 SDKs:(id *)arg5 error:(id *)arg6;
-- (id)searchForDeviceWithType:(id)arg1 options:(id)arg2 genericOnly:(BOOL)arg3 timeout:(double)arg4 architecture:(id *)arg5 SDK:(id *)arg6 error:(id *)arg7;
-- (id)_searchForDevicesWithType:(id)arg1 options:(id)arg2 genericOnly:(BOOL)arg3 allowMultiple:(BOOL)arg4 timeout:(double)arg5 architectures:(id *)arg6 SDKs:(id *)arg7 error:(id *)arg8;
+- (id)searchForDevicesWithType:(id)arg1 options:(id)arg2 timeout:(double)arg3 error:(id *)arg4;
+- (id)searchForDeviceWithType:(id)arg1 options:(id)arg2 genericOnly:(BOOL)arg3 timeout:(double)arg4 error:(id *)arg5;
+- (id)_searchForDevicesWithType:(id)arg1 options:(id)arg2 genericOnly:(BOOL)arg3 allowMultiple:(BOOL)arg4 timeout:(double)arg5 error:(id *)arg6;
 - (id)_waitForDeviceUsingLocatorsToOptions:(id)arg1 genericOnly:(BOOL)arg2 allowMultiple:(BOOL)arg3 timeout:(double)arg4 error:(id *)arg5;
 - (id)_lookUpAvailableDevicesUsingLocatorsToOptions:(id)arg1 genericOnly:(BOOL)arg2 allowMultiple:(BOOL)arg3 error:(id *)arg4;
 - (id)_deviceLocatorForDeviceSpecifierPrefix:(id)arg1 error:(id *)arg2;

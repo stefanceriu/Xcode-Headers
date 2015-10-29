@@ -15,7 +15,7 @@
 - (id)initWithEditorItemModel:(id)arg1 portalInfoDelegate:(id)arg2;
 
 // Remaining properties
-@property(readonly, nonatomic) Xcode3DataProtectionItemModel *model;
+@property(readonly, nonatomic) Xcode3DataProtectionItemModel *model; // @dynamic model;
 
 @end
 

@@ -10,17 +10,14 @@
 
 @interface SCNPhysicsBehavior : NSObject <NSSecureCoding>
 {
-    id _reserved;
 }
 
-+ (id)SCNJSExportProtocol;
 + (BOOL)supportsSecureCoding;
+- (BOOL)hasReferenceToPhysicsBody:(id)arg1;
 - (id)bodyB;
 - (id)bodyA;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (id)init;
-- (void)dealloc;
 
 @end
 

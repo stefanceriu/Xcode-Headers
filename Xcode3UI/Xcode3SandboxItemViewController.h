@@ -30,7 +30,7 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) Xcode3SandboxItemModel *model;
+@property(readonly, nonatomic) Xcode3SandboxItemModel *model; // @dynamic model;
 @property(readonly) Class superclass;
 
 @end

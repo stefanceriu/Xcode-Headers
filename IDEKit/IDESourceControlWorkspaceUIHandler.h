@@ -11,7 +11,7 @@
 #import "NSAlertDelegate.h"
 #import "NSWindowDelegate.h"
 
-@class DVTFilePath, DVTStackBacktrace, IDESourceControlCreateGitRepositoryOperationInfo, IDESourceControlNewCheckoutWindowController, IDESourceControlUpgradeWindowController, IDEWorkspaceDocument, IDEXcodeServer, NSAlert, NSMutableSet, NSOperationQueue, NSString;
+@class DVTFilePath, DVTStackBacktrace, IDESourceControlCreateGitRepositoryOperationInfo, IDESourceControlUpgradeWindowController, IDEWorkspaceDocument, IDEXcodeServer, NSAlert, NSMutableSet, NSOperationQueue, NSString;
 
 @interface IDESourceControlWorkspaceUIHandler : NSObject <IDESourceControlWorkspaceUIHandlerProtocol, DVTInvalidation, NSAlertDelegate, NSWindowDelegate>
 {
@@ -25,7 +25,6 @@
     BOOL _initialWorkspaceScanIsComplete;
     BOOL _shouldShowUpgradeAlert;
     IDEWorkspaceDocument *_workspaceDocument;
-    IDESourceControlNewCheckoutWindowController *_checkoutWC;
     NSMutableSet *_windowControllers;
     IDESourceControlCreateGitRepositoryOperationInfo *_operationInfo;
     NSOperationQueue *_operationQueue;
@@ -52,11 +51,12 @@
 - (id)waitingOnInitialScanAlert;
 - (void)primitiveInvalidate;
 - (void)windowWillClose:(id)arg1;
+- (void)requestOperationConfirmationForOperationName:(id)arg1 workingCopyName:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)presentCheckoutsForProject:(id)arg1 scopingToWorkingCopyConfigurations:(id)arg2 attachedToWindow:(id)arg3;
-- (void)askToCheckOutDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)_askToCheckOutDidEnd:(id)arg1 returnCode:(long long)arg2 workspaceMonitor:(id)arg3;
 - (void)offerAdditionalWorkingCopies;
 - (void)warnAboutNewerRepositoryVersionWithError:(id)arg1;
-- (void)newWorkingCopyDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)_newWorkingCopyDidEnd:(id)arg1 returnCode:(long long)arg2 workingCopies:(id)arg3;
 - (void)askToShareNewWorkingCopies:(id)arg1;
 - (void)showUpgradeWindowForWindow:(id)arg1 workingCopiesNeedingUpgrade:(id)arg2 showsSuppressionButton:(BOOL)arg3;
 - (void)workspaceMonitorDidFinishScanning:(id)arg1;
@@ -64,7 +64,7 @@
 - (id)initWithWorkspaceDocument:(id)arg1;
 - (void)finishedUpgrade;
 - (BOOL)alertShowHelp:(id)arg1;
-- (void)upgradeAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)_upgradeAlertDidEnd:(id)arg1 returnCode:(long long)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

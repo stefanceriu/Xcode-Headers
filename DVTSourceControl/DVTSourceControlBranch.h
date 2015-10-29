@@ -10,6 +10,7 @@
 
 @interface DVTSourceControlBranch : DVTSourceControlRevisionLocation
 {
+    NSString *_remoteName;
     unsigned long long _options;
     NSString *_identifier;
 }
@@ -18,6 +19,7 @@
 + (id)defaultImage;
 @property(retain) NSString *identifier; // @synthesize identifier=_identifier;
 @property unsigned long long options; // @synthesize options=_options;
+@property(retain) NSString *remoteName; // @synthesize remoteName=_remoteName;
 - (void).cxx_destruct;
 - (id)description;
 @property(readonly, getter=isRemoteBranch) BOOL remoteBranch;
@@ -26,13 +28,17 @@
 - (id)pathLocationForBranchAndTagLocations:(id)arg1;
 @property(readonly) NSString *name;
 - (id)displayName;
+- (BOOL)isSimilar:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)dictionaryRepresentationWithOptions:(unsigned long long)arg1;
 - (id)initWithDictionary:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithNewBranchName:(id)arg1 remoteBranch:(BOOL)arg2;
+- (id)initWithNewBranchName:(id)arg1 remoteName:(id)arg2;
+- (id)initWithNewBranchName:(id)arg1;
 - (id)initWithBranchPathLocation:(id)arg1 branchAndTagLocations:(id)arg2 remoteBranch:(BOOL)arg3;
+- (id)initWithBranchName:(id)arg1 primaryBranch:(BOOL)arg2 remoteName:(id)arg3;
+- (id)initWithBranchName:(id)arg1 primaryBranch:(BOOL)arg2;
 - (id)initWithBranchName:(id)arg1 primaryBranch:(BOOL)arg2 remoteBranch:(BOOL)arg3;
 - (id)_init;
 - (id)init;

@@ -16,7 +16,7 @@
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;
 - (id)stringEditingContextForEvent:(id)arg1;
 - (id)fontForTitleEditing;
-- (id)trackerForChild:(id)arg1 withView:(id)arg2 fromKnob:(long long)arg3;
+- (id)trackerForChild:(id)arg1 withView:(id)arg2 fromKnob:(CDUnion_42e99c75)arg3;
 - (id)editedView;
 - (id)itemView;
 - (id)allowedItemsView;

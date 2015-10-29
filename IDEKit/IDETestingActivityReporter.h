@@ -6,11 +6,12 @@
 
 #import <IDEKit/IDEActivityReporter.h>
 
-@class DVTMapTable;
+@class NSMapTable;
 
 @interface IDETestingActivityReporter : IDEActivityReporter
 {
-    DVTMapTable *_reportForTestSessionTable;
+    NSMapTable *_reportForTestSessionTable;
+    NSMapTable *_reportForCoverageSessionTable;
 }
 
 + (void)initialize;
@@ -19,6 +20,8 @@
 - (id)_titleForTestRunSession:(id)arg1;
 - (void)_removeTestRunSession:(id)arg1;
 - (void)_addTestRunSession:(id)arg1;
+- (void)_removeGenerateCoverageReportSession:(id)arg1;
+- (void)_addGenerateCoverageReportSession:(id)arg1;
 - (id)initWithWorkspace:(id)arg1;
 
 @end

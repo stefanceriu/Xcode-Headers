@@ -39,10 +39,6 @@
 @property __weak DBGHostNode *host; // @synthesize host=_host;
 @property __weak DBGViewInstance *dbgViewInstance; // @synthesize dbgViewInstance=_dbgViewInstance;
 - (void).cxx_destruct;
-- (struct CGRect)rectNotAvailableForRePositioning;
-- (BOOL)checkIfNode:(id)arg1 isCompletely:(BOOL)arg2 insideRect:(struct CGRect)arg3 withMarging:(float)arg4;
-- (void)updateLineWithNodeAtPosition:(struct CGPoint)arg1 outside:(int)arg2;
-- (BOOL)handleOffScreenBehavior;
 - (void)unclipSubviewContentNodes;
 - (void)clipSubviewContentNodes;
 @property BOOL clippingEnabled; // @synthesize clippingEnabled=_clippingEnabled;
@@ -56,10 +52,12 @@
 - (void)setWireframeModeEnabled:(BOOL)arg1;
 - (void)addBoderWithColor:(id)arg1 borderOpacity:(double)arg2;
 - (void)updateShaderModifiers;
+- (BOOL)respondsToHitTests;
 - (void)setHighlighted:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setSelected:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)updateSnapshot;
 - (id)snapshot;
+- (void)setHidden:(BOOL)arg1;
 - (id)initWithView:(id)arg1 inSceneView:(id)arg2 host:(id)arg3;
 
 @end

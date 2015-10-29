@@ -16,6 +16,7 @@
     IBICIdiom *_universalIdiom;
     IBICScale *_oneXScale;
     IBICScale *_twoXScale;
+    IBICScale *_threeXScale;
     IBICFileType *_pngFileType;
     IBICFileType *_jpegFileType;
     IBICFileType *_pdfFileType;
@@ -32,6 +33,7 @@
 }
 
 - (void).cxx_destruct;
+- (void)registerBaseDataSetSlots:(id)arg1;
 - (void)registerBaseImageSetSlots:(id)arg1;
 - (void)registerBaseSlotComponents:(id)arg1;
 - (void)registerSchemaComponents:(id)arg1;

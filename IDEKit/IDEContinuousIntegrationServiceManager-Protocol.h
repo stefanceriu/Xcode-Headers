@@ -9,9 +9,8 @@
 @class NSArray;
 
 @protocol IDEContinuousIntegrationServiceManager <NSObject>
-@property(readonly, copy, nonatomic) NSArray *enabledAndDisabledServices;
 @property(readonly, copy, nonatomic) NSArray *services;
 - (void)removeService:(id)arg1 withCompletionBlock:(void (^)(id, BOOL, NSError *))arg2;
-- (void)addService:(id)arg1 withCompletionBlock:(void (^)(id, BOOL, NSError *))arg2;
+- (void)addNewService:(id)arg1 withCompletionBlock:(void (^)(id, BOOL, NSError *))arg2;
 @end
 

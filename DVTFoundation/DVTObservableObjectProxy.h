@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, DVTWeakInterposer, NSCountedSet;
+@class DVTWeakInterposer, NSCountedSet, NSMapTable;
 
 @interface DVTObservableObjectProxy : NSObject
 {
     DVTWeakInterposer *_representedObject_dvtWeakInterposer;
-    DVTMapTable *_observationInfo;
+    NSMapTable *_observationInfo;
     NSCountedSet *_uniqueObservedKeyPaths;
 }
 

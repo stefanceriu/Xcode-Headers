@@ -16,7 +16,6 @@
 @property(retain) NSEvent *handledEvent; // @synthesize handledEvent=_handledEvent;
 - (void).cxx_destruct;
 - (BOOL)sendAction:(SEL)arg1 to:(id)arg2;
-- (void)drawGridInClipRect:(struct CGRect)arg1;
 - (void)keyDown:(id)arg1;
 - (void)doCommandBySelector:(SEL)arg1;
 - (void)deleteBackward:(id)arg1;

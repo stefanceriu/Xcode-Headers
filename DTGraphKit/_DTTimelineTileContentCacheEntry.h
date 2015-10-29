@@ -13,6 +13,7 @@
     unsigned long long cost;
     NSMutableSet *objects;
     BOOL visible;
+    BOOL discarded;
 }
 
 - (void).cxx_destruct;

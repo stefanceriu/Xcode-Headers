@@ -6,26 +6,37 @@
 
 #import <DVTKit/DVTBorderedView.h>
 
-@class DVTMapTable;
+@class NSMapTable, NSMutableArray, NSView;
 
 @interface DVTScopeBarView : DVTBorderedView
 {
-    DVTMapTable *_viewsToLeftSpacing;
+    NSMapTable *_viewsToLeftSpacing;
+    NSMutableArray *_viewsStuckToLeft;
+    NSMutableArray *_viewsStuckToRight;
+    NSView *_centeredView;
+    BOOL _usesAutoLayout;
 }
 
 + (id)createButtonSeparator;
 + (id)createButton;
+@property(nonatomic) BOOL usesAutoLayout; // @synthesize usesAutoLayout=_usesAutoLayout;
 - (void).cxx_destruct;
 - (void)verticallyCenterView:(id)arg1;
+- (void)_addCenteredViewConstraints;
+- (void)_invalidateCenteredViewConstraints;
 - (void)willRemoveSubview:(id)arg1;
 - (void)removeView:(id)arg1;
+- (id)viewsInCenter;
+- (id)viewsOnRight;
 - (id)viewsOnLeft;
+- (void)addViewInCenter:(id)arg1;
 - (void)addViewOnRight:(id)arg1 verticalAlignment:(int)arg2 withLeftPadding:(double)arg3;
 - (void)addViewOnRight:(id)arg1 verticalAlignment:(int)arg2;
 - (void)addViewOnRight:(id)arg1;
 - (void)addViewOnLeft:(id)arg1 verticalAlignment:(int)arg2 withLeftPadding:(double)arg3;
 - (void)addViewOnLeft:(id)arg1 verticalAlignment:(int)arg2;
 - (void)addViewOnLeft:(id)arg1;
+- (void)addSubview:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

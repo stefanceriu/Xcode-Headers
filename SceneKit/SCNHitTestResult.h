@@ -10,11 +10,9 @@
 
 @interface SCNHitTestResult : NSObject
 {
-    id _reserved;
     struct __C3DHitTestResult *_result;
 }
 
-+ (id)SCNJSExportProtocol;
 + (id)hitTestResultsFromHitTestResultRef:(struct __CFArray *)arg1;
 - (id)description;
 @property(readonly, nonatomic) struct CATransform3D modelTransform;

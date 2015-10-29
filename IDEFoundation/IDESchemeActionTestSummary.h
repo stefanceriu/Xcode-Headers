@@ -15,10 +15,12 @@
     NSString *_testSummaryGUID;
     NSArray *_failureSummaries;
     NSArray *_performanceMetrics;
+    NSArray *_activitySummaries;
 }
 
 + (unsigned long long)testStatusForString:(id)arg1;
 + (id)stringForTestStatus:(unsigned long long)arg1;
+@property(copy) NSArray *activitySummaries; // @synthesize activitySummaries=_activitySummaries;
 @property(copy) NSArray *performanceMetrics; // @synthesize performanceMetrics=_performanceMetrics;
 @property(copy) NSArray *failureSummaries; // @synthesize failureSummaries=_failureSummaries;
 @property(copy) NSString *testSummaryGUID; // @synthesize testSummaryGUID=_testSummaryGUID;
@@ -27,8 +29,9 @@
 - (void).cxx_destruct;
 - (BOOL)updateWithDictionaryRepresentation:(id)arg1;
 - (id)dictionaryRepresentation;
+- (void)loadAttachmentsFromDirectory:(id)arg1;
 - (id)initWithDictionaryRepresentation:(id)arg1;
-- (id)initWithName:(id)arg1 identifier:(id)arg2 status:(unsigned long long)arg3 failureSummaries:(id)arg4 performanceMetrics:(id)arg5;
+- (id)initWithName:(id)arg1 identifier:(id)arg2 status:(unsigned long long)arg3 failureSummaries:(id)arg4 performanceMetrics:(id)arg5 activitySummaries:(id)arg6;
 
 @end
 

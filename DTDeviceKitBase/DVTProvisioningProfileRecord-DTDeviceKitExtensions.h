@@ -7,8 +7,8 @@
 #import "DVTProvisioningProfileRecord.h"
 
 @interface DVTProvisioningProfileRecord (DTDeviceKitExtensions)
++ (void)installProfileRecords:(id)arg1;
 - (void)updateUUID;
-- (void)install;
 - (id)profile;
 @end
 

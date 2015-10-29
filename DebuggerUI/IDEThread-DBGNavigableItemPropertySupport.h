@@ -11,8 +11,6 @@
 @class NSImage;
 
 @interface IDEThread (DBGNavigableItemPropertySupport) <DBGNavigableItemPerformance>
-- (double)heightOfRow;
-- (BOOL)isGroupHeader:(id)arg1;
 @property(readonly) NSImage *statusIcon;
 @end
 

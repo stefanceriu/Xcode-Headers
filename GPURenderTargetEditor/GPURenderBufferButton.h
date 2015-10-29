@@ -27,7 +27,6 @@
 + (Class)cellClass;
 @property(retain, nonatomic) NSImage *overImage; // @synthesize overImage=_overImage;
 @property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)accessibilityAttributeValue:(id)arg1;
 - (id)accessibilityAttributeNames;

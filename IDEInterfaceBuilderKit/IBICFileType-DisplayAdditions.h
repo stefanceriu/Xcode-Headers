@@ -9,6 +9,6 @@
 @interface IBICFileType (DisplayAdditions)
 + (id)imageRepsForFileTypesForSlot:(id)arg1 fromPasteboard:(id)arg2;
 + (BOOL)canProduceImageForFileTypesForSlot:(id)arg1 fromPasteboard:(id)arg2;
-+ (id)imageClassesForFileTypesForSlot:(id)arg1;
++ (id)orderedImageRepClassesForSlot:(id)arg1;
 @end
 

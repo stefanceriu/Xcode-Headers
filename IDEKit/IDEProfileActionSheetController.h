@@ -27,6 +27,7 @@
     NSView *_resumeOptionView;
     NSView *_debugDocumentVersioningOptionView;
     NSView *_workingDirectoryOptionView;
+    NSView *_testabilityOptionView;
     DVTStackView_AppKitAutolayout *_infoStackView;
     NSView *_executable_buildConfiguration;
     NSView *_executable_runnable;

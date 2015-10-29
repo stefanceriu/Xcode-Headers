@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTMapTable, DVTNotificationToken, DVTStackBacktrace, IDEDataModelDiagramEditor, NSArray, NSColor, NSImage, NSMutableArray, NSShadow, NSString, NSTimer, NSWindow, XDDiagramStorage, XDDiagramToolManager, XDGraphic;
+@class DVTNotificationToken, DVTStackBacktrace, IDEDataModelDiagramEditor, NSArray, NSColor, NSImage, NSMapTable, NSMutableArray, NSShadow, NSString, NSTimer, NSWindow, XDDiagramStorage, XDDiagramToolManager, XDGraphic;
 
 @interface XDDiagramView : NSView <DVTInvalidation>
 {
@@ -25,8 +25,8 @@
     XDGraphic *_editingGraphic;
     NSView *_editorView;
     XDGraphic *_clickedGraphic;
-    DVTMapTable *_auxiliaryStorageCache;
-    DVTMapTable *_drawingCache;
+    NSMapTable *_auxiliaryStorageCache;
+    NSMapTable *_drawingCache;
     id _delegate;
     id _target;
     SEL _action;

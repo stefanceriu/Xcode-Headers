@@ -14,10 +14,11 @@
 #import "IDEDiagnosticControllerDataSource.h"
 #import "IDEDocumentStructureProviding.h"
 #import "IDEObjectiveCSourceCodeGenerationDestination.h"
+#import "IDESourceCodeDocument.h"
 
-@class DVTDelayedInvocation, DVTFileDataType, DVTGeneratedContentProvider, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTSourceCodeLanguage, DVTTextStorage, IDEDiagnosticController, IDEGeneratedContentStatusContext, IDESourceCodeAdjustNodeTypesRequest, NSArray, NSDictionary, NSMutableArray, NSMutableSet, NSSet, NSString, NSURL;
+@class DVTDelayedInvocation, DVTFileDataType, DVTGeneratedContentProvider, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTSourceCodeLanguage, DVTTextStorage, IDEDiagnosticController, IDEGeneratedContentStatusContext, IDESchemeActionCodeCoverageFile, IDESourceCodeAdjustNodeTypesRequest, NSArray, NSDictionary, NSMutableArray, NSMutableSet, NSSet, NSString, NSURL;
 
-@interface IDESourceCodeDocument : IDEEditorDocument <IDEDiagnosticControllerDataSource, IDEDocumentStructureProviding, DVTTextFindable, DVTTextReplacable, DVTTextStorageDelegate, IDEObjectiveCSourceCodeGenerationDestination, DVTSourceLandmarkProvider, DVTSourceTextViewDelegate>
+@interface IDESourceCodeDocument : IDEEditorDocument <IDESourceCodeDocument, IDEDiagnosticControllerDataSource, IDEDocumentStructureProviding, DVTTextFindable, DVTTextReplacable, DVTTextStorageDelegate, IDEObjectiveCSourceCodeGenerationDestination, DVTSourceLandmarkProvider, DVTSourceTextViewDelegate>
 {
     DVTTextStorage *_textStorage;
     DVTSourceCodeLanguage *_language;
@@ -46,18 +47,21 @@
     DVTNotificationToken *_firstEditorWorkspaceActiveSchemeBuildablesDidChangeToken;
     NSMutableArray *_registeredEditors;
     BOOL _notifiesWhenClosing;
+    BOOL _hasCoverageData;
+    IDESchemeActionCodeCoverageFile *_coverageData;
     NSSet *__firstEditorWorkspacePreferredIndexableIdentifiers;
     NSDictionary *__firstEditorWorkspaceBuildSettings;
 }
 
 + (id)keyPathsForValuesAffecting_firstEditorWorkspace;
-+ (id)allEditorDocumentBuildSettingsProviderClasses;
 + (id)keyPathsForValuesAffectingSourceLanguageServiceContext;
 + (id)syntaxColoringPrefetchLogAspect;
 + (id)topLevelStructureLogAspect;
 + (void)initialize;
 @property(copy) NSDictionary *_firstEditorWorkspaceBuildSettings; // @synthesize _firstEditorWorkspaceBuildSettings=__firstEditorWorkspaceBuildSettings;
 @property(copy) NSSet *_firstEditorWorkspacePreferredIndexableIdentifiers; // @synthesize _firstEditorWorkspacePreferredIndexableIdentifiers=__firstEditorWorkspacePreferredIndexableIdentifiers;
+@property(retain) IDESchemeActionCodeCoverageFile *coverageData; // @synthesize coverageData=_coverageData;
+@property BOOL hasCoverageData; // @synthesize hasCoverageData=_hasCoverageData;
 @property BOOL notifiesWhenClosing; // @synthesize notifiesWhenClosing=_notifiesWhenClosing;
 @property(retain) IDEGeneratedContentStatusContext *generatedContentStatusContext; // @synthesize generatedContentStatusContext=_generatedContentStatusContext;
 @property BOOL generatesContent; // @synthesize generatesContent=_generatesContent;
@@ -78,6 +82,10 @@
 - (void)unregisterDocumentEditor:(id)arg1;
 - (id)_firstEditorWorkspace;
 - (id)_firstEditor;
+- (id)insertCharactersAfterLocation:(id)arg1 withString:(id)arg2;
+- (id)insertCharactersBeforeLocation:(id)arg1 withString:(id)arg2;
+- (id)replaceCharactersAtLocation:(id)arg1 withString:(id)arg2;
+- (id)replaceCharactersAtLocation:(id)arg1 withString:(id)arg2 options:(unsigned long long)arg3;
 - (id)sourceCodeGenerator:(id)arg1 commitInsertionOfSourceCodeForCompositeResult:(id)arg2 error:(id *)arg3;
 - (id)sourceCodeGenerator:(id)arg1 prepareToAddObjectiveCAtSynthesizeWithName:(id)arg2 inClassNamed:(id)arg3 options:(id)arg4 error:(id *)arg5;
 - (id)sourceCodeGenerator:(id)arg1 prepareToAddObjectiveCPropertyDeclarationWithName:(id)arg2 type:(id)arg3 inClassNamed:(id)arg4 options:(id)arg5 error:(id *)arg6;
@@ -129,10 +137,12 @@
 - (void)textStorageDidProcessEditing:(id)arg1;
 - (void)updateChangeCount:(unsigned long long)arg1;
 - (BOOL)replaceTextWithContentsOfURL:(id)arg1 error:(id *)arg2;
+- (void)flattenTreePlaceholdersEnclosingRanges:(id)arg1;
 - (BOOL)replaceFindResults:(id)arg1 inSelection:(struct _NSRange)arg2 withString:(id)arg3 withError:(id *)arg4;
 - (BOOL)replaceFindResults:(id)arg1 withString:(id)arg2 withError:(id *)arg3;
 - (BOOL)replaceFindResults:(id)arg1 withString:(id)arg2 inSelection:(struct _NSRange)arg3 withError:(id *)arg4;
 - (id)findStringMatchingDescriptor:(id)arg1 backwards:(BOOL)arg2 from:(id)arg3 to:(id)arg4;
+- (id)_sourceCodeTreeRangesInRange:(struct _NSRange)arg1;
 - (id)documentLocationFromCharacterRange:(struct _NSRange)arg1;
 - (struct _NSRange)characterRangeFromDocumentLocation:(id)arg1;
 - (id)updatedLocationFromLocation:(id)arg1 toTimestamp:(double)arg2;
@@ -143,8 +153,10 @@
 - (void)_prefetchNodeTypesForLineRange:(struct _NSRange)arg1 withContext:(id)arg2;
 - (long long)nodeTypeForItem:(id)arg1 withContext:(id)arg2;
 - (void)_adjustNodeTypeForIdentifierItem:(id)arg1 withContext:(id)arg2;
+- (void)closeToRevert;
 - (void)editorDocumentWillClose;
 - (id)dataOfType:(id)arg1 error:(id *)arg2;
+- (id)_stringByFlatteningMultiPathTokensWithString:(id)arg1;
 - (BOOL)writeToURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (BOOL)readFromData:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (BOOL)readFromURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
@@ -165,7 +177,7 @@
 @property(readonly) NSArray *ideTopLevelStructureObjects;
 - (void)invalidateAndDisableDiagnosticController;
 - (void)invalidateDiagnosticController;
-@property(retain) IDEDiagnosticController *diagnosticController; // @synthesize diagnosticController=_diagnosticController;
+@property(readonly) IDEDiagnosticController *diagnosticController; // @synthesize diagnosticController=_diagnosticController;
 - (id)printInfo;
 - (void)setTextEncoding:(unsigned long long)arg1 convertContents:(BOOL)arg2;
 @property(readonly, nonatomic) NSDictionary *sourceLanguageServiceContext;

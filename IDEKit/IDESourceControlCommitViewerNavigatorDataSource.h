@@ -9,19 +9,17 @@
 #import "DVTInvalidation.h"
 #import "IDEReviewFilesDataSource.h"
 
-@class DVTStackBacktrace, IDENavigatorDataCell, IDESourceControlRepository, NSArray, NSMutableSet, NSString;
+@class DVTStackBacktrace, IDENavigatorDataCell, NSArray, NSMutableSet, NSString;
 
 @interface IDESourceControlCommitViewerNavigatorDataSource : NSObject <IDEReviewFilesDataSource, DVTInvalidation>
 {
     IDENavigatorDataCell *_cachedSourceTreeItemCell;
     IDENavigatorDataCell *_cachedRepositoryContainerCell;
     NSArray *_navigableItems;
-    IDESourceControlRepository *_repository;
     NSMutableSet *_bindingTokens;
 }
 
 + (void)initialize;
-@property(retain) IDESourceControlRepository *repository; // @synthesize repository=_repository;
 @property(retain) NSArray *navigableItems; // @synthesize navigableItems=_navigableItems;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;

@@ -20,6 +20,7 @@
 
 + (id)handlerForAction:(SEL)arg1 withSelectionSource:(id)arg2;
 - (void).cxx_destruct;
+- (void)viewDebugXcodeWindow:(id)arg1;
 - (void)toggleVariablesViewAutoModeIndexFailure:(id)arg1;
 - (void)debugSessionStressTest:(id)arg1;
 - (void)scheduleRunCommandsInTabController:(id)arg1 sender:(id)arg2;

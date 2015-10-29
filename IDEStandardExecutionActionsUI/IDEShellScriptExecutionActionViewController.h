@@ -19,6 +19,7 @@
     NSPopUpButton *_targetBuildSettingProviderPopUp;
     BOOL _willRebuild;
     DVTNotificationToken *_frameChangeToken;
+    id <DVTCancellable> _rebuildToken;
 }
 
 - (void).cxx_destruct;

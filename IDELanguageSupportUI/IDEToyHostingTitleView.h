@@ -6,14 +6,16 @@
 
 #import "NSView.h"
 
-@class DVTNotificationToken, NSButton, NSSegmentedControl, NSTextField;
+@class DVTChooserView, DVTNotificationToken, DVTObservingToken, NSButton, NSLayoutConstraint, NSTextField;
 
 @interface IDEToyHostingTitleView : NSView
 {
     DVTNotificationToken *_fontAndColorThemeChangedNotificationToken;
+    DVTObservingToken *_chooserViewChoicesObservationToken;
+    NSLayoutConstraint *_chooserViewWidthConstraint;
     NSTextField *_titleField;
     NSButton *_closeButton;
-    NSSegmentedControl *_segmentedControl;
+    DVTChooserView *_chooserView;
     CDUnknownBlockType _clickHandler;
 }
 
@@ -21,7 +23,7 @@
 - (void).cxx_destruct;
 - (void)dealloc;
 - (void)mouseDown:(id)arg1;
-@property(readonly) NSSegmentedControl *segmentedControl; // @synthesize segmentedControl=_segmentedControl;
+@property(readonly) DVTChooserView *chooserView; // @synthesize chooserView=_chooserView;
 @property(readonly) NSButton *closeButton; // @synthesize closeButton=_closeButton;
 - (void)layout;
 @property(readonly) NSTextField *titleField; // @synthesize titleField=_titleField;

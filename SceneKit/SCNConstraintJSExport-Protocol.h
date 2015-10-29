@@ -10,6 +10,10 @@
 
 @protocol SCNConstraintJSExport <JSExport>
 @property(nonatomic) double influenceFactor;
+- (id)valueForKeyPath:(NSString *)arg1;
+- (id)valueForKey:(NSString *)arg1;
+- (void)setValue:(id)arg1 forKey:(NSString *)arg2;
+- (void)setValue:(id)arg1 forKeyPath:(NSString *)arg2;
 - (void)resumeAnimationForKey:(NSString *)arg1;
 - (void)pauseAnimationForKey:(NSString *)arg1;
 - (CAAnimation *)animationForKey:(NSString *)arg1;

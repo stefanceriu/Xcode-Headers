@@ -9,7 +9,6 @@
 @interface NSObject (DVTBindingUtilities)
 + (void)dvtSubstituteBindingMachinery;
 - (id)dvt_bind:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
-- (id)dvt2_bind:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
 - (void)updateBoundValueForBinding:(id)arg1;
 - (id)dvtExtraBindings;
 @end

@@ -20,17 +20,22 @@
     BOOL _bottomPlaneChanged;
     BOOL _backgroundPlaneChanged;
     BOOL _overlayPlaneChanged;
-    BOOL _planesChanged;
-    NSMapTable *_planeGroupChangesMap;
+    BOOL _planesArrayChanged;
+    NSMapTable *_groupPlaneChangesMap;
 }
 
 + (id)planeManagerWithTimelineGraph:(id)arg1;
 - (void).cxx_destruct;
-- (void)removeAllSubplanesFromPlaneGroup:(id)arg1;
-- (void)removeSubplane:(id)arg1 fromPlaneGroup:(id)arg2;
-- (void)insertSubplane:(id)arg1 afterSubplane:(id)arg2 inPlaneGroup:(id)arg3;
-- (void)addSubplanes:(id)arg1 toPlaneGroup:(id)arg2;
-- (void)addSubplane:(id)arg1 toPlaneGroup:(id)arg2;
+- (void)collapseGroupPlane:(id)arg1;
+- (void)expandGroupPlane:(id)arg1;
+- (void)setRepresentativePlane:(id)arg1 onGroupPlane:(id)arg2;
+- (void)setType:(long long)arg1 onGroupPlane:(id)arg2;
+- (void)removeAllSubplanesFromGroupPlane:(id)arg1;
+- (void)removeSubplane:(id)arg1 fromGroupPlane:(id)arg2;
+- (void)insertSubplane:(id)arg1 afterSubplane:(id)arg2 inGroupPlane:(id)arg3;
+- (void)addSubplanes:(id)arg1 toGroupPlane:(id)arg2;
+- (void)addSubplane:(id)arg1 toGroupPlane:(id)arg2;
+- (void)setHeight:(double)arg1 onPlane:(id)arg2;
 - (void)removeAllPlanes;
 - (void)removePlane:(id)arg1;
 - (void)insertPlane:(id)arg1 afterPlane:(id)arg2;
@@ -45,6 +50,7 @@
 - (void)setBottomPinnedPlane:(id)arg1;
 - (void)setTopPinnedPlane:(id)arg1;
 - (void)commitChangesAnimated:(BOOL)arg1;
+- (void)_removePlaneFromHeirarchy:(id)arg1;
 - (void)_reset;
 - (id)initWithTimelineGraph:(id)arg1;
 

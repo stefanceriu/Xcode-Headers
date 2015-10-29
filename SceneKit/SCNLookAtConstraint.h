@@ -10,13 +10,11 @@
 
 @interface SCNLookAtConstraint : SCNConstraint
 {
-    id _reserved;
     SCNNode *_target;
     BOOL _gimbalLockEnabled;
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)lookAtConstraintWithTarget:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

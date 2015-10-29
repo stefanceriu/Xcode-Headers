@@ -10,6 +10,7 @@
 @class NSArray;
 
 @protocol IDEContinuousIntegrationBotMonitor <NSObject, DVTInvalidation>
+@property(readonly, copy, nonatomic) NSArray *serversWithMaintenanceTasks;
 @property(readonly, copy, nonatomic) NSArray *bots;
 - (void)updateBotClientsInService:(id)arg1;
 - (void)filterBotsToWorkspace:(BOOL)arg1;

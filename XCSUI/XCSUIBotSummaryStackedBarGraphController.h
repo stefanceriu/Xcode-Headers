@@ -36,6 +36,7 @@
 @property double barSpacing; // @synthesize barSpacing=_barSpacing;
 - (void).cxx_destruct;
 - (void)layoutGraph;
+- (unsigned long long)columnsThatFit;
 - (id)emptyColumnColor;
 - (id)barGraphLogAspect;
 - (id)initWithGraphView:(id)arg1;

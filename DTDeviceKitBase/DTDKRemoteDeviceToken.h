@@ -6,17 +6,21 @@
 
 #import "NSObject.h"
 
-@class DTDKRemoteDeviceConnection, DTDKRemoteDeviceConsoleController, DVTNotificationToken, NSArray, NSMutableArray, NSNumber, NSSet, NSString;
+@class DTDKRemoteDeviceConnection, DTDKRemoteDeviceConsoleController, DVTDispatchLock, DVTNotificationToken, DVTPlatform, NSArray, NSError, NSMutableArray, NSNumber, NSSet, NSString;
 
 @interface DTDKRemoteDeviceToken : NSObject
 {
+    DVTPlatform *_platform;
     NSMutableArray *_connections;
+    DVTDispatchLock *_connectionsLock;
     DVTNotificationToken *_connectionRemovedToken;
     DVTNotificationToken *_connectionAddedToken;
+    NSError *_developerDiskImageMountError;
     _Bool _inReloadApplications;
     _Bool _inReloadSystemApplications;
     _Bool _inReloadProvisioningProfiles;
     DTDKRemoteDeviceConnection *_primaryConnection;
+    DTDKRemoteDeviceConsoleController *_deviceConsoleController;
     NSString *_deviceName;
     NSNumber *_deviceECID;
     NSString *_deviceIMEI;
@@ -34,11 +38,13 @@
     NSString *_deviceArchitecture;
     NSNumber *_deviceTotalCapacity;
     NSNumber *_deviceAvailableCapacity;
-    NSNumber *_deviceBatteryCapacity;
     NSString *_deviceToolsType;
     NSNumber *_isPasscodeLockedObj;
     NSNumber *_isChargingObj;
     NSNumber *_deviceProductionSOC;
+    NSNumber *_canBeWatchCompanionObj;
+    NSArray *_supportedDeviceFamilies;
+    NSNumber *_deviceBatteryCapacity;
     NSString *_deviceDevelopmentStatus;
     NSNumber *_deviceChipID;
     NSSet *_applications;
@@ -48,10 +54,8 @@
     DTDKRemoteDeviceConnection *_primaryWirelessConection;
     NSString *_deviceIdentifier;
     NSString *_deviceSoftwareVersion;
-    NSArray *_supportedDeviceFamilies;
     NSArray *_applicationDictionaries;
     NSArray *_systemApplicationDictionaries;
-    DTDKRemoteDeviceConsoleController *_deviceConsoleController;
     long long _deviceSSHPort;
     long long _deviceTelnetPort;
     long long _deviceRsyncPort;
@@ -66,6 +70,8 @@
 + (id)keyPathsForValuesAffectingDevelopmentFlag;
 + (id)keyPathsForValuesAffectingDeviceIsProduction;
 + (id)keyPathsForValuesAffectingHasLoaded_deviceIsProduction;
++ (id)keyPathsForValuesAffectingHasLoaded_canBeWatchCompanion;
++ (id)keyPathsForValuesAffectingCanBeWatchCompanion;
 + (id)keyPathsForValuesAffectingHasLoaded_isCharging;
 + (id)keyPathsForValuesAffectingIsCharging;
 + (id)keyPathsForValuesAffectingHasLoaded_isPasscodeLocked;
@@ -78,11 +84,15 @@
 + (id)keyPathsForValuesAffectingHasLoaded_deviceChipID;
 + (id)keyPathsForValuesAffectingDeviceChipID;
 + (id)keyPathsForValuesAffectingHasLoadedDeviceDevelopmentStatus;
++ (id)keyPathsForValuesAffectingHasLoaded_deviceBatteryCapacity;
++ (id)keyPathsForValuesAffectingDeviceBatteryCapacity;
++ (id)keyPathsForValuesAffectingDeviceHasBattery;
++ (id)keyPathsForValuesAffectingHasLoaded_supportedDeviceFamilies;
++ (id)keyPathsForValuesAffectingHasLoaded_canBeWatchCompanionObj;
 + (id)keyPathsForValuesAffectingHasLoaded_deviceProductionSOC;
 + (id)keyPathsForValuesAffectingHasLoaded_isChargingObj;
 + (id)keyPathsForValuesAffectingHasLoaded_isPasscodeLockedObj;
 + (id)keyPathsForValuesAffectingHasLoaded_deviceToolsType;
-+ (id)keyPathsForValuesAffectingHasLoaded_deviceBatteryCapacity;
 + (id)keyPathsForValuesAffectingHasLoaded_deviceAvailableCapacity;
 + (id)keyPathsForValuesAffectingHasLoaded_deviceTotalCapacity;
 + (id)keyPathsForValuesAffectingHasLoaded_deviceArchitecture;
@@ -100,6 +110,8 @@
 + (id)keyPathsForValuesAffectingHasLoaded_deviceIMEI;
 + (id)keyPathsForValuesAffectingHasLoaded_deviceECID;
 + (id)keyPathsForValuesAffectingHasLoaded_deviceName;
++ (id)_wirelessHostID;
++ (id)keyPathsForValuesAffectingHasDirectConnection;
 + (id)keyPathsForValuesAffectingDeviceIsPaired;
 + (id)keyPathsForValuesAffectingHasWirelessConnection;
 + (id)keyPathsForValuesAffectingHasWiredConnection;
@@ -113,7 +125,6 @@
 + (id)tokenWithDeviceIdentifier:(id)arg1;
 + (id)deviceLock;
 + (id)devices;
-+ (void)initialize;
 @property _Bool inReloadProvisioningProfiles; // @synthesize inReloadProvisioningProfiles=_inReloadProvisioningProfiles;
 @property _Bool inReloadSystemApplications; // @synthesize inReloadSystemApplications=_inReloadSystemApplications;
 @property _Bool inReloadApplications; // @synthesize inReloadApplications=_inReloadApplications;
@@ -123,10 +134,8 @@
 @property long long deviceRsyncPort; // @synthesize deviceRsyncPort=_deviceRsyncPort;
 @property long long deviceTelnetPort; // @synthesize deviceTelnetPort=_deviceTelnetPort;
 @property long long deviceSSHPort; // @synthesize deviceSSHPort=_deviceSSHPort;
-@property(retain, nonatomic) DTDKRemoteDeviceConsoleController *deviceConsoleController; // @synthesize deviceConsoleController=_deviceConsoleController;
 @property(copy, nonatomic) NSArray *systemApplicationDictionaries; // @synthesize systemApplicationDictionaries=_systemApplicationDictionaries;
 @property(copy, nonatomic) NSArray *applicationDictionaries; // @synthesize applicationDictionaries=_applicationDictionaries;
-@property(copy, nonatomic) NSArray *supportedDeviceFamilies; // @synthesize supportedDeviceFamilies=_supportedDeviceFamilies;
 @property(copy, nonatomic) NSString *deviceSoftwareVersion; // @synthesize deviceSoftwareVersion=_deviceSoftwareVersion;
 @property(copy, nonatomic) NSString *deviceIdentifier; // @synthesize deviceIdentifier=_deviceIdentifier;
 @property(retain, nonatomic) DTDKRemoteDeviceConnection *primaryWirelessConection; // @synthesize primaryWirelessConection=_primaryWirelessConection;
@@ -136,11 +145,13 @@
 @property(copy, nonatomic) NSSet *applications; // @synthesize applications=_applications;
 @property(copy, nonatomic) NSNumber *deviceChipID; // @synthesize deviceChipID=_deviceChipID;
 @property(copy, nonatomic) NSString *deviceDevelopmentStatus; // @synthesize deviceDevelopmentStatus=_deviceDevelopmentStatus;
+@property(copy, nonatomic) NSNumber *deviceBatteryCapacity; // @synthesize deviceBatteryCapacity=_deviceBatteryCapacity;
+@property(copy, nonatomic) NSArray *supportedDeviceFamilies; // @synthesize supportedDeviceFamilies=_supportedDeviceFamilies;
+@property(copy, nonatomic) NSNumber *canBeWatchCompanionObj; // @synthesize canBeWatchCompanionObj=_canBeWatchCompanionObj;
 @property(copy, nonatomic) NSNumber *deviceProductionSOC; // @synthesize deviceProductionSOC=_deviceProductionSOC;
 @property(copy, nonatomic) NSNumber *isChargingObj; // @synthesize isChargingObj=_isChargingObj;
 @property(copy, nonatomic) NSNumber *isPasscodeLockedObj; // @synthesize isPasscodeLockedObj=_isPasscodeLockedObj;
 @property(copy, nonatomic) NSString *deviceToolsType; // @synthesize deviceToolsType=_deviceToolsType;
-@property(copy, nonatomic) NSNumber *deviceBatteryCapacity; // @synthesize deviceBatteryCapacity=_deviceBatteryCapacity;
 @property(copy, nonatomic) NSNumber *deviceAvailableCapacity; // @synthesize deviceAvailableCapacity=_deviceAvailableCapacity;
 @property(copy, nonatomic) NSNumber *deviceTotalCapacity; // @synthesize deviceTotalCapacity=_deviceTotalCapacity;
 @property(copy, nonatomic) NSString *deviceArchitecture; // @synthesize deviceArchitecture=_deviceArchitecture;
@@ -158,6 +169,7 @@
 @property(copy, nonatomic) NSString *deviceIMEI; // @synthesize deviceIMEI=_deviceIMEI;
 @property(copy, nonatomic) NSNumber *deviceECID; // @synthesize deviceECID=_deviceECID;
 @property(copy, nonatomic) NSString *deviceName; // @synthesize deviceName=_deviceName;
+@property(retain, nonatomic) DTDKRemoteDeviceConsoleController *deviceConsoleController; // @synthesize deviceConsoleController=_deviceConsoleController;
 @property(retain, nonatomic) DTDKRemoteDeviceConnection *primaryConnection; // @synthesize primaryConnection=_primaryConnection;
 - (void).cxx_destruct;
 - (id)startTCPRelay;
@@ -186,6 +198,8 @@
 - (void)setDeviceIsProduction:(_Bool)arg1;
 @property(readonly, nonatomic) _Bool deviceIsProduction;
 @property(readonly) _Bool hasLoaded_deviceIsProduction;
+@property(readonly) _Bool hasLoaded_canBeWatchCompanion;
+@property(readonly, nonatomic) _Bool canBeWatchCompanion;
 @property(readonly) _Bool hasLoaded_isCharging;
 @property(readonly, nonatomic) _Bool isCharging;
 @property(readonly) _Bool hasLoaded_isPasscodeLocked;
@@ -199,51 +213,78 @@
 - (_Bool)syncSetDevelopmentFlag:(BOOL)arg1 error:(id *)arg2;
 @property(readonly) _Bool hasLoaded_deviceDevelopmentStatus;
 - (id)reload_deviceDevelopmentStatus;
-- (id)reloadFutureForDeviceDevelopmentStatus;
-- (_Bool)hasLoaded_deviceProductionSOC;
-- (id)reload_deviceProductionSOC;
-- (_Bool)hasLoaded_isChargingObj;
-- (id)reload_isChargingObj;
-- (_Bool)hasLoaded_isPasscodeLockedObj;
-- (id)reload_isPasscodeLockedObj;
-@property(readonly) _Bool hasLoaded_deviceToolsType;
-- (id)reload_deviceToolsType;
 @property(readonly) _Bool hasLoaded_deviceBatteryCapacity;
 - (id)reload_deviceBatteryCapacity;
+- (_Bool)deviceHasBattery;
+- (_Bool)hasLoaded_supportedDeviceFamilies;
+- (id)reload_supportedDeviceFamilies;
+- (id)reloadIfNeeded_supportedDeviceFamilies;
+- (_Bool)hasLoaded_canBeWatchCompanionObj;
+- (id)reload_canBeWatchCompanionObj;
+- (id)reloadIfNeeded_canBeWatchCompanionObj;
+- (_Bool)hasLoaded_deviceProductionSOC;
+- (id)reload_deviceProductionSOC;
+- (id)reloadIfNeeded_deviceProductionSOC;
+- (_Bool)hasLoaded_isChargingObj;
+- (id)reload_isChargingObj;
+- (id)reloadIfNeeded_isChargingObj;
+- (_Bool)hasLoaded_isPasscodeLockedObj;
+- (id)reload_isPasscodeLockedObj;
+- (id)reloadIfNeeded_isPasscodeLockedObj;
+@property(readonly) _Bool hasLoaded_deviceToolsType;
+- (id)reload_deviceToolsType;
+- (id)reloadIfNeeded_deviceToolsType;
 @property(readonly) _Bool hasLoaded_deviceAvailableCapacity;
 - (id)reload_deviceAvailableCapacity;
+- (id)reloadIfNeeded_deviceAvailableCapacity;
 @property(readonly) _Bool hasLoaded_deviceTotalCapacity;
 - (id)reload_deviceTotalCapacity;
+- (id)reloadIfNeeded_deviceTotalCapacity;
 @property(readonly) _Bool hasLoaded_deviceArchitecture;
 - (id)reload_deviceArchitecture;
+- (id)reloadIfNeeded_deviceArchitecture;
 @property(readonly) _Bool hasLoaded_deviceEnclosureColorString;
 - (id)reload_deviceEnclosureColorString;
+- (id)reloadIfNeeded_deviceEnclosureColorString;
 @property(readonly) _Bool hasLoaded_deviceColorString;
 - (id)reload_deviceColorString;
+- (id)reloadIfNeeded_deviceColorString;
 @property(readonly) _Bool hasLoaded_deviceSerialNumber;
 - (id)reload_deviceSerialNumber;
+- (id)reloadIfNeeded_deviceSerialNumber;
 @property(readonly) _Bool hasLoaded_buildVersion;
 - (id)reload_buildVersion;
+- (id)reloadIfNeeded_buildVersion;
 @property(readonly) _Bool hasLoaded_productVersion;
 - (id)reload_productVersion;
+- (id)reloadIfNeeded_productVersion;
 @property(readonly) _Bool hasLoaded_deviceCodename;
 - (id)reload_deviceCodename;
+- (id)reloadIfNeeded_deviceCodename;
 @property(readonly) _Bool hasLoaded_deviceBluetoothMAC;
 - (id)reload_deviceBluetoothMAC;
+- (id)reloadIfNeeded_deviceBluetoothMAC;
 @property(readonly) _Bool hasLoaded_deviceWiFiMAC;
 - (id)reload_deviceWiFiMAC;
+- (id)reloadIfNeeded_deviceWiFiMAC;
 @property(readonly) _Bool hasLoaded_deviceType;
 - (id)reload_deviceType;
+- (id)reloadIfNeeded_deviceType;
 @property(readonly) _Bool hasLoaded_deviceActivationState;
 - (id)reload_deviceActivationState;
+- (id)reloadIfNeeded_deviceActivationState;
 @property(readonly) _Bool hasLoaded_deviceClass;
 - (id)reload_deviceClass;
+- (id)reloadIfNeeded_deviceClass;
 @property(readonly) _Bool hasLoaded_deviceIMEI;
 - (id)reload_deviceIMEI;
+- (id)reloadIfNeeded_deviceIMEI;
 @property(readonly) _Bool hasLoaded_deviceECID;
 - (id)reload_deviceECID;
+- (id)reloadIfNeeded_deviceECID;
 @property(readonly) _Bool hasLoaded_deviceName;
 - (id)reload_deviceName;
+- (id)reloadIfNeeded_deviceName;
 - (_Bool)uninstallApplicationWithIdentifier:(id)arg1 options:(id)arg2 andError:(id *)arg3 withCallback:(CDUnknownBlockType)arg4;
 - (_Bool)upgradeApplicationAtPath:(id)arg1 withOptions:(id)arg2 andError:(id *)arg3 withCallback:(CDUnknownBlockType)arg4;
 - (_Bool)installApplicationAtPath:(id)arg1 withOptions:(id)arg2 andError:(id *)arg3 withCallback:(CDUnknownBlockType)arg4;
@@ -252,7 +293,12 @@
 - (id)checkDeviceCapabilities:(id)arg1 withOptions:(id)arg2 andError:(id *)arg3;
 - (_Bool)simulateLatitude:(id)arg1 andLongitude:(id)arg2 withError:(id *)arg3;
 - (_Bool)stopSimulatingLocationWithError:(id *)arg1;
+- (id)copyAndProcessSharedCache;
+- (id)developerDiskImageMountError;
+- (_Bool)mountDeveloperDiskImageWithError:(id *)arg1;
 - (_Bool)mountDeveloperDiskImage:(id)arg1 withError:(id *)arg2;
+- (id)exactSymbolsDirectory:(id *)arg1;
+- (id)idealExistingSymbolsDirectory:(id *)arg1;
 - (struct _AMDServiceConnection *)startLocationSimulationServiceWithError:(id *)arg1;
 - (struct _AMDServiceConnection *)startSharedCacheCopyingServiceWithError:(id *)arg1;
 - (struct _AMDServiceConnection *)startXcodeDeviceMonitorServiceWithError:(id *)arg1;
@@ -281,7 +327,8 @@
 - (id)startAppInstallationService;
 - (id)startSpringboardService;
 - (id)startDarwinNotificationService;
-- (id)startDebugServerService;
+- (id)startDebugServerServiceWithExtension:(id)arg1;
+- (id)_debugServiceArrayWithExtension:(id)arg1 services:(id)arg2;
 - (id)startFirstServiceOf:(id)arg1 unlockKeybag:(_Bool)arg2;
 - (id)startFirstServiceOf:(id)arg1;
 - (id)startServiceWithIdentifier:(id)arg1;
@@ -293,8 +340,11 @@
 - (int)executeInSession:(CDUnknownBlockType)arg1;
 - (void)removeConnection:(id)arg1;
 - (void)addConnection:(id)arg1;
+@property(readonly, nonatomic) _Bool hasDirectConnection;
 - (_Bool)_hasDirectConnection;
+@property(readonly, copy, nonatomic) NSArray *connections; // @dynamic connections;
 - (void)_updatePrimaryConnection;
+@property(readonly, nonatomic) DTDKRemoteDeviceToken *activeProxiedDeviceToken;
 @property(readonly, copy, nonatomic) NSSet *proxiedDeviceTokens;
 @property(readonly) _Bool deviceIsPaired;
 @property(readonly, nonatomic) _Bool hasWirelessConnection;
@@ -307,11 +357,8 @@
 @property(readonly, nonatomic) NSString *localizedDeviceModel;
 @property(readonly, nonatomic) _Bool isConnected;
 @property(readonly, nonatomic) _Bool isSupportedOS;
+@property(readonly) DVTPlatform *platform;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy, nonatomic) NSArray *connections; // @dynamic connections;
-@property(readonly, copy) NSMutableArray *mutableConnections; // @dynamic mutableConnections;
 
 @end
 

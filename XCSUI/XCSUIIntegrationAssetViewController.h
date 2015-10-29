@@ -6,7 +6,7 @@
 
 #import "NSViewController.h"
 
-@class NSImage, NSProgressIndicator, NSString, NSURLDownload, NSView, XCSIntegration, XCSIntegrationAsset, XCSUIIntegrationAssetView;
+@class NSImage, NSProgressIndicator, NSString, NSURLSessionDownloadTask, NSView, XCSIntegration, XCSIntegrationAsset, XCSUIIntegrationAssetView;
 
 @interface XCSUIIntegrationAssetViewController : NSViewController
 {
@@ -16,10 +16,10 @@
     NSView *_iOSProductActionView;
     NSView *_downloadProgressView;
     NSProgressIndicator *_progressIndicator;
-    NSURLDownload *_currentDownload;
+    NSURLSessionDownloadTask *_currentDownload;
 }
 
-@property __weak NSURLDownload *currentDownload; // @synthesize currentDownload=_currentDownload;
+@property __weak NSURLSessionDownloadTask *currentDownload; // @synthesize currentDownload=_currentDownload;
 @property __weak NSProgressIndicator *progressIndicator; // @synthesize progressIndicator=_progressIndicator;
 @property(retain) NSView *downloadProgressView; // @synthesize downloadProgressView=_downloadProgressView;
 @property(retain) NSView *iOSProductActionView; // @synthesize iOSProductActionView=_iOSProductActionView;
@@ -32,7 +32,7 @@
 @property(retain) NSImage *icon;
 @property(copy) NSString *title;
 @property(readonly) XCSUIIntegrationAssetView *assetView;
-- (void)downloadAndUnzipAssetToTemporaryDirectoryWithCallback:(CDUnknownBlockType)arg1;
+- (void)downloadAndUnzipAssetToDirectory:(id)arg1 withCallback:(CDUnknownBlockType)arg2;
 - (void)saveAssetToDirectory:(id)arg1 withCallback:(CDUnknownBlockType)arg2;
 - (void)cancelDownload:(id)arg1;
 - (void)installAsset:(id)arg1;

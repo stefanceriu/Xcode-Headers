@@ -6,65 +6,61 @@
 
 #import "IDEViewController.h"
 
-#import "SKETimeSliderDataSource.h"
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTScopeBarView, NSArrayController, NSPopUpButton, SCNScene, SKESceneEditor, SKESceneView;
 
-@class NSArrayController, NSPopUpButton, NSSegmentedControl, NSString, SKEDocumentViewController, SKESceneView, SKESceneViewNestView, SKETimeSlider;
-
-@interface SKECanvasViewController : IDEViewController <SKETimeSliderDataSource>
+@interface SKECanvasViewController : IDEViewController
 {
     SKESceneView *_sceneView;
-    SKESceneViewNestView *_nestView;
-    SKETimeSlider *timeSlider;
-    NSSegmentedControl *_segmentedControl;
+    DVTScopeBarView *_scopeBarView;
+    DVTBorderedView *_bottomBarView;
+    SCNScene *_editScene;
     NSPopUpButton *_povPopUpButton;
     NSArrayController *_povArrayController;
-    BOOL _showAuthoringEnvironment;
-    BOOL _enableMultisampling;
-    BOOL _enableJittering;
-    BOOL _enableAutomaticDefaultLighting;
-    unsigned char _cameraDisplayMode;
-    unsigned char _lightDisplayMode;
-    SKEDocumentViewController *_documentEditorViewController;
+    DVTGradientImageButton *_playStopButton;
+    DVTGradientImagePopUpButton *_authoringEnvironmentOptionsButton;
+    DVTObservingToken *_sceneBackgroundObservingToken;
+    DVTObservingToken *_documentControllerSelectedNodesObservingToken;
+    SKESceneEditor *_sceneEditor;
 }
 
-@property(retain, nonatomic) SKEDocumentViewController *documentEditorViewController; // @synthesize documentEditorViewController=_documentEditorViewController;
+@property(retain, nonatomic) SKESceneEditor *sceneEditor; // @synthesize sceneEditor=_sceneEditor;
+@property(readonly, nonatomic) SKESceneView *sceneView; // @synthesize sceneView=_sceneView;
 - (void).cxx_destruct;
-@property double currentTime;
-@property(readonly) double endTime;
-@property(readonly) double startTime;
-@property BOOL playing;
+- (void)setCurrentTime:(double)arg1;
+- (double)currentTime;
+- (double)endTime;
+- (double)startTime;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
-- (void)doShowNodeAttributesCameraNone:(id)arg1;
-- (void)doShowNodeAttributesCameraAll:(id)arg1;
-- (void)doShowNodeAttributesCameraEditedOnly:(id)arg1;
-- (void)doShowNodeAttributesLightNone:(id)arg1;
-- (void)doShowNodeAttributesLightAll:(id)arg1;
-- (void)doShowNodeAttributesLightEditedOnly:(id)arg1;
-- (void)toggleShowAuthoringEnvironment:(id)arg1;
+- (void)toggleSelectionMode:(id)arg1;
+- (void)editingSpaceDidChange:(id)arg1;
+- (void)authoringDisplayMaskDidChange:(id)arg1;
+- (void)authoringDisplayMaskToggleTag:(long long)arg1;
 - (void)toggleDefaultLighting:(id)arg1;
-- (void)toggleMutlisampling:(id)arg1;
+- (void)sceneIsPlayingDidChange:(id)arg1;
 - (void)toggleJittering:(id)arg1;
-- (void)_updateLightDisplay;
-- (void)setLightDisplayMode:(unsigned char)arg1;
-- (void)_updateCameraDisplay;
-- (void)setCameraDisplayMode:(unsigned char)arg1;
 - (void)_updateManipulation;
-- (void)setShowAuthoringEnvironment:(BOOL)arg1;
+- (void)setSelectionModeIsSurroundToSelect:(BOOL)arg1;
+- (BOOL)selectionModeIsSurroundToSelect;
+- (void)setEditingSpace:(long long)arg1;
+- (long long)editingSpace;
+- (void)setAuthoringDisplayMask:(long long)arg1;
+- (void)updateAuthoringDisplayMaskMenu:(id)arg1;
+- (void)updateAuthoringDisplayMaskMenu:(id)arg1 withMask:(long long)arg2;
+- (long long)authoringDisplayMask;
+- (void)setSceneIsPlaying:(BOOL)arg1;
+- (BOOL)sceneIsPlaying;
+- (BOOL)enableAutomaticDefaultLighting;
 - (void)setEnableAutomaticDefaultLighting:(BOOL)arg1;
-- (void)setEnableMultisampling:(BOOL)arg1;
-- (void)setEnableJittering:(BOOL)arg1;
-- (void)configureControlBar;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (BOOL)autoenablesDefaultLighting;
+- (void)makeSceneViewTakeBackgroundColorOfScene;
+- (id)scopeBarViewDragRectsForView:(id)arg1;
+- (void)updateBottomBarColorScheme;
+- (void)configureScopeBarView;
+@property(readonly, nonatomic) DVTScopeBarView *scopeBarView;
+- (void)documentControllerSelectedNodesDidChange:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)takeFocus;
-- (void)viewWillUninstall;
-- (void)viewDidInstall;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (void)viewDidLoad;
 
 @end
 

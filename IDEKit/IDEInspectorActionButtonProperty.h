@@ -6,19 +6,22 @@
 
 #import <IDEKit/IDEInspectorAbstractActionProperty.h>
 
-@class NSButton, NSString;
+@class IDEInspectorKeyPath, NSButton, NSString;
 
 @interface IDEInspectorActionButtonProperty : IDEInspectorAbstractActionProperty
 {
-    NSString *_titleKeyPath;
+    IDEInspectorKeyPath *_targetKeyPath;
+    IDEInspectorKeyPath *_titleKeyPath;
     NSString *_title;
+    SEL _action;
     NSButton *_button;
 }
 
 @property(retain, nonatomic) NSButton *button; // @synthesize button=_button;
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
-- (void)refreshTarget:(id)arg1;
+- (void)refresh;
+- (void)broadcastAction:(id)arg1;
 - (void)refreshTitle:(id)arg1;
 - (double)baseline;
 

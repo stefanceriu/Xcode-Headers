@@ -23,6 +23,7 @@
 @property unsigned long long lineNumber; // @synthesize lineNumber=_lineNumber;
 @property unsigned long long stackAddress; // @synthesize stackAddress=_stackAddress;
 - (void).cxx_destruct;
+- (id)frameStringRepresentationWithAddress:(BOOL)arg1;
 - (id)frameStringRepresentation;
 
 @end

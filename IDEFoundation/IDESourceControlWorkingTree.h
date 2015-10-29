@@ -6,14 +6,13 @@
 
 #import <IDEFoundation/IDESourceControlTree.h>
 
-@class DVTDispatchLock, DVTFilePath, IDESourceControlBranch, IDESourceControlRepository, IDESourceControlWorkingCopyConfiguration, NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSMutableSet, NSMutableString, NSOperationQueue, NSString;
+@class DVTDispatchLock, DVTFilePath, IDESourceControlBranch, IDESourceControlRepository, IDESourceControlWorkingCopyConfiguration, NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString;
 
 @interface IDESourceControlWorkingTree : IDESourceControlTree
 {
     IDESourceControlWorkingCopyConfiguration *_wcc;
     IDESourceControlBranch *_currentBranch;
     long long _fileReferenceStatusProcessingQueueLockCount;
-    NSMutableString *_fileReferenceStatusProcessingBacktraces;
     NSOperationQueue *_fileReferenceStatusProcessingQueue;
     NSMutableArray *_itemsWithStatus;
     NSOperationQueue *_status_processing_queue;

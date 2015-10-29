@@ -4,21 +4,19 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IBFoundation/IBICMultipartImageRepIdentifier.h>
+#import <IBFoundation/IBICSlottedAssetRepIdentifier.h>
 
-@interface IBICIconSetRepIdentifier : IBICMultipartImageRepIdentifier
+@interface IBICIconSetRepIdentifier : IBICSlottedAssetRepIdentifier
 {
 }
 
-+ (id)inferredImageRepIdentifiersGroupedByImageNameForPaths:(id)arg1;
-+ (id)inferredImageRepIdentifiersForBitmaps:(id)arg1;
-+ (id)inferredImageRepIdentifierForPath:(id)arg1 slotComponentTransformer:(CDUnknownBlockType)arg2;
++ (id)inferredRepIdentifiersGroupedByItemNameForPaths:(id)arg1;
++ (id)inferredRepIdentifiersForImageReps:(id)arg1;
++ (id)inferredRepIdentifierForPath:(id)arg1 slotComponentTransformer:(CDUnknownBlockType)arg2;
 + (Class)slotClass;
 - (id)slot;
 - (id)scale;
 - (id)size;
-- (id)initWithSlot:(id)arg1 fileName:(id)arg2 unassigned:(BOOL)arg3;
-- (id)initWithSize:(id)arg1 scale:(id)arg2 fileName:(id)arg3 unassigned:(BOOL)arg4;
 
 @end
 

@@ -10,12 +10,11 @@
 
 @interface SCNText : SCNGeometry
 {
-    id _reserved;
     float _flatness;
     float _chamferRadius;
     float _extrusionDepth;
     float _discretizedStraightLineMaxLength;
-    struct NSBezierPath *_chamferProfile;
+    NSBezierPath *_chamferProfile;
     long long _primitiveType;
     id _string;
     NSFont *_font;
@@ -28,7 +27,6 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)textWithString:(id)arg1 extrusionDepth:(double)arg2;
 + (id)text;
 - (id)initWithCoder:(id)arg1;
@@ -60,7 +58,7 @@
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (id)presentationGeometry;
 - (struct __C3DGeometry *)__createCFObject;
 - (id)initPresentationTextGeometryWithTextGeometryRef:(struct __C3DTextGeometry *)arg1;

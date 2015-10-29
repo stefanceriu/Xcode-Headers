@@ -7,6 +7,8 @@
 #import "NSObject.h"
 
 @protocol DVTSourceControlCancellable <NSObject>
+@property __weak id context;
+@property BOOL suppressAuthenticationFailure;
 - (void)cancel;
 @end
 

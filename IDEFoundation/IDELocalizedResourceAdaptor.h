@@ -18,17 +18,16 @@
 
 + (id)writeWorkForContext:(id)arg1 langauge:(id)arg2;
 + (id)readWorkForContext:(id)arg1;
-+ (id)populatedAdaptorsForContext:(id)arg1;
 + (id)adaptedResourcesForPopulationContext:(id)arg1 plugInManager:(id)arg2;
 + (id)adaptedResourcesForPopulationContext:(id)arg1;
 + (void)initialize;
 @property(readonly) IDEContainer<IDELocalizedContainer> *container; // @synthesize container=_container;
 @property(readonly) IDENotifyingLocalizedGroup *localizedGroup; // @synthesize localizedGroup=_localizedGroup;
 - (void).cxx_destruct;
-- (void)setCommentsByKey:(id)arg1;
-- (id)commentsByKey;
-- (void)setStringsByKey:(id)arg1 forLanguage:(id)arg2;
-- (id)stringsByKeyForLanguage:(id)arg1;
+- (void)setComments:(id)arg1;
+- (id)comments;
+- (void)setStrings:(id)arg1 forLanguage:(id)arg2;
+- (id)stringsForLanguage:(id)arg1;
 - (id)localizedGroupIdentifier;
 - (id)initWithContainer:(id)arg1 localizedGroup:(id)arg2;
 - (void)primitiveInvalidate;

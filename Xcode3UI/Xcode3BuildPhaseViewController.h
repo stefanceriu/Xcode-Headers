@@ -24,7 +24,6 @@
 - (double)contentOriginXOffsetForCapsuleView:(id)arg1;
 - (double)capsuleView:(id)arg1 preferredContentViewWidthForCapsuleWidth:(double)arg2;
 - (BOOL)capsuleViewShouldBeginEditingTitle:(id)arg1;
-- (void)deleteAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)capsuleViewDidClickRemoveButton:(id)arg1;
 - (BOOL)capsuleViewCanBeRemoved:(id)arg1;
 - (void)capsuleView:(id)arg1 setTitle:(id)arg2;

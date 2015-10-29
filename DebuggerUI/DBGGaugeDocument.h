@@ -6,14 +6,10 @@
 
 #import "IDEDebugGaugeReportDocument.h"
 
-@class DBGDebugSession;
-
 @interface DBGGaugeDocument : IDEDebugGaugeReportDocument
 {
-    DBGDebugSession *_debugSession;
 }
 
-- (void).cxx_destruct;
 - (void)editorDocumentWillClose;
 - (BOOL)readFromURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 

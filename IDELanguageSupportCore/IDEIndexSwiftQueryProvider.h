@@ -12,7 +12,6 @@
 
 - (id)symbolsMatchingName:(id)arg1 inContext:(id)arg2 withCurrentFileContentDictionary:(id)arg3 forIndex:(id)arg4;
 - (id)symbolsMatchingName:(id)arg1 inContext:(id)arg2 forIndex:(id)arg3;
-- (id)initWithSettings:(id)arg1 database:(id)arg2;
 
 @end
 

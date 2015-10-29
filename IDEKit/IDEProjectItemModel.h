@@ -13,12 +13,14 @@
 @interface IDEProjectItemModel : NSObject <DVTInvalidation>
 {
     NSArray *_flightChecks;
+    BOOL _needToPublish;
     id <IDECapabilitiesContextProviding> _targetCapabilitiesContext;
     id <IDEProjectItem> _item;
     DVTDelayedInvocation *_delayedUpdateInvocation;
 }
 
 + (void)initialize;
+@property BOOL needToPublish; // @synthesize needToPublish=_needToPublish;
 @property(readonly) DVTDelayedInvocation *delayedUpdateInvocation; // @synthesize delayedUpdateInvocation=_delayedUpdateInvocation;
 @property(readonly) id <IDEProjectItem> item; // @synthesize item=_item;
 @property(readonly) id <IDECapabilitiesContextProviding> targetCapabilitiesContext; // @synthesize targetCapabilitiesContext=_targetCapabilitiesContext;

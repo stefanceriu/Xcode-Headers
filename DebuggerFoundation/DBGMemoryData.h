@@ -6,31 +6,45 @@
 
 #import "NSObject.h"
 
+#import "DVTInvalidation.h"
 #import "IDEDebugNavigableModel.h"
 
-@class DBGProcess, IDELaunchSession, NSData, NSString, NSURL;
+@class DBGProcess, DVTStackBacktrace, IDELaunchSession, NSArray, NSData, NSString, NSURL;
 
-@interface DBGMemoryData : NSObject <IDEDebugNavigableModel>
+@interface DBGMemoryData : NSObject <IDEDebugNavigableModel, DVTInvalidation>
 {
-    NSString *_expression;
+    BOOL _shouldAutoUpdate;
+    BOOL _memoryFaulted;
+    BOOL _showsAsMemoryFaulted;
     unsigned long long _startingAddress;
+    NSString *_expression;
     unsigned long long _numberOfBytes;
     NSData *_rawMemoryData;
-    BOOL _shouldAutoUpdate;
+    NSData *_shadowMemoryData;
     DBGProcess *_parentProcess;
+    NSArray *_recordedThreads;
+    NSString *_pointerDescription;
     NSString *_uuid;
     NSURL *_url;
 }
 
-@property(readonly) NSURL *url; // @synthesize url=_url;
++ (void)initialize;
+@property(retain) NSURL *url; // @synthesize url=_url;
 @property(readonly) NSString *uuid; // @synthesize uuid=_uuid;
+@property BOOL showsAsMemoryFaulted; // @synthesize showsAsMemoryFaulted=_showsAsMemoryFaulted;
+@property(nonatomic, getter=isMemoryFaulted) BOOL memoryFaulted; // @synthesize memoryFaulted=_memoryFaulted;
+@property(readonly, copy) NSString *pointerDescription; // @synthesize pointerDescription=_pointerDescription;
+@property(readonly, copy) NSArray *recordedThreads; // @synthesize recordedThreads=_recordedThreads;
 @property(retain) DBGProcess *parentProcess; // @synthesize parentProcess=_parentProcess;
 @property BOOL shouldAutoUpdate; // @synthesize shouldAutoUpdate=_shouldAutoUpdate;
+@property(copy) NSData *shadowMemoryData; // @synthesize shadowMemoryData=_shadowMemoryData;
 @property(copy) NSData *rawMemoryData; // @synthesize rawMemoryData=_rawMemoryData;
 @property unsigned long long numberOfBytes; // @synthesize numberOfBytes=_numberOfBytes;
-@property unsigned long long startingAddress; // @synthesize startingAddress=_startingAddress;
 @property(copy) NSString *expression; // @synthesize expression=_expression;
+@property unsigned long long startingAddress; // @synthesize startingAddress=_startingAddress;
 - (void).cxx_destruct;
+- (void)gatherAdditionalInformationForAddress:(unsigned long long)arg1 numberOfBytes:(unsigned long long)arg2;
+- (void)primitiveInvalidate;
 - (void)_updateUsingExpression:(id)arg1 numberOfBytes:(unsigned long long)arg2;
 - (void)updateNumberOfBytes:(unsigned long long)arg1;
 - (void)updateUsingExpression:(id)arg1;
@@ -39,12 +53,16 @@
 @property(readonly) IDELaunchSession *launchSession;
 @property(readonly, copy) NSString *associatedProcessUUID;
 - (id)initWithExpression:(id)arg1 numberOfBytes:(unsigned long long)arg2 process:(id)arg3;
+- (id)generateNewURL;
 
 // Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

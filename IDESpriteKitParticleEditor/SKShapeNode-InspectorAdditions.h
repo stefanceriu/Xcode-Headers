@@ -11,9 +11,11 @@
 @class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString;
 
 @interface SKShapeNode (InspectorAdditions) <IDEKeyDrivenNavigableItemRepresentedObject>
++ (id)keyPathsForValuesAffectingFillTextureImageName;
++ (id)keyPathsForValuesAffectingStrokeTextureImageName;
 + (id)keyPathsForValuesAffectingZRotationDeg;
-@property(retain, nonatomic) NSImage *fillTextureImage;
-@property(retain, nonatomic) NSImage *strokeTextureImage;
+@property(retain, nonatomic) NSString *fillTextureImageName;
+@property(retain, nonatomic) NSString *strokeTextureImageName;
 - (id)ide_undoKVOKeypaths;
 - (void)setNilValueForKey:(id)arg1;
 - (id)inspectorAttributes;

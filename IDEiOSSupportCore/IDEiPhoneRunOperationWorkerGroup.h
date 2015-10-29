@@ -10,10 +10,10 @@
 
 @interface IDEiPhoneRunOperationWorkerGroup : IDERunOperationWorkerGroup
 {
-    DVTiOSDevice *device;
+    DVTiOSDevice *_device;
 }
 
-@property(retain) DVTiOSDevice *device; // @synthesize device;
+@property(retain) DVTiOSDevice *device; // @synthesize device=_device;
 - (void).cxx_destruct;
 - (void)allSubworkersDidFinishWithError:(id)arg1;
 

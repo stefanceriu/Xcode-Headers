@@ -20,7 +20,8 @@
 + (id)keyPathsForValuesAffectingDefaultArchiveName;
 + (id)keyPathsForValuesAffectingSubtitle;
 @property(copy) NSString *packagerIdentifier; // @synthesize packagerIdentifier=_packagerIdentifier;
-@property(copy) NSString *buildConfiguration; // @synthesize buildConfiguration=_buildConfiguration;
+- (void)setBuildConfiguration:(id)arg1;
+- (id)buildConfiguration;
 @property(copy) NSString *customArchiveName; // @synthesize customArchiveName=_customArchiveName;
 @property BOOL revealArchiveInOrganizer; // @synthesize revealArchiveInOrganizer=_revealArchiveInOrganizer;
 @property BOOL includeSnapshotInArchive; // @synthesize includeSnapshotInArchive=_includeSnapshotInArchive;

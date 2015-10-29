@@ -6,42 +6,48 @@
 
 #import "NSObject.h"
 
-#import "IDESharedTests_TestRun.h"
+#import "IDETestReport_TestRun.h"
 
 @class IDESchemeActionRunDestinationRecord, IDESchemeActionsInvocationRecord, NSArray, NSImage, NSString;
 
-@interface IDELogTestsViewTestSummaryTestRun : NSObject <IDESharedTests_TestRun>
+@interface IDELogTestsViewTestSummaryTestRun : NSObject <IDETestReport_TestRun>
 {
-    NSString *_ide_sharedTests_testName;
-    NSString *_ide_sharedTests_testClassName;
-    id <IDESharedTests_Device> _ide_sharedTests_testedDevice;
+    NSString *_ide_testReport_testRun_testName;
+    NSString *_ide_testReport_testRun_testClassName;
+    id <IDETestReport_Device> _ide_testReport_testRun_testedDevice;
     unsigned long long _ide_sharedTests_testSummaryStatus;
-    NSString *_ide_sharedTests_UUID;
-    NSArray *_ide_sharedTests_failureSummaries;
+    NSString *_ide_testReport_testRun_UUID;
+    NSArray *_ide_testReport_testRun_failureSummaries;
     NSArray *_ide_sharedTests_performanceMetrics;
     IDESchemeActionRunDestinationRecord *_ide_sharedTests_runDestinationRecord;
+    NSString *_ide_testReport_testRun_testableBlueprintName;
+    NSString *_ide_testReport_testRun_testableBlueprintPath;
+    NSArray *_ide_testReport_testRun_activities;
 }
 
+@property(copy, nonatomic) NSArray *ide_testReport_testRun_activities; // @synthesize ide_testReport_testRun_activities=_ide_testReport_testRun_activities;
+@property(copy, nonatomic) NSString *ide_testReport_testRun_testableBlueprintPath; // @synthesize ide_testReport_testRun_testableBlueprintPath=_ide_testReport_testRun_testableBlueprintPath;
+@property(copy, nonatomic) NSString *ide_testReport_testRun_testableBlueprintName; // @synthesize ide_testReport_testRun_testableBlueprintName=_ide_testReport_testRun_testableBlueprintName;
 @property(retain, nonatomic) IDESchemeActionRunDestinationRecord *ide_sharedTests_runDestinationRecord; // @synthesize ide_sharedTests_runDestinationRecord=_ide_sharedTests_runDestinationRecord;
 @property(copy, nonatomic) NSArray *ide_sharedTests_performanceMetrics; // @synthesize ide_sharedTests_performanceMetrics=_ide_sharedTests_performanceMetrics;
-@property(copy, nonatomic) NSArray *ide_sharedTests_failureSummaries; // @synthesize ide_sharedTests_failureSummaries=_ide_sharedTests_failureSummaries;
-@property(copy, nonatomic) NSString *ide_sharedTests_UUID; // @synthesize ide_sharedTests_UUID=_ide_sharedTests_UUID;
+@property(copy, nonatomic) NSArray *ide_testReport_testRun_failureSummaries; // @synthesize ide_testReport_testRun_failureSummaries=_ide_testReport_testRun_failureSummaries;
+@property(copy, nonatomic) NSString *ide_testReport_testRun_UUID; // @synthesize ide_testReport_testRun_UUID=_ide_testReport_testRun_UUID;
 @property(nonatomic) unsigned long long ide_sharedTests_testSummaryStatus; // @synthesize ide_sharedTests_testSummaryStatus=_ide_sharedTests_testSummaryStatus;
-@property(retain, nonatomic) id <IDESharedTests_Device> ide_sharedTests_testedDevice; // @synthesize ide_sharedTests_testedDevice=_ide_sharedTests_testedDevice;
-@property(copy, nonatomic) NSString *ide_sharedTests_testClassName; // @synthesize ide_sharedTests_testClassName=_ide_sharedTests_testClassName;
-@property(copy, nonatomic) NSString *ide_sharedTests_testName; // @synthesize ide_sharedTests_testName=_ide_sharedTests_testName;
+@property(retain, nonatomic) id <IDETestReport_Device> ide_testReport_testRun_testedDevice; // @synthesize ide_testReport_testRun_testedDevice=_ide_testReport_testRun_testedDevice;
+@property(copy, nonatomic) NSString *ide_testReport_testRun_testClassName; // @synthesize ide_testReport_testRun_testClassName=_ide_testReport_testRun_testClassName;
+@property(copy, nonatomic) NSString *ide_testReport_testRun_testName; // @synthesize ide_testReport_testRun_testName=_ide_testReport_testRun_testName;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) IDESchemeActionRunDestinationRecord *ide_sharedTests_schemeActionRunDestinationRecord;
-@property(readonly, nonatomic) BOOL ide_sharedTests_fetchesSchemeActionsInvocationRecordAsync;
-@property(readonly, copy, nonatomic) NSArray *ide_sharedTests_perfMetrics;
-@property(readonly, nonatomic) NSImage *ide_sharedTests_statusImage;
-@property(readonly, nonatomic) BOOL ide_sharedTests_passed;
+@property(readonly, nonatomic) IDESchemeActionRunDestinationRecord *ide_testReport_testRun_schemeActionRunDestinationRecord;
+@property(readonly, nonatomic) BOOL ide_testReport_testRun_fetchesSchemeActionsInvocationRecordAsync;
+@property(readonly, copy, nonatomic) NSArray *ide_testReport_testRun_perfMetrics;
+@property(readonly, nonatomic) NSImage *ide_testReport_testRun_statusImage;
+@property(readonly, nonatomic) BOOL ide_testReport_testRun_passed;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) IDESchemeActionsInvocationRecord *ide_sharedTests_schemeActionsInvocationRecord;
+@property(readonly, nonatomic) IDESchemeActionsInvocationRecord *ide_testReport_testRun_schemeActionsInvocationRecord;
 @property(readonly) Class superclass;
 
 @end

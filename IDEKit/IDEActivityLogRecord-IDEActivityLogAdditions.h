@@ -6,8 +6,12 @@
 
 #import "IDEActivityLogRecord.h"
 
+@class NSImage;
+
 @interface IDEActivityLogRecord (IDEActivityLogAdditions)
++ (id)keyPathsForValuesAffectingStatusImage;
 + (id)keyPathsForValuesAffectingNavigableItem_progressValue;
+@property(readonly) NSImage *statusImage;
 @property(readonly) long long navigableItem_progressValue;
 @end
 

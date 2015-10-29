@@ -11,8 +11,8 @@
 @interface IDEBreakpointActionArchivingProxy : NSObject
 {
     NSString *_actionExtensionID;
-    IDEBreakpointAction *_proxiedAction;
     BOOL _wasSuccessfullyUnarchived;
+    IDEBreakpointAction *_proxiedAction;
 }
 
 + (id)_breakpointActionExtensions;

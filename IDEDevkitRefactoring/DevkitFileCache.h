@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable;
+@class NSMapTable;
 
 @interface DevkitFileCache : NSObject
 {
-    DVTMapTable *_fileEditorMap;
+    NSMapTable *_fileEditorMap;
 }
 
 - (void).cxx_destruct;

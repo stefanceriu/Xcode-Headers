@@ -18,7 +18,6 @@
     IDEDiagnosticActivityLogMessage *_diagnosticItem;
     BOOL _userAcceptedSession;
     BOOL _changingSelection;
-    NSTextField *_typeTextField;
     NSImageView *_titleIconImageView;
     NSTextField *_titleTextField;
     DVTBorderedView *_titleBorderedView;

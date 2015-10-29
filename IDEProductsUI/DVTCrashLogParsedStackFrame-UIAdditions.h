@@ -14,8 +14,8 @@
 @property(readonly, copy, nonatomic) NSArray *allFindHighlightRanges;
 @property(retain, nonatomic) NSArray *imageTextFindMatchingSubranges; // @dynamic imageTextFindMatchingSubranges;
 @property(retain, nonatomic) NSArray *frameTextFindMatchingSubranges; // @dynamic frameTextFindMatchingSubranges;
-- (BOOL)ide_hasSymbolsWithAppName:(id)arg1;
+- (BOOL)ide_hasSymbolsWithAppName:(id)arg1 andBundleIdentifier:(id)arg2;
 - (BOOL)ide_isCrashedFrameInCrashPoint:(id)arg1;
-- (id)ide_presentableImageWithAppName:(id)arg1 forCrashPoint:(id)arg2;
+- (id)ide_presentableImageWithAppName:(id)arg1 andBundleIdentifier:(id)arg2 forCrashPoint:(id)arg3;
 @end
 

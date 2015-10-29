@@ -24,6 +24,7 @@
     unsigned long long _hash;
 }
 
++ (void)registerDefaultXcconfigCommandLineOverridingProperties:(id)arg1;
 @property(readonly, copy) IDEOverridingBuildProperties *overridingProperties; // @synthesize overridingProperties=_overridingProperties;
 @property(readonly, copy) NSString *activeArchitecture; // @synthesize activeArchitecture=_activeArchitecture;
 @property(readonly) IDERunDestination *activeRunDestination; // @synthesize activeRunDestination=_activeRunDestination;
@@ -36,7 +37,6 @@
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)_componentPropertyNames;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)_copyWithMutability:(BOOL)arg1;

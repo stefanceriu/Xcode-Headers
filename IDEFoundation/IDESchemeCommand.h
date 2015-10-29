@@ -17,6 +17,7 @@
     BOOL _shouldProfile;
     BOOL _shouldArchive;
     BOOL _shouldInstall;
+    BOOL _shouldBuildThinnedResources;
     BOOL _shouldGenerateOptimizationProfile;
     NSString *_commandName;
     NSString *_commandNameGerund;
@@ -38,6 +39,7 @@
 + (id)testSchemeCommand;
 + (id)launchSchemeCommand;
 @property(readonly, nonatomic) BOOL shouldGenerateOptimizationProfile; // @synthesize shouldGenerateOptimizationProfile=_shouldGenerateOptimizationProfile;
+@property(readonly, nonatomic) BOOL shouldBuildThinnedResources; // @synthesize shouldBuildThinnedResources=_shouldBuildThinnedResources;
 @property(readonly, nonatomic) BOOL shouldInstall; // @synthesize shouldInstall=_shouldInstall;
 @property(readonly, nonatomic) BOOL shouldArchive; // @synthesize shouldArchive=_shouldArchive;
 @property(readonly, nonatomic) BOOL shouldProfile; // @synthesize shouldProfile=_shouldProfile;

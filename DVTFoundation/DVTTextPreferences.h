@@ -58,6 +58,8 @@
 @property BOOL convertExistingFilesLineEndings;
 @property unsigned long long defaultLineEndings;
 @property BOOL centersOnScroll;
+@property BOOL showCodeCoverageCounts;
+@property BOOL showCodeCoverage;
 @property BOOL showInvisibleCharacters;
 @property int annotationDisplayPolicy;
 @property BOOL showMessageBubbleAnnotations;

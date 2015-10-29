@@ -12,7 +12,7 @@
 
 + (id)_activeWorkspace;
 + (id)_existingExecutableURLForAppName:(id)arg1;
-+ (void)requestCurrentProcessInformationsForDevice:(id)arg1 resultHandler:(CDUnknownBlockType)arg2;
++ (void)requestCurrentProcessInformationsForDevice:(id)arg1 usePairedDevice:(BOOL)arg2 resultHandler:(CDUnknownBlockType)arg3;
 - (id)_initFromDictionary:(id)arg1 fileURL:(id)arg2 architecture:(id)arg3;
 
 @end

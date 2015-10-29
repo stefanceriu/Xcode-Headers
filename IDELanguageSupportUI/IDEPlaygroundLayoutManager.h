@@ -17,8 +17,8 @@
 + (Class)_dvtDefaultTypesetterClass;
 @property CDStruct_bf6d4a14 inlineToysInset; // @synthesize inlineToysInset=_inlineToysInset;
 - (void).cxx_destruct;
-- (void)mergeAnnotationsAtParagraphIndex:(unsigned long long)arg1;
 - (void)textStorage:(id)arg1 didReplaceCharactersInRange:(struct _NSRange)arg2 withString:(id)arg3 changeInLength:(long long)arg4;
+- (void)generateInlineFoldsForCharacterRange:(struct _NSRange)arg1;
 - (id)accessoryAnnotationsInTextContainer:(id)arg1;
 - (void)removeSectionWithCharacterRange:(struct _NSRange)arg1;
 - (void)addSectionWithCharacterRange:(struct _NSRange)arg1;

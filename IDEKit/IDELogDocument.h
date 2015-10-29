@@ -8,11 +8,12 @@
 
 #import "DVTTextFindable.h"
 
-@class IDEActivityLogSection, IDESchemeActionRunDestinationRecord, NSArray, NSString;
+@class IDEActivityLogSection, IDESchemeActionCodeCoverage, IDESchemeActionRunDestinationRecord, NSArray, NSString;
 
 @interface IDELogDocument : IDEEditorDocument <DVTTextFindable>
 {
     IDEActivityLogSection *_activityLog;
+    IDESchemeActionCodeCoverage *_coverageReport;
     NSArray *_testableSummaries;
     IDESchemeActionRunDestinationRecord *_runDestinationRecord;
 }
@@ -31,6 +32,7 @@
 - (id)lastIndexPathInSection:(id)arg1 inIndexPath:(id)arg2;
 - (id)_iterateStartingWith:(id)arg1 section:(id)arg2 index:(unsigned long long)arg3 backwards:(BOOL)arg4 level:(long long)arg5 messageCount:(unsigned long long)arg6 onRefPath:(BOOL)arg7 passingTest:(CDUnknownBlockType)arg8;
 - (id)messageOrSectionForDocumentLocation:(id)arg1;
+@property(readonly) IDESchemeActionCodeCoverage *coverageReport;
 - (void)refreshTestableSummaries;
 - (int)readOnlyStatus;
 - (id)displayName;

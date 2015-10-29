@@ -16,9 +16,12 @@
 + (id)createShowLeftViewButton;
 - (void)activateConsole;
 - (BOOL)canActivateConsole;
+- (void)reloadConsole;
+- (BOOL)canReloadConsole;
 - (void)clearConsole;
 - (BOOL)canClearConsole;
 @property(readonly) NSString *stateSavingIdentifier;
+- (void)loadView;
 
 @end
 

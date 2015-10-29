@@ -16,7 +16,7 @@
 #import "NSToolbarDelegate.h"
 #import "NSWindowDelegate.h"
 
-@class DVTBarBackground, DVTDelayedInvocation, DVTObservingToken, DVTSegmentedControl, DVTStateRepository, DVTStateToken, DVTTabBarEnclosureView, IDECustomToolbar, IDEDocDocumentationTabViewController, IDEDocSearchController, IDEDocSearchResultsController, IDEDocToolbarItem, IDEDocWebHistoryMenu, NSArray, NSMapTable, NSMenu, NSMutableArray, NSSegmentedControl, NSString, NSTabView, NSTextField, NSToolbarItem, NSURL, NSView;
+@class DVTBarBackground, DVTDelayedInvocation, DVTObservingToken, DVTStateRepository, DVTStateToken, DVTTabBarEnclosureView, IDECustomToolbar, IDEDocDocumentationTabViewController, IDEDocSearchController, IDEDocSearchResultsController, IDEDocToolbarItem, IDEDocWebHistoryMenu, NSArray, NSButton, NSMapTable, NSMenu, NSMutableArray, NSSearchField, NSSegmentedControl, NSString, NSTabView, NSTextField, NSToolbarItem, NSURL;
 
 @interface IDEDocTabbedWindowController : NSWindowController <DVTTabbedWindowControlling, NSTextFieldDelegate, NSWindowDelegate, IDEDocSearchField_FieldEditorProtocol, DVTStatefulObject, DVTStateRepositoryDelegate, NSToolbarDelegate, IDEDocTabbedWindowControllerProtocol, IDEEditorMenuContentProvider>
 {
@@ -40,8 +40,10 @@
     IDEDocWebHistoryMenu *_webForwardHistoryMenu;
     id _windowDidOrderOffWatcher;
     id _windowDidResignWatcher;
-    DVTSegmentedControl *_toolbar_tableOfContentsSegControl;
+    NSButton *_toolbar_tableOfContentsButton;
     NSToolbarItem *_toolbarItem_tableOfContents;
+    NSButton *_toolbar_showNavigatorButton;
+    NSButton *_toolbar_shareButton;
     BOOL _showToolbar;
     BOOL _enteringFullScreenMode;
     BOOL _exitingFullScreenMode;
@@ -58,28 +60,26 @@
     DVTTabBarEnclosureView *_tabBarEnclosureView;
     IDECustomToolbar *_toolbar;
     NSTextField *_toolbarSearchTextField;
-    NSView *_toolbar_searchFieldContainerView;
     NSSegmentedControl *_toolbar_backForward;
-    DVTSegmentedControl *_toolbar_shareSegmentedControl;
     NSToolbarItem *_toolbar_ShareItem;
     NSArray *_topLevelViewOrder;
     NSMapTable *_viewHeightsForResizing;
+    NSSearchField *_searchTextField;
     DVTStateToken *_stateToken;
     DVTDelayedInvocation *_stateSavingInvocation;
     DVTStateRepository *_stateRepository;
     NSString *_currentSearchString;
-    DVTSegmentedControl *_toolbarSidebarsSegmentedControl;
     struct CGRect _windowFrameBeforeFullScreen;
 }
 
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
-@property __weak DVTSegmentedControl *toolbarSidebarsSegmentedControl; // @synthesize toolbarSidebarsSegmentedControl=_toolbarSidebarsSegmentedControl;
 @property(copy) NSString *currentSearchString; // @synthesize currentSearchString=_currentSearchString;
 @property(retain) DVTStateRepository *stateRepository; // @synthesize stateRepository=_stateRepository;
 @property(retain) DVTDelayedInvocation *stateSavingInvocation; // @synthesize stateSavingInvocation=_stateSavingInvocation;
 @property(retain) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
 @property BOOL createNewTabUponLoadIfNoTabsExist; // @synthesize createNewTabUponLoadIfNoTabsExist=_createNewTabUponLoadIfNoTabsExist;
+@property(retain) NSSearchField *searchTextField; // @synthesize searchTextField=_searchTextField;
 @property BOOL canOpenPlayground; // @synthesize canOpenPlayground=_canOpenPlayground;
 @property BOOL canOpenIBook; // @synthesize canOpenIBook=_canOpenIBook;
 @property BOOL canOpenPDF; // @synthesize canOpenPDF=_canOpenPDF;
@@ -93,9 +93,7 @@
 @property BOOL enteringFullScreenMode; // @synthesize enteringFullScreenMode=_enteringFullScreenMode;
 @property(nonatomic) BOOL showToolbar; // @synthesize showToolbar=_showToolbar;
 @property __weak NSToolbarItem *toolbar_ShareItem; // @synthesize toolbar_ShareItem=_toolbar_ShareItem;
-@property DVTSegmentedControl *toolbar_shareSegmentedControl; // @synthesize toolbar_shareSegmentedControl=_toolbar_shareSegmentedControl;
 @property NSSegmentedControl *toolbar_backForward; // @synthesize toolbar_backForward=_toolbar_backForward;
-@property NSView *toolbar_searchFieldContainerView; // @synthesize toolbar_searchFieldContainerView=_toolbar_searchFieldContainerView;
 @property NSTextField *toolbarSearchTextField; // @synthesize toolbarSearchTextField=_toolbarSearchTextField;
 @property IDECustomToolbar *toolbar; // @synthesize toolbar=_toolbar;
 @property DVTTabBarEnclosureView *tabBarEnclosureView; // @synthesize tabBarEnclosureView=_tabBarEnclosureView;

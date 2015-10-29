@@ -28,6 +28,7 @@
     BOOL _updatingChangedDescriptor;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 + (id)performanceLogAspect;
 @property BOOL isRestoringState; // @synthesize isRestoringState=_isRestoringState;

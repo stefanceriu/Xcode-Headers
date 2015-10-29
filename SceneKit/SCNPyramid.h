@@ -8,7 +8,6 @@
 
 @interface SCNPyramid : SCNGeometry
 {
-    id _reserved;
     double _pyramidwidth;
     double _pyramidheight;
     double _pyramidlength;
@@ -19,7 +18,6 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)pyramidWithWidth:(double)arg1 height:(double)arg2 length:(double)arg3;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -38,11 +36,10 @@
 @property(nonatomic) long long heightSegmentCount;
 @property(nonatomic) double height;
 - (void)_syncObjCModel:(struct __C3DParametricGeometry *)arg1;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (id)presentationGeometry;
 - (id)presentationPyramid;
 - (id)initPresentationParametricGeometryWithParametricGeometryRef:(struct __C3DParametricGeometry *)arg1;
-- (void)dealloc;
 - (struct __C3DGeometry *)__createCFObject;
 - (id)initWithParametricGeometryRef:(struct __C3DParametricGeometry *)arg1;
 - (id)init;

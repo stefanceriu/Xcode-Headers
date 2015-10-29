@@ -9,7 +9,7 @@
 #import "IDECapsuleListViewDataSource.h"
 #import "Xcode3SourceListItemEditor.h"
 
-@class DVTSourceExpression, IDECapsuleListView, NSArray, NSDictionary, NSScrollView, NSString, Xcode3ProjectEditor;
+@class DVTSourceExpression, DVTStackView_ML, IDECapsuleListView, NSArray, NSButton, NSDictionary, NSScrollView, NSString, NSTextField, Xcode3CenteringLayoutView, Xcode3ProjectEditor;
 
 @interface Xcode3CapabilitiesEditor : IDEViewController <Xcode3SourceListItemEditor, IDECapsuleListViewDataSource>
 {
@@ -18,14 +18,26 @@
     id _inspectedBlueprint;
     NSScrollView *_scrollView;
     IDECapsuleListView *_capsuleView;
+    DVTStackView_ML *_stackView;
+    Xcode3CenteringLayoutView *_freeProvisioningPlaceholderView;
+    NSTextField *_freeProvisioningPlaceholderTitle;
+    NSTextField *_freeProvisioningPlaceholderMessage;
+    NSButton *_freeProvisioningPlaceholderLinkButton;
     NSArray *_itemViewControllers;
+    NSArray *_itemViewControllersForDisplay;
     NSArray *_editorItemModels;
 }
 
 + (id)localizedSourceListItemEditorName;
 + (BOOL)canInspectBlueprint:(id)arg1;
 @property(copy, nonatomic) NSArray *editorItemModels; // @synthesize editorItemModels=_editorItemModels;
+@property(copy, nonatomic) NSArray *itemViewControllersForDisplay; // @synthesize itemViewControllersForDisplay=_itemViewControllersForDisplay;
 @property(copy, nonatomic) NSArray *itemViewControllers; // @synthesize itemViewControllers=_itemViewControllers;
+@property(retain, nonatomic) NSButton *freeProvisioningPlaceholderLinkButton; // @synthesize freeProvisioningPlaceholderLinkButton=_freeProvisioningPlaceholderLinkButton;
+@property(retain, nonatomic) NSTextField *freeProvisioningPlaceholderMessage; // @synthesize freeProvisioningPlaceholderMessage=_freeProvisioningPlaceholderMessage;
+@property(retain, nonatomic) NSTextField *freeProvisioningPlaceholderTitle; // @synthesize freeProvisioningPlaceholderTitle=_freeProvisioningPlaceholderTitle;
+@property(retain, nonatomic) Xcode3CenteringLayoutView *freeProvisioningPlaceholderView; // @synthesize freeProvisioningPlaceholderView=_freeProvisioningPlaceholderView;
+@property(retain, nonatomic) DVTStackView_ML *stackView; // @synthesize stackView=_stackView;
 @property(retain, nonatomic) IDECapsuleListView *capsuleView; // @synthesize capsuleView=_capsuleView;
 @property(retain, nonatomic) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(retain, nonatomic) id inspectedBlueprint; // @synthesize inspectedBlueprint=_inspectedBlueprint;
@@ -42,6 +54,8 @@
 - (id)target;
 - (void)transitionToInstalledViewControllers:(id)arg1;
 - (id)viewControllersForEditorItemModels:(id)arg1;
+- (void)goToDeveloperProgram:(id)arg1;
+- (void)_updateLayout;
 - (void)loadView;
 - (void)primitiveInvalidate;
 

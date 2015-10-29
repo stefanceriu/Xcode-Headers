@@ -6,13 +6,14 @@
 
 #import "DVTPagingSheetWindowController_AppKitAutoLayout.h"
 
-@class DVTCodesignResolutionInputs, DVTLogAspect, IDECodesignIssueAlertConfiguration, NSError;
+@class DVTCodesignResolutionInputs, DVTLogAspect, IDECodesignIssueAlertConfiguration, IDERunDestination, NSError;
 
 @interface IDECodesignIssueResolutionWindowController : DVTPagingSheetWindowController_AppKitAutoLayout
 {
     BOOL _fixIssueImmediately;
     NSError *_codesignResolutionError;
     id <IDEBlueprint> _blueprint;
+    IDERunDestination *_runDestination;
     id <IDECodesigningInfoDelegate> _codesignInfoDelegate;
     IDECodesignIssueAlertConfiguration *_alertConfig;
     DVTCodesignResolutionInputs *_codesignResolutionInputs;
@@ -24,13 +25,14 @@
 @property(copy) DVTCodesignResolutionInputs *codesignResolutionInputs; // @synthesize codesignResolutionInputs=_codesignResolutionInputs;
 @property(retain) IDECodesignIssueAlertConfiguration *alertConfig; // @synthesize alertConfig=_alertConfig;
 @property(readonly) id <IDECodesigningInfoDelegate> codesignInfoDelegate; // @synthesize codesignInfoDelegate=_codesignInfoDelegate;
+@property(readonly) IDERunDestination *runDestination; // @synthesize runDestination=_runDestination;
 @property(readonly) id <IDEBlueprint> blueprint; // @synthesize blueprint=_blueprint;
 @property(retain) NSError *codesignResolutionError; // @synthesize codesignResolutionError=_codesignResolutionError;
 - (void).cxx_destruct;
 - (void)_cancel;
 - (void)_done;
 - (id)_stubError;
-- (void)_transitionToAlertWithTitle:(id)arg1 message:(id)arg2 primaryButtonTitle:(id)arg3 primaryButtonEnabled:(BOOL)arg4 primaryAction:(CDUnknownBlockType)arg5 secondaryButtonTitle:(id)arg6 secondaryButtonEnabled:(BOOL)arg7 secondaryAction:(CDUnknownBlockType)arg8;
+- (void)_transitionToAlertWithTitle:(id)arg1 message:(id)arg2 primaryButtonTitle:(id)arg3 primaryButtonEnabled:(BOOL)arg4 primaryAction:(CDUnknownBlockType)arg5 secondaryButtonTitle:(id)arg6 secondaryButtonEnabled:(BOOL)arg7 secondaryAction:(CDUnknownBlockType)arg8 showCancelButton:(BOOL)arg9;
 - (void)_invokeResolutionOption:(id)arg1;
 - (void)_initialSetup;
 - (void)retryResolution;
@@ -40,7 +42,7 @@
 - (void)diagnoseIssue;
 - (void)secondaryAlertAction;
 - (void)primaryAlertAction;
-- (id)initWithCodesignResolutionError:(id)arg1 blueprint:(id)arg2 codesignInfoDelegate:(id)arg3;
+- (id)initWithCodesignResolutionError:(id)arg1 blueprint:(id)arg2 runDestination:(id)arg3 codesignInfoDelegate:(id)arg4;
 - (void)windowDidLoad;
 - (void)beginSheetModalForWindow:(id)arg1 fixIssueImmediately:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
 @property(readonly) DVTLogAspect *logAspect;

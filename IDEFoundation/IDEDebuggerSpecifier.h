@@ -10,8 +10,8 @@
 
 @interface IDEDebuggerSpecifier : NSObject
 {
-    DVTExtension *_extension;
     NSString *_correspondingLauncherIdentifier;
+    DVTExtension *_extension;
 }
 
 + (BOOL)_isDefaultNonDebuggerLauncher:(id)arg1;

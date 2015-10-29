@@ -8,12 +8,10 @@
 
 @interface SCNAnimationEvent : NSObject
 {
-    id _reserved;
     double _eventTime;
     CDUnknownBlockType _eventBlock;
 }
 
-+ (id)SCNJSExportProtocol;
 + (id)animationEventWithKeyTime:(double)arg1 block:(CDUnknownBlockType)arg2;
 - (void)setEventBlock:(CDUnknownBlockType)arg1;
 - (CDUnknownBlockType)eventBlock;

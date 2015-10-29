@@ -14,10 +14,12 @@ __attribute__((visibility("hidden")))
     unsigned int _renderEncoders;
     unsigned int _computeEncoders;
     unsigned int _blitEncoders;
+    unsigned int _commandBuffers;
     unsigned long long _loadBandwidth;
     unsigned long long _storeBandwidth;
 }
 
+@property(nonatomic) unsigned int commandBuffers; // @synthesize commandBuffers=_commandBuffers;
 @property(nonatomic) unsigned long long storeBandwidth; // @synthesize storeBandwidth=_storeBandwidth;
 @property(nonatomic) unsigned long long loadBandwidth; // @synthesize loadBandwidth=_loadBandwidth;
 @property(nonatomic) unsigned int blitEncoders; // @synthesize blitEncoders=_blitEncoders;

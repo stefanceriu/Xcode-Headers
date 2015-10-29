@@ -26,7 +26,7 @@
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (id)badgeImage;
-- (id)initWithSource:(id)arg1 andLabel:(id)arg2;
+- (id)initWithSource:(id)arg1 label:(id)arg2 destination:(id)arg3;
 
 @end
 

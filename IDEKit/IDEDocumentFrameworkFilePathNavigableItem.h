@@ -10,7 +10,6 @@
 {
 }
 
-- (BOOL)isMajorGroup;
 - (id)contentDocumentLocation;
 - (id)documentType;
 - (id)fileURL;

@@ -30,7 +30,7 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-@property(readonly, nonatomic) struct CGPath *path;
+@property(readonly, nonatomic) const struct CGPath *path;
 
 @end
 

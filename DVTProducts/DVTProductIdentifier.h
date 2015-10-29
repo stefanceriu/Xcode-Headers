@@ -9,29 +9,29 @@
 #import "DVTServicesJSONSerialization.h"
 #import "NSCopying.h"
 
-@class NSString;
+@class DVTProductCategory, NSString;
 
 @interface DVTProductIdentifier : NSObject <DVTServicesJSONSerialization, NSCopying>
 {
     NSString *_bundleIdentifier;
-    unsigned long long _productType;
+    DVTProductCategory *_productCategory;
 }
 
 + (id)objectFromJSONRepresentation:(id)arg1 error:(id *)arg2;
 + (id)productIdentifierForArchive:(id)arg1;
-+ (id)productIdentifierWithBundleIdentifier:(id)arg1 productType:(unsigned long long)arg2;
-@property(readonly) unsigned long long productType; // @synthesize productType=_productType;
++ (id)productIdentifierWithBundleIdentifier:(id)arg1 productCategory:(id)arg2;
+@property(readonly) DVTProductCategory *productCategory; // @synthesize productCategory=_productCategory;
 @property(readonly) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 - (void).cxx_destruct;
 - (id)JSONRepresentation;
 - (id)descriptionForUserDefaultsKeyWithError:(id *)arg1;
-@property(readonly) NSString *stringRepresentation;
+- (id)_stringRepresentation;
 @property(readonly, copy) NSString *description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (long long)compare:(id)arg1;
-- (id)initWithBundleIdentifier:(id)arg1 productType:(unsigned long long)arg2;
+- (id)initWithBundleIdentifier:(id)arg1 productCategory:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -8,7 +8,7 @@
 
 #import "DVTReplacementViewDelegate.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTTabChooserView, NSArray, NSButton, NSImageView, NSString, NSTextField, XCSBot, XCSCommitHistory, XCSIntegration, XCSUIIntegrationEditorHeaderView;
+@class DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTTabChooserView, NSArray, NSButton, NSImageView, NSString, NSTextField, XCSBot, XCSCommitHistory, XCSIntegration, XCSUIBotDefinitionEditorWindowController, XCSUIIntegrationEditorHeaderView;
 
 @interface XCSBotSupportingEditor : IDEEditor <DVTReplacementViewDelegate>
 {
@@ -26,25 +26,31 @@
     NSArray *_currentSelectedItems;
     DVTObservingToken *_currentSelectedDocumentLocationsUpdateToken;
     DVTObservingToken *_currentSelectedItemsUpdateToken;
+    DVTObservingToken *_expandedCoverageItemsObservationToken;
     NSTextField *_integrationLabel;
-    NSTextField *_integrationTimestamp;
+    NSButton *_integrationLabelButton;
     DVTTabChooserView *_tabChooserView;
     NSButton *_downloadsButton;
     NSButton *_settingsButton;
     XCSUIIntegrationEditorHeaderView *_headerView;
     NSImageView *_headerImageView;
+    XCSUIBotDefinitionEditorWindowController *_definitionEditorWindowController;
+    NSArray *_currentlyExpandedCoverageItemIdentifiers;
 }
 
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
 + (id)botSupportingEditorBackgroundColor;
+@property(retain, nonatomic) NSArray *currentlyExpandedCoverageItemIdentifiers; // @synthesize currentlyExpandedCoverageItemIdentifiers=_currentlyExpandedCoverageItemIdentifiers;
+@property(retain) XCSUIBotDefinitionEditorWindowController *definitionEditorWindowController; // @synthesize definitionEditorWindowController=_definitionEditorWindowController;
 @property __weak NSImageView *headerImageView; // @synthesize headerImageView=_headerImageView;
 @property __weak XCSUIIntegrationEditorHeaderView *headerView; // @synthesize headerView=_headerView;
 @property __weak NSButton *settingsButton; // @synthesize settingsButton=_settingsButton;
 @property __weak NSButton *downloadsButton; // @synthesize downloadsButton=_downloadsButton;
 @property __weak DVTTabChooserView *tabChooserView; // @synthesize tabChooserView=_tabChooserView;
-@property __weak NSTextField *integrationTimestamp; // @synthesize integrationTimestamp=_integrationTimestamp;
+@property __weak NSButton *integrationLabelButton; // @synthesize integrationLabelButton=_integrationLabelButton;
 @property __weak NSTextField *integrationLabel; // @synthesize integrationLabel=_integrationLabel;
+@property(retain) DVTObservingToken *expandedCoverageItemsObservationToken; // @synthesize expandedCoverageItemsObservationToken=_expandedCoverageItemsObservationToken;
 @property(retain) DVTObservingToken *currentSelectedItemsUpdateToken; // @synthesize currentSelectedItemsUpdateToken=_currentSelectedItemsUpdateToken;
 @property(retain) DVTObservingToken *currentSelectedDocumentLocationsUpdateToken; // @synthesize currentSelectedDocumentLocationsUpdateToken=_currentSelectedDocumentLocationsUpdateToken;
 @property(copy) NSArray *currentSelectedItems; // @synthesize currentSelectedItems=_currentSelectedItems;
@@ -58,9 +64,11 @@
 @property(readonly, nonatomic) XCSIntegration *integration; // @synthesize integration=_integration;
 - (void).cxx_destruct;
 - (void)updateIntegrationLabels:(id)arg1 currentStep:(long long)arg2;
+- (void)copyIntegrationID:(id)arg1;
+- (void)toggleIntegrationLabel:(id)arg1;
 - (void)editButton:(id)arg1;
-- (void)cleanAndIntegrateNow:(id)arg1;
-- (void)integrateNow:(id)arg1;
+- (void)cleanAndIntegrate:(id)arg1;
+- (void)integrate:(id)arg1;
 - (void)downloadsButton:(id)arg1;
 - (void)selectDocumentLocations:(id)arg1;
 - (id)botIntegration;

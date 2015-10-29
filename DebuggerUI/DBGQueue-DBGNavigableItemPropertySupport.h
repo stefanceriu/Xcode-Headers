@@ -11,8 +11,6 @@
 @class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString;
 
 @interface DBGQueue (DBGNavigableItemPropertySupport) <IDEKeyDrivenNavigableItemRepresentedObject>
-- (double)heightOfRow;
-- (BOOL)isGroupHeader:(id)arg1;
 @property(readonly) NSString *navigableItem_name;
 
 // Remaining properties

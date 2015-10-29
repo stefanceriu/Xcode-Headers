@@ -31,6 +31,7 @@
 - (id)ibWidgetType;
 - (BOOL)ibIsStaticText;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (id)ibDisplayNameForKeyPath:(id)arg1;
 - (Class)ibEditorClass;
 - (BOOL)ibWouldClipContentWithCellSize:(struct CGSize)arg1;

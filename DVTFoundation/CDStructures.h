@@ -4,8 +4,6 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class DVTWeakCallBack;
-
 #pragma mark Function Pointers and Blocks
 
 typedef void (*CDUnknownFunctionPointerType)(void); // return type and parameters are unknown
@@ -45,7 +43,9 @@ struct DVTMacroNameLookupCursor {
     id _field1;
     unsigned long long _field2;
     id _field3;
-    struct DVTMacroValueAssignment *_field4;
+    id _field4;
+    struct DVTMacroValueAssignment *_field5;
+    id _field6;
 };
 
 struct DVTMacroValueAssignment;
@@ -64,33 +64,6 @@ struct DVTNestedMacroExpansionState {
     struct DVTMacroNameLookupCursor _field3;
     id _field4;
     struct DVTNestedMacroExpansionState *_field5;
-};
-
-struct DVTSlice {
-    void **items;
-    char wantsStrong;
-    char wantsWeak;
-    char wantsARC;
-    char shouldCopyIn;
-    char usesStrong;
-    char usesWeak;
-    char usesARC;
-    char usesSentinel;
-    char pointerPersonality;
-    char integerPersonality;
-    char simpleReadClear;
-    DVTWeakCallBack *callback;
-    CDUnknownFunctionPointerType sizeFunction;
-    CDUnknownFunctionPointerType hashFunction;
-    CDUnknownFunctionPointerType isEqualFunction;
-    CDUnknownFunctionPointerType describeFunction;
-    CDUnknownFunctionPointerType acquireFunction;
-    CDUnknownFunctionPointerType relinquishFunction;
-    CDUnknownFunctionPointerType allocateFunction;
-    CDUnknownFunctionPointerType freeFunction;
-    CDUnknownFunctionPointerType readAt;
-    CDUnknownFunctionPointerType clearAt;
-    CDUnknownFunctionPointerType storeAt;
 };
 
 struct DVTStringBuilder {

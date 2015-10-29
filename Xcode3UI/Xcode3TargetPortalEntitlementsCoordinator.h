@@ -19,6 +19,7 @@
     NSMapTable *_clientCallbackToEnqueueGenerationMap;
     DVTNotificationToken *_certificateNotificationToken;
     DVTNotificationToken *_profilesToken;
+    DVTNotificationToken *_projectChangeToken;
     DVTObservingToken *_teamObserver;
     DVTObservingToken *_runDestinationObserver;
     id <IDEPortalEntitlementsCoordinatorPlatform> _coordinatorPlatform;
@@ -38,6 +39,7 @@
 - (id)capabilitiesContext;
 - (void)_readValues;
 - (id)codesignParameterSnapshot:(id *)arg1;
+- (id)platformAdjustedFeaturesForCombinedFeatures:(id)arg1 teamID:(id)arg2;
 - (void)_enqueueReplacementOfEntitlementsWithSnapshot:(id)arg1;
 - (id)combinedAppIDFeatures;
 - (id)coordinatorPlatform;

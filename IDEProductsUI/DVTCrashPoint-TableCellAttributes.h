@@ -17,5 +17,7 @@
 - (id)crashPointSubtitle;
 - (id)crashPointTitle;
 - (id)resolvedImage;
+- (id)appExtensionImage;
+- (id)productExtensionCategory;
 @end
 

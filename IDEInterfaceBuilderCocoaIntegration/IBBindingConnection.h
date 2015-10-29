@@ -70,7 +70,9 @@
 - (id)initWithNibBinder:(id)arg1;
 - (id)ibLocalAdditionalLocalizableAttributeKeyPaths;
 - (id)ibLocalLocalizableStringsAttributeKeyPaths;
-- (id)description;
+- (id)_descriptionSubstringForDestination;
+- (id)_descriptionSubstringForLabel;
+- (id)_descriptionSubstringForSource;
 - (id)attributeDescriptionForOption:(id)arg1;
 - (void)setIbShadowedMultipleValuesPlaceholder:(id)arg1;
 - (id)ibShadowedMultipleValuesPlaceholder;

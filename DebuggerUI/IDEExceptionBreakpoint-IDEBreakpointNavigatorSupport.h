@@ -11,7 +11,6 @@
 @class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString;
 
 @interface IDEExceptionBreakpoint (IDEBreakpointNavigatorSupport) <IDEKeyDrivenNavigableItemRepresentedObject>
-- (BOOL)shouldEditNewBreakpoints;
 - (id)popUpEditorDisplayName;
 @property(readonly) NSImage *navigableItem_image;
 

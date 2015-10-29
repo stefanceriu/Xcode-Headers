@@ -48,6 +48,7 @@
 - (void)endBlock:(int)arg1;
 - (void)startBlock:(int)arg1;
 - (void)processFunction:(const struct Function *)arg1 stateMirrorRetCode:(unsigned int)arg2;
+- (BOOL)shouldBeRunOnPlatform:(int)arg1;
 - (id)description;
 - (id)initWithIsPostMirrorHeuristic:(BOOL)arg1 isPreSortHeuristic:(BOOL)arg2;
 - (id)initWithIsPostMirrorHeuristic:(BOOL)arg1;

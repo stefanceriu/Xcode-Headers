@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class DVTTextDocumentLocation;
+@class DVTSourceExpression, DVTTextDocumentLocation, NSDictionary;
 
 @protocol DVTSourceLanguageServiceSymbolLookup
-- (void)findIndexSymbolAtLocation:(DVTTextDocumentLocation *)arg1 completionBlock:(void (^)(IDEIndexSymbol *))arg2;
+- (void)findIndexSymbolAtExpression:(DVTSourceExpression *)arg1 withIndexCompatibleLocation:(DVTTextDocumentLocation *)arg2 withCurrentFileContentDictionary:(NSDictionary *)arg3 completionBlock:(void (^)(IDEIndexCollection *))arg4;
 @end
 

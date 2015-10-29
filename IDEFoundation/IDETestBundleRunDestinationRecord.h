@@ -26,6 +26,7 @@
 - (id)initWithDictionary:(id)arg1;
 - (id)initWithRunDestinationRecord:(id)arg1;
 - (id)initWithTargetArchitecture:(id)arg1 targetDeviceRecord:(id)arg2 localComputerRecord:(id)arg3;
+- (id)init;
 
 @end
 

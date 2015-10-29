@@ -9,7 +9,7 @@
 #import "IDEBuilderCallbacks.h"
 #import "IDEExecutingOperationTrackable.h"
 
-@class DVTDispatchLock, DVTDynamicLogController, DVTFilePath, DVTMapTable, IDEActivityLogSection, IDEBuildOperationDescription, IDEBuildOperationQueueSet, IDEBuildOperationStatus, IDEBuildParameters, IDEBuildStatisticsSection, IDEEntityIdentifier, IDEExecutionEnvironment, IDEExecutionOperationTracker, IDEOverridingBuildProperties, IDERunDestination, IDESchemeActionResult, NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString;
+@class DVTDispatchLock, DVTDynamicLogController, DVTFilePath, IDEActivityLogSection, IDEBuildOperationDescription, IDEBuildOperationQueueSet, IDEBuildOperationStatus, IDEBuildParameters, IDEBuildStatisticsSection, IDEEntityIdentifier, IDEExecutionEnvironment, IDEExecutionOperationTracker, IDESchemeActionResult, NSArray, NSDate, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString;
 
 @interface IDEBuildOperation : DVTOperation <IDEExecutingOperationTrackable, IDEBuilderCallbacks>
 {
@@ -18,7 +18,7 @@
     int _buildCommand;
     NSArray *_buildables;
     IDEBuildParameters *_buildParameters;
-    DVTMapTable *_buildParametersForBuildable;
+    NSMapTable *_buildParametersForBuildable;
     BOOL _parallelizeBuildables;
     BOOL _buildImplicitDependencies;
     BOOL _restorePersistedBuildResults;
@@ -33,8 +33,8 @@
     DVTDispatchLock *_operationLock;
     NSOperationQueue *_builderQueue;
     IDEBuildOperationQueueSet *_buildTaskQueueSet;
-    DVTMapTable *_buildablesToBuilders;
-    DVTMapTable *_buildableOperationManagers;
+    NSMapTable *_buildablesToBuilders;
+    NSMapTable *_buildableOperationManagers;
     unsigned long long _buildersBuilt;
     id <DVTCancellationBlockCompletion> _cancellationToken;
     NSMutableSet *_generatedFileInfo;
@@ -61,7 +61,7 @@
 + (void)initialize;
 @property(retain) DVTDynamicLogController *builderTimingDataLogController; // @synthesize builderTimingDataLogController=_builderTimingDataLogController;
 @property unsigned long long buildersBuilt; // @synthesize buildersBuilt=_buildersBuilt;
-@property(readonly) DVTMapTable *buildablesToBuilders; // @synthesize buildablesToBuilders=_buildablesToBuilders;
+@property(readonly) NSMapTable *buildablesToBuilders; // @synthesize buildablesToBuilders=_buildablesToBuilders;
 @property(readonly) IDEBuildOperationQueueSet *buildTaskQueueSet; // @synthesize buildTaskQueueSet=_buildTaskQueueSet;
 @property(readonly) NSOperationQueue *builderQueue; // @synthesize builderQueue=_builderQueue;
 @property(readonly) BOOL buildImplicitDependencies; // @synthesize buildImplicitDependencies=_buildImplicitDependencies;
@@ -102,6 +102,7 @@
 - (void)addOperationsForBuildables;
 - (id)_addOperationForBuildableIfNeeded:(id)arg1;
 - (id)_addOperationForBuildableIfNeeded:(id)arg1 recursionDetectionArray:(id)arg2;
+- (id)finalBuildParametersForBuildable:(id)arg1;
 - (void)setupCallbackBlocksOnNewBuilder:(id)arg1;
 - (void)_updateBuildStatusWithStateDescription:(id)arg1 fileProgressString:(id)arg2;
 - (void)_takeMemorySnapshotsWithLog:(id)arg1;
@@ -117,10 +118,6 @@
 - (void)addGeneratedFileInfo:(id)arg1;
 @property(readonly) double duration;
 @property(retain) NSString *localizedStateDescription;
-@property(readonly, copy) NSString *activeArchitecture;
-@property(readonly) IDERunDestination *activeRunDestination;
-@property(readonly) IDEOverridingBuildProperties *overridingProperties;
-@property(readonly) NSString *configurationName;
 - (id)_buildParametersForBuildable:(id)arg1;
 - (void)setBuildParameters:(id)arg1 forBuildable:(id)arg2;
 - (id)harvestedInfoForBuildable:(id)arg1;

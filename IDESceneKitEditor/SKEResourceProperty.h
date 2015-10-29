@@ -6,17 +6,18 @@
 
 #import "IDEInspectorProperty.h"
 
-@class IDEInspectorKeyPath, NSComboBox, NSMutableDictionary, NSString;
+@class IDEInspectorKeyPath, NSComboBox, NSDictionary, NSString;
 
 @interface SKEResourceProperty : IDEInspectorProperty
 {
     NSComboBox *_comboBox;
     IDEInspectorKeyPath *_valueKeyPath;
-    NSString *_extension;
+    unsigned long long _resourceType;
     NSString *_placeholder;
-    NSMutableDictionary *_resources;
+    NSDictionary *_resources;
 }
 
++ (unsigned long long)resourceTypeFromString:(id)arg1;
 - (void).cxx_destruct;
 - (id)findIndicatorContentViewWithContext:(id)arg1;
 - (void)setupRefreshTriggersAndConfigure;

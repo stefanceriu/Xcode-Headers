@@ -13,6 +13,7 @@
 @interface IDESourceControlMultiChooserItem : NSObject <DVTInvalidation>
 {
     IDESourceControlRequest *_currentRequest;
+    id <DVTSourceControlCancellable> _currentCancellable;
     DVTOperation *_currentOperation;
     IDESourceControlOperationInfo *_info;
     int _requestType;

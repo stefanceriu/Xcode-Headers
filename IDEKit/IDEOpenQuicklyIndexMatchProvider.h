@@ -6,12 +6,12 @@
 
 #import <IDEKit/IDEOpenQuicklyMatchProvider.h>
 
-@class IDEOpenQuicklyPattern, NSArray;
+@class DVTOpenQuicklyPattern, NSArray;
 
 @interface IDEOpenQuicklyIndexMatchProvider : IDEOpenQuicklyMatchProvider
 {
-    IDEOpenQuicklyPattern *_previousPattern;
-    IDEOpenQuicklyPattern *_originalPattern;
+    DVTOpenQuicklyPattern *_previousPattern;
+    DVTOpenQuicklyPattern *_originalPattern;
     NSArray *_originalMatches;
     unsigned int _currentGeneration;
     BOOL _idle;
@@ -19,8 +19,8 @@
 
 + (id)sharedIndexQueryQueue;
 @property(getter=isIdle) BOOL idle; // @synthesize idle=_idle;
-@property(retain) IDEOpenQuicklyPattern *originalPattern; // @synthesize originalPattern=_originalPattern;
-@property(retain) IDEOpenQuicklyPattern *previousPattern; // @synthesize previousPattern=_previousPattern;
+@property(retain) DVTOpenQuicklyPattern *originalPattern; // @synthesize originalPattern=_originalPattern;
+@property(retain) DVTOpenQuicklyPattern *previousPattern; // @synthesize previousPattern=_previousPattern;
 @property(copy) NSArray *originalMatches; // @synthesize originalMatches=_originalMatches;
 - (void).cxx_destruct;
 - (void)finishCalculatingMatches;

@@ -6,14 +6,10 @@
 
 #import "IDEAbstractLiveIssueProvider.h"
 
-@class DVTNotificationToken, DVTObservingToken, IDEContainerQuery, NSMutableSet;
+@class DVTNotificationToken;
 
 @interface IDEDataModelIssueProvider : IDEAbstractLiveIssueProvider
 {
-    IDEContainerQuery *filesQuery;
-    NSMutableSet *openDocumentFilePaths;
-    DVTObservingToken *kvoDocumentsToken;
-    DVTNotificationToken *documentChangeToken;
     DVTNotificationToken *_warningsChangedToken;
 }
 
@@ -25,7 +21,7 @@
 - (id)displayNameForIssueTypeIdentifier:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithIssueManager:(id)arg1 extension:(id)arg2;
-- (id)_settingsForDocument:(id)arg1;
+- (id)_compilerFlagsForDocument:(id)arg1;
 
 @end
 

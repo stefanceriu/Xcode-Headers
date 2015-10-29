@@ -24,6 +24,8 @@
 - (id)ideInspectedMessageForChoosingRelativeLocation;
 - (BOOL)ideInspectedRelativeLocationShouldChooseDirectory;
 - (BOOL)ideInspectedRelativeLocationShouldChooseFile;
+- (id)ideInspectedAssetTagPlaceholder;
+- (id)ideInspectedPossibleAssetTags;
 - (void)setIdeInspectedAssignedDataType:(id)arg1;
 - (id)ideInspectedAssignedDataType;
 - (BOOL)ideInspectedShowsFileTypePopUp;

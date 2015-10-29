@@ -6,24 +6,23 @@
 
 #import "NSObject.h"
 
-@class DVTFileDataType, DVTLocale, Xcode3LocalizationsInspector;
+@class DVTFileDataType, DVTLocale, Xcode3VariantFileReference;
 
 @interface _Xcode3LocalizationsInspectorLocale : NSObject
 {
     BOOL _localized;
     DVTLocale *_locale;
+    Xcode3VariantFileReference *_fileReference;
     DVTFileDataType *_fileDataType;
-    Xcode3LocalizationsInspector *_locInspector;
 }
 
-+ (id)keyPathsForValuesAffectingImage;
-@property(readonly) __weak Xcode3LocalizationsInspector *locInspector; // @synthesize locInspector=_locInspector;
-@property BOOL localized; // @synthesize localized=_localized;
 @property(retain) DVTFileDataType *fileDataType; // @synthesize fileDataType=_fileDataType;
+@property BOOL localized; // @synthesize localized=_localized;
+@property(retain) Xcode3VariantFileReference *fileReference; // @synthesize fileReference=_fileReference;
 @property(readonly) DVTLocale *locale; // @synthesize locale=_locale;
 - (void).cxx_destruct;
 - (id)image;
-- (id)initWithLocale:(id)arg1 fileDataType:(id)arg2 localized:(BOOL)arg3 locInspector:(id)arg4;
+- (id)initWithLocale:(id)arg1 fileReference:(id)arg2 fileDataType:(id)arg3;
 
 @end
 

@@ -9,29 +9,27 @@
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 #import "IDETestsInTestableObserver.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTObservingToken, IDEFileReference, IDEWorkspace, NSArray, NSImage, NSMutableArray, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTObservingToken, IDEFileReference, IDETestManager, NSArray, NSImage, NSString;
 
 @interface IDETestNavigatorModel : NSObject <IDETestsInTestableObserver, IDEKeyDrivenNavigableItemRepresentedObject>
 {
+    IDETestManager *_testManager;
     CDUnknownBlockType _viewUpdater;
     DVTObservingToken *_testableOriginObservingToken;
     DVTObservingToken *_activeRunContextObservingToken;
     DVTObservingToken *_loadingCompleteObservingToken;
-    NSMutableArray *_orderedTestables;
-    BOOL _inited;
     BOOL _filteringByScheme;
     BOOL _loadingComplete;
-    IDEWorkspace *_workspace;
+    NSArray *_orderedTestables;
 }
 
 + (id)keyPathsForValuesAffectingModelItems;
-+ (void)initialize;
 @property(nonatomic) BOOL loadingComplete; // @synthesize loadingComplete=_loadingComplete;
 @property(nonatomic) BOOL filteringByScheme; // @synthesize filteringByScheme=_filteringByScheme;
-@property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
+@property(copy) NSArray *orderedTestables; // @synthesize orderedTestables=_orderedTestables;
 - (void).cxx_destruct;
 @property(readonly) NSString *navigableItem_name;
-- (void)workspaceReferencedTestablesChanged;
+- (void)allTestablesChanged;
 - (void)testablesChanged:(id)arg1;
 - (void)testsChanged:(id)arg1;
 - (void)_stopMonitoringTests;
@@ -39,15 +37,13 @@
 - (void)_updateObservedTestables;
 - (id)modelItems;
 - (id)ideModelObjectTypeIdentifier;
-- (void)_tearDownObservations;
 - (void)_setupLoadingCompleteObservation;
-- (id)initWithWorkspace:(id)arg1;
+- (id)initWithTestManager:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly, copy) NSMutableArray *mutableOrderedTestables; // @dynamic mutableOrderedTestables;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
@@ -56,7 +52,6 @@
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
 @property(readonly) NSString *navigableItem_toolTip;
-@property(copy) NSArray *orderedTestables; // @dynamic orderedTestables;
 @property(readonly) Class superclass;
 
 @end

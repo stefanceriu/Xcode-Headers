@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, DVTWeakInterposer, NSWindow;
+@class DVTWeakInterposer, NSMapTable, NSWindow;
 
 @interface DVTWindowActivationNotifier : NSObject
 {
-    DVTMapTable *_activationStateObservers;
+    NSMapTable *_activationStateObservers;
     long long _nextKey;
     DVTWeakInterposer *_window_dvtWeakInterposer;
 }

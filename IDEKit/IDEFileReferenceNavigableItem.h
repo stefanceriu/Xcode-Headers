@@ -22,6 +22,7 @@
     } _ideFileRefNavItemflags;
 }
 
++ (id)keyPathsForValuesAffectingAssociatedFileExists;
 + (id)keyPathsForValuesAffectingToolTip;
 + (id)keyPathsForValuesAffectingFileReference;
 + (id)_createExtraInfoObject;
@@ -36,10 +37,12 @@
 - (int)sourceControlServerStatusFlag;
 - (id)sourceControlLocalStatus;
 - (int)sourceControlLocalStatusFlag;
+@property(readonly) BOOL associatedFileExists;
 - (id)toolTip;
 @property(readonly) NSColor *textColor;
 - (id)newImage;
 - (id)name;
+- (BOOL)shouldNavigateToContentDocumentLocation;
 - (id)documentType;
 - (id)fileURL;
 - (id)contentDocumentLocation;

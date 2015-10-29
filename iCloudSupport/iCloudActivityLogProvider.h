@@ -6,11 +6,9 @@
 
 #import "IDELogProvider.h"
 
-#import "DVTInvalidation.h"
+@class IDELogStore, IDEWorkspace;
 
-@class DVTStackBacktrace, IDELogStore, IDEWorkspace, NSString;
-
-@interface iCloudActivityLogProvider : IDELogProvider <DVTInvalidation>
+@interface iCloudActivityLogProvider : IDELogProvider
 {
     IDEWorkspace *_workspace;
     IDELogStore *_logStore;
@@ -28,15 +26,6 @@
 - (id)ideModelObjectTypeIdentifier;
 - (id)logRecords;
 - (id)initWithDomainItem:(id)arg1;
-
-// Remaining properties
-@property(retain) DVTStackBacktrace *creationBacktrace;
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly) Class superclass;
-@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

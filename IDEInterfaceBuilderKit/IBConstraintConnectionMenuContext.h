@@ -6,36 +6,34 @@
 
 #import "NSObject.h"
 
-@class IBAutolayoutConstraintAdditionValidationState, NSArray, NSMutableArray, NSObject<IBIDEAutolayoutItem>;
+@class NSArray, NSMutableArray, NSObject<IBIDEAutolayoutItem>;
 
 @interface IBConstraintConnectionMenuContext : NSObject
 {
     NSMutableArray *_menuItems;
     unsigned long long _currentGroup;
-    BOOL _shouldShowSiblingConstraints;
+    int _connectionType;
     CDStruct_92d5623e _lineOrientation;
-    IBAutolayoutConstraintAdditionValidationState *_constraintAdditionValidationState;
     NSObject<IBIDEAutolayoutItem> *_firstItem;
     NSObject<IBIDEAutolayoutItem> *_secondItem;
     NSObject<IBIDEAutolayoutItem> *_descendant;
     NSObject<IBIDEAutolayoutItem> *_ancestor;
 }
 
-@property(readonly, nonatomic) BOOL shouldShowSiblingConstraints; // @synthesize shouldShowSiblingConstraints=_shouldShowSiblingConstraints;
+@property(readonly, nonatomic) int connectionType; // @synthesize connectionType=_connectionType;
 @property(readonly, nonatomic) NSArray *menuItems; // @synthesize menuItems=_menuItems;
 @property(readonly, nonatomic) CDStruct_92d5623e lineOrientation; // @synthesize lineOrientation=_lineOrientation;
 @property(readonly, nonatomic) NSObject<IBIDEAutolayoutItem> *ancestor; // @synthesize ancestor=_ancestor;
 @property(readonly, nonatomic) NSObject<IBIDEAutolayoutItem> *descendant; // @synthesize descendant=_descendant;
 @property(readonly, nonatomic) NSObject<IBIDEAutolayoutItem> *secondItem; // @synthesize secondItem=_secondItem;
 @property(readonly, nonatomic) NSObject<IBIDEAutolayoutItem> *firstItem; // @synthesize firstItem=_firstItem;
-@property(readonly, nonatomic) IBAutolayoutConstraintAdditionValidationState *constraintAdditionValidationState; // @synthesize constraintAdditionValidationState=_constraintAdditionValidationState;
 - (void).cxx_destruct;
-- (void)addAlternateMenuItemInGroup:(unsigned long long)arg1 withTitle:(id)arg2 type:(unsigned long long)arg3 existingMatch:(long long)arg4 shouldSwapWithPreviousMenuItem:(BOOL)arg5;
+- (void)addAlternateMenuItemInGroup:(unsigned long long)arg1 withTitle:(id)arg2 existingMatch:(long long)arg3 shouldSwapWithPreviousMenuItem:(BOOL)arg4 constraintCreationBlock:(CDUnknownBlockType)arg5;
 - (void)addAlternateMenuItem:(id)arg1 inGroup:(unsigned long long)arg2 shouldSwapWithPreviousMenuItem:(BOOL)arg3;
-- (void)addMenuItemInGroup:(unsigned long long)arg1 withTitle:(id)arg2 type:(unsigned long long)arg3 existingMatch:(long long)arg4;
+- (void)addMenuItemInGroup:(unsigned long long)arg1 withTitle:(id)arg2 existingMatch:(long long)arg3 constraintCreationBlock:(CDUnknownBlockType)arg4;
 - (void)addMenuItem:(id)arg1 inGroup:(unsigned long long)arg2;
-- (id)menuItemWithTitle:(id)arg1 type:(unsigned long long)arg2 existingMatch:(long long)arg3;
-- (id)initWithConstraintAdditionValidationState:(id)arg1 lineOrientation:(CDStruct_92d5623e)arg2;
+- (id)menuItemWithTitle:(id)arg1 existingMatch:(long long)arg2 constraintCreationBlock:(CDUnknownBlockType)arg3;
+- (id)initWithLineOrientation:(CDStruct_92d5623e)arg1 fromItem:(id)arg2 toItem:(id)arg3;
 
 @end
 

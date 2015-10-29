@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IDEDebugNavigator, IDELaunchSession, IDENavigableItem, IDEProcessActionPopUpCell, NSArray, NSCell, NSDictionary, NSMenu, NSMutableDictionary, NSString, NSView;
+@class DVTOutlineView, DVTTableCellView, DVTTableRowView, IDEDebugNavigator, IDELaunchSession, IDENavigableItem, IDEProcessActionPopUpCell, NSArray, NSDictionary, NSMenu, NSMutableDictionary, NSOutlineView, NSPopUpButton, NSString, NSTableCellView, NSView;
 
 @protocol IDEDebugNavigableContentDelegate <NSObject>
 @property(readonly) NSString *associatedProcessUUID;
@@ -18,7 +18,8 @@
 - (IDELaunchSession *)launchSessionForSelectedRepresentedObject:(id)arg1;
 - (void)openSelectedRepresentedObject:(id)arg1 withEventType:(unsigned long long)arg2;
 - (BOOL)shouldSelectItemForRepresentedObject:(id)arg1 withPrevious:(id)arg2 next:(id)arg3;
-- (NSCell *)dataCellForRepresentedObject:(id)arg1;
+- (void)registerTableCellViewsWithOutlineView:(DVTOutlineView *)arg1;
+- (NSTableCellView *)tableCellViewForRepresentedObject:(id)arg1 withOutlineView:(NSOutlineView *)arg2;
 - (void)willDisplayCell:(id)arg1 forRepresentedObject:(id)arg2 item:(id)arg3;
 - (void)updateForNewFilterString:(NSString *)arg1;
 - (NSView *)filterView;
@@ -27,6 +28,10 @@
 - (id)initWithTopNavigableModel:(id <IDEDebugTopNavigableModel>)arg1 debugNavigator:(IDEDebugNavigator *)arg2;
 
 @optional
+- (BOOL)shouldShowOutlineCellForRepresentedObject:(id)arg1;
+- (DVTTableRowView *)tableRowViewForRepresentedObject:(id)arg1 withOutlineView:(NSOutlineView *)arg2;
+- (DVTTableCellView *)tableCellViewForTopLevelItem:(id)arg1 withOutlineView:(NSOutlineView *)arg2;
+- (void)debugNavigator:(IDEDebugNavigator *)arg1 updateProcessActionPopUpButton:(NSPopUpButton *)arg2;
 - (IDENavigableItem *)outputSelectionNavItemForSelectedNavItem:(IDENavigableItem *)arg1;
 - (void)commitStateToDictionary:(NSMutableDictionary *)arg1;
 - (void)revertStateWithDictionary:(NSDictionary *)arg1;
@@ -38,11 +43,9 @@
 - (void)willExpandForItem:(id)arg1;
 - (void)handleUserDirectDeleteRepresentedObject:(id)arg1;
 - (BOOL)shouldExpandItemAsResultOfOptionClick:(id)arg1 clickedItem:(id)arg2;
-- (BOOL)isGroupHeaderForRepresentedObject:(id)arg1 item:(id)arg2;
 - (double)heightOfRowForRepresentedObject:(id)arg1;
 - (NSString *)persistentNameForRepresentedObject:(id)arg1;
 - (NSArray *)trayCellsForProcessHeader;
-- (BOOL)wantsTrayAreaForNavigationProcessHeader;
 - (void)configureMenuForProcessHeaderActionPopUpCell:(IDEProcessActionPopUpCell *)arg1;
 - (id)controllerForQueryingDescendantItem;
 @end

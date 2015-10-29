@@ -22,6 +22,7 @@
 + (void)registerConditionParameterNamed:(id)arg1 precedence:(unsigned long long)arg2 displayName:(id)arg3 displayDescription:(id)arg4;
 + (void)initialize;
 - (void).cxx_destruct;
+- (id)description;
 - (long long)compare:(id)arg1;
 @property(readonly) NSAttributedString *displayDescription;
 @property(readonly) NSString *displayName;

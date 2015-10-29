@@ -6,9 +6,11 @@
 
 #import "NSView.h"
 
-@class NSArray, NSMutableArray, XCSUIStatusBadge;
+#import "NSAccessibilityStaticText.h"
 
-@interface XCSUIStatusBadgesView : NSView
+@class NSArray, NSMutableArray, NSString, XCSUIStatusBadge;
+
+@interface XCSUIStatusBadgesView : NSView <NSAccessibilityStaticText>
 {
     NSMutableArray *_badgeViews;
     XCSUIStatusBadge *_errorsBadge;
@@ -22,11 +24,19 @@
 @property(nonatomic) BOOL insetFirstBadge; // @synthesize insetFirstBadge=_insetFirstBadge;
 @property(copy, nonatomic) NSArray *badges; // @synthesize badges=_badges;
 - (void).cxx_destruct;
+- (id)accessibilityValue;
+- (double)renderedWidth;
 - (void)refreshBadges;
 - (void)resizeSubviewsWithOldSize:(struct CGSize)arg1;
 - (void)placeBadges;
 - (void)removeBadgeSubviews;
 - (void)resetBadgeSelection:(id)arg1 ressetAll:(BOOL)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

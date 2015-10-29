@@ -143,7 +143,6 @@
 - (void)_configurationNamesChangedInProject:(id)arg1;
 - (void)dataSource:(id)arg1 outlineView:(id)arg2 sortDescriptorsDidChange:(id)arg3;
 - (void)_alertWithErrorString:(id)arg1;
-- (void)_alertWithErrorStringDidEndOrDismiss:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (id)_targetForAction:(SEL)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)Xcode3Support_unfoldAll:(id)arg1;

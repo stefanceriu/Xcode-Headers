@@ -6,14 +6,14 @@
 
 #import <IDEKit/IDEMigrationAssistantContext.h>
 
-@class DVTMapTable, NSArray, NSMutableArray;
+@class NSArray, NSMapTable, NSMutableArray;
 
 @interface IDEUnitTestsModernizationAssistantContext : IDEMigrationAssistantContext
 {
     NSMutableArray *_targets;
     NSMutableArray *_selectedTargets;
     unsigned long long _currentConversionStage;
-    DVTMapTable *_convertedFilePathForOriginalFilePathMapTable;
+    NSMapTable *_convertedFilePathForOriginalFilePathMapTable;
 }
 
 + (BOOL)allowParallelBuild;

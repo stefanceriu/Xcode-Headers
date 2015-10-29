@@ -10,6 +10,7 @@
 {
 }
 
++ (id)hash:(id)arg1 truncatedToFirstDigits:(unsigned long long)arg2;
 + (id)hash:(id)arg1 truncatedToLastDigits:(unsigned long long)arg2;
 
 @end

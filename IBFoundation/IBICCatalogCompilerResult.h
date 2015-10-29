@@ -13,7 +13,8 @@
 @interface IBICCatalogCompilerResult : NSObject <IBBinaryArchiving>
 {
     NSMutableArray *_outputFiles;
-    NSMutableArray *_errors;
+    NSMutableArray *_hardErrors;
+    NSMutableArray *_softErrors;
     NSMutableArray *_issues;
     BOOL _success;
     NSMutableDictionary *_partialInfoPlist;
@@ -22,7 +23,8 @@
 + (id)resultWithSingleError:(id)arg1;
 @property(retain) NSMutableDictionary *partialInfoPlist; // @synthesize partialInfoPlist=_partialInfoPlist;
 @property(copy, nonatomic) NSArray *issues; // @synthesize issues=_issues;
-@property(copy, nonatomic) NSArray *errors; // @synthesize errors=_errors;
+@property(copy, nonatomic) NSArray *softErrors; // @synthesize softErrors=_softErrors;
+@property(copy, nonatomic) NSArray *hardErrors; // @synthesize hardErrors=_hardErrors;
 @property(copy, nonatomic) NSArray *outputFiles; // @synthesize outputFiles=_outputFiles;
 @property BOOL success; // @synthesize success=_success;
 - (void).cxx_destruct;
@@ -32,9 +34,13 @@
 - (void)addOutputFile:(id)arg1;
 - (void)addIssues:(id)arg1;
 - (void)addIssue:(id)arg1;
-- (void)addErrors:(id)arg1;
-- (void)addError:(id)arg1 wrappedWithDescription:(id)arg2;
-- (void)addError:(id)arg1;
+- (void)addSoftErrors:(id)arg1;
+- (void)addSoftError:(id)arg1 wrappedWithDescription:(id)arg2;
+- (void)addSoftError:(id)arg1;
+- (void)addHardErrors:(id)arg1;
+- (void)addHardError:(id)arg1 wrappedWithDescription:(id)arg2;
+- (void)addHardError:(id)arg1;
+- (void)failWithHardError:(id)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)init;

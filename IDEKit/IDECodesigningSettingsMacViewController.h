@@ -15,6 +15,7 @@
 }
 
 - (void).cxx_destruct;
+- (void)updateDevelopmentTeamMenuSelection;
 - (void)primitiveInvalidate;
 - (void)setTarget:(id)arg1;
 

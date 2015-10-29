@@ -6,20 +6,29 @@
 
 #import "SCNMaterial.h"
 
-@class NSImage, NSString;
+@class NSArray;
 
 @interface SCNMaterial (SceneKit_SKEAdditions)
-+ (id)keyPathsForValuesAffectingIde_displayName;
-+ (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
++ (id)keyPathsForValuesAffectingSke_lightingModelIsAffectedByNormal;
++ (id)keyPathsForValuesAffectingSke_lightingModelIsAffectedBySpecular;
++ (id)keyPathsForValuesAffectingSke_slotContentsObservationHandle;
 + (id)ide_slotNames;
 @property double ide_fresnelExponent;
 @property BOOL ide_readsFromDepthBuffer;
 @property long long ide_lightingModel;
-@property(readonly) NSString *ide_displayName;
-@property(readonly) NSImage *ide_icon;
-- (id)ske_undoKVOKeypaths;
-- (BOOL)ide_isShininessInvolvedInLightingModel;
-- (id)ide_namesOfSlotsInvolvedInLightingModel;
-- (id)ide_slots;
+@property(readonly) BOOL ide_isShininessInvolvedInLightingModel;
+- (BOOL)ske_lightingModelIsAffectedByNormal;
+- (BOOL)ske_lightingModelIsAffectedByMultiply;
+- (BOOL)ske_lightingModelIsAffectedByReflective;
+- (BOOL)ske_lightingModelIsAffectedByTransparent;
+- (BOOL)ske_lightingModelIsAffectedByEmission;
+- (BOOL)ske_lightingModelIsAffectedBySelfIllumination;
+- (BOOL)ske_lightingModelIsAffectedByAmbientOcclusion;
+- (BOOL)ske_lightingModelIsAffectedBySpecular;
+- (BOOL)ske_lightingModelIsAffectedByAmbient;
+- (BOOL)ske_lightingModelIsAffectedByDiffuse;
+@property(readonly) NSArray *ide_namesOfSlotsInvolvedInLightingModel;
+@property(readonly) id ske_slotContentsObservationHandle;
+@property(readonly) NSArray *ide_slots;
 @end
 

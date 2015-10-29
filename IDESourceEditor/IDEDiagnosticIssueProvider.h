@@ -6,12 +6,12 @@
 
 #import "IDEIssueProvider.h"
 
-@class DVTMapTable, DVTObservingToken, NSMutableSet, NSNumber;
+@class DVTObservingToken, NSMapTable, NSMutableSet, NSNumber;
 
 @interface IDEDiagnosticIssueProvider : IDEIssueProvider
 {
     NSMutableSet *openDocumentFilePaths;
-    DVTMapTable *openDocFilePathToObserverTokensMap;
+    NSMapTable *openDocFilePathToObserverTokensMap;
     NSMutableSet *_filePathsWithIssues;
     id _blueprintsObserver;
     DVTObservingToken *kvoEditorDocumentsToken;

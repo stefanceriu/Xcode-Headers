@@ -15,10 +15,8 @@
 }
 
 + (Class)cellClass;
-@property int highlightSides;
 @property int borderSides;
 @property int gradientStyle;
-@property BOOL showsState;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

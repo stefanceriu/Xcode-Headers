@@ -15,6 +15,9 @@
 }
 
 + (void)mixInExtendClass:(Class)arg1 assertInDealloc:(BOOL)arg2;
++ (BOOL)supportsInvalidationPrevention;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 - (void)DVTInvalidationMixIn_SoftAssertDealloc;
 - (void)DVTInvalidationMixIn_dealloc;
 - (void)invalidate;

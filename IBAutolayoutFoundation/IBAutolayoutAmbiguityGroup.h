@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSSet;
+#import "IBBinaryArchiving.h"
 
-@interface IBAutolayoutAmbiguityGroup : NSObject
+@class NSDictionary, NSSet, NSString;
+
+@interface IBAutolayoutAmbiguityGroup : NSObject <IBBinaryArchiving>
 {
     NSDictionary *_ambiguousViewsToAmbiguityStatus;
     NSSet *_constraintAbstractionsAffectingLayout;
@@ -23,6 +25,7 @@
 @property(readonly, nonatomic) NSSet *constraintAbstractionsAffectingLayout; // @synthesize constraintAbstractionsAffectingLayout=_constraintAbstractionsAffectingLayout;
 @property(readonly, nonatomic) NSDictionary *ambiguousViewsToAmbiguityStatus; // @synthesize ambiguousViewsToAmbiguityStatus=_ambiguousViewsToAmbiguityStatus;
 - (void).cxx_destruct;
+- (id)ambiguityGroupByRemovingReferencesToItem:(id)arg1;
 - (id)viewsWithScrollableContentSizeAmbiguity;
 - (id)viewsCompletelyMissingConstraintsForSomeVariables;
 - (id)setsOfNonRequiredConstraintAbstractionsWithEqualPrioritiesUsingLayoutInfo:(id)arg1;
@@ -30,14 +33,18 @@
 - (void)enumerateAmbiguousViewsUsingBlock:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic, getter=isVertical) BOOL vertical;
 @property(readonly, nonatomic, getter=isHorizontal) BOOL horizontal;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (BOOL)isEqualToAmbiguityGroup:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (id)description;
-- (id)representationWithObjectRepresentationForObjectBlock:(CDUnknownBlockType)arg1;
-- (id)initWithRepresentation:(id)arg1 layoutConstraintClass:(Class)arg2 objectForObjectRepresentationBlock:(CDUnknownBlockType)arg3;
+@property(readonly, copy) NSString *description;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithAmbiguousViewsToAmbiguityStatus:(id)arg1 constraintAbstractionsAffectingLayout:(id)arg2 orientationMask:(unsigned long long)arg3;
 - (id)initWithAmbiguousViewsToAmbiguityStatus:(id)arg1 constraintAbstractionsAffectingLayout:(id)arg2 inequalityConstraintsResolvingAmbiguity:(id)arg3 contentSizePriorityChangesResolvingAmbiguity:(id)arg4 orientationMask:(unsigned long long)arg5;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

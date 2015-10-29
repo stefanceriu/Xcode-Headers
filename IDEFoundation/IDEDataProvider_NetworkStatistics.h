@@ -10,6 +10,7 @@
 
 @interface IDEDataProvider_NetworkStatistics : IDEDataProvider
 {
+    NSObject<OS_dispatch_queue> *_capture_lock;
     struct __NStatManager *_netstatManager;
     NSObject<OS_dispatch_queue> *_netstatQueue;
     struct unordered_map<int, ProcessInfo, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, ProcessInfo>>> _processInfoByPID;
@@ -23,6 +24,7 @@
 - (void)dealloc;
 - (BOOL)captureAttributes:(id)arg1 toDictionary:(id)arg2 forPID:(id)arg3;
 - (id)supportedAttributes;
+- (id)init;
 
 @end
 

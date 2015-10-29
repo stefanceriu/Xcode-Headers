@@ -9,11 +9,10 @@
 #import "SCNSceneRenderer.h"
 #import "SCNTechniqueSupport.h"
 
-@class NSColor, NSLock, NSObject<OS_dispatch_queue>, NSString, SCNNode, SCNScene, SCNTechnique, SKScene, __SKSCNRenderer;
+@class AVAudioEngine, AVAudioEnvironmentNode, NSColor, NSLock, NSObject<OS_dispatch_queue>, NSOpenGLContext, NSString, SCNNode, SCNRendererTransitionContext, SCNScene, SCNTechnique, SKScene, __SKSCNRenderer;
 
 @interface SCNRenderer : NSObject <SCNSceneRenderer, SCNTechniqueSupport>
 {
-    id _reserved;
     SCNScene *_scene;
     NSLock *_lock;
     NSObject<OS_dispatch_queue> *__renderingQueue;
@@ -23,10 +22,12 @@
         struct __C3DFramebuffer *multisamplingFrameBuffer;
         struct CGSize drawableSize;
     } _framebufferInfo;
+    id _mtlTexture;
     unsigned int _shouldDeleteFramebuffer:1;
     unsigned int _pointOfViewWasSet:1;
     unsigned int _isPrivateRenderer:1;
     unsigned int _isViewPrivateRenderer:1;
+    unsigned int _doingSnapshot:1;
     unsigned int _isLayerPrivateRenderer:1;
     unsigned int _contextIsDoubleBuffered:1;
     double _currentSceneTime;
@@ -35,18 +36,17 @@
     double _forceSystemTime;
     double _lastSystemTime;
     double __nextFrameTime;
+    SCNRendererTransitionContext *_transitionContext;
     BOOL _playing;
     BOOL _isAnimating;
     BOOL _loops;
     id _delegate;
-    struct __C3DEngineAdaptor {
-        struct __CFRuntimeBase _field1;
-        void *_field2;
-        struct __C3DEngineContext *_field3;
-        void *_field4;
-    } *_engine;
+    struct __C3DEngineContext *_engineContext;
+    unsigned long long _renderingAPI;
+    struct SCNVector4 __viewport;
     struct _CGLContextObject *_glContext;
-    struct NSOpenGLContext *__openGLContext;
+    NSOpenGLContext *__openGLContext;
+    id <SCNRenderContext> _renderContext;
     unsigned int _jitteringEnabled:1;
     unsigned int _frozen:1;
     unsigned int _delegateSupportsWillRender:1;
@@ -60,21 +60,24 @@
     SCNRenderer *_preloadRenderer;
     id <SCNSceneRenderer> _privateRendererOwner;
     SCNTechnique *_technique;
-    __SKSCNRenderer *_overlay;
+    __SKSCNRenderer *_overlayRenderer;
     id _overlayScene;
     BOOL _disableOverlays;
     BOOL _showStatistics;
     double _statisticsTimeStamp;
-    void *_offscreenReserved;
 }
 
-+ (id)SCNJSExportProtocol;
-+ (id)rendererWithContext:(void *)arg1 options:(id)arg2;
++ (id)rendererWithContext:(struct _CGLContextObject *)arg1 options:(id)arg2;
++ (id)rendererWithDevice:(id)arg1 options:(id)arg2;
+@property(retain, nonatomic) SCNNode *audioListener;
+@property(readonly, nonatomic) AVAudioEnvironmentNode *audioEnvironmentNode;
+@property(readonly, nonatomic) AVAudioEngine *audioEngine;
+- (void)set_viewport:(struct SCNVector4)arg1;
+- (struct SCNVector4)_viewport;
 - (id)_authoringEnvironment;
 - (void)set_showsAuthoringEnvironment:(BOOL)arg1;
 - (BOOL)_showsAuthoringEnvironment;
-- (unsigned long long)debugSettings;
-- (void)setDebugSettings:(unsigned long long)arg1;
+@property(nonatomic) unsigned long long debugOptions;
 - (id)initOffscreenRendererWithSize:(struct CGSize)arg1 options:(id)arg2;
 - (struct CGImage *)copySnapshotWithSize:(struct CGSize)arg1;
 - (void)_jitterAtStep:(unsigned long long)arg1 updateMainFramebuffer:(BOOL)arg2 redisplay:(BOOL)arg3 jitterer:(id)arg4;
@@ -93,19 +96,28 @@
 - (void)_stop;
 - (void)_pause;
 - (void)_play;
+- (id)nodesInsideFrustumWithPointOfView:(id)arg1;
+- (id)_nodesInsideFrustumWithPointOfView:(id)arg1 viewport:(struct CGSize)arg2;
 - (BOOL)isNodeInsideFrustum:(id)arg1 withPointOfView:(id)arg2;
 - (BOOL)_isNodeInsideFrustum:(id)arg1 withPointOfView:(id)arg2 viewport:(struct CGSize)arg3;
 - (id)_hitTest:(struct CGPoint)arg1 viewport:(struct CGSize)arg2 options:(id)arg3;
 - (id)hitTestWithSegmentFromPoint:(struct SCNVector3)arg1 toPoint:(struct SCNVector3)arg2 options:(id)arg3;
 - (id)hitTest:(struct CGPoint)arg1 options:(id)arg2;
-- (struct NSImage *)_snapshotWithImageSize:(struct CGSize)arg1 backingSize:(struct CGSize)arg2;
+- (id)_snapshotWithImageSize:(struct CGSize)arg1 backingSize:(struct CGSize)arg2;
 - (void)render;
+- (void)_render;
 - (void)_renderAtTime:(double)arg1;
+- (void)_drawOverlaySceneAtTime:(double)arg1;
 - (void)_draw;
+- (void)_drawScene:(struct __C3DScene *)arg1;
+- (BOOL)_drawSceneWithLegacyRenderer:(struct __C3DScene *)arg1;
+- (void)updateAndDrawStatisticsIfNeeded;
+- (BOOL)_drawSceneWithNewRenderer:(struct __C3DScene *)arg1;
+- (void)_renderScene:(struct __C3DEngineContext *)arg1 sceneTime:(double)arg2;
 - (void)_drawWithJitteringPresentationMode;
 - (void)_updateWithSystemTime:(double)arg1;
--     // Error parsing type: v32@0:8^{__C3DScene=}16^{__C3DRendererContext={__CFRuntimeBase=Q[4C]I}iI(C3DVector2=[2f]{?=ff}{?=ff}{?=ff})(C3DVector2=[2f]{?=ff}{?=ff}{?=ff})IIIfI[3(C3DMatrix4x4=[16f][4])]^{__C3DTexture}^{__C3DStack}^vBBBBBI^{__CFDictionary}^{__CFDictionary}{C3DColor4=(?=[4f]{?=ffff})}^vq^{__C3DFXProgramObject}{__C3DRendererContextStats=IIIIIIIIIIIIIIIIIIIIIIIIddddddddddddddIIIIIIIIIIIIIIddd[60d]Idd}{Cache=[16I]Ii^{__C3DBlendStates}^{__C3DRasterizerStates}^{__C3DMesh}^{__C3DMeshElement}IIiI^viii}{?=[5I][5i][7{?=iII}][7I]^?^?^?^?^?^?^?^?^?^?}^{__C3DArray}II^{__CFArray}^{__C3DArray}I}24, name: _update:rendererContext:
-- (void)_setOpenGLContext:(struct NSOpenGLContext *)arg1 madeWithPixelFormat:(id)arg2;
+- (void)_update:(struct __C3DScene *)arg1 rendererContext:(struct __C3DRendererContext *)arg2;
+- (void)_setOpenGLContext:(id)arg1 madeWithPixelFormat:(id)arg2;
 - (id)_openGLContext;
 @property(readonly, nonatomic) void *context;
 - (void)setContext:(struct _CGLContextObject *)arg1;
@@ -116,6 +128,9 @@
 - (void)_setSceneTime:(double)arg1;
 @property(nonatomic) double currentTime;
 - (BOOL)_needsRepetitiveRedraw;
+- (void)renderAtTime:(double)arg1 viewport:(struct CGRect)arg2 encoder:(id)arg3 passDescriptor:(id)arg4 commandQueue:(id)arg5;
+- (void)_renderAtTime:(double)arg1 viewport:(struct CGRect)arg2 encoder:(id)arg3 passDescriptor:(id)arg4 commandQueue:(id)arg5 commandBuffer:(id)arg6;
+- (void)renderAtTime:(double)arg1 viewport:(struct CGRect)arg2 commandBuffer:(id)arg3 passDescriptor:(id)arg4;
 - (void)renderAtTime:(double)arg1;
 @property(readonly, nonatomic) double nextFrameTime;
 - (double)_nextFrameTime;
@@ -129,6 +144,8 @@
 - (BOOL)_preloadResource:(id)arg1 abortHandler:(CDUnknownBlockType)arg2;
 @property(copy, nonatomic) SCNTechnique *technique;
 @property(retain, nonatomic) SKScene *overlaySKScene;
+- (id)_prepareSKRenderer;
+- (id)_setupSKRendererIfNeeded;
 - (void)setDisableOverlays:(BOOL)arg1;
 - (BOOL)disableOverlays;
 - (struct C3DColor4 *)_backgroundColorComponents;
@@ -136,6 +153,8 @@
 - (id)backgroundColor;
 @property(retain, nonatomic) SCNScene *scene;
 - (void)setScene:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)presentScene:(id)arg1 withTransition:(id)arg2 incomingPointOfView:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)_prepareForTransition:(id)arg1 outgoingScene:(id)arg2 outgoingPointOfView:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)_updatePointOfView;
 - (id)_defaultPOVForScene:(id)arg1;
 - (BOOL)autoAdjustCamera;
@@ -150,7 +169,7 @@
 @property(retain, nonatomic) SCNNode *pointOfView;
 @property(nonatomic) BOOL autoenablesDefaultLighting;
 - (void *)__CFObject;
--     // Error parsing type: ^{__C3DRendererContext={__CFRuntimeBase=Q[4C]I}iI(C3DVector2=[2f]{?=ff}{?=ff}{?=ff})(C3DVector2=[2f]{?=ff}{?=ff}{?=ff})IIIfI[3(C3DMatrix4x4=[16f][4])]^{__C3DTexture}^{__C3DStack}^vBBBBBI^{__CFDictionary}^{__CFDictionary}{C3DColor4=(?=[4f]{?=ffff})}^vq^{__C3DFXProgramObject}{__C3DRendererContextStats=IIIIIIIIIIIIIIIIIIIIIIIIddddddddddddddIIIIIIIIIIIIIIddd[60d]Idd}{Cache=[16I]Ii^{__C3DBlendStates}^{__C3DRasterizerStates}^{__C3DMesh}^{__C3DMeshElement}IIiI^viii}{?=[5I][5i][7{?=iII}][7I]^?^?^?^?^?^?^?^?^?^?}^{__C3DArray}II^{__CFArray}^{__C3DArray}I}16@0:8, name: _rendererContext
+- (struct __C3DRendererContext *)_rendererContext;
 - (struct __C3DEngineContext *)_engineContext;
 - (void)set_antialiasingMode:(unsigned long long)arg1;
 - (unsigned long long)_antialiasingMode;
@@ -158,20 +177,29 @@
 - (void)_createFramebufferIfNeeded;
 - (void)_resolveAndDiscard;
 - (void)_unbindFramebuffer;
-- (void)_bindFramebuffer;
+- (void)_bindFramebuffer:(BOOL)arg1;
 - (void)_deleteFramebuffer;
 - (void)_invalidateFramebuffer;
 - (void)_setBackingSize:(struct CGSize)arg1;
 - (double)_contentsScaleFactor;
 - (void)_clearBuffers;
+- (void)_acquireCurrentViewport;
 - (void)_installViewport;
 - (BOOL)_installContext;
 - (id)_renderingQueue;
 - (void)unlock;
 - (void)lock;
+@property(readonly, nonatomic) unsigned long long stencilPixelFormat;
+@property(readonly, nonatomic) unsigned long long depthPixelFormat;
+@property(readonly, nonatomic) unsigned long long colorPixelFormat;
+@property(readonly, nonatomic) id <MTLCommandQueue> commandQueue;
+@property(readonly, nonatomic) id <MTLDevice> device;
+@property(readonly, nonatomic) id <MTLRenderCommandEncoder> currentRenderCommandEncoder;
+- (id)currentRenderPassDescriptor;
+@property(readonly, nonatomic) unsigned long long renderingAPI;
 - (void)dealloc;
 @property(readonly, copy) NSString *description;
-- (id)_initWithOptions:(id)arg1 isPrivateRenderer:(BOOL)arg2 privateRendererOwner:(id)arg3 clearsOnDraw:(BOOL)arg4;
+- (id)_initWithOptions:(id)arg1 isPrivateRenderer:(BOOL)arg2 privateRendererOwner:(id)arg3 clearsOnDraw:(BOOL)arg4 context:(void *)arg5 renderingAPI:(unsigned long long)arg6;
 - (void)setupForDeprecatedOffscreenRenderer;
 - (id)init;
 

@@ -8,14 +8,14 @@
 
 #import "DVTAnnotationManagerDelegate.h"
 
-@class DVTMapTable, DVTMutableRangeArray, DVTObservingToken, DVTPointerArray, NSArray, NSColor, NSMutableArray, NSMutableSet, NSSet, NSString, NSTimer;
+@class DVTMutableRangeArray, DVTObservingToken, NSArray, NSColor, NSMapTable, NSMutableArray, NSMutableSet, NSPointerArray, NSSet, NSString, NSTimer;
 
 @interface DVTLayoutManager : DVTFoldingLayoutManager <DVTAnnotationManagerDelegate>
 {
     NSArray *_temporaryLinkRanges;
     NSMutableArray *_annotations;
-    DVTPointerArray *_lastDeletedAnnotations;
-    DVTMapTable *_messageBubblesForAnnotations;
+    NSPointerArray *_lastDeletedAnnotations;
+    NSMapTable *_messageBubblesForAnnotations;
     NSMutableSet *_accessoryAnnotations;
     NSArray *_sortedAccessoryAnnotations;
     NSTimer *_autoHighlightTokenTimer;
@@ -49,7 +49,7 @@
 - (struct _NSRange)rangeForCharacterRange:(struct _NSRange)arg1 withContextLines:(long long)arg2 proposedHeight:(double *)arg3 contentLines:(unsigned long long *)arg4 totalLines:(unsigned long long *)arg5;
 - (void)drawUnderlineForGlyphRange:(struct _NSRange)arg1 underlineType:(long long)arg2 baselineOffset:(double)arg3 lineFragmentRect:(struct CGRect)arg4 lineFragmentGlyphRange:(struct _NSRange)arg5 containerOrigin:(struct CGPoint)arg6;
 - (void)drawBackgroundForGlyphRange:(struct _NSRange)arg1 atPoint:(struct CGPoint)arg2;
-- (void)fillBackgroundRectArray:(struct CGRect *)arg1 count:(unsigned long long)arg2 forCharacterRange:(struct _NSRange)arg3 color:(id)arg4;
+- (void)fillBackgroundRectArray:(const struct CGRect *)arg1 count:(unsigned long long)arg2 forCharacterRange:(struct _NSRange)arg3 color:(id)arg4;
 - (void)textStorage:(id)arg1 didUpdateLineRange:(struct _NSRange)arg2 changeInLength:(long long)arg3 replacedCharacterRangeEndsOnLineTerminator:(BOOL)arg4 entireFirstLineReplaced:(BOOL)arg5;
 - (void)textStorageDidEndEditing:(id)arg1;
 - (void)textStorage:(id)arg1 didEndEditRange:(struct _NSRange)arg2 changeInLength:(long long)arg3;
@@ -93,6 +93,7 @@
 - (void)setTemporaryLinkRanges:(id)arg1 isAlternate:(BOOL)arg2;
 - (void)invalidateDisplayForCharacterRange:(struct _NSRange)arg1;
 - (void)_invalidateLayoutForMessageBubblesInCharacterRange:(struct _NSRange)arg1;
+- (struct _NSRange)characterRangeForGlyphRange:(struct _NSRange)arg1 actualGlyphRange:(struct _NSRange *)arg2;
 - (unsigned long long)layoutOptions;
 - (void)setDelegate:(id)arg1;
 - (id)initWithCoder:(id)arg1;

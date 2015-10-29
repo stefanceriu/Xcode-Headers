@@ -21,7 +21,7 @@
 
 + (void)ibPopulateAdditionalInspectors:(id)arg1 forCategory:(id)arg2;
 + (id)keyPathsForValuesAffectingIbExternalCustomClassName;
-+ (id)ibDefaultImageForInstance:(id)arg1;
++ (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 @property(copy) NSString *className; // @synthesize className=_className;
 - (void).cxx_destruct;

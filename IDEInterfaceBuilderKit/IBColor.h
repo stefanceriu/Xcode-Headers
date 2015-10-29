@@ -12,6 +12,7 @@
 
 + (id)contentSizeConstraintsColor;
 + (id)conflictingConstraintsColor;
++ (id)placeholderConstraintsColor;
 + (id)ambiguousConstraintsColor;
 + (id)misplacedConstraintsColor;
 + (id)selectableConstraintColor;
@@ -100,8 +101,12 @@
 + (id)layoutGuideLabelFillColor;
 + (id)liveLayoutGuideColor;
 + (id)measurementLineColor;
++ (id)systemGuideColor;
 + (id)userGuideColor;
 + (id)baselineColor;
++ (id)layoutSizingRectColor;
++ (id)conflictingLayoutRectColor;
++ (id)ambiguousLayoutRectColor;
 + (id)misplacedLayoutRectColor;
 + (id)layoutMarginRectColor;
 + (id)layoutRectColor;
@@ -115,6 +120,7 @@
 + (id)dragInsertionIndicatorFillColor;
 + (id)dragInsertionIndicatorColor;
 + (id)bandSelectionBorderColor;
++ (id)viewClippedAreaSelectionColor;
 + (id)viewSelectionColor;
 + (id)bandSelectionBodyColor;
 + (id)preferredColorForName:(id)arg1;

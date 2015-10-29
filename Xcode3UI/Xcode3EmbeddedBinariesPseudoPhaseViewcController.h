@@ -11,6 +11,7 @@
 }
 
 - (id)referencesToAddForContainerItems:(id)arg1;
+- (void)filePickerView:(id)arg1 outlineView:(id)arg2 willDisplayCell:(id)arg3 forTableColumn:(id)arg4 item:(id)arg5;
 - (id)rootItemsForFilePickerPanel;
 - (double)contentOriginXOffsetForCapsuleView:(id)arg1;
 - (double)capsuleView:(id)arg1 preferredContentViewWidthForCapsuleWidth:(double)arg2;

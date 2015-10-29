@@ -9,15 +9,16 @@
 #import "DVTFindBarFindable.h"
 #import "DVTReplacementViewDelegate.h"
 #import "IBDocumentArbitrationResponder.h"
+#import "IBDocumentEditorLoadingViewControllerDelegate.h"
 #import "IBStructureViewControllerDelegate.h"
 #import "IDESourceExpressionSource.h"
 #import "NSPopoverDelegate.h"
 #import "NSTextFinderClient.h"
 #import "NSUserInterfaceValidations.h"
 
-@class DVTDelayedInvocation, DVTMutableOrderedSet, DVTNotificationToken, DVTObservingToken, DVTReplacementView, DVTSDK, DVTSourceExpression, DVTSourceLanguageService, DVTSplitView, DVTStackBacktrace, IBAttributeSearchLocation, IBAutolayoutStatus, IBCancellationToken, IBCanvasView, IBCanvasViewController, IBDocument, IBMenuTargetResponderForwarder, IBMutableIdentityDictionary, IBStructureAreaDockLabelContainer, IBStructureViewController, NSArray, NSDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSOrderedSet, NSPopover, NSSegmentedControl, NSSet, NSString;
+@class DVTDelayedInvocation, DVTMutableOrderedSet, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTReplacementView, DVTSDK, DVTSourceExpression, DVTSourceLanguageService, DVTSplitView, DVTStackBacktrace, IBAttributeSearchLocation, IBAutolayoutStatus, IBCancellationToken, IBCanvasView, IBCanvasViewController, IBDocument, IBDocumentEditorLoadingViewController, IBMenuTargetResponderForwarder, IBMutableIdentityDictionary, IBStructureAreaDockLabelContainer, IBStructureViewController, NSArray, NSDictionary, NSMutableOrderedSet, NSMutableSet, NSObject<OS_dispatch_queue>, NSOrderedSet, NSPopover, NSSegmentedControl, NSSet, NSString, NSTimer;
 
-@interface IBAbstractDocumentEditor : IDEEditor <IBStructureViewControllerDelegate, NSPopoverDelegate, DVTFindBarFindable, NSTextFinderClient, DVTReplacementViewDelegate, IDESourceExpressionSource, NSUserInterfaceValidations, IBDocumentArbitrationResponder>
+@interface IBAbstractDocumentEditor : IDEEditor <IBStructureViewControllerDelegate, NSPopoverDelegate, DVTFindBarFindable, NSTextFinderClient, IBDocumentEditorLoadingViewControllerDelegate, DVTReplacementViewDelegate, IDESourceExpressionSource, NSUserInterfaceValidations, IBDocumentArbitrationResponder>
 {
     NSSegmentedControl *_toggleStructureButton;
     NSArray *_currentSelectedItemsMembers;
@@ -50,6 +51,15 @@
     NSPopover *_currentConstraintAdditionPopover;
     IBAttributeSearchLocation *_selectedAttributeSearchLocation;
     IBCancellationToken *_findIndicatorCancellationToken;
+    NSMutableOrderedSet *_activeLookObservers;
+    IBDocumentEditorLoadingViewController *_loadingOverlayViewController;
+    BOOL _isShowingLoadUI;
+    NSTimer *_loadingUIMinimumTimeTimer;
+    NSMutableSet *_loadingProgressTokenIdentifiers;
+    DVTDelayedInvocation *_fadeOutLoadingUIDelayedInvocation;
+    DVTPerformanceMetric *_loadingMetric;
+    BOOL _displayedToolFailure;
+    BOOL _turnedOnBoundsRectsForToolFailure;
     IBCanvasViewController *_canvasViewController;
     IBStructureAreaDockLabelContainer *_dockItemLabelPopUpContainer;
     DVTMutableOrderedSet *_selectedOrPreviouslySelectedMembersFromOldToFresh;
@@ -61,7 +71,6 @@
     NSArray *_currentSelectedItems;
     IBStructureViewController *_structureViewController;
     DVTSourceExpression *_selectedExpression;
-    long long _lastVersionForSuppressingAutolayoutUpgradePrompt;
     IBAutolayoutStatus *_scopedAutolayoutStatus;
     NSOrderedSet *_autolayoutStatusArbitrationUnitsScope;
 }
@@ -79,7 +88,6 @@
 + (id)defaultViewNibName;
 @property(retain, nonatomic) NSOrderedSet *autolayoutStatusArbitrationUnitsScope; // @synthesize autolayoutStatusArbitrationUnitsScope=_autolayoutStatusArbitrationUnitsScope;
 @property(retain, nonatomic) IBAutolayoutStatus *scopedAutolayoutStatus; // @synthesize scopedAutolayoutStatus=_scopedAutolayoutStatus;
-@property(nonatomic) long long lastVersionForSuppressingAutolayoutUpgradePrompt; // @synthesize lastVersionForSuppressingAutolayoutUpgradePrompt=_lastVersionForSuppressingAutolayoutUpgradePrompt;
 @property(retain, nonatomic) DVTSourceExpression *selectedExpression; // @synthesize selectedExpression=_selectedExpression;
 @property(retain, nonatomic) IBStructureViewController *structureViewController; // @synthesize structureViewController=_structureViewController;
 @property(copy, nonatomic) NSArray *currentSelectedItems; // @synthesize currentSelectedItems=_currentSelectedItems;
@@ -92,6 +100,19 @@
 @property(retain) IBStructureAreaDockLabelContainer *dockItemLabelPopUpContainer; // @synthesize dockItemLabelPopUpContainer=_dockItemLabelPopUpContainer;
 @property(retain, nonatomic) IBCanvasViewController *canvasViewController; // @synthesize canvasViewController=_canvasViewController;
 - (void).cxx_destruct;
+- (void)debugShowRemoteToolErrorBanner:(id)arg1;
+- (void)displayPlatformToolFailureWithBugReportingBlock:(CDUnknownBlockType)arg1;
+- (void)populateSceneUpdates:(id)arg1 forUpdatingSceneWithRoot:(id)arg2 sceneUpdateManager:(id)arg3;
+- (id)addLoadingProgressTokenWithNonUniqueIdentifier:(id)arg1;
+- (void)escapeHatchRequestedForLoadingViewController:(id)arg1;
+- (void)fadeOutLoadingUI;
+- (void)hideLoadingUIIfPossible;
+- (void)minimumLoadingUITimerDidFire:(id)arg1;
+- (void)teardownLoadingViewIfNeeded;
+- (void)_clearLoadingPerformanceMetric;
+- (void)setupLoadingViewIfNeeded;
+- (BOOL)isShowingLoadingUI;
+- (BOOL)shouldShowLoadingProgress;
 - (void)toggleAutomaticallyRefreshViews:(id)arg1;
 - (void)refreshLiveViews:(id)arg1;
 - (void)debugSelectedViews:(id)arg1;
@@ -146,18 +167,26 @@
 - (void)toggleShowingSelectionHighlights:(id)arg1;
 - (void)toggleShowingResizeKnobs:(id)arg1;
 - (void)toggleShowingBoundsRectangles:(id)arg1;
+- (void)toggleShowingPlaceholderBackgrounds:(id)arg1;
 - (void)toggleShowingLayoutRectangles:(id)arg1;
 @property(getter=isShowingInvolvedViewsForSelectedConstraints) BOOL showingInvolvedViewsForSelectedConstraints;
 @property(getter=isShowingIntrinsicSizeConstraints) BOOL showingIntrinsicSizeConstraints;
 @property(getter=isShowingConstraints) BOOL showingConstraints;
 @property(getter=isShowingSelectionHighlights) BOOL showingSelectionHighlights;
 @property(getter=isShowingResizeKnobs) BOOL showingResizeKnobs;
+@property(getter=isShowingPlaceholderBackgrounds) BOOL showingPlaceholderBackgrounds;
 @property(getter=isShowingBoundsRectangles) BOOL showingBoundsRectangles;
 @property(getter=isShowingLayoutRectangles) BOOL showingLayoutRectangles;
 - (void)setBoolValue:(BOOL)arg1 forDefaultsKey:(id)arg2 withNotificationName:(id)arg3 defaultValue:(BOOL)arg4;
 - (BOOL)isBoolDefaultSetForKey:(id)arg1 defaultValue:(BOOL)arg2;
-- (void)toggleAutoresizeSubviews:(id)arg1;
 - (void)toggleSnapToGuides:(id)arg1;
+- (void)embedInStackViewWithItems:(id)arg1 withStrategy:(long long)arg2;
+- (id)stackViewEmbeddingPolicy;
+- (BOOL)canEmbedInStackViewWithItems:(id)arg1 shouldRestrictedToSibilingViews:(BOOL)arg2;
+- (long long)inferStackViewLayoutDirectionForItems:(id)arg1;
+- (void)embedInStackViewWithSelected:(id)arg1;
+- (void)toggleSystemGuide:(id)arg1;
+- (id)topLevelViewFromSelection;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (id)liveViewsManager;
 - (void)unembedObjects:(id)arg1;
@@ -248,6 +277,7 @@
 - (id)showTargetIdentifierForObjects:(id)arg1 showLabels:(BOOL)arg2;
 - (void)unregisterHighlightProvider:(id)arg1;
 - (void)registerHighlightProvider:(id)arg1;
+- (id)registerActiveLookObserver:(CDUnknownBlockType)arg1;
 - (id)highlightProviders;
 - (id)mutableHighlightProviders;
 - (void)setStateToken:(id)arg1;
@@ -263,7 +293,8 @@
 - (id)beginObservingDescendantsOfObject:(id)arg1 withChangeObserver:(CDUnknownBlockType)arg2;
 - (id)reigsteredChangeObserversForDescendantsOfObject:(id)arg1;
 - (void)verificationAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
-- (void)presentVerificationWarningIfNeeded;
+- (BOOL)presentVerificationWarningIfNeeded;
+- (void)didLoadEditor;
 - (void)didSetupEditor;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;

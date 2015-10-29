@@ -52,6 +52,7 @@
 
 @property(nonatomic) unsigned int categoryBitMask;
 - (id)field;
+- (void)setPhysicsField:(id)arg1;
 
 @end
 

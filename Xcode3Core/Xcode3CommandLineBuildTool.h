@@ -8,19 +8,20 @@
 
 #import "IDEWorkspaceDelegate.h"
 
-@class DVTMacroDefinitionTable, IDEScheme, IDEWorkspace, NSArray, NSDictionary, NSFileHandle, NSMutableArray, NSMutableDictionary, NSNumber, NSOperationQueue, NSString, Xcode3Project;
+@class DVTCommandLineParser, DVTMacroDefinitionTable, IDEScheme, IDEWorkspace, NSArray, NSDictionary, NSFileHandle, NSMutableArray, NSMutableDictionary, NSNumber, NSOperationQueue, NSString, Xcode3Project;
 
 @interface Xcode3CommandLineBuildTool : NSObject <IDEWorkspaceDelegate>
 {
     id _containerDidOpenContainerNotificationObserver;
+    DVTCommandLineParser *_parser;
     BOOL _shouldExit;
     BOOL _exportWithOriginalSigningIdentity;
     BOOL _allTargets;
     BOOL _skipUnsupportedDestinations;
     BOOL _parallelizeTargets;
+    BOOL _hideShellScriptEnvironment;
     BOOL _dontActuallyRunCommands;
     BOOL _skipUnavailableActions;
-    BOOL _forceImport;
     int _toolCommand;
     NSString *_name;
     NSArray *_arguments;
@@ -39,6 +40,7 @@
     NSString *_automaticBaselineDescription;
     NSString *_nameOfFileToFind;
     NSString *_archivePath;
+    NSString *_exportOptionsPlist;
     NSString *_exportDestinationPath;
     NSString *_exportFormat;
     NSString *_exportSigningIdentity;
@@ -61,34 +63,42 @@
     NSNumber *_maxConcurrency;
     NSString *_localizationPath;
     NSArray *_exportLanguages;
+    NSString *_codeCoverageEnabled;
+    NSString *_addressSanitizerEnabled;
     DVTMacroDefinitionTable *_synthesizedMacros;
     DVTMacroDefinitionTable *_macrosFromCommandLine;
     DVTMacroDefinitionTable *_macrosFromXcconfigOption;
     DVTMacroDefinitionTable *_macrosFromXcconfigEnvVar;
     NSMutableDictionary *_userDefaults;
+    NSMutableDictionary *_environmentUserDefaults;
     NSOperationQueue *_buildToolQueue;
     NSString *_resultBundlePath;
     NSDictionary *_serverOptions;
 }
 
 + (id)sharedCommandLineBuildTool;
-+ (id)workspaceFilesInDirectory:(id)arg1;
++ (id)filesInDirectory:(id)arg1 withExtensions:(id)arg2 errorString:(id *)arg3;
 + (id)knownWorkspaceWrapperExtensions;
++ (id)xcodebuildDebugLogAspect;
 + (id)timingLogAspect;
++ (BOOL)useArchiveActionForInstall;
 @property(copy) NSDictionary *serverOptions; // @synthesize serverOptions=_serverOptions;
 @property(retain) NSString *resultBundlePath; // @synthesize resultBundlePath=_resultBundlePath;
 @property(retain) NSOperationQueue *buildToolQueue; // @synthesize buildToolQueue=_buildToolQueue;
+@property(retain) NSMutableDictionary *environmentUserDefaults; // @synthesize environmentUserDefaults=_environmentUserDefaults;
 @property(retain) NSMutableDictionary *userDefaults; // @synthesize userDefaults=_userDefaults;
 @property(retain) DVTMacroDefinitionTable *macrosFromXcconfigEnvVar; // @synthesize macrosFromXcconfigEnvVar=_macrosFromXcconfigEnvVar;
 @property(retain) DVTMacroDefinitionTable *macrosFromXcconfigOption; // @synthesize macrosFromXcconfigOption=_macrosFromXcconfigOption;
 @property(retain) DVTMacroDefinitionTable *macrosFromCommandLine; // @synthesize macrosFromCommandLine=_macrosFromCommandLine;
 @property(retain) DVTMacroDefinitionTable *synthesizedMacros; // @synthesize synthesizedMacros=_synthesizedMacros;
-@property BOOL forceImport; // @synthesize forceImport=_forceImport;
+@property(retain) NSString *addressSanitizerEnabled; // @synthesize addressSanitizerEnabled=_addressSanitizerEnabled;
+@property(retain) NSString *codeCoverageEnabled; // @synthesize codeCoverageEnabled=_codeCoverageEnabled;
 @property(retain) NSArray *exportLanguages; // @synthesize exportLanguages=_exportLanguages;
 @property(retain) NSString *localizationPath; // @synthesize localizationPath=_localizationPath;
 @property BOOL skipUnavailableActions; // @synthesize skipUnavailableActions=_skipUnavailableActions;
 @property BOOL dontActuallyRunCommands; // @synthesize dontActuallyRunCommands=_dontActuallyRunCommands;
 @property(copy) NSNumber *maxConcurrency; // @synthesize maxConcurrency=_maxConcurrency;
+@property BOOL hideShellScriptEnvironment; // @synthesize hideShellScriptEnvironment=_hideShellScriptEnvironment;
 @property BOOL parallelizeTargets; // @synthesize parallelizeTargets=_parallelizeTargets;
 @property(copy) NSNumber *destinationTimeout; // @synthesize destinationTimeout=_destinationTimeout;
 @property BOOL skipUnsupportedDestinations; // @synthesize skipUnsupportedDestinations=_skipUnsupportedDestinations;
@@ -112,6 +122,7 @@
 @property(copy) NSString *exportSigningIdentity; // @synthesize exportSigningIdentity=_exportSigningIdentity;
 @property(copy) NSString *exportFormat; // @synthesize exportFormat=_exportFormat;
 @property(copy) NSString *exportDestinationPath; // @synthesize exportDestinationPath=_exportDestinationPath;
+@property(copy) NSString *exportOptionsPlist; // @synthesize exportOptionsPlist=_exportOptionsPlist;
 @property(copy) NSString *archivePath; // @synthesize archivePath=_archivePath;
 @property(copy) NSString *nameOfFileToFind; // @synthesize nameOfFileToFind=_nameOfFileToFind;
 @property(copy) NSString *automaticBaselineDescription; // @synthesize automaticBaselineDescription=_automaticBaselineDescription;
@@ -136,6 +147,8 @@
 - (void)_importLocalizationsAndExit;
 - (void)_exportLocalizationsAndExit;
 - (void)_exportArchiveAndExit;
+- (void)_distributeArchiveAndExit;
+- (id)_availableExportArchiveOptionsSection;
 - (void)_printVerboseSDKListAndExit;
 - (void)_printVerboseInfoForSDK:(id)arg1 keysToEmit:(id)arg2;
 - (void)_printShortSDKListAndExit;

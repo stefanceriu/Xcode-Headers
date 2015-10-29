@@ -6,14 +6,18 @@
 
 #import <DebuggerFoundation/DBGViewSurface.h>
 
-@class CALayer;
+@class CALayer, NSDictionary, NSString;
 
 @interface DBGViewLayer : DBGViewSurface
 {
     CALayer *_representedLayer;
+    NSString *_viewIdentifier;
+    NSDictionary *_layerInfo;
 }
 
-@property(retain) CALayer *representedLayer; // @synthesize representedLayer=_representedLayer;
+@property(retain) NSDictionary *layerInfo; // @synthesize layerInfo=_layerInfo;
+@property(retain) NSString *viewIdentifier; // @synthesize viewIdentifier=_viewIdentifier;
+@property(retain, nonatomic) CALayer *representedLayer; // @synthesize representedLayer=_representedLayer;
 - (void).cxx_destruct;
 - (id)representedObjectClassName;
 - (id)identifier;
@@ -21,8 +25,8 @@
 - (struct CGRect)bounds;
 - (struct CGRect)frame;
 - (id)_addPropertiesFromLayer:(id)arg1 toDictionary:(id)arg2;
-- (id)_initWithViewDescriber:(id)arg1 layer:(id)arg2 dictionary:(id)arg3;
-- (id)initWithViewDescriber:(id)arg1 dictionary:(id)arg2;
+- (id)_initWithViewDescriber:(id)arg1 parent:(id)arg2 layer:(id)arg3 dictionary:(id)arg4;
+- (id)initWithViewDescriber:(id)arg1 parent:(id)arg2 dictionary:(id)arg3;
 
 @end
 

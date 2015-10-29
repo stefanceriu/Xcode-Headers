@@ -6,7 +6,7 @@
 
 #import "DVTViewController.h"
 
-@class DVTBorderedView, IDESourceControlFilePickerWindowController, IDESourceControlWorkingCopyConfiguration, IDESourceControlWorkingTree, NSTextField;
+@class DVTBorderedView, DVTSourceControlBranchAndTagLocations, DVTSourceControlRepository, DVTSourceControlWorkingCopy, IDESourceControlFilePickerWindowController, NSTextField;
 
 @interface IDESourceControlSVNConfigViewController : DVTViewController
 {
@@ -14,8 +14,9 @@
     NSTextField *_tagsField;
     NSTextField *_branchesField;
     DVTBorderedView *_containerBorderedView;
-    IDESourceControlWorkingTree *_workingTree;
-    IDESourceControlWorkingCopyConfiguration *_workingCopyConfiguration;
+    DVTSourceControlWorkingCopy *_workingCopy;
+    DVTSourceControlRepository *_repository;
+    DVTSourceControlBranchAndTagLocations *_branchAndTagLocations;
     IDESourceControlFilePickerWindowController *_filePickerWindowController;
 }
 
@@ -26,17 +27,16 @@
 - (void)selectBranches:(id)arg1;
 - (void)selectTags:(id)arg1;
 - (void)selectTrunk:(id)arg1;
-- (void)_setupViewsWithWorkingTrees;
+- (void)_setupView;
 - (void)setBranches:(id)arg1;
 - (void)setTags:(id)arg1;
 - (void)setTrunk:(id)arg1;
 - (void)_updateBranchingSupport;
-- (id)currentWCC;
-- (void)updateBoundWorkingCopyConfiguration;
-- (void)updateBoundWorkingTree;
+- (id)currentBranchAndTagLocations;
 - (void)awakeFromNib;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (id)dvtExtraBindings;
+- (void)showBranchAndTagLocationsForRepository:(id)arg1 branchAndTagLocations:(id)arg2;
+- (void)showBranchAndTagLocationsForWorkingCopy:(id)arg1;
 - (void)loadView;
 
 @end

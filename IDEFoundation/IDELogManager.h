@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTMapTable, DVTStackBacktrace, NSArray, NSMutableArray, NSMutableDictionary, NSSet, NSString;
+@class DVTStackBacktrace, NSArray, NSMapTable, NSMutableArray, NSMutableDictionary, NSSet, NSString;
 
 @interface IDELogManager : NSObject <DVTInvalidation>
 {
@@ -16,7 +16,7 @@
     NSString *_domainName;
     NSArray *_logProviders;
     NSMutableArray *_logRecords;
-    DVTMapTable *_logProviderToRecordsIndex;
+    NSMapTable *_logProviderToRecordsIndex;
     NSSet *_cachedRecentLogRecords;
     NSMutableDictionary *_navigatorRootItems;
 }
@@ -27,6 +27,7 @@
 @property(retain) id domainItem; // @synthesize domainItem=_domainItem;
 @property(readonly) NSArray *logProviders; // @synthesize logProviders=_logProviders;
 - (void).cxx_destruct;
+- (id)mostRecentLogRecordForType:(id)arg1;
 @property(readonly) NSSet *mostRecentLogRecordForEachType;
 - (void)_handleLogRecordChangesForProvider:(id)arg1;
 - (id)_findLogProviders;

@@ -32,6 +32,7 @@
 - (id)_applicationsInWorkspaceThatDependOnBuildable:(id)arg1;
 - (id)_applicationBuildablesInWorkspace:(id)arg1;
 - (BOOL)_shouldAutocreateSchemesForBuildableProduct:(id)arg1;
+- (BOOL)_hasComplication:(id)arg1;
 - (BOOL)_isWatchAppExtension:(id)arg1;
 - (BOOL)_isWatchApp:(id)arg1;
 - (BOOL)_isAppExtension:(id)arg1;

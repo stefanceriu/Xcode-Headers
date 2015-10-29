@@ -24,6 +24,7 @@
 - (void)addEntry:(id)arg1;
 @property(nonatomic) unsigned long long maximumRecentCount;
 - (id)initWithMaximumRecentCount:(unsigned long long)arg1;
+- (id)init;
 
 @end
 

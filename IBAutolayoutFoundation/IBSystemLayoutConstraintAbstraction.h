@@ -20,9 +20,9 @@
 - (id)constraintInDocument;
 - (unsigned long long)hash;
 - (BOOL)isEqualToAbstraction:(id)arg1;
-- (Class)representationClass;
-- (id)representationWithObjectRepresentationForObjectBlock:(CDUnknownBlockType)arg1;
 - (id)description;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithLayoutConstraintBetweenViewsInDocument:(id)arg1;
 
 @end

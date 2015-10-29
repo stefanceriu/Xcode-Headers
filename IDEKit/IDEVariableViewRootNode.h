@@ -10,14 +10,12 @@
 {
 }
 
-- (long long)numberOfChildren;
 - (BOOL)childValuesCountValid;
 - (BOOL)hasChildren;
 - (id)name;
 - (void)removeChildnode:(id)arg1;
 - (void)addChildNode:(id)arg1;
 - (id)initWithChildren:(id)arg1;
-- (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end
 

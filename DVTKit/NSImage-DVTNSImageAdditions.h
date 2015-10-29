@@ -7,12 +7,14 @@
 #import "NSImage.h"
 
 @interface NSImage (DVTNSImageAdditions)
++ (id)dvt_sortedImagesForImagePaths:(id)arg1;
 + (id)dvt_imageWithSize:(struct CGSize)arg1 scaleFactors:(id)arg2 flipped:(BOOL)arg3 fromCommands:(CDUnknownBlockType)arg4;
 + (id)dvt_imageWithSize:(struct CGSize)arg1 flipped:(BOOL)arg2 forRenderingIntoContext:(id)arg3 fromCommands:(CDUnknownBlockType)arg4;
 + (id)dvt_imageWithSize:(struct CGSize)arg1 scaleFactors:(id)arg2 flipped:(BOOL)arg3 forRenderingIntoContext:(id)arg4 fromCommands:(CDUnknownBlockType)arg5;
 + (id)dvt_imageWithSize:(struct CGSize)arg1 fromCommands:(CDUnknownBlockType)arg2;
 + (id)dvt_imageWithSize:(struct CGSize)arg1 flipped:(BOOL)arg2 fromCommands:(CDUnknownBlockType)arg3;
 + (id)dvt_imageWithPDFDrawingWithSize:(struct CGSize)arg1 andCommands:(CDUnknownBlockType)arg2;
++ (id)dvt_PDFDataWithSize:(struct CGSize)arg1 fromCommands:(CDUnknownBlockType)arg2;
 + (id)dvt_cachedImageForApplicationBundleIdentifier:(id)arg1;
 + (BOOL)dvt_isTemplateName:(id)arg1;
 + (id)dvt_cachedImageByReferencingFilePath:(id)arg1;
@@ -28,6 +30,7 @@
 + (id)_dvt_cachedImageNamed:(id)arg1 ofSize:(struct CGSize)arg2 isTemplate:(BOOL)arg3 fromBundle:(id)arg4;
 + (id)_dvt_cachedImageNamed:(id)arg1 isTemplate:(BOOL)arg2 withFallback:(id)arg3 checkingNamedNSImages:(BOOL)arg4 fromBundle:(id)arg5;
 + (id)dvt_cachedImageWithKey:(id)arg1 creationBlock:(CDUnknownBlockType)arg2;
+- (id)dvt_tintedImageWithColor:(id)arg1;
 - (void)dvt_associateCopiedAlternateImageWithOriginal:(id)arg1;
 - (id)dvt_nonPDFImage_workaroundForProblem14522929;
 - (id)dvt_cachedVariantForKey:(id)arg1 variantImageGenerator:(CDUnknownBlockType)arg2;

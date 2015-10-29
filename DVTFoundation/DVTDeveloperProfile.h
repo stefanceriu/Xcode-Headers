@@ -11,7 +11,6 @@
 }
 
 + (id)currentProfile;
-- (void)syncCertificatesForAccount:(id)arg1 statusHandler:(CDUnknownBlockType)arg2;
 
 @end
 

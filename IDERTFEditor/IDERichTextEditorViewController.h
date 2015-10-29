@@ -31,7 +31,6 @@
 - (void)revertStateWithDictionary:(id)arg1;
 - (void)selectDocumentLocations:(id)arg1;
 - (id)currentSelectedDocumentLocations;
-- (void)didEndToggleRichSheet:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)toggleRich:(id)arg1;
 - (void)doToggleRichWithNewURL:(id)arg1;
 - (void)doForegroundLayoutToCharacterIndex:(unsigned long long)arg1;

@@ -39,15 +39,13 @@
 - (void)_displayError:(id)arg1 waitUntilDate:(id)arg2;
 - (void)_locateSigningAssetsAsync;
 - (void)_refreshDevicesFromPortal;
-- (BOOL)_populateTopLevelDistributionItemsIfNecessaryWithError:(id *)arg1;
+- (id)_portalDeviceClass;
 - (id)_portalPlatformIdentifier;
 - (id)_platformForArchive;
 - (void)_promptForTeamIfNecessaryAndLocateSigningAssets;
 - (id)_installAndReturnProgressView;
 - (BOOL)_shouldRetryGeneratingAssets;
 - (void)viewDidInstall;
-- (id)providedOutputContextPropertyNames;
-- (id)requiredInputContextPropertyNames;
 - (id)title;
 - (id)nibName;
 - (void)primitiveInvalidate;

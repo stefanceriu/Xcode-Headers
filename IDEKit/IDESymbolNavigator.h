@@ -4,31 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEKit/IDENavigator.h>
+#import <IDEKit/IDEOutlineBasedNavigator.h>
 
 #import "IDEIndexSymbolSelectionSource.h"
 #import "IDERefactoringExpressionSource.h"
 #import "IDESourceExpressionSource.h"
 
-@class DVTDispatchLock, DVTObservingToken, DVTPerformanceMetric, DVTSDK, DVTScopeBarView, DVTScrollView, DVTSourceExpression, DVTSourceLanguageService, DVTStackBacktrace, IDENavigatorOutlineView, NSArray, NSCell, NSDictionary, NSMutableSet, NSSet, NSString, NSTableColumn;
+@class DVTDispatchLock, DVTObservingToken, DVTPerformanceMetric, DVTSDK, DVTScopeBarView, DVTScrollView, DVTSourceExpression, DVTSourceLanguageService, DVTStackBacktrace, NSArray, NSDictionary, NSMutableSet, NSSet, NSString;
 
-@interface IDESymbolNavigator : IDENavigator <IDEIndexSymbolSelectionSource, IDESourceExpressionSource, IDERefactoringExpressionSource>
+@interface IDESymbolNavigator : IDEOutlineBasedNavigator <IDEIndexSymbolSelectionSource, IDESourceExpressionSource, IDERefactoringExpressionSource>
 {
-    NSTableColumn *mainTableColumn;
-    IDENavigatorOutlineView *outlineView;
     id _indexingFinishedObserver;
     DVTObservingToken *_outlineViewSelectedObjectsObserver;
-    id <IDEOpenRequest> _lastOpenRequest;
+    DVTObservingToken *_outlineViewRootObjectsChangedObserver;
     DVTSourceExpression *_selectedExpression;
-    DVTSourceExpression *_mouseOverExpression;
-    struct CGRect _currentSelectionFrame;
-    NSCell *_symbolCell;
-    NSCell *_lozengeCell;
-    NSArray *_objects;
     NSSet *_expandedItems;
-    NSArray *_selectedObjects;
-    NSString *_symbolNamePatternString;
-    NSSet *_parentsForFiltering;
     NSArray *_expandedIdentifiersBeforeFiltering;
     NSDictionary *_previouslyRestoredStateDictionary;
     NSArray *_savedItemsToSelect;
@@ -37,33 +27,36 @@
     unsigned long long _currentGeneration;
     long long _savedClickedRowIndex;
     DVTPerformanceMetric *_loadingMetric;
-    long long _loadingProgress;
     BOOL _restoringState;
     BOOL _showWorkspaceOnly;
     BOOL _showContainersOnly;
     BOOL _showHierarchy;
     BOOL _showClassesOnly;
+    DVTSourceExpression *_mouseOverExpression;
+    NSSet *_parentsForFiltering;
+    long long _loadingProgress;
+    NSString *_symbolNamePatternString;
     DVTScrollView *_symbolNavigatorScrollView;
     DVTScopeBarView *_scopeBarView;
+    struct CGRect _currentSelectionFrame;
 }
 
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 @property __weak DVTScopeBarView *scopeBarView; // @synthesize scopeBarView=_scopeBarView;
 @property __weak DVTScrollView *symbolNavigatorScrollView; // @synthesize symbolNavigatorScrollView=_symbolNavigatorScrollView;
-@property(retain, nonatomic) DVTSourceExpression *selectedExpression; // @synthesize selectedExpression=_selectedExpression;
-@property(readonly) long long loadingProgress; // @synthesize loadingProgress=_loadingProgress;
-@property(copy) NSSet *parentsForFiltering; // @synthesize parentsForFiltering=_parentsForFiltering;
-@property(retain) id <IDEOpenRequest> lastOpenRequest; // @synthesize lastOpenRequest=_lastOpenRequest;
 @property(nonatomic) BOOL showClassesOnly; // @synthesize showClassesOnly=_showClassesOnly;
 @property(nonatomic) BOOL showHierarchy; // @synthesize showHierarchy=_showHierarchy;
 @property(nonatomic) BOOL showContainersOnly; // @synthesize showContainersOnly=_showContainersOnly;
 @property(nonatomic) BOOL showWorkspaceOnly; // @synthesize showWorkspaceOnly=_showWorkspaceOnly;
 @property(retain, nonatomic) NSString *symbolNamePatternString; // @synthesize symbolNamePatternString=_symbolNamePatternString;
-@property(retain) NSArray *selectedObjects; // @synthesize selectedObjects=_selectedObjects;
+@property(readonly) long long loadingProgress; // @synthesize loadingProgress=_loadingProgress;
+@property(copy) NSSet *parentsForFiltering; // @synthesize parentsForFiltering=_parentsForFiltering;
 @property(retain, nonatomic) DVTSourceExpression *mouseOverExpression; // @synthesize mouseOverExpression=_mouseOverExpression;
 @property(nonatomic) struct CGRect currentSelectionFrame; // @synthesize currentSelectionFrame=_currentSelectionFrame;
-@property(retain, nonatomic) NSArray *objects; // @synthesize objects=_objects;
+@property(retain, nonatomic) DVTSourceExpression *selectedExpression; // @synthesize selectedExpression=_selectedExpression;
 - (void).cxx_destruct;
 - (void)_revealNavigableItems:(id)arg1;
 - (void)revealSymbols:(id)arg1;
@@ -72,12 +65,9 @@
 - (id)filterDefinitionIdentifier;
 - (void)updateFilterPredicate;
 - (void)revertState;
-- (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
-- (id)lozengeCell;
-- (id)symbolCell;
+- (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
 - (void)outlineViewItemDidCollapse:(id)arg1;
 - (void)outlineViewItemDidExpand:(id)arg1;
-- (BOOL)outlineView:(id)arg1 shouldEditTableColumn:(id)arg2 item:(id)arg3;
 - (id)outlineView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
 - (BOOL)outlineView:(id)arg1 isGroupHeaderItem:(id)arg2;
 - (void)openDoubleClickedNavigableItemsAction:(id)arg1;
@@ -114,13 +104,12 @@
 - (id)dvtExtraBindings;
 - (BOOL)isCurrentGeneration:(unsigned long long)arg1;
 @property(readonly) unsigned long long currentGeneration; // @dynamic currentGeneration;
-- (BOOL)delegateFirstResponder;
 - (void)primitiveInvalidate;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)loadView;
-- (void)_outlineViewSelectionChangedWithDictionary:(id)arg1;
+- (void)_outlineViewSelectionChanged;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
@@ -130,6 +119,7 @@
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly, nonatomic) DVTSourceLanguageService *languageService;
+@property(retain) id <IDEOpenRequest> lastOpenRequest; // @dynamic lastOpenRequest;
 @property(readonly, copy) NSMutableSet *mutableExpandedItems; // @dynamic mutableExpandedItems;
 @property(readonly) DVTSourceExpression *quickHelpExpression;
 @property(readonly) DVTSDK *sdk;

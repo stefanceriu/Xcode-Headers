@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTExtension, DVTHashTable, DVTLibrary, NSArray, NSAttributedString, NSDate, NSImage, NSSet, NSString;
+@class DVTExtension, DVTLibrary, NSArray, NSAttributedString, NSDate, NSHashTable, NSImage, NSSet, NSString;
 
 @interface DVTLibraryAsset : NSObject
 {
-    DVTHashTable *_knownGroups;
+    NSHashTable *_knownGroups;
     DVTExtension *_extension;
     BOOL _selected;
     id _representedObject;

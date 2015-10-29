@@ -53,8 +53,6 @@
 - (void)canvasFrameResizingTest:(id)arg1;
 - (void)canvasScrollTest:(id)arg1;
 - (void)canvasZoomTest:(id)arg1;
-- (void)endGestureWithEvent:(id)arg1;
-- (void)beginGestureWithEvent:(id)arg1;
 - (void)magnifyWithEvent:(id)arg1;
 - (void)keyDown:(id)arg1;
 - (void)mouseDown:(id)arg1;
@@ -94,7 +92,7 @@
 - (void)suppressTrackingAreaUpdates;
 - (void)resetCursorRects;
 - (id)hitTest:(struct CGPoint)arg1;
-- (void)scrollCanvasFrameToVisible:(id)arg1 keepingRectVisible:(struct CGRect)arg2 zoomingToFactor:(double)arg3 animateSynchronously:(BOOL)arg4;
+- (void)scrollCanvasFrameToVisible:(id)arg1 keepingRectVisible:(struct CGRect)arg2 zoomingToFactor:(double)arg3 shouldCenter:(BOOL)arg4 animateSynchronously:(BOOL)arg5;
 - (struct CGRect)rectToScrollCanvasFrameToVisible:(id)arg1 keepingRectVisible:(struct CGRect)arg2;
 - (void)canvasFrame:(id)arg1 didChangeFrame:(struct CGRect)arg2;
 - (void)canvasFrame:(id)arg1 anchorDidChange:(struct CGPoint)arg2;

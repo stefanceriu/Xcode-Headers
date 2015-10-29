@@ -14,7 +14,6 @@
     DVTObservingToken *_currentStackFrameToken;
     DVTObservingToken *_currentStackFrameDisassemblyObservingToken;
     DVTObservingToken *_debugSessionCoalescedStateToken;
-    DVTObservingToken *_launchSessionStateToken;
     DVTObservingToken *_settingPCDisassemblyObservingToken;
     NSString *_displayName;
     NSURL *_temporaryFileURL;
@@ -23,13 +22,12 @@
 @property(retain, nonatomic) NSURL *temporaryFileURL; // @synthesize temporaryFileURL=_temporaryFileURL;
 @property(copy) NSString *displayName; // @synthesize displayName=_displayName;
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
 - (void)_closeDocument;
 - (void)_getDisassemblyForSettingPC:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (void)_createLaunchSessionStateObserver:(id)arg1;
 - (void)_createDebugSessionStateObserver:(id)arg1;
 - (void)_createCurrentStackFrameObserver:(id)arg1;
 - (void)generateContentForURL:(id)arg1 waitingBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (void)primitiveInvalidate;
 
 @end
 

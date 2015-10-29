@@ -13,6 +13,7 @@
     NSMutableArray *_cancellationTokens;
     NSImage *_wifiImage;
     NSImage *_highlightedWifiImage;
+    BOOL _isWatchDestination;
     IDERunDestination *_runDestination;
     NSMenuItem *_menuItem;
     NSView *_indentView;
@@ -36,6 +37,7 @@
 @property(retain, nonatomic) NSLayoutConstraint *indentConstraint; // @synthesize indentConstraint=_indentConstraint;
 @property(retain, nonatomic) NSView *indentView; // @synthesize indentView=_indentView;
 @property(retain, nonatomic) NSMenuItem *menuItem; // @synthesize menuItem=_menuItem;
+@property(nonatomic) BOOL isWatchDestination; // @synthesize isWatchDestination=_isWatchDestination;
 @property(retain, nonatomic) IDERunDestination *runDestination; // @synthesize runDestination=_runDestination;
 - (void).cxx_destruct;
 - (void)accessibilityPerformAction:(id)arg1;

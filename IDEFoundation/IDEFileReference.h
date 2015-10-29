@@ -48,6 +48,8 @@
 + (id)fileReferenceAssociatesForPath:(id)arg1 forAllPathsToSameFile:(BOOL)arg2;
 + (id)fileReferenceAssociatesForPath:(id)arg1 forAllPathsToSameFile:(BOOL)arg2 workspace:(id)arg3;
 + (id)_fileReferenceAssociatesForPath:(id)arg1 forAllPathsToSameFile:(BOOL)arg2 workspace:(id)arg3;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (void)initialize;
 + (id)keyPathsForValuesAffectingIdeModelObjectTypeIdentifier;
 @property(copy, nonatomic) DVTFileDataType *assignedFileDataType; // @synthesize assignedFileDataType=_assignedFileDataType;
@@ -82,6 +84,7 @@
 @property int sourceControlServerStatus;
 - (void)_updateSourceControlLocalStatus;
 - (void)_updateSourceControlStatus;
+- (void)_enqueueScmStatusUpdate;
 @property int sourceControlLocalStatus;
 - (unsigned long long)aggregateSourceControlConflictStatus;
 - (int)aggregateSourceControlServerStatus;
@@ -90,10 +93,12 @@
 - (void)_invalidateReferencedContainer;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (id)_referencedContainer;
+- (void)_referencedContainerWasRecalculated;
 @property(readonly) IDEContainer *referencedContainer;
 - (void)_recalculateReferencedContainer;
 - (BOOL)_workaroundForProblem8727051;
 @property(readonly) DVTExtension *referencedContainerExtension;
+- (id)_resolveReferencedContainerExtension;
 - (BOOL)_isBuildProductReference;
 - (void)_invalidateFileDataType;
 @property(readonly) DVTFileDataType *discoveredFileDataType;
@@ -107,6 +112,7 @@
 - (void)_invalidateResolvedFilePathUsingPath:(id)arg1 resolutionStrategies:(id)arg2;
 - (void)_invalidateResolvedFilePath;
 - (void)_resolvedFilePathWasInvalidated;
+- (id)_absolutePath;
 - (id)_resolvedFilePathIfAvailable;
 @property(readonly) DVTFilePath *resolvedFilePath;
 @property(readonly) NSString *name;

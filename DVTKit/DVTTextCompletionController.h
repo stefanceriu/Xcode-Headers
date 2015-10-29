@@ -40,6 +40,7 @@
 - (BOOL)textViewShouldSetMarkedText:(id)arg1 selectedRange:(struct _NSRange)arg2;
 - (BOOL)textViewShouldChangeTextInRange:(struct _NSRange)arg1 replacementString:(id)arg2;
 - (BOOL)textViewShouldPerformAction:(SEL)arg1;
+- (BOOL)_dvtTextCompletionDebugContinueAfterLosingFocus;
 - (void)_textViewDidScroll:(id)arg1;
 - (void)_textViewWillUndoRedo:(id)arg1;
 - (void)textViewDidInsertText;

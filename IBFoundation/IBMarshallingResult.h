@@ -25,7 +25,6 @@
 @property(readonly, nonatomic) id value; // @synthesize value=_value;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
-- (id)resultBySettingValue:(id)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)initWithValue:(id)arg1 orError:(id)arg2 warningMessages:(id)arg3;

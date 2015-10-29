@@ -6,15 +6,16 @@
 
 #import <Xcode3UI/Xcode3BuildFileGroup.h>
 
-@class DVTMapTable, NSString;
+@class NSMapTable, NSString;
 
 @interface Xcode3BuildFileRoleGroup : Xcode3BuildFileGroup
 {
     NSString *_role;
-    DVTMapTable *_primaryAttributeObservers;
+    NSMapTable *_primaryAttributeObservers;
     BOOL _hasRole;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 @property(copy, nonatomic) NSString *role; // @synthesize role=_role;
 - (void).cxx_destruct;

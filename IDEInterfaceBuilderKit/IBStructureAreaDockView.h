@@ -103,6 +103,7 @@
 - (id)representedObjectAndGroupAtPoint:(struct CGPoint)arg1;
 - (id)unvalidatedDockItemViewAtPoint:(struct CGPoint)arg1 includeOverflowItem:(BOOL)arg2;
 - (id)insertionIndicatorPathForIndicatorPair:(id)arg1;
+- (BOOL)isFlipped;
 - (BOOL)shouldShowLabelPopUpForObject:(id)arg1 inGroup:(id)arg2;
 - (id)representedObjectsForGroup:(id)arg1 inRange:(struct _NSRange)arg2;
 - (void)invalidateData;

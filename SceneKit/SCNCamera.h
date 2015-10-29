@@ -11,12 +11,11 @@
 #import "SCNAnimatable.h"
 #import "SCNTechniqueSupport.h"
 
-@class NSString, SCNOrderedDictionary, SCNTechnique;
+@class NSArray, NSString, SCNOrderedDictionary, SCNTechnique;
 
 @interface SCNCamera : NSObject <SCNAnimatable, SCNTechniqueSupport, NSCopying, NSSecureCoding>
 {
-    id _reserved;
-    // Error parsing type: ^{__C3DCamera={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}{__C3DProjectionInfos=b1b1b1dddddd(C3DMatrix4x4=[16f][4])}ffffQ^{__C3DFXTechnique}}, name: _camera
+    // Error parsing type: ^{__C3DCamera={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}{__C3DProjectionInfos=b1b1b1b1dddddd(C3DMatrix4x4=[16f][4])}ffffQ^{__C3DFXTechnique}}, name: _camera
     unsigned int _isPresentationInstance:1;
     unsigned int _custom:1;
     unsigned int _usesOrthographicProjection:1;
@@ -38,18 +37,19 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)camera;
-+     // Error parsing type: @24@0:8^{__C3DCamera={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}{__C3DProjectionInfos=b1b1b1dddddd(C3DMatrix4x4=[16f][4])}ffffQ^{__C3DFXTechnique}}16, name: cameraWithCameraRef:
++     // Error parsing type: @24@0:8^{__C3DCamera={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}{__C3DProjectionInfos=b1b1b1b1dddddd(C3DMatrix4x4=[16f][4])}ffffQ^{__C3DFXTechnique}}16, name: cameraWithCameraRef:
++ (id)cameraWithMDLCamera:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)_didDecodeSCNCamera:(id)arg1;
 - (void)_customEncodingOfSCNCamera:(id)arg1;
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (struct CATransform3D)projectionTransform;
--     // Error parsing type: ^{__C3DCamera={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}{__C3DProjectionInfos=b1b1b1dddddd(C3DMatrix4x4=[16f][4])}ffffQ^{__C3DFXTechnique}}16@0:8, name: cameraRef
+- (void)setProjectionTransform:(struct CATransform3D)arg1;
+-     // Error parsing type: ^{__C3DCamera={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}{__C3DProjectionInfos=b1b1b1b1dddddd(C3DMatrix4x4=[16f][4])}ffffQ^{__C3DFXTechnique}}16@0:8, name: cameraRef
 - (void)setYMag:(double)arg1;
 - (double)yMag;
 - (void)setXMag:(double)arg1;
@@ -59,7 +59,6 @@
 @property(nonatomic) double yFov;
 @property(nonatomic) double xFov;
 @property(nonatomic) BOOL usesOrthographicProjection;
-- (void)setProjectionTransform:(struct CATransform3D)arg1;
 @property(nonatomic) double orthographicScale;
 @property(nonatomic) double focalSize;
 @property(nonatomic) double focalDistance;
@@ -81,7 +80,7 @@
 - (void)_pauseAnimation:(BOOL)arg1 forKey:(id)arg2;
 - (id)animationForKey:(id)arg1;
 - (void)_syncObjCAnimations;
-- (id)animationKeys;
+@property(readonly) NSArray *animationKeys;
 - (void)removeAnimationForKey:(id)arg1;
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
@@ -97,9 +96,11 @@
 @property(copy, nonatomic) NSString *name;
 @property(readonly, copy) NSString *description;
 - (void)dealloc;
--     // Error parsing type: @24@0:8^{__C3DCamera={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}{__C3DProjectionInfos=b1b1b1dddddd(C3DMatrix4x4=[16f][4])}ffffQ^{__C3DFXTechnique}}16, name: initPresentationCameraWithCameraRef:
--     // Error parsing type: @24@0:8^{__C3DCamera={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}{__C3DProjectionInfos=b1b1b1dddddd(C3DMatrix4x4=[16f][4])}ffffQ^{__C3DFXTechnique}}16, name: initWithCameraRef:
+-     // Error parsing type: @24@0:8^{__C3DCamera={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}{__C3DProjectionInfos=b1b1b1b1dddddd(C3DMatrix4x4=[16f][4])}ffffQ^{__C3DFXTechnique}}16, name: initPresentationCameraWithCameraRef:
+-     // Error parsing type: @24@0:8^{__C3DCamera={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}{__C3DProjectionInfos=b1b1b1b1dddddd(C3DMatrix4x4=[16f][4])}ffffQ^{__C3DFXTechnique}}16, name: initWithCameraRef:
 - (id)init;
+- (id)debugQuickLookData;
+- (id)debugQuickLookObject;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

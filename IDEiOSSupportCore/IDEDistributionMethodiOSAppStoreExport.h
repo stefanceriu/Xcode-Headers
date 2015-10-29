@@ -15,6 +15,8 @@
 - (id)subtitle;
 - (id)title;
 - (int)supportedTask;
+- (double)sortOrder;
+- (id)commandLineName;
 
 @end
 

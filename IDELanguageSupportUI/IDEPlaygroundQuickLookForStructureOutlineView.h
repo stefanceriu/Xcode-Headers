@@ -10,6 +10,8 @@
 {
 }
 
+- (void)collapseItem:(id)arg1 collapseChildren:(BOOL)arg2;
+- (void)expandItem:(id)arg1 expandChildren:(BOOL)arg2;
 - (void)copy:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 

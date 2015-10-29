@@ -6,46 +6,36 @@
 
 #import "NSObject.h"
 
-@class DVTDispatchLock, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet;
+@class DVTDispatchLock, NSMapTable, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet;
 
 @interface DTDKProvisioningProfileController : NSObject
 {
     DVTDispatchLock *_profilesLock;
-    BOOL _hasCompletedInitialScan;
-    NSMutableSet *_allProfiles;
+    NSMapTable *_UUIDToProfile;
     NSObject<OS_dispatch_queue> *_scanQueue;
+    NSMutableSet *_allProfiles;
+    BOOL _hasCompletedInitialScan;
 }
 
 + (id)keyPathsForValuesAffectingAllUsableProfiles;
-+ (id)uuidTable;
 + (id)provisioningProfileSearchPaths;
 + (id)mobileDeviceSupportSearchPaths;
 + (id)controller;
-@property(readonly) NSObject<OS_dispatch_queue> *scanQueue; // @synthesize scanQueue=_scanQueue;
-@property BOOL hasCompletedInitialScan; // @synthesize hasCompletedInitialScan=_hasCompletedInitialScan;
-@property(readonly) NSMutableSet *rawProfiles; // @synthesize rawProfiles=_allProfiles;
+@property(readonly) BOOL hasCompletedInitialScan; // @synthesize hasCompletedInitialScan=_hasCompletedInitialScan;
 - (void).cxx_destruct;
 @property(readonly, copy) NSSet *allUsableProfiles;
+- (void)_updateProfilesWithAdditions:(id)arg1 andRemovals:(id)arg2;
+- (void)_profilePathsOrDirectoriesChanged:(id)arg1;
 - (void)fsEventReceived:(id)arg1;
 - (id)allProfiles_sync;
 @property(readonly, copy) NSSet *allProfiles;
 - (void)startScanIfNeeded:(BOOL)arg1;
-- (void)startScanIfNeeded;
-- (void)setAllProfiles:(id)arg1;
-- (void)intersectAllProfiles:(id)arg1;
-- (void)removeAllProfiles:(id)arg1;
-- (void)addAllProfiles:(id)arg1;
-- (void)removeAllProfilesObject:(id)arg1;
-- (void)addAllProfilesObject:(id)arg1;
 - (id)profilesMatchingCertificate:(struct OpaqueSecCertificateRef *)arg1;
 - (id)profilesMatchingApplicationID:(id)arg1;
 - (id)profileMatchingUUID:(id)arg1;
 - (id)profilesMatchingPredicate:(id)arg1;
-- (BOOL)installProvisioningProfile:(id)arg1 error:(id *)arg2;
-- (BOOL)installProvisioningProfiles:(id)arg1 error:(id *)arg2;
-- (void)installProvisioningProfiles:(id)arg1;
-- (void)installProvisioningProfile:(id)arg1;
-- (void)deleteProvisioningProfile:(id)arg1;
+- (void)installProvisioningProfiles:(id)arg1 callback:(CDUnknownBlockType)arg2;
+- (BOOL)_writeProfiles:(id)arg1 error:(id *)arg2;
 - (void)deleteProvisioningProfiles:(id)arg1;
 - (id)certificateUtilities;
 - (id)init;

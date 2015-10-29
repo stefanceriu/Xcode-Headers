@@ -23,6 +23,7 @@
     BOOL _itemIsDirectory;
     BOOL _didInitiate;
     BOOL _invalid;
+    BOOL _streamLocally;
     NSURL *_url;
     NSString *_path;
     NSString *_destinationName;
@@ -41,6 +42,7 @@
 @property(readonly, nonatomic) unsigned long long files; // @synthesize files=_files;
 @property(copy, nonatomic) NSString *owner; // @synthesize owner=_owner;
 @property(retain, nonatomic) NSPredicate *filenameFilter; // @synthesize filenameFilter=_filenameFilter;
+@property(nonatomic) BOOL streamLocally; // @synthesize streamLocally=_streamLocally;
 @property(copy, nonatomic) NSString *destinationName; // @synthesize destinationName=_destinationName;
 @property(readonly, retain, nonatomic) NSString *path; // @synthesize path=_path;
 @property(readonly, retain, nonatomic) NSURL *url; // @synthesize url=_url;

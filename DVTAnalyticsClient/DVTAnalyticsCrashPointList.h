@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <DVTAnalyticsClient/DVTAnalyticsData.h>
 
 #import "DVTServicesJSONSerialization.h"
 
 @class DVTAnalyticsAppIdentifier, NSArray, NSNumber, NSString;
 
-@interface DVTAnalyticsCrashPointList : NSObject <DVTServicesJSONSerialization>
+@interface DVTAnalyticsCrashPointList : DVTAnalyticsData <DVTServicesJSONSerialization>
 {
     DVTAnalyticsAppIdentifier *_appIdentifier;
     NSArray *_topCrashes;
@@ -19,13 +19,11 @@
     NSString *_appVersion;
     NSString *_appBuild;
     NSString *_bundleId;
-    NSString *_isBeta;
     NSNumber *_numCrashes;
 }
 
 + (id)crashPointListForSession:(id)arg1 appIdentifier:(id)arg2 options:(id)arg3 error:(id *)arg4;
 @property(retain) NSNumber *numCrashes; // @synthesize numCrashes=_numCrashes;
-@property(retain, nonatomic) NSString *isBeta; // @synthesize isBeta=_isBeta;
 @property(retain) NSString *bundleId; // @synthesize bundleId=_bundleId;
 @property(retain) NSString *appBuild; // @synthesize appBuild=_appBuild;
 @property(retain) NSString *appVersion; // @synthesize appVersion=_appVersion;

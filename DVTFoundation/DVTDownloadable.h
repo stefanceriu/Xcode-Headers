@@ -13,6 +13,7 @@
 
 @interface DVTDownloadable : NSObject <NSCoding, NSCopying>
 {
+    _Bool _userInitiated;
     NSString *_identifier;
     DVTDotSeparatedVersion *_version;
     NSString *_name;
@@ -26,6 +27,7 @@
 @property(readonly) unsigned long long fileSize; // @synthesize fileSize=_fileSize;
 @property(readonly) NSURL *source; // @synthesize source=_source;
 @property(readonly) NSSet *dependencies; // @synthesize dependencies=_dependencies;
+@property(readonly, getter=isUserInitiated) _Bool userInitiated; // @synthesize userInitiated=_userInitiated;
 @property(readonly) NSString *name; // @synthesize name=_name;
 @property(readonly) DVTDotSeparatedVersion *version; // @synthesize version=_version;
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
@@ -48,7 +50,7 @@
 - (long long)compare:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)initWithIdentifier:(id)arg1 version:(id)arg2 source:(id)arg3 fileSize:(unsigned long long)arg4 name:(id)arg5 dependencies:(id)arg6 userInfo:(id)arg7;
+- (id)initWithIdentifier:(id)arg1 version:(id)arg2 source:(id)arg3 fileSize:(unsigned long long)arg4 name:(id)arg5 dependencies:(id)arg6 userInitiated:(_Bool)arg7 userInfo:(id)arg8;
 
 @end
 

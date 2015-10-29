@@ -13,7 +13,6 @@
 
 @interface SCNParticlePropertyController : NSObject <NSSecureCoding, NSCopying>
 {
-    id _reserved;
     CAAnimation *_animation;
     long long _inputMode;
     double _inputScale;
@@ -24,7 +23,6 @@
 }
 
 + (BOOL)supportsSecureCoding;
-+ (id)SCNJSExportProtocol;
 + (id)controllerWithAnimation:(id)arg1;
 + (id)particlePropertyControllerWithAnimation:(id)arg1;
 - (id)initWithCoder:(id)arg1;

@@ -11,6 +11,7 @@
 @protocol IDETestableProvider <NSObject>
 @property(readonly) NSString *name;
 @property(readonly, copy) NSArray *testables;
+@property(readonly, copy) NSArray *allTestables;
 - (id <IDETestable>)testableForBlueprint:(id <IDEBlueprint>)arg1;
 @end
 

@@ -45,7 +45,7 @@
 @property(readonly) id currentFilterFieldWantingDocumentOutlineViewController;
 - (void)setDrawsWithActiveLook:(BOOL)arg1;
 - (void)setCurrentStructureProvider:(id)arg1;
-@property(nonatomic, getter=isShowingStructureArea) BOOL showingStructureArea;
+@property(nonatomic, getter=isShowingStructureArea) BOOL showingStructureArea; // @dynamic showingStructureArea;
 - (id)_lastStructureSelectionProvider;
 - (BOOL)supportsTogglingStructureArea;
 - (void)editorInstalled;

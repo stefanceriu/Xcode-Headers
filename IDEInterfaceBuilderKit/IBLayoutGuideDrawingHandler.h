@@ -14,6 +14,7 @@
 {
     NSMutableArray *_liveLayoutGuides;
     NSMutableArray *_userLayoutGuides;
+    NSMutableArray *_systemLayoutGuides;
     id <DVTInvalidation> _guidesToken;
     id <DVTInvalidation> _guideOffsetsToken;
     BOOL _showingGuides;
@@ -31,6 +32,7 @@
 - (void)willDrawGuides;
 - (void)drawLiveGuides:(id)arg1;
 @property(copy) NSArray *liveLayoutGuides;
+@property(copy) NSArray *systemLayoutGuides;
 @property(copy) NSArray *userLayoutGuides;
 - (void)setLayoutGuideNeedsDisplay:(id)arg1;
 - (void)primitiveInvalidate;

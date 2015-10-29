@@ -11,7 +11,6 @@
     CDStruct_96187c50 _constraintsData;
 }
 
-- (id).cxx_construct;
 - (id)initWithConstraints:(const CDStruct_96187c50 *)arg1;
 - (const CDStruct_96187c50 *)constRefToConstraintsData;
 - (CDStruct_96187c50 *)refToConstraintsData;

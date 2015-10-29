@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, NSString;
+@class NSMapTable, NSString;
 
 @interface DVTSharedObserver : NSObject
 {
     NSString *_keyPath;
     id _object;
-    DVTMapTable *_registeredObservers;
+    NSMapTable *_registeredObservers;
 }
 
 - (void).cxx_destruct;

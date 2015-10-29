@@ -22,7 +22,6 @@
 - (void).cxx_destruct;
 - (void)setSourceControlStatus:(int)arg1 forKey:(id)arg2;
 - (int)sourceControlStatusForKey:(id)arg1;
-- (id)blameEntriesForRevisionNumber:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)temporaryFileForBranchName:(id)arg1 revisionNumber:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)currentRevisionWithCompletionBlock:(CDUnknownBlockType)arg1;
 @property BOOL edited; // @synthesize edited=_edited;

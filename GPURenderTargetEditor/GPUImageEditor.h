@@ -50,7 +50,6 @@ __attribute__((visibility("hidden")))
 
 + (id)assetBundle;
 @property __weak NSTextField *imageLabel; // @synthesize imageLabel=_imageLabel;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)dumpImage:(id)arg1 asRaw:(BOOL)arg2;
 - (void)settingsUpdate;

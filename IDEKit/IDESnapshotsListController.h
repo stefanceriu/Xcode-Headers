@@ -41,10 +41,11 @@
 @property(copy) NSArray *allSnapshots; // @synthesize allSnapshots=_allSnapshots;
 @property(copy, nonatomic) DVTFilePath *snapshotsLocation; // @synthesize snapshotsLocation=_snapshotsLocation;
 - (void).cxx_destruct;
+- (void)_runOpenSavePanelForWindow:(id)arg1 snapshot:(id)arg2;
 - (void)exportSnapshot:(id)arg1;
 - (id)selectedSnapshot;
 - (id)excludedSnapshotsForRepositoryAtPath:(id)arg1;
-- (void)deleteSnapshotAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (void)_deleteSnapshotAlertDidEnd:(id)arg1 returnCode:(long long)arg2 snapshotsToDelete:(id)arg3;
 - (void)deleteAction:(id)arg1;
 @property(readonly) NSPredicate *filterPredicate;
 - (void)loadAllCommits;

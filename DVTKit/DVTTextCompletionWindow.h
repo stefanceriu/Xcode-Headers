@@ -6,23 +6,17 @@
 
 #import "NSWindow.h"
 
-@class DVTTextCompletionSession, NSBezierPath;
+@class DVTTextCompletionSession;
 
 @interface DVTTextCompletionWindow : NSWindow
 {
-    NSBezierPath *_clippingPath;
-    double _cornerRadius;
     DVTTextCompletionSession *_session;
 }
 
 @property(retain) DVTTextCompletionSession *session; // @synthesize session=_session;
-@property double cornerRadius; // @synthesize cornerRadius=_cornerRadius;
-@property(readonly) NSBezierPath *clippingPath; // @synthesize clippingPath=_clippingPath;
 - (void).cxx_destruct;
-- (void)setFrame:(struct CGRect)arg1 display:(BOOL)arg2;
 - (BOOL)canBecomeMainWindow;
 - (BOOL)canBecomeKeyWindow;
-- (id)initWithContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2 backing:(unsigned long long)arg3 defer:(BOOL)arg4;
 - (id)accessibilityAttributeValue:(id)arg1;
 - (BOOL)accessibilityIsIgnored;
 

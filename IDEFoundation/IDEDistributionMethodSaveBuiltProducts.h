@@ -19,6 +19,7 @@
 - (id)shortTitle;
 - (id)title;
 - (_Bool)supportsDistributionOfArchive:(id)arg1;
+- (double)sortOrder;
 
 @end
 

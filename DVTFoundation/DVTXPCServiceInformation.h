@@ -18,8 +18,10 @@
     NSArray *_arguments;
     NSString *_pathToInterpose;
     NSString *_fullPath;
+    NSString *_containerAppID;
 }
 
+@property(retain) NSString *containerAppID; // @synthesize containerAppID=_containerAppID;
 @property(retain) NSString *fullPath; // @synthesize fullPath=_fullPath;
 @property(retain) NSString *pathToInterpose; // @synthesize pathToInterpose=_pathToInterpose;
 @property BOOL startSuspended; // @synthesize startSuspended=_startSuspended;

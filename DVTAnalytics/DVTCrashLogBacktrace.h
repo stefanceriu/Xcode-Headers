@@ -18,6 +18,7 @@
 @property(readonly) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (id)initWithName:(id)arg1 frames:(id)arg2;
+- (id)init;
 
 @end
 

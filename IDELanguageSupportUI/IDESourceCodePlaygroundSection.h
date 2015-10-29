@@ -4,35 +4,32 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDELanguageSupportUI/IDEPlaygroundSection.h>
+#import <IDELanguageSupportUI/IDEPlaygroundDocumentSection.h>
 
 @class NSArray, NSMutableArray, NSString;
 
-@interface IDESourceCodePlaygroundSection : IDEPlaygroundSection
+@interface IDESourceCodePlaygroundSection : IDEPlaygroundDocumentSection
 {
     NSMutableArray *_loggerResults;
     unsigned long long _playgroundResultsGeneration;
     long long _sectionStyle;
-    NSString *_originalCode;
+    NSString *_originalSourceCode;
     struct _NSRange _originalCodeRange;
 }
 
 + (id)xmlElementName;
 + (void)initialize;
-@property(copy) NSString *originalCode; // @synthesize originalCode=_originalCode;
+@property(copy) NSString *originalSourceCode; // @synthesize originalSourceCode=_originalSourceCode;
 @property struct _NSRange originalCodeRange; // @synthesize originalCodeRange=_originalCodeRange;
 @property long long sectionStyle; // @synthesize sectionStyle=_sectionStyle;
 - (void).cxx_destruct;
 - (void)resetPlaygroundSection;
-- (void)enableAllowsReset;
-- (id)stringConstructingFileWrapper:(id)arg1;
-- (id)xmlElementConstructingFileWrapper:(id)arg1;
+- (id)content;
 @property(readonly) NSString *sectionString;
 - (void)_setUpTextStorageWithContents:(id)arg1;
-- (id)initWithXMLElement:(id)arg1 enclosingFileWrapper:(id)arg2 inPlaygroundDocument:(id)arg3;
 @property(readonly) struct _NSRange sectionCharacterRange;
 - (id)viewControllerForDisplayingPlaygroundSectionInEditor:(id)arg1;
-- (id)initWithSourceCode:(id)arg1 identifier:(id)arg2 inPlaygroundDocument:(id)arg3;
+- (id)initWithSourceCode:(id)arg1 originalSourceCode:(id)arg2 identifier:(id)arg3 inPlaygroundDocument:(id)arg4;
 
 // Remaining properties
 @property(copy) NSArray *loggerResults; // @dynamic loggerResults;

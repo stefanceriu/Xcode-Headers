@@ -27,15 +27,13 @@
     struct CGPoint _cropOffset;
     int _alignment;
     int _rowLength;
-    BOOL _isCompressed;
-    int _compressedSize;
-    unsigned int _compressedFormat;
     CIFilter *_filter;
     SKTexture *_originalTexture;
     unsigned int _textureTarget;
     NSString *_originalAtlasName;
     NSString *_subTextureName;
     SKTextureCache *_textureCache;
+    struct jet_texture *_backingTexture;
     unsigned int *_alphaMap;
     struct CGSize _alphaMapSize;
 }
@@ -63,13 +61,14 @@
 + (id)_textureByTransferingData:(char *)arg1 size:(struct CGSize)arg2 rowLength:(unsigned int)arg3 alignment:(unsigned int)arg4;
 + (id)_textureByTransferingData:(char *)arg1 size:(struct CGSize)arg2;
 + (id)textureWithImagePath:(id)arg1;
++ (id)_cachedTextureNames;
++ (void)_reloadTextureCacheForImageNamed:(id)arg1;
 @property(readonly, nonatomic) struct CGSize alphaMapSize; // @synthesize alphaMapSize=_alphaMapSize;
 @property(readonly, nonatomic) unsigned int *alphaMap; // @synthesize alphaMap=_alphaMap;
 @property(copy, nonatomic) NSString *subTextureName; // @synthesize subTextureName=_subTextureName;
 @property(copy, nonatomic) NSString *originalAtlasName; // @synthesize originalAtlasName=_originalAtlasName;
 @property(nonatomic) struct CGPoint cropOffset; // @synthesize cropOffset=_cropOffset;
 @property(nonatomic) struct CGPoint cropScale; // @synthesize cropScale=_cropScale;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)dealloc;
 - (void)preload;
@@ -108,12 +107,17 @@
 - (void)generateAlphaMapOfSize:(struct CGSize)arg1 fromImage:(struct CGImage *)arg2;
 - (id)textureByGeneratingNormalMapWithSmoothness:(double)arg1 contrast:(double)arg2;
 - (id)textureByGeneratingNormalMap;
+@property(readonly, nonatomic) struct CGImage *CGImage;
 - (id)_textureCache;
 - (id)imgName;
+- (shared_ptr_bb77cfd9)_backingTexture;
+- (id)initWithBackingTetxure:(shared_ptr_bb77cfd9)arg1 logicalWidth:(float)arg2 height:(float)arg3;
+- (id)initWithBackingTetxure:(shared_ptr_bb77cfd9)arg1;
 - (void)_savePngFromGLCache:(id)arg1;
 - (struct CGImage *)_newTextureFromGLCache;
 - (struct CGImage *)_createCGImage;
 - (struct CGImage *)_rotateCGImage:(struct CGImage *)arg1;
+- (int)glTextureId;
 - (id)_initWithGLTextureId:(unsigned int)arg1 size:(struct CGSize)arg2;
 @property(readonly, nonatomic) NSString *imageNameOrPath;
 - (id)_generateNormalMap:(double)arg1 contrast:(double)arg2 multiPass:(unsigned long long)arg3;
@@ -121,7 +125,7 @@
 - (void)load;
 @property(nonatomic) unsigned int textureTarget;
 @property(nonatomic) BOOL isRotated;
-- (int)glTextureId;
+- (void)_setImageName:(id)arg1;
 
 @end
 

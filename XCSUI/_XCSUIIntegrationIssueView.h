@@ -39,8 +39,14 @@
 - (void).cxx_destruct;
 - (void)resizeSubviewsWithOldSize:(struct CGSize)arg1;
 - (void)drawRect:(struct CGRect)arg1;
+- (void)rightMouseDown:(id)arg1;
 - (void)mouseDown:(id)arg1;
+- (void)copy:(id)arg1;
+- (BOOL)canBecomeKeyView;
+- (BOOL)becomeFirstResponder;
+- (BOOL)acceptsFirstResponder;
 - (BOOL)wantsLayer;
+- (id)issue;
 
 @end
 

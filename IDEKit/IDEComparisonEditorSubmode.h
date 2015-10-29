@@ -22,7 +22,9 @@
 - (void)offsetCurrentSelectedIndexBy:(long long)arg1;
 - (void)setDifferenceMenu:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
+- (void)comparisonContextMenu_revertDiffDescriptor:(id)arg1;
 - (void)comparisonContextMenu_revertSelectedDiffDescriptor:(id)arg1;
+- (BOOL)canRevertMenuItemDifference:(id)arg1;
 - (BOOL)canRevertSelectedDifference;
 - (void)copyDiff;
 - (BOOL)canCopyDiff;

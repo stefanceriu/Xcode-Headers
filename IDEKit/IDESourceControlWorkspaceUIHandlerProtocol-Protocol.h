@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class IDESourceControlWorkspaceMonitor, NSArray, NSError;
+@class IDESourceControlWorkspaceMonitor, NSArray, NSError, NSString;
 
 @protocol IDESourceControlWorkspaceUIHandlerProtocol <NSObject>
+- (void)requestOperationConfirmationForOperationName:(NSString *)arg1 workingCopyName:(NSArray *)arg2 completionBlock:(void (^)(BOOL))arg3;
 - (void)workspaceMonitorDidFinishScanning:(IDESourceControlWorkspaceMonitor *)arg1;
 - (void)offerAdditionalWorkingCopies;
 - (void)warnAboutNewerRepositoryVersionWithError:(NSError *)arg1;

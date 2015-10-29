@@ -6,11 +6,12 @@
 
 #import <DVTFoundation/DVTProvisioningProfileManager.h>
 
-@class DVTDispatchLock, NSMutableSet;
+@class DVTDispatchLock, NSMutableSet, NSSet;
 
 @interface DVTMockProvisioningProfileManager : DVTProvisioningProfileManager
 {
     NSMutableSet *_profiles;
+    NSMutableSet *_certificates;
     DVTDispatchLock *_lock;
 }
 
@@ -23,15 +24,18 @@
 - (void)removeProfile:(id)arg1;
 - (void)addProfile:(id)arg1;
 - (void)setProfiles:(id)arg1;
+@property(readonly) NSSet *certificates;
 - (id)expiringProfiles;
 - (id)profilesMatchingPredicate:(id)arg1;
-- (BOOL)installHostProfiles:(id)arg1 error:(id *)arg2;
+- (void)installHostProfiles:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (id)profileWithData:(id)arg1 error:(id *)arg2;
 - (id)profileWithURL:(id)arg1 error:(id *)arg2;
 - (id)expiringProfilesInExpansionContext:(id)arg1;
 - (BOOL)isProfileExpiringWithCodeSigningIdentity:(id)arg1 profileName:(id *)arg2;
 - (id)profilesMatchingApplicationID:(id)arg1;
 - (id)provider;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithPlist:(id)arg1;
 - (id)init;
 
 @end

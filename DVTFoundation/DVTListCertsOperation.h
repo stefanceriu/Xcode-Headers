@@ -6,11 +6,21 @@
 
 #import <DVTFoundation/DVTTeamOperationBase.h>
 
-@interface DVTListCertsOperation : DVTTeamOperationBase
+#import "DVTCertificateRecordVendor.h"
+
+@class DVTDispatchLock, NSSet;
+
+@interface DVTListCertsOperation : DVTTeamOperationBase <DVTCertificateRecordVendor>
 {
+    DVTDispatchLock *_certificateSerialNumbersLock;
+    NSSet *_certificateSerialNumbers;
 }
 
 + (id)_operationWithSingleTeamToken:(id)arg1 andPlatform:(id)arg2;
+- (void).cxx_destruct;
+- (id)certificateRecordsWithContext:(id)arg1;
+- (void)_extractSerialNumbersFromResponseDictionaries;
+- (id)init;
 
 @end
 

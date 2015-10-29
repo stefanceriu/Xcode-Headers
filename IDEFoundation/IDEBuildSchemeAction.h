@@ -6,13 +6,14 @@
 
 #import <IDEFoundation/IDESchemeAction.h>
 
-@class DVTMapTable, DVTObservingToken, IDEBuildActionEntry, NSArray, NSMutableArray, NSString;
+@class DVTObservingToken, IDEBuildActionEntry, NSArray, NSMapTable, NSMutableArray, NSString;
 
 @interface IDEBuildSchemeAction : IDESchemeAction
 {
     NSMutableArray *_legacyBuildableReferences;
     BOOL _parallelizeBuildables;
     BOOL _buildImplicitDependencies;
+    BOOL _enableAddressSanitizer;
     NSString *_legacyBuildConfiguration;
     NSMutableArray *_buildActionEntries;
     IDEBuildActionEntry *_launchRunnableEntry;
@@ -20,7 +21,7 @@
     NSMutableArray *_testBuildableEntries;
     BOOL _buildablesDidChangeNotificationEnabled;
     BOOL _isBuildablesDidChangeNotificationPending;
-    DVTMapTable *_overridingBuildPropertiesForBuildable;
+    NSMapTable *_overridingBuildPropertiesForBuildable;
     DVTObservingToken *_launchActionRunnableObservingToken;
     DVTObservingToken *_profileActionRunnableObservingToken;
     DVTObservingToken *_testBuildableReferencesObservingToken;
@@ -63,13 +64,17 @@
 - (void)moveBuildActionEntriesAtIndexes:(id)arg1 toIndex:(unsigned long long)arg2;
 - (id)addBuildActionEntryForBuildableReference:(id)arg1;
 - (void)removeBuildActionEntryAtIndex:(unsigned long long)arg1;
+- (void)forceOffBuildForProfilingForBuildActionEntry:(id)arg1;
+- (void)forceOffBuildForTestingForBuildActionEntry:(id)arg1;
+- (void)forceOffBuildForRunningForBuildActionEntry:(id)arg1;
 - (void)_setupImplicitBuildActionEntries;
 - (BOOL)doesNonActionWork;
 - (id)subtitle;
 - (id)name;
 - (id)cleanOperationForExecutionEnvironment:(id)arg1 orderedBuildables:(id)arg2 buildConfiguration:(id)arg3 buildLog:(id)arg4 overridingProperties:(id)arg5 activeRunDestination:(id)arg6 activeArchitecture:(id)arg7 schemeActionRecord:(id)arg8 error:(id *)arg9;
 - (id)buildOperationForExecutionEnvironment:(id)arg1 buildPurpose:(int)arg2 buildCommand:(int)arg3 schemeCommand:(id)arg4 filePath:(id)arg5 buildConfiguration:(id)arg6 buildLog:(id)arg7 overridingProperties:(id)arg8 activeRunDestination:(id)arg9 activeArchitecture:(id)arg10 dontActuallyRunCommands:(BOOL)arg11 restorePersistedBuildResults:(BOOL)arg12 schemeActionRecord:(id)arg13 overridingBuildables:(id)arg14 error:(id *)arg15;
-- (id)overridingBuildSettingsForSchemeCommand:(id)arg1;
+- (id)overridingBuildSettingsForSchemeCommand:(id)arg1 runDestination:(id)arg2;
+- (id)buildFolderPathForCodeCoverage;
 - (id)buildFolderPathForPGO;
 - (void)setRunContext:(id)arg1;
 - (void)primitiveInvalidate;

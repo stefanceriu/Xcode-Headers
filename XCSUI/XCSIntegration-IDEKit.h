@@ -6,42 +6,13 @@
 
 #import "XCSIntegration.h"
 
-#import "IDEKeyDrivenNavigableItemRepresentedObject.h"
+@class NSURL;
 
-@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString, NSURL;
-
-@interface XCSIntegration (IDEKit) <IDEKeyDrivenNavigableItemRepresentedObject>
+@interface XCSIntegration (IDEKit)
 + (id)durationStringFromTimeInterval:(double)arg1;
-+ (id)keyPathsForValuesAffectingSubtitle;
-+ (id)keyPathsForValuesAffectingEndedTimeDisplayString;
-+ (id)keyPathsForValuesAffectingStartedTimeDisplayString;
-+ (id)keyPathsForValuesAffectingNavigableItem_progressValue;
-+ (id)keyPathsForValuesAffectingShortTitle;
-+ (id)keyPathsForValuesAffectingTitle;
 + (void)componentsFromBotIntegrationURL:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 + (id)botIntegrationURLForIntegrationWithID:(id)arg1 server:(id)arg2;
-@property(readonly, nonatomic) NSString *durationString;
-@property(readonly, nonatomic) NSString *subtitle;
-@property(readonly, nonatomic) NSString *endedTimeDisplayString;
-@property(readonly, nonatomic) NSString *startedTimeDisplayString;
-@property(readonly, nonatomic) long long navigableItem_progressValue;
-@property(readonly) NSImage *navigableItem_image;
-@property(readonly) NSString *navigableItem_name;
-@property(readonly, nonatomic) NSString *shortTitle;
-@property(readonly, nonatomic) NSString *title;
-@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
-@property(readonly) DVTFileDataType *navigableItem_documentType;
+- (id)title;
 @property(readonly, copy) NSURL *botIntegrationURL;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) IDEFileReference *navigableItem_fileReference;
-@property(readonly) NSString *navigableItem_groupIdentifier;
-@property(readonly) BOOL navigableItem_isLeaf;
-@property(readonly) BOOL navigableItem_isMajorGroup;
-@property(readonly) NSString *navigableItem_toolTip;
-@property(readonly) Class superclass;
 @end
 

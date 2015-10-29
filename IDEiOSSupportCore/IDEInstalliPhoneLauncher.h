@@ -18,7 +18,6 @@
 - (void)terminate;
 - (void)start;
 - (void)delayLaunchIfNeededFor15147964;
-- (void)_setFinishedRunningWithError:(id)arg1;
 
 @end
 

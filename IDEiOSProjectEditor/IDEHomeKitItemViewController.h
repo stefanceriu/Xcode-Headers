@@ -20,7 +20,7 @@
 - (id)initWithEditorItemModel:(id)arg1 portalInfoDelegate:(id)arg2;
 
 // Remaining properties
-@property(readonly, nonatomic) IDEHomeKitItemModel *model;
+@property(readonly, nonatomic) IDEHomeKitItemModel *model; // @dynamic model;
 
 @end
 

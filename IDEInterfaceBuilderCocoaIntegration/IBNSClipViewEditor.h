@@ -10,7 +10,7 @@
 {
 }
 
-- (CDStruct_fa3e0eee)activeKnobRectsForObject:(id)arg1;
+- (CDStruct_b58c4854)activeKnobRectsForObject:(id)arg1;
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;
 - (id)editedClipView;
 

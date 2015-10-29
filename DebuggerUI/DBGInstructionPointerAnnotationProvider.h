@@ -6,12 +6,12 @@
 
 #import "DVTAnnotationProvider.h"
 
-@class DVTMapTable, DVTObservingToken, IDEAnnotationContext, NSMutableSet;
+@class DVTObservingToken, IDEAnnotationContext, NSMapTable, NSMutableSet;
 
 @interface DBGInstructionPointerAnnotationProvider : DVTAnnotationProvider
 {
     IDEAnnotationContext *_context;
-    DVTMapTable *_annotationForLocation;
+    NSMapTable *_annotationForLocation;
     NSMutableSet *_nonSelectedPCAnnotations;
     DVTObservingToken *_ipLocationObserver;
     DVTObservingToken *_ipLocationForDisasObserver;

@@ -22,7 +22,7 @@
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 @property(readonly, copy) DVTFileDataType *documentType; // @synthesize documentType=_documentType;
 @property(readonly, copy) DVTDocumentLocation *contentDocumentLocation; // @synthesize contentDocumentLocation=_contentDocumentLocation;
-@property(readonly, copy) NSImage *image; // @synthesize image=_image;
+@property(copy) NSImage *image; // @synthesize image=_image;
 @property(copy) NSString *name; // @synthesize name=_name;
 @property(readonly, copy) DVTFilePath *filePath; // @synthesize filePath=_filePath;
 - (void).cxx_destruct;

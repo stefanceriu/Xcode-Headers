@@ -18,7 +18,10 @@
     DBGLayoutConstraintSet *_constraintsReferencingViewObject;
     BOOL _flipped;
     BOOL _masksToBounds;
+    BOOL _iOS;
+    BOOL _legacyLayerFormat;
     DBGViewLayer *_layer;
+    unsigned long long _layerIndex;
     NSImage *_snapshot;
     double _contentsScale;
     struct CGPoint _contentOffset;
@@ -30,7 +33,8 @@
     struct CATransform3D _sublayerTransform;
 }
 
-+ (id)_childViewSurfacesFromPlist:(id)arg1 forViewDescriber:(id)arg2;
+@property BOOL legacyLayerFormat; // @synthesize legacyLayerFormat=_legacyLayerFormat;
+@property BOOL iOS; // @synthesize iOS=_iOS;
 @property double contentsScale; // @synthesize contentsScale=_contentsScale;
 @property struct CGRect bounds; // @synthesize bounds=_bounds;
 @property struct CGRect alignmentFrame; // @synthesize alignmentFrame=_alignmentFrame;
@@ -43,10 +47,15 @@
 @property struct CGPoint contentOffset; // @synthesize contentOffset=_contentOffset;
 @property BOOL flipped; // @synthesize flipped=_flipped;
 @property(retain) NSImage *snapshot; // @synthesize snapshot=_snapshot;
+@property unsigned long long layerIndex; // @synthesize layerIndex=_layerIndex;
 @property(retain) DBGViewLayer *layer; // @synthesize layer=_layer;
 - (void).cxx_destruct;
+- (void)assignRepresentedLayerFromTree;
+- (void)_getSublayersFromTree;
+- (void)_extractLayerInfoFromDictionary:(id)arg1;
 - (id)_affectingConstraintAddresses:(id)arg1;
 - (id)description;
+- (id)_childViewSurfacesFromPlist:(id)arg1 forViewDescriber:(id)arg2;
 - (void)primitiveInvalidate;
 @property(readonly) DBGLayoutConstraintSet *constraintsReferencingViewObject;
 @property(readonly) DBGLayoutConstraintSet *constraintsAffectingViewObject;
@@ -55,7 +64,7 @@
 - (id)recursiveViewAddressesToViewSurfaces;
 - (id)parentViewSurface;
 @property(readonly) DBGViewWindow *window;
-- (id)initWithViewDescriber:(id)arg1 dictionary:(id)arg2;
+- (id)initWithViewDescriber:(id)arg1 parent:(id)arg2 dictionary:(id)arg3;
 
 @end
 

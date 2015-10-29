@@ -15,11 +15,13 @@ __attribute__((visibility("hidden")))
     NSArray *_textures;
 }
 
++ (id)animateWithNormalTextures:(id)arg1 timePerFrame:(double)arg2 resize:(BOOL)arg3 restore:(BOOL)arg4;
 + (id)animateWithTextures:(id)arg1 timePerFrame:(double)arg2 resize:(BOOL)arg3 restore:(BOOL)arg4;
 - (void).cxx_destruct;
 - (id)reversedAction;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(nonatomic) double timePerFrame;
+- (void)setDuration:(double)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;

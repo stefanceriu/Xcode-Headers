@@ -6,12 +6,12 @@
 
 #import "NSObject.h"
 
-#import "DVTInvalidation.h"
 #import "DVTServicesJSONSerialization.h"
+#import "NSCopying.h"
 
-@class DVTStackBacktrace, NSArray, NSString;
+@class NSArray, NSString;
 
-@interface DVTCrashPointSource : NSObject <DVTInvalidation, DVTServicesJSONSerialization>
+@interface DVTCrashPointSource : NSObject <DVTServicesJSONSerialization, NSCopying>
 {
     BOOL _isBeta;
     NSArray *_crashPoints;
@@ -21,27 +21,24 @@
 }
 
 + (id)objectFromJSONRepresentation:(id)arg1 error:(id *)arg2;
-+ (void)initialize;
 @property(readonly) BOOL isBeta; // @synthesize isBeta=_isBeta;
 @property(readonly) NSString *buildNumber; // @synthesize buildNumber=_buildNumber;
 @property(readonly) NSString *version; // @synthesize version=_version;
 @property(readonly) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(readonly) NSArray *crashPoints; // @synthesize crashPoints=_crashPoints;
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)JSONRepresentation;
 - (id)descriptionForUserDefaultsKeyWithError:(id *)arg1;
 @property(readonly, copy) NSString *description;
 - (id)cachedPathForCrashPoint:(id)arg1;
-- (void)primitiveInvalidate;
 - (id)initWithBundleIdentifier:(id)arg1 version:(id)arg2 buildNumber:(id)arg3 isBeta:(BOOL)arg4;
+- (id)init;
 
 // Remaining properties
-@property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly) unsigned long long hash;
-@property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;
-@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

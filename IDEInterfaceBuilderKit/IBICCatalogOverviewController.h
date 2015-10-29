@@ -8,23 +8,25 @@
 
 #import "DVTStatefulObject.h"
 #import "IBDragAndDropInsertionIndicatorDelegate.h"
-#import "IBICMultipartImageViewControllerDelegate.h"
+#import "IBICAssetOverviewCapsuleControllerDelegate.h"
+#import "IBICCommandMenuDelegate.h"
 
-@class IBDragAndDropInsertionIndicator, IBICCatalog, IBICCatalogActionContext, IBICQuickLookController, IBMutableIdentityDictionary, NSMutableArray, NSString;
+@class IBDragAndDropInsertionIndicator, IBICCatalogActionContext, IBICCommandMenuBuilder, IBICQuickLookController, IBMutableIdentityDictionary, NSArray, NSMutableArray, NSString;
 
-@interface IBICCatalogOverviewController : IBICAbstractCatalogDetailController <DVTStatefulObject, IBDragAndDropInsertionIndicatorDelegate, IBICMultipartImageViewControllerDelegate>
+@interface IBICCatalogOverviewController : IBICAbstractCatalogDetailController <DVTStatefulObject, IBDragAndDropInsertionIndicatorDelegate, IBICAssetOverviewCapsuleControllerDelegate, IBICCommandMenuDelegate>
 {
     NSMutableArray *_controllers;
-    IBMutableIdentityDictionary *_multipartImagesToControllers;
+    IBMutableIdentityDictionary *_catalogItemsToControllers;
     IBDragAndDropInsertionIndicator *_dragIndicator;
     long long _insertionIndex;
     IBICCatalogActionContext *_contextMenuActionContext;
     IBICQuickLookController *_quickLookController;
-    IBICCatalog *_draggedImageCatalogContent;
+    IBICCommandMenuBuilder *_contextClickInsertionItemsMenuBuilder;
+    NSArray *_draggedImageCatalogContent;
 }
 
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
-@property(retain, nonatomic) IBICCatalog *draggedImageCatalogContent; // @synthesize draggedImageCatalogContent=_draggedImageCatalogContent;
+@property(retain, nonatomic) NSArray *draggedImageCatalogContent; // @synthesize draggedImageCatalogContent=_draggedImageCatalogContent;
 - (void).cxx_destruct;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
@@ -39,30 +41,24 @@
 - (struct CGRect)frameForItem:(id)arg1 inView:(id)arg2;
 - (id)objectsForSelectAll;
 - (void)detailDocumentView:(id)arg1 performDelete:(id)arg2;
-- (void)multipartImageViewController:(id)arg1 trackBandSelectionWithInitialMouseDown:(id)arg2 currentMouseDragged:(id)arg3 selectionBeforeMouseDown:(id)arg4;
-- (id)multipartImageViewControllerInitialSelectionForFutureBandSelection:(id)arg1;
-- (void)multipartImageViewController:(id)arg1 performDelete:(id)arg2;
+- (void)assetOverviewCapsuleController:(id)arg1 trackBandSelectionWithInitialMouseDown:(id)arg2 currentMouseDragged:(id)arg3 selectionBeforeMouseDown:(id)arg4;
+- (id)assetOverviewCapsuleControllerInitialSelectionForFutureBandSelection:(id)arg1;
+- (void)assetOverviewCapsuleController:(id)arg1 performDelete:(id)arg2;
 - (BOOL)validateMenuItem:(id)arg1;
-- (BOOL)validateUserInterfaceItem:(id)arg1;
-- (void)chooseImageRepSlotsBasedOnContextFocus:(id)arg1;
-- (void)importImageCatalogContent:(id)arg1;
-- (void)showItemsInFinder:(id)arg1;
-- (void)openItemsWithExternalEditor:(id)arg1;
-- (void)insertNewImageCatalogLaunchImageSet:(id)arg1;
-- (void)insertNewImageCatalogAppIconSet:(id)arg1;
-- (void)insertNewImageCatalogIconSet:(id)arg1;
-- (void)insertNewImageCatalogImageSet:(id)arg1;
+- (id)commandMenuBuilderQuicklookController:(id)arg1;
+- (id)commandMenuBuilderActionContext:(id)arg1;
+- (id)commandMenuBuilderDocumentEditor:(id)arg1;
 - (void)removeImageCatalogItems:(id)arg1;
 - (id)contextMenu;
 - (void)detailDocumentView:(id)arg1 didTrackContextMenuFromEvent:(id)arg2;
 - (void)detailDocumentView:(id)arg1 willTrackContextMenuFromEvent:(id)arg2;
 - (id)detailDocumentView:(id)arg1 menuForEvent:(id)arg2;
-- (id)contextClickActionForInsertingNewMultipartImage;
+- (id)contextClickActionForInsertingNewAsset;
 - (id)contextMenuFocusedItemsForEvent:(id)arg1;
 - (void)refreshContentView;
-- (id)orderedMultipartImageControllers;
+- (id)orderedAssetControllers;
 - (struct CGRect)dragAndDropInsertionIndicator:(id)arg1 dragAlignmentRectForRelatedObject:(id)arg2;
-- (struct CGRect)dragAlignmentRectForMultipartImageViewController:(id)arg1;
+- (struct CGRect)dragAlignmentRectForAssetOverviewCapsuleController:(id)arg1;
 - (struct CGRect)dropRectForDragAndDropInsertionIndicator:(id)arg1;
 - (unsigned long long)orderedRelationInsertionEdgeForDragAndDropInsertionIndicator:(id)arg1;
 - (long long)orderedRelationInsertionIndexForDragAndDropInsertionIndicator:(id)arg1;
@@ -79,15 +75,16 @@
 - (id)dragTypesForView:(id)arg1;
 - (void)updateDropIndicators:(id)arg1;
 - (long long)displayInsertionIndexForItem:(id)arg1 intoFolder:(id)arg2;
-- (id)multipartImageViewControllerAtPoint:(struct CGPoint)arg1;
+- (id)assetCapsuleControllerAtPoint:(struct CGPoint)arg1;
 - (BOOL)isController:(id)arg1 hitByPoint:(struct CGPoint)arg2;
 - (void)drawsWithKeyAppearanceDidChange;
 - (BOOL)item:(id)arg1 intersectsBandSelectionRect:(struct CGRect)arg2 fromView:(id)arg3;
 - (void)updateSelectionOwner:(id)arg1 forBandSelectionHittingObjects:(id)arg2 withEvent:(id)arg3 initialSelection:(id)arg4;
 - (id)bandSelectionCandidates;
-- (void)multipartImageViewController:(id)arg1 userDidDragItems:(id)arg2 withMouseDown:(id)arg3 andMouseDragged:(id)arg4;
-- (void)multipartImageViewController:(id)arg1 userDidSelectItems:(id)arg2 withEvent:(id)arg3;
+- (void)assetOverviewCapsuleController:(id)arg1 userDidDragItems:(id)arg2 withMouseDown:(id)arg3 andMouseDragged:(id)arg4;
+- (void)assetOverviewCapsuleController:(id)arg1 userDidSelectItems:(id)arg2 withEvent:(id)arg3;
 - (void)pushSelectionToViews;
+- (BOOL)isSubEditorExistanceInSyncForItem:(id)arg1;
 - (id)showAlternateDetailControllerTitle;
 - (void)viewDidInstall;
 - (void)viewWillUninstall;

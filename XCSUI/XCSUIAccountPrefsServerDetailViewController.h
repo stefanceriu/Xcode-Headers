@@ -6,7 +6,7 @@
 
 #import "IDEViewController.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTToggleSwitch, NSButton, NSError, NSImage, NSImageView, NSString, NSTextField;
+@class DVTBorderedView, DVTObservingToken, DVTToggleSwitch, NSButton, NSError, NSImage, NSImageView, NSSecureTextField, NSString, NSTextField;
 
 @interface XCSUIAccountPrefsServerDetailViewController : IDEViewController
 {
@@ -22,9 +22,11 @@
     NSButton *_viewServerButton;
     DVTBorderedView *_borderedView;
     NSImageView *_compatibilityImageView;
+    NSTextField *_userNameTextField;
+    NSSecureTextField *_passwordSecureTextField;
     unsigned long long _authenticationUserType;
     NSError *_lastKnownConnectionError;
-    NSString *_serverVersion;
+    NSString *_serverAPIVersionString;
     NSString *_fullVersionString;
     NSString *_internalVersionString;
 }
@@ -34,9 +36,11 @@
 @property(nonatomic) BOOL resolving; // @synthesize resolving=_resolving;
 @property(retain, nonatomic) NSString *internalVersionString; // @synthesize internalVersionString=_internalVersionString;
 @property(retain, nonatomic) NSString *fullVersionString; // @synthesize fullVersionString=_fullVersionString;
-@property(retain, nonatomic) NSString *serverVersion; // @synthesize serverVersion=_serverVersion;
+@property(retain, nonatomic) NSString *serverAPIVersionString; // @synthesize serverAPIVersionString=_serverAPIVersionString;
 @property(retain, nonatomic) NSError *lastKnownConnectionError; // @synthesize lastKnownConnectionError=_lastKnownConnectionError;
 @property(nonatomic) unsigned long long authenticationUserType; // @synthesize authenticationUserType=_authenticationUserType;
+@property __weak NSSecureTextField *passwordSecureTextField; // @synthesize passwordSecureTextField=_passwordSecureTextField;
+@property __weak NSTextField *userNameTextField; // @synthesize userNameTextField=_userNameTextField;
 @property __weak NSImageView *compatibilityImageView; // @synthesize compatibilityImageView=_compatibilityImageView;
 @property BOOL showServerCompatibilityWarning; // @synthesize showServerCompatibilityWarning=_showServerCompatibilityWarning;
 @property(retain) DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
@@ -56,12 +60,14 @@
 @property(retain, nonatomic) NSString *password;
 @property(retain, nonatomic) NSString *username;
 @property(retain, nonatomic) NSString *displayName;
-- (void)retryConnectionAction:(id)arg1;
+- (void)retryConnection;
 - (void)refreshConnectionAddress;
 - (void)setRepresentedObject:(id)arg1;
 - (id)contextMenu;
 - (void)primitiveInvalidate;
 - (void)loadView;
+- (void)updatePassword:(id)arg1;
+- (void)updateUsername:(id)arg1;
 
 @end
 

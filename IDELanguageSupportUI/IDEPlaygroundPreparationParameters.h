@@ -8,7 +8,7 @@
 
 #import "NSSecureCoding.h"
 
-@class DVTFilePath, IDEPlaygroundDebuggerLaunchParameters, IDEPlaygroundExecutionDeviceService, NSString;
+@class DVTFilePath, IDEPlaygroundDebuggerLaunchParameters, IDEPlaygroundExecutionDeviceService, NSArray, NSString;
 
 @interface IDEPlaygroundPreparationParameters : NSObject <NSSecureCoding>
 {
@@ -19,8 +19,9 @@
     DVTFilePath *_sdkPath;
     NSString *_playgroundName;
     DVTFilePath *_frameworkSearchPath;
-    DVTFilePath *_auxiliarySourceDylibPath;
-    DVTFilePath *_resourcesDirectoryPath;
+    NSArray *_auxiliarySourceFrameworkLocations;
+    DVTFilePath *_symlinkedResourcesDirectory;
+    NSArray *_resourceSearchPaths;
     DVTFilePath *_containerPath;
     IDEPlaygroundDebuggerLaunchParameters *_debuggerLaunchParameters;
 }
@@ -28,8 +29,9 @@
 + (BOOL)supportsSecureCoding;
 @property(retain) IDEPlaygroundDebuggerLaunchParameters *debuggerLaunchParameters; // @synthesize debuggerLaunchParameters=_debuggerLaunchParameters;
 @property(readonly) DVTFilePath *containerPath; // @synthesize containerPath=_containerPath;
-@property(readonly) DVTFilePath *resourcesDirectoryPath; // @synthesize resourcesDirectoryPath=_resourcesDirectoryPath;
-@property(readonly) DVTFilePath *auxiliarySourceDylibPath; // @synthesize auxiliarySourceDylibPath=_auxiliarySourceDylibPath;
+@property(readonly) NSArray *resourceSearchPaths; // @synthesize resourceSearchPaths=_resourceSearchPaths;
+@property(readonly) DVTFilePath *symlinkedResourcesDirectory; // @synthesize symlinkedResourcesDirectory=_symlinkedResourcesDirectory;
+@property(readonly) NSArray *auxiliarySourceFrameworkLocations; // @synthesize auxiliarySourceFrameworkLocations=_auxiliarySourceFrameworkLocations;
 @property(readonly) DVTFilePath *frameworkSearchPath; // @synthesize frameworkSearchPath=_frameworkSearchPath;
 @property(readonly, copy) NSString *playgroundName; // @synthesize playgroundName=_playgroundName;
 @property(readonly) BOOL runInFullSimulator; // @synthesize runInFullSimulator=_runInFullSimulator;
@@ -37,11 +39,14 @@
 @property(readonly) DVTFilePath *executablePath; // @synthesize executablePath=_executablePath;
 @property(readonly) IDEPlaygroundExecutionDeviceService *deviceService; // @synthesize deviceService=_deviceService;
 - (void).cxx_destruct;
+- (id)debugDescription;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
+- (id)_comparisonKeyPaths;
+- (id)_auxiliarySourceFrameworkLocationsAsSet;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithExecutablePath:(id)arg1 sdk:(id)arg2 runInFullSimulator:(BOOL)arg3 deviceService:(id)arg4 playgroundName:(id)arg5 frameworkSearchPath:(id)arg6 auxiliarySourceDylibPath:(id)arg7 resourcesDirectoryPath:(id)arg8 containerPath:(id)arg9;
+- (id)initWithExecutablePath:(id)arg1 sdk:(id)arg2 runInFullSimulator:(BOOL)arg3 deviceService:(id)arg4 playgroundName:(id)arg5 frameworkSearchPath:(id)arg6 auxiliarySourceFrameworkLocations:(id)arg7 symlinkedResourcesDirectory:(id)arg8 resourceSearchPaths:(id)arg9 containerPath:(id)arg10;
 
 @end
 

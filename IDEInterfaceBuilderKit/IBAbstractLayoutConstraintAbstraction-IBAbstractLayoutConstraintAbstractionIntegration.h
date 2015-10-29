@@ -7,7 +7,7 @@
 #import "IBAbstractLayoutConstraintAbstraction.h"
 
 @interface IBAbstractLayoutConstraintAbstraction (IBAbstractLayoutConstraintAbstractionIntegration)
-+ (id)ibDefaultImageForInstance:(id)arg1;
++ (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
 - (long long)ibCompareForSortingForUserInterface:(id)arg1;
 @property(readonly, nonatomic) id ibMemberToHighlightInUI;
 - (BOOL)ibIsLikelyContributingToAmbiguityOfGroup:(id)arg1;

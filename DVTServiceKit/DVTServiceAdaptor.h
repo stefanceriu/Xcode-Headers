@@ -11,7 +11,7 @@
 }
 
 - (void)unregisterForEvents;
-- (void)registerForEvents:(id)arg1;
+- (void)registerForEventsWithSockets:(id)arg1;
 
 @end
 

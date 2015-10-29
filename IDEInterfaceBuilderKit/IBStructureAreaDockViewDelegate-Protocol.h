@@ -40,7 +40,6 @@
 - (BOOL)dockView:(IBStructureAreaDockView *)arg1 isShowingOpenIndicatorForRepresentedObject:(id)arg2 inGroup:(id)arg3;
 - (NSString *)dockView:(IBStructureAreaDockView *)arg1 titleForRepresentedObject:(id)arg2 inGroup:(id)arg3;
 - (NSArray *)dockView:(IBStructureAreaDockView *)arg1 representedObjectsForGroup:(id)arg2;
-- (NSString *)dockView:(IBStructureAreaDockView *)arg1 titleOfRepresentedGroup:(id)arg2;
 - (NSArray *)dockViewRepresentedGroups:(IBStructureAreaDockView *)arg1;
 - (void)dockViewWillValidateData:(IBStructureAreaDockView *)arg1;
 

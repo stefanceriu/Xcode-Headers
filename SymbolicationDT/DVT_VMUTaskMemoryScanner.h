@@ -6,11 +6,15 @@
 
 #import "NSObject.h"
 
-@class DVT_VMUObjectIdentifier, DVT_VMUVMRegionIdentifier;
+#import "VMUCommonGraphInterface.h"
 
-@interface DVT_VMUTaskMemoryScanner : NSObject
+@class DVT_VMUClassInfoMap, DVT_VMUObjectIdentifier, DVT_VMUVMRegionIdentifier, NSString;
+
+@interface DVT_VMUTaskMemoryScanner : NSObject <VMUCommonGraphInterface>
 {
     unsigned int _task;
+    int _pid;
+    unsigned long long _suspendTime;
     unsigned int _suspensionToken;
     DVT_VMUObjectIdentifier *_objectIdentifier;
     DVT_VMUVMRegionIdentifier *_regionIdentifier;
@@ -19,7 +23,6 @@
     unsigned int _blocksSize;
     struct _VMURegionNode *_regions;
     unsigned int _regionsCount;
-    unsigned int _regionsSize;
     struct _VMURegionMap *_regionMap;
     struct _VMUZoneNode *_zones;
     unsigned int _zonesCount;
@@ -28,6 +31,7 @@
     unsigned int _threadsCount;
     id *_classInfos;
     unsigned int _classInfosCount;
+    DVT_VMUClassInfoMap *_classInfoIndexer;
     BOOL _exactScanningEnabled;
     unsigned long long _maxInteriorOffset;
     int _scanningMask;
@@ -35,22 +39,35 @@
     CDUnknownBlockType _nodeLogger;
 }
 
++ (void)initialize;
 @property(nonatomic) int scanningMask; // @synthesize scanningMask=_scanningMask;
+@property(readonly, nonatomic) unsigned int regionCount; // @synthesize regionCount=_regionsCount;
+@property(readonly, nonatomic) unsigned int zoneCount; // @synthesize zoneCount=_zonesCount;
 @property(readonly, nonatomic) unsigned int nodeCount; // @synthesize nodeCount=_blocksCount;
 @property(nonatomic) BOOL exactScanningEnabled; // @synthesize exactScanningEnabled=_exactScanningEnabled;
 @property(nonatomic) unsigned long long maxInteriorOffset; // @synthesize maxInteriorOffset=_maxInteriorOffset;
+@property(readonly, nonatomic) int pid; // @synthesize pid=_pid;
 - (id)referenceDescription:(CDStruct_df82e459)arg1 withSourceNode:(unsigned int)arg2 destinationNode:(unsigned int)arg3 symbolicator:(struct _CSTypeRef)arg4 alignmentSpacing:(unsigned int)arg5;
 - (id)nodeDescription:(unsigned int)arg1 withOffset:(unsigned long long)arg2;
 - (id)nodeDescription:(unsigned int)arg1;
 - (void)setReferenceScanningLogger:(CDUnknownBlockType)arg1;
 - (void)setNodeScanningLogger:(CDUnknownBlockType)arg1;
+@property(readonly, nonatomic) unsigned int nodeNamespaceSize;
+@property(readonly, nonatomic) unsigned int vmPageSize;
+- (unsigned int)enumerateReferencesWithBlock:(CDUnknownBlockType)arg1;
+- (unsigned int)enumerateRegionsWithBlock:(CDUnknownBlockType)arg1;
+- (unsigned int)enumerateObjectsWithBlock:(CDUnknownBlockType)arg1;
 - (unsigned int)enumerateNodesWithBlock:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) unsigned int mallocNodeCount;
 - (void *)contentForNode:(unsigned int)arg1;
-- (id)labelForMallocNode:(unsigned int)arg1;
+- (id)labelForNode:(unsigned int)arg1;
+- (id)zoneNameForIndex:(unsigned int)arg1;
 - (id)zoneNameForNode:(unsigned int)arg1;
 - (CDStruct_599faf0f)nodeDetails:(unsigned int)arg1;
+@property(readonly, nonatomic) DVT_VMUClassInfoMap *realizedClasses;
+- (id)processSnapshotGraph;
 - (id)scanNodesIntoGraph;
+- (void)_scanIntoGraph:(id)arg1;
 - (void)scanNodesForReferences:(CDUnknownBlockType)arg1;
 - (void)removeRootReachableNodes;
 - (void)_orderedScanWithScanner:(CDUnknownBlockType)arg1 recorder:(CDUnknownBlockType)arg2 keepMapped:(_Bool)arg3 actions:(CDUnknownBlockType)arg4;
@@ -68,6 +85,13 @@
 - (void)detachFromTask;
 - (BOOL)_suspend;
 - (id)initWithTask:(unsigned int)arg1;
+- (id)initWithTask:(unsigned int)arg1 options:(unsigned long long)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

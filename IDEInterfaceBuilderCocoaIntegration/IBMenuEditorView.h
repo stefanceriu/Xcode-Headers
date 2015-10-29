@@ -6,27 +6,25 @@
 
 #import "DVTLayoutView_ML.h"
 
-@class DVTStackView_ML, IBMenuItemEditorView, IBMutableIdentityDictionary, NSArray, NSFont, NSMenu, NSSet;
+@class DVTStackView_ML, IBMenuItemEditorView, IBMutableIdentityDictionary, NSArray, NSFont, NSSet;
 
 @interface IBMenuEditorView : DVTLayoutView_ML
 {
-    double minimumFixedDimensionMagnitude;
-    IBMenuItemEditorView *itemViewDrawingKeyEquivalentRect;
-    IBMutableIdentityDictionary *representedObjectsToItems;
-    IBMutableIdentityDictionary *itemsToViews;
-    DVTStackView_ML *itemStack;
-    NSArray *menuItemViews;
-    NSSet *selectedItems;
-    NSMenu *menu;
-    NSFont *font;
-    BOOL rebuildViewList;
-    BOOL mainMenuOrDescendantOfMainMenu;
+    IBMenuItemEditorView *_itemViewDrawingKeyEquivalentRect;
+    IBMutableIdentityDictionary *_representedObjectsToItems;
+    IBMutableIdentityDictionary *_itemsToViews;
+    DVTStackView_ML *_itemStack;
+    NSArray *_menuItemViews;
+    NSSet *_selectedItems;
+    BOOL _rebuildViewList;
+    BOOL _mainMenuOrDescendantOfMainMenu;
+    NSFont *_font;
+    double _minimumFixedDimensionMagnitude;
 }
 
-@property(nonatomic, getter=isMainMenuOrDescendantOfMainMenu) BOOL mainMenuOrDescendantOfMainMenu; // @synthesize mainMenuOrDescendantOfMainMenu;
-@property(copy, nonatomic) NSMenu *menu; // @synthesize menu;
-@property(copy, nonatomic) NSFont *font; // @synthesize font;
-@property(nonatomic) double minimumFixedDimensionMagnitude; // @synthesize minimumFixedDimensionMagnitude;
+@property(nonatomic) double minimumFixedDimensionMagnitude; // @synthesize minimumFixedDimensionMagnitude=_minimumFixedDimensionMagnitude;
+@property(nonatomic, getter=isMainMenuOrDescendantOfMainMenu) BOOL mainMenuOrDescendantOfMainMenu; // @synthesize mainMenuOrDescendantOfMainMenu=_mainMenuOrDescendantOfMainMenu;
+@property(copy, nonatomic) NSFont *font; // @synthesize font=_font;
 - (void).cxx_destruct;
 - (id)copyForDisplayingMenu:(id)arg1;
 - (void)layoutBottomUp;
@@ -52,6 +50,7 @@
 - (id)menuItemForRepresentedObject:(id)arg1;
 - (id)viewForMenuItem:(id)arg1;
 - (id)menuItemViews;
+- (void)setMenu:(id)arg1;
 - (void)setDrawsKeyEquivalentRectForItemWithRepresentedObject:(id)arg1;
 - (id)initWithMenu:(id)arg1;
 

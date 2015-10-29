@@ -34,9 +34,10 @@
 - (BOOL)endPointProviderExtension:(id)arg1 supportsLanguage:(id)arg2;
 - (BOOL)languageIdentifier:(id)arg1 identifiesLanguage:(id)arg2;
 - (id)hitViewForConnectionDrag:(struct CGPoint)arg1 ingoringWindows:(id)arg2;
-- (id)calculateConnectionEndPointInDocument:(id)arg1 forContext:(id)arg2 usingCandidatesBackToFront:(id)arg3 constraintAdditionValidationState:(id)arg4;
-- (BOOL)isCandidate:(id)arg1 validForContext:(id)arg2 inDocument:(id)arg3 constraintAdditionValidationState:(id)arg4;
-- (BOOL)shouldConnectAsConstraintToItem:(id)arg1 context:(id)arg2 inDocument:(id)arg3;
+- (id)calculateConnectionEndPointInDocument:(id)arg1 forContext:(id)arg2 usingCandidatesBackToFront:(id)arg3;
+- (BOOL)isCandidate:(id)arg1 validConnectionEndPointForContext:(id)arg2 inDocument:(id)arg3;
+- (BOOL)isCandidate:(id)arg1 validConstraintConnectionEndPointForContext:(id)arg2 inDocument:(id)arg3;
+- (BOOL)shouldConnectAsConstraintToItem:(id)arg1 context:(id)arg2 inDocument:(id)arg3 returningSourceItem:(id *)arg4 andDestinationItem:(id *)arg5;
 - (id)prototypeConnectionsNamed:(id)arg1 inDocument:(id)arg2 ofRelationshipType:(long long)arg3 fromClassNamed:(id)arg4 toTarget:(id)arg5;
 
 @end

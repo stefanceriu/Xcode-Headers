@@ -50,6 +50,7 @@
 - (long long)unarchiveIntegerForKey:(id)arg1 defaultValue:(long long)arg2;
 - (struct _NSRange)unarchiveRangeForKey:(id)arg1 defaultValue:(struct _NSRange)arg2;
 - (CDStruct_c3b9c2ee)unarchiveOffsetForKey:(id)arg1 defaultValue:(CDStruct_c3b9c2ee)arg2;
+- (struct _IBEdgeInsets)unarchiveIBEdgeInsetsForKey:(id)arg1 defaultValue:(struct _IBEdgeInsets)arg2;
 - (struct NSEdgeInsets)unarchiveEdgeInsetsForKey:(id)arg1 defaultValue:(struct NSEdgeInsets)arg2;
 - (CDStruct_c519178c)unarchiveInsetForKey:(id)arg1 defaultValue:(CDStruct_c519178c)arg2;
 - (struct CGRect)unarchiveRectForKey:(id)arg1 defaultValue:(struct CGRect)arg2;
@@ -93,7 +94,7 @@
 - (id)elementWithName:(id)arg1 optionalKey:(id)arg2;
 - (id)elementWithKey:(id)arg1 expectElementName:(id)arg2;
 - (id)keyForCurrentlyUnarchivedObject;
-- (void)unarchiveDocument:(id)arg1;
+- (BOOL)unarchiveDocument:(id)arg1 error:(id *)arg2;
 - (void)recurseWithElement:(id)arg1 kind:(long long)arg2 invokingBlock:(CDUnknownBlockType)arg3;
 - (id)initWithSchema:(id)arg1 data:(id)arg2 error:(id *)arg3;
 - (id)unarchiveFormattedClassSymbolForClassKey:(id)arg1 moduleKey:(id)arg2 moduleProviderKey:(id)arg3;

@@ -9,7 +9,7 @@
 @class IDEWorkspaceTabController, NSWindow;
 
 @protocol IDEContinuousIntegrationCreateEditBotWindowController <NSObject>
-- (void)beginSessionModalForWorkspaceTabController:(IDEWorkspaceTabController *)arg1 hostWindow:(NSWindow *)arg2 editingBot:(id)arg3 editingMode:(long long)arg4 withCompletionBlock:(void (^)(int, id, NSError *))arg5;
-- (void)beginSessionModalForWorkspaceTabController:(IDEWorkspaceTabController *)arg1 hostWindow:(NSWindow *)arg2 editingBot:(id)arg3 withCompletionBlock:(void (^)(int, id, NSError *))arg4;
+- (void)beginSessionModalForWorkspaceTabController:(IDEWorkspaceTabController *)arg1 redefineBot:(id)arg2 hostWindow:(NSWindow *)arg3 withCompletionBlock:(void (^)(int, id, NSError *))arg4;
+- (void)beginSessionModalForWorkspaceTabController:(IDEWorkspaceTabController *)arg1 hostWindow:(NSWindow *)arg2 withCompletionBlock:(void (^)(int, id, NSError *))arg3;
 @end
 

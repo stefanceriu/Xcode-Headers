@@ -27,10 +27,8 @@
 - (void)setConflictStateForUpdateOrMerge:(unsigned long long)arg1;
 - (void)setSourceControlServerStatus:(int)arg1;
 - (void)setSourceControlLocalStatus:(int)arg1;
-- (id)blameEntriesForRevisionNumber:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)temporaryFolderForBranchName:(id)arg1 revisionNumber:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)currentRevisionWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)computeChildrenIfNeeded;
 @property BOOL edited; // @synthesize edited=_edited;
 - (id)ideModelObjectTypeIdentifier;
 - (void)repositoryURLStringAtBranch:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;

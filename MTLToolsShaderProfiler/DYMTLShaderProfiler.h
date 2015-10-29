@@ -15,7 +15,9 @@
 - (void)_preProcessUSCSampleData:(id)arg1 result:(id)arg2;
 - (id)_gatherStaticInformation;
 - (id)_constructPayload;
+- (BOOL)_isFragmentDrawCall:(unsigned long long)arg1;
 - (id)profileShader:(id)arg1;
+- (id)profileFrame;
 - (void)initializeShaderAnalyzer;
 
 @end

@@ -18,6 +18,7 @@
     DVTOutlineView *_containerOutline;
 }
 
++ (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 @property(retain) DVTOutlineView *containerOutline; // @synthesize containerOutline=_containerOutline;
 @property(readonly) id <DVTDeviceApplication_KitSupport> application; // @synthesize application=_application;
 - (void).cxx_destruct;

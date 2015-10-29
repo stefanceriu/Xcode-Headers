@@ -6,23 +6,21 @@
 
 #import "XDGenericErrorCallback.h"
 
-@class IDEDataModelIssueProvider, NSDictionary, NSMutableArray;
+@class IDEDataModelIssueProvider, NSMutableArray;
 
 @interface IDEDataModelIssueCallback : XDGenericErrorCallback
 {
     IDEDataModelIssueProvider *_provider;
     NSMutableArray *_issues;
-    NSDictionary *_settings;
+    BOOL _showWarnings;
 }
 
 - (void).cxx_destruct;
 - (void)createWarningForElement:(id)arg1 withMessage:(id)arg2 category:(int)arg3 documentURL:(id)arg4;
 - (void)createErrorForElement:(id)arg1 withMessage:(id)arg2 category:(int)arg3 documentURL:(id)arg4;
 - (void)addIssueForObject:(id)arg1 withMessage:(id)arg2 category:(id)arg3 severity:(unsigned long long)arg4 documentURL:(id)arg5;
-- (id)iOSTargetVersion;
-- (id)macOSTargetVersion;
 - (id)issues;
-- (id)initWithProvider:(id)arg1 settings:(id)arg2;
+- (id)initWithProvider:(id)arg1 compilerFlags:(id)arg2;
 
 @end
 

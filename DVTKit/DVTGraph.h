@@ -6,7 +6,7 @@
 
 #import "NSView.h"
 
-@class DVTGraphPopoverViewController, DVTGraphStyle, DVTMapTable, DVTNotificationToken, NSArray, NSMutableArray, NSString;
+@class DVTGraphPopoverViewController, DVTGraphStyle, DVTNotificationToken, NSArray, NSMapTable, NSMutableArray, NSString;
 
 @interface DVTGraph : NSView
 {
@@ -18,7 +18,7 @@
     int _currentMouseDragOperation;
     id _optionMonitor;
     DVTNotificationToken *_graphStyleToken;
-    DVTMapTable *_layersToNotificationTokenArrays;
+    NSMapTable *_layersToNotificationTokenArrays;
     DVTGraphPopoverViewController *_detailsViewController;
     DVTGraphStyle *_graphStyle;
     NSString *_graphTitle;

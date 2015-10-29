@@ -16,6 +16,8 @@
 }
 
 + (id)handlerForAction:(SEL)arg1 withSelectionSource:(id)arg2;
+- (void)selectFuzzyCodeCompletion:(id)arg1;
+- (void)selectStandardCodeCompletion:(id)arg1;
 - (void)switchDiffingAlgorithm:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 

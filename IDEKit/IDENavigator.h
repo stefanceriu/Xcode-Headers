@@ -6,34 +6,45 @@
 
 #import <IDEKit/IDEViewController.h>
 
+#import "DVTReplacementViewDelegate.h"
 #import "IDEFilterControlBarTarget.h"
 #import "IDENavigableItemCoordinatorDelegate.h"
 
-@class IDENavigableItem, IDENavigableItemCoordinator, NSMenu, NSMutableDictionary, NSPredicate, NSString, NSView;
+@class DVTNotificationToken, IDENavigableItem, IDENavigableItemAsyncFilteringCoordinator, NSMenu, NSMutableDictionary, NSPredicate, NSString, NSView;
 
-@interface IDENavigator : IDEViewController <IDENavigableItemCoordinatorDelegate, IDEFilterControlBarTarget>
+@interface IDENavigator : IDEViewController <IDENavigableItemCoordinatorDelegate, IDEFilterControlBarTarget, DVTReplacementViewDelegate>
 {
-    IDENavigableItem *_rootNavigableItem;
-    IDENavigableItemCoordinator *_navigableItemCoordinator;
-    NSMutableDictionary *_cachedStateForParentViewController;
-    NSView *_primaryFilterControl;
-    NSPredicate *_filterPredicate;
+    BOOL _usesManualNavigableItemCoordinatorManagement;
+    DVTNotificationToken *_willForgetNavigableItemsNotificationToken;
     BOOL _filteringEnabled;
+    BOOL _wantsCachedNavigableItemCoordinator;
+    BOOL _wantsUniquingNavigableItemCoordinator;
+    IDENavigableItem *_rootNavigableItem;
+    IDENavigableItemAsyncFilteringCoordinator *_navigableItemCoordinator;
+    NSPredicate *_filterPredicate;
+    NSMutableDictionary *_cachedStateForParentViewController;
+    NSView *__primaryFilterControl;
 }
 
++ (id)keyPathsForValuesAffectingFilterProgress;
 + (BOOL)automaticallyNotifiesObserversOfRootNavigableItem;
 + (void)initialize;
+@property(retain) NSView *_primaryFilterControl; // @synthesize _primaryFilterControl=__primaryFilterControl;
+@property BOOL wantsUniquingNavigableItemCoordinator; // @synthesize wantsUniquingNavigableItemCoordinator=_wantsUniquingNavigableItemCoordinator;
+@property BOOL wantsCachedNavigableItemCoordinator; // @synthesize wantsCachedNavigableItemCoordinator=_wantsCachedNavigableItemCoordinator;
 @property __weak NSMutableDictionary *cachedStateForParentViewController; // @synthesize cachedStateForParentViewController=_cachedStateForParentViewController;
-@property(retain, nonatomic) IDENavigableItem *rootNavigableItem; // @synthesize rootNavigableItem=_rootNavigableItem;
-@property(retain, nonatomic) NSPredicate *filterPredicate; // @synthesize filterPredicate=_filterPredicate;
-@property(retain) NSView *_primaryFilterControl; // @synthesize _primaryFilterControl;
 @property(nonatomic, getter=isFilteringEnabled) BOOL filteringEnabled; // @synthesize filteringEnabled=_filteringEnabled;
+@property(retain, nonatomic) NSPredicate *filterPredicate; // @synthesize filterPredicate=_filterPredicate;
+@property(readonly, nonatomic) IDENavigableItemAsyncFilteringCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
+@property(retain, nonatomic) IDENavigableItem *rootNavigableItem; // @synthesize rootNavigableItem=_rootNavigableItem;
 - (void).cxx_destruct;
+- (void)willForgetNavigableItems:(id)arg1;
+- (void)_navigableItemCoordinatorWillForgetNavigableItems:(id)arg1;
 - (void)focusedEditorDidSelectItem:(id)arg1;
 - (id)navigableItemsForArchivedNavigableItems:(id)arg1;
 - (void)revealArchivedNavigableItems:(id)arg1;
-- (void)revealNavigableItems:(id)arg1;
 - (void)_revealNavigableItems:(id)arg1;
+@property(readonly) long long filterProgress;
 @property(readonly) NSString *filterDefinitionIdentifier;
 - (BOOL)canBecomeMainViewController;
 - (void)primitiveInvalidate;
@@ -42,10 +53,16 @@
 @property(readonly) NSString *filterButtonToolTip;
 @property(readonly) NSMenu *filterButtonMenu;
 @property(readonly) NSString *domainIdentifier;
-@property(retain) IDENavigableItemCoordinator *navigableItemCoordinator;
+- (void)_removeNavigableItemCoordinator;
+- (void)_setNewNavigableItemCoordinator;
+- (void)_setRequiresManualNavigableItemCoordinatorManagement;
+- (void)_setNavigableItemCoordinator:(id)arg1;
 - (void)setOutputSelection:(id)arg1;
 - (void)updateBoundSelection;
+- (void)viewWillUninstall;
 - (void)viewDidInstall;
+- (id)_createNavigableItemCoordinator;
+- (void)loadView;
 - (void)updateBoundContent;
 - (id)dvtExtraBindings;
 

@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class DVTMapTable, NSOperationQueue;
+@class NSMapTable, NSOperationQueue;
 
 @interface IDEBuildArbitrator : NSObject
 {
     NSOperationQueue *_serializationQueue;
-    DVTMapTable *_fileProducingBuildTasksByFilePath;
-    DVTMapTable *_registeringBuildersByFilePath;
-    DVTMapTable *_registeredFilePathsByBuilder;
+    NSMapTable *_fileProducingBuildTasksByFilePath;
+    NSMapTable *_registeringBuildersByFilePath;
+    NSMapTable *_registeredFilePathsByBuilder;
 }
 
 + (id)sharedBuildArbitrator;

@@ -21,6 +21,7 @@
 - (id)ibFallbackClassNameForClassSwapper;
 - (BOOL)ibShouldUseClassSwapper;
 - (id)ibParentForFoldingDownstreamControllerFromRelationshipSegue:(id)arg1;
+- (BOOL)ibIsValidCocoaEmbedSegueDestination;
 - (BOOL)ibCanBeValidRelationshipDestination;
 - (BOOL)ibCanBeValidPopoverSegueDestination;
 - (BOOL)ibCanBeValidPopoverSegueSource;
@@ -29,10 +30,9 @@
 - (BOOL)ibCanBeValidTriggerSegueDestination;
 - (BOOL)ibCanBeValidTriggerSegueSource;
 - (void)ibCaptureDownstreamStoryboardPlaceholderTable:(id)arg1;
-@property(copy) NSString *ibExternalAccessibilityDescription;
-- (id)ibAccessibilityDescriptionAttribute;
+@property(copy) NSString *ibExternalAccessibilityIdentifier;
 @property(copy) NSString *ibExternalAccessibilityHelp;
-- (id)ibAccessibilityHelpAttribute;
+@property(copy) NSString *ibExternalAccessibilityDescription;
 - (BOOL)ibSupportsAccessibility;
 - (id)ibSuggestedAutomaticUserInterfaceItemIdentifier;
 - (id)ibSuggestUserInterfaceItemIdentifierForObject:(id)arg1;

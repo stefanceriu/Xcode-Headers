@@ -10,7 +10,10 @@
 {
 }
 
+- (BOOL)isEqual:(id)arg1;
+- (BOOL)isComplete;
 - (BOOL)isUnversionedLogItem;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)_init;
 - (id)init;
 

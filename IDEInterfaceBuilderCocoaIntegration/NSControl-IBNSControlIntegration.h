@@ -17,7 +17,6 @@
 + (id)keyPathsForValuesAffectingIbInspectedEnabled;
 + (id)keyPathsForValuesAffectingIbHasSingleCell;
 + (id)keyPathsForValuesAffectingIbInspectedControlSize;
-+ (id)keyPathsForValuesAffectingIbInspectedSetsMaxLayoutWidthAtFirstLayout;
 - (void)ibSetupTriggerForSegueTemplate:(id)arg1 inCompilationUnit:(id)arg2;
 - (id)ibSegueTriggers;
 - (id)ibDefaultSegueTrigger;
@@ -25,7 +24,6 @@
 - (void)unarchiveCell:(id)arg1;
 - (void)archiveCell:(id)arg1;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
-- (void)ibAutolayoutSafeSizeToFit;
 - (BOOL)ibPrefersToBeSizedToFitAfterEditingTitle;
 - (BOOL)ibIdentifierPropertyCanConflictsWithObject:(id)arg1;
 - (id)ibInspectedCell;
@@ -59,7 +57,7 @@
 - (struct CGRect)ibRectForChild:(id)arg1 inFrameController:(id)arg2;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)ibInvalidateWarningsAfterDescendant:(id)arg1 changedProperty:(id)arg2 inDocument:(id)arg3 fromValue:(id)arg4;
-- (BOOL)ibIsBaselineAtIndex:(long long)arg1 inMotionWithKnob:(long long)arg2;
+- (BOOL)ibIsBaselineAtIndex:(long long)arg1 inMotionWithKnob:(CDUnion_42e99c75)arg2;
 - (double)ibBaselineAtIndex:(long long)arg1 inCoordinateSpaceOfItem:(id)arg2;
 - (double)ibTransformCellBaseline:(double)arg1;
 - (long long)ibBaselineCount;
@@ -70,9 +68,6 @@
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (void)setIbMirrorLayoutDirectionWhenInternationalizing:(long long)arg1;
 - (long long)ibMirrorLayoutDirectionWhenInternationalizing;
-- (BOOL)ibInspectedCanInspectSetsMaxLayoutWidthAtFirstLayout;
-- (void)setIbInspectedSetsMaxLayoutWidthAtFirstLayout:(BOOL)arg1;
-- (BOOL)ibInspectedSetsMaxLayoutWidthAtFirstLayout;
 - (void)setIbExternalSetsMaxLayoutWidthAtFirstLayout:(BOOL)arg1;
 - (BOOL)ibExternalSetsMaxLayoutWidthAtFirstLayout;
 - (void)ibSwizzledNSControlEncodeWithCoder:(id)arg1;

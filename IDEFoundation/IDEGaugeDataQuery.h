@@ -12,6 +12,7 @@
 
 @interface IDEGaugeDataQuery : NSObject <DVTInvalidation>
 {
+    NSString *_requiredAttribute;
     BOOL _isSuspended;
     IDEGaugeDataQueryCoordinator *_queryCoordinator;
     NSSet *_observedAttributes;
@@ -25,6 +26,7 @@
 @property(retain) IDEGaugeDataQueryCoordinator *queryCoordinator; // @synthesize queryCoordinator=_queryCoordinator;
 - (void).cxx_destruct;
 - (void)handleResultDict:(id)arg1;
+- (void)setObservedAttributes:(id)arg1 requiredAttribute:(id)arg2;
 - (void)primitiveInvalidate;
 - (id)initForProcessWithPID:(id)arg1 onDevice:(id)arg2;
 

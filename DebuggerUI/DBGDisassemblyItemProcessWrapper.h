@@ -9,10 +9,12 @@
 #import "DVTInvalidation.h"
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DBGProcess, DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, NSArray, NSImage, NSString;
+@class DBGProcess, DVTDocumentLocation, DVTFileDataType, DVTObservingToken, DVTStackBacktrace, IDEFileReference, NSArray, NSImage, NSString;
 
 @interface DBGDisassemblyItemProcessWrapper : NSObject <DVTInvalidation, IDEKeyDrivenNavigableItemRepresentedObject>
 {
+    DVTObservingToken *_settingDisassemblyObserver;
+    DVTObservingToken *_coalescedStateObserver;
     DBGProcess *_process;
     NSArray *_threadWrappers;
 }
@@ -21,7 +23,7 @@
 + (id)keyPathsForValuesAffectingNavigableItem_image;
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 @property(retain) NSArray *threadWrappers; // @synthesize threadWrappers=_threadWrappers;
-@property(readonly) DBGProcess *process; // @synthesize process=_process;
+@property(retain) DBGProcess *process; // @synthesize process=_process;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)_invalidatePreviousThreadWrappers;

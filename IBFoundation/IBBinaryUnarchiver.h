@@ -6,10 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSData, NSDictionary, NSMutableArray;
+@class NSData, NSDictionary, NSMutableArray, NSMutableDictionary, NSObject<IBObjectRepresentationTranslator>;
 
 @interface IBBinaryUnarchiver : NSObject
 {
+    NSMutableDictionary *overrideClassesByClassName;
     NSMutableArray *objectsIndexedByOID;
     unsigned long long currentDataBufferIndex;
     long long archiveVersion;
@@ -21,16 +22,25 @@
             char *characters;
         } ;
     } buffer;
+    NSMutableArray *_objectTranslationDelegateStack;
     NSDictionary *_context;
 }
 
++ (Class)classForClassName:(id)arg1;
++ (void)setClass:(Class)arg1 forClassName:(id)arg2;
++ (id)_globalClassByClassNameMap;
 + (id)unarchiveObjectWithData:(id)arg1 context:(id)arg2 minArchiveVersion:(long long)arg3;
 + (id)unarchiveObjectWithData:(id)arg1 context:(id)arg2;
 @property(readonly, nonatomic) NSDictionary *context; // @synthesize context=_context;
 @property(readonly, nonatomic) long long archiveVersion; // @synthesize archiveVersion;
 - (void).cxx_destruct;
+- (Class)classForClassName:(id)arg1;
+- (void)setClass:(Class)arg1 forClassName:(id)arg2;
+- (Class)decodeClass;
 - (id)decodeUTF8String;
+- (id)decodeObjectReferenceIfPossible;
 - (id)decodeObject;
+- (id)decodeObjectReference;
 - (struct _NSRange)decodeRange;
 - (CDStruct_c519178c)decodeInset;
 - (struct CGRect)decodeCGRect;
@@ -46,6 +56,9 @@
 - (void)decodeBytes:(CDUnknownBlockType)arg1;
 - (const char *)internalOnlyDecodeBytesWithLength:(unsigned long long *)arg1;
 - (BOOL)nextStructureTypeIsObject;
+- (void)popObjectTranslationDelegate:(id)arg1;
+- (void)pushObjectTranslationDelegate:(id)arg1;
+@property(readonly, nonatomic) __weak NSObject<IBObjectRepresentationTranslator> *currentObjectTranslationDelegate;
 - (id)initForReadingWithData:(id)arg1 context:(id)arg2;
 
 @end

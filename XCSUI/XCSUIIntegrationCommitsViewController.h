@@ -10,7 +10,7 @@
 #import "NSTableViewDelegate.h"
 #import "XCSBotSupportingEditorHostedViewController.h"
 
-@class DVTLozengeTextField, DVTReplacementView, DVTScrollView, NSArray, NSMapTable, NSString, NSTableView, NSTextField, NSView, XCSBot, XCSBotSupportingEditor, XCSContributor, XCSIntegration, XCSUIInsetHorizontalDividerLine, _XCSUIAllCommittersBadgeView;
+@class DVTLozengeTextField, DVTReplacementView, DVTScrollView, NSArray, NSMapTable, NSString, NSTableView, NSTextField, NSView, XCSBot, XCSBotSupportingEditor, XCSContributor, XCSIntegration, XCSUIInsetHorizontalDividerLine, XCSUIProgressReplacementView, _XCSUIAllCommittersBadgeView;
 
 @interface XCSUIIntegrationCommitsViewController : DVTViewController <NSTableViewDelegate, NSTableViewDataSource, XCSBotSupportingEditorHostedViewController>
 {
@@ -36,12 +36,22 @@
     _XCSUIAllCommittersBadgeView *_allCommittersBadgeView;
     DVTScrollView *_committersScrollView;
     DVTReplacementView *_contributorDetailsReplacementView;
-    DVTLozengeTextField *_errorTextField;
+    XCSUIProgressReplacementView *_progressReplacementView;
+    NSView *_contentCustomView;
+    NSView *_commitsView;
+    NSView *_noCommitsView;
+    DVTLozengeTextField *_noCommitsLozenge;
+    NSView *_placeholder;
 }
 
 + (BOOL)instancesCanContainDocumentLocation:(id)arg1;
 + (id)keyPathsForValuesAffectingCurrentSelectedItems;
-@property __weak DVTLozengeTextField *errorTextField; // @synthesize errorTextField=_errorTextField;
+@property __weak NSView *placeholder; // @synthesize placeholder=_placeholder;
+@property __weak DVTLozengeTextField *noCommitsLozenge; // @synthesize noCommitsLozenge=_noCommitsLozenge;
+@property __weak NSView *noCommitsView; // @synthesize noCommitsView=_noCommitsView;
+@property __weak NSView *commitsView; // @synthesize commitsView=_commitsView;
+@property __weak NSView *contentCustomView; // @synthesize contentCustomView=_contentCustomView;
+@property __weak XCSUIProgressReplacementView *progressReplacementView; // @synthesize progressReplacementView=_progressReplacementView;
 @property __weak DVTReplacementView *contributorDetailsReplacementView; // @synthesize contributorDetailsReplacementView=_contributorDetailsReplacementView;
 @property __weak DVTScrollView *committersScrollView; // @synthesize committersScrollView=_committersScrollView;
 @property __weak _XCSUIAllCommittersBadgeView *allCommittersBadgeView; // @synthesize allCommittersBadgeView=_allCommittersBadgeView;
@@ -70,6 +80,8 @@
 - (void)showDividerLinePointer;
 - (void)hideDividerLinePointer;
 - (id)commitsDetailViewController;
+- (void)showCommitsView;
+- (void)showNoCommitsView:(id)arg1;
 - (void)refreshUI;
 - (void)hideAllBadge;
 - (void)addTableColumnsForContributorsWithColumnWidth:(double)arg1;
@@ -78,7 +90,7 @@
 - (void)updateCommitDetailsWithCommitHistory:(id)arg1;
 - (void)computeContributorChanges;
 - (void)refreshLogViewWithSourceControlLogItems:(id)arg1;
-- (id)logItemForContributor:(id)arg1 commit:(id)arg2;
+- (id)logItemForCommit:(id)arg1;
 - (void)committersScrollViewContentBoundsDidChange:(id)arg1;
 - (void)observeCommittersScrollView;
 - (void)removeAllTableColumns;

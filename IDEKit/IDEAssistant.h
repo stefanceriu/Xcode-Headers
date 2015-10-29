@@ -18,6 +18,7 @@
 }
 
 + (BOOL)wantsOverlayEffect;
++ (BOOL)wantsTransparentBackground;
 @property(nonatomic) BOOL widthResizable; // @synthesize widthResizable=_widthResizable;
 @property(nonatomic) BOOL expandsAssistantView; // @synthesize expandsAssistantView=_expandsAssistantView;
 @property(retain) NSString *previousAssistantIdentifier; // @synthesize previousAssistantIdentifier=_previousAssistantIdentifier;

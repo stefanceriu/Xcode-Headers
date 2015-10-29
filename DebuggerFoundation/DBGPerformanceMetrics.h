@@ -6,23 +6,30 @@
 
 #import "NSObject.h"
 
-@class DVTPerformanceMetric;
+@class DVTPerformanceMetric, NSObject<OS_dispatch_queue>;
 
 @interface DBGPerformanceMetrics : NSObject
 {
     DVTPerformanceMetric *_perceivedStepMetric;
     DVTPerformanceMetric *_variablesViewUpdateMetric;
     DVTPerformanceMetric *_nonPrimaryPCUpdateMetric;
-    DVTPerformanceMetric *_viewDebuggingSnapshotMetric;
+    DVTPerformanceMetric *_viewDebuggingSceneLoadMetric;
+    NSObject<OS_dispatch_queue> *_viewDebuggingSceneCounterQueue;
+    long long _viewDebuggingSceneCounter;
+    struct DBGPerformanceViewDebuggingStats _viewDebuggingStats;
 }
 
 + (id)defaultMetrics;
 - (void).cxx_destruct;
-- (void)viewDebuggerSnapshotCompleted:(id)arg1;
-- (void)viewDebuggerSnapshotStarted:(id)arg1;
+- (void)decrementOutstandingSnapshotsWithTime:(double)arg1 incrementCount:(BOOL)arg2;
+- (void)incrementOutstandingSnapshots;
+- (void)memoryGraphDebuggerHierarchyFetchCompleted:(id)arg1;
+- (void)memoryGraphDebuggerHierarchyFetchStarted:(id)arg1;
+- (void)viewDebuggerSceneLoadCompleted:(id)arg1;
+- (void)viewDebuggerSceneLoadStarted:(id)arg1;
+- (id)_sceneLoadIdentifierForViewDebugger:(id)arg1;
 - (void)viewDebuggerHierarchyFetchCompleted:(id)arg1;
 - (void)viewDebuggerHierarchyFetchStarted:(id)arg1;
-- (id)_snapshotIdentifierForViewDebugger:(id)arg1;
 - (void)disassemblyFetchCompleted:(id)arg1;
 - (void)disassemblyFetchStarted:(id)arg1;
 - (void)formattedSummaryFetchCompleted:(id)arg1;
@@ -35,6 +42,7 @@
 - (void)variablesViewUpdateCompleted;
 - (void)variablesViewUpdateStarted;
 - (void)perceivedStepCompleted;
+- (void)perceivedStepCheckpoint:(id)arg1;
 - (void)perceivedStepStarted;
 - (void)debugSessionCompleted:(id)arg1;
 - (void)debugSessionStarted:(id)arg1;

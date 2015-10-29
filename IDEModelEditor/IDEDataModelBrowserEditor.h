@@ -28,6 +28,7 @@
 + (id)keyPathsForValuesAffectingSelectedEntityIndexes;
 + (id)keyPathsForValuesAffectingSelectedProperties;
 + (id)keyPathsForValuesAffectingSelectedEntities;
++ (id)keyPathsForValuesAffectingRootEditor;
 @property(retain, nonatomic) IDEDataModelPropertiesTableController *activePropertiesController; // @synthesize activePropertiesController=_activePropertiesController;
 @property(retain) IDEDataModelEntityContentsEditor *parentEditor; // @synthesize parentEditor;
 - (void).cxx_destruct;

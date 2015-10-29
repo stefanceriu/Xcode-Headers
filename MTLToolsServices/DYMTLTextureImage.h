@@ -41,6 +41,7 @@
 @property(readonly, nonatomic) unsigned long long width; // @synthesize width=_width;
 @property(readonly, nonatomic) unsigned int genericFormat; // @synthesize genericFormat=_genericFormat;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) unsigned long long cachingCost;
 - (id)uncompressedData;
 @property(readonly, nonatomic) NSData *data; // @dynamic data;
 - (id)_initWithProperties:(id)arg1;

@@ -8,7 +8,7 @@
 
 #import "IDECapsuleListViewDataSource.h"
 
-@class DVTBorderedView, DVTChoice, DVTFilePathFieldCell, DVTNotificationToken, DVTObservingToken, DVTStackView_AppKitAutolayout, DVTStackView_ML, DVTTabChooserView, IDEArgumentsCapsuleSheetController, IDECapsuleListView, IDEDebuggerSpecifier, IDEEnvironmentVariablesCapsuleSheetController, IDELaunchSchemeAction, IDEScheme, NSButton, NSButtonCell, NSColor, NSMatrix, NSMutableArray, NSPopUpButton, NSString, NSTabView, NSTextField, NSTextView, NSView;
+@class DVTBorderedView, DVTChoice, DVTNotificationToken, DVTObservingToken, DVTStackView_AppKitAutolayout, DVTTabChooserView, IDEArgumentsCapsuleSheetController, IDECapsuleListView, IDEDebuggerSpecifier, IDEEnvironmentVariablesCapsuleSheetController, IDELaunchSchemeAction, IDEScheme, NSButton, NSButtonCell, NSColor, NSMatrix, NSMutableArray, NSPopUpButton, NSString, NSTabView, NSTextField, NSTextView, NSView;
 
 @interface IDELaunchRunPhaseSheetController : IDEViewController <IDECapsuleListViewDataSource>
 {
@@ -20,12 +20,11 @@
     NSButtonCell *_debugProcessAsMeButtonCell;
     NSMatrix *_launchStyleMatrix;
     NSButtonCell *_waitForAppToLaunchButtonCell;
-    DVTFilePathFieldCell *_workingDirectoryTextFieldCell;
     NSView *_infoTabViewContentView;
     NSView *_diagnosticsTabViewContentView;
     NSPopUpButton *_macroExpansionRunnableBuildablesPopUp;
     NSTextField *_macroExpansionDescription;
-    DVTStackView_ML *_optionsStackView;
+    DVTStackView_AppKitAutolayout *_optionsStackView;
     NSTextView *_customLaunchCommandsTextView;
     NSButton *_debugExecutableCheckbox;
     NSTabView *_tabView;
@@ -41,11 +40,8 @@
     DVTChoice *_conditionsChoice;
     DVTChoice *_optionsChoice;
     DVTChoice *_diagnosticsChoice;
-    DVTChoice *_debuggingChoice;
     NSColor *_descriptionTextColor;
     NSColor *_debugAsRootDescriptionTextColor;
-    IDEScheme *_runContext;
-    IDELaunchSchemeAction *_runPhase;
     int _launchStyleWhenDebuggerSetToNil;
     NSMutableArray *_launchActionViewControllers;
     BOOL _isSupportedApplicationData;
@@ -64,9 +60,12 @@
     BOOL _executableHasBeenSelected;
     BOOL _debuggerHasBeenSelected;
     BOOL _supportsDebugAsDifferentUser;
+    IDEScheme *_runContext;
+    IDELaunchSchemeAction *_runPhase;
 }
 
 + (id)keyPathsForValuesAffectingLaunchStyleIsCustomLaunchCommands;
++ (id)keyPathsForValuesAffectingAllowEnablingAddressSanitizer;
 + (id)keyPathsForValuesAffectingExecutableHasBeenSelected;
 + (id)keyPathsForValuesAffectingDebuggerHasBeenSelected;
 + (void)initialize;
@@ -82,8 +81,6 @@
 - (id)capsuleListView:(id)arg1 viewControllerForRow:(long long)arg2;
 - (long long)numberOfObjectsInCapsuleListView:(id)arg1;
 - (id)workspace;
-- (id)DVTFilePathFieldCell:(id)arg1 resolvedPathForPath:(id)arg2;
-- (void)DVTFilePathFieldCell:(id)arg1 chooserSelectedPath:(id)arg2;
 - (void)_resetOptionsUpdatedFlag;
 - (void)_updateSupportedOptions;
 - (id)_allOptions;
@@ -118,6 +115,7 @@
 - (void)_setupDebugOptions;
 - (void)_updateDebugCheckboxes;
 - (void)_updateDebugOptionsEnablement;
+- (BOOL)allowEnablingAddressSanitizer;
 - (void)updateBoundContent;
 - (void)updateBoundIDERunContextBinding;
 - (id)dvtExtraBindings;

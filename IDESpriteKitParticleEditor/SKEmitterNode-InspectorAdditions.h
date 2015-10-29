@@ -8,23 +8,24 @@
 
 #import "SKNodeWithShader.h"
 
-@class NSColor, NSImage, NSString, NSURL, SKShader;
+@class NSColor, NSString, NSURL, SKNode, SKShader;
 
 @interface SKEmitterNode (InspectorAdditions) <SKNodeWithShader>
++ (id)keyPathsForValuesAffectingParticleTextureImageName;
 @property(retain, nonatomic) NSURL *customSpriteShader;
 - (id)ide_undoKVOKeypaths;
 - (void)setNilValueForKey:(id)arg1;
 - (id)inspectorAttributes;
+@property(retain, nonatomic) SKNode *inspectorTargetNode;
 @property BOOL shouldShowParentInInspector;
 @property(nonatomic) struct CGPoint previewParticlePosition;
-@property(nonatomic) unsigned long long numParticlesToEmitWithAction;
 @property(nonatomic) double particleRotationSpeedDeg;
 @property(nonatomic) double particleRotationRangeDeg;
 @property(nonatomic) double particleRotationDeg;
 @property(nonatomic) double emissionAngleRangeDeg;
 @property(nonatomic) double emissionAngleDeg;
 @property(retain, nonatomic) NSColor *backgroundColor;
-@property(retain, nonatomic) NSImage *particleTextureImage;
+@property(retain, nonatomic) NSString *particleTextureImageName;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

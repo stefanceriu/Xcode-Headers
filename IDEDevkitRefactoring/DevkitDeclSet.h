@@ -6,11 +6,11 @@
 
 #import <IDEDevkitRefactoring/DevkitASTNode.h>
 
-@class DVTPointerArray, DevkitBaseType, DevkitLocation;
+@class DevkitBaseType, DevkitLocation, NSPointerArray;
 
 @interface DevkitDeclSet : DevkitASTNode
 {
-    DVTPointerArray *_decls;
+    NSPointerArray *_decls;
     long long _context;
     DevkitBaseType *_baseType;
     DevkitLocation *_overallLocation;

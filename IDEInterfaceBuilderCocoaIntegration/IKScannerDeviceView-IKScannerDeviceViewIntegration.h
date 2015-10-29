@@ -9,7 +9,6 @@
 @interface IKScannerDeviceView (IKScannerDeviceViewIntegration)
 + (void)ibSwizzle;
 - (void)ibOverrideSetup;
-- (void)ibSwizzledDealloc;
 - (void)ibSwizzledCommonInit;
 - (id)ibSwizzledInitWithCoder:(id)arg1;
 @end

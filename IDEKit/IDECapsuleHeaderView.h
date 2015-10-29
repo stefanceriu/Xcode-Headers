@@ -25,6 +25,7 @@
 - (void)layoutTopDown;
 - (void)_endEditingTitleField;
 - (void)_startEditingTitleFieldWithTitle:(id)arg1;
+- (void)_updateTitleFrame;
 - (double)preferredHeight;
 - (void)mouseUp:(id)arg1;
 - (void)mouseDown:(id)arg1;

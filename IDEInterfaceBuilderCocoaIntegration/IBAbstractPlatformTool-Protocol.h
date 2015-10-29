@@ -6,9 +6,9 @@
 
 #import "NSObject.h"
 
-@class NSDictionary;
+@class NSArray;
 
 @protocol IBAbstractPlatformTool <NSObject>
-- (NSDictionary *)protocolCapabilities;
+- (void)loadExtensions:(NSArray *)arg1;
 @end
 
