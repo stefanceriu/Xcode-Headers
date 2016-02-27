@@ -20,7 +20,7 @@
     DVTObservingToken *_actionEditorSelectedItemsKVOToken;
     DVTObservingToken *_actionEditorFilterStringKVOToken;
     id <NSObject> _replaceTimelineObserver;
-    id <NSObject> _skDocumentBundleObserver;
+    id <NSObject> _skResourceCacheObserver;
     DVTReplacementView *_actionEditorReplacementView;
     GTFActionEditor *_actionEditorViewController;
     DVTGradientImageButton *_actionEditorToggleButton;

@@ -234,7 +234,6 @@
 - (id)loadAndRetainActionDocumentAtURL:(id)arg1;
 - (void)fileSystemEventStream:(id)arg1 notedChangeAtPath:(id)arg2 scanRecursively:(BOOL)arg3;
 - (void)registerFSEvents;
-- (void)invalidateFSEvents;
 - (void)addActionPressed:(id)arg1;
 - (void)updateTimeScale:(id)arg1;
 - (void)clearFilteredTargetsObservers;

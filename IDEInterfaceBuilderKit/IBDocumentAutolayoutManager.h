@@ -63,7 +63,8 @@
 - (id)containerWidgetTypeForView:(id)arg1;
 - (id)widgetTypeForView:(id)arg1;
 - (long long)userInterfaceDirection;
-- (void)configureSceneUpdateRequest:(id)arg1;
+- (void)configureIncrementalSceneUpdateRequest:(id)arg1;
+- (void)configureFullSceneUpdateRequest:(id)arg1;
 - (void)_runBlockIfSceneStatusUpdatingIsEnabledForObject:(id)arg1 withReasonBlock:(CDUnknownBlockType)arg2 block:(CDUnknownBlockType)arg3;
 - (void)debugMenuItemUpdateStatusInAllUnits:(id)arg1;
 - (void)delayAutolayoutStatusUpdatingDuring:(CDUnknownBlockType)arg1;

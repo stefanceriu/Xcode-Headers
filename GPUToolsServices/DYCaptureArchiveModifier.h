@@ -43,6 +43,7 @@
 - (void)_duplicateDataFiles:(id)arg1;
 - (id)copyDataForFilename:(id)arg1 error:(id *)arg2;
 - (id)addDataFileWithPrefix:(id)arg1 bytes:(const void *)arg2 size:(unsigned long long)arg3;
+- (id)addDataFileWithPrefix:(id)arg1 data:(id)arg2;
 - (void)_incrementFunctionIndex:(struct Function *)arg1;
 - (id)_writeFunctionsToStreamWithFilename:(id)arg1;
 - (void)visitInternalFile:(id)arg1;

@@ -97,10 +97,11 @@
 - (BOOL)canvasLinkShouldDrawPath;
 - (BOOL)representsMultipleSegues;
 - (BOOL)pathShouldBeDashed;
-- (BOOL)_phaseIsPreview;
-- (BOOL)_phaseIsCommit;
-- (BOOL)_phaseIsAction;
+- (BOOL)_isPreviewPhase;
+- (BOOL)_isCommitPhase;
+- (BOOL)_isActionPhase;
 - (BOOL)_documentSupportsForceTouchSegues;
+- (id)_descriptionSubstringForDestination;
 - (id)effectiveSegueForSelection;
 - (BOOL)shouldShowInDocumentStructure;
 - (void)setIbInspectedDestination:(id)arg1;

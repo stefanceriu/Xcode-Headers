@@ -12,6 +12,7 @@
 {
 }
 
+- (void)ibPopulateAdditionalTargetOSVersions:(id)arg1 forCompilingDocument:(id)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)runtimeClassNameForContext:(id)arg1 returningOptionalFallbackClassName:(id *)arg2;

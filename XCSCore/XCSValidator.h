@@ -60,7 +60,6 @@
 - (BOOL)validate:(id)arg1 usingSchema:(id)arg2 keyPath:(id)arg3 identifier:(id)arg4 class:(Class)arg5 selector:(SEL)arg6;
 - (void)explainWithClass:(Class)arg1 selector:(SEL)arg2;
 - (id)description;
-- (id)json;
 - (BOOL)isValidWithErrors:(id *)arg1;
 @property(readonly, copy, nonatomic) NSError *lastError;
 - (void)addErrorMessage:(id)arg1 selector:(SEL)arg2 identifier:(id)arg3 class:(Class)arg4 selector:(SEL)arg5;

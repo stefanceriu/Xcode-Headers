@@ -6,7 +6,11 @@
 
 #import "NSObject.h"
 
-@interface GTFFileSystemEventStream : NSObject
+#import "DVTInvalidation.h"
+
+@class DVTStackBacktrace, NSString;
+
+@interface GTFFileSystemEventStream : NSObject <DVTInvalidation>
 {
     struct __FSEventStream *_eventStream;
     struct FSEventStreamContext _context;
@@ -23,22 +27,32 @@
     } _delegateFlags;
 }
 
++ (void)initialize;
 - (void).cxx_destruct;
 - (unsigned long long)lastEventProcessed;
-@property(retain) id <GTFFileSystemEventStreamDelegate> delegate; // @synthesize delegate=_delegate;
+@property __weak id <GTFFileSystemEventStreamDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)flushSync;
 - (void)flush;
 - (void)stop;
 - (void)start;
 - (void)removeFromRunLoop:(id)arg1 forMode:(id)arg2;
 - (void)scheduleInRunLoop:(id)arg1 forMode:(id)arg2;
-- (void)invalidate;
+- (void)primitiveInvalidate;
 - (id)initWithPaths:(id)arg1 watchRoot:(BOOL)arg2;
 - (id)initWithPaths:(id)arg1 startingWithEvent:(unsigned long long)arg2 latency:(double)arg3 defer:(BOOL)arg4 watchRoot:(BOOL)arg5;
 - (void)_processEvent:(unsigned long long)arg1 withFlags:(unsigned int)arg2 forPath:(id)arg3;
 - (void)_processEvents:(const unsigned long long *)arg1 count:(unsigned long long)arg2 withFlags:(const unsigned int *)arg3 forPaths:(id)arg4;
 - (struct __CFString *)_createCFRunLoopModeFromNSRunLoopMode:(id)arg1;
 - (struct __CFRunLoop *)_getCFRunLoopFromNSRunLoop:(id)arg1;
+
+// Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

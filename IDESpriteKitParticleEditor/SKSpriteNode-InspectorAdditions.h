@@ -46,13 +46,13 @@
 @property(nonatomic) int physicsBodyType;
 @property(retain, nonatomic) NSString *textureImageName;
 - (BOOL)hasPhysicsBody;
-@property(retain, nonatomic) SKNode *parentRef;
 @property(readonly, nonatomic) __weak SKNode *selfRef;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(retain, nonatomic) SKNode *parentRef;
 @property(retain, nonatomic) SKShader *shader;
 @property(readonly) Class superclass;
 @end

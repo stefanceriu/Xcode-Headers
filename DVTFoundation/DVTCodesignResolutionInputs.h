@@ -23,8 +23,12 @@
     NSString *_bundleIdentifier;
     NSString *_targetName;
     NSString *_portalTeamID;
+    NSString *_codesignIdentity;
+    NSString *_provisioningProfileUUID;
 }
 
+@property(retain) NSString *provisioningProfileUUID; // @synthesize provisioningProfileUUID=_provisioningProfileUUID;
+@property(retain) NSString *codesignIdentity; // @synthesize codesignIdentity=_codesignIdentity;
 @property(retain) NSString *portalTeamID; // @synthesize portalTeamID=_portalTeamID;
 @property BOOL usingTeamBasedSigning; // @synthesize usingTeamBasedSigning=_usingTeamBasedSigning;
 @property(retain) NSString *targetName; // @synthesize targetName=_targetName;

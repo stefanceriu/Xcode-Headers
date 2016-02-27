@@ -66,6 +66,9 @@
     int _editorMode;
     struct PolyEditor _polyEditor;
     struct vector<NodeMovePair, std::__1::allocator<NodeMovePair>> _nodeMoveQueue;
+    struct unique_ptr<ManipulationEvent, std::__1::default_delete<ManipulationEvent>> _latestManipulationDragEvent;
+    struct unique_ptr<ManipulationEvent, std::__1::default_delete<ManipulationEvent>> _manipulationEndEvent;
+    struct vector<ZoomPositionPair, std::__1::allocator<ZoomPositionPair>> _zoomQueue;
     NSMenu *_rightClickContextMenu;
     int _touchMoveCount;
     NSMutableArray *_observedNodes;
@@ -116,7 +119,8 @@
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)didEvaluateActionsForScene:(id)arg1;
 - (void)thunkPhysicsRecursive:(id)arg1;
-- (void)processNodeMoveQueue;
+- (void)_processZoomQueue;
+- (void)_processNodeMoveQueue;
 - (void)resetPolygonEditor;
 - (void)bringSelectedNodesToFront;
 - (void)pushSelectedNodesToBack;
@@ -183,13 +187,16 @@
 - (void)stopAllActionsOnSelectedNodes;
 - (void)rotateSelectedNodesCounterClockwise;
 - (void)rotateSelectedNodesClockwise;
+- (void)processManipulationEvents;
 - (void)rightMouseDown:(id)arg1;
 - (void)touchCancelled:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
 - (void)touchEndedPolygon:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
+- (void)_processManipulationEndWithTouchID:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
 - (void)touchEndedManipulate:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
 - (void)touchEnded:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
 - (void)touchMovedIKManipulate:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
 - (void)touchMovedPolygon:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
+- (void)_processManipulationEventWithTouchID:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3 lastMouseEventModFlags:(unsigned long long)arg4 lastMouseDownEvent:(id)arg5 lastMouseDragEvent:(id)arg6;
 - (void)touchMovedManipulate:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
 - (void)touchMoved:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
 - (void)touchBeganIKManipulate:(unsigned long long)arg1 location:(struct CGPoint)arg2 clickCount:(int)arg3;
@@ -225,7 +232,6 @@
 - (BOOL)doesNodeTypeDrawAnchor:(id)arg1;
 - (BOOL)canNodeTypeResize:(id)arg1;
 - (BOOL)canNodeTypeRotate:(id)arg1;
-- (BOOL)isIconRepresentedNode:(id)arg1;
 - (void)endCommand;
 - (void)beginCommand;
 - (void)primitiveInvalidate;

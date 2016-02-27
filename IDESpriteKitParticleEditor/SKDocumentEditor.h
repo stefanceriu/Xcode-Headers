@@ -36,8 +36,6 @@
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)primitiveInvalidate;
-- (void)invalidateFSEvents;
-- (id)_activeWorkspace;
 - (void)loadView;
 - (Class)convertSKTargetToEditorClass:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;

@@ -18,14 +18,18 @@
     NSMutableDictionary *_uniformData;
     NSString *_source;
     NSString *_fileName;
+    NSString *_compileLog;
+    _Bool _programDirty;
     shared_ptr_394c00aa _backingProgram;
     map_a51e33c7 _attributeBuffers;
+    BOOL _performFullCapture;
 }
 
 + (id)shaderWithFileNamed:(id)arg1;
 + (id)shaderWithSource:(id)arg1 uniforms:(id)arg2;
 + (id)shaderWithSource:(id)arg1;
 + (id)shader;
+@property BOOL performFullCapture; // @synthesize performFullCapture=_performFullCapture;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;

@@ -6,7 +6,7 @@
 
 #import "IBAutolayoutItem.h"
 
-@class IBAutolayoutStatus, IBDocument, IBMemberConfiguration, NSObject<IBIDEAutolayoutItem>, NSString;
+@class IBAutolayoutStatus, IBDocument, IBMemberConfiguration, NSMutableArray, NSObject<IBIDEAutolayoutItem>, NSString;
 
 @protocol IBIDEAutolayoutItem <IBAutolayoutItem>
 @property(readonly, nonatomic) BOOL ibShouldPropagateFramesDuringFrameDecision;
@@ -26,6 +26,7 @@
 - (void)ibPrimitiveAddConstraintsToCandidateListOnly:(id <IBCollection>)arg1 thatAreAlreadyInDocument:(IBDocument *)arg2;
 - (void)ibInvalidateCachedInstalledConstraints;
 - (BOOL)ibCanHaveUninitializedAutolayoutAmbiguityStatusInDocument:(IBDocument *)arg1;
+- (void)ibVerifyConstraintsAreWellFormedInDocument:(IBDocument *)arg1 andPopulateMessages:(NSMutableArray *)arg2;
 - (void)ibVerifyConstraintsAreSortedInDocument:(IBDocument *)arg1;
 - (void)ibRemoveCandidateConstraints:(id <IBCollection>)arg1;
 - (void)ibAddCandidateConstraints:(id <IBCollection>)arg1 offInEmptyConfigurationAndOnInConfiguration:(IBMemberConfiguration *)arg2;

@@ -21,7 +21,7 @@
 - (id)editorView:(id)arg1 explanitoryTextForPlaceholderView:(id)arg2;
 - (id)editorView:(id)arg1 subtitleForPlaceholderView:(id)arg2;
 - (id)editorView:(id)arg1 titleForPlaceholderView:(id)arg2;
-- (void)configureSceneUpdateRequest:(id)arg1;
+- (void)configureFullSceneUpdateRequest:(id)arg1;
 - (id)_detailSidePlaceholderExplanatoryText;
 - (id)_masterSidePlaceholderExplanatoryText;
 - (id)_detailSidePlaceholderSubtitle;

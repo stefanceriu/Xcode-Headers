@@ -12,12 +12,13 @@
 
 @interface IDECrashPointInspectable : NSObject <IDEProductsInspectable>
 {
-    DVTProductCategory *_productCategory;
     DVTCrashPoint *_crashPoint;
     DVTCrashLog *_crashLog;
+    DVTProductCategory *_productCategory;
 }
 
 + (id)keyPathsForValuesAffectingMarkAsResolvedButtonTitle;
+@property(readonly) DVTProductCategory *productCategory; // @synthesize productCategory=_productCategory;
 @property(readonly) DVTCrashLog *crashLog; // @synthesize crashLog=_crashLog;
 @property(readonly) DVTCrashPoint *crashPoint; // @synthesize crashPoint=_crashPoint;
 - (void).cxx_destruct;

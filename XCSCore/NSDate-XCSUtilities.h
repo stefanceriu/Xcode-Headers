@@ -7,15 +7,8 @@
 #import "NSDate.h"
 
 @interface NSDate (XCSUtilities)
-+ (id)ISO8061FormattedCurrentTimestamp;
-+ (id)dateWithRFC822Format:(id)arg1;
 + (id)dateWithISO8601Format:(id)arg1;
-+ (id)dateWithISO8061Format:(id)arg1;
-- (id)UTCYearMonthDayHourMinuteSecondsComponents;
-- (id)yearMonthDayHourMinuteSecondsComponents;
 - (id)dateTime;
-- (id)dateStamp;
-- (id)stringWithRFC822Format;
 - (id)stringWithISO8601Format;
 - (id)stringWithISO8061Format;
 @end

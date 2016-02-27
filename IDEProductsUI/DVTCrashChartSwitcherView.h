@@ -10,10 +10,12 @@
 
 @interface DVTCrashChartSwitcherView : DVTCrashChartScaffoldView
 {
+    BOOL _showDeviceTypeOption;
     CDUnknownBlockType _switcherCallback;
     NSPopUpButton *_switcher;
 }
 
+@property(nonatomic) BOOL showDeviceTypeOption; // @synthesize showDeviceTypeOption=_showDeviceTypeOption;
 @property(retain, nonatomic) NSPopUpButton *switcher; // @synthesize switcher=_switcher;
 @property(copy, nonatomic) CDUnknownBlockType switcherCallback; // @synthesize switcherCallback=_switcherCallback;
 - (void).cxx_destruct;

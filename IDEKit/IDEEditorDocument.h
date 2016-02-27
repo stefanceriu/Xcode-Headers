@@ -21,6 +21,8 @@
     NSMapTable *_readOnlyClientsForRegistrationBacktrace;
     DVTNotificationToken *_willRedoChangeNotificationToken;
     DVTNotificationToken *_willUndoChangeNotificationToken;
+    DVTNotificationToken *_readOnlyItemsManagerWillProcessItemNotificationToken;
+    DVTNotificationToken *_readOnlyItemsManagerDidProcessItemNotificationToken;
     DVTStackBacktrace *_addedToDocumentControllerBacktrace;
     DVTStackBacktrace *_savePresentedItemChanges;
     DVTStackBacktrace *_autosaveWithImplicitCancellabilityCallerBacktrace;

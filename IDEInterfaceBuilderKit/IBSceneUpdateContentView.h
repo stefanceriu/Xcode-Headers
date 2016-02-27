@@ -24,6 +24,8 @@
 - (void).cxx_destruct;
 - (void)updateOnBackgroundThreadWithImage:(struct CGImage *)arg1 scaleFactor:(double)arg2;
 - (void)configureSceneUpdateRequest:(id)arg1;
+- (void)configureIncrementalSceneUpdateRequest:(id)arg1;
+- (void)configureFullSceneUpdateRequest:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)viewDidChangeBackingProperties;
 - (Class)renderingProcessingRequestClass;

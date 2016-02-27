@@ -30,6 +30,9 @@
 - (void).cxx_destruct;
 - (void)draggingEnded:(id)arg1;
 - (void)draggingExited:(id)arg1;
+- (BOOL)_tryAcceptFilenameListDrop:(id)arg1 sender:(id)arg2;
+- (BOOL)_tryAcceptMediaResourceDrop:(id)arg1 sender:(id)arg2;
+- (BOOL)_tryAcceptSKObjectLibraryDrop:(id)arg1 sender:(id)arg2;
 - (BOOL)performDragOperation:(id)arg1;
 - (void)_update:(double)arg1;
 - (unsigned long long)draggingEntered:(id)arg1;

@@ -35,7 +35,6 @@
 - (void)installTopLevelPlaceholderWithLabel:(id)arg1 className:(id)arg2 placeholderID:(id)arg3 andObjectID:(id)arg4;
 - (id)compiledStoryboardInfoPlistFileName;
 - (id)hybridNIBPackageRuntimeFileName;
-- (BOOL)documentTargetsCurrentOSVersion;
 - (id)defaultCompiledStoryboardInfoPlistFileName;
 - (id)defaultHybridNIBPackageRuntimeFileName;
 - (id)compiledStoryBoardIntermediateXibFileType;

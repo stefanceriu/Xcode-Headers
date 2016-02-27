@@ -33,7 +33,10 @@
 - (BOOL)ibShouldInvalidateSceneOrAutolayoutStatusForChangeToKeyPath:(id)arg1;
 - (void)ibInvalidateDesignablesStatusInDocument:(id)arg1;
 - (id)ibLiveViewsBundleForUpdatingScene:(id)arg1 inDocument:(id)arg2;
+- (BOOL)ibCanIncrementallyMarshalKeyPath:(id)arg1;
+- (void)ibEnumerateIncrementallyMarshalledKeyPathsForChangeToKeyPath:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)ibConfigureSceneUpdateRequest:(id)arg1;
+- (id)ibMarshallingContextForRendering;
 - (id)ibMarshalledRepresentationForRendering;
 - (BOOL)ibWantsSceneUpdates;
 - (BOOL)ibInspectedShouldShowDesignablesStatus;
@@ -141,6 +144,7 @@
 - (void)ibPopulateCompiledPerConfigurationAttributeOrder:(id)arg1;
 - (id)ibDesignTimeConfigurableKeyPathForCompiledKeyPath:(id)arg1;
 - (id)ibCompiledKeyPathForDesignTimeConfigurableKeyPath:(id)arg1;
+- (BOOL)ibEffectiveIsTurnedOnInConfiguration:(id)arg1;
 - (BOOL)ibIsTurnedOnInConfiguration:(id)arg1;
 - (void)ibPropertyStorage:(id)arg1 didTurnOffCandidate:(id)arg2 forRelationship:(id)arg3 inConfiguration:(id)arg4;
 - (void)ibPropertyStorage:(id)arg1 didTurnOnCandidate:(id)arg2 forRelationship:(id)arg3 inConfiguration:(id)arg4;

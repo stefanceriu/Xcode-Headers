@@ -23,6 +23,7 @@
 + (id)authenticationCompletionBlocksForURL:(id)arg1;
 + (void)clearAuthenticationCompletionBlocksForURL:(id)arg1;
 + (id)authenticationCompletionBlocks;
++ (void)showFingerprintAlertOnWindow:(id)arg1 withForce:(BOOL)arg2 host:(id)arg3 fingerprint:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
 + (void)showFingerprintAlertOnWindow:(id)arg1 host:(id)arg2 fingerprint:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 + (BOOL)haveFingerprintCompletionBlockForHost:(id)arg1;
 + (void)addFingerprintCompletionBlock:(CDUnknownBlockType)arg1 forHost:(id)arg2;
@@ -32,6 +33,8 @@
 + (void)rejectFingerprintFromHost:(id)arg1;
 + (BOOL)didRejectFingerprintFromHost:(id)arg1;
 + (id)rejectedFingerprintHosts;
++ (void)showCertificateAlertOnWindow:(id)arg1 withForce:(BOOL)arg2 URL:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
++ (void)certificateSheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 + (void)showCertificateAlertOnWindow:(id)arg1 URL:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 + (BOOL)haveCertificateCompletionBlockForURL:(id)arg1;
 + (void)addCertificateCompletionBlock:(CDUnknownBlockType)arg1 forURL:(id)arg2;

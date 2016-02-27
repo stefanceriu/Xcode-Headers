@@ -59,6 +59,7 @@
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 @property(readonly, nonatomic) unsigned long long ibInspectedAttributeInspectionType;
 @property(nonatomic) BOOL ibInspectedAutomaticallyLayoutBasedOnLanguage;
+- (void)setIbAutomaticallyLayoutBasedOnLanguage:(BOOL)arg1;
 - (BOOL)ibInspectedCanEditSizeAttributes;
 - (BOOL)ibInspectedCanEditHorizontalAttributes;
 - (BOOL)ibInspectedCanEditVerticalAttributes;

@@ -78,7 +78,7 @@
 - (void)setForcesPrompt:(BOOL)arg1;
 @property(nonatomic) int barStyle;
 - (void)populateCachedGeometryInfos:(id)arg1;
-- (void)configureSceneUpdateRequest:(id)arg1;
+- (void)configureFullSceneUpdateRequest:(id)arg1;
 - (void)enumerateCachedImageKeyPaths:(CDUnknownBlockType)arg1;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;

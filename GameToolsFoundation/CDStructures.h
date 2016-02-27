@@ -79,3 +79,12 @@ struct stack<NSMutableArray *, std::__1::deque<NSMutableArray *, std::__1::alloc
     struct deque<NSMutableArray *, std::__1::allocator<NSMutableArray *>> c;
 };
 
+#pragma mark Typedef'd Structures
+
+typedef struct {
+    unsigned long long _field1;
+    id *_field2;
+    unsigned long long *_field3;
+    unsigned long long _field4[5];
+} CDStruct_70511ce9;
+

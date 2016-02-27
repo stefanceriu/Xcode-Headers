@@ -30,6 +30,7 @@
     IBICSize *_size60;
     IBICSize *_size72;
     IBICSize *_size76;
+    IBICSize *_size83_5;
     IBICDeviceOrientation *_portraitOrientation;
     IBICDeviceOrientation *_portraitUpsideDownOrientation;
     IBICDeviceOrientation *_landscapeOrientation;

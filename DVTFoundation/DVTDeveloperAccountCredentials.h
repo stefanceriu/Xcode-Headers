@@ -35,6 +35,7 @@
 - (id)_authenticationHeadersForRequest:(id)arg1;
 - (id)_manuallyProvidedAuthenticationHeaders;
 @property(readonly, nonatomic) AKAppleIDSession *appleIDSession;
+- (BOOL)deleteFromKeychain:(struct OpaqueSecKeychainRef *)arg1 error:(id *)arg2;
 - (BOOL)saveToKeychain:(struct OpaqueSecKeychainRef *)arg1 error:(id *)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;

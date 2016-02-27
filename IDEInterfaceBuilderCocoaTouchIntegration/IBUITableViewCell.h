@@ -159,6 +159,7 @@
 - (id)ibArchivedDesignableContentView;
 - (id)ibDesignableContentView;
 - (id)ibPasteboardTypes;
+- (BOOL)ibCanIncrementallyMarshalKeyPath:(id)arg1;
 - (Class)ibTrackerClass;
 - (id)ibQualifyingInfoForDefaultLabel;
 @property(retain) NSNumber *ibInspectedStyle;

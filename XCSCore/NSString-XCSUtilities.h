@@ -10,7 +10,5 @@
 + (id)stringWithUUID;
 - (id)JSONParseWithError:(id *)arg1;
 - (id)JSONParse;
-- (id)stringWithURLEncoding;
-- (id)stringByNormalizingPathComponent;
 @end
 

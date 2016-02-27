@@ -7,11 +7,10 @@
 #import "NSObject.h"
 
 #import "DVTCancellable.h"
-#import "DVTPromise.h"
 
 @class DVTDispatchLock, DVTStackBacktrace, NSError, NSObject<OS_dispatch_group>, NSString;
 
-@interface DVTFuture : NSObject <DVTPromise, DVTCancellable>
+@interface DVTFuture : NSObject <DVTCancellable>
 {
     DVTDispatchLock *_lock;
     NSObject<OS_dispatch_group> *_cond_group;

@@ -10,18 +10,20 @@
 
 @interface SKInspectorNodeFileProperty : IDEInspectorProperty
 {
+    IDEInspectorKeyPath *_valueKeyPath;
     NSPopUpButton *_popUpButton;
     NSArrayController *_availableNodeFilenames;
-    IDEInspectorKeyPath *_valueKeyPath;
 }
 
 + (id)scannedSceneFiles;
+@property(retain) NSArrayController *availableNodeFilenames; // @synthesize availableNodeFilenames=_availableNodeFilenames;
+@property(retain) NSPopUpButton *popUpButton; // @synthesize popUpButton=_popUpButton;
 - (void).cxx_destruct;
 - (void)userDidChangeValue:(id)arg1;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;
 - (double)baseline;
-- (id)popUpButton;
+- (void)viewDidLoad;
 
 @end
 

@@ -26,6 +26,7 @@
     NSArray *_constraints;
     unsigned int _version;
     BOOL _userInteractionEnabled;
+    BOOL _performFullCapture;
     SKReachConstraints *_reachConstraints;
 }
 
@@ -34,6 +35,7 @@
 + (id)obstaclesFromSpriteTextures:(id)arg1 accuracy:(float)arg2;
 + (id)nodeWithFileNamed:(id)arg1;
 + (id)node;
+@property BOOL performFullCapture; // @synthesize performFullCapture=_performFullCapture;
 @property(retain, nonatomic) NSMutableDictionary *userData; // @synthesize userData=_userData;
 @property(copy, nonatomic) SKReachConstraints *reachConstraints; // @synthesize reachConstraints=_reachConstraints;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;

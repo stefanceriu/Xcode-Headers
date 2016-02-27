@@ -29,6 +29,7 @@
 + (id)keyPathsForValuesAffectingEmptyContentViewController;
 + (id)keyPathsForValuesAffectingDetailViewController;
 + (id)keyPathsForValuesAffectingBusy;
++ (void)initialize;
 @property(retain) IDELaunchSession *currentLaunchSession; // @synthesize currentLaunchSession=_currentLaunchSession;
 @property(retain) DVTObservingToken *appStoreCrashPointSourceObserver; // @synthesize appStoreCrashPointSourceObserver=_appStoreCrashPointSourceObserver;
 @property(retain) DVTObservingToken *appStoreProductSourceObserver; // @synthesize appStoreProductSourceObserver=_appStoreProductSourceObserver;
@@ -40,6 +41,8 @@
 @property(retain) IDECrashPointSourceListViewController *sourceListViewController; // @synthesize sourceListViewController=_sourceListViewController;
 @property __weak DVTSplitView *splitView; // @synthesize splitView=_splitView;
 - (void).cxx_destruct;
+- (void)_saveSourceListSplitPosition;
+- (void)_restoreSourceListSplitPosition;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
 - (void)splitView:(id)arg1 resizeSubviewsWithOldSize:(struct CGSize)arg2;
 - (void)_adjustCrashPointAreaSplitViewWithOldSize:(struct CGSize)arg1;

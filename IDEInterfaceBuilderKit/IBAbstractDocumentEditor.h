@@ -102,7 +102,8 @@
 - (void).cxx_destruct;
 - (void)debugShowRemoteToolErrorBanner:(id)arg1;
 - (void)displayPlatformToolFailureWithBugReportingBlock:(CDUnknownBlockType)arg1;
-- (void)populateSceneUpdates:(id)arg1 forUpdatingSceneWithRoot:(id)arg2 sceneUpdateManager:(id)arg3;
+- (void)populateIncrementalSceneUpdates:(id)arg1 forUpdatingSceneWithRoot:(id)arg2 sceneUpdateManager:(id)arg3;
+- (void)populateFullSceneUpdates:(id)arg1 forUpdatingSceneWithRoot:(id)arg2 objectPackage:(id)arg3 sceneUpdateManager:(id)arg4;
 - (id)addLoadingProgressTokenWithNonUniqueIdentifier:(id)arg1;
 - (void)escapeHatchRequestedForLoadingViewController:(id)arg1;
 - (void)fadeOutLoadingUI;

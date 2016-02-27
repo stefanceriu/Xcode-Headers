@@ -10,11 +10,11 @@
 
 @interface JetView : NSView
 {
-    shared_ptr_b5835ee0 _ctx;
-    shared_ptr_2ce53ef7 _framebuffer;
+    struct jet_context *_ctx;
+    struct jet_framebuffer *_framebuffer;
     NSOpenGLContext *_glContext;
-    shared_ptr_bb77cfd9 _frameBufferColorTexture;
-    shared_ptr_bb77cfd9 _frameBufferDepthStencilTexture;
+    struct jet_texture *_frameBufferColorTexture;
+    struct jet_texture *_frameBufferDepthStencilTexture;
     unsigned int _colorRenderBuffer;
     BOOL _didRunOnce;
     double _beginTime;
@@ -25,8 +25,8 @@
 + (BOOL)canRenderToContextType:(unsigned int)arg1;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (shared_ptr_bb77cfd9)createTextureFromImageNamed:(id)arg1;
-- (void)renderInFramebuffer:(shared_ptr_2ce53ef7)arg1 forTime:(double)arg2;
+- (struct jet_texture *)createTextureFromImageNamed:(id)arg1;
+- (void)renderInFramebuffer:(struct jet_framebuffer *)arg1 forTime:(double)arg2;
 - (void)runOnce;
 - (void)onInit;
 - (void)drawRect:(struct CGRect)arg1;
@@ -40,7 +40,7 @@
 - (void)_createContext;
 - (void)remakeFramebuffer;
 - (unsigned int)contextType;
-@property(readonly) shared_ptr_b5835ee0 context;
+@property(readonly) struct jet_context *context;
 - (BOOL)isOpaque;
 
 @end

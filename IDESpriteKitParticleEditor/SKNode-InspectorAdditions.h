@@ -19,6 +19,9 @@
 + (id)keyPathsForValuesAffectingInspectorName;
 @property(readonly, nonatomic) GTFActionTimelineModel *nav_action;
 @property(readonly, nonatomic) NSArray *nav_children;
+@property(readonly, nonatomic) struct CGSize sk_representedSize;
+@property(readonly, nonatomic) struct CGRect sk_representedFrame;
+@property(readonly, nonatomic) BOOL sk_isIconRepresented;
 @property(retain, nonatomic) NSString *skCustomModuleName;
 - (BOOL)_isValidCustomSublcass:(id)arg1 inModule:(id)arg2;
 - (Class)_swiftClassFromString:(id)arg1 moduleName:(id)arg2;

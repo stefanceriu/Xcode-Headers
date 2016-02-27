@@ -14,9 +14,6 @@
 @interface SKScene (InspectorAdditions) <IDEKeyDrivenNavigableItemRepresentedObject, SKNodeWithShader>
 @property(retain, nonatomic) GTFActionLibrary *nav_actionLibrary;
 - (id)childFromIndexPath:(id)arg1;
-- (void)refreshTexturesForProject;
-- (id)recreateTextureForName:(id)arg1 fromImages:(id)arg2;
-- (id)reloadTextureFromFile:(id)arg1 fromImages:(id)arg2;
 @property(retain, nonatomic) NSURL *customSpriteShader;
 @property(nonatomic) struct CGPoint spriteKitEditorGravity;
 @property(nonatomic) BOOL nodeNameDrawEnabled;

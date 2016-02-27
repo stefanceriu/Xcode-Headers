@@ -11,6 +11,7 @@
 @interface DVTFirstLaunchPackageInstallationHelper : NSObject
 {
     DVTWeakInterposer *_delegate_dvtWeakInterposer;
+    BOOL _shouldForceInstallationForRadar24218331;
     NSArray *_packagesToInstall;
 }
 

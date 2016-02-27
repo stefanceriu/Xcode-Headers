@@ -8,21 +8,21 @@
 
 #import "IBSceneUpdateManagerDelegate.h"
 
-@class IBSceneUpdateRequest, IBSceneUpdateResult, IBTargetRuntime, NSNumber, NSString;
+@class IBFullSceneUpdateRequest, IBSceneUpdateResult, IBTargetRuntime, NSNumber, NSString;
 
 @interface IBOneShotSceneUpdater : NSObject <IBSceneUpdateManagerDelegate>
 {
     NSObject *_root;
     NSNumber *_scaleFactor;
     IBTargetRuntime *_targetRuntime;
-    IBSceneUpdateRequest *_request;
+    IBFullSceneUpdateRequest *_request;
     CDUnknownBlockType _requestConfigurationBlock;
     IBSceneUpdateResult *_result;
 }
 
 @property(retain, nonatomic) IBSceneUpdateResult *result; // @synthesize result=_result;
 @property(readonly, copy, nonatomic) CDUnknownBlockType requestConfigurationBlock; // @synthesize requestConfigurationBlock=_requestConfigurationBlock;
-@property(readonly, nonatomic) IBSceneUpdateRequest *request; // @synthesize request=_request;
+@property(readonly, nonatomic) IBFullSceneUpdateRequest *request; // @synthesize request=_request;
 @property(readonly, nonatomic) IBTargetRuntime *targetRuntime; // @synthesize targetRuntime=_targetRuntime;
 @property(readonly, nonatomic) NSNumber *scaleFactor; // @synthesize scaleFactor=_scaleFactor;
 @property(readonly, nonatomic) NSObject *root; // @synthesize root=_root;
@@ -30,9 +30,11 @@
 - (void)sceneUpdateManager:(id)arg1 didUpdateScene:(id)arg2 result:(id)arg3 usingLiveViews:(BOOL)arg4;
 - (void)sceneUpdateManager:(id)arg1 didFailToUpdateSceneWithRoot:(id)arg2 diagnosticsHandler:(id)arg3;
 - (void)sceneUpdateManager:(id)arg1 configureRequest:(id)arg2 forObject:(id)arg3 ofSceneWithRoot:(id)arg4;
-- (id)sceneUpdateManager:(id)arg1 sceneUpdatesForUpdatingSceneWithRoot:(id)arg2;
-- (void)sceneUpdateManager:(id)arg1 invalidateLiveViewsStatusForUpdatingScene:(id)arg2;
-- (id)sceneUpdateManager:(id)arg1 liveViewsBundlesForUpdatingScene:(id)arg2;
+- (id)sceneUpdateManager:(id)arg1 incrementalSceneUpdatesForUpdatingSceneWithRoot:(id)arg2;
+- (id)sceneUpdateManager:(id)arg1 fullSceneUpdatesForUpdatingSceneWithRoot:(id)arg2 objectPackage:(id)arg3;
+- (id)sceneUpdateManager:(id)arg1 marshallableObjectPackageForRootObject:(id)arg2;
+- (void)sceneUpdateManager:(id)arg1 invalidateLiveViewsStatusForUpdatingScene:(id)arg2 withObjectPackage:(id)arg3;
+- (id)sceneUpdateManager:(id)arg1 liveViewsBundlesForUpdatingScene:(id)arg2 withObjectPackage:(id)arg3;
 - (BOOL)sceneUpdateManager:(id)arg1 canUpdateSceneWithRoot:(id)arg2;
 - (id)sceneUpdateManager:(id)arg1 rootOfSceneContainingObject:(id)arg2;
 - (id)initWithRoot:(id)arg1 scaleFactor:(id)arg2 targetRuntime:(id)arg3 request:(id)arg4 requestConfigurationBlock:(CDUnknownBlockType)arg5;

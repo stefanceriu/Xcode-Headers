@@ -189,6 +189,7 @@
 - (void)ibAddStoryboardPreviewSegueTemplate:(id)arg1 inDocument:(id)arg2;
 - (void)ibAddStoryboardPreviewingRegistrantIfNecessaryForView:(id)arg1 inDocument:(id)arg2;
 - (id)ibMarshalledRepresentationForRendering;
+- (id)ibMarshallingContextForRendering;
 - (void)ibUpdatePlaceholderDrawingAttributes;
 - (BOOL)ibIsValidTraitStorageListContainer;
 - (void)ibPreparePreviewInstance:(id)arg1 context:(id)arg2;

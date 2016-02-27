@@ -115,7 +115,8 @@
 @property(copy, nonatomic) NSColor *explicitTintColor; // @synthesize explicitTintColor;
 @property(copy) NSString *restorationIdentifier; // @synthesize restorationIdentifier;
 - (void).cxx_destruct;
-- (void)configureSceneUpdateRequest:(id)arg1;
+- (void)configureIncrementalSceneUpdateRequest:(id)arg1;
+- (void)configureFullSceneUpdateRequest:(id)arg1;
 - (void)ibDocumentDidChangeUserDefinedRuntimeAttributesInNonUndoableWay;
 - (void)setIbExternalUserDefinedRuntimeAttributes:(id)arg1;
 - (void)liveViewsBundleDidFinishBuilding:(id)arg1 error:(id)arg2;
@@ -125,7 +126,6 @@
 - (id)ibContainingItemForAutolayoutGuide:(id)arg1;
 - (struct CGSize)intrinsicFrameSizeForRuntime:(id)arg1;
 - (void)requestGeometryIfNeeded;
-- (BOOL)areSynchronousSceneUpdateRequestsAllowed;
 - (struct _IBEdgeInsets)defaultLayoutMargins;
 - (BOOL)canHaveLayoutInsetOrIntrinsicContentSizeOrBasline;
 - (void)populateGeometryMarshallingContext:(id)arg1;
@@ -167,6 +167,7 @@
 - (BOOL)subviewLayoutIsInvalid;
 - (void)invalidateCachedImageAndGeometry;
 - (id)marshalledRepresentationForRendering;
+- (id)marshallingContextForRendering;
 - (id)awakeAfterUsingCoder:(id)arg1;
 - (void)setGestureRecognizers:(id)arg1;
 - (id)gestureRecognizers;
@@ -266,7 +267,9 @@
 - (void)ibDidInstantiateView;
 - (id)ibUnderlyingViewInstance;
 - (void)ibAddPreviewingSegueTemplateStorage:(id)arg1 forSegue:(id)arg2;
+- (void)ibEnumerateIncrementallyMarshalledKeyPathsForChangeToKeyPath:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)ibConfigureSceneUpdateRequest:(id)arg1;
+- (id)ibMarshallingContextForRendering;
 - (id)ibMarshalledRepresentationForRendering;
 - (void)ibPreparePreviewInstance:(id)arg1 context:(id)arg2;
 - (id)ibDesignTimeDefaultIntrinsicContentSizeForSelfSizingContainers;

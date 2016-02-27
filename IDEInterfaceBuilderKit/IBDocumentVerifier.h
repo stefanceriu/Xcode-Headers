@@ -24,7 +24,7 @@
 - (void)verifyIfXcodeRequiresAnUpgradePromptToXcode7;
 - (void)verifyIDGenerationStrategy;
 - (void)verifyTranslatesAutoresizingMaskIntoConstraints;
-- (void)verifyConstraints;
+- (void)_verifyConstraintsAndPopulateMessages:(id)arg1;
 - (void)verifyDevelopmentTarget;
 - (id)verifyNoDanglingSubviews;
 - (id)verifyViewCCRHPriorities;

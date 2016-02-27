@@ -20,6 +20,8 @@
 - (void).cxx_destruct;
 - (void)containsPoints:(const float *)arg1 locationStride:(long long)arg2 results:(char *)arg3 resultsStride:(long long)arg4 count:(int)arg5;
 - (BOOL)containsPoint:(struct CGPoint)arg1;
+- (BOOL)isEmpty;
+- (BOOL)isInfinite;
 - (id)regionByIntersectionWithRegion:(id)arg1;
 - (id)regionByDifferenceFromRegion:(id)arg1;
 - (id)regionByUnionWithRegion:(id)arg1;

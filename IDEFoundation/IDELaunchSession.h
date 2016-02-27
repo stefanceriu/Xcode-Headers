@@ -52,6 +52,7 @@
 }
 
 + (id)watchLaunchOptionsForLaunchParameters:(id)arg1;
++ (id)languageArguments;
 + (BOOL)_isLaunchSession:(id)arg1 soleRecipientForAppExt:(id)arg2;
 + (BOOL)_unregisterLaunchSession:(id)arg1 asSoleRecipientForAppExt:(id)arg2;
 + (BOOL)_registerLaunchSession:(id)arg1 asSoleRecipientForAppExt:(id)arg2 error:(id *)arg3;

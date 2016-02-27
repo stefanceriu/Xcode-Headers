@@ -37,6 +37,7 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)ibCanIncrementallyMarshalKeyPath:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

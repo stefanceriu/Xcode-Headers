@@ -6,13 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSTimer;
+@class DVTPromise, NSTimer;
 
 @interface DVTDownloadable_PKInstallClientDelegate : NSObject
 {
     NSTimer *_timer;
     BOOL _isRunningModal;
-    id <DVTPromise> _promise;
+    DVTPromise *_promise;
 }
 
 @property(retain) NSTimer *timer; // @synthesize timer=_timer;

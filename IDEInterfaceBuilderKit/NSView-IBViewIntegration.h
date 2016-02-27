@@ -183,6 +183,7 @@
 - (void)ibUpdateAutoresizingMaskAfterChangingTranslatesAutoresizingMaskIntoConstraints:(BOOL)arg1;
 @property(nonatomic) BOOL ibExternalTranslatesAutoresizingMaskIntoConstraints;
 - (id)ibTranslatesAutoresizingMaskIntoConstraintsMetadataKeyInDocument:(id)arg1;
+- (void)ibVerifyConstraintsAreWellFormedInDocument:(id)arg1 andPopulateMessages:(id)arg2;
 - (void)ibVerifyConstraintsAreSortedInDocument:(id)arg1;
 - (void)ibRemoveCandidateConstraints:(id)arg1;
 - (void)ibAddCandidateConstraints:(id)arg1 offInEmptyConfigurationAndOnInConfiguration:(id)arg2;

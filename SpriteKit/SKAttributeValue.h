@@ -6,7 +6,9 @@
 
 #import "NSObject.h"
 
-@interface SKAttributeValue : NSObject
+#import "NSCoding.h"
+
+@interface SKAttributeValue : NSObject <NSCoding>
 {
     long long _type;
     float floatValues[4];
@@ -18,6 +20,8 @@
 + (id)valueWithVectorFloat2: /* Error: Ran out of types for this method. */;
 + (id)valueWithFloat:(float)arg1;
 @property(readonly, nonatomic) long long type; // @synthesize type=_type;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)init;
 // Error parsing type for property vectorFloat4Value:
 // Property attributes: T,N

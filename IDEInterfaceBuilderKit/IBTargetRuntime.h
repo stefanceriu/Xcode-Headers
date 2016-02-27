@@ -24,6 +24,7 @@
 - (id)sceneUpdateRequesterWithScaleFactor:(id)arg1 renderingFidelity:(long long)arg2;
 - (id)imageRequesterWithScaleFactor:(id)arg1;
 - (id)registerSceneUpdateRenderingDelegate:(id)arg1 forScaleFactor:(double)arg2 returningSceneIdentifier:(long long *)arg3 error:(id *)arg4;
+- (id)processingRequestForIncrementallyUpdatingAttribute:(id)arg1 ofObject:(id)arg2 withObjectID:(id)arg3 marshallingContext:(id)arg4;
 - (Class)sceneUpdateRequestProcessorClass;
 - (Class)imageRequestProcessorClass;
 - (id)defaultToolDescriptionWithRole:(long long)arg1 scaleFactor:(double)arg2;
@@ -43,6 +44,7 @@
 - (id)identifier;
 @property(readonly, nonatomic) IBIdiom *idiom;
 @property(readonly, nonatomic) IBPlatform *platform;
+- (id)debugDescription;
 - (id)init;
 - (id)targetRuntimeWithIdiom:(id)arg1;
 

@@ -85,7 +85,7 @@
 @property(retain, nonatomic) NSTextField *timeLabel; // @synthesize timeLabel=_timeLabel;
 @property(readonly, nonatomic) NSArray *selectedActions; // @synthesize selectedActions=_selectedActions;
 - (void).cxx_destruct;
-- (void)startDragForSelectedActions:(id)arg1 atPosition:(struct CGPoint)arg2;
+- (void)startDragForSelectedActions:(id)arg1 atPosition:(struct CGPoint)arg2 withXOffset:(double)arg3;
 - (void)endDrag;
 - (BOOL)isDraggingNonGroupActions;
 - (void)showLoopPopoverForSelectedActions:(id)arg1;
@@ -178,6 +178,8 @@
 - (void)redraw;
 - (void)redrawInRect:(struct CGRect)arg1;
 @property(nonatomic) BOOL isExpanded;
+@property(readonly, nonatomic) double dragOffsetY;
+@property(readonly, nonatomic) double dragOffsetX;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

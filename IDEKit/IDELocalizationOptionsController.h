@@ -30,6 +30,7 @@
 - (void)_buildRegionMenu;
 - (void)_addBuiltInRegionsToRegionMenu;
 - (void)_buildLocaleMenu;
+- (BOOL)menuEnableState;
 - (id)_localesInWorkspace:(id)arg1;
 - (void)selectRegionItem:(id)arg1;
 - (void)selectLocaleItem:(id)arg1;

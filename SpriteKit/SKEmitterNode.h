@@ -71,6 +71,7 @@
 @property(retain, nonatomic) NSColor *particleColor;
 @property(nonatomic) double particleZPositionRange;
 @property(nonatomic) double particleZPosition;
+- (void)setZPosition:(double)arg1;
 @property(nonatomic) struct CGSize particleSize;
 @property(nonatomic) double particleZPositionSpeed;
 @property(nonatomic) __weak SKNode *targetNode;

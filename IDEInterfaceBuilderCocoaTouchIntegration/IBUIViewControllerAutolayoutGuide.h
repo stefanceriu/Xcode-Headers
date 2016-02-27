@@ -138,6 +138,7 @@
 - (id)initWithCoder:(id)arg1;
 - (BOOL)ibIsTurnedOnInConfiguration:(id)arg1;
 - (void)ibInvalidateCachedInstalledConstraints;
+- (void)ibVerifyConstraintsAreWellFormedInDocument:(id)arg1 andPopulateMessages:(id)arg2;
 - (void)ibVerifyConstraintsAreSortedInDocument:(id)arg1;
 - (void)ibPrimitiveRemoveConstraintsFromCandidates:(id)arg1 andFromDocument:(id)arg2 allowingCascadingDelete:(BOOL)arg3;
 - (void)ibPrimitiveRemoveConstraintsFromCandidateListOnly:(id)arg1 keepingInDocument:(id)arg2;

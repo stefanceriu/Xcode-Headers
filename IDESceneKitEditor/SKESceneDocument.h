@@ -33,6 +33,7 @@
     NSMutableArray *_operations;
     DVTNotificationToken *_availablePointsOfViewListNeedsUpdateObservingToken;
     SKEAdjustSceneWindowController *_adjustSceneWindowController;
+    BOOL _isUpgradingToDifferentFileType;
     SKESceneEditor *_inspectedSceneEditor;
     SKEActionEditor *_inspectedActionEditor;
 }

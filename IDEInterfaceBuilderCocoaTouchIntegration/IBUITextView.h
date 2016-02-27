@@ -66,6 +66,7 @@
 - (id)ibFontFromFontDescription;
 - (id)ibDefaultFontKeyPath;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (BOOL)ibWantsBoundsIndicatorDuringTracking;
 - (id)ibFieldEditorConfigurationForTextKeyPath:(id)arg1;
 - (struct CGRect)ibInlineTextEditingRectForKeyPath:(id)arg1;
 - (id)ibTextKeyPathForDefaultInlineStringEditing;

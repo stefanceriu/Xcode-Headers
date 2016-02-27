@@ -35,6 +35,7 @@
 + (id)yellowColor;
 + (id)_barDateInputFormatter;
 + (id)_barDateFormatter;
++ (id)keyPathsForValuesAffectingShouldShowDeviceData;
 + (void)initialize;
 @property(nonatomic) unsigned long long totalOSCrashCount; // @synthesize totalOSCrashCount=_totalOSCrashCount;
 @property(nonatomic) unsigned long long totalDeviceCrashCount; // @synthesize totalDeviceCrashCount=_totalDeviceCrashCount;
@@ -54,6 +55,7 @@
 - (id)timeSeriesColors;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)isFlipped;
+@property(nonatomic) BOOL shouldShowDeviceData;
 - (void)_commonInit;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;

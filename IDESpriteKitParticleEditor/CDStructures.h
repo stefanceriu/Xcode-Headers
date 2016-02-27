@@ -29,6 +29,12 @@ struct CGSize {
     double height;
 };
 
+struct ManipulationEvent;
+
+struct NSObject {
+    Class _field1;
+};
+
 struct NodeMovePair;
 
 struct PolyEditor {
@@ -61,6 +67,8 @@ struct Vertex {
     int tangency;
 };
 
+struct ZoomPositionPair;
+
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
@@ -80,6 +88,12 @@ struct map<std::__1::basic_string<char>, CGImage *, std::__1::less<std::__1::bas
     } __tree_;
 };
 
+struct unique_ptr<ManipulationEvent, std::__1::default_delete<ManipulationEvent>> {
+    struct __compressed_pair<ManipulationEvent *, std::__1::default_delete<ManipulationEvent>> {
+        struct ManipulationEvent *__first_;
+    } __ptr_;
+};
+
 struct vector<NodeMovePair, std::__1::allocator<NodeMovePair>> {
     struct NodeMovePair *__begin_;
     struct NodeMovePair *__end_;
@@ -93,6 +107,14 @@ struct vector<PolyEditor::Vertex, std::__1::allocator<PolyEditor::Vertex>> {
     struct Vertex *__end_;
     struct __compressed_pair<PolyEditor::Vertex *, std::__1::allocator<PolyEditor::Vertex>> {
         struct Vertex *__first_;
+    } __end_cap_;
+};
+
+struct vector<ZoomPositionPair, std::__1::allocator<ZoomPositionPair>> {
+    struct ZoomPositionPair *__begin_;
+    struct ZoomPositionPair *__end_;
+    struct __compressed_pair<ZoomPositionPair *, std::__1::allocator<ZoomPositionPair>> {
+        struct ZoomPositionPair *__first_;
     } __end_cap_;
 };
 

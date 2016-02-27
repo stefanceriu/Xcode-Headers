@@ -60,6 +60,7 @@
 @property(nonatomic) long long dataMode; // @synthesize dataMode=_dataMode;
 - (void).cxx_destruct;
 - (BOOL)ibShouldMarshallCollectionViewLayoutWithContext:(id)arg1;
+- (id)customCellSizes;
 - (id)localExtraMarshalledAttributesKeyPaths;
 - (BOOL)canFitCellOfSize:(struct CGSize)arg1;
 - (struct CGPoint)maxContentPoint;

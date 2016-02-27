@@ -10,7 +10,7 @@
 
 @interface IBAbstractSimulatorToolCoreSimulatorExecutionContext : IBAbstractPlatformToolExecutionContext
 {
-    int _numberOfTimedOutOrFailedLaunchAttempts;
+    int _numberOfFailedLaunchAttempts;
     SimDevice *_device;
 }
 

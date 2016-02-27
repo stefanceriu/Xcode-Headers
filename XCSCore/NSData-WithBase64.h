@@ -8,6 +8,5 @@
 
 @interface NSData (WithBase64)
 + (id)dataWithBase64EncodedString:(id)arg1;
-- (id)base64EncodedString;
 @end
 

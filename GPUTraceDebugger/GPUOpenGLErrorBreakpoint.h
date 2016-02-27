@@ -15,6 +15,7 @@ __attribute__((visibility("hidden")))
 + (id)assetBundle;
 - (id)popUpEditorDisplayName;
 - (BOOL)shouldEditNewBreakpoints;
+- (id)navigableItem_image;
 - (id)customStopReasonString;
 - (id)displayName;
 - (id)init;

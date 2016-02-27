@@ -61,7 +61,6 @@
 - (id)_providerContextToProvisionInfoMapForIssues:(id)arg1;
 - (id)_unitTestIssueProvidersAccessor;
 - (void)_validateGroupIdentifiers;
-- (void)_delayedValidateGroupIdentifiers;
 - (void)_updateVendedIssues;
 - (void)_updateContainersAndBlueprintsForActiveScheme;
 - (void)_findDependencyForBuildable:(id)arg1;
@@ -79,7 +78,6 @@
 - (id)_similarExistingIssueForIssue:(id)arg1 container:(id)arg2 blueprint:(id)arg3;
 - (_Bool)_doesIssue:(id)arg1 fromContainer:(id)arg2 andBlueprint:(id)arg3 coalesceWithIssue:(id)arg4;
 - (_Bool)_doesIssue:(id)arg1 coalesceWithIssue:(id)arg2;
-- (id)_identifierForGroupWithBlueprint:(id)arg1 container:(id)arg2;
 - (id)_groupingObjectsForIssue:(id)arg1;
 - (void)_rescindObserverToken:(id)arg1;
 - (id)newIssueObserverForDocumentURL:(id)arg1 options:(unsigned long long)arg2 withHandlerBlock:(CDUnknownBlockType)arg3;

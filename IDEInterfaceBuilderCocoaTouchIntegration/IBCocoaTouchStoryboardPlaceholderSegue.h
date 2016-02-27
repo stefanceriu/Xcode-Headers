@@ -17,7 +17,7 @@
 - (BOOL)shouldArchiveKind;
 - (id)segueForInheritableMetrics;
 - (id)instantiateSegueTemplate;
-- (BOOL)_phaseIsPreview;
+- (BOOL)_isPreviewPhase;
 - (id)badgeImage;
 - (id)kindDisplayName;
 

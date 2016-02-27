@@ -8,14 +8,14 @@
 
 #import "NSURLConnectionDelegate.h"
 
-@class NSMutableData, NSString, NSURLResponse;
+@class DVTPromise, NSMutableData, NSString, NSURLResponse;
 
 @interface DataGatheringNSURLConnectionDelegate : NSObject <NSURLConnectionDelegate>
 {
     NSURLResponse *_lastResponse;
     NSMutableData *_gatheringData;
     unsigned long long _maxLength;
-    id <DVTPromise> _promise;
+    DVTPromise *_promise;
 }
 
 - (void).cxx_destruct;

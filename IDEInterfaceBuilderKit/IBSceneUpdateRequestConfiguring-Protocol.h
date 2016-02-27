@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class IBSceneUpdateRequest;
+@class IBFullSceneUpdateRequest, IBIncrementalSceneUpdateRequest;
 
 @protocol IBSceneUpdateRequestConfiguring <NSObject>
-- (void)configureSceneUpdateRequest:(IBSceneUpdateRequest *)arg1;
+- (void)configureIncrementalSceneUpdateRequest:(IBIncrementalSceneUpdateRequest *)arg1;
+- (void)configureFullSceneUpdateRequest:(IBFullSceneUpdateRequest *)arg1;
 @end
 

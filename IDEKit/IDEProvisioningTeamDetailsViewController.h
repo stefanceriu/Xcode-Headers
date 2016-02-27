@@ -55,7 +55,7 @@
 - (void)_watchForInstallsOfProfiles:(struct NSSet *)arg1;
 - (void)_profilesModifiedInSnapshotUpdate:(struct NSSet *)arg1;
 - (void)_beginDownloadAllWithProfiles:(struct NSSet *)arg1;
-- (void)_downloadProfilesAndHandleErrors:(struct NSSet *)arg1;
+- (void)_downloadProfilesAndHandleErrors:(struct NSSet *)arg1 refreshAndDownloadAll:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)profilesViewController:(id)arg1 updateProfiles:(struct NSSet *)arg2;
 - (void)profilesViewController:(id)arg1 downloadProfiles:(struct NSSet *)arg2;
 - (void)signingIdentitiesViewController:(id)arg1 exportSigningIdentity:(id)arg2;

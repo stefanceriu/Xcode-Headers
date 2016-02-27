@@ -48,7 +48,7 @@
 - (struct CGRect)frameForItem:(id)arg1;
 - (id)itemFrames;
 - (void)populateCachedGeometryInfos:(id)arg1;
-- (void)configureSceneUpdateRequest:(id)arg1;
+- (void)configureFullSceneUpdateRequest:(id)arg1;
 - (void)enumerateCachedImageKeyPaths:(CDUnknownBlockType)arg1;
 - (id)localExtraMarshalledAttributesKeyPaths;
 - (void)validateTopBarIfNeeded;

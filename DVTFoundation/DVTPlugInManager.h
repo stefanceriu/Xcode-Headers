@@ -80,6 +80,7 @@
 - (void)_saveNonApplePlugInListBasedOnAllowedDescriptors:(id)arg1;
 - (void)_registerDescriptorType:(id)arg1 activationCallback:(CDUnknownBlockType)arg2;
 - (void)_recordNonApplePlugInDescriptor:(id)arg1;
+- (BOOL)_checkValidityForBundle:(id)arg1 error:(id *)arg2;
 - (id)nonApplePlugInDescriptorsNotPreviouslyAllowedOrSkipped;
 - (id)nonApplePlugInDescriptorsPreviouslyAllowed;
 - (id)_nonApplePlugInListDefault;

@@ -6,16 +6,18 @@
 
 #import "NSObject.h"
 
-@class IBDiagnosticsHandler, IBMarshallingResult, IBSceneUpdate, IBSceneUpdateManager, IBSceneUpdateRequest, NSArray, NSObject;
+@class IBDiagnosticsHandler, IBMarshallableObjectPackage, IBMarshallingResult, IBSceneUpdate, IBSceneUpdateManager, NSArray, NSObject;
 
 @protocol IBSceneUpdateManagerDelegate <NSObject>
 - (void)sceneUpdateManager:(IBSceneUpdateManager *)arg1 didUpdateScene:(IBSceneUpdate *)arg2 result:(IBMarshallingResult *)arg3 usingLiveViews:(BOOL)arg4;
 - (void)sceneUpdateManager:(IBSceneUpdateManager *)arg1 didFailToUpdateSceneWithRoot:(NSObject *)arg2 diagnosticsHandler:(IBDiagnosticsHandler *)arg3;
-- (void)sceneUpdateManager:(IBSceneUpdateManager *)arg1 configureRequest:(IBSceneUpdateRequest *)arg2 forObject:(NSObject *)arg3 ofSceneWithRoot:(NSObject *)arg4;
-- (void)sceneUpdateManager:(IBSceneUpdateManager *)arg1 invalidateLiveViewsStatusForUpdatingScene:(IBSceneUpdate *)arg2;
-- (id <IBCollection>)sceneUpdateManager:(IBSceneUpdateManager *)arg1 liveViewsBundlesForUpdatingScene:(IBSceneUpdate *)arg2;
-- (NSArray *)sceneUpdateManager:(IBSceneUpdateManager *)arg1 sceneUpdatesForUpdatingSceneWithRoot:(NSObject *)arg2;
+- (void)sceneUpdateManager:(IBSceneUpdateManager *)arg1 configureRequest:(id <IBSceneUpdateRequest>)arg2 forObject:(NSObject *)arg3 ofSceneWithRoot:(NSObject *)arg4;
+- (void)sceneUpdateManager:(IBSceneUpdateManager *)arg1 invalidateLiveViewsStatusForUpdatingScene:(IBSceneUpdate *)arg2 withObjectPackage:(IBMarshallableObjectPackage *)arg3;
+- (id <IBCollection>)sceneUpdateManager:(IBSceneUpdateManager *)arg1 liveViewsBundlesForUpdatingScene:(IBSceneUpdate *)arg2 withObjectPackage:(IBMarshallableObjectPackage *)arg3;
+- (NSArray *)sceneUpdateManager:(IBSceneUpdateManager *)arg1 incrementalSceneUpdatesForUpdatingSceneWithRoot:(NSObject *)arg2;
+- (NSArray *)sceneUpdateManager:(IBSceneUpdateManager *)arg1 fullSceneUpdatesForUpdatingSceneWithRoot:(NSObject *)arg2 objectPackage:(IBMarshallableObjectPackage *)arg3;
 - (BOOL)sceneUpdateManager:(IBSceneUpdateManager *)arg1 canUpdateSceneWithRoot:(NSObject *)arg2;
+- (IBMarshallableObjectPackage *)sceneUpdateManager:(IBSceneUpdateManager *)arg1 marshallableObjectPackageForRootObject:(NSObject *)arg2;
 - (NSObject *)sceneUpdateManager:(IBSceneUpdateManager *)arg1 rootOfSceneContainingObject:(NSObject *)arg2;
 @end
 

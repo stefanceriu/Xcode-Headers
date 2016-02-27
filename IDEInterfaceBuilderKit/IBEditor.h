@@ -56,7 +56,8 @@
 @property(getter=isClosed) BOOL closed; // @synthesize closed;
 @property(copy, nonatomic) NSSet *selectionPriorToEventRouting; // @synthesize selectionPriorToEventRouting;
 - (void).cxx_destruct;
-- (void)configureSceneUpdateRequest:(id)arg1;
+- (void)configureIncrementalSceneUpdateRequest:(id)arg1;
+- (void)configureFullSceneUpdateRequest:(id)arg1;
 - (void)setSecondaryGrowthDirection:(long long)arg1 forDragAndDropPoliciesWithRelation:(id)arg2;
 - (void)setPrimaryGrowthDirection:(long long)arg1 forDragAndDropPoliciesWithRelation:(id)arg2;
 - (void)dropTargetResolver:(id)arg1 orderedRelation:(id)arg2 insertionIndexDidChange:(long long)arg3;

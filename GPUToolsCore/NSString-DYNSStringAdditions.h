@@ -14,6 +14,5 @@
 - (BOOL)dy_scanBuildPrefix:(id *)arg1 number:(long long *)arg2;
 - (id)dy_removeWhiteSpaceCharacters;
 - (long long)dy_numericCompare:(id)arg1;
-- (id)dy_stringWithASCIIEncoding;
 @end
 

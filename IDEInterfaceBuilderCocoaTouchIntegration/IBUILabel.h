@@ -124,6 +124,7 @@
 - (struct CGRect)ibInlineTextEditingRectForKeyPath:(id)arg1;
 - (id)ibTextKeyPathForDefaultInlineStringEditing;
 - (id)ibQualifyingInfoForDefaultLabel;
+- (BOOL)ibWantsBoundsIndicatorDuringTracking;
 - (id)ibWidgetType;
 - (id)ibInitialConnectionLabelSearchTerm;
 - (Class)ibEditorClass;

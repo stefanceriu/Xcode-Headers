@@ -719,8 +719,6 @@ struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>
 
 struct jet_command_buffer;
 
-struct jet_context;
-
 struct jet_fence;
 
 struct jet_framebuffer;
@@ -729,7 +727,6 @@ struct jet_program;
 
 struct jet_texture {
     CDUnknownFunctionPointerType *_field1;
-    struct jet_context *_field2;
 };
 
 struct list<SKCAction *, std::__1::allocator<SKCAction *>> {

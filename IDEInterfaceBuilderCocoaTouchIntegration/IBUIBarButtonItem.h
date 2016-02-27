@@ -73,6 +73,7 @@
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (id)ibPasteboardTypes;
 - (id)ibQualifyingInfoForDefaultLabel;
+- (BOOL)ibCanIncrementallyMarshalKeyPath:(id)arg1;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (void)setIbInspectedSystemItemIdentifier:(id)arg1;
 - (id)ibInspectedSystemItemIdentifier;

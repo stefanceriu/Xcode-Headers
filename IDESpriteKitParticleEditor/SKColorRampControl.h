@@ -18,8 +18,6 @@
     struct CGColor *_bgColor;
     BOOL _didDragSelected;
     BOOL _shouldDeleteSelected;
-    id _target;
-    SEL _action;
     SKColorRampStop *_selectedColorStop;
 }
 
@@ -35,6 +33,7 @@
 - (void)_sortColorStops;
 - (id)colorStops;
 - (void)mouseUp:(id)arg1;
+- (void)activateColorPanel;
 - (void)mouseDown:(id)arg1;
 - (void)mouseDragged:(id)arg1;
 - (void)changeColor:(id)arg1;
@@ -42,11 +41,6 @@
 - (struct CGRect)_colorRampRect;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
-- (void)ensurePanelExclusive;
-- (SEL)action;
-- (id)target;
-- (void)setAction:(SEL)arg1;
-- (void)setTarget:(id)arg1;
 - (void)deactivate;
 
 @end

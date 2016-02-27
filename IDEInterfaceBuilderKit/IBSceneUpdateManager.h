@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTDelayedInvocation, DVTDelayedInvocationScheduler, DVTStackBacktrace, NSMutableSet, NSString;
+@class DVTDelayedInvocation, DVTDelayedInvocationScheduler, DVTStackBacktrace, IBIncrementalSceneUpdateTracker, NSMutableSet, NSString;
 
 @interface IBSceneUpdateManager : NSObject <DVTInvalidation>
 {
@@ -18,6 +18,8 @@
     long long _ignoreSceneInvalidationNestingCount;
     long long _assertOnSynchronousUpdatesNestingCount;
     long long _delaySceneUpdatesNestingCount;
+    IBIncrementalSceneUpdateTracker *_incrementalUpdateTracker;
+    NSString *_incrementalUpdateSessionID;
     id <IBSceneUpdateManagerDelegate> _delegate;
 }
 
@@ -27,10 +29,15 @@
 - (void).cxx_destruct;
 - (void)_updateScenes;
 - (void)_updateScene:(id)arg1;
+- (id)_objectPackageForSceneUpdateRequest:(id)arg1;
 - (id)_sceneRootsForInvalidatedObjects;
 - (id)_remoteRequesterForSceneUpdate:(id)arg1;
 - (void)_cancelPendingUpdates;
 - (void)_clearSceneUpdate:(id)arg1;
+- (id)_sceneUpdateForEndingIncrementalSessionWithID:(id)arg1 withOriginalSceneUpdate:(id)arg2;
+- (void)noteObject:(id)arg1 changedValueForKeyPath:(id)arg2;
+- (BOOL)isInIncrementalUpdateSession;
+- (void)establishIncrementalUpdateSessionForObject:(id)arg1 duringBlock:(CDUnknownBlockType)arg2;
 - (void)waitForPendingUpdates;
 - (void)removeReferencesToObject:(id)arg1;
 - (id)delaySceneUpdates;

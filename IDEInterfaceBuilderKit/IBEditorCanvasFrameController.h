@@ -72,8 +72,13 @@
 @property(retain, nonatomic) IBEditorCanvasFrame *editorCanvasFrame; // @synthesize editorCanvasFrame;
 - (void).cxx_destruct;
 - (id)runSynchronousSceneUpdateForRoot:(id)arg1;
-- (void)populateSceneUpdates:(id)arg1 forUpdatingSceneWithRoot:(id)arg2 sceneUpdateManager:(id)arg3;
-- (id)_makeSceneUpdateRequestForRoot:(id)arg1 returningScaleFactor:(id *)arg2;
+- (void)populateIncrementalSceneUpdates:(id)arg1 forUpdatingSceneWithRoot:(id)arg2 sceneUpdateManager:(id)arg3;
+- (void)populateFullSceneUpdates:(id)arg1 forUpdatingSceneWithRoot:(id)arg2 objectPackage:(id)arg3 sceneUpdateManager:(id)arg4;
+- (id)_makeIncrementalSceneUpdateRequest;
+- (id)_makeFullSceneUpdateRequestForRoot:(id)arg1 withObjectPackage:(id)arg2;
+- (void)configureSceneUpdateRequest:(id)arg1;
+- (long long)_sceneUpdateRenderingFidelity;
+- (id)_sceneUpdateScaleFactor;
 - (void)document:(id)arg1 willRunArbitrationOfUnits:(id)arg2;
 - (void)prepareToResizeFrameWithTracker:(id)arg1;
 - (void)didResizeEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(CDUnion_31865a80)arg3;

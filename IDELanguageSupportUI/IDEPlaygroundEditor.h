@@ -6,7 +6,7 @@
 
 #import "IDESourceCodeEditor.h"
 
-@class DVTObservingToken, DVTPerformanceMetric, IDEPlaygroundDocument, IDEPlaygroundEditorStackView_ML, IDEPlaygroundSourceTextScrollView, IDEPlaygroundTextView, NSArray, NSCountedSet, NSMapTable, NSMutableArray, NSMutableSet, NSSet;
+@class DVTObservingToken, DVTPerformanceMetric, DVTScopeBarController, IDEPlaygroundDocument, IDEPlaygroundEditorStackView_ML, IDEPlaygroundSourceTextScrollView, IDEPlaygroundTextView, NSArray, NSCountedSet, NSMapTable, NSMutableArray, NSMutableSet, NSSet;
 
 @interface IDEPlaygroundEditor : IDESourceCodeEditor
 {
@@ -32,6 +32,7 @@
     BOOL _alreadySetUp;
     DVTPerformanceMetric *_loadPerformanceMetric;
     DVTPerformanceMetric *_closePerformanceMetric;
+    DVTScopeBarController *_toolchainStatusScopeBarController;
 }
 
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
@@ -60,6 +61,8 @@
 - (void)schedulePlaygroundExecutionWithDelay:(double)arg1;
 - (BOOL)executeOnSourceChanges;
 @property(getter=isPlaygroundExecutionEnabled) BOOL playgroundExecutionEnabled;
+- (void)displayNonDefaultToolchainBanner;
+- (BOOL)isUsingDefaultToolchain;
 - (void)auxiliarySourceModuleChangedNotification:(id)arg1;
 - (double)textView:(id)arg1 constrainAccessoryAnnotationWidth:(double)arg2;
 - (double)textView:(id)arg1 constrainMaxAccessoryAnnotationWidth:(double)arg2;

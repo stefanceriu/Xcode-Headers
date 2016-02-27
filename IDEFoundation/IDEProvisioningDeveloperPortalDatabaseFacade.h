@@ -13,6 +13,7 @@
 + (id)_operationQueue;
 + (id)_portalPlatforms;
 + (BOOL)downloadEnhancedProvisioningProfiles:(id)arg1 token:(struct DVTPortalOperationToken *)arg2 error:(id *)arg3;
++ (BOOL)downloadAndRefreshAllWithToken:(struct DVTPortalOperationToken *)arg1 error:(id *)arg2;
 + (struct DVTPortalOperationToken *)singleTeamTokenForAccount:(id)arg1 team:(id)arg2 error:(id *)arg3;
 + (id)_runCertOperations:(id)arg1 token:(struct DVTPortalOperationToken *)arg2;
 + (id)_distributionSigningIdentitiesWithToken:(struct DVTPortalOperationToken *)arg1;

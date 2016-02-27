@@ -15,6 +15,7 @@
     double _preferredViewHeight;
     double *_cachedMessageTextWidths;
     DVTObservingToken *_viewFrameObservingToken;
+    BOOL _showsReportErrorButton;
     NSString *_messageText;
     NSArray *_phrases;
     CDUnknownBlockType _errorReportingBlock;
@@ -26,6 +27,7 @@
 @property(copy) NSString *toolTip; // @synthesize toolTip=_toolTip;
 @property(retain) DVTButtonTextField *reportErrorButtonTextField; // @synthesize reportErrorButtonTextField=_reportErrorButtonTextField;
 @property(retain) NSTextField *messageTextField; // @synthesize messageTextField=_messageTextField;
+@property(nonatomic) BOOL showsReportErrorButton; // @synthesize showsReportErrorButton=_showsReportErrorButton;
 @property(copy, nonatomic) CDUnknownBlockType errorReportingBlock; // @synthesize errorReportingBlock=_errorReportingBlock;
 @property(copy, nonatomic) NSArray *phrases; // @synthesize phrases=_phrases;
 @property(copy) NSString *messageText; // @synthesize messageText=_messageText;
@@ -38,6 +40,7 @@
 - (void)_updateMessageText;
 @property(readonly) NSImage *icon;
 @property double preferredViewHeight; // @synthesize preferredViewHeight=_preferredViewHeight;
+- (void)viewDidLoad;
 - (void)primitiveInvalidate;
 - (void)dealloc;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

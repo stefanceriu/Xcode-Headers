@@ -11,6 +11,7 @@
 }
 
 + (id)iTunesConnectAccountForTeamID:(id)arg1 teamName:(id)arg2 fromAccounts:(id)arg3 logAspect:(id)arg4;
++ (BOOL)iTunesQAAccount:(id *)arg1 error:(id *)arg2;
 + (id)iTunesConnectAccountForTeamID:(id)arg1 teamName:(id)arg2;
 
 @end

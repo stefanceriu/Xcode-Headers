@@ -8,7 +8,6 @@
 
 @interface NSURLRequest (XCSUtilities)
 - (id)toJSONWithError:(id *)arg1;
-- (id)toJSON;
 - (id)description;
 @end
 

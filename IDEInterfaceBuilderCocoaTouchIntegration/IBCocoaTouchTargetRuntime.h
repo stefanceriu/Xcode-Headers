@@ -34,6 +34,7 @@
 - (void).cxx_destruct;
 - (BOOL)populateEnvironment:(id)arg1 forExecutionContext:(id)arg2 error:(id *)arg3;
 - (id)registerSceneUpdateRenderingDelegate:(id)arg1 forScaleFactor:(double)arg2 returningSceneIdentifier:(long long *)arg3 error:(id *)arg4;
+- (id)processingRequestForIncrementallyUpdatingAttribute:(id)arg1 ofObject:(id)arg2 withObjectID:(id)arg3 marshallingContext:(id)arg4;
 - (Class)sceneUpdateRequestProcessorClass;
 - (Class)imageRequestProcessorClass;
 - (id)toolDescriptionForAutolayoutOperationsWithRole:(long long)arg1 scaleFactor:(double)arg2;

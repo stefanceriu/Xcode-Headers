@@ -11,6 +11,7 @@
 @interface DVTProductCategory : NSObject
 {
     BOOL _wantsRoundedIcons;
+    BOOL _crashPointInspectableShouldShowDeviceTypes;
     BOOL _wantsOnDiskPlatformDisambiguation;
     NSString *_identifier;
     NSString *_archiveDescription;
@@ -32,6 +33,7 @@
 @property(nonatomic) BOOL wantsOnDiskPlatformDisambiguation; // @synthesize wantsOnDiskPlatformDisambiguation=_wantsOnDiskPlatformDisambiguation;
 @property(retain, nonatomic) NSString *userDescriptionWhenNoPlatformExists; // @synthesize userDescriptionWhenNoPlatformExists=_userDescriptionWhenNoPlatformExists;
 @property(readonly) NSSet *overridingDeviceTypes; // @synthesize overridingDeviceTypes=_overridingDeviceTypes;
+@property(readonly) BOOL crashPointInspectableShouldShowDeviceTypes; // @synthesize crashPointInspectableShouldShowDeviceTypes=_crashPointInspectableShouldShowDeviceTypes;
 @property(readonly) NSString *crashPointInspectableOSVersionDescriptor; // @synthesize crashPointInspectableOSVersionDescriptor=_crashPointInspectableOSVersionDescriptor;
 @property(readonly) NSString *supportedOSVersionStringFormat; // @synthesize supportedOSVersionStringFormat=_supportedOSVersionStringFormat;
 @property(readonly) BOOL wantsRoundedIcons; // @synthesize wantsRoundedIcons=_wantsRoundedIcons;
@@ -46,7 +48,7 @@
 @property(readonly) DVTPlatform *platform;
 - (id)platformForCategoryIdentifier:(id)arg1;
 @property(readonly) NSString *userDescription;
-- (id)initWithIdentifier:(id)arg1 userDescriptionWhenNoPlatformExists:(id)arg2 archiveDescription:(id)arg3 sortOrder:(long long)arg4 deprecatedIdentifier:(long long)arg5 wantsRoundedIcons:(BOOL)arg6 supportedOSVersionStringFormat:(id)arg7 crashPointInspectableOSVersionDescriptor:(id)arg8 overridingDeviceTypes:(id)arg9 wantsOnDiskPlatformDisambiguation:(BOOL)arg10;
+- (id)initWithIdentifier:(id)arg1 userDescriptionWhenNoPlatformExists:(id)arg2 archiveDescription:(id)arg3 sortOrder:(long long)arg4 deprecatedIdentifier:(long long)arg5 wantsRoundedIcons:(BOOL)arg6 supportedOSVersionStringFormat:(id)arg7 crashPointInspectableOSVersionDescriptor:(id)arg8 overridingDeviceTypes:(id)arg9 wantsOnDiskPlatformDisambiguation:(BOOL)arg10 crashPointInspectableShouldShowDeviceTypes:(BOOL)arg11;
 - (id)platformDisambiguationStringWithPrefixString:(id)arg1;
 
 @end

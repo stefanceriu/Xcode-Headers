@@ -122,7 +122,7 @@
 - (void)section:(id)arg1 didChangeCells:(id)arg2 to:(id)arg3;
 @property(copy) NSArray *prototypes;
 - (id)sectionsIncludingPrototypes;
-- (void)configureSceneUpdateRequest:(id)arg1;
+- (void)configureFullSceneUpdateRequest:(id)arg1;
 - (BOOL)isGroupStyle;
 - (void)populateGeometryMarshallingContext:(id)arg1;
 - (void)populateCachedGeometryInfos:(id)arg1;
@@ -165,6 +165,7 @@
 - (BOOL)ibCanBeTableViewBracketingView;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (id)ibPasteboardTypes;
+- (BOOL)ibCanIncrementallyMarshalKeyPath:(id)arg1;
 - (struct CGRect)ibRectForChild:(id)arg1 inFrameController:(id)arg2;
 - (struct CGSize)preferredBracketingViewSize;
 - (BOOL)ibIsChildInitiallySelectable:(id)arg1;

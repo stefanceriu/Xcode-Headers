@@ -10,19 +10,21 @@
 
 @interface SKInspectorSoundProperty : IDEInspectorProperty
 {
-    NSComboBox *_comboBox;
-    NSArray *_availableSoundFiles;
+    NSArray *_availableSoundResources;
     IDEInspectorKeyPath *_valueKeyPath;
+    struct NSObject *_resourcesKVOToken;
+    NSComboBox *_comboBox;
 }
 
-+ (id)scannedSoundNames;
-+ (id)supportedSoundFileTypes;
+@property(retain) NSComboBox *comboBox; // @synthesize comboBox=_comboBox;
 - (void).cxx_destruct;
 - (void)userDidChangeValue:(id)arg1;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;
 - (double)baseline;
-- (id)comboBox;
+- (void)primitiveInvalidate;
+- (void)_beginObservingWorkspaceSoundResources;
+- (void)viewDidLoad;
 
 @end
 

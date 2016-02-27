@@ -57,7 +57,6 @@
 - (void)removeAction:(id)arg1;
 - (void)newServerAction:(id)arg1;
 - (void)newRepositoryAction:(id)arg1;
-- (void)newAppleConnectIDAction:(id)arg1;
 - (void)newAppleIDAction:(id)arg1;
 @property(readonly) NSArray *contentArray;
 - (void)_removePasswordAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(id)arg3;

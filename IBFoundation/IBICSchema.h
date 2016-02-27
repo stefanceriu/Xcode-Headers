@@ -152,6 +152,7 @@
 - (void)unionRequiredSlotEqualCounterparts:(id)arg1 expander:(CDUnknownBlockType)arg2;
 - (void)unionRequiredSlotCounterparts:(id)arg1 expander:(CDUnknownBlockType)arg2;
 - (void)addRequiredCounterpart:(id)arg1 forSlot:(id)arg2 expander:(CDUnknownBlockType)arg3;
+- (void)addRequiredCounterpart:(id)arg1 forSlot:(id)arg2 countOfCounterParts:(long long)arg3 expander:(CDUnknownBlockType)arg4;
 - (id)applicableSlotsOfClass:(Class)arg1 forPlatform:(id)arg2 targetIdioms:(id)arg3;
 - (id)applicableSlotsOfClass:(Class)arg1 forPlatform:(id)arg2;
 - (id)defaultSlotForClass:(Class)arg1;

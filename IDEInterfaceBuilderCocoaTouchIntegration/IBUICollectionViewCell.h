@@ -43,6 +43,7 @@
 - (id)ibViewForAncestorViewEdgeMovementQuestionsOfSubview:(id)arg1;
 - (void)ibPopulateAdditionalTargetOSVersions:(id)arg1 forCompilingDocument:(id)arg2;
 - (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
+- (void)ibEnumerateIncrementallyMarshalledKeyPathsForChangeToKeyPath:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (BOOL)ibShouldShowCustomSizeInSizeInspector;
 - (int)ibBoundsIndicatorRectBorderSides;
 - (id)ibDuplicateReuseIdentifierWarningKey;
