@@ -13,16 +13,16 @@
     NSArray *_rootDistributionItems;
     IDEDistributionMethod *_distributionMethod;
     NSString *_teamID;
-    DVTProvisioningProfileManager *_profileManager;
-    DVTSigningCertificateManager *_signingCertificateManager;
     IDEDistributionLogging *_logging;
     NSArray *_codesignableDevices;
+    DVTProvisioningProfileManager *_profileManager;
+    DVTSigningCertificateManager *_signingCertificateManager;
 }
 
-@property(readonly) NSArray *codesignableDevices; // @synthesize codesignableDevices=_codesignableDevices;
-@property(readonly) IDEDistributionLogging *logging; // @synthesize logging=_logging;
 @property(retain, nonatomic) DVTSigningCertificateManager *signingCertificateManager; // @synthesize signingCertificateManager=_signingCertificateManager;
 @property(retain, nonatomic) DVTProvisioningProfileManager *profileManager; // @synthesize profileManager=_profileManager;
+@property(readonly) NSArray *codesignableDevices; // @synthesize codesignableDevices=_codesignableDevices;
+@property(readonly) IDEDistributionLogging *logging; // @synthesize logging=_logging;
 @property(readonly) NSString *teamID; // @synthesize teamID=_teamID;
 @property(readonly) IDEDistributionMethod *distributionMethod; // @synthesize distributionMethod=_distributionMethod;
 @property(readonly) NSArray *rootDistributionItems; // @synthesize rootDistributionItems=_rootDistributionItems;

@@ -42,6 +42,8 @@
 - (void)invalidateLayoutWithFrameChangesToView:(id)arg1;
 - (void)_tearDownObservationForObservedObject:(id)arg1 notificationName:(id)arg2 observationCountTable:(id)arg3 rectChangeStackTable:(id)arg4;
 - (void)_setupObservationForObservedObject:(id)arg1 selector:(SEL)arg2 notificationName:(id)arg3 observationCountTable:(id *)arg4 rectChangeStackTable:(id *)arg5;
+- (void)setBoundsOrigin:(struct CGPoint)arg1;
+- (void)setBoundsSize:(struct CGSize)arg1;
 - (void)setFrameSize:(struct CGSize)arg1;
 - (void)didCompleteLayout;
 - (void)layoutBottomUp;

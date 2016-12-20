@@ -39,6 +39,7 @@
 - (id)ibPasteboardTypes;
 - (id)ibTypeNameForDefaultLabel;
 - (id)ibRuntimeClassName;
+- (id)ibEditorClass;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

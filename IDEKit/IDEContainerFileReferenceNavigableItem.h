@@ -6,16 +6,10 @@
 
 #import <IDEKit/IDEFileReferenceNavigableItem.h>
 
-@class DVTObservingToken, NSArray, NSString;
+@class NSArray, NSString;
 
 @interface IDEContainerFileReferenceNavigableItem : IDEFileReferenceNavigableItem
 {
-    id _blueprintSettingsDidChangeNotificationObserver;
-    DVTObservingToken *_blueprintsDidChangeObserver;
-    DVTObservingToken *_referencedContainerDidChangeObserver;
-    DVTObservingToken *_activeBuildConfigurationObserver;
-    NSString *_activeBuildConfigurationName;
-    NSString *_containerSummary;
     NSString *_scmAggregateLocalStatus;
     NSString *_scmAggregateServerStatus;
     NSArray *_subitems;
@@ -24,11 +18,8 @@
 
 + (id)keyPathsForValuesAffectingAggregateSourceControlServerStatus;
 + (id)keyPathsForValuesAffectingAggregateSourceControlLocalStatus;
++ (id)keyPathsForValuesAffectingReferencedContentExists;
 - (void).cxx_destruct;
-@property(readonly) NSString *containerSummary;
-- (void)_ensureBlueprintNotificationHandlingIsConfigured;
-- (id)_computeContainerSummaryForContainer:(id)arg1;
-- (id)_activeBuildConfigurationName;
 @property(readonly) NSString *aggregateSourceControlServerStatus;
 @property(readonly) NSString *aggregateSourceControlLocalStatus;
 - (void)updateAttributes;
@@ -36,8 +27,10 @@
 - (BOOL)_shouldResetChildItemsOnDocumentClose;
 - (void)updateChildRepresentedObjects;
 - (id)childRepresentedObjects;
+- (BOOL)referencedContentExists;
 - (BOOL)isLeaf;
 - (void)_setParentItem:(id)arg1;
+- (id)accessibleImageDescription;
 - (BOOL)isDocumentNavigableItem;
 - (void)primitiveInvalidate;
 

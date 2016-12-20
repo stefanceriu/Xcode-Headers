@@ -6,22 +6,24 @@
 
 #import "NSScrollView.h"
 
-@class IBAccessorizedScrollViewButtonBar;
+@class IBAccessorizedScrollViewButtonBar, NSArray, NSVisualEffectView;
 
 @interface IBAccessorizedScrollView : NSScrollView
 {
+    NSVisualEffectView *_visualEffectView;
+    NSArray *_windowDidChangeKeyTokens;
+    BOOL _usesEmphasizedButtonBarBackgroundAppearance;
     IBAccessorizedScrollViewButtonBar *_buttonBar;
 }
 
 @property(readonly) IBAccessorizedScrollViewButtonBar *buttonBar; // @synthesize buttonBar=_buttonBar;
+@property(nonatomic) BOOL usesEmphasizedButtonBarBackgroundAppearance; // @synthesize usesEmphasizedButtonBarBackgroundAppearance=_usesEmphasizedButtonBarBackgroundAppearance;
 - (void).cxx_destruct;
-- (void)bringButtonBarToFront;
+- (void)_updateButtonBarVisualEffectView;
+- (void)viewDidMoveToWindow;
+- (void)viewWillMoveToWindow:(id)arg1;
 - (void)tile;
-- (id)verticalScroller;
-- (id)horizontalScroller;
 - (void)awakeFromNib;
-- (id)initWithCoder:(id)arg1;
-- (id)initWithFrame:(struct CGRect)arg1;
 
 @end
 

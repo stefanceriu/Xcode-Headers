@@ -88,7 +88,7 @@
 - (void)outlineView:(id)arg1 setObjectValue:(id)arg2 forTableColumn:(id)arg3 byItem:(id)arg4;
 - (void)viewDidMoveToSuperview;
 @property(retain) IDENavigableItemAsyncFilteringCoordinator *navigableItemCoordinator;
-- (id)filterPredicate;
+- (id)filter;
 - (void)scrollItemToVisible:(id)arg1;
 @property(copy) NSArray *expandedItems;
 @property(retain) NSArray *selectedItems;

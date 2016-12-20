@@ -21,6 +21,7 @@
 + (id)ib_emptyCollection;
 + (Class)ib_mutableClass;
 + (id)ib_orderedCollectionWithOrderedCollection:(id)arg1;
+- (id)ib_arrayByShufflingObjects;
 - (void)ib_getObjects:(id *)arg1;
 - (void)ib_removeObjectsInReceiverFromArray:(id)arg1;
 - (void)ib_removeObjectsInReceiverFromOrderedSet:(id)arg1;
@@ -31,6 +32,8 @@
 - (void)ib_invokeWithAccessToObjects:(CDUnknownBlockType)arg1;
 - (id)ib_maximumObjectUsingComparator:(CDUnknownBlockType)arg1;
 - (id)ib_minimumObjectUsingComparator:(CDUnknownBlockType)arg1;
+- (id)ib_secondToLastObject;
+- (id)ib_objectAtIndexFromEndIfInBounds:(long long)arg1;
 - (id)ib_objectAtIndexFromEnd:(long long)arg1;
 - (long long)ib_numberOfObjectsPassingTest:(CDUnknownBlockType)arg1;
 - (id)ib_arrayBySortingUsingComparator:(CDUnknownBlockType)arg1;

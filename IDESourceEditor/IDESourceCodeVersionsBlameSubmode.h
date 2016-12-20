@@ -27,6 +27,7 @@
     NSProgressIndicator *_loadingProgressIndicator;
 }
 
++ (BOOL)automaticallyNotifiesObserversOfPrimaryEditor;
 + (id)keyPathsForValuesAffectingCurrentSelectedDocumentLocations;
 + (id)keyPathsForValuesAffectingCurrentSelectedItems;
 + (id)keyPathsForValuesAffectingKeyEditor;
@@ -37,6 +38,8 @@
 - (void)commitComparisonEditorStateToDictionary:(id)arg1;
 - (void)textViewDidLoadAnnotationProviders:(id)arg1;
 - (id)annotationContextForTextView:(id)arg1;
+- (BOOL)validateMenuItem:(id)arg1;
+- (void)comparisonContextMenu_toggleIgnoreWhitespace:(id)arg1;
 - (id)currentSelectedDocumentLocations;
 - (id)currentSelectedItems;
 - (void)blameController:(id)arg1 didEncounterError:(id)arg2;

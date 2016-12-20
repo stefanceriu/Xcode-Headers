@@ -7,7 +7,8 @@
 #import "MDLSubmesh.h"
 
 @interface MDLSubmesh (SCNModelIO)
-+ (id)newSubmeshWithSCNGeometryElement:(id)arg1;
++ (id)newSubmeshWithSCNGeometryElement:(id)arg1 bufferAllocator:(id)arg2;
++ (id)submeshWithSCNGeometryElement:(id)arg1 bufferAllocator:(id)arg2;
 + (id)submeshWithSCNGeometryElement:(id)arg1;
 @end
 

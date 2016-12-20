@@ -10,7 +10,7 @@
 #import "NSOutlineViewDataSource.h"
 #import "NSOutlineViewDelegate.h"
 
-@class DVTBorderedView, DVTOutlineView, IDEFilterControlBar, IDEMigrationTargetChooserStatePersistence, NSArray, NSImageView, NSMutableIndexSet, NSString, NSTextField, NSTreeController;
+@class DVTBorderedView, DVTOutlineViewWithCustomGridDrawing, IDEFilterControlBar, IDEMigrationTargetChooserStatePersistence, NSArray, NSImageView, NSMutableIndexSet, NSString, NSTextField, NSTreeController;
 
 @interface IDEARCConversionTargetChooserAssistant : IDEAssistant <NSOutlineViewDataSource, NSOutlineViewDelegate, IDEFilterControlBarTarget>
 {
@@ -21,7 +21,7 @@
     IDEMigrationTargetChooserStatePersistence *_statePersistence;
     IDEFilterControlBar *_filterControlBar;
     DVTBorderedView *_scopeBarBorderedView;
-    DVTOutlineView *_outlineView;
+    DVTOutlineViewWithCustomGridDrawing *_outlineView;
     DVTBorderedView *_borderedView;
     NSImageView *_warningIconImageView;
     NSTextField *_warningTextField;
@@ -51,6 +51,8 @@
 - (unsigned long long)_numberOfCheckedItemsAtIndexes:(id)arg1;
 - (void)_setChecked:(BOOL)arg1 forTargetChooserItemAtIndexes:(id)arg2;
 - (id)_effectiveSelectedRowIndexes;
+- (id)filterButtonAccessibilityDescription;
+- (id)filterButtonToolTip;
 - (id)filterButtonMenu;
 - (id)filterDefinitionIdentifier;
 - (void)_restoreSelectedTargetChooserItemsAndExpandedRows;

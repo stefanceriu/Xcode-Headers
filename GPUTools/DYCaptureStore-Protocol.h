@@ -7,7 +7,7 @@
 #import "DYCaptureVisiting.h"
 #import "NSObject.h"
 
-@class DYCaptureFile, NSArray, NSMutableData, NSPredicate, NSString;
+@class DYCaptureFile, NSArray, NSData, NSMutableData, NSPredicate, NSString;
 
 @protocol DYCaptureStore <DYCaptureVisiting, NSObject>
 - (BOOL)adjunctFileExistsForFilename:(NSString *)arg1 error:(id *)arg2;
@@ -22,8 +22,8 @@
 - (BOOL)getInfo:(CDStruct_61ea625d *)arg1 forFilename:(NSString *)arg2 error:(id *)arg3;
 - (BOOL)getInfo:(CDStruct_61ea625d *)arg1 forFilenameBuffer:(const char *)arg2 error:(id *)arg3;
 - (void *)allocateAndReadDataForFilenameBuffer:(const char *)arg1 outSize:(unsigned long long *)arg2 error:(id *)arg3;
-- (NSMutableData *)copyDataForFilename:(NSString *)arg1 error:(id *)arg2;
-- (NSMutableData *)copyDataForFilenameBuffer:(const char *)arg1 error:(id *)arg2;
+- (NSData *)copyDataForFilename:(NSString *)arg1 error:(id *)arg2;
+- (NSData *)copyDataForFilenameBuffer:(const char *)arg1 error:(id *)arg2;
 - (long long)readDataForFilename:(NSString *)arg1 buffer:(void *)arg2 size:(unsigned long long)arg3 error:(id *)arg4;
 - (long long)readDataForFilenameBuffer:(const char *)arg1 buffer:(void *)arg2 size:(unsigned long long)arg3 error:(id *)arg4;
 - (DYCaptureFile *)openFileWithFilename:(NSString *)arg1 error:(id *)arg2;

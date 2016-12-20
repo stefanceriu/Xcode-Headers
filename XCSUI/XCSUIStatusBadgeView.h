@@ -26,7 +26,7 @@
 - (BOOL)wantsUpdateLayer;
 - (void)runOpacityAnimation:(id)arg1;
 - (void)updateLayer;
-- (struct CGColor *)defaultBadgeCountTextColor;
+- (id)defaultBadgeCountTextColor;
 - (void)reset;
 - (void)viewDidChangeBackingProperties;
 - (void)reconfigureBadge;

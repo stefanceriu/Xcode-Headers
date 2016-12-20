@@ -8,17 +8,19 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, IBICCatalogDocument, IBMutableIdentityDictionary, NSDictionary, NSMutableOrderedSet, NSString;
+@class DVTStackBacktrace, IBICAbstractCatalogDocument, IBMutableIdentityDictionary, NSDictionary, NSMutableOrderedSet, NSString;
 
 @interface IBICDragContext : NSObject <DVTInvalidation>
 {
     IBMutableIdentityDictionary *_itemsToTargetParents;
-    IBICCatalogDocument *_document;
+    IBICAbstractCatalogDocument *_document;
+    IBMutableIdentityDictionary *_itemsToTargetParentConfigurationBlocks;
     NSMutableOrderedSet *_itemsToRemove;
     IBMutableIdentityDictionary *_perItemUserInfo;
 }
 
 + (void)initialize;
+@property(readonly) IBICAbstractCatalogDocument *document; // @synthesize document=_document;
 @property(readonly) IBMutableIdentityDictionary *perItemUserInfo; // @synthesize perItemUserInfo=_perItemUserInfo;
 @property(readonly) NSDictionary *itemsToTargetParents; // @synthesize itemsToTargetParents=_itemsToTargetParents;
 - (void).cxx_destruct;
@@ -26,7 +28,7 @@
 - (void)applyScheduledAdditions;
 - (void)applyScheduledRemovals;
 - (void)scheduleRemovalOfItem:(id)arg1;
-- (void)scheduleAditionOfItem:(id)arg1 toParent:(id)arg2;
+- (void)scheduleAditionOfItem:(id)arg1 toParent:(id)arg2 configurationBlock:(CDUnknownBlockType)arg3;
 - (void)primitiveInvalidate;
 - (id)initWithDocument:(id)arg1;
 

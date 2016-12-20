@@ -6,23 +6,41 @@
 
 #import "DVTDocumentLocation.h"
 
-@class NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@interface GPUTraceDocumentLocation : DVTDocumentLocation
+@class DVTFileDataType, IDEFileReference, NSImage, NSString;
+
+@interface GPUTraceDocumentLocation : DVTDocumentLocation <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSString *_outlineItemUUID;
 }
 
-+ (id)locationURLForOutlineItem:(id)arg1;
 @property(readonly) NSString *outlineItemUUID; // @synthesize outlineItemUUID=_outlineItemUUID;
 - (void).cxx_destruct;
-- (void)logCreationBacktrace;
 - (long long)compare:(id)arg1;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithOutlineItem:(id)arg1;
-@property(readonly) NSString *associatedProcessUUID; // @dynamic associatedProcessUUID;
+@property(readonly) NSString *associatedProcessUUID;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) NSString *navigableItem_name;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

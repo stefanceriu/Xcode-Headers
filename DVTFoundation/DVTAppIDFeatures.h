@@ -32,8 +32,12 @@
 - (id)plistRepresentation;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly) BOOL requiresExplicitAppID;
+@property(readonly) BOOL hasEnabledFeatures;
+- (id)portalKeyToFeatureValues;
+- (id)portalKeyToContainerValues;
 @property(readonly) DVTAppIDFeatures *enabledFeatures;
 - (id)featuresBySettingValue:(id)arg1 forKey:(id)arg2;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)initWithFlags:(id)arg1 cloudContainers:(id)arg2 applicationGroups:(id)arg3 omcIdentifiers:(id)arg4;
 - (id)init;

@@ -28,6 +28,10 @@
 + (void)initialize;
 @property BOOL shouldAlwaysDrawBottomBorder; // @synthesize shouldAlwaysDrawBottomBorder=_shouldAlwaysDrawBottomBorder;
 - (void).cxx_destruct;
+- (id)accessibilityTitle;
+- (id)accessibilityRoleDescription;
+- (id)accessibilityRole;
+- (BOOL)isAccessibilityElement;
 @property(copy) NSDictionary *issueInfoDictionary;
 - (struct CGRect)draggingRect;
 - (void)disclosureHeaderView:(id)arg1 didChangeDisclosedState:(BOOL)arg2;

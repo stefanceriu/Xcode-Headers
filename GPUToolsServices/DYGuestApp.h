@@ -45,11 +45,11 @@
 @property(readonly, nonatomic) unsigned long long kind; // @synthesize kind=_kind;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) NSDictionary *environment; // @dynamic environment;
-@property(readonly, nonatomic) NSArray *arguments; // @dynamic arguments;
+@property(readonly, nonatomic) NSArray *arguments;
 - (id)_applyShellProcessingOnArgumentValue:(id)arg1;
 - (BOOL)isArchitectureAvailable:(unsigned long long)arg1;
-@property(copy, nonatomic) NSString *title; // @dynamic title;
-@property(copy, nonatomic) NSString *path; // @dynamic path;
+@property(copy, nonatomic) NSString *title;
+@property(copy, nonatomic) NSString *path;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;

@@ -15,8 +15,9 @@
 }
 
 + (void)handleURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
++ (void)showMostRecentWorkspaceWithCompletionBlock:(CDUnknownBlockType)arg1;
 + (void)showWorkspaceForProjectName:(id)arg1 bot:(id)arg2 integration:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
-+ (BOOL)shouldRegisterURLHandlerForScheme:(id)arg1;
++ (void)loadReportsNavigatorAndShowIntegrationSummary:(id)arg1;
 + (void)selectBotInReportsNavigator:(id)arg1 integration:(id)arg2;
 
 // Remaining properties

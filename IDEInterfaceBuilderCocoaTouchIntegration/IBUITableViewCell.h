@@ -177,6 +177,9 @@
 - (void)ibClearContentView;
 - (id)ibInspectedImage;
 - (void)setIbInspectedImage:(id)arg1;
+- (id)ibEditorClass;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

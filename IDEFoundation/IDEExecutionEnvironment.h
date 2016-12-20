@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, IDEActivityLogSection, IDEBreakpointManager, IDEBuildOperation, IDEExecutionTracker, IDEInMemoryLogStore, IDELaunchSession, IDELogStore, IDEWorkspace, IDEWorkspaceArena, NSArray, NSCountedSet, NSMapTable, NSMutableArray, NSMutableOrderedSet, NSOperationQueue, NSSet, NSString;
+@class DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEBreakpointManager, IDEBuildOperation, IDEExecutionTracker, IDEInMemoryLogStore, IDELaunchSession, IDELogStore, IDEWorkspace, IDEWorkspaceArena, NSArray, NSCountedSet, NSMapTable, NSMutableArray, NSMutableOrderedSet, NSOperationQueue, NSSet, NSString;
 
 @interface IDEExecutionEnvironment : NSObject <DVTInvalidation>
 {
@@ -30,6 +30,9 @@
     NSMapTable *_ibLogsByBuildable;
     BOOL _handlingLaunchSessionStateChange;
     BOOL _settingLaunchSessionForTabChange;
+    NSMutableArray *_debugSessions;
+    DVTObservingToken *_currentDebugSessionObserverToken;
+    DVTObservingToken *_currentTraceInferiorSessionObserverToken;
     IDEWorkspace *_workspace;
     IDEExecutionTracker *_currentExecutionTracker;
     IDEWorkspaceArena *_workspaceArena;
@@ -70,6 +73,7 @@
 - (void).cxx_destruct;
 - (id)queuedBuildOperationsDescription;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)_completeBuildOperation:(id)arg1 andPostLastBuildCompleted:(BOOL)arg2 andPostLastUserInitiatedBuildCompleted:(BOOL)arg3;
 - (void)_addMissingErrorForFailedBuildToRecorder:(id)arg1 buildLog:(id)arg2;
 - (void)_handleLaunchSession:(id)arg1 stateChange:(id)arg2;
 - (void)_setStatusDisplayNameForLaunchSession:(id)arg1;
@@ -97,11 +101,13 @@
 @property(readonly) NSArray *executionTrackersOfOperationsWithBuilds;
 @property(readonly) IDEBreakpointManager *breakpointManager;
 - (void)primitiveInvalidate;
+- (void)_setupDebugSessionsObservation;
 - (id)initWithWorkspaceArena:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSArray *debugSessions; // @dynamic debugSessions;
 @property(readonly, copy) NSString *description;
 @property(readonly, copy) NSSet *executedActionInvocationRecords; // @dynamic executedActionInvocationRecords;
 @property(readonly, copy) NSArray *executionTrackers; // @dynamic executionTrackers;
@@ -109,6 +115,7 @@
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly, copy) NSArray *launchSessions; // @dynamic launchSessions;
+@property(readonly, copy) NSMutableArray *mutableDebugSessions; // @dynamic mutableDebugSessions;
 @property(readonly, copy) NSMutableOrderedSet *mutableExecutedActionInvocationRecords; // @dynamic mutableExecutedActionInvocationRecords;
 @property(readonly, copy) NSMutableArray *mutableExecutionTrackers; // @dynamic mutableExecutionTrackers;
 @property(readonly, copy) NSMutableArray *mutableExecutionTrackersForDisplay; // @dynamic mutableExecutionTrackersForDisplay;

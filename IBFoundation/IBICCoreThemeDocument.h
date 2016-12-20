@@ -18,7 +18,6 @@
 }
 
 + (id)makeTemporaryDocumentWithOptions:(id)arg1 returningError:(id *)arg2;
-+ (void)applyMinimumDeploymentFromOptions:(id)arg1 toCoreThemeDocument:(id)arg2;
 + (BOOL)isMigrationError:(id)arg1;
 + (void)initialize;
 @property(retain, nonatomic) IBICCatalogCompilerOptions *catalogCompilerOptions; // @synthesize catalogCompilerOptions=_catalogCompilerOptions;
@@ -30,6 +29,10 @@
 - (void)logAssets;
 - (void)logAsset:(id)arg1;
 - (void)logAssetImport:(id)arg1;
+- (id)stringFromCompressionType:(long long)arg1;
+- (id)stringFromTemplateRenderingMode:(long long)arg1;
+- (id)stringFromLayoutDirection:(unsigned long long)arg1;
+- (id)stringFromDisplayGamut:(long long)arg1;
 - (id)stringFromResizingMode:(long long)arg1;
 - (id)stringFromRenditionType:(long long)arg1;
 - (id)stringFromIdiom:(long long)arg1;

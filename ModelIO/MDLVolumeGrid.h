@@ -8,30 +8,16 @@
 
 @interface MDLVolumeGrid : NSObject
 {
-    struct unique_ptr<ModelIO::Octree, std::__1::default_delete<ModelIO::Octree>> _octree;
+    struct unique_ptr<ModelIO::SCNOctree, std::__1::default_delete<ModelIO::SCNOctree>> _octree;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)setSampleAtIndex:(float)arg1 value: /* Error: Ran out of types for this method. */;
-- (float)sampleAtIndex: /* Error: Ran out of types for this method. */;
--     // Error parsing type: 16@0:8, name: gridExtent
--     // Error parsing type: 16@0:8, name: gridCellExtent
-- (void)filterBy:(CDUnknownBlockType)arg1;
-- (void)resampleGrid:(float)arg1;
-- (void)contractBoundaryWithExteriorWidth:(float)arg1 interiorWidth:(float)arg2;
-- (void)expandBoundaryWithExteriorWidth:(float)arg1 interiorWidth:(float)arg2;
-- (void)removeSelfIntersections;
-- (id)createIndexBufferWithStyle:(unsigned long long)arg1 quality:(float)arg2 exteriorWidth:(float)arg3 interiorWidth:(float)arg4;
-- (id)createVertexBufferWithStyle:(unsigned long long)arg1 quality:(float)arg2 exteriorWidth:(float)arg3 interiorWidth:(float)arg4;
-- (id)createIndexBufferWithStyle:(unsigned long long)arg1 quality:(float)arg2;
-- (id)createVertexBufferWithStyle:(unsigned long long)arg1 quality:(float)arg2;
-- (id)XYlayerAtZ:(float)arg1 forLevel:(int)arg2;
-- (id)XZlayerAtY:(float)arg1 forLevel:(int)arg2;
-- (id)YZlayerAtX:(float)arg1 forLevel:(int)arg2;
+- (unsigned long long *)trianglesIntersectingRayWithOrigin:(unsigned long long *)arg1 direction:count: /* Error: Ran out of types for this method. */;
 - (id)meshWithStyle:(unsigned long long)arg1;
 - (id)initWithAsset:(id)arg1 divisions:(int)arg2 interiorWidth:(float)arg3 exteriorWidth:(float)arg4 patchRadius:(float)arg5;
 - (id)initWithAsset:(id)arg1 divisions:(int)arg2;
+- (id)initWithObject:(id)arg1 divisions:(int)arg2;
 
 @end
 

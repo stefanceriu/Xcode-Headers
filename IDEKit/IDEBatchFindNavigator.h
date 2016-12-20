@@ -7,6 +7,7 @@
 #import <IDEKit/IDENavigator.h>
 
 #import "DVTFindPatternManager.h"
+#import "IDEBatchFindNameTreeResolver.h"
 #import "IDEProgressSearchFieldCommandDelegate.h"
 #import "IDEProgressSearchFieldDelegate.h"
 #import "NSAnimationDelegate.h"
@@ -15,7 +16,7 @@
 
 @class DVTBorderedView, DVTFindPatternTextField, DVTLayoutView_ML, DVTSplitViewItem, DVTStackView_ML, IDEBatchFindLocationPickerView, IDEBatchFindQuery, IDEBatchFindReplaceButtonLayoutView, IDEBatchFindReplaceableSheetController, IDEBatchFindResultsOutlineController, IDEBatchFindStrategiesController, IDEBatchFindTwoButtonLayout, IDECallHierarchyViewController, IDENavigableItem, IDENavigableItemCoordinator, IDEPathControl, IDEProgressSearchField, NSArray, NSAttributedString, NSButton, NSMenu, NSMutableArray, NSPopUpButton, NSPopUpButtonCell, NSString, NSTextField, NSView;
 
-@interface IDEBatchFindNavigator : IDENavigator <NSTextFieldDelegate, NSPopoverDelegate, NSAnimationDelegate, IDEProgressSearchFieldCommandDelegate, IDEProgressSearchFieldDelegate, DVTFindPatternManager>
+@interface IDEBatchFindNavigator : IDENavigator <NSTextFieldDelegate, NSPopoverDelegate, NSAnimationDelegate, IDEProgressSearchFieldCommandDelegate, IDEProgressSearchFieldDelegate, DVTFindPatternManager, IDEBatchFindNameTreeResolver>
 {
     DVTStackView_ML *searchContentView;
     DVTBorderedView *topBorderView;
@@ -58,7 +59,6 @@
     NSArray *_rootNavigables;
     IDENavigableItem *_selectedNavigable;
     IDENavigableItemCoordinator *_findMenuNavigableItemCoordinator;
-    NSString *_findResultFilterString;
     int _firstLevelIndex;
     int _secondLevelIndex;
     int _thirdLevelIndex;
@@ -72,6 +72,7 @@
     NSPopUpButton *_matchCaseButton;
     DVTLayoutView_ML *_contentView;
     IDEBatchFindTwoButtonLayout *_twoButtonLayout;
+    NSString *_findResultFilterString;
     NSString *_lastFindString;
     IDEBatchFindResultsOutlineController *_resultsOutlineController;
     NSPopUpButtonCell *_matchCasePopUpButtonCell;
@@ -109,6 +110,7 @@
 @property(copy, nonatomic) NSAttributedString *findAttributedString; // @synthesize findAttributedString=_findAttributedString;
 @property(nonatomic) int findMode; // @synthesize findMode=_findMode;
 - (void).cxx_destruct;
+- (id)containerForNameTree:(id)arg1;
 - (void)_insertFindPattern:(id)arg1;
 - (void)findPatternField:(id)arg1 findPatternDoubleClicked:(id)arg2;
 - (BOOL)_hasValidFindPattern;
@@ -119,9 +121,6 @@
 - (id)_findField;
 - (BOOL)supportsPatterns;
 - (void)searchField:(id)arg1 receivedCommandSelector:(SEL)arg2;
-- (void)updateFilterPredicate;
-- (void)setFilterPredicate:(id)arg1;
-- (void)_synchronizeFilteringWithOutlineView;
 - (id)filterDefinitionIdentifier;
 - (id)control:(id)arg1 textView:(id)arg2 completions:(id)arg3 forPartialWordRange:(struct _NSRange)arg4 indexOfSelectedItem:(long long *)arg5;
 - (void)_cancelFindOperation;
@@ -161,11 +160,11 @@
 - (void)matchCaseButtonAction:(id)arg1;
 - (void)_updateMatchCaseButton;
 - (void)showLocationPicker:(id)arg1;
+- (void)createScopeItemFromGroupSelection:(id)arg1;
 - (void)locationPickerSelectionUpdated;
 - (void)locationPickerDeleteAction:(id)arg1;
 - (void)locationPickerEditAction:(id)arg1;
 - (void)locationPickerDoubleClickAction:(id)arg1;
-- (void)scopeEditorCompleted;
 - (void)hideLocationPicker:(id)arg1;
 - (void)animateLocationPicker:(id)arg1;
 - (void)animationDidEnd:(id)arg1;
@@ -177,7 +176,7 @@
 - (void)_updateContentView;
 - (void)updateScopeItems:(id)arg1;
 - (BOOL)pathControlIsEnabled;
-- (void)sizeToFitWithAnimation:(BOOL)arg1;
+- (void)_sizeToFit;
 @property(nonatomic) int findType;
 @property(copy) NSString *replaceString;
 @property(copy, nonatomic) NSString *findString;

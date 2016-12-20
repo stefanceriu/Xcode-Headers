@@ -72,6 +72,8 @@
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (BOOL)ibCanRemoveChildren:(id)arg1;
 - (id)ibPasteboardTypes;
+- (id)ibEditorClass;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

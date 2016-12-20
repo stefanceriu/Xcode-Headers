@@ -13,7 +13,7 @@
 - (id)packagingStepIdentifier;
 - (id)requiredProfileEntitlements;
 - (id)provisioningProfilePlatform;
-- (BOOL)wantsProvisioningProfiles;
+- (long long)wantsProvisioningProfiles;
 - (id)installerCertificateKind;
 - (id)certificateKind;
 - (id)shortTitle;

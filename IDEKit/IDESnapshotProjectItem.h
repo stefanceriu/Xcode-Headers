@@ -19,12 +19,10 @@
     NSString *_statusString;
     BOOL _isCurrentlyOpen;
     DVTFilePath *_workspaceArenaLocation;
-    DVTFilePath *_snapshotsLocation;
 }
 
 + (id)keyPathsForValueAffectingDetailedStatusString;
 @property(nonatomic) BOOL isCurrentlyOpen; // @synthesize isCurrentlyOpen=_isCurrentlyOpen;
-@property(retain) DVTFilePath *snapshotsLocation; // @synthesize snapshotsLocation=_snapshotsLocation;
 @property(retain) DVTFilePath *workspaceArenaLocation; // @synthesize workspaceArenaLocation=_workspaceArenaLocation;
 @property(readonly) int projectStatus; // @synthesize projectStatus=_projectStatus;
 @property(retain, nonatomic) DVTFilePath *projectLocation; // @synthesize projectLocation=_projectLocation;
@@ -43,12 +41,16 @@
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 

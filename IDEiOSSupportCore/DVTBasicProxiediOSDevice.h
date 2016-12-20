@@ -21,9 +21,9 @@
 @property(readonly, getter=isAvailable) BOOL available;
 @property(readonly) NSString *adjustedOperatingSystemVersion;
 - (id)supportedDeviceFamilies;
-@property(readonly, copy) NSString *name;
+@property(readonly, copy, nonatomic) NSString *name;
 @property(readonly, copy, nonatomic) NSString *modelCode;
-@property(readonly, copy) NSString *identifier;
+@property(readonly, copy, nonatomic) NSString *identifier;
 @property(readonly) DVTPlatform *platform;
 @property(readonly, copy) NSString *platformIdentifier;
 @property(readonly, copy) NSString *processorDescription;

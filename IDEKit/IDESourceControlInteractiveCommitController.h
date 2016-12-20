@@ -21,6 +21,7 @@
 - (void)_validateMergeData:(id)arg1;
 - (void)revertChangesFromMergeData:(id)arg1 toItemAtFilePath:(id)arg2;
 - (void)applyChangesFromMergeData:(id)arg1 toItemAtFilePath:(id)arg2;
+- (void)generateMergeDataForFilePath:(id)arg1;
 
 @end
 

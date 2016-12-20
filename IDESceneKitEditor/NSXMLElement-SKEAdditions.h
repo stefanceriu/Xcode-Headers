@@ -8,6 +8,7 @@
 
 @interface NSXMLElement (SKEAdditions)
 + (id)ske_spritekitThreeComponentsPropertyElementWithKeyPath1:(id)arg1 keyPath2:(id)arg2 keyPath3:(id)arg3 editable:(BOOL)arg4;
++ (id)ske_materialFoldableContentsPropertyElementWithKeyPath:(id)arg1 acceptsImages:(BOOL)arg2 editable:(BOOL)arg3 showKeyPath:(id)arg4 disclosableKeyPath:(id)arg5 disclosablePlainKeyPath:(id)arg6 title:(id)arg7;
 + (id)ske_materialContentsPropertyElementWithKeyPath:(id)arg1 acceptsImages:(BOOL)arg2 editable:(BOOL)arg3;
 + (id)ske_imagePreviewPropertyElementWithKeyPath:(id)arg1;
 + (id)ske_pathfieldPropertyElementWithKeyPath:(id)arg1 placeholder:(id)arg2 showLink:(BOOL)arg3 showChooser:(BOOL)arg4 editable:(BOOL)arg5;

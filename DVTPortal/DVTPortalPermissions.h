@@ -6,29 +6,36 @@
 
 #import "NSObject.h"
 
+@class DVTPortalTeam;
+
 @interface DVTPortalPermissions : NSObject
 {
-    BOOL _canRegisterDevices;
-    BOOL _canCreateProfiles;
-    BOOL _canCreateOrModifyAppIDs;
-    BOOL _canRemoveProfiles;
-    BOOL _canRevokeAllCertificates;
-    BOOL _canRevokeOnlyOwnedCertificates;
+    DVTPortalTeam *_team;
+    long long _role;
 }
 
-+ (id)_permissionsWithRoles:(id)arg1 error:(id *)arg2;
-+ (id)memberPermissions;
-+ (id)adminPermissions;
-+ (id)agentPermissions;
-@property(readonly, nonatomic) BOOL canRevokeOnlyOwnedCertificates; // @synthesize canRevokeOnlyOwnedCertificates=_canRevokeOnlyOwnedCertificates;
-@property(readonly, nonatomic) BOOL canRevokeAllCertificates; // @synthesize canRevokeAllCertificates=_canRevokeAllCertificates;
-@property(readonly, nonatomic) BOOL canRemoveProfiles; // @synthesize canRemoveProfiles=_canRemoveProfiles;
-@property(readonly, nonatomic) BOOL canCreateOrModifyAppIDs; // @synthesize canCreateOrModifyAppIDs=_canCreateOrModifyAppIDs;
-@property(readonly, nonatomic) BOOL canCreateProfiles; // @synthesize canCreateProfiles=_canCreateProfiles;
-@property(readonly, nonatomic) BOOL canRegisterDevices; // @synthesize canRegisterDevices=_canRegisterDevices;
-- (BOOL)canRequestCertificatesOfType:(id)arg1;
++ (id)_errorNoRolesFoundInRoles:(id)arg1;
++ (id)_permissionsWithRoles:(id)arg1 team:(id)arg2 error:(id *)arg3;
+@property(readonly, nonatomic) long long role; // @synthesize role=_role;
+@property(nonatomic) DVTPortalTeam *team; // @synthesize team=_team;
+- (id)_roleDescription;
+- (BOOL)_canUseInAppPurchaseFeatureForProgram:(id)arg1;
+- (BOOL)_canUseSiriFeature;
+- (BOOL)_canUseServerPortalServices;
+- (BOOL)canAssociateContainersOfType:(id)arg1;
+- (BOOL)canViewContainersOfType:(id)arg1;
+- (BOOL)canModifyContainersOfType:(id)arg1;
+- (BOOL)canRevokeCertificatesOfType:(id)arg1;
+- (BOOL)canCreateCertificatesOfType:(id)arg1;
+- (BOOL)_canUseCertificatesOfType:(id)arg1;
+- (BOOL)_roleCanCreateProfilesOfType:(id)arg1;
+- (BOOL)canCreateProfilesOfType:(id)arg1;
+- (BOOL)canCreateWildcardAppIDsForProgram:(id)arg1;
+- (BOOL)canCreateOrModifyAppIDsForProgram:(id)arg1;
+- (BOOL)canRegisterDevicesOfPlatform:(id)arg1;
+- (id)initWithTeam:(id)arg1 role:(long long)arg2;
+- (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)_initWithCanRegisterDevices:(BOOL)arg1 canCreateProfiles:(BOOL)arg2 canCreateOrModifyAppIDs:(BOOL)arg3 canRemoveProfiles:(BOOL)arg4 canRevokeAllCertificates:(BOOL)arg5 canRevokeOnlyOwnedCertificates:(BOOL)arg6;
 
 @end
 

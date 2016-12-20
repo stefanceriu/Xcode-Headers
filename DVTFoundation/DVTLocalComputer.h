@@ -31,9 +31,9 @@
 @property unsigned long long cpuCount; // @synthesize cpuCount=_cpuCount;
 @property(copy) NSString *cpuKind; // @synthesize cpuKind=_cpuKind;
 - (void).cxx_destruct;
+- (id)connectionServicesFrameworkPath;
 - (id)primaryInstrumentsServer;
-- (void)showTodayViewForExtensions:(id)arg1 pid:(int)arg2;
-- (id)listenForInstallOfAppExtensionIdentifiers:(id)arg1 timeout:(double)arg2;
+- (id)listenForInstallOfAppExtensionIdentifiers:(id)arg1 onPairedDevice:(BOOL)arg2;
 - (void)stopDebuggingXPCServices:(id)arg1 forPairedDevice:(BOOL)arg2;
 - (void)debugXPCServices:(id)arg1 onPairedDevice:(BOOL)arg2 completionSemaphore:(id)arg3;
 - (void)_enableExtension:(id)arg1;

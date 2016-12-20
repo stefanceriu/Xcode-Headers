@@ -15,8 +15,8 @@
     NSMutableArray *_childPathComponents;
     DVTFilePath *_filePath;
     NSString *_name;
-    unsigned long long _frameworkFilePathType;
     DVTSDK *_SDK;
+    unsigned long long _frameworkFilePathType;
 }
 
 + (id)structureNavigableItemForFrameworkURL:(id)arg1 inCoordinator:(id)arg2 inWorkspace:(id)arg3 error:(id *)arg4;
@@ -26,8 +26,8 @@
 + (void)_setAllSDKFrameworksFilePaths:(id)arg1;
 + (BOOL)isFrameworkURL:(id)arg1;
 + (id)keyPathsForValuesAffectingNavigableItem_documentType;
-@property(retain) DVTSDK *SDK; // @synthesize SDK=_SDK;
 @property(readonly) unsigned long long frameworkFilePathType; // @synthesize frameworkFilePathType=_frameworkFilePathType;
+@property(retain) DVTSDK *SDK; // @synthesize SDK=_SDK;
 @property(readonly, copy) NSString *name; // @synthesize name=_name;
 @property(readonly, copy) DVTFilePath *filePath; // @synthesize filePath=_filePath;
 @property(copy, nonatomic) NSArray *childPathComponents; // @synthesize childPathComponents=_childPathComponents;
@@ -47,10 +47,14 @@
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 

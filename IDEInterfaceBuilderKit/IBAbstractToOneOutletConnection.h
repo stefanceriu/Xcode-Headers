@@ -24,7 +24,7 @@
 - (BOOL)canHaveSourceSeparatedWithSeparationType:(int)arg1;
 - (id)messageForConnectingAcrossRepeatingStoryboardRelationship;
 - (id)connectionByCompletingWithConnectionContext:(id)arg1;
-- (id)archiveKeyForLabel;
+- (id)archivingKeyForLabel;
 - (void)populateExternalConnectionRepresentation:(id)arg1 forContainer:(id)arg2 fromContainer:(id)arg3 otherExternalConnections:(id)arg4 context:(id)arg5;
 - (BOOL)shouldFollowSourceToPasteboardAsExternalConnection;
 - (id)endPointForEstimatingUnlabeledConnection;

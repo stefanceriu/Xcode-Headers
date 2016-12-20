@@ -12,5 +12,6 @@
 - (double)rotationAngleDegrees;
 - (void)setRotationAngleDegrees:(double)arg1;
 - (id)allToolModes;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

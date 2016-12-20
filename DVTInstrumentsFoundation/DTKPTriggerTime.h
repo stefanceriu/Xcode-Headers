@@ -6,35 +6,28 @@
 
 #import <DVTInstrumentsFoundation/DTKPTrigger.h>
 
-@class DTKPCPU, DTKPCPUCounterAllocator;
-
 @interface DTKPTriggerTime : DTKPTrigger
 {
-    int _timerID;
-    DTKPCPU *_cpu;
-    DTKPCPUCounterAllocator *_counterAllocator;
-    _Bool _mustUnforceCounters;
+    unsigned int _timerID;
     BOOL _profileEveryThread;
-    int _pid;
+    unsigned int _targetTask;
     unsigned long long _sampleRate;
 }
 
-+ (void)initialize;
++ (int)reinitializeKperf:(id *)arg1;
 @property(nonatomic) BOOL profileEveryThread; // @synthesize profileEveryThread=_profileEveryThread;
-@property(nonatomic) int pid; // @synthesize pid=_pid;
 @property(nonatomic) unsigned long long sampleRate; // @synthesize sampleRate=_sampleRate;
-- (void).cxx_destruct;
+@property(nonatomic) unsigned int targetTask; // @synthesize targetTask=_targetTask;
 - (int)stop:(id *)arg1;
 - (int)start:(id *)arg1;
 - (int)_configureTimer:(unsigned int)arg1 actionID:(unsigned int)arg2 period:(unsigned long long)arg3 userData:(unsigned int)arg4;
-- (void)_timerIDDdealloc:(int)arg1;
-- (int)_timerIDAlloc;
-- (int)stopHardwareCounters:(id *)arg1;
-- (int)startHardwareCounters:(id *)arg1;
-- (unsigned long long)pmcEventCount;
+- (void)_timerIDDdealloc:(unsigned int)arg1;
+- (unsigned int)_timerIDAlloc;
+@property(readonly, nonatomic) unsigned long long pmcEventCount;
 - (int)addPMCEventNamed:(id)arg1 error:(id *)arg2;
 - (unsigned long long)_recordConfigWordsIntoBuffer:(unsigned long long *)arg1;
-- (id)init;
+- (void)dealloc;
+- (id)initWithCounterAllocatorProvider:(id)arg1;
 
 @end
 

@@ -6,7 +6,6 @@
 
 #import "NSObject.h"
 
-__attribute__((visibility("hidden")))
 @interface DVT_VMUTaskMemoryCache : NSObject
 {
     struct mapped_memory_t *_memoryRegions;

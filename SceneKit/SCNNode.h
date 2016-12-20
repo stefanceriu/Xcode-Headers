@@ -16,7 +16,7 @@
 
 @interface SCNNode : NSObject <NSCopying, NSSecureCoding, SCNAnimatable, SCNActionable, SCNBoundingVolume>
 {
-    // Error parsing type: ^{__C3DNode={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__C3DNode}^{__C3DNode}^{__C3DNode}{?={?=SS}I}^{?}^{__C3DGeometry}b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1QB^{__C3DTransforms}(C3DMatrix4x4=[16f][4])ff{__C3DAABB=}}, name: _node
+    // Error parsing type: ^{__C3DNode={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__C3DNode}^{__C3DNode}^{__C3DNode}{?={?=SS}I}^{?}^{__C3DGeometry}b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1QB^{__C3DTransforms}(C3DMatrix4x4=[16f][4])ff{__C3DAABB=}}, name: _node
     SCNNode *_parent;
     NSMutableArray *_childNodes;
     SCNNode *_presentationInstance;
@@ -32,11 +32,13 @@
     unsigned int _transformUpToDate:1;
     unsigned int _hasPivot:1;
     unsigned int _usesEuler:1;
+    unsigned int _movability:1;
     unsigned int _hidden:1;
     unsigned int _castsShadow:1;
     unsigned int _ignoreAnimationWhenCopying_tmp:1;
     unsigned int _hasComponentBitmask:10;
     struct CATransform3D _transform;
+    unsigned int _authoringEnvironmentNode:1;
     struct SCNVector3 _position;
     struct SCNVector4 _rotation;
     struct SCNVector3 _scale;
@@ -60,11 +62,18 @@
 + (id)keyPathsForValuesAffectingRotation;
 + (id)keyPathsForValuesAffectingTransform;
 + (id)keyPathsForValuesAffectingPosition;
-+     // Error parsing type: @24@0:8^{__C3DNode={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__C3DNode}^{__C3DNode}^{__C3DNode}{?={?=SS}I}^{?}^{__C3DGeometry}b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1QB^{__C3DTransforms}(C3DMatrix4x4=[16f][4])ff{__C3DAABB=}}16, name: nodeWithNodeRef:
++     // Error parsing type: @24@0:8^{__C3DNode={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__C3DNode}^{__C3DNode}^{__C3DNode}{?={?=SS}I}^{?}^{__C3DGeometry}b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1QB^{__C3DTransforms}(C3DMatrix4x4=[16f][4])ff{__C3DAABB=}}16, name: nodeWithNodeRef:
 + (id)nodeWithGeometry:(id)arg1;
 + (id)node;
++ (id)nodeWithMDLObject:(id)arg1 masterObjects:(id)arg2;
 + (id)nodeWithMDLObject:(id)arg1;
 + (id)nodeWithMDLAsset:(id)arg1;
+- (void)setAuthoringEnvironmentPresentationNode:(id)arg1;
+- (id)authoringEnvironmentPresentationNode;
+- (void)setAuthoringEnvironmentCompanionNode:(id)arg1;
+- (id)authoringEnvironmentCompanionNode;
+- (void)setAuthoringEnvironmentNode:(BOOL)arg1;
+- (BOOL)authoringEnvironmentNode;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (void)_didDecodeSCNNode:(id)arg1;
@@ -85,8 +94,6 @@
 - (id)particleSystems;
 - (void)_removeDeadParticleSystem:(struct __C3DParticleSystem *)arg1;
 - (id)_particleSystems;
-- (void)setLightProbes:(id)arg1;
-- (id)lightProbes;
 @property(retain, nonatomic) SCNPhysicsField *physicsField;
 @property(retain, nonatomic) SCNPhysicsBody *physicsBody;
 @property(copy) NSArray *constraints;
@@ -105,6 +112,7 @@
 - (BOOL)isPausedOrPausedByInheritance;
 - (void)_setPaused:(BOOL)arg1;
 - (void)_actionsTimeJump:(double)arg1;
+- (id)_subdividedCopyWithSubdivisionLevel:(long long)arg1;
 - (id)flattenedCopy;
 - (id)flattenedClone;
 - (id)getBoundingBox;
@@ -130,7 +138,10 @@
 - (id)objectInChildNodesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)countOfChildNodes;
 - (void)_setParent:(id)arg1;
+- (void)unbindAnimatablePath:(id)arg1;
+- (void)bindAnimatablePath:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
 - (BOOL)isAnimationForKeyPaused:(id)arg1;
+- (void)setSpeed:(double)arg1 forAnimationKey:(id)arg2;
 - (void)removeAnimationForKey:(id)arg1 fadeOutDuration:(double)arg2;
 - (void)resumeAnimationForKey:(id)arg1;
 - (void)pauseAnimationForKey:(id)arg1;
@@ -142,9 +153,9 @@
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
 - (void)addAnimation:(id)arg1 forKey:(id)arg2;
-- (void)__removeAnimation:(id)arg1 forKey:(id)arg2;
+- (BOOL)__removeAnimation:(id)arg1 forKey:(id)arg2;
 - (struct __C3DAnimationManager *)animationManager;
-- (void *)__CFObject;
+- (const void *)__CFObject;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)valueForUndefinedKey:(id)arg1;
 - (id)valueForKeyPath:(id)arg1;
@@ -173,6 +184,7 @@
 @property(nonatomic, getter=isHidden) BOOL hidden;
 @property(nonatomic) unsigned long long categoryBitMask;
 @property(nonatomic) BOOL castsShadow;
+@property(nonatomic) long long movabilityHint;
 @property(nonatomic) struct CATransform3D pivot;
 @property(readonly, nonatomic) struct CATransform3D worldTransform;
 - (void)setWorldTransform:(struct CATransform3D)arg1;
@@ -194,7 +206,7 @@
 - (void)_updateTransform;
 - (void)_registerAsObserver;
 - (id)hitTestWithSegmentFromPoint:(struct SCNVector3)arg1 toPoint:(struct SCNVector3)arg2 options:(id)arg3;
--     // Error parsing type: ^{__C3DNode={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__C3DNode}^{__C3DNode}^{__C3DNode}{?={?=SS}I}^{?}^{__C3DGeometry}b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1QB^{__C3DTransforms}(C3DMatrix4x4=[16f][4])ff{__C3DAABB=}}16@0:8, name: nodeRef
+-     // Error parsing type: ^{__C3DNode={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__C3DNode}^{__C3DNode}^{__C3DNode}{?={?=SS}I}^{?}^{__C3DGeometry}b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1QB^{__C3DTransforms}(C3DMatrix4x4=[16f][4])ff{__C3DAABB=}}16@0:8, name: nodeRef
 - (id)__morpher;
 - (id)__skinner;
 - (id)__geometry;
@@ -208,6 +220,8 @@
 - (id)objectInChildNodesWithAttribute:(id)arg1 firstOnly:(BOOL)arg2;
 - (id)childNodesWithAttribute:(Class)arg1 recursively:(BOOL)arg2;
 - (void)_childNodesWithAttribute:(Class)arg1 output:(id)arg2 recursively:(BOOL)arg3;
+- (void)enumerateNodesUsingBlock:(CDUnknownBlockType)arg1;
+- (void)enumerateHierarchyUsingBlock:(CDUnknownBlockType)arg1;
 - (void)enumerateChildNodesUsingBlock:(CDUnknownBlockType)arg1;
 - (BOOL)_enumerateChildNodesUsingBlock:(CDUnknownBlockType)arg1;
 - (id)childNodesPassingTest:(CDUnknownBlockType)arg1;
@@ -237,8 +251,8 @@
 - (void)setIdentifier:(id)arg1;
 @property(copy, nonatomic) NSString *name;
 - (void)dealloc;
--     // Error parsing type: @24@0:8^{__C3DNode={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__C3DNode}^{__C3DNode}^{__C3DNode}{?={?=SS}I}^{?}^{__C3DGeometry}b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1QB^{__C3DTransforms}(C3DMatrix4x4=[16f][4])ff{__C3DAABB=}}16, name: initWithNodeRef:
--     // Error parsing type: @24@0:8^{__C3DNode={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__C3DNode}^{__C3DNode}^{__C3DNode}{?={?=SS}I}^{?}^{__C3DGeometry}b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1QB^{__C3DTransforms}(C3DMatrix4x4=[16f][4])ff{__C3DAABB=}}16, name: initPresentationNodeWithNodeRef:
+-     // Error parsing type: @24@0:8^{__C3DNode={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__C3DNode}^{__C3DNode}^{__C3DNode}{?={?=SS}I}^{?}^{__C3DGeometry}b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1QB^{__C3DTransforms}(C3DMatrix4x4=[16f][4])ff{__C3DAABB=}}16, name: initWithNodeRef:
+-     // Error parsing type: @24@0:8^{__C3DNode={__C3DEntity={__CFRuntimeBase=Q[4C]I}^v^{__CFString}^{__CFString}^{__CFDictionary}qq}^{__C3DNode}^{__C3DNode}^{__C3DNode}{?={?=SS}I}^{?}^{__C3DGeometry}b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1QB^{__C3DTransforms}(C3DMatrix4x4=[16f][4])ff{__C3DAABB=}}16, name: initPresentationNodeWithNodeRef:
 - (id)init;
 - (void)_bakeNodes:(id)arg1 folderPath:(id)arg2 inVertex:(BOOL)arg3 bakeAO:(BOOL)arg4 quality:(float)arg5 attenuation:(float)arg6 geomSetter:(CDUnknownBlockType)arg7 terminateSetter:(CDUnknownBlockType)arg8;
 - (id)_associatedMDLObject;

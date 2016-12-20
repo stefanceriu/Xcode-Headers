@@ -20,7 +20,7 @@
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)_primitiveCancelObservation;
 - (id)description;
-- (id)initWithTarget:(id)arg1 observedObject:(id)arg2 keyPath:(id)arg3;
+- (id)initWithTarget:(id)arg1 observedObject:(id)arg2 keyPath:(id)arg3 creationBacktrace:(id)arg4;
 - (void)setTarget:(id)arg1;
 - (id)target;
 

@@ -15,7 +15,9 @@
     id <DVTCancellable> _notificationToken;
 }
 
++ (id)coreSimulatorQueue;
 + (id)deviceLocator;
++ (id)logAspect;
 @property(readonly) SimDeviceSet *deviceSet; // @synthesize deviceSet=_deviceSet;
 - (void).cxx_destruct;
 - (void)unpairDevice:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;

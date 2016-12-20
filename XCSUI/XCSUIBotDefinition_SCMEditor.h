@@ -13,7 +13,7 @@
 #import "NSTableViewDelegate.h"
 #import "XCSUICreateBotRepositoryTableCellViewDelegate.h"
 
-@class DVTColoredSpinner, DVTOutlineView, IDESourceControlCredentialWindowController, NSArray, NSImageView, NSString, NSTextField, NSView, XCSListBranchesResult, XCSUIBotDefinitionContext;
+@class DVTBorderedView, DVTColoredSpinner, DVTOutlineViewWithCustomGridDrawing, IDESourceControlCredentialWindowController, NSArray, NSButton, NSImageView, NSString, NSTextField, NSView, XCSListBranchesResult, XCSUIBotDefinitionContext;
 
 @interface XCSUIBotDefinition_SCMEditor : IDEViewController <NSTableViewDataSource, NSTableViewDelegate, NSTabViewDelegate, XCSUICreateBotRepositoryTableCellViewDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate>
 {
@@ -32,8 +32,13 @@
     NSImageView *_preflightStatusImageView;
     NSTextField *_preflightStatusMessageField;
     NSTextField *_preflightStatusDetailsField;
+    DVTBorderedView *_workspaceInfoBorderedView;
+    NSImageView *_workspaceImageView;
+    NSTextField *_workspaceNameField;
+    NSTextField *_workspacePathField;
+    NSButton *_replaceButton;
     NSView *_repositoriesHostView;
-    DVTOutlineView *_repositoriesOutlineView;
+    DVTOutlineViewWithCustomGridDrawing *_repositoriesOutlineView;
     NSArray *_repositories;
     IDESourceControlCredentialWindowController *_credentialSheetController;
     XCSListBranchesResult *_listBranchesResult;
@@ -42,8 +47,13 @@
 @property(retain) XCSListBranchesResult *listBranchesResult; // @synthesize listBranchesResult=_listBranchesResult;
 @property(retain) IDESourceControlCredentialWindowController *credentialSheetController; // @synthesize credentialSheetController=_credentialSheetController;
 @property(copy, nonatomic) NSArray *repositories; // @synthesize repositories=_repositories;
-@property __weak DVTOutlineView *repositoriesOutlineView; // @synthesize repositoriesOutlineView=_repositoriesOutlineView;
+@property __weak DVTOutlineViewWithCustomGridDrawing *repositoriesOutlineView; // @synthesize repositoriesOutlineView=_repositoriesOutlineView;
 @property(retain) NSView *repositoriesHostView; // @synthesize repositoriesHostView=_repositoriesHostView;
+@property __weak NSButton *replaceButton; // @synthesize replaceButton=_replaceButton;
+@property __weak NSTextField *workspacePathField; // @synthesize workspacePathField=_workspacePathField;
+@property __weak NSTextField *workspaceNameField; // @synthesize workspaceNameField=_workspaceNameField;
+@property __weak NSImageView *workspaceImageView; // @synthesize workspaceImageView=_workspaceImageView;
+@property __weak DVTBorderedView *workspaceInfoBorderedView; // @synthesize workspaceInfoBorderedView=_workspaceInfoBorderedView;
 @property __weak NSTextField *preflightStatusDetailsField; // @synthesize preflightStatusDetailsField=_preflightStatusDetailsField;
 @property __weak NSTextField *preflightStatusMessageField; // @synthesize preflightStatusMessageField=_preflightStatusMessageField;
 @property __weak NSImageView *preflightStatusImageView; // @synthesize preflightStatusImageView=_preflightStatusImageView;
@@ -81,11 +91,14 @@
 - (void)listBranches;
 - (void)extractAndDiplayErrorsFromBlueprintResult:(id)arg1;
 - (void)resetRepositoryIssues;
+- (void)refreshStatus:(id)arg1;
+- (void)redefineBlueprint:(id)arg1;
 - (BOOL)isFingerprintEnforcementAvailable;
 - (BOOL)isListBranchesXCSCoreEndpointAvailable;
 - (void)loadView;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
+- (void)_updateWorkspaceView;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

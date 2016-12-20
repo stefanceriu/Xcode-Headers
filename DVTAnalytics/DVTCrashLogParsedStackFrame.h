@@ -10,6 +10,7 @@
 
 @interface DVTCrashLogParsedStackFrame : NSObject
 {
+    BOOL _symbolicated;
     unsigned long long _depth;
     NSString *_image;
     NSString *_address;
@@ -22,6 +23,7 @@
 }
 
 @property(readonly) NSString *parserIdentifier; // @synthesize parserIdentifier=_parserIdentifier;
+@property(getter=isSymbolicated) BOOL symbolicated; // @synthesize symbolicated=_symbolicated;
 @property unsigned long long sourceLine; // @synthesize sourceLine=_sourceLine;
 @property(retain) NSString *sourceFile; // @synthesize sourceFile=_sourceFile;
 @property(retain) NSString *comment; // @synthesize comment=_comment;

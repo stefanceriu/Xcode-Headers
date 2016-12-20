@@ -20,8 +20,7 @@ __attribute__((visibility("hidden")))
     DVTObservingToken *_debugStateObservation;
     DVTObservingToken *_shaderUpdateObservation;
     GPUSharedTabUIState *_sharedUIStateObj;
-    BOOL _newUpdateCycle;
-    BOOL _stepperDidUpdate;
+    long long _lastScrubberLocation;
     BOOL _scrubberDidPostUpdate;
     BOOL _haveRequestedUIController;
     id <DVTCancellable> _uiControllerObserver;
@@ -40,16 +39,12 @@ __attribute__((visibility("hidden")))
 - (void)wasAttachedToDebugBar:(id)arg1;
 - (void)takeScrubberInfoFromNotification:(id)arg1;
 - (void)updateShaders:(id)arg1;
-- (void)stepBackwardDidMouseUp:(id)arg1;
-- (void)stepBackward:(id)arg1;
-- (void)stepForwardDidMouseUp:(id)arg1;
 - (void)stepForward:(id)arg1;
-- (void)stepDidMouseDown:(id)arg1;
+- (void)stepBackward:(id)arg1;
 - (void)scrubberDidMouseUp:(id)arg1;
 - (void)scrubberDidMove:(id)arg1;
-- (void)_notifyMove:(int)arg1;
-- (void)_sendScrubberNotificationType:(id)arg1 withInfo:(id)arg2;
-- (void)scrubberDidMouseDown:(id)arg1;
+- (void)_postStepperNotificationWithDirection:(int)arg1;
+- (void)_postScrubberNotificationWithType:(id)arg1;
 - (void)dealloc;
 - (id)init;
 

@@ -21,7 +21,6 @@
     int _api;
 }
 
-+ (void)load;
 @property(retain, nonatomic) NSString *debugLabel; // @synthesize debugLabel=_debugLabel;
 @property(readonly, nonatomic) int api; // @synthesize api=_api;
 @property(readonly, nonatomic) unsigned int currentRendererIndex; // @synthesize currentRendererIndex=_currentRendererIndex;

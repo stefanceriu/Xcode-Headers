@@ -31,18 +31,20 @@
     IDEActivityStatusCategory *_analyzerIssueCategory;
     IDEActivityStatusCategory *_errorsIssueCategory;
     IDEActivityStatusCategory *_testFailuresIssueCategory;
+    IDEActivityStatusCategory *_runtimeIssueCategory;
+    IDEActivityStatusCategory *_toolchainIssueCategory;
     NSArray *_issueCategories;
-    NSArray *_botStatusCategories;
+    double _minimumReportTime;
 }
 
 + (void)initialize;
+@property(nonatomic) double minimumReportTime; // @synthesize minimumReportTime=_minimumReportTime;
 @property(copy) NSString *debugName; // @synthesize debugName=_debugName;
-@property(readonly, copy) NSArray *botStatusCategories; // @synthesize botStatusCategories=_botStatusCategories;
 @property(copy) NSArray *issueCategories; // @synthesize issueCategories=_issueCategories;
 @property(readonly) IDEWorkspaceDocument *workspaceDocument; // @synthesize workspaceDocument=_workspaceDocument;
 - (void).cxx_destruct;
-- (void)openIssuesNavigator;
-- (void)openTestNavigator;
+- (void)_openIssuesNavigator:(BOOL)arg1;
+- (void)_openTestNavigator;
 - (void)stopObservingActivityReports;
 - (void)startObservingActivityReports;
 - (void)tearDown;

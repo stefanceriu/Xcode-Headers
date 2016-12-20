@@ -73,6 +73,8 @@
 @property(readonly, nonatomic) NSColor *actionColor;
 @property(readonly, nonatomic) NSString *actionName;
 @property(readonly, nonatomic) long long actionType;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly, nonatomic) NSArray *nav_children;
 - (id)ideModelObjectTypeIdentifier;
 @property(readonly) NSString *navigableItem_name;
@@ -84,7 +86,7 @@
 - (void)adjustRelativity:(double)arg1;
 - (void)makeRelativeForGroup;
 - (void)setDuration:(double)arg1 verifyWithTimeline:(BOOL)arg2 enableSnapping:(BOOL)arg3;
-- (void)setStartTime:(double)arg1 verifyWithTimeline:(BOOL)arg2 enableAllignment:(BOOL)arg3;
+- (void)setStartTime:(double)arg1 verifyWithTimeline:(BOOL)arg2 enableAlignment:(BOOL)arg3;
 - (void)setTrack:(int)arg1 verifyWithTimeline:(BOOL)arg2;
 - (void)removeFromGroup;
 @property(nonatomic) __weak GTFActionModelGroup *ownerGroup;
@@ -112,13 +114,15 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) NSImage *navigableItem_image;
-@property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 

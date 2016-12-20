@@ -35,10 +35,13 @@
     BOOL _hasScheduledMobileDeviceLoadBlock;
     BOOL _applicationIsTerminatingDuringLaunch;
     BOOL _applicationShouldTerminateRecursionGuard;
+    BOOL _currentEditorAndNavigatorMenusAreBackstop;
+    BOOL _forceUpdateOfEditorAndNavigateMenus;
 }
 
 + (id)sharedAppController;
 + (void)initialize;
+@property BOOL forceUpdateOfEditorAndNavigateMenus; // @synthesize forceUpdateOfEditorAndNavigateMenus=_forceUpdateOfEditorAndNavigateMenus;
 @property BOOL applicationIsTerminatingDuringLaunch; // @synthesize applicationIsTerminatingDuringLaunch=_applicationIsTerminatingDuringLaunch;
 @property BOOL haveScannedForPlugins; // @synthesize haveScannedForPlugins=_haveScannedForPlugins;
 - (void).cxx_destruct;
@@ -49,7 +52,7 @@
 - (id)_tabStateContextForTabNameMapByInstantiatingIfNeeded;
 - (id)_tabStateContextForTabNameMapFromFilePath:(id)arg1;
 - (BOOL)_saveTabStateContextForTabNameMapToFilePath:(id)arg1;
-- (id)licenseAgreementPathOfType:(id)arg1;
+- (id)licenseAgreementFilePathForFileType:(id)arg1;
 @property(readonly) NSString *formattedApplicationVersion;
 - (void)updateDebugMenuIfNeeded;
 - (void)editorMenuWillOpen:(id)arg1;
@@ -89,11 +92,12 @@
 - (void)_handleGetURLEvent:(id)arg1 withReplyEvent:(id)arg2;
 - (BOOL)applicationOpenUntitledFile:(id)arg1;
 - (void)_setUpGetURLAppleEventHandler;
+- (void)_setUpMainMenu;
 - (void)applicationWillFinishLaunching:(id)arg1;
 - (void)_setUpOpenDocumentAppleEventHandler;
 - (BOOL)application:(id)arg1 openFile:(id)arg2;
 - (void)application:(id)arg1 openFiles:(id)arg2;
-- (void)_openFiles:(id)arg1;
+- (void)openURLs:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)_terminateDueToFailureDuringLaunch:(id)arg1;
 - (id)init;
 

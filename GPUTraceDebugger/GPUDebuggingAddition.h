@@ -8,36 +8,50 @@
 
 #import "IDEDebuggingAddition.h"
 
-@class DVTStackBacktrace, GPUDebuggerController, GPUInferiorSession, IDELaunchSession, NSString;
+@class DVTStackBacktrace, GPUDebuggerController, GPUInferiorSession, IDELaunchSession, NSMutableArray, NSString;
 
 @interface GPUDebuggingAddition : NSObject <IDEDebuggingAddition>
 {
+    BOOL _existsForReportEditor;
     BOOL _breakpointsActiveBeforeCapture;
     BOOL _isFakeDebugSession;
     NSString *_identifier;
-    GPUDebuggerController *_debuggerController;
-    GPUInferiorSession *_gpuSession;
+    id <GPUPerformanceDataProvider> _performanceDataSource;
+    GPUDebuggerController *_activeDebuggerController;
+    GPUInferiorSession *_activeGPUSession;
+    NSMutableArray *_gpuSessions;
+    NSMutableArray *_debuggerControllers;
     NSString *_localizedCaptureUnavailabilityReason;
     IDELaunchSession *_launchSession;
 }
 
 + (id)_extensionsWithIdentifier:(id)arg1 predicate:(id)arg2;
 + (BOOL)shouldInstantiateInLaunchSession:(id)arg1;
++ (void)_reportValidationModeUsage:(int)arg1;
++ (BOOL)shouldInstantiateForReportEditorOnly:(id)arg1;
++ (BOOL)isLinkedToSceneOrSpriteKit:(id)arg1;
 + (BOOL)_isLinkedToCapturableFrameworks:(id)arg1 withPlatformID:(id)arg2;
 + (void)initialize;
 @property(retain, nonatomic) IDELaunchSession *launchSession; // @synthesize launchSession=_launchSession;
 @property BOOL isFakeDebugSession; // @synthesize isFakeDebugSession=_isFakeDebugSession;
 @property BOOL breakpointsActiveBeforeCapture; // @synthesize breakpointsActiveBeforeCapture=_breakpointsActiveBeforeCapture;
 @property(copy, nonatomic) NSString *localizedCaptureUnavailabilityReason; // @synthesize localizedCaptureUnavailabilityReason=_localizedCaptureUnavailabilityReason;
-@property(retain, nonatomic) GPUInferiorSession *gpuSession; // @synthesize gpuSession=_gpuSession;
-@property(retain, nonatomic) GPUDebuggerController *debuggerController; // @synthesize debuggerController=_debuggerController;
+@property(retain, nonatomic) NSMutableArray *debuggerControllers; // @synthesize debuggerControllers=_debuggerControllers;
+@property(retain, nonatomic) NSMutableArray *gpuSessions; // @synthesize gpuSessions=_gpuSessions;
+@property(retain, nonatomic) GPUInferiorSession *activeGPUSession; // @synthesize activeGPUSession=_activeGPUSession;
+@property(retain, nonatomic) GPUDebuggerController *activeDebuggerController; // @synthesize activeDebuggerController=_activeDebuggerController;
+@property(readonly, nonatomic) BOOL existsForReportEditor; // @synthesize existsForReportEditor=_existsForReportEditor;
+@property(retain, nonatomic) id <GPUPerformanceDataProvider> performanceDataSource; // @synthesize performanceDataSource=_performanceDataSource;
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 @property(readonly) BOOL isDebuggingLoadedArchive;
 - (void)primitiveInvalidate;
+- (void)updateActiveController:(id)arg1;
 - (void)processFinalLaunchParameters:(id)arg1;
 - (id)adjustedLaunchParametersForLaunchParameters:(id)arg1;
 - (BOOL)_loadInferiorSession:(id)arg1 forAppWithName:(id)arg2 error:(id *)arg3;
+- (BOOL)_initializeSessionAndControllerWithLaunchSession:(id)arg1 forAppWithName:(id)arg2 forAPI:(id)arg3 error:(id *)arg4;
+- (void)_trackTimestampsForActiveSession:(id)arg1;
 - (void)_displayAlertWithError:(id)arg1;
 - (id)initInLaunchSession:(id)arg1 withAppDisplayName:(id)arg2 runDestination:(id)arg3 fromExtension:(id)arg4;
 

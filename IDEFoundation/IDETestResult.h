@@ -6,34 +6,40 @@
 
 #import "NSObject.h"
 
-@class IDETest, NSArray, NSDate, NSMutableArray, NSMutableSet, NSSet;
+#import "NSCopying.h"
 
-@interface IDETestResult : NSObject
+@class NSArray, NSDate, NSMutableArray, NSMutableSet, NSSet, NSString;
+
+@interface IDETestResult : NSObject <NSCopying>
 {
-    IDETest *_test;
+    NSString *_identifier;
+    NSString *_testName;
     unsigned long long _status;
     NSDate *_date;
     double _duration;
-    NSMutableSet *_mutableFailureLocations;
     NSMutableArray *_mutablePerformanceMetrics;
     NSMutableArray *_mutableMessages;
+    NSMutableSet *_mutableFailureLocations;
 }
 
+@property(retain) NSMutableSet *mutableFailureLocations; // @synthesize mutableFailureLocations=_mutableFailureLocations;
 @property(retain) NSMutableArray *mutableMessages; // @synthesize mutableMessages=_mutableMessages;
 @property(retain) NSMutableArray *mutablePerformanceMetrics; // @synthesize mutablePerformanceMetrics=_mutablePerformanceMetrics;
-@property(retain) NSMutableSet *mutableFailureLocations; // @synthesize mutableFailureLocations=_mutableFailureLocations;
 @property double duration; // @synthesize duration=_duration;
-@property(retain) NSDate *date; // @synthesize date=_date;
+@property(copy) NSDate *date; // @synthesize date=_date;
 @property unsigned long long status; // @synthesize status=_status;
-@property(readonly) IDETest *test; // @synthesize test=_test;
+@property(copy) NSString *testName; // @synthesize testName=_testName;
+@property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-- (void)addPerformanceMetric:(id)arg1;
-@property(readonly) NSArray *performanceMetrics;
-- (void)addMessage:(id)arg1;
-@property(readonly) NSArray *messages;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)addFailureLocation:(id)arg1;
 @property(readonly) NSSet *failureLocations;
-- (id)initWithTest:(id)arg1;
+- (void)addMessage:(id)arg1;
+@property(readonly) NSArray *messages;
+- (void)addPerformanceMetric:(id)arg1;
+@property(readonly) NSArray *performanceMetrics;
+- (id)initWithIdentifier:(id)arg1 testName:(id)arg2;
+- (id)init;
 
 @end
 

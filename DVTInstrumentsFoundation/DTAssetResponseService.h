@@ -6,12 +6,23 @@
 
 #import "DTXService.h"
 
-@interface DTAssetResponseService : DTXService
+#import "DTAssetResponseServiceProtocol.h"
+
+@class NSString;
+
+@interface DTAssetResponseService : DTXService <DTAssetResponseServiceProtocol>
 {
 }
 
 + (void)registerCapabilities:(id)arg1;
+- (id)canContinueServingRequestWithIdentifier:(id)arg1;
 - (void)messageReceived:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

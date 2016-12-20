@@ -8,8 +8,7 @@
 
 @interface NSUndoManager (IBNSUndoManagerAdditions)
 + (void)ib_applyUndoBlock:(CDUnknownBlockType)arg1;
-- (void)ib_groupUndoActionsDuring:(CDUnknownBlockType)arg1;
-- (void)ib_disableGroupingByEventDuring:(CDUnknownBlockType)arg1;
+- (BOOL)ib_isUndoingOrRedoing;
 - (void)ib_registerUndoBlock:(CDUnknownBlockType)arg1;
 @end
 

@@ -6,10 +6,8 @@
 
 #import "NSObject.h"
 
-@class GPUMTLStateMirror;
-
 @protocol GPUMTLStateMirrorInterface <NSObject>
-@property(readonly) BOOL hasStateMirror;
-@property(copy) GPUMTLStateMirror *stateMirror;
+@property(readonly, nonatomic) BOOL hasStateMirror;
+@property(readonly, nonatomic) id <DYPMTLStateMirror> stateMirror;
 @end
 

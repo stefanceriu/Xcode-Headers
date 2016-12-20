@@ -6,10 +6,9 @@
 
 #import "JSExport.h"
 
-@class NSDictionary, SCNNode, SCNScene;
+@class MTLRenderPassDescriptor, SCNNode, SCNScene;
 
 @protocol SCNRendererJSExport <JSExport>
-+ (id)rendererWithContext:(void *)arg1 options:(NSDictionary *)arg2;
 @property(nonatomic) id delegate;
 @property(retain, nonatomic) SCNNode *pointOfView;
 @property(nonatomic) BOOL loops;
@@ -18,7 +17,9 @@
 @property(nonatomic) double currentTime;
 @property(readonly, nonatomic) double nextFrameTime;
 @property(retain, nonatomic) SCNScene *scene;
-- (void)renderAtTime:(double)arg1;
 - (void)render;
+- (void)renderAtTime:(double)arg1 viewport:(struct CGRect)arg2 commandBuffer:(id <MTLCommandBuffer>)arg3 passDescriptor:(MTLRenderPassDescriptor *)arg4;
+- (id)snapshotAtTime:(double)arg1 withSize:(struct CGSize)arg2 antialiasingMode:(unsigned long long)arg3;
+- (void)renderAtTime:(double)arg1;
 @end
 

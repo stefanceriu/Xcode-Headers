@@ -20,7 +20,7 @@
 }
 
 - (void).cxx_destruct;
-- (void)watchOutputFileName:(id)arg1 forPid:(int)arg2;
+- (void)watchOutputFileName:(id)arg1 directory:(id)arg2 forPid:(int)arg3;
 - (void)watchOutputFileDescriptor:(int)arg1 forPid:(int)arg2;
 - (void)handleRedirectionIterationForFileDescriptor:(int)arg1 forPid:(int)arg2 withDispatchSource:(id)arg3;
 - (int)maybeRedirectFromFileDescriptor:(int)arg1 fromPid:(int)arg2 withScratchBuffer:(char *)arg3 ofByteLength:(unsigned long long)arg4;

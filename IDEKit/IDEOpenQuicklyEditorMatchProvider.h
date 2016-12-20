@@ -10,6 +10,7 @@
 {
 }
 
+- (BOOL)wantsToValidateMatchesImmediately;
 - (void)contextDidChange;
 
 @end

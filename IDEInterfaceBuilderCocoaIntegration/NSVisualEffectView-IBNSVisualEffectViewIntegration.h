@@ -12,6 +12,6 @@
 - (id)ibInspectedAppearancePopupValues;
 - (id)ibInspectedAppearancePopupTitles;
 - (id)ibDesignableContentView;
-- (void)ibCustomizeForInsertionIntoDocument:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

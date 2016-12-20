@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     IDELogStore *_logStore;
     NSDictionary *_programInfoDict;
     GPUDebuggerLog *_debuggerLog;
+    DVTObservingToken *_syntheticLaunchSessionObservingToken;
 }
 
 + (id)keyPathsForValuesAffectingLogRecords;

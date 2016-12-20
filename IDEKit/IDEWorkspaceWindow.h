@@ -8,9 +8,11 @@
 
 @interface IDEWorkspaceWindow : NSWindow
 {
+    BOOL __isOverridingEscapeInsteadOfExitingFullscreen;
 }
 
 + (id)lastActiveWorkspaceWindowController;
+@property BOOL _isOverridingEscapeInsteadOfExitingFullscreen; // @synthesize _isOverridingEscapeInsteadOfExitingFullscreen=__isOverridingEscapeInsteadOfExitingFullscreen;
 - (void)_invalidateCursorRectsForView:(id)arg1 force:(BOOL)arg2;
 - (void)_invalidateCursorRectsForViewsWithNoTrackingAreas;
 - (BOOL)_addCursorRect:(struct CGRect)arg1 cursor:(id)arg2 forView:(id)arg3;
@@ -26,6 +28,7 @@
 - (void)close;
 - (struct CGRect)adjustedFrameForCascade:(struct CGRect)arg1 fromWindow:(id)arg2;
 - (struct CGRect)_adjustedFrameForSaving:(struct CGRect)arg1;
+- (void)exitFullScreenMode:(id)arg1;
 - (void)cancelOperation:(id)arg1;
 - (void)toggleToolbarShown:(id)arg1;
 - (id)firstResponder;

@@ -6,18 +6,18 @@
 
 #import <IDEKit/IDEAccountTeamPickerRowBase.h>
 
-@class DVTTeamRecord, NSString;
+@class NSString;
 
 @interface IDEPickerTeamRow : IDEAccountTeamPickerRowBase
 {
     BOOL _wantsCheckbox;
-    DVTTeamRecord *_team;
+    id <IDEProvisioningTeam> _team;
     NSString *_teamName;
 }
 
 @property(nonatomic) BOOL wantsCheckbox; // @synthesize wantsCheckbox=_wantsCheckbox;
 @property(retain, nonatomic) NSString *teamName; // @synthesize teamName=_teamName;
-@property(retain, nonatomic) DVTTeamRecord *team; // @synthesize team=_team;
+@property(retain, nonatomic) id <IDEProvisioningTeam> team; // @synthesize team=_team;
 - (void).cxx_destruct;
 
 @end

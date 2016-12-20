@@ -6,24 +6,25 @@
 
 #import <IBFoundation/IBICSlot.h>
 
-@class IBICIdiom, IBICLocus, IBICSize;
+@class IBICIdiom, IBICRole, IBICSize;
 
 @interface IBICBrandAssetCollectionSlot : IBICSlot
 {
     IBICIdiom *_idiom;
-    IBICLocus *_role;
+    IBICRole *_role;
     IBICSize *_size;
 }
 
++ (Class)assetRepClass;
++ (Class)assetSetClass;
 + (id)slotWithIdiom:(id)arg1 role:(id)arg2 size:(id)arg3;
 + (id)orderedComponentClasses;
 @property(readonly) IBICSize *size; // @synthesize size=_size;
-@property(readonly) IBICLocus *role; // @synthesize role=_role;
+@property(readonly) IBICRole *role; // @synthesize role=_role;
 @property(readonly) IBICIdiom *idiom; // @synthesize idiom=_idiom;
 - (void).cxx_destruct;
-- (id)detailAreaKey;
 - (long long)compareDisplayOrder:(id)arg1;
-- (id)shortDisplayName;
+- (id)shortDisplayNameConsideringCounterparts:(id)arg1;
 - (void)captureComponents;
 
 @end

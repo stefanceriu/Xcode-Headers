@@ -18,7 +18,7 @@
     IBMutableIdentityDictionary *cachedItemFrames;
     IBMutableIdentityDictionary *cachedTitleRects;
     IBMutableIdentityDictionary *cachedItemImages;
-    int barStyle;
+    long long barStyle;
     NSMutableArray *items;
     NSArray *observedSubviews;
     BOOL isTopBar;
@@ -55,9 +55,10 @@
 - (void)setTopBar:(BOOL)arg1;
 - (BOOL)isTopBar;
 - (BOOL)effectiveIsTopBar;
-- (void)setBarStyle:(int)arg1;
-- (int)barStyle;
+- (void)setBarStyle:(long long)arg1;
+- (long long)barStyle;
 - (void)setItems:(id)arg1;
+- (BOOL)ignoreItemCountMismatchRadar23282644ForCachedItemFramesDictionaryInfo:(id)arg1;
 - (id)orderedItemsForCachedItemFramesDictionaryInfo:(id)arg1;
 - (id)items;
 - (void)removeItem:(id)arg1;
@@ -76,6 +77,9 @@
 - (struct CGRect)ibRectForChild:(id)arg1 inFrameController:(id)arg2;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
+- (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
+- (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
+- (id)ibLocalPerConfigurationAttributeKeyPaths;
 - (BOOL)ibCanBeCollectionViewBackgroundView;
 - (BOOL)ibCanBeTableViewBracketingView;
 - (void)ibRemoveChildren:(id)arg1;
@@ -84,6 +88,9 @@
 - (id)ibWidgetType;
 - (void)ibCustomizeForInsertionIntoIBUIView:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;
 - (BOOL)ibArchivesToolbarItems;
+- (id)ibEditorClass;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

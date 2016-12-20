@@ -18,7 +18,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) __weak NSTableView *recomendationTable; // @synthesize recomendationTable=_recomendationTable;
 @property(nonatomic) __weak GPUReportSubSection *reportSubSection; // @synthesize reportSubSection=_reportSubSection;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSFont *recomendationFont; // @dynamic recomendationFont;
+@property(readonly, nonatomic) NSFont *recomendationFont;
 - (void)loadView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 subSection:(id)arg3;
 

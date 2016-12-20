@@ -34,7 +34,7 @@
 - (id)audioBufferFormat;
 - (void)recycle;
 - (void)play;
-- (void *)__CFObject;
+- (const void *)__CFObject;
 - (struct __C3DNode *)nodeRef;
 - (void)setNodeRef:(struct __C3DNode *)arg1;
 - (void)dealloc;

@@ -16,6 +16,7 @@
 
 + (id)sharedInstance;
 - (void)upgradeWorkspace:(id)arg1 withTasks:(id)arg2;
+- (void)nagAgain:(id)arg1 forWorkspace:(id)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 
 // Remaining properties

@@ -73,13 +73,14 @@
 - (void)ibSwizzledNSControlEncodeWithCoder:(id)arg1;
 - (void)setIbShadowedAllowsExpansionToolTips:(BOOL)arg1;
 - (BOOL)ibShadowedAllowsExpansionToolTips;
-- (void)ibTakePastedAttributes:(id)arg1 inConfiguration:(id)arg2;
+- (void)ibTakePastedAttributes:(id)arg1;
 - (void)ibTakeSnapshotValues:(id)arg1 inConfiguration:(id)arg2;
 - (id)ibAttributeSnapshot;
 - (BOOL)ibCanRemoveChildren:(id)arg1;
 - (BOOL)ibCanBeBoundToFromObject:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (id)ibLocalChildToOneRelationshipsKeyPaths;
-- (id)ibLocalToOneRelationshipsKeyPaths;
+- (id)ibLocalAdditionalLocalizableAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

@@ -8,7 +8,7 @@
 
 #import "IDENavigableItemCoordinatorDelegate.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTTextViewWithPlaceholder, IDESourceControlPushOperationInfo, IDESourceControlRepositoryChooserItem, IDESourceControlReviewFilesDataSource, IDESourceControlWorkspaceUIHandler, NSArray, NSButton, NSImageView, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_semaphore>, NSOperationQueue, NSPopUpButton, NSSplitView, NSString, NSTextField;
+@class DVTBorderedView, DVTObservingToken, DVTTextViewWithPlaceholder, IDEEditorDocument, IDESourceControlPushOperationInfo, IDESourceControlRepositoryChooserItem, IDESourceControlReviewFilesDataSource, IDESourceControlWorkspaceUIHandler, NSArray, NSButton, NSImageView, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_semaphore>, NSOperationQueue, NSPopUpButton, NSSplitView, NSString, NSTextField;
 
 @interface IDESourceControlCommitWindowController : IDESourceControlReviewFilesWindowController <IDENavigableItemCoordinatorDelegate>
 {
@@ -34,15 +34,20 @@
     NSMutableDictionary *_pushTokenDictionary;
     BOOL _shouldEnablePushButtons;
     DVTObservingToken *_checkedFilePathsToken2;
-    id _didUpdateLocalStatusNotificationToken;
+    NSMutableArray *_localStatusTokens;
+    IDEEditorDocument *_currentReadOnlyDocument;
+    BOOL _pushToRemoteEnabled;
     IDESourceControlRepositoryChooserItem *_repositoryChooserItem;
     IDESourceControlPushOperationInfo *_singlePushOperationInfo;
     IDESourceControlWorkspaceUIHandler *_workspaceUIHandler;
     NSArray *_forcedPushOperationInfos;
     CDUnknownBlockType _commitWindowCompletionBlock;
+    NSString *_statusText;
 }
 
 + (id)sourceControlCommitWindowLogAspect;
+@property(retain) NSString *statusText; // @synthesize statusText=_statusText;
+@property(getter=isPushToRemoteEnabled) BOOL pushToRemoteEnabled; // @synthesize pushToRemoteEnabled=_pushToRemoteEnabled;
 @property(copy) CDUnknownBlockType commitWindowCompletionBlock; // @synthesize commitWindowCompletionBlock=_commitWindowCompletionBlock;
 @property(retain) NSArray *forcedPushOperationInfos; // @synthesize forcedPushOperationInfos=_forcedPushOperationInfos;
 @property(retain) IDESourceControlWorkspaceUIHandler *workspaceUIHandler; // @synthesize workspaceUIHandler=_workspaceUIHandler;
@@ -62,11 +67,11 @@
 - (void)commit:(id)arg1;
 - (void)_pushOperationInfos:(id)arg1 forWorkingCopiesCommittedSuccessfully:(id)arg2;
 - (void)setupPushWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (id)_performPreCommitOperation:(int)arg1 onFiles:(id)arg2;
+- (id)_performPreCommitOperation:(CDUnknownBlockType)arg1 onFiles:(id)arg2;
 - (void)_commit;
 - (void)finishInteractiveCommitForFiles:(id)arg1;
 - (void)startInteractiveCommitForFiles:(id)arg1;
-- (void)handleErrors:(id)arg1 forRequestsOfType:(int)arg2;
+- (void)handleErrors:(id)arg1 singularErrorMessage:(id)arg2 pluralErrorMessage:(id)arg3;
 - (BOOL)shouldEnableCommitButton;
 - (void)saveFilesAtFilePaths:(id)arg1;
 - (unsigned long long)countOfCheckedItems;
@@ -76,6 +81,7 @@
 - (id)defaultCheckedFilePaths;
 - (BOOL)_checkWorkingTreeItemStatusForDefaultCheckedPath:(id)arg1;
 - (void)updateCommitAndPush:(id)arg1;
+- (id)commitButtonTitle;
 - (void)_updateCommitButton;
 - (id)workingTreeItemFilterPredicate;
 - (id)workspaceItemFilterPredicate;
@@ -84,11 +90,16 @@
 - (id)flatDataSource;
 - (id)fileSystemDataSource;
 - (id)workspaceDataSource;
+- (void)beginReviewFiles;
 - (void)beginStatusUpdate;
+- (void)setEditorMessages:(id)arg1;
+- (void)_registerReadOnlyDocumentLocation:(id)arg1;
+- (void)willOpenDocumentLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)warnToUpdateBeforeCommitting;
 - (void)populateCommitAndPush;
 - (void)beginSheetForWindow:(id)arg1;
 - (void)reviewFilesViewController:(id)arg1 didInstallComparisonEditor:(id)arg2;
+- (BOOL)enableDiffToggles;
 - (void)selectRepository:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)toggleAllowCommit:(id)arg1;

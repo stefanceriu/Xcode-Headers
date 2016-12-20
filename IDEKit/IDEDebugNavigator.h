@@ -59,7 +59,7 @@
 - (void)_updateGaugesButtonToolTip:(id)arg1;
 - (void)_drawSeparatorForProcessItem:(id)arg1;
 - (void)_toggleGaugesVisibility:(id)arg1;
-- (void)_showsGauges:(BOOL)arg1 andExpandItem:(id)arg2;
+- (void)_showsGauges:(BOOL)arg1 andExpandItem:(id)arg2 shouldAnimate:(BOOL)arg3;
 - (BOOL)_uiShouldReact;
 - (void)_navigableItemCoordinatorProcessPendingChanges;
 - (BOOL)_writeRepresentedObjects:(id)arg1 toPasteboard:(id)arg2;
@@ -81,6 +81,7 @@
 - (void)restorePreviousTransientStates;
 - (id)expandedItemTokens;
 - (void)restoreExpandedAndSelectionStates;
+- (void)_delayedRestoreExpandedAndSelectionStates;
 - (void)_expandItemsForTokens:(id)arg1;
 - (void)restoreExpandedStatesForTokens:(id)arg1;
 - (void)restoreExpandedStates;
@@ -118,7 +119,7 @@
 - (void)_configureSeparatorLineDrawingForTableRowView:(id)arg1 withItem:(id)arg2;
 - (id)outlineView:(id)arg1 rowViewForItem:(id)arg2;
 - (id)_processHeaderTableCellViewForItem:(id)arg1 withOutlineView:(id)arg2 contentDelegate:(id)arg3;
-- (void)_bindImageAndTitleOfTableViewCell:(id)arg1 subtitleResponder:(id)arg2 subtitleKeyPath:(id)arg3;
+- (void)_bindImageAndTitleOfTableViewCell:(id)arg1 contentDelegate:(id)arg2;
 - (id)_genericTableCellViewForNavItem:(id)arg1;
 - (void)outlineViewItemDidCollapse:(id)arg1;
 - (void)outlineViewItemDidExpand:(id)arg1;
@@ -127,7 +128,7 @@
 - (id)_tokenForPersistingRepresentedObject:(id)arg1;
 - (id)_tokenForExpandedRepresentedObject:(id)arg1;
 - (id)_allGaugeCellsForForProcess:(id)arg1;
-- (id)_gagueCellForGaugeDocumentLocationNavItem:(id)arg1;
+- (id)_cellForGaugeDocumentLocationNavItem:(id)arg1;
 - (void)_makeNavItemReflectShowGaugesStoredState:(id)arg1;
 @property(readonly, copy) NSArray *navigableDebugItems;
 - (BOOL)delegateFirstResponder;

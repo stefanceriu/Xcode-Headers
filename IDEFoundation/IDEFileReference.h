@@ -8,7 +8,7 @@
 
 #import "IDEStructureEditing.h"
 
-@class DVTExtension, DVTFileDataType, DVTFilePath, IDEContainer, IDESourceControlExtension, IDESourceControlRepository, NSString;
+@class DVTExtension, DVTFileDataType, DVTFilePath, DVTObservingToken, IDEContainer, IDESourceControlExtension, IDESourceControlRepository, NSString;
 
 @interface IDEFileReference : IDEContainerItem <IDEStructureEditing>
 {
@@ -21,6 +21,8 @@
     DVTFileDataType *_discoveredFileDataType;
     DVTExtension *_referencedContainerExtension;
     IDEContainer *_referencedContainer;
+    DVTObservingToken *_referencedContainerIsValidObservingToken;
+    DVTObservingToken *_workspaceIsValidObservingToken;
     BOOL _workaroundForProblem8727051;
     BOOL _stopResolvingReferencedContainers;
     int _sourceControlLocalStatus;
@@ -91,7 +93,7 @@
 - (int)aggregateSourceControlLocalStatus;
 - (BOOL)isReferencedContainerLoaded;
 - (void)_invalidateReferencedContainer;
-- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)_addObserversForReferencedContainer;
 - (id)_referencedContainer;
 - (void)_referencedContainerWasRecalculated;
 @property(readonly) IDEContainer *referencedContainer;

@@ -43,7 +43,7 @@
 - (void).cxx_destruct;
 - (void)notifyCoverageReportGenerationFailedWithError:(id)arg1;
 - (id)generateCoverageDataObjectForBuildable:(id)arg1 error:(id *)arg2;
-- (id)generateCoverageDataForFunction:(struct LLVMOpaqueCoverageData *)arg1 functionName:(const char *)arg2;
+- (id)generateCoverageDataForFunction:(struct LLVMOpaqueCoverageData *)arg1 functionName:(const char *)arg2 toolchains:(id)arg3;
 - (void)addLine:(unsigned int)arg1 executionCount:(unsigned long long)arg2 executable:(BOOL)arg3 subRanges:(id)arg4;
 - (void)main;
 - (id)initWithRunContext:(id)arg1 buildParameters:(id)arg2 architechture:(id)arg3 outputLogFilePath:(id)arg4 logSection:(id)arg5;

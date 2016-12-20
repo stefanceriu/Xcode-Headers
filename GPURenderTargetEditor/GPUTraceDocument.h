@@ -36,7 +36,7 @@
 - (id)fileWrapperOfType:(id)arg1 error:(id *)arg2;
 - (BOOL)canExportDocument;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
-@property(readonly, nonatomic) DYCaptureSessionInfo *captureSessionInfo; // @dynamic captureSessionInfo;
+@property(readonly, nonatomic) DYCaptureSessionInfo *captureSessionInfo;
 - (id)captureArchive;
 - (void)dealloc;
 - (BOOL)readFromURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;

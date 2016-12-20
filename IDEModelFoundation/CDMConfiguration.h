@@ -39,7 +39,7 @@
 - (id)initWithLegacyConfiguration:(id)arg1 andEntityMapping:(id)arg2 belongingToModel:(id)arg3;
 - (id)initWithEntities:(id)arg1 andName:(id)arg2 inModel:(id)arg3;
 - (id)init;
-- (void)_commonInitInModel:(id)arg1;
+- (id)initInModel:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)updateConfigurationWithEntities:(id)arg1;
 - (void)addEntities:(id)arg1;
@@ -57,6 +57,7 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
@@ -64,6 +65,9 @@
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;

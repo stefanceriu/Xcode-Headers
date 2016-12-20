@@ -23,6 +23,7 @@
     NSString *_serialNumberMock;
 }
 
++ (id)underlyingObject;
 @property(copy) NSString *serialNumberMock; // @synthesize serialNumberMock=_serialNumberMock;
 @property(copy) NSString *sha1HashMock; // @synthesize sha1HashMock=_sha1HashMock;
 @property BOOL isTrustedMock; // @synthesize isTrustedMock=_isTrustedMock;
@@ -37,6 +38,7 @@
 - (void).cxx_destruct;
 - (id)defaultDesignatedRequirementsForIdentifier:(id)arg1;
 - (struct OpaqueSecCertificateRef *)certificateRef;
+- (BOOL)isValidForCodeSigning;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isExpired;

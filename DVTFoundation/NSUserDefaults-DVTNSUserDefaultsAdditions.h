@@ -7,6 +7,7 @@
 #import "NSUserDefaults.h"
 
 @interface NSUserDefaults (DVTNSUserDefaultsAdditions)
+- (void)dvt_setupDefaultsFromEnvironment;
 - (void)dvt_setFilePath:(id)arg1 forKey:(id)arg2;
 - (id)dvt_filePathForKey:(id)arg1;
 - (BOOL)dvt_objectIsChangedForKey:(id)arg1;

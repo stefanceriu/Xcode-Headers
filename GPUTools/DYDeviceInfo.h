@@ -42,7 +42,7 @@
 - (BOOL)supportsCapabilitiesOfGraphicsAPI:(id)arg1 allowedClass:(Class)arg2;
 - (BOOL)versionIsOlderThan:(id)arg1;
 @property(readonly, nonatomic) BOOL isEmbeddedPlatform;
-@property(readonly, nonatomic) BOOL sharedPermanentIdentifier; // @dynamic sharedPermanentIdentifier;
+@property(readonly, nonatomic) BOOL sharedPermanentIdentifier;
 - (void)encodeWithCoder:(id)arg1;
 - (id)debugDescription;
 - (id)description;

@@ -31,6 +31,13 @@
 @property(copy) NSArray *graphData; // @synthesize graphData=_graphData;
 @property(copy) CDUnknownBlockType resizeHandler; // @synthesize resizeHandler=_resizeHandler;
 - (void).cxx_destruct;
+- (id)accessibilityLabel;
+- (id)accessibilityValue;
+- (id)graphTypeString;
+- (id)accessibilityContents;
+- (id)accessibilityChildren;
+- (id)accessibilityRole;
+- (BOOL)isAccessibilityElement;
 - (void)drawGraphData;
 - (void)drawXAxisLabels;
 - (void)drawYAxisLabels;

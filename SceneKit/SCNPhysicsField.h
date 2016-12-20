@@ -50,6 +50,7 @@
 - (id)_owner;
 - (void)_setWorld:(id)arg1;
 - (void)_setOwner:(id)arg1;
+- (void)_willRemoveFromPhysicsWorld;
 - (void)_removeOwner;
 - (BOOL)supportsOffset;
 - (BOOL)supportsDirection;

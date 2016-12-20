@@ -24,8 +24,9 @@
 
 + (BOOL)existsInDirectory:(id)arg1;
 - (void).cxx_destruct;
+- (int)peekAtRawDataWithError:(id *)arg1 block:(CDUnknownBlockType)arg2;
 - (int)exportRawDataWithError:(id *)arg1 block:(CDUnknownBlockType)arg2;
-- (int)importRawData:(void *)arg1 bufferSize:(unsigned long long)arg2 error:(id *)arg3;
+- (int)importRawData:(const void *)arg1 bufferSize:(unsigned long long)arg2 error:(id *)arg3 destructor:(CDUnknownBlockType)arg4;
 - (int)setWritingCompletedWithError:(id *)arg1;
 - (BOOL)hasData;
 - (void)dealloc;

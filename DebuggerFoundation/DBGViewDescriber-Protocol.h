@@ -6,13 +6,15 @@
 
 #import "DVTInvalidation.h"
 
-@class CALayer, DBGLayoutConstraintSet, DBGViewChildMemberList, DBGViewObject, DBGViewSurface, IDELaunchSession, NSArray, NSData, NSString, NSURL;
+@class CALayer, DBGLayoutConstraintSet, DBGViewChildMemberList, DBGViewObject, DBGViewSurface, IDEDebugSession, IDELaunchSession, NSArray, NSData, NSString, NSURL;
 
 @protocol DBGViewDescriber <DVTInvalidation>
 + (BOOL)shouldInstantiateInLaunchSession:(IDELaunchSession *)arg1;
 + (NSString *)viewDebuggingDylibPathForLaunchSession:(IDELaunchSession *)arg1;
 @property(readonly) NSURL *url;
 @property(readonly) NSString *classNameForDefaultViewIcon;
+@property(readonly) IDEDebugSession *debugSession;
+- (NSArray *)structuresForInspectableExpressions;
 - (NSArray *)propertyEntriesForViewObject:(DBGViewObject *)arg1;
 - (void)fetchViewInfo:(void (^)(unsigned long long, unsigned long long, double))arg1 resultHandler:(void (^)(NSArray *, DBGViewWindow *))arg2;
 - (IDELaunchSession *)launchSession;

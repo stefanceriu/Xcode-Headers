@@ -26,7 +26,7 @@
 @property(copy, nonatomic) NSDate *timestamp; // @synthesize timestamp=_timestamp;
 @property(copy, nonatomic) NSString *message; // @synthesize message=_message;
 @property(retain, nonatomic) XCSContributor *contributor; // @synthesize contributor=_contributor;
-@property(retain, nonatomic) XCSCommitHistory *commitHistory; // @synthesize commitHistory=_commitHistory;
+@property(nonatomic) __weak XCSCommitHistory *commitHistory; // @synthesize commitHistory=_commitHistory;
 - (void).cxx_destruct;
 - (BOOL)_validateWithContributor:(id)arg1 message:(id)arg2 timestamp:(id)arg3 scmRevision:(id)arg4 blueprintRepositoryID:(id)arg5 commitChangeFilePaths:(struct NSArray *)arg6 validationErrors:(id *)arg7;
 - (id)saveRepresentationHumanReadable:(BOOL)arg1;
@@ -34,8 +34,8 @@
 - (id)dictionaryRepresentation;
 - (id)description;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)_initWithID:(id)arg1 contributor:(id)arg2 message:(id)arg3 timestamp:(id)arg4 scmRevision:(id)arg5 blueprintRepositoryID:(id)arg6 commitChangeFilePaths:(struct NSArray *)arg7 validationErrors:(id *)arg8;
-- (id)initWithContributor:(id)arg1 message:(id)arg2 timestamp:(id)arg3 scmRevision:(id)arg4 blueprintRepositoryID:(id)arg5 commitChangeFilePaths:(struct NSArray *)arg6 validationErrors:(id *)arg7;
+- (id)_initWithID:(id)arg1 contributor:(id)arg2 message:(id)arg3 timestamp:(id)arg4 scmRevision:(id)arg5 blueprintRepositoryID:(id)arg6 commitChangeFilePaths:(struct NSArray *)arg7 service:(id)arg8 validationErrors:(id *)arg9;
+- (id)initWithContributor:(id)arg1 message:(id)arg2 timestamp:(id)arg3 scmRevision:(id)arg4 blueprintRepositoryID:(id)arg5 commitChangeFilePaths:(struct NSArray *)arg6 service:(id)arg7 validationErrors:(id *)arg8;
 
 @end
 

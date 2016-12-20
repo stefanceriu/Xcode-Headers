@@ -15,7 +15,7 @@
 }
 
 - (void)menuWillOpen:(id)arg1;
-- (void)buildMenu:(id)arg1;
+- (void)_buildMenu:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

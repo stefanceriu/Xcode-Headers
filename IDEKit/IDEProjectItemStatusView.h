@@ -18,25 +18,18 @@
     NSImageView *_imageView;
     NSButton *_resolveButton;
     IDEFlightCheckListView *_flightCheckListView;
-    int _status;
     id <IDEProjectItemStatusViewDelegate> _delegate;
 }
 
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 @property __weak id <IDEProjectItemStatusViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(nonatomic) int status; // @synthesize status=_status;
 - (void).cxx_destruct;
 - (void)resolveIssuesForFlightCheckListView:(id)arg1;
 - (void)layoutBottomUp;
 - (void)layoutTopDown;
 - (id)flightCheckListView;
 @property(retain, nonatomic) NSArray *failedFlightChecks;
-- (id)resolveButton;
-- (id)imageView;
-- (id)messageField;
-- (id)spinner;
-@property(retain, nonatomic) NSString *progressMessage;
 - (BOOL)isFlipped;
 - (void)primitiveInvalidate;
 

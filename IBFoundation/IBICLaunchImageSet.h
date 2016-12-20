@@ -16,15 +16,19 @@
 + (id)catalogItemFileExtension;
 + (id)defaultInstanceForIdioms:(id)arg1 enforceStrictIdioms:(BOOL)arg2;
 + (id)defaultName;
++ (id)createInstanceNamed:(id)arg1 forIdioms:(id)arg2 usingRenderer:(CDUnknownBlockType)arg3;
++ (id)createDefaultInstancesForUnitTesting;
 + (Class)assetRepClass;
 - (BOOL)requiresRootNamespace;
+- (id)initializeManifestArchivist;
+- (void)createChildrenForSlots:(id)arg1 usingRenderer:(CDUnknownBlockType)arg2;
 - (id)intrinsicallyOrderedChildren;
 - (id)children;
 - (id)assetRepForStructuredIdentifier:(id)arg1;
 - (id)childForIdentifier:(id)arg1;
 - (id)assetRepForIdentifier:(id)arg1;
+- (id)conflictFreeChildForSlot:(id)arg1;
 - (id)assetRepForSlot:(id)arg1;
-- (id)initializeManifestArchivist;
 
 @end
 

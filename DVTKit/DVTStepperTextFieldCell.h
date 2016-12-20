@@ -13,12 +13,15 @@
     DVTStepperTextFieldFormatter *_stepperFieldFormatter;
     NSButtonCell *_minusButtonCell;
     NSButtonCell *_plusButtonCell;
+    BOOL _hasButtons;
 }
 
 + (id)_textFieldPathForFrame:(struct CGRect)arg1;
 @property(readonly) NSCell *plusButtonCell; // @synthesize plusButtonCell=_plusButtonCell;
 @property(readonly) NSCell *minusButtonCell; // @synthesize minusButtonCell=_minusButtonCell;
 - (void).cxx_destruct;
+@property BOOL hasButtons;
+- (void)setBackgroundStyle:(long long)arg1;
 - (struct CGRect)_accessibilityTextFieldCellBounds;
 - (BOOL)accessibilityIsChildrenAttributeSettable;
 - (BOOL)accessibilityIsAttributeSettable:(id)arg1;
@@ -40,8 +43,8 @@
 - (struct CGRect)textRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)plusButtonRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)minusButtonRectForBounds:(struct CGRect)arg1;
-@property(retain) NSString *suffix;
-@property(retain) NSString *prefix;
+@property(copy) NSString *suffix;
+@property(copy) NSString *prefix;
 - (void)setFormatter:(id)arg1;
 @property(readonly) DVTStepperTextFieldFormatter *stepperFieldFormatter;
 - (void)setEnabled:(BOOL)arg1;

@@ -6,7 +6,13 @@
 
 #import "NSView.h"
 
+@class DVTViewController;
+
 @interface NSView (DVTNSViewAdditions)
+- (void)dvt_addMinimumSizeAutolayoutConstraints:(struct CGSize)arg1;
+- (void)dvt_setMinimumSizeAutolayoutConstraints:(struct CGSize)arg1;
+- (void)_setCachedMinimumSize:(struct CGSize)arg1;
+@property(readonly, nonatomic) struct CGSize dvt_minimumSize;
 - (BOOL)dvt_viewShouldDrawActive;
 - (void)dvt_invalidateCursorRects;
 - (void)dvt_scrollRectToVisible:(struct CGRect)arg1 animated:(BOOL)arg2;
@@ -23,6 +29,8 @@
 - (struct CGPoint)dvt_integralPointInBase:(struct CGPoint)arg1;
 - (struct CGRect)dvt_integralRectInBase:(struct CGRect)arg1;
 - (void)dvt_performAdditionalInvalidation;
+- (void)setDvt_viewController:(id)arg1;
+@property(readonly) DVTViewController *dvt_viewController;
 
 // Remaining properties
 @property(nonatomic, getter=isHidden) BOOL hidden;

@@ -12,5 +12,6 @@
 - (id)xmlCoderEncodingCallbackContext:(id)arg1;
 - (id)ibWidgetType;
 - (id)ibOrderedSnapshotAttributesKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

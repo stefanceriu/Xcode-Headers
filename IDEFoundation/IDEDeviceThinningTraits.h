@@ -18,9 +18,11 @@
     NSString *_deviceGraphicsFeatureSetClass;
     NSArray *_deviceGraphicsFeatureSetFallbacks;
     NSArray *_artworkHostedIdioms;
+    NSString *_displayGamut;
 }
 
 + (id)deviceTraitInfoForProductType:(id)arg1 fromPlatform:(id)arg2 error:(id *)arg3;
+@property(readonly) NSString *displayGamut; // @synthesize displayGamut=_displayGamut;
 @property(readonly) NSArray *artworkHostedIdioms; // @synthesize artworkHostedIdioms=_artworkHostedIdioms;
 @property(readonly) NSArray *deviceGraphicsFeatureSetFallbacks; // @synthesize deviceGraphicsFeatureSetFallbacks=_deviceGraphicsFeatureSetFallbacks;
 @property(readonly) NSString *deviceGraphicsFeatureSetClass; // @synthesize deviceGraphicsFeatureSetClass=_deviceGraphicsFeatureSetClass;
@@ -30,7 +32,7 @@
 @property(readonly) NSString *artworkDeviceIdiom; // @synthesize artworkDeviceIdiom=_artworkDeviceIdiom;
 @property(readonly) NSString *productType; // @synthesize productType=_productType;
 - (void).cxx_destruct;
-- (id)initWithProductType:(id)arg1 artworkDeviceIdiom:(id)arg2 artworkDeviceScaleFactor:(long long)arg3 artworkDeviceSubtype:(long long)arg4 devicePerformanceMemoryClass:(long long)arg5 deviceGraphicsFeatureSetClass:(id)arg6 deviceGraphicsFeatureSetFallbacks:(id)arg7 artworkHostedIdioms:(id)arg8;
+- (id)initWithProductType:(id)arg1 artworkDeviceIdiom:(id)arg2 artworkDeviceScaleFactor:(long long)arg3 artworkDeviceSubtype:(long long)arg4 devicePerformanceMemoryClass:(long long)arg5 deviceGraphicsFeatureSetClass:(id)arg6 deviceGraphicsFeatureSetFallbacks:(id)arg7 artworkHostedIdioms:(id)arg8 displayGamut:(id)arg9;
 
 @end
 

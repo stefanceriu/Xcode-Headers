@@ -7,9 +7,9 @@
 #import "PDFThumbnailView.h"
 
 @interface PDFThumbnailView (PDFThumbnailViewIBIntegration)
-- (void)setThumbnailSizeHeight:(unsigned long long)arg1;
-- (unsigned long long)thumbnailSizeHeight;
-- (void)setThumbnailSizeWidth:(unsigned long long)arg1;
-- (unsigned long long)thumbnailSizeWidth;
+- (void)setIbInspectedMaximumNumberOfColumns:(id)arg1;
+- (id)ibInspectedMaximumNumberOfColumns;
+- (id)ibInspectedDefaultMaximumNumberOfColumns;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

@@ -8,26 +8,35 @@
 
 #import "DVTDirectoryServicesSessionDescription.h"
 
-@class DVTDeveloperAccount, DVTDeveloperAccountSession, DVTLogAspect, NSData, NSString;
+@class DVTDeveloperAccount, DVTDeveloperAccountSession, DVTDispatchLock, DVTLogAspect, NSData, NSString;
 
 @interface DVTServicesSession : NSObject <DVTDirectoryServicesSessionDescription>
 {
+    id _wrappingLogHandlerToken;
+    DVTServicesSession *_parentSession;
+    DVTDispatchLock *_sessionIDLock;
+    NSString *_sessionID;
     DVTDeveloperAccount *_account;
+    DVTLogAspect *_logAspect;
     long long _executionContext;
     DVTDeveloperAccountSession *_accountSession;
 }
 
 + (id)_servicesSessionErrorFromAccountError:(id)arg1 account:(id)arg2;
++ (id)servicesSessionFromSession:(id)arg1 additionalLogAspect:(id)arg2;
 + (id)servicesSessionWithDeveloperAccountSession:(id)arg1 executionContext:(long long)arg2;
 + (id)servicesSessionByLoggingInWithAccount:(id)arg1 executionContext:(long long)arg2 error:(id *)arg3;
 @property(retain, nonatomic) DVTDeveloperAccountSession *accountSession; // @synthesize accountSession=_accountSession;
 @property(readonly, nonatomic) long long executionContext; // @synthesize executionContext=_executionContext;
+@property(retain, nonatomic) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
 @property(readonly, nonatomic) DVTDeveloperAccount *account; // @synthesize account=_account;
 - (void).cxx_destruct;
+- (void)_clearWrappingLogAspect;
+- (void)_setWrappingLogAspect:(id)arg1;
 @property(readonly, copy, nonatomic) NSData *sessionData;
-@property(readonly, copy, nonatomic) NSString *sessionID;
-@property(readonly, nonatomic) DVTLogAspect *logAspect;
-- (id)initWithAccount:(id)arg1 accountSession:(id)arg2 executionContext:(long long)arg3;
+@property(copy, nonatomic) NSString *sessionID; // @synthesize sessionID=_sessionID;
+- (void)dealloc;
+- (id)initWithAccount:(id)arg1 accountSession:(id)arg2 parentSession:(id)arg3 executionContext:(long long)arg4 logAspect:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

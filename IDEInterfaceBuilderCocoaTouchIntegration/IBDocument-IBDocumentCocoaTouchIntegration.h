@@ -12,7 +12,6 @@
 + (int)libraryInclusionStatusForWindow;
 + (int)libraryInclusionStatusForProxyObject;
 - (id)viewControllerRepresentativeForObject:(id)arg1;
-- (void)prepareToBackwardsDeployToTargetRuntimeOSVersion;
 - (void)unarchiveCocoaTouchDataWithDocumentUnarchiver:(id)arg1;
 - (void)archiveCocoaTouchDataWithDocumentArchiver:(id)arg1;
 - (BOOL)isNonExistentAtRuntimePlaceholder:(id)arg1;
@@ -20,7 +19,6 @@
 - (id)cocoaTouchIdiom;
 - (id)cocoaTouchPlatform;
 - (id)cocoaTouchTargetRuntime;
-- (void)populateAdditionalTargetOSVersionsForCompilation:(id)arg1;
 - (BOOL)compilesSeparateContentOnIOSVersionsPriorToEight;
 - (BOOL)canTargetCurrentOSVersion;
 - (BOOL)canTargetIOS7;

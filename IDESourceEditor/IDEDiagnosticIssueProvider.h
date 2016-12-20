@@ -23,6 +23,8 @@
 
 + (int)providerType;
 + (Class)diagnosticControllerClassForLanguage:(id)arg1;
++ (BOOL)_fileRepresentsPlayground:(id)arg1 inWorkspace:(id)arg2;
++ (BOOL)_fileRepresentsBuildables:(id)arg1 inWorkspace:(id)arg2;
 + (BOOL)providesIssuesForFile:(id)arg1 inWorkspace:(id)arg2;
 + (id)_diagnosticIssueProviderLogAspect;
 - (void).cxx_destruct;

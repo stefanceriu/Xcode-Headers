@@ -21,6 +21,7 @@
     NSString *_summary;
     long long _version;
     NSString *_title;
+    NSString *_action;
     BOOL _userSnippet;
 }
 
@@ -33,6 +34,7 @@
 @property(copy) NSString *completionPrefix; // @synthesize completionPrefix=_completionPrefix;
 @property long long version; // @synthesize version=_version;
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
+@property(copy) NSString *action; // @synthesize action=_action;
 @property(copy) NSString *title; // @synthesize title=_title;
 @property(copy) NSString *summary; // @synthesize summary=_summary;
 @property(copy) NSString *contents; // @synthesize contents=_contents;

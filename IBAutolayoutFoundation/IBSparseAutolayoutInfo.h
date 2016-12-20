@@ -19,6 +19,7 @@
     NSMutableDictionary *_propertiesByDomainThenObjectMap;
     NSMutableSet *_objectsWithAnyViewPropertiesSet;
     NSMutableArray *_arbitrationUnits;
+    BOOL _generatesPrototypingConstraints;
     Class _autolayoutFrameDecisionDriverClass;
     long long _userInterfaceLayoutDirection;
     Class _symbolicLayoutConstantClass;
@@ -28,6 +29,7 @@
 }
 
 + (id)sparseInfoByTransformingObjectsInSparseInfo:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
+@property(nonatomic) BOOL generatesPrototypingConstraints; // @synthesize generatesPrototypingConstraints=_generatesPrototypingConstraints;
 @property(readonly, nonatomic) Class arbitrationUnitClass; // @synthesize arbitrationUnitClass=_arbitrationUnitClass;
 @property(readonly, nonatomic) Class autolayoutEngineClass; // @synthesize autolayoutEngineClass=_autolayoutEngineClass;
 @property(readonly, nonatomic) Class layoutConstantClass; // @synthesize layoutConstantClass=_layoutConstantClass;

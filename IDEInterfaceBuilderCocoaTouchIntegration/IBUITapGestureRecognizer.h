@@ -25,6 +25,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (BOOL)showAllowedPressTypes;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

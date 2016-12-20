@@ -22,6 +22,8 @@
     BOOL _hideShellScriptEnvironment;
     BOOL _dontActuallyRunCommands;
     BOOL _skipUnavailableActions;
+    BOOL _quieterOutput;
+    BOOL _outputAsJSON;
     int _toolCommand;
     NSString *_name;
     NSArray *_arguments;
@@ -65,6 +67,12 @@
     NSArray *_exportLanguages;
     NSString *_codeCoverageEnabled;
     NSString *_addressSanitizerEnabled;
+    NSString *_threadSanitizerEnabled;
+    NSString *_testRunSpecificationPathString;
+    NSArray *_skipTestIdentifiers;
+    NSArray *_onlyTestIdentifiers;
+    NSString *_permuteTemplatesToPath;
+    NSString *_templateTeamID;
     DVTMacroDefinitionTable *_synthesizedMacros;
     DVTMacroDefinitionTable *_macrosFromCommandLine;
     DVTMacroDefinitionTable *_macrosFromXcconfigOption;
@@ -73,7 +81,6 @@
     NSMutableDictionary *_environmentUserDefaults;
     NSOperationQueue *_buildToolQueue;
     NSString *_resultBundlePath;
-    NSDictionary *_serverOptions;
 }
 
 + (id)sharedCommandLineBuildTool;
@@ -82,7 +89,7 @@
 + (id)xcodebuildDebugLogAspect;
 + (id)timingLogAspect;
 + (BOOL)useArchiveActionForInstall;
-@property(copy) NSDictionary *serverOptions; // @synthesize serverOptions=_serverOptions;
+@property BOOL outputAsJSON; // @synthesize outputAsJSON=_outputAsJSON;
 @property(retain) NSString *resultBundlePath; // @synthesize resultBundlePath=_resultBundlePath;
 @property(retain) NSOperationQueue *buildToolQueue; // @synthesize buildToolQueue=_buildToolQueue;
 @property(retain) NSMutableDictionary *environmentUserDefaults; // @synthesize environmentUserDefaults=_environmentUserDefaults;
@@ -91,10 +98,17 @@
 @property(retain) DVTMacroDefinitionTable *macrosFromXcconfigOption; // @synthesize macrosFromXcconfigOption=_macrosFromXcconfigOption;
 @property(retain) DVTMacroDefinitionTable *macrosFromCommandLine; // @synthesize macrosFromCommandLine=_macrosFromCommandLine;
 @property(retain) DVTMacroDefinitionTable *synthesizedMacros; // @synthesize synthesizedMacros=_synthesizedMacros;
+@property(retain) NSString *templateTeamID; // @synthesize templateTeamID=_templateTeamID;
+@property(retain) NSString *permuteTemplatesToPath; // @synthesize permuteTemplatesToPath=_permuteTemplatesToPath;
+@property(retain) NSArray *onlyTestIdentifiers; // @synthesize onlyTestIdentifiers=_onlyTestIdentifiers;
+@property(retain) NSArray *skipTestIdentifiers; // @synthesize skipTestIdentifiers=_skipTestIdentifiers;
+@property(retain) NSString *testRunSpecificationPathString; // @synthesize testRunSpecificationPathString=_testRunSpecificationPathString;
+@property(retain) NSString *threadSanitizerEnabled; // @synthesize threadSanitizerEnabled=_threadSanitizerEnabled;
 @property(retain) NSString *addressSanitizerEnabled; // @synthesize addressSanitizerEnabled=_addressSanitizerEnabled;
 @property(retain) NSString *codeCoverageEnabled; // @synthesize codeCoverageEnabled=_codeCoverageEnabled;
 @property(retain) NSArray *exportLanguages; // @synthesize exportLanguages=_exportLanguages;
 @property(retain) NSString *localizationPath; // @synthesize localizationPath=_localizationPath;
+@property BOOL quieterOutput; // @synthesize quieterOutput=_quieterOutput;
 @property BOOL skipUnavailableActions; // @synthesize skipUnavailableActions=_skipUnavailableActions;
 @property BOOL dontActuallyRunCommands; // @synthesize dontActuallyRunCommands=_dontActuallyRunCommands;
 @property(copy) NSNumber *maxConcurrency; // @synthesize maxConcurrency=_maxConcurrency;
@@ -143,7 +157,9 @@
 @property(copy) NSArray *arguments; // @synthesize arguments=_arguments;
 @property(copy) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
+- (long long)_buildLogVerbosity;
 - (void)run;
+- (void)_permuteTemplatesAndExit;
 - (void)_importLocalizationsAndExit;
 - (void)_exportLocalizationsAndExit;
 - (void)_exportArchiveAndExit;

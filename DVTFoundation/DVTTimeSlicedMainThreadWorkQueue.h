@@ -12,6 +12,8 @@
 
 @interface DVTTimeSlicedMainThreadWorkQueue : NSObject <DVTInvalidation>
 {
+    DVTStackBacktrace *_creationBacktrace;
+    unsigned long long _qosSlot;
     BOOL _enabled;
     BOOL _workIsEnqueued;
     CDUnknownBlockType _itemProcessingBlock;
@@ -23,6 +25,7 @@
 + (id)orderedQueue;
 + (id)weakUnorderedQueue;
 + (id)unorderedQueue;
++ (id)orderedBlockProcessingQueue;
 + (id)unorderedBlockProcessingQueue;
 + (id)orderedQueueWithItemProcessingBlock:(CDUnknownBlockType)arg1;
 + (id)weakUnorderedQueueWithItemProcessingBlock:(CDUnknownBlockType)arg1;
@@ -32,9 +35,11 @@
 @property(copy) CDUnknownBlockType batchFinishingBlock; // @synthesize batchFinishingBlock=_batchFinishingBlock;
 @property(copy) CDUnknownBlockType batchStartingBlock; // @synthesize batchStartingBlock=_batchStartingBlock;
 @property(copy) CDUnknownBlockType itemProcessingBlock; // @synthesize itemProcessingBlock=_itemProcessingBlock;
+@property(retain) DVTStackBacktrace *creationBacktrace; // @synthesize creationBacktrace=_creationBacktrace;
 - (void).cxx_destruct;
-- (void)_processWithDeadline:(double)arg1;
+- (void)_processWithDeadline:(unsigned long long)arg1;
 - (void)_evaluateProcessingStatus;
+@property long long qualityOfService;
 @property(getter=isEnabled) BOOL enabled;
 - (void)clearAllItems;
 - (void)dequeueItems:(id)arg1;
@@ -43,7 +48,7 @@
 - (void)enqueueItemAtFront:(id)arg1;
 - (void)enqueueItems:(id)arg1;
 - (void)enqueueItem:(id)arg1;
-- (void)_processWorkItemsWithDeadline:(double)arg1;
+- (void)_processWorkItemsWithDeadline:(unsigned long long)arg1;
 - (BOOL)_workIsEnqueued;
 - (void)_removeAllWorkItems;
 - (void)_removeWorkItems:(id)arg1;
@@ -56,7 +61,6 @@
 - (id)_init;
 
 // Remaining properties
-@property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;

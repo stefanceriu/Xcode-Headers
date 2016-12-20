@@ -60,8 +60,8 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly, copy) NSString *identifier;
-@property(readonly, copy) NSString *name;
+@property(readonly, copy, nonatomic) NSString *identifier;
+@property(readonly, copy, nonatomic) NSString *name;
 @property(readonly, copy) NSString *nameForDeveloperPortal;
 @property(readonly, copy) NSString *platformIdentifier;
 @property(readonly, copy) NSSet *proxiedDevices;

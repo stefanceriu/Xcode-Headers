@@ -11,15 +11,13 @@
     BOOL _rollover;
 }
 
-- (double)_roundedRectRadius;
 - (void)drawBezelWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (long long)backgroundStyle;
+- (BOOL)_preferOnArtForBezel;
+- (id)attributedTitle;
 - (long long)nextState;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
-- (void)_dvt_scopeBarButtonCommonInit;
-- (id)initWithCoder:(id)arg1;
-- (id)initTextCell:(id)arg1;
+- (BOOL)_shouldDrawBezel;
 
 @end
 

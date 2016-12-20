@@ -10,7 +10,7 @@
 #import "NSCoding.h"
 #import "NSCopying.h"
 
-@class NSString;
+@class IBMemberConfiguration, NSString;
 
 @interface IBUISimulatedMetricsContainer : IBSimulatedMetricsContainer <IBDocumentArchiving, NSCoding, NSCopying>
 {
@@ -20,13 +20,17 @@
     id <IBUISimulatedMetrics> simulatedDestinationMetrics;
     id <IBUISimulatedMetrics> simulatedScreenMetrics;
     id <IBUISimulatedMetrics> simulatedOrientationMetrics;
+    IBMemberConfiguration *simulatedSceneMemberConfiguration;
+    IBMemberConfiguration *simulatedDeviceMemberConfiguration;
 }
 
 + (id)orderedSimulatedMetricsKeyToArchiveKeyMap;
 + (id)defaultSimulatedMetricsForDocument:(id)arg1;
 + (id)containerOfInferredSentinels;
 + (id)containerByFlatteningPipelineOfContainers:(id)arg1;
-+ (id)simulatedMetricsKeyPaths;
++ (id)_simulatedMetricsKeyPaths;
+@property(copy) id simulatedDeviceMemberConfiguration; // @synthesize simulatedDeviceMemberConfiguration;
+@property(copy) id simulatedSceneMemberConfiguration; // @synthesize simulatedSceneMemberConfiguration;
 @property(copy) id simulatedScreenMetrics; // @synthesize simulatedScreenMetrics;
 @property(copy) id simulatedOrientationMetrics; // @synthesize simulatedOrientationMetrics;
 @property(copy) id simulatedDestinationMetrics; // @synthesize simulatedDestinationMetrics;
@@ -34,7 +38,7 @@
 @property(copy) id simulatedTopBarMetrics; // @synthesize simulatedTopBarMetrics;
 @property(copy) id simulatedStatusBarMetrics; // @synthesize simulatedStatusBarMetrics;
 - (void).cxx_destruct;
-- (id)marshallableRepresentationWithFreeformSize:(struct CGSize)arg1;
+- (id)marshallableRepresentationWithFreeformSize:(struct CGSize)arg1 platform:(id)arg2;
 - (void)unarchiveSimulatedMetrics:(id)arg1;
 - (void)archiveSimulatedMetrics:(id)arg1;
 - (id)allMetrics;

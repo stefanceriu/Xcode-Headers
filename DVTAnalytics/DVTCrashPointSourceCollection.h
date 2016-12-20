@@ -20,9 +20,9 @@
 
 + (void)initialize;
 @property(retain) NSArray *sourceCrashPointsObservationTokens; // @synthesize sourceCrashPointsObservationTokens=_sourceCrashPointsObservationTokens;
-@property(retain) NSArray *crashPoints; // @synthesize crashPoints=_crashPoints;
-@property(retain) DVTCrashPointSource *representativeCrashPointSource; // @synthesize representativeCrashPointSource=_representativeCrashPointSource;
-@property(retain) NSSet *crashPointSources; // @synthesize crashPointSources=_crashPointSources;
+@property(retain, nonatomic) NSArray *crashPoints; // @synthesize crashPoints=_crashPoints;
+@property(retain, nonatomic) DVTCrashPointSource *representativeCrashPointSource; // @synthesize representativeCrashPointSource=_representativeCrashPointSource;
+@property(retain, nonatomic) NSSet *crashPointSources; // @synthesize crashPointSources=_crashPointSources;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (id)cachedPathForCrashPoint:(id)arg1;

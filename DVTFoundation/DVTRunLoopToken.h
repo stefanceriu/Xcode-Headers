@@ -12,18 +12,20 @@
 
 @interface DVTRunLoopToken : NSObject <DVTCancellable>
 {
+    id _target;
     DVTStackBacktrace *_creationBacktrace;
     DVTStackBacktrace *_invalidationBacktrace;
     CDUnknownBlockType _block;
     NSRunLoop *_cancellationRunLoop;
 }
 
++ (void)initialize;
 @property(retain) NSRunLoop *cancellationRunLoop; // @synthesize cancellationRunLoop=_cancellationRunLoop;
 @property(copy) CDUnknownBlockType block; // @synthesize block=_block;
 @property(retain) DVTStackBacktrace *invalidationBacktrace; // @synthesize invalidationBacktrace=_invalidationBacktrace;
 @property(retain) DVTStackBacktrace *creationBacktrace; // @synthesize creationBacktrace=_creationBacktrace;
+@property(retain) id target; // @synthesize target=_target;
 - (void).cxx_destruct;
-- (void)_DVTRunLoopToken_perform;
 - (void)cancel;
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (id)initWithCancellationRunLoop:(id)arg1 block:(CDUnknownBlockType)arg2;

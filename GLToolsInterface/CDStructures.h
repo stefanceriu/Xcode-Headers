@@ -88,13 +88,10 @@ struct ImageRenderer {
     unsigned int _stencilTexture;
     unsigned int _overlayTexture;
     unsigned char _channelFlags;
-    unsigned int _reductionTextures[2];
-    struct GLSLObject _VS_Passthrough;
-    struct GLSLObject _VS_PassthroughWithOverlay;
-    struct array<GPUTools::ImageRenderer::Program, 3> _programs_MinMaxPass0;
-    struct array<GPUTools::ImageRenderer::Program, 3> _programs_MinMaxPass1;
-    struct array<GPUTools::ImageRenderer::Program, 3> _programs_ToneMapSwizzle;
-    struct array<GPUTools::ImageRenderer::Program, 3> _programs_ToneMapSwizzleWithOverlay;
+    struct GLSLObject _program;
+    unsigned int _programSampleType;
+    _Bool _programWithOverlay;
+    struct array<int, 16> _uniformLocations;
     struct PixelStoreState _defaultPixelStoreState;
     unsigned int _vao;
     unsigned int _vbuffer;
@@ -115,41 +112,36 @@ struct PixelStoreState {
     unsigned char lsb_first;
 };
 
-struct Program {
-    struct GLSLObject vertexShader;
-    struct GLSLObject fragmentShader;
-    struct GLSLObject program;
-    struct array<int, 16> uniformLocations;
-};
-
 struct ReductionJob<float> {
     float minimum[4];
     float maximum[4];
-    unsigned char extremeMinimumIdx;
-    unsigned char extremeMaximumIdx;
+    float minimumLimits[4];
+    float maximumLimits[4];
     float clientToHostCoefficients[4];
-    float channelScale[4];
     _Bool depthPlane;
 };
 
 struct ReductionJob<int> {
     int minimum[4];
     int maximum[4];
-    unsigned char extremeMinimumIdx;
-    unsigned char extremeMaximumIdx;
+    int minimumLimits[4];
+    int maximumLimits[4];
     float clientToHostCoefficients[4];
-    float channelScale[4];
     _Bool depthPlane;
 };
 
 struct ReductionJob<unsigned int> {
     unsigned int minimum[4];
     unsigned int maximum[4];
-    unsigned char extremeMinimumIdx;
-    unsigned char extremeMaximumIdx;
+    unsigned int minimumLimits[4];
+    unsigned int maximumLimits[4];
     float clientToHostCoefficients[4];
-    float channelScale[4];
     _Bool depthPlane;
+};
+
+struct ToneMapRange {
+    double min;
+    double max;
 };
 
 struct _CGLContextObject {
@@ -1140,10 +1132,6 @@ struct __GLIFunctionDispatchRec {
     CDUnknownFunctionPointerType _field974;
 };
 
-struct array<GPUTools::ImageRenderer::Program, 3> {
-    struct Program __elems_[3];
-};
-
 struct array<int, 16> {
     int __elems_[16];
 };
@@ -1154,11 +1142,6 @@ struct shared_ptr<void> {
 };
 
 #pragma mark Typedef'd Structures
-
-typedef struct {
-    double _field1;
-    double _field2;
-} CDStruct_c3b9c2ee;
 
 typedef struct {
     unsigned int _field1;

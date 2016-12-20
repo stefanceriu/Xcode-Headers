@@ -6,12 +6,15 @@
 
 #import "NSObject.h"
 
+#import "ITunesSoftwareServiceAuthenticationDelegate.h"
 #import "ITunesSoftwareServiceUploadDelegate.h"
 
-@class NSString;
+@class DVTLogAspect, NSString;
 
-@interface DVTITunesConnectProxyDelegate : NSObject <ITunesSoftwareServiceUploadDelegate>
+@interface DVTITunesConnectProxyDelegate : NSObject <ITunesSoftwareServiceUploadDelegate, ITunesSoftwareServiceAuthenticationDelegate>
 {
+    id <DVTDirectoryServicesSessionDescription> _session;
+    DVTLogAspect *_logAspect;
     CDUnknownBlockType _willBeginCallback;
     CDUnknownBlockType _updatePercentageCallback;
     CDUnknownBlockType _updateMessageCallback;
@@ -24,12 +27,16 @@
 @property(copy) CDUnknownBlockType updateMessageCallback; // @synthesize updateMessageCallback=_updateMessageCallback;
 @property(copy) CDUnknownBlockType updatePercentageCallback; // @synthesize updatePercentageCallback=_updatePercentageCallback;
 @property(copy) CDUnknownBlockType willBeginCallback; // @synthesize willBeginCallback=_willBeginCallback;
+@property(retain, nonatomic) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
+@property(retain, nonatomic) id <DVTDirectoryServicesSessionDescription> session; // @synthesize session=_session;
 - (void).cxx_destruct;
+- (void)willAuthenticateWithContext:(id)arg1;
 - (void)softwareService:(id)arg1 didCompleteUploadForApplication:(id)arg2;
 - (BOOL)softwareService:(id)arg1 shouldContinueUploadForApplication:(id)arg2;
 - (void)softwareService:(id)arg1 didUpdateStatusMessage:(id)arg2 forApplication:(id)arg3;
 - (void)softwareService:(id)arg1 didUpdatePercentageComplete:(id)arg2 forApplication:(id)arg3;
 - (void)softwareService:(id)arg1 willBeginUploadForApplication:(id)arg2;
+- (id)initWithSession:(id)arg1 logAspect:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

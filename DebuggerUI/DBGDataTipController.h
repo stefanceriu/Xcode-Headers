@@ -8,12 +8,12 @@
 
 #import "DVTInvalidation.h"
 
-@class DBGDataTipPopoverViewController, DBGDebugSession, DVTNotificationToken, DVTObservingToken, DVTSourceExpression, DVTStackBacktrace, IDEViewController<IDESourceExpressionSource>, NSString, NSWindow;
+@class DBGDataTipPopoverViewController, DVTNotificationToken, DVTObservingToken, DVTSourceExpression, DVTStackBacktrace, IDEDebugSession, IDEViewController<IDESourceExpressionSource>, NSString, NSWindow;
 
 @interface DBGDataTipController : NSObject <DVTInvalidation>
 {
     DBGDataTipPopoverViewController *_dataTipPopoverViewController;
-    DBGDebugSession *_debugSession;
+    IDEDebugSession *_debugSession;
     struct CGPoint _lastHandledMouseLocation;
     struct CGPoint _lastDataTipedMouseLocation;
     DVTSourceExpression *_currentMousedOverExpression;
@@ -31,6 +31,7 @@
     IDEViewController<IDESourceExpressionSource> *_expressionSource;
 }
 
++ (BOOL)supportsInvalidationPrevention;
 + (void)initialize;
 + (BOOL)mouseOverDataTipContext;
 + (BOOL)mouseOverDataTipInWindow:(id)arg1 includeBuffer:(BOOL)arg2;
@@ -40,7 +41,7 @@
 @property(retain) DVTSourceExpression *pendingExpression; // @synthesize pendingExpression=_pendingExpression;
 @property(retain) DVTSourceExpression *currentMousedOverExpression; // @synthesize currentMousedOverExpression=_currentMousedOverExpression;
 @property(retain, nonatomic) IDEViewController<IDESourceExpressionSource> *expressionSource; // @synthesize expressionSource=_expressionSource;
-@property(readonly) DBGDebugSession *debugSession; // @synthesize debugSession=_debugSession;
+@property(readonly) IDEDebugSession *debugSession; // @synthesize debugSession=_debugSession;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (BOOL)mouseOverDataTip:(BOOL)arg1;

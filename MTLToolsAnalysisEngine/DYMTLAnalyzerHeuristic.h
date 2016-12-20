@@ -15,6 +15,7 @@
 - (void)addFunctionIndicesForTextureCreationAndMipLevelUpdate:(id)arg1 textureID:(unsigned long long)arg2;
 - (void)appendObjectDescription:(id)arg1 objectType:(long long)arg2 objectID:(unsigned long long)arg3 andShortDesc:(BOOL)arg4;
 - (id)objectDescription:(long long)arg1 objectID:(unsigned long long)arg2;
+- (id)findingWithUnsorted:(BOOL)arg1;
 - (id)finding;
 - (void)_setGenerationEnvironmentForFinding:(id)arg1;
 - (void)processFunction:(const struct Function *)arg1 stateMirrorRetCode:(unsigned int)arg2;

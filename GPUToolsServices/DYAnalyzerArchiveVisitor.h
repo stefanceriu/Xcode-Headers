@@ -18,7 +18,7 @@
 
 @property(readonly, retain, nonatomic) DYAnalyzerEngine *engine; // @synthesize engine=_engine;
 - (void).cxx_destruct;
-@property(nonatomic) BOOL unsorted; // @dynamic unsorted;
+- (void)setUnsorted:(BOOL)arg1;
 - (void)abort;
 - (void)visitFunctionStreamFile:(id)arg1;
 - (void)performPreCaptureVisitActions;

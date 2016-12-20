@@ -41,7 +41,6 @@ __attribute__((visibility("hidden")))
 - (id)streamForEntryName:(id)arg1;
 - (id)contentsForEntryName:(id)arg1;
 - (id)entryNames;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithEntryNames:(id)arg1 dataProvider:(id)arg2 options:(unsigned long long)arg3;
 - (id)initWithEntryNames:(id)arg1 contents:(id)arg2 properties:(id)arg3 options:(unsigned long long)arg4;

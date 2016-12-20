@@ -19,6 +19,10 @@ struct NSArray {
     Class _field1;
 };
 
+struct NSDictionary {
+    Class _field1;
+};
+
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;

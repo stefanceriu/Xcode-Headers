@@ -20,5 +20,6 @@
 - (double)ibInspectedMaxValue;
 - (id)ibWidgetType;
 - (id)ibOrderedSnapshotAttributesKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

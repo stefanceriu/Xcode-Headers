@@ -24,6 +24,7 @@
 - (id)allSuperclasses;
 - (id)superclasses;
 - (id)categories;
+- (id)gkInspectableProperties;
 - (id)ibOutletCollectionProperties;
 - (id)ibOutletCollectionVariables;
 - (id)ibOutletCollections;

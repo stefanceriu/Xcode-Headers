@@ -16,9 +16,11 @@
     unsigned short *_patternCharacters;
     unsigned short *_lowerCasePatternCharacters;
     unsigned long long _patternLength;
+    BOOL _emphasizesCaseSensitiveMatches;
 }
 
 + (id)patternWithInput:(id)arg1;
+@property BOOL emphasizesCaseSensitiveMatches; // @synthesize emphasizesCaseSensitiveMatches=_emphasizesCaseSensitiveMatches;
 @property(readonly) NSString *pattern; // @synthesize pattern=_pattern;
 - (void).cxx_destruct;
 - (double)scoreCandidate:(id)arg1 matchedRanges:(id *)arg2;

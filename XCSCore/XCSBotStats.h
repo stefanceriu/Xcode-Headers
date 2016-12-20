@@ -17,6 +17,7 @@
     NSString *_bestSuccessStreakIntegrationID;
     NSNumber *_bestSuccessStreakCounter;
     NSDate *_bestSuccessStreakIntegrationDate;
+    NSNumber *_numberOfSuccessfulIntegrations;
     NSNumber *_numberOfIntegrations;
     NSNumber *_numberOfCommits;
     NSNumber *_integrationTimeAverage;
@@ -107,6 +108,7 @@
 @property(retain, nonatomic) NSNumber *integrationTimeAverage; // @synthesize integrationTimeAverage=_integrationTimeAverage;
 @property(retain, nonatomic) NSNumber *numberOfCommits; // @synthesize numberOfCommits=_numberOfCommits;
 @property(retain, nonatomic) NSNumber *numberOfIntegrations; // @synthesize numberOfIntegrations=_numberOfIntegrations;
+@property(retain, nonatomic) NSNumber *numberOfSuccessfulIntegrations; // @synthesize numberOfSuccessfulIntegrations=_numberOfSuccessfulIntegrations;
 @property(retain, nonatomic) NSDate *bestSuccessStreakIntegrationDate; // @synthesize bestSuccessStreakIntegrationDate=_bestSuccessStreakIntegrationDate;
 @property(retain, nonatomic) NSNumber *bestSuccessStreakCounter; // @synthesize bestSuccessStreakCounter=_bestSuccessStreakCounter;
 @property(retain, nonatomic) NSString *bestSuccessStreakIntegrationID; // @synthesize bestSuccessStreakIntegrationID=_bestSuccessStreakIntegrationID;

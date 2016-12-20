@@ -9,25 +9,28 @@
 #import "DVTFindBarFindable.h"
 #import "IDEOpenQuicklyJumpToSupport.h"
 
-@class DVTSourceTextView, NSDictionary, NSString;
+@class DVTBorderedView, DVTSourceTextView, NSDictionary, NSString;
 
 @interface IDESourceCodeComparisonEditor : IDEComparisonEditor <DVTFindBarFindable, IDEOpenQuicklyJumpToSupport>
 {
     NSDictionary *_previouslyRestoredStateDictionary;
+    DVTBorderedView *_borderedView;
 }
 
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)keyPathsForValuesAffectingKeyTextView;
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
+@property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 - (void).cxx_destruct;
-- (void)find:(id)arg1;
 - (id)currentEditorContext;
 - (id)documentLocationForOpenQuicklyQuery:(id)arg1;
 - (id)startingLocationForFindBar:(id)arg1 findingBackwards:(BOOL)arg2;
 - (void)dvtFindBar:(id)arg1 didUpdateCurrentResult:(id)arg2;
 - (void)dvtFindBar:(id)arg1 didUpdateResults:(id)arg2;
 - (void)revertStateWithDictionary:(id)arg1;
+- (id)_stateDictionariesForDocuments;
+- (id)_transientStateDictionaryForDocument:(id)arg1;
 - (void)restoreInternalComparisonDocumentLocationWithStateDictionary:(id)arg1;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)setEditorSubmode:(int)arg1;
@@ -37,6 +40,7 @@
 - (id)pathCell:(id)arg1 menuItemForNavigableItem:(id)arg2 defaultMenuItem:(id)arg3;
 - (BOOL)pathCell:(id)arg1 shouldInitiallyShowMenuSearch:(id)arg2;
 - (BOOL)pathCell:(id)arg1 shouldSeparateDisplayOfChildItemsForItem:(id)arg2;
+- (void)viewDidLoad;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

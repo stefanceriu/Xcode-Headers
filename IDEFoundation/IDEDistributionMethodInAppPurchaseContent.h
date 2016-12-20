@@ -13,7 +13,7 @@
 - (id)packagingStepIdentifier;
 - (id)installerCertificateKind;
 - (id)certificateKind;
-- (BOOL)wantsProvisioningProfiles;
+- (long long)wantsProvisioningProfiles;
 - (_Bool)supportsDistributionOfArchive:(id)arg1;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "DVTCodesignableDevice.h"
 
-@class NSMutableSet, NSSet, NSString;
+@class DVTPlatform, NSMutableSet, NSSet, NSString;
 
 @interface DVTMockCodesignableDevice : NSObject <DVTCodesignableDevice>
 {
@@ -27,12 +27,13 @@
 @property(copy) NSString *nameForDeveloperPortalMock; // @synthesize nameForDeveloperPortalMock=_nameForDeveloperPortalMock;
 @property(copy) NSString *nameMock; // @synthesize nameMock=_nameMock;
 - (void).cxx_destruct;
+@property(readonly) DVTPlatform *platform;
 @property(readonly, copy) NSSet *proxiedDevices;
 @property(readonly) BOOL supportsProvisioning;
 @property(readonly, copy) NSString *platformIdentifier;
-@property(readonly, copy) NSString *identifier;
+@property(readonly, copy, nonatomic) NSString *identifier;
 @property(readonly, copy) NSString *nameForDeveloperPortal;
-@property(readonly, copy) NSString *name;
+@property(readonly, copy, nonatomic) NSString *name;
 - (id)snapshot;
 - (id)initWithDictionary:(id)arg1;
 - (id)initWithPlist:(id)arg1;

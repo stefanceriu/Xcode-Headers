@@ -17,6 +17,7 @@
     NSString *_subtitle;
     NSString *_summary;
     NSImage *_image;
+    NSString *_typeIdentifier;
 }
 
 - (void).cxx_destruct;

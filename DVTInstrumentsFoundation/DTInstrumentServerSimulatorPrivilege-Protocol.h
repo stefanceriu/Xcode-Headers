@@ -6,7 +6,10 @@
 
 #import "DTXAllowedRPC.h"
 
+@class NSNumber;
+
 @protocol DTInstrumentServerSimulatorPrivilege <DTXAllowedRPC>
 - (void)_notifyOfTFPCommunicationsPort:(unsigned int)arg1;
+- (NSNumber *)_blessSimulatorHub:(int)arg1;
 @end
 

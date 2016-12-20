@@ -30,6 +30,7 @@
 - (Class)ibSwizzledNSViewEditorClass;
 - (CDUnknownBlockType)ibSwizzledNSViewWindow:(id *)arg1 forUpdatingConstraintsInDocument:(id)arg2;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
+- (void)ibPrepareCocoaDocumentViewsWithTranslatesAutoresizingMaskIntoConstraintsForCompiling:(id)arg1 withContext:(id)arg2;
 - (id)ibSwizzledNSViewLastInspectedTranslatesAutoresizingMaskIntoConstraintsMetadataKeyInDocument:(id)arg1;
 - (id)ibSwizzledNSViewTranslatesAutoresizingMaskIntoConstraintsMetadataKeyInDocument:(id)arg1;
 - (id)ibSwizzledNSViewConstraintsMetadataKeyInDocument:(id)arg1;
@@ -84,5 +85,8 @@
 - (id)ibLocalAttributeKeyPaths;
 - (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
 - (id)ibSwizzledNSViewDocumentationPropertyInfosForKeyPath:(id)arg1;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
 @end
 

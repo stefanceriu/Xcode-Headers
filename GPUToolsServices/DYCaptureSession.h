@@ -58,7 +58,6 @@
 - (BOOL)stopCapturing;
 - (BOOL)startCapturing;
 - (BOOL)_activateWithSession:(id)arg1 serial:(unsigned int)arg2 invalidationCompletion:(id)arg3;
-- (id)_allowedSessionInfoBaseClasses;
 - (BOOL)_sendActivationMessage;
 - (void)invalidate;
 - (void)_invalidate:(id)arg1;
@@ -68,10 +67,9 @@
 - (void)copyStatistics:(CDStruct_faeedbfb *)arg1;
 @property(nonatomic) BOOL invalid; // @dynamic invalid;
 @property(readonly, nonatomic) BOOL active; // @dynamic active;
-- (void)_setState:(int)arg1;
-@property(nonatomic) int state; // @dynamic state;
-@property(nonatomic) unsigned long long frameLimit; // @dynamic frameLimit;
-@property(nonatomic) unsigned long long triggerFrame; // @dynamic triggerFrame;
+@property(nonatomic, setter=_setState:) int state;
+@property(nonatomic) unsigned long long frameLimit;
+@property(nonatomic) unsigned long long triggerFrame;
 - (void)setTargetQueue:(struct dispatch_queue_s *)arg1;
 - (void)dealloc;
 - (id)initWithCaptureArchive:(id)arg1;

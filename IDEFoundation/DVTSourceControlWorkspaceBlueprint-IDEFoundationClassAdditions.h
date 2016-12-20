@@ -10,6 +10,7 @@
 + (void)blueprintWithWorkspace:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)workingCopyConfigurationForRemoteRepository:(id)arg1 sourceControlManager:(id)arg2;
 - (id)workingCopyConfigurationForWorkingCopy:(id)arg1 origin:(id)arg2 sourceControlManager:(id)arg3;
+- (unsigned long long)workingCopyStateForWorkingCopy:(id)arg1 origin:(id)arg2;
 - (void)saveToWorkspace:(id)arg1 hasChanged:(BOOL)arg2;
 - (BOOL)_shouldSave;
 - (BOOL)representsBlueprint:(id)arg1;

@@ -12,6 +12,7 @@
 {
     CALayer *_layer;
     struct CGRect _bounds;
+    double _screenBackingScale;
     NSDictionary *_options;
     struct CGColorSpace *_colorSpace;
     NSString *_format;
@@ -22,6 +23,7 @@
 }
 
 @property(retain, nonatomic) NSDictionary *options; // @synthesize options=_options;
+@property(nonatomic) double screenBackingScale; // @synthesize screenBackingScale=_screenBackingScale;
 @property(nonatomic) struct CGRect bounds; // @synthesize bounds=_bounds;
 @property(retain, nonatomic) CALayer *layer; // @synthesize layer=_layer;
 - (void).cxx_destruct;

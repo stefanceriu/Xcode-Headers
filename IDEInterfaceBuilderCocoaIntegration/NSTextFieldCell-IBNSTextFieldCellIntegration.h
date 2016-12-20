@@ -40,5 +40,9 @@
 - (long long)ibInspectedTextBorderType;
 - (void)setIbInspectedEditingBehavior:(long long)arg1;
 - (long long)ibInspectedEditingBehavior;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalAdditionalLocalizableAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (BOOL)ibTouchBarPropertiesAreAvailable;
 @end
 

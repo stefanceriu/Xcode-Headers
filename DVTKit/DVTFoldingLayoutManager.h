@@ -8,22 +8,28 @@
 
 #import "DVTFoldingManagerDelegate.h"
 
-@class DVTFoldingManager, DVTTextStorage, NSString;
+@class DVTFoldingManager, DVTObservingToken, DVTTextStorage, NSString;
 
 @interface DVTFoldingLayoutManager : NSLayoutManager <DVTFoldingManagerDelegate>
 {
+    DVTObservingToken *_usesColorLiteralObservingToken;
+    DVTObservingToken *_usesFileLiteralObservingToken;
+    DVTObservingToken *_usesImageLiteralObservingToken;
     BOOL _foldsMultiPathTokens;
+    BOOL _generatingInlineFolds;
     DVTFoldingManager *_foldingManager;
 }
 
 + (id)layoutLogAspect;
+@property(getter=isGeneratingInlineFolds) BOOL generatingInlineFolds; // @synthesize generatingInlineFolds=_generatingInlineFolds;
 @property BOOL foldsMultiPathTokens; // @synthesize foldsMultiPathTokens=_foldsMultiPathTokens;
 @property(readonly) DVTFoldingManager *foldingManager; // @synthesize foldingManager=_foldingManager;
 - (void).cxx_destruct;
 - (unsigned long long)characterIndexForPoint:(struct CGPoint)arg1 inTextContainer:(id)arg2 fractionOfDistanceBetweenInsertionPoints:(double *)arg3;
 - (struct CGSize)attachmentSizeForGlyphAtIndex:(unsigned long long)arg1;
 - (void)drawGlyphsForGlyphRange:(struct _NSRange)arg1 atPoint:(struct CGPoint)arg2;
-- (id)directoriesForLiteralFoldInManager:(id)arg1;
+- (id)mediaResourceProviderForLiteralInFoldingManager:(id)arg1;
+- (id)directoriesForLiteralInFoldingManager:(id)arg1;
 - (void)foldingManager:(id)arg1 didUnfoldRange:(struct _NSRange)arg2;
 - (void)foldingManager:(id)arg1 didFoldRange:(struct _NSRange)arg2;
 - (struct CGRect)boundingRectForGlyphRange:(struct _NSRange)arg1 inTextContainer:(id)arg2;
@@ -41,12 +47,14 @@
 - (BOOL)foldsAreValid:(id)arg1;
 @property DVTTextStorage *textStorage;
 - (void)enableTextFolding:(BOOL)arg1;
+- (void)_unfoldObjectLiteralFolds;
 - (id)initWithCoder:(id)arg1;
 - (void)dealloc;
 - (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
+@property id <DVTFoldingLayoutManagerDelegate> delegate; // @dynamic delegate;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;

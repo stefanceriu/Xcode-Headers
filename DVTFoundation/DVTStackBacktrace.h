@@ -10,9 +10,10 @@
 
 @interface DVTStackBacktrace : NSObject
 {
+    NSArray *_symbolicatedStackBacktraceFrames;
     unsigned long long *_returnAddresses;
     unsigned long long _returnAddressesCount;
-    NSArray *_symbolicatedArrayRepresentation;
+    unsigned long long _hash;
 }
 
 + (unsigned long long *)_callStackReturnAddressesExcludingTopFrames:(unsigned long long)arg1 returningCount:(unsigned long long *)arg2;
@@ -20,13 +21,15 @@
 + (id)currentStackBacktraceStartingFromFrame:(long long)arg1;
 + (id)currentStackBacktrace;
 + (id)stackBacktraceWithCallStackReturnAddresses:(id)arg1;
++ (id)symbolNameFromRawSymbolName:(id)arg1;
 - (void).cxx_destruct;
 - (id)callStackReturnAddresses;
 - (id)_cachedFrameForAddress:(unsigned long long)arg1 symbolicatorPtr:(struct _CSTypeRef *)arg2;
-- (id)_frameForAddress:(unsigned long long)arg1 symbolicatorPtr:(struct _CSTypeRef *)arg2;
 - (id)symbolicatedStackBacktraceFrames;
 - (id)stringRepresentationWithAddresses:(BOOL)arg1;
 - (id)stringRepresentation;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
 - (void)dealloc;
 - (id)initWithCallStackReturnAddresses:(unsigned long long *)arg1 count:(unsigned long long)arg2;
 - (id)init;

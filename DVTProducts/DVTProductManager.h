@@ -17,8 +17,8 @@
     BOOL _hasStartedLocating;
     DVTAppStoreProductSource *_appStoreProductSource;
     id <DVTProductManagerDelegate> _delegate;
-    DVTArchiveProductSource *_archiveProductSource;
     DVTProductCoordinator *_coordinator;
+    DVTArchiveProductSource *_archiveProductSource;
     NSMapTable *_sourcesToProducts;
     Class _appStoreProductSourceClass;
     Class _archiveProductSourceClass;
@@ -31,8 +31,8 @@
 @property(readonly) NSMapTable *sourcesToProducts; // @synthesize sourcesToProducts=_sourcesToProducts;
 @property BOOL hasStartedLocating; // @synthesize hasStartedLocating=_hasStartedLocating;
 @property(getter=isCacheEnabled) BOOL cacheEnabled; // @synthesize cacheEnabled=_cacheEnabled;
-@property(retain) DVTProductCoordinator *coordinator; // @synthesize coordinator=_coordinator;
 @property(retain, nonatomic) DVTArchiveProductSource *archiveProductSource; // @synthesize archiveProductSource=_archiveProductSource;
+@property(retain) DVTProductCoordinator *coordinator; // @synthesize coordinator=_coordinator;
 @property __weak id <DVTProductManagerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) DVTAppStoreProductSource *appStoreProductSource; // @synthesize appStoreProductSource=_appStoreProductSource;
 - (void).cxx_destruct;
@@ -55,7 +55,7 @@
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSMutableArray *mutableProducts; // @dynamic mutableProducts;
-@property NSArray *products; // @dynamic products;
+@property(retain) NSArray *products; // @dynamic products;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 

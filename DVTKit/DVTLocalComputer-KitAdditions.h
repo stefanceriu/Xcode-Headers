@@ -7,6 +7,8 @@
 #import "DVTLocalComputer.h"
 
 @interface DVTLocalComputer (KitAdditions)
+- (void)showSiriForExtensions:(id)arg1 pid:(int)arg2 onProxy:(BOOL)arg3 completed:(CDUnknownBlockType)arg4;
+- (void)showTodayViewForExtensions:(id)arg1 pid:(int)arg2;
 - (id)deviceSummaryPropertyDictionaries;
 - (id)image;
 @end

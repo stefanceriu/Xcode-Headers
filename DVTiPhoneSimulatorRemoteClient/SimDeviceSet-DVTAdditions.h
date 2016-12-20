@@ -7,6 +7,7 @@
 #import "SimDeviceSet.h"
 
 @interface SimDeviceSet (DVTAdditions)
++ (id)logAspect;
 - (id)dvt_registerNotificationHandlerOnQueue:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (id)dvt_registerNotificationHandler:(CDUnknownBlockType)arg1;
 @end

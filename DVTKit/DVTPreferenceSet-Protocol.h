@@ -6,11 +6,12 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTCustomDataSpecifier, DVTPreferenceSetManager, NSData, NSImage, NSString, NSURL;
+@class DVTCustomDataSpecifier, DVTPreferenceSetManager, NSArray, NSData, NSImage, NSString, NSURL;
 
 @protocol DVTPreferenceSet <DVTInvalidation>
 + (NSString *)titleForNewPreferenceSetFromTemplate;
 + (NSString *)preferenceSetsListHeader;
++ (NSArray *)upgradablePreferenceSetsFileExtensions;
 + (NSString *)preferenceSetsFileExtension;
 + (NSString *)defaultKeyForExcludedBuiltInPreferenceSets;
 + (NSString *)defaultKeyForCurrentPreferenceSet;

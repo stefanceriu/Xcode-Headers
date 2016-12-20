@@ -13,6 +13,10 @@
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)decodePreferredMaxLayoutWidthForUnarchiver:(id)arg1;
 - (void)encodePreferredMaxLayoutWidthForArchiver:(id)arg1;
+- (void)unarchiveAutomaticTextCompletionEnabled:(id)arg1;
+- (void)archiveAutomaticTextCompletionEnabled:(id)arg1;
+- (void)unarchiveAllowsCharacterPickerTouchBarItem:(id)arg1;
+- (void)archiveAllowsCharacterPickerTouchBarItem:(id)arg1;
 - (void)setIbInspectedPreferredWidthMode:(long long)arg1;
 - (long long)ibInspectedPreferredWidthMode;
 @property(copy) NSNumber *ibExternalPreferredMaxLayoutWidth;
@@ -21,7 +25,7 @@
 - (void)ibTextFieldCellDidChangeInspectorLayout:(id)arg1;
 - (void)_ibDidChangeTextFieldWrappingMode:(BOOL)arg1;
 - (void)ibVerifyPreferredMaxLayoutWidthOnlyForLegacyStaticWrappingTextUsingAutomaticModeInDocument:(id)arg1;
-- (id)ibVerifyPreferredMaxLayoutWidthOnlyForMultilineLabelsInDocument:(id)arg1;
+- (void)ibVerifyPreferredMaxLayoutWidthOnlyForMultilineLabelsInDocument:(id)arg1 populateMessages:(id)arg2;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (void)ibPropagatePropertiesToCopyOfReceiver:(id)arg1 forLayoutEngine:(id)arg2;
 - (void)_setEffectivePreferredMaxLayoutWidthSettingsOnTextField:(id)arg1;
@@ -35,5 +39,8 @@
 - (struct CGSize)ibPreferredSize;
 - (struct CGSize)ibMaximumSize;
 - (struct CGSize)ibMinimumSize;
+- (id)_ibLocalAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (BOOL)ibTouchBarPropertiesAreAvailable;
 @end
 

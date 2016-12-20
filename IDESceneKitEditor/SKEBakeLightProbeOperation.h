@@ -6,7 +6,7 @@
 
 #import <IDESceneKitEditor/SKEDocumentOperation.h>
 
-@class DVTObservingToken, NSArray, NSProgress, NSXPCConnection, SKESceneDocument;
+@class DVTObservingToken, NSArray, NSProgress, SKESceneDocument;
 
 @interface SKEBakeLightProbeOperation : SKEDocumentOperation
 {
@@ -14,12 +14,10 @@
     NSProgress *_progress;
     long long _progressValue;
     DVTObservingToken *_progressObservingToken;
-    NSXPCConnection *_bakeryService;
 }
 
 - (void).cxx_destruct;
 - (void)configureProgressWithTrackedBlock:(CDUnknownBlockType)arg1;
-- (id)makeBakeryService;
 - (void)terminateWithResult:(unsigned long long)arg1 error:(id)arg2;
 - (void)cancel;
 - (void)bakingDidFinish;

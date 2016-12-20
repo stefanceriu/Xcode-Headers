@@ -13,5 +13,7 @@
 - (id)ibShadowedDateFormat;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibDefaultDataValueForTableView:(id)arg1;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

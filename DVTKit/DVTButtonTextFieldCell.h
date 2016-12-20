@@ -9,13 +9,14 @@
 #import "NSCoding.h"
 #import "NSCopying.h"
 
-@class NSImage;
+@class NSAccessibilityElement, NSImage;
 
 @interface DVTButtonTextFieldCell : NSTextFieldCell <NSCoding, NSCopying>
 {
     struct CGRect _cellFrame;
     BOOL _inButton;
     NSImage *_image;
+    NSAccessibilityElement *_buttonAccessibilityElement;
     BOOL _alwaysShowButton;
     BOOL _useMetricsForAutolayout;
     NSImage *_alternateImage;
@@ -34,6 +35,11 @@
 @property(retain, nonatomic) NSImage *alternateImage; // @synthesize alternateImage=_alternateImage;
 @property BOOL alwaysShowButton; // @synthesize alwaysShowButton=_alwaysShowButton;
 - (void).cxx_destruct;
+- (id)accessibilityRoleDescription;
+- (id)accessibilityRole;
+- (BOOL)accessibilityPerformPress;
+- (id)accessibilityHitTest:(struct CGPoint)arg1;
+- (id)accessibilityChildren;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
@@ -56,6 +62,7 @@
 - (struct CGSize)imageSize;
 @property(retain) NSImage *image;
 - (id)_templateImageFromImage:(id)arg1 withColor:(id)arg2;
+- (id)baseImageFromTemplateImage:(id)arg1;
 
 @end
 

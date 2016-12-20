@@ -13,8 +13,10 @@
 }
 
 + (BOOL)wantsHeaderView;
+- (id)accessibilityRoleDescription;
 - (void)setTitle:(id)arg1;
 @property(retain) NSImage *image;
+- (id)deviceBezel;
 - (void)layoutTopDown;
 - (id)initWithFrame:(struct CGRect)arg1;
 

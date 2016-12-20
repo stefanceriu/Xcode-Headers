@@ -43,7 +43,6 @@
 - (void)addPhysicsBody:(id)arg1 nodeRef:(struct __C3DNode *)arg2 colGroup:(unsigned long long)arg3 colMask:(unsigned long long)arg4 colTest:(unsigned long long)arg5;
 - (void)_drawDebugInAuthoringEnvironment:(void *)arg1;
 - (void)_postCommandWithBlock:(CDUnknownBlockType)arg1;
-- (struct btDynamicsWorld *)handle;
 - (void)setScene:(id)arg1;
 - (id)scene;
 - (void)_allowGhostObjects;
@@ -79,7 +78,7 @@
 - (id)initWithScene:(id)arg1;
 - (void)commonInit;
 - (id)_physicsContact;
-- (void)_createDynamicWorld;
+- (void)_createDynamicWorldIfNeeded;
 - (void)_preTick:(double)arg1;
 
 @end

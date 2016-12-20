@@ -12,6 +12,7 @@
 {
 }
 
+- (id)editorView;
 - (id)initWithEditorItemModel:(id)arg1 portalInfoDelegate:(id)arg2;
 
 // Remaining properties

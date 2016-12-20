@@ -14,18 +14,25 @@
     DVTPortalTeam *_team;
     DVTSigningCertificate *_signingCertificate;
     DVTPortalCertificateType *_portalCertificateType;
-    NSString *_portalID;
-    NSString *_serialNumber;
     NSDate *_expirationDate;
+    NSString *_serialNumber;
+    NSString *_machineName;
+    NSString *_machineID;
+    NSString *_portalID;
     NSString *_status;
 }
 
++ (id)errorForCreatePermissionsFailureWithName:(id)arg1;
++ (id)errorForRevocationPermissionsFailureWithName:(id)arg1;
++ (id)errorForNoMatchingCertificate;
++ (id)teamDevelopmentCertificateWithSession:(id)arg1 team:(id)arg2 program:(id)arg3 error:(id *)arg4;
 + (id)certificatesForSession:(id)arg1 team:(id)arg2 type:(id)arg3 error:(id *)arg4;
-+ (id)requestCertificateWithSession:(id)arg1 team:(id)arg2 type:(id)arg3 error:(id *)arg4;
 @property(readonly, copy, nonatomic) NSString *status; // @synthesize status=_status;
-@property(readonly, copy, nonatomic) NSDate *expirationDate; // @synthesize expirationDate=_expirationDate;
-@property(readonly, copy, nonatomic) NSString *serialNumber; // @synthesize serialNumber=_serialNumber;
 @property(readonly, copy, nonatomic) NSString *portalID; // @synthesize portalID=_portalID;
+@property(copy, nonatomic) NSString *machineID; // @synthesize machineID=_machineID;
+@property(copy, nonatomic) NSString *machineName; // @synthesize machineName=_machineName;
+@property(readonly, copy, nonatomic) NSString *serialNumber; // @synthesize serialNumber=_serialNumber;
+@property(readonly, copy, nonatomic) NSDate *expirationDate; // @synthesize expirationDate=_expirationDate;
 @property(readonly, nonatomic) DVTPortalCertificateType *portalCertificateType; // @synthesize portalCertificateType=_portalCertificateType;
 @property(retain, nonatomic) DVTSigningCertificate *signingCertificate; // @synthesize signingCertificate=_signingCertificate;
 @property(retain, nonatomic) DVTPortalTeam *team; // @synthesize team=_team;

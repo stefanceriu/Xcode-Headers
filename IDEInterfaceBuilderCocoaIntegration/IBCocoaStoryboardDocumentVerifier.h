@@ -10,10 +10,10 @@
 {
 }
 
-- (void)migrateTabViewViewControllerViewsToTabViews;
-- (void)migrateSplitViewControllerViewsToSplitViews;
+- (void)_migrateTabViewViewControllerViewsToTabViews;
+- (void)_migrateSplitViewControllerViewsToSplitViews;
 - (void)_migrateRelationsShipSeguesForObject:(id)arg1 withLabel:(id)arg2 toLabel:(id)arg3;
-- (id)verify;
+- (void)verifyAndPopulateMessages:(id)arg1;
 
 @end
 

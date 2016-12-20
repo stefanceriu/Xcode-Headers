@@ -17,13 +17,11 @@
     NSView *_centerView;
     NSArrayController *_arrayController;
     DVTObservingToken *_countObservingToken;
-    BOOL _drawRightBorder;
 }
 
 + (void)initialize;
 + (id)keyPathsForValuesAffectingCanMove;
 + (id)_arrowButtonWithDirection:(BOOL)arg1;
-@property(nonatomic) BOOL drawRightBorder; // @synthesize drawRightBorder=_drawRightBorder;
 @property(retain) NSArrayController *arrayController; // @synthesize arrayController=_arrayController;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
@@ -31,9 +29,12 @@
 - (void)selectPrevious:(id)arg1;
 - (void)selectNext:(id)arg1;
 - (BOOL)canMove;
+- (id)_toolTipForRightArrow;
+- (id)_toolTipForLeftArrow;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)newCenterView;
 - (void)layoutBottomUp;
+- (double)centerViewOverlap;
 - (struct CGSize)centerViewSizeInHeight:(double)arg1;
 
 // Remaining properties

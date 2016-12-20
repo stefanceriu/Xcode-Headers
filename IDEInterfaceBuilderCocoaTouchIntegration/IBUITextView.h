@@ -41,6 +41,8 @@
 @property(nonatomic) BOOL usesAttributedText; // @synthesize usesAttributedText;
 @property(copy, nonatomic) NSAttributedString *attributedText; // @synthesize attributedText;
 - (void).cxx_destruct;
+- (void)unarchiveTextColor:(id)arg1;
+- (void)archiveTextColor:(id)arg1;
 - (void)decodeFont:(id)arg1;
 - (void)encodeFont:(id)arg1;
 - (void)unarchiveFont:(id)arg1;
@@ -62,6 +64,10 @@
 - (id)initWithCoder:(id)arg1;
 - (id)ibCompiledValueForKeyPath:(id)arg1 withPropertyStorage:(id)arg2 inConfiguration:(id)arg3;
 - (id)ibValueForInspectedConfigurableProperty:(id)arg1 inConfiguration:(id)arg2;
+- (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
+- (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
+- (id)ibLocalPerConfigurationAttributeKeyPaths;
+- (long long)ibPreferredResizeDirection;
 - (BOOL)ibOverridesFrameworkMetricsForPreferredSize;
 - (id)ibFontFromFontDescription;
 - (id)ibDefaultFontKeyPath;
@@ -71,6 +77,9 @@
 - (struct CGRect)ibInlineTextEditingRectForKeyPath:(id)arg1;
 - (id)ibTextKeyPathForDefaultInlineStringEditing;
 - (Class)ibEditorClass;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalAdditionalLocalizableAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

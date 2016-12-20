@@ -10,5 +10,7 @@
 - (BOOL)ibShouldUseConstraintsInsteadOfAutoresizingWhenChildOfClipView;
 - (void)awakeAfterUsingDocumentUnarchiver:(id)arg1;
 - (struct CGSize)ibPreferredSize;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
 @end
 

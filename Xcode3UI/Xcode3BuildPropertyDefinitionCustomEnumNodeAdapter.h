@@ -6,12 +6,21 @@
 
 #import <Xcode3UI/Xcode3BuildPropertyDefinitionNodeAdapter.h>
 
+@class NSMutableSet;
+
 @interface Xcode3BuildPropertyDefinitionCustomEnumNodeAdapter : Xcode3BuildPropertyDefinitionNodeAdapter
 {
+    NSMutableSet *_cellsToBeReEnabledFollowingPreProcessing;
 }
 
++ (id)_maybePerformOneTimePreprocessingWithOutlineView:(id)arg1;
++ (void)performOneTimePreprocessing;
++ (BOOL)requiresPreprocessingBeforeAddingMenuItemsToPopUpCell;
+- (void).cxx_destruct;
 - (void)dataNode:(id)arg1 outlineView:(id)arg2 willDisplayCell:(id)arg3 forTableColumn:(id)arg4;
-- (id)menuItemForUnknownValue:(id)arg1;
+- (BOOL)_isPopUpButtonCell:(id)arg1 inTableColumn:(id)arg2;
+- (id)_loadingPlaceholderMenuItem;
+- (id)menuItemForUnknownValue:(id)arg1 existingItems:(id)arg2;
 - (void)addMenuItemsToPopUpCell:(id)arg1;
 - (void)assignCell;
 

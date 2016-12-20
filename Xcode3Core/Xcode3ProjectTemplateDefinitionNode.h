@@ -21,8 +21,8 @@
 @property(copy) NSArray *children; // @synthesize children=_children;
 - (void).cxx_destruct;
 - (id)description;
-- (id)outputToFilePath:(id)arg1 withDefinitions:(id)arg2 indentString:(id)arg3 rootGroup:(id)arg4 targets:(id)arg5 basedOn:(id)arg6 targetName:(id)arg7 error:(id *)arg8 replacementHandler:(CDUnknownBlockType)arg9;
-- (id)outputInDirectory:(id)arg1 withDefinitions:(id)arg2 indentString:(id)arg3 rootGroup:(id)arg4 targets:(id)arg5 basedOn:(id)arg6 error:(id *)arg7 replacementHandler:(CDUnknownBlockType)arg8;
+- (id)outputToFilePath:(id)arg1 withDefinitions:(id)arg2 indentString:(id)arg3 rootGroup:(id)arg4 targets:(id)arg5 basedOn:(id)arg6 targetName:(id)arg7 suppressTargetGroup:(BOOL)arg8 deferredTargetAdditions:(id)arg9 error:(id *)arg10 replacementHandler:(CDUnknownBlockType)arg11;
+- (id)outputInDirectory:(id)arg1 withDefinitions:(id)arg2 indentString:(id)arg3 rootGroup:(id)arg4 targets:(id)arg5 basedOn:(id)arg6 deferredTargetAdditions:(id)arg7 error:(id *)arg8 replacementHandler:(CDUnknownBlockType)arg9;
 - (BOOL)shouldProcessPath:(id)arg1;
 - (void)addToString:(id)arg1 withPrefixNames:(id)arg2 definitions:(id)arg3 indent:(long long *)arg4 indentString:(id)arg5;
 - (id)definitionForNames:(id)arg1 withDefinitions:(id)arg2;

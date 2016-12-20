@@ -10,11 +10,14 @@
 {
 }
 
++ (id)displayName;
 + (id)contentsJSONKey;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
-- (BOOL)isEqualToSlotComponent:(id)arg1;
-- (BOOL)isEqualToPlatform:(id)arg1;
++ (id)itemWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 displayOrder:(double)arg4;
++ (id)unspecifiedValuePlaceholder;
++ (void)setComponentID:(long long)arg1;
++ (long long)componentID;
+- (long long)componentID;
+- (id)xctest_defaultOptions;
 
 @end
 

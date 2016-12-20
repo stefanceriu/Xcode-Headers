@@ -21,6 +21,7 @@
 @property(retain) id <IDEOpenRequest> lastOpenRequest; // @synthesize lastOpenRequest=_lastOpenRequest;
 @property(retain) IDENavigatorOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 - (void).cxx_destruct;
+- (void)revertState;
 - (long long)filterProgress;
 - (id)contextMenuSelection;
 - (void)willForgetNavigableItems:(id)arg1;
@@ -28,11 +29,13 @@
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 @property(readonly, nonatomic) NSArray *objects;
-- (void)_openNavigableItem:(id)arg1 eventType:(unsigned long long)arg2;
+- (void)_toggleExpandedStateOf:(id)arg1;
+- (BOOL)_openNavigableItem:(id)arg1 eventType:(unsigned long long)arg2;
 - (void)openDoubleClickedNavigableItemsAction:(id)arg1;
 - (void)openClickedNavigableItemAction:(id)arg1;
 - (void)openSelectedNavigableItemsKeyAction:(id)arg1;
 - (id)openSpecifierForNavigableItem:(id)arg1 error:(id *)arg2;
+- (BOOL)_shouldOpenNavigableItem:(id)arg1 eventType:(unsigned long long)arg2;
 - (BOOL)shouldOpenNavigableItem:(id)arg1 eventType:(unsigned long long)arg2;
 - (BOOL)delegateFirstResponder;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

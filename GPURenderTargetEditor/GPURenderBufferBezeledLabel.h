@@ -6,34 +6,55 @@
 
 #import "NSView.h"
 
-@class CALayer, CATextLayer, NSString;
+#import "CALayerDelegate.h"
+
+@class CALayer, CATextLayer, NSImage, NSString;
 
 __attribute__((visibility("hidden")))
-@interface GPURenderBufferBezeledLabel : NSView
+@interface GPURenderBufferBezeledLabel : NSView <CALayerDelegate>
 {
     CALayer *_parentLayer;
     CALayer *_backgroundLayer;
-    NSString *_displayedText;
-    struct CGSize _displayedTextSize;
+    CALayer *_imageLayer;
     CATextLayer *_textLayer;
+    NSString *_displayedText;
+    BOOL _isImageFlippedAboutX;
+    BOOL _isImageFlippedAboutY;
+    double _rotation;
+    NSImage *_image;
     struct CGPoint _normalizedPosition;
 }
 
-@property(nonatomic) struct CGPoint normalizedPosition; // @synthesize normalizedPosition=_normalizedPosition;
++ (double)standardFadeTimeInSeconds;
+@property(nonatomic) BOOL isImageFlippedAboutY; // @synthesize isImageFlippedAboutY=_isImageFlippedAboutY;
+@property(nonatomic) BOOL isImageFlippedAboutX; // @synthesize isImageFlippedAboutX=_isImageFlippedAboutX;
+@property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
 @property(retain, nonatomic) NSString *displayedText; // @synthesize displayedText=_displayedText;
+@property(nonatomic) struct CGPoint normalizedPosition; // @synthesize normalizedPosition=_normalizedPosition;
+@property(nonatomic) double rotation; // @synthesize rotation=_rotation;
 - (void).cxx_destruct;
+- (void)performDisplayActionFadeWithAction:(CDUnknownBlockType)arg1;
+- (void)fadeOut;
+- (void)fadeToOpacity:(double)arg1;
 - (void)fadeToOpacity:(double)arg1 overTime:(double)arg2;
 - (void)layout;
 - (void)viewDidChangeBackingProperties;
-- (long long)tag;
 - (void)dealloc;
 - (void)viewDidMoveToSuperview;
 - (id)makeBackingLayer;
 - (void)_setupLayers;
 - (void)_buildLayerTree:(id)arg1;
-@property(nonatomic) double opacity; // @dynamic opacity;
+- (void)_updateImageFlip;
+- (void)_updateImageLayerContents;
 - (void)_applyNormalizedPosition;
+@property(nonatomic) double opacity;
 - (double)_saturate:(double)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

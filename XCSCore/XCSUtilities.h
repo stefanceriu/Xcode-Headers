@@ -15,7 +15,10 @@
 + (id)object:(id)arg1 toJSONDataWithError:(id *)arg2;
 + (id)object:(id)arg1 toJSONWithOptions:(unsigned long long)arg2 error:(id *)arg3;
 + (id)object:(id)arg1 toJSONWithError:(id *)arg2;
++ (id)arrayOfJSONRepresentations:(id)arg1;
++ (BOOL)writeData:(id)arg1 toFileHandle:(id)arg2 domain:(id)arg3 code:(long long)arg4 error:(id *)arg5;
 + (id)timestampUSLocale;
++ (id)stringForCFNetworkErrorCode:(long long)arg1;
 + (id)localizedStringForHTTPStatus:(long long)arg1;
 + (BOOL)isCodeXcodeServerHTTPStatus:(long long)arg1;
 + (BOOL)isCodeStandardHTTPStatus:(long long)arg1;

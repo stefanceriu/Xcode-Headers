@@ -17,6 +17,7 @@
 @property(readonly) NSImage *icon;
 
 // Remaining properties
+@property(readonly, copy) NSString *action;
 @property(readonly, copy) NSArray *additionalCompletions;
 @property(readonly) int completionItemStyle;
 @property(readonly, copy) NSString *completionText;

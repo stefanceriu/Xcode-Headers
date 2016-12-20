@@ -74,6 +74,7 @@
 - (void)viewDidInstall;
 @property(readonly) NSView *scopeBarsBaseView;
 - (void)loadView;
+- (void)logEditorScopeBarSaveReport:(id)arg1;
 - (void)logEditorScopeBar:(id)arg1 searchTextChanged:(id)arg2;
 - (void)logEditorScopeBar:(id)arg1 showAllResultsChanged:(BOOL)arg2;
 - (void)_setShowAllResults:(BOOL)arg1;

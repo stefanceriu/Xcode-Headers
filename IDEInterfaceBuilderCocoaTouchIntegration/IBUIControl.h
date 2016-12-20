@@ -32,13 +32,15 @@
 - (id)initWithCoder:(id)arg1;
 - (void)ibSetupTriggerForSegueTemplate:(id)arg1 inCompilationUnit:(id)arg2;
 - (long long)ibPreferredResizeDirection;
-- (BOOL)ibIsBaselineAtIndex:(long long)arg1 inMotionWithKnob:(CDUnion_aed8a530)arg2;
+- (BOOL)ibIsBaselineAtIndex:(long long)arg1 inMotionWithKnob:(CDUnion_42e99c75)arg2;
 - (id)ibSegueTriggers;
 - (id)ibDefaultSegueTrigger;
 - (BOOL)ibCanBeCollectionViewBackgroundView;
 - (BOOL)ibCanBeTableViewBracketingView;
 - (BOOL)ibSupportsInsertionIntoBarButtonItems;
 - (id)ibFieldEditorConfigurationForTextKeyPath:(id)arg1;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

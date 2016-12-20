@@ -11,16 +11,15 @@
 @interface SKSelectedObjectViewController : DVTPopoverContentViewController
 {
     NSTextField *_selectedNodeTextField;
-    NSArray *_nodes;
+    NSArray *_items;
 }
 
-+ (struct CGRect)getRectForNode:(id)arg1;
 - (void).cxx_destruct;
-- (BOOL)containsNode:(id)arg1;
+- (BOOL)containsItem:(struct NSObject *)arg1;
 - (void)showPopoverInView:(id)arg1;
 - (void)viewDidLoad;
-- (id)initWithNodes:(id)arg1;
-- (id)initWithNode:(id)arg1;
+- (id)initWithItems:(id)arg1;
+- (id)initWithItem:(struct NSObject *)arg1;
 
 @end
 

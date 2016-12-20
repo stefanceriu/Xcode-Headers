@@ -7,6 +7,7 @@
 #import "NSEvent.h"
 
 @interface NSEvent (DVTNSEventAdditions)
+- (BOOL)dvt_isDoubleClick;
 - (struct CGPoint)dvt_locationInWindowRelativeToView:(id)arg1;
 - (BOOL)dvt_isLeftMouseButtonUp;
 - (BOOL)dvt_isLeftMouseButtonDown;
@@ -14,7 +15,9 @@
 - (struct CGPoint)dvt_flooredLocationInView:(id)arg1;
 - (BOOL)dvt_isDragEventAnIntentialLeftDragWithRespectToMouseDown:(id)arg1;
 - (BOOL)dvt_isOptionalRevealGesture;
+- (BOOL)dvt_isOptionalShowGesture;
 - (BOOL)dvt_isRevealGesture;
+- (BOOL)dvt_isShowGesture;
 - (BOOL)dvt_isControlKeyDown;
 - (BOOL)dvt_isCommandKeyDown;
 - (BOOL)dvt_isShiftKeyDown;

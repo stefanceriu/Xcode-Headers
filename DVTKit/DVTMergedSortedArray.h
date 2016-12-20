@@ -10,10 +10,7 @@
 {
     NSArray *_array1;
     NSArray *_array2;
-    struct _mergedIndexes {
-        unsigned int :1;
-        unsigned int :31;
-    } *_combinedInfo;
+    struct dvt_mergedIndexes *_combinedInfo;
     unsigned long long _count;
 }
 

@@ -7,6 +7,10 @@
 #import "NSImage.h"
 
 @interface NSImage (DVTThemeAdditions)
++ (id)dvt_stackFrameGenericIconWithOverrideColor:(id)arg1;
++ (id)dvt_stackFrameIconForUserCodeWithOverrideColor:(id)arg1;
++ (id)dvt_stackFrameIconForLibraryPath:(id)arg1 overrideColor:(id)arg2;
++ (id)_createStackFrameIconFromName:(id)arg1 withRed:(float)arg2 green:(float)arg3 blue:(float)arg4 alpha:(float)arg5;
 + (id)dvt_tabIcon;
 + (id)dvt_groupEveryingIcon;
 + (id)dvt_groupDefaultAssetIcon;
@@ -25,14 +29,17 @@
 + (id)dvt_navAppExtensionIcon;
 + (id)dvt_navXPCServiceIcon;
 + (id)dvt_navInAppPurchaseIcon;
++ (id)dvt_navTvOSApplicationIcon;
++ (id)dvt_navWatchOSApplicationIcon;
 + (id)dvt_navIOSApplicationIcon;
 + (id)dvt_navApplicationIcon;
++ (id)dvt_navLibraryIcon;
 + (id)dvt_navFrameworkIcon;
 + (id)dvt_navSourcesFolderIcon;
 + (id)dvt_navGroupIcon;
++ (id)dvt_navTargetIcon;
 + (id)dvt_genericiOSDeviceIcon;
 + (id)dvt_iOSApplicationIcon;
-+ (id)_dvt_navGroupIconName;
 + (id)dvt_questionMarkIcon;
 + (id)dvt_folderIcon;
 + (id)dvt_blankDocumentIcon;

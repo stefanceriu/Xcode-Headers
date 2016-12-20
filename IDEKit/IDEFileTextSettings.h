@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, IDEFileReference, NSString;
+@class DVTStackBacktrace, IDEFileReference, NSMapTable, NSMutableArray, NSString;
 
 @interface IDEFileTextSettings : NSObject <DVTInvalidation>
 {
@@ -19,9 +19,13 @@
     unsigned long long _lineEndings;
     BOOL _usesTabs;
     BOOL _wrapsLines;
+    NSMutableArray *_fileReferenceObservingTokens;
+    NSMutableArray *_textPreferencesObservingTokens;
+    NSMapTable *_sourceTextViewToObservingTokensMapTable;
 }
 
 + (void)initialize;
+@property(retain) NSMapTable *sourceTextViewToObservingTokensMapTable; // @synthesize sourceTextViewToObservingTokensMapTable=_sourceTextViewToObservingTokensMapTable;
 @property BOOL wrapsLines; // @synthesize wrapsLines=_wrapsLines;
 @property long long indentWidth; // @synthesize indentWidth=_indentWidth;
 @property long long tabWidth; // @synthesize tabWidth=_tabWidth;
@@ -39,7 +43,6 @@
 - (void)updateLineEndings;
 - (id)_textPreferences;
 - (void)primitiveInvalidate;
-- (void)_clearFileReferenceObservations;
 - (id)init;
 - (void)unregisterObserversWithSourceTextView:(id)arg1 textStorage:(id)arg2;
 - (void)registerObserversWithSourceTextView:(id)arg1 textStorage:(id)arg2;

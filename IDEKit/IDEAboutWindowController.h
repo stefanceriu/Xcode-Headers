@@ -8,7 +8,7 @@
 
 #import "NSWindowRestoration.h"
 
-@class NSString, NSTextField;
+@class DVTFilePath, NSString, NSTextField;
 
 @interface IDEAboutWindowController : NSWindowController <NSWindowRestoration>
 {
@@ -16,7 +16,8 @@
     NSTextField *_copyrightMultilineLabel;
     NSTextField *_versionAndBuildLabel;
     NSTextField *_revisionMultilineLabel;
-    NSString *_pathToAcknowledgments;
+    NSTextField *_toolchainLabel;
+    DVTFilePath *_filePathToAcknowledgments;
 }
 
 + (void)restoreWindowWithIdentifier:(id)arg1 state:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
@@ -28,10 +29,11 @@
 - (void)windowWillClose:(id)arg1;
 - (void)windowDidLoad;
 - (id)_versionString;
+- (id)_toolchainString;
 - (id)_copyrightAndTrademarkString;
 - (id)_revisionString;
-@property(readonly) NSString *pathToLicenseAgreement;
-@property(readonly) NSString *pathToAcknowledgments;
+@property(readonly) DVTFilePath *filePathToLicenseAgreement;
+@property(readonly) DVTFilePath *filePathToAcknowledgments;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

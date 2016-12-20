@@ -6,16 +6,18 @@
 
 #import "NSObject.h"
 
-@class DVTMacroExpansionScope;
+@class DVTMacroExpansionScope, NSString;
 
 @interface IDEBuilderHarvestedInfo : NSObject
 {
     DVTMacroExpansionScope *_macroExpansionScope;
+    NSString *_threadSanitizerMessage;
     BOOL _isImmutable;
 }
 
 @property(readonly) BOOL isImmutable; // @synthesize isImmutable=_isImmutable;
 - (void).cxx_destruct;
+@property(copy) NSString *threadSanitizerMessage;
 @property(copy) DVTMacroExpansionScope *macroExpansionScope;
 - (void)makeImmutable;
 - (id)init;

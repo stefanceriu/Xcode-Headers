@@ -6,9 +6,11 @@
 
 #import "IDEImageMediaResource.h"
 
+#import "IBICSlottedMediaResource.h"
+
 @class IBICImageResizingBehavior, IBICImageSetRep, NSString;
 
-@interface IBICImageMediaResource : IDEImageMediaResource
+@interface IBICImageMediaResource : IDEImageMediaResource <IBICSlottedMediaResource>
 {
     IBICImageSetRep *_imageSetRep;
     IBICImageResizingBehavior *_resizingBehavior;
@@ -20,11 +22,19 @@
 @property(retain, nonatomic) IBICImageResizingBehavior *resizingBehavior; // @synthesize resizingBehavior=_resizingBehavior;
 @property(retain, nonatomic) IBICImageSetRep *imageSetRep; // @synthesize imageSetRep=_imageSetRep;
 - (void).cxx_destruct;
+- (BOOL)isMinimallyFitForVariantSelection;
+- (id)slot;
+@property(readonly, copy) NSString *description;
 - (id)variantSetNameWithFoldingStrategy:(id)arg1;
 - (id)variantWithFoldingStrategy:(id)arg1;
 - (void)setIbResizingBehavior:(id)arg1;
 - (id)ibResizingBehavior;
 - (id)generateContentForFilePath:(id)arg1 contentType:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

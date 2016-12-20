@@ -24,8 +24,10 @@
     unsigned long long _destinationIndex;
     NSArray *_destinationBuildables;
     IDEWorkspace *_createdWorkspace;
+    id <IDEProvisioningBasicTeam> _team;
 }
 
+@property(retain) id <IDEProvisioningBasicTeam> team; // @synthesize team=_team;
 @property BOOL reuseFileReferences; // @synthesize reuseFileReferences=_reuseFileReferences;
 @property BOOL alwaysReplaceFiles; // @synthesize alwaysReplaceFiles=_alwaysReplaceFiles;
 @property(retain) IDEWorkspace *createdWorkspace; // @synthesize createdWorkspace=_createdWorkspace;

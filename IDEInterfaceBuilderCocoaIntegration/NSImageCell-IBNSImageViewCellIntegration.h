@@ -15,5 +15,6 @@
 - (id)ibDefaultDataValueForTableView:(id)arg1;
 - (id)ibPreferredSizeForSize:(struct CGSize)arg1 suggestedWidth:(char *)arg2 suggestedHeight:(char *)arg3 scaleAxesIndependently:(char *)arg4;
 - (struct CGSize)ibPreferredSizeForSize:(struct CGSize)arg1;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

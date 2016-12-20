@@ -20,7 +20,7 @@
 + (BOOL)isObjectValidOutletCollectionSource:(id)arg1;
 + (BOOL)isObjectValidOutletCollectionDestination:(id)arg1;
 - (id)connectionByCompletingWithConnectionContext:(id)arg1;
-- (id)archiveKeyForLabel;
+- (id)archivingKeyForLabel;
 - (id)endPointForEstimatingUnlabeledConnection;
 - (id)explicitDisplayNameWithRespectToPredecessors:(id)arg1;
 - (id)displayDescriptionInDocument:(id)arg1;

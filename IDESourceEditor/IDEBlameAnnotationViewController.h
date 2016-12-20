@@ -9,82 +9,67 @@
 #import "IDESourceControlLogDetailDelegate.h"
 #import "NSPopoverDelegate.h"
 
-@class CALayer, IDEBlameAnnotationAgeBarView, IDEBlameAnnotationBorderedView, IDESourceCodeBlameController, IDESourceControlLogDetailViewController, NSButton, NSColor, NSNib, NSPopUpButton, NSPopover, NSString, NSTextField, NSView;
+@class CALayer, IDEBlameAnnotationAgeBarView, IDEBlameAnnotationBorderedView, IDESourceCodeBlameController, NSButton, NSColor, NSDateFormatter, NSImage, NSNib, NSPopUpButton, NSString, NSView;
 
 @interface IDEBlameAnnotationViewController : DVTViewController <NSPopoverDelegate, IDESourceControlLogDetailDelegate>
 {
     IDEBlameAnnotationBorderedView *_borderedView;
     NSView *_primaryView;
-    NSTextField *_messageTextField;
-    NSTextField *_dateTextField;
     IDEBlameAnnotationAgeBarView *_ageBar;
     NSButton *_actionButton;
     long long _fontSize;
-    id _viewFrameObserver;
-    id _themeObserver;
-    double _relativeAge;
     NSNib *_nibUsedForLoading;
     IDESourceCodeBlameController *_blameController;
-    NSPopover *_logPopover;
-    id _blameShowInfoPanelObserver;
-    id _blameHideInfoPanelObserver;
     NSPopUpButton *_detailPopUpButton;
-    NSTextField *_committerTextField;
-    IDESourceControlLogDetailViewController *_detailController;
-    long long _trackingTag;
     CALayer *_highlightLayer;
+    NSDateFormatter *_dateFormatter;
+    BOOL _highlighted;
+    BOOL _mouseOver;
     BOOL _uncommitted;
+    double _relativeAge;
     NSColor *_titleColor;
     NSColor *_subtitleColor;
     NSColor *_subtitleLinkColor;
+    NSImage *_infoImage;
+    NSImage *_infoAlternateImage;
+    NSString *_displayLogItemMessage;
+    NSString *_displayLogItemAuthorName;
+    NSString *_displayLogItemDate;
 }
 
-+ (BOOL)_hasLightBackround;
-+ (id)annotationHighlightGradient;
-+ (id)annotationHighlightColor;
-+ (id)annotationActiveHighlightGradient;
-+ (id)annotationActiveHighlightColor;
-+ (double)defaultWidth;
-+ (id)_fontWithDefaultMessageFontSize;
-+ (double)_defaultMessageFontSize;
 + (id)defaultViewNibName;
+@property(retain, nonatomic) NSString *displayLogItemDate; // @synthesize displayLogItemDate=_displayLogItemDate;
+@property(retain, nonatomic) NSString *displayLogItemAuthorName; // @synthesize displayLogItemAuthorName=_displayLogItemAuthorName;
+@property(retain, nonatomic) NSString *displayLogItemMessage; // @synthesize displayLogItemMessage=_displayLogItemMessage;
+@property(retain, nonatomic) NSImage *infoAlternateImage; // @synthesize infoAlternateImage=_infoAlternateImage;
+@property(retain, nonatomic) NSImage *infoImage; // @synthesize infoImage=_infoImage;
 @property(retain, nonatomic) NSColor *subtitleLinkColor; // @synthesize subtitleLinkColor=_subtitleLinkColor;
 @property(retain, nonatomic) NSColor *subtitleColor; // @synthesize subtitleColor=_subtitleColor;
 @property(retain, nonatomic) NSColor *titleColor; // @synthesize titleColor=_titleColor;
 @property(nonatomic) BOOL uncommitted; // @synthesize uncommitted=_uncommitted;
 @property(retain, nonatomic) IDESourceCodeBlameController *blameController; // @synthesize blameController=_blameController;
+@property(nonatomic) double relativeAge; // @synthesize relativeAge=_relativeAge;
 @property(nonatomic) long long fontSize; // @synthesize fontSize=_fontSize;
-@property(retain, nonatomic) IDEBlameAnnotationAgeBarView *ageBar; // @synthesize ageBar=_ageBar;
 @property(retain, nonatomic) NSButton *actionButton; // @synthesize actionButton=_actionButton;
-@property(retain, nonatomic) NSTextField *messageTextField; // @synthesize messageTextField=_messageTextField;
 @property(retain, nonatomic) IDEBlameAnnotationBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property(retain, nonatomic) NSView *primaryView; // @synthesize primaryView=_primaryView;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (void)_layoutView;
-- (void)mouseExited:(id)arg1;
-- (void)mouseEntered:(id)arg1;
+- (void)openBlameView;
 - (void)goToDiff:(id)arg1;
 - (void)goToCompare:(id)arg1;
 - (void)goToRevision:(id)arg1;
-- (void)popoverWillClose:(id)arg1;
-- (void)showBlameMenu:(id)arg1;
 - (id)viewWindow;
-- (void)showInfoPanel;
 - (void)compareToCurrentRevision;
 - (BOOL)detailShouldShowOpenBlameView;
-- (void)openBlameView;
 - (void)openComparisonView;
-@property(nonatomic) double relativeAge; // @synthesize relativeAge=_relativeAge;
-- (id)displayLogItemDate;
-- (void)refreshDisplay;
-- (void)_refresh;
-- (id)displayLogItemAuthorName;
-- (id)displayLogItemMessage;
-- (void)viewWillUninstall;
-- (void)viewDidInstall;
+- (void)setHighlighted:(BOOL)arg1;
+- (void)setMouseOver:(BOOL)arg1;
+- (id)blameAnnotationView;
+- (void)refreshDisplay:(BOOL)arg1;
+- (void)setRepresentedObject:(id)arg1;
 - (void)loadView;
-- (void)_updateFontAndTheme;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

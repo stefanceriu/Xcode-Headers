@@ -10,18 +10,17 @@
 
 @interface SKColorRampControl : NSControl
 {
-    SKColorRampStop *_selectedStop;
     SKColorWell *_fakeColorWell;
     NSMutableArray *_stops;
-    struct CGColor *_stopColor;
-    struct CGColor *_selectedStopColor;
-    struct CGColor *_bgColor;
+    unsigned long long _selectedStopIndex;
     BOOL _didDragSelected;
     BOOL _shouldDeleteSelected;
-    SKColorRampStop *_selectedColorStop;
+    BOOL _isInputActive;
+    id <SKColorRampControlDelegate> _delegate;
 }
 
-@property(retain) SKColorRampStop *selectedColorStop; // @synthesize selectedColorStop=_selectedColorStop;
+@property(nonatomic) __weak id <SKColorRampControlDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) BOOL isInputActive; // @synthesize isInputActive=_isInputActive;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)displayKeyframeSequence:(id)arg1;
@@ -36,10 +35,10 @@
 - (void)activateColorPanel;
 - (void)mouseDown:(id)arg1;
 - (void)mouseDragged:(id)arg1;
+@property(retain) SKColorRampStop *selectedColorStop;
 - (void)changeColor:(id)arg1;
 - (double)_rampLocationOfPoint:(struct CGPoint)arg1;
 - (struct CGRect)_colorRampRect;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)deactivate;
 

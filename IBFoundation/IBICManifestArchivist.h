@@ -35,8 +35,11 @@
 - (id)initWithDelegate:(id)arg1;
 - (id)jsonRepresentationOfSize:(struct CGSize)arg1;
 - (id)jsonRepresentationOfPoint:(struct CGPoint)arg1;
+- (BOOL)validateOptionalResizingBehaviorKey:(id)arg1 result:(id)arg2 inDictionary:(id)arg3;
+- (BOOL)validateOptionalAlignmentInsetsKey:(id)arg1 result:(id)arg2 inDictionary:(id)arg3;
 - (BOOL)validateOptionalSizeKey:(id)arg1 result:(id)arg2 inDictionary:(id)arg3;
 - (BOOL)validateOptionalPointKey:(id)arg1 result:(id)arg2 inDictionary:(id)arg3;
+- (BOOL)validateOptionalStringKey:(id)arg1 result:(id)arg2 inDictionary:(id)arg3 valueValidator:(CDUnknownBlockType)arg4;
 - (BOOL)validateOptionalKey:(id)arg1 withStrictType:(Class)arg2 strictTypeName:(id)arg3 result:(id)arg4 inDictionary:(id)arg5;
 
 @end

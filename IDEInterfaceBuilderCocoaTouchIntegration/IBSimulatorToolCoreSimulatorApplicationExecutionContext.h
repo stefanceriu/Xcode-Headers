@@ -6,44 +6,36 @@
 
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBAbstractSimulatorToolCoreSimulatorExecutionContext.h>
 
-#import "SimDeviceFramebufferServiceClient.h"
+#import "IBSimDeviceDebuggingViewControllerDelegate.h"
 
-@class IBSimDeviceDebuggingViewController, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSWindowController, SimDeviceFramebufferService;
+@class IBSimDeviceDebuggingViewController, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSWindowController;
 
-@interface IBSimulatorToolCoreSimulatorApplicationExecutionContext : IBAbstractSimulatorToolCoreSimulatorExecutionContext <SimDeviceFramebufferServiceClient>
+@interface IBSimulatorToolCoreSimulatorApplicationExecutionContext : IBAbstractSimulatorToolCoreSimulatorExecutionContext <IBSimDeviceDebuggingViewControllerDelegate>
 {
     IBSimDeviceDebuggingViewController *_deviceDebuggingViewController;
     NSWindowController *_deviceDebuggingWindowController;
-    unsigned long long _registrationID;
-    SimDeviceFramebufferService *_framebufferService;
-    NSObject<OS_dispatch_queue> *_framebufferServicingQueue;
-    double _scaleFactor;
     NSObject<OS_dispatch_queue> *_sceneUpdateDelegateAccessingQueue;
     NSMutableDictionary *_sceneUpdateRenderingDelegates;
     unsigned short _nextSceneIdentifier;
+    double _scaleFactor;
 }
 
 + (BOOL)_installApplicationBundleIfNeeded:(id)arg1 onDevice:(id)arg2 error:(id *)arg3;
 + (BOOL)_shouldInstallApplicationBundle:(id)arg1 onDevice:(id)arg2;
 + (id)_bundleForApplicationAtPath:(id)arg1 error:(id *)arg2;
-+ (id)_environmentForBootingDevice;
-+ (id)_disabledSimulatorJobs;
++ (long long)bootingSessionType;
 - (void).cxx_destruct;
+- (id)executionContextForSimDeviceDebuggingViewController:(id)arg1;
+- (id)simDeviceForSimDeviceDebuggingViewController:(id)arg1;
 - (void)_setupDebuggingViewControllerIfNeeded;
-- (void)framebufferService:(id)arg1 didFailWithError:(id)arg2;
-- (void)framebufferService:(id)arg1 didRotateToAngle:(double)arg2;
-- (void)framebufferService:(id)arg1 didUpdateRegion:(struct CGRect)arg2 ofBackingStore:(id)arg3;
-- (void)_copyData:(const void *)arg1 fromFramebufferBackingStore:(id)arg2 toInfo:(id)arg3;
-- (unsigned short)_sceneIdentifierFromFramebufferBackingStore:(id)arg1 withData:(const void *)arg2;
-- (long long)_sceneIdentifierPixelByteOffsetForBackingStore:(id)arg1;
 - (id)registerSceneUpdateRenderingDelegate:(id)arg1 returningSceneIdentifier:(long long *)arg2;
 - (id)_lookupSceneUpdateInfo:(unsigned short)arg1;
 - (void)toolProxyWillDispatchMessage:(id)arg1;
 - (id)launchAndConnectToToolWithLaunchContext:(id)arg1 toolProxyClass:(Class)arg2 shouldRaiseOnFailures:(BOOL)arg3 error:(id *)arg4;
 - (BOOL)_shouldTryAgainAfterFailingToLaunchToolWithError:(id)arg1;
 - (id)_launchAndConnectToApplication:(id)arg1 launchContext:(id)arg2 toolProxyClass:(Class)arg3 shouldRaiseOnFailures:(BOOL)arg4 error:(id *)arg5;
-- (BOOL)_bootDeviceIfNeededWithContext:(id)arg1 error:(id *)arg2;
-- (BOOL)_setupFramebufferServiceReturningError:(id *)arg1;
+- (void)updateDevicePreferencesWithBlock:(CDUnknownBlockType)arg1;
+- (BOOL)populateEnvironment:(id)arg1 launchContext:(id)arg2 error:(id *)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

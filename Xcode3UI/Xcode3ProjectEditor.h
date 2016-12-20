@@ -81,7 +81,6 @@
 - (void)localizationImport:(id)arg1;
 - (void)localizationExport:(id)arg1;
 - (void)addTargetToProject:(id)arg1;
-- (void)showUpgradeTestingSheet:(id)arg1;
 - (void)showUpgradeProjectSheet:(id)arg1;
 - (void)contextMenu_delete:(id)arg1;
 - (void)contextMenu_duplicate:(id)arg1;
@@ -136,6 +135,8 @@
 - (id)currentSelectedDocumentLocations;
 - (BOOL)canBecomeMainViewController;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
+- (id)filterButtonAccessibilityDescription;
+- (id)filterButtonToolTip;
 - (id)filterButtonMenu;
 - (id)filterDefinitionIdentifier;
 - (void)_populateSourceList;

@@ -29,6 +29,7 @@
 - (void).cxx_destruct;
 - (id)nextAssistantIdentifierForWorkspace:(id)arg1;
 - (id)newTemplateInstantiationContext;
+- (Class)instantiationContextClass;
 - (id)createdObjectTypeName;
 - (BOOL)conformsToTemplateKind:(id)arg1;
 @property(readonly, copy) NSArray *conformedToTemplateKinds; // @synthesize conformedToTemplateKinds=_conformedToTemplateKinds;

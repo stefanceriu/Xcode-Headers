@@ -13,6 +13,8 @@
     DVTFileDataType *_dataType;
     NSError *_dataTypeDetectionError;
     NSString *_bundleIdentifier;
+    BOOL _usesSwift;
+    BOOL _checkedForSwift;
     int _runnableDebuggingMode;
     IDEScheme *_scheme;
     DVTFilePath *_remotePath;
@@ -25,6 +27,8 @@
 @property(copy, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(retain) IDEScheme *scheme; // @synthesize scheme=_scheme;
 - (void).cxx_destruct;
+- (BOOL)_checkForSwiftInBuildable;
+@property(readonly) BOOL usesSwift;
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (void)setBundleIdentifierFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (int)runnableType;

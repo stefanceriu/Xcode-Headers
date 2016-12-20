@@ -52,6 +52,7 @@
 - (BOOL)ibCanBeTableViewBracketingView;
 - (void)ibCustomizeForInsertionIntoIBUICollectionView:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;
 - (id)ibDesignableContentView;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

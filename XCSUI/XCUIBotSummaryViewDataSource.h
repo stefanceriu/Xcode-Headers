@@ -15,7 +15,7 @@
 
 @property(retain, nonatomic) XCSBot *bot; // @synthesize bot=_bot;
 - (void).cxx_destruct;
-- (void)queryDataSourceWithItemsCount:(unsigned long long)arg1 CompletionHandler:(CDUnknownBlockType)arg2;
+- (void)queryDataSourceWithItemsCount:(unsigned long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
 
 @end
 

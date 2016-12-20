@@ -8,51 +8,38 @@
 
 #import "SKNodeWithShader.h"
 
-@class NSNumber, NSString, NSURL, SKNode, SKShader;
+@class NSNumber, NSString, NSURL, SKShader;
 
 @interface SKSpriteNode (InspectorAdditions) <SKNodeWithShader>
-+ (id)keyPathsForValuesAffectingNormalMapImageName;
-+ (id)keyPathsForValuesAffectingZRotationDeg;
-+ (id)keyPathsForValuesAffectingTextureImageName;
-+ (id)keyPathsForValuesAffectingHasPhysicsBody;
-- (id)ide_undoKVOKeypaths;
-- (void)setNilValueForKey:(id)arg1;
-- (id)inspectorAttributes;
-@property(nonatomic) double IKConstraintMaxAngle;
-@property(nonatomic) double IKConstraintMinAngle;
-@property(nonatomic) double normalMapContrast;
-@property(nonatomic) double normalMapSmoothness;
-- (void)refreshNormalMap;
-@property(retain, nonatomic) NSString *normalMapImageName;
-@property(retain, nonatomic) NSURL *customSpriteShader;
-@property(nonatomic) float spriteKitEditorMass;
-@property(nonatomic) double physicsBodyInitialVelocityY;
-@property(nonatomic) double physicsBodyInitialVelocityX;
-@property(nonatomic) double physicsBodyAngularDamping;
-@property(nonatomic) double physicsBodyLinearDamping;
-@property(nonatomic) double physicsBodyRestitution;
-@property(nonatomic) double physicsBodyFriction;
-@property(nonatomic) BOOL physicsBodyAffectedByGravity;
-@property(nonatomic) BOOL physicsBodyPinned;
-@property(nonatomic) BOOL physicsBodyAllowsRotation;
-@property(nonatomic) BOOL physicsBodyDynamicType;
-@property(retain, nonatomic) NSNumber *skEditorShadowedBitMask;
-@property(retain, nonatomic) NSNumber *skEditorShadowCastBitMask;
-@property(retain, nonatomic) NSNumber *skEditorLightingBitMask;
-@property(retain, nonatomic) NSNumber *skEditorFieldMask;
-@property(retain, nonatomic) NSNumber *skEditorContactMask;
-@property(retain, nonatomic) NSNumber *skEditorCollisionMask;
-@property(retain, nonatomic) NSNumber *skEditorCategoryMask;
-@property(nonatomic) int physicsBodyType;
-@property(retain, nonatomic) NSString *textureImageName;
-- (BOOL)hasPhysicsBody;
-@property(readonly, nonatomic) __weak SKNode *selfRef;
++ (id)keyPathsForValuesAffectingSk_hasPhysicsBody;
++ (id)keyPathsForValuesAffectingSk_yScale;
++ (id)keyPathsForValuesAffectingSk_xScale;
++ (id)keyPathsForValuesAffectingSk_size;
++ (id)keyPathsForValuesAffectingSk_normalMapImageName;
++ (id)keyPathsForValuesAffectingSk_textureImageName;
+@property(nonatomic) double sk_ikConstraintMaxAngle;
+@property(nonatomic) double sk_ikConstraintMinAngle;
+@property(retain, nonatomic) NSURL *sk_customSpriteShader;
+@property(retain, nonatomic) NSNumber *sk_shadowedMask;
+@property(retain, nonatomic) NSNumber *sk_shadowCastMask;
+@property(retain, nonatomic) NSNumber *sk_lightingMask;
+- (void)setSk_physicsBodyType:(int)arg1;
+- (int)sk_physicsBodyType;
+- (void)_refreshPhysicsBody;
+- (BOOL)sk_hasPhysicsBody;
+@property(nonatomic) double sk_yScale;
+@property(nonatomic) double sk_xScale;
+@property(nonatomic) struct CGSize sk_size;
+@property(nonatomic) double sk_normalMapContrast;
+@property(nonatomic) double sk_normalMapSmoothness;
+@property(retain, nonatomic) NSString *sk_normalMapImageName;
+- (void)sk_refreshNormalMap;
+@property(retain, nonatomic) NSString *sk_textureImageName;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(retain, nonatomic) SKNode *parentRef;
 @property(retain, nonatomic) SKShader *shader;
 @property(readonly) Class superclass;
 @end

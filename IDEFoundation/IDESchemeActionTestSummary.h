@@ -11,6 +11,7 @@
 @interface IDESchemeActionTestSummary : IDESchemeActionAbstractTestSummaryObject
 {
     unsigned long long _status;
+    double _duration;
     NSString *_identifier;
     NSString *_testSummaryGUID;
     NSArray *_failureSummaries;
@@ -25,6 +26,7 @@
 @property(copy) NSArray *failureSummaries; // @synthesize failureSummaries=_failureSummaries;
 @property(copy) NSString *testSummaryGUID; // @synthesize testSummaryGUID=_testSummaryGUID;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
+@property double duration; // @synthesize duration=_duration;
 @property unsigned long long status; // @synthesize status=_status;
 - (void).cxx_destruct;
 - (BOOL)updateWithDictionaryRepresentation:(id)arg1;

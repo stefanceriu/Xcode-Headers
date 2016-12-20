@@ -4,16 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "DBGStackFrame.h"
+#import "IDEStackFrame.h"
 
 @class NSArray, NSMutableSet;
 
 __attribute__((visibility("hidden")))
-@interface DBGLLDBStackFrame : DBGStackFrame
+@interface DBGLLDBStackFrame : IDEStackFrame
 {
-    struct SBFrame _lldbFrame;
-    struct SBValueList _lldbVariables;
-    struct SBValueList _lldbRegisters;
+    id <DBGSBFrame> _lldbFrame;
+    id <DBGSBValueList> _lldbVariables;
+    id <DBGSBValueList> _lldbRegisters;
     NSArray *_variables;
     NSArray *_locals;
     NSArray *_arguments;
@@ -31,28 +31,27 @@ __attribute__((visibility("hidden")))
 @property(copy, nonatomic) NSArray *registers; // @synthesize registers=_registers;
 @property(copy, nonatomic) NSArray *arguments; // @synthesize arguments=_arguments;
 @property(copy, nonatomic) NSArray *locals; // @synthesize locals=_locals;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (id)disassembly;
-- (id)dataValuesToInvalidate;
+- (id)disassemblyString;
 - (id)_lldbSession;
 - (void)_getRegistersFromLLDBOnSessionThread;
 - (void)_getGlobalsFromLLDBOnSessionThread;
 - (void)_getFileStaticsFromLLDBOnSessionThread;
 - (void)_getLocalsFromLLDBOnSessionThread;
 - (void)_getArgumentsFromLLDBOnSessionThread;
-- (id)_evaluateExpressionOnSessionThread:(id)arg1 options:(id)arg2;
+- (id)_evaluateExpressionOnSessionThread:(id)arg1 options:(id)arg2 error:(id *)arg3;
 - (void)evaluateExpression:(id)arg1 options:(id)arg2 withResultBlock:(CDUnknownBlockType)arg3;
 - (void)requestDataValueForSymbol:(id)arg1 symbolKind:(id)arg2 atLocation:(id)arg3 onQueue:(id)arg4 withResultBlock:(CDUnknownBlockType)arg5;
 - (id)_findSymbolWithName:(id)arg1 symbolKind:(id)arg2 atLocation:(id)arg3;
 - (void)_getAllFrameVariablesOnLLDBSessionThread;
+- (id)_dataValuesFromValueList:(id)arg1 valueMask:(unsigned int)arg2 originalDataValues:(id)arg3;
 - (void)_addSessionThreadAction:(CDUnknownBlockType)arg1;
 - (BOOL)_isSessionThread;
 - (void)_assertOnSessionThread;
 - (void)_setReturnValueFromInitIfNecessary;
-- (struct SBFrame)lldbFrame;
-- (id)initWithParentThread:(id)arg1 frameNumber:(id)arg2 framePointer:(id)arg3 name:(id)arg4 lldbFrame:(struct SBFrame)arg5;
+- (id)lldbFrame;
+- (id)initWithParentThread:(id)arg1 frameNumber:(id)arg2 framePointer:(id)arg3 name:(id)arg4 lldbFrame:(id)arg5;
 
 @end
 

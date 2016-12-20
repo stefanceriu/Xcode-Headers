@@ -36,7 +36,6 @@
 @property(readonly) unsigned long long hash;
 @property(readonly) BOOL prefersDebugBarToAlwaysBeShown;
 @property(readonly) Class superclass;
-@property(readonly) BOOL wantsRightSideSeparatorBorder;
 
 @end
 

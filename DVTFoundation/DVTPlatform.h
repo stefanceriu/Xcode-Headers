@@ -32,6 +32,7 @@
 + (id)_preferredArchitectureForPlatformWithIdentifier:(id)arg1;
 + (id)extraPlatformFolders;
 + (id)defaultPlatform;
++ (BOOL)validatePlatformDataReturningError:(id *)arg1;
 + (BOOL)loadAllPlatformsReturningError:(id *)arg1;
 + (void)_loadPlatformAtPath:(id)arg1;
 + (id)_propertyDictionaryForPlatformAtPath:(id)arg1;
@@ -69,6 +70,7 @@
 - (id)propertyListDictionary;
 - (id)initWithPath:(id)arg1;
 - (id)initWithPropertyListDictionary:(id)arg1 path:(id)arg2;
+- (id)dvt_extendedInfoOrError:(id *)arg1;
 @property(readonly) DVTExtendedPlatformInfo *dvt_extendedInfo;
 
 @end

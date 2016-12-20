@@ -6,16 +6,35 @@
 
 #import <GPUDebuggerFoundation/GPUTraceResourceItem.h>
 
-@interface GPUTraceBytesItem : GPUTraceResourceItem
+#import "DYPRawBytesResourceItem.h"
+
+@class NSMutableDictionary, NSString;
+
+@interface GPUTraceBytesItem : GPUTraceResourceItem <DYPRawBytesResourceItem>
 {
+    unsigned int _bindingIndex;
     unsigned long long _bytesType;
-    unsigned long long _bindingIndex;
 }
 
-@property(readonly, nonatomic) unsigned long long bindingIndex; // @synthesize bindingIndex=_bindingIndex;
+@property(readonly, nonatomic) unsigned int bindingIndex; // @synthesize bindingIndex=_bindingIndex;
 @property(readonly, nonatomic) unsigned long long bytesType; // @synthesize bytesType=_bytesType;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithController:(id)arg1 parent:(id)arg2 encoderObject:(const void *)arg3 containerID:(unsigned long long)arg4 sharegroupID:(unsigned long long)arg5 label:(id)arg6 bindingIndex:(unsigned long long)arg7 bytesType:(unsigned long long)arg8;
+- (id)initWithController:(id)arg1 parent:(id)arg2 encoderObject:(const void *)arg3 containerID:(unsigned long long)arg4 sharegroupID:(unsigned long long)arg5 identifier:(id)arg6 bindingIndex:(unsigned long long)arg7 bytesType:(unsigned long long)arg8;
+
+// Remaining properties
+@property(readonly, nonatomic) unsigned long long containerID;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) unsigned int functionIndex;
+@property(readonly, nonatomic) BOOL generatesThumbnail;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSString *identifier;
+@property(retain, nonatomic) NSString *label;
+@property(readonly, nonatomic) unsigned long long objectID;
+@property(readonly, nonatomic) NSMutableDictionary *properties;
+@property(readonly, nonatomic) const void *stateMirrorObject;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic) unsigned int type;
 
 @end
 

@@ -27,6 +27,7 @@
 @property(retain) DVTDiffSession *diffSession; // @synthesize diffSession=_diffSession;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
+- (double)centerViewOverlap;
 - (struct CGSize)centerViewSizeInHeight:(double)arg1;
 - (void)invalidateLayout;
 - (void)selectPrevious:(id)arg1;

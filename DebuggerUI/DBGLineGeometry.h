@@ -14,6 +14,7 @@
     DBGInteractiveSceneView *_view;
     SCNNode *_lineAnchorA;
     SCNNode *_lineAnchorB;
+    unsigned long long _lineAlignment;
     NSColor *_lineColor;
     double _lineWidth;
     NSColor *_strokeColor;
@@ -35,12 +36,14 @@
 @property(retain) NSColor *strokeColor; // @synthesize strokeColor=_strokeColor;
 @property double lineWidth; // @synthesize lineWidth=_lineWidth;
 @property(retain) NSColor *lineColor; // @synthesize lineColor=_lineColor;
+@property(nonatomic) unsigned long long lineAlignment; // @synthesize lineAlignment=_lineAlignment;
 @property BOOL verticesSnapToPixelGridIn2D; // @synthesize verticesSnapToPixelGridIn2D=_verticesSnapToPixelGridIn2D;
 @property(readonly) SCNNode *lineAnchorB; // @synthesize lineAnchorB=_lineAnchorB;
 @property(readonly) SCNNode *lineAnchorA; // @synthesize lineAnchorA=_lineAnchorA;
 @property(readonly) __weak DBGInteractiveSceneView *view; // @synthesize view=_view;
 - (void).cxx_destruct;
 - (id)init;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end
 

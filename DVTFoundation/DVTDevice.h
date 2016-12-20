@@ -8,18 +8,19 @@
 
 #import "DVTBasicDevice.h"
 
-@class DTXChannel, DVTDeviceType, DVTExtension, DVTPlatform, NSArray, NSError, NSMutableSet, NSObject<OS_dispatch_queue>, NSOrderedSet, NSSet, NSString, NSURL;
+@class DTXChannel, DVTDeviceType, DVTExtension, DVTPlatform, NSArray, NSData, NSError, NSMutableSet, NSObject<OS_dispatch_queue>, NSOrderedSet, NSSet, NSString, NSURL;
 
 @interface DVTDevice : NSObject <DVTBasicDevice>
 {
     NSObject<OS_dispatch_queue> *_instrumentsServerMessageQueue;
     NSMutableSet *_capabilities;
     DTXChannel *_appExtensionInstallObserverChannel;
+    DTXChannel *_appExtensionInstallObserverChannel_proxy;
     NSObject<OS_dispatch_queue> *_appListingChannelQueue;
     BOOL _ignored;
-    BOOL _usedForDevelopment;
     BOOL _canSelectArchitectureToExecute;
     BOOL _available;
+    BOOL _usedForDevelopment;
     DVTExtension *_extension;
     NSURL *_deviceLocation;
     NSString *_nativeArchitecture;
@@ -28,6 +29,7 @@
     NSString *_modelName;
     DVTDeviceType *_deviceType;
     NSOrderedSet *_supportedArchitectures;
+    NSString *_connectionServicesFrameworkPath;
     NSString *_name;
     NSString *_modelCode;
     DVTPlatform *_platform;
@@ -41,17 +43,18 @@
 + (id)keyPathsForValuesAffectingActiveProxiedDevice;
 + (id)_knownDeviceLocators;
 + (void)initialize;
-@property(copy) NSString *identifier; // @synthesize identifier=_identifier;
+@property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(copy) NSString *operatingSystemBuild; // @synthesize operatingSystemBuild=_operatingSystemBuild;
 @property(copy) NSString *operatingSystemVersion; // @synthesize operatingSystemVersion=_operatingSystemVersion;
 @property(retain) DVTPlatform *platform; // @synthesize platform=_platform;
+@property(nonatomic, getter=isUsedForDevelopment) BOOL usedForDevelopment; // @synthesize usedForDevelopment=_usedForDevelopment;
 @property(getter=isAvailable) BOOL available; // @synthesize available=_available;
 @property(copy, nonatomic) NSString *modelCode; // @synthesize modelCode=_modelCode;
-@property(copy) NSString *name; // @synthesize name=_name;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
+@property(readonly) NSString *connectionServicesFrameworkPath; // @synthesize connectionServicesFrameworkPath=_connectionServicesFrameworkPath;
 @property BOOL canSelectArchitectureToExecute; // @synthesize canSelectArchitectureToExecute=_canSelectArchitectureToExecute;
 @property(copy) NSOrderedSet *supportedArchitectures; // @synthesize supportedArchitectures=_supportedArchitectures;
 @property(retain) DVTDeviceType *deviceType; // @synthesize deviceType=_deviceType;
-@property(nonatomic, getter=isUsedForDevelopment) BOOL usedForDevelopment; // @synthesize usedForDevelopment=_usedForDevelopment;
 @property(getter=isIgnored) BOOL ignored; // @synthesize ignored=_ignored;
 @property(copy, nonatomic) NSString *modelName; // @synthesize modelName=_modelName;
 @property(copy, nonatomic) NSString *modelUTI; // @synthesize modelUTI=_modelUTI;
@@ -59,6 +62,10 @@
 @property(readonly, copy) NSURL *deviceLocation; // @synthesize deviceLocation=_deviceLocation;
 @property(readonly) DVTExtension *extension; // @synthesize extension=_extension;
 - (void).cxx_destruct;
+- (BOOL)supportsDYLDPrintToStdErr;
+- (BOOL)supportsNewLogging;
+- (id)_mobileDevice;
+- (id)loggingStream;
 - (id)launchApplicationWithBundleIdentifier:(id)arg1 withArguments:(id)arg2 environment:(id)arg3 options:(id)arg4;
 - (id)applicationIsInstalledWithBundleIdentifier:(id)arg1;
 - (id)uninstallApplicationWithBundleIdentifier:(id)arg1 andOptions:(id)arg2;
@@ -88,18 +95,26 @@
 - (void)purgeResourceWithTag:(id)arg1 bundleIdentifier:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)purgeAllResourcesForBundleIdentifier:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)_resourceControlChannel:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)showMessagesExtensionOnProxy:(BOOL)arg1 completed:(CDUnknownBlockType)arg2;
+- (void)simulateNotificationWithBundleID:(id)arg1 payload:(id)arg2 onProxy:(BOOL)arg3 completed:(CDUnknownBlockType)arg4;
+- (void)pressHomeButtonOnProxy:(BOOL)arg1 completed:(CDUnknownBlockType)arg2;
+- (void)showSiriForExtensions:(id)arg1 pid:(int)arg2 onProxy:(BOOL)arg3 completed:(CDUnknownBlockType)arg4;
 - (void)showTodayViewForExtensions:(id)arg1 pid:(int)arg2;
+- (id)serviceHubProcessControlChannelOnProxy:(BOOL)arg1;
 - (id)serviceHubProcessControlChannel;
 - (void)terminateWatchAppForCompanionIdentifier:(id)arg1 options:(id)arg2 completionSemaphore:(id)arg3;
 - (BOOL)_shouldAttemptToRetryWatchAppLaunchAttemptForLaunchError:(id)arg1;
 - (void)_attemptToLaunchWatchAppForCompanionIdentifier:(id)arg1 options:(id)arg2 completionblock:(CDUnknownBlockType)arg3 attempt:(unsigned long long)arg4;
 - (void)launchWatchAppForCompanionIdentifier:(id)arg1 options:(id)arg2 completionblock:(CDUnknownBlockType)arg3;
 - (void)willInstallWatchAppForCompanionIdentifier:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (id)listenForInstallOfAppExtensionIdentifiers:(id)arg1 timeout:(double)arg2;
-- (id)_applicationListingChannel;
+- (id)listenForInstallOfAppExtensionIdentifiers:(id)arg1 onPairedDevice:(BOOL)arg2;
+- (id)_applicationListingChannelForPairedDevice:(BOOL)arg1;
+@property(readonly) unsigned long long supportedLaunchOptionsForProxiedDevice;
 @property(readonly) unsigned long long supportedLaunchOptions;
 - (id)proxiedPrimaryInstrumentsServer;
 - (id)primaryInstrumentsServer;
+@property(readonly) NSArray *crashReportsDirectoryPaths;
+@property(readonly) NSString *crashReportsDirectoryPath;
 - (id)makeTransportForTestManagerService:(id *)arg1;
 @property(readonly) BOOL requiresTestDaemonMediationForTestHostConnection;
 @property(readonly) BOOL supportsTestManagerDaemon;
@@ -126,8 +141,10 @@
 @property(readonly) BOOL supportsArchiving;
 - (BOOL)canPerformUbiquityFetchEvent;
 - (void)performUbiquityFetchEvent;
-- (void)performFetchEventForPID:(int)arg1;
+- (void)snapshotUIForBundleIdentifier:(id)arg1 orPid:(int)arg2 onProxy:(BOOL)arg3 completed:(CDUnknownBlockType)arg4;
+- (void)performFetchEventForBundleIdentifier:(id)arg1 orPid:(int)arg2 onProxy:(BOOL)arg3;
 @property(readonly) unsigned long long supportsFetchEvents;
+- (BOOL)threadSanitizerRequiresDyldInsertLibrary;
 - (BOOL)addressSanitizerRequiresDyldInsertLibrary;
 - (void)downloadOptimizationProfilesFromBundleIdentifiers:(id)arg1 orPaths:(id)arg2 toFilePath:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)downloadOptimizationProfilesFromBundleIdentifier:(id)arg1 orPaths:(id)arg2 toFilePath:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
@@ -138,6 +155,7 @@
 @property(readonly) BOOL supportsDebuggingForAskOnLaunch;
 @property(readonly) BOOL supportsUnhostedXPCServiceDebugging;
 @property(readonly) BOOL supportsXPCServiceDebugging;
+- (BOOL)supportsUISnapshotOnProxy:(BOOL)arg1;
 @property(readonly) BOOL canRunMultipleInstancesPerApp;
 @property(readonly) BOOL runsRemoteFromHostLauncher;
 @property(readonly) BOOL supportsDebugAsDifferentUser;
@@ -161,11 +179,14 @@
 @property(readonly) BOOL alwaysAttachesForDebugging;
 @property(readonly, getter=isConcreteDevice) BOOL concreteDevice;
 @property(readonly, getter=isGenericDevice) BOOL genericDevice;
+@property(readonly) NSData *displayImageBitmapData;
 @property(readonly) NSString *displayOrder;
 @property(copy) NSString *nativeArchitecture; // @synthesize nativeArchitecture=_nativeArchitecture;
 @property(readonly) _Bool deviceIsBusy;
 @property(readonly) NSError *unavailabilityError;
 @property(readonly) BOOL isProxiedDevice;
+- (void)setActiveProxiedDevice:(id)arg1;
+@property(readonly) BOOL canSetActiveProxiedDevice;
 @property(readonly) id <DVTBasicDevice> activeProxiedDevice;
 @property(readonly, copy) NSSet *proxiedDevices;
 - (id)servicesMatchingCapability:(id)arg1;

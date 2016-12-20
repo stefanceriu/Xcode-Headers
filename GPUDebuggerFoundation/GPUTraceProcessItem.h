@@ -8,7 +8,7 @@
 
 #import "IDEDebugTopNavigableModel.h"
 
-@class DVTStackBacktrace, IDEDebugSession, IDELaunchSession, NSArray, NSString;
+@class DVTStackBacktrace, IDEDebugSession, IDELaunchSession, NSString;
 
 @interface GPUTraceProcessItem : GPUTraceGroupItem <IDEDebugTopNavigableModel>
 {
@@ -17,7 +17,7 @@
 - (id)contentDelegateUIExtensionIdentifier;
 @property(copy, nonatomic) NSString *name;
 - (id)UUIDSection;
-- (id)initWithController:(id)arg1 label:(id)arg2;
+- (id)initWithController:(id)arg1 identifier:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *associatedProcessUUID;
@@ -27,9 +27,7 @@
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) IDELaunchSession *launchSession;
-@property(readonly, nonatomic) NSArray *loadedCodeModules;
 @property(readonly, nonatomic) IDEDebugSession *parentDebugSession;
-@property(readonly) NSString *subtitle;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 

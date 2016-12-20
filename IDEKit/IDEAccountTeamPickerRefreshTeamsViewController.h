@@ -36,9 +36,9 @@
 - (void).cxx_destruct;
 - (void)cancelAction:(id)arg1;
 - (void)fetchAccounts;
-- (id)badCredentialsErrorFromErrorsIfAny:(id)arg1;
 - (void)handleErrors:(id)arg1 primaryError:(id)arg2;
 - (void)fetchTeams;
+- (id)_accountWrappersWithFilter:(CDUnknownBlockType)arg1 error:(id *)arg2;
 - (void)joinAProgram:(id)arg1;
 - (void)addAccount:(id)arg1;
 - (void)viewAccounts:(id)arg1;

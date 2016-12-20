@@ -16,7 +16,7 @@
 #import "IDETestManagerUITestingPermissionSheetDelegate.h"
 #import "IDEWorkspaceDelegate.h"
 
-@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDESourceControlWorkspaceUIHandler, IDEUIRecordingManager<DVTInvalidation>, IDEUITestingTCCPermissionWindowController, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
+@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTStackBacktrace, DVTStateRepository, DVTStateToken, DVTSystemActivityToken, IDEActivityReportManager, IDEScriptingSchemeActionResult, IDESourceControlWorkspaceUIHandler, IDEUIRecordingManager<DVTInvalidation>, IDEUITestingTCCPermissionWindowController, IDEWorkspace, IDEWorkspaceWindowController, NSArray, NSDictionary, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 
 @interface IDEWorkspaceDocument : NSDocument <IDEActiveRunContextStoring, IDEWorkspaceDelegate, IDETestManagerUITestingPermissionSheetDelegate, DVTInvalidation, DVTTabbedWindowCreation, DVTStatefulObject, DVTStateRepositoryDelegate, IDEMustCloseOnQuitDocument, IDEPreBuildSavingDelegate>
 {
@@ -61,7 +61,9 @@
     DVTObservingToken *_simpleFilesFocusedObservingToken;
     DVTPerformanceMetric *_closingMetric;
     BOOL _createdAsUntitled;
+    BOOL _didReportCanClose;
     IDEUIRecordingManager<DVTInvalidation> *_uiRecordingManager;
+    IDEScriptingSchemeActionResult *_lastScriptingSchemeActionResult;
     IDEUITestingTCCPermissionWindowController *_TCCPermissionWindowController;
 }
 
@@ -79,9 +81,11 @@
 + (BOOL)autosavesInPlace;
 + (BOOL)preservesVersions;
 + (void)initialize;
+@property BOOL didReportCanClose; // @synthesize didReportCanClose=_didReportCanClose;
 @property(retain) IDEUITestingTCCPermissionWindowController *TCCPermissionWindowController; // @synthesize TCCPermissionWindowController=_TCCPermissionWindowController;
 @property(nonatomic) BOOL createdAsUntitled; // @synthesize createdAsUntitled=_createdAsUntitled;
-@property(retain) IDEUIRecordingManager<DVTInvalidation> *uiRecordingManager; // @synthesize uiRecordingManager=_uiRecordingManager;
+@property(retain) IDEScriptingSchemeActionResult *lastScriptingSchemeActionResult; // @synthesize lastScriptingSchemeActionResult=_lastScriptingSchemeActionResult;
+@property(retain, nonatomic) IDEUIRecordingManager<DVTInvalidation> *uiRecordingManager; // @synthesize uiRecordingManager=_uiRecordingManager;
 @property(retain) IDESourceControlWorkspaceUIHandler *sourceControlWorkspaceUIHandler; // @synthesize sourceControlWorkspaceUIHandler=_sourceControlWorkspaceUIHandler;
 @property BOOL applicationIsTerminating; // @synthesize applicationIsTerminating=_applicationIsTerminating;
 @property(retain) NSMutableDictionary *tabStateContextForTabNameMap; // @synthesize tabStateContextForTabNameMap=_tabStateContextForTabNameMap;
@@ -116,7 +120,7 @@
 - (id)_makeTabbedWindowControllerWithStateFromTabController:(id)arg1 documentURL:(id)arg2 simpleEditorWindowLayout:(BOOL)arg3 frontmost:(BOOL)arg4;
 - (id)windowControllerWithUniqueIdentifier:(id)arg1;
 - (id)makeTabbedWindowControllerShowingWindow:(BOOL)arg1;
-- (id)_makeTabbedWindowControllerShowingWindow:(BOOL)arg1 withIdentifier:(id)arg2 createNewTabUponLoadIfNoTabsExist:(BOOL)arg3;
+- (id)_makeTabbedWindowControllerShowingWindow:(BOOL)arg1 createNewTabUponLoadIfNoTabsExist:(BOOL)arg2;
 - (void)_addRecentEditorDocumentURL:(id)arg1;
 @property(readonly) NSArray *recentEditorDocumentURLs;
 - (id)_allRecentEditorDocumentURLs;
@@ -147,6 +151,7 @@
 - (BOOL)revertToContentsOfURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (BOOL)readFromURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (BOOL)_readFromURL:(id)arg1 ofType:(id)arg2 simpleFilesFocused:(BOOL)arg3 error:(id *)arg4;
+- (BOOL)isUIStateSavingEnabled;
 - (void)setLastActiveWorkspaceWindowController:(id)arg1;
 - (id)activeWorkspaceWindowController;
 @property(readonly) IDEWorkspace *workspace;
@@ -166,8 +171,20 @@
 - (void)_setupLaunchSessionsObservation;
 - (void)_presentErrorForLaunch:(id)arg1;
 - (id)_firstErrorForExecutionTracker:(id)arg1;
-- (void)_recordWorkspaceStatisticsLater;
-- (void)_recordWorkspaceStatistics;
+- (void)_reportSCMStatisticsInWorkspace:(id)arg1;
+- (void)_reportBuildPhaseStatisticsInWorkspace:(id)arg1;
+- (void)_reportSchemeStatisticsInWorkspace:(id)arg1 inReport:(id)arg2;
+- (void)_reportTargetFileTypes:(id)arg1;
+- (id)_makeFileExtensions;
+- (id)_headerFileExtensions;
+- (id)_allClangFileExtensions;
+- (id)_objcppFileExtensions;
+- (id)_cppFileExtensions;
+- (void)_reportFileTypeTotal:(unsigned long long)arg1 forFileType:(id)arg2;
+- (void)_reportTargetCount:(unsigned long long)arg1 forTargetType:(id)arg2;
+- (void)_reportStatisticsInWorkspace:(id)arg1;
+- (void)_reportWorkspaceStatistics;
+- (void)_reportWorkspaceStatisticsLater;
 - (BOOL)saveToURL:(id)arg1 ofType:(id)arg2 forSaveOperation:(unsigned long long)arg3 error:(id *)arg4;
 - (void)saveAsWorkspace:(id)arg1 showAlert:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)_upgradeAlertDidEnd:(id)arg1 returnCode:(long long)arg2;
@@ -201,36 +218,28 @@
 - (id)initWithWorkspace:(id)arg1;
 - (id)init;
 - (id)_openWindowTerminationDisablingReason;
+- (id)_performScriptingSchemeCommand:(unsigned long long)arg1 forScriptCommand:(id)arg2;
+- (id)sdefSupport_stop:(id)arg1;
+- (id)sdefSupport_test:(id)arg1;
+- (id)sdefSupport_run:(id)arg1;
 - (id)sdefSupport_clean:(id)arg1;
 - (id)sdefSupport_build:(id)arg1;
-- (void)_resumeCommandAfterBuildCompleted:(id)arg1;
-- (id)sdefSupport_fileReferenceForPath:(id)arg1;
+- (id)sdefSupport_path;
+- (id)sdefSupport_fileURL;
 - (id)objectSpecifier;
 - (id)displayName;
-- (void)insertInSdefSupport_Xcode3Groups:(id)arg1 atIndex:(long long)arg2;
-- (void)insertInSdefSupport_Xcode3FileReferences:(id)arg1 atIndex:(long long)arg2;
-- (void)insertInSdefSupport_runContexts:(id)arg1 atIndex:(long long)arg2;
-- (void)insertInSdefSupport_projects:(id)arg1 atIndex:(long long)arg2;
-- (void)insertInSdefSupport_itemReferences:(id)arg1 atIndex:(long long)arg2;
-- (void)insertInSdefSupport_groups:(id)arg1 atIndex:(long long)arg2;
-- (void)insertInSdefSupport_fileReferences:(id)arg1 atIndex:(long long)arg2;
-- (void)insertInSdefSupport_buildMessages:(id)arg1 atIndex:(long long)arg2;
-- (void)insertInSdefSupport_breakpoints:(id)arg1 atIndex:(long long)arg2;
 - (id)newScriptingObjectOfClass:(Class)arg1 forValueForKey:(id)arg2 withContentsValue:(id)arg3 properties:(id)arg4;
-- (id)sdefSupport_Xcode3Groups;
-- (id)sdefSupport_Xcode3FileReferences;
-- (id)sdefSupport_symbolicBreakpoints;
+- (id)sdefSupport_schemeActionResults;
+- (id)sdefSupport_lastSchemeActionResult;
+- (void)setSdefSupport_activeRunDestination:(id)arg1;
+- (id)sdefSupport_activeRunDestination;
+- (id)sdefSupport_runDestinations;
+- (void)setSdefSupport_activeScheme:(id)arg1;
+- (id)sdefSupport_activeScheme;
+- (id)sdefSupport_schemes;
 - (id)sdefSupport_projects;
-- (id)sdefSupport_groups;
-- (id)sdefSupport_fileReferences;
-- (id)sdefSupport_fileBreakpoints;
-- (id)sdefSupport_breakpoints;
-- (void)setSdefSupport_productDirectory:(id)arg1;
-- (id)sdefSupport_productDirectory;
-- (void)setSdefSupport_intermediatesDirectory:(id)arg1;
-- (id)sdefSupport_intermediatesDirectory;
-- (void)setSdefSupport_breakpointsEnabled:(BOOL)arg1;
-- (BOOL)sdefSupport_breakpointsEnabled;
+- (BOOL)_checkForLoading;
+- (BOOL)sdefSupport_isLoaded;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

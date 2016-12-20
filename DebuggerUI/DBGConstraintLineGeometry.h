@@ -24,6 +24,7 @@
 @property(retain) NSColor *lineColorHighlighted; // @synthesize lineColorHighlighted=_lineColorHighlighted;
 @property(retain) NSColor *lineColorNormal; // @synthesize lineColorNormal=_lineColorNormal;
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 @property int style; // @synthesize style=_style;
 @property int appearence; // @synthesize appearence=_appearence;
 
@@ -31,6 +32,7 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property double opacity;
 @property(readonly) Class superclass;
 
 @end

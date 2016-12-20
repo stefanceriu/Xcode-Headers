@@ -16,7 +16,7 @@
 #import "IBUIViewControllerAutolayoutGuideDelegate.h"
 #import "NSCoding.h"
 
-@class DVTNotificationToken, IBCocoaTouchTargetRuntime, IBEdgeInsetsWrapper, IBUIAccessibilityConfiguration, IBUISimulatedBarMetrics, IBUISimulatedMetricsContainer, IBUISimulatedOrientationMetrics, IBUISimulatedSizeMetrics, IBUISimulatedStatusBarMetrics, IBUIStoryboardPreviewingSegueTemplateStorage, IBUIViewController, NSArray, NSColor, NSDictionary, NSNumber, NSString, NSValue;
+@class IBCocoaTouchTargetRuntime, IBEdgeInsetsWrapper, IBUIAccessibilityConfiguration, IBUISimulatedBarMetrics, IBUISimulatedMetricsContainer, IBUISimulatedOrientationMetrics, IBUISimulatedSizeMetrics, IBUISimulatedStatusBarMetrics, IBUIStoryboardPreviewingSegueTemplateStorage, IBUIViewController, NSArray, NSColor, NSDictionary, NSNumber, NSString, NSValue;
 
 @interface IBUIView : IBRemoteView <IBDocumentArchiving, NSCoding, IBUIInstantiatedView, IBUISimulatedMetricsExtendedEdgeProvider, IBUISimulatedMetricsIntegratedObject, IBIDEUIViewControllerAutolayoutGuideDelegate, IBUIViewControllerAutolayoutGuideDelegate, IBUISimulatedMetricsObject, IBSceneUpdateRequestConfiguring>
 {
@@ -32,7 +32,7 @@
     NSColor *explicitTintColor;
     BOOL opaqueForDevice;
     BOOL autoresizesSubviewsForDevice;
-    BOOL clipsSubviews;
+    BOOL clipsToBounds;
     double alpha;
     BOOL clearsContextBeforeDrawing;
     int contentMode;
@@ -55,7 +55,6 @@
     struct CGSize previousFrameSize;
     NSArray *cachedGeometryInfos;
     NSDictionary *cachedGeometryForPreviousFrameSize;
-    DVTNotificationToken *finishUndoObservationToken;
     CDStruct_c519178c ibInsetForRuntimeToggle;
     BOOL _preservesSuperviewLayoutMargins;
     BOOL _layoutMarginsFollowReadableWidth;
@@ -84,10 +83,10 @@
 + (id)keyPathsForValuesAffectingIbInspectedDeltaWidthForRuntimeToggle;
 + (id)keyPathsForValuesAffectingIbInspectedDeltaXForRuntimeToggle;
 + (id)keyPathsForValuesAffectingIbInspectedDefaultTintColor;
++ (void)ibPopulateAdditionalInspectors:(id)arg1 forCategory:(id)arg2;
 + (id)ibLayoutMetrics;
 + (id)keyPathsForValuesAffectingIbInspectedUseExplicitLayoutMargins;
 + (id)keyPathsForValuesAffectingIbInspectedAutoresizesSubviewsForDevice;
-+ (id)keyPathsForValuesAffectingIbInspectedFrame;
 + (id)ibSimulatedMetricsKeyPathsAffectingEditorView;
 + (void)ibDidInstantiateView:(id)arg1 forAsset:(id)arg2 role:(long long)arg3;
 + (void)ibDidInstantiateForObject:(id)arg1 forAsset:(id)arg2 role:(long long)arg3;
@@ -107,7 +106,7 @@
 @property(nonatomic, getter=isMultipleTouchEnabled) BOOL multipleTouchEnabled; // @synthesize multipleTouchEnabled;
 @property(nonatomic) long long semanticContentAttribute; // @synthesize semanticContentAttribute;
 @property(nonatomic) int contentMode; // @synthesize contentMode;
-@property(nonatomic) BOOL clipsSubviews; // @synthesize clipsSubviews;
+@property(nonatomic) BOOL clipsToBounds; // @synthesize clipsToBounds;
 @property(nonatomic) BOOL clearsContextBeforeDrawing; // @synthesize clearsContextBeforeDrawing;
 @property(retain, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor;
 @property(nonatomic) BOOL autoresizesSubviewsForDevice; // @synthesize autoresizesSubviewsForDevice;
@@ -125,20 +124,18 @@
 - (struct CGRect)ibFrameForAutolayoutGuide:(id)arg1;
 - (id)ibContainingItemForAutolayoutGuide:(id)arg1;
 - (struct CGSize)intrinsicFrameSizeForRuntime:(id)arg1;
+- (void)ibInvalidatePlaceholderBackground;
 - (void)requestGeometryIfNeeded;
 - (struct _IBEdgeInsets)defaultLayoutMargins;
 - (BOOL)canHaveLayoutInsetOrIntrinsicContentSizeOrBasline;
 - (void)populateGeometryMarshallingContext:(id)arg1;
 - (void)configurePlaceholderDrawingAttributes:(id)arg1;
 - (BOOL)shouldDrawAsPlaceholder;
-- (struct CGSize)ibSimulatedViewPortSize;
 - (id)defaultBackgroundColor;
 - (void)drawBackground;
 - (BOOL)drawsBackground;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)isFlipped;
-- (BOOL)alwaysUsesTraitStorage;
-- (id)ibFixedFramesByTraitCollection;
 - (id)configurableKeyPathForMarshalledDesignTimeToManyRelationship:(id)arg1;
 - (id)userDefinedRuntimeAttributesToMarshallWithContext:(id)arg1;
 - (BOOL)ibWantsPlaceholderContainingViewController;
@@ -241,6 +238,7 @@
 - (void)ibEncodeCachedGeometryOntoPasteboard:(id)arg1;
 - (void)enumerateCachedGeometryKeyPaths:(CDUnknownBlockType)arg1;
 - (void)populateCachedGeometryInfos:(id)arg1;
+- (void)ibSwizzled_whenResizingUseEngineFrame:(char *)arg1 useAutoresizingMask:(char *)arg2;
 - (id)cachedGeometryInfos;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
@@ -296,13 +294,14 @@
 - (void)resizeIfNeededInDocument:(id)arg1 withContext:(id)arg2;
 - (BOOL)shouldResizeWithParent:(id)arg1 hasOwningViewController:(BOOL)arg2;
 - (struct CGSize)baseContentSizeForLayoutPolicy:(id)arg1 orientation:(int)arg2;
+- (id)ibEditorClass;
 - (BOOL)ibCanBeSourceOfForceTouchSegue;
 - (BOOL)ibSupportsNilBackgroundColor;
 - (void)refreshSimulatedMetricsContentSize;
 - (void)applyMetrics:(id)arg1 toKeyPath:(id)arg2;
 - (void)setFrameSizeForApplyingSimulatedMetrics:(struct CGSize)arg1;
+- (void)ibPerformInspectorInstigatedSimulatedMetricsMutationBlock:(CDUnknownBlockType)arg1;
 @property(copy) IBUISimulatedSizeMetrics *ibInspectedSimulatedDestinationMetrics;
-@property(copy) IBUISimulatedOrientationMetrics *ibInspectedSimulatedOrientationMetrics;
 @property(copy) IBUISimulatedBarMetrics *ibInspectedSimulatedBottomBarMetrics;
 @property(copy) IBUISimulatedBarMetrics *ibInspectedSimulatedTopBarMetrics;
 @property(copy) IBUISimulatedStatusBarMetrics *ibInspectedSimulatedStatusBarMetrics;
@@ -314,7 +313,7 @@
 - (BOOL)ibShouldReportDuplicateRestorationIdentifierWarningWithContext:(id)arg1;
 - (BOOL)ibHasDuplicateRestorationIdentifierWithContext:(id)arg1;
 - (id)ibRestorationIdentifierCountsForDescendantViews;
-- (BOOL)isBaselineAtIndex:(long long)arg1 inMotionWithKnob:(CDUnion_aed8a530)arg2;
+- (BOOL)isBaselineAtIndex:(long long)arg1 inMotionWithKnob:(CDUnion_42e99c75)arg2;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (BOOL)ibWantsAddContentToExistCollectionForOriginatedOutletCollection:(id)arg1;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
@@ -330,6 +329,7 @@
 - (struct CGSize)ibMinimumSize;
 - (struct CGSize)ibMinimumSizeForTargetRuntime:(id)arg1;
 - (struct CGSize)ibEffectiveSimulatedMetricsContentSize;
+- (id)ibEffectiveConfigurationFromConfiguration:(id)arg1;
 - (BOOL)ibEffectiveHasSimulatedMetricsAffectingFixedSize;
 - (struct CGSize)ibPreferredSize;
 - (BOOL)ibOverridesFrameworkMetricsForPreferredSize;
@@ -353,6 +353,8 @@
 - (id)ibSimulatedMetricsContainerForEditorView;
 - (BOOL)ibWantsBoundsIndicatorDuringTracking;
 - (id)ibDesignableContentView;
+- (struct CGRect)ibSquashedXcode7InitialFrameFromAddingToNonAnyAny;
+- (BOOL)ibHasSquashedAnyAnyFrame:(struct CGRect)arg1;
 - (id)ibTextKeyPathForDefaultInlineStringEditing;
 - (id)ibFieldEditorConfigurationForTextKeyPath:(id)arg1;
 - (id)viewControllerOrProxyObjectViewControllerConnectedToReceiverViaViewOutlet;
@@ -363,10 +365,10 @@
 - (void)setIbInspectedUseExplicitLayoutMargins:(BOOL)arg1;
 - (BOOL)ibInspectedUseExplicitLayoutMargins;
 - (BOOL)ibInspectedAutoresizesSubviewsForDevice;
+- (double)ibEffectiveFrameScaleFactor;
 - (void)setIbInspectedFrame:(struct CGRect)arg1;
-- (struct CGRect)ibInspectedFrame;
 - (void)ibResumeAutoResizingSubviews:(id)arg1;
-- (id)ibStopAutoResizingSubviewsWhileGrowingFromKnob:(CDUnion_aed8a530)arg1 inDocument:(id)arg2;
+- (id)ibStopAutoResizingSubviewsWhileGrowingFromKnob:(CDUnion_42e99c75)arg1 inDocument:(id)arg2;
 - (BOOL)ibRequiresLayoutInfoInCocoaTouchToolDuringCompilationOfDocument:(id)arg1;
 - (void)ibPopulateCompilationMarshallingContext:(id)arg1 forDocument:(id)arg2;
 - (void)ibSizeToFitViewController:(id)arg1 context:(id)arg2;
@@ -381,7 +383,6 @@
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (id)ibLocalSearchableNumericAttributeKeyPaths;
 - (CDUnknownBlockType)ibWillDelayInvalidationOfImageAndLayoutUntilFinishingUndoAndReturnDidFinishBlock;
-- (void)ibApplyUndoValue:(id)arg1 toKeyPath:(id)arg2;
 - (void)ibVerifySimulatedMetricsWithDocument:(id)arg1;
 - (BOOL)ibHasSimulatedMetricsAffectingFixedSize;
 - (BOOL)ibHasSimulatedMetrics;
@@ -391,6 +392,8 @@
 - (BOOL)ibSupportsInferredMetrics;
 - (BOOL)ibPresentsSimulatedMetrics;
 - (BOOL)ibPresentsSimulatedMetricsInDocument:(id)arg1;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

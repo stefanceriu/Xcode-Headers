@@ -6,17 +6,18 @@
 
 #import "CAGradientLayer.h"
 
-#import "IDENavigationHUDDisposableLayer.h"
+#import "DVTInvalidation.h"
 #import "IDENavigationHUDSelectableLayer.h"
 #import "IDENavigationHUDWindowLevelNavigableLayer.h"
 
-@class IDENavigationHUDController, IDENavigationHUDSelection, NSString;
+@class DVTStackBacktrace, IDENavigationHUDController, IDENavigationHUDSelection, NSString;
 
-@interface IDENavigationHUDAbstractWorkspaceWindowLayer : CAGradientLayer <IDENavigationHUDSelectableLayer, IDENavigationHUDWindowLevelNavigableLayer, IDENavigationHUDDisposableLayer>
+@interface IDENavigationHUDAbstractWorkspaceWindowLayer : CAGradientLayer <IDENavigationHUDSelectableLayer, IDENavigationHUDWindowLevelNavigableLayer, DVTInvalidation>
 {
     IDENavigationHUDController *_navigationHUDController;
 }
 
++ (void)initialize;
 @property(readonly) IDENavigationHUDController *navigationHUDController; // @synthesize navigationHUDController=_navigationHUDController;
 - (void).cxx_destruct;
 - (id)selectionForNavigatingRightOneTab;
@@ -27,14 +28,17 @@
 - (id)selectionForNavigatingUp;
 @property(readonly) BOOL representativeSelectionIsFinalForSingleMouseUp;
 @property(readonly) IDENavigationHUDSelection *representativeSelection;
-- (void)dispose;
+- (void)primitiveInvalidate;
 - (id)initWithNavigationHUDController:(id)arg1;
 
 // Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

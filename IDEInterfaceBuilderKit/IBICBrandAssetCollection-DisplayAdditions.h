@@ -8,6 +8,5 @@
 
 @interface IBICBrandAssetCollection (DisplayAdditions)
 - (void)populateChildrenForInclusionInMediaLibrary:(id)arg1;
-- (id)typeIcon;
 @end
 

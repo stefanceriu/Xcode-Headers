@@ -8,13 +8,13 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, IDEWorkspace, NSString;
+@class DVTNotificationToken, DVTStackBacktrace, IDEWorkspace, NSString;
 
 @interface IDERefactoring : NSObject <DVTInvalidation>
 {
     IDEWorkspace *_workspace;
-    id _willIndexNotificationObservingToken;
-    id _didIndexNotificationObservingToken;
+    DVTNotificationToken *_willIndexNotificationObservingToken;
+    DVTNotificationToken *_didIndexNotificationObservingToken;
     BOOL _refactoringAllowed;
     id _domainObject;
 }

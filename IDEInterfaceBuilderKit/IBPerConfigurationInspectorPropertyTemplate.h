@@ -9,18 +9,22 @@
 #import "DVTInvalidation.h"
 #import "IBImageButtonDelegate.h"
 #import "NSMenuDelegate.h"
+#import "NSPopoverDelegate.h"
 
-@class DVTStackBacktrace, IBIdiom, IBInspectorViewController, NSArray, NSSet, NSString, NSXMLElement;
+@class DVTStackBacktrace, IBAddPerConfigurationOverrideController, IBIdiom, IBInspectorViewController, NSArray, NSPopover, NSSet, NSString, NSXMLElement;
 
-@interface IBPerConfigurationInspectorPropertyTemplate : NSObject <NSMenuDelegate, DVTInvalidation, IBImageButtonDelegate>
+@interface IBPerConfigurationInspectorPropertyTemplate : NSObject <NSPopoverDelegate, NSMenuDelegate, DVTInvalidation, IBImageButtonDelegate>
 {
     IBInspectorViewController *_inspector;
     NSSet *_currentConfigurations;
     NSString *_inspectedProperty;
+    NSString *_accessibilityTitle;
     BOOL _showConfigurationOptions;
     NSArray *_currentSlivers;
     NSXMLElement *_originalProperty;
     NSXMLElement *_originalSliver;
+    NSPopover *_popover;
+    IBAddPerConfigurationOverrideController *_popoverContentController;
     NSString *_identifier;
     IBIdiom *_idiom;
 }
@@ -30,13 +34,20 @@
 @property(retain) IBIdiom *idiom; // @synthesize idiom=_idiom;
 @property(retain) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-- (void)turnOnValueForConfiguration:(id)arg1;
+- (void)addVariationForConfigurationFromPopOver:(id)arg1;
+- (void)addVariationForConfigurationFromMenuItem:(id)arg1;
+- (void)turnOnConfiguration:(id)arg1;
 - (BOOL)doesObjectHaveInspectedValue:(id)arg1 inConfiguration:(id)arg2;
 - (void)removeValueForConfiguration:(id)arg1;
+- (void)popoverDidClose:(id)arg1;
+- (void)showAddPopover:(id)arg1;
+- (void)disassociateWithPopover;
 - (id)attributedSliverTitleForConfiguration:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (id)accessoryViewForConfiguration:(id)arg1;
+- (id)accessibilityTitleForConfiguration:(id)arg1;
 - (void)imageButton:(id)arg1 willShowMenu:(id)arg2;
+- (void)imageButton:(id)arg1 willHandleMouseDown:(id)arg2;
 - (id)headerMenuItemForConfigurationMenu;
 - (BOOL)replaceCurrentElementsIfNeededForObjects:(id)arg1;
 - (id)configurationsCoveredByObjects:(id)arg1;

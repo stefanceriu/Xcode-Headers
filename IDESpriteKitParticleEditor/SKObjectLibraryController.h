@@ -16,9 +16,11 @@
     NSArray *_currentStaticObjectsForSKLibrary;
     NSArray *_currentDynamicObjectsForSKLibrary;
     NSMutableArray *_currentUserObjectsForSKLibrary;
+    NSArray *_pasteboardTypes;
 }
 
 + (id)activeController;
+@property(readonly, nonatomic) NSArray *pasteboardTypes; // @synthesize pasteboardTypes=_pasteboardTypes;
 - (void).cxx_destruct;
 - (id)editorViewControllerForAsset:(id)arg1;
 - (BOOL)canRemoveAsset:(id)arg1;
@@ -31,11 +33,15 @@
 - (id)readableAssetPasteboardTypes;
 @property(readonly, nonatomic) BOOL allowObjectLibrary;
 - (void)libraryDidLoad;
+- (void)refreshAssetsFromProvider:(id)arg1;
 - (void)refreshAssetsFromDocument:(id)arg1;
 - (void)activeEditorDocumentDidChange:(id)arg1;
 - (void)clearCurrentCustomGroupIdentifier;
 - (void)populateObjectLibrary;
-- (void)updateObjectsLibraryArrayForSKDocument:(id)arg1 forceUpdate:(BOOL)arg2;
+- (void)updateObjectsLibraryArrayFromProvider:(id)arg1 forceUpdate:(BOOL)arg2;
+@property(readonly, nonatomic) NSMutableArray *staticObjectLibraryAssets;
+@property(readonly, nonatomic) NSString *objectsLibraryCustomGroupIdentifier;
+@property(readonly, nonatomic) NSString *objectsLibraryTitle;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 @end

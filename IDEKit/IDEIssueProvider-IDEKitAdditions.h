@@ -7,6 +7,7 @@
 #import "IDEIssueProvider.h"
 
 @interface IDEIssueProvider (IDEKitAdditions)
+- (BOOL)shouldAutoExpandIssueInNavigator:(id)arg1;
 - (id)imageForIssue:(id)arg1 ofSize:(unsigned long long)arg2;
 - (id)imageForIssueTypeIdentifier:(id)arg1 ofSize:(long long)arg2;
 @end

@@ -8,10 +8,10 @@
 
 @interface DVTTableCellViewOneLine : DVTTableCellView
 {
-    int _truncationStyle;
+    long long _truncationStyle;
 }
 
-@property(nonatomic) int truncationStyle; // @synthesize truncationStyle=_truncationStyle;
+@property(nonatomic) long long truncationStyle; // @synthesize truncationStyle=_truncationStyle;
 - (void)_updateSubtitleCompressionBasedOnTruncationStyle;
 - (void)setSubtitle:(id)arg1;
 - (void)awakeFromNib;

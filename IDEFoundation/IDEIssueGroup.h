@@ -10,9 +10,6 @@
 
 @interface IDEIssueGroup : NSObject
 {
-    IDEIssueProvider *_issueProvider;
-    IDEContainer *_container;
-    id <IDEBlueprint> _blueprint;
     NSMutableArray *_issueFileGroups;
     NSMapTable *_issueFileGroupsIndex;
     NSMutableArray *_issuesWithNoFile;
@@ -23,16 +20,22 @@
     unsigned long long _warningCount;
     unsigned long long _noticeCount;
     unsigned long long _analyzerResultCount;
-    int _issueType;
+    unsigned long long _runtimeCount;
+    IDEIssueProvider *_issueProvider;
+    IDEContainer *_container;
+    id <IDEBlueprint> _blueprint;
+    id <IDEIssueRuntimeGroupingObject> _runtimeGroupingObject;
+    unsigned long long _issueType;
 }
 
-@property(readonly) int issueType; // @synthesize issueType=_issueType;
-@property(readonly) NSArray *issueTypeGroups; // @synthesize issueTypeGroups=_issueTypeGroups;
-@property(readonly) NSArray *issuesWithNoFile; // @synthesize issuesWithNoFile=_issuesWithNoFile;
-@property(readonly) NSArray *issueFileGroups; // @synthesize issueFileGroups=_issueFileGroups;
+@property unsigned long long issueType; // @synthesize issueType=_issueType;
+@property(readonly) id <IDEIssueRuntimeGroupingObject> runtimeGroupingObject; // @synthesize runtimeGroupingObject=_runtimeGroupingObject;
 @property(readonly) id <IDEBlueprint> blueprint; // @synthesize blueprint=_blueprint;
 @property(readonly) IDEContainer *container; // @synthesize container=_container;
 @property(readonly) IDEIssueProvider *issueProvider; // @synthesize issueProvider=_issueProvider;
+@property(readonly, copy) NSArray *issueTypeGroups; // @synthesize issueTypeGroups=_issueTypeGroups;
+@property(readonly, copy) NSArray *issuesWithNoFile; // @synthesize issuesWithNoFile=_issuesWithNoFile;
+@property(readonly, copy) NSArray *issueFileGroups; // @synthesize issueFileGroups=_issueFileGroups;
 - (void).cxx_destruct;
 @property(readonly) NSSet *_allIssues;
 - (void)_removeIssues:(id)arg1;
@@ -40,7 +43,7 @@
 - (void)_addNoFileIssues:(id)arg1;
 - (void)_updateIssueType;
 @property(readonly) unsigned long long issueCount;
-- (id)_initWithIssueProvider:(id)arg1 container:(id)arg2 blueprint:(id)arg3;
+- (id)_initWithIssueProvider:(id)arg1 container:(id)arg2 blueprint:(id)arg3 runtimeGroupingObject:(id)arg4;
 - (id)init;
 
 @end

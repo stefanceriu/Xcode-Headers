@@ -9,7 +9,7 @@
 #import "IBDocumentArchiving.h"
 #import "NSCoding.h"
 
-@class IBUIRefreshControl, IBUITableViewLayoutInfo, IBUITableViewSection, IBUIView, NSArray, NSColor, NSDictionary, NSFont, NSMutableDictionary, NSShadow, NSString, NSValue, NSView;
+@class IBUIRefreshControl, IBUITableViewLayoutInfo, IBUITableViewSection, IBUIView, NSArray, NSColor, NSDictionary, NSFont, NSMutableDictionary, NSShadow, NSString, NSValue;
 
 @interface IBUITableView : IBUIScrollView <IBDocumentArchiving, NSCoding>
 {
@@ -24,7 +24,6 @@
     BOOL _allowsSelectionDuringEditing;
     BOOL _allowsMultipleSelection;
     BOOL _allowsMultipleSelectionDuringEditing;
-    BOOL _showsSelectionImmediatelyOnTouchBegin;
     double _rowHeight;
     double _sectionHeaderHeight;
     double _sectionFooterHeight;
@@ -34,10 +33,8 @@
     NSArray *_sections;
     NSMutableDictionary *_compiledPrototypeNIBs;
     IBUITableViewLayoutInfo *_cachedSectionLayoutInfo;
-    NSView *_wrapperView;
     NSShadow *_shadowBoxShadow;
     IBUITableViewSection *_prototypeSection;
-    CDStruct_c519178c _wrapperViewInset;
     int _separatorStyle;
     NSValue *_separatorInset;
 }
@@ -67,7 +64,6 @@
 @property(nonatomic) double sectionFooterHeight; // @synthesize sectionFooterHeight=_sectionFooterHeight;
 @property(nonatomic) double sectionHeaderHeight; // @synthesize sectionHeaderHeight=_sectionHeaderHeight;
 @property(nonatomic) double rowHeight; // @synthesize rowHeight=_rowHeight;
-@property BOOL showsSelectionImmediatelyOnTouchBegin; // @synthesize showsSelectionImmediatelyOnTouchBegin=_showsSelectionImmediatelyOnTouchBegin;
 @property BOOL allowsMultipleSelectionDuringEditing; // @synthesize allowsMultipleSelectionDuringEditing=_allowsMultipleSelectionDuringEditing;
 @property BOOL allowsMultipleSelection; // @synthesize allowsMultipleSelection=_allowsMultipleSelection;
 @property BOOL allowsSelectionDuringEditing; // @synthesize allowsSelectionDuringEditing=_allowsSelectionDuringEditing;
@@ -122,7 +118,6 @@
 - (void)section:(id)arg1 didChangeCells:(id)arg2 to:(id)arg3;
 @property(copy) NSArray *prototypes;
 - (id)sectionsIncludingPrototypes;
-- (void)configureFullSceneUpdateRequest:(id)arg1;
 - (BOOL)isGroupStyle;
 - (void)populateGeometryMarshallingContext:(id)arg1;
 - (void)populateCachedGeometryInfos:(id)arg1;
@@ -132,7 +127,6 @@
 - (void)archiveSeparatorStyle:(id)arg1;
 - (void)decodeBackgroundColor:(id)arg1;
 - (void)encodeBackgroundColor:(id)arg1;
-- (id)backgroundColorToPersist;
 - (void)decodeSeparatorInset:(id)arg1;
 - (void)encodeSeparatorInset:(id)arg1;
 - (void)decodeSeparatorStyle:(id)arg1;
@@ -196,8 +190,16 @@
 - (void)setIbInspectedNumberOfPrototypes:(long long)arg1;
 - (long long)ibInspectedNumberOfPrototypes;
 - (void)copyAndPaste:(id)arg1;
+- (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
+- (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
+- (id)ibLocalPerConfigurationAttributeKeyPaths;
 - (void)ibDidExtractObjects:(id)arg1 fromPasteboard:(id)arg2 intoDocument:(id)arg3 context:(id)arg4;
 - (void)ibDidAddToDocument:(id)arg1 phase:(unsigned long long)arg2;
+- (id)ibEditorClass;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

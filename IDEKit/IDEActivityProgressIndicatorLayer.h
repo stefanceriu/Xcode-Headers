@@ -6,11 +6,9 @@
 
 #import "CALayer.h"
 
-#import "DVTInvalidation.h"
+@class CABasicAnimation, DVTDelayedInvocation, IDESpinnerLayer, NSImage;
 
-@class CABasicAnimation, DVTDelayedInvocation, DVTStackBacktrace, IDESpinnerLayer, NSImage, NSString;
-
-@interface IDEActivityProgressIndicatorLayer : CALayer <DVTInvalidation>
+@interface IDEActivityProgressIndicatorLayer : CALayer
 {
     CABasicAnimation *_indeterminateDiagonalsAnimation;
     unsigned long long _progressStyle;
@@ -70,19 +68,10 @@
 - (id)_determinateProgressIndicatorColor;
 @property(getter=isIndeterminate) BOOL indeterminate;
 - (double)effectivePercentage;
-- (void)primitiveInvalidate;
+- (void)cancelProgressUpdater;
 - (id)init;
 - (void)updateBoundValue;
 - (id)dvtExtraBindings;
-
-// Remaining properties
-@property(retain) DVTStackBacktrace *creationBacktrace;
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly) Class superclass;
-@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

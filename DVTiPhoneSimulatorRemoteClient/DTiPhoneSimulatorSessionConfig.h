@@ -30,6 +30,7 @@
     long long _externalDisplayType;
     NSString *_simulatedDeviceInfoName;
     NSString *_localizedClientName;
+    DTiPhoneSimulatorSystemRoot *_simulatedSystemRoot;
     NSNumber *_simulatedDeviceFamily;
     NSNumber *_simulatedDisplayHeight;
     NSNumber *_simulatedDisplayScale;
@@ -39,6 +40,7 @@
 @property(copy) NSNumber *simulatedDisplayScale; // @synthesize simulatedDisplayScale=_simulatedDisplayScale;
 @property(copy) NSNumber *simulatedDisplayHeight; // @synthesize simulatedDisplayHeight=_simulatedDisplayHeight;
 @property(copy) NSNumber *simulatedDeviceFamily; // @synthesize simulatedDeviceFamily=_simulatedDeviceFamily;
+@property(retain, nonatomic) DTiPhoneSimulatorSystemRoot *simulatedSystemRoot; // @synthesize simulatedSystemRoot=_simulatedSystemRoot;
 @property(copy) NSString *localizedClientName; // @synthesize localizedClientName=_localizedClientName;
 @property(copy, nonatomic) NSString *simulatedDeviceInfoName; // @synthesize simulatedDeviceInfoName=_simulatedDeviceInfoName;
 @property long long externalDisplayType; // @synthesize externalDisplayType=_externalDisplayType;
@@ -58,7 +60,6 @@
 @property(retain, nonatomic) SimRuntime *runtime; // @synthesize runtime=_runtime;
 - (void).cxx_destruct;
 - (id)description;
-@property(retain, nonatomic) DTiPhoneSimulatorSystemRoot *simulatedSystemRoot;
 @property(readonly, nonatomic) DVTSimulatorApplication *simulatorApplication;
 @property(retain, nonatomic) SimDevice *device; // @synthesize device=_device;
 @property(readonly, copy) NSDictionary *toolSpawnOptions;

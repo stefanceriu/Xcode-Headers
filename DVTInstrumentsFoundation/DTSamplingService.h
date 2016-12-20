@@ -12,6 +12,7 @@
 
 @interface DTSamplingService : DTXService <DTSamplingServiceAuthorizedAPI>
 {
+    struct sampling_context_t *_context;
     BOOL _doCollectData;
     unsigned long long _samplingRate;
     unsigned long long _outputRate;

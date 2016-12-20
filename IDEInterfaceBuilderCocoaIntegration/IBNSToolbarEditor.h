@@ -17,10 +17,12 @@
 
 + (void)resetCursorRectsForObject:(id)arg1 inFrameController:(id)arg2;
 + (Class)ibDropTargetResolverClass;
-- (void)drawSelectionHighlightForObject:(id)arg1;
+- (BOOL)objectShouldShowSelectionHighlight:(id)arg1;
 - (void)noteDescendant:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
 - (id)hitTestEditorView:(struct CGPoint)arg1;
 - (BOOL)interceptEvent:(id)arg1;
+- (BOOL)handleDragForChild:(id)arg1 forDragEvent:(id)arg2;
+- (void)handleDragForItemView:(id)arg1 withDragEvent:(id)arg2;
 - (void)syncItemsWithDocument;
 - (id)draggedImageState:(id)arg1;
 - (id)initialDragImageState:(id)arg1;

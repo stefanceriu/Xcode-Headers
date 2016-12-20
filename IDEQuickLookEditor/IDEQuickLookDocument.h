@@ -22,7 +22,6 @@
 - (BOOL)readFromFileWrapper:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (BOOL)readFromURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (BOOL)canSave;
-- (id)objectSpecifier;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

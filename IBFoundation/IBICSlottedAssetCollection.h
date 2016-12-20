@@ -6,22 +6,29 @@
 
 #import <IBFoundation/IBICAbstractCatalogItem.h>
 
-@class IBICManifestArchivist, NSDictionary;
+#import "IBICAssetWithSlottedChildren.h"
 
-@interface IBICSlottedAssetCollection : IBICAbstractCatalogItem
+@class IBICManifestArchivist, NSDictionary, NSString;
+
+@interface IBICSlottedAssetCollection : IBICAbstractCatalogItem <IBICAssetWithSlottedChildren>
 {
     IBICManifestArchivist *_manifestArchivist;
     NSDictionary *_childrenIdentifiersToSlots;
     NSDictionary *_childrenIdentifiersToConflictStates;
 }
 
-+ (id)keysThatImpactIdentifier;
++ (BOOL)fileNameIsIdentifier;
 + (Class)requiredChildrenClass;
++ (Class)slotClass;
 @property(copy, nonatomic) NSDictionary *childrenIdentifiersToConflictStates; // @synthesize childrenIdentifiersToConflictStates=_childrenIdentifiersToConflictStates;
 @property(copy, nonatomic) NSDictionary *childrenIdentifiersToSlots; // @synthesize childrenIdentifiersToSlots=_childrenIdentifiersToSlots;
 - (void).cxx_destruct;
+- (BOOL)isEqualForUnitTests:(id)arg1;
+- (void)populateMutatorsToAddRequiredChildCounterparts:(id)arg1;
+- (BOOL)isChildMinimallyFitForCompiling:(id)arg1;
+- (id)conflictFreeChildForSlot:(id)arg1;
 - (void)populateIssues:(id)arg1 context:(id)arg2;
-- (Class)expectedClassForSlot:(id)arg1;
+- (Class)expectedChildClassForSlot:(id)arg1;
 - (void)populateIssues:(id)arg1 forUnconflictedChild:(id)arg2 inSlot:(id)arg3 context:(id)arg4;
 - (Class)manifestArchivist:(id)arg1 childClassForChildEntry:(id)arg2 results:(id)arg3;
 - (long long)manifestArchivist:(id)arg1 orderChildrenForSlotConflictResolutionByComparing:(id)arg2 to:(id)arg3;
@@ -34,7 +41,6 @@
 - (void)enumerateDescriptionAttributeComponents:(CDUnknownBlockType)arg1;
 - (id)manifestContent;
 - (id)manifestFileName;
-- (id)identifier;
 - (void)setConflictState:(unsigned long long)arg1 forChild:(id)arg2;
 - (unsigned long long)conflictStateForChild:(id)arg1;
 - (void)setConflictState:(unsigned long long)arg1 forChildWithIdentifier:(id)arg2;
@@ -48,6 +54,13 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
+- (id)initializeManifestArchivist;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

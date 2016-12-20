@@ -8,11 +8,10 @@
 
 #import "DVTReplacementViewDelegate.h"
 #import "DVTStatefulObject.h"
-#import "IDENavigatorOutlineViewLoadingDelegate.h"
 
-@class DVTBorderedView, DVTChooserView, DVTExtension, DVTObservingToken, DVTReplacementView, DVTStateToken, IDENavigatorFilterControlBar, IDEWorkspace, NSArrayController, NSMutableDictionary, NSString;
+@class DVTBorderedView, DVTChooserView, DVTExtension, DVTObservingToken, DVTReplacementView, DVTStateToken, IDENavigator, IDENavigatorFilterControlBar, NSArrayController, NSMutableDictionary, NSString;
 
-@interface IDENavigatorArea : IDEViewController <IDENavigatorOutlineViewLoadingDelegate, DVTReplacementViewDelegate, DVTStatefulObject>
+@interface IDENavigatorArea : IDEViewController <DVTReplacementViewDelegate, DVTStatefulObject>
 {
     DVTChooserView *_chooserView;
     DVTObservingToken *_workspaceActivityObservingToken;
@@ -20,7 +19,6 @@
     DVTObservingToken *_currentNavigatorObservingToken;
     id <DVTCancellable> _updateFocusedEditorSelectedItemToken;
     NSMutableDictionary *_perNavigatorCache;
-    BOOL _didLoadInitialNavigator;
     BOOL _isInvalidating;
     IDENavigatorFilterControlBar *_filterControlBar;
     DVTReplacementView *_replacementView;
@@ -47,14 +45,12 @@
 - (id)_currentExtensionIdentifier;
 - (BOOL)delegateFirstResponder;
 @property(readonly) NSString *currentNavigatorIdentifier;
-- (id)currentNavigator;
+@property(readonly) IDENavigator *currentNavigator;
 - (void)_clearPerNavigatorCache;
 - (void)showNavigatorWithIdentifier:(id)arg1;
 - (void)viewWillUninstall;
 - (void)_handleCurrentNavigatorChanged;
 - (void)viewDidInstall;
-- (void)outlineViewDidDrawInitialContent:(id)arg1;
-- (void)outlineViewWillDrawInitialContent:(id)arg1;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
 - (void)replacementView:(id)arg1 willInstallViewController:(id)arg2;
 - (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
@@ -68,7 +64,6 @@
 - (void)_rebuildNavigatorOptions;
 - (id)_playgroundExcludedNavigators;
 - (id)supportedContext;
-@property(readonly) IDEWorkspace *workspace;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

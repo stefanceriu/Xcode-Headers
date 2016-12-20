@@ -7,15 +7,16 @@
 #import "NSObject.h"
 
 #import "DBGViewDescriber.h"
+#import "NSKeyedUnarchiverDelegate.h"
 
-@class DBGDebugSession, DVTStackBacktrace, NSDictionary, NSMutableDictionary, NSString, NSURL;
+@class DVTStackBacktrace, IDEDebugSession, NSDictionary, NSMutableDictionary, NSString, NSURL;
 
-@interface DBGAbstractViewDescriber : NSObject <DBGViewDescriber>
+@interface DBGAbstractViewDescriber : NSObject <NSKeyedUnarchiverDelegate, DBGViewDescriber>
 {
     NSMutableDictionary *_classNameToPropertyEntryArrayMap;
     NSMutableDictionary *_layerTreesByIdentifier;
     BOOL _persistLayerTree;
-    DBGDebugSession *_debugSession;
+    IDEDebugSession *_debugSession;
     NSDictionary *_inferiorClassMap;
     NSURL *_url;
 }
@@ -23,16 +24,18 @@
 + (void)initialize;
 + (BOOL)shouldInstantiateInLaunchSession:(id)arg1;
 + (id)viewDebuggingDylibPathForLaunchSession:(id)arg1;
-@property(retain) NSURL *url; // @synthesize url=_url;
 @property BOOL persistLayerTree; // @synthesize persistLayerTree=_persistLayerTree;
+@property(retain) NSURL *url; // @synthesize url=_url;
 @property(retain) NSDictionary *inferiorClassMap; // @synthesize inferiorClassMap=_inferiorClassMap;
-@property(retain) DBGDebugSession *debugSession; // @synthesize debugSession=_debugSession;
+@property(retain) IDEDebugSession *debugSession; // @synthesize debugSession=_debugSession;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
 - (id)_createPropertyEntriesForClassName:(id)arg1;
 - (id)_propertyEntriesForClassName:(id)arg1;
+- (id)structuresForInspectableExpressions;
 - (id)propertyEntriesForViewObject:(id)arg1;
+- (Class)unarchiver:(id)arg1 cannotDecodeObjectOfClassName:(id)arg2 originalClasses:(id)arg3;
 - (id)unarchiveLayerForView:(id)arg1 fromData:(id)arg2;
 - (void)writeCAARToDiskIfNecessary:(id)arg1;
 - (id)layerForView:(id)arg1;
@@ -62,7 +65,7 @@
 - (id)_primaryWindowFromWindows:(id)arg1 keyWindowPointer:(id)arg2;
 - (id)_platformFamilyIdentifier;
 - (void)writePlistDataIfNecessary:(id)arg1;
-- (void)handleFetchedViewInfo:(id)arg1 resultHandler:(CDUnknownBlockType)arg2;
+- (void)handleFetchedViewInfo:(id)arg1 fetchError:(id)arg2 resultHandler:(CDUnknownBlockType)arg3;
 - (void)fetchViewInfo:(CDUnknownBlockType)arg1 resultHandler:(CDUnknownBlockType)arg2;
 - (id)viewWindowObjectsFromDictionary:(id)arg1;
 - (id)initWithDebugSession:(id)arg1;

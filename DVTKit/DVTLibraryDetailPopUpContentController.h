@@ -45,12 +45,10 @@
 - (void)synchronizeCurrentDetailControllerWithCurrentEditorController:(id)arg1;
 - (void)makeSureCurrentEditorControllerHasFirstResponder;
 - (void)scrollTopOfAssetDetailViewIntoView;
-- (void)assetDetailView:(id)arg1 beginDraggingWithMouseDownEvent:(id)arg2 andMouseDraggedEvent:(id)arg3;
 - (void)refreshDetailController:(id)arg1 withAsset:(id)arg2;
 - (void)sizeDetailController:(id)arg1 toFitSuggestedSize:(struct CGSize)arg2 forAsset:(id)arg3;
 - (void)assetDetailView:(id)arg1 didInstallDetailController:(id)arg2;
 - (void)assetDetailView:(id)arg1 sizeViewController:(id)arg2 toFitSuggestedSize:(struct CGSize)arg3;
-- (void)assetDetailView:(id)arg1 wasDoubleClickedInHeader:(id)arg2;
 - (void)refreshDetailView;
 @property(readonly) DVTLibraryDetailController *currentDetailController;
 - (void)assetDetailView:(id)arg1 userDidSelectTab:(id)arg2;

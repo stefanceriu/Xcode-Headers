@@ -6,25 +6,34 @@
 
 #import <IBFoundation/IBICSlot.h>
 
-@class IBICGraphicsFeatureSet, IBICIdiom, IBICMemoryClass;
+@class IBICColorSpace, IBICGraphicsFeatureSet, IBICIdiom, IBICMemoryClass;
 
 @interface IBICDataSetRepSlot : IBICSlot
 {
     IBICIdiom *_idiom;
     IBICMemoryClass *_memory;
     IBICGraphicsFeatureSet *_graphicsFeatureSet;
+    IBICColorSpace *_colorSpace;
 }
 
-+ (id)slotWithIdiom:(id)arg1 memory:(id)arg2 graphicsFeatureSet:(id)arg3;
 + (id)orderedComponentClasses;
++ (id)slotWithIdiom:(id)arg1 memory:(id)arg2 graphicsFeatureSet:(id)arg3;
++ (id)slotWithIdiom:(id)arg1;
++ (id)genesisSlotsForSlots:(id)arg1;
++ (Class)assetRepClass;
++ (Class)assetSetClass;
++ (id)slotFilterWithIdiomFilter:(id)arg1 memoryFilter:(id)arg2 graphicsFeatureSetFilter:(id)arg3 colorSpaceFilter:(id)arg4;
++ (id)slotFilterWithNilMatching:(long long)arg1 idioms:(id)arg2 memoryClasses:(id)arg3 graphicsFeatureSets:(id)arg4 colorSpaces:(id)arg5;
++ (id)slotFilterUnionedWithStandardUniversalCounterpart:(BOOL)arg1 idioms:(id)arg2 memoryClasses:(id)arg3 graphicsFeatureSets:(id)arg4 colorSpaces:(id)arg5;
+@property(readonly) IBICColorSpace *colorSpace; // @synthesize colorSpace=_colorSpace;
 @property(readonly) IBICGraphicsFeatureSet *graphicsFeatureSet; // @synthesize graphicsFeatureSet=_graphicsFeatureSet;
 @property(readonly) IBICMemoryClass *memory; // @synthesize memory=_memory;
 @property(readonly) IBICIdiom *idiom; // @synthesize idiom=_idiom;
 - (void).cxx_destruct;
 - (id)outputFileNameGivenBaseName:(id)arg1 andExtension:(id)arg2;
-- (id)detailAreaKey;
+- (id)detailAreaPath;
 - (long long)compareDisplayOrder:(id)arg1;
-- (id)shortDisplayName;
+- (id)shortDisplayNameConsideringCounterparts:(id)arg1;
 - (void)captureComponents;
 
 @end

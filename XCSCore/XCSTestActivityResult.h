@@ -17,13 +17,17 @@
     NSDate *_finish;
     NSString *_screenshotFilePath;
     NSString *_snapshotFilePath;
+    NSString *_diagnosticReportFilePath;
     XCSIntegrationAsset *_screenshot;
     XCSIntegrationAsset *_snapshot;
+    XCSIntegrationAsset *_diagnosticReport;
 }
 
+@property(retain, nonatomic) XCSIntegrationAsset *diagnosticReport; // @synthesize diagnosticReport=_diagnosticReport;
 @property(retain, nonatomic) XCSIntegrationAsset *snapshot; // @synthesize snapshot=_snapshot;
 @property(retain, nonatomic) XCSIntegrationAsset *screenshot; // @synthesize screenshot=_screenshot;
 @property(readonly, nonatomic) NSArray *subactivityResults; // @synthesize subactivityResults=_subactivityResults;
+@property(readonly, nonatomic) NSString *diagnosticReportFilePath; // @synthesize diagnosticReportFilePath=_diagnosticReportFilePath;
 @property(readonly, nonatomic) NSString *snapshotFilePath; // @synthesize snapshotFilePath=_snapshotFilePath;
 @property(readonly, nonatomic) NSString *screenshotFilePath; // @synthesize screenshotFilePath=_screenshotFilePath;
 @property(readonly, nonatomic) NSDate *finish; // @synthesize finish=_finish;
@@ -33,8 +37,8 @@
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 - (void)uploadAttachmentsToIntegration:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (id)activityResultWithTitle:(id)arg1 UUID:(id)arg2 start:(id)arg3 finish:(id)arg4 screenshotFilePath:(id)arg5 snapshotFilePath:(id)arg6 validationErrors:(id *)arg7;
-- (id)initWithTitle:(id)arg1 UUID:(id)arg2 start:(id)arg3 finish:(id)arg4 screenshotFilePath:(id)arg5 snapshotFilePath:(id)arg6 validationErrors:(id *)arg7;
+- (id)activityResultWithTitle:(id)arg1 UUID:(id)arg2 start:(id)arg3 finish:(id)arg4 screenshotFilePath:(id)arg5 snapshotFilePath:(id)arg6 diagnosticReportFilePath:(id)arg7 validationErrors:(id *)arg8;
+- (id)initWithTitle:(id)arg1 UUID:(id)arg2 start:(id)arg3 finish:(id)arg4 screenshotFilePath:(id)arg5 snapshotFilePath:(id)arg6 diagnosticReportFilePath:(id)arg7 validationErrors:(id *)arg8;
 
 @end
 

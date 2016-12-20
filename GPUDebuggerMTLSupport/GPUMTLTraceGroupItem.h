@@ -12,8 +12,9 @@ __attribute__((visibility("hidden")))
 @interface GPUMTLTraceGroupItem : GPUTraceGroupItem
 {
     NSString *_label;
-    unsigned int _objectType;
+    unsigned int _objectReceiverType;
     unsigned long long _objectID;
+    id <DYPEnumUtils> _enumUtils;
 }
 
 - (void).cxx_destruct;

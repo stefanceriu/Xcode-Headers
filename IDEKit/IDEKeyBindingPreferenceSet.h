@@ -39,6 +39,7 @@
 + (id)titleForManagePreferenceSets;
 + (id)titleForNewPreferenceSetFromTemplate;
 + (id)preferenceSetsListHeader;
++ (id)upgradablePreferenceSetsFileExtensions;
 + (id)preferenceSetsFileExtension;
 + (id)defaultKeyForExcludedBuiltInPreferenceSets;
 + (id)defaultKeyForCurrentPreferenceSet;

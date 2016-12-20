@@ -6,10 +6,9 @@
 
 #import "NSObject.h"
 
-@class NSString, NSURL;
+@class NSURL;
 
 @protocol IDEURLHandler <NSObject>
-+ (BOOL)shouldRegisterURLHandlerForScheme:(NSString *)arg1;
 
 @optional
 + (void)handleURL:(NSURL *)arg1 completionHandler:(void (^)(BOOL, NSError *))arg2;

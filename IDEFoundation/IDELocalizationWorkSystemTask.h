@@ -6,20 +6,16 @@
 
 #import <IDEFoundation/IDELocalizationWorkContext.h>
 
-@class DVTFilePath, NSArray, NSNumber;
+@class NSNumber;
 
 @interface IDELocalizationWorkSystemTask : IDELocalizationWorkContext
 {
-    NSNumber *_exitStatus;
-    DVTFilePath *_launchPath;
-    NSArray *_arguments;
 }
 
 + (id)contextWithParent:(id)arg1 launchPath:(id)arg2 arguments:(id)arg3;
-@property(retain) NSArray *arguments; // @synthesize arguments=_arguments;
-@property(retain) DVTFilePath *launchPath; // @synthesize launchPath=_launchPath;
-@property(retain) NSNumber *exitStatus; // @synthesize exitStatus=_exitStatus;
-- (void).cxx_destruct;
+@property(readonly) NSNumber *exitStatus;
+- (id)arguments;
+- (id)launchPath;
 
 @end
 

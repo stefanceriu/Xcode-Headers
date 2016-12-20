@@ -12,6 +12,11 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
+struct CAShapeLayer {
+    Class _field1;
+    struct _CALayerIvars _field2;
+};
+
 struct CGPoint {
     double x;
     double y;
@@ -90,6 +95,12 @@ struct Token {
     long long _field6;
 };
 
+struct _CALayerIvars {
+    int _field1;
+    unsigned int _field2;
+    void *_field3;
+};
+
 struct _IBEdgeInsets {
     double _field1;
     double _field2;
@@ -159,6 +170,16 @@ typedef struct {
 } CDStruct_92d5623e;
 
 typedef struct {
+    char _field1;
+    char _field2;
+} CDStruct_7ddbbeae;
+
+typedef struct {
+    double value;
+    unsigned long long unit;
+} CDStruct_e454a20b;
+
+typedef struct {
     double minX;
     double minY;
     double maxX;
@@ -166,19 +187,14 @@ typedef struct {
 } CDStruct_c519178c;
 
 typedef struct {
-    double _field1;
-    double _field2;
-} CDStruct_c3b9c2ee;
+    double x;
+    double y;
+} CDStruct_34734122;
 
 typedef struct {
     long long _field1;
     id _field2;
 } CDStruct_6db0658e;
-
-typedef struct {
-    long long x;
-    long long y;
-} CDStruct_f261e59c;
 
 typedef struct {
     struct {
@@ -200,18 +216,33 @@ typedef struct {
 } CDStruct_f6143a38;
 
 typedef struct {
+    struct CGRect _field1;
+    struct CGRect _field2;
+    struct CGRect _field3;
+    struct CGRect _field4;
+    struct CGSize _field5;
+    struct CGSize _field6;
+} CDStruct_b9fac97c;
+
+typedef struct {
     struct {
         struct CGRect _field1;
         char _field2;
     } _field1[3][3];
 } CDStruct_b58c4854;
 
+// Ambiguous groups
+typedef struct {
+    long long _field1;
+    long long _field2;
+} CDStruct_912cb5d2;
+
 #pragma mark Typedef'd Unions
 
 typedef union {
     double _field1[2];
-    CDStruct_c3b9c2ee _field2;
-} CDUnion_af3ad131;
+    CDStruct_34734122 _field2;
+} CDUnion_4a127b1b;
 
 typedef union {
     double _field1[4];
@@ -230,7 +261,10 @@ typedef union {
 } CDUnion_b8f7e27c;
 
 typedef union {
-    CDStruct_f261e59c ;
+    struct {
+        long long x;
+        long long y;
+    } ;
     long long components[2];
 } CDUnion_31865a80;
 

@@ -28,14 +28,14 @@
 - (void)showInFinder:(id)arg1;
 - (id)documentEditor;
 - (id)actionContext;
-- (id)generateMenuItemsIncludeImportItems:(BOOL)arg1 includeRemoveItems:(BOOL)arg2 includeShowItems:(BOOL)arg3 includeQuickLook:(BOOL)arg4;
+- (id)generateMenuItemsForCatalogClass:(Class)arg1 includeImportItems:(BOOL)arg2 includeRemoveItems:(BOOL)arg3 includeShowItems:(BOOL)arg4 includeQuickLook:(BOOL)arg5;
 - (id)generateRemoveItems;
 - (id)generateImageSetSlotSelectionItemsWithIdent:(long long)arg1;
 - (id)menuItemsForRepSuggestionSets:(id)arg1 indent:(long long)arg2;
 - (id)generateShowItemsIncludingQuickLook:(BOOL)arg1;
 - (id)generateImportItems;
-- (id)generateInsertAssetsItemsForMenu:(id)arg1;
-- (id)generateInsertAssetsItems;
+- (id)generateInsertAssetsItemsForCatalogClass:(Class)arg1 inMenu:(id)arg2;
+- (id)generateInsertAssetsItemsForCatalogClass:(Class)arg1;
 - (id)initWithDelegate:(id)arg1;
 
 // Remaining properties

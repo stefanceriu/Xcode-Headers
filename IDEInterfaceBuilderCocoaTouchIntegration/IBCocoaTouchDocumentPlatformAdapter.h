@@ -6,30 +6,24 @@
 
 #import "IBDocumentPlatformAdapter.h"
 
-@class NSColor;
+@class IBPreXcode8ColorCorrector, NSColor;
 
 @interface IBCocoaTouchDocumentPlatformAdapter : IBDocumentPlatformAdapter
 {
+    IBPreXcode8ColorCorrector *_colorCorrector;
     NSColor *_storyboardGlobalTintColor;
 }
 
 @property(copy, nonatomic) NSColor *storyboardGlobalTintColor; // @synthesize storyboardGlobalTintColor=_storyboardGlobalTintColor;
 - (void).cxx_destruct;
-- (void)asynchronouslyPreflightShowingDocumentUIForScaleFactor:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)asynchronouslyPreflightShowingDocumentUIForScaleFactor:(double)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (BOOL)preflightUnarchivingDocumentReturningError:(id *)arg1;
 - (id)customFontFilenamesPlistKey;
 - (void)repopulateCustomFontFilenames:(id)arg1;
 - (id)allCustomFontFilenames;
-- (BOOL)validateBaseSimulatedMetricsMenuItem:(id)arg1;
-- (void)changeMemberConfiguration:(id)arg1;
-- (void)changeBaseSimulatedMetrics:(id)arg1;
-- (id)menuItemForScreenMetrics:(id)arg1 orientation:(int)arg2 title:(id)arg3;
-- (id)menuForSelectingBaseScreenAndOrientationMetrics;
 - (struct CGSize)storyboardCanvasPositioningScaleForSimulatedMetricsContainer:(id)arg1;
 - (void)documentDidDisableMemberConfigurations;
-- (void)documentDidSwitchToEditedMemberConfiguration:(id)arg1;
-- (void)documentDidEnableMemberConfigurations:(id)arg1;
-- (void)getScreenMetrics:(id *)arg1 andOrientationMetrics:(id *)arg2 forConfiguration:(id)arg3;
+- (void)updateDocumentSimulatedMetricsWithDeviceConfiguration:(id)arg1;
 - (id)implicitIntegratorBundleDependencyIdentifier;
 - (void)populateEmptyXIBDocumentWithInitialPlaceholders;
 - (void)installTopLevelPlaceholderWithLabel:(id)arg1 className:(id)arg2 placeholderID:(id)arg3 andObjectID:(id)arg4;
@@ -43,13 +37,18 @@
 - (void)addActionFromSender:(id)arg1 toReceiver:(id)arg2 withSelector:(id)arg3;
 - (id)intrinsicPackageContentForNewlyGeneratedPackageWithFileType:(id)arg1;
 - (id)archiveTypeForFileType:(id)arg1;
-- (struct CGSize)canvasViewFramePaddingSizeForOverlayScrollers;
+- (void)documentWillBeginRegisteringUndoableChanges;
+- (void)decodePlatformSpecificDocumentProperties:(id)arg1;
+- (void)encodePlatformSpecificDocumentProperties:(id)arg1;
+- (void)archivePlatformSpecificDocumentProperties:(id)arg1;
+- (void)unarchivePlatformSpecificDocumentProperties:(id)arg1;
 - (Class)externalReferencePlaceholderClass;
 - (id)storyboardExitPlaceholder;
 - (id)storyboardFirstResponderPlaceholder;
 - (id)connectToSourceTeardownMethodCounterpartsForContext:(id)arg1;
 - (BOOL)connectToSourceIsTargettingOSVersionWithRequiredViewUnloading;
 - (id)targetRuntime;
+- (id)initWithDocument:(id)arg1;
 
 @end
 

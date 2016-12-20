@@ -29,7 +29,7 @@
 @property(retain, nonatomic) id launchSessionObservationToken2; // @synthesize launchSessionObservationToken2=_launchSessionObservationToken2;
 @property(retain, nonatomic) id launchSessionObservationToken; // @synthesize launchSessionObservationToken=_launchSessionObservationToken;
 @property(retain, nonatomic) IDELaunchSession *launchSession; // @synthesize launchSession=_launchSession;
-@property(retain) NSString *identifier; // @synthesize identifier=_identifier;
+@property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(retain, nonatomic) IDEDataMatrix *metricsOverTime; // @synthesize metricsOverTime=_metricsOverTime;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;

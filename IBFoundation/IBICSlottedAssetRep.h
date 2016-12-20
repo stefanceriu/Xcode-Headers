@@ -16,6 +16,7 @@
 }
 
 + (id)keysThatImpactDisplayOrder;
++ (BOOL)fileNameIsIdentifier;
 + (id)keysThatImpactIdentifier;
 + (id)classNameComponents;
 + (id)catalogItemFileExtension;
@@ -44,6 +45,7 @@
 - (id)fileWrapperRepresentationWithOptions:(unsigned long long)arg1;
 - (id)parent;
 - (void)enumerateDescriptionAttributeComponents:(CDUnknownBlockType)arg1;
+- (BOOL)recursivelyContainsAssetData;
 - (BOOL)isBrokenFileReference;
 - (id)identifier;
 - (id)structuredIdentifier;
@@ -52,6 +54,8 @@
 - (id)effectiveModificationDateForCARCompiler;
 - (BOOL)isMinimallyFitForCompiling;
 - (BOOL)requiresKnownFileTypeToBeMinimallyFitForCompiling;
+- (id)copyUsingSlot:(id)arg1 andFileName:(id)arg2;
+- (id)copyUsingSlot:(id)arg1;
 - (id)shortDisplayName;
 - (id)displayName;
 - (id)nameForIssues;

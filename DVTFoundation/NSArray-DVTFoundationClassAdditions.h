@@ -7,6 +7,8 @@
 #import "NSArray.h"
 
 @interface NSArray (DVTFoundationClassAdditions)
++ (id)dvt_arrayWithObjectIfNonNil:(id)arg1;
+- (id)dvt_flatMap:(CDUnknownBlockType)arg1;
 - (id)dvt_componentsJoinedByString:(id)arg1 finalComponentJoinString:(id)arg2;
 - (id)dvt_arrayByRemovingDuplicatesFromBack;
 - (id)dvt_arrayByRemovingDuplicates;
@@ -14,6 +16,7 @@
 - (BOOL)dvt_hasPrefix:(id)arg1;
 - (id)dvt_stringByConcatenatingAsCommandLineArguments;
 - (id)dvt_arrayByAddingObjects:(id)arg1;
+- (id)dvt_arrayByAddingObjectIfNonNil:(id)arg1;
 - (id)dvt_subarrayFromIndex:(long long)arg1;
 - (id)dvt_subarrayAfterIndex:(long long)arg1;
 - (id)dvt_arrayByReversingObjects;

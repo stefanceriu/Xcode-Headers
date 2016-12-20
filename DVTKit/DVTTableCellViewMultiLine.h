@@ -10,6 +10,8 @@
 
 @interface DVTTableCellViewMultiLine : DVTTableCellView
 {
+    double _calculatedMaxTitleHeight;
+    double _calculatedMaxSubtitleHeight;
     unsigned long long _maxNumberOfTitleLines;
     unsigned long long _maxNumberOfSubtitleLines;
     NSLayoutConstraint *_titleTextFieldHeightConstraint;
@@ -22,10 +24,20 @@
 @property(nonatomic) unsigned long long maxNumberOfSubtitleLines; // @synthesize maxNumberOfSubtitleLines=_maxNumberOfSubtitleLines;
 @property(nonatomic) unsigned long long maxNumberOfTitleLines; // @synthesize maxNumberOfTitleLines=_maxNumberOfTitleLines;
 - (void).cxx_destruct;
-- (void)setUsesErrorStyleTextColor:(BOOL)arg1;
+- (void)setTitleStyle:(int)arg1;
 - (void)setFilterMatchString:(id)arg1;
 - (void)setTitleFilterMatchRange:(struct _NSRange)arg1;
 - (struct _NSRange)titleFilterMatchRange;
+- (id)subtitleTextFieldFont;
+- (double)subtitleTextFieldLineHeight;
+- (void)_updateSubtitleTextFieldHeightConstraint;
+- (void)setSubtitle:(id)arg1;
+- (id)titleTextFieldFont;
+- (double)titleTextFieldLineHeight;
+- (double)subtitleTextFieldHeight;
+- (double)titleTextFieldHeight;
+- (void)_updateTitleTextFieldHeightConstraint;
+- (void)setTitle:(id)arg1;
 @property struct _NSRange titleRangeToEnsureIsVisible;
 @property BOOL titleShouldReplaceNewlinesWithVisibleCharacter;
 - (void)awakeFromNib;

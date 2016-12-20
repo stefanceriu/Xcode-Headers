@@ -6,18 +6,12 @@
 
 #import "NSView.h"
 
-@class NSColor;
-
 @interface _DVTTileViewRubberband : NSView
 {
-    NSColor *_frameColor;
-    NSColor *_fillColor;
 }
 
-- (void).cxx_destruct;
-- (void)drawRect:(struct CGRect)arg1;
-- (BOOL)isOpaque;
-- (id)initWithFrameColor:(id)arg1 fillColor:(id)arg2;
+- (void)updateLayer;
+- (BOOL)wantsUpdateLayer;
 
 @end
 

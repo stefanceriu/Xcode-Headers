@@ -6,10 +6,15 @@
 
 #import "NSView.h"
 
+@class IDETemplateOptionsAssistant;
+
 @interface IDETemplateOptionsView : NSView
 {
+    IDETemplateOptionsAssistant *_optionsAssistant;
 }
 
+@property(retain, nonatomic) IDETemplateOptionsAssistant *optionsAssistant; // @synthesize optionsAssistant=_optionsAssistant;
+- (void).cxx_destruct;
 - (BOOL)isFlipped;
 
 @end

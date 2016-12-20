@@ -7,19 +7,23 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation.h"
+#import "DYPOutlineItem.h"
 #import "IDEDebugNavigableModel.h"
 #import "NSCopying.h"
 
-@class DVTStackBacktrace, GPUDebuggerController, GPUGlobalStateManager, GPUTraceModelFactory, IDELaunchSession, NSMutableArray, NSString, NSURL;
+@class DVTStackBacktrace, GPUDebuggerController, GPUGlobalStateManager, GPUTraceModelFactory, IDELaunchSession, NSMutableArray, NSMutableSet, NSSet, NSString, NSURL;
 
-@interface GPUTraceOutlineItem : NSObject <IDEDebugNavigableModel, DVTInvalidation, NSCopying>
+@interface GPUTraceOutlineItem : NSObject <IDEDebugNavigableModel, DVTInvalidation, NSCopying, DYPOutlineItem>
 {
+    GPUTraceOutlineItem *_parent;
+    GPUDebuggerController *_controller;
+    NSMutableSet *_filterItems;
+    NSString *_UUID;
     NSString *_label;
     NSMutableArray *_children;
     shared_ptr_2d3f6817 _decodedFunction;
-    GPUTraceOutlineItem *_parent;
-    GPUDebuggerController *_controller;
-    NSString *_UUID;
+    NSURL *_cachedLocationURL;
+    NSString *_identifier;
 }
 
 + (void)initialize;
@@ -28,30 +32,35 @@
 @property(nonatomic) __weak GPUTraceOutlineItem *parent; // @synthesize parent=_parent;
 @property(nonatomic) __weak GPUDebuggerController *controller; // @synthesize controller=_controller;
 @property(retain, nonatomic) NSString *label; // @synthesize label=_label;
+@property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(retain, nonatomic) NSMutableArray *children; // @synthesize children=_children;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)releaseRealizedResources;
 - (id)childAtIndex:(unsigned long long)arg1;
 - (unsigned long long)numberOfChildren;
-@property(readonly, nonatomic) struct Function *decodedFunction; // @dynamic decodedFunction;
+@property(readonly, nonatomic) struct Function *decodedFunction;
 - (void)setDecodedFunctionPointer:(shared_ptr_2d3f6817)arg1;
 @property(readonly) IDELaunchSession *launchSession;
 @property(readonly, copy) NSString *associatedProcessUUID;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)_createUUID;
-- (id)_createUUIDLabelForItem:(id)arg1;
 - (id)UUIDSection;
 @property(readonly, copy) NSString *description;
-@property(readonly, nonatomic) GPUTraceModelFactory *modelFactory; // @dynamic modelFactory;
+@property(readonly, nonatomic) NSSet *filterItems; // @synthesize filterItems=_filterItems;
+- (void)generateFilterItems;
+@property(readonly, nonatomic) GPUTraceModelFactory *modelFactory;
+@property(readonly, nonatomic) NSURL *locationURL;
+- (id)_locationURLScheme;
+- (id)_locationURLPath;
 @property(readonly, nonatomic) NSURL *captureArchiveURL;
-@property(readonly, nonatomic) GPUGlobalStateManager *globalStateManager; // @dynamic globalStateManager;
+@property(readonly, nonatomic) GPUGlobalStateManager *globalStateManager;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)primitiveInvalidate;
 - (void)sortChildren;
 - (void)invalidateChildren;
-- (id)initWithController:(id)arg1 parent:(id)arg2 label:(id)arg3;
+- (id)initWithController:(id)arg1 parent:(id)arg2 identifier:(id)arg3;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

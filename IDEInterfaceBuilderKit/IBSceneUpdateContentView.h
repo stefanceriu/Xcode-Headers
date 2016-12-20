@@ -15,6 +15,7 @@
 {
     long long _asyncUpdateSceneIdentifier;
     IBCancellationToken *_renderingDelegateToken;
+    double _currentScaleFactor;
     id <IBSceneUpdateContentViewDelegate> _delegate;
     IBSceneImageData *_sceneImageData;
 }
@@ -26,12 +27,15 @@
 - (void)configureSceneUpdateRequest:(id)arg1;
 - (void)configureIncrementalSceneUpdateRequest:(id)arg1;
 - (void)configureFullSceneUpdateRequest:(id)arg1;
-- (void)drawRect:(struct CGRect)arg1;
-- (void)viewDidChangeBackingProperties;
+- (void)updateLayer;
+- (BOOL)wantsUpdateLayer;
+- (void)_teardownRenderingDelegate;
 - (Class)renderingProcessingRequestClass;
 - (id)targetRuntime;
+- (id)makeBackingLayer;
 - (void)invalidateOnMainQueueForReason:(CDUnknownBlockType)arg1;
 - (void)dealloc;
+- (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

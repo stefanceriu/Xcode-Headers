@@ -6,15 +6,17 @@
 
 #import "NSViewController.h"
 
-@class IDEShellCommandBreakpointAction;
+@class IDEShellCommandBreakpointAction, NSTextField;
 
 @interface IDEShellCommandBreakpointActionEditor : NSViewController
 {
     IDEShellCommandBreakpointAction *_action;
+    NSTextField *_argsTextField;
 }
 
 - (void).cxx_destruct;
 - (void)chooseCommand:(id)arg1;
+- (void)awakeFromNib;
 - (id)initWithAction:(id)arg1;
 
 @end

@@ -8,10 +8,11 @@
 
 #import "IBDocumentArbitrationResponder.h"
 #import "IBImageButtonDelegate.h"
+#import "NSAccessibilityGroup.h"
 
 @class IBEditorCanvasFrameContentView, IBEditorCanvasFrameController, IBImageButton, IBSceneUpdateContentView, NSEvent, NSGestureRecognizer, NSSet, NSString, NSTrackingArea, NSValue, NSView;
 
-@interface IBEditorCanvasFrame : IBCanvasFrame <IBImageButtonDelegate, IBDocumentArbitrationResponder>
+@interface IBEditorCanvasFrame : IBCanvasFrame <IBImageButtonDelegate, NSAccessibilityGroup, IBDocumentArbitrationResponder>
 {
     IBEditorCanvasFrameContentView *contentView;
     NSTrackingArea *mouseMovedArea;
@@ -90,10 +91,11 @@
 - (BOOL)isVerticallyResizableForCanvasAlignment;
 - (BOOL)isHorizontallyResizableForCanvasAlignment;
 - (CDStruct_c519178c)canvasAlignmentInset;
-- (BOOL)accessibilityIsAttributeSettable:(id)arg1;
-- (id)accessibilityAttributeNames;
-- (id)accessibilityAttributeValue:(id)arg1;
-- (BOOL)accessibilityIsIgnored;
+- (id)accessibilityRoleDescription;
+- (id)accessibilityLabel;
+- (id)accessibilityHitTest:(struct CGPoint)arg1;
+- (id)accessibilityChildren;
+- (BOOL)isAccessibilityElement;
 - (id)hitTest:(struct CGPoint)arg1;
 - (struct CGRect)boundsForHitTesting;
 - (BOOL)isEligibleForBandSelection;
@@ -103,11 +105,12 @@
 - (struct CGRect)knobPerimeter;
 - (void)layoutTopDown;
 - (struct CGRect)closeButtonRect;
+- (struct CGRect)bezelRect;
 - (struct CGRect)contentRect;
 - (BOOL)isFlipped;
 - (struct CGRect)frameToFitDocumentViewPinningKnob:(CDUnion_31865a80)arg1;
 - (struct CGSize)sizeForDocumentSize:(struct CGSize)arg1;
-- (CDStruct_c519178c)dockingInset;
+- (CDStruct_c519178c)bezelInset;
 - (CDStruct_c519178c)contentInset;
 - (void)flagsChanged:(id)arg1;
 - (void)mouseMoved:(id)arg1;
@@ -125,8 +128,10 @@
 - (void)close;
 - (void)willRemoveFromCanvas;
 - (void)didAddToCanvas;
+- (BOOL)suportsIndependentPositioning;
 - (BOOL)shouldDragFrameWithMouseDown:(id)arg1;
 - (void)closeFrameButtonClicked:(id)arg1;
+- (id)deviceBezel;
 @property(retain, nonatomic) NSView *documentView;
 - (void)invokeWithPinnedKnob:(CDUnion_31865a80)arg1 block:(CDUnknownBlockType)arg2;
 - (void)setAnchor:(struct CGPoint)arg1;

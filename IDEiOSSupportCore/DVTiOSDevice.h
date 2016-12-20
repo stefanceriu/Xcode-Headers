@@ -26,6 +26,7 @@
     BOOL _activityIsUserInitiated;
     BOOL _deviceIsBusy;
     BOOL _ignored;
+    BOOL _removedProfDataFiles;
     _Bool _deviceReady;
     _Bool _inHasConnected;
     BOOL _deviceInstallIsCancelled;
@@ -88,6 +89,7 @@
 @property(copy) NSError *developerPrepError; // @synthesize developerPrepError=_developerPrepError;
 @property _Bool inHasConnected; // @synthesize inHasConnected=_inHasConnected;
 @property _Bool deviceReady; // @synthesize deviceReady=_deviceReady;
+@property BOOL removedProfDataFiles; // @synthesize removedProfDataFiles=_removedProfDataFiles;
 @property(copy) NSString *activityTitle; // @synthesize activityTitle=_activityTitle;
 - (void)setIgnored:(BOOL)arg1;
 - (void).cxx_destruct;
@@ -96,9 +98,11 @@
 - (id)primaryInstrumentsServer;
 - (id)platform;
 - (BOOL)runningSupportedBuildForUITesting;
+- (id)crashReportsDirectoryPaths;
+- (id)crashReportsDirectoryPath;
 - (id)makeTransportForTestManagerService:(id *)arg1;
 - (id)testHostPathForBuildableProduct:(id)arg1 buildParameters:(id)arg2 outError:(id *)arg3;
-- (void)modifyTestingEnvironmentVariables:(id)arg1 host:(id)arg2 testBundlePath:(id)arg3;
+- (id)connectionServicesFrameworkPath;
 - (id)deviceForRunningUnitTestsWithHost:(id)arg1 error:(id *)arg2;
 - (_Bool)isPasscodeLocked;
 - (id)processorDescription;
@@ -198,6 +202,7 @@
 - (void)cancelDeviceInstall;
 - (id)initWithDeviceLocation:(id)arg1 extension:(id)arg2;
 - (void)_respondToDeviceProgressNotification:(id)arg1;
+- (id)activeProxiedDevice;
 @property(retain) DTDKRemoteDeviceToken *token; // @synthesize token=_token;
 - (void)stopDebuggingXPCServices:(id)arg1 forPairedDevice:(BOOL)arg2;
 - (void)xpcServiceObserved:(id)arg1 withProcessIdentifier:(int)arg2 requestedByProcess:(int)arg3 options:(id)arg4;
@@ -205,12 +210,15 @@
 - (void)debugXPCServices:(id)arg1 onPairedDevice:(BOOL)arg2 completionSemaphore:(id)arg3;
 - (void)_setXPCAttachChannel:(id)arg1 ForPairedDevice:(BOOL)arg2;
 - (id)_xpcChannelForPairedDevice:(BOOL)arg1;
+- (BOOL)supportsDYLDPrintToStdErr;
+- (unsigned long long)supportedLaunchOptionsForProxiedDevice;
 - (unsigned long long)supportedLaunchOptions;
 - (void)didFinishRunning;
 - (id)startDebugServerServiceForLaunchSession:(id)arg1;
 - (id)deviceArbitrationForcedCheckIn;
 - (id)deviceArbitrationCheckIn;
 - (BOOL)installApplicationWithLaunchSession:(id)arg1 error:(id *)arg2;
+- (void)_resolveApplicationIcon:(id)arg1;
 - (void)presentAlertForNoRoutingCoverageFileAtPath:(id)arg1;
 - (BOOL)downloadApplicationDataToPath:(id)arg1 forInstalledApplicationWithBundleIdentifier:(id)arg2 error:(id *)arg3;
 - (BOOL)uploadApplicationDataWithPath:(id)arg1 forInstalledApplicationWithBundleIdentifier:(id)arg2 error:(id *)arg3;
@@ -221,8 +229,9 @@
 - (BOOL)installForNFSDeveloperModeWithSession:(id)arg1 error:(id *)arg2;
 - (id)deviceInstallPathForLaunchSession:(id)arg1 andBuildProductsPath:(id)arg2;
 - (BOOL)installForMobileInstallWithSession:(id)arg1 error:(id *)arg2;
+- (id)_updateTestingEnvironmentVariables:(id)arg1 forApplication:(id)arg2 deviceConfigPath:(id)arg3 destinationTestBundlePath:(id)arg4 error:(id *)arg5;
+- (BOOL)_updateTestConfiguration:(id)arg1 atPath:(id)arg2 destinationTestBundlePath:(id)arg3 error:(id *)arg4;
 - (BOOL)installForTestBundleWithSession:(id)arg1 error:(id *)arg2;
-- (id)updatedTestConfiguration:(id)arg1 inDerivedDataLocation:(id)arg2 forRemoteDirectory:(id)arg3 error:(id *)arg4;
 - (id)applicationForSession:(id)arg1;
 - (id)deviceBuiltProductsDir;
 - (id)deviceMountedProductsDir;
@@ -252,7 +261,7 @@
 - (id)_rsyncEnvironment;
 - (id)enableKeyBasedSSH;
 - (id)_additionalRsyncParameters;
-- (id)_copyPath:(id)arg1 toPath:(id)arg2 sync:(_Bool)arg3 onDevice:(_Bool)arg4;
+- (id)_copyPath:(id)arg1 toPath:(id)arg2 sync:(_Bool)arg3 onDevice:(_Bool)arg4 withStatusObserver:(CDUnknownBlockType)arg5;
 - (void)_closeConnection;
 - (id)analysisOperationWithAnalysisToolService:(id)arg1 location:(id)arg2 workingDirectory:(id)arg3 workspaceFilePath:(id)arg4 projectFilePath:(id)arg5 outError:(id *)arg6;
 - (CDUnknownBlockType)_analysisOperationWithAnalysisToolService:(id)arg1 location:(id)arg2 workingDirectory:(id)arg3 workspaceFilePath:(id)arg4 projectFilePath:(id)arg5 outError:(id *)arg6;

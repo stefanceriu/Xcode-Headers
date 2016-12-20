@@ -12,6 +12,7 @@
 - (BOOL)assetCapsule:(IBICAssetCapsule *)arg1 interceptMouseUp:(NSEvent *)arg2;
 - (BOOL)assetCapsule:(IBICAssetCapsule *)arg1 interceptMouseDragged:(NSEvent *)arg2 withOriginalMouseDown:(NSEvent *)arg3;
 - (BOOL)assetCapsule:(IBICAssetCapsule *)arg1 interceptMouseDown:(NSEvent *)arg2;
+- (BOOL)assetCapsuleTitleIsEditable:(IBICAssetCapsule *)arg1;
 - (void)assetCapsule:(IBICAssetCapsule *)arg1 userDidEditTitle:(NSString *)arg2;
 - (NSString *)assetCapsuleTitleForEditing:(IBICAssetCapsule *)arg1 initialSelection:(struct _NSRange *)arg2;
 - (void)assetCapsule:(IBICAssetCapsule *)arg1 performDelete:(id)arg2;

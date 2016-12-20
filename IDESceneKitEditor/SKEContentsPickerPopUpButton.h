@@ -8,12 +8,13 @@
 
 #import "DVTWindowActivationStateObserver.h"
 #import "IDEInspectorPropertyEnablable.h"
+#import "NSAccessibilityButton.h"
 #import "NSDraggingSource.h"
 #import "NSMenuDelegate.h"
 
-@class DVTObservingToken, NSDictionary, NSMenu, NSString;
+@class DVTObservingToken, NSArray, NSDictionary, NSMenu, NSString;
 
-@interface SKEContentsPickerPopUpButton : NSView <DVTWindowActivationStateObserver, NSMenuDelegate, IDEInspectorPropertyEnablable, NSDraggingSource>
+@interface SKEContentsPickerPopUpButton : NSView <DVTWindowActivationStateObserver, NSMenuDelegate, IDEInspectorPropertyEnablable, NSDraggingSource, NSAccessibilityButton>
 {
     NSMenu *_contentsMenu;
     struct CGRect _popUpButtonArrowsRect;
@@ -28,6 +29,8 @@
     id _contentsValueBindingController;
     NSString *_contentsValueBindingKeyPath;
     DVTObservingToken *_contentsValueBindingObservingToken;
+    NSString *_customTitle;
+    BOOL _grayscale;
     BOOL _acceptsNil;
     BOOL _acceptsNonFilePathImages;
     BOOL _enabled;
@@ -39,12 +42,17 @@
     SEL _action;
     id <SKEContentsPickerPopUpButtonDataSource> _delegate;
     unsigned long long _controlSize;
+    NSArray *_customEnumeration;
 }
 
++ (id)keyPathsForValuesAffectingContentsIsImage;
++ (id)keyPathsForValuesAffectingContentsIsColor;
 + (id)imageStateDictionaryForControlSize:(unsigned long long)arg1;
 + (BOOL)contentsIsNonFilePathImage:(id)arg1;
 + (BOOL)contentsIsImage:(id)arg1;
++ (BOOL)contentsIsNumber:(id)arg1;
 + (BOOL)contentsIsColor:(id)arg1;
+@property(retain, nonatomic) NSArray *customEnumeration; // @synthesize customEnumeration=_customEnumeration;
 @property(nonatomic, getter=isHighlighted) BOOL highlighted; // @synthesize highlighted=_highlighted;
 @property(nonatomic, getter=isActive) BOOL active; // @synthesize active=_active;
 @property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
@@ -57,6 +65,8 @@
 @property BOOL acceptsNonFilePathImages; // @synthesize acceptsNonFilePathImages=_acceptsNonFilePathImages;
 @property BOOL acceptsNil; // @synthesize acceptsNil=_acceptsNil;
 - (void).cxx_destruct;
+- (BOOL)accessibilityPerformPress;
+- (id)accessibilityLabel;
 @property(retain) id objectValue;
 - (void)mouseDown:(id)arg1;
 - (BOOL)isMouseEventInColorWellRect:(id)arg1;
@@ -125,9 +135,12 @@
 - (BOOL)contentsIsAllowedNil;
 - (id)contentsAsNSImage;
 - (BOOL)contentsIsNonFilePathImage;
-- (BOOL)contentsIsImage;
-- (BOOL)contentsIsColor;
+@property(readonly, nonatomic) BOOL contentsIsImage;
+- (BOOL)contentsIsNumber;
+@property(readonly, nonatomic) BOOL contentsIsColor;
 - (BOOL)canAcceptContents:(id)arg1;
+@property BOOL grayscale;
+@property(readonly, nonatomic) BOOL showColor;
 @property BOOL acceptsColors;
 @property BOOL acceptsImages;
 - (void)encodeWithCoder:(id)arg1;

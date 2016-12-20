@@ -6,18 +6,31 @@
 
 #import "DVTViewController.h"
 
-@class NSProgressIndicator, NSTextField;
+@class NSError, NSProgressIndicator, NSTextField;
 
 @interface XCSUIProgressLoadingViewController : DVTViewController
 {
+    double _minProgressIndicatorValue;
+    double _maxProgressIndicatorValue;
+    double _progressIndicatorValue;
+    NSError *_error;
     NSProgressIndicator *_progressIndicator;
     NSTextField *_loadingLabel;
 }
 
 @property __weak NSTextField *loadingLabel; // @synthesize loadingLabel=_loadingLabel;
 @property __weak NSProgressIndicator *progressIndicator; // @synthesize progressIndicator=_progressIndicator;
+@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
+@property(nonatomic) double progressIndicatorValue; // @synthesize progressIndicatorValue=_progressIndicatorValue;
+@property(nonatomic) double maxProgressIndicatorValue; // @synthesize maxProgressIndicatorValue=_maxProgressIndicatorValue;
+@property(nonatomic) double minProgressIndicatorValue; // @synthesize minProgressIndicatorValue=_minProgressIndicatorValue;
 - (void).cxx_destruct;
+- (void)_displayProgressIndicator;
+- (void)_hideProgressIndicator;
+- (void)_setProgressIndicatorToDeterminate;
+- (void)viewWillUninstall;
 - (void)viewDidInstall;
+- (void)loadView;
 
 @end
 

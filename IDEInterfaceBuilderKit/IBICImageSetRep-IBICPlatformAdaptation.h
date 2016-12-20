@@ -7,6 +7,6 @@
 #import "IBICImageSetRep.h"
 
 @interface IBICImageSetRep (IBICPlatformAdaptation)
-- (BOOL)validateSlottedAssetRepForWriting:(id)arg1 withOptions:(id)arg2 returningSuccessIssue:(id *)arg3 andFailureIssue:(id *)arg4;
+- (BOOL)validateSlottedAssetRepForWriting:(id)arg1 withOptions:(id)arg2 andFailureIssue:(id *)arg3;
 @end
 

@@ -24,7 +24,6 @@
 + (void)registerMarshallingRecordHandlers;
 + (int)ibLibraryInclusionStatusForTargetRuntime:(id)arg1 andDocumentClass:(Class)arg2 assetIdentifier:(id)arg3;
 + (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
-+ (BOOL)ibIsAutoLayoutSelfManagedContainer;
 + (id)keyPathsForValuesAffectingIbIsStackingWithVerticalAxisWithEmptyConfigurationOnly;
 + (id)keyPathsForValuesAffectingIbIsStackingWithHorizontalAxisWithEmptyConfigurationOnly;
 + (id)keyPathsForValuesAffectingIbIsStackingWithVerticalAxisWithMultipleConfigurations;
@@ -62,15 +61,16 @@
 - (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
 - (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
 - (id)ibLocalPerConfigurationAttributeKeyPaths;
+- (BOOL)ibHasSquashedAnyAnyFrame:(struct CGRect)arg1;
 - (id)ibWidgetType;
 - (id)ibTypeNameForDefaultLabel;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (long long)ibManagedContainerBehavior;
 - (BOOL)ibIsUserSizable;
 - (BOOL)ibIsChildViewUserSizable:(id)arg1;
 - (BOOL)ibAllowResizeBasedOnIntrinsicContentSizeForChild:(id)arg1;
 - (BOOL)ibIsChildViewUserMovable:(id)arg1;
 - (BOOL)ibShouldEnsureChildViewHasTranslatesAutoresizingMaskIntoConstraintsInCanvas:(id)arg1;
-- (BOOL)ibPropogatedTranslatesAutoresizingConstraintsOfChildView:(id)arg1 forCopyOfChildView:(id)arg2;
 - (void)ibMapCopyOfReceiver:(id)arg1 intoLayoutEngine:(id)arg2;
 - (struct CGRect)ibDropInsetLayoutBoundsForSubviews;
 - (Class)ibEditorClass;
@@ -79,6 +79,7 @@
 - (BOOL)ibIsStackingWithVerticalAxisWithMultipleConfigurations;
 - (BOOL)ibIsStackingWithHorizontalAxisWithMultipleConfigurations;
 - (BOOL)ibHasNonEmptyAxisConfiguration;
+- (id)ibLocalAttributeKeyPaths;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;

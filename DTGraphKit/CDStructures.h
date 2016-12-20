@@ -53,14 +53,15 @@ struct DTRealRange {
 struct DTTimelineDecorationContainer {
     _Bool _field1;
     _Bool _field2;
-    unsigned long long _field3;
-    struct deque<XRTimeRange, std::__1::allocator<XRTimeRange>> _field4;
-    struct XRTimeRange _field5;
-    struct DecorationContainer _field6;
-    struct Adder _field7;
-    struct unique_ptr<DTTimelineDecorationEnumerator, std::__1::default_delete<DTTimelineDecorationEnumerator>> _field8;
-    id _field9;
-    int _field10;
+    _Bool _field3;
+    unsigned long long _field4;
+    struct deque<XRTimeRange, std::__1::allocator<XRTimeRange>> _field5;
+    struct XRTimeRange _field6;
+    struct DecorationContainer _field7;
+    struct Adder _field8;
+    struct unique_ptr<DTTimelineDecorationEnumerator, std::__1::default_delete<DTTimelineDecorationEnumerator>> _field9;
+    id _field10;
+    int _field11;
 };
 
 struct DTTimelineDecorationEnumerator;
@@ -188,6 +189,8 @@ struct ViewMetrics {
     struct shared_ptr<const std::__1::unordered_map<int, CGRect, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, CGRect>>>> _planeLayoutMapPtr;
     double _visibleHeight;
     double _yOffset;
+    double _planeHandleWidth;
+    char _hasDarkBackground;
 };
 
 struct WingMetrics {
@@ -211,6 +214,8 @@ struct __hash_node<std::__1::__hash_value_type<double, NSImage *>, void *>;
 struct __hash_node<std::__1::__hash_value_type<int, CGRect>, void *>;
 
 struct __hash_node<std::__1::__hash_value_type<unsigned long, std::__1::tuple<NSColor *, CGPath *>>, void *>;
+
+struct __shared_weak_count;
 
 struct __tree_end_node<std::__1::__tree_node_base<void *>*> {
     struct __tree_node_base<void *> *__left_;
@@ -281,16 +286,17 @@ struct map<XRTimeRange, DTTimelineInspectionDecoration *, std::__1::less<XRTimeR
 
 struct pair<DTTimelineInternal::DynamicRange, NSArray *>;
 
+struct shared_ptr<DTTimelineDecorationContainer> {
+    struct DTTimelineDecorationContainer *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+};
+
 struct shared_ptr<const std::__1::unordered_map<int, CGRect, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, CGRect>>>> {
     unordered_map_c1fbcd3c *__ptr_;
     struct __shared_weak_count *__cntrl_;
 };
 
-struct unique_ptr<DTTimelineDecorationContainer, std::__1::default_delete<DTTimelineDecorationContainer>> {
-    struct __compressed_pair<DTTimelineDecorationContainer *, std::__1::default_delete<DTTimelineDecorationContainer>> {
-        struct DTTimelineDecorationContainer *__first_;
-    } __ptr_;
-};
+struct tuple<unsigned int, DTItemIndexAndFlags, DTMemoryGraphItem *>;
 
 struct unique_ptr<DTTimelineDecorationEnumerator, std::__1::default_delete<DTTimelineDecorationEnumerator>> {
     struct __compressed_pair<DTTimelineDecorationEnumerator *, std::__1::default_delete<DTTimelineDecorationEnumerator>> {
@@ -390,7 +396,21 @@ struct vector<std::__1::pair<DTTimelineInternal::DynamicRange, NSArray *>, std::
     } __end_cap_;
 };
 
+struct vector<std::__1::tuple<unsigned int, DTItemIndexAndFlags, DTMemoryGraphItem *>, std::__1::allocator<std::__1::tuple<unsigned int, DTItemIndexAndFlags, DTMemoryGraphItem *>>> {
+    struct tuple<unsigned int, DTItemIndexAndFlags, DTMemoryGraphItem *> *_field1;
+    struct tuple<unsigned int, DTItemIndexAndFlags, DTMemoryGraphItem *> *_field2;
+    struct __compressed_pair<std::__1::tuple<unsigned int, DTItemIndexAndFlags, DTMemoryGraphItem *>*, std::__1::allocator<std::__1::tuple<unsigned int, DTItemIndexAndFlags, DTMemoryGraphItem *>>> {
+        struct tuple<unsigned int, DTItemIndexAndFlags, DTMemoryGraphItem *> *_field1;
+    } _field3;
+};
+
 #pragma mark Typedef'd Structures
+
+typedef struct {
+    unsigned long long _field1;
+    unsigned int _field2;
+    unsigned long long _field3;
+} CDStruct_8b65991f;
 
 typedef struct {
     unsigned long long _field1;
@@ -399,7 +419,19 @@ typedef struct {
     unsigned long long _field4[5];
 } CDStruct_70511ce9;
 
+typedef struct {
+    unsigned long long _field1;
+    unsigned int :60;
+    unsigned int :4;
+    id _field2;
+} CDStruct_599faf0f;
+
 // Template types
+typedef struct shared_ptr<DTTimelineDecorationContainer> {
+    struct DTTimelineDecorationContainer *__ptr_;
+    struct __shared_weak_count *__cntrl_;
+} shared_ptr_1f7ca383;
+
 typedef struct unordered_map<int, CGRect, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, CGRect>>> {
     struct __hash_table<std::__1::__hash_value_type<int, CGRect>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, CGRect>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, CGRect>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, CGRect>>> {
         struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, CGRect>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, CGRect>, void *>*>>> _field1;

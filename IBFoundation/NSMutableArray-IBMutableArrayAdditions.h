@@ -15,6 +15,7 @@
 - (void)ib_removeObjectsInCollection:(id)arg1;
 - (void)ib_moveObjects:(id)arg1 toIndex:(long long)arg2;
 - (void)ib_addObjectsFromCollection:(id)arg1;
+- (void)ib_addObjectsFromFastEnumerable:(id)arg1;
 - (void)ib_addObjectToSortedCollectionUsingBinarySearch:(id)arg1 comparisonSelector:(SEL)arg2;
 - (void)ib_addObjectToSortedCollectionUsingBinarySearch:(id)arg1 comparator:(CDUnknownBlockType)arg2;
 - (void)ib_insertObjects:(id)arg1 atIndex:(long long)arg2;

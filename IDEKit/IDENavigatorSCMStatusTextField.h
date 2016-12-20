@@ -14,10 +14,12 @@
 }
 
 + (Class)cellClass;
++ (id)keyPathsForValuesAffectingHideLocalStatus;
 + (id)keyPathsForValuesAffectingServerStatus;
 + (id)keyPathsForValuesAffectingLocalStatus;
 @property(nonatomic) long long backgroundStyle; // @synthesize backgroundStyle=_backgroundStyle;
 - (void)setHidden:(BOOL)arg1;
+@property BOOL hideLocalStatus;
 @property(copy, nonatomic) NSString *serverStatus;
 @property(copy, nonatomic) NSString *localStatus;
 - (BOOL)allowsVibrancy;

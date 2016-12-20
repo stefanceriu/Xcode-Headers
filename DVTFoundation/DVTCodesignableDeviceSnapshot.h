@@ -8,7 +8,7 @@
 
 #import "DVTCodesignableDevice.h"
 
-@class NSSet, NSString;
+@class DVTPlatform, NSSet, NSString;
 
 @interface DVTCodesignableDeviceSnapshot : NSObject <DVTCodesignableDevice>
 {
@@ -24,15 +24,17 @@
 @property(copy) NSSet *proxiedDevices; // @synthesize proxiedDevices=_proxiedDevices;
 @property BOOL supportsProvisioning; // @synthesize supportsProvisioning=_supportsProvisioning;
 @property(copy) NSString *platformIdentifier; // @synthesize platformIdentifier=_platformIdentifier;
-@property(copy) NSString *identifier; // @synthesize identifier=_identifier;
+@property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(copy) NSString *nameForDeveloperPortal; // @synthesize nameForDeveloperPortal=_nameForDeveloperPortal;
-@property(copy) NSString *name; // @synthesize name=_name;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
+- (BOOL)isEqual:(id)arg1;
+@property(readonly) unsigned long long hash;
+@property(readonly, copy) NSString *description;
+@property(readonly) DVTPlatform *platform;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 
 @end

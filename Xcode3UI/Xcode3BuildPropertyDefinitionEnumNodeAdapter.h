@@ -17,7 +17,7 @@
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)updateForTrackingPopUpCell:(id)arg1;
-- (id)menuItemForUnknownValue:(id)arg1;
+- (id)menuItemForUnknownValue:(id)arg1 existingItems:(id)arg2;
 - (void)dataNode:(id)arg1 outlineView:(id)arg2 willDisplayCell:(id)arg3 forTableColumn:(id)arg4;
 - (id)dataNode:(id)arg1 outlineView:(id)arg2 dataCellForTableColumn:(id)arg3;
 - (void)configureMenuItem:(id)arg1 forDefinitionString:(id)arg2;

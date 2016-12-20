@@ -45,7 +45,6 @@
 }
 
 + (id)targetCandidatesForContainingClassNamed:(id)arg1 toObject:(id)arg2 document:(id)arg3 preferredTarget:(id *)arg4;
-+ (id)defaultType;
 @property(retain) NSError *insertionError; // @synthesize insertionError=_insertionError;
 @property(nonatomic) BOOL wasInserted; // @synthesize wasInserted=_wasInserted;
 @property(nonatomic) unsigned long long sourceLineNumber; // @synthesize sourceLineNumber=_sourceLineNumber;
@@ -75,6 +74,7 @@
 - (id)validatedSourceCodeConnectionNameForName:(id)arg1 error:(id *)arg2;
 - (BOOL)parseSourceLandmarkItem:(id)arg1;
 - (BOOL)parseSourceModelItem:(id)arg1 sourceModel:(id)arg2;
+- (id)defaultType;
 - (id)traversedContexts;
 - (id)counterpartsToCustomLocations;
 - (id)springLoadedDocumentLocation;

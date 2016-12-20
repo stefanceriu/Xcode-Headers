@@ -9,7 +9,7 @@
 #import "IDEDebugGaugeReportContentDelegate.h"
 #import "IDEDebugGaugeReportTopSectionContentDelegate.h"
 
-@class DVTGauge, DVTMeterValue, DVTMeterView, DVTObservingToken, DVTStackView_AppKitAutolayout, GPUDebuggerController, GPUNumericBubbleView, GPUReportBarChartView, GPUReportBuilder, GPUReportResults, GPUSharedTabUIState, IDEDebugGaugeReportSection, NSArray, NSButton, NSMutableArray, NSString, NSView;
+@class DVTGauge, DVTMeterValue, DVTMeterView, DVTObservingToken, DVTStackView_AppKitAutolayout, GPUDebuggerController, GPUNumericBubbleView, GPUReportBarChartView, GPUReportBuilder, GPUReportResults, GPUSharedTabUIState, IDEDebugGaugeReportSection, IDEGFXGaugeDebuggingAdditionUIController, NSArray, NSButton, NSMutableArray, NSString, NSView;
 
 @interface GPUReportEditor : IDEDebugGaugeReportEditor <IDEDebugGaugeReportContentDelegate, IDEDebugGaugeReportTopSectionContentDelegate>
 {
@@ -17,6 +17,7 @@
     GPUSharedTabUIState *_sharedTabState;
     id <GPUInvestigatorReportProvider> _investigatorReportProvider;
     id <GPUProgramPerformanceReportProvider> _programPerformanceReportProvider;
+    id <GPUPerformanceDataProvider> _performanceDataProvider;
     DVTMeterValue *_fpsMeterData;
     DVTObservingToken *_investigatorCaseObservingToken;
     DVTObservingToken *_investigatorReadyObservingToken;
@@ -33,6 +34,9 @@
     IDEDebugGaugeReportSection *_programPerformanceCapsule;
     IDEDebugGaugeReportSection *_noticeMessageCapsule;
     IDEDebugGaugeReportSection *_reportCapsule;
+    IDEDebugGaugeReportSection *_frameBreakdownCapsule;
+    IDEGFXGaugeDebuggingAdditionUIController *_gfxGaugeDebuggingAdditionUIController;
+    id <DVTInvalidation> _gfxGaugeObservingToken;
     NSMutableArray *_reportRootNodeArray;
     GPUReportResults *_reportResults;
     NSView *_topSectionButtonsView;
@@ -62,8 +66,8 @@
 @property(retain, nonatomic) NSView *topSectionButtonsView; // @synthesize topSectionButtonsView=_topSectionButtonsView;
 @property(retain, nonatomic) GPUReportResults *reportResults; // @synthesize reportResults=_reportResults;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) id <GPUProgramPerformanceReportProvider> programPerformanceReportProvider; // @dynamic programPerformanceReportProvider;
-@property(readonly, nonatomic) id <GPUInvestigatorReportProvider> investigatorReportProvider; // @dynamic investigatorReportProvider;
+@property(readonly, nonatomic) id <GPUProgramPerformanceReportProvider> programPerformanceReportProvider;
+@property(readonly, nonatomic) id <GPUInvestigatorReportProvider> investigatorReportProvider;
 - (void)_enumerateFindingStatisticsAndResourceTypesUsingBlock:(CDUnknownBlockType)arg1;
 - (unsigned int)resourceTypeForFindingStatisticsKey:(id)arg1;
 - (id)_findingStatisticsKeyToResourceTypeMap;
@@ -98,6 +102,10 @@
 - (id)_setupUtilizationGraphView;
 - (id)utilizationGraphData;
 - (void)_setupFPSMeterView;
+- (void)resetFrameBreakdown;
+- (void)updateFrameBreakdownState;
+- (void)_setupFrameBreakdownSection:(id)arg1;
+- (void)_setupFrameBreakdownObserver;
 - (id)topSectionComponentEntries;
 - (id)topSectionShortDescriptionTitle;
 - (id)topSectionImage;
@@ -124,6 +132,7 @@
 - (void)setupObservers;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
+- (void)resetReportEditor;
 - (void)_setup;
 - (void)primitiveInvalidate;
 - (void)loadView;

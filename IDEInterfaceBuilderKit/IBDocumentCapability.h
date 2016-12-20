@@ -13,16 +13,19 @@
     NSString *_name;
     NSString *_minToolsVersion;
     NSString *_minSystemVersion;
+    NSString *_requiredIntegratedClassName;
     NSString *_message;
 }
 
-+ (id)capabilityWithName:(id)arg1 minToolsVersion:(id)arg2 minSystemVersion:(id)arg3 message:(id)arg4;
++ (id)capabilityWithName:(id)arg1 minToolsVersion:(id)arg2 minSystemVersion:(id)arg3 requiredIntegratedClassName:(id)arg4 message:(id)arg5;
 @property(readonly, copy, nonatomic) NSString *message; // @synthesize message=_message;
+@property(readonly, copy, nonatomic) NSString *requiredIntegratedClassName; // @synthesize requiredIntegratedClassName=_requiredIntegratedClassName;
 @property(readonly, copy, nonatomic) NSString *minSystemVersion; // @synthesize minSystemVersion=_minSystemVersion;
 @property(readonly, copy, nonatomic) NSString *minToolsVersion; // @synthesize minToolsVersion=_minToolsVersion;
 @property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-- (id)initWithName:(id)arg1 minToolsVersion:(id)arg2 minSystemVersion:(id)arg3 message:(id)arg4;
+- (id)description;
+- (id)initWithName:(id)arg1 minToolsVersion:(id)arg2 minSystemVersion:(id)arg3 requiredIntegratedClassName:(id)arg4 message:(id)arg5;
 
 @end
 

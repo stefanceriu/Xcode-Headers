@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "DBGViewPropertyEntryType.h"
+
 @class NSString;
 
-@interface DBGViewPropertyEntry : NSObject
+@interface DBGViewPropertyEntry : NSObject <DBGViewPropertyEntryType>
 {
     NSString *_rawExpressionToGenerateValue;
     NSString *_propertyName;
@@ -16,8 +18,14 @@
 
 @property(readonly) NSString *propertyName; // @synthesize propertyName=_propertyName;
 - (void).cxx_destruct;
+@property(readonly, copy) NSString *description;
 - (id)expandedExpressionWithViewObject:(id)arg1;
 - (id)initWithPropertyName:(id)arg1 rawExpressionToGenerateValue:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

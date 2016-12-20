@@ -6,17 +6,30 @@
 
 #import <IBFoundation/IBICSlotComponent.h>
 
-@interface IBICSizeClass : IBICSlotComponent
+#import "IBICCoreUISlotComponent.h"
+
+@class NSString;
+
+@interface IBICSizeClass : IBICSlotComponent <IBICCoreUISlotComponent>
 {
     long long _coreUISizeClass;
 }
 
 + (id)itemWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 coreUISizeClass:(long long)arg4 displayOrder:(double)arg5;
 @property(readonly, nonatomic) long long coreUISizeClass; // @synthesize coreUISizeClass=_coreUISizeClass;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (id)initWithBinaryUnarchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, nonatomic) long long coreUIValue;
 - (id)initWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 coreUISizeClass:(long long)arg4 displayOrder:(double)arg5;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

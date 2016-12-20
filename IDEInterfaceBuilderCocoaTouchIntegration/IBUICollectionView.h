@@ -19,6 +19,7 @@
     IBUICollectionReusableView *_sectionFooterView;
     IBUICollectionViewLayout *_collectionViewLayout;
     NSMutableDictionary *_compiledPrototypeNIBs;
+    BOOL _prefetchingEnabled;
     BOOL separatingPrototypeChildrenForCompilation;
     id <DVTCancellable> _cellObservingToken;
     NSDictionary *_cachedCellFramesByPrototype;
@@ -47,11 +48,12 @@
 + (id)keyPathsForValuesAffectingIbAllowsSettingNumberOfCellsFromInspector;
 + (id)keyPathsForValuesAffectingIbInspectedNumberOfCells;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
+@property(copy, nonatomic) NSDictionary *compiledPrototypeNIBs; // @synthesize compiledPrototypeNIBs=_compiledPrototypeNIBs;
 @property(copy, nonatomic) NSValue *cachedBackgroundViewFrame; // @synthesize cachedBackgroundViewFrame=_cachedBackgroundViewFrame;
 @property(copy, nonatomic) NSArray *cachedSectionFooterViewFrames; // @synthesize cachedSectionFooterViewFrames=_cachedSectionFooterViewFrames;
 @property(copy, nonatomic) NSArray *cachedSectionHeaderViewFrames; // @synthesize cachedSectionHeaderViewFrames=_cachedSectionHeaderViewFrames;
 @property(copy, nonatomic) NSArray *cachedCellFrames; // @synthesize cachedCellFrames=_cachedCellFrames;
-@property(copy, nonatomic) NSDictionary *compiledPrototypeNIBs; // @synthesize compiledPrototypeNIBs=_compiledPrototypeNIBs;
+@property(nonatomic) BOOL prefetchingEnabled; // @synthesize prefetchingEnabled=_prefetchingEnabled;
 @property(retain, nonatomic) IBUICollectionReusableView *sectionFooterView; // @synthesize sectionFooterView=_sectionFooterView;
 @property(retain, nonatomic) IBUICollectionReusableView *sectionHeaderView; // @synthesize sectionHeaderView=_sectionHeaderView;
 @property(retain, nonatomic) IBUIView *backgroundView; // @synthesize backgroundView=_backgroundView;
@@ -179,6 +181,10 @@
 - (long long)ibInspectedNumberOfCells;
 - (void)ibDidExtractObjects:(id)arg1 fromPasteboard:(id)arg2 intoDocument:(id)arg3 context:(id)arg4;
 - (void)ibDidAddToDocument:(id)arg1 phase:(unsigned long long)arg2;
+- (id)ibEditorClass;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

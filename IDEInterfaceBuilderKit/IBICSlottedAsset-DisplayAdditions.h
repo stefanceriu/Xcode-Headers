@@ -7,20 +7,11 @@
 #import "IBICSlottedAsset.h"
 
 @interface IBICSlottedAsset (DisplayAdditions)
-+ (id)variantSlotComponentClassesExcludingIdiom;
-+ (id)keyPathsForValuesAffectingIbShowsSizeClassSection;
-- (void)setIbInspectedHasRepsForGPUSlotComponent:(id)arg1 toValue:(BOOL)arg2;
-- (id)suggestionSetsForIdioms:(id)arg1;
-- (id)allValuesForSlotComponentClass:(Class)arg1;
-- (BOOL)ibInspectedHasRepsForGPUSlotComponent:(id)arg1;
-- (Class)capsuleViewControllerClassForOverview;
++ (BOOL)groupedRepCapsuleWrapsAllSubgroupsOfGroupWithPath:(id)arg1;
++ (id)groupedRepCapsuleTitleOfGroupWithPath:(id)arg1 containingAssetRepIDs:(id)arg2;
++ (CDStruct_7ddbbeae)capsuleGroupingAttributesForGroupWithPath:(id)arg1;
+- (id)overviewCapsuleSpecification;
 - (id)detachedSlottedAssetRepByAcceptingPasteboardObject:(id)arg1 forRepIdentifier:(id)arg2;
-- (BOOL)ibInspectedHasRepsForSuggestionSet:(id)arg1 mask:(id)arg2;
-- (BOOL)ibInspectedHasRepsForSuggestionSet:(id)arg1;
-- (id)ibDefaultSuggestionSetsToPopulateEmptyChildren;
-- (void)setIbInspectedHasRepsForSuggestionSet:(id)arg1 toValue:(BOOL)arg2 mask:(id)arg3 allowEmptyChildren:(BOOL)arg4;
-- (void)setIbInspectedHasRepsForSuggestionSet:(id)arg1 toValue:(BOOL)arg2;
-- (id)mutateByAddingSlots:(id)arg1 andRemovingSlots:(id)arg2;
 - (id)itemsForOpeningInExternalEditor;
 - (id)icon;
 @end

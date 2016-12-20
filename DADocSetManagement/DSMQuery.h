@@ -6,26 +6,26 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString;
+@class DVTSourceCodeLanguage, NSArray, NSString;
 
 @interface DSMQuery : NSObject
 {
     NSString *_searchString;
     unsigned long long _matchType;
     NSString *_tokenTypeKey;
-    NSArray *_languages;
+    DVTSourceCodeLanguage *_language;
     NSString *_tokenScope;
     NSArray *_docSets;
     NSArray *_sortDescriptors;
     NSArray *_frameworks;
 }
 
-+ (id)queryForString:(id)arg1 matchType:(unsigned long long)arg2 tokenType:(id)arg3 languages:(id)arg4 tokenScope:(id)arg5 inDocSets:(id)arg6 sortDescriptors:(id)arg7 frameworks:(id)arg8;
++ (id)queryForString:(id)arg1 matchType:(unsigned long long)arg2 tokenType:(id)arg3 language:(id)arg4 tokenScope:(id)arg5 inDocSets:(id)arg6 sortDescriptors:(id)arg7 frameworks:(id)arg8;
 @property(copy) NSArray *frameworks; // @synthesize frameworks=_frameworks;
 @property(copy) NSArray *sortDescriptors; // @synthesize sortDescriptors=_sortDescriptors;
 @property(copy) NSArray *docSets; // @synthesize docSets=_docSets;
 @property(copy) NSString *tokenScope; // @synthesize tokenScope=_tokenScope;
-@property(copy) NSArray *languages; // @synthesize languages=_languages;
+@property(copy) DVTSourceCodeLanguage *language; // @synthesize language=_language;
 @property(copy) NSString *tokenTypeKey; // @synthesize tokenTypeKey=_tokenTypeKey;
 @property unsigned long long matchType; // @synthesize matchType=_matchType;
 @property(copy) NSString *searchString; // @synthesize searchString=_searchString;

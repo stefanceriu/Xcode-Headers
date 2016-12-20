@@ -6,13 +6,14 @@
 
 #import "IDEKeyDrivenNavigableItem.h"
 
-@class DVTNotificationToken, NSImage, NSString;
+@class DVTNotificationToken, DVTObservingToken, NSImage, NSString;
 
 @interface Xcode3OCUnitTestableNavigableItem : IDEKeyDrivenNavigableItem
 {
     NSString *_testableName;
     NSImage *_testableImage;
     DVTNotificationToken *_testableImageNotificationToken;
+    DVTObservingToken *_nameObservingToken;
 }
 
 - (void).cxx_destruct;

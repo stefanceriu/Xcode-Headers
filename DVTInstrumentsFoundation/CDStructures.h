@@ -10,34 +10,23 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
-struct DTKPDataStreamMemoryRecord;
+struct CachedMemory {
+    unsigned long long *value;
+    unsigned long long count;
+};
 
-struct DTKPerfTapContainerRec;
+struct DTKPRecordDecoderMagazine {
+    id *_field1;
+    unsigned int _field2;
+    unsigned int _field3;
+    unsigned int _field4;
+    unsigned int _field5;
+    unsigned long long _field6;
+};
 
 struct DTNStatSourceMap {
     struct __CFDictionary *_container;
     long long _nextSerialNumber;
-};
-
-struct DTXSharedMemory {
-    unsigned long long _field1;
-    unsigned long long _field2;
-    unsigned long long _field3;
-    unsigned int _field4;
-    unsigned int _field5;
-    unsigned int _field6;
-    unsigned int _field7;
-    int _field8;
-    int _field9;
-    unsigned int _field10;
-    unsigned int _field11;
-    unsigned int _field12;
-    unsigned int _field13;
-    unsigned int _field14;
-    unsigned int _field15;
-    unsigned int _field16;
-    unsigned int _field17;
-    char _field18[0];
 };
 
 struct SessionCallbackState {
@@ -50,7 +39,7 @@ struct SessionCallbackState {
         long long __sig;
         char __opaque[40];
     } conditionVariable;
-    int status;
+    int state;
     _Bool buffer_drained;
 };
 
@@ -61,11 +50,6 @@ struct TFPPidWatcher {
 struct _CSRange {
     unsigned long long _field1;
     unsigned long long _field2;
-};
-
-struct _ContainerArray {
-    struct DTKPerfTapContainerRec *recs;
-    long long count;
 };
 
 struct __sFILE {
@@ -167,7 +151,10 @@ struct kpdecode_record {
     struct {
         unsigned long long _field1;
     } _field16;
-    CDStruct_1e94be47 _field17;
+    struct {
+        unsigned int _field1;
+        int _field2;
+    } _field17;
     struct {
         char _field1[256];
         unsigned long long _field2;
@@ -208,10 +195,10 @@ struct sockaddr_in6 {
 };
 
 struct vector<DTKPDataStreamMemoryRecord *, std::__1::allocator<DTKPDataStreamMemoryRecord *>> {
-    struct DTKPDataStreamMemoryRecord **__begin_;
-    struct DTKPDataStreamMemoryRecord **__end_;
-    struct __compressed_pair<DTKPDataStreamMemoryRecord **, std::__1::allocator<DTKPDataStreamMemoryRecord *>> {
-        struct DTKPDataStreamMemoryRecord **__first_;
+    id *__begin_;
+    id *__end_;
+    struct __compressed_pair<DTKPDataStreamMemoryRecord *__strong *, std::__1::allocator<DTKPDataStreamMemoryRecord *>> {
+        id *__first_;
     } __end_cap_;
 };
 
@@ -237,30 +224,6 @@ struct vm_region_submap_info_64 {
 };
 
 #pragma mark Typedef'd Structures
-
-typedef struct {
-    unsigned char byte0;
-    unsigned char byte1;
-    unsigned char byte2;
-    unsigned char byte3;
-    unsigned char byte4;
-    unsigned char byte5;
-    unsigned char byte6;
-    unsigned char byte7;
-    unsigned char byte8;
-    unsigned char byte9;
-    unsigned char byte10;
-    unsigned char byte11;
-    unsigned char byte12;
-    unsigned char byte13;
-    unsigned char byte14;
-    unsigned char byte15;
-} CDStruct_e6eac3cb;
-
-typedef struct {
-    unsigned int _field1;
-    int _field2;
-} CDStruct_1e94be47;
 
 typedef struct {
     unsigned long long _field1;

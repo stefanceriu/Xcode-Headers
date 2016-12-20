@@ -29,7 +29,7 @@
 - (void).cxx_destruct;
 - (void)_complete;
 @property(readonly) NSObject<IDELocalizationWorkProgress> *currentLocalizationProgress;
-- (void)startLocalizationOperation:(id)arg1;
+- (BOOL)startLocalizationOperation:(id)arg1 error:(id *)arg2;
 - (void)primitiveInvalidate;
 - (id)initWithWorkspace:(id)arg1;
 

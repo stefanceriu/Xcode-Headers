@@ -18,7 +18,7 @@
 - (BOOL)documentEditor:(IBAbstractDocumentEditor *)arg1 canSelectMembers:(id <IBCollection>)arg2;
 - (void)documentEditor:(IBAbstractDocumentEditor *)arg1 deselectMembers:(NSSet *)arg2;
 - (void)documentEditor:(IBAbstractDocumentEditor *)arg1 pullSelection:(NSArray *)arg2;
-- (void)documentEditor:(IBAbstractDocumentEditor *)arg1 selectMembers:(NSArray *)arg2 takeFocus:(BOOL)arg3 zoomIfNeeded:(BOOL)arg4;
+- (void)documentEditor:(IBAbstractDocumentEditor *)arg1 selectMembers:(NSArray *)arg2 takeFocus:(BOOL)arg3;
 - (void)registerWithDocumentEditor;
 @end
 

@@ -32,5 +32,6 @@
 - (id)ibInspectedMinDate;
 @property(copy) NSDate *ibShadowedMaxDate;
 @property(copy) NSDate *ibShadowedMinDate;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

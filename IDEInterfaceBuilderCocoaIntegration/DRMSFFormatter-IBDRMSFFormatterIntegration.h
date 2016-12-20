@@ -11,5 +11,6 @@
 - (id)ibTitleForEditor;
 - (id)ibFormatPresets;
 - (id)ibExternalSampleValueDefault;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

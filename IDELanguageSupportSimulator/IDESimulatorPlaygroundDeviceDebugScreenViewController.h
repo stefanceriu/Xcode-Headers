@@ -6,29 +6,30 @@
 
 #import "NSViewController.h"
 
-#import "IDESimulatorPlaygroundFramebufferServiceChannelDelegate.h"
+#import "IDESimulatorPlaygroundFramebufferServiceChannelContentReceiver.h"
 
 @class IDESimulatorPlaygroundFramebufferServiceChannel, NSLayoutConstraint, NSString;
 
-@interface IDESimulatorPlaygroundDeviceDebugScreenViewController : NSViewController <IDESimulatorPlaygroundFramebufferServiceChannelDelegate>
+@interface IDESimulatorPlaygroundDeviceDebugScreenViewController : NSViewController <IDESimulatorPlaygroundFramebufferServiceChannelContentReceiver>
 {
     IDESimulatorPlaygroundFramebufferServiceChannel *_framebufferServiceChannel;
     id <IDESimulatorPlaygroundDeviceDebugScreenViewControllerDelegate> _delegate;
     NSLayoutConstraint *_aspectRatioConstraint;
-    struct CGSize _framebufferImageSize;
+    struct CGSize _framebufferScreenSize;
 }
 
 @property(retain) NSLayoutConstraint *aspectRatioConstraint; // @synthesize aspectRatioConstraint=_aspectRatioConstraint;
-@property struct CGSize framebufferImageSize; // @synthesize framebufferImageSize=_framebufferImageSize;
+@property struct CGSize framebufferScreenSize; // @synthesize framebufferScreenSize=_framebufferScreenSize;
 @property __weak id <IDESimulatorPlaygroundDeviceDebugScreenViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) IDESimulatorPlaygroundFramebufferServiceChannel *framebufferServiceChannel; // @synthesize framebufferServiceChannel=_framebufferServiceChannel;
 - (void).cxx_destruct;
-- (void)simulatorPlaygroundFramebufferServiceChannel:(id)arg1 didReceiveFramebufferImage:(struct CGImage *)arg2;
+- (void)simulatorPlaygroundFramebufferServiceChannel:(id)arg1 didUpdateWithIOSurfaceID:(unsigned int)arg2 screenSize:(struct CGSize)arg3;
 - (void)_processMouseEvent:(id)arg1;
 - (void)mouseDragged:(id)arg1;
 - (void)mouseUp:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)loadView;
+- (void)dealloc;
 - (id)initWithFramebufferServiceChannel:(id)arg1;
 
 // Remaining properties

@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDEViewController.h>
 
-@class DVTBorderedView, DVTFilePathField, DVTReplacementView, NSTextField;
+@class DVTBorderedView, DVTFilePathField, NSTextField;
 
 @interface IDEPOInfoViewController : IDEViewController
 {
@@ -17,13 +17,10 @@
     DVTFilePathField *_locationField;
     NSTextField *_statusTitle;
     NSTextField *_statusField;
-    DVTReplacementView *_replacementView;
 }
 
 - (void).cxx_destruct;
-- (void)_deleteAllSnapshotsAlertDidEndWithReturnCode:(long long)arg1;
 - (void)_deleteBuildArenaAlertDidEndWithReturnCode:(long long)arg1;
-- (void)deleteAllSnapshots:(id)arg1;
 - (void)deleteDerivedData:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)loadView;

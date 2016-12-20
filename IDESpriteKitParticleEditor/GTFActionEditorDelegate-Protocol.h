@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class GTFActionEditor, GTFActionLibrary, NSArray;
+@class GTFActionEditor, GTFActionLibrary, IDEEditorDocument, NSArray, NSURL;
 
 @protocol GTFActionEditorDelegate <NSObject>
 @property(readonly, nonatomic) GTFActionLibrary *actionLibrary;
@@ -14,6 +14,7 @@
 - (void)refreshObjectLibrary;
 
 @optional
+- (IDEEditorDocument *)getActionDocumentFromAssetManager:(GTFActionEditor *)arg1 url:(NSURL *)arg2;
 - (void)actionEditorDidEndScrubbing:(GTFActionEditor *)arg1;
 - (void)actionEditorDidBeginScrubbing:(GTFActionEditor *)arg1;
 - (BOOL)actionEditor:(GTFActionEditor *)arg1 shouldSupportPastedActions:(NSArray *)arg2;

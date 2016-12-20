@@ -47,7 +47,6 @@
 - (id)testable;
 @property(readonly, copy) NSString *description;
 - (id)init;
-- (id)initWithBuildable:(id)arg1 scheme:(id)arg2;
 - (id)initWithTestable:(id)arg1 scheme:(id)arg2;
 
 // Remaining properties

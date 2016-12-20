@@ -22,16 +22,16 @@
     NSXMLElement *_originalSlice;
     NSDictionary *_perConfigurationElementTemplatesByIdentifier;
     DVTDelayedInvocation *_viewRegenerationInvocation;
-    NSArray *_previousAdapters;
+    NSArray *_previousConfigurablePropertyAdapters;
     BOOL _allInspectedDocumentsAreNotUsingAutolayout;
     BOOL _allInspectedDocumentsAreUsingAutolayout;
     NSArray *_availableStoryboardNames;
-    NSArray *_availableSoundNames;
-    NSArray *_availableImageNames;
     NSArray *_availableNibNames;
     NSSet *_inspectedInterfaceBuilderDocuments;
     NSArray *_inspectedDocumentObjects;
     NSUserDefaultsController *_userDefaultsController;
+    NSArray *_availableSoundNames;
+    NSArray *_availableImageNames;
 }
 
 + (id)keyPathsForValuesAffectingBundleIdentifierPlaceholder;
@@ -39,6 +39,8 @@
 + (id)keyPathsForValuesAffectingInspectedDocumentName;
 + (id)keyPathsForValuesAffectingInspectedDocument;
 + (id)inspectedArrayControllerKeys;
+@property(copy, nonatomic) NSArray *availableImageNames; // @synthesize availableImageNames=_availableImageNames;
+@property(copy, nonatomic) NSArray *availableSoundNames; // @synthesize availableSoundNames=_availableSoundNames;
 @property(readonly) id <IDEInspectorContentController> configurablePropertyAdapterController; // @synthesize configurablePropertyAdapterController=_configurablePropertyAdapterController;
 @property(readonly, nonatomic) NSUserDefaultsController *userDefaultsController; // @synthesize userDefaultsController=_userDefaultsController;
 @property(copy, nonatomic) NSArray *inspectedDocumentObjects; // @synthesize inspectedDocumentObjects=_inspectedDocumentObjects;
@@ -46,11 +48,9 @@
 @property(nonatomic) BOOL allInspectedDocumentsAreUsingAutolayout; // @synthesize allInspectedDocumentsAreUsingAutolayout=_allInspectedDocumentsAreUsingAutolayout;
 @property(nonatomic) BOOL allInspectedDocumentsAreNotUsingAutolayout; // @synthesize allInspectedDocumentsAreNotUsingAutolayout=_allInspectedDocumentsAreNotUsingAutolayout;
 @property(copy, nonatomic) NSArray *availableNibNames; // @synthesize availableNibNames=_availableNibNames;
-@property(copy, nonatomic) NSArray *availableImageNames; // @synthesize availableImageNames=_availableImageNames;
-@property(copy, nonatomic) NSArray *availableSoundNames; // @synthesize availableSoundNames=_availableSoundNames;
 @property(copy, nonatomic) NSArray *availableStoryboardNames; // @synthesize availableStoryboardNames=_availableStoryboardNames;
 - (void).cxx_destruct;
-- (id)toolTipContentFromKeyPath:(id)arg1 titleAttribute:(id)arg2 placeholderAttribute:(id)arg3;
+- (id)inspectorProperty:(id)arg1 toolTipContentFromKeyPath:(id)arg2 titleAttribute:(id)arg3 placeholderAttribute:(id)arg4;
 - (id)platformForToolTipDocumentationLookup;
 - (id)tokenForMethod:(id)arg1 className:(id)arg2 metaQueries:(id)arg3;
 - (id)documentationTokensFromKeyPath:(id)arg1 configurable:(BOOL)arg2;
@@ -73,6 +73,7 @@
 - (void)updateContainerDocumentNames;
 - (id)sliceElement;
 - (void)expandIncludeElements:(id)arg1;
+- (id)accessibilityTitleForSliverElement:(id)arg1;
 - (id)attributedTitleForSliverElement:(id)arg1;
 - (id)accessoryViewForInspectorProperty:(id)arg1;
 - (id)perConfigurationPropertyTemplateForInspectorProperty:(id)arg1;

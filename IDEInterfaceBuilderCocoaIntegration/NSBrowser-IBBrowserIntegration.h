@@ -14,5 +14,6 @@
 - (long long)ibShadowedDefaultNewColumnWidth;
 - (id)ibWidgetType;
 - (BOOL)ibHasSingleCell;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

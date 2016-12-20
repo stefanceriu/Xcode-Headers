@@ -36,6 +36,7 @@
 - (void).cxx_destruct;
 - (BOOL)removeDirectoryStructure:(id *)arg1;
 - (BOOL)createDirectoryStructureIfNecessary:(id *)arg1;
+- (BOOL)createDirectoryIfNecessary:(id *)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

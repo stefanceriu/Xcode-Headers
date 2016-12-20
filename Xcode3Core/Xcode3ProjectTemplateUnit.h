@@ -26,6 +26,7 @@
     BOOL _associatedTargetIsTargetToBeTested;
     BOOL _associatedTargetIsDependent;
     BOOL _associatedTargetNeedsProductBuildPhaseInjection;
+    BOOL _suppressTopLevelGroup;
     id <Xcode3ProjectTemplateUnitParent> _parent;
     NSString *_identifier;
     NSArray *_nodes;
@@ -40,6 +41,7 @@
 }
 
 @property(readonly) NSArray *injectionTargetNames; // @synthesize injectionTargetNames=_injectionTargetNames;
+@property BOOL suppressTopLevelGroup; // @synthesize suppressTopLevelGroup=_suppressTopLevelGroup;
 @property(readonly) NSArray *optionConstraints; // @synthesize optionConstraints=_optionConstraints;
 @property(readonly) NSString *associatedTargetPopUpDescription; // @synthesize associatedTargetPopUpDescription=_associatedTargetPopUpDescription;
 @property(readonly) NSString *associatedTargetPopUpTitle; // @synthesize associatedTargetPopUpTitle=_associatedTargetPopUpTitle;

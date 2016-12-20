@@ -22,7 +22,7 @@
     NSNumber *_itemPositioning;
     NSNumber *_itemWidth;
     NSNumber *_itemSpacing;
-    int _barStyle;
+    long long _barStyle;
     BOOL _translucent;
     NSColor *_barTintColor;
     NSMutableArray *_items;
@@ -41,7 +41,7 @@
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
 @property(copy, nonatomic) NSColor *barTintColor; // @synthesize barTintColor=_barTintColor;
 @property(nonatomic, getter=isTranslucent) BOOL translucent; // @synthesize translucent=_translucent;
-@property(nonatomic) int barStyle; // @synthesize barStyle=_barStyle;
+@property(nonatomic) long long barStyle; // @synthesize barStyle=_barStyle;
 @property(retain, nonatomic) NSNumber *itemSpacing; // @synthesize itemSpacing=_itemSpacing;
 @property(retain, nonatomic) NSNumber *itemWidth; // @synthesize itemWidth=_itemWidth;
 @property(retain, nonatomic) NSNumber *itemPositioning; // @synthesize itemPositioning=_itemPositioning;
@@ -62,6 +62,7 @@
 - (void)populateCachedGeometryInfos:(id)arg1;
 - (void)enumerateCachedImageKeyPaths:(CDUnknownBlockType)arg1;
 - (void)setItems:(id)arg1;
+- (BOOL)ignoreItemCountMismatchRadar23282644ForCachedItemFramesDictionaryInfo:(id)arg1;
 - (id)orderedItemsForCachedItemFramesDictionaryInfo:(id)arg1;
 - (id)items;
 - (void)removeTabBarItem:(id)arg1;
@@ -71,6 +72,9 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
+- (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
+- (id)ibLocalPerConfigurationAttributeKeyPaths;
 - (id)ibInspectedItemSpacingDefault;
 - (id)ibInspectedItemWidthDefault;
 - (void)setIbInspectedItemPositioning:(int)arg1;
@@ -89,6 +93,10 @@
 - (long long)ibPreferredResizeDirection;
 - (id)ibWidgetType;
 - (BOOL)ibArchivesTabBarItems;
+- (id)ibEditorClass;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -4,7 +4,7 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class SKNode;
+@class DVTDelayedInvocation, NSColor;
 
 #pragma mark Blocks
 
@@ -12,7 +12,7 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 
 #pragma mark Named Structures
 
-struct CGPath;
+struct CGColor;
 
 struct CGPoint {
     double x;
@@ -20,8 +20,8 @@ struct CGPoint {
 };
 
 struct CGRect {
-    struct CGPoint _field1;
-    struct CGSize _field2;
+    struct CGPoint origin;
+    struct CGSize size;
 };
 
 struct CGSize {
@@ -29,28 +29,105 @@ struct CGSize {
     double height;
 };
 
-struct ManipulationEvent;
+struct CGVector {
+    double _field1;
+    double _field2;
+};
+
+struct DelayedTouchEvent;
+
+struct GTFGKEdge {
+    id _field1;
+    id _field2;
+};
+
+struct NSDictionary {
+    Class _field1;
+};
+
+struct NSMutableDictionary {
+    Class _field1;
+};
 
 struct NSObject {
     Class _field1;
 };
 
-struct NodeMovePair;
+struct SKCameraState {
+    double cachedViewScale;
+    struct CGPoint cachedViewTranslation;
+    struct CGPoint userViewTranslation;
+    struct CGPoint lastViewTranslation;
+    double lastViewScale;
+};
 
-struct PolyEditor {
-    struct CGPath *_path;
-    _Bool _dirty;
-    struct CGPoint _continuityButtonPos;
-    struct CGPoint _lockButtonPos;
-    unsigned long long _editIndex;
-    int _editPart;
-    _Bool _filled;
-    _Bool _closed;
-    _Bool _smoothPath;
-    struct vector<PolyEditor::Vertex, std::__1::allocator<PolyEditor::Vertex>> _verts;
-    SKNode *_offsetNode;
-    struct CGPoint _lastOffsetPosition;
-    struct Vertex _firstVert;
+struct SKColorPalette {
+    struct CGColor *grayColor;
+    struct CGColor *blueColor;
+    struct CGColor *lightBlueColor;
+    struct CGColor *blackColor;
+    struct CGColor *whiteColor;
+    struct CGColor *goldColor;
+    struct CGColor *greenColor;
+    struct CGColor *graphColor;
+    struct CGColor *graphOutlineColor;
+    struct CGColor *snappingColor;
+    struct CGColor *selectionFillColor;
+    struct CGColor *selectionColor;
+    struct CGColor *tileMapNodeBorder[2];
+    NSColor *cameraBounds[2];
+    NSColor *goldNSColor;
+};
+
+struct SKInputData {
+    struct SKSceneEditInputLocation location;
+    struct NSObject *clickedNode;
+    unsigned long long state;
+    unsigned long long handle;
+    struct vector<CGPoint, std::__1::allocator<CGPoint>> startPositions;
+    struct CGPoint startPosition;
+    double startRotation;
+    struct CGPoint startScale;
+    struct CGPoint startAnchorPoint;
+    struct vector<NSObject<SKSceneManipulating, SKSceneNavigating>*, std::__1::allocator<NSObject<SKSceneManipulating, SKSceneNavigating>*>> targetItems;
+    struct NSObject *targetItem;
+};
+
+struct SKManipulationHandleSet {
+    struct CGPoint _field1;
+    struct CGPoint _field2;
+    struct CGPoint _field3;
+    struct CGPoint _field4;
+    struct CGPoint _field5;
+    struct CGPoint _field6;
+    struct CGPoint _field7;
+    struct CGPoint _field8;
+    struct CGPoint _field9;
+    struct CGPoint _field10;
+    struct CGPoint _field11;
+};
+
+struct SKSceneEditInputLocation {
+    struct CGPoint start;
+    struct CGPoint current;
+    struct CGPoint last;
+    struct CGPoint viewStart;
+    struct CGPoint viewCurrent;
+    struct CGPoint viewLast;
+};
+
+struct SKSceneOverlayHandleInfo {
+    struct NSObject *_field1;
+    unsigned long long _field2;
+};
+
+struct SKTrackpadInputData {
+    struct vector<double, std::__1::allocator<double>> startRotations;
+    struct vector<NSObject<SKSceneManipulating, SKSceneNavigating>*, std::__1::allocator<NSObject<SKSceneManipulating, SKSceneNavigating>*>> rotationItems;
+    DVTDelayedInvocation *rotationCommitInvocation;
+    char isTrackingTwoFingerGesture;
+    id twoFingerGestureTouch1ID;
+    struct CGPoint lastTwoFingerGestureLocation;
 };
 
 struct SnapResult {
@@ -59,15 +136,6 @@ struct SnapResult {
     float _field3;
     float _field4;
 };
-
-struct Vertex {
-    struct CGPoint point;
-    struct CGPoint tangentIn;
-    struct CGPoint tangentOut;
-    int tangency;
-};
-
-struct ZoomPositionPair;
 
 struct _NSRange {
     unsigned long long _field1;
@@ -88,56 +156,41 @@ struct map<std::__1::basic_string<char>, CGImage *, std::__1::less<std::__1::bas
     } __tree_;
 };
 
-struct unique_ptr<ManipulationEvent, std::__1::default_delete<ManipulationEvent>> {
-    struct __compressed_pair<ManipulationEvent *, std::__1::default_delete<ManipulationEvent>> {
-        struct ManipulationEvent *__first_;
+struct unique_ptr<DelayedTouchEvent, std::__1::default_delete<DelayedTouchEvent>> {
+    struct __compressed_pair<DelayedTouchEvent *, std::__1::default_delete<DelayedTouchEvent>> {
+        struct DelayedTouchEvent *__first_;
     } __ptr_;
 };
 
-struct vector<NodeMovePair, std::__1::allocator<NodeMovePair>> {
-    struct NodeMovePair *__begin_;
-    struct NodeMovePair *__end_;
-    struct __compressed_pair<NodeMovePair *, std::__1::allocator<NodeMovePair>> {
-        struct NodeMovePair *__first_;
+struct vector<CGPoint, std::__1::allocator<CGPoint>> {
+    struct CGPoint *__begin_;
+    struct CGPoint *__end_;
+    struct __compressed_pair<CGPoint *, std::__1::allocator<CGPoint>> {
+        struct CGPoint *__first_;
     } __end_cap_;
 };
 
-struct vector<PolyEditor::Vertex, std::__1::allocator<PolyEditor::Vertex>> {
-    struct Vertex *__begin_;
-    struct Vertex *__end_;
-    struct __compressed_pair<PolyEditor::Vertex *, std::__1::allocator<PolyEditor::Vertex>> {
-        struct Vertex *__first_;
+struct vector<NSObject<SKSceneManipulating, SKSceneNavigating>*, std::__1::allocator<NSObject<SKSceneManipulating, SKSceneNavigating>*>> {
+    id *__begin_;
+    id *__end_;
+    struct __compressed_pair<NSObject<SKSceneManipulating, SKSceneNavigating>*__strong *, std::__1::allocator<NSObject<SKSceneManipulating, SKSceneNavigating>*>> {
+        id *__first_;
     } __end_cap_;
 };
 
-struct vector<ZoomPositionPair, std::__1::allocator<ZoomPositionPair>> {
-    struct ZoomPositionPair *__begin_;
-    struct ZoomPositionPair *__end_;
-    struct __compressed_pair<ZoomPositionPair *, std::__1::allocator<ZoomPositionPair>> {
-        struct ZoomPositionPair *__first_;
+struct vector<SKManipulationHandleSet, std::__1::allocator<SKManipulationHandleSet>> {
+    struct SKManipulationHandleSet *__begin_;
+    struct SKManipulationHandleSet *__end_;
+    struct __compressed_pair<SKManipulationHandleSet *, std::__1::allocator<SKManipulationHandleSet>> {
+        struct SKManipulationHandleSet *__first_;
     } __end_cap_;
 };
 
-#pragma mark Typedef'd Structures
-
-typedef struct {
-    struct CGPoint _field1;
-    struct CGPoint _field2;
-    struct CGPoint _field3;
-    struct CGPoint _field4;
-    struct CGPoint _field5;
-    struct CGPoint _field6;
-    struct CGPoint _field7;
-    struct CGPoint _field8;
-    struct CGPoint _field9;
-    struct CGPoint _field10;
-    struct CGPoint _field11;
-    double _field12;
-    struct CGPoint _field13;
-    struct CGSize _field14;
-    struct CGPoint _field15;
-    struct CGPoint _field16;
-    struct CGPoint _field17;
-    struct CGPoint _field18;
-} CDStruct_76845b71;
+struct vector<double, std::__1::allocator<double>> {
+    double *__begin_;
+    double *__end_;
+    struct __compressed_pair<double *, std::__1::allocator<double>> {
+        double *__first_;
+    } __end_cap_;
+};
 

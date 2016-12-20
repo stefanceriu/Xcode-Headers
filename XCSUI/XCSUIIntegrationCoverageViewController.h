@@ -8,15 +8,17 @@
 
 #import "IDECoverageReportFunctionFetcher.h"
 #import "XCSBotSupportingEditorHostedViewController.h"
+#import "XCSCodeCoverageProtocol.h"
 #import "XCSUIIntegrationCoverageViewController.h"
 
-@class IDECoverageReportViewController, NSArray, NSString, XCSBot, XCSBotSupportingEditor, XCSCodeCoverageIntegration, XCSIntegration, XCSUIProgressReplacementView;
+@class IDECoverageReportViewController, NSArray, NSError, NSString, XCSBot, XCSBotSupportingEditor, XCSCodeCoverageIntegration, XCSIntegration, XCSUIProgressReplacementView;
 
-@interface XCSUIIntegrationCoverageViewController : DVTViewController <IDECoverageReportFunctionFetcher, XCSBotSupportingEditorHostedViewController, XCSUIIntegrationCoverageViewController>
+@interface XCSUIIntegrationCoverageViewController : DVTViewController <IDECoverageReportFunctionFetcher, XCSBotSupportingEditorHostedViewController, XCSUIIntegrationCoverageViewController, XCSCodeCoverageProtocol>
 {
     XCSIntegration *_integration;
     XCSBotSupportingEditor *_botSupportingEditor;
     XCSBot *_bot;
+    NSError *_error;
     NSArray *_itemIdentifiersToExpand;
     XCSUIProgressReplacementView *_replacementView;
     XCSCodeCoverageIntegration *_coverageIntegration;
@@ -26,6 +28,7 @@
 @property(retain, nonatomic) XCSCodeCoverageIntegration *coverageIntegration; // @synthesize coverageIntegration=_coverageIntegration;
 @property __weak XCSUIProgressReplacementView *replacementView; // @synthesize replacementView=_replacementView;
 @property(retain, nonatomic) NSArray *itemIdentifiersToExpand; // @synthesize itemIdentifiersToExpand=_itemIdentifiersToExpand;
+@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
 @property(retain, nonatomic) XCSBot *bot; // @synthesize bot=_bot;
 @property(retain, nonatomic) XCSBotSupportingEditor *botSupportingEditor; // @synthesize botSupportingEditor=_botSupportingEditor;
 @property(retain, nonatomic) XCSIntegration *integration; // @synthesize integration=_integration;
@@ -35,6 +38,7 @@
 @property(readonly, copy) NSArray *currentSelectedDocumentLocations;
 - (void)fetchCoverageIntegration:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)fetchFunctionsForFile:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)codeCoverageIntegration:(id)arg1 didChangeRetrievalStatus:(long long)arg2;
 - (id)currentlyExpandedCoverageItemIdentifiers;
 @property(readonly, nonatomic) IDECoverageReportViewController *installedReportViewController;
 - (void)primitiveInvalidate;

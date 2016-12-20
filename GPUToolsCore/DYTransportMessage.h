@@ -44,13 +44,12 @@
 @property(readonly, retain, nonatomic) NSDictionary *attributes; // @synthesize attributes=_attributes;
 @property(readonly, retain, nonatomic) NSData *payload; // @synthesize payload=_payload;
 @property(readonly, nonatomic) int kind; // @synthesize kind=_kind;
-- (id)objectPayloadWithAllowedBaseClasses:(id)arg1;
-- (id)objectPayloadWithAllowedBaseClass:(Class)arg1;
 - (id)objectPayload;
 - (id)stringPayload;
 - (id)plistPayload;
 - (BOOL)boolPayload;
 - (BOOL)boolForKey:(id)arg1;
+- (double)doubleForKey:(id)arg1;
 - (unsigned long long)uint64ForKey:(id)arg1;
 - (unsigned int)uint32ForKey:(id)arg1;
 - (id)attributeForKey:(id)arg1;

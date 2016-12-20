@@ -6,7 +6,7 @@
 
 #import "NSView.h"
 
-@class NSAttributedString, NSImage, NSString;
+@class DVTLibraryAsset, NSArray, NSAttributedString, NSImage, NSString;
 
 @interface DVTLibraryAssetView : NSView
 {
@@ -19,28 +19,34 @@
         unsigned int _reserved:3;
     } _flags;
     NSAttributedString *_text;
+    NSArray *_observedAssetTokens;
     long long _style;
     NSString *_summary;
     NSString *_title;
     NSImage *_image;
     NSString *_badgeString;
-    id _delegate;
+    id <DVTLibraryAssetViewDelegate> _delegate;
+    DVTLibraryAsset *_observedAsset;
 }
 
 + (struct CGSize)maximumSizeForStyle:(long long)arg1;
 + (struct CGSize)minimumSizeForStyle:(long long)arg1;
 + (struct CGSize)maximumIconSize;
-@property(nonatomic) __weak id delegate; // @synthesize delegate=_delegate;
+@property(retain, nonatomic) DVTLibraryAsset *observedAsset; // @synthesize observedAsset=_observedAsset;
+@property(nonatomic) __weak id <DVTLibraryAssetViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(copy, nonatomic) NSString *badgeString; // @synthesize badgeString=_badgeString;
 @property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 @property(copy, nonatomic) NSString *summary; // @synthesize summary=_summary;
 @property(nonatomic) long long style; // @synthesize style=_style;
 - (void).cxx_destruct;
-- (BOOL)accessibilityIsAttributeSettable:(id)arg1;
-- (id)accessibilityAttributeNames;
-- (id)accessibilityAttributeValue:(id)arg1;
-- (BOOL)accessibilityIsIgnored;
+- (BOOL)accessibilityPerformPick;
+- (id)accessibilityActionDescription:(id)arg1;
+- (id)accessibilityRoleDescription;
+- (id)accessibilityRole;
+- (id)accessibilityHelp;
+- (id)accessibilityLabel;
+- (BOOL)isAccessibilityElement;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)effectiveGridColor;
 - (void)viewWillDraw;

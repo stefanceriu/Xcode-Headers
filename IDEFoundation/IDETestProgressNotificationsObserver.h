@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "IDETestsObserver.h"
+#import "IDETestRunSessionEvents.h"
 
 @class IDETestRunSession, NSString, NSTimer;
 
-@interface IDETestProgressNotificationsObserver : NSObject <IDETestsObserver>
+@interface IDETestProgressNotificationsObserver : NSObject <IDETestRunSessionEvents>
 {
     IDETestRunSession *_testRunSession;
     NSString *_currentSuite;
@@ -40,8 +40,8 @@
 - (void)test:(id)arg1 didFinishActivity:(id)arg2;
 - (void)test:(id)arg1 willStartActivity:(id)arg2;
 - (void)testSuite:(id)arg1 didStartAt:(id)arg2 rawOutput:(id)arg3;
-- (void)testRunner:(id)arg1 didLaunchTestSessionForScheme:(id)arg2 withDisplayName:(id)arg3;
-- (id)initWithTestRunSession:(id)arg1;
+- (void)testRunner:(id)arg1 didLaunchTestSessionForScheme:(id)arg2 withDisplayName:(id)arg3 diagnosticLogPath:(id)arg4;
+- (id)initWithTestOperationsObserver:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

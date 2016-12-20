@@ -10,7 +10,7 @@
 {
 }
 
-+ (int)actionForExtensionIdentifier:(id)arg1 platformFamily:(id)arg2;
++ (int)actionForExtensionIdentifier:(id)arg1 bundleIdentifier:(id)arg2 platformFamily:(id)arg3;
 + (id)applicationBundleIdentifiersForExtension:(id)arg1 platformFamily:(id)arg2;
 + (int)modeForExtensionIdentifier:(id)arg1 platformFamily:(id)arg2;
 + (void)initialize;

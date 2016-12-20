@@ -74,7 +74,6 @@
 - (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
 - (BOOL)outlineView:(id)arg1 shouldEditTableColumn:(id)arg2 item:(id)arg3;
 - (id)outlineView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
-- (void)outlineView:(id)arg1 willDisplayOutlineCell:(id)arg2 forTableColumn:(id)arg3 item:(id)arg4;
 - (void)outlineView:(id)arg1 setObjectValue:(id)arg2 forTableColumn:(id)arg3 byItem:(id)arg4;
 - (id)outlineView:(id)arg1 objectValueForTableColumn:(id)arg2 byItem:(id)arg3;
 - (long long)outlineView:(id)arg1 numberOfChildrenOfItem:(id)arg2;
@@ -83,13 +82,13 @@
 - (id)forwardingTargetForSelector:(SEL)arg1;
 - (BOOL)respondsToSelector:(SEL)arg1;
 - (id)childItemsForItem:(id)arg1;
-- (void)refreshFilterPredicate;
+- (void)_refreshFilter;
 @property(retain) id realObject;
 @property(copy) NSArray *rootItems;
 - (void)_processNavigableItemDidForgetNotification:(id)arg1;
 - (void)_processNavigableItemGraphChangeNotification:(id)arg1;
 - (void)_clearExpandedItems;
-- (BOOL)notifyingRealDelegateOfExpandOrCollapse;
+- (BOOL)_notifyingRealDelegateOfExpandOrCollapse;
 - (id)objectInOutlineViewDataSourceRootItemsAtIndex:(long long)arg1;
 - (long long)countOfOutlineViewDataSourceRootItems;
 - (void)primitiveInvalidate;

@@ -15,10 +15,8 @@ __attribute__((visibility("hidden")))
 @interface GPUGLTraceDisplayableItem : GPUTraceDisplayableItem <DYFunctionTracerDelegate, GPUGLStateMirrorInterface>
 {
     GPUGLStateMirror *_stateMirror;
-    BOOL _hasStateMirror;
 }
 
-@property(readonly) BOOL hasStateMirror; // @synthesize hasStateMirror=_hasStateMirror;
 - (void).cxx_destruct;
 - (id)_renderedImage:(id)arg1 showDepth:(BOOL)arg2;
 - (id)imageToExportToFile;
@@ -33,7 +31,8 @@ __attribute__((visibility("hidden")))
 - (id)rewriteURL:(const char *)arg1;
 - (id)rewriteVariable:(const char *)arg1 receiver:(unsigned long long)arg2;
 - (id)generateLabel;
-@property(copy) GPUGLStateMirror *stateMirror; // @synthesize stateMirror=_stateMirror;
+@property(readonly) BOOL hasStateMirror;
+@property(copy) GPUGLStateMirror *stateMirror;
 - (void)primitiveInvalidate;
 @property(readonly, copy) NSString *description;
 - (id)copyWithZone:(struct _NSZone *)arg1;

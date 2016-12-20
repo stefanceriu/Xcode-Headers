@@ -35,10 +35,6 @@ struct CGSize {
     double height;
 };
 
-struct DVTPortalOperationToken {
-    Class _field1;
-};
-
 struct NSEdgeInsets {
     double top;
     double left;

@@ -10,13 +10,11 @@
 {
 }
 
-+ (void)populateContext:(id)arg1 forWorkItems:(id)arg2 inWorkspace:(id)arg3;
-+ (BOOL)requiresContext;
 + (id)secondaryParsableFileTypeIdentifiers;
 + (id)primaryParsableFileTypeIdentifiers;
 + (id)supportedFileExtensions;
-- (id)parseData:(id)arg1 fromFile:(id)arg2 withContext:(id)arg3 errors:(id *)arg4;
-- (id)parseFile:(id)arg1 withContext:(id)arg2 errors:(id *)arg3;
+- (id)parseData:(id)arg1 fromFile:(id)arg2 withToolchainIdentifiers:(id)arg3 errors:(id *)arg4;
+- (id)parseFile:(id)arg1 withToolchainIdentifiers:(id)arg2 errors:(id *)arg3;
 
 @end
 

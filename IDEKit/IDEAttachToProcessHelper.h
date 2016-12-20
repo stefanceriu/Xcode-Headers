@@ -18,17 +18,18 @@
 + (id)_archNameForExecutableArchitecture:(int)arg1;
 + (id)_archtiectureForTarget:(id)arg1;
 + (void)askUserForProcessIdentifierAndAttachToItFromWorkspaceTabController:(id)arg1;
++ (id)attachToProcess:(id)arg1 fromWorkspaceTabController:(id)arg2 usingRunDestination:(id)arg3 toolchains:(id)arg4 explicitActivityViewTitle:(id)arg5;
 + (id)attachToProcess:(id)arg1 fromWorkspaceTabController:(id)arg2 usingRunDestination:(id)arg3 explicitActivityViewTitle:(id)arg4;
 + (id)attachToProcess:(id)arg1 fromWorkspaceTabController:(id)arg2 usingRunDestination:(id)arg3;
 + (id)attachToProcess:(id)arg1 fromWorkspaceTabController:(id)arg2;
 - (void).cxx_destruct;
-- (void)processIDEntered:(int)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3;
-- (void)processNameEntered:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3;
-- (void)processInformationSelected:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3;
+- (void)processIDEntered:(int)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3 toolchains:(id)arg4;
+- (void)processNameEntered:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3 toolchains:(id)arg4;
+- (void)processInformationSelected:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3 toolchains:(id)arg4;
 - (void)_showAlertForNonDebuggableArchitecture:(id)arg1;
-- (id)_attachToPID:(int)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3 displayName:(id)arg4 processPath:(id)arg5 targetArchitecture:(id)arg6 launchStyle:(int)arg7 usingRunDestination:(id)arg8 explicitActivityViewTitle:(id)arg9;
-- (void)_attachToProcessName:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3 usingRunDestination:(id)arg4;
-- (id)_attachToProcess:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3 usingRunDestination:(id)arg4 explicitActivityViewTitle:(id)arg5;
+- (id)_attachToPID:(int)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3 displayName:(id)arg4 processPath:(id)arg5 targetArchitecture:(id)arg6 launchStyle:(int)arg7 usingRunDestination:(id)arg8 toolchains:(id)arg9 explicitActivityViewTitle:(id)arg10;
+- (void)_attachToProcessName:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3 usingRunDestination:(id)arg4 toolchains:(id)arg5;
+- (id)_attachToProcess:(id)arg1 debuggerSpecifier:(id)arg2 debugProcessAsUID:(unsigned int)arg3 usingRunDestination:(id)arg4 toolchains:(id)arg5 explicitActivityViewTitle:(id)arg6;
 - (id)_initWithWorkspaceTabController:(id)arg1;
 
 @end

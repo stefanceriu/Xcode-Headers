@@ -6,12 +6,12 @@
 
 #import "NSWindowController.h"
 
-#import "IDESourceControlBranchTableDelegate_Legacy.h"
+#import "IDESourceControlBranchTableDelegate.h"
 #import "IDESourceControlWindowController.h"
 
-@class DVTBindingToken, DVTReplacementView, DVTSearchField, IDESourceControlBranch, IDESourceControlMergeOperationInfo, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSButton, NSString, NSTextField, NSWindow;
+@class DVTBindingToken, DVTBorderedView, DVTReplacementView, DVTSearchField, DVTSourceControlBranch, IDESourceControlBranch, IDESourceControlMergeOperationInfo, IDESourceControlWorkspaceUIHandler, IDEWorkspace, NSButton, NSString, NSTextField, NSWindow;
 
-@interface IDESourceControlMergeBranchChooserWindowController : NSWindowController <IDESourceControlWindowController, IDESourceControlBranchTableDelegate_Legacy>
+@interface IDESourceControlMergeBranchChooserWindowController : NSWindowController <IDESourceControlWindowController, IDESourceControlBranchTableDelegate>
 {
     NSButton *_chooseButton;
     NSTextField *_messageTextField;
@@ -24,18 +24,21 @@
     id <DVTInvalidation> _token;
     BOOL _inProgress;
     DVTBindingToken *_filterBindingToken;
+    id <DVTSourceControlCancellable> _parentBranchesOfBranchOperation;
     BOOL _shouldLandBranch;
     IDESourceControlWorkspaceUIHandler *_workspaceUIHandler;
+    DVTBorderedView *_borderedView;
     DVTReplacementView *_replacementView;
     IDESourceControlBranch *_currentBranch;
-    IDESourceControlBranch *_parentBranch;
+    DVTSourceControlBranch *_parentBranch;
 }
 
 + (id)keyPathsForValuesAffectingCanContinue;
 + (id)_branchImage;
-@property(retain, nonatomic) IDESourceControlBranch *parentBranch; // @synthesize parentBranch=_parentBranch;
+@property(retain, nonatomic) DVTSourceControlBranch *parentBranch; // @synthesize parentBranch=_parentBranch;
 @property(retain) IDESourceControlBranch *currentBranch; // @synthesize currentBranch=_currentBranch;
 @property __weak DVTReplacementView *replacementView; // @synthesize replacementView=_replacementView;
+@property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property BOOL inProgress; // @synthesize inProgress=_inProgress;
 @property BOOL shouldLandBranch; // @synthesize shouldLandBranch=_shouldLandBranch;
 @property __weak IDESourceControlWorkspaceUIHandler *workspaceUIHandler; // @synthesize workspaceUIHandler=_workspaceUIHandler;

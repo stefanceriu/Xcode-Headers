@@ -9,6 +9,7 @@
 @interface NSBox (IBNSBoxIntegration)
 + (id)keyPathsForValuesAffectingIbInspectedContentViewMarginsWidth;
 + (id)keyPathsForValuesAffectingIbInspectedContentViewMarginsHeight;
++ (id)keyPathsForValuesAffectingIbInspectedBoxTypeIsCustom;
 + (long long)ibDevelopmentTargetForDocumentContentView;
 + (id)ibKeyPathForDocumentContentView;
 + (id)keyPathsForValuesAffectingIbArchivedDesignableContentView;
@@ -17,8 +18,9 @@
 - (double)ibInspectedContentViewMarginsWidth;
 - (void)setIbInspectedContentViewMarginsHeight:(double)arg1;
 - (double)ibInspectedContentViewMarginsHeight;
+- (BOOL)ibInspectedBoxTypeIsCustom;
 - (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
-- (void)ibPopulateRequiredDocumentCapabilities:(id)arg1;
+- (void)ibPopulateRequiredDocumentCapabilities:(id)arg1 document:(id)arg2;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (id)ibEffectiveContentViewToUseForDocument:(id)arg1;
 - (id)ibVerifyContentViewCurrentContentView;
@@ -42,6 +44,8 @@
 - (id)ibWidgetType;
 - (BOOL)ibIsNSAppearanceContainer;
 - (id)ibDefaultFontKeyPath;
+- (id)ibDefaultFillColor;
+- (id)ibDefaultBorderColor;
 - (BOOL)ibIsTitled;
 - (id)ibUnembedChildrenInDocument:(id)arg1;
 - (BOOL)ibCanUnembedChildrenInDocument:(id)arg1;
@@ -60,5 +64,9 @@
 - (BOOL)ibUsesWidgetTypeForTypeNameForDefaultLabel;
 - (void)ibSwizzledNSBoxEncodeWithCoder:(id)arg1;
 - (id)ibSwizzledNSBoxInitWithCoder:(id)arg1;
+- (id)ibEditorClass;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 @end
 

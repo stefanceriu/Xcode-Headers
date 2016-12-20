@@ -23,6 +23,7 @@
 @property(readonly, copy) NSString *name;
 
 @optional
+@property(readonly, copy) NSString *action;
 @property(readonly) NSImage *highlightedStatusIcon;
 @property(readonly) NSImage *statusIcon;
 @property(readonly, copy) NSArray *additionalCompletions;

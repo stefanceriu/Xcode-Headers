@@ -6,19 +6,15 @@
 
 #import <IDEInterfaceBuilderKit/IBICAssetCapsule.h>
 
-@class NSTextField;
-
 @interface IBICReferencedContentPlaceholderCapsule : IBICAssetCapsule
 {
-    NSTextField *_descriptionTextField;
 }
 
-+ (id)placeholderTextField;
-- (void).cxx_destruct;
++ (id)createPlaceholderTextField;
 - (void)refreshFromReferencingItem:(id)arg1;
 - (id)assetComponentIDAtPoint:(struct CGPoint)arg1;
 - (id)targettedAssetComponentIDsAtPoint:(struct CGPoint)arg1;
-- (struct CGRect)frameForImageOfChildWithAssetComponentID:(id)arg1;
+- (struct CGRect)frameForImageOfComponentWithAssetComponentID:(id)arg1;
 - (void)setSelectedAssetComponentIDs:(id)arg1;
 - (void)setContextFocusedAssetComponentIDs:(id)arg1;
 - (struct CGRect)bandSelectionFrameForAssetComponentID:(id)arg1;

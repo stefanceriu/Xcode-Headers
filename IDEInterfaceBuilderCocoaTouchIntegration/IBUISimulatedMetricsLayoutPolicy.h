@@ -29,6 +29,7 @@
 - (double)contentViewOffsetFromBottom;
 - (double)contentViewOffsetFromTop;
 - (struct CGSize)simulatedSizeForContentViewSize:(struct CGSize)arg1;
+- (struct CGRect)editorViewFrame;
 - (struct CGRect)contentViewFrame;
 - (struct CGSize)simulatedSize;
 - (id)initWithContainer:(id)arg1 extendedEdgeProvider:(id)arg2;

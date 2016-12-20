@@ -10,16 +10,16 @@
 
 @interface IBLayoutGuideGeneratorResult : NSObject
 {
-    long long validGuides;
-    NSArray *layoutGuides;
-    NSSet *layoutGuideMatches;
-    struct CGRect targetRect;
+    long long _validGuides;
+    NSArray *_layoutGuides;
+    NSSet *_layoutGuideMatches;
+    struct CGRect _targetRect;
 }
 
-@property struct CGRect targetRect; // @synthesize targetRect;
-@property(retain, nonatomic) NSSet *layoutGuideMatches; // @synthesize layoutGuideMatches;
-@property(retain, nonatomic) NSArray *layoutGuides; // @synthesize layoutGuides;
-@property long long validGuides; // @synthesize validGuides;
+@property struct CGRect targetRect; // @synthesize targetRect=_targetRect;
+@property(retain, nonatomic) NSSet *layoutGuideMatches; // @synthesize layoutGuideMatches=_layoutGuideMatches;
+@property(retain, nonatomic) NSArray *layoutGuides; // @synthesize layoutGuides=_layoutGuides;
+@property long long validGuides; // @synthesize validGuides=_validGuides;
 - (void).cxx_destruct;
 
 @end

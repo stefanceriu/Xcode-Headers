@@ -84,6 +84,8 @@
 - (void)_showConflictedKeyBindings;
 - (void)_updateScopeButtons;
 - (void)_showConflictedKeyBindingsStatusForKeyBinding:(id)arg1;
+- (id)filterButtonAccessibilityDescription;
+- (id)filterButtonToolTip;
 - (id)filterButtonMenu;
 - (id)filterDefinitionIdentifier;
 @property(readonly, copy) NSArray *searchWords;

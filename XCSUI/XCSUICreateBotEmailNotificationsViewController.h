@@ -4,29 +4,66 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSViewController.h"
+#import "IDEViewController.h"
 
+#import "NSTokenFieldDelegate.h"
 #import "XCSUICreateBotTriggerChildViewController.h"
+#import "XCSUIScheduleViewControllerDelegate.h"
 
-@class DVTSourceControlWorkspaceBlueprint, NSButton, NSTokenField, XCSTrigger;
+@class NSButton, NSString, NSTextField, NSTokenField, NSView, NSWindow, XCSTrigger, XCSUIBotDefinitionContext, XCSUICreateBotTriggerConditionsViewController, XCSUIScheduleViewController, XCSUITriggerCommitterOptionsViewController;
 
-@interface XCSUICreateBotEmailNotificationsViewController : NSViewController <XCSUICreateBotTriggerChildViewController>
+@interface XCSUICreateBotEmailNotificationsViewController : IDEViewController <XCSUIScheduleViewControllerDelegate, NSTokenFieldDelegate, XCSUICreateBotTriggerChildViewController>
 {
     XCSTrigger *_trigger;
-    DVTSourceControlWorkspaceBlueprint *_blueprint;
+    NSString *_defaultFromAddress;
+    NSWindow *_emailOptionsSheet;
+    XCSUITriggerCommitterOptionsViewController *_committerOptionsViewController;
+    XCSUIScheduleViewController *_scheduleViewController;
+    XCSUICreateBotTriggerConditionsViewController *_conditionsViewController;
+    XCSUIBotDefinitionContext *_botDefinitionContext;
     NSButton *_sendToCommittersCheckbox;
-    NSButton *_committerOptionsButton;
     NSTokenField *_emailTokenField;
     NSButton *_includeIssueBreakdownsCheckbox;
     NSButton *_includeCommitMessagesCheckbox;
+    NSTextField *_fromAddressTextField;
+    NSTokenField *_ccAddressTokenField;
+    NSTextField *_replyToAddressTextField;
+    NSButton *_includeBotConfigurationCheckbox;
+    NSButton *_includeIssueFoundBotConfigurationCheckbox;
+    NSButton *_includeLogsCheckbox;
+    NSButton *_includeIntegrationLogsCheckbox;
+    NSView *_scheduleContainerView;
+    NSView *_scheduleSectionView;
+    NSView *_toFieldForNewIssues;
+    NSView *_sendToView;
+    NSView *_sendFromView;
+    NSView *_includeInEmailsView;
+    NSView *_includeInReportsView;
+    NSView *_conditionsContainerView;
 }
 
+@property __weak NSView *conditionsContainerView; // @synthesize conditionsContainerView=_conditionsContainerView;
+@property __weak NSView *includeInReportsView; // @synthesize includeInReportsView=_includeInReportsView;
+@property __weak NSView *includeInEmailsView; // @synthesize includeInEmailsView=_includeInEmailsView;
+@property __weak NSView *sendFromView; // @synthesize sendFromView=_sendFromView;
+@property __weak NSView *sendToView; // @synthesize sendToView=_sendToView;
+@property __weak NSView *toFieldForNewIssues; // @synthesize toFieldForNewIssues=_toFieldForNewIssues;
+@property __weak NSView *scheduleSectionView; // @synthesize scheduleSectionView=_scheduleSectionView;
+@property __weak NSView *scheduleContainerView; // @synthesize scheduleContainerView=_scheduleContainerView;
+@property __weak NSButton *includeIntegrationLogsCheckbox; // @synthesize includeIntegrationLogsCheckbox=_includeIntegrationLogsCheckbox;
+@property __weak NSButton *includeLogsCheckbox; // @synthesize includeLogsCheckbox=_includeLogsCheckbox;
+@property __weak NSButton *includeIssueFoundBotConfigurationCheckbox; // @synthesize includeIssueFoundBotConfigurationCheckbox=_includeIssueFoundBotConfigurationCheckbox;
+@property __weak NSButton *includeBotConfigurationCheckbox; // @synthesize includeBotConfigurationCheckbox=_includeBotConfigurationCheckbox;
+@property __weak NSTextField *replyToAddressTextField; // @synthesize replyToAddressTextField=_replyToAddressTextField;
+@property __weak NSTokenField *ccAddressTokenField; // @synthesize ccAddressTokenField=_ccAddressTokenField;
+@property __weak NSTextField *fromAddressTextField; // @synthesize fromAddressTextField=_fromAddressTextField;
 @property(nonatomic) __weak NSButton *includeCommitMessagesCheckbox; // @synthesize includeCommitMessagesCheckbox=_includeCommitMessagesCheckbox;
 @property(nonatomic) __weak NSButton *includeIssueBreakdownsCheckbox; // @synthesize includeIssueBreakdownsCheckbox=_includeIssueBreakdownsCheckbox;
 @property(nonatomic) __weak NSTokenField *emailTokenField; // @synthesize emailTokenField=_emailTokenField;
-@property(nonatomic) __weak NSButton *committerOptionsButton; // @synthesize committerOptionsButton=_committerOptionsButton;
 @property(nonatomic) __weak NSButton *sendToCommittersCheckbox; // @synthesize sendToCommittersCheckbox=_sendToCommittersCheckbox;
-@property(retain) DVTSourceControlWorkspaceBlueprint *blueprint; // @synthesize blueprint=_blueprint;
+@property(retain, nonatomic) XCSUIBotDefinitionContext *botDefinitionContext; // @synthesize botDefinitionContext=_botDefinitionContext;
+@property(readonly) XCSUICreateBotTriggerConditionsViewController *conditionsViewController; // @synthesize conditionsViewController=_conditionsViewController;
+@property(readonly) XCSUIScheduleViewController *scheduleViewController; // @synthesize scheduleViewController=_scheduleViewController;
 - (void).cxx_destruct;
 - (void)controlTextDidChange:(id)arg1;
 - (BOOL)tokenField:(id)arg1 hasMenuForRepresentedObject:(id)arg2;
@@ -42,11 +79,31 @@
 - (id)_personForEmailString:(id)arg1;
 - (id)_personForEmailAddress:(id)arg1;
 - (id)_emailAddressFromString:(id)arg1;
+- (void)scheduleHasChanged;
+- (void)listenForServerChanges;
+- (BOOL)validateEmail:(id)arg1;
+- (id)validateDomainEmails:(id)arg1;
+- (void)updateDefaultFromAddress;
 - (void)showCommitterOptionsSheet:(id)arg1;
 - (void)commitChanges:(id)arg1;
 - (void)saveTrigger;
 @property(retain) XCSTrigger *trigger;
+- (void)updateReplyToAddressField;
+- (void)updateFromAddressField;
+- (void)updateViewsForNewIssueFound;
+- (void)updateViewsForDigestReport;
 - (id)titleForDisplay;
+- (void)updateLayoutBasedOnServerVersion;
+- (void)updateLayout:(unsigned long long)arg1;
+- (void)viewWillUninstall;
+- (void)viewDidLoad;
+- (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

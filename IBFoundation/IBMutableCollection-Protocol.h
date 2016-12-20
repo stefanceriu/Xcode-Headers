@@ -9,6 +9,7 @@
 @protocol IBMutableCollection <IBCollection>
 - (void)ib_removeObjectsInCollection:(id <IBCollection>)arg1;
 - (void)ib_addObjectsFromCollection:(id <IBCollection>)arg1;
+- (void)ib_addObjectsFromFastEnumerable:(id <NSFastEnumeration>)arg1;
 - (void)ib_addObjectIfNonNil:(id)arg1;
 - (void)ib_appendObjects:(id)arg1;
 - (void)removeObject:(id)arg1;

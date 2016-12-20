@@ -6,27 +6,29 @@
 
 #import "NSObject.h"
 
-@class IBPlatformToolRequester, IBTargetRuntime, NSNumber, NSString;
+@class IBPlatformToolRequester, IBTargetRuntime, NSString;
 
 @interface IBSceneUpdate : NSObject
 {
     NSObject *_rootObject;
-    NSNumber *_scaleFactor;
+    double _scaleFactor;
     IBTargetRuntime *_targetRuntime;
     id <IBSceneUpdateRequest> _request;
+    NSString *_supersessionIdentifier;
     NSString *_pendingRequestID;
     IBPlatformToolRequester *_currentRemoteRequester;
 }
 
 @property(retain, nonatomic) IBPlatformToolRequester *currentRemoteRequester; // @synthesize currentRemoteRequester=_currentRemoteRequester;
 @property(copy, nonatomic) NSString *pendingRequestID; // @synthesize pendingRequestID=_pendingRequestID;
+@property(readonly, nonatomic) NSString *supersessionIdentifier; // @synthesize supersessionIdentifier=_supersessionIdentifier;
 @property(readonly, nonatomic) id <IBSceneUpdateRequest> request; // @synthesize request=_request;
 @property(readonly, nonatomic) IBTargetRuntime *targetRuntime; // @synthesize targetRuntime=_targetRuntime;
-@property(readonly, copy, nonatomic) NSNumber *scaleFactor; // @synthesize scaleFactor=_scaleFactor;
+@property(readonly, nonatomic) double scaleFactor; // @synthesize scaleFactor=_scaleFactor;
 @property(readonly, nonatomic) NSObject *rootObject; // @synthesize rootObject=_rootObject;
 - (void).cxx_destruct;
 - (id)description;
-- (id)initWithRootObject:(id)arg1 targetRuntime:(id)arg2 scaleFactor:(id)arg3 request:(id)arg4;
+- (id)initWithRootObject:(id)arg1 targetRuntime:(id)arg2 scaleFactor:(double)arg3 request:(id)arg4 supersessionIdentifier:(id)arg5;
 
 @end
 

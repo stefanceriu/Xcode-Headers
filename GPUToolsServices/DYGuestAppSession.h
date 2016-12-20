@@ -39,6 +39,7 @@
     BOOL _invalid;
     BOOL _includeBacktracesInTrace;
     BOOL _includeDriverEventsInTrace;
+    BOOL _isLocalSession;
     int _traceMode;
     DYGuestApp *_guestApp;
     DYDevice *_device;
@@ -57,6 +58,7 @@
 + (void)initialize;
 @property(readonly, nonatomic) DYGuestAppControlStrategy *controlStrategy; // @synthesize controlStrategy=_controlStrategy;
 @property(readonly, nonatomic) DYGuestAppLaunchStrategy *launchStrategy; // @synthesize launchStrategy=_launchStrategy;
+@property(nonatomic) BOOL isLocalSession; // @synthesize isLocalSession=_isLocalSession;
 @property(retain, nonatomic) NSDictionary *hardwareCountersConfiguration; // @synthesize hardwareCountersConfiguration=_hardwareCountersConfiguration;
 @property(nonatomic) unsigned long long profilingFlags; // @synthesize profilingFlags=_profilingFlags;
 @property(nonatomic) unsigned long long profilingSendPeriod; // @synthesize profilingSendPeriod=_profilingSendPeriod;
@@ -79,8 +81,8 @@
 - (void).cxx_destruct;
 - (id)newCaptureSessionWithArchive:(id)arg1;
 - (void)setValue:(id)arg1 forOverride:(id)arg2;
-@property(readonly, nonatomic) struct dy_timebase appTimebase; // @dynamic appTimebase;
-@property(readonly, nonatomic) int currentBreakpointType; // @dynamic currentBreakpointType;
+@property(readonly, nonatomic) struct dy_timebase appTimebase;
+@property(readonly, nonatomic) int currentBreakpointType;
 - (void)_sendAllConfigurations;
 - (void)_sendOverridesConfiguration;
 - (void)_sendTraceConfiguration;
@@ -105,12 +107,11 @@
 - (void)invalidate;
 - (void)_invalidate:(id)arg1;
 - (void)bringToForeground;
-- (void)sendToBackground;
 - (void)unlockGraphics;
 - (void)lockGraphics;
 - (void)terminate;
 - (void)resume;
-@property(readonly, retain, nonatomic) NSDictionary *finalLaunchEnvironment; // @dynamic finalLaunchEnvironment;
+@property(readonly, retain, nonatomic) NSDictionary *finalLaunchEnvironment;
 - (void)dispatchOnceRunning:(struct dispatch_queue_s *)arg1 block:(CDUnknownBlockType)arg2;
 - (id)launch;
 - (id)launchDebugServerWithEnvironment:(id)arg1 andLaunchPath:(id)arg2 andPort:(id)arg3;

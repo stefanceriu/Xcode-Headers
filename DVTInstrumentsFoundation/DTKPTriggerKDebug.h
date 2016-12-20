@@ -6,19 +6,24 @@
 
 #import <DVTInstrumentsFoundation/DTKPTrigger.h>
 
+@class DTKPKDebugCodeSet;
+
 @interface DTKPTriggerKDebug : DTKPTrigger
 {
-    unsigned char _filterBitSet[8192];
     int _filterMode;
+    DTKPKDebugCodeSet *_codeSet;
 }
 
+@property(readonly, retain, nonatomic) DTKPKDebugCodeSet *codeSet; // @synthesize codeSet=_codeSet;
 @property(nonatomic) int filterMode; // @synthesize filterMode=_filterMode;
+- (void).cxx_destruct;
 - (int)stop:(id *)arg1;
 - (int)start:(id *)arg1;
 - (void)enableClass:(unsigned char)arg1 subclass:(unsigned char)arg2;
 - (void)enableClass:(unsigned char)arg1;
-- (void)clearFilter;
-- (id)init;
+- (void)addCodeSet:(id)arg1;
+- (void)clearCodeSet;
+- (id)initWithCounterAllocatorProvider:(id)arg1;
 
 @end
 

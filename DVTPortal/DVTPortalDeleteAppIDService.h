@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)deleteAppIDServiceWithTeam:(id)arg1 platform:(id)arg2 portalID:(id)arg3;
++ (id)deleteAppIDServiceWithTeam:(id)arg1 program:(id)arg2 portalID:(id)arg3;
 
 @end
 

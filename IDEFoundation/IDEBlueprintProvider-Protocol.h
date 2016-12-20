@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "DVTInvalidation.h"
 #import "NSObject.h"
 
 @class NSArray, NSString;
 
-@protocol IDEBlueprintProvider <NSObject>
+@protocol IDEBlueprintProvider <DVTInvalidation, NSObject>
 - (id <IDETestableProvider>)testableProvider;
 - (id <IDEBlueprint>)blueprintForName:(NSString *)arg1;
 - (id <IDEBlueprint>)blueprintForIdentifier:(NSString *)arg1;

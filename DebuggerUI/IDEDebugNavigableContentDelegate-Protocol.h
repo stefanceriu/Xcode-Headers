@@ -28,6 +28,7 @@
 - (id)initWithTopNavigableModel:(id <IDEDebugTopNavigableModel>)arg1 debugNavigator:(IDEDebugNavigator *)arg2;
 
 @optional
+- (NSDictionary *)tableViewCellPropertyBindingsForCell:(DVTTableCellView *)arg1;
 - (BOOL)shouldShowOutlineCellForRepresentedObject:(id)arg1;
 - (DVTTableRowView *)tableRowViewForRepresentedObject:(id)arg1 withOutlineView:(NSOutlineView *)arg2;
 - (DVTTableCellView *)tableCellViewForTopLevelItem:(id)arg1 withOutlineView:(NSOutlineView *)arg2;

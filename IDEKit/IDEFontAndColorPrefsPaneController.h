@@ -8,7 +8,7 @@
 
 #import "NSTableViewDelegate.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTScrollView, DVTTabChooserView, NSArray, NSArrayController, NSColor, NSFont, NSObjectController, NSString, NSTableView, NSTextField, NSView;
+@class DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTScrollView, DVTTabChooserView, DVTTextPreferences, NSArray, NSArrayController, NSColor, NSFont, NSObjectController, NSString, NSTableView, NSTextField, NSView;
 
 @interface IDEFontAndColorPrefsPaneController : IDEViewController <NSTableViewDelegate>
 {
@@ -46,6 +46,7 @@
 - (void)_refreshRowViewSelectionColor:(id)arg1;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (void)_configureTextField:(id)arg1 forItem:(id)arg2;
+- (BOOL)colorWell:(id)arg1 shouldSetColor:(id)arg2;
 - (id)_theme;
 - (void)_sourceTextColorsChanged:(id)arg1;
 - (void)_resetAllRowHeights;
@@ -55,6 +56,7 @@
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)loadView;
+@property(readonly) DVTTextPreferences *textPreferences;
 - (void)_updateFontPickerAndColorWell;
 @property(copy) NSFont *combinedSyntaxFont;
 @property(copy) NSColor *combinedSyntaxColor;

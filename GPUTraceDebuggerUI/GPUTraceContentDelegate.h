@@ -9,13 +9,12 @@
 #import "DVTInvalidation.h"
 #import "IDEDebugNavigableContentDelegate.h"
 
-@class DVTGradientImageButton, DVTStackBacktrace, GPUDebuggingAdditionUIController, GPUNavigatorStatusCell, GPUSharedTabUIState, IDEDebugNavigator, IDENavigableItem, IDENavigatorDataCell, IDENavigatorOutlineView, NSMenuItem, NSSlider, NSString, NSView;
+@class DVTStackBacktrace, GPUDebuggingAdditionUIController, GPUNavigatorFilterControlBar, GPUNavigatorStatusCell, GPUSharedTabUIState, IDEDebugNavigator, IDEDebugSession, IDENavigableItem, IDENavigatorDataCell, IDENavigatorOutlineView, NSMenuItem, NSSet, NSString;
 
 __attribute__((visibility("hidden")))
 @interface GPUTraceContentDelegate : NSObject <IDEDebugNavigableContentDelegate, DVTInvalidation>
 {
-    IDEDebugNavigator *_debugNavigator;
-    int _navigatorMode;
+    NSString *_filterString;
     int _navigatorProgramSortMode;
     GPUDebuggingAdditionUIController *_debuggingAdditionUIController;
     GPUSharedTabUIState *_sharedUIStateObj;
@@ -24,27 +23,28 @@ __attribute__((visibility("hidden")))
     GPUNavigatorStatusCell *_subtitleStatusCell;
     NSMenuItem *_traceItemMenuItem;
     unsigned long long _compressionValue;
-    unsigned long long _maxCompressionValue;
     BOOL _ignoreStateForDebugNavigator;
     BOOL _haveRequestedUIController;
     id <DVTCancellable> _uiControllerObserver;
     id <DVTCancellable> _buttonBindingToken;
+    id <DVTCancellable> _sessionStateObserver;
+    NSSet *_preFilterExpandedItemTokens;
+    GPUNavigatorFilterControlBar *_filterControlBar;
+    BOOL _compressStackFrames;
+    BOOL _showOnlyIssues;
     BOOL _showOnlyInterestingContent;
-    NSView *_localFilterView;
-    DVTGradientImageButton *_showOnlyInterestingContentButton;
-    DVTGradientImageButton *_autoCompressMaxButton;
-    NSSlider *_autoCompressSlider;
-    DVTGradientImageButton *_autoCompressMinButton;
+    int _navigatorMode;
+    IDEDebugNavigator *_debugNavigator;
+    IDEDebugSession *_debugSession;
 }
 
 + (void)initialize;
 @property(nonatomic) BOOL showOnlyInterestingContent; // @synthesize showOnlyInterestingContent=_showOnlyInterestingContent;
+@property(nonatomic) int navigatorMode; // @synthesize navigatorMode=_navigatorMode;
+@property(nonatomic) BOOL showOnlyIssues; // @synthesize showOnlyIssues=_showOnlyIssues;
+@property(nonatomic) BOOL compressStackFrames; // @synthesize compressStackFrames=_compressStackFrames;
+@property(readonly) IDEDebugSession *debugSession; // @synthesize debugSession=_debugSession;
 @property(readonly) IDEDebugNavigator *debugNavigator; // @synthesize debugNavigator=_debugNavigator;
-@property __weak DVTGradientImageButton *autoCompressMinButton; // @synthesize autoCompressMinButton=_autoCompressMinButton;
-@property __weak NSSlider *autoCompressSlider; // @synthesize autoCompressSlider=_autoCompressSlider;
-@property __weak DVTGradientImageButton *autoCompressMaxButton; // @synthesize autoCompressMaxButton=_autoCompressMaxButton;
-@property __weak DVTGradientImageButton *showOnlyInterestingContentButton; // @synthesize showOnlyInterestingContentButton=_showOnlyInterestingContentButton;
-@property(retain) NSView *localFilterView; // @synthesize localFilterView=_localFilterView;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)setStoredCompressionValue:(id)arg1;
@@ -61,6 +61,7 @@ __attribute__((visibility("hidden")))
 - (void)_updateForNewNavigatorContentMode;
 - (void)_updateForNewNavigatorMode:(id)arg1;
 - (void)configureMenuForProcessHeaderActionPopUpCell:(id)arg1;
+- (void)_reportNavigatorMode:(int)arg1;
 - (void)_threadContextuallyClicked;
 - (void)contextualMenuNeedsUpdate:(id)arg1;
 - (void)_showAllIssues:(id)arg1;
@@ -86,7 +87,7 @@ __attribute__((visibility("hidden")))
 - (id)pasteboardStringForRepresentedObject:(id)arg1;
 - (void)_appendDisplayStringForCopiedOrDraggedGroupItem:(id)arg1 toString:(id)arg2 level:(unsigned int)arg3;
 - (BOOL)shouldHandleUserDirectMoveUpOrDown:(BOOL)arg1 forRepresentedObject:(id)arg2 newRow:(long long *)arg3;
-- (void)_updateForNewShowOnlyInterestingContent;
+- (void)_updateForNewShowOnlyInterestingContent:(BOOL)arg1;
 - (void)didCollapseForItem:(id)arg1;
 - (void)didExpandForItem:(id)arg1;
 - (void)willExpandForItem:(id)arg1;
@@ -112,16 +113,17 @@ __attribute__((visibility("hidden")))
 - (id)markerGroupTableCellViewWithOutlineView:(id)arg1;
 - (void)willDisplayCell:(id)arg1 forRepresentedObject:(id)arg2 item:(id)arg3;
 - (void)updateForNewFilterString:(id)arg1;
+- (id)_createFilterPredicateForFilterString:(id)arg1;
 - (void)_navigatorFirstShownWithNoSelectedItems:(id)arg1;
 - (void)debugNavigatorViewWillUninstall;
 - (void)_handleDebuggingAdditionUIControllerCreated:(id)arg1;
 - (void)debugNavigatorViewDidInstall;
 @property(readonly) NSString *associatedProcessUUID;
 - (id)processNavigableItem;
-- (void)autoCompressStackFrames:(id)arg1;
 - (id)workspaceTabController;
 @property(readonly) IDENavigableItem *rootNavigableItem;
 - (id)initWithTopNavigableModel:(id)arg1 debugNavigator:(id)arg2;
+- (id)tableViewCellPropertyBindingsForCell:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

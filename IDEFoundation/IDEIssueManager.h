@@ -35,6 +35,7 @@
     DVTTimeSlicedMainThreadWorkQueue *_buildableDependencyFinderQueue;
     IDEBuildParameters *_cachedBuildParamsForFindingBuildDependencies;
     NSMutableSet *_buildablesAlreadyCheckedForDependencies;
+    NSHashTable *_cachedBlueprintsForShowingIssuesForActiveScheme;
     NSHashTable *_cachedBlueprintsForActiveScheme;
     NSHashTable *_cachedContainersForActiveScheme;
     int _currentIssueFilterStyle;
@@ -46,12 +47,16 @@
     BOOL _liveIssuesEnabled;
     IDEWorkspace *_workspace;
     IDEIssueLogRecordsGroup *_issueLogRecordsGroup;
+    unsigned long long _numberOfBuildtimeIssues;
+    unsigned long long _numberOfRuntimeIssues;
 }
 
 + (id)issueManagerLogAspect;
 + (id)_issueProviderInfo;
 + (void)_useDebugProviderExtensionPointWithIdentifier:(id)arg1;
 + (void)initialize;
+@property unsigned long long numberOfRuntimeIssues; // @synthesize numberOfRuntimeIssues=_numberOfRuntimeIssues;
+@property unsigned long long numberOfBuildtimeIssues; // @synthesize numberOfBuildtimeIssues=_numberOfBuildtimeIssues;
 @property(readonly) IDEIssueLogRecordsGroup *issueLogRecordsGroup; // @synthesize issueLogRecordsGroup=_issueLogRecordsGroup;
 @property(readonly, getter=areLiveIssuesEnabled) BOOL liveIssuesEnabled; // @synthesize liveIssuesEnabled=_liveIssuesEnabled;
 @property(readonly) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
@@ -68,12 +73,13 @@
 - (void)_needsUpdateInResponseToFilterChanges;
 - (void)_coalescedUpdateInResponseToFilterChanges;
 - (void)_hideIssues:(id)arg1;
-- (void)_setIssues:(id)arg1 forProviderContext:(id)arg2 container:(id)arg3 blueprint:(id)arg4 session:(id)arg5;
+- (void)_setIssues:(id)arg1 forProviderContext:(id)arg2 container:(id)arg3 blueprint:(id)arg4 runtimeGroupingObject:(id)arg5 session:(id)arg6;
 - (void)_removeIssues:(id)arg1 forProviderContext:(id)arg2 session:(id)arg3;
-- (void)_addIssues:(id)arg1 forProviderContext:(id)arg2 container:(id)arg3 blueprint:(id)arg4 session:(id)arg5 tryToCoalesce:(BOOL)arg6;
+- (void)_addIssues:(id)arg1 forProviderContext:(id)arg2 container:(id)arg3 blueprint:(id)arg4 runtimeGroupingObject:(id)arg5 session:(id)arg6 tryToCoalesce:(BOOL)arg7;
 - (BOOL)_vendOnlyActiveSchemeIssues;
 - (void)_retractIssues:(id)arg1;
-- (void)_vendIssues:(id)arg1 container:(id)arg2 blueprint:(id)arg3 issueToGroupingObjectMap:(id)arg4 session:(id)arg5;
+- (void)_vendIssues:(id)arg1 container:(id)arg2 blueprint:(id)arg3 runtimeGroupingObject:(id)arg4 issueToGroupingObjectMap:(id)arg5 session:(id)arg6;
+- (void)_setNumBuildtimeIssues:(unsigned long long)arg1 numRuntimeIssues:(unsigned long long)arg2;
 - (id)_similarExistingIssueForIssue:(id)arg1;
 - (id)_similarExistingIssueForIssue:(id)arg1 container:(id)arg2 blueprint:(id)arg3;
 - (_Bool)_doesIssue:(id)arg1 fromContainer:(id)arg2 andBlueprint:(id)arg3 coalesceWithIssue:(id)arg4;
@@ -89,12 +95,13 @@
 - (unsigned long long)numberOfFixableDiagnosticItemsInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfAnalyzerResultsInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfNoticesInDocumentAtURL:(id)arg1;
+- (unsigned long long)numberOfRuntimeIssuesInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfWarningsInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfErrorsInDocumentAtURL:(id)arg1;
 - (unsigned long long)numberOfTestFailuresInDocumentAtURL:(id)arg1;
 - (id)_documentIssueSummaryForURL:(id)arg1;
 @property(readonly) NSArray *documentURLsWithIssues;
-@property(readonly) NSArray *issueGroups; // @synthesize issueGroups=_issueGroups;
+@property(readonly) NSArray *issueGroups;
 - (void)_updateIssueProviders;
 - (void)primitiveInvalidate;
 - (id)initWithWorkspace:(id)arg1;

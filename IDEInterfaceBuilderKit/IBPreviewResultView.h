@@ -6,10 +6,16 @@
 
 #import "NSView.h"
 
-@class IBImageButton, NSArray, NSImage, NSImageView, NSLayoutConstraint, NSTextField, NSTrackingArea;
+@class IBDeviceBezel, IBDeviceBezelView, IBImageButton, NSArray, NSImage, NSImageView, NSLayoutConstraint, NSTextField, NSTrackingArea;
 
 @interface IBPreviewResultView : NSView
 {
+    NSView *_bezelContainerView;
+    IBDeviceBezelView *_bezelView;
+    NSLayoutConstraint *_bezelInsetLeadingConstraint;
+    NSLayoutConstraint *_bezelInsetTrailingConstraint;
+    NSLayoutConstraint *_bezelInsetTopConstraint;
+    NSLayoutConstraint *_bezelInsetBottomConstraint;
     NSView *_contentView;
     NSImageView *_imageView;
     NSTrackingArea *_trackingArea;
@@ -20,6 +26,7 @@
     NSLayoutConstraint *_scrollViewHeightConstraint;
     BOOL _selected;
     BOOL _showsFirstResponder;
+    IBDeviceBezel *_deviceBezel;
     IBImageButton *_actionButton;
     NSTextField *_titleField;
     id _representedObject;
@@ -35,6 +42,7 @@
 @property(retain) id representedObject; // @synthesize representedObject=_representedObject;
 @property(retain) NSTextField *titleField; // @synthesize titleField=_titleField;
 @property(retain) IBImageButton *actionButton; // @synthesize actionButton=_actionButton;
+@property(retain, nonatomic) IBDeviceBezel *deviceBezel; // @synthesize deviceBezel=_deviceBezel;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)effectiveBorderColor;
@@ -49,6 +57,9 @@
 @property(retain) NSImage *contentImage;
 - (void)disableContentScrolling;
 - (void)enableContentScrollingWithClippingSize:(struct CGSize)arg1;
+- (void)addBezelViewIfNeeded;
+- (void)removeBezelViewIfNeeded;
+- (void)updateBezelWithContentScale:(double)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

@@ -13,6 +13,8 @@
 - (id)dvt_sortedArray;
 - (id)dvt_onlyObject;
 - (BOOL)dvt_isNonEmpty;
+- (id)dvt_objectsPassingTest:(CDUnknownBlockType)arg1;
+- (BOOL)dvt_areAllObjectsPassingTest:(CDUnknownBlockType)arg1;
 - (id)dvt_anyObjectPassingTest:(CDUnknownBlockType)arg1;
 - (id)dvt_setByFilteringUsingBlock:(CDUnknownBlockType)arg1;
 - (id)dvt_setByApplyingBlockStrictly:(CDUnknownBlockType)arg1;

@@ -9,6 +9,7 @@
 @interface NSDateIntervalFormatter (IBIntegration)
 + (id)keyPathsForValuesAffectingIbExternalSampleValue;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (unsigned long long)ibMinOSVersionForUseInCell;
 - (void)setIbExternalSampleValueToDate:(id)arg1;
 - (id)ibExternalSampleValueToDate;
 - (id)ibExternalSampleValueToDateDefault;
@@ -19,5 +20,6 @@
 - (id)ibExternalSampleValueFormatted;
 - (id)ibExternalSampleValueDefault;
 - (id)ibSwizzledInitWithCoder:(id)arg1;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

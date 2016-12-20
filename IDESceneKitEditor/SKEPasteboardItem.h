@@ -24,6 +24,7 @@
 - (void).cxx_destruct;
 - (void)putInPasteboard:(id)arg1;
 @property(readonly) NSArray *archivedMembersData;
+- (id)membersForSourceDocument;
 - (id)nodeMembersForDestinationDocument:(id)arg1;
 - (id)membersForDestinationDocument:(id)arg1;
 - (void)_unarchiveArchivedMembersIfNeeded:(id)arg1;

@@ -29,16 +29,18 @@
     DVTCrashLog *_crashLog;
     DVTCrashPoint *_crashPoint;
     NSArray *_findBarMatches;
-    DVTCrashLogOutlineView *_outlineView;
     NSView *_scopeBarsBaseView;
     NSArray *_findBarMatchingFrames;
     NSScrollView *_scrollView;
     DVTNotificationToken *_scrollViewBoundsChangeObserver;
     DVTUserDefaultsLeastRecentlyUsedCache *_scrollPositionCache;
+    DVTCrashLogOutlineView *_outlineView;
 }
 
 + (id)_colorForStackFrameWithoutSymbols;
 + (void)initialize;
+@property(retain) NSString *findString; // @synthesize findString=_findString;
+@property __weak DVTCrashLogOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 @property float scrollViewTopContentInsetDefault; // @synthesize scrollViewTopContentInsetDefault=_scrollViewTopContentInsetDefault;
 @property(retain, nonatomic) DVTUserDefaultsLeastRecentlyUsedCache *scrollPositionCache; // @synthesize scrollPositionCache=_scrollPositionCache;
 @property(retain, nonatomic) DVTNotificationToken *scrollViewBoundsChangeObserver; // @synthesize scrollViewBoundsChangeObserver=_scrollViewBoundsChangeObserver;
@@ -46,8 +48,6 @@
 @property(copy) NSArray *findBarMatchingFrames; // @synthesize findBarMatchingFrames=_findBarMatchingFrames;
 @property(retain) NSView *scopeBarsBaseView; // @synthesize scopeBarsBaseView=_scopeBarsBaseView;
 @property(nonatomic) BOOL isFindBarInstalled; // @synthesize isFindBarInstalled=_isFindBarInstalled;
-@property(retain) NSString *findString; // @synthesize findString=_findString;
-@property __weak DVTCrashLogOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 @property(copy) NSArray *findBarMatches; // @synthesize findBarMatches=_findBarMatches;
 @property(retain, nonatomic) DVTCrashPoint *crashPoint; // @synthesize crashPoint=_crashPoint;
 @property(retain, nonatomic) DVTCrashLog *crashLog; // @synthesize crashLog=_crashLog;

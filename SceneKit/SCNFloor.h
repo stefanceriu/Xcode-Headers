@@ -13,6 +13,9 @@
     float _reflectivity;
     float _reflectionFalloffStart;
     float _reflectionFalloffEnd;
+    unsigned long long _reflectionCategoryBitMask;
+    double _width;
+    double _length;
     float _reflectionResolutionScaleFactor;
     unsigned long long _reflectionSampleCount;
 }
@@ -34,6 +37,11 @@
 @property(nonatomic) double reflectionResolutionScaleFactor;
 @property(nonatomic) double reflectionFalloffStart;
 @property(nonatomic) double reflectionFalloffEnd;
+@property(nonatomic) double length;
+- (double)height;
+- (void)setHeight:(double)arg1;
+@property(nonatomic) double width;
+@property(nonatomic) unsigned long long reflectionCategoryBitMask;
 - (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (struct __C3DFloor *)floorRef;
 - (void)dealloc;

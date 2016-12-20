@@ -6,43 +6,41 @@
 
 #import "NSObject.h"
 
-@class DTTapConfig, NSObject<OS_dispatch_queue>, NSString;
+@class DTTapConfig, DTTapMemoHandler, NSObject<OS_dispatch_queue>, NSString;
 
 @interface DTTap : NSObject
 {
-    NSString *_archivingPath;
-    NSObject<OS_dispatch_queue> *_guardQueue;
-    NSObject<OS_dispatch_queue> *_sourceAndHandlerQueue;
-    DTTapConfig *_nextConfig;
+    BOOL _isRunning;
+    unsigned int _tapID;
+    NSObject<OS_dispatch_queue> *_serialQueue;
+    DTTapMemoHandler *_memoHandler;
+    DTTapConfig *_config;
 }
 
-@property(retain, nonatomic) DTTapConfig *nextConfig; // @synthesize nextConfig=_nextConfig;
++ (void)initialize;
+@property(nonatomic) BOOL isRunning; // @synthesize isRunning=_isRunning;
+@property(readonly, retain, nonatomic) DTTapConfig *config; // @synthesize config=_config;
+@property(readonly, retain, nonatomic) DTTapMemoHandler *memoHandler; // @synthesize memoHandler=_memoHandler;
+@property(readonly, retain, nonatomic) NSObject<OS_dispatch_queue> *serialQueue; // @synthesize serialQueue=_serialQueue;
+@property(readonly, nonatomic) unsigned int tapID; // @synthesize tapID=_tapID;
 - (void).cxx_destruct;
-- (void)_fetch:(id)arg1;
-- (void)_reset:(id)arg1;
-- (void)_stopWithSemaphore:(id)arg1 guard:(id)arg2;
-- (void)_start:(id)arg1;
-- (void)_unpause:(id)arg1;
-- (void)_pause:(id)arg1;
-- (void)fetchDataNow;
-- (id)errorString;
-@property(readonly) NSString *UUID;
-@property(readonly) BOOL isRunning;
-- (BOOL)_isArchiving:(id)arg1;
-- (BOOL)isArchiving;
-- (void)stop;
-- (void)start;
-- (void)unpause;
-- (void)pause;
-- (void)resume;
-- (void)suspend;
-- (void)_dispatchErrorValue:(unsigned int)arg1 timestamp:(unsigned long long)arg2 string:(id)arg3 guard:(id)arg4;
-- (void)_runningMetadataChanged:(id)arg1 guard:(id)arg2;
-- (void)_receivedData:(id)arg1;
-- (void)_lock:(CDUnknownBlockType)arg1;
-@property(readonly) id <DTTapDelegate> delegate;
-- (void)dealloc;
-- (id)initWithDelegate:(id)arg1 config:(id)arg2;
+- (id)_fetchDataForReason:(unsigned long long)arg1;
+- (BOOL)_canFetchWhileArchiving;
+- (void)_unpause;
+- (void)_pause;
+- (void)_stop;
+- (void)_start;
+- (void)resumeDataProcessing;
+- (void)suspendDataProcessing;
+- (id)fetchDataNow;
+- (id)unpause;
+- (id)pause;
+- (id)stop;
+- (id)start;
+@property(readonly, retain, nonatomic) NSString *uuid;
+- (id)initWithConfig:(id)arg1 memoHandler:(id)arg2;
+- (id)initWithConfig:(id)arg1;
+- (id)init;
 
 @end
 

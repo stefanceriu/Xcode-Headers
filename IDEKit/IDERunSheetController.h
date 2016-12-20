@@ -13,12 +13,9 @@
 @interface IDERunSheetController : IDEViewController <NSWindowDelegate>
 {
     NSWindow *_sheetWindow;
-    NSButton *_goButton;
-    NSButton *_doneButton;
     DVTBorderedView *_masterBorderedView;
     IDENavigatorOutlineView *_runPhasesOutlineView;
     DVTBorderedView *_detailBorderedView;
-    DVTReplacementView *_detailReplacementView;
     NSArrayController *_customDataStoresArrayController;
     NSTextField *_nameField;
     NSView *contentView;
@@ -51,12 +48,18 @@
     IDESchemeAction *_selectedRunPhase;
     BOOL _didSheetEnd;
     BOOL _runningOnManageSheet;
+    NSButton *_goButton;
+    NSButton *_doneButton;
+    DVTReplacementView *_detailReplacementView;
 }
 
 + (id)keyPathsForValuesAffectingRunContext;
 + (id)keyPathsForValuesAffectingExecutionEnvironment;
 + (void)beginSheetForWindow:(id)arg1 workspaceWindow:(id)arg2 editingIdentity:(BOOL)arg3 forSchemeCommand:(id)arg4 okButtonReflectsSchemeCommand:(BOOL)arg5 showDoneButton:(BOOL)arg6 completionHandler:(CDUnknownBlockType)arg7;
 + (id)sheetOpeningLogAspect;
+@property __weak DVTReplacementView *detailReplacementView; // @synthesize detailReplacementView=_detailReplacementView;
+@property __weak NSButton *doneButton; // @synthesize doneButton=_doneButton;
+@property __weak NSButton *goButton; // @synthesize goButton=_goButton;
 @property(copy) NSArray *phaseModelNavigables; // @synthesize phaseModelNavigables=_phaseModelNavigables;
 @property(copy) NSArray *phaseModels; // @synthesize phaseModels=_phaseModels;
 @property(retain) IDESchemeAction *selectedRunPhase; // @synthesize selectedRunPhase=_selectedRunPhase;

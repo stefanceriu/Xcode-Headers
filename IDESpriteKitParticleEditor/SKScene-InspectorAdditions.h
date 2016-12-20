@@ -6,38 +6,33 @@
 
 #import "SKScene.h"
 
-#import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 #import "SKNodeWithShader.h"
 
-@class DVTDocumentLocation, DVTFileDataType, GTFActionLibrary, IDEFileReference, NSImage, NSString, NSURL, SKCameraNode, SKShader;
+@class NSString, NSURL, SKCameraNode, SKShader;
 
-@interface SKScene (InspectorAdditions) <IDEKeyDrivenNavigableItemRepresentedObject, SKNodeWithShader>
-@property(retain, nonatomic) GTFActionLibrary *nav_actionLibrary;
-- (id)childFromIndexPath:(id)arg1;
-@property(retain, nonatomic) NSURL *customSpriteShader;
-@property(nonatomic) struct CGPoint spriteKitEditorGravity;
-@property(nonatomic) BOOL nodeNameDrawEnabled;
-@property(nonatomic) BOOL physicsDrawEnabled;
-@property(nonatomic) struct CGSize skEditorSize;
-@property(nonatomic) BOOL useCameraNode;
-@property(retain, nonatomic) SKCameraNode *cameraRef;
-- (id)ide_undoKVOKeypaths;
-- (void)setNilValueForKey:(id)arg1;
-- (id)inspectorAttributes;
+@interface SKScene (InspectorAdditions) <SKNodeWithShader>
++ (id)keyPathsForValuesAffectingSk_isSizeOrientationAvailable;
++ (id)keyPathsForValuesAffectingSk_isDeviceSizeCategory;
++ (id)keyPathsForValuesAffectingSk_isCustomSizeCategory;
+@property(retain, nonatomic) NSURL *sk_customSpriteShader;
+@property(nonatomic) BOOL sk_useCameraNode;
+@property(retain, nonatomic) SKCameraNode *sk_cameraRef;
+@property(nonatomic) struct CGSize sk_editorSize;
+@property(nonatomic) struct CGPoint sk_spriteKitEditorGravity;
+@property(nonatomic) BOOL sk_physicsDrawEnabled;
+@property(nonatomic) BOOL sk_drawCameraEnabled;
+@property(nonatomic) float sk_sizeScale;
+@property(nonatomic) unsigned long long sk_sizeOrientation;
+@property(nonatomic) unsigned long long sk_sizeCategory;
+- (struct CGSize)_sizeForCategory:(unsigned long long)arg1 orientation:(unsigned long long)arg2 scale:(float)arg3;
+@property(readonly, nonatomic) BOOL sk_isSizeOrientationAvailable;
+@property(readonly, nonatomic) BOOL sk_isDeviceSizeCategory;
+@property(readonly, nonatomic) BOOL sk_isCustomSizeCategory;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
-@property(readonly) DVTFileDataType *navigableItem_documentType;
-@property(readonly) IDEFileReference *navigableItem_fileReference;
-@property(readonly) NSString *navigableItem_groupIdentifier;
-@property(readonly) NSImage *navigableItem_image;
-@property(readonly) BOOL navigableItem_isLeaf;
-@property(readonly) BOOL navigableItem_isMajorGroup;
-@property(readonly) NSString *navigableItem_name;
-@property(readonly) NSString *navigableItem_toolTip;
 @property(retain, nonatomic) SKShader *shader;
 @property(readonly) Class superclass;
 @end

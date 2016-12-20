@@ -6,16 +6,22 @@
 
 #import "NSObject.h"
 
+@class NSArray;
+
 @protocol DTObjectGridGraph <NSObject>
 @property(readonly, nonatomic) id <DTObjectGridReference> selectedReference;
 @property(readonly, nonatomic) id <DTObjectGridNode> selectedNode;
-@property(nonatomic) unsigned int pivotNodeIdentifier;
+@property(copy, nonatomic) NSArray *onScreenNodeIdentifiers;
+@property(nonatomic) struct CGPoint cameraPosition;
+@property(readonly, nonatomic) unsigned int pivotNodeIdentifier;
 @property(nonatomic) struct CGSize gridCellSize;
 @property(nonatomic) __weak id <DTObjectGridGraphDelegate> delegate;
 @property(nonatomic) __weak id <DTObjectGridGraphDataSource> dataSource;
+- (struct CGRect)frameForNode:(id <DTObjectGridNode>)arg1;
 - (void)deselectAll;
 - (void)selectReferenceWithIdentifier:(unsigned int)arg1;
 - (void)selectNodeWithIdentifier:(unsigned int)arg1;
-- (void)setPivotNodeIdentifier:(unsigned int)arg1 animated:(BOOL)arg2;
+- (void)setPivotNodeIdentifier:(unsigned int)arg1 maintainingCoordinates:(id <DTObjectGridNode>)arg2 initialGenerations:(BOOL)arg3;
+- (void)setPivotNodeIdentifier:(unsigned int)arg1 maintainingCoordinates:(id <DTObjectGridNode>)arg2;
 @end
 

@@ -10,6 +10,7 @@
 {
 }
 
+- (void)drawRect:(struct CGRect)arg1;
 - (void)_addOptionFromSlice:(id)arg1 ofRowType:(unsigned long long)arg2;
 
 @end

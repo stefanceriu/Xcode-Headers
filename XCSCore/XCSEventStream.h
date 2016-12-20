@@ -23,6 +23,7 @@
 - (void).cxx_destruct;
 - (void)messageChannel:(id)arg1 didUpdatePrivilegesWithUsername:(id)arg2;
 - (void)messageChannelDidRejectClientCertificate:(id)arg1;
+- (void)messageChannelDidConnect:(id)arg1;
 - (void)messageChannel:(id)arg1 didDisconnectWithError:(id)arg2 andWillRetry:(BOOL)arg3;
 - (void)messageChannel:(id)arg1 didReceiveMessage:(id)arg2 withTag:(unsigned char)arg3;
 - (void)handleCallbackForUUID:(id)arg1 withData:(id)arg2;

@@ -16,12 +16,11 @@
 + (Class)ibDropTargetResolverClass;
 @property(retain, nonatomic) NSString *targetRelation; // @synthesize targetRelation;
 - (void).cxx_destruct;
-- (id)buildHighlightMaskForObject:(id)arg1;
 - (BOOL)interceptEvent:(id)arg1;
 - (void)reattachDraggedObjects:(id)arg1 dragContext:(id)arg2;
 - (id)draggedImageState:(id)arg1;
 - (id)draggedImageStateForIdentifiedCells:(id)arg1 cellsAreInEditedCollectionView:(BOOL)arg2 name:(id)arg3;
-- (void)resizeChild:(id)arg1 fromKnob:(CDUnion_aed8a530)arg2 withEvent:(id)arg3;
+- (void)resizeChild:(id)arg1 fromKnob:(CDUnion_42e99c75)arg2 withEvent:(id)arg3;
 - (CDStruct_b58c4854)activeKnobRectsForObject:(id)arg1;
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;
 - (BOOL)wantsDefaultDragInsertionIndicatorForDragInfo:(id)arg1;

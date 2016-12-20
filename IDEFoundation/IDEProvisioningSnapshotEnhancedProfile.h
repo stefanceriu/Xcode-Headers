@@ -8,34 +8,35 @@
 
 #import "IDEEnhancedProvisioningProfile.h"
 
-@class NSString;
+@class IDEPortalProfileWrapper, NSDate, NSString;
 
 @interface IDEProvisioningSnapshotEnhancedProfile : NSObject <IDEEnhancedProvisioningProfile>
 {
     unsigned long long _state;
     id <IDEProvisioningTeam> _team;
     id <IDEProvisioningLocalProfileState> _localState;
-    id <IDEProvisioningOnlineProfileState> _onlineState;
+    IDEPortalProfileWrapper *_portalProfileWrapper;
     id <IDEProvisioningProfile> _profile;
 }
 
 @property(readonly, nonatomic) id <IDEProvisioningProfile> profile; // @synthesize profile=_profile;
-@property(readonly, nonatomic) id <IDEProvisioningOnlineProfileState> onlineState; // @synthesize onlineState=_onlineState;
+@property(readonly, nonatomic) IDEPortalProfileWrapper *portalProfileWrapper; // @synthesize portalProfileWrapper=_portalProfileWrapper;
 @property(readonly, nonatomic) id <IDEProvisioningLocalProfileState> localState; // @synthesize localState=_localState;
-- (id)team;
+@property(readonly, nonatomic) id <IDEProvisioningTeam> team; // @synthesize team=_team;
 @property(readonly, nonatomic) unsigned long long state; // @synthesize state=_state;
 - (void).cxx_destruct;
-- (id)expirationDate;
-- (id)portalSubPlatformIdentifier;
-- (id)portalPlatformIdentifier;
+@property(readonly, nonatomic) NSString *teamIdentifier;
+@property(readonly, nonatomic) NSDate *expirationDate;
+@property(readonly, nonatomic) NSString *portalSubPlatformIdentifier;
+@property(readonly, nonatomic) NSString *portalPlatformIdentifier;
 - (BOOL)isTeamProfile;
-- (id)name;
-- (id)identifier;
+@property(readonly, nonatomic) NSString *name;
+@property(readonly, nonatomic) NSString *identifier;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqualToEnhancedProfile:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (id)initWithTeam:(id)arg1 profile:(id)arg2 state:(unsigned long long)arg3 localState:(id)arg4 onlineState:(id)arg5;
+- (id)initWithTeam:(id)arg1 profile:(id)arg2 state:(unsigned long long)arg3 localState:(id)arg4 portalProfileWrapper:(id)arg5;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

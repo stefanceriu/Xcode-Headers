@@ -6,13 +6,27 @@
 
 #import "SCNCamera.h"
 
-@class NSImage, NSString;
-
 @interface SCNCamera (SceneKit_SKEAdditions)
-+ (id)ske_displayNameForUndoKVOKeypath:(id)arg1;
-+ (id)keyPathsForValuesAffectingIde_displayName;
-@property(readonly) NSImage *ide_icon;
-- (id)ske_undoKVOKeypaths;
-@property(readonly) NSString *ide_displayName;
++ (id)keyPathsForValuesAffectingSke_wantsHDRAndExposureCompensation;
+@property(readonly) BOOL ske_wantsHDRAndExposureCompensation;
+@property float ske_motionBlurIntensity;
+@property float ske_contrast;
+@property float ske_saturation;
+@property float ske_colorFringeIntensity;
+@property float ske_colorFringeStrength;
+@property float ske_vignettingIntensity;
+@property float ske_vignettingPower;
+@property float ske_bloomBlurRadius;
+@property float ske_bloomIntensity;
+@property float ske_bloomThreshold;
+@property float ske_maximumExposure;
+@property float ske_minimumExposure;
+@property float ske_exposureAdaptationDarkeningSpeedFactor;
+@property float ske_exposureAdaptationBrighteningSpeedFactor;
+@property BOOL ske_wantsExposureAdaptation;
+@property float ske_whitePoint;
+@property float ske_averageGray;
+@property float ske_exposureOffset;
+@property BOOL ske_wantsHDR;
 @end
 

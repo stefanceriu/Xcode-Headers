@@ -29,7 +29,7 @@
 - (unsigned long long)_compositeStateOfSubTests:(id)arg1;
 - (void)_clearAllResults;
 - (void)_addAllTestsForTestable:(id)arg1 intoSet:(id)arg2;
-- (void)_processNewTestResults:(id)arg1;
+- (void)_processNewTestResult:(id)arg1 forTest:(id)arg2;
 - (void)_notifyObserversTestsChanged:(id)arg1;
 - (void)_clearCachedResultsForTest:(id)arg1 andNoteParentIn:(id)arg2;
 - (void)_notifyAllTestablesChanged;

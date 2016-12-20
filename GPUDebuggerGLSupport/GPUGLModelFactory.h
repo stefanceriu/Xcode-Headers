@@ -31,7 +31,6 @@ __attribute__((visibility("hidden")))
 - (id)resolveCurrentResourceItemWithPreviousItem:(id)arg1 currentMainEditorItem:(id)arg2 topLevelObjects:(id)arg3;
 - (void)establishChildrenForProgramItem:(id)arg1;
 - (id)programObjectFromProgramItem:(id)arg1 shaderType:(unsigned int)arg2;
-- (id)realizeResourcesForResourceItem:(id)arg1;
 - (void)generateResourcesForGroup:(id)arg1 apiItem:(id)arg2 boundOnly:(BOOL)arg3;
 - (void)createParentResourceGroupsForAPIItem:(id)arg1;
 - (id)_createResourceGroup:(id)arg1 parentItem:(id)arg2 boundOnly:(BOOL)arg3;
@@ -53,7 +52,7 @@ __attribute__((visibility("hidden")))
 - (id)allPrograms;
 - (id)allTraceItems;
 - (id)rootProcessItem;
-- (id)initWithController:(id)arg1 variablesViewContentProviderClass:(Class)arg2;
+- (id)initWithController:(id)arg1 variablesViewContentProviderClass:(Class)arg2 pluginFactory:(id)arg3;
 
 @end
 

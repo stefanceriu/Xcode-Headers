@@ -85,6 +85,7 @@
 - (id)ibQualifyingInfoForDefaultLabel;
 - (id)ibTypeNameForDefaultLabel;
 - (id)ibDesignableContentView;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

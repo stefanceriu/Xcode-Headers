@@ -24,6 +24,7 @@
 - (id)closeButtonOuterColor:(BOOL)arg1 pressed:(BOOL)arg2;
 - (id)closeButtonBorderColor:(BOOL)arg1 pressed:(BOOL)arg2;
 - (id)knobButtonImageForState:(unsigned long long)arg1 knob:(CDUnion_31865a80)arg2;
+- (BOOL)suportsIndependentPositioning;
 - (BOOL)shouldDragFrameWithMouseDown:(id)arg1;
 - (void)hasKeyLookDidChange;
 - (struct CGSize)sizeForKnob:(CDUnion_31865a80)arg1;
@@ -34,6 +35,7 @@
 - (struct CGRect)closeButtonRect;
 - (struct CGRect)glassRect;
 - (CDStruct_c519178c)insetToGlass;
+- (id)accessibilityChildren;
 - (void)setFrameIsSelected:(BOOL)arg1;
 @property(nonatomic) double glassCornerRadius;
 @property(nonatomic) CDStruct_c519178c glassToContentInset;

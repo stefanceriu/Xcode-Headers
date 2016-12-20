@@ -6,7 +6,11 @@
 
 #import <IBFoundation/IBICSlotComponent.h>
 
-@interface IBICScreenWidth : IBICSlotComponent
+#import "IBICCoreUISlotComponent.h"
+
+@class NSString;
+
+@interface IBICScreenWidth : IBICSlotComponent <IBICCoreUISlotComponent>
 {
     double _minimumWidth;
     double _maximumWidth;
@@ -14,15 +18,29 @@
 }
 
 + (id)itemWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 minimumWidth:(double)arg4 maximumWidth:(double)arg5 coreUISubtype:(long long)arg6 displayOrder:(double)arg7;
++ (id)displayName;
 + (id)fallbackContentsJSONKeys;
 + (id)contentsJSONKey;
++ (id)unspecifiedValuePlaceholder;
++ (void)setComponentID:(long long)arg1;
++ (long long)componentID;
 @property(readonly) long long coreUISubtype; // @synthesize coreUISubtype=_coreUISubtype;
 @property(readonly) double maximumWidth; // @synthesize maximumWidth=_maximumWidth;
 @property(readonly) double minimumWidth; // @synthesize minimumWidth=_minimumWidth;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (id)initWithBinaryUnarchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (BOOL)isEqualToScreenWidth:(id)arg1;
+- (BOOL)isEqualToSlotComponentCounterpartWithKnownEqualClass:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 minimumWidth:(double)arg4 maximumWidth:(double)arg5 coreUISubtype:(long long)arg6 displayOrder:(double)arg7;
+@property(readonly, nonatomic) long long coreUIValue;
+- (long long)componentID;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,7 +6,11 @@
 
 #import "NSObject.h"
 
-@interface IDEAlertsMenuDelegate : NSObject
+#import "IDEMenuKeyBindingProvider.h"
+
+@class NSString;
+
+@interface IDEAlertsMenuDelegate : NSObject <IDEMenuKeyBindingProvider>
 {
 }
 
@@ -19,6 +23,12 @@
 - (void)performAlertEvent:(id)arg1;
 - (void)editAlerts:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

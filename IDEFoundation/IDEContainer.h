@@ -75,10 +75,12 @@
 + (void)_releaseContainer:(id)arg1;
 + (void)_retainContainer:(id)arg1;
 + (BOOL)_closeContainerIfNeeded:(id)arg1;
-+ (void)_removeReferencesToContainer:(id)arg1;
++ (void)_removeOpenContainer:(id)arg1;
 + (void)_decreaseCountForContainer:(id)arg1;
 + (void)_increaseCountForContainer:(id)arg1;
 + (unsigned long long)_countForContainer:(id)arg1;
++ (id)_refcountTableForContainer:(id)arg1;
++ (id)_containersPendingRelease;
 + (id)_openContainers;
 + (BOOL)isContainerOpenForFilePath:(id)arg1;
 + (id)retainedWrappedWorkspaceForContainerAtFilePath:(id)arg1 fileDataType:(id)arg2 error:(id *)arg3;
@@ -120,6 +122,7 @@
 @property(readonly, copy) NSString *description;
 - (void)_enqueueWorkItem:(CDUnknownBlockType)arg1;
 - (void)collectMessageTracerStatisticsIntoDictionary:(id)arg1;
+- (void)holdOnDiskFilesForICloudDriveIfNecessary;
 @property(readonly) IDEActivityLogSection *integrityLog;
 - (void)analyzeModelIntegrity;
 - (void)enumerateUpgradeTasksWithBlock:(CDUnknownBlockType)arg1;

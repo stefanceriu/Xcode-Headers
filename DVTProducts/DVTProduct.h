@@ -14,6 +14,7 @@
 
 @interface DVTProduct : NSObject <DVTServicesJSONSerialization, DVTInvalidation, NSCopying>
 {
+    NSArray *_archives;
     DVTProductIdentifier *_identifier;
     NSArray *_productVersions;
     DVTProductCoordinator *_coordinator;
@@ -37,11 +38,12 @@
 - (id)JSONRepresentation;
 - (void)primitiveInvalidate;
 @property(readonly, copy) NSString *description;
+@property(readonly) NSString *adamId;
 @property(readonly) DVTProductCategory *productCategory;
 @property(readonly) NSURL *cacheImageURL;
 @property(readonly) NSURL *imageURL;
 @property(readonly) NSString *name;
-@property(readonly) NSArray *archives;
+@property(readonly) NSArray *archives; // @synthesize archives=_archives;
 @property(readonly) NSArray *flatProductVersions;
 - (void)_buildFlatproductVersionsWithVersionedProduct:(id)arg1 flatArray:(id)arg2;
 @property(readonly) DVTProductVersion *mostRecentVersion;

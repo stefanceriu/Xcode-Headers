@@ -13,11 +13,14 @@
 @interface DTDeviceInfoService : DTXService <DTDeviceInfoServiceAuthorizedAPI>
 {
     struct __CFDictionary *_trackingSymbolicatorsByPid;
+    struct kpep_db *_kpepDB;
 }
 
 + (BOOL)isApplication:(id)arg1;
 + (void)registerCapabilities:(id)arg1;
 - (id)networkInformation;
+- (id)kpepDatabase;
+- (id)traceCodesFile;
 - (id)cpDeviceName;
 - (id)cpDeviceInfoAsXML;
 - (id)cpKDebugEventsAsXML;

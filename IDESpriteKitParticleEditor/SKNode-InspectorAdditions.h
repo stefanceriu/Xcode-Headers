@@ -6,55 +6,46 @@
 
 #import "SKNode.h"
 
-#import "GTFActionLibraryTarget.h"
-#import "IDEKeyDrivenNavigableItemRepresentedObject.h"
+@class NSNumber, NSString;
 
-@class DVTDocumentLocation, DVTFileDataType, GTFActionLibraryTargetThumbnail, GTFActionTimelineModel, IDEFileReference, NSArray, NSImage, NSIndexPath, NSString, NSValue;
-
-@interface SKNode (InspectorAdditions) <IDEKeyDrivenNavigableItemRepresentedObject, GTFActionLibraryTarget>
-+ (id)keyPathsForValuesAffectingNav_children;
-+ (id)keyPathsForValuesAffectingNavigableItem_name;
-+ (id)keyPathsForValuesAffectingGtf_name;
-+ (id)keyPathsForValuesAffectingGtf_thumbnailImage;
-+ (id)keyPathsForValuesAffectingInspectorName;
-@property(readonly, nonatomic) GTFActionTimelineModel *nav_action;
-@property(readonly, nonatomic) NSArray *nav_children;
-@property(readonly, nonatomic) struct CGSize sk_representedSize;
-@property(readonly, nonatomic) struct CGRect sk_representedFrame;
+@interface SKNode (InspectorAdditions)
++ (id)keyPathsForValuesAffectingSk_hasPhysicsBody;
++ (id)keyPathsForValuesAffectingSk_zRotationDeg;
++ (id)keyPathsForValuesAffectingSk_parentRef_commit;
++ (id)keyPathsForValuesAffectingSk_name;
+@property(nonatomic) float sk_physicsMass;
+@property(nonatomic) double sk_physicsBodyInitialVelocityY;
+@property(nonatomic) double sk_physicsBodyInitialVelocityX;
+@property(nonatomic) double sk_physicsBodyAngularDamping;
+@property(nonatomic) double sk_physicsBodyLinearDamping;
+@property(nonatomic) double sk_physicsBodyRestitution;
+@property(nonatomic) double sk_physicsBodyFriction;
+@property(nonatomic) BOOL sk_physicsBodyAffectedByGravity;
+@property(nonatomic) BOOL sk_physicsBodyPinned;
+@property(nonatomic) BOOL sk_physicsBodyAllowsRotation;
+@property(nonatomic) BOOL sk_physicsBodyDynamicType;
+@property(retain, nonatomic) NSNumber *sk_fieldMask;
+@property(retain, nonatomic) NSNumber *sk_contactMask;
+@property(retain, nonatomic) NSNumber *sk_collisionMask;
+@property(retain, nonatomic) NSNumber *sk_categoryMask;
+@property(nonatomic) int sk_physicsBodyType;
+- (void)sk_refreshPhysicsBody;
+@property(readonly, nonatomic) BOOL sk_hasPhysicsBody;
+- (struct CGSize)sk_representedSizeInView:(id)arg1;
+- (struct CGRect)sk_representedFrameInView:(id)arg1;
 @property(readonly, nonatomic) BOOL sk_isIconRepresented;
-@property(retain, nonatomic) NSString *skCustomModuleName;
+- (void)sk_restoreLegacyCustomClassInfo;
+- (void)sk_migrateLegacyCustomClassInfo;
+@property(retain, nonatomic) NSString *sk_legacyCustomModuleName;
+@property(retain, nonatomic) NSString *sk_legacyCustomClassName;
+- (id)sk_CustomClassPlaceholderName;
+@property(retain, nonatomic) NSString *sk_customModuleName;
 - (BOOL)_isValidCustomSublcass:(id)arg1 inModule:(id)arg2;
 - (Class)_swiftClassFromString:(id)arg1 moduleName:(id)arg2;
-@property(retain, nonatomic) NSString *skCustomClassName;
-- (id)ideModelObjectTypeIdentifier;
-@property(readonly) NSString *navigableItem_name;
-@property(readonly, nonatomic) NSIndexPath *indexPath;
-@property(readonly, nonatomic) NSString *gtf_name;
-@property(readonly, nonatomic) GTFActionLibraryTargetThumbnail *gtf_thumbnailImage;
-- (void)setGtf_uid:(id)arg1;
-@property(readonly, nonatomic) id <NSCopying> gtf_uid;
-- (void)removeUID;
-@property(retain, nonatomic) NSValue *uid;
-@property(readonly, nonatomic) SKNode *greatestReferenceNodeAncestor;
-@property(readonly, nonatomic) BOOL isReferenced;
-@property(nonatomic) BOOL isLocked;
-@property(nonatomic) double zRotationDeg;
-@property(retain, nonatomic) SKNode *parentRef;
-@property(readonly, nonatomic) __weak SKNode *selfRef;
-@property(retain, nonatomic) NSString *inspectorName;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
-@property(readonly) DVTFileDataType *navigableItem_documentType;
-@property(readonly) IDEFileReference *navigableItem_fileReference;
-@property(readonly) NSString *navigableItem_groupIdentifier;
-@property(readonly) NSImage *navigableItem_image;
-@property(readonly) BOOL navigableItem_isLeaf;
-@property(readonly) BOOL navigableItem_isMajorGroup;
-@property(readonly) NSString *navigableItem_toolTip;
-@property(readonly) Class superclass;
+@property(retain, nonatomic) NSString *sk_customClassName;
+@property(nonatomic) double sk_zRotationDeg;
+@property(retain, nonatomic) SKNode *sk_parentRef_commit;
+@property(readonly, nonatomic) __weak SKNode *sk_selfRef;
+@property(retain, nonatomic) NSString *sk_name;
 @end
 

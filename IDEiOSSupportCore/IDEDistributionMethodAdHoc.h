@@ -16,9 +16,9 @@
 - (BOOL)supportsManifestDistribution;
 - (id)packagingStepIdentifier;
 - (id)exportStepName;
-- (unsigned long long)provisioningProfileType;
+- (unsigned long long)provisioningProfilePurpose;
 - (id)provisioningProfilePlatform;
-- (BOOL)wantsProvisioningProfiles;
+- (long long)wantsProvisioningProfiles;
 - (id)installerCertificateKind;
 - (id)certificateKind;
 - (id)orderedDistributionStepClassNames;

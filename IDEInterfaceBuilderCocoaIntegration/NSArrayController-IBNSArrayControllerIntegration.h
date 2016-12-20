@@ -10,6 +10,7 @@
 + (id)ibSynthesizeControllerKeyPaths;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibResolvedTypeNameForControllerKey:(id)arg1;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property BOOL ibShadowedAlwaysUsesMultipleValuesMarker; // @dynamic ibShadowedAlwaysUsesMultipleValuesMarker;

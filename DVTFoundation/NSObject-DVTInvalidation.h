@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @interface NSObject (DVTInvalidation)
++ (void)dvt_synthesizeInvalidationWithDeallocAssertionBehavior:(unsigned long long)arg1 multipleInvalidationAssertionBehavior:(unsigned long long)arg2;
 + (void)dvt_synthesizeInvalidation;
 - (void)dvt_performAdditionalInvalidation;
 @end

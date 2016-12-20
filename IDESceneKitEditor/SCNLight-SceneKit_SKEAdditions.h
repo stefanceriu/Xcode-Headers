@@ -6,8 +6,13 @@
 
 #import "SCNLight.h"
 
+@class NSString;
+
 @interface SCNLight (SceneKit_SKEAdditions)
+@property(retain, nonatomic) NSString *ide_IESProfileURL;
+@property float ide_intensity;
 @property(readonly) BOOL ske_isBakable;
+@property(readonly) BOOL ide_isNotProbe;
 @property(readonly) BOOL ide_isProbe;
 @property float ide_shadowFarClipping;
 @property float ide_shadowNearClipping;
@@ -20,7 +25,9 @@
 @property float ide_attenuationStart;
 @property(readonly) BOOL ide_supportsOrthographicScale;
 @property(readonly) BOOL ide_supportsColor;
+@property(readonly) BOOL ide_supportsIES;
 @property(readonly) BOOL ide_supportsIlluminationCone;
+@property(readonly) BOOL ide_supportsIntensity;
 @property(readonly) BOOL ide_supportsAttenuation;
 @property long long ske_modeNumber;
 @property long long ske_typeNumber;

@@ -16,18 +16,22 @@
     IDEInspectorKeyPath *_enabledKeyPath;
     IDEInspectorKeyPath *_editableKeyPath;
     Class _valueTransformerClass;
+    NSString *_title;
     BOOL _isExplanitoryText;
     BOOL _allowsNilValues;
     BOOL _editable;
     BOOL _textFieldIsConfiguredAsEditable;
     NSTextField *_textField;
+    NSTextField *_titleField;
 }
 
+@property(retain, nonatomic) NSTextField *titleField; // @synthesize titleField=_titleField;
 @property(retain, nonatomic) NSTextField *textField; // @synthesize textField=_textField;
 - (void).cxx_destruct;
 - (id)findIndicatorContentViewWithContext:(id)arg1;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;
+- (id)nibName;
 - (void)userDidChangeValue:(id)arg1;
 - (double)baseline;
 - (id)view;

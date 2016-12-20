@@ -7,11 +7,10 @@
 #import "NSObject.h"
 
 #import "NSCopying.h"
-#import "NSMutableCopying.h"
 
 @class IDEOverridingBuildProperties, IDERunDestination, IDESchemeCommand<IDEPrimitiveSchemeCommand>, IDEWorkspaceArenaSnapshot, NSString;
 
-@interface IDEBuildParameters : NSObject <NSCopying, NSMutableCopying>
+@interface IDEBuildParameters : NSObject <NSCopying>
 {
     IDEWorkspaceArenaSnapshot *_workspaceArenaSnapshot;
     NSString *_buildAction;
@@ -20,7 +19,6 @@
     IDERunDestination *_activeRunDestination;
     NSString *_activeArchitecture;
     IDEOverridingBuildProperties *_overridingProperties;
-    NSString *_stateKey;
     unsigned long long _hash;
 }
 
@@ -37,9 +35,14 @@
 - (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)_copyWithMutability:(BOOL)arg1;
+- (id)copyWithOverridingProperties:(id)arg1;
+- (id)copyWithConfigurationName:(id)arg1;
+- (id)copyWithAction:(id)arg1;
+- (id)initForBuildWithWorkspaceArenaSnapshot:(id)arg1 configurationName:(id)arg2;
+- (id)initForBuildWithConfigurationName:(id)arg1;
+- (id)initForBuildWithWorkspaceArenaSnapshot:(id)arg1 schemeCommand:(id)arg2 configurationName:(id)arg3 activeRunDestination:(id)arg4 activeArchitecture:(id)arg5 overridingProperties:(id)arg6;
+- (id)initForAction:(id)arg1 workspaceArenaSnapshot:(id)arg2 schemeCommand:(id)arg3 configurationName:(id)arg4 activeRunDestination:(id)arg5 activeArchitecture:(id)arg6 overridingProperties:(id)arg7;
 - (id)init;
 
 @end

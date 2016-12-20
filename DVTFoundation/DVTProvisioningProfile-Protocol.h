@@ -24,6 +24,7 @@
 @property(readonly) BOOL isGameCenterEnabled;
 @property(readonly) BOOL isMapsEnabled;
 @property(readonly) BOOL isInterAppAudioEnabled;
+@property(readonly) BOOL isSiriEnabled;
 @property(readonly) BOOL isDataProtectionEnabled;
 @property(readonly) BOOL isPassbookEnabled;
 @property(readonly) BOOL isICloudEnabled;
@@ -69,5 +70,7 @@
 - (BOOL)containsSigningCertificate:(DVTSigningCertificate *)arg1;
 - (BOOL)hasCertificateMatchingIdentity:(NSString *)arg1 includeExpired:(BOOL)arg2;
 - (BOOL)allowsFeatures:(DVTAppIDFeatures *)arg1 missingFeatures:(id *)arg2;
+- (BOOL)isXcodeManaged;
+- (BOOL)isAppleInternal;
 @end
 

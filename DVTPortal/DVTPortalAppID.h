@@ -6,39 +6,42 @@
 
 #import "NSObject.h"
 
-@class DVTPlatform, DVTPortalPlatform, DVTPortalTeam, NSArray, NSString;
+@class DVTPortalProgram, DVTPortalTeam, NSArray, NSString;
 
 @interface DVTPortalAppID : NSObject
 {
+    DVTPortalProgram *_portalProgram;
     NSArray *_enabledFeatures;
     NSString *_name;
     NSString *_portalID;
     DVTPortalTeam *_team;
     NSString *_appID;
-    DVTPortalPlatform *_portalPlatform;
 }
 
++ (id)_errorForUnsupportedFeatures:(id)arg1 program:(id)arg2;
++ (id)_errorForPermissionsFailure;
 + (id)_errorForInconsistentPostFeatureEnableResponseWithExpectedFeatures:(id)arg1 actualFeatures:(id)arg2;
 + (id)_deleteAppIDServiceWithTeam:(id)arg1 appID:(id)arg2;
-+ (id)_updateAppIDServiceWithTeam:(id)arg1 platform:(id)arg2 portalID:(id)arg3 features:(id)arg4;
-+ (id)_addAppIDServiceWithTeam:(id)arg1 platform:(id)arg2 name:(id)arg3 appID:(id)arg4 features:(id)arg5;
-+ (id)_appIDForBundleID:(id)arg1 features:(id)arg2;
-+ (id)_nameForBundleID:(id)arg1 features:(id)arg2;
-+ (id)createAppIDWithSession:(id)arg1 team:(id)arg2 platform:(id)arg3 bundleID:(id)arg4 features:(id)arg5 error:(id *)arg6;
-+ (id)_listAppIDsServiceWithTeam:(id)arg1 platform:(id)arg2;
-+ (id)appIDsWithSession:(id)arg1 team:(id)arg2 platform:(id)arg3 error:(id *)arg4;
-@property(retain, nonatomic) DVTPortalPlatform *portalPlatform; // @synthesize portalPlatform=_portalPlatform;
++ (id)_updateAppIDServiceWithTeam:(id)arg1 program:(id)arg2 portalID:(id)arg3 features:(id)arg4;
++ (id)_addAppIDServiceWithTeam:(id)arg1 program:(id)arg2 name:(id)arg3 appID:(id)arg4 features:(id)arg5;
++ (id)_appIDForBundleID:(id)arg1 features:(id)arg2 requiresExplicitAppID:(BOOL)arg3;
++ (id)_nameForBundleID:(id)arg1 features:(id)arg2 requiresExplicitAppID:(BOOL)arg3 xcodeManaged:(BOOL)arg4;
++ (id)createAppIDWithSession:(id)arg1 team:(id)arg2 program:(id)arg3 bundleID:(id)arg4 features:(id)arg5 requiresExplicitAppID:(BOOL)arg6 xcodeManaged:(BOOL)arg7 error:(id *)arg8;
++ (id)createAppIDWithSession:(id)arg1 team:(id)arg2 program:(id)arg3 bundleID:(id)arg4 features:(id)arg5 requiresExplicitAppID:(BOOL)arg6 error:(id *)arg7;
++ (BOOL)_appIDFeatures:(id)arg1 matchProgram:(id)arg2 error:(id *)arg3;
++ (id)_listAppIDsServiceWithTeam:(id)arg1 program:(id)arg2;
++ (id)appIDsWithSession:(id)arg1 team:(id)arg2 program:(id)arg3 error:(id *)arg4;
 @property(readonly, nonatomic) NSString *appID; // @synthesize appID=_appID;
 @property(retain, nonatomic) DVTPortalTeam *team; // @synthesize team=_team;
 @property(copy, nonatomic) NSString *portalID; // @synthesize portalID=_portalID;
 @property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
 @property(readonly, nonatomic) NSArray *enabledFeatures; // @synthesize enabledFeatures=_enabledFeatures;
+@property(readonly, nonatomic) DVTPortalProgram *portalProgram; // @synthesize portalProgram=_portalProgram;
 - (void).cxx_destruct;
 - (BOOL)areFeaturesEnabled:(id)arg1;
 - (BOOL)isManagedByXcode;
 - (BOOL)matchesBundleID:(id)arg1;
 - (BOOL)isWildcard;
-@property(readonly, nonatomic) DVTPlatform *platform;
 - (BOOL)removeWithSession:(id)arg1 error:(id *)arg2;
 - (BOOL)enableFeatures:(id)arg1 session:(id)arg2 error:(id *)arg3;
 - (id)init;

@@ -9,34 +9,42 @@
 #import "DVTInvalidation.h"
 #import "IDEInspectorAccessibilitySupport.h"
 
-@class CDMConfiguration, DVTStackBacktrace, IDEDataModelDocument, NSArray, NSMutableArray, NSString;
+@class CDMConfiguration, DVTStackBacktrace, DVTToolsVersion, NSArray, NSMutableArray, NSString, NSUndoManager;
 
 @interface CDMModel : NSObject <IDEInspectorAccessibilitySupport, DVTInvalidation>
 {
-    NSString *name;
-    NSMutableArray *entities;
-    NSMutableArray *fetchRequests;
-    NSMutableArray *configurations;
-    NSString *modelVersionIdentifier;
-    BOOL isLoading;
-    IDEDataModelDocument *document;
-    CDMConfiguration *defaultConfiguration;
-    NSMutableArray *rootsOfEntityTree;
-    NSMutableArray *topLevelObjects;
+    NSString *_name;
+    NSMutableArray *_entities;
+    NSMutableArray *_fetchRequests;
+    NSMutableArray *_configurations;
+    NSString *_modelVersionIdentifier;
+    CDMConfiguration *_defaultConfiguration;
+    NSMutableArray *_rootsOfEntityTree;
+    NSMutableArray *_topLevelObjects;
+    BOOL _isLoading;
+    unsigned long long _sourceLanguage;
+    id <CDMModelOwner> _owner;
+    DVTToolsVersion *_minimumToolsVersion;
+    NSString *_lastSavedToolsVersion;
 }
 
++ (id)currentDocumentVersion;
++ (id)currentToolsVersion;
 + (id)arrayOfFetchRequestsPlistsFromFetchRequests:(id)arg1;
 + (id)arrayOfEntitiesPListsFromEntities:(id)arg1;
 + (id)keyPathsForValuesAffectingDisplayConfigurations;
++ (id)keyPathsForValuesAffectingSupportsAutomaticCodeGeneration;
 + (void)initialize;
-@property(copy) NSArray *rootsOfEntityTree; // @synthesize rootsOfEntityTree;
-@property(retain) CDMConfiguration *defaultConfiguration; // @synthesize defaultConfiguration;
-@property(retain) IDEDataModelDocument *document; // @synthesize document;
-@property(copy, nonatomic) NSString *name; // @synthesize name;
-@property(copy, nonatomic) NSString *modelVersionIdentifier; // @synthesize modelVersionIdentifier;
-@property(copy, nonatomic) NSArray *configurations; // @synthesize configurations;
-@property(copy, nonatomic) NSArray *fetchRequests; // @synthesize fetchRequests;
-@property(copy, nonatomic) NSArray *entities; // @synthesize entities;
+@property(readonly, copy) NSString *lastSavedToolsVersion; // @synthesize lastSavedToolsVersion=_lastSavedToolsVersion;
+@property(retain) DVTToolsVersion *minimumToolsVersion; // @synthesize minimumToolsVersion=_minimumToolsVersion;
+@property(retain) id <CDMModelOwner> owner; // @synthesize owner=_owner;
+@property(copy) NSArray *rootsOfEntityTree; // @synthesize rootsOfEntityTree=_rootsOfEntityTree;
+@property(retain) CDMConfiguration *defaultConfiguration; // @synthesize defaultConfiguration=_defaultConfiguration;
+@property(copy, nonatomic) NSString *modelVersionIdentifier; // @synthesize modelVersionIdentifier=_modelVersionIdentifier;
+@property(copy, nonatomic) NSArray *configurations; // @synthesize configurations=_configurations;
+@property(copy, nonatomic) NSArray *fetchRequests; // @synthesize fetchRequests=_fetchRequests;
+@property(copy, nonatomic) NSArray *entities; // @synthesize entities=_entities;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (id)stringRepresentationForTextIndex;
 - (id)stringRepresentation;
@@ -51,12 +59,12 @@
 - (id)entityForName:(id)arg1;
 - (id)fetchRequestForName:(id)arg1;
 - (void)updateDefaultConfiguration;
-- (id)undoManager;
+@property(readonly) NSUndoManager *undoManager;
 - (id)descendantsOfEntity:(id)arg1;
 - (id)displayConfigurations;
 - (id)legacyRepresentation;
 - (id)initWithLegacyModel:(id)arg1;
-- (void)_commonInit;
+- (id)init;
 - (void)primitiveInvalidate;
 - (void)didChangeRootsOfEntityTree;
 - (void)removeConfiguration:(id)arg1;
@@ -67,7 +75,9 @@
 - (void)addEntity:(id)arg1;
 @property(readonly) NSArray *topLevelObjects;
 - (void)updateTopLevelObjects;
+@property unsigned long long sourceLanguage; // @synthesize sourceLanguage=_sourceLanguage;
 - (id)fetchRequestsForEntity:(id)arg1;
+@property(readonly) BOOL supportsAutomaticCodeGeneration;
 - (id)humanReadableNameForInspectorKeyPath:(id)arg1;
 
 // Remaining properties

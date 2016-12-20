@@ -10,24 +10,23 @@
 #import "XCSBotSupportingEditorHostedViewController.h"
 #import "XCSUIBotLogEditorScopeBarDelegate.h"
 
-@class DVTScopeBarsManager, DVTStackView_ML, IDESchemeActionsInvocationRecord, NSArray, NSMenuItem, NSMutableArray, NSOperationQueue, NSProgressIndicator, NSScrollView, NSString, NSTextField, NSTextView, NSView, XCSBot, XCSBotSupportingEditor, XCSIntegration, XCSUIBotLogScopeBar;
+@class DVTScopeBarsManager, DVTStackView_ML, IDESchemeActionsInvocationRecord, NSArray, NSError, NSMenuItem, NSMutableArray, NSOperationQueue, NSScrollView, NSString, NSTextView, NSView, XCSBot, XCSBotSupportingEditor, XCSIntegration, XCSUIBotLogScopeBar, XCSUIProgressViewController;
 
 @interface XCSUIIntegrationLogsViewController : DVTViewController <XCSUIBotLogEditorScopeBarDelegate, IDELogViewControllerDelegate, XCSBotSupportingEditorHostedViewController>
 {
-    BOOL _hasLoadedLogs;
-    CDUnknownBlockType _logsDidLoadBlock;
     NSOperationQueue *_scmLogsDownloadQueue;
-    NSMenuItem *_loadingMenuItem;
     NSMenuItem *_integrationMenuItem;
     NSArray *_beforeTriggersLogMenuItems;
     NSMenuItem *_rawBuildLogMenuItem;
     NSMenuItem *_sourceControlLogMenuItem;
     NSArray *_afterTriggersLogMenuItems;
     NSMenuItem *_rawServiceLogMenuItem;
+    BOOL _cancelShowProgressView;
     NSArray *_currentSelectedDocumentLocations;
     XCSIntegration *_integration;
     XCSBot *_bot;
     XCSBotSupportingEditor *_botSupportingEditor;
+    NSError *_error;
     NSTextView *_textView;
     NSView *_scopeBarsBaseView;
     NSScrollView *_stackViewScrollView;
@@ -36,11 +35,10 @@
     XCSUIBotLogScopeBar *_scopeBar;
     NSMutableArray *_logViewControllers;
     NSMutableArray *_textViewDicts;
-    NSView *_progressLoadingView;
-    NSProgressIndicator *_progressIndicator;
-    NSTextField *_progressTextField;
+    XCSUIProgressViewController *_progressView;
     NSView *_scopeBarScrollViewHostView;
     IDESchemeActionsInvocationRecord *_schemeActionsInvRecord;
+    NSArray *_activityDisclosureViews;
     NSArray *_triggerBeforeLogs;
     NSArray *_triggerAfterLogs;
     NSString *_internalBuildServiceDebugLog;
@@ -59,11 +57,10 @@
 @property(copy) NSString *internalBuildServiceDebugLog; // @synthesize internalBuildServiceDebugLog=_internalBuildServiceDebugLog;
 @property(copy) NSArray *triggerAfterLogs; // @synthesize triggerAfterLogs=_triggerAfterLogs;
 @property(copy) NSArray *triggerBeforeLogs; // @synthesize triggerBeforeLogs=_triggerBeforeLogs;
+@property(copy) NSArray *activityDisclosureViews; // @synthesize activityDisclosureViews=_activityDisclosureViews;
 @property(retain) IDESchemeActionsInvocationRecord *schemeActionsInvRecord; // @synthesize schemeActionsInvRecord=_schemeActionsInvRecord;
 @property __weak NSView *scopeBarScrollViewHostView; // @synthesize scopeBarScrollViewHostView=_scopeBarScrollViewHostView;
-@property __weak NSTextField *progressTextField; // @synthesize progressTextField=_progressTextField;
-@property __weak NSProgressIndicator *progressIndicator; // @synthesize progressIndicator=_progressIndicator;
-@property __weak NSView *progressLoadingView; // @synthesize progressLoadingView=_progressLoadingView;
+@property(retain) XCSUIProgressViewController *progressView; // @synthesize progressView=_progressView;
 @property(retain) NSMutableArray *textViewDicts; // @synthesize textViewDicts=_textViewDicts;
 @property(retain) NSMutableArray *logViewControllers; // @synthesize logViewControllers=_logViewControllers;
 @property(retain) XCSUIBotLogScopeBar *scopeBar; // @synthesize scopeBar=_scopeBar;
@@ -72,6 +69,7 @@
 @property __weak NSScrollView *stackViewScrollView; // @synthesize stackViewScrollView=_stackViewScrollView;
 @property __weak NSView *scopeBarsBaseView; // @synthesize scopeBarsBaseView=_scopeBarsBaseView;
 @property NSTextView *textView; // @synthesize textView=_textView;
+@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
 @property(retain, nonatomic) XCSBotSupportingEditor *botSupportingEditor; // @synthesize botSupportingEditor=_botSupportingEditor;
 @property(retain, nonatomic) XCSBot *bot; // @synthesize bot=_bot;
 @property(retain, nonatomic) XCSIntegration *integration; // @synthesize integration=_integration;
@@ -97,11 +95,14 @@
 @property(readonly, copy) NSArray *currentSelectedItems;
 @property(readonly, copy) NSArray *currentSelectedDocumentLocations; // @synthesize currentSelectedDocumentLocations=_currentSelectedDocumentLocations;
 - (void)primitiveInvalidate;
-- (void)_updateViewControllers;
+- (void)_updateScopeBar;
 - (void)_loadBuildLogView;
 - (void)_resetViews;
+- (void)addScopeBarToViewIfNeeded;
 - (void)loadView;
 - (void)_fetchOtherAssets;
+- (void)_fetchSchemeActionsRecord;
+- (void)_showProgressViewAfterDelay;
 - (void)downloadLogs;
 
 // Remaining properties

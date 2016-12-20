@@ -43,6 +43,7 @@
 - (id)ibRelationshipSegueTrackingItemsProperty;
 - (id)ibDefaultItemForNewInstances;
 - (id)ibRelationshipSegueTrackingItemProperty;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

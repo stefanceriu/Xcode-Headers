@@ -6,15 +6,15 @@
 
 #import "NSObject.h"
 
-@class DVTDeveloperAccount, NSSet;
+@class DVTDeveloperAccount, NSArray;
 
 @interface IDEAccountWrapper : NSObject
 {
     DVTDeveloperAccount *_account;
-    NSSet *_teamObjectIDs;
+    NSArray *_teams;
 }
 
-@property(copy, nonatomic) NSSet *teamObjectIDs; // @synthesize teamObjectIDs=_teamObjectIDs;
+@property(retain, nonatomic) NSArray *teams; // @synthesize teams=_teams;
 @property(retain, nonatomic) DVTDeveloperAccount *account; // @synthesize account=_account;
 - (void).cxx_destruct;
 

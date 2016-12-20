@@ -28,11 +28,9 @@
 - (BOOL)flipped;
 - (struct CGSize)imageSize;
 - (void)resolveWithTraceResourceItem:(id)arg1;
+@property(readonly, nonatomic) BOOL isStencilDisplayElement;
+@property(readonly, nonatomic) BOOL isDepthDisplayElement;
 - (id)initWithResource:(id)arg1 modelFactory:(id)arg2 renderingAttributes:(id)arg3 overlayResource:(id)arg4;
-
-// Remaining properties
-@property(readonly, nonatomic) BOOL isDepthDisplayElement; // @dynamic isDepthDisplayElement;
-@property(readonly, nonatomic) BOOL isStencilDisplayElement; // @dynamic isStencilDisplayElement;
 
 @end
 

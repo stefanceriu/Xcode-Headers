@@ -20,6 +20,7 @@ __attribute__((visibility("hidden")))
 - (struct __C3DTexture *)__prepareFramebufferWithSize:(struct CGSize)arg1 withEngineContext:(struct __C3DEngineContext *)arg2 textureSampler:(struct __C3DTextureSampler *)arg3 needsStencil:(BOOL)arg4;
 - (void)_createFramebufferWithEngineContext:(struct __C3DEngineContext *)arg1 size:(struct CGSize)arg2;
 - (void)cleanup:(struct __C3DRendererContext *)arg1;
+-     // Error parsing type: 16@0:8, name: textureSize
 
 @end
 

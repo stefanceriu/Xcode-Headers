@@ -68,6 +68,8 @@
 - (void)primitiveInvalidate;
 - (void)setAppStoreCrashPointSource:(id)arg1 productManager:(id)arg2;
 - (id)cachePathWithProductDirectory:(id)arg1;
+- (id)olderVersion:(id)arg1;
+- (id)newerVersion:(id)arg1;
 - (id)initWithBundleIdentifier:(id)arg1 version:(id)arg2 buildNumber:(id)arg3 name:(id)arg4 childProducts:(id)arg5 productCategory:(id)arg6;
 - (id)init;
 

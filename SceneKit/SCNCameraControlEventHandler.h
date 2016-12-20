@@ -95,8 +95,11 @@
 - (void)_prepareFreeViewCamera;
 - (BOOL)_freeCameraActivated;
 - (void)_resetFreeViewCamera;
+- (void)activateFreeCamera;
+- (void)setEnableFreeCamera:(BOOL)arg1;
 @property long long stickyAxis;
 - (void)focusNode:(id)arg1;
+- (id)freeCamera;
 @property struct SCNVector3 cameraTarget;
 @property BOOL automaticCameraTarget;
 - (void)invalidateCameraTarget;

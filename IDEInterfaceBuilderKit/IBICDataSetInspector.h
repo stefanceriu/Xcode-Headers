@@ -4,14 +4,14 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEInterfaceBuilderKit/IBICAbstractSlottedAssetInspector.h>
+#import <IDEInterfaceBuilderKit/IBICAssetWithSlottedChildrenInspector.h>
 
-@interface IBICDataSetInspector : IBICAbstractSlottedAssetInspector
+@interface IBICDataSetInspector : IBICAssetWithSlottedChildrenInspector
 {
 }
 
 + (Class)catalogSetClass;
-- (void)addPostSuggestionSetContent:(id)arg1;
+- (void)generateCompressionOptionWithBuilder:(id)arg1;
 
 @end
 

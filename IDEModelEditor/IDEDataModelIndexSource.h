@@ -16,6 +16,7 @@
 
 + (id)dataSourceVersion;
 - (BOOL)generateDataForJob:(id)arg1;
+- (void)_setUpStaticData;
 - (void)_indexEntity:(id)arg1 forFile:(id)arg2 index:(id)arg3;
 
 // Remaining properties

@@ -13,5 +13,6 @@
 @optional
 - (void)imageButton:(IBImageButton *)arg1 willShowMenu:(NSMenu *)arg2;
 - (BOOL)imageButton:(IBImageButton *)arg1 interceptMouseDown:(NSEvent *)arg2;
+- (void)imageButton:(IBImageButton *)arg1 willHandleMouseDown:(NSEvent *)arg2;
 @end
 

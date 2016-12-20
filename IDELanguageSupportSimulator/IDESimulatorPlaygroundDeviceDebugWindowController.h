@@ -31,7 +31,7 @@
 @property __weak IDESimulatorPlaygroundDeviceCommunicationService *deviceCommunicationService; // @synthesize deviceCommunicationService=_deviceCommunicationService;
 - (void).cxx_destruct;
 - (void)simulatorPlaygroundDeviceDebugScreenViewController:(id)arg1 didReceiveEvent:(id)arg2 atDeviceLocation:(struct CGPoint)arg3;
-- (void)simulatorPlaygroundDeviceDebugScreenViewController:(id)arg1 didChangeFramebufferImageSize:(struct CGSize)arg2;
+- (void)simulatorPlaygroundDeviceDebugScreenViewController:(id)arg1 didChangeFramebufferScreenSize:(struct CGSize)arg2;
 - (void)homeButtonAction:(id)arg1;
 - (id)newHomeButton;
 - (id)_titleLabelWithText:(id)arg1;
@@ -41,7 +41,6 @@
 - (void)removeHorizontalScreenConstraints;
 - (void)updateHorizontalScreenConstraints;
 - (void)updateScreensLayout;
-- (void)dealloc;
 - (id)initWithDeviceCommunicationService:(id)arg1;
 
 // Remaining properties

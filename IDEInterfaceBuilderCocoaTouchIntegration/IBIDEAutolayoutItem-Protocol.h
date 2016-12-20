@@ -6,13 +6,14 @@
 
 #import "IBAutolayoutItem.h"
 
-@class IBAutolayoutStatus, IBDocument, IBMemberConfiguration, NSMutableArray, NSObject<IBIDEAutolayoutItem>, NSString;
+@class IBAutolayoutAmbiguityGroup, IBAutolayoutStatus, IBDocument, NSMutableArray, NSObject<IBIDEAutolayoutItem>, NSString;
 
 @protocol IBIDEAutolayoutItem <IBAutolayoutItem>
 @property(readonly, nonatomic) BOOL ibShouldPropagateFramesDuringFrameDecision;
 @property(readonly, nonatomic) BOOL ibShouldIgnoreSizeMisplacement;
 @property(readonly, nonatomic) BOOL ibShouldIgnorePositionMisplacement;
-@property(readonly, nonatomic) BOOL ibShouldIgnoreAmbiguity;
+@property(readonly, nonatomic) BOOL ibShouldIgnoreSizeAmbiguity;
+@property(readonly, nonatomic) BOOL ibShouldIgnorePositionAmbiguity;
 @property(nonatomic) BOOL ibExternalWasMisplacedOnLastSave;
 @property(nonatomic) BOOL ibExternalHadAnyAmbiguityOnLastSave;
 @property(nonatomic) BOOL ibExternalHasUninitializedAutolayoutAmbiguityStatus;
@@ -29,7 +30,8 @@
 - (void)ibVerifyConstraintsAreWellFormedInDocument:(IBDocument *)arg1 andPopulateMessages:(NSMutableArray *)arg2;
 - (void)ibVerifyConstraintsAreSortedInDocument:(IBDocument *)arg1;
 - (void)ibRemoveCandidateConstraints:(id <IBCollection>)arg1;
-- (void)ibAddCandidateConstraints:(id <IBCollection>)arg1 offInEmptyConfigurationAndOnInConfiguration:(IBMemberConfiguration *)arg2;
+- (void)ibAddCandidateConstraints:(id <IBCollection>)arg1 shouldAddToEffectiveEditedConfiguration:(BOOL)arg2;
+- (BOOL)ibShouldIgnoreForAmbiguityGroup:(IBAutolayoutAmbiguityGroup *)arg1;
 - (BOOL)ibShouldBeIncludedForReportingAmbiguityWithStatus:(IBAutolayoutStatus *)arg1 inDocument:(IBDocument *)arg2;
 - (double)ibPriorityForPlaceholderAmbiguousSubviewVerticalConstraints;
 - (double)ibPriorityForPlaceholderAmbiguousSubviewHorizontalConstraints;

@@ -13,7 +13,7 @@
     BOOL _hide;
     BOOL _disable;
     NSString *_label;
-    double _number;
+    long long _number;
     NSString *_marketingVersion;
 }
 
@@ -21,7 +21,7 @@
 @property(nonatomic) BOOL disable; // @synthesize disable=_disable;
 @property(nonatomic) BOOL hide; // @synthesize hide=_hide;
 @property(retain, nonatomic) NSString *marketingVersion; // @synthesize marketingVersion=_marketingVersion;
-@property(nonatomic) double number; // @synthesize number=_number;
+@property(nonatomic) long long number; // @synthesize number=_number;
 @property(retain, nonatomic) NSString *label; // @synthesize label=_label;
 - (void).cxx_destruct;
 - (id)description;

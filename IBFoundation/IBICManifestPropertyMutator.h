@@ -10,12 +10,14 @@
 
 @interface IBICManifestPropertyMutator : IBICCatalogMutator
 {
-    NSString *_keyPath;
+    CDUnknownBlockType _getter;
+    CDUnknownBlockType _setter;
     id <NSCopying> _value;
     id <NSCopying> _originalValue;
     IBICAbstractCatalogItem *_item;
     NSData *_pendingManifestData;
     NSString *_pendingManifestPath;
+    NSString *_propertyName;
 }
 
 - (void).cxx_destruct;
@@ -23,6 +25,7 @@
 - (id)mutationDescription;
 - (void)applyToDiskWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)applyToModel;
+- (id)initWithItem:(id)arg1 propertyName:(id)arg2 value:(id)arg3 getter:(CDUnknownBlockType)arg4 setter:(CDUnknownBlockType)arg5;
 - (id)initWithItem:(id)arg1 andValue:(id)arg2 forKeyPath:(id)arg3;
 
 @end

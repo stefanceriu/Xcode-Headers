@@ -9,16 +9,16 @@
 #import "IDEDebugNavigableModel.h"
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DBGProcess, DVTDocumentLocation, DVTFileDataType, IDEFileReference, IDELaunchSession, NSArray, NSImage, NSString;
+@class DVTDocumentLocation, DVTFileDataType, IDEDebugProcess, IDEFileReference, IDELaunchSession, NSArray, NSImage, NSString;
 
 @interface DBGMemoryDataProcessWrapper : NSObject <IDEDebugNavigableModel, IDEKeyDrivenNavigableItemRepresentedObject>
 {
-    DBGProcess *_process;
+    IDEDebugProcess *_process;
     BOOL _useProcessIconAndName;
 }
 
 + (id)keyPathsForValuesAffectingMemoryDatas;
-@property(readonly) DBGProcess *process; // @synthesize process=_process;
+@property(readonly) IDEDebugProcess *process; // @synthesize process=_process;
 - (void).cxx_destruct;
 - (unsigned long long)navigableItem_indexOfRepresentedObjectForIdentifier:(id)arg1 inRelationshipKeyPath:(id)arg2;
 - (id)navigableItem_identifierForRepresentedObjectAtIndex:(unsigned long long)arg1 inRelationshipKeyPath:(id)arg2;
@@ -34,12 +34,16 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 

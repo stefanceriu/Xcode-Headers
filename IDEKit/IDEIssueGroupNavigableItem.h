@@ -13,15 +13,22 @@
     DVTObservingToken *_fileGroupsObservingToken;
     DVTObservingToken *_issuesWithoutFilesObservingToken;
     DVTObservingToken *_typeGroupsObservingToken;
+    unsigned long long _compressionValue;
+    BOOL _showsCompressedStackFrames;
+    long long _showChildrenByType;
 }
 
 + (id)keyPathsForValuesAffectingSubtitle;
+@property(nonatomic) long long showChildrenByType; // @synthesize showChildrenByType=_showChildrenByType;
+@property(nonatomic) BOOL showsCompressedStackFrames; // @synthesize showsCompressedStackFrames=_showsCompressedStackFrames;
 - (void).cxx_destruct;
+- (void)_changeThreadNavigableItem:(id)arg1;
 - (id)subtitle;
 - (id)keyPathsAffectingValueForSubtitle;
 - (id)childRepresentedObjects;
 - (void)primitiveInvalidate;
 - (BOOL)isLeaf;
+- (id)initWithRepresentedObject:(id)arg1;
 
 @end
 

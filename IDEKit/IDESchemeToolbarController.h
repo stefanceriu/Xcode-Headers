@@ -10,32 +10,33 @@
 #import "NSMenuDelegate.h"
 #import "NSPathControlDelegate.h"
 
-@class IDENavigableItem, IDENavigableItemCoordinator, IDEPathControl, IDEWorkspace, IDEWorkspaceTabController, NSString, NSToolbarItem;
+@class IDENavigableItem, IDENavigableItemCoordinator, IDEPathControl, IDESchemeManagerNavigable, IDEWorkspace, IDEWorkspaceTabController, NSString, NSToolbarItem;
 
 @interface IDESchemeToolbarController : DVTToolbarViewController <NSPathControlDelegate, IDEPathCellDelegate, NSMenuDelegate>
 {
     IDENavigableItemCoordinator *_navigableItemCoordinator;
-    IDENavigableItem *_rootNavigable;
     IDEPathControl *_pathControl;
     unsigned long long _menusOpen;
     NSToolbarItem *_toolbarItem;
+    IDESchemeManagerNavigable *_rootNavigable;
 }
 
 + (id)keyPathsForValuesAffectingSelectedNavigable;
 + (id)keyPathsForValuesAffectingPathControlIsEnabled;
 + (id)keyPathsForValuesAffectingActiveWorkspaceTabController;
 + (id)keyPathsForValuesAffectingWorkspace;
+@property(retain) IDESchemeManagerNavigable *rootNavigable; // @synthesize rootNavigable=_rootNavigable;
 @property(nonatomic) __weak NSToolbarItem *toolbarItem; // @synthesize toolbarItem=_toolbarItem;
-@property(retain) IDENavigableItem *rootNavigable; // @synthesize rootNavigable=_rootNavigable;
 - (void).cxx_destruct;
 - (void)_newContextAction:(id)arg1;
 - (void)_manageContextsAction:(id)arg1;
 - (void)_editActiveContextAction:(id)arg1;
 - (void)_noSchemeAction:(id)arg1;
+- (BOOL)pathCell:(id)arg1 performAlternateReveal:(id)arg2 fromFrame:(struct CGRect)arg3;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (id)pathCell:(id)arg1 accessibilityDescriptionForPathComponentCell:(id)arg2 atIndex:(unsigned long long)arg3;
 - (id)pathCellNoSelectionTitle;
-- (void)updatePathControlSize;
+- (void)_updatePathControlSize;
 - (void)pathCell:(id)arg1 didUpdateMenu:(id)arg2;
 - (BOOL)pathCell:(id)arg1 shouldSeparateDisplayOfChildItemsForItem:(id)arg2;
 - (void)didUpdateRunDestinationMenu:(id)arg1;

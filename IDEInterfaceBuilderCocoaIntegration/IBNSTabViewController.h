@@ -56,6 +56,8 @@
 - (id)ibRelationshipSegueTrackingItemProperty;
 - (id)ibRelationshipSegueTrackingItemsProperty;
 - (id)ibImageForOwnedScene;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

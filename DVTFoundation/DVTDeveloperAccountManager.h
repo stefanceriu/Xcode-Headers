@@ -8,11 +8,11 @@
 
 #import "DVTDeveloperProfileAccountProvider.h"
 
-@class DVTDeveloperAccount, NSMutableOrderedSet, NSOrderedSet, NSString;
+@class DVTDeveloperAccount, NSOrderedSet, NSString;
 
 @interface DVTDeveloperAccountManager : NSObject <DVTDeveloperProfileAccountProvider>
 {
-    NSMutableOrderedSet *_accounts;
+    NSOrderedSet *_accounts;
     DVTDeveloperAccount *_defaultAccount;
 }
 
@@ -22,14 +22,14 @@
 @property(readonly) NSString *typeIdentifier;
 - (BOOL)importAccountsFromKeychain:(struct OpaqueSecKeychainRef *)arg1 propertyList:(id)arg2 numberOfAccounts:(unsigned long long *)arg3 error:(id *)arg4;
 - (BOOL)exportAccountsToKeychain:(struct OpaqueSecKeychainRef *)arg1 propertyList:(id *)arg2 numberOfAccounts:(unsigned long long *)arg3 error:(id *)arg4;
-- (void)removeAccountsObject:(id)arg1;
-- (void)addAccountsObject:(id)arg1;
-@property(readonly, nonatomic) NSOrderedSet *accounts;
-- (id)_mutableAccounts;
+- (void)addAccountsFromArray:(id)arg1;
+- (void)removeAccount:(id)arg1;
+- (void)addAccount:(id)arg1;
+@property(copy, nonatomic) NSOrderedSet *accounts; // @synthesize accounts=_accounts;
 - (void)updateUserDefaults;
 - (id)_accountsByCreatingFromDefaults;
-- (id)_accountsByCreatingFromKeychain;
-- (_Bool)hasAccountWithUsername:(id)arg1;
+- (id)_accountDefaultsWithFallbacks;
+- (BOOL)hasAccountWithUsername:(id)arg1;
 - (id)accountWithUsername:(id)arg1;
 
 // Remaining properties

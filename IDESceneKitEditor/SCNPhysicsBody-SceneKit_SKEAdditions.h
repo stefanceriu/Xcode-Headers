@@ -9,6 +9,8 @@
 @class SCNNode;
 
 @interface SCNPhysicsBody (SceneKit_SKEAdditions)
+@property double ske_physicsShapeCollisionMargin;
+@property(readonly) BOOL ske_physicsShapeCollisionMarginAvailable;
 @property double ske_physicsShapeScale;
 @property BOOL ske_physicsShapeCompound;
 @property long long ske_physicsShapeGeometryType;

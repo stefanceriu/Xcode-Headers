@@ -15,8 +15,8 @@
 + (id)_tabDictionaryForTabController:(id)arg1 isSelected:(BOOL)arg2;
 + (void)_createAttributedTitlesForItemDictionaries:(id)arg1 includeIconInTitles:(BOOL)arg2;
 + (void)_createDisambiguatedAttributedTitlesForItemDictionaries:(id)arg1 includeIconInTitles:(BOOL)arg2;
-+ (id)titleForItemWithURL:(id)arg1 name:(id)arg2 parentLocations:(id)arg3 presentedParentLocationCount:(unsigned long long)arg4 includeIconInTitles:(BOOL)arg5;
-+ (id)_iconAsAttributedStringForURL:(id)arg1;
++ (id)titleForItemWithURL:(id)arg1 name:(id)arg2 image:(id)arg3 parentLocations:(id)arg4 presentedParentLocationCount:(unsigned long long)arg5 includeIconInTitles:(BOOL)arg6;
++ (id)_iconAsAttributedStringForURL:(id)arg1 image:(id)arg2;
 + (id)_localizedNameForURL:(id)arg1;
 + (id)_parentDirectoryURLForURL:(id)arg1;
 + (id)_nameForURL:(id)arg1;

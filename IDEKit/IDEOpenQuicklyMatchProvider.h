@@ -19,6 +19,7 @@
 @property(retain) IDEOpenQuicklyContext *context; // @synthesize context=_context;
 - (void).cxx_destruct;
 @property(readonly, getter=isIdle) BOOL idle;
+@property(readonly) BOOL wantsToValidateMatchesImmediately;
 - (void)finishCalculatingMatches;
 - (void)contextDidChange;
 - (void)startCalculatingMatches;

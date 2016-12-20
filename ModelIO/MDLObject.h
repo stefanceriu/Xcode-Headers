@@ -14,16 +14,23 @@
 {
     MDLObject *_parent;
     NSMapTable *_components;
+    MDLObject *_instance;
+    BOOL _hidden;
     NSString *name;
     id <MDLObjectContainerComponent> _children;
 }
 
 @property(retain, nonatomic) id <MDLObjectContainerComponent> children; // @synthesize children=_children;
 @property(copy, nonatomic) NSString *name; // @synthesize name;
+@property(nonatomic) BOOL hidden; // @synthesize hidden=_hidden;
+@property(retain, nonatomic) MDLObject *instance; // @synthesize instance=_instance;
 - (void).cxx_destruct;
 - (struct)boundingBoxAtTime:(double)arg1;
 - (void)addChild:(id)arg1;
 @property(retain, nonatomic) id <MDLTransformComponent> transform;
+- (id)objectAtPath:(id)arg1;
+- (void)enumerateChildObjectsOfClass:(Class)arg1 root:(id)arg2 usingBlock:(CDUnknownBlockType)arg3 stopPointer:(char *)arg4;
+@property(readonly, nonatomic) NSString *path;
 @property(nonatomic) __weak MDLObject *parent;
 - (id)componentConformingToProtocol:(id)arg1;
 - (void)setComponent:(id)arg1 forProtocol:(id)arg2;

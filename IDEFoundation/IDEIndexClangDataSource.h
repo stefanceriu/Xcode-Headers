@@ -23,6 +23,8 @@
 
 + (id)translationUnitForPCHFile:(id)arg1 arguments:(id)arg2 session:(id)arg3 create:(BOOL)arg4;
 + (void)logPCHFailure:(id)arg1;
++ (id)processArguments:(id)arg1;
++ (id)appendNewArguments:(id)arg1 inArray:(id)arg2;
 + (id)appendNewArgument:(id)arg1 inArray:(id)arg2;
 + (id)substituteNewArgument:(id)arg1 forOldArgument:(id)arg2 inArray:(id)arg3;
 + (id)addHeaderMapInclude:(id)arg1 forBuildProductsDir:(id)arg2 useSpellChecking:(BOOL)arg3 toArguments:(id)arg4;

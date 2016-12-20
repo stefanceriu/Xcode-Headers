@@ -15,40 +15,40 @@
 
 @interface CDMProperty : NSObject <IDEInspectorAccessibilitySupport, CDMIdentification, DVTInvalidation, IDEKeyDrivenNavigableItemRepresentedObject>
 {
-    NSString *name;
-    BOOL optional;
-    BOOL optionalFlagEnabled;
-    BOOL transient;
-    BOOL transientFlagEnabled;
-    BOOL indexed;
-    NSString *elementID;
-    BOOL spotlightIndexingEnabled;
-    BOOL storedInTruthFile;
-    NSMutableDictionary *userInfoDictionary;
-    id sharedKey;
-    NSString *versionHashModifier;
-    CDMModel *model;
-    CDMEntity *entity;
-    NSNumber *uniqueID;
+    NSString *_name;
+    BOOL _optional;
+    BOOL _optionalFlagEnabled;
+    BOOL _transient;
+    BOOL _transientFlagEnabled;
+    BOOL _indexed;
+    NSString *_elementID;
+    BOOL _spotlightIndexingEnabled;
+    BOOL _storedInTruthFile;
+    NSMutableDictionary *_userInfoDictionary;
+    id _sharedKey;
+    NSString *_versionHashModifier;
+    CDMModel *_model;
+    CDMEntity *_entity;
+    NSNumber *_uniqueID;
 }
 
 + (id)keyPathsForValuesAffectingInspectedOptional;
 + (void)initialize;
-@property(copy) NSNumber *uniqueID; // @synthesize uniqueID;
-@property(copy, nonatomic) NSString *versionHashModifier; // @synthesize versionHashModifier;
-@property(copy, nonatomic) NSString *name; // @synthesize name;
-@property(nonatomic) BOOL transient; // @synthesize transient;
-@property(nonatomic) BOOL optional; // @synthesize optional;
-@property(retain, nonatomic) CDMEntity *entity; // @synthesize entity;
-@property(retain) CDMModel *model; // @synthesize model;
-@property(retain, nonatomic) id sharedKey; // @synthesize sharedKey;
-@property(copy, nonatomic) NSDictionary *userInfoDictionary; // @synthesize userInfoDictionary;
-@property(nonatomic) BOOL storedInTruthFile; // @synthesize storedInTruthFile;
-@property(nonatomic) BOOL spotlightIndexingEnabled; // @synthesize spotlightIndexingEnabled;
-@property(copy, nonatomic) NSString *elementID; // @synthesize elementID;
-@property(nonatomic) BOOL indexed; // @synthesize indexed;
-@property(readonly) BOOL transientFlagEnabled; // @synthesize transientFlagEnabled;
-@property(readonly) BOOL optionalFlagEnabled; // @synthesize optionalFlagEnabled;
+@property(copy) NSNumber *uniqueID; // @synthesize uniqueID=_uniqueID;
+@property(retain, nonatomic) CDMEntity *entity; // @synthesize entity=_entity;
+@property(retain) CDMModel *model; // @synthesize model=_model;
+@property(copy, nonatomic) NSString *versionHashModifier; // @synthesize versionHashModifier=_versionHashModifier;
+@property(retain, nonatomic) id sharedKey; // @synthesize sharedKey=_sharedKey;
+@property(copy, nonatomic) NSDictionary *userInfoDictionary; // @synthesize userInfoDictionary=_userInfoDictionary;
+@property(nonatomic) BOOL storedInTruthFile; // @synthesize storedInTruthFile=_storedInTruthFile;
+@property(nonatomic) BOOL spotlightIndexingEnabled; // @synthesize spotlightIndexingEnabled=_spotlightIndexingEnabled;
+@property(copy, nonatomic) NSString *elementID; // @synthesize elementID=_elementID;
+@property(nonatomic) BOOL indexed; // @synthesize indexed=_indexed;
+@property(readonly) BOOL transientFlagEnabled; // @synthesize transientFlagEnabled=_transientFlagEnabled;
+@property(nonatomic) BOOL transient; // @synthesize transient=_transient;
+@property(readonly) BOOL optionalFlagEnabled; // @synthesize optionalFlagEnabled=_optionalFlagEnabled;
+@property(nonatomic) BOOL optional; // @synthesize optional=_optional;
+@property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (id)stringRepresentation;
 - (id)userInfoXMLElementTree;
@@ -70,23 +70,23 @@
 - (BOOL)syncable;
 - (id)initWithLegacyProperty:(id)arg1 belongingToEntity:(id)arg2 inModel:(id)arg3;
 - (void)updateSyncingSupportForEntity:(id)arg1;
-- (id)initInModel:(id)arg1;
 - (id)init;
-- (void)_commonInitInModel:(id)arg1;
+- (id)initInModel:(id)arg1;
 - (void)primitiveInvalidate;
 @property(nonatomic) BOOL inspectedOptional;
 - (void)didChangeValueForKey:(id)arg1;
 - (void)_registerUndoBlockForFoundProperty:(CDUnknownBlockType)arg1;
 - (id)humanReadableNameForInspectorKeyPath:(id)arg1;
+- (BOOL)validateName:(id *)arg1 error:(id *)arg2;
 - (id)code_capitalizedPropertyName;
 - (id)code_propertyName;
-- (BOOL)validateName:(id *)arg1 error:(id *)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
@@ -94,6 +94,9 @@
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;

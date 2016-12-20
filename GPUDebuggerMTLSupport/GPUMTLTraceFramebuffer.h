@@ -14,7 +14,7 @@
 __attribute__((visibility("hidden")))
 @interface GPUMTLTraceFramebuffer : NSObject <GPUTraceFramebuffer, GPUTraceDisplaySet>
 {
-    id <DYFrameBuffer> _frameBufferObject;
+    id <DYFramebuffer> _frameBufferObject;
     NSMutableDictionary *_colorResourceObjects;
     id <DYResource> _depthResourceObject;
     id <DYResource> _stencilResourceObject;
@@ -25,10 +25,10 @@ __attribute__((visibility("hidden")))
 @property(retain) id <DYResource> stencilResourceObject; // @synthesize stencilResourceObject=_stencilResourceObject;
 @property(retain) id <DYResource> depthResourceObject; // @synthesize depthResourceObject=_depthResourceObject;
 @property(readonly) NSMutableDictionary *colorResourceObjects; // @synthesize colorResourceObjects=_colorResourceObjects;
-@property(readonly) id <DYFrameBuffer> frameBufferObject; // @synthesize frameBufferObject=_frameBufferObject;
+@property(readonly) id <DYFramebuffer> frameBufferObject; // @synthesize frameBufferObject=_frameBufferObject;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSArray *elementIDs; // @dynamic elementIDs;
-@property(readonly, nonatomic) unsigned int numElements; // @dynamic numElements;
+@property(readonly, nonatomic) NSArray *elementIDs;
+@property(readonly, nonatomic) unsigned int numElements;
 - (id)attachments;
 - (id)attachmentForAttachmentID:(unsigned long long)arg1;
 - (id)initWithFBO:(id)arg1;

@@ -4,48 +4,37 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEInterfaceBuilderKit/IBICAssetOverviewCapsuleController.h>
+#import <IDEInterfaceBuilderKit/IBICGroupedRepCapsuleController.h>
 
-#import "IBICCatalogItemObserver.h"
-#import "IBICSlottedAssetCapsuleDelegate.h"
-
-@class NSArray, NSString;
-
-@interface IBICSlottedAssetOverviewCapsuleController : IBICAssetOverviewCapsuleController <IBICSlottedAssetCapsuleDelegate, IBICCatalogItemObserver>
+@interface IBICSlottedAssetOverviewCapsuleController : IBICGroupedRepCapsuleController
 {
-    NSArray *_cachedDecodedDragImages;
 }
 
-+ (id)assetComponentIDForAssetChild:(id)arg1;
-- (void).cxx_destruct;
-- (BOOL)view:(id)arg1 performDragOperation:(id)arg2;
-- (void)chooseDropTarget:(id *)arg1 acceptedType:(long long *)arg2 andAllowedDragOperations:(unsigned long long *)arg3 forDraggingInfo:(id)arg4;
-- (id)cachedDecodedDragImages;
-- (void)setCachedDecodedDragImages:(CDUnknownBlockType)arg1;
-- (void)view:(id)arg1 draggingEnded:(id)arg2;
-- (void)view:(id)arg1 concludeDragOperation:(id)arg2;
-- (void)view:(id)arg1 draggingExited:(id)arg2;
-- (BOOL)view:(id)arg1 prepareForDragOperation:(id)arg2;
-- (unsigned long long)view:(id)arg1 draggingUpdated:(id)arg2;
-- (unsigned long long)view:(id)arg1 draggingEntered:(id)arg2;
-- (id)dragTypesForView:(id)arg1;
+- (id)assetComponentIDForAssetComponent:(id)arg1;
+- (id)assetComponentForAssetComponentID:(id)arg1;
+- (void)didCompleteDropOperationWithDroppedItems:(id)arg1;
+- (id)addDroppedItem:(id)arg1 withComponentID:(id)arg2;
+- (id)addItemFromPasteboardReferencedFilePath:(id)arg1 withComponentID:(id)arg2;
+- (id)addItemFromDroppedContentObject:(id)arg1 withComponentID:(id)arg2;
+- (id)inferredComponentIDsForImageReps:(id)arg1;
+- (id)inferredComponentIDsForPaths:(id)arg1;
+- (id)prepareConvertedCopyOfDroppedFallbackItem:(id)arg1 toReplaceExistingItem:(id)arg2 context:(id)arg3 targetDropLocation:(id *)arg4;
+- (id)prepareToDropItem:(id)arg1 ontoExistingItem:(id)arg2 context:(id)arg3;
+- (id)suggestedAssetComponentIDForDraggedAssetComponent:(id)arg1 context:(id)arg2;
+- (Class)secondaryItemClassForPasteboardOperationsTargetingDropLocation:(id)arg1;
+- (Class)primaryItemClassForPasteboardOperationsTargetingDropLocation:(id)arg1;
+- (id)imagesForForDropLocation:(id)arg1 fromPasteboard:(id)arg2;
+- (BOOL)canProduceImageForPasteboard:(id)arg1 forFileTypesForDropLocation:(id)arg2;
+- (BOOL)isValidPath:(id)arg1 forDroppingOnComponentWithID:(id)arg2;
 - (Class)assetCapsuleClass;
-- (void)pushData;
-- (id)slottedAssetCapsule:(id)arg1 backgroundColorForAssetRepIdentifier:(id)arg2;
-- (id)slottedAssetCapsule:(id)arg1 orderAssetRepIdentifiers:(id)arg2;
-- (id)slottedAssetCapsule:(id)arg1 titleForAssetRepIdentifier:(id)arg2;
-- (void)slottedAssetCapsuleWillLayout:(id)arg1;
-- (id)slottedAssetCapsule:(id)arg1 imageForAssetRepIdentifier:(id)arg2;
-- (void)removeAssetComponentIDsFromUIImmediately:(id)arg1;
+- (id)groupedRepCapsule:(id)arg1 detailAreaPathForIdentifier:(id)arg2;
+- (void)groupedRepCapsule:(id)arg1 configureAssetView:(id)arg2 forAssetRepIdentifier:(id)arg3;
+- (void)groupedRepCapsule:(id)arg1 configureGroupView:(id)arg2 forGroupWithPath:(id)arg3;
 - (void)setSelectedAssetComponentIDs:(id)arg1;
 - (id)assetCapsule;
+- (BOOL)displaysChildrenOfItem:(id)arg1;
+- (id)displayableDescendants;
 - (id)asset;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

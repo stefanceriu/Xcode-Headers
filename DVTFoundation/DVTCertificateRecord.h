@@ -6,12 +6,11 @@
 
 #import "NSManagedObject.h"
 
-@class DVTTeamRecord, NSData, NSDate, NSSet, NSString;
+@class DVTSigningCertificate, DVTTeamRecord, NSData, NSDate, NSSet, NSString;
 
 @interface DVTCertificateRecord : NSManagedObject
 {
     NSString *_kind;
-    struct OpaqueSecCertificateRef *_certificateRef;
     NSString *_name;
 }
 
@@ -19,8 +18,7 @@
 @property(readonly, nonatomic) unsigned long long type;
 - (id)kind;
 @property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
-@property(readonly, nonatomic) struct OpaqueSecCertificateRef *certificateRef; // @synthesize certificateRef=_certificateRef;
-- (void)dealloc;
+@property(readonly, nonatomic) DVTSigningCertificate *signingCertificate;
 
 // Remaining properties
 @property(retain, nonatomic) NSData *certContent; // @dynamic certContent;

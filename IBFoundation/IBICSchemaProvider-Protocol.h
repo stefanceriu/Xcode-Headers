@@ -10,11 +10,16 @@
 
 @protocol IBICSchemaProvider <NSObject>
 - (void)registerSchemaComponents:(IBICSchema *)arg1;
+- (void)captureExistingSlotComponents:(IBICSchema *)arg1;
+- (void)registerSlotComponents:(IBICSchema *)arg1;
+- (void)registerClasses:(IBICSchema *)arg1;
 - (double)precedence;
 
 @optional
 + (void)setContextDataFromCallingHost:(id)arg1;
 + (id)contextDataForRemoteTool;
 + (BOOL)supportsRemoteToolsTargetingPlatformNamed:(NSString *)arg1;
+- (void)registerSuggestionSets:(IBICSchema *)arg1;
+- (void)registerFileTypes:(IBICSchema *)arg1;
 @end
 

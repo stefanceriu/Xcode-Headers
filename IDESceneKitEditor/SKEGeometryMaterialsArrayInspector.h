@@ -20,6 +20,7 @@
     DVTObservingToken *_geometryMaterialsObservingToken;
 }
 
++ (struct _NSRange)visibleRowCountRange;
 + (BOOL)wantsEditionBar;
 - (void).cxx_destruct;
 - (BOOL)tableView:(id)arg1 acceptDrop:(id)arg2 row:(long long)arg3 dropOperation:(unsigned long long)arg4;
@@ -41,8 +42,7 @@
 - (id)inspectedNodeAndState:(long long *)arg1;
 - (void)resetGeometryMaterialsObserving;
 - (void)setContent:(id)arg1;
-- (void)viewWillUninstall;
-- (void)viewDidInstall;
+- (void)loadView;
 - (void)primitiveInvalidate;
 
 // Remaining properties

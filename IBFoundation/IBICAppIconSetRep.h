@@ -4,13 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IBFoundation/IBICSlottedAbstractImageRep.h>
+#import <IBFoundation/IBICBundleIconSetRep.h>
 
-@class IBICCatalogContentReference;
-
-@interface IBICAppIconSetRep : IBICSlottedAbstractImageRep
+@interface IBICAppIconSetRep : IBICBundleIconSetRep
 {
-    IBICCatalogContentReference *_contentReference;
 }
 
 + (id)contentReferenceTypeName;
@@ -18,16 +15,12 @@
 + (Class)repIdentifierClass;
 + (id)assetRepWithSlot:(id)arg1 fileName:(id)arg2 explicitlyUnassigned:(BOOL)arg3;
 + (id)assetRepWithRepIdentifier:(id)arg1;
-@property(copy, nonatomic) IBICCatalogContentReference *contentReference; // @synthesize contentReference=_contentReference;
-- (void).cxx_destruct;
-- (BOOL)isMinimallyFitForCompiling;
-- (BOOL)isImageDataSizedProperly;
-- (id)infoPlistReferenceName;
++ (id)createDefaultInstancesForUnitTesting;
 - (void)setSlot:(id)arg1;
+- (id)structuredIdentifier;
 - (id)slot;
 - (id)parent;
 - (id)initWithSlot:(id)arg1;
-- (BOOL)populateNamedAssetImportInfo:(id)arg1 allCompiledItems:(id)arg2 error:(id *)arg3;
 
 @end
 

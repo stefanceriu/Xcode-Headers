@@ -21,7 +21,7 @@
 - (void)_customDecodingOfSCNLookAtConstraint:(id)arg1;
 - (void)_customEncodingOfSCNLookAtConstraint:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-@property(readonly, nonatomic) SCNNode *target;
+@property(retain, nonatomic) SCNNode *target;
 @property(nonatomic) BOOL gimbalLockEnabled;
 - (void)dealloc;
 - (id)initWithTarget:(id)arg1;

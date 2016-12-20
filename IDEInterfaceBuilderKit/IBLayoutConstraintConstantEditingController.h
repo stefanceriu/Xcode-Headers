@@ -24,6 +24,7 @@
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)populateMenu:(id)arg1;
 - (void)populateObservingTokens:(id)arg1;
+- (void)setTextField:(id)arg1;
 
 @end
 

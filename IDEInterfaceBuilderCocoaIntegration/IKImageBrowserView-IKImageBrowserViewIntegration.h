@@ -7,8 +7,8 @@
 #import "IKImageBrowserView.h"
 
 @interface IKImageBrowserView (IKImageBrowserViewIntegration)
+- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)ibSwizzledSetDraggingDestinationDelegate:(id)arg1;
-- (void)ibSwizzledAdjustScroller;
 - (id)ibSwizzledInitWithCoder:(id)arg1;
 - (void)_willInitWithCoder;
 - (void)ibSwizzledSetDelegate:(id)arg1;
@@ -21,5 +21,6 @@
 - (BOOL)useOutlinedStyle;
 - (void)setUseShadowedStyle:(BOOL)arg1;
 - (BOOL)useShadowedStyle;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

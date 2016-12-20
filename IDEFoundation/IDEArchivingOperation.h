@@ -6,7 +6,7 @@
 
 #import "DVTOperationGroup.h"
 
-@class DVTFilePath, DVTPlatform, IDEArchivePathsSnapshot, IDEWorkspaceArena, NSString;
+@class DVTFilePath, DVTPlatform, DVTToolchain, IDEArchivePathsSnapshot, IDEWorkspaceArena, NSString;
 
 @interface IDEArchivingOperation : DVTOperationGroup
 {
@@ -19,6 +19,7 @@
     DVTFilePath *_objrootPath;
     DVTFilePath *_sharedPrecompsPath;
     IDEArchivePathsSnapshot *_archiveSnapshot;
+    DVTToolchain *_toolchain;
     BOOL _revealCreatedArchive;
     IDEWorkspaceArena *_workspaceArena;
 }
@@ -29,8 +30,8 @@
 @property(readonly) IDEArchivePathsSnapshot *archiveSnapshot; // @synthesize archiveSnapshot=_archiveSnapshot;
 - (void).cxx_destruct;
 - (void)main;
-- (id)preperatoryOperationForArchiveBuild;
-- (id)initWithArchiveName:(id)arg1 schemeName:(id)arg2 workspaceArena:(id)arg3 platform:(id)arg4 revealCreatedArchive:(BOOL)arg5;
+- (id)preparatoryOperationForArchiveBuild;
+- (id)initWithArchiveName:(id)arg1 schemeName:(id)arg2 workspaceArena:(id)arg3 platform:(id)arg4 toolchain:(id)arg5 revealCreatedArchive:(BOOL)arg6;
 
 @end
 

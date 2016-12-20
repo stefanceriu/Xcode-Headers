@@ -8,7 +8,7 @@
 
 #import "DVTXMLUnarchiving.h"
 
-@class DVTNotificationToken, IDEFileReference, IDESchemeBuildableReference, NSArray, NSDictionary, NSMutableArray, NSString;
+@class DVTNotificationToken, IDESchemeBuildableReference, NSArray, NSMutableArray, NSString;
 
 @interface IDEProfileSchemeAction : IDESchemeAction <DVTXMLUnarchiving>
 {
@@ -22,12 +22,10 @@
     BOOL _shouldUseLaunchSchemeArgsEnv;
     BOOL _useCustomWorkingDirectory;
     BOOL _enableTestabilityWhenProfilingTests;
-    NSString *_buildConfiguration;
     NSString *_customWorkingDirectory;
     NSString *_resolvedCustomWorkingDirectory;
     NSString *_savedToolIdentifier;
     unsigned long long _launchAutomaticallySubstyle;
-    IDEFileReference *_notificationPayloadFile;
     Class _analysisToolServiceClass;
 }
 
@@ -37,7 +35,6 @@
 + (id)keyPathsForValuesAffectingSubtitle;
 + (void)initialize;
 @property(retain) Class analysisToolServiceClass; // @synthesize analysisToolServiceClass=_analysisToolServiceClass;
-@property(retain) IDEFileReference *notificationPayloadFile; // @synthesize notificationPayloadFile=_notificationPayloadFile;
 @property BOOL enableTestabilityWhenProfilingTests; // @synthesize enableTestabilityWhenProfilingTests=_enableTestabilityWhenProfilingTests;
 @property(nonatomic) unsigned long long launchAutomaticallySubstyle; // @synthesize launchAutomaticallySubstyle=_launchAutomaticallySubstyle;
 @property BOOL useCustomWorkingDirectory; // @synthesize useCustomWorkingDirectory=_useCustomWorkingDirectory;
@@ -46,8 +43,6 @@
 @property BOOL ignoresPersistentStateOnLaunch; // @synthesize ignoresPersistentStateOnLaunch=_ignoresPersistentStateOnLaunch;
 @property BOOL debugDocumentVersioning; // @synthesize debugDocumentVersioning=_debugDocumentVersioning;
 @property(copy, nonatomic) NSString *customWorkingDirectory; // @synthesize customWorkingDirectory=_customWorkingDirectory;
-- (void)setBuildConfiguration:(id)arg1;
-- (id)buildConfiguration;
 - (void).cxx_destruct;
 - (void)addMacroExpansion:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addEnvironmentVariables:(id)arg1 fromXMLUnarchiver:(id)arg2;
@@ -71,21 +66,24 @@
 @property BOOL staticNotificationSelected;
 - (void)_setLaunchOption:(unsigned long long)arg1 enabled:(BOOL)arg2;
 - (BOOL)_launchOptionIsSet:(unsigned long long)arg1;
+- (id)_expandMacrosInString:(id)arg1 forBuildParameters:(id)arg2;
 - (id)_expandMacrosInString:(id)arg1;
 - (void)setBuildableReferenceToUseForMacroExpansion:(id)arg1;
 - (id)buildableReferenceToUseForMacroExpansion;
 @property(readonly) NSString *resolvedCustomWorkingDirectory; // @synthesize resolvedCustomWorkingDirectory=_resolvedCustomWorkingDirectory;
-@property(readonly) NSDictionary *environmentVariables;
+- (id)environmentVariablesForBuildParameters:(id)arg1;
 @property(readonly) NSMutableArray *mutableEnvironmentVariableEntries; // @dynamic mutableEnvironmentVariableEntries;
 @property(copy) NSArray *environmentVariableEntries; // @dynamic environmentVariableEntries;
-- (id)commandLineArgumentsForDevice:(id)arg1;
+- (id)commandLineArgumentsForDevice:(id)arg1 forBuildParameters:(id)arg2;
 @property(readonly) NSMutableArray *mutableCommandLineArgumentEntries; // @dynamic mutableCommandLineArgumentEntries;
 @property(copy) NSArray *commandLineArgumentEntries; // @dynamic commandLineArgumentEntries;
-- (id)_profileOperationWithExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 testManager:(id)arg5 overridingTestingSpecifiers:(id)arg6 schemeActionRecord:(id)arg7 environmentVariables:(id)arg8 commandLineArguments:(id)arg9 outError:(id *)arg10 actionCallbackBlock:(CDUnknownBlockType)arg11;
-- (id)profileOperationForExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 schemeActionRecord:(id)arg5 outError:(id *)arg6 actionCallbackBlock:(CDUnknownBlockType)arg7;
-- (id)profileOperationWithTestManager:(id)arg1 executionEnvironment:(id)arg2 withBuildOperation:(id)arg3 buildParameters:(id)arg4 buildableProductDirectories:(id)arg5 overridingTestingSpecifiers:(id)arg6 schemeActionRecord:(id)arg7 outError:(id *)arg8 actionCallbackBlock:(CDUnknownBlockType)arg9;
-- (id)_filePathsForContainersAndExtensionsForBuildParameters:(id)arg1 launchParameters:(id)arg2;
+- (id)_profileOperationForSchemeOperationParameters:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 overridingTestingSpecifiers:(id)arg5 schemeActionRecord:(id)arg6 environmentVariables:(id)arg7 commandLineArguments:(id)arg8 outError:(id *)arg9;
+- (id)_UITestOperationForSchemeOperationParameters:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 overridingTestingSpecifiers:(id)arg5 schemeActionRecord:(id)arg6 environmentVariables:(id)arg7 commandLineArguments:(id)arg8 testManager:(id)arg9 outError:(id *)arg10;
+- (id)_operationGroupWithSchemeOperationParameters:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 testManager:(id)arg5 overridingTestingSpecifiers:(id)arg6 schemeActionRecord:(id)arg7 environmentVariables:(id)arg8 commandLineArguments:(id)arg9 outError:(id *)arg10 actionCallbackBlock:(CDUnknownBlockType)arg11;
+- (id)profileOperationWithSchemeOperationParameters:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 schemeActionRecord:(id)arg5 outError:(id *)arg6 actionCallbackBlock:(CDUnknownBlockType)arg7;
+- (id)profileOperationWithSchemeOperationParameters:(id)arg1 testManager:(id)arg2 withBuildOperation:(id)arg3 buildParameters:(id)arg4 buildableProductDirectories:(id)arg5 overridingTestingSpecifiers:(id)arg6 schemeActionRecord:(id)arg7 outError:(id *)arg8 actionCallbackBlock:(CDUnknownBlockType)arg9;
 - (void)setSelectedAnalysisToolIdentifier:(id)arg1 forPlatformIdentifier:(id)arg2;
+- (id)primitiveProfileOperationForRunnableType:(id)arg1 runDestination:(id)arg2 launchParameters:(id)arg3 workspaceFilePath:(id)arg4 projectFilePath:(id)arg5 outError:(id *)arg6;
 - (void)_updateProfileActionBuildableToUseForMacroExpansion;
 - (void)updateBuildableForChangeInRunnable;
 - (void)setRunContext:(id)arg1;

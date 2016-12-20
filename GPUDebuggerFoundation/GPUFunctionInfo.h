@@ -6,20 +6,28 @@
 
 #import "NSObject.h"
 
-@class NSURL;
+#import "DYPFunctionInfo.h"
 
-@interface GPUFunctionInfo : NSObject
+@class NSString, NSURL;
+
+@interface GPUFunctionInfo : NSObject <DYPFunctionInfo>
 {
     BOOL _isOnlineCompiled;
-    NSURL *_sourceURL;
     long long _lineNumber;
+    NSURL *_sourceURL;
 }
 
 @property(readonly, nonatomic) BOOL isOnlineCompiled; // @synthesize isOnlineCompiled=_isOnlineCompiled;
-@property(readonly, nonatomic) long long lineNumber; // @synthesize lineNumber=_lineNumber;
 @property(readonly, nonatomic) NSURL *sourceURL; // @synthesize sourceURL=_sourceURL;
+@property(readonly, nonatomic) long long lineNumber; // @synthesize lineNumber=_lineNumber;
 - (void).cxx_destruct;
 - (id)initWithSourceURL:(id)arg1 lineNumber:(long long)arg2 onlineCompiled:(BOOL)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

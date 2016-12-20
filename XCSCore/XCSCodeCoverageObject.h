@@ -35,7 +35,8 @@
 @property(readonly, nonatomic) NSArray *codeCoverageDevices;
 @property(readonly, nonatomic) unsigned long long count;
 @property(readonly, nonatomic) XCSCodeCoverageKeyPath *keyPath;
-- (id)_initWithTitle:(id)arg1 lineCoveragePercentage:(id)arg2 lineCoveragePercentageDelta:(id)arg3 devices:(id)arg4 validationErrors:(id *)arg5;
+- (id)_initWithTitle:(id)arg1 lineCoveragePercentage:(id)arg2 lineCoveragePercentageDelta:(id)arg3 devices:(id)arg4 skipValidation:(BOOL)arg5 skipBindHierarchy:(BOOL)arg6 validationErrors:(id *)arg7;
+- (id)initWithContents:(id)arg1 service:(id)arg2 skipValidation:(BOOL)arg3 skipBindHierarchy:(BOOL)arg4 validationErrors:(id *)arg5;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 
 @end

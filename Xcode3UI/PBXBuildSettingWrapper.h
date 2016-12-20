@@ -10,5 +10,8 @@
 {
 }
 
+- (void)setValue:(id)arg1;
+- (id)value;
+
 @end
 

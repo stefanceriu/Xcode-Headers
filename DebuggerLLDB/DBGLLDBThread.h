@@ -4,15 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "DBGThread.h"
+#import "IDEThread.h"
 
 @class DBGLLDBSession, DVTDispatchLock, NSMutableArray;
 
 __attribute__((visibility("hidden")))
-@interface DBGLLDBThread : DBGThread
+@interface DBGLLDBThread : IDEThread
 {
-    struct SBThread _lldbThread;
-    struct SBQueueItem _lldbQueueItem;
+    id <DBGSBThread> _lldbThread;
+    id <DBGSBQueueItem> _lldbQueueItem;
     BOOL _derivedRecordedThread;
     BOOL _hasFetchedFullListOfStackFrames;
     NSMutableArray *_backingStackFrames;
@@ -21,31 +21,32 @@ __attribute__((visibility("hidden")))
     DVTDispatchLock *_reuseGenerationLock;
 }
 
-+ (id)createPendingBlockThreadWithParentProcess:(id)arg1 queueItem:(struct SBQueueItem)arg2 name:(id)arg3;
-+ (id)queryRecordedStackFramesForThread:(id)arg1 withParentProcess:(id)arg2 queue:(id)arg3 lldbThread:(struct SBThread)arg4;
++ (id)createPendingBlockThreadWithParentProcess:(id)arg1 queueItem:(id)arg2 name:(id)arg3;
++ (id)queryRecordedStackFramesForThread:(id)arg1 withParentProcess:(id)arg2 queue:(id)arg3 lldbThread:(id)arg4;
 + (BOOL)_isLookingForNSOperationInStackFrames:(id)arg1;
 + (BOOL)supportsInvalidationPrevention;
 + (void)initialize;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_invalidateAndClearBackingStackFrames:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)invalidateUnusedStackFramesAfterCallToSetStackFrames:(id)arg1;
 - (void)requestUnsuspend;
 - (void)requestSuspend;
+- (void)setStackFramesWithAddresses:(id)arg1;
 - (void)requestStackFrames:(unsigned long long)arg1 handleOnMainQueueWithResultHandler:(CDUnknownBlockType)arg2;
 - (void)_setStackFramesOnMainThread:(id)arg1;
+- (void)setStackFrames:(id)arg1;
 - (void)willReuse:(BOOL)arg1;
 - (void)refreshStackFrames;
-- (id)_frameNameForSBFrame:(struct SBFrame)arg1;
-- (id)_fetchBackingStackFramesIfNecessary:(unsigned long long)arg1 markRecorded:(BOOL)arg2;
+- (id)_frameNameForSBFrame:(id)arg1;
+- (id)fetchBackingStackFramesIfNecessary:(unsigned long long)arg1 markRecorded:(BOOL)arg2;
 - (id)recordedThread;
 - (id)compressedStackFramesIncludingRecorded:(long long)arg1;
 @property(readonly) DBGLLDBSession *lldbSession;
 - (void)_assertOnSessionThread;
-- (void)_setLLDBQueueItem:(struct SBQueueItem)arg1;
-- (struct SBThread)lldbThread;
-- (id)initWithParentProcess:(id)arg1 uniqueID:(id)arg2 lldbThread:(struct SBThread)arg3;
+- (void)_setLLDBQueueItem:(id)arg1;
+- (id)lldbThread;
+- (id)initWithParentProcess:(id)arg1 uniqueID:(id)arg2 lldbThread:(id)arg3;
 
 @end
 

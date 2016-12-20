@@ -8,7 +8,7 @@
 
 #import "DTObjectGridGraph.h"
 
-@class NSString, NSView<DTObjectGridGraph>;
+@class NSArray, NSString, NSView<DTObjectGridGraph>;
 
 @interface DTObjectGridGraph : NSView <DTObjectGridGraph>
 {
@@ -16,16 +16,21 @@
 }
 
 - (void).cxx_destruct;
+- (struct CGRect)frameForNode:(id)arg1;
 @property(readonly, nonatomic) id <DTObjectGridReference> selectedReference;
 @property(readonly, nonatomic) id <DTObjectGridNode> selectedNode;
 - (void)deselectAll;
 - (void)selectReferenceWithIdentifier:(unsigned int)arg1;
 - (void)selectNodeWithIdentifier:(unsigned int)arg1;
-- (void)setPivotNodeIdentifier:(unsigned int)arg1 animated:(BOOL)arg2;
-@property(nonatomic) unsigned int pivotNodeIdentifier;
+- (void)setPivotNodeIdentifier:(unsigned int)arg1 maintainingCoordinates:(id)arg2 initialGenerations:(BOOL)arg3;
+- (void)setPivotNodeIdentifier:(unsigned int)arg1 maintainingCoordinates:(id)arg2;
+@property(copy, nonatomic) NSArray *onScreenNodeIdentifiers;
+@property(nonatomic) struct CGPoint cameraPosition;
+@property(readonly, nonatomic) unsigned int pivotNodeIdentifier;
 @property(nonatomic) struct CGSize gridCellSize;
 @property(nonatomic) __weak id <DTObjectGridGraphDelegate> delegate;
 @property(nonatomic) __weak id <DTObjectGridGraphDataSource> dataSource;
+- (id)skview;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 

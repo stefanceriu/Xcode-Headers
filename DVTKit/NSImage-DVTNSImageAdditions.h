@@ -30,6 +30,7 @@
 + (id)_dvt_cachedImageNamed:(id)arg1 ofSize:(struct CGSize)arg2 isTemplate:(BOOL)arg3 fromBundle:(id)arg4;
 + (id)_dvt_cachedImageNamed:(id)arg1 isTemplate:(BOOL)arg2 withFallback:(id)arg3 checkingNamedNSImages:(BOOL)arg4 fromBundle:(id)arg5;
 + (id)dvt_cachedImageWithKey:(id)arg1 creationBlock:(CDUnknownBlockType)arg2;
+- (id)dvt_imageWithInsets:(struct NSEdgeInsets)arg1;
 - (id)dvt_tintedImageWithColor:(id)arg1;
 - (void)dvt_associateCopiedAlternateImageWithOriginal:(id)arg1;
 - (id)dvt_nonPDFImage_workaroundForProblem14522929;
@@ -41,6 +42,7 @@
 - (id)_dvt_deriveInactiveAlternateImageFromTemplate;
 - (id)dvt_cachedAlternateImageFromTemplate;
 - (id)_dvt_deriveAlternateImageFromTemplate;
+- (id)dvt_cachedImageOfSize:(struct CGSize)arg1;
 - (void)dvt_drawInnerShadow:(id)arg1 inRect:(struct CGRect)arg2;
 - (void)dvt_drawInRect:(struct CGRect)arg1 operation:(unsigned long long)arg2 fraction:(double)arg3 unflip:(BOOL)arg4;
 - (id)dvt_copyReferencingCachedOriginal;

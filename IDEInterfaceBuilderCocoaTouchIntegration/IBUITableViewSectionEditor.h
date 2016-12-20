@@ -26,12 +26,10 @@
 - (void)dragTableViewCell:(id)arg1 withLeftMouseDown:(id)arg2 andLeftMouseDragged:(id)arg3;
 - (void)reattachDraggedObjects:(id)arg1 dragContext:(id)arg2;
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;
-- (id)trackerForChild:(id)arg1 withView:(id)arg2 fromKnob:(CDUnion_aed8a530)arg3;
+- (id)trackerForChild:(id)arg1 withView:(id)arg2 fromKnob:(CDUnion_42e99c75)arg3;
 - (CDStruct_b58c4854)activeKnobRectsForObject:(id)arg1;
 - (id)containedTableCellForObject:(id)arg1;
-- (void)resizeChild:(id)arg1 fromKnob:(CDUnion_aed8a530)arg2 withEvent:(id)arg3;
-- (id)viewForClippingToWhenDrawingSelectionKnobsForObject:(id)arg1;
-- (id)buildHighlightMaskForObject:(id)arg1;
+- (void)resizeChild:(id)arg1 fromKnob:(CDUnion_42e99c75)arg2 withEvent:(id)arg3;
 - (BOOL)isContainedTableCell:(id)arg1;
 - (void)willClose;
 - (void)didOpen;

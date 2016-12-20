@@ -10,13 +10,13 @@
 
 @interface IDECDManagedObjectDataModelAssistant : IDEAssistant
 {
-    NSArray *availableFiles;
-    NSSet *selectedFileItems;
+    NSArray *_availableFiles;
+    NSSet *_selectedFileItems;
 }
 
 + (id)keyPathsForValuesAffectingCanGoForward;
-@property(retain) NSSet *selectedFileItems; // @synthesize selectedFileItems;
-@property(retain) NSArray *availableFiles; // @synthesize availableFiles;
+@property(retain) NSSet *selectedFileItems; // @synthesize selectedFileItems=_selectedFileItems;
+@property(retain) NSArray *availableFiles; // @synthesize availableFiles=_availableFiles;
 - (void).cxx_destruct;
 - (id)nextAssistantIdentifier;
 - (BOOL)canGoForward;

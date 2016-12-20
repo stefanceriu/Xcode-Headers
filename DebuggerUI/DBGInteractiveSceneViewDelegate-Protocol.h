@@ -24,7 +24,6 @@
 - (void)mouseUpAfterDraggingRangeSliderNode:(SCNNode *)arg1;
 - (void)mouseUpAfterDrag;
 - (void)mousedOverNode:(SCNNode *)arg1;
-- (void)mouseDoubleClickedAndHitNode:(SCNNode *)arg1 withEvent:(NSEvent *)arg2;
 - (void)mouseClickedAndHitRangeSliderNode:(SCNNode *)arg1 withEvent:(NSEvent *)arg2;
 - (void)mouseClickedAndHitNode:(SCNNode *)arg1 withEvent:(NSEvent *)arg2;
 @end

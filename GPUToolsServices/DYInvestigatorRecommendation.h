@@ -24,9 +24,9 @@
 - (void)addAdditionalSectionItem:(id)arg1;
 - (void)addSpecificSectionItem:(id)arg1;
 - (void)addGeneralSectionItem:(id)arg1;
-@property(readonly, nonatomic) DYInvestigatorRecommendationSection *additionalSection; // @dynamic additionalSection;
-@property(readonly, nonatomic) DYInvestigatorRecommendationSection *specificSection; // @dynamic specificSection;
-@property(readonly, nonatomic) DYInvestigatorRecommendationSection *generalSection; // @dynamic generalSection;
+@property(readonly, nonatomic) DYInvestigatorRecommendationSection *additionalSection;
+@property(readonly, nonatomic) DYInvestigatorRecommendationSection *specificSection;
+@property(readonly, nonatomic) DYInvestigatorRecommendationSection *generalSection;
 - (void)setOrdered:(BOOL)arg1;
 - (void)setPreamble:(id)arg1;
 - (void)selectSection:(id)arg1;

@@ -23,6 +23,7 @@
 @property(nonatomic) double opacity; // @synthesize opacity=_opacity;
 - (void).cxx_destruct;
 - (void)drawUnderTextInRect:(struct CGRect)arg1;
+- (void)drawUnderCurrentLineHighlightInRect:(struct CGRect)arg1;
 - (void)drawOverTextInRect:(struct CGRect)arg1;
 - (BOOL)trackMouse:(id)arg1;
 - (void)mouseMoved:(id)arg1;

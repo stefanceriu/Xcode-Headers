@@ -14,15 +14,18 @@
     long long _endingLineNumber;
     struct _NSRange _characterRange;
     long long _locationEncoding;
+    id _representedObject;
 }
 
 + (BOOL)supportsSecureCoding;
+@property(retain) id representedObject; // @synthesize representedObject=_representedObject;
 @property(readonly) long long locationEncoding; // @synthesize locationEncoding=_locationEncoding;
 @property(readonly) struct _NSRange characterRange; // @synthesize characterRange=_characterRange;
 @property(readonly) long long endingLineNumber; // @synthesize endingLineNumber=_endingLineNumber;
 @property(readonly) long long startingLineNumber; // @synthesize startingLineNumber=_startingLineNumber;
 @property(readonly) long long endingColumnNumber; // @synthesize endingColumnNumber=_endingColumnNumber;
 @property(readonly) long long startingColumnNumber; // @synthesize startingColumnNumber=_startingColumnNumber;
+- (void).cxx_destruct;
 - (id)dvt_persistableStringRepresentation;
 - (id)dvt_initFromPersistableStringRepresentation:(id)arg1 error:(id *)arg2;
 - (id)copyWithURL:(id)arg1;

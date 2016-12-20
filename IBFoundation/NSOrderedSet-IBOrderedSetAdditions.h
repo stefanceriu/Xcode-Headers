@@ -52,6 +52,7 @@
 - (BOOL)ib_anyObjectsPassTest:(CDUnknownBlockType)arg1;
 - (BOOL)ib_allObjectsPassTest:(CDUnknownBlockType)arg1;
 - (id)ib_arrayByMappingBlock:(CDUnknownBlockType)arg1;
+- (id)ib_setByMappingBlock:(CDUnknownBlockType)arg1;
 - (Class)ib_mutableClass;
 - (id)ib_uniqueObjects;
 - (id)allObjects;

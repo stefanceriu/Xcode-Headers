@@ -7,6 +7,7 @@
 #import "NSRunLoop.h"
 
 @interface NSRunLoop (DVTNSRunLoopAdditions)
++ (void)dvt_initializeRunLoopAdditions;
 - (id)dvt_performInModes:(id)arg1 withOrder:(long long)arg2 usingBlock:(CDUnknownBlockType)arg3;
 @end
 

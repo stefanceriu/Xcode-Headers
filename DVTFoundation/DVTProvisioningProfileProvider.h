@@ -12,8 +12,10 @@
 {
 }
 
++ (id)providerWithProvisioningProfileSearchPaths:(id)arg1;
 + (id)sharedProvider;
 - (id)profileWithUUID:(id)arg1;
+- (void)uninstallHostProfiles:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)installHostProfiles:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (id)profileWithData:(id)arg1 error:(id *)arg2;
 - (id)profileWithURL:(id)arg1 error:(id *)arg2;

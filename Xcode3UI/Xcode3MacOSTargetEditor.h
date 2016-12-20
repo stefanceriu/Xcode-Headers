@@ -10,7 +10,7 @@
 #import "IDECapsuleListViewDataSource.h"
 #import "Xcode3ImageViewDelegate.h"
 
-@class DVTGradientImageButton, DVTStackView_ML, IDECapsuleListView, IDECodesigningSettingsMacViewController, IDEViewController<IDECapsuleViewController>, NSButton, NSComboBox, NSDictionaryController, NSMutableArray, NSPopUpButton, NSString, NSTextField, NSView, Xcode3CodesignTroubleshootingViewController, Xcode3ImageView;
+@class DVTGradientImageButton, DVTObservingToken, DVTStackView_ML, IDECapsuleListView, IDEProvisioningSettingsTargetEditorViewControllersManager, IDEViewController<IDECapsuleViewController>, NSButton, NSComboBox, NSDictionaryController, NSMutableArray, NSPopUpButton, NSString, NSTextField, NSView, Xcode3ImageView;
 
 @interface Xcode3MacOSTargetEditor : IDEViewController <DVTInfoPlistValueCellDelegate, Xcode3ImageViewDelegate, IDECapsuleListViewDataSource>
 {
@@ -22,8 +22,6 @@
     IDEViewController<IDECapsuleViewController> *_appIconsViewController;
     IDECapsuleListView *_capsuleList;
     NSDictionaryController *_appCategoriesController;
-    NSView *_codesigningSettingsView;
-    IDECodesigningSettingsMacViewController *_codesigningSettingsViewController;
     NSTextField *_targetIdentifierField;
     NSComboBox *_deploymentOSCombo;
     Xcode3ImageView *_appImageView;
@@ -33,7 +31,6 @@
     NSTextField *_chooseInfoPlistLabel;
     NSView *_originalIdentityContentView;
     NSMutableArray *_subviewControllers;
-    Xcode3CodesignTroubleshootingViewController *_codesignTroubleController;
     DVTStackView_ML *_appIconStackView;
     NSView *_appCategorySlice;
     NSView *_plistAppIconView;
@@ -43,11 +40,15 @@
     DVTStackView_ML *_deploymentInfoStackView;
     NSView *_mainInterfaceSlice;
     NSView *_appExtensionAPISlice;
+    IDEProvisioningSettingsTargetEditorViewControllersManager *_provisioningSettingsTargetEditorViewControllersManager;
+    DVTObservingToken *_provisioningSettingsTargetEditorViewControllersObserver;
 }
 
 + (id)keyPathsForValuesAffectingTargetIdentifier;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
+@property(retain, nonatomic) DVTObservingToken *provisioningSettingsTargetEditorViewControllersObserver; // @synthesize provisioningSettingsTargetEditorViewControllersObserver=_provisioningSettingsTargetEditorViewControllersObserver;
+@property(retain, nonatomic) IDEProvisioningSettingsTargetEditorViewControllersManager *provisioningSettingsTargetEditorViewControllersManager; // @synthesize provisioningSettingsTargetEditorViewControllersManager=_provisioningSettingsTargetEditorViewControllersManager;
 @property(retain) NSView *appExtensionAPISlice; // @synthesize appExtensionAPISlice=_appExtensionAPISlice;
 @property(retain) NSView *mainInterfaceSlice; // @synthesize mainInterfaceSlice=_mainInterfaceSlice;
 @property(retain) DVTStackView_ML *deploymentInfoStackView; // @synthesize deploymentInfoStackView=_deploymentInfoStackView;
@@ -59,9 +60,11 @@
 @property(retain) DVTStackView_ML *appIconStackView; // @synthesize appIconStackView=_appIconStackView;
 @property(retain, nonatomic) id targetViewController; // @synthesize targetViewController=_targetViewController;
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
 - (id)capsuleListView:(id)arg1 viewControllerForRow:(long long)arg2;
 - (long long)numberOfObjectsInCapsuleListView:(id)arg1;
 - (id)infoPlistValueCell:(id)arg1 expandedValueForString:(id)arg2;
+- (void)startObservations;
 - (void)rebuildAssetCatalogMenu;
 - (void)goToAssetCatalog:(id)arg1;
 - (void)selectAssetCatalogSet:(id)arg1;
@@ -88,12 +91,13 @@
 @property BOOL allowAppExtensionAPIOnly;
 @property(copy) NSString *targetDeploymentOS;
 @property(copy) NSString *productName;
+- (void)_didChangeValuesForKeysFromTargetViewControllerChange;
+- (void)_willChangeValuesForKeysFromTargetViewControllerChange;
 - (id)target;
 - (void)_refreshAppIconStack;
 - (void)_refreshIdentityStack;
 - (void)_refreshDeploymentStack;
 - (void)_reloadCapsuleList;
-- (void)primitiveInvalidate;
 - (void)loadView;
 - (void)loadAppCategories;
 

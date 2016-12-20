@@ -10,25 +10,28 @@
 
 @interface DVTPortalService : NSObject
 {
-    NSArray *_extensionRequestParameters;
-    NSString *_identifier;
+    BOOL _wantsPlatformInRequestURL;
     NSString *_action;
     NSDictionary *_parameters;
     NSArray *_expectedResponseTemplates;
+    NSArray *_extensionRequestParameters;
+    NSString *_identifier;
 }
 
 + (void)initialize;
 + (id)serviceWithIdentifier:(id)arg1 parameters:(id)arg2;
-@property(readonly, nonatomic) NSArray *expectedResponseTemplates; // @synthesize expectedResponseTemplates=_expectedResponseTemplates;
-@property(readonly, nonatomic) NSDictionary *parameters; // @synthesize parameters=_parameters;
-@property(copy, nonatomic) NSString *action; // @synthesize action=_action;
 @property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(readonly, nonatomic) NSArray *extensionRequestParameters; // @synthesize extensionRequestParameters=_extensionRequestParameters;
+@property(readonly, nonatomic) NSArray *expectedResponseTemplates; // @synthesize expectedResponseTemplates=_expectedResponseTemplates;
+@property(readonly, nonatomic) NSDictionary *parameters; // @synthesize parameters=_parameters;
+@property(nonatomic) BOOL wantsPlatformInRequestURL; // @synthesize wantsPlatformInRequestURL=_wantsPlatformInRequestURL;
+@property(copy, nonatomic) NSString *action; // @synthesize action=_action;
 - (void).cxx_destruct;
 - (id)_requestParameters;
 - (id)_requestWithSession:(id)arg1;
 - (id)_payloadFromParameters:(id)arg1 extensionRequestParameters:(id)arg2;
-- (id)_responseFromServiceWithSession:(id)arg1 error:(id *)arg2;
+- (id)_responseFromServiceWithSession:(id)arg1 request:(id *)arg2 error:(id *)arg3;
+- (id)_errorFromPayload:(id)arg1 resultCode:(long long)arg2;
 - (id)_resultFromPayload:(id)arg1 resultCode:(long long)arg2 error:(id *)arg3;
 - (BOOL)_isResponseParameterSatisfied:(id)arg1 resultCode:(long long)arg2;
 - (id)resultFromServiceWithSession:(id)arg1 response:(id *)arg2 error:(id *)arg3;

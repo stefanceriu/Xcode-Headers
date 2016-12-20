@@ -6,9 +6,11 @@
 
 #import "DVTLayoutView_ML.h"
 
+#import "NSAccessibilityGroup.h"
+
 @class DVTLozengeTextField, IBImageButton, NSColor, NSString, NSView;
 
-@interface IBICDetailPlaceholderView : DVTLayoutView_ML
+@interface IBICDetailPlaceholderView : DVTLayoutView_ML <NSAccessibilityGroup>
 {
     DVTLozengeTextField *_textField;
     IBImageButton *_imageButton;
@@ -25,6 +27,7 @@
 @property(retain, nonatomic) NSView *overlayView; // @synthesize overlayView=_overlayView;
 @property(nonatomic) __weak id <IBViewDragDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (id)accessibilityLabel;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)layoutTopDown;
 - (id)effectiveAttributedActionText;
@@ -35,6 +38,12 @@
 - (void)invalidateImage;
 - (void)layoutBottomUp;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

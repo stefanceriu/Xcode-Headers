@@ -6,8 +6,11 @@
 
 #import "NSView.h"
 
+@class CALayer;
+
 @interface IBCanvasBandSelectionView : NSView
 {
+    CALayer *_bandSelectionLayer;
     CDUnknownBlockType _drawingCompletionBlock;
     struct CGRect _bandSelectionFrame;
 }
@@ -16,6 +19,7 @@
 @property(nonatomic) struct CGRect bandSelectionFrame; // @synthesize bandSelectionFrame=_bandSelectionFrame;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
+- (id)makeBackingLayer;
 - (id)hitTest:(struct CGPoint)arg1;
 
 @end

@@ -39,7 +39,6 @@
 - (void)editorInstalled;
 - (void)topLevelObjectsChanged;
 - (id)selectionProviderForRevealingMembers:(id)arg1;
-- (double)maximumContentWidth;
 - (double)minimumContentWidth;
 - (double)contentWidth;
 - (double)outlineViewWidth;

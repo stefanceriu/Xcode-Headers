@@ -130,7 +130,7 @@ __attribute__((visibility("hidden")))
 - (id)_getCondensedCullingSummaryFromContext:(ContextStateMirror_e2d92de6 *)arg1;
 - (id)_getCondensedDepthSummaryFromContext:(ContextStateMirror_e2d92de6 *)arg1;
 - (id)_getCondensedBlendSummaryFromContext:(ContextStateMirror_e2d92de6 *)arg1;
-- (id)_getCondensedBlendResultForChannel:(struct BlendChannelSetup *)arg1;
+- (id)_getCondensedBlendResultForChannel:(struct BlendChannelSetup *)arg1 isAlphaChannel:(BOOL)arg2;
 - (id)_getCondensedStencilSummaryFromContext:(ContextStateMirror_e2d92de6 *)arg1;
 - (id)_getCondensedStencilSummaryForSide:(struct StencilSideSetup *)arg1;
 - (id)_getCondensedActiveSummaryFromContext:(ContextStateMirror_e2d92de6 *)arg1;
@@ -147,7 +147,7 @@ __attribute__((visibility("hidden")))
 - (void)_updateUniformBlockValuesWithBuffer:(id)arg1;
 - (void)updateCurrentLocation:(id)arg1;
 - (void)primitiveInvalidate;
-- (id)initWithIdentifier:(id)arg1;
+- (id)initWithIdentifier:(id)arg1 andWorkspaceUIState:(id)arg2;
 
 @end
 

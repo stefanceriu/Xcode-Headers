@@ -9,7 +9,7 @@
 #import "IBICAssetCapsuleDelegate.h"
 #import "IBICCatalogItemObserver.h"
 
-@class DVTDelayedInvocation, IBICAbstractCatalogItem, IBICAssetCapsule, IBICCatalogDocument, NSSet, NSString;
+@class DVTDelayedInvocation, IBICAbstractCatalogDocument, IBICAbstractCatalogItem, IBICAssetCapsule, NSArray, NSSet, NSString;
 
 @interface IBICAssetOverviewCapsuleController : IDEViewController <IBICAssetCapsuleDelegate, IBICCatalogItemObserver>
 {
@@ -17,21 +17,23 @@
     NSSet *_selectionBeforeMouseDown;
     DVTDelayedInvocation *_pushInvocation;
     id <IBInvalidation> _assetObservation;
-    IBICCatalogDocument *_document;
+    IBICAbstractCatalogDocument *_document;
     id <IBICAssetOverviewCapsuleControllerDelegate> _delegate;
     IBICAssetCapsule *_assetCapsule;
     IBICAbstractCatalogItem *_asset;
+    NSArray *_cachedDecodedDragImages;
 }
 
-+ (id)assetComponentIDForAssetChild:(id)arg1;
+@property(copy) NSArray *cachedDecodedDragImages; // @synthesize cachedDecodedDragImages=_cachedDecodedDragImages;
 @property(readonly, nonatomic) IBICAbstractCatalogItem *asset; // @synthesize asset=_asset;
 @property(retain, nonatomic) IBICAssetCapsule *assetCapsule; // @synthesize assetCapsule=_assetCapsule;
 @property(nonatomic) __weak id <IBICAssetOverviewCapsuleControllerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) IBICCatalogDocument *document; // @synthesize document=_document;
+@property(readonly, nonatomic) IBICAbstractCatalogDocument *document; // @synthesize document=_document;
 - (void).cxx_destruct;
 - (BOOL)assetCapsule:(id)arg1 interceptMouseUp:(id)arg2;
 - (BOOL)assetCapsule:(id)arg1 interceptMouseDragged:(id)arg2 withOriginalMouseDown:(id)arg3;
 - (BOOL)assetCapsule:(id)arg1 interceptMouseDown:(id)arg2;
+- (BOOL)assetCapsuleTitleIsEditable:(id)arg1;
 - (void)assetCapsule:(id)arg1 userDidEditTitle:(id)arg2;
 - (id)assetCapsuleTitleForEditing:(id)arg1 initialSelection:(struct _NSRange *)arg2;
 - (void)assetCapsule:(id)arg1 performDelete:(id)arg2;
@@ -40,9 +42,9 @@
 - (unsigned long long)view:(id)arg1 draggingEntered:(id)arg2;
 - (id)dragTypesForView:(id)arg1;
 - (id)hitModelObjectsAtPoint:(struct CGPoint)arg1;
+- (id)assetComponentForAssetComponentID:(id)arg1;
+- (id)assetComponentIDForAssetComponent:(id)arg1;
 - (id)assetComponentAtLocation:(struct CGPoint)arg1;
-- (id)cachedDecodedDragImages;
-- (void)setCachedDecodedDragImages:(CDUnknownBlockType)arg1;
 - (void)populateDragIdentifiers:(id)arg1 images:(id)arg2 andWindowFrames:(id)arg3 fromItems:(id)arg4;
 - (void)setSelectedAssetComponentIDs:(id)arg1;
 - (void)setWholeAssetShowsSelection:(BOOL)arg1;
@@ -57,6 +59,8 @@
 - (void)imageCatalogItem:(id)arg1 didChangeKey:(id)arg2 fromValue:(id)arg3 toValue:(id)arg4;
 - (void)imageCatalogItem:(id)arg1 willChangeKey:(id)arg2 fromValue:(id)arg3 toValue:(id)arg4;
 - (void)removeAssetComponentIDsFromUIImmediately:(id)arg1;
+- (BOOL)displaysChildrenOfItem:(id)arg1;
+- (id)displayableDescendants;
 - (void)primitiveInvalidate;
 - (id)initWithDocument:(id)arg1 andAsset:(id)arg2;
 

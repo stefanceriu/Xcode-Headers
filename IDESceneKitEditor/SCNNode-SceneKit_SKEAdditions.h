@@ -11,12 +11,15 @@
 @interface SCNNode (SceneKit_SKEAdditions)
 + (id)keyPathsForValuesAffectingSke_eulerAngles;
 + (id)keyPathsForValuesAffectingSke_worldPosition;
+@property BOOL ske_movable;
+- (BOOL)ske_hasMovabilityHint;
 - (struct SCNVector3)ske_worldBoundingBoxDimensions;
 - (struct SCNVector3)ske_localBoundingBoxDimensions;
 @property(nonatomic) long long ske_referenceLoadingPolicy;
 - (id)ske_nodeReferenceExpectedFilePath;
 - (void)setSke_referenceName:(id)arg1;
 - (id)ske_referenceName;
+@property(readonly) BOOL ske_hasMorpher;
 @property(readonly) BOOL ske_isReferenceOrUnderAReference;
 @property(readonly) BOOL ske_isReference;
 - (id)ske_copyAndAutoUnshareAttributes;

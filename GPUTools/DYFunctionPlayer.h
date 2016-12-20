@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DYPlaybackEngine;
+@class DYPlaybackEngine, NSMapTable;
 
 @interface DYFunctionPlayer : NSObject
 {
@@ -31,7 +31,7 @@
     unsigned int _currentExecutionModeFunctionIndex;
     unsigned int _currentFileFunctionIndex;
     unordered_map_82d59a1a _dataSizeMap;
-    struct VariableCache _variables;
+    NSMapTable *_variables;
     unsigned long long _ctxID;
     struct CoreFunction *_function;
     void *_argumentPointers[16];

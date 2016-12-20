@@ -22,9 +22,9 @@
 - (id)initWithPlatform:(id)arg1 filterType:(unsigned long long)arg2 architectureType:(unsigned long long)arg3 validationErrors:(id *)arg4;
 
 // Remaining properties
-@property unsigned long long architectureType; // @dynamic architectureType;
-@property unsigned long long filterType; // @dynamic filterType;
-@property XCSPlatform *platform; // @dynamic platform;
+@property(nonatomic) unsigned long long architectureType; // @dynamic architectureType;
+@property(nonatomic) unsigned long long filterType; // @dynamic filterType;
+@property(retain, nonatomic) XCSPlatform *platform; // @dynamic platform;
 
 @end
 

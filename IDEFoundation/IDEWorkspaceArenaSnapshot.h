@@ -15,9 +15,11 @@
     DVTFilePath *_buildIntermediatesFolderPath;
     DVTFilePath *_precompiledHeadersFolderPath;
     DVTFilePath *_indexFolderPath;
+    DVTFilePath *_indexDataStoreFolderPath;
     DVTFilePath *_indexPrecompiledHeadersFolderPath;
     DVTFilePath *_logFolderPath;
     DVTFilePath *_textIndexFolderPath;
+    BOOL _indexEnableDataStore;
     unsigned long long _hash;
 }
 
@@ -25,6 +27,8 @@
 @property(readonly) DVTFilePath *textIndexFolderPath; // @synthesize textIndexFolderPath=_textIndexFolderPath;
 @property(readonly) DVTFilePath *logFolderPath; // @synthesize logFolderPath=_logFolderPath;
 @property(readonly) DVTFilePath *indexPrecompiledHeadersFolderPath; // @synthesize indexPrecompiledHeadersFolderPath=_indexPrecompiledHeadersFolderPath;
+@property(readonly) BOOL indexEnableDataStore; // @synthesize indexEnableDataStore=_indexEnableDataStore;
+@property(readonly) DVTFilePath *indexDataStoreFolderPath; // @synthesize indexDataStoreFolderPath=_indexDataStoreFolderPath;
 @property(readonly) DVTFilePath *indexFolderPath; // @synthesize indexFolderPath=_indexFolderPath;
 @property(readonly) DVTFilePath *precompiledHeadersFolderPath; // @synthesize precompiledHeadersFolderPath=_precompiledHeadersFolderPath;
 @property(readonly) DVTFilePath *buildIntermediatesFolderPath; // @synthesize buildIntermediatesFolderPath=_buildIntermediatesFolderPath;

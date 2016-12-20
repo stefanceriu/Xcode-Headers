@@ -10,8 +10,11 @@
 
 @protocol SCNProgramJSExport <JSExport>
 + (id)program;
+@property(retain, nonatomic) id <MTLLibrary> library;
 @property(nonatomic) id <SCNProgramDelegate> delegate;
 @property(nonatomic, getter=isOpaque) BOOL opaque;
+@property(copy, nonatomic) NSString *fragmentFunctionName;
+@property(copy, nonatomic) NSString *vertexFunctionName;
 @property(copy, nonatomic) NSString *geometryShader;
 @property(copy, nonatomic) NSString *tessellationEvaluationShader;
 @property(copy, nonatomic) NSString *tessellationControlShader;
@@ -20,5 +23,6 @@
 - (id)copy;
 - (NSString *)semanticForSymbol:(NSString *)arg1;
 - (void)setSemantic:(NSString *)arg1 forSymbol:(NSString *)arg2 options:(NSDictionary *)arg3;
+- (void)handleBindingOfBufferNamed:(NSString *)arg1 frequency:(long long)arg2 usingBlock:(void (^)(id <SCNBufferStream>, SCNNode *, id <SCNShadable>, SCNRenderer *))arg3;
 @end
 

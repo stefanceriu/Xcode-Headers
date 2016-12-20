@@ -14,6 +14,7 @@ __attribute__((visibility("hidden")))
     AVAssetWriterInput *_assetWriterInput;
     AVAssetWriterInputPixelBufferAdaptor *_avAdaptor;
     AVAssetWriter *_assetWriter;
+    float _rate;
 }
 
 - (void)main;

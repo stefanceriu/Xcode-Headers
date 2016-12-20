@@ -44,7 +44,6 @@
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (void)endSheet;
 - (void)cancel:(id)arg1;
-- (void)cancelSheet;
 - (void)choose:(id)arg1;
 - (void)workingCopySheetDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 @property(readonly) BOOL canContinue;

@@ -4,11 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IBFoundation/IBICSlottedAsset.h>
+#import <IBFoundation/IBICBundleIconSet.h>
 
-@interface IBICAppIconSet : IBICSlottedAsset
+@interface IBICAppIconSet : IBICBundleIconSet
 {
-    BOOL _preRendered;
 }
 
 + (id)importPriority;
@@ -18,23 +17,17 @@
 + (id)defaultInstanceForIdioms:(id)arg1 enforceStrictIdioms:(BOOL)arg2;
 + (id)defaultName;
 + (Class)assetRepClass;
-@property(nonatomic, getter=isPreRendered) BOOL preRendered; // @synthesize preRendered=_preRendered;
-- (BOOL)requiresRootNamespace;
-- (void)manifestArchivist:(id)arg1 populateManifestEntry:(id)arg2 forChild:(id)arg3;
-- (BOOL)manifestArchivist:(id)arg1 childHasDataToRecordInManifest:(id)arg2;
++ (id)createInstanceNamed:(id)arg1 forIdioms:(id)arg2 usingRenderer:(CDUnknownBlockType)arg3;
++ (id)createDefaultInstancesForUnitTesting;
 - (void)manifestArchivist:(id)arg1 applyPropertiesFromChildEntry:(id)arg2 toChild:(id)arg3 results:(id)arg4;
-- (void)manifestArchivist:(id)arg1 populateManifest:(id)arg2;
-- (void)manifestArchivist:(id)arg1 applyPropertiesFromManifest:(id)arg2;
-- (BOOL)manifestArchivist:(id)arg1 validateManifestChildEntry:(id)arg2 results:(id)arg3;
-- (BOOL)manifestArchivist:(id)arg1 validateManifest:(id)arg2 results:(id)arg3;
-- (id)effectiveModificationDateForCARCompiler;
-- (id)initializeManifestArchivist;
 - (id)intrinsicallyOrderedChildren;
 - (id)children;
 - (id)assetRepForStructuredIdentifier:(id)arg1;
 - (id)childForIdentifier:(id)arg1;
 - (id)assetRepForIdentifier:(id)arg1;
+- (id)conflictFreeChildForSlot:(id)arg1;
 - (id)assetRepForSlot:(id)arg1;
+- (void)createChildrenForSlots:(id)arg1 usingRenderer:(CDUnknownBlockType)arg2;
 
 @end
 

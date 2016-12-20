@@ -11,6 +11,7 @@
 @class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString;
 
 @interface IDEActivityLogRecord (IDEKitActivityLogRecordPropertyAdditions) <IDEKeyDrivenNavigableItemRepresentedObject>
++ (id)_shortTitleForTitle:(id)arg1 logRecordTypeIdentifier:(id)arg2;
 + (id)keyPathsForValuesAffectingShortTitle;
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 @property(readonly) NSString *shortTitle;
@@ -23,11 +24,15 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 @end

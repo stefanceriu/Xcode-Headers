@@ -12,7 +12,7 @@
 
 - (_Bool)runWithError:(id *)arg1;
 - (_Bool)shouldSkip;
-- (BOOL)shouldProcessSymbolsForItem:(id)arg1 archive:(id)arg2;
+- (id)shouldProcessSymbolsForItem:(id)arg1 archive:(id)arg2 error:(id *)arg3;
 - (id)providedOutputContextPropertyNames;
 - (id)requiredInputContextPropertyNames;
 - (id)name;

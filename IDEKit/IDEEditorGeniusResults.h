@@ -21,7 +21,6 @@
     DVTFileDataType *_fileDataType;
     NSArray *_finders;
     NSArray *_geniusCategories;
-    NSArray *_geniusResultsObservingTokens;
     BOOL _ignoreGeniusResultsUpdates;
     BOOL _idle;
     NSDictionary *_geniusResults;

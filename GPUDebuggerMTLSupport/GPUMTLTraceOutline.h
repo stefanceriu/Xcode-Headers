@@ -6,44 +6,43 @@
 
 #import "GPUTraceOutline.h"
 
-@class GPUMTLOutlineLabelCache, GPUMTLStateMirror, NSMutableDictionary;
+#import "DYPMTLLabelProvider.h"
+#import "DYPTraceOutlineDelegate.h"
+
+@class DYFunctionStream, NSString;
 
 __attribute__((visibility("hidden")))
-@interface GPUMTLTraceOutline : GPUTraceOutline
+@interface GPUMTLTraceOutline : GPUTraceOutline <DYPTraceOutlineDelegate, DYPMTLLabelProvider>
 {
-    GPUMTLStateMirror *_stateMirror;
-    unsigned long long _currentCommandBuffer;
-    unsigned long long _currentCommandEncoder;
-    struct stack<unsigned int, std::__1::deque<unsigned int, std::__1::allocator<unsigned int>>> _markerDepthStack;
-    unsigned long long _currentParallelRenderCommandEncoder;
-    unsigned long long _lastRenderCommandEncoder;
-    NSMutableDictionary *_hidableItems;
-    struct vector<unsigned int, std::__1::allocator<unsigned int>> _functionIndexToDisplayIndexMap;
-    GPUMTLOutlineLabelCache *_labelCache;
+    int _devicePlatform;
+    DYFunctionStream *_captureStream;
+    id <DYPMTLStateMirror> _stateMirror;
 }
 
-- (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)resourceDictionaryForResourceGroupID:(id)arg1;
-- (id)labelForObjectID:(unsigned long long)arg1;
+- (id)resourceDictionaryForDeviceID:(unsigned long long)arg1;
+- (void)outlineVisitor:(id)arg1 addPipelineStateToCurrentDisplayable:(unsigned long long)arg2;
+- (void)outlineVisitor:(id)arg1 createDisplayableOfType:(long long)arg2 fromFunction:(struct Function *)arg3 filterItems:(id)arg4 disclosureHandler:(CDUnknownBlockType)arg5;
+- (void)outlineVisitor:(id)arg1 createDisplayableOfType:(long long)arg2 fromFunction:(struct Function *)arg3 filterStrings:(id)arg4 disclosureHandler:(CDUnknownBlockType)arg5;
+- (void)outlineVisitor:(id)arg1 createDisplayableOfType:(long long)arg2 fromFunction:(struct Function *)arg3 disclosureHandler:(CDUnknownBlockType)arg4;
+- (Class)outlineVisitorFilterItemClass:(id)arg1;
+- (void)outlineVisitor:(id)arg1 createAPIItemFromFunction:(struct Function *)arg2 disclosureHandler:(CDUnknownBlockType)arg3;
+- (void)outlineVisitorPopDisclosureLevel:(id)arg1;
+- (void)outlineVisitor:(id)arg1 pushDisclosureLevelForObjectID:(unsigned long long)arg2 ofType:(unsigned int)arg3;
+- (void)outlineVisitor:(id)arg1 pushDisclosureLevelWithLabel:(id)arg2;
 - (id)labelForArgument:(const struct Argument *)arg1 functionIndex:(unsigned int)arg2;
 - (id)labelForReceiver:(const struct Function *)arg1 functionIndex:(unsigned int)arg2 hideCommandBuffersAndEncoders:(BOOL)arg3;
-- (void)_processLabelForFunction:(const struct Function *)arg1 functionIndex:(unsigned int)arg2;
+- (id)labelForObjectID:(unsigned long long)arg1;
 - (void)visitFunctionStreamFile:(id)arg1;
-- (void)_addFunctionForDisplayableItem:(id)arg1;
-- (void)_popDisclosureLevel;
-- (void)_pushDisclosureLevelForObjectID:(unsigned long long)arg1 ofType:(unsigned int)arg2;
-- (void)_pushDisclosureLevelWithLabel:(id)arg1;
-- (void)_addAPIItemForFunction:(struct Function *)arg1 handleDisclosureLevel:(BOOL)arg2;
-- (id)_addAPIItemForFunction:(struct Function *)arg1 markingAsHidden:(BOOL)arg2 handleDisclosureLevel:(BOOL)arg3;
-- (void)_handleDisclosureLevelForFunction:(struct Function *)arg1;
-- (void)_handleDisclosureLevelForFunction:(struct Function *)arg1 withCommandEncoderReceiver:(unsigned long long)arg2 andCommandEncoderType:(unsigned int)arg3;
-- (unsigned int)_getObjectTypeForCommandEncoderCreation:(unsigned int)arg1;
-- (void)_popCommandBuffer;
-- (void)_popCommandEncoder;
 - (id)stateMirrorForTraceItem:(id)arg1;
 - (id)_derivedStateMirrorFromStateMirror:(id)arg1 forFunctionIndex:(unsigned int)arg2 fromFunctionIndex:(unsigned int)arg3;
 - (id)initWithTraceSession:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -7,6 +7,7 @@
 #import "MDLObject.h"
 
 @interface MDLObject (SCNModelIO)
++ (id)objectWithSCNNode:(id)arg1 bufferAllocator:(id)arg2;
 + (id)objectWithSCNNode:(id)arg1;
 @end
 

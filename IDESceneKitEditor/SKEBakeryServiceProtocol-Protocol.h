@@ -8,6 +8,6 @@
 
 @protocol SKEBakeryServiceProtocol
 - (void)bakeLightProbesForNodesAtIndexPaths:(NSArray *)arg1 sceneData:(NSData *)arg2 XcodeBundleURL:(NSURL *)arg3 completionBlock:(void (^)(NSError *))arg4;
-- (void)bakeGeometryForNodesAtIndexPathes:(NSArray *)arg1 sceneData:(NSData *)arg2 settings:(CDStruct_862f26a3)arg3 resourceEnclosingFolderPath:(NSString *)arg4 XcodeBundleURL:(NSURL *)arg5 completionBlock:(void (^)(NSDictionary *, NSError *))arg6;
+- (void)bakeGeometryForNodesAtIndexPaths:(NSArray *)arg1 sceneData:(NSData *)arg2 settings:(CDStruct_862f26a3)arg3 resourceEnclosingFolderPath:(NSString *)arg4 XcodeBundleURL:(NSURL *)arg5 completionBlock:(void (^)(NSDictionary *, NSError *))arg6;
 @end
 

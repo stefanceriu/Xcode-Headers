@@ -10,22 +10,24 @@
 {
 }
 
-- (id)verify;
-- (void)verifyViewControllerViewClasses;
-- (void)verifyPendingImageRequestBehavior;
-- (void)verifySimulatedMetrics;
-- (void)verifyViewControllerAutolayoutGuides:(id)arg1;
-- (void)verifyNoContentInsetsForScrollViewsInAutolayoutDocuments;
-- (void)verifyGroupStyleTableViewCellBackgroundColors;
-- (void)verifyTopLevelViewSimulatedOrientationMetrics;
-- (void)verifyBarButtonItemToNavigationItemRelationships;
-- (void)verifyTableViewSeparatorStyle;
-- (void)verifyButtonTitles;
-- (void)verifyWebViewOpacity;
-- (void)verifyBarStyledProgressViewsAreTheCorrectHeight;
-- (void)verifyContentModes;
-- (void)verifyNavControllersHaveNavBars;
-- (id)verifyByRemovingMultiOutlets;
+- (void)verifyAndPopulateMessages:(id)arg1;
+- (void)_verifyViewControllerViewPresenceAndPopulateMessages:(id)arg1;
+- (void)_verifyViewControllerAutoLayoutGuides;
+- (void)_verifyViewControllerViewClasses;
+- (void)_verifyPendingImageRequestBehavior;
+- (void)_verifySimulatedMetrics;
+- (void)_verifyViewControllerAutolayoutGuidesAndPopulateMessages:(id)arg1;
+- (void)_verifyNoContentInsetsForScrollViewsInAutolayoutDocuments;
+- (void)_verifyGroupStyleTableViewCellBackgroundColors;
+- (void)_verifyTopLevelViewSimulatedOrientationMetrics;
+- (void)_verifyBarButtonItemToNavigationItemRelationships;
+- (void)_verifyTableViewSeparatorStyle;
+- (void)_verifyButtonTitles;
+- (void)_verifyWebViewOpacity;
+- (void)_verifyBarStyledProgressViewsAreTheCorrectHeight;
+- (void)_verifyContentModes;
+- (void)_verifyNavControllersHaveNavBars;
+- (void)_verifyByRemovingMultiOutletsAndPopulateMessages:(id)arg1;
 - (long long)lastSavedPluginVersion;
 
 @end

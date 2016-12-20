@@ -24,9 +24,9 @@
 @property(readonly, nonatomic) unsigned long long overviewSamplePeriod; // @synthesize overviewSamplePeriod=_overviewSamplePeriod;
 @property(readonly, nonatomic) DYDeviceInfo *deviceInfo; // @synthesize deviceInfo=_deviceInfo;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) unsigned long long profilingFlags; // @dynamic profilingFlags;
-@property(readonly, nonatomic) int traceMode; // @dynamic traceMode;
-@property(readonly, nonatomic) BOOL isLegacyDevice; // @dynamic isLegacyDevice;
+@property(readonly, nonatomic) unsigned long long profilingFlags;
+@property(readonly, nonatomic) int traceMode;
+@property(readonly, nonatomic) BOOL isLegacyDevice;
 - (void)_setOverviewDuration:(unsigned long long)arg1 SamplePeriod:(unsigned long long)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

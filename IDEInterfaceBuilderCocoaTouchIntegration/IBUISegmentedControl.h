@@ -57,7 +57,6 @@
 - (void)setTitle:(id)arg1 forSegment:(unsigned long long)arg2;
 @property long long numberOfSegments;
 - (id)marshallerForAttributeStateKey:(id)arg1 defaultMarshaller:(id)arg2 context:(id)arg3;
-- (id)ibDisplayNameForKeyPath:(id)arg1;
 @property(copy) NSArray *ibArchivedSegmentConfigurations;
 - (id)segmentConfigurations;
 - (void)decodeTintColor:(id)arg1;
@@ -68,6 +67,9 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)ibShouldUseInspectorPropertyTitleInTooltipForKeyPath:(id)arg1;
+- (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
+- (id)ibDisplayNameForKeyPath:(id)arg1;
 - (void)setIbInspectedNumberOfSegments:(long long)arg1;
 - (long long)ibInspectedNumberOfSegments;
 - (void)setIbInspectedWidthForInspectedSegment:(id)arg1;
@@ -112,6 +114,10 @@
 - (id)ibQualifyingInfoForDefaultLabel;
 - (unsigned long long)ibPreferredActionEventType;
 - (id)ibWidgetType;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalLocalizableStringArrayAttributeKeyPaths;
+- (id)ibLocalResourceArrayAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

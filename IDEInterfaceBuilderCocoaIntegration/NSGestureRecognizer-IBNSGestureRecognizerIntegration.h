@@ -9,5 +9,6 @@
 @interface NSGestureRecognizer (IBNSGestureRecognizerIntegration)
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibPasteboardTypes;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

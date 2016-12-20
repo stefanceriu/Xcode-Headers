@@ -15,10 +15,12 @@
     NSObject<OS_dispatch_queue> *_serialQueue;
     NSObject<OS_dispatch_source> *_timer;
     _Bool _suspended;
+    BOOL _useProxiedDevice;
 }
 
 + (id)observableAttributes;
 + (id)capability;
+@property BOOL useProxiedDevice; // @synthesize useProxiedDevice=_useProxiedDevice;
 - (void).cxx_destruct;
 - (id)stopSamplingForPIDs:(id)arg1;
 - (id)sampleAttributes:(id)arg1 forPIDs:(id)arg2;

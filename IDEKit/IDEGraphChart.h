@@ -12,11 +12,13 @@
 {
     NSString *_label;
     NSColor *_color;
+    NSColor *_keyColor;
     NSArray *_entries;
 }
 
 @property(copy) NSArray *entries; // @synthesize entries=_entries;
-@property(retain) NSColor *color; // @synthesize color=_color;
+@property(copy) NSColor *keyColor; // @synthesize keyColor=_keyColor;
+@property(copy) NSColor *color; // @synthesize color=_color;
 @property(copy) NSString *label; // @synthesize label=_label;
 - (void).cxx_destruct;
 - (void)clearValues;

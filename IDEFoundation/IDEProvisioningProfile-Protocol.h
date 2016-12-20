@@ -12,7 +12,7 @@
 @property(readonly, nonatomic) NSDate *expirationDate;
 @property(readonly, nonatomic) NSString *portalSubPlatformIdentifier;
 @property(readonly, nonatomic) NSString *portalPlatformIdentifier;
-@property(readonly, nonatomic) id <IDEProvisioningTeam> team;
+@property(readonly, nonatomic) NSString *teamIdentifier;
 @property(readonly, nonatomic) NSString *name;
 @property(readonly, nonatomic) NSString *identifier;
 - (BOOL)isTeamProfile;

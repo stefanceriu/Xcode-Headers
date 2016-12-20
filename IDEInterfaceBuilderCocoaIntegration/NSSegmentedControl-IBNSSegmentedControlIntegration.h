@@ -7,6 +7,7 @@
 #import "NSSegmentedControl.h"
 
 @interface NSSegmentedControl (IBNSSegmentedControlIntegration)
++ (id)ibInstantiateForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)ibCustomizeForInsertionIntoNSToolbar:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;
 - (void)ibEnableAutolayoutInDocument:(id)arg1 context:(id)arg2;

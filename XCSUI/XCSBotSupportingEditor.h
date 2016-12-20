@@ -12,10 +12,8 @@
 
 @interface XCSBotSupportingEditor : IDEEditor <DVTReplacementViewDelegate>
 {
-    id <IDEContinuousIntegrationBotMonitor> _botMonitor;
     id _eventMonitor;
     XCSCommitHistory *_commitHistory;
-    XCSIntegration *_integration;
     DVTTabChooserView *_chooserView;
     DVTBorderedView *_borderedView;
     DVTReplacementView *_replacementView;
@@ -28,7 +26,6 @@
     DVTObservingToken *_currentSelectedItemsUpdateToken;
     DVTObservingToken *_expandedCoverageItemsObservationToken;
     NSTextField *_integrationLabel;
-    NSButton *_integrationLabelButton;
     DVTTabChooserView *_tabChooserView;
     NSButton *_downloadsButton;
     NSButton *_settingsButton;
@@ -48,7 +45,6 @@
 @property __weak NSButton *settingsButton; // @synthesize settingsButton=_settingsButton;
 @property __weak NSButton *downloadsButton; // @synthesize downloadsButton=_downloadsButton;
 @property __weak DVTTabChooserView *tabChooserView; // @synthesize tabChooserView=_tabChooserView;
-@property __weak NSButton *integrationLabelButton; // @synthesize integrationLabelButton=_integrationLabelButton;
 @property __weak NSTextField *integrationLabel; // @synthesize integrationLabel=_integrationLabel;
 @property(retain) DVTObservingToken *expandedCoverageItemsObservationToken; // @synthesize expandedCoverageItemsObservationToken=_expandedCoverageItemsObservationToken;
 @property(retain) DVTObservingToken *currentSelectedItemsUpdateToken; // @synthesize currentSelectedItemsUpdateToken=_currentSelectedItemsUpdateToken;
@@ -61,18 +57,16 @@
 @property __weak DVTReplacementView *replacementView; // @synthesize replacementView=_replacementView;
 @property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property __weak DVTTabChooserView *chooserView; // @synthesize chooserView=_chooserView;
-@property(readonly, nonatomic) XCSIntegration *integration; // @synthesize integration=_integration;
 - (void).cxx_destruct;
-- (void)updateIntegrationLabels:(id)arg1 currentStep:(long long)arg2;
-- (void)copyIntegrationID:(id)arg1;
-- (void)toggleIntegrationLabel:(id)arg1;
 - (void)editButton:(id)arg1;
+- (void)redefineButton:(id)arg1;
 - (void)cleanAndIntegrate:(id)arg1;
 - (void)integrate:(id)arg1;
 - (void)downloadsButton:(id)arg1;
 - (void)selectDocumentLocations:(id)arg1;
-- (id)botIntegration;
+@property(readonly, nonatomic) XCSIntegration *botIntegration;
 @property(readonly, nonatomic) XCSBot *bot;
+- (id)error;
 - (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
 - (void)updateDocumentLocationsWithControllerDocumentLocations:(id)arg1;
@@ -85,6 +79,12 @@
 - (void)primitiveInvalidate;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
+- (void)_configureTabChooserView;
+- (id)_restoreSelectedChoiceFromDefaults;
+- (void)_persistSelectedChoice;
+- (id)_userDefaultsKeyForPersistingSelectedChoice;
+- (id)_userDefaultsKeyForIntegration:(id)arg1;
+- (id)installedViewController;
 - (void)loadView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 

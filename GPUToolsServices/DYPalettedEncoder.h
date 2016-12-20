@@ -19,6 +19,7 @@
 - (id)_convertPaletteRGB565:(id)arg1 numEntries:(unsigned int)arg2;
 - (id)decode:(id)arg1 format:(unsigned int)arg2 level:(unsigned int)arg3 width:(unsigned int)arg4 height:(unsigned int)arg5 options:(id)arg6;
 - (id)encode:(id)arg1 level:(unsigned int)arg2 width:(unsigned int)arg3 height:(unsigned int)arg4 options:(id)arg5 errorCode:(int *)arg6;
+- (BOOL)supportsFormat:(unsigned int)arg1;
 
 @end
 

@@ -15,6 +15,8 @@
     NSMutableSet *_nonSelectedPCAnnotations;
     DVTObservingToken *_ipLocationObserver;
     DVTObservingToken *_ipLocationForDisasObserver;
+    DVTObservingToken *_issueIPLocationObserver;
+    DVTObservingToken *_issueIPLocationForDisasObserver;
 }
 
 + (id)annotationProviderForContext:(id)arg1 error:(id *)arg2;

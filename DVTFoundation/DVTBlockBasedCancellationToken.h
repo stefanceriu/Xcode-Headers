@@ -14,6 +14,7 @@
 {
     CDUnknownBlockType _block;
     DVTStackBacktrace *_creationBacktrace;
+    BOOL _mustCancel;
     unsigned char _cancelled;
 }
 
@@ -21,7 +22,7 @@
 - (void)dealloc;
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (void)cancel;
-- (id)initWithBlock:(CDUnknownBlockType)arg1;
+- (id)initWithMustCancel:(BOOL)arg1 block:(CDUnknownBlockType)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

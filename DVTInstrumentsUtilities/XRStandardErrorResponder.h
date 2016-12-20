@@ -19,7 +19,7 @@
 + (void)initialize;
 - (void)logAnamolousErrorMessageWithFormat:(id)arg1 args:(struct __va_list_tag [1])arg2;
 - (void)logAnamolousErrorMessageWithFormat:(id)arg1;
-- (unsigned long long)respondToFatalError:(id)arg1 from:(id)arg2;
+- (void)handleFatalError:(id)arg1 from:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -15,6 +15,8 @@ struct AABB {
     struct CGPoint _field2;
 };
 
+struct AnnotatedRenderBuffer;
+
 struct CATransform3D {
     double _field1;
     double _field2;
@@ -49,8 +51,21 @@ struct CGSize {
     double height;
 };
 
+struct DYRangeValue {
+    double _field1;
+    double _field2;
+};
+
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
+};
+
+struct vector<AnnotatedRenderBuffer, std::__1::allocator<AnnotatedRenderBuffer>> {
+    struct AnnotatedRenderBuffer *__begin_;
+    struct AnnotatedRenderBuffer *__end_;
+    struct __compressed_pair<AnnotatedRenderBuffer *, std::__1::allocator<AnnotatedRenderBuffer>> {
+        struct AnnotatedRenderBuffer *__first_;
+    } __end_cap_;
 };
 

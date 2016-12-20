@@ -14,8 +14,7 @@
 {
 }
 
-- (id)integrationObservableStatusChangedPropertyName;
-- (id)botObservableStatusChangedPropertyName;
+- (id)statusImageForBotOrIntegration:(id)arg1 renderInWindow:(id)arg2;
 - (int)statusOfIntegration:(id)arg1;
 - (void)compoundStatusForIntegrationOrBot:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (BOOL)isIntegrationFinished:(id)arg1;
@@ -23,11 +22,8 @@
 - (id)titleForNavigableItemSelection:(id)arg1 action:(SEL)arg2;
 - (BOOL)navigableItemSelection:(id)arg1 allowsAction:(SEL)arg2;
 - (id)documentLocationForLoadMoreItemWithNavigable:(id)arg1;
-- (void)additionalIntegrationsOnServerForBotNavigable:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)loadMoreBotsInBotNavigable:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (id)legacyBotNavigablesForLegacyBots:(id)arg1;
 - (id)navigableItemForIntegration:(id)arg1;
-- (id)navigableItemForBotForGroupByTime:(id)arg1;
 - (id)navigableItemForBot:(id)arg1;
 - (id)navigableItemForService:(id)arg1;
 - (id)botIdentifierForIntegrationNavigableItem:(id)arg1;

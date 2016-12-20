@@ -9,21 +9,22 @@
 #import "DVTInvalidation.h"
 #import "IDEProvisioningProfileSourceDelegate.h"
 
-@class DVTDelayedInvocation, DVTDispatchLock, DVTStackBacktrace, IDEProvisioningProfileSource, NSMutableSet, NSSet, NSString;
+@class DVTDelayedInvocation, DVTDispatchLock, DVTStackBacktrace, NSMutableSet, NSSet, NSString;
 
 @interface IDEProvisioningProfileManager : NSObject <IDEProvisioningProfileSourceDelegate, DVTInvalidation>
 {
     NSMutableSet *_provisioningProfiles;
     DVTDispatchLock *_provisioningProfilesLock;
     DVTDelayedInvocation *_didChangeInvocation;
-    IDEProvisioningProfileSource *_profileSource;
+    id <IDEProvisioningProfileSource> _profileSource;
 }
 
 + (void)initialize;
 + (id)defaultProfileManager;
-@property(readonly, nonatomic) IDEProvisioningProfileSource *profileSource; // @synthesize profileSource=_profileSource;
+@property(readonly, nonatomic) id <IDEProvisioningProfileSource> profileSource; // @synthesize profileSource=_profileSource;
 - (void).cxx_destruct;
-- (void)_startBackgroundLoad;
+- (void)forceProfileLoading;
+- (void)_loadProfilesInBackground:(BOOL)arg1;
 - (void)_postProfilesDidChangeNotification;
 - (void)provisioningProfileSource:(id)arg1 didRemoveProfiles:(id)arg2;
 - (void)provisioningProfileSource:(id)arg1 didAddProfiles:(id)arg2;

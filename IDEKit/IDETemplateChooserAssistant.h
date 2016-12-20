@@ -6,58 +6,81 @@
 
 #import <IDEKit/IDETemplateInstantiationAssistant.h>
 
-#import "DVTTileViewDelegate.h"
+#import "IDETemplateChooserCollectionViewDelegate.h"
+#import "NSCollectionViewDataSource.h"
+#import "NSCollectionViewDelegateFlowLayout.h"
 
-@class DVTBorderedView, DVTImageAndTextCell, DVTSplitView, DVTTileView, DVTTileViewItem, IDENavigableItemAsyncFilteringCoordinator, IDENavigatorOutlineView, NSArrayController, NSString, NSTextField, NSView;
+@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, DVTScopeBarButton, DVTSearchField, IDETemplate, IDETemplateChooserCollectionView, IDETemplateSection, NSArray, NSDictionary, NSStackView, NSString;
 
-@interface IDETemplateChooserAssistant : IDETemplateInstantiationAssistant <DVTTileViewDelegate>
+@interface IDETemplateChooserAssistant : IDETemplateInstantiationAssistant <NSCollectionViewDataSource, IDETemplateChooserCollectionViewDelegate, NSCollectionViewDelegateFlowLayout>
 {
-    DVTSplitView *_innerSplitView;
-    DVTBorderedView *_templateInfoView;
-    IDENavigatorOutlineView *_outlineView;
-    DVTImageAndTextCell *_sectionCell;
-    NSArrayController *_arrayController;
-    DVTTileView *_tileView;
-    DVTTileViewItem *_prototypeItem;
-    NSView *_itemSelectionView;
-    NSTextField *_itemTextField;
-    NSView *_sourceListView;
-    IDENavigableItemAsyncFilteringCoordinator *_navigableItemCoordinator;
+    NSArray *_keyWindowNotificationTokens;
+    DVTObservingToken *_contextTemplateObserver;
+    DVTNotificationToken *_initialUpdateToken;
+    IDETemplateChooserCollectionView *_collectionView;
+    NSStackView *_sectionStackView;
+    DVTScopeBarButton *_initialSectionButton;
+    DVTScopeBarButton *_loadedSectionButton;
+    DVTSearchField *_filterField;
+    DVTBorderedView *_scopeBarBorderedView;
+    NSString *_filterString;
+    NSArray *_sections;
+    NSArray *_sectionButtons;
+    IDETemplateSection *_selectedSection;
+    NSArray *_filteredCategories;
+    NSDictionary *_filteredTemplates;
 }
 
 + (id)keyPathsForValuesAffectingCanGoForward;
-+ (id)keyPathsForValuesAffectingCollectionViewSelectionIndexes;
-+ (BOOL)showsCrossPlatformSection;
-+ (id)supportedTemplateKind;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
-@property(retain, nonatomic) IDENavigableItemAsyncFilteringCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
-@property(retain) NSView *sourceListView; // @synthesize sourceListView=_sourceListView;
++ (BOOL)showsCrossPlatformSection;
++ (id)supportedTemplateKind;
+@property(retain, nonatomic) NSDictionary *filteredTemplates; // @synthesize filteredTemplates=_filteredTemplates;
+@property(retain, nonatomic) NSArray *filteredCategories; // @synthesize filteredCategories=_filteredCategories;
+@property(retain, nonatomic) IDETemplateSection *selectedSection; // @synthesize selectedSection=_selectedSection;
+@property(retain, nonatomic) NSArray *sectionButtons; // @synthesize sectionButtons=_sectionButtons;
+@property(retain, nonatomic) NSArray *sections; // @synthesize sections=_sections;
+@property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
+@property __weak DVTBorderedView *scopeBarBorderedView; // @synthesize scopeBarBorderedView=_scopeBarBorderedView;
+@property __weak DVTSearchField *filterField; // @synthesize filterField=_filterField;
+@property(retain) DVTScopeBarButton *loadedSectionButton; // @synthesize loadedSectionButton=_loadedSectionButton;
+@property __weak DVTScopeBarButton *initialSectionButton; // @synthesize initialSectionButton=_initialSectionButton;
+@property(nonatomic) __weak NSStackView *sectionStackView; // @synthesize sectionStackView=_sectionStackView;
+@property(nonatomic) __weak IDETemplateChooserCollectionView *collectionView; // @synthesize collectionView=_collectionView;
 - (void).cxx_destruct;
-- (void)chooserTileViewShouldGoForward:(id)arg1;
-- (void)userDidPressEscapeInTileView:(id)arg1;
-- (void)userDidPressSpaceBarInTileView:(id)arg1;
-- (id)tileView:(id)arg1 typeCompletionStringForContentObject:(id)arg2;
-- (void)tileView:(id)arg1 didChangeContextClickedObjectFrom:(id)arg2;
-- (id)tileView:(id)arg1 titleForContentObject:(id)arg2;
-- (BOOL)outlineView:(id)arg1 shouldShowOutlineCellForItem:(id)arg2;
-- (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
-- (id)sectionCell;
+- (void)_restoreSelectedSectionAndTemplateFromSavedState;
+- (id)_preferredInitialSection;
+- (id)_sectionWithName:(id)arg1;
+- (id)_sectionWithIdentifier:(id)arg1;
+- (void)_updateFilteredTemplatesWithAnimation:(BOOL)arg1;
+- (void)_animateUpdatedFilteredCategories:(id)arg1 andTemplates:(id)arg2;
+- (void)_updateCollectionViewSelectionFromContextTemplate;
+- (void)_updateContextTemplateFromCollectionViewSelection;
+- (id)indexPathForTemplate:(id)arg1;
+@property(readonly) IDETemplate *selectedTemplate;
+- (void)moveRight:(id)arg1;
+- (void)moveLeft:(id)arg1;
+- (void)sectionButtonSelected:(id)arg1;
+- (void)_updateSectionSelectionFromContextTemplate;
+- (BOOL)_section:(id)arg1 matchesPlatforms:(id)arg2;
+- (void)_updateSectionButtonStateForSelectedSection;
+- (void)updateColors:(id)arg1;
+- (void)chooserCollectionViewShouldGoForward:(id)arg1;
+- (void)collectionView:(id)arg1 didDeselectItemsAtIndexPaths:(id)arg2;
+- (void)collectionView:(id)arg1 didSelectItemsAtIndexPaths:(id)arg2;
+- (id)collectionView:(id)arg1 viewForSupplementaryElementOfKind:(id)arg2 atIndexPath:(id)arg3;
+- (id)collectionView:(id)arg1 itemForRepresentedObjectAtIndexPath:(id)arg2;
+- (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
+- (long long)numberOfSectionsInCollectionView:(id)arg1;
 - (id)nextAssistantIdentifier;
 - (BOOL)canGoForward;
-- (void)restoreSelectionFromContext;
-- (void)outlineViewSelectionDidChange:(id)arg1;
-- (void)setCollectionViewSelectionIndexes:(id)arg1;
-- (id)collectionViewSelectionIndexes;
-- (id)templateNameDefaultsKey;
-- (id)categoryDefaultsKey;
-- (id)sectionDefaultsKey;
-- (void)writeStateToUserDefaults;
-- (void)restoreSelectionFromUserDefaults;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)loadView;
 - (void)primitiveInvalidate;
+- (id)templateNameDefaultsKeyForSection:(id)arg1;
+- (id)sectionDefaultsKey;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

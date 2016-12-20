@@ -18,6 +18,7 @@
     DVT_VMUDirectedGraph *_invertedDisplayGraph;
     DVT_VMUDirectedGraph *_forwardDisplayGraph;
     DVT_VMUProcessObjectGraph *_sourceGraph;
+    unsigned int _rootInspectedNode;
     BOOL _restrictToPivot;
     id <DTObjectGridGraphDelegate> _delegate;
     struct CGSize _minimumViewportSize;
@@ -27,9 +28,12 @@
 @property(nonatomic) struct CGSize minimumViewportSize; // @synthesize minimumViewportSize=_minimumViewportSize;
 @property(readonly, nonatomic) DVT_VMUProcessObjectGraph *graph; // @synthesize graph=_sourceGraph;
 - (void).cxx_destruct;
+- (id)objectGridGraph:(id)arg1 contextMenuForNode:(id)arg2;
 - (void)objectGridGraph:(id)arg1 didDoubleClickReference:(id)arg2;
 - (void)objectGridGraph:(id)arg1 didDoubleClickNode:(id)arg2;
+- (void)objectGridGraph:(id)arg1 didCmdClickReference:(id)arg2;
 - (void)objectGridGraph:(id)arg1 didClickReference:(id)arg2;
+- (void)objectGridGraph:(id)arg1 didCmdClickNode:(id)arg2;
 - (void)objectGridGraph:(id)arg1 didClickNode:(id)arg2;
 - (void)objectGridGraph:(id)arg1 willDisplayReference:(id)arg2;
 - (void)objectGridGraph:(id)arg1 willDisplayNode:(id)arg2;
@@ -43,9 +47,11 @@
 - (void)loadView;
 - (void)displayImmediateReferencesForNode:(unsigned int)arg1 inGraph:(id)arg2;
 - (void)displayLeakHierarchyForNode:(unsigned int)arg1 inGraph:(id)arg2;
+- (void)displayRootPathsForNode:(unsigned int)arg1 inGraph:(id)arg2 initialGenerations:(BOOL)arg3;
 - (void)displayRootPathsForNode:(unsigned int)arg1 inGraph:(id)arg2;
-@property(nonatomic) unsigned int pivotNodeIdentifier;
-- (void)setPivotNodeIdentifier:(unsigned int)arg1 animated:(BOOL)arg2;
+- (void)setPivotNodeIdentifier:(unsigned int)arg1 maintainingCoordinates:(id)arg2 initialGenerations:(BOOL)arg3;
+- (void)setPivotNodeIdentifier:(unsigned int)arg1 maintainingCoordinates:(id)arg2;
+- (unsigned int)_setupDataSourcesForPivot:(unsigned int)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

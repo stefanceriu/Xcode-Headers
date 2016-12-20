@@ -15,63 +15,9 @@ struct CGPoint {
     double _field2;
 };
 
-struct CGRect {
-    struct CGPoint _field1;
-    struct CGSize _field2;
-};
-
 struct CGSize {
     double width;
     double height;
-};
-
-struct PurpleFBMessage {
-    CDStruct_c91b0553 _field1;
-    struct {
-        unsigned int _field1;
-    } _field2;
-    union {
-        struct {
-            CDStruct_1ede1e67 _field1;
-            int _field2;
-            int _field3;
-            int _field4;
-            int _field5;
-            int _field6;
-            int _field7;
-        } _field1;
-        struct {
-            CDStruct_1ede1e67 _field1;
-            int _field2;
-            int _field3;
-            int _field4;
-            int _field5;
-            int _field6;
-            int _field7;
-            int _field8;
-            int _field9;
-        } _field2;
-        struct {
-            unsigned char _field1[12];
-            int _field2;
-            int _field3;
-            int _field4;
-            int _field5;
-        } _field3;
-        struct {
-            union {
-                CDStruct_1ede1e67 _field1;
-                CDStruct_72af3c3a _field2;
-                CDStruct_72af3c3a _field3;
-                struct {
-                    unsigned int _field1;
-                    unsigned int _field2;
-                    unsigned int :24;
-                    unsigned int :8;
-                } _field4;
-            } _field1;
-        } _field4;
-    } _field3;
 };
 
 struct _PurpleEventMessage {
@@ -101,23 +47,6 @@ typedef struct {
     unsigned int _field5;
     int _field6;
 } CDStruct_c91b0553;
-
-typedef struct {
-    unsigned int _field1;
-    unsigned int _field2;
-    unsigned int :16;
-    unsigned int :8;
-    unsigned int :8;
-} CDStruct_1ede1e67;
-
-typedef struct {
-    void *_field1;
-    unsigned int :8;
-    unsigned int :8;
-    unsigned int :8;
-    unsigned int :8;
-    unsigned int _field2;
-} CDStruct_72af3c3a;
 
 typedef struct {
     float _field1;

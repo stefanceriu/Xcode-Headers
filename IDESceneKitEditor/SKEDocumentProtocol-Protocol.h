@@ -12,6 +12,7 @@
 @property(readonly) DVTUndoManager *undoManager;
 @property(readonly) BOOL supportsEditing;
 @property(readonly) BOOL isArchivedSceneKitDocument;
+- (BOOL)isTextureName:(NSString *)arg1;
 - (void)makeDocumentAssetCatalogCurrent;
 - (NSArray *)membersOfClass:(Class)arg1;
 - (void)didReplaceChildMember:(id)arg1 ofMember:(id)arg2 byChildMember:(id)arg3;

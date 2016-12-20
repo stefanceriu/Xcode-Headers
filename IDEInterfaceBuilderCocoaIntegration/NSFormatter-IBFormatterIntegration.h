@@ -8,6 +8,7 @@
 
 @interface NSFormatter (IBFormatterIntegration)
 + (id)keyPathsForValuesAffectingIbExternalSampleValueFormatted;
+- (unsigned long long)ibMinOSVersionForUseInCell;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (id)ibExternalSampleValueTooltipRelatedMethods;
 - (id)ibExternalSampleValueMetadataKey;
@@ -16,5 +17,6 @@
 @property(retain, nonatomic) id ibExternalSampleValue;
 - (id)ibDefaultDataValueForTableView:(id)arg1;
 - (id)ibPasteboardTypes;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

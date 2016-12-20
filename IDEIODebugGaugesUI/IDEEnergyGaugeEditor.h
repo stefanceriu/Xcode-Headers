@@ -18,6 +18,7 @@
     IDEEnergyAdditionGuidance *_highCPUGuidance;
     IDEEnergyAdditionGuidance *_networkGuidance;
     IDEEnergyAdditionGuidance *_locationGuidance;
+    IDEEnergyAdditionGuidance *_highGPUGuidance;
     IDEEnergyAdditionGuidance *_backgroundModeGuidance;
     IDEEnergyLogScoreFormatter *_scoreFormatter;
     unsigned long long _adjustedStartingIndex;
@@ -30,12 +31,13 @@
     double _lastOverheadAverage;
     IDEEnergyGaugeDebuggingAddition *_debuggingAddition;
     unsigned long long _lastMetricsDeltaCount;
-    IDEAppEnergyGraph *_cpuWasteGraph;
+    IDEAppEnergyGraph *_categoriesGraph;
     DVTMeterView *_energyMeterView;
     NSView *_costOverheadExplanationView;
     NSView *_highCPUGuidanceView;
     NSView *_networkGuidanceView;
     NSView *_locationGuidanceView;
+    NSView *_highGPUGuidanceView;
     NSView *_appStateGuidanceView;
     NSView *_overheadStatArea;
     NSView *_meterArea;
@@ -56,12 +58,13 @@
 @property(retain, nonatomic) NSView *meterArea; // @synthesize meterArea=_meterArea;
 @property(retain, nonatomic) NSView *overheadStatArea; // @synthesize overheadStatArea=_overheadStatArea;
 @property(retain, nonatomic) NSView *appStateGuidanceView; // @synthesize appStateGuidanceView=_appStateGuidanceView;
+@property(retain, nonatomic) NSView *highGPUGuidanceView; // @synthesize highGPUGuidanceView=_highGPUGuidanceView;
 @property(retain, nonatomic) NSView *locationGuidanceView; // @synthesize locationGuidanceView=_locationGuidanceView;
 @property(retain, nonatomic) NSView *networkGuidanceView; // @synthesize networkGuidanceView=_networkGuidanceView;
 @property(retain, nonatomic) NSView *highCPUGuidanceView; // @synthesize highCPUGuidanceView=_highCPUGuidanceView;
 @property(retain, nonatomic) NSView *costOverheadExplanationView; // @synthesize costOverheadExplanationView=_costOverheadExplanationView;
 @property __weak DVTMeterView *energyMeterView; // @synthesize energyMeterView=_energyMeterView;
-@property(retain, nonatomic) IDEAppEnergyGraph *cpuWasteGraph; // @synthesize cpuWasteGraph=_cpuWasteGraph;
+@property(retain, nonatomic) IDEAppEnergyGraph *categoriesGraph; // @synthesize categoriesGraph=_categoriesGraph;
 @property(nonatomic) unsigned long long lastMetricsDeltaCount; // @synthesize lastMetricsDeltaCount=_lastMetricsDeltaCount;
 @property(retain, nonatomic) IDEEnergyGaugeDebuggingAddition *debuggingAddition; // @synthesize debuggingAddition=_debuggingAddition;
 - (void).cxx_destruct;

@@ -7,9 +7,6 @@
 #import "NSCopying.h"
 #import "NSObject.h"
 
-@class NSString;
-
 @protocol IBICAssetComponentID <NSObject, NSCopying>
-- (NSString *)stringRepresentation;
 @end
 

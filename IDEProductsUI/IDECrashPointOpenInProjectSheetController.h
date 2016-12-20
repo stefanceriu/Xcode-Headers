@@ -12,13 +12,13 @@
 
 @interface IDECrashPointOpenInProjectSheetController : NSWindowController <DVTInvalidation>
 {
-    DVTFilePath *_projectFilePath;
     IDECrashPointOpenInProjectViewController *_openInProjectViewController;
+    DVTFilePath *_projectFilePath;
 }
 
 + (void)initialize;
-@property(retain) IDECrashPointOpenInProjectViewController *openInProjectViewController; // @synthesize openInProjectViewController=_openInProjectViewController;
 @property(retain) DVTFilePath *projectFilePath; // @synthesize projectFilePath=_projectFilePath;
+@property(retain) IDECrashPointOpenInProjectViewController *openInProjectViewController; // @synthesize openInProjectViewController=_openInProjectViewController;
 - (void).cxx_destruct;
 - (void)beginSheetModalForWindow:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)windowDidLoad;

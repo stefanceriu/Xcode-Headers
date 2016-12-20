@@ -8,13 +8,14 @@
 
 #import "DVTMessageBubbleAnnotationDelegate.h"
 
-@class DBGDebugSession, DVTObservingToken, DVTTextDocumentLocation, IDEStackFrame, IDEWorkspaceWindowController, NSImage, NSString;
+@class DVTObservingToken, DVTTextAnnotationTheme, DVTTextDocumentLocation, IDEDebugSession, IDEStackFrame, IDEWorkspaceWindowController, NSImage, NSString;
 
 @interface DBGInstructionPointerAnnotation : DVTMessageBubbleAnnotation <DVTMessageBubbleAnnotationDelegate>
 {
     IDEWorkspaceWindowController *_workspaceWindowController;
-    DBGDebugSession *_debugSession;
+    IDEDebugSession *_debugSession;
     IDEStackFrame *_stackFrame;
+    DVTTextAnnotationTheme *_previousTheme;
     NSImage *_icon;
     DVTTextDocumentLocation *_preDragAnnotationLocation;
     DVTObservingToken *_theadNameObserverToken;
@@ -40,6 +41,7 @@
 - (void)setRepresentedObject:(id)arg1;
 - (void)annotationWillUninstall;
 - (id)initWithWorkspaceWindowController:(id)arg1 documentLocation:(id)arg2 stackFrame:(id)arg3;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

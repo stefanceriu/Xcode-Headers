@@ -6,10 +6,14 @@
 
 #import <IDEInterfaceBuilderKit/IBEditorCanvasFrame.h>
 
-@class NSView;
+@class CAShapeLayer, CATransformLayer, NSView;
 
 @interface IBBorderlessEditorCanvasFrame : IBEditorCanvasFrame
 {
+    CATransformLayer *_containerLayer;
+    CAShapeLayer *_backgroundFillLayer;
+    CAShapeLayer *_bezelFillLayer;
+    CAShapeLayer *_strokeLayer;
     BOOL _fortifiesShadow;
     BOOL _drawsShadow;
     BOOL _fillsContentRect;
@@ -33,7 +37,13 @@
 - (void).cxx_destruct;
 - (struct CGSize)sizeForKnob:(CDUnion_31865a80)arg1;
 - (struct CGRect)knobPerimeter;
+- (id)strokePath;
+- (id)deviceBezelFillPath;
+- (id)fillPath;
 - (void)drawRect:(struct CGRect)arg1;
+- (void)updateLayer;
+- (BOOL)wantsUpdateLayer;
+- (BOOL)suportsIndependentPositioning;
 - (BOOL)shouldDragFrameWithMouseDown:(id)arg1;
 - (void)hasKeyLookDidChange;
 - (id)boundingRectsForBandSelectionHitTesting;
@@ -43,8 +53,12 @@
 - (CDStruct_c519178c)contentInset;
 - (void)setFrameIsSelected:(BOOL)arg1;
 - (id)effectiveStrokeColor;
-- (id)shadow;
+- (double)effectiveHeaderCornerRadius;
+- (double)effectiveHeaderHeight;
+- (id)canvasFrameShadow;
 - (void)setContentViewCornerRadius:(double)arg1;
+- (void)setChromeScaleFactor:(double)arg1;
+- (void)setFrame:(struct CGRect)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

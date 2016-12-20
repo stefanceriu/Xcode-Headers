@@ -6,26 +6,22 @@
 
 #import <IDEKit/IDEViewController.h>
 
-#import "IDETestsInTestableObserver.h"
 #import "NSOutlineViewDataSource.h"
 #import "NSOutlineViewDelegate.h"
 #import "NSPopoverDelegate.h"
 #import "QLPreviewPanelDataSource.h"
 
-@class DVTBorderedView, DVTLozengeTextField, DVTObservingToken, DVTOutlineView, DVTScopeBarButton, DVTSearchField, IDETestReportBaselineUpdateController, IDETestReportBatchBaselineUpdateWindow, IDETestReportTestRunFetcher, NSArray, NSButton, NSDictionary, NSMapTable, NSMutableArray, NSMutableIndexSet, NSOperationQueue, NSPopover, NSScrollView, NSString, NSURL, NSView;
+@class DVTBorderedView, DVTLozengeTextField, DVTObservingToken, DVTOutlineView, DVTScopeBarButton, DVTSearchField, IDETestReportBaselineUpdateController, IDETestReportBatchBaselineUpdateWindow, NSArray, NSButton, NSDictionary, NSMapTable, NSMutableArray, NSMutableIndexSet, NSOperationQueue, NSPopover, NSScrollView, NSString, NSURL, NSView;
 
-@interface IDETestReportViewController : IDEViewController <NSOutlineViewDelegate, NSOutlineViewDataSource, IDETestsInTestableObserver, NSPopoverDelegate, QLPreviewPanelDataSource>
+@interface IDETestReportViewController : IDEViewController <NSOutlineViewDelegate, NSOutlineViewDataSource, NSPopoverDelegate, QLPreviewPanelDataSource>
 {
     NSOperationQueue *testPlaceholderQueryQueue;
     IDETestReportBaselineUpdateController *_baselineUpdatesController;
-    unsigned long long _countOfTestablesToUpdate;
-    unsigned long long _countOfTestManagerTestables;
-    IDETestReportTestRunFetcher *_testRunFetcher;
     IDETestReportBatchBaselineUpdateWindow *_updateWindow;
     unsigned long long _selectedBaselineRecordBehavior;
-    BOOL _prefetchingLazyLoadedTestRuns;
     NSMapTable *_filteredTestsAndGroupItems;
     NSPopover *_setBaselinePopover;
+    BOOL _enableBaselineUpdatingUI;
     DVTObservingToken *_controllerContentViewLayoutObservingToken;
     BOOL _readyToReloadView;
     DVTObservingToken *_accessoryViewAlertOptionsToken;
@@ -39,8 +35,6 @@
     NSView *_quickLookPanelOriginView;
     NSMutableIndexSet *_multilineAssertionRowIndexes;
     NSMutableArray *_assertionOutlineObjects;
-    id _scrollViewBoundsDidChangeObserver;
-    id _windowDidBecomeMainObserver;
     struct CGRect _masterCellViewXIBFrame;
     struct CGRect _masterCellViewTextFieldFrame;
     struct CGRect _masterCellViewButtonFrame;
@@ -51,7 +45,8 @@
     BOOL _perfOnly;
     id <IDETestReport_RootObject> _rootObject;
     CDUnknownBlockType _testSelectedCallback;
-    CDUnknownBlockType _selectedActivityScreenShot;
+    CDUnknownBlockType _activitySelectedCallback;
+    NSArray *_currentlyExpandedTestActivityIdentifiers;
     DVTBorderedView *_filterBarBorderedView;
     DVTSearchField *_filterField;
     DVTLozengeTextField *_lozengeTextField;
@@ -63,20 +58,21 @@
     NSButton *_setBaselinesButton;
     DVTOutlineView *_testsOutlineView;
     NSScrollView *_testsScrollView;
+    NSView *_testHostView;
     NSArray *_deviceColumns;
     NSArray *_perfMetricColumns;
     NSArray *_filteredTests;
     NSArray *_outlineViewRootItems;
     NSArray *_filteredOutlineViewRootItems;
     NSArray *_perfTestMetricNames;
-    NSDictionary *_fetchedTests;
     NSDictionary *_testItemsByIdentifier;
+    NSDictionary *_testActivitiesByIdentifier;
 }
 
-+ (BOOL)alwayShowQuickLookButton;
++ (id)testIdentifierForTestGroup:(id)arg1 test:(id)arg2;
 + (void)initialize;
+@property(retain, nonatomic) NSDictionary *testActivitiesByIdentifier; // @synthesize testActivitiesByIdentifier=_testActivitiesByIdentifier;
 @property(retain, nonatomic) NSDictionary *testItemsByIdentifier; // @synthesize testItemsByIdentifier=_testItemsByIdentifier;
-@property(copy) NSDictionary *fetchedTests; // @synthesize fetchedTests=_fetchedTests;
 @property(copy) NSArray *perfTestMetricNames; // @synthesize perfTestMetricNames=_perfTestMetricNames;
 @property BOOL perfOnly; // @synthesize perfOnly=_perfOnly;
 @property BOOL failedExpectedOnly; // @synthesize failedExpectedOnly=_failedExpectedOnly;
@@ -87,6 +83,7 @@
 @property(copy) NSArray *filteredTests; // @synthesize filteredTests=_filteredTests;
 @property(retain) NSArray *perfMetricColumns; // @synthesize perfMetricColumns=_perfMetricColumns;
 @property(retain) NSArray *deviceColumns; // @synthesize deviceColumns=_deviceColumns;
+@property __weak NSView *testHostView; // @synthesize testHostView=_testHostView;
 @property __weak NSScrollView *testsScrollView; // @synthesize testsScrollView=_testsScrollView;
 @property __weak DVTOutlineView *testsOutlineView; // @synthesize testsOutlineView=_testsOutlineView;
 @property __weak NSButton *setBaselinesButton; // @synthesize setBaselinesButton=_setBaselinesButton;
@@ -98,11 +95,13 @@
 @property __weak DVTLozengeTextField *lozengeTextField; // @synthesize lozengeTextField=_lozengeTextField;
 @property __weak DVTSearchField *filterField; // @synthesize filterField=_filterField;
 @property __weak DVTBorderedView *filterBarBorderedView; // @synthesize filterBarBorderedView=_filterBarBorderedView;
+@property(readonly, nonatomic) NSArray *currentlyExpandedTestActivityIdentifiers; // @synthesize currentlyExpandedTestActivityIdentifiers=_currentlyExpandedTestActivityIdentifiers;
 @property(readonly, nonatomic) NSArray *currentlyExpandedTestItemIdentifiers; // @synthesize currentlyExpandedTestItemIdentifiers=_currentlyExpandedTestItemIdentifiers;
-@property(copy, nonatomic) CDUnknownBlockType selectedActivityScreenShot; // @synthesize selectedActivityScreenShot=_selectedActivityScreenShot;
+@property(copy, nonatomic) CDUnknownBlockType activitySelectedCallback; // @synthesize activitySelectedCallback=_activitySelectedCallback;
 @property(copy, nonatomic) CDUnknownBlockType testSelectedCallback; // @synthesize testSelectedCallback=_testSelectedCallback;
 @property(retain, nonatomic) id <IDETestReport_RootObject> rootObject; // @synthesize rootObject=_rootObject;
 - (void).cxx_destruct;
+- (BOOL)previewPanel:(id)arg1 handleEvent:(id)arg2;
 - (struct CGRect)previewPanel:(id)arg1 sourceFrameOnScreenForPreviewItem:(id)arg2;
 - (void)endPreviewPanelControl:(id)arg1;
 - (void)beginPreviewPanelControl:(id)arg1;
@@ -110,10 +109,18 @@
 - (id)previewPanel:(id)arg1 previewItemAtIndex:(long long)arg2;
 - (long long)numberOfPreviewItemsInPreviewPanel:(id)arg1;
 - (void)quickLookRow:(id)arg1;
+- (void)_quickLookNextRow;
+- (void)_quickLookPreviousRow;
+- (void)_quickLookTestActivity:(id)arg1 relativeToView:(id)arg2;
+- (void)_showQuickLookForTestActivity:(id)arg1 dataURL:(id)arg2 relativeToView:(id)arg3;
+- (void)_showCrashLogForTestActivity:(id)arg1 withDataFromURL:(id)arg2;
 - (id)parentTestItemOfActivity:(id)arg1;
 - (void)configureMasterCellView:(id)arg1 activity:(id)arg2 isMasterActivity:(BOOL)arg3 isFirstActivity:(BOOL)arg4 startTime:(id)arg5;
 - (void)selectItemWithIdentifier:(id)arg1;
-- (void)expandItemsWithIdentifiers:(id)arg1;
+- (void)expandTestActivitiesWithIdentifiers:(id)arg1;
+- (void)_restoreExpandedTestActivities;
+- (void)expandTestItemsWithIdentifiers:(id)arg1;
+- (void)_restoreExpandedItems;
 - (void)updateBaselineForPerfMetric:(id)arg1 inTestRun:(id)arg2 newBaseline:(double)arg3 newAllowedSTD:(id)arg4;
 - (id)assertionsAttributedStringForTestFailures:(id)arg1 noBaselines:(id)arg2;
 - (id)assertionsInTestRun:(id)arg1;
@@ -121,7 +128,9 @@
 - (BOOL)testRunHasMissingBaseline:(id)arg1;
 - (void)showTestAssertionsForTestRun:(id)arg1 inTest:(id)arg2 button:(id)arg3;
 - (void)_showBaselinePopoverForTest:(id)arg1 test:(id)arg2 relativeTo:(id)arg3;
+- (void)performanceMetricBaselineRecordForTestIdentifier:(id)arg1 testRun:(id)arg2 testGroupName:(id)arg3 testName:(id)arg4 matchingPerfMetric:(id)arg5 completionBlock:(CDUnknownBlockType)arg6;
 - (void)popoverDidClose:(id)arg1;
+- (BOOL)outlineView:(id)arg1 insertText:(id)arg2;
 - (void)outlineViewItemDidCollapse:(id)arg1;
 - (void)outlineViewItemDidExpand:(id)arg1;
 - (void)outlineViewItemWillCollapse:(id)arg1;
@@ -139,21 +148,20 @@
 - (void)outlineView:(id)arg1 didRemoveRowView:(id)arg2 forRow:(long long)arg3;
 - (void)outlineViewSelectionDidChange:(id)arg1;
 - (BOOL)outlineView:(id)arg1 shouldSelectItem:(id)arg2;
-- (BOOL)outlineView:(id)arg1 shouldShowOutlineCellForItem:(id)arg2;
 - (BOOL)outlineView:(id)arg1 isGroupItem:(id)arg2;
 - (BOOL)itemIsAssertionFailure:(id)arg1;
 - (id)outlineView:(id)arg1 child:(long long)arg2 ofItem:(id)arg3;
 - (BOOL)outlineView:(id)arg1 isItemExpandable:(id)arg2;
 - (long long)outlineView:(id)arg1 numberOfChildrenOfItem:(id)arg2;
+- (void)contextMenu_openActivity:(id)arg1;
+- (void)contextMenu_showInFinder:(id)arg1;
+- (BOOL)validateMenuItem:(id)arg1;
+- (void)_processActivity:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)testHasAssertions:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)showTestForClassName:(id)arg1 methodName:(id)arg2;
 - (void)filterFieldAction:(id)arg1;
 - (void)reloadAndFilterOutline;
 - (id)filteredTestsRespectingScopeFiltersInTestGroup:(id)arg1 withFilterString:(id)arg2;
-- (void)testablesChanged:(id)arg1;
-- (void)allTestablesChanged;
-- (void)testsChanged:(id)arg1;
-- (void)observePerfTestGroupTestables;
 - (void)setBaselinesAction:(id)arg1;
 - (BOOL)_testsProvideBlueprintInfo;
 - (void)scopeBarUnitAndPerfTests:(id)arg1;
@@ -162,10 +170,11 @@
 - (void)scopeBarPassed:(id)arg1;
 - (void)scopeBarAll:(id)arg1;
 - (void)scopeBarChanged;
+- (id)tableColumnIdentifierForDevice:(id)arg1;
 - (void)commitScopeBarState;
 - (void)restoreScopeBarState;
-- (void)prefetchLazyLoadedTestRuns;
 - (void)reloadAndExpandOutlineView;
+- (void)_refreshCachedItemIdentifiers;
 - (id)allPerfTestGroups;
 - (id)testClassesWithScopeBarFiltering;
 - (void)primitiveInvalidate;
@@ -175,6 +184,7 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSMutableArray *mutableCurrentlyExpandedTestActivityIdentifiers; // @dynamic mutableCurrentlyExpandedTestActivityIdentifiers;
 @property(readonly, nonatomic) NSMutableArray *mutableCurrentlyExpandedTestItemIdentifiers; // @dynamic mutableCurrentlyExpandedTestItemIdentifiers;
 @property(readonly) Class superclass;
 

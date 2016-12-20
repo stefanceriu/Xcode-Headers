@@ -10,12 +10,13 @@
 
 @interface IDECommandLineBuildLogRecorder : IDEActivityLogSectionRecorder
 {
+    IDEActivityLogSection *_activeTargetSection;
     NSMutableArray *_activeSections;
-    NSMapTable *_emittedSubsectionsBySection;
+    NSMapTable *_bufferedTextPerLogSection;
 }
 
 + (void)initialize;
-@property(retain) NSMapTable *emittedSubsectionsBySection; // @synthesize emittedSubsectionsBySection=_emittedSubsectionsBySection;
+@property(retain) NSMapTable *bufferedTextPerLogSection; // @synthesize bufferedTextPerLogSection=_bufferedTextPerLogSection;
 @property(retain) NSMutableArray *activeSections; // @synthesize activeSections=_activeSections;
 - (void).cxx_destruct;
 - (void)noteDescendantLogSectionDidClose:(id)arg1 inSupersection:(id)arg2;
@@ -26,7 +27,7 @@
 - (void)_noteLogSection:(id)arg1 didAddSubsection:(id)arg2;
 - (void)_emitSection:(id)arg1 inSupersection:(id)arg2;
 - (void)_cleanupClosedSection:(id)arg1 inSupersection:(id)arg2;
-- (void)_emitString:(id)arg1 withNewlineIfNeeded:(BOOL)arg2;
+- (void)_emitString:(id)arg1 withNewlineIfNeeded:(BOOL)arg2 verbosityLevel:(long long)arg3;
 @property(readonly) IDEActivityLogSection *effectiveSection;
 - (id)section;
 - (id)initWithLogSection:(id)arg1;

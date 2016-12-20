@@ -8,7 +8,7 @@
 
 #import "IBBinaryArchiving.h"
 
-@class IBCustomViewDrawingDescription, NSString, NSValue;
+@class IBCustomViewDrawingDescription, NSString;
 
 @interface IBPlaceholderDrawingAttributes : NSObject <IBBinaryArchiving>
 {
@@ -18,11 +18,9 @@
     NSString *_explanatoryText;
     long long _style;
     IBCustomViewDrawingDescription *_customViewDrawingDescription;
-    NSValue *_contentSize;
 }
 
 @property(nonatomic) BOOL drawTopEdgeShadow; // @synthesize drawTopEdgeShadow=_drawTopEdgeShadow;
-@property(retain, nonatomic) NSValue *contentSize; // @synthesize contentSize=_contentSize;
 @property(retain, nonatomic) IBCustomViewDrawingDescription *customViewDrawingDescription; // @synthesize customViewDrawingDescription=_customViewDrawingDescription;
 @property(nonatomic) long long style; // @synthesize style=_style;
 @property(copy, nonatomic) NSString *explanatoryText; // @synthesize explanatoryText=_explanatoryText;

@@ -9,22 +9,26 @@
 #import "DVTDynamicTableViewDataSource.h"
 #import "DVTDynamicTableViewDelegate.h"
 
-@class DVTDynamicTableView, IDESourceControlLog, IDESourceControlLogItemView, NSColor, NSMutableSet, NSProgressIndicator, NSScrollView, NSString;
+@class DVTDynamicTableView, DVTNotificationToken, DVTObservingToken, IDESourceControlLog, IDESourceControlLogItemView, NSMutableSet, NSProgressIndicator, NSScrollView, NSString;
 
 @interface IDESourceControlLogViewController : IDEViewController <DVTDynamicTableViewDataSource, DVTDynamicTableViewDelegate>
 {
     DVTDynamicTableView *_logTableView;
     NSProgressIndicator *_logProgressIndicator;
-    BOOL _moreEntriesAvailable;
     BOOL isLoadingItems;
     IDESourceControlLog *_log;
     NSString *_searchString;
     NSScrollView *scrollView;
+    DVTNotificationToken *_didCommitToken;
+    DVTNotificationToken *_themeObserver;
     id <DVTSourceControlCancellable> _logCancellationToken;
     IDESourceControlLogItemView *_tempLogItemView;
     NSMutableSet *_rowViewControllers;
     NSString *_startingRevision;
     NSString *_endingRevision;
+    DVTObservingToken *_workspaceToken;
+    DVTObservingToken *_showMergeCommitsToken;
+    BOOL _useSourceEditorBackgroundColor;
     BOOL _showingPeoplePicker;
     unsigned long long _searchType;
     CDUnknownBlockType _progressBlock;
@@ -48,20 +52,20 @@
 - (id)dynamicTableView:(id)arg1 viewForHeaderInSection:(long long)arg2;
 - (double)dynamicTableView:(id)arg1 heightForHeaderInSection:(long long)arg2;
 - (id)logItemForRow:(long long)arg1 inSection:(long long)arg2;
-- (void)clearAuthorPairing:(id)arg1 withSourceTree:(id)arg2;
-- (void)ABPersonSelected:(id)arg1 forAuthor:(id)arg2 withSourceTree:(id)arg3;
-- (void)loadEntriesFromRevisions:(id)arg1 searchTerm:(id)arg2 searchType:(unsigned long long)arg3;
+- (void)loadEntries;
+- (void)_hideLoadingIndicators;
+- (BOOL)_fileLoggingAllowed;
+- (void)viewDidInstall;
 - (long long)countOfLogItemsInSection:(long long)arg1;
 - (void)clearLog;
 - (void)reloadLog;
 @property(copy) NSString *endingRevision;
 @property(copy) NSString *startingRevision;
 @property(copy) NSString *searchString; // @synthesize searchString=_searchString;
-@property(readonly) NSColor *rowBackgroundColor2;
-@property(readonly) NSColor *rowBackgroundColor1;
 - (void)primitiveInvalidate;
 - (void)viewWillUninstall;
 - (void)boundsDidChangeNotification:(id)arg1;
+@property BOOL useSourceEditorBackgroundColor; // @synthesize useSourceEditorBackgroundColor=_useSourceEditorBackgroundColor;
 - (void)loadView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (Class)currentLogItemViewClass;

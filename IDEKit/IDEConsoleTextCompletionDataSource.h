@@ -10,12 +10,11 @@
 
 @interface IDEConsoleTextCompletionDataSource : DVTTextCompletionDataSource
 {
-    NSArray *_consoleTextViewStrategies;
+    NSArray *strategies;
 }
 
+@property(copy) NSArray *strategies; // @synthesize strategies;
 - (void).cxx_destruct;
-- (void)_setStrategies:(id)arg1;
-- (id)strategies;
 
 @end
 

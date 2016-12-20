@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, NSMutableArray, NSString;
+@class DVTStackBacktrace, NSArray, NSMutableArray, NSString;
 
 @interface DVTAnnotationManager : NSObject <DVTInvalidation>
 {
@@ -20,6 +20,7 @@
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 @property(retain) id <DVTAnnotationManagerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly) NSArray *annotationProviders; // @synthesize annotationProviders=_annotationProviders;
 - (void).cxx_destruct;
 - (void)removeAllAnnotationProviders;
 - (void)setupAnnotationProvidersWithContext:(id)arg1;

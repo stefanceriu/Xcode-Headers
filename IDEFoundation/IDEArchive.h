@@ -15,6 +15,7 @@
     NSArray *_topLevelDistributionItems;
     BOOL _symbolDownloadInProgress;
     BOOL _estimateInProgress;
+    BOOL _isFromFreeProvisioningTeam;
     DVTFilePath *_path;
     IDEArchivedContent *_archivedContent;
     NSString *_archiveSize;
@@ -33,7 +34,8 @@
 + (BOOL)_copydSYMsFromDirectory:(id)arg1 toArchiveWithPath:(id)arg2 usingFileManager:(id)arg3 error:(id *)arg4;
 + (id)_createArchiveWithName:(id)arg1 usingFileManager:(id)arg2 error:(id *)arg3;
 + (id)_folderPathForArchiveWithDate:(id)arg1;
-+ (void)createArchiveWithName:(id)arg1 schemeName:(id)arg2 platform:(id)arg3 products:(id)arg4 auxiliaryFiles:(id)arg5 workspace:(id)arg6 usingFileManager:(id)arg7 completionBlock:(CDUnknownBlockType)arg8;
++ (void)createArchiveWithName:(id)arg1 schemeName:(id)arg2 platform:(id)arg3 toolchain:(id)arg4 products:(id)arg5 auxiliaryFiles:(id)arg6 workspace:(id)arg7 usingFileManager:(id)arg8 completionBlock:(CDUnknownBlockType)arg9;
++ (id)_infoForToolchain:(id)arg1;
 + (id)installArchiveWithArchivePath:(id)arg1 usingFileManager:(id)arg2;
 + (id)archiveWithArchivePath:(id)arg1;
 + (id)keyPathsForValuesAffectingProductDefinitionPlistPath;
@@ -45,10 +47,15 @@
 + (id)keyPathsForValuesAffectingProductsDirectoryPath;
 + (id)_productsDirectoryPathForArchivePath:(id)arg1;
 + (id)keyPathsForValuesAffectingCanDownloadSymbols;
+@property BOOL isFromFreeProvisioningTeam; // @synthesize isFromFreeProvisioningTeam=_isFromFreeProvisioningTeam;
 @property BOOL estimateInProgress; // @synthesize estimateInProgress=_estimateInProgress;
 @property(readonly) IDEArchivedContent *archivedContent; // @synthesize archivedContent=_archivedContent;
 @property(retain) DVTFilePath *path; // @synthesize path=_path;
 - (void).cxx_destruct;
+@property(readonly) NSString *toolchainDisplayName;
+@property(readonly) NSString *toolchainIdentifier;
+- (id)_toolchainInfo;
+@property(readonly) BOOL containsCustomToolchain;
 - (void)estimateSizeInBackgroundForPlatform:(id)arg1;
 - (void)_saveArchive:(id)arg1;
 - (void)markDirty;
@@ -73,11 +80,12 @@
 @property(readonly) NSMutableDictionary *infoDictionary;
 @property BOOL symbolDownloadInProgress; // @synthesize symbolDownloadInProgress=_symbolDownloadInProgress;
 @property(readonly) BOOL canDownloadSymbols;
-@property(readonly) BOOL canSubmitIgnoringFreeProvisioning;
+- (BOOL)canSubmitIgnoringPreflightChecks;
+- (BOOL)_canPerformAllTasksWithError:(id *)arg1;
 @property(readonly) BOOL canSubmit;
 @property(readonly) BOOL canExport;
 @property(readonly) BOOL canValidate;
-- (BOOL)_canPerformTask:(int)arg1 ignoreFreeProvisioning:(BOOL)arg2;
+- (BOOL)_canPerformTask:(int)arg1 ignorePreflightChecks:(BOOL)arg2 error:(id *)arg3;
 @property(readonly) IDEArchivedApplication *application;
 - (id)_initWithPath:(id)arg1 infoDictionary:(id)arg2;
 

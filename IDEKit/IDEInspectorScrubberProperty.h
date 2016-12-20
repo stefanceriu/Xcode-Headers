@@ -23,7 +23,11 @@
 - (void)refresh;
 - (BOOL)canTileIntoColumnsWithMinimumWidth:(double)arg1;
 - (void)userDidChangeValue:(id)arg1;
+- (BOOL)roundPrecisionValue;
+- (float)precisionValue;
 - (float)incrementValue;
+- (BOOL)integerValues;
+- (BOOL)hasButtons;
 - (float)maxValue;
 - (float)minValue;
 - (double)baseline;

@@ -4,35 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <IDEFoundation/IDEStreamWorkContext.h>
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, NSArray, NSMutableArray, NSMutableSet, NSString;
+@class DVTStackBacktrace, NSString;
 
-@interface IDELocalizationWorkContext : NSObject <DVTInvalidation>
+@interface IDELocalizationWorkContext : IDEStreamWorkContext <DVTInvalidation>
 {
-    NSMutableSet *_toInvalidate;
-    NSMutableArray *_records;
-    id _intermediateResults;
-    BOOL _dryRun;
-    IDELocalizationWorkContext *_parentContext;
 }
 
 + (void)initialize;
++ (id)contextWithParent:(id)arg1 values:(id)arg2;
 + (id)contextWithParent:(id)arg1 dryRun:(BOOL)arg2;
 + (id)contextWithParent:(id)arg1;
-@property(retain) NSArray *records; // @synthesize records=_records;
-@property BOOL dryRun; // @synthesize dryRun=_dryRun;
-@property(retain) IDELocalizationWorkContext *parentContext; // @synthesize parentContext=_parentContext;
-- (void).cxx_destruct;
-- (void)record:(id)arg1;
-- (void)setIntermediateResults:(id)arg1;
-- (id)intermediateResults;
++ (id)contextWithValues:(id)arg1;
 - (void)primitiveInvalidate;
-- (void)invalidateNow:(id)arg1;
-- (void)invalidateLater:(id)arg1;
-- (id)init;
+@property(readonly) BOOL dryRun;
+@property(readonly) IDELocalizationWorkContext *parentContext;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

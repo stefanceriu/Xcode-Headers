@@ -14,5 +14,6 @@
 @property(readonly, nonatomic) SCNNode *chainRootNode;
 - (double)maxAllowedRotationAngleForJoint:(SCNNode *)arg1;
 - (void)setMaxAllowedRotationAngle:(double)arg1 forJoint:(SCNNode *)arg2;
+- (id)initWithChainRootNode:(SCNNode *)arg1;
 @end
 

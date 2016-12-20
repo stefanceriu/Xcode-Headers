@@ -8,7 +8,7 @@
 
 #import "IBMouseMovedObservingView.h"
 
-@class NSArray, NSColor, NSCursor, NSEvent, NSMutableDictionary, NSString;
+@class NSArray, NSColor, NSCursor, NSEvent, NSMutableDictionary;
 
 @interface IBImageButton : NSView <IBMouseMovedObservingView>
 {
@@ -23,8 +23,6 @@
     double actionRepeatRate;
     BOOL togglesSelectionOnClick;
     NSCursor *cursor;
-    NSString *accessibilityTitle;
-    NSString *accessibilityHelp;
     unsigned long long imageLayoutMode;
     NSArray *buttonsToShareRolloverWith;
     CDStruct_c519178c hitTestInset;
@@ -37,13 +35,12 @@
 }
 
 + (id)makeButtonsStartSharingRolloverState:(id)arg1;
++ (id)revealContentButton;
 @property(retain, nonatomic) NSColor *fillColor; // @synthesize fillColor=_fillColor;
 @property(retain, nonatomic) id representedObject; // @synthesize representedObject=_representedObject;
 @property(nonatomic) __weak id <IBImageButtonDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) NSEvent *trackedEvent; // @synthesize trackedEvent;
 @property(nonatomic) CDStruct_c519178c hitTestInset; // @synthesize hitTestInset;
-@property(copy, nonatomic) NSString *accessibilityHelp; // @synthesize accessibilityHelp;
-@property(copy, nonatomic) NSString *accessibilityTitle; // @synthesize accessibilityTitle;
 @property(nonatomic) unsigned long long imageLayoutMode; // @synthesize imageLayoutMode;
 @property(nonatomic) BOOL togglesSelectionOnClick; // @synthesize togglesSelectionOnClick;
 @property(nonatomic) SEL action; // @synthesize action;
@@ -57,10 +54,10 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (void)drawImage:(id)arg1 withOpacity:(double)arg2;
 - (struct CGSize)intrinsicContentSize;
-- (id)accessibilityAttributeNames;
-- (BOOL)accessibilityIsAttributeSettable:(id)arg1;
-- (id)accessibilityAttributeValue:(id)arg1;
-- (BOOL)accessibilityIsIgnored;
+- (id)accessibilityValue;
+- (id)accessibilityRole;
+- (BOOL)isAccessibilityEnabled;
+- (BOOL)isAccessibilityElement;
 - (void)viewDidMoveToWindow;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)observeMouseMoved:(struct CGPoint)arg1 buttonState:(unsigned long long)arg2;

@@ -9,7 +9,6 @@
 @class NSString;
 
 @protocol DVTObjectLiteralValueTransformer <NSObject>
-+ (unsigned long long)transformedObjectLiteralType;
 + (NSString *)regexMatchingString;
 @end
 

@@ -9,16 +9,20 @@
 #import "IDETestsInTestableObserver.h"
 #import "NSTextFieldDelegate.h"
 
-@class IDETestReportPerfMetricIterationsGraphView, NSButton, NSString, NSTextField, NSView, NSWindow;
+@class IDETestPerformanceMetricBaselineRecord, IDETestReportPerfMetricIterationsGraphView, NSAttributedString, NSButton, NSString, NSTextField, NSView, NSWindow;
 
 @interface IDETestReportPerfMetricBadgePopoverViewController : NSViewController <NSTextFieldDelegate, IDETestsInTestableObserver>
 {
     id <IDETestable> _testable;
+    NSAttributedString *_baselineValueBeforeEditing;
+    NSAttributedString *_rstdValueBeforeEditing;
+    BOOL _enableUpdating;
     id <IDETestReport_PerfMetric> _testPerfMetric;
     id <IDETestReport_TestRun> _testRun;
     NSWindow *_hostWindow;
     CDUnknownBlockType _updateBaselineCallback;
     NSString *_testIdentifier;
+    IDETestPerformanceMetricBaselineRecord *_baselineRecord;
     NSTextField *_metricNameTextField;
     NSTextField *_metricLabelTextField;
     NSTextField *_resultValueTextField;
@@ -57,11 +61,13 @@
 @property __weak NSTextField *resultValueTextField; // @synthesize resultValueTextField=_resultValueTextField;
 @property __weak NSTextField *metricLabelTextField; // @synthesize metricLabelTextField=_metricLabelTextField;
 @property __weak NSTextField *metricNameTextField; // @synthesize metricNameTextField=_metricNameTextField;
+@property(retain, nonatomic) IDETestPerformanceMetricBaselineRecord *baselineRecord; // @synthesize baselineRecord=_baselineRecord;
 @property(copy, nonatomic) NSString *testIdentifier; // @synthesize testIdentifier=_testIdentifier;
 @property(copy, nonatomic) CDUnknownBlockType updateBaselineCallback; // @synthesize updateBaselineCallback=_updateBaselineCallback;
 @property(retain, nonatomic) NSWindow *hostWindow; // @synthesize hostWindow=_hostWindow;
 @property(retain, nonatomic) id <IDETestReport_TestRun> testRun; // @synthesize testRun=_testRun;
 @property(retain, nonatomic) id <IDETestReport_PerfMetric> testPerfMetric; // @synthesize testPerfMetric=_testPerfMetric;
+@property(nonatomic) BOOL enableUpdating; // @synthesize enableUpdating=_enableUpdating;
 - (void).cxx_destruct;
 - (void)refreshUI;
 - (id)valueAttributedString:(id)arg1 color:(id)arg2;
@@ -69,6 +75,7 @@
 - (id)updatedRSTDForTest;
 - (void)setUpdatedBaselineValueForTest:(double)arg1;
 - (id)updatedBaselineValueForTest;
+- (id)identifierForBaselineValueCache;
 - (id)abbreviatedUnitFromUnit:(id)arg1;
 - (void)updateBaselineAction:(id)arg1;
 - (void)_updateBaseline:(double)arg1;

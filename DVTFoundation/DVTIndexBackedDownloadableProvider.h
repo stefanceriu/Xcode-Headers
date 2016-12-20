@@ -21,7 +21,7 @@
 - (id)_cacheURLForIndexURL:(id)arg1;
 - (id)_suffix;
 - (id)_indexAtURL:(id)arg1 error:(id *)arg2;
-@property(readonly) BOOL fallbackToUndecoratedSource;
+@property(readonly) BOOL useDecoratedSource;
 - (id)downloadablesWithError:(id *)arg1;
 @property(readonly) NSSet *downloadables;
 @property(readonly, copy) NSString *description;

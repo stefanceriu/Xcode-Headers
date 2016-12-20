@@ -44,6 +44,11 @@
 @property(retain, nonatomic) NSImage *image; // @synthesize image;
 @property(copy, nonatomic) NSString *title; // @synthesize title;
 - (void).cxx_destruct;
+- (id)accessibilityRoleDescription;
+- (BOOL)accessibilityPerformPress;
+- (id)accessibilityRole;
+- (id)accessibilityValue;
+- (BOOL)isAccessibilityElement;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)highlightPath;
 - (struct CGPoint)startOfCurveCommingFromCorner:(struct CGPoint)arg1 goingAroundCorner:(struct CGPoint)arg2 withRadius:(double)arg3;

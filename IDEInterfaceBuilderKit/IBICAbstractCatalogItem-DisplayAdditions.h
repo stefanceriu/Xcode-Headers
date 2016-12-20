@@ -14,7 +14,15 @@
 + (id)keysThatImpactCapsuleViewControllerClassForOverview;
 + (id)pasteboardTypes;
 + (id)pasteboardType;
++ (id)unsetImageForSize:(struct CGSize)arg1;
++ (id)ideModelObjectTypeIdentifier;
 + (id)keyPathsForValuesAffectingIbInspectedItemName;
++ (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
+- (BOOL)isPredominantlyWhite;
+- (id)ibInspectedCompressionTypeNilPlaceholder;
+- (long long)ibEffectiveInheritedCompressionType;
+- (void)setIbInspectedCompressionType:(id)arg1;
+- (id)ibInspectedCompressionType;
 - (BOOL)shouldAvoidDeleting;
 - (BOOL)shouldAvoidDeletingChild:(id)arg1;
 - (CDUnknownBlockType)contentReferencePreservingCallbackGivenEndPointGenerator:(CDUnknownBlockType)arg1;
@@ -31,10 +39,11 @@
 - (void)populatePlistWithDescriptionForIctool:(id)arg1;
 - (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
 - (id)includedAttributeUtilitySlicesForChild:(id)arg1;
+- (void)populatePasteboardContext:(id)arg1 forChild:(id)arg2;
 - (void)prepareToReatatchForDragWithContext:(id)arg1;
 - (void)prepareToDetatchForDragWithContext:(id)arg1;
-- (Class)capsuleViewControllerClassForOverview;
-- (id)synthesizeAncestorsIfNeededToAllowHostingInFolder;
+- (id)overviewCapsuleSpecification;
+- (id)synthesizeAncestorsIfNeededToAllowHostingInContainer:(id)arg1;
 @property(readonly, getter=isDraggable) BOOL draggable;
 - (id)quickLookPreviewItem;
 - (id)itemsForOpeningInExternalEditor;
@@ -52,7 +61,6 @@
 @property(readonly) BOOL displaysChildrenInOutlineView;
 @property(readonly) NSImage *dragImage;
 @property(readonly) NSImage *image;
-@property(readonly) NSImage *typeIcon;
 @property(readonly) NSImage *icon;
 
 // Remaining properties

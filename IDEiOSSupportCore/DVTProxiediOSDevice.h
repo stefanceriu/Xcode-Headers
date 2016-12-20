@@ -32,6 +32,7 @@
 - (void).cxx_destruct;
 - (BOOL)deviceSupportsBuildable:(id)arg1 buildParameters:(id)arg2 error:(id *)arg3;
 - (id)unavailabilityError;
+- (id)developerPrepError;
 - (BOOL)isAvailable;
 - (_Bool)deviceIsBusy;
 - (id)primaryInstrumentsServer;

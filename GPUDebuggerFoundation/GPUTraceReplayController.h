@@ -47,7 +47,7 @@
 - (void)replayToFunctionIndex:(unsigned int)arg1 withFutureResult:(id)arg2;
 - (void)invalidate;
 - (id)setupDevice;
-@property(readonly) DYDeviceInfo *playbackDeviceInfo; // @dynamic playbackDeviceInfo;
+@property(readonly) DYDeviceInfo *playbackDeviceInfo;
 - (void)_handleGuestAppStatusChangeNotification:(id)arg1;
 - (id)initWithController:(id)arg1 lastFunctionIndex:(unsigned int)arg2;
 

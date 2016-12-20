@@ -7,8 +7,9 @@
 #import "NSObject.h"
 
 @protocol DTKPDatastream <NSObject>
-- (int)exportRawDataWithError:(id *)arg1 block:(void (^)(void *, unsigned long long, BOOL))arg2;
-- (int)importRawData:(void *)arg1 bufferSize:(unsigned long long)arg2 error:(id *)arg3;
+- (int)peekAtRawDataWithError:(id *)arg1 block:(void (^)(void *, unsigned long long, BOOL))arg2;
+- (int)exportRawDataWithError:(id *)arg1 block:(void (^)(void *, unsigned long long, void (^)(void), BOOL))arg2;
+- (int)importRawData:(const void *)arg1 bufferSize:(unsigned long long)arg2 error:(id *)arg3 destructor:(void (^)(void))arg4;
 - (int)setWritingCompletedWithError:(id *)arg1;
 - (BOOL)hasData;
 - (id)createNextStream:(id *)arg1;

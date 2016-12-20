@@ -14,9 +14,9 @@
 
 @interface IBNSWindowController : NSObject <IBDocumentArchiving, IBPrimarySceneObject, NSCoding>
 {
-    BOOL _encodeAsRuntimeInstance;
     NSString *_explicitStoryboardIdentifier;
     NSDictionary *_storyboardSegueDestinationOptions;
+    BOOL _encodeAsRuntimeInstance;
     NSWindowTemplate *_window;
     NSArray *_storyboardSegueTemplates;
     NSDictionary *_externalObjectsTableForWindowLoading;
@@ -26,6 +26,7 @@
 }
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
+@property(nonatomic) BOOL encodeAsRuntimeInstance; // @synthesize encodeAsRuntimeInstance=_encodeAsRuntimeInstance;
 @property(copy) NSString *uniqueIdentifierForStoryboardCompilation; // @synthesize uniqueIdentifierForStoryboardCompilation=_uniqueIdentifierForStoryboardCompilation;
 @property unsigned long long showSeguePresentationStyle; // @synthesize showSeguePresentationStyle=_showSeguePresentationStyle;
 @property(copy) NSString *windowNibName; // @synthesize windowNibName=_windowNibName;
@@ -46,6 +47,10 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (id)ibTopLevelWindowTemplateForLayoutEngine:(id)arg1;
 - (id)ibWindowWithCopiedViewHierarchySnapshotForLayoutEngine:(id)arg1 returningAddedRepresentedConstraintsForRepresentedViews:(id *)arg2;
+- (void)ibDecodePlatformItems:(id)arg1;
+- (void)ibEncodePlatformItems:(id)arg1;
+- (void)ibUnArchivePlatformItems:(id)arg1;
+- (void)ibArchivePlatformItems:(id)arg1;
 - (BOOL)ibCanRemoveChildren:(id)arg1;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
@@ -73,6 +78,7 @@
 - (void)ibResizeToEffectiveSimulatedSizeForSceneTreeDragImageNode;
 - (id)ibImageForOwnedScene;
 @property(nonatomic) BOOL ibInspectedIsDesignatedEntryPoint;
+- (BOOL)ibIsUnreachableInStoryboard;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (void)ibRemoveChildren:(id)arg1;
 - (struct CGRect)ibRectForChild:(id)arg1 inFrameController:(id)arg2;
@@ -83,8 +89,11 @@
 - (id)ibTitleForEditor;
 - (BOOL)ibRequiresOutletToStoryboard;
 - (id)ibRuntimeClassName;
-- (id)ibRelationshipSegueDescriptionForKeypath:(id)arg1;
+- (id)ibRelationshipSegueDescriptionForKeyPath:(id)arg1;
 - (id)ibSegueSourceToOneRelationshipKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

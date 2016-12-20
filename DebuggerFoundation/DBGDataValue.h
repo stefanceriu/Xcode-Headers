@@ -10,7 +10,7 @@
 #import "DVTInvalidation.h"
 #import "IDEDataValue.h"
 
-@class DBGDataType, DBGDataValueFormat, DBGDataValueSummaryFormatter, DBGLazyObservableDictionary, DBGStackFrame, DVTObservingToken, DVTStackBacktrace, NSArray, NSAttributedString, NSMutableSet, NSString;
+@class DBGDataType, DBGDataValueFormat, DBGDataValueSummaryFormatter, DBGLazyObservableDictionary, DVTObservingToken, DVTStackBacktrace, IDEStackFrame, NSArray, NSAttributedString, NSMutableSet, NSString;
 
 @interface DBGDataValue : NSObject <DBGLazyObservableDictionaryDelegate, IDEDataValue, DVTInvalidation>
 {
@@ -26,7 +26,7 @@
     DVTObservingToken *_childValuesObservationToken;
     BOOL _containsFunctionExpressions;
     int _valueValidity;
-    DBGStackFrame *_stackFrame;
+    IDEStackFrame *_stackFrame;
     DBGDataType *_dynamicType;
     DBGDataValueSummaryFormatter *_summaryFormatter;
     DBGLazyObservableDictionary *_lazyChildValuesByName;
@@ -46,7 +46,7 @@
 @property BOOL containsFunctionExpressions; // @synthesize containsFunctionExpressions=_containsFunctionExpressions;
 @property int valueValidity; // @synthesize valueValidity=_valueValidity;
 @property(readonly) DBGDataType *dynamicType; // @synthesize dynamicType=_dynamicType;
-@property(readonly) DBGStackFrame *stackFrame; // @synthesize stackFrame=_stackFrame;
+@property(readonly) IDEStackFrame *stackFrame; // @synthesize stackFrame=_stackFrame;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 @property(readonly) BOOL isMemoryFault;
@@ -64,6 +64,7 @@
 - (void)classNameHierarchy:(CDUnknownBlockType)arg1;
 - (void)ensureAllDisplayablePropertiesAreLoaded:(CDUnknownBlockType)arg1;
 @property(readonly) BOOL mightRespondToSelectors;
+@property(readonly) BOOL representsNullClassTypedef;
 @property(readonly) BOOL representsNullObjectPointer;
 @property(readonly) BOOL representsNilObjectiveCObject;
 - (void)watch;

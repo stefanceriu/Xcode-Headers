@@ -53,7 +53,7 @@
 @property(nonatomic) unsigned int programIndex; // @synthesize programIndex=_programIndex;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-@property(nonatomic) BOOL isFragmentShaderMostExpensive; // @dynamic isFragmentShaderMostExpensive;
+@property(readonly, nonatomic) BOOL isFragmentShaderMostExpensive;
 - (id)description;
 - (id)init;
 - (void)encodeWithCoder:(id)arg1;

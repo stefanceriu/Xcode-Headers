@@ -6,12 +6,14 @@
 
 #import <GPUTraceDebuggerUI/GPUDebugBarContentProvider.h>
 
-@class DVTGradientImageButton, DVTObservingToken, NSMenuItem;
+#import "GPUCaptureLongClickPopUpButtonDelegate.h"
+
+@class DVTObservingToken, GPUCaptureLongClickPopUpButton, NSMenuItem;
 
 __attribute__((visibility("hidden")))
-@interface GPUCaptureButtonDebugBarContentProvider : GPUDebugBarContentProvider
+@interface GPUCaptureButtonDebugBarContentProvider : GPUDebugBarContentProvider <GPUCaptureLongClickPopUpButtonDelegate>
 {
-    DVTGradientImageButton *_captureFrameButton;
+    GPUCaptureLongClickPopUpButton *_captureFrameButton;
     NSMenuItem *_captureFrameMenuItem;
     DVTObservingToken *_originalAppDiedObservation;
     DVTObservingToken *_debuggingAdditionObservation;
@@ -31,18 +33,21 @@ __attribute__((visibility("hidden")))
 - (void)stopDebugSession:(id)arg1;
 - (void)_startHiggins:(id)arg1;
 - (void)_displayHigginsReportInMainEditor:(id)arg1;
-- (void)captureOpenGLFrame:(id)arg1;
+- (void)captureGPUFrame:(id)arg1;
+- (void)resumeGPUFrame:(id)arg1;
 - (void)_debugMenuChanged:(id)arg1;
 - (void)_activeTabControllerChanged:(id)arg1;
 - (void)_rebindMenuItems;
 - (void)_windowDidBecomeMain:(id)arg1;
 - (void)willBeDetachedFromDebugBar:(id)arg1;
 - (id)_findMenuItemWithRepresentedObject:(id)arg1 inMenu:(id)arg2;
-- (void)_setUpCaptureOpenGLESFrameMenuItem:(id)arg1;
+- (void)_setUpCaptureGPUFrameMenuItem:(id)arg1;
 - (void)wasAttachedToDebugBar:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)updateMenus;
 - (void)updateCaptureButtonState;
+- (id)updatedMenuForButton:(id)arg1;
+- (void)captureFrameFromMenu:(id)arg1;
 - (void)setCaptureButtonToCapture;
 - (void)setCaptureButtonToStop;
 - (void)setCaptureButtonToResume;

@@ -9,13 +9,13 @@
 #import "DVTInvalidation.h"
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DBGProcess, DVTDocumentLocation, DVTFileDataType, DVTObservingToken, DVTStackBacktrace, IDEFileReference, NSArray, NSImage, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTObservingToken, DVTStackBacktrace, IDEDebugProcess, IDEFileReference, NSArray, NSImage, NSString;
 
 @interface DBGDisassemblyItemProcessWrapper : NSObject <DVTInvalidation, IDEKeyDrivenNavigableItemRepresentedObject>
 {
     DVTObservingToken *_settingDisassemblyObserver;
     DVTObservingToken *_coalescedStateObserver;
-    DBGProcess *_process;
+    IDEDebugProcess *_process;
     NSArray *_threadWrappers;
 }
 
@@ -23,7 +23,7 @@
 + (id)keyPathsForValuesAffectingNavigableItem_image;
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 @property(retain) NSArray *threadWrappers; // @synthesize threadWrappers=_threadWrappers;
-@property(retain) DBGProcess *process; // @synthesize process=_process;
+@property(retain) IDEDebugProcess *process; // @synthesize process=_process;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)_invalidatePreviousThreadWrappers;
@@ -40,12 +40,16 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;

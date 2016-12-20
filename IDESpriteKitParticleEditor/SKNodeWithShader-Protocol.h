@@ -10,6 +10,6 @@
 
 @protocol SKNodeWithShader <NSObject>
 @property(retain, nonatomic) SKShader *shader;
-@property(retain, nonatomic) NSURL *customSpriteShader;
+@property(retain, nonatomic) NSURL *sk_customSpriteShader;
 @end
 

@@ -113,6 +113,7 @@
 - (id)allSubViewControllers;
 - (id)_allTabViewControllers;
 - (void)primitiveInvalidate;
+- (void)_gatherModelMetrics;
 - (void)loadView;
 - (id)identifier;
 - (Class)documentLocationClass;

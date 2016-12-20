@@ -13,7 +13,6 @@
 @interface DVTBindingToken : NSObject <DVTCancellable>
 {
     CDUnknownBlockType _cancellationBlock;
-    void *_keepSelfAliveUntilCancellationRef;
     DVTStackBacktrace *_creationBacktrace;
 }
 

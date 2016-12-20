@@ -93,6 +93,7 @@
 - (void)setupAttributesStrip;
 - (void)setupColorWells;
 - (void)setupLayout;
+- (double)accessoryCenterAnchor;
 - (void)primitiveInvalidate;
 
 // Remaining properties

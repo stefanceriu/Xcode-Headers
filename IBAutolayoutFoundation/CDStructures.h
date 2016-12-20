@@ -110,7 +110,8 @@ typedef struct {
 
 typedef struct {
     CDStruct_f6143a38 _field1;
-} CDStruct_474337f7;
+    double _field2;
+} CDStruct_00258f55;
 
 typedef struct {
     struct CGRect rect;

@@ -20,7 +20,7 @@
 - (void).cxx_destruct;
 - (void)buildAnnotations;
 - (BOOL)lineCoverageDataContainsMixedSubranges:(id)arg1;
-- (void)primitiveInvalidate;
+- (void)providerWillUninstall;
 - (id)initWithContext:(id)arg1;
 
 @end

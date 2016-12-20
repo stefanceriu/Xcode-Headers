@@ -6,21 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class DVTPortalTeam, NSString;
 
 @interface IDETeamDescription : NSObject
 {
     NSString *_name;
-    NSString *_teamID;
-    NSString *_iOSRole;
-    NSString *_macRole;
-    id <IDEProvisioningTeam> _team;
+    NSString *_role;
+    DVTPortalTeam *_team;
 }
 
-@property(retain, nonatomic) id <IDEProvisioningTeam> team; // @synthesize team=_team;
-@property(copy, nonatomic) NSString *macRole; // @synthesize macRole=_macRole;
-@property(copy, nonatomic) NSString *iOSRole; // @synthesize iOSRole=_iOSRole;
-@property(copy, nonatomic) NSString *teamID; // @synthesize teamID=_teamID;
+@property(retain, nonatomic) DVTPortalTeam *team; // @synthesize team=_team;
+@property(copy, nonatomic) NSString *role; // @synthesize role=_role;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (id)description;

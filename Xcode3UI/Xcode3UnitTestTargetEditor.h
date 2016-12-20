@@ -8,28 +8,34 @@
 
 #import "IDECapsuleListViewDataSource.h"
 
-@class DVTStackView_ML, IDECapsuleListView, IDETestTargetSelectorViewController, NSString, NSView, Xcode3TargetEditor, Xcode3TargetEditorCapsuleViewController;
+@class DVTObservingToken, DVTStackView_ML, IDECapsuleListView, IDEProvisioningSettingsTargetEditorViewControllersManager, IDETestTargetSelectorViewController, NSString, NSView, Xcode3TargetEditor, Xcode3TargetEditorCapsuleViewController;
 
 @interface Xcode3UnitTestTargetEditor : IDEViewController <IDECapsuleListViewDataSource>
 {
-    id _targetViewController;
+    Xcode3TargetEditor *_targetViewController;
     IDECapsuleListView *_capsuleListView;
     Xcode3TargetEditorCapsuleViewController *_testTargetCapsuleViewController;
     DVTStackView_ML *_testTargetCapsuleStackView;
     NSView *_testTargetCapsuleBottomPadding;
     IDETestTargetSelectorViewController *_testTargetSelector;
+    IDEProvisioningSettingsTargetEditorViewControllersManager *_provisioningSettingsTargetEditorViewControllersManager;
+    DVTObservingToken *_provisioningSettingsTargetEditorViewControllersObserver;
 }
 
+@property(retain, nonatomic) DVTObservingToken *provisioningSettingsTargetEditorViewControllersObserver; // @synthesize provisioningSettingsTargetEditorViewControllersObserver=_provisioningSettingsTargetEditorViewControllersObserver;
+@property(retain, nonatomic) IDEProvisioningSettingsTargetEditorViewControllersManager *provisioningSettingsTargetEditorViewControllersManager; // @synthesize provisioningSettingsTargetEditorViewControllersManager=_provisioningSettingsTargetEditorViewControllersManager;
 @property(retain) IDETestTargetSelectorViewController *testTargetSelector; // @synthesize testTargetSelector=_testTargetSelector;
 @property(retain) NSView *testTargetCapsuleBottomPadding; // @synthesize testTargetCapsuleBottomPadding=_testTargetCapsuleBottomPadding;
 @property(retain) DVTStackView_ML *testTargetCapsuleStackView; // @synthesize testTargetCapsuleStackView=_testTargetCapsuleStackView;
 @property(retain) Xcode3TargetEditorCapsuleViewController *testTargetCapsuleViewController; // @synthesize testTargetCapsuleViewController=_testTargetCapsuleViewController;
 @property(retain) IDECapsuleListView *capsuleListView; // @synthesize capsuleListView=_capsuleListView;
-@property(retain, nonatomic) id targetViewController; // @synthesize targetViewController=_targetViewController;
+@property(retain, nonatomic) Xcode3TargetEditor *targetViewController; // @synthesize targetViewController=_targetViewController;
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
 - (id)capsuleListView:(id)arg1 viewControllerForRow:(long long)arg2;
 - (long long)numberOfObjectsInCapsuleListView:(id)arg1;
-- (void)primitiveInvalidate;
+- (void)startObservations;
+- (id)subviewControllers;
 @property(readonly) Xcode3TargetEditor *targetEditor;
 - (void)loadView;
 

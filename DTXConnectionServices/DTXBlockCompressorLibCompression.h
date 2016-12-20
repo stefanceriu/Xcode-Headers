@@ -12,8 +12,8 @@
 
 @interface DTXBlockCompressorLibCompression : NSObject <DTXBlockCompressor>
 {
-    void *_lzfseScratchBuffer;
-    void *_lz4ScratchBuffer;
+    // Error parsing type: AQ, name: _lzfseScratchBuffer
+    // Error parsing type: AQ, name: _lz4ScratchBuffer
 }
 
 - (_Bool)uncompressBuffer:(const char *)arg1 ofLength:(unsigned long long)arg2 toBuffer:(char *)arg3 withKnownUncompressedLength:(unsigned long long)arg4 usingCompressionType:(int)arg5;

@@ -6,36 +6,46 @@
 
 #import "DVTLayoutView_ML.h"
 
+#import "NSAccessibilityGroup.h"
 #import "NSTextFieldDelegate.h"
 
 @class IBNinePartImage, NSEvent, NSString, NSTextField;
 
-@interface IBICAssetCapsule : DVTLayoutView_ML <NSTextFieldDelegate>
+@interface IBICAssetCapsule : DVTLayoutView_ML <NSTextFieldDelegate, NSAccessibilityGroup>
 {
     NSTextField *_titleField;
+    NSTextField *_subtitleField;
     IBNinePartImage *_titleHighlightImage;
     IBNinePartImage *_borderImage;
     struct CGRect _titleHighlightFrame;
     NSEvent *_lastMouseDown;
+    NSTextField *_placeholderTextField;
     BOOL _drawsWithKeyAppearance;
     BOOL _wholeAssetShowsSelection;
     BOOL _wholeAssetShowsContextFocus;
     BOOL _drawsBottomBorder;
     BOOL _titleIsEditing;
     NSString *_title;
+    NSString *_subtitle;
     id <IBICAssetCapsuleDelegate> _delegate;
 }
 
 + (id)normalOuterBorderColor;
++ (id)createPlaceholderTextField;
++ (id)subtitleTextField;
 + (id)titleTextField;
++ (id)textFieldWithFont:(id)arg1;
 @property(nonatomic) BOOL titleIsEditing; // @synthesize titleIsEditing=_titleIsEditing;
 @property(nonatomic) BOOL drawsBottomBorder; // @synthesize drawsBottomBorder=_drawsBottomBorder;
 @property(nonatomic) BOOL wholeAssetShowsContextFocus; // @synthesize wholeAssetShowsContextFocus=_wholeAssetShowsContextFocus;
 @property(nonatomic) BOOL wholeAssetShowsSelection; // @synthesize wholeAssetShowsSelection=_wholeAssetShowsSelection;
 @property(nonatomic) BOOL drawsWithKeyAppearance; // @synthesize drawsWithKeyAppearance=_drawsWithKeyAppearance;
 @property(nonatomic) __weak id <IBICAssetCapsuleDelegate> delegate; // @synthesize delegate=_delegate;
+@property(copy, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
 @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
+- (id)accessibilityValue;
+- (id)accessibilityLabel;
 - (void)keyDown:(id)arg1;
 - (void)deleteForward:(id)arg1;
 - (void)deleteBackward:(id)arg1;
@@ -44,6 +54,7 @@
 - (void)mouseDragged:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)delegateSelectionHandlingForMouseEvent:(id)arg1;
+- (void)layoutSubtitleField;
 - (void)layoutTitleField;
 - (struct CGRect)titleHighlightFrameForTitleFrame:(struct CGRect)arg1;
 - (BOOL)isFlipped;
@@ -51,6 +62,7 @@
 - (void)controlTextDidEndEditing:(id)arg1;
 - (void)controlTextDidChange:(id)arg1;
 - (double)effectiveOutterBorderStrokeWidth;
+- (id)effectiveSubtitleColor;
 - (id)effectiveTitleColor;
 - (id)effectiveOuterBorderColor;
 - (void)drawRect:(struct CGRect)arg1;
@@ -62,10 +74,12 @@
 - (void)setTitleHighlightImage:(id)arg1;
 - (void)setBorderImage:(id)arg1;
 - (long long)effectiveBorderStyle;
+@property(readonly, nonatomic) NSTextField *subtitleField;
 @property(readonly, nonatomic) NSTextField *titleField;
+- (id)placeholderTextField;
 - (id)assetComponentIDAtPoint:(struct CGPoint)arg1;
 - (id)targettedAssetComponentIDsAtPoint:(struct CGPoint)arg1;
-- (struct CGRect)frameForImageOfChildWithAssetComponentID:(id)arg1;
+- (struct CGRect)frameForImageOfComponentWithAssetComponentID:(id)arg1;
 - (void)setSelectedAssetComponentIDs:(id)arg1;
 - (void)setContextFocusedAssetComponentIDs:(id)arg1;
 - (struct CGRect)bandSelectionFrameForAssetComponentID:(id)arg1;

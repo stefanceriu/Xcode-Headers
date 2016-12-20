@@ -56,7 +56,6 @@
 - (void)ibAwakeInDocument:(id)arg1;
 - (id)ibBeginDesigningInDocument:(id)arg1;
 - (id)ibSwizzledInitWithCoder:(id)arg1;
-- (void)ibSwizzledEncodeWithCoder:(id)arg1;
 - (void)setInitingDesignableTableView:(BOOL)arg1;
 - (BOOL)isInitingDesignableTableView;
 @property unsigned long long ibInspectedControlSize;
@@ -97,5 +96,10 @@
 - (void)setIbInspectedHasHeaderView:(BOOL)arg1;
 - (BOOL)ibInspectedHasHeaderView;
 - (id)ibContainingScrollViewInDocument:(id)arg1;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalLocalizableToManyRelationshipsKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
+- (id)ibLocalNonChildToOneRelationshipsKeyPaths;
 @end
 

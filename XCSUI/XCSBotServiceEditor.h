@@ -6,35 +6,37 @@
 
 #import "IDEEditor.h"
 
-@class DVTBorderedView, DVTLozengeTextField, DVTObservingToken, NSProgressIndicator, NSTextField, NSTimer, NSView, XCSService;
+#import "DVTReplacementViewDelegate.h"
 
-@interface XCSBotServiceEditor : IDEEditor
+@class DVTBorderedView, DVTObservingToken, DVTReplacementView, NSString, XCSService, XCSUIProgressViewController;
+
+@interface XCSBotServiceEditor : IDEEditor <DVTReplacementViewDelegate>
 {
     XCSService *_service;
-    DVTLozengeTextField *_lozengeTextField;
     DVTBorderedView *_borderedView;
-    NSTimer *_pollTimer;
+    DVTReplacementView *_replacementView;
     DVTObservingToken *_currentMaintenanceTasksObserver;
-    NSView *_progressView;
-    NSProgressIndicator *_progressIndicator;
-    unsigned long long _maxMaintenanceTasks;
-    NSTextField *_maintenanceTasksLabel;
+    XCSUIProgressViewController *_pvc;
 }
 
-@property __weak NSTextField *maintenanceTasksLabel; // @synthesize maintenanceTasksLabel=_maintenanceTasksLabel;
-@property unsigned long long maxMaintenanceTasks; // @synthesize maxMaintenanceTasks=_maxMaintenanceTasks;
-@property __weak NSProgressIndicator *progressIndicator; // @synthesize progressIndicator=_progressIndicator;
-@property(retain) NSView *progressView; // @synthesize progressView=_progressView;
+@property(retain) XCSUIProgressViewController *pvc; // @synthesize pvc=_pvc;
 @property(retain) DVTObservingToken *currentMaintenanceTasksObserver; // @synthesize currentMaintenanceTasksObserver=_currentMaintenanceTasksObserver;
-@property(retain) NSTimer *pollTimer; // @synthesize pollTimer=_pollTimer;
+@property __weak DVTReplacementView *replacementView; // @synthesize replacementView=_replacementView;
 @property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
-@property __weak DVTLozengeTextField *lozengeTextField; // @synthesize lozengeTextField=_lozengeTextField;
 @property(retain, nonatomic) XCSService *service; // @synthesize service=_service;
 - (void).cxx_destruct;
-- (void)observeMaintenaceTasks;
+- (void)observeMaintenanceTasks;
+- (void)configureMaintenanceUI;
 - (id)serviceDocument;
 - (void)primitiveInvalidate;
+- (void)viewDidInstall;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

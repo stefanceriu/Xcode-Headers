@@ -20,6 +20,7 @@
 + (void)initializeApplicationDirectoryName:(id)arg1;
 + (id)applicationDirectoryName;
 - (void).cxx_destruct;
+- (id)cacheDirectoryForXcodeServerApplication;
 - (id)developerPlatformsDirectory;
 - (id)toolchainSearchPath;
 - (id)embeddedApplicationsDirectory;
@@ -28,6 +29,7 @@
 - (id)developerAppleInternalXcodeDirectory;
 - (id)developerApplicationsDirectory;
 - (id)userDataDirectoryForCurrentApplication;
+- (id)documentationCacheDirectoryForCurrentApplication;
 - (id)dataDirectoryForCurrentApplication;
 - (id)cacheDirectoryWithOptions:(unsigned long long)arg1;
 - (id)binSearchPathForSystem;

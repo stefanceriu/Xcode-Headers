@@ -6,28 +6,37 @@
 
 #import "NSObject.h"
 
-@class DVTPortalMember, NSArray, NSString;
+@class DVTPortalMember, NSArray, NSSet, NSString;
 
 @interface DVTPortalTeam : NSObject
 {
     NSArray *_memberships;
     NSString *_name;
     NSString *_teamID;
+    NSString *_type;
     DVTPortalMember *_memberInformation;
     NSArray *_membershipsNonUnique;
-    NSString *_type;
 }
 
 + (id)_listService;
 + (id)teamsForSession:(id)arg1 error:(id *)arg2;
-@property(copy, nonatomic) NSString *type; // @synthesize type=_type;
 @property(copy, nonatomic) NSArray *membershipsNonUnique; // @synthesize membershipsNonUnique=_membershipsNonUnique;
 @property(retain, nonatomic) DVTPortalMember *memberInformation; // @synthesize memberInformation=_memberInformation;
+@property(readonly, copy, nonatomic) NSString *type; // @synthesize type=_type;
 @property(copy, nonatomic) NSString *teamID; // @synthesize teamID=_teamID;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
+- (id)membershipForPlatform:(id)arg1;
+- (BOOL)supportsOneCertPerMac;
+- (BOOL)isFreeProvisioningTeam;
+- (BOOL)isEnterpriseTeam;
+- (BOOL)isUniversityTeam;
+- (BOOL)dvt_servicesTypeInstanceDidFinishLoading:(id *)arg1;
+@property(readonly, copy, nonatomic) NSSet *portalPrograms;
 @property(readonly, copy, nonatomic) NSArray *memberships; // @synthesize memberships=_memberships;
 - (id)description;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
 
 @end
 

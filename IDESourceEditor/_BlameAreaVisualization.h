@@ -6,14 +6,19 @@
 
 #import "DVTTextVisualization.h"
 
+@class IDEBlameAnnotationViewController;
+
 @interface _BlameAreaVisualization : DVTTextVisualization
 {
     double _width;
+    IDEBlameAnnotationViewController *_currentlyHighlightedAnnotationViewController;
 }
 
 + (unsigned long long)defaultDrawOrdering;
 @property double width; // @synthesize width=_width;
+- (void).cxx_destruct;
 - (void)drawUnderTextInRect:(struct CGRect)arg1;
+- (void)mouseMoved:(id)arg1;
 
 @end
 

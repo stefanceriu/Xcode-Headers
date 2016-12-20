@@ -7,6 +7,8 @@
 #import "SimDevice.h"
 
 @interface SimDevice (DVTAdditions)
++ (id)logAspect;
+- (BOOL)dvt_isPairedGizmoInDeviceSet:(id)arg1;
 - (id)dvt_launchApplicationWithBundleIdentifier:(id)arg1 andOptions:(id)arg2;
 - (id)dvt_launchApplicationWithBundleIdentifier:(id)arg1;
 - (id)dvt_spawnExecutableAtPath:(id)arg1 withOptions:(id)arg2 andTerminationHandler:(CDUnknownBlockType)arg3;

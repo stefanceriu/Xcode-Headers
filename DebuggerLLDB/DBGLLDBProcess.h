@@ -4,45 +4,52 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "DBGProcess.h"
+#import "IDEDebugProcess.h"
 
-@class DBGLLDBAddressSanitizerHelper, DBGLLDBSession, DVTDispatchLock, NSArray, NSMutableDictionary, NSMutableSet;
+@class DBGLLDBAddressSanitizerHelper, DBGLLDBSession, DBGLLDBThreadSanitizerHelper, DVTDispatchLock, NSArray, NSMutableDictionary, NSMutableSet;
 
 __attribute__((visibility("hidden")))
-@interface DBGLLDBProcess : DBGProcess
+@interface DBGLLDBProcess : IDEDebugProcess
 {
-    struct SBProcess _lldbProcess;
+    id <DBGSBTarget> _lldbTarget;
+    id <DBGSBProcess> _lldbProcess;
     NSMutableSet *_previousThreadsToInvalidate;
+    DVTDispatchLock *_previousDBGThreadsLock;
     NSArray *_previousDBGThreads;
     unsigned long long _addressByteSize;
     BOOL _needCodeModuleUpdate;
     BOOL _pendingLazyCodeModuleUpdate;
-    DVTDispatchLock *_previousDBGThreadsLock;
-    NSMutableDictionary *_codeModuleForPathTable;
+    DVTDispatchLock *_codeModulesTableLock;
+    NSMutableDictionary *_codeModuleForModuleIDTable;
     DBGLLDBAddressSanitizerHelper *_addressSanitizerHelper;
+    DBGLLDBThreadSanitizerHelper *_threadSanitizerHelper;
     BOOL _isDoingAsyncAttach;
     BOOL _isCoreFile;
     NSArray *_loadedCodeModules;
 }
 
++ (void)initialize;
 @property BOOL isCoreFile; // @synthesize isCoreFile=_isCoreFile;
 @property BOOL isDoingAsyncAttach; // @synthesize isDoingAsyncAttach=_isDoingAsyncAttach;
 @property(copy) NSArray *loadedCodeModules; // @synthesize loadedCodeModules=_loadedCodeModules;
-- (id).cxx_construct;
 - (void).cxx_destruct;
+- (BOOL)isAddressSanitizerRuntimePresent;
+- (BOOL)isThreadSanitizerRuntimePresent;
+- (id)symbolicatedThreadWithAddresses:(id)arg1;
+- (id)_threadSanitizerHelper;
 - (BOOL)isMemoryFaultForDataValue:(id)arg1;
 - (void)shadowMemoryForAddress:(unsigned long long)arg1 numberOfBytes:(unsigned long long)arg2 handleOnMainQueueWithResultHandler:(CDUnknownBlockType)arg3;
 - (void)memoryPointerDescriptionForAddress:(unsigned long long)arg1 handleOnMainQueueWithResultHandler:(CDUnknownBlockType)arg2;
-- (BOOL)canProvideMemoryPointerDescriptions;
 - (id)_addressSanitizerHelper;
 - (void)recordedThreadsForAddress:(unsigned long long)arg1 handleOnMainQueueWithResultHandler:(CDUnknownBlockType)arg2;
 - (void)primitiveInvalidate;
 - (void)_assertIsLLDBSessionThread;
 - (void)reflectLLDBSelectedThreadAndFrame;
 - (BOOL)_isExceptionBreakpoint:(unsigned long long)arg1;
-- (void)_updateThreadStateAndStopReason:(id)arg1 fromLLDBThread:(struct SBThread)arg2 isCurrentThread:(BOOL)arg3;
+- (void)_updateThreadStateAndStopReason:(id)arg1 controlState:(int *)arg2;
+- (void)_handleStopForInstrumentation:(id)arg1 controlState:(int *)arg2 threadState:(int *)arg3 hasCrashed:(char *)arg4;
+- (BOOL)isSignalNumberFatal:(unsigned long long)arg1;
 - (BOOL)isLLDBExceptionFatal:(unsigned long long)arg1;
-- (void)_addMemoryDataWithExtendedInfo:(id)arg1 forThread:(id)arg2;
 - (void)clearQueueThreadStackStates;
 - (void)_readMemoryAtAddress:(unsigned long long)arg1 numberOfBytes:(unsigned long long)arg2 dataToReadInto:(id)arg3 shouldCancel:(id)arg4 progressHandler:(CDUnknownBlockType)arg5 resultHandler:(CDUnknownBlockType)arg6;
 - (id)readMemoryAtAddress:(unsigned long long)arg1 numberOfBytes:(unsigned long long)arg2 progressHandler:(CDUnknownBlockType)arg3 resultHandler:(CDUnknownBlockType)arg4;
@@ -50,18 +57,23 @@ __attribute__((visibility("hidden")))
 - (void)_rawMemoryDataForAddressExpression:(id)arg1 numberOfBytes:(unsigned long long)arg2 resultHandler:(CDUnknownBlockType)arg3;
 - (void)rawMemoryDataForAddressExpression:(id)arg1 numberOfBytes:(unsigned long long)arg2 resultHandler:(CDUnknownBlockType)arg3;
 - (Class)classForMemoryData;
-- (BOOL)updateQueuesAndThreads;
-- (void)_updateQueues:(id *)arg1 fromLLDBProcess:(struct SBProcess *)arg2 withComputedThreads:(id)arg3;
-- (void)_updateThreads:(id *)arg1 currentThread:(id *)arg2 fromLLDBProcess:(struct SBProcess *)arg3;
-- (struct SBThread)_currentLLDBThread;
+- (BOOL)updateQueuesAndThreads:(int *)arg1;
+- (void)_setInitialCurrentStackFrame;
+- (BOOL)_shouldLookForStackFrameWithDebugSymbols;
+- (BOOL)_shouldSelectFirstSymbolFrame;
+- (void)_updateQueues:(id *)arg1 withComputedThreads:(id)arg2;
+- (void)_updateThreads:(id *)arg1 currentThread:(id *)arg2 controlState:(int *)arg3;
+- (id)_currentLLDBThread;
 - (void)_updateCodeModulesImmediatelyIfNecessary;
+- (id)codeModuleForLLDBModule:(id)arg1;
 - (void)_updateCodeModulesAfterDelay;
 @property BOOL needCodeModuleUpdate;
 - (unsigned long long)addressByteSize;
-- (struct SBProcess)lldbProcess;
+- (id)lldbProcess;
 - (void)setCurrentStackFrame:(id)arg1;
 @property(readonly) DBGLLDBSession *parentDebugSession;
-- (id)initWithDebugSession:(id)arg1 lldbProcess:(struct SBProcess)arg2;
+- (id)contentDelegateUIExtensionIdentifier;
+- (id)initWithDebugSession:(id)arg1 lldbProcess:(id)arg2;
 
 @end
 

@@ -6,16 +6,18 @@
 
 #import <GPUDebuggerFoundation/GPUTraceOutlineItem.h>
 
-@class GPUTraceDisplayableItem, GPUTraceResources, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>;
+#import "DYPTraceAPIItem.h"
 
-@interface GPUTraceAPIItem : GPUTraceOutlineItem
+@class GPUTraceDisplayableItem, GPUTraceResourceGroup, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
+
+@interface GPUTraceAPIItem : GPUTraceOutlineItem <DYPTraceAPIItem>
 {
     NSObject<OS_dispatch_queue> *_queue;
     NSArray *_boundResources;
     NSArray *_allResources;
     int _functionIndex;
     int _displayIndex;
-    GPUTraceResources *_resourceGroups;
+    GPUTraceResourceGroup *_resourceGroups;
     NSMutableArray *_stackFrames;
     BOOL _loadingResourceTree;
     BOOL _hasResourceTree;
@@ -24,28 +26,36 @@
     GPUTraceDisplayableItem *_previousDisplayableItem;
 }
 
-@property(retain) GPUTraceDisplayableItem *previousDisplayableItem; // @synthesize previousDisplayableItem=_previousDisplayableItem;
+@property(retain, nonatomic) id <DYPTraceAPIItem> previousDisplayableItem; // @synthesize previousDisplayableItem=_previousDisplayableItem;
 @property BOOL loadingResourceTree; // @synthesize loadingResourceTree=_loadingResourceTree;
 @property BOOL hasResourceTree; // @synthesize hasResourceTree=_hasResourceTree;
 @property(retain) NSMutableArray *stackFrames; // @synthesize stackFrames=_stackFrames;
-@property(retain) GPUTraceResources *resourceGroups; // @synthesize resourceGroups=_resourceGroups;
+@property(retain) GPUTraceResourceGroup *resourceGroups; // @synthesize resourceGroups=_resourceGroups;
 @property(readonly) int displayIndex; // @synthesize displayIndex=_displayIndex;
 @property(readonly) int functionIndex; // @synthesize functionIndex=_functionIndex;
 @property(retain) NSArray *allResources; // @synthesize allResources=_allResources;
 @property(retain) NSArray *boundResources; // @synthesize boundResources=_boundResources;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) id <DYPStateMirror> stateMirror;
 - (id)generateLabel;
+- (void)generateFilterItems;
 - (void)releaseRealizedResources;
 - (void)_generateResources:(BOOL)arg1;
 - (BOOL)generateResources;
 - (BOOL)generateResourceTopLevelGroups;
 - (id)stackFramesWithVisibleSource;
 - (void)generateStackFrameItems;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
 - (id)UUIDSection;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithController:(id)arg1 parent:(id)arg2 functionIndex:(int)arg3 displayIndex:(int)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, nonatomic) struct Function *decodedFunction;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

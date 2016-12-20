@@ -13,6 +13,8 @@ __attribute__((visibility("hidden")))
     BOOL _caReady;
 }
 
+- (id)initWithCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
 - (BOOL)isCumulative;
 - (void)setCumulative:(BOOL)arg1;
 - (BOOL)isAdditive;

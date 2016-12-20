@@ -6,9 +6,13 @@
 
 #import "MDLComponent.h"
 
+@class NSArray;
+
 @protocol MDLTransformComponent <MDLComponent>
+@property(readonly, copy, nonatomic) NSArray *keyTimes;
 @property(readonly, nonatomic) double maximumTime;
 @property(readonly, nonatomic) double minimumTime;
+@property(nonatomic) BOOL resetsTransform;
 // Error parsing type for property matrix:
 // Property attributes: T{?=[4]},N
 

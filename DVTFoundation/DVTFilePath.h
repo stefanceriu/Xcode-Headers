@@ -10,7 +10,7 @@
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class DVTFileDataType, DVTFileSystemVNode, NSArray, NSDate, NSDictionary, NSString, NSURL;
+@class DVTFileDataType, DVTFileSystemVNode, NSArray, NSDate, NSDictionary, NSNumber, NSString, NSURL;
 
 @interface DVTFilePath : NSObject <NSCopying, DVTFileSystemRepresentationProviding, NSSecureCoding>
 {
@@ -26,8 +26,8 @@
     BOOL _cleanRemoveFromParent;
     unsigned char _validationState;
     unsigned short _fsrepLength;
-    int _childPathsLock;
-    int _associatesLock;
+    // Error parsing type: AB, name: _childPathsLock
+    // Error parsing type: AB, name: _associatesLock
     char _fsrep[0];
 }
 
@@ -60,8 +60,10 @@
 - (void)_addAssociatesWithRole:(id)arg1 toArray:(id *)arg2;
 - (void)_notifyAssociatesOfChange;
 - (BOOL)_hasChangeObservers;
-- (BOOL)_addInfoForObserversOfChangedFilePath:(id)arg1 toObjects:(id)arg2 blocks:(id)arg3 dispatchQueues:(id)arg4 operationQueues:(id)arg5;
+- (BOOL)_addInfoForObserversOfChangedFilePath:(id)arg1 toObjects:(id)arg2 roles:(id)arg3 blocks:(id)arg4 dispatchQueues:(id)arg5 operationQueues:(id)arg6;
 - (id)cachedValueForKey:(id)arg1;
+- (id)recursiveFileSizeWithError:(id *)arg1;
+@property(readonly) NSNumber *recursiveFileSize;
 - (id)machOArchitecturesWithError:(id *)arg1;
 @property(readonly) DVTFileDataType *fileDataTypePresumed;
 @property(readonly) DVTFileDataType *fileDataTypeFromFileContent;
@@ -82,6 +84,7 @@
 @property(readonly) BOOL isWritable;
 @property(readonly) BOOL isReadable;
 @property(readonly) BOOL existsInFileSystem;
+- (void)performCoordinatedReadRecursively:(BOOL)arg1;
 - (void)excludeFromBackup;
 - (BOOL)_hasResolvedVnode;
 - (id)_locked_vnode;

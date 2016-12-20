@@ -10,6 +10,7 @@
 {
 }
 
+- (id)accessibilityChildren;
 - (struct CGRect)closeButtonRect;
 - (id)initWithFrame:(struct CGRect)arg1;
 

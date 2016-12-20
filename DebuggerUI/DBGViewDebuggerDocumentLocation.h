@@ -15,8 +15,10 @@
 
 @property(readonly) NSString *viewObjectAddress; // @synthesize viewObjectAddress=_viewObjectAddress;
 - (void).cxx_destruct;
+- (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)isEqualDisregardingTimestamp:(id)arg1;
 - (id)initWithDocumentURL:(id)arg1 timestamp:(id)arg2 viewObject:(id)arg3;
 
 @end

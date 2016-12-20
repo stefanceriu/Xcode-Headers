@@ -8,7 +8,7 @@
 
 #import "IDEClientTrackingToken.h"
 
-@class DVTSystemActivityToken, IDEConcreteClientTracker, NSString;
+@class DVTStackBacktrace, DVTSystemActivityToken, IDEConcreteClientTracker, NSString;
 
 @interface IDEConcreteClientTrackingToken : NSObject <IDEClientTrackingToken>
 {
@@ -17,8 +17,10 @@
     BOOL _hasUnregistered;
     IDEConcreteClientTracker *_clientTracker;
     DVTSystemActivityToken *_systemActivityToken;
+    DVTStackBacktrace *_creationBacktrace;
 }
 
+@property(retain) DVTStackBacktrace *creationBacktrace; // @synthesize creationBacktrace=_creationBacktrace;
 @property(retain) DVTSystemActivityToken *systemActivityToken; // @synthesize systemActivityToken=_systemActivityToken;
 @property(readonly) NSString *clientName; // @synthesize clientName=_clientName;
 - (void).cxx_destruct;

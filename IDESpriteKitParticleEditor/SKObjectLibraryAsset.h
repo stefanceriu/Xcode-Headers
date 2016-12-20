@@ -8,16 +8,20 @@
 
 #import "NSCoding.h"
 
+@class NSString;
+
 @interface SKObjectLibraryAsset : DVTLibraryAsset <NSCoding>
 {
+    NSString *_typeIdentifier;
 }
 
-+ (id)assetWithSKObject:(id)arg1 title:(id)arg2 subTitle:(id)arg3 summary:(id)arg4 image:(id)arg5;
-+ (id)assetWithSKObject:(id)arg1 title:(id)arg2 subTitle:(id)arg3 summary:(id)arg4 image:(id)arg5 withUDID:(id)arg6;
++ (id)assetWithSKObject:(id)arg1 title:(id)arg2 subTitle:(id)arg3 summary:(id)arg4 image:(id)arg5 typeIdentifier:(id)arg6;
++ (id)assetWithSKObject:(id)arg1 title:(id)arg2 subTitle:(id)arg3 summary:(id)arg4 image:(id)arg5 typeIdentifier:(id)arg6 withUDID:(id)arg7;
+@property(retain, nonatomic) NSString *typeIdentifier; // @synthesize typeIdentifier=_typeIdentifier;
+- (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (id)initWithSKObject:(id)arg1 title:(id)arg2 subTitle:(id)arg3 summary:(id)arg4 image:(id)arg5;
-- (id)initWithSKObject:(id)arg1 title:(id)arg2 subTitle:(id)arg3 summary:(id)arg4 image:(id)arg5 withUDID:(id)arg6;
+- (id)initWithSKObject:(id)arg1 title:(id)arg2 subTitle:(id)arg3 summary:(id)arg4 image:(id)arg5 typeIdentifier:(id)arg6 withUDID:(id)arg7;
 
 @end
 

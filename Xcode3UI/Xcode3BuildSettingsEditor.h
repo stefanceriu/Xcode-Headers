@@ -50,6 +50,7 @@
     NSString *_buildPropertyLocalizedName;
     Xcode3ConfigurableDataSource *_outlineViewDataSource;
     NSButton *_editorModeButton_basic;
+    NSButton *_editorModeButton_customized;
     NSButton *_editorModeButton_all;
     NSButton *_displayModeButton_combined;
     NSButton *_displayModeButton_separated;
@@ -65,6 +66,7 @@
     DVTBorderedView *_borderedView;
     DVTSourceExpression *_mouseOverExpression;
     DVTPerformanceMetric *_metric;
+    NSString *_buildPropertyTypeLocalizedName;
     NSScrollView *_buildSettingsScrollView;
 }
 
@@ -109,6 +111,7 @@
 @property(copy) NSString *buildPropertyInfoString; // @synthesize buildPropertyInfoString=_buildPropertyInfoString;
 @property(copy) NSString *buildPropertyLocalizedName; // @synthesize buildPropertyLocalizedName=_buildPropertyLocalizedName;
 @property(copy) NSString *buildPropertyName; // @synthesize buildPropertyName=_buildPropertyName;
+@property(copy) NSString *buildPropertyTypeLocalizedName; // @synthesize buildPropertyTypeLocalizedName=_buildPropertyTypeLocalizedName;
 @property(retain, nonatomic) DVTSourceExpression *mouseOverExpression; // @synthesize mouseOverExpression=_mouseOverExpression;
 @property(retain, nonatomic) DVTSourceExpression *selectedExpression; // @synthesize selectedExpression=_selectedExpression;
 @property(retain) Xcode3ProjectEditor *projectEditor; // @synthesize projectEditor=_projectEditor;
@@ -193,6 +196,7 @@
 - (id)_categoryNameForCategory:(id)arg1 inDomain:(id)arg2;
 - (BOOL)_comparePropertyDefinitionInTermsOfEditorRelatedProperties:(id)arg1 toPropertyDefinition:(id)arg2;
 - (void)sortRoots:(id)arg1;
+- (void)find:(id)arg1;
 - (void)_searchFieldMenuItemAction:(id)arg1;
 - (id)_searchFieldPlaceholderStringForSearchScope:(int)arg1;
 - (void)toggleBuildPropertyValueDisplayMode:(id)arg1;

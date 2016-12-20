@@ -11,11 +11,7 @@
 @interface DYRangeSlider : NSControl
 {
     DYRangeSliderCell *_sliderCell;
-    id _textCell;
-    id _rangeEntryMin;
-    id _rangeEntryMax;
     BOOL _showMinMax;
-    int _infoType;
 }
 
 + (Class)cellClass;
@@ -31,15 +27,11 @@
 - (void)setRangeValue:(struct DYRangeValue)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
-- (BOOL)sendAction:(SEL)arg1 to:(id)arg2;
 - (void)sizeToFit;
-- (void)_onUpdate;
-- (id)formatDouble:(double)arg1;
 - (struct CGRect)_sliderBounds;
-- (void)setHUDLook:(BOOL)arg1;
 - (BOOL)isFlipped;
 - (BOOL)acceptsFirstMouse:(id)arg1;
-- (void)postInitWithOpts:(const CDStruct_0c50b91d *)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

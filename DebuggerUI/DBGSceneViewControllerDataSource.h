@@ -8,13 +8,12 @@
 
 #import "DBGSceneViewControllerDataSourceProtocol.h"
 
-@class DBGViewDebuggerAdditionUIController, NSDictionary, NSMutableArray, NSMutableDictionary, NSString;
+@class DBGViewDebuggerAdditionUIController, NSDictionary, NSMutableDictionary, NSString;
 
 @interface DBGSceneViewControllerDataSource : NSObject <DBGSceneViewControllerDataSourceProtocol>
 {
     NSDictionary *_plistDict;
     NSMutableDictionary *_viewInstacesDict;
-    NSMutableArray *_allViews;
     NSString *_rootIdentifier;
     unsigned long long globalRenderingOrderCounter;
     DBGViewDebuggerAdditionUIController *_debuggerUIController;

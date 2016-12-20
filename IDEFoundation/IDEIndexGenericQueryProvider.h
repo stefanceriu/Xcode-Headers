@@ -61,6 +61,7 @@
 - (id)allSuperClassesForClass:(id)arg1;
 - (id)superClassesForClass:(id)arg1;
 - (id)categoriesForClass:(id)arg1;
+- (id)gkInspectablePropertiesForClass:(id)arg1;
 - (id)ibOutletCollectionPropertiesForClass:(id)arg1;
 - (id)ibOutletCollectionVariablesForClass:(id)arg1;
 - (id)ibOutletCollectionsForClass:(id)arg1;
@@ -125,6 +126,8 @@
 - (id)symbolsOccurrencesInContext:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;
 - (id)codeDiagnosticsAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;
 - (id)codeCompletionsAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 completionContext:(id *)arg3 forIndex:(id)arg4;
+- (id)parsedCodeCommentAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3 symbolKindOut:(id *)arg4;
+- (id)parsedCodeCommentAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3 cursorKindOut:(long long *)arg4;
 - (id)parsedCodeCommentAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;
 - (id)symbolsMatchingName:(id)arg1 inContext:(id)arg2 withCurrentFileContentDictionary:(id)arg3 forIndex:(id)arg4;
 - (id)symbolsMatchingName:(id)arg1 inContext:(id)arg2 forIndex:(id)arg3;

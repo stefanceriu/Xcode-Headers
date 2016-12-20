@@ -8,21 +8,17 @@
 
 #import "IDELocalizationWorkProvider.h"
 
-@class DVTFilePath, NSDictionary;
+@class NSDictionary;
 
 @interface IDELocalizationWorkReadStrings : IDELocalizationWorkContext <IDELocalizationWorkProvider>
 {
-    NSDictionary *_strings;
-    NSDictionary *_comments;
-    DVTFilePath *_path;
 }
 
 + (id)contextWithParent:(id)arg1 path:(id)arg2;
-@property(retain) DVTFilePath *path; // @synthesize path=_path;
-@property(retain) NSDictionary *comments; // @synthesize comments=_comments;
-@property(retain) NSDictionary *strings; // @synthesize strings=_strings;
-- (void).cxx_destruct;
 - (id)work;
+@property(readonly) NSDictionary *comments;
+@property(readonly) NSDictionary *strings;
+- (id)path;
 
 @end
 

@@ -9,33 +9,41 @@
 #import "DVTLayoutManagerDelegate.h"
 #import "NSTableViewDelegate.h"
 
-@class DVTLayoutManager, DVTSourceCodeLanguage, DVTTextCompletionController, DVTTextCompletionDataSource, DVTTextStorage, NSCharacterSet, NSColor, NSString;
+@class DVTLayoutManager, DVTSourceCodeLanguage, DVTTextCompletionController, DVTTextCompletionDataSource, DVTTextStorage, NSCharacterSet, NSColor, NSDictionary, NSIndexSet, NSString;
 
 @interface DVTCompletingTextView : DVTTextView <DVTLayoutManagerDelegate, NSTableViewDelegate>
 {
     DVTTextCompletionController *_completionController;
     DVTTextCompletionDataSource *_completionsDataSource;
     NSColor *_secondarySelectedTextBackgroundColor;
+    NSColor *_currentLineHighlightColor;
+    NSIndexSet *_highlightedLineNumbers;
     double _accessoryAnnotationWidth;
     unsigned long long _modifierFlagsAtLastSingleMouseDown;
     BOOL _tabSelectsNextPlaceholder;
+    BOOL _currentlyDoingNonUserEditing;
+    BOOL _delegateRespondsToSyntaxColoringContext;
+    BOOL _highlightsCurrentLine;
     BOOL _hidesInsertionPoint;
 }
 
-+ (id)readableTextPasteboardTypes;
 + (long long)scrollerKnobStyleForBackgroundColor:(id)arg1;
++ (id)readableTextPasteboardTypes;
 + (id)_operatorChars;
 + (id)identifierChars;
 + (id)_identifierCharsForImportStatements;
 + (BOOL)appSupportsActionMonitoring;
 @property BOOL hidesInsertionPoint; // @synthesize hidesInsertionPoint=_hidesInsertionPoint;
+@property(nonatomic) BOOL highlightsCurrentLine; // @synthesize highlightsCurrentLine=_highlightsCurrentLine;
 @property(copy, nonatomic) NSColor *secondarySelectedTextBackgroundColor; // @synthesize secondarySelectedTextBackgroundColor=_secondarySelectedTextBackgroundColor;
 @property BOOL tabSelectsNextPlaceholder; // @synthesize tabSelectsNextPlaceholder=_tabSelectsNextPlaceholder;
 @property(readonly) DVTTextCompletionController *completionController; // @synthesize completionController=_completionController;
+@property(getter=isCurrentlyDoingNonUserEditing) BOOL currentlyDoingNonUserEditing; // @synthesize currentlyDoingNonUserEditing=_currentlyDoingNonUserEditing;
 @property unsigned long long modifierFlagsAtLastSingleMouseDown; // @synthesize modifierFlagsAtLastSingleMouseDown=_modifierFlagsAtLastSingleMouseDown;
 @property double accessoryAnnotationWidth; // @synthesize accessoryAnnotationWidth=_accessoryAnnotationWidth;
 - (void).cxx_destruct;
-- (void)setMarkedText:(id)arg1 selectedRange:(struct _NSRange)arg2;
+- (BOOL)validateUserInterfaceItem:(id)arg1;
+- (void)setMarkedText:(id)arg1 selectedRange:(struct _NSRange)arg2 replacementRange:(struct _NSRange)arg3;
 - (void)becomeMainWindow;
 - (void)resignKeyWindow;
 - (void)becomeKeyWindow;
@@ -44,6 +52,9 @@
 - (void)_invalidateDisplayForViewStatusChange;
 - (void)setBackgroundColor:(id)arg1;
 - (void)updateScrollerKnobStyle;
+- (BOOL)writeSelectionToPasteboard:(id)arg1 type:(id)arg2;
+- (BOOL)writeRTFSelectionToPasteboard:(id)arg1;
+- (id)writablePasteboardTypes;
 - (BOOL)readSelectionFromPasteboard:(id)arg1 type:(id)arg2;
 - (id)attributedStringForCompletionPlaceholderCell:(id)arg1 atCharacterIndex:(unsigned long long)arg2 withDefaultAttributes:(id)arg3;
 - (void)doubleClickedOnCell:(id)arg1 inRect:(struct CGRect)arg2 atIndexInToken:(unsigned long long)arg3;
@@ -58,6 +69,8 @@
 - (void)setNeedsDisplayInRect:(struct CGRect)arg1 avoidAdditionalLayout:(BOOL)arg2;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)_drawRect:(struct CGRect)arg1 clip:(BOOL)arg2;
+- (void)_drawViewBackgroundInRect:(struct CGRect)arg1;
+- (void)_drawCurrentLineHighlight:(struct CGRect)arg1;
 - (void)_drawOverlayRect:(struct CGRect)arg1;
 - (void)drawInsertionPointInRect:(struct CGRect)arg1 color:(id)arg2 turnedOn:(BOOL)arg3;
 - (id)selectedTextAttributes;
@@ -69,14 +82,14 @@
 - (void)textStorage:(id)arg1 willEndEditRange:(struct _NSRange)arg2 changeInLength:(long long)arg3;
 @property(readonly) DVTTextStorage *textStorage;
 @property(readonly) DVTLayoutManager *layoutManager;
-- (void)didInsertCompletionTextAtRange:(struct _NSRange)arg1;
-- (void)invalidateDisplayForRange:(struct _NSRange)arg1;
+- (void)textCompletionSession:(id)arg1 didInsertCompletionItem:(id)arg2 range:(struct _NSRange)arg3;
 - (unsigned long long)draggingEntered:(id)arg1;
 - (void)paste:(id)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)removeFromSuperview;
 - (void)_mouseInside:(id)arg1;
 - (void)debugDumpCompletionState:(id)arg1;
+- (BOOL)handleInsertNewline;
 - (void)selectPreviousPlaceholder:(id)arg1;
 - (void)selectNextPlaceholder:(id)arg1;
 - (BOOL)handleInsertBackTab;
@@ -90,11 +103,18 @@
 - (void)deleteForward:(id)arg1;
 - (void)deleteBackward:(id)arg1;
 - (void)insertText:(id)arg1 replacementRange:(struct _NSRange)arg2;
+- (void)deleteParagraph:(id)arg1;
+- (void)deleteToEndOfText:(id)arg1;
+- (void)deleteToBeginningOfText:(id)arg1;
+- (void)moveToEndOfTextAndModifySelection:(id)arg1;
+- (void)moveToEndOfText:(id)arg1;
+- (void)moveToBeginningOfTextAndModifySelection:(id)arg1;
+- (void)moveToBeginningOfText:(id)arg1;
+- (BOOL)_moveToEndOfTextByExtendingSelection:(BOOL)arg1;
+- (BOOL)_moveToBeginningOfTextByExtendingSelection:(BOOL)arg1;
+- (struct _NSRange)_lineCharacterRangeForSelectedRange:(struct _NSRange)arg1 affinity:(unsigned long long)arg2 firstLine:(BOOL)arg3;
 - (void)doCommandBySelector:(SEL)arg1;
-- (void)layoutManager:(id)arg1 didUnfoldRange:(struct _NSRange)arg2;
-- (void)layoutManager:(id)arg1 didFoldRange:(struct _NSRange)arg2;
 - (id)foldingTokenTypesForLayoutManager:(id)arg1;
-- (void)_foldingLayoutManagerFoldsChanged:(id)arg1;
 - (id)layoutManager:(id)arg1 shouldUseTextBackgroundColor:(id)arg2 rectArray:(const struct CGRect *)arg3 count:(unsigned long long)arg4 forCharacterRange:(struct _NSRange)arg5;
 - (id)layoutManager:(id)arg1 shouldUseTemporaryAttributes:(id)arg2 forDrawingToScreen:(BOOL)arg3 atCharacterIndex:(unsigned long long)arg4 effectiveRange:(struct _NSRange *)arg5;
 - (void)showMatchingBraceAtLocation:(id)arg1;
@@ -115,14 +135,19 @@
 @property(readonly, copy) NSCharacterSet *autoCompleteChars;
 @property(readonly) double autoCompletionDelay;
 - (id)contextForCompletionStrategiesAtWordStartLocation:(unsigned long long)arg1;
+- (void)invalidateCompletionsDataSource;
 @property(readonly) DVTTextCompletionDataSource *completionsDataSource;
 - (struct _NSRange)wordRangeAtLocation:(unsigned long long)arg1;
 @property(readonly) DVTSourceCodeLanguage *language;
+@property(readonly) NSDictionary *syntaxColoringContext;
+@property id <DVTCompletingTextViewDelegate> delegate; // @dynamic delegate;
 - (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 textContainer:(id)arg2;
 - (void)_dvtCommonInit;
+@property(copy) NSColor *currentLineHighlightColor; // @synthesize currentLineHighlightColor=_currentLineHighlightColor;
+@property(copy) NSIndexSet *highlightedLineNumbers; // @synthesize highlightedLineNumbers=_highlightedLineNumbers;
 - (id)currentTheme;
 - (BOOL)removeMenusNotInWhiteList:(id)arg1 fromMenu:(id)arg2 removeSeparators:(BOOL)arg3;
 - (id)cell;
@@ -131,7 +156,6 @@
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property id <DVTCompletingTextViewDelegate> delegate; // @dynamic delegate;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;

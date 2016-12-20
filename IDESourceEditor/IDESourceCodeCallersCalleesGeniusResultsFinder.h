@@ -11,6 +11,7 @@
 }
 
 + (Class)editorDocumentClass;
++ (void)initialize;
 - (BOOL)_getUpdateGeniusResultsPhaseOneBlock:(CDUnknownBlockType *)arg1 phaseTwoBlock:(CDUnknownBlockType *)arg2 phaseThreeBlock:(CDUnknownBlockType *)arg3;
 
 @end

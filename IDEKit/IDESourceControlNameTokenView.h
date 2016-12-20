@@ -6,26 +6,25 @@
 
 #import "NSView.h"
 
+#import "NSAccessibilityButton.h"
 #import "NSMenuDelegate.h"
 
-@class NSMutableDictionary, NSObject<IDESourceControlNameTokenViewDelegate>, NSString;
+@class NSColor, NSMutableDictionary, NSObject<IDESourceControlNameTokenViewDelegate>, NSString;
 
-@interface IDESourceControlNameTokenView : NSView <NSMenuDelegate>
+@interface IDESourceControlNameTokenView : NSView <NSMenuDelegate, NSAccessibilityButton>
 {
     NSString *_value;
     struct CGRect _tokenRect;
     struct CGRect _stringRect;
     BOOL _showToken;
-    BOOL _forceHideToken;
-    BOOL _hideMenuButton;
     BOOL _selected;
     NSObject<IDESourceControlNameTokenViewDelegate> *_delegate;
     NSMutableDictionary *_textAttributes;
     double _fontSize;
-    BOOL _isBold;
-    unsigned long long _alignment;
+    NSColor *_textColor;
 }
 
+@property(copy) NSColor *textColor; // @synthesize textColor=_textColor;
 @property __weak NSObject<IDESourceControlNameTokenViewDelegate> *delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
@@ -33,14 +32,11 @@
 - (void)_drawInteriorWithTextFrame:(struct CGRect)arg1 tokenFrame:(struct CGRect)arg2;
 - (void)_drawTextWithFrame:(struct CGRect)arg1;
 - (void)_drawTokenWithFrame:(struct CGRect)arg1;
-- (id)tokenForegroundGradient;
-- (id)tokenBackgroundColor;
-- (void)_drawTokenWithContext:(id)arg1 frame:(struct CGRect)arg2 clip:(BOOL)arg3;
+- (id)tokenSelectedColor;
+- (id)tokenColor;
 - (id)_pullDownImage;
 - (struct CGRect)_pullDownRectForTokenFrame:(struct CGRect)arg1;
 - (struct CGRect)_tokenRectForStringRect:(struct CGRect)arg1;
-@property BOOL hideMenuButton; // @synthesize hideMenuButton=_hideMenuButton;
-@property BOOL forceHideToken; // @synthesize forceHideToken=_forceHideToken;
 @property(copy) NSString *value;
 @property(readonly) struct CGRect textFrame;
 - (void)_resetTokenRect;
@@ -52,10 +48,10 @@
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
 - (void)_setTrackingRectWithRect:(struct CGRect)arg1;
-@property unsigned long long alignment; // @synthesize alignment=_alignment;
-@property double fontSize; // @synthesize fontSize=_fontSize;
-- (void)_setFontSize:(double)arg1 bold:(BOOL)arg2;
-@property BOOL isBold; // @synthesize isBold=_isBold;
+- (void)_setFontSize:(double)arg1;
+- (double)fontSize;
+- (BOOL)accessibilityPerformPress;
+- (id)accessibilityLabel;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties

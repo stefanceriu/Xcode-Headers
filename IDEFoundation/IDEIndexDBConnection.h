@@ -12,6 +12,8 @@
 
 @interface IDEIndexDBConnection : IDEIndexDBSQLStream <DVTInvalidation>
 {
+    int _inUseCount;
+    int _collectionCount;
     IDEIndexDatabase *_database;
     NSObject<OS_dispatch_queue> *_runQueue;
     struct sqlite3 *_dbHandle;
@@ -20,8 +22,6 @@
     NSMutableSet *_tempTables;
     BOOL _closing;
     void *_checkpointInfo;
-    int _inUseCount;
-    int _collectionCount;
 }
 
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;

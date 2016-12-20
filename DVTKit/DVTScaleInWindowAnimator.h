@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSWindow;
+#import "CAAnimationDelegate.h"
 
-@interface DVTScaleInWindowAnimator : NSObject
+@class NSString, NSWindow;
+
+@interface DVTScaleInWindowAnimator : NSObject <CAAnimationDelegate>
 {
     NSWindow *_windowToScaleIn;
     struct CGPoint _pointToScaleFrom;
@@ -26,6 +28,12 @@
 - (void)_scaleInWindow;
 - (struct CATransform3D)_transformForScale:(double)arg1;
 - (id)_initWithWindow:(id)arg1 point:(struct CGPoint)arg2 finalAlpha:(double)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -16,7 +16,7 @@
 - (void)setAutoCenterAndResizeToFitSuperview:(BOOL)arg1;
 - (void)setStringValue:(id)arg1;
 - (void)_centerAndResizeToFitSuperview;
-- (BOOL)isOpaque;
+- (BOOL)allowsVibrancy;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (void)_sharedDVTLozengeTextFieldInit;

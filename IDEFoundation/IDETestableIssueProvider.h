@@ -21,7 +21,7 @@
 
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 - (void).cxx_destruct;
-- (void)_processResult:(id)arg1;
+- (void)_processResult:(id)arg1 forTest:(id)arg2;
 - (void)_addIssuesForTest:(id)arg1 issues:(id)arg2 isGeneric:(BOOL)arg3;
 - (void)_clearIssuesForTest:(id)arg1;
 - (void)_postTestIssue:(id)arg1 forTestable:(id)arg2;

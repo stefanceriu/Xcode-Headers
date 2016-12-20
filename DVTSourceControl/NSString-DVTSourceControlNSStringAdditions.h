@@ -7,8 +7,10 @@
 #import "NSString.h"
 
 @interface NSString (DVTSourceControlNSStringAdditions)
+- (id)dvtscm_stringWithInvalidStrings:(id)arg1;
 - (id)dvtscm_urlStringByAppendingPathComponent:(id)arg1;
 - (id)dvtscm_stringByDeletingTrailingSlash;
 - (id)dvtscm_stringByStandardizingRelativePath;
+- (id)dvtscm_escapedUrlFromString;
 @end
 

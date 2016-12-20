@@ -15,11 +15,12 @@
 + (id)defaultInstanceForIdioms:(id)arg1 enforceStrictIdioms:(BOOL)arg2;
 + (id)classNameComponents;
 + (id)catalogItemFileExtension;
++ (Class)slotClass;
 + (Class)requiredChildrenClass;
 - (id)defaultUnqualifiedRuntimeName;
 - (id)requiredSizeForChild:(id)arg1;
 - (void)populateIssues:(id)arg1 forUnconflictedChild:(id)arg2 inSlot:(id)arg3 context:(id)arg4;
-- (Class)expectedClassForSlot:(id)arg1;
+- (Class)expectedChildClassForSlot:(id)arg1;
 - (Class)manifestArchivistSlotClassForChildren:(id)arg1;
 - (id)slotForChild:(id)arg1;
 

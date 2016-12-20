@@ -28,8 +28,6 @@
 @property(readonly) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
-- (id)nameOfTrackingBranch:(CDUnknownBlockType)arg1;
-- (id)workingTree:(id)arg1 parentBranchesWithCompletionBlock:(CDUnknownBlockType)arg2;
 - (id)repository:(id)arg1 currentRevisionWithCompletionBlock:(CDUnknownBlockType)arg2;
 @property(readonly) NSString *repositoryURLString;
 - (id)description;

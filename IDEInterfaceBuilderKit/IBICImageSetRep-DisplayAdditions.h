@@ -6,12 +6,11 @@
 
 #import "IBICImageSetRep.h"
 
-#import "IBICImageMediaResourceProvider.h"
+#import "IBICMediaResourceProvider.h"
 
 @class NSString;
 
-@interface IBICImageSetRep (DisplayAdditions) <IBICImageMediaResourceProvider>
-+ (id)keyPathsForValuesAffectingIbInspectedAlignmentInsets;
+@interface IBICImageSetRep (DisplayAdditions) <IBICMediaResourceProvider>
 - (id)mediaResource;
 - (BOOL)shouldIncludeInMediaLibrary;
 - (void)populateChildrenForInclusionInMediaLibrary:(id)arg1;

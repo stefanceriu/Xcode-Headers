@@ -73,6 +73,7 @@
 - (BOOL)commitEditingForAction:(int)arg1 errors:(id)arg2;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
+- (void)revertState;
 @property(retain) DVTStateToken *stateToken; // @dynamic stateToken;
 - (void)_updateStateSavingRegistrations;
 - (void)splitView:(id)arg1 resizeSubviewsWithOldSize:(struct CGSize)arg2;

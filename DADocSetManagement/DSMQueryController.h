@@ -14,7 +14,6 @@
 + (id)sharedQueryController;
 - (void)cancelQuery:(id)arg1 delegate:(id)arg2 contextInfo:(void *)arg3;
 - (id)runSynchronousTitleQuery:(id)arg1;
-- (id)managedObjectContextForDocSet:(id)arg1;
 - (void)runAsynchronousFullTextQuery:(id)arg1 delegate:(id)arg2 contextInfo:(void *)arg3;
 - (id)runSynchronousFullTextQuery:(id)arg1 maximumRelevance:(double *)arg2;
 - (void)runAsynchronousAPIQuery:(id)arg1 delegate:(id)arg2 contextInfo:(void *)arg3;

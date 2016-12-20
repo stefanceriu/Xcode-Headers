@@ -6,25 +6,51 @@
 
 #import "NSObject.h"
 
-@class DVTPortalCertificateType, DVTPortalPlatform, NSString;
+@class DVTPlatform, DVTPortalCertificateType, DVTPortalPlatform, DVTPortalProfilePurpose, NSString;
 
 @interface DVTPortalProfileType : NSObject
 {
     BOOL _teamProfile;
+    BOOL _requiresExplicitAppID;
+    BOOL _enterpriseOnly;
+    BOOL _canBeCreatedByMembers;
+    BOOL _canBeCreatedByAdmins;
+    BOOL _canBeCreatedByEnterpriseTeams;
+    BOOL _canBeCreatedByUniversityTeams;
+    BOOL _canBeCreatedByFreeTeams;
     NSString *_identifier;
-    DVTPortalPlatform *_portalPlatform;
     DVTPortalCertificateType *_certificateType;
+    DVTPortalProfilePurpose *_purpose;
+    NSString *_userDescription;
+    NSString *_namePostfix;
+    DVTPortalPlatform *_portalPlatform;
+    long long _devicesStyle;
 }
 
 + (id)profileTypeWithIdentifier:(id)arg1;
++ (id)profileTypesForPlatform:(id)arg1;
 + (id)profileTypes;
+@property(readonly, nonatomic) long long devicesStyle; // @synthesize devicesStyle=_devicesStyle;
+@property(readonly, nonatomic) BOOL canBeCreatedByFreeTeams; // @synthesize canBeCreatedByFreeTeams=_canBeCreatedByFreeTeams;
+@property(readonly, nonatomic) BOOL canBeCreatedByUniversityTeams; // @synthesize canBeCreatedByUniversityTeams=_canBeCreatedByUniversityTeams;
+@property(readonly, nonatomic) BOOL canBeCreatedByEnterpriseTeams; // @synthesize canBeCreatedByEnterpriseTeams=_canBeCreatedByEnterpriseTeams;
+@property(readonly, nonatomic) BOOL canBeCreatedByAdmins; // @synthesize canBeCreatedByAdmins=_canBeCreatedByAdmins;
+@property(readonly, nonatomic) BOOL canBeCreatedByMembers; // @synthesize canBeCreatedByMembers=_canBeCreatedByMembers;
+@property(readonly, nonatomic, getter=isEnterpriseOnly) BOOL enterpriseOnly; // @synthesize enterpriseOnly=_enterpriseOnly;
+@property(readonly, nonatomic) DVTPortalPlatform *portalPlatform; // @synthesize portalPlatform=_portalPlatform;
+@property(readonly, nonatomic) NSString *namePostfix; // @synthesize namePostfix=_namePostfix;
+@property(readonly, nonatomic) BOOL requiresExplicitAppID; // @synthesize requiresExplicitAppID=_requiresExplicitAppID;
+@property(readonly, nonatomic) NSString *userDescription; // @synthesize userDescription=_userDescription;
+@property(readonly, nonatomic) DVTPortalProfilePurpose *purpose; // @synthesize purpose=_purpose;
 @property(readonly, nonatomic, getter=isTeamProfile) BOOL teamProfile; // @synthesize teamProfile=_teamProfile;
 @property(readonly, nonatomic) DVTPortalCertificateType *certificateType; // @synthesize certificateType=_certificateType;
-@property(readonly, nonatomic) DVTPortalPlatform *portalPlatform; // @synthesize portalPlatform=_portalPlatform;
 @property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
+@property(readonly, nonatomic) DVTPlatform *platform;
 - (id)description;
-- (id)initWithIdentifier:(id)arg1 portalPlatform:(id)arg2 certificateType:(id)arg3 isTeamProfile:(BOOL)arg4;
+- (id)initWithIdentifier:(id)arg1 portalPlatform:(id)arg2 certificateType:(id)arg3 isTeamProfile:(BOOL)arg4 purpose:(id)arg5 enterpriseOnly:(BOOL)arg6 canBeCreatedByMembers:(BOOL)arg7 canBeCreatedByAdmins:(BOOL)arg8 canBeCreatedByEnterpriseTeams:(BOOL)arg9 canBeCreatedByUniversityTeams:(BOOL)arg10 canBeCreatedByFreeTeams:(BOOL)arg11 requiresExplicitAppID:(BOOL)arg12 devicesStyle:(long long)arg13 namePostfix:(id)arg14 userDescription:(id)arg15;
 
 @end
 

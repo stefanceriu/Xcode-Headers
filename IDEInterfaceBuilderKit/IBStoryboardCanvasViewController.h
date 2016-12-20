@@ -40,6 +40,7 @@
 - (void)beginDraggingInitialSceneCanvasLink:(id)arg1 withEvent:(id)arg2 canvasLinkPath:(id)arg3;
 - (id)nearestSceneFrameControllerToPoint:(struct CGPoint)arg1;
 - (id)sceneFrameControllersFromBackToFront;
+- (void)canvasBackgroundOverlayView:(id)arg1 smartMagnifyCanvasLinkPath:(id)arg2 withEvent:(id)arg3;
 - (void)canvasBackgroundOverlayView:(id)arg1 canvasLinkPathWasDoubleClicked:(id)arg2 withMouseDownEvent:(id)arg3;
 - (BOOL)canSelectMembers:(id)arg1;
 - (void)documentEditor:(id)arg1 deselectMembers:(id)arg2;
@@ -97,9 +98,7 @@
 - (id)document;
 - (void)setSelectedConnections:(id)arg1;
 - (id)canvasView;
-- (void)zoomToFactor:(double)arg1 anchor:(struct CGPoint)arg2 animated:(BOOL)arg3 userInitiated:(BOOL)arg4;
-- (double)defaultOverviewZoomFactor;
-- (BOOL)canZoomCanvas;
+- (void)zoomToFactor:(double)arg1 anchor:(struct CGPoint)arg2 animated:(BOOL)arg3;
 - (void)registerWithDocumentEditor;
 - (id)storyboardDocumentEditor;
 - (void)takeFocus;

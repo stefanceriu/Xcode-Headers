@@ -29,6 +29,8 @@
 + (BOOL)_validateUser:(id)arg1 request:(id)arg2 validationErrors:(id *)arg3;
 + (id)stringWithHTTPVerb:(unsigned long long)arg1;
 + (id)requestWithService:(id)arg1 user:(id)arg2 verb:(unsigned long long)arg3 base:(id)arg4 bodyData:(id)arg5 credential:(id)arg6 error:(id *)arg7;
++ (id)xcodeVersion;
++ (id)URLEscapeCharacterSet;
 + (id)requestWithService:(id)arg1 user:(id)arg2 verb:(unsigned long long)arg3 base:(id)arg4 body:(id)arg5 credential:(id)arg6 error:(id *)arg7;
 + (id)requestWithService:(id)arg1 user:(id)arg2 verb:(unsigned long long)arg3 base:(id)arg4 bodyData:(id)arg5 error:(id *)arg6;
 + (id)requestWithService:(id)arg1 user:(id)arg2 verb:(unsigned long long)arg3 base:(id)arg4 body:(id)arg5 error:(id *)arg6;
@@ -45,8 +47,9 @@
 @property(retain, nonatomic) NSString *UUID; // @synthesize UUID=_UUID;
 - (void).cxx_destruct;
 - (id)identityRefUsingKeychainPath:(id)arg1 password:(id)arg2 error:(id *)arg3;
-- (id)httpCredentialWithError:(id *)arg1;
 - (void)URLSession:(id)arg1 task:(id)arg2 didReceiveChallenge:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
+- (void)URLSession:(id)arg1 didReceiveChallenge:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)_handleChallenge:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)performRequestWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)addHeader:(id)arg1 value:(id)arg2;
 @property(readonly, copy) NSString *description;

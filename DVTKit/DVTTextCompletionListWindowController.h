@@ -11,7 +11,7 @@
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTStackBacktrace, DVTTextCompletionSession, DVTTextCompletionWindowResizeAnimation, DVTViewController<DVTInvalidation>, NSDictionary, NSScrollView, NSString, NSTableColumn, NSTableView, NSTextField, NSViewAnimation;
+@class DVTBorderedView, DVTDelayedInvocation, DVTObservingToken, DVTStackBacktrace, DVTTextCompletionSession, DVTTextCompletionWindowResizeAnimation, DVTViewController<DVTInvalidation>, NSDictionary, NSScrollView, NSString, NSTableColumn, NSTableView, NSTextField, NSViewAnimation;
 
 @interface DVTTextCompletionListWindowController : NSWindowController <DVTInvalidation, NSTableViewDataSource, NSTableViewDelegate, NSAnimationDelegate>
 {
@@ -23,8 +23,6 @@
     NSScrollView *_completionsScrollView;
     DVTBorderedView *_quickHelpView;
     DVTBorderedView *_divider;
-    NSTextField *completionUserText;
-    NSTextField *fuzzyCompletionDivider;
     DVTTextCompletionSession *_session;
     struct CGRect _referenceFrameInView;
     DVTTextCompletionWindowResizeAnimation *_resizeAnimation;
@@ -38,15 +36,9 @@
     BOOL _showingWindow;
     BOOL _shouldIgnoreSelectionChange;
     BOOL _quickHelpOnTop;
-    BOOL _showingAboveText;
-    BOOL _completionsOnTop;
-    BOOL _completionSelectionHasQuickView;
-    float _completionLabelPadding;
-    float _titleOriginX;
-    int _previousMode;
+    DVTDelayedInvocation *_delayedQuickHelpClearing;
     DVTBorderedView *_contentView;
     NSTableColumn *_leftPaddingColumn;
-    struct CGSize _completionsTextSize;
 }
 
 + (id)_nonSelectedTypeColor;
@@ -54,13 +46,6 @@
 + (void)initialize;
 @property __weak NSTableColumn *leftPaddingColumn; // @synthesize leftPaddingColumn=_leftPaddingColumn;
 @property __weak DVTBorderedView *contentView; // @synthesize contentView=_contentView;
-@property int previousMode; // @synthesize previousMode=_previousMode;
-@property float titleOriginX; // @synthesize titleOriginX=_titleOriginX;
-@property BOOL completionSelectionHasQuickView; // @synthesize completionSelectionHasQuickView=_completionSelectionHasQuickView;
-@property BOOL completionsOnTop; // @synthesize completionsOnTop=_completionsOnTop;
-@property float completionLabelPadding; // @synthesize completionLabelPadding=_completionLabelPadding;
-@property struct CGSize completionsTextSize; // @synthesize completionsTextSize=_completionsTextSize;
-@property BOOL showingAboveText; // @synthesize showingAboveText=_showingAboveText;
 @property(nonatomic) int hideReason; // @synthesize hideReason=_hideReason;
 @property(readonly) DVTTextCompletionSession *session; // @synthesize session=_session;
 @property(readonly) BOOL showingWindow; // @synthesize showingWindow=_showingWindow;
@@ -75,21 +60,19 @@
 - (void)_updateInfoNewSelection;
 - (BOOL)showInfoForSelectedCompletionItem;
 - (id)_selectedCompletionItem;
+- (void)_updateInfoPaneForCompletionItem:(id)arg1 andViewController:(id)arg2;
+- (void)_removeQuickHelpView;
 - (void)showInfoPaneForCompletionItem:(id)arg1;
 - (void)close;
 - (void)_loadColorsFromCurrentTheme;
 - (void)_themeColorsChanged:(id)arg1;
 - (id)_notRecommendedAttributes;
-- (id)_usefulPrefixAttributes;
 - (id)_messageTextAttributes;
 - (struct CGRect)_preferredWindowFrameForTextFrame:(struct CGRect)arg1 columnsWidth:(double *)arg2 titleColumnX:(double)arg3;
 - (void)_getTitleColumnWidth:(double *)arg1 typeColumnWidth:(double *)arg2;
 - (void)_updateSelectedRow;
 - (void)_updateCurrentDisplayState;
 - (void)_updateCurrentDisplayStateForQuickHelp;
-- (void)hideFuzzyCompletionElements;
-- (void)completionsOnTopIsNo;
-- (void)completionsOnTopIsYes;
 - (void)_startDelayedAnimation;
 - (void)_doubleClickOnRow:(id)arg1;
 - (void)animationDidEnd:(id)arg1;
@@ -98,7 +81,6 @@
 - (void)_hideWindow;
 - (void)showWindowForTextFrame:(struct CGRect)arg1 explicitAnimation:(BOOL)arg2;
 - (void)primitiveInvalidate;
-- (void)dealloc;
 - (void)windowDidLoad;
 - (id)initWithSession:(id)arg1;
 - (id)window;

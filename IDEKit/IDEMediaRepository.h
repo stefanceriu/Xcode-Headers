@@ -22,8 +22,7 @@
 + (void)initialize;
 - (void).cxx_destruct;
 - (id)registerMediaRepositoryObserverWithOptions:(unsigned long long)arg1 block:(CDUnknownBlockType)arg2;
-- (void)didUnregisterMediaRepositoryObserver;
-- (void)willRegisterMediaRepositoryObserver;
+- (id)pin;
 - (void)notifyObserversOfAddsAndModifies:(id)arg1 andDeletes:(id)arg2;
 @property(readonly, copy, nonatomic) NSSet *resources;
 - (void)primitiveInvalidate;

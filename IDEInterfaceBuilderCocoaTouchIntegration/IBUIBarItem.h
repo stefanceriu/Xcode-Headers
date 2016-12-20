@@ -60,6 +60,9 @@
 - (id)ibInspectedImage;
 - (void)setIbInspectedTitle:(id)arg1;
 - (id)ibInspectedTitle;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 - (id)ibLocalSearchableNumericAttributeKeyPaths;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;

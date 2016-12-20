@@ -24,9 +24,9 @@
 @property long long ibInspectedTruncatesLastVisibleLine;
 @property long long ibInspectedRefusesFirstResponder;
 - (BOOL)ibInspectedOverridesSetTag;
-- (void)setIbInspectedEnabled:(long long)arg1;
-- (long long)ibInspectedEnabled;
+@property long long ibInspectedEnabled;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (void)ibPopulateRequiredDocumentCapabilities:(id)arg1 document:(id)arg2;
 - (id)ibEquivalentSourceForToOneOutlet:(id)arg1;
 - (Class)ibEditorClass;
 - (id)ibInspectedControl;
@@ -41,8 +41,7 @@
 - (Class)ibPreferredControlClass;
 - (id)ibPreferredSizeForSize:(struct CGSize)arg1 suggestedWidth:(char *)arg2 suggestedHeight:(char *)arg3 scaleAxesIndependently:(char *)arg4;
 - (BOOL)ibWantsBoundsIndicatorDuringTracking;
-- (void)setIbInspectedControlSize:(unsigned long long)arg1;
-- (unsigned long long)ibInspectedControlSize;
+@property unsigned long long ibInspectedControlSize;
 - (id)ibExposedElusiveDescendantsKeyPaths;
 - (id)ibDefaultDataValueForTableView:(id)arg1;
 - (long long)ibPreferredResizeDirection;
@@ -61,5 +60,9 @@
 - (BOOL)ibCanBeBoundToFromObject:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (void)ibReallySetType:(unsigned long long)arg1;
+- (id)ibLocalAdditionalLocalizableAttributeKeyPaths;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 @end
 

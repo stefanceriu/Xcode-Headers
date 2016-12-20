@@ -34,7 +34,6 @@
 - (void)forceRefreshLocalAndRemoteStatusChecking;
 - (void)refreshFileStatusCommand:(id)arg1;
 - (void)resolvedCommand:(id)arg1;
-- (void)ignoreCommand:(id)arg1;
 - (void)revertSelectedFilesCommand:(id)arg1;
 - (void)addCommand:(id)arg1;
 - (void)_commitSelectedFilePaths:(id)arg1;
@@ -52,12 +51,8 @@
 - (void)presentWaitingForInitialScanToCompleteWithContinuationBlock:(CDUnknownBlockType)arg1;
 - (void)presentInvalidSelectionError;
 - (void)presentNoSelectionError;
-- (void)presentBranchesNotConfiguredError:(SEL)arg1;
-- (void)presentWorkingCopyUnreachableError;
-- (void)presentRepositoryUnreachableError;
 - (void)presentNoWorkingCopiesError;
 - (BOOL)hasSelection;
-- (BOOL)hasBranchesConfigured;
 - (BOOL)hasValidWorkingCopy;
 - (BOOL)hasValidWorkspace;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
@@ -66,6 +61,7 @@
 - (id)selectedNavigableItemArchivableRepresentations;
 - (void)displayError:(id)arg1;
 - (BOOL)initialWorkspaceScanIsComplete;
+- (BOOL)didScanWorkspace;
 - (CDUnknownBlockType)continuationBlock;
 - (id)workspace;
 - (id)workspaceDocument;

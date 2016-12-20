@@ -22,6 +22,7 @@
 - (void).cxx_destruct;
 - (void)_clientCancellationTimeout;
 - (void)cancelTrackedClients;
+- (void)_waitForTokensToCancel:(id)arg1;
 - (void)unregisterClient:(id)arg1;
 - (id)clientsNotSupportingCancellation;
 - (id)clientsRequiringCancellationPrompt;

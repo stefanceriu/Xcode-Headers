@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IBICAssetInstantiationCommandMenu, NSSet, NSString;
+@class IBICAssetInstantiationCommandMenu, NSArray, NSSet, NSString;
 
 @interface IBICAssetInstantiationCommand : NSObject
 {
@@ -16,8 +16,10 @@
     NSString *_displayName;
     NSSet *_idioms;
     long long _insertionStyle;
+    NSArray *_catalogClasses;
 }
 
+@property(readonly) NSArray *catalogClasses; // @synthesize catalogClasses=_catalogClasses;
 @property(readonly) long long insertionStyle; // @synthesize insertionStyle=_insertionStyle;
 @property(readonly) BOOL embedsSelectedItems; // @synthesize embedsSelectedItems=_embedsSelectedItems;
 @property(readonly) NSSet *idioms; // @synthesize idioms=_idioms;

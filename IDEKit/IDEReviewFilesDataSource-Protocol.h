@@ -6,11 +6,10 @@
 
 #import "NSObject.h"
 
-@class DVTDocumentLocation, IDENavigableItem, IDENavigatorDataCell, IDENavigatorOutlineView, IDEReviewFilesNavigator, NSArray;
+@class DVTDocumentLocation, IDENavigableItem, IDENavigatorOutlineView, IDEReviewFilesNavigator, NSArray, NSString;
 
 @protocol IDEReviewFilesDataSource <NSObject>
 - (DVTDocumentLocation *)reviewFilesNavigator:(IDEReviewFilesNavigator *)arg1 documentLocationForNavigableItem:(IDENavigableItem *)arg2;
-- (IDENavigatorDataCell *)reviewFilesNavigator:(IDEReviewFilesNavigator *)arg1 outlineView:(IDENavigatorOutlineView *)arg2 dataCellForNavigableItem:(IDENavigableItem *)arg3;
 - (NSArray *)issueNavigableItems;
 - (NSArray *)flatNavigableItems;
 - (NSArray *)fileSystemNavigableItems;
@@ -19,7 +18,7 @@
 @optional
 - (BOOL)reviewFilesNavigator:(IDEReviewFilesNavigator *)arg1 outlineView:(IDENavigatorOutlineView *)arg2 showCheckboxForNavigableItem:(IDENavigableItem *)arg3;
 - (double)reviewFilesNavigator:(IDEReviewFilesNavigator *)arg1 outlineView:(IDENavigatorOutlineView *)arg2 rowHeightForNavigableItem:(IDENavigableItem *)arg3;
-- (void)reviewFilesNavigator:(IDEReviewFilesNavigator *)arg1 outlineView:(IDENavigatorOutlineView *)arg2 willDisplayCell:(id)arg3 forNavigableItem:(IDENavigableItem *)arg4;
 - (NSArray *)reviewFilesNavigator:(IDEReviewFilesNavigator *)arg1 importantFilePathsForNavigableItem:(IDENavigableItem *)arg2 excludingDisabledItems:(NSArray *)arg3;
+- (NSString *)localStatusForNavigableItem:(IDENavigableItem *)arg1;
 @end
 

@@ -11,33 +11,35 @@
 @interface DYDevice : NSObject
 {
     DYDeviceInfo *_deviceInfo;
+    struct dispatch_queue_s *_eventsQueue;
 }
 
 + (id)replayerAppIdentifier;
 + (Class)controlStrategyClass;
 + (Class)deferredLaunchStrategyClass;
 + (Class)launchStrategyClass;
+@property(readonly, nonatomic) struct dispatch_queue_s *eventsQueue; // @synthesize eventsQueue=_eventsQueue;
 @property(readonly, retain, nonatomic) DYDeviceInfo *deviceInfo; // @synthesize deviceInfo=_deviceInfo;
 - (void).cxx_destruct;
 - (BOOL)supportsPlaybackOfCaptureWithInfo:(id)arg1 limitBackwardsCompatibility:(BOOL)arg2 isInternal:(BOOL)arg3;
 - (BOOL)versionIsOlderThan:(id)arg1;
 - (id)iconDataForApplicationIdentifiers:(id)arg1;
 - (id)createTransport;
-@property(readonly, retain, nonatomic) NSString *standardTitle; // @dynamic standardTitle;
-@property(readonly, retain, nonatomic) NSArray *supportedGraphicsAPIInfos; // @dynamic supportedGraphicsAPIInfos;
-@property(readonly, nonatomic) CDStruct_fc1d2ed0 mainScreenDescriptor; // @dynamic mainScreenDescriptor;
-@property(readonly, retain, nonatomic) DYGPUToolsVersionInfo *gputoolsVersionInfo; // @dynamic gputoolsVersionInfo;
-@property(readonly, nonatomic) NSError *gputoolsServiceAvailabilityError; // @dynamic gputoolsServiceAvailabilityError;
-@property(readonly, nonatomic) BOOL gputoolsServiceAvailable; // @dynamic gputoolsServiceAvailable;
+@property(readonly, retain, nonatomic) NSString *standardTitle;
+@property(readonly, retain, nonatomic) NSArray *supportedGraphicsAPIInfos;
+@property(readonly, nonatomic) CDStruct_fc1d2ed0 mainScreenDescriptor;
+@property(readonly, retain, nonatomic) DYGPUToolsVersionInfo *gputoolsVersionInfo;
+@property(readonly, nonatomic) NSError *gputoolsServiceAvailabilityError;
+@property(readonly, nonatomic) BOOL gputoolsServiceAvailable;
 @property(readonly, nonatomic) unsigned int nativePointerSize;
-@property(readonly, retain, nonatomic) NSString *productType; // @dynamic productType;
-@property(readonly, retain, nonatomic) NSString *build; // @dynamic build;
-@property(readonly, retain, nonatomic) NSString *version; // @dynamic version;
-@property(readonly, retain, nonatomic) NSString *name; // @dynamic name;
-@property(readonly, nonatomic) BOOL sharedPermanentIdentifier; // @dynamic sharedPermanentIdentifier;
-@property(readonly, retain, nonatomic) NSString *permanentIdentifier; // @dynamic permanentIdentifier;
-@property(readonly, nonatomic) unsigned long long runtimeIdentifier; // @dynamic runtimeIdentifier;
-@property(readonly, nonatomic) int platform; // @dynamic platform;
+@property(readonly, retain, nonatomic) NSString *productType;
+@property(readonly, retain, nonatomic) NSString *build;
+@property(readonly, retain, nonatomic) NSString *version;
+@property(readonly, retain, nonatomic) NSString *name;
+@property(readonly, nonatomic) BOOL sharedPermanentIdentifier;
+@property(readonly, retain, nonatomic) NSString *permanentIdentifier;
+@property(readonly, nonatomic) unsigned long long runtimeIdentifier;
+@property(readonly, nonatomic) int platform;
 - (id)init;
 
 @end

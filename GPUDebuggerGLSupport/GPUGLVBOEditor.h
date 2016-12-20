@@ -6,60 +6,25 @@
 
 #import "GPUResourceEditor.h"
 
-#import "GPUDataTableViewDataProvider.h"
-#import "GPUDataTableViewDelegate.h"
-
-@class DVTBorderedView, DYRenderingAttributes, GPUDataTableView, GPUGLVertexAttributeComponent, NSLayoutConstraint, NSPopUpButton, NSString;
+@class GPUBufferViewerViewController;
 
 __attribute__((visibility("hidden")))
-@interface GPUGLVBOEditor : GPUResourceEditor <GPUDataTableViewDataProvider, GPUDataTableViewDelegate>
+@interface GPUGLVBOEditor : GPUResourceEditor
 {
-    GPUGLVertexAttributeComponent *_bufferData;
-    DYRenderingAttributes *_renderingAttributes;
-    double _minColumnWidth;
-    BOOL _isPopulated;
-    BOOL _isIndexBuffer;
-    BOOL _showOffset;
-    GPUDataTableView *_vboView;
-    NSPopUpButton *_displayFormatPopup;
-    NSString *_displayFormat;
-    DVTBorderedView *_bottomToolbar;
-    NSLayoutConstraint *_toolbarHeightConstraint;
-    long long _numberOfColumns;
+    GPUBufferViewerViewController *_bufferViewerViewController;
 }
 
 + (id)assetBundle;
-@property BOOL showOffset; // @synthesize showOffset=_showOffset;
-@property(nonatomic) long long numberOfColumns; // @synthesize numberOfColumns=_numberOfColumns;
-@property(nonatomic) __weak NSLayoutConstraint *toolbarHeightConstraint; // @synthesize toolbarHeightConstraint=_toolbarHeightConstraint;
-@property(nonatomic) __weak DVTBorderedView *bottomToolbar; // @synthesize bottomToolbar=_bottomToolbar;
-@property(retain, nonatomic) NSString *displayFormat; // @synthesize displayFormat=_displayFormat;
-@property(retain, nonatomic) NSPopUpButton *displayFormatPopup; // @synthesize displayFormatPopup=_displayFormatPopup;
-@property(retain, nonatomic) GPUDataTableView *vboView; // @synthesize vboView=_vboView;
+@property(retain, nonatomic) GPUBufferViewerViewController *bufferViewerViewController; // @synthesize bufferViewerViewController=_bufferViewerViewController;
 - (void).cxx_destruct;
-- (void)viewWillUninstall;
+- (struct TypeOutputFormatTypeAlias)glTypeToStructTypeOutputFormatTypeAlias:(unsigned int)arg1;
+- (void)extractUniformBlockDataLayout:(const ProgramUniformBlock_2e5dc428 *)arg1 dataStructs:(vector_44d4fed2 *)arg2 bufferOffset:(unsigned long long)arg3;
+- (void)extractCandidateLayoutsForUniformBufferWithItem:(id)arg1 dataStructs:(vector_44d4fed2 *)arg2 dataBuffer:(struct Buffer *)arg3 preferredDataStruct:(int *)arg4 bufferType:(id *)arg5;
+- (void)extractCandidateLayoutsForElementArrayBufferWithItem:(id)arg1 dataStructs:(vector_44d4fed2 *)arg2 dataBuffer:(struct Buffer *)arg3 preferredDataStruct:(int *)arg4 bufferType:(id *)arg5;
 - (void)beginEditor;
-- (void)populate;
-- (void)setRepresentedObject:(id)arg1;
+- (void)viewWillUninstall;
 - (void)loadView;
-- (struct CGPoint)scrollPointForByteOffset:(long long)arg1;
-- (long long)documentVisibleRectOffsetInBytes;
-- (unsigned int)bytesPerItem;
-- (id)widthInColumns;
-- (void)setWidthInColumns:(id)arg1;
-- (double)dataTableView:(id)arg1 minimumWidthForColumn:(long long)arg2 inGroup:(long long)arg3;
-- (id)dataTableView:(id)arg1 textForCellAtRow:(long long)arg2 column:(long long)arg3 inColumnGroup:(long long)arg4;
-- (long long)dataTableView:(id)arg1 numberOfColumnsInGroup:(long long)arg2;
-- (long long)numberOfColumnGroupsInTableView:(id)arg1;
-- (long long)numberOfRowsInDataTableView:(id)arg1;
-- (BOOL)isPackedFormat;
 - (id)supportedResourceClasses;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

@@ -29,9 +29,13 @@
 - (id)selectIconSetRepsFromCollection:(id)arg1 ignoringItems:(id)arg2 forCompilingWithOptions:(id)arg3 populatingIssues:(id)arg4;
 - (id)matchingCatalogItemsOfClass:(Class)arg1 fromCollection:(id)arg2 ignoringItems:(id)arg3 withOptions:(id)arg4 populatingIssues:(id)arg5 itemsRejectedByFilter:(id *)arg6 filter:(CDUnknownBlockType)arg7;
 - (id)selectCatalogItemsForCARCompilerFromCollection:(id)arg1 ignoringItems:(id)arg2 forCompilingWithOptions:(id)arg3 populatingIssues:(id)arg4;
+- (id)selectCatalogAppIconsFromCollection:(id)arg1 ignoringItems:(id)arg2 forLocation:(long long)arg3 withOptions:(id)arg4 populatingIssues:(id)arg5;
+- (id)selectStickerPackFromCollection:(id)arg1 ignoringItems:(id)arg2 forLocation:(long long)arg3 withOptions:(id)arg4 populatingIssues:(id)arg5;
 - (id)selectCatalogItemsFromCollection:(id)arg1 ignoringItems:(id)arg2 forLocation:(long long)arg3 withOptions:(id)arg4 populatingIssues:(id)arg5;
+- (BOOL)mipsetIsValidForCompiling:(id)arg1;
 - (void)defineCatalogSelectionScope:(id)arg1 options:(id)arg2;
 - (void)enumerateScopeDefiningItemsWithOptions:(id)arg1 forScope:(id)arg2 enumerator:(CDUnknownBlockType)arg3;
+- (long long)outputLocationForBundleIconSetRep:(id)arg1 withCompilationOptions:(id)arg2;
 - (long long)outputLocationForDataSetRep:(id)arg1 withCompilationOptions:(id)arg2;
 - (long long)outputLocationForImageSetRep:(id)arg1 withCompilationOptions:(id)arg2;
 - (id)firstVersionSupportingThinning;
@@ -42,14 +46,14 @@
 - (void)compileStandaloneCatalogItems:(id)arg1 options:(id)arg2 queue:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (BOOL)copyAssetRep:(id)arg1 toPath:(id)arg2 options:(id)arg3 error:(id *)arg4;
 - (void)addLaunchImageWarningsToResults:(id)arg1 forIconReps:(id)arg2 withOptions:(id)arg3;
-- (void)addAppIconWarningsToResults:(id)arg1 forIconReps:(id)arg2 withOptions:(id)arg3;
+- (void)addBundleIconWarningsToResults:(id)arg1 forIconReps:(id)arg2 withOptions:(id)arg3;
 - (void)addSlottedAssetWarningsToResults:(id)arg1 filteredByIdioms:(id)arg2 forReps:(id)arg3 withOptions:(id)arg4;
 - (id)absoluteMinimumDeploymentTarget;
 - (void)compileStandaloneSpriteAtlases:(id)arg1 options:(id)arg2 queue:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)compileCatalogCollection:(id)arg1 options:(id)arg2 queue:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)compileBrandAssetCollectionsFromSelection:(id)arg1 options:(id)arg2 queue:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (id)compileLaunchImageFromSelection:(id)arg1 options:(id)arg2;
-- (id)compileAppIconFromSelection:(id)arg1 options:(id)arg2;
+- (id)compileBundleIconFromSelection:(id)arg1 options:(id)arg2;
 - (void)compileCARItems:(id)arg1 tagSolutionSpace:(id)arg2 options:(id)arg3 queue:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)compileSelectedItems:(id)arg1 options:(id)arg2 queue:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (id)validateApplicabilityForOnDemandResources:(id)arg1 options:(id)arg2 tagSolutionSpace:(id)arg3;
@@ -61,6 +65,7 @@
 - (id)platformForDeviceThinningDatabase;
 - (id)targetPlatformForArguments:(id)arg1;
 - (id)defaultTargetDevices;
+- (id)minimumDeploymentTargetSupportingTexturesInCARFiles;
 - (id)minimumDeploymentTargetSupportingAppIcons;
 - (id)minimumDeploymentTargetSupportingDataInCARFiles;
 - (id)minimumDeploymentTargetSupportingSpriteAtlasesInCARFiles;

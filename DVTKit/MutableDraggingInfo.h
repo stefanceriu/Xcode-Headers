@@ -23,6 +23,7 @@
 
 @property long long springLoadingHighlight; // @synthesize springLoadingHighlight=_springLoadingHighlight;
 - (void).cxx_destruct;
+- (void)resetSpringLoading;
 - (void)enumerateDraggingItemsWithOptions:(unsigned long long)arg1 forView:(id)arg2 classes:(id)arg3 searchOptions:(id)arg4 usingBlock:(CDUnknownBlockType)arg5;
 @property long long numberOfValidItemsForDrop;
 @property BOOL animatesToDestination;

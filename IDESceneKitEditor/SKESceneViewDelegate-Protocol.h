@@ -9,7 +9,7 @@
 @class NSArray, NSEvent, SCNNode, SKEPasteboardItem, SKESceneView;
 
 @protocol SKESceneViewDelegate <NSObject>
-- (void)sceneView:(SKESceneView *)arg1 didRequestDeletionOfNodeSubselection:(NSArray *)arg2;
+- (void)sceneViewDidRequestFocusOnSelectedNodes:(SKESceneView *)arg1;
 - (void)sceneView:(SKESceneView *)arg1 didRequestDeletionOfNodes:(NSArray *)arg2;
 - (void)sceneViewDidRequestDeselectionOfAllNodes:(SKESceneView *)arg1;
 - (void)sceneViewDidBeginFreeBrowsing:(SKESceneView *)arg1;

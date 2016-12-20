@@ -11,9 +11,6 @@
 }
 
 + (id)sharedInstance;
-- (id)mostToLeastSpecificVariablesForMediaType:(id)arg1;
-- (id)defaultVariantForMatching;
-- (BOOL)namesForFilesOfTypeIncludeFileExtensions:(id)arg1;
 
 @end
 

@@ -12,6 +12,8 @@
 
 @interface XCSObject : NSObject <XCSDocumentProtocol>
 {
+    BOOL _skipValidation;
+    BOOL _skipBindHierarchy;
     XCSService *_service;
     NSString *_classString;
     NSDictionary *_infoSaved;
@@ -21,15 +23,20 @@
 
 + (BOOL)_verifyInfoParameter:(id)arg1 allowEmptyDictionary:(BOOL)arg2 validationErrors:(id *)arg3;
 + (id)objectsFromDictionaries:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
++ (id)objectFromDictionary:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 + (void)_setupObservablePropertiesForClass:(Class)arg1;
 + (void)_setupAccessorsForClass:(Class)arg1;
 + (void)initialize;
+@property(nonatomic) BOOL skipBindHierarchy; // @synthesize skipBindHierarchy=_skipBindHierarchy;
+@property(nonatomic) BOOL skipValidation; // @synthesize skipValidation=_skipValidation;
 @property(retain, nonatomic) NSMutableDictionary *infoRemoved; // @synthesize infoRemoved=_infoRemoved;
 @property(retain, nonatomic) NSMutableDictionary *infoModified; // @synthesize infoModified=_infoModified;
 @property(retain, nonatomic) NSDictionary *infoSaved; // @synthesize infoSaved=_infoSaved;
 @property(retain, nonatomic) NSString *classString; // @synthesize classString=_classString;
 @property(retain, nonatomic) XCSService *service; // @synthesize service=_service;
 - (void).cxx_destruct;
+- (id)_instantiateInfoRemovedIfNeeded;
+- (id)_instantiateInfoModifiedIfNeeded;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)valueForUndefinedKey:(id)arg1;
 - (BOOL)_validateID:(id)arg1 rev:(id)arg2 tinyID:(id)arg3 docType:(id)arg4;
@@ -39,6 +46,7 @@
 - (void)_setObjectInfoSavedWithDictionary:(id)arg1;
 - (void)commonInit;
 - (id)init;
+- (id)initWithID:(id)arg1 rev:(id)arg2 tinyID:(id)arg3 docType:(id)arg4 service:(id)arg5 skipValidation:(BOOL)arg6 skipBindHierarchy:(BOOL)arg7;
 - (id)initWithID:(id)arg1 rev:(id)arg2 tinyID:(id)arg3 docType:(id)arg4 service:(id)arg5;
 - (void)revert;
 - (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
@@ -53,10 +61,11 @@
 - (id)description;
 @property(readonly, nonatomic) NSDictionary *contents;
 - (id)json;
-@property(nonatomic) NSString *docType; // @dynamic docType;
-@property(nonatomic) NSString *tinyID; // @dynamic tinyID;
-@property(nonatomic) NSString *revision; // @dynamic revision;
-@property(nonatomic) NSString *ID; // @dynamic ID;
+@property(retain, nonatomic) NSString *docType; // @dynamic docType;
+@property(retain, nonatomic) NSString *tinyID; // @dynamic tinyID;
+@property(retain, nonatomic) NSString *revision; // @dynamic revision;
+@property(retain, nonatomic) NSString *ID; // @dynamic ID;
+- (id)initWithContents:(id)arg1 service:(id)arg2 skipValidation:(BOOL)arg3 skipBindHierarchy:(BOOL)arg4 validationErrors:(id *)arg5;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 - (id)_invocationValueForPropertyName:(id)arg1 type:(id)arg2 invocation:(id)arg3;
 - (void)_objectValueForPropertyName:(id)arg1 type:(id)arg2 invocation:(id)arg3;

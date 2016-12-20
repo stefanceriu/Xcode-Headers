@@ -6,28 +6,30 @@
 
 #import "NSObject.h"
 
-#import "IDEInitialization.h"
+@class DVTObservingToken, GTFMutableObjectDictionary, NSHashTable, NSMutableDictionary;
 
-@class DVTObservingToken, GTFMutableObjectDictionary, NSHashTable;
-
-@interface SKPlugin : NSObject <IDEInitialization>
+@interface SKPlugin : NSObject
 {
-    NSHashTable *_workspacesProcessed;
-    GTFMutableObjectDictionary *_workspaceToResourceManager;
+    NSHashTable *_workspacesAvailable;
+    GTFMutableObjectDictionary *_ideWorkspaceToSKWorkspace;
+    NSMutableDictionary *_customComponentToInspector;
     DVTObservingToken *_workspaceDocumentsKVOToken;
 }
 
-+ (id)emitterDocumentType;
++ (id)tileSetDocumentType;
++ (id)particleDocumentType;
 + (id)actionDocumentType;
 + (id)sceneDocumentType;
-+ (BOOL)ide_initializeWithOptions:(int)arg1 error:(id *)arg2;
++ (id)spritekitDocumentType;
 + (id)sharedInstance;
 - (void).cxx_destruct;
-- (BOOL)_workspaceContainsSKResources:(id)arg1;
-- (void)_removeResourceManagerForWorkspace:(id)arg1;
-- (id)_createResourceManagerForWorkspace:(id)arg1;
-- (void)_refreshResourceManagers;
+- (id)convertURL:(id)arg1 toWorkspace:(id)arg2;
 - (id)resourceManagerForWorkspace:(id)arg1;
+- (BOOL)_workspaceContainsSKResources:(id)arg1;
+- (void)_removeSKWorkspaceForIDEWorkspace:(id)arg1;
+- (id)_createSKWorkspaceForIDEWorkspace:(id)arg1;
+- (void)_refreshSKWorkspaces;
+- (id)skWorkspaceForIDEWorkspace:(id)arg1;
 - (id)init;
 
 @end

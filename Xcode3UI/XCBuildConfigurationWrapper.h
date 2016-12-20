@@ -4,24 +4,22 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <Xcode3UI/PBXBuildStyleWrapper.h>
+#import "IDEScriptingWrapper.h"
 
-@interface XCBuildConfigurationWrapper : PBXBuildStyleWrapper
+@interface XCBuildConfigurationWrapper : IDEScriptingWrapper
 {
 }
 
 - (id)objectSpecifier;
 - (id)newScriptingObjectOfClass:(Class)arg1 forValueForKey:(id)arg2 withContentsValue:(id)arg3 properties:(id)arg4;
-- (id)flattenedBuildSettings;
-- (id)baseBuildSettings;
 - (id)scriptingID;
-- (id)project;
-- (void)setConfigurationSettingsFile:(id)arg1;
-- (id)configurationSettingsFile;
-- (void)setComments:(id)arg1;
-- (id)comments;
-- (void)setBuildConfigurationType:(id)arg1;
-- (id)buildConfigurationType;
+- (void)removeFromResolvedBuildSettingsAtIndex:(int)arg1;
+- (id)valueInResolvedBuildSettingsWithName:(id)arg1;
+- (id)resolvedBuildSettings;
+- (id)_resolvedBuildSettingsDictionary;
+- (void)removeFromBuildSettingsAtIndex:(int)arg1;
+- (id)valueInBuildSettingsWithName:(id)arg1;
+- (id)buildSettings;
 
 @end
 

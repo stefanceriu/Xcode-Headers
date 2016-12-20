@@ -10,6 +10,7 @@
 
 @interface NSWindow (DVTNSWindowAdditions)
 + (id)dvt_visibleWindowsFromFrontToBack;
+- (void)dvt_configureAsBorderlessWindowUsingBackground:(id)arg1;
 - (struct CGPoint)dvt_convertPointFromScreen:(struct CGPoint)arg1;
 - (struct CGPoint)dvt_convertPointToScreen:(struct CGPoint)arg1;
 - (void)dvt_clearContentView;

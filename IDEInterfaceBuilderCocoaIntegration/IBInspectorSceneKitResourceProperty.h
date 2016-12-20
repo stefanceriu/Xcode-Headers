@@ -12,6 +12,7 @@
 {
     NSComboBox *comboBox;
     IDEInspectorKeyPath *_valueKeyPath;
+    BOOL _allowsNilValues;
 }
 
 - (void).cxx_destruct;

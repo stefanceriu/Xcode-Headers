@@ -15,7 +15,7 @@
 #import "NSOutlineViewDelegate.h"
 #import "NSPopoverDelegate.h"
 
-@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, IBAbstractDocumentEditor, IBAutolayoutStatus, IBCancellationToken, IBOutlineView, NSObject, NSOrderedSet, NSPopover, NSSet, NSString, NSTextField;
+@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, IBAbstractDocumentEditor, IBAutolayoutStatus, IBCancellationToken, IBDocument, IBOutlineView, NSObject, NSOrderedSet, NSPopover, NSSet, NSString, NSTextField;
 
 @interface IBAutolayoutSidebarViewController : IDEViewController <NSOutlineViewDelegate, IBOutlineViewDelegate, NSOutlineViewDataSource, IBAutolayoutIssueTableCellViewDelegate, IBAutolayoutIssueResolvingViewControllerDelegate, NSPopoverDelegate, IBHybridStructureSelectionProvider, IBSelectionProvider>
 {
@@ -28,6 +28,7 @@
     IBCancellationToken *_highlightToken;
     NSPopover *_currentResolvingPopover;
     NSSet *_selectedMembers;
+    IBDocument *_fallbackDocumentForTesting;
     BOOL _drawsWithActiveLook;
     IBAbstractDocumentEditor *_documentEditor;
     NSObject *_topLevelObject;
@@ -39,6 +40,7 @@
     NSTextField *_helpTextLabel;
 }
 
++ (void)testStatusForItem:(id)arg1 document:(id)arg2 during:(CDUnknownBlockType)arg3;
 @property(retain) NSTextField *helpTextLabel; // @synthesize helpTextLabel=_helpTextLabel;
 @property(retain) NSPopover *helpTextPopover; // @synthesize helpTextPopover=_helpTextPopover;
 @property(retain, nonatomic) IBAutolayoutStatus *status; // @synthesize status=_status;
@@ -55,7 +57,7 @@
 - (BOOL)documentEditor:(id)arg1 canSelectMembers:(id)arg2;
 - (void)documentEditor:(id)arg1 deselectMembers:(id)arg2;
 - (void)documentEditor:(id)arg1 pullSelection:(id)arg2;
-- (void)documentEditor:(id)arg1 selectMembers:(id)arg2 takeFocus:(BOOL)arg3 zoomIfNeeded:(BOOL)arg4;
+- (void)documentEditor:(id)arg1 selectMembers:(id)arg2 takeFocus:(BOOL)arg3;
 @property(readonly, nonatomic) BOOL onlySupportsDocumentObjectMembers;
 - (void)outlineViewSelectionDidChange:(id)arg1;
 - (id)_readSelectedMembersFromOutlineView;
@@ -104,6 +106,7 @@
 - (void)_refreshAfterStatusUpdate;
 - (void)_ensureTopLevelItemsAreExpanded;
 - (id)document;
+- (void)_setFallbackDocumentForTesting:(id)arg1;
 @property(readonly, nonatomic) NSString *selectionProviderSwitcherTitle;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;

@@ -6,39 +6,43 @@
 
 #import "IBIdiom.h"
 
+@class NSMutableDictionary;
+
 @interface IBCocoaTouchIdiom : IBIdiom
 {
+    NSMutableDictionary *_screenMetricByPossibleArchiveIdentifiers;
 }
 
 + (id)idiomWithArchiveIdentifier:(id)arg1;
 + (void)initialize;
+- (void).cxx_destruct;
+- (void)populateRequiredSimulatorLaunchJobIdentifiers:(id)arg1 andDisabledIdentifiers:(id)arg2 forSessionType:(long long)arg3;
+- (id)deviceSubtypeWithIdentifier:(id)arg1;
 - (BOOL)supportsSimRuntime:(id)arg1;
 - (id)simDeviceTypeForToolDescription:(id)arg1 error:(id *)arg2;
 - (void)populateAdditionalSimDeviceTypeSearchPaths:(id)arg1;
 - (BOOL)shouldLaunchPlatformToolsUsingCoreSimulator;
-- (id)allAbstractSizeClassMetrics;
 - (id)screenMetricsWithArchiveIdentifier:(id)arg1;
-- (id)abstractMetricsForWidthClass:(id)arg1 heightClass:(id)arg2;
-- (id)abstractMetricsForConfiguration:(id)arg1;
-- (id)abstractMetricsBySizeClassConfiguration;
-- (double)abstractScreenMetricsSizeRegular;
-- (double)abstractScreenMetricsSizeAny;
-- (double)abstractScreenMetricsSizeCompact;
+- (id)deviceSubtypeWithArchiveIdentifier:(id)arg1;
+- (id)deviceSubtypeForConfiguration:(id)arg1;
+- (id)inheritableSplitViewMasterSizeMetricsForScreenMetrics:(id)arg1;
 - (id)pageSheetFixedSizeMetricsForOrientationMetrics:(id)arg1 screenMetric:(id)arg2;
 - (struct CGSize)pageSheetFixedSizeForOrientationMetrics:(id)arg1 screenMetric:(id)arg2;
 - (id)formSheetFixedSizeMetricsForOrientationMetrics:(id)arg1 screenMetrics:(id)arg2;
 - (struct CGSize)formSheetFixedSizeForOrientationMetrics:(id)arg1 screenMetrics:(id)arg2;
 - (id)splitViewDetailFixedSizeMetricsForOrientationMetrics:(id)arg1 screenMetrics:(id)arg2;
+- (id)splitViewMasterFixedSizeMetricsForOrientationMetrics:(id)arg1 screenMetrics:(id)arg2;
+- (id)splitViewDetailMemberConfigurationForOrientationMetrics:(id)arg1 screenMetrics:(id)arg2;
+- (id)splitViewMasterMemberConfigurationForOrientationMetrics:(id)arg1 screenMetrics:(id)arg2;
 - (double)masterWidthForScreenWidth:(double)arg1;
-- (BOOL)regularWidthDetailIsFullScreen:(id)arg1 screenMetrics:(id)arg2;
-- (BOOL)isRegularWidthForOrientationMetrics:(id)arg1 screenMetrics:(id)arg2;
-- (id)iPhoneAndPadIdiomMemberConfigurationForMetrics:(id)arg1 orientationMetrics:(id)arg2;
+- (BOOL)detailUsesSplitScreen:(id)arg1 screenMetrics:(id)arg2;
+- (BOOL)masterUsesSplitScreen:(id)arg1 screenMetrics:(id)arg2;
 - (long long)legacyTypeForScreenMetrics:(id)arg1;
 - (id)screenMetricsForLegacyType:(long long)arg1;
 - (void)populateVariantForResolvingMediaResources:(id)arg1 forDocument:(id)arg2;
+- (id)foldingStrategy;
 - (Class)storyboardCompilerClass;
 - (Class)xibCompilerClass;
-- (struct CGSize)canvasViewFramePaddingSizeForOverlayScrollers;
 - (void)unarchiveIdiomDependentDataForDocument:(id)arg1 withDocumentUnarchiver:(id)arg2;
 - (void)archiveIdiomDependentDataForDocument:(id)arg1 withDocumentArchiver:(id)arg2;
 - (id)xibArchivingSchema;
@@ -47,30 +51,33 @@
 - (id)storyboardPrimarySceneObjectPasteboardType;
 - (id)viewPasteboardType;
 - (id)objectPasteboardType;
+- (Class)screenMetricsClass;
 - (Class)storyboardAssetProviderClass;
 - (Class)xibAssetProviderClass;
 - (Class)storyboardVerifierClass;
 - (Class)xibVerifierClass;
-- (double)defaultOverviewZoomFactor;
+- (double)defaultEditingZoomFactorForCanvasBackingScaleFactor:(double)arg1;
 - (id)actionFiringRuntimeClassNames;
 - (id)supportedAdBannerSizes;
 - (id)supportedOSVersions;
 - (id)minimumOSVersion;
 - (id)resourceIdiomVariant;
 - (id)presentationOrderedSiblingIdioms;
-- (id)presentationOrderedConcreteConfigurations;
 - (id)presentationOrderedConcreteScreenMetrics;
+- (id)presentationOrderedConcreteSubtypes;
+- (id)allScreenMetricsForArchiving;
 - (id)concreteScreenMetrics;
-- (id)concreteAndAbstractScreenMetrics;
-- (id)iconForSwitchingToMetrics:(id)arg1;
-- (id)memberConfigurationForScreenMetrics:(id)arg1 orientation:(id)arg2 osVersion:(id)arg3;
+- (id)concreteSubtypes;
 - (id)nextScreenMetricsForTogglingFromMetrics:(id)arg1;
-- (id)defaultScreenMetricsForConfiguration:(id)arg1;
+- (id)defaultScreenMetricsForEmptyConfiguration;
+- (id)defaultOrientationMetricsForConfiguration:(id)arg1;
 - (id)defaultScreenMetricsForArchiving;
 - (id)defaultScreenMetrics;
+- (id)defaultSubtypeForArchiving;
+- (id)deviceConfigurationForMemberConfiguration:(id)arg1;
+- (id)defaultSubtype;
 - (id)defaultOrientationMetrics;
 - (BOOL)wantsContentScrollingInPreviewEditor;
-- (Class)canvasConfigurationChooserControllerClass;
 - (BOOL)supportsSplitViewControllersOnIOS7AndEarlier;
 - (BOOL)ignoresStatusBarForUIBarStyleComputation;
 - (BOOL)supportsSearchBarsEmbeddedInBarButtonItems;
@@ -84,18 +91,20 @@
 - (BOOL)usesSceneExitPlaceholder;
 - (BOOL)wantsRoundedCornersOn6AndEarlier;
 - (int)defaultStatusBarStyleFor6AndEarlier;
-- (id)pluralUserLabelForConfigurations;
-- (id)singularUserLabelForConfigurations;
 - (id)storyboardArchiveType;
 - (id)xibArchiveType;
 - (id)colorListName;
 - (id)iPhoneSimulatorDeviceEnvVar;
+- (void)populateSubtypes:(id)arg1;
+- (id)subtypes;
+- (Class)deviceSubtypeClass;
 - (id)pluginName;
 - (id)archiveIdentifier;
 - (id)idiomName;
 - (id)cocoaTouchApplicationName;
 - (id)cocoaTouchToolName;
 - (id)platform;
+- (id)defaultOrientationForPreviewEditor;
 
 @end
 

@@ -18,6 +18,7 @@
     NSArray *_storyboardSegueTemplates;
     IBSimulatedMetricsContainer *_inheritedSimulatedMetrics;
     NSDictionary *_storyboardSegueDestinationOptions;
+    BOOL _encodeAsRuntimeInstance;
     NSString *_title;
     NSString *_nibName;
     NSString *_nibBundleIdentifier;
@@ -31,6 +32,7 @@
 + (struct CGRect)ibDefaultFrameForView;
 + (Class)ibViewClass;
 @property(copy) NSArray *childViewControllers; // @synthesize childViewControllers=_childViewControllers;
+@property(nonatomic) BOOL encodeAsRuntimeInstance; // @synthesize encodeAsRuntimeInstance=_encodeAsRuntimeInstance;
 @property(copy) NSString *uniqueIdentifierForStoryboardCompilation; // @synthesize uniqueIdentifierForStoryboardCompilation=_uniqueIdentifierForStoryboardCompilation;
 @property unsigned long long showSeguePresentationStyle; // @synthesize showSeguePresentationStyle=_showSeguePresentationStyle;
 @property(copy) NSDictionary *externalObjectsTableForViewLoading; // @synthesize externalObjectsTableForViewLoading=_externalObjectsTableForViewLoading;
@@ -61,6 +63,15 @@
 - (id)ibWindowWithCopiedViewHierarchySnapshotForLayoutEngine:(id)arg1 returningAddedRepresentedConstraintsForRepresentedViews:(id *)arg2;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
+- (void)ibDecodePlatformItems:(id)arg1;
+- (void)ibEncodePlatformItems:(id)arg1;
+- (void)ibUnArchivePlatformItems:(id)arg1;
+- (void)ibArchivePlatformItems:(id)arg1;
+- (BOOL)ibCanRemoveChildren:(id)arg1;
+- (int)ibStoryboardSeparationTypeForChild:(id)arg1 storyboardEquivalent:(id)arg2;
+- (BOOL)ibChildViewHasCustomLayoutButAllowsExplicitSizeConstraints:(id)arg1;
+- (BOOL)ibChildAutolayoutItem:(id)arg1 hasOwnedSizeLayoutInDocument:(id)arg2;
+- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (void)ibMakeDefaultView;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
@@ -69,13 +80,14 @@
 - (CDUnknownBlockType)ibWindow:(id *)arg1 forUpdatingConstraintsInDocument:(id)arg2;
 - (id)ibTopLevelViewForLayoutEngine:(id)arg1;
 - (BOOL)ibIsLegalArbitrationUnitRoot;
+- (BOOL)ibChildView:(id)arg1 shouldUseConstraintsInsteadOfAutoresizingWhenAddedToDocument:(id)arg2;
+- (BOOL)ibIsChildViewUserMovable:(id)arg1;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibInheritableMetricsForDownstreamController:(id)arg1 viaSegue:(id)arg2;
 - (id)ibEditorViewWithSuggestedSize:(struct CGSize)arg1 forDocument:(id)arg2;
 - (id)ibDefaultViewForNewInstances;
 - (struct CGSize)effectiveSimulatedContentSize;
 - (id)ibEditorCanvasFrameControllerForDocument:(id)arg1;
-- (BOOL)ibChildEditsWithSingleClick:(id)arg1;
 - (BOOL)ibIsValidCocoaEmbedSegueDestination;
 - (BOOL)ibAllowsEditingTitle;
 - (BOOL)ibRequiresOutletToStoryboard;
@@ -84,6 +96,10 @@
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (id)ibQualifyingInfoForDefaultLabel;
 - (id)ibRuntimeClassName;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

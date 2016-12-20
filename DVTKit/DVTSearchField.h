@@ -13,6 +13,7 @@
     NSNumber *_trackingTag;
     long long _progress;
     BOOL _showsMatchingBrace;
+    BOOL _hasKeyboardFocus;
     BOOL _hidesProgress;
     CDUnknownBlockType _searchMenuBlock;
     NSMutableArray *_filterButtons;
@@ -25,8 +26,12 @@
 @property(nonatomic) BOOL hidesProgress; // @synthesize hidesProgress=_hidesProgress;
 @property(readonly) NSProgressIndicator *progressIndicator; // @synthesize progressIndicator=_progressIndicator;
 @property(readonly) NSMutableArray *filterButtons; // @synthesize filterButtons=_filterButtons;
+@property BOOL hasKeyboardFocus; // @synthesize hasKeyboardFocus=_hasKeyboardFocus;
 @property(copy, nonatomic) CDUnknownBlockType searchMenuBlock; // @synthesize searchMenuBlock=_searchMenuBlock;
 - (void).cxx_destruct;
+- (void)_updateKeyboardFocusForFieldEditor;
+- (void)textDidEndEditing:(id)arg1;
+- (BOOL)becomeFirstResponder;
 - (void)mouseDown:(id)arg1;
 - (BOOL)needsPanelToBecomeKey;
 - (BOOL)_mouseDownEventIsInSearchButton:(id)arg1;

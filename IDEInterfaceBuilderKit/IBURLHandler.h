@@ -15,7 +15,6 @@
 }
 
 + (void)handleURL:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
-+ (BOOL)shouldRegisterURLHandlerForScheme:(id)arg1;
 + (BOOL)shouldOpenIBURLs;
 
 // Remaining properties

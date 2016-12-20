@@ -117,7 +117,6 @@
 - (void)archivePerStateAttributesForKey:(id)arg1 withArchiver:(id)arg2;
 - (BOOL)attributeGroupHasValues:(id)arg1 document:(id)arg2;
 - (void)setUnarchivedFontDescription:(id)arg1 whilePasting:(BOOL)arg2 forDocument:(id)arg3;
-- (id)legacyDefaultArchivedFontDescriptionForDocument:(id)arg1;
 - (void)setUnarchivedTitleColor:(id)arg1 forStateAttributes:(id)arg2 document:(id)arg3;
 - (id)archivedTitleColorForStateAttributes:(id)arg1 document:(id)arg2;
 - (void)clearTitleShadowColors;
@@ -254,8 +253,6 @@
 - (id)ibInspectedNormalTitle;
 - (void)setIbInspectedFontDescription:(id)arg1;
 - (id)ibInspectedFontDescription;
-- (void)setIbExternalEdgeInset:(id)arg1;
-- (id)ibExternalEdgeInset;
 - (void)setIbExternalStateConfiguration:(id)arg1;
 - (id)ibExternalStateConfiguration;
 - (id)ibCompiledValueForKeyPath:(id)arg1 withPropertyStorage:(id)arg2 inConfiguration:(id)arg3;
@@ -286,6 +283,7 @@
 - (Class)ibEditorClass;
 - (id)ibLocalLocalizableStringsAttributeKeyPaths;
 - (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

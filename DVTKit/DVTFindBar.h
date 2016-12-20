@@ -37,7 +37,6 @@
     DVTObservingToken *_findTypeObserver;
     DVTObservingToken *_findStateFindStringObsT;
     DVTObservingToken *_findStateReplaceStringObsT;
-    long long _numberOfMatches;
     NSView *_findBarView;
     NSSegmentedControl *_replaceSegmentedControl;
     NSSegmentedControl *_doneSegmentedButtom;
@@ -45,12 +44,14 @@
     NSLayoutConstraint *_replaceSegmentControlWidth;
     NSLayoutConstraint *_findSearchFieldHeight;
     NSLayoutConstraint *_replaceSearchFieldHeight;
+    long long _numberOfMatches;
 }
 
 + (id)keyPathsForValuesAffectingReplaceString;
 + (id)keyPathsForValuesAffectingFindRegularExpression;
 + (id)keyPathsForValuesAffectingFindString;
 + (void)initialize;
+@property(nonatomic) long long numberOfMatches; // @synthesize numberOfMatches=_numberOfMatches;
 @property __weak NSLayoutConstraint *replaceSearchFieldHeight; // @synthesize replaceSearchFieldHeight=_replaceSearchFieldHeight;
 @property __weak NSLayoutConstraint *findSearchFieldHeight; // @synthesize findSearchFieldHeight=_findSearchFieldHeight;
 @property __weak NSLayoutConstraint *replaceSegmentControlWidth; // @synthesize replaceSegmentControlWidth=_replaceSegmentControlWidth;
@@ -58,7 +59,6 @@
 @property __weak NSSegmentedControl *doneSegmentedButtom; // @synthesize doneSegmentedButtom=_doneSegmentedButtom;
 @property __weak NSSegmentedControl *replaceSegmentedControl; // @synthesize replaceSegmentedControl=_replaceSegmentedControl;
 @property __weak NSView *findBarView; // @synthesize findBarView=_findBarView;
-@property(nonatomic) long long numberOfMatches; // @synthesize numberOfMatches=_numberOfMatches;
 @property BOOL recentsNeedUpdate; // @synthesize recentsNeedUpdate=_recentsNeedUpdate;
 @property double preferredViewHeight; // @synthesize preferredViewHeight=_preferredViewHeight;
 @property(nonatomic) BOOL hasResults; // @synthesize hasResults=_hasResults;

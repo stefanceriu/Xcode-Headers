@@ -14,7 +14,6 @@
 - (id)schemaIdentifier;
 - (id)elementName;
 - (Class)archivableClass;
-- (id)minimumRequiredRuntimeOSVersion;
 
 @end
 

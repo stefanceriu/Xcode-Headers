@@ -19,6 +19,7 @@
 - (void)ibDidMapCopyOfReceiver:(id)arg1 intoLayoutEngine:(id)arg2;
 - (void)ibMapCopyOfReceiver:(id)arg1 intoLayoutEngine:(id)arg2;
 - (id)ibTopLevelViewForLayoutEngine:(id)arg1;
+@property(readonly, nonatomic) BOOL ibIsSelfManagedContainerInEngine;
 - (BOOL)ibIsValidConstraintItem;
 @end
 

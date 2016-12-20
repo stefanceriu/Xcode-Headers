@@ -13,6 +13,8 @@
 + (id)keyPathsForValuesAffectingIbInspectedAttributedText;
 + (id)keyPathsForValuesAffectingIbInspectedText;
 + (id)keyPathsForValuesAffectingIbInspectedUsesAttributedText;
+- (void)ibTakeValue:(id)arg1 forInspectedConfigurableProperty:(id)arg2 inConfiguration:(id)arg3;
+- (void)ibWillTakeAttributedTextValue:(id)arg1;
 - (void)setIbInspectedAttributedText:(id)arg1;
 - (id)ibInspectedAttributedText;
 - (void)setIbInspectedText:(id)arg1;

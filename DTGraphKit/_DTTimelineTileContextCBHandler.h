@@ -10,6 +10,7 @@
 
 @class NSString;
 
+__attribute__((visibility("hidden")))
 @interface _DTTimelineTileContextCBHandler : NSObject <NSCacheDelegate>
 {
     struct TimelineViewContext *_owner;

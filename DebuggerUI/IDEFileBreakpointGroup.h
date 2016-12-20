@@ -26,6 +26,7 @@
 
 + (id)keyPathsForValuesAffectingAssociatedFileExists;
 + (void)initialize;
++ (id)keyPathsForValuesAffectingNavigableItem_referencedContentExists;
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 @property(retain) IDEFileBreakpoint *breakpointObservingTheNameOf; // @synthesize breakpointObservingTheNameOf=_breakpointObservingTheNameOf;
 @property(retain) IDEFileReference *fileReference; // @synthesize fileReference=_fileReference;
@@ -45,6 +46,7 @@
 - (void)removeFileBreakpoint:(id)arg1;
 - (void)addFileBreakpointInSortedOrder:(id)arg1;
 - (id)initWithBucket:(id)arg1;
+@property(readonly) BOOL navigableItem_referencedContentExists;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) NSString *navigableItem_name;
@@ -56,11 +58,14 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(copy) NSMutableArray *mutableBreakpoints; // @dynamic mutableBreakpoints;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;

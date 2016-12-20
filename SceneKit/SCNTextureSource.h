@@ -9,15 +9,26 @@
 @interface SCNTextureSource : NSObject
 {
     id _mtlTextureCache;
+    id _glTextureCache;
+    // Error parsing type: , name: _size
 }
 
+- (void)setGlTextureCache:(id)arg1;
+- (id)glTextureCache;
 - (void)setMTLTextureCache:(id)arg1;
 - (id)MTLTextureCache;
 - (double)nextFrameTime;
 - (void)cleanup:(struct __C3DRendererContext *)arg1;
 - (void)renderWithEngineContext:(struct __C3DEngineContext *)arg1 nextFrameTime:(double *)arg2;
+- (id)metalTextureWithEngineContext:(struct __C3DEngineContext *)arg1 textureSampler:(struct __C3DTextureSampler *)arg2 nextFrameTime:(double *)arg3;
+-     // Error parsing type: 16@0:8, name: textureSize
+- (struct __C3DTexture *)_textureWithEngineContext:(struct __C3DEngineContext *)arg1 textureSampler:(struct __C3DTextureSampler *)arg2 nextFrameTime:(double *)arg3;
 - (struct __C3DTexture *)textureWithEngineContext:(struct __C3DEngineContext *)arg1 textureSampler:(struct __C3DTextureSampler *)arg2 nextFrameTime:(double *)arg3;
+- (struct __C3DRendererContext *)rendererContextForTextureSourceWithEngineContext:(struct __C3DEngineContext *)arg1;
+- (BOOL)prefersGL3;
+- (BOOL)supportsMetal;
 - (void)dealloc;
+- (void)setSize: /* Error: Ran out of types for this method. */;
 
 @end
 

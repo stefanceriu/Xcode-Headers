@@ -21,11 +21,13 @@
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)_addNoConstraintsView;
+- (void)updateConstraintIssues;
 - (void)updateReferencingConstraintSubviews;
 - (id)singleSelectedViewObject;
 - (id)layoutConstraintSet;
 - (void)refresh;
 - (void)setupRefreshTriggersAndConfigure;
+- (id)inspectedDocument;
 - (void)loadView;
 
 @end

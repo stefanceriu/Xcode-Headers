@@ -6,18 +6,13 @@
 
 #import <IDEFoundation/IDELocalizationWorkContext.h>
 
-@class NSData, NSURL;
-
 @interface IDELocalizationWorkWriteData : IDELocalizationWorkContext
 {
-    NSData *_data;
-    NSURL *_url;
 }
 
 + (id)contextWithParent:(id)arg1 data:(id)arg2 url:(id)arg3;
-@property(retain) NSURL *url; // @synthesize url=_url;
-@property(retain) NSData *data; // @synthesize data=_data;
-- (void).cxx_destruct;
+- (id)url;
+- (id)data;
 
 @end
 

@@ -9,7 +9,7 @@
 #import "IDEBatchFindResultGroupDelegate.h"
 #import "IDENavigableItemCoordinatorDelegate.h"
 
-@class DVTNotificationToken, DVTTimeSlicedMainThreadWorkQueue, IDEBatchFindResultSet, IDENavigableItem, IDENavigableItemAsyncFilteringCoordinator, IDENavigatorOutlineView, NSArray, NSIndexSet, NSMutableArray, NSMutableSet, NSSet, NSString, NSTableColumn;
+@class DVTNotificationToken, DVTTableCellViewMultiLineHeightEstimator, DVTTimeSlicedMainThreadWorkQueue, IDEBatchFindResultSet, IDENavigableItem, IDENavigableItemAsyncFilteringCoordinator, IDENavigableItemFilter, IDENavigatorOutlineView, NSArray, NSIndexSet, NSMutableArray, NSMutableSet, NSSet, NSString, NSTableColumn;
 
 @interface IDEBatchFindResultsOutlineController : IDEViewController <IDENavigableItemCoordinatorDelegate, IDEBatchFindResultGroupDelegate>
 {
@@ -20,6 +20,7 @@
     NSArray *_selectedResultNavigables;
     NSIndexSet *_previousSelection;
     NSSet *_checkedResultNavigablesForReplacement;
+    DVTTableCellViewMultiLineHeightEstimator *_heightEstimator;
     IDEBatchFindResultSet *_resultSet;
     double _lastOutlineUpdate;
     NSMutableSet *_collapsedItems;
@@ -63,6 +64,7 @@
 @property BOOL showsStatusImage; // @synthesize showsStatusImage=_showsStatusImage;
 @property BOOL dontPublishSelectionChanges; // @synthesize dontPublishSelectionChanges=_dontPublishSelectionChanges;
 - (void).cxx_destruct;
+- (double)outlineView:(id)arg1 estimatedHeightOfRowByItem:(id)arg2;
 - (id)outlineView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
 - (void)outlineViewItemDidExpand:(id)arg1;
 - (void)_delayedSelectionOfExpandedChildren;
@@ -105,7 +107,7 @@
 - (void)_setupObservers;
 - (void)_handleForgottenNavigableItems:(id)arg1;
 - (void)updateBatchFindResults;
-- (void)filterResultsWithPredicate:(id)arg1;
+@property(retain, nonatomic) IDENavigableItemFilter *filter;
 - (void)reload;
 - (id)dvtExtraBindings;
 - (BOOL)delegateFirstResponder;

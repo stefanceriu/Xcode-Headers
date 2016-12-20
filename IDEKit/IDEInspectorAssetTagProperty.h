@@ -43,7 +43,6 @@
 - (void)userDidChangeValue:(id)arg1;
 - (double)baseline;
 - (id)view;
-- (void)loadView;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

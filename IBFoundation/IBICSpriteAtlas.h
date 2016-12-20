@@ -15,11 +15,13 @@
 + (id)catalogItemFileExtension;
 + (id)classNameComponents;
 + (id)defaultInstanceForIdioms:(id)arg1 enforceStrictIdioms:(BOOL)arg2;
++ (id)createInstanceNamed:(id)arg1;
++ (id)createDefaultInstancesForUnitTesting;
 - (BOOL)isolatesAndConsolidatesContainedContent;
 - (id)effectiveModificationDateForCARCompiler;
 - (id)displayName;
 - (id)defaultUnqualifiedRuntimeName;
-- (BOOL)populateNamedAssetImportInfo:(id)arg1 allCompiledItems:(id)arg2 error:(id *)arg3;
+- (BOOL)populateNamedAssetImportInfo:(id)arg1 allCompiledItems:(id)arg2 withOptions:(id)arg3 error:(id *)arg4;
 
 @end
 

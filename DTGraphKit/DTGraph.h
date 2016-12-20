@@ -66,7 +66,7 @@
         unsigned int implementsWillDrawCellForGraphEntry:1;
         unsigned int implementsImageOfEntryInRect:1;
         unsigned int implementsTranslateValueKeypath:1;
-        unsigned int RESERVED:17;
+        unsigned int implementsUseMaximumYForOrderInGraph:1;
     } _delegateFlags;
     unsigned long long verboseLevel;
     NSMutableArray *_observedModels;

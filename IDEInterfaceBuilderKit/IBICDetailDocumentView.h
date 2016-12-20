@@ -6,9 +6,11 @@
 
 #import "DVTLayoutView_ML.h"
 
-@class DVTStackView_ML;
+#import "NSAccessibilityGroup.h"
 
-@interface IBICDetailDocumentView : DVTLayoutView_ML
+@class DVTStackView_ML, NSString;
+
+@interface IBICDetailDocumentView : DVTLayoutView_ML <NSAccessibilityGroup>
 {
     DVTStackView_ML *_contentStackView;
     double _lastClipViewWidth;
@@ -19,6 +21,7 @@
 @property __weak id <IBICDetailDocumentViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly) DVTStackView_ML *contentStackView; // @synthesize contentStackView=_contentStackView;
 - (void).cxx_destruct;
+- (id)accessibilityLabel;
 - (void)keyDown:(id)arg1;
 - (void)cancelOperation:(id)arg1;
 - (void)insertText:(id)arg1;
@@ -43,6 +46,12 @@
 - (id)scrollView;
 - (BOOL)isCenteringStyle;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -27,20 +27,20 @@
     NSMutableDictionary *_filesToTempDocuments;
     BOOL _complete;
     IDELocalizationImportContext *_context;
+    IDELocalizationImporter *_worker;
     NSArray *_workspaceNavigableItems;
     NSArray *_fileSystemNavigableItems;
     NSArray *_flatNavigableItems;
     NSArray *_issueNavigableItems;
-    IDELocalizationImporter *_worker;
 }
 
 + (void)initialize;
-@property BOOL complete; // @synthesize complete=_complete;
-@property(retain) IDELocalizationImporter *worker; // @synthesize worker=_worker;
 @property(retain) NSArray *issueNavigableItems; // @synthesize issueNavigableItems=_issueNavigableItems;
 @property(retain) NSArray *flatNavigableItems; // @synthesize flatNavigableItems=_flatNavigableItems;
 @property(retain) NSArray *fileSystemNavigableItems; // @synthesize fileSystemNavigableItems=_fileSystemNavigableItems;
 @property(retain) NSArray *workspaceNavigableItems; // @synthesize workspaceNavigableItems=_workspaceNavigableItems;
+@property BOOL complete; // @synthesize complete=_complete;
+@property(retain) IDELocalizationImporter *worker; // @synthesize worker=_worker;
 @property(retain, nonatomic) IDELocalizationImportContext *context; // @synthesize context=_context;
 - (void).cxx_destruct;
 - (double)reviewFilesNavigator:(id)arg1 outlineView:(id)arg2 rowHeightForNavigableItem:(id)arg3;

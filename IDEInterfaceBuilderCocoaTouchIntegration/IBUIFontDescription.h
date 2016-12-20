@@ -21,11 +21,6 @@
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 + (id)fontDescriptionWithMarshalledValue:(id)arg1;
-+ (void)resetFilenames;
-+ (id)allFilenames;
-+ (id)filenameForFontName:(id)arg1;
-+ (void)registerFilename:(id)arg1 forFontName:(id)arg2;
-+ (id)_filenamesByFontName;
 + (id)fontDescriptionWithName:(id)arg1 family:(id)arg2 andPointSize:(double)arg3;
 + (id)fontDescriptionWithName:(id)arg1 family:(id)arg2 andSize:(long long)arg3;
 + (id)fontDescriptionWithTextStyle:(id)arg1;
@@ -60,7 +55,7 @@
 - (id)actualNameForRuntime:(id)arg1;
 - (unsigned long long)nsTraitsForRuntime:(id)arg1;
 - (unsigned long long)traitsForRuntime:(id)arg1;
-@property(readonly) NSString *filename;
+- (id)filenameForRuntime:(id)arg1;
 @property(readonly) NSString *textStyle;
 @property(readonly) double pointSize;
 @property(readonly) NSString *family;

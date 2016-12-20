@@ -21,7 +21,7 @@
 - (unsigned long long)hash;
 - (void)setParent:(id)arg1;
 - (void)primitiveInvalidate;
-- (id)initWithController:(id)arg1 parent:(id)arg2 label:(id)arg3;
+- (id)initWithController:(id)arg1 parent:(id)arg2 identifier:(id)arg3;
 
 @end
 

@@ -14,12 +14,14 @@
     NSMutableArray *_diagnosticFixItItems;
     DVTWeakInterposer *_delegate_dvtWeakInterposer;
     DVTWeakInterposer *_representedObject_dvtWeakInterposer;
+    int _diagnosticSeverity;
 }
 
 + (id)keyPathsForValuesAffectingFixableDiagnosticItems;
 + (id)diagnosticMessageType;
 @property(copy, nonatomic) NSArray *diagnosticFixItItems; // @synthesize diagnosticFixItItems=_diagnosticFixItItems;
 - (void).cxx_destruct;
+- (void)updateFixItInfoWithLocationEncodingConverter:(id)arg1;
 @property __weak id representedObject;
 @property __weak id <IDEDiagnosticItemDelegate> delegate;
 @property(readonly) NSArray *fixableDiagnosticItems;

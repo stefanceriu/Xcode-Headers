@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <IDEFoundation/IDEPlaygroundContextDeserializerCommon.h>
 
-@interface IDEPlaygroundContextDeserializer : NSObject
+@interface IDEPlaygroundContextDeserializer : IDEPlaygroundContextDeserializerCommon
 {
 }
 
@@ -14,7 +14,8 @@
 + (id)_sectionFileReferenceFromSectionElement:(id)arg1 forFilePath:(id)arg2 error:(id *)arg3;
 + (id)_readDiscreteFileSectionsFromElement:(id)arg1 forFilePath:(id)arg2 error:(id *)arg3;
 + (id)_readOrganizationNameFromElement:(id)arg1 error:(id *)arg2;
-+ (id)_readPageNamesFromElement:(id)arg1 error:(id *)arg2;
++ (id)_suffixForPageElement:(id)arg1;
++ (id)_readPageFilenamesFromElement:(id)arg1 error:(id *)arg2;
 + (id)_readLastMigrationFromElement:(id)arg1 error:(id *)arg2;
 + (BOOL)_readBooleanValueForAttributeName:(id)arg1 fromElement:(id)arg2 defaultValue:(BOOL)arg3 error:(id *)arg4;
 + (BOOL)_readBooleanValueForAttributeName:(id)arg1 fromElement:(id)arg2 error:(id *)arg3;
@@ -22,7 +23,8 @@
 + (long long)_readDisplayModeFromElement:(id)arg1 error:(id *)arg2;
 + (id)_readTargetPlatformIdentifierFromElement:(id)arg1 forPlaygroundVersion:(id)arg2 error:(id *)arg3;
 + (id)_readPlaygroundVersionFromElement:(id)arg1 error:(id *)arg2;
-+ (id)deserializePlaygroundContextFromFilePath:(id)arg1 error:(id *)arg2;
++ (id)contextFromFilePath:(id)arg1 parentContext:(id)arg2 error:(id *)arg3;
++ (id)rootElementName;
 
 @end
 

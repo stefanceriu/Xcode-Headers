@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, IDEActivityReport, IDEWorkspaceDocument, NSArray, NSMutableSet, NSSet, NSString;
+@class DVTStackBacktrace, IDEActivityReport, IDEWorkspaceDocument, NSArray, NSMapTable, NSMutableSet, NSSet, NSString;
 
 @interface IDEActivityReportManager : NSObject <DVTInvalidation>
 {
@@ -16,6 +16,7 @@
     IDEActivityReport *_lastCompletedUserVisibleSchemeBasedReport;
     IDEActivityReport *_lastCompletedUserVisibleReport;
     IDEWorkspaceDocument *_workspaceDocument;
+    NSMapTable *_reportCompletedObservingTokenForReportsMapTable;
     NSSet *_activityReporterObservingTokens;
     NSSet *_activityReporters;
     NSMutableSet *_observers;
@@ -43,7 +44,7 @@
 @property(readonly) IDEActivityReport *lastCompletedUserVisibleReport; // @synthesize lastCompletedUserVisibleReport=_lastCompletedUserVisibleReport;
 - (void)rebuildActivityReportCaches;
 - (void)handleUpdateFromActivityReporter:(id)arg1;
-@property(readonly) NSSet *activityReporters;
+@property(retain) NSSet *activityReporters;
 - (void)loadActivityReporters;
 - (void)primitiveInvalidate;
 - (id)initWithWorkspaceDocument:(id)arg1;

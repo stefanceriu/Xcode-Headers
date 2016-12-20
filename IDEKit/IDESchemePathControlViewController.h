@@ -11,20 +11,21 @@
 #import "NSMenuDelegate.h"
 #import "NSPathControlDelegate.h"
 
-@class DVTStackBacktrace, IDENavigableItem, IDENavigableItemCoordinator, IDEPathControl, IDEWorkspace, NSString;
+@class DVTStackBacktrace, IDENavigableItem, IDENavigableItemCoordinator, IDEPathControl, IDESchemeManagerNavigable, IDEWorkspace, NSString;
 
 @interface IDESchemePathControlViewController : NSViewController <NSPathControlDelegate, IDEPathCellDelegate, NSMenuDelegate, DVTInvalidation>
 {
     IDENavigableItemCoordinator *_navigableItemCoordinator;
     unsigned long long _menusOpen;
     IDEPathControl *_pathControl;
-    IDENavigableItem *_rootNavigable;
+    IDESchemeManagerNavigable *_rootNavigable;
     IDEWorkspace *_workspace;
 }
 
++ (id)keyPathsForValuesAffectingSelectedNavigable;
 + (void)initialize;
-@property(nonatomic) __weak IDEWorkspace *workspace; // @synthesize workspace=_workspace;
-@property(retain, nonatomic) IDENavigableItem *rootNavigable; // @synthesize rootNavigable=_rootNavigable;
+@property(retain, nonatomic) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
+@property(retain, nonatomic) IDESchemeManagerNavigable *rootNavigable; // @synthesize rootNavigable=_rootNavigable;
 @property(readonly, nonatomic) IDEPathControl *pathControl; // @synthesize pathControl=_pathControl;
 - (void).cxx_destruct;
 - (id)pathCell:(id)arg1 accessibilityDescriptionForPathComponentCell:(id)arg2 atIndex:(unsigned long long)arg3;

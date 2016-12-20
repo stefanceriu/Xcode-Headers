@@ -62,7 +62,6 @@
 - (void)setupOrTearDown;
 - (void)tearDown;
 - (void)setup;
-- (id)_botCompositeCategory;
 - (void)teardownLayers;
 - (void)setupLayers;
 - (id)_buildMultiActionIndicatorLayer;
@@ -75,7 +74,6 @@
 - (struct CGRect)insetRootLayerBounds;
 @property struct CGSize contentSize;
 - (void)sizeToFitToolbarDisplayMode:(unsigned long long)arg1 sizeMode:(unsigned long long)arg2;
-- (void)activityViewDataSource:(id)arg1 countDidChangeForBotStatusCategory:(id)arg2;
 - (void)activityViewDataSource:(id)arg1 workspaceRepresentingTypeStringDidChangeTo:(id)arg2;
 - (void)activityViewDataSource:(id)arg1 issueCountDidChangeForIssueCategory:(id)arg2;
 - (void)unschedulePendingForcedDisplayedReportUpdate;

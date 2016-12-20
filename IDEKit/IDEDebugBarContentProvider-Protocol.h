@@ -13,7 +13,6 @@
 
 @optional
 @property(readonly) BOOL prefersDebugBarToAlwaysBeShown;
-@property(readonly) BOOL wantsRightSideSeparatorBorder;
 - (double)xOffsetForSharedLibrariesPopUpAnchoredOnDebugBar:(IDEDebugBar *)arg1;
 - (struct CGRect)additionalGrabRectOfDebugBar:(IDEDebugBar *)arg1 inTermsOfView:(NSView *)arg2;
 - (void)willBeDetachedFromDebugBar:(IDEDebugBar *)arg1;

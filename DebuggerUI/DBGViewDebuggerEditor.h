@@ -9,7 +9,7 @@
 #import "DBGSceneViewControllerDelegate.h"
 #import "IDEFocusedHierarchy.h"
 
-@class DBGSceneViewController, DBGViewDebuggerAdditionUIController, DBGViewDebuggerDocument, DBGViewSurface, DBGViewWindow, DVTBorderedView, DVTDelayedInvocation, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTRangeSliderCell, NSArray, NSProgressIndicator, NSSegmentedControl, NSSet, NSSlider, NSString, NSView;
+@class DBGSceneViewController, DBGViewDebuggerAdditionUIController, DBGViewDebuggerDocument, DBGViewSurface, DBGViewWindow, DVTBorderedView, DVTDelayedInvocation, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTRangeSliderCell, NSArray, NSLayoutConstraint, NSProgressIndicator, NSSegmentedControl, NSSet, NSSlider, NSString, NSTextField, NSView, NSVisualEffectView;
 
 @interface DBGViewDebuggerEditor : IDEEditor <DBGSceneViewControllerDelegate, IDEFocusedHierarchy>
 {
@@ -29,10 +29,12 @@
     id <DVTCancellable> _viewDebuggerAdditionUIControllerObservingToken;
     DBGViewSurface *_formerlyFocusedObject;
     double _formerCameraZoom;
+    BOOL _toolBarVisible;
     BOOL _reachedStage2;
     NSSet *_selectedConstraintSet;
     DBGSceneViewController *_sceneViewController;
     DVTBorderedView *_backgroundView;
+    NSVisualEffectView *_toolBarContainerView;
     DVTBorderedView *_toolBarView;
     NSSegmentedControl *_zoomSegmentedControl;
     DVTGradientImagePopUpButton *_nodeContentModePopupButton;
@@ -42,17 +44,29 @@
     NSSlider *_viewRangeSlider;
     DVTRangeSliderCell *_viewRangeSliderCell;
     DVTGradientImageButton *_showClippedContentButton;
+    DVTGradientImageButton *_showTrueSpacingBoxesButton;
+    NSLayoutConstraint *_trueSpacingBoxesButtonWidthConstraint;
+    NSView *_statusMessageContainerView;
+    NSTextField *_statusMessageTitle;
+    NSTextField *_statusMessageDescription;
     NSView *_percentLoadedView;
     NSProgressIndicator *_percentLoadedIndicator;
     long long _selectedZoom;
 }
 
++ (long long)version;
++ (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
 @property BOOL reachedStage2; // @synthesize reachedStage2=_reachedStage2;
 @property long long selectedZoom; // @synthesize selectedZoom=_selectedZoom;
 @property __weak NSProgressIndicator *percentLoadedIndicator; // @synthesize percentLoadedIndicator=_percentLoadedIndicator;
 @property(retain) NSView *percentLoadedView; // @synthesize percentLoadedView=_percentLoadedView;
+@property __weak NSTextField *statusMessageDescription; // @synthesize statusMessageDescription=_statusMessageDescription;
+@property __weak NSTextField *statusMessageTitle; // @synthesize statusMessageTitle=_statusMessageTitle;
+@property __weak NSView *statusMessageContainerView; // @synthesize statusMessageContainerView=_statusMessageContainerView;
+@property __weak NSLayoutConstraint *trueSpacingBoxesButtonWidthConstraint; // @synthesize trueSpacingBoxesButtonWidthConstraint=_trueSpacingBoxesButtonWidthConstraint;
+@property __weak DVTGradientImageButton *showTrueSpacingBoxesButton; // @synthesize showTrueSpacingBoxesButton=_showTrueSpacingBoxesButton;
 @property __weak DVTGradientImageButton *showClippedContentButton; // @synthesize showClippedContentButton=_showClippedContentButton;
 @property __weak DVTRangeSliderCell *viewRangeSliderCell; // @synthesize viewRangeSliderCell=_viewRangeSliderCell;
 @property __weak NSSlider *viewRangeSlider; // @synthesize viewRangeSlider=_viewRangeSlider;
@@ -62,43 +76,62 @@
 @property __weak DVTGradientImagePopUpButton *nodeContentModePopupButton; // @synthesize nodeContentModePopupButton=_nodeContentModePopupButton;
 @property __weak NSSegmentedControl *zoomSegmentedControl; // @synthesize zoomSegmentedControl=_zoomSegmentedControl;
 @property __weak DVTBorderedView *toolBarView; // @synthesize toolBarView=_toolBarView;
+@property __weak NSVisualEffectView *toolBarContainerView; // @synthesize toolBarContainerView=_toolBarContainerView;
 @property __weak DVTBorderedView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(retain) DBGSceneViewController *sceneViewController; // @synthesize sceneViewController=_sceneViewController;
+@property(getter=isToolBarVisible) BOOL toolBarVisible; // @synthesize toolBarVisible=_toolBarVisible;
 @property(retain) NSSet *selectedConstraintSet; // @synthesize selectedConstraintSet=_selectedConstraintSet;
 - (void).cxx_destruct;
+- (void)commitStateToDictionary:(id)arg1;
+- (void)revertStateWithDictionary:(id)arg1;
 - (void)primitiveInvalidate;
 - (BOOL)focusHidesObject:(id)arg1;
 - (BOOL)_isSurface:(id)arg1 ancestorOf:(id)arg2;
 - (void)_breakOutOfFocusIfNecessary:(id)arg1;
 - (id)_windowForViewObject:(id)arg1;
-- (void)_showContextualJumpMenu;
 @property(readonly) DBGViewDebuggerDocument *viewDebuggerDocument;
 - (void)reloadSelectionInEditor;
 - (void)addViewObjectsToSelectedItems:(id)arg1;
 - (void)mouseClickedViewObject:(id)arg1 withEvent:(id)arg2;
+- (void)rangeSliderKVOCompliantValueChangeWithBlock:(CDUnknownBlockType)arg1;
+@property(readonly) double viewRangeMinValue;
+@property(readonly) double viewRangeMaxValue;
+@property(nonatomic) struct _NSRange viewRangeValue;
+@property(readonly) double zDistanceMinValue;
+@property(readonly) double zDistanceMaxValue;
+@property(readonly) double zDistanceValue;
+- (BOOL)validateMenuItem:(id)arg1;
+- (void)switchToContentModeWireframesAndContents:(id)arg1;
+- (void)switchToContentModeWireframes:(id)arg1;
+- (void)switchToContentModeContents:(id)arg1;
 - (void)zoomOutCanvas:(id)arg1;
 - (void)zoomActualCanvas:(id)arg1;
 - (void)zoomInCanvas:(id)arg1;
 - (void)toggleClippingOfContent:(id)arg1;
 - (void)toggleShowConstraints:(id)arg1;
+- (void)toggleTrueSpacingBoxesButtonPressed:(id)arg1;
 - (void)gestureRecognizerAction:(id)arg1;
 - (void)zoomButtonPressed:(id)arg1;
-- (void)toggle2D3DButtonPressed:(id)arg1;
+- (void)toggle2D3D:(id)arg1;
 - (void)zoomButtonPressedForTag:(unsigned long long)arg1;
+- (void)zDistanceDidChange;
 - (void)zDistanceSliderChanged:(id)arg1;
 - (void)_reloadSceneViewController;
-@property DBGViewWindow *selectedWindow;
+@property(retain) DBGViewWindow *selectedWindow;
 @property(retain) NSArray *currentSelectedItems;
 - (void)_setCurrentSelectedItemsFromDocumentLocations:(id)arg1;
 - (id)currentSelectedDocumentLocations;
 - (id)_documentLocationsFromCurrentSelectedItems;
 - (void)selectDocumentLocations:(id)arg1;
+- (void)navigateToAnnotationWithRepresentedObject:(id)arg1 wantsIndicatorAnimation:(BOOL)arg2 exploreAnnotationRepresentedObject:(id)arg3;
 - (void)_handleNavigatorOutputSelectionChanged;
 - (void)viewWillUninstall;
+- (void)_updateSliderMaxValue;
 - (void)_cancelAndClearObservingTokens;
 - (void)viewDidInstall;
 - (void)_handleViewDebuggerPercentLoadedChanged;
 - (void)_configureNodeContentModePopUp;
+- (void)regenerateIssues;
 - (void)loadView;
 
 // Remaining properties

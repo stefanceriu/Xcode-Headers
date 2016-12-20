@@ -22,6 +22,7 @@
     NSWindow *_sheet;
     BOOL _haveFoundAtLeastOneUserAppOnDevice;
     NSWindow *_parentWindow;
+    BOOL _runDestinationIsMac;
     NSArray *_orderedChooserApplications;
     NSString *_filterString;
     IDEAppChooserModelObject *_selectedApplicationModelObject;

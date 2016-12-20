@@ -7,6 +7,7 @@
 #import "NSUserDefaults.h"
 
 @interface NSUserDefaults (DVTNSUserDefaultsAdditions)
+- (BOOL)dvt_isDarkMode;
 - (void)dvt_setInteger:(long long)arg1 forKey:(id)arg2 defaultValue:(long long)arg3;
 - (void)dvt_setBool:(BOOL)arg1 forKey:(id)arg2 defaultValue:(BOOL)arg3;
 - (id)dvt_fontForKey:(id)arg1;

@@ -7,37 +7,46 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation.h"
+#import "IBLayoutGuideGeneratorSnappingDelegate.h"
 
-@class DVTDelayedInvocation, DVTStackBacktrace, IBLayoutGuideDrawingHandler, IBLayoutGuideGenerator, NSString, NSView;
+@class DVTDelayedInvocation, DVTStackBacktrace, IBLayoutGuideCanvasOverlay, IBLayoutGuideGenerator, NSAlignmentFeedbackFilter, NSEvent, NSObject<IBAutolayoutItem>, NSString;
 
-@interface IBLayoutManager : NSObject <DVTInvalidation>
+@interface IBLayoutManager : NSObject <IBLayoutGuideGeneratorSnappingDelegate, DVTInvalidation>
 {
-    DVTDelayedInvocation *clearingPolicy;
-    unsigned long long currentDisplayToken;
-    IBLayoutGuideGenerator *layoutGuideGenerator;
-    IBLayoutGuideDrawingHandler *layoutDrawingHandler;
+    DVTDelayedInvocation *_clearingPolicy;
+    unsigned long long _currentDisplayToken;
+    IBLayoutGuideGenerator *_layoutGuideGenerator;
+    NSAlignmentFeedbackFilter *_alignmentFeedbackFilter;
+    NSEvent *_previousEvent;
+    struct CGPoint _previousSnappedPoint;
+    CDStruct_34734122 _previousOffset;
+    IBLayoutGuideCanvasOverlay *_canvasOverlay;
 }
 
 + (void)setGuidesAreEnabled:(BOOL)arg1;
 + (BOOL)guidesAreEnabled;
 + (void)initialize;
-@property(readonly) IBLayoutGuideDrawingHandler *layoutDrawingHandler; // @synthesize layoutDrawingHandler;
+@property(readonly) IBLayoutGuideCanvasOverlay *canvasOverlay; // @synthesize canvasOverlay=_canvasOverlay;
 - (void).cxx_destruct;
 - (long long)displayGuidesForViews:(id)arg1 usingContainerResizingRules:(BOOL)arg2 draggedKnobInSuperview:(CDUnion_31865a80)arg3 andReturningLayoutGuideMatches:(id *)arg4;
-- (long long)suggestGuidesForViews:(id)arg1 withSuggestedFrame:(struct CGRect)arg2 returningX:(double *)arg3 andReturningY:(double *)arg4 andReturningLayoutGuideMatches:(id *)arg5 fromKnobPositionInSuperview:(CDUnion_31865a80)arg6 usingContainerResizingRules:(BOOL)arg7 snaps:(BOOL)arg8;
-- (long long)applyGuidesForViews:(id)arg1 withSuggestedFrame:(struct CGRect)arg2 andSiblings:(id)arg3 returningX:(double *)arg4 andReturningY:(double *)arg5 andReturningLayoutGuideMatches:(id *)arg6 fromKnobPositionInTargetSuperview:(CDUnion_31865a80)arg7 usingContainerResizingRules:(BOOL)arg8 displayOnly:(BOOL)arg9 maxSnapDistance:(double)arg10;
-- (long long)applyGuidesForViews:(id)arg1 withSuggestedFrame:(struct CGRect)arg2 targetSuperview:(id)arg3 andSiblings:(id)arg4 returningX:(double *)arg5 andReturningY:(double *)arg6 andReturningLayoutGuideMatches:(id *)arg7 fromKnobPositionInTargetSuperview:(CDUnion_31865a80)arg8 usingContainerResizingRules:(BOOL)arg9 displayOnly:(BOOL)arg10 maxSnapDistance:(double)arg11 baselines:(id)arg12;
+- (long long)suggestGuidesForViews:(id)arg1 forEvent:(id)arg2 withSuggestedFrame:(struct CGRect)arg3 returningX:(double *)arg4 andReturningY:(double *)arg5 andReturningLayoutGuideMatches:(id *)arg6 fromKnobPositionInSuperview:(CDUnion_31865a80)arg7 usingContainerResizingRules:(BOOL)arg8 snaps:(BOOL)arg9;
+- (long long)applyGuidesForViews:(id)arg1 forEvent:(id)arg2 withSuggestedFrame:(struct CGRect)arg3 andSiblings:(id)arg4 returningX:(double *)arg5 andReturningY:(double *)arg6 andReturningLayoutGuideMatches:(id *)arg7 fromKnobPositionInTargetSuperview:(CDUnion_31865a80)arg8 usingContainerResizingRules:(BOOL)arg9 displayOnly:(BOOL)arg10 maxSnapDistance:(double)arg11;
+- (id)feedbackTokenForLayoutGuideGenerator:(id)arg1 ifShouldSnapDefaultY:(double)arg2 toAlignedY:(double)arg3 forCenter:(BOOL)arg4;
+- (id)feedbackTokenForLayoutGuideGenerator:(id)arg1 ifShouldSnapDefaultX:(double)arg2 toAlignedX:(double)arg3 forCenter:(BOOL)arg4;
+- (void)performAlignmentFeedback:(id)arg1 performanceTime:(unsigned long long)arg2;
+- (void)takeAdjustedSnapRect:(struct CGRect)arg1 targetSuperview:(id)arg2 knobPositionInTargetSuperview:(CDUnion_31865a80)arg3;
+- (long long)applyGuidesForViews:(id)arg1 forEvent:(id)arg2 withSuggestedFrame:(struct CGRect)arg3 targetSuperview:(id)arg4 andSiblings:(id)arg5 returningX:(double *)arg6 andReturningY:(double *)arg7 andReturningLayoutGuideMatches:(id *)arg8 fromKnobPositionInTargetSuperview:(CDUnion_31865a80)arg9 usingContainerResizingRules:(BOOL)arg10 displayOnly:(BOOL)arg11 maxSnapDistance:(double)arg12 baselines:(id)arg13;
 - (void)clearLiveGuides;
 - (void)clearLiveGuidesDirectly;
 - (void)clearLiveGuidesAfterDelay:(double)arg1;
 - (BOOL)isCurrentDisplayToken:(unsigned long long)arg1;
 - (unsigned long long)currentDisplayToken;
 - (void)invalidateCurrentDisplayToken;
-@property(readonly) NSView *guideOverlay;
 - (struct CGRect)boundingLayoutFrameForViews:(id)arg1;
 - (CDStruct_c519178c)insetFromContainer:(id)arg1 toViews:(id)arg2;
+@property(readonly) NSObject<IBAutolayoutItem> *coordinateSpaceView;
 - (void)primitiveInvalidate;
-- (id)initWithLayoutDrawingHandler:(id)arg1 delegate:(id)arg2;
+- (id)initWithLayoutGuideGenerator:(id)arg1 canvasOverlay:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

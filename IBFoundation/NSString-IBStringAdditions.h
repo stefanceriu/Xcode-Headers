@@ -9,7 +9,6 @@
 @interface NSString (IBStringAdditions)
 + (id)ib_stringWithListComponentsJoinedByCommasAndAnd:(id)arg1;
 + (id)ib_UUIDString;
-- (id)ib_capitalizedString;
 - (struct _NSRange)ib_rangeForSuffixOfLength:(long long)arg1;
 - (struct _NSRange)ib_range;
 - (id)ib_stringWithEachLinePrefixedByString:(id)arg1;
@@ -30,11 +29,14 @@
 - (BOOL)ib_isComposedEntirelyOfCharactersFromSet:(id)arg1;
 - (BOOL)ib_isRange:(struct _NSRange)arg1 composedEntirelyOfCharactersFromSet:(id)arg2;
 - (id)ib_UTF8Representation;
+- (id)ib_stringByCapitalizingFirstCharacterOfEachSpacedComponent;
+- (id)ib_stringByCapitalizingFirstCharacter;
 - (id)ib_stringByLowercasingFirstCharacter;
 - (id)ib_stringByDeletingSuffix:(id)arg1;
 - (id)ib_stringByDeletingPrefix:(id)arg1;
 - (id)ib_stringByPrependingString:(id)arg1;
 - (id)ib_stringByAppendingPathComponents:(id)arg1;
+- (id)ib_stringByReplacingCharactersFromSet:(id)arg1 withString:(id)arg2;
 - (id)ib_stringByRemovingCharactersFromSet:(id)arg1;
 - (id)ib_stringByInsertingString:(id)arg1 atIndex:(unsigned long long)arg2;
 - (long long)ib_caseInsensitiveNumericCompare:(id)arg1;

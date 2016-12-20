@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "NSCoding.h"
+
 @class NSString;
 
-@interface DTKPKDebugCodeWithName : NSObject
+@interface DTKPKDebugCodeWithName : NSObject <NSCoding>
 {
     CDUnion_1678db3a _kdebugCode;
     NSString *_name;
@@ -17,6 +19,8 @@
 @property(readonly, retain, nonatomic) NSString *name; // @synthesize name=_name;
 @property(readonly, nonatomic) CDUnion_1678db3a kdebugCode; // @synthesize kdebugCode=_kdebugCode;
 - (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithValue:(unsigned int)arg1 name:(id)arg2;
 
 @end

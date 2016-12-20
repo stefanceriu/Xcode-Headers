@@ -4,22 +4,18 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEKit/IDENavigableItem.h>
+#import <IDEKit/IDEKeyDrivenNavigableItem.h>
 
-@class DVTObservingToken;
+@class IDENavigableItem;
 
-@interface IDESchemeManagerNavigable : IDENavigableItem
+@interface IDESchemeManagerNavigable : IDEKeyDrivenNavigableItem
 {
-    DVTObservingToken *_runContextsObservingToken;
 }
 
-- (void).cxx_destruct;
-- (id)childRepresentedObjects;
-- (BOOL)isLeaf;
-- (id)image;
-- (id)name;
-- (void)primitiveInvalidate;
-- (id)initWithRepresentedObject:(id)arg1;
++ (id)keyPathsForValuesAffectingActiveRunDestinationNavigable;
++ (id)keyPathsForValuesAffectingRunContextManager;
+@property(readonly, nonatomic) IDENavigableItem *activeRunDestinationNavigable;
+- (id)runContextManager;
 
 @end
 

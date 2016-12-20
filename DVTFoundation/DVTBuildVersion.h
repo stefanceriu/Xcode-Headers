@@ -18,6 +18,7 @@
 }
 
 + (id)buildVersionWithString:(id)arg1;
++ (id)currentSystemVersion;
 - (void).cxx_destruct;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;

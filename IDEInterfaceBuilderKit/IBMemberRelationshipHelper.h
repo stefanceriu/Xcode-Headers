@@ -15,7 +15,7 @@
 @property(nonatomic) long long behavior; // @synthesize behavior=_behavior;
 - (void)handleOperation:(long long)arg1 onObjects:(id)arg2 inDocument:(id)arg3 fromSource:(long long)arg4 currentConfigurationOnlyHandler:(CDUnknownBlockType)arg5 defaultConfigurationHandler:(CDUnknownBlockType)arg6;
 - (void)handleOperation:(long long)arg1 onObjects:(id)arg2 inDocument:(id)arg3 hints:(id)arg4 currentConfigurationOnlyHandler:(CDUnknownBlockType)arg5 defaultConfigurationHandler:(CDUnknownBlockType)arg6;
-- (BOOL)_shouldTargetCurrentConfigurationForOperation:(long long)arg1 onObjects:(id)arg2 hints:(id)arg3;
+- (BOOL)_shouldTargetCurrentConfigurationForOperation:(long long)arg1 onObjects:(id)arg2 hints:(id)arg3 document:(id)arg4;
 - (id)currentHintsWithSource:(long long)arg1;
 
 @end

@@ -24,7 +24,7 @@
 - (void)encodePlatformSpecificDocumentProperties:(id)arg1;
 - (void)unarchivePlatformSpecificDocumentProperties:(id)arg1;
 - (void)archivePlatformSpecificDocumentProperties:(id)arg1;
-- (void)asynchronouslyPreflightShowingDocumentUIForScaleFactor:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)asynchronouslyPreflightShowingDocumentUIForScaleFactor:(double)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (BOOL)preflightUnarchivingDocumentReturningError:(id *)arg1;
 - (id)customFontFilenamesPlistKey;
 - (void)repopulateCustomFontFilenames:(id)arg1;
@@ -34,10 +34,11 @@
 - (struct CGSize)storyboardCanvasPositioningScaleForSimulatedMetricsContainer:(id)arg1;
 - (void)documentDidDisableMemberConfigurations;
 - (void)documentDidEnableMemberConfigurations;
-- (void)documentDidSwitchToEditedMemberConfiguration:(id)arg1;
+- (void)updateDocumentSimulatedMetricsWithDeviceConfiguration:(id)arg1;
+- (void)documentDidSwitchToDevice:(id)arg1 orientation:(id)arg2 adaptation:(id)arg3;
+- (void)updateConfigurations;
 - (id)implicitIntegratorBundleDependencyIdentifier;
 - (void)populateEmptyXIBDocumentWithInitialPlaceholders;
-- (struct CGSize)canvasViewFramePaddingSizeForOverlayScrollers;
 - (id)hybridNIBPackageRuntimeFileName;
 - (id)compiledStoryboardInfoPlistFileName;
 - (id)compiledStoryBoardIntermediateXibFileType;
@@ -50,6 +51,8 @@
 - (id)documentCIImageNamed:(id)arg1 usingSizeValueForPlaceholderImageIfNeeded:(id)arg2;
 - (void)frameDecider:(id)arg1 didPropagateFrameSize:(struct CGSize)arg2 toView:(id)arg3;
 - (void)frameDecider:(id)arg1 didPropagateFrame:(struct CGRect)arg2 toView:(id)arg3;
+- (void)performAdditionDocumentVerificationAndPopulateMessages:(id)arg1;
+- (void)documentWillBeginRegisteringUndoableChanges;
 - (Class)externalReferencePlaceholderClass;
 - (BOOL)isObjectBuiltInXIBPlaceholder:(id)arg1;
 - (id)storyboardExitPlaceholder;

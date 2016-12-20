@@ -61,7 +61,6 @@
 - (void)selectionProviderDidBecomeActive:(id)arg1;
 - (double)constrainContentWidthAndChangeModesIfNeeded:(double)arg1;
 - (id)selectionProviderForRevealingMembers:(id)arg1;
-@property(readonly, nonatomic) double maximumContentWidth;
 @property(readonly, nonatomic) double minimumContentWidth;
 @property(readonly, nonatomic) double contentWidth;
 @property(readonly, nonatomic) NSSet *highlightProviders;

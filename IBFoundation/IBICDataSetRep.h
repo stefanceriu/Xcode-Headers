@@ -16,11 +16,15 @@
 + (id)contentReferenceTypeName;
 + (Class)repIdentifierClass;
 + (Class)slottedAssetClass;
++ (long long)validateCompressionType:(long long)arg1;
++ (BOOL)supportsCompression;
 + (id)validSourceFileNameExtensions;
 + (id)assetRepWithSlot:(id)arg1 fileName:(id)arg2 explicitlyUnassigned:(BOOL)arg3;
 + (id)assetRepWithRepIdentifier:(id)arg1;
++ (id)createDefaultInstancesForUnitTesting;
 @property(copy, nonatomic) NSString *universalTypeIdentifier; // @synthesize universalTypeIdentifier=_universalTypeIdentifier;
 - (void).cxx_destruct;
+- (BOOL)isEqualForUnitTests:(id)arg1;
 - (id)fullyQualifiedRelativePathForFileWriter;
 - (BOOL)requiresKnownFileTypeToBeMinimallyFitForCompiling;
 - (id)displayName;
@@ -29,10 +33,11 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (void)setSlot:(id)arg1;
+- (id)structuredIdentifier;
 - (id)slot;
 - (id)parent;
 - (id)initWithSlot:(id)arg1;
-- (BOOL)populateNamedAssetImportInfo:(id)arg1 allCompiledItems:(id)arg2 error:(id *)arg3;
+- (BOOL)populateNamedAssetImportInfo:(id)arg1 allCompiledItems:(id)arg2 withOptions:(id)arg3 error:(id *)arg4;
 
 @end
 

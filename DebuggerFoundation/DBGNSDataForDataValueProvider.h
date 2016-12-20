@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class DBGDataValue, DBGNSDataForDataValueProviderOptions, DBGStackFrame, NSData, NSString;
+@class DBGDataValue, DBGNSDataForDataValueProviderOptions, IDEStackFrame, NSData, NSError, NSString;
 
 @interface DBGNSDataForDataValueProvider : NSObject
 {
-    DBGStackFrame *_stackFrame;
+    IDEStackFrame *_stackFrame;
     NSString *_expressionResultingInNSData;
     BOOL _hasDataBeenRetrieved;
     NSData *_data;
@@ -20,12 +20,14 @@
     BOOL _autoHandleExceptions;
     DBGNSDataForDataValueProviderOptions *_options;
     DBGDataValue *_dataDataValue;
+    NSError *_retrievalError;
     double _timeToEvaluateExpression;
     double _timeToReadData;
 }
 
 @property double timeToReadData; // @synthesize timeToReadData=_timeToReadData;
 @property double timeToEvaluateExpression; // @synthesize timeToEvaluateExpression=_timeToEvaluateExpression;
+@property(retain) NSError *retrievalError; // @synthesize retrievalError=_retrievalError;
 @property(readonly) BOOL autoHandleExceptions; // @synthesize autoHandleExceptions=_autoHandleExceptions;
 @property(retain) DBGDataValue *dataDataValue; // @synthesize dataDataValue=_dataDataValue;
 @property(retain) DBGNSDataForDataValueProviderOptions *options; // @synthesize options=_options;

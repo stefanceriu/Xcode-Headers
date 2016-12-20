@@ -20,7 +20,8 @@
 @property(readonly) NSString *archiveOperationDestinationBuildSettingName;
 - (BOOL)shouldCopySidecarContentFromArchive:(id)arg1;
 - (BOOL)shouldRemoveForAppStoreDistributionDistributionItem:(id)arg1 shouldRemoveParentDirectory:(char *)arg2;
-- (BOOL)isAppleProvidedContent:(id)arg1;
+- (id)isAppleProvidedContent:(id)arg1 archive:(id)arg2 error:(id *)arg3;
+- (BOOL)shouldRetrieveTeamIDForSigningFromDistributionItem:(id)arg1;
 - (BOOL)shouldCodeSignDistributionItem:(id)arg1;
 
 @end

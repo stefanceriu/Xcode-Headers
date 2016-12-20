@@ -8,28 +8,30 @@
 
 #import "IDEInspectorAccessibilitySupport.h"
 
-@class IDEDataModelVersionedInspectorItem, NSArray, NSArrayController, NSString;
+@class NSArray, NSArrayController, NSString, _IDEDataModelVersionedInspectorItem;
 
 @interface IDEDataModelDocumentInspector : IDEDataModelInspectorController <IDEInspectorAccessibilitySupport>
 {
-    NSArray *developmentVersionMenuItems;
+    NSArray *_developmentVersionMenuItems;
     NSArrayController *versionsArrayController;
     NSArray *_versionGroupItems;
 }
 
 + (id)keyPathsForValuesAffectingDevelopmentVersionTitle;
++ (id)keyPathsForValuesAffectingSourceLanguage;
 + (id)keyPathsForValuesAffectingModelVersionIdentifier;
 + (id)keyPathsForValuesAffectingCanChooseModelVersion;
-@property(copy) NSArray *developmentVersionMenuItems; // @synthesize developmentVersionMenuItems;
+@property(copy) NSArray *developmentVersionMenuItems; // @synthesize developmentVersionMenuItems=_developmentVersionMenuItems;
 - (void).cxx_destruct;
 @property(readonly) NSString *developmentVersionTitle;
 - (void)takeToolsVersion:(id)arg1;
+@property unsigned long long sourceLanguage; // @dynamic sourceLanguage;
 - (void)setModelVersionIdentifier:(id)arg1;
 - (id)modelVersionIdentifier;
 - (void)setContent:(id)arg1;
 @property(readonly) NSArray *versionGroupItems;
 - (id)_generateVersionGroupItems;
-@property(retain) IDEDataModelVersionedInspectorItem *currentInspectorItem;
+@property(retain) _IDEDataModelVersionedInspectorItem *currentInspectorItem;
 - (void)setCurrentReference:(id)arg1;
 - (id)currentReference;
 - (id)_versionGroup;

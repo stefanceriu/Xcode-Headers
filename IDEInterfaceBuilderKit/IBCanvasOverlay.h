@@ -10,6 +10,8 @@
 {
 }
 
+- (BOOL)scalesWithCanvasFrameChrome;
+- (BOOL)canScaleIndependentlyFromCanvasContent;
 - (id)hitTest:(struct CGPoint)arg1;
 
 @end

@@ -9,6 +9,7 @@
 @class IBAutolayoutArbitrationUnit, IBSparseAutolayoutInfo, NSArray, NSObject, NSObject<IBAutolayoutItem>, NSString;
 
 @protocol IBAutolayoutInfoProvider <IBAutolayoutConcreteConstraintProvider>
+@property(readonly, nonatomic) BOOL generatesPrototypingConstraints;
 @property(readonly, nonatomic) Class autolayoutFrameDecisionDriverClass;
 @property(readonly, nonatomic) Class symbolicLayoutConstantClass;
 @property(readonly, nonatomic) Class autolayoutEngineClass;

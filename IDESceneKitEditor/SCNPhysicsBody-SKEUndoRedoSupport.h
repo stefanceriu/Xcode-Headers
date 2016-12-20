@@ -7,10 +7,12 @@
 #import "SCNPhysicsBody.h"
 
 @interface SCNPhysicsBody (SKEUndoRedoSupport)
++ (id)keyPathsForValuesAffectingske_physicsShapeCollisionMargin_edit;
 + (id)keyPathsForValuesAffectingske_physicsShapeScale_edit;
 + (id)keyPathsForValuesAffectingske_physicsShapeCompound_edit;
 + (id)keyPathsForValuesAffectingske_physicsShapeGeometryType_edit;
 + (id)keyPathsForValuesAffectingske_physicsShapeType_edit;
++ (id)keyPathsForValuesAffectingcontactTestBitMask_edit;
 + (id)keyPathsForValuesAffectingcollisionBitMask_edit;
 + (id)keyPathsForValuesAffectingcategoryBitMask_edit;
 + (id)keyPathsForValuesAffectingangularVelocityFactor_edit;
@@ -26,6 +28,8 @@
 + (id)keyPathsForValuesAffectingrestitution_edit;
 + (id)keyPathsForValuesAffectingfriction_edit;
 + (id)keyPathsForValuesAffectingmass_edit;
+- (void)setske_physicsShapeCollisionMargin_edit:(double)arg1;
+- (double)ske_physicsShapeCollisionMargin_edit;
 - (void)setske_physicsShapeScale_edit:(double)arg1;
 - (double)ske_physicsShapeScale_edit;
 - (void)setske_physicsShapeCompound_edit:(BOOL)arg1;
@@ -34,6 +38,8 @@
 - (long long)ske_physicsShapeGeometryType_edit;
 - (void)setske_physicsShapeType_edit:(long long)arg1;
 - (long long)ske_physicsShapeType_edit;
+- (void)setcontactTestBitMask_edit:(unsigned long long)arg1;
+- (unsigned long long)contactTestBitMask_edit;
 - (void)setcollisionBitMask_edit:(unsigned long long)arg1;
 - (unsigned long long)collisionBitMask_edit;
 - (void)setcategoryBitMask_edit:(unsigned long long)arg1;

@@ -6,15 +6,17 @@
 
 #import <IDEInterfaceBuilderKit/IBAbstractWorkspaceDocumentClassProvider.h>
 
-@class IBPlatform, NSMutableDictionary;
+@class IBPlatform, NSArray, NSMutableDictionary;
 
 @interface IBAbstractClassDescriptionBackedWorkspaceDocumentClassProvider : IBAbstractWorkspaceDocumentClassProvider
 {
     NSMutableDictionary *_partialDescriptionsBySourceIdentifier;
     IBPlatform *_platform;
+    NSArray *_toolchainIdentifiers;
 }
 
-+ (id)retainedClassProviderForWorkspaceDocument:(id)arg1 platform:(id)arg2;
++ (id)retainedClassProviderForWorkspaceDocument:(id)arg1 platform:(id)arg2 toolchainIdentifiers:(id)arg3;
+@property(readonly) NSArray *toolchainIdentifiers; // @synthesize toolchainIdentifiers=_toolchainIdentifiers;
 @property(retain) IBPlatform *platform; // @synthesize platform=_platform;
 - (void).cxx_destruct;
 - (id)partialClassDescriptions;
@@ -24,7 +26,7 @@
 - (id)partialClassDescriptionSourcesFromFrameworksNamed:(id)arg1;
 - (id)referenceKey;
 - (id)description;
-- (id)initWithWorkspaceDocument:(id)arg1 platform:(id)arg2;
+- (id)initWithWorkspaceDocument:(id)arg1 platform:(id)arg2 toolchainIdentifiers:(id)arg3;
 
 @end
 

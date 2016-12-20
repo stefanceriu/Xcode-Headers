@@ -23,6 +23,7 @@
     NSProgressIndicator *_downloadAllLogsProgressIndicator;
     id <XCSUIBotLogEditorScopeBarDelegate> _delegate;
     NSString *_currentLogDownloadToken;
+    BOOL _enabled;
     NSPopUpButton *_logSelectorPopUp;
     DVTScopeBarButton *_allMessagesScopeButton;
     DVTScopeBarButton *_allIssuesScopeButton;
@@ -34,6 +35,7 @@
 @property __weak DVTScopeBarButton *allIssuesScopeButton; // @synthesize allIssuesScopeButton=_allIssuesScopeButton;
 @property __weak DVTScopeBarButton *allMessagesScopeButton; // @synthesize allMessagesScopeButton=_allMessagesScopeButton;
 @property __weak NSPopUpButton *logSelectorPopUp; // @synthesize logSelectorPopUp=_logSelectorPopUp;
+@property(nonatomic) BOOL enabled; // @synthesize enabled=_enabled;
 @property(retain) id <XCSUIBotLogEditorScopeBarDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)searchFieldAction:(id)arg1;

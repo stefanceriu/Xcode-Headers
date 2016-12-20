@@ -6,16 +6,12 @@
 
 #import "IDELocalizationWorkReadStrings.h"
 
-@class NSString;
-
 @interface Xcode3LocalizedSourceStringsAdaptorTableWorkContext : IDELocalizationWorkReadStrings
 {
-    NSString *_tableName;
 }
 
 + (id)contextWithParent:(id)arg1 path:(id)arg2 tableName:(id)arg3;
-@property(retain) NSString *tableName; // @synthesize tableName=_tableName;
-- (void).cxx_destruct;
+- (id)tableName;
 
 @end
 

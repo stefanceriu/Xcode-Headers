@@ -9,32 +9,36 @@
 #import "DBGViewDebuggerDataSourceManager.h"
 #import "DVTInvalidation.h"
 
-@class DBGDebugSession, DBGViewWindow, DVTStackBacktrace, NSArray, NSMapTable, NSString;
+@class DBGViewWindow, DVTStackBacktrace, DVTTimeSlicedMainThreadWorkQueue, IDEDebugSession, NSArray, NSMapTable, NSString;
 
 @interface DBGViewDebugger : NSObject <DVTInvalidation, DBGViewDebuggerDataSourceManager>
 {
-    DBGDebugSession *_debugSession;
     NSArray *_windows;
     NSMapTable *_dataSourcesForViewObjectsMap;
     int _loadedState;
+    IDEDebugSession *_debugSession;
     id <DBGViewDescriber> _viewDescriber;
     DBGViewWindow *_primaryWindow;
     double _percentLoaded;
+    DVTTimeSlicedMainThreadWorkQueue *_snapshotRenderingWorkQueue;
 }
 
 + (Class)viewDescriberClassForPlatform:(id)arg1;
 + (void)initialize;
+@property(retain) DVTTimeSlicedMainThreadWorkQueue *snapshotRenderingWorkQueue; // @synthesize snapshotRenderingWorkQueue=_snapshotRenderingWorkQueue;
 @property int loadedState; // @synthesize loadedState=_loadedState;
 @property double percentLoaded; // @synthesize percentLoaded=_percentLoaded;
 @property(readonly) DBGViewWindow *primaryWindow; // @synthesize primaryWindow=_primaryWindow;
 @property(readonly, nonatomic) NSArray *windows; // @synthesize windows=_windows;
 @property(readonly) id <DBGViewDescriber> viewDescriber; // @synthesize viewDescriber=_viewDescriber;
-@property(retain) DBGDebugSession *debugSession; // @synthesize debugSession=_debugSession;
+@property(retain) IDEDebugSession *debugSession; // @synthesize debugSession=_debugSession;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)setDataSource:(id)arg1 forViewObject:(id)arg2;
 - (id)dataSourceForViewObject:(id)arg1;
 - (id)_viewDescriberForPlatform:(id)arg1 debugSession:(id)arg2;
+- (void)_initializeStructuresIfNecessary;
+- (void)willFetchViewInfo;
 - (void)fetchWindowsIfNecessary;
 - (void)_updateViewDebuggingHierarchy:(id)arg1 primaryWindow:(id)arg2 andLoadedState:(int)arg3;
 - (id)initWithPlatform:(id)arg1 debugSession:(id)arg2 viewDescriber:(id)arg3;

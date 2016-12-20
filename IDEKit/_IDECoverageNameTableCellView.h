@@ -20,7 +20,6 @@
 @property __weak NSButton *jumpButton; // @synthesize jumpButton=_jumpButton;
 - (void).cxx_destruct;
 - (void)jumpToSourceCode:(id)arg1;
-- (void)viewWillDraw;
 
 @end
 

@@ -17,6 +17,7 @@
     IDEBreakpointManager *_breakpointsManager;
     IDEEditorArea *_editorArea;
     NSCell *_trayFPSCell;
+    id <DVTInvalidation> _gfxDebuggingAdditionObserver;
     IDEWorkspaceTabController *_workspaceTabController;
     GPUDebuggingAddition *_debuggingAddition;
     GPUTraceSession *_currentTraceSession;
@@ -52,9 +53,13 @@
 - (id)debugSubmenu;
 - (BOOL)shouldReplaceDebugSubmenu;
 - (void)primitiveInvalidate;
+- (void)setupPerformanceDataSource:(id)arg1;
 - (id)extension;
 - (id)initWithWorkspaceTabController:(id)arg1 withDebuggingAddition:(id)arg2 forExtension:(id)arg3;
+- (void)createTabStateAndAddGauge:(id)arg1;
 - (void)_activateGPUDebuggerUI;
+- (void)_traceSessionComplete;
+- (void)fakeSessionComplete;
 - (void)_reopenStandaloneTraceDocument;
 - (void)_closeAllDocuments;
 - (void)_openEditorDocumentWithURL:(id)arg1;

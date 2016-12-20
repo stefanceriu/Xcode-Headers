@@ -25,6 +25,8 @@
     id _derivedDataSourceTreesNotificationToken;
     id _derivedDataOverrideNotificationToken;
     IDEWorkspaceArenaSnapshot *_cachedSnapshot;
+    DVTFilePath *_indexDataStoreFolderOverride;
+    BOOL _indexEnableDataStore;
 }
 
 + (id)defaultBuildSubdirectoryName;
@@ -36,6 +38,7 @@
 + (id)keyPathsForValuesAffectingTestResultsFolderPath;
 + (id)keyPathsForValuesAffectingLogFolderPath;
 + (id)keyPathsForValuesAffectingIndexPrecompiledHeadersFolderPath;
++ (id)keyPathsForValuesAffectingIndexDataStoreFolderPath;
 + (id)keyPathsForValuesAffectingIndexFolderPath;
 + (id)keyPathsForValuesAffectingTextIndexFolderPath;
 + (id)buildIntermediatesFolderPathForSettings:(id)arg1 usingPlaceholderOfType:(int *)arg2;
@@ -60,13 +63,18 @@
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 - (void)createWorkspaceArenaFolderIfNecessary;
+- (BOOL)createWorkspaceArenaFolderIfNecessaryWithError:(id *)arg1;
+@property(readonly) double workspaceArenaInfoRefreshInterval;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)_setupIndexPreferences;
 - (id)initWithWorkspace:(id)arg1;
 @property(readonly) IDEWorkspaceArenaInfo *workspaceArenaInfo;
 @property(readonly) DVTFilePath *testResultsFolderPath;
 @property(readonly) DVTFilePath *logFolderPath;
 @property(readonly) DVTFilePath *indexPrecompiledHeadersFolderPath;
+@property(readonly) BOOL indexEnableDataStore;
+@property(readonly) DVTFilePath *indexDataStoreFolderPath;
 @property(readonly) DVTFilePath *indexFolderPath;
 @property(readonly) DVTFilePath *textIndexFolderPath;
 @property(readonly) DVTFilePath *precompiledHeadersFolderPath;

@@ -20,9 +20,10 @@
         unsigned int _needUpdateForFileURL:1;
         unsigned int _reserved:31;
     } _ideFileRefNavItemflags;
+    BOOL _associatedFileExists;
 }
 
-+ (id)keyPathsForValuesAffectingAssociatedFileExists;
++ (id)keyPathsForValuesAffectingReferencedContentExists;
 + (id)keyPathsForValuesAffectingToolTip;
 + (id)keyPathsForValuesAffectingFileReference;
 + (id)_createExtraInfoObject;
@@ -30,6 +31,7 @@
 + (void)_anyEditorDocumentDirtyStatusWillClose:(id)arg1;
 + (void)_anyEditorDocumentDirtyStatusDidChange:(id)arg1;
 + (void)initialize;
+@property(readonly) BOOL associatedFileExists; // @synthesize associatedFileExists=_associatedFileExists;
 - (void).cxx_destruct;
 - (unsigned long long)conflictStateForUpdateOrMerge;
 - (id)sourceControlCurrentRevision;
@@ -37,7 +39,7 @@
 - (int)sourceControlServerStatusFlag;
 - (id)sourceControlLocalStatus;
 - (int)sourceControlLocalStatusFlag;
-@property(readonly) BOOL associatedFileExists;
+- (BOOL)referencedContentExists;
 - (id)toolTip;
 @property(readonly) NSColor *textColor;
 - (id)newImage;
@@ -49,6 +51,7 @@
 - (void)updateChildRepresentedObjects;
 - (void)updateAttributes;
 - (id)fileReference;
+- (id)accessibleImageDescription;
 - (id)initWithRepresentedObject:(id)arg1;
 
 @end

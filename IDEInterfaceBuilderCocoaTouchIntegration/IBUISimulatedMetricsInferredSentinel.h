@@ -17,7 +17,7 @@
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 + (id)sharedInstance;
-@property(readonly) NSString *displayName;
+@property(readonly, copy) NSString *displayName;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;

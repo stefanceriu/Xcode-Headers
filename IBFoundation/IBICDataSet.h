@@ -6,31 +6,34 @@
 
 #import <IBFoundation/IBICSlottedAsset.h>
 
-@class IBICSlotSuggestionSet;
-
 @interface IBICDataSet : IBICSlottedAsset
 {
-    IBICSlotSuggestionSet *_suggestionSet;
 }
 
 + (id)contentReferenceTypeName;
++ (long long)validateCompressionType:(long long)arg1;
++ (BOOL)ecnodesCompressionForChildren;
++ (BOOL)supportsCompression;
 + (id)importPriority;
 + (id)classNameComponents;
 + (id)defaultName;
-+ (Class)assetRepClass;
 + (id)catalogItemFileExtension;
 + (id)defaultInstanceForIdioms:(id)arg1 enforceStrictIdioms:(BOOL)arg2;
-@property(retain, nonatomic) IBICSlotSuggestionSet *suggestionSet; // @synthesize suggestionSet=_suggestionSet;
-- (void).cxx_destruct;
-- (id)suggestionSetMaskForSuggestionSet:(id)arg1;
-- (id)existingIdiomMask;
-- (id)existingMemoryClassAndCapabilityClassMask;
++ (id)createDefaultInstancesForUnitTesting;
++ (Class)assetRepClass;
 - (CDStruct_550fdc95)taggingSupport;
 - (void)manifestArchivist:(id)arg1 populateManifestEntry:(id)arg2 forChild:(id)arg3;
 - (BOOL)manifestArchivist:(id)arg1 childHasDataToRecordInManifest:(id)arg2;
 - (void)manifestArchivist:(id)arg1 applyPropertiesFromChildEntry:(id)arg2 toChild:(id)arg3 results:(id)arg4;
 - (BOOL)manifestArchivist:(id)arg1 validateManifestChildEntry:(id)arg2 results:(id)arg3;
 - (id)initializeManifestArchivist;
+- (id)intrinsicallyOrderedChildren;
+- (id)children;
+- (id)assetRepForStructuredIdentifier:(id)arg1;
+- (id)childForIdentifier:(id)arg1;
+- (id)assetRepForIdentifier:(id)arg1;
+- (id)conflictFreeChildForSlot:(id)arg1;
+- (id)assetRepForSlot:(id)arg1;
 
 @end
 

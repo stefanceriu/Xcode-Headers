@@ -14,8 +14,8 @@
 {
     NSMutableArray *_previousHistoryItems;
     NSMutableArray *_nextHistoryItems;
-    DVTDelayedMenuGradientImageButton *_backButton;
     DVTDelayedMenuGradientImageButton *_forwardButton;
+    DVTDelayedMenuGradientImageButton *_backButton;
     id <IDEEditorContextProtocol> _editorContext;
 }
 
@@ -26,8 +26,9 @@
 + (id)_historyButtonWithImageNamed:(id)arg1 width:(double)arg2 height:(double)arg3;
 + (long long)historySizeLimit;
 + (void)initialize;
-@property(readonly) DVTDelayedMenuGradientImageButton *forwardButton; // @synthesize forwardButton=_forwardButton;
+@property(readonly, nonatomic) id <IDEEditorContextProtocol> editorContext; // @synthesize editorContext=_editorContext;
 @property(readonly) DVTDelayedMenuGradientImageButton *backButton; // @synthesize backButton=_backButton;
+@property(readonly) DVTDelayedMenuGradientImageButton *forwardButton; // @synthesize forwardButton=_forwardButton;
 - (void).cxx_destruct;
 - (void)goBackInHistoryByCommandWithShiftPlusAlternate:(id)arg1;
 - (void)goBackInHistoryByCommandWithAlternate:(id)arg1;

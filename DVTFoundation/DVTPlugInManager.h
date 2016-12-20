@@ -56,8 +56,6 @@
 - (void)_createPlugInObjectsFromCache;
 - (BOOL)_savePlugInCacheWithScanRecords:(id)arg1 error:(id *)arg2;
 - (BOOL)_removePlugInCacheAndReturnError:(id *)arg1;
-- (BOOL)_removePlugInCacheAtPath:(id)arg1 error:(id *)arg2;
-- (id)_plugInCacheSaveFailedErrorWithUnderlyingError:(id)arg1;
 - (BOOL)_loadPlugInCache:(id *)arg1;
 - (BOOL)_cacheCoversPlugInsWithScanRecords:(id)arg1;
 - (id)_modificationDateOfFileAtPath:(id)arg1;
@@ -72,6 +70,7 @@
 - (void)_addSanitizedNonApplePlugInStatusForBundle:(id)arg1 reason:(id)arg2;
 @property(readonly) NSSet *sanitizedNonApplePlugInStatuses;
 - (void)_createPlugInObjectsFromScanRecords:(id)arg1;
+- (void)_instantiatePlugInsForScanRecords:(id)arg1;
 - (void)_applyActivationRulesToScanRecords:(id)arg1;
 - (id)_scanForPlugInsInDirectories:(id)arg1 skippingDuplicatesOfPlugIns:(id)arg2;
 - (BOOL)initializePlugIns:(id *)arg1;
@@ -87,6 +86,7 @@
 @property(readonly, copy) NSArray *nonApplePlugInDescriptors;
 - (id)_extractErrorFromPlugInLoadingException:(id)arg1;
 - (BOOL)_scanForPlugIns:(id *)arg1;
+- (id)_plugInScanRecordsForInitialScan:(BOOL)arg1;
 @property(readonly, copy) NSUUID *plugInHostUUID;
 @property BOOL hasScannedForPlugIns; // @dynamic hasScannedForPlugIns;
 - (id)_scanRecordForBundle:(id)arg1 atPath:(id)arg2;

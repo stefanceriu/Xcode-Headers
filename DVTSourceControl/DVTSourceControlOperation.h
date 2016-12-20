@@ -26,7 +26,7 @@
 }
 
 + (id)sourceControlOperationStateQueue;
-@property(retain) DVTSourceControlSystem *system; // @synthesize system=_system;
+@property(retain, nonatomic) DVTSourceControlSystem *system; // @synthesize system=_system;
 @property(retain, nonatomic) DVTSourceControlManager *sourceControlManager; // @synthesize sourceControlManager=_sourceControlManager;
 @property(copy) CDUnknownBlockType terminationBlock; // @synthesize terminationBlock=_terminationBlock;
 @property(copy) CDUnknownBlockType incrementalLogBlock; // @synthesize incrementalLogBlock=_incrementalLogBlock;

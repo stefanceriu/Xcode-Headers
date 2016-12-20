@@ -26,11 +26,12 @@
 - (void).cxx_destruct;
 - (id)allVariables;
 - (id)variableBindings;
+- (id)accessibilityDisplayName;
 - (id)abbreviatedDisplayName;
 - (id)succinctDisplayName;
-- (id)attributedPartiallyAbbreviatedDisplayNameMinimallyCoveringVariables:(id)arg1 separator:(id)arg2 withVariableNameAttributes:(id)arg3 valueAttributes:(id)arg4;
 - (id)attributedAbbreviatedDisplayNameMinimallyCoveringVariables:(id)arg1 separator:(id)arg2 withVariableNameAttributes:(id)arg3 valueAttributes:(id)arg4;
 - (id)abbreviatedDisplayNameMinimallyCoveringVariables:(id)arg1;
+- (id)succinctDisplayNameMinimallyCoveringVariables:(id)arg1 withSeparator:(id)arg2;
 - (id)succinctDisplayNameMinimallyCoveringVariables:(id)arg1;
 - (id)attributedDisplayNameMinimallyCoveringVariables:(id)arg1 withSeparator:(id)arg2 namingValuesWithBlock:(CDUnknownBlockType)arg3;
 - (id)displayNameMinimallyCoveringVariables:(id)arg1 withSeparator:(id)arg2 namingValuesWithBlock:(CDUnknownBlockType)arg3;
@@ -49,7 +50,9 @@
 - (BOOL)definesValueForVariable:(id)arg1;
 - (id)valueForVariableWithIdentifier:(id)arg1;
 - (id)valueForVariable:(id)arg1;
+- (id)configurationBySettingVariableIdentifierBindings:(id)arg1;
 - (id)configurationLimitedToVariables:(id)arg1;
+- (id)configurationByApplyingValuesFromConfiguration:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 

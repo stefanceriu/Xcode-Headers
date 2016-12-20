@@ -12,6 +12,7 @@
 + (id)ibSynthesizeControllerKeyPaths;
 - (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(copy) NSArray *ibShadowedExcludedKeys; // @dynamic ibShadowedExcludedKeys;

@@ -19,7 +19,6 @@
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
 - (void)quickLookAction:(id)arg1;
 - (void)configureEditionBar;
-- (void)viewDidInstall;
 - (void)loadView;
 - (void)primitiveInvalidate;
 

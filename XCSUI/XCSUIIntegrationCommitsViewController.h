@@ -10,7 +10,7 @@
 #import "NSTableViewDelegate.h"
 #import "XCSBotSupportingEditorHostedViewController.h"
 
-@class DVTLozengeTextField, DVTReplacementView, DVTScrollView, NSArray, NSMapTable, NSString, NSTableView, NSTextField, NSView, XCSBot, XCSBotSupportingEditor, XCSContributor, XCSIntegration, XCSUIInsetHorizontalDividerLine, XCSUIProgressReplacementView, _XCSUIAllCommittersBadgeView;
+@class DVTLozengeTextField, DVTReplacementView, DVTScrollView, NSArray, NSError, NSMapTable, NSString, NSTableView, NSTextField, NSView, XCSBot, XCSBotSupportingEditor, XCSContributor, XCSIntegration, XCSUIInsetHorizontalDividerLine, XCSUIProgressReplacementView, _XCSUIAllCommittersBadgeView;
 
 @interface XCSUIIntegrationCommitsViewController : DVTViewController <NSTableViewDelegate, NSTableViewDataSource, XCSBotSupportingEditorHostedViewController>
 {
@@ -24,6 +24,7 @@
     XCSIntegration *_integration;
     XCSBotSupportingEditor *_botSupportingEditor;
     XCSBot *_bot;
+    NSError *_error;
     NSTableView *_committersTableView;
     unsigned long long _countOfFilesChangedInIntegration;
     NSTextField *_contributorsTextField;
@@ -64,6 +65,7 @@
 @property __weak NSTextField *contributorsTextField; // @synthesize contributorsTextField=_contributorsTextField;
 @property unsigned long long countOfFilesChangedInIntegration; // @synthesize countOfFilesChangedInIntegration=_countOfFilesChangedInIntegration;
 @property __weak NSTableView *committersTableView; // @synthesize committersTableView=_committersTableView;
+@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
 @property(retain, nonatomic) XCSBot *bot; // @synthesize bot=_bot;
 @property(retain, nonatomic) XCSBotSupportingEditor *botSupportingEditor; // @synthesize botSupportingEditor=_botSupportingEditor;
 @property(retain, nonatomic) XCSIntegration *integration; // @synthesize integration=_integration;
@@ -72,6 +74,7 @@
 @property(readonly, copy) NSArray *currentSelectedItems;
 @property(readonly, copy) NSArray *currentSelectedDocumentLocations; // @synthesize currentSelectedDocumentLocations=_currentSelectedDocumentLocations;
 - (void)toggleDetailViewForTableCellView:(id)arg1 committer:(id)arg2;
+- (void)tableView:(id)arg1 didRemoveRowView:(id)arg2 forRow:(long long)arg3;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (id)_badgeViewForCommitter:(id)arg1;
 - (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
@@ -88,7 +91,6 @@
 - (void)showBadges;
 - (void)hideBadges;
 - (void)updateCommitDetailsWithCommitHistory:(id)arg1;
-- (void)computeContributorChanges;
 - (void)refreshLogViewWithSourceControlLogItems:(id)arg1;
 - (id)logItemForCommit:(id)arg1;
 - (void)committersScrollViewContentBoundsDidChange:(id)arg1;

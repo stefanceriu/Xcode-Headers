@@ -20,11 +20,14 @@
     long long _delaySceneUpdatesNestingCount;
     IBIncrementalSceneUpdateTracker *_incrementalUpdateTracker;
     NSString *_incrementalUpdateSessionID;
+    BOOL _shouldUpdateScenesAsynchronously;
     id <IBSceneUpdateManagerDelegate> _delegate;
 }
 
-+ (id)runSynchronousUpdateForRoot:(id)arg1 scaleFactor:(id)arg2 targetRuntime:(id)arg3 request:(id)arg4 requestConfigurationBlock:(CDUnknownBlockType)arg5;
++ (id)ibtesting_collectDiagnosticsReportsDuring:(CDUnknownBlockType)arg1;
++ (id)runSynchronousUpdateForRoot:(id)arg1 scaleFactor:(double)arg2 targetRuntime:(id)arg3 request:(id)arg4 requestConfigurationBlock:(CDUnknownBlockType)arg5;
 + (void)initialize;
+@property(nonatomic) BOOL shouldUpdateScenesAsynchronously; // @synthesize shouldUpdateScenesAsynchronously=_shouldUpdateScenesAsynchronously;
 @property(nonatomic) __weak id <IBSceneUpdateManagerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)_updateScenes;
@@ -38,9 +41,11 @@
 - (void)noteObject:(id)arg1 changedValueForKeyPath:(id)arg2;
 - (BOOL)isInIncrementalUpdateSession;
 - (void)establishIncrementalUpdateSessionForObject:(id)arg1 duringBlock:(CDUnknownBlockType)arg2;
+- (void)ibtesting_waitForPendingUpdates;
 - (void)waitForPendingUpdates;
 - (void)removeReferencesToObject:(id)arg1;
-- (id)delaySceneUpdates;
+- (void)stopDelayingSceneUpdatesAndUpdatePendingScenes:(BOOL)arg1;
+- (void)startDelayingSceneUpdates;
 - (BOOL)areSynchronousSceneUpdatesAllowed;
 - (void)assertOnSynchronousUpdatesDuring:(CDUnknownBlockType)arg1;
 - (void)ignoreSceneInvalidationDuring:(CDUnknownBlockType)arg1;

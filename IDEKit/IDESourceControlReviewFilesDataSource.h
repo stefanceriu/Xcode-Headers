@@ -25,6 +25,7 @@
     NSString *_selectedRevisionIdentifier;
     NSPredicate *_filterPredicate;
     IDEWorkspace *_workspace;
+    NSString *_filterString;
 }
 
 + (id)keyPathsForValuesAffectingFlatNavigableItems;
@@ -51,6 +52,7 @@
 - (id)aggregateSourceControlCategoryStatusCellsWithRepresentedObject:(id)arg1;
 - (id)sourceControlCategoryStatusCellsWithRepresentedObject:(id)arg1;
 - (id)statusCellsForCategoryName:(id)arg1 representedObject:(id)arg2;
+@property(copy) NSString *filterString; // @synthesize filterString=_filterString;
 @property(copy) NSPredicate *filterPredicate; // @synthesize filterPredicate=_filterPredicate;
 - (id)issueNavigableItems;
 @property(readonly) NSArray *flatNavigableItems;

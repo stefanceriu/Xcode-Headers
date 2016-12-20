@@ -13,6 +13,8 @@
 @interface DVTMockProvisioningProfile : NSObject <DVTProvisioningProfile>
 {
     BOOL _isUniversalMock;
+    BOOL _appleInternalMock;
+    BOOL _xcodeManagedMock;
     NSArray *_signingCertificatesMock;
     NSDate *_creationDateMock;
     NSDate *_expirationDateMock;
@@ -22,14 +24,18 @@
     NSSet *_supportedUDIDsMock;
     NSString *_teamIDMock;
     NSString *_teamNameMock;
+    NSString *_appIdentifierEntitlementMock;
     NSArray *_appIdentifierPrefixesMock;
     NSArray *_teamIdentifierPrefixesMock;
     NSString *_platformMock;
 }
 
+@property(nonatomic, getter=isXcodeManaged) BOOL xcodeManagedMock; // @synthesize xcodeManagedMock=_xcodeManagedMock;
+@property(nonatomic, getter=isAppleInternalMock) BOOL appleInternalMock; // @synthesize appleInternalMock=_appleInternalMock;
 @property(retain) NSString *platformMock; // @synthesize platformMock=_platformMock;
 @property(retain) NSArray *teamIdentifierPrefixesMock; // @synthesize teamIdentifierPrefixesMock=_teamIdentifierPrefixesMock;
 @property(retain) NSArray *appIdentifierPrefixesMock; // @synthesize appIdentifierPrefixesMock=_appIdentifierPrefixesMock;
+@property(retain) NSString *appIdentifierEntitlementMock; // @synthesize appIdentifierEntitlementMock=_appIdentifierEntitlementMock;
 @property(retain) NSString *teamNameMock; // @synthesize teamNameMock=_teamNameMock;
 @property(retain) NSString *teamIDMock; // @synthesize teamIDMock=_teamIDMock;
 @property(retain) NSSet *supportedUDIDsMock; // @synthesize supportedUDIDsMock=_supportedUDIDsMock;
@@ -55,6 +61,7 @@
 @property(readonly) BOOL isGameCenterEnabled;
 @property(readonly) BOOL isMapsEnabled;
 @property(readonly) BOOL isInterAppAudioEnabled;
+@property(readonly) BOOL isSiriEnabled;
 @property(readonly) BOOL isDataProtectionEnabled;
 @property(readonly) NSString *dataProtectionLevel;
 @property(readonly) BOOL isPassbookEnabled;
@@ -80,10 +87,11 @@
 @property(readonly, copy) DVTFilePath *filePath;
 - (BOOL)hasCertificateMatchingIdentity:(id)arg1 includeExpired:(BOOL)arg2;
 @property(readonly) NSArray *identityCertificates;
-@property(readonly) NSArray *certificates;
 - (BOOL)containsCertificate:(struct OpaqueSecCertificateRef *)arg1;
+@property(readonly) NSArray *certificates;
 @property(readonly) NSString *preferredFilenameExtension;
 @property(readonly) int version;
+- (BOOL)isAppleInternal;
 @property(readonly) NSString *platform;
 @property(readonly) NSArray *teamIdentifierPrefixes;
 @property(readonly) NSArray *appIdentifierPrefixes;

@@ -22,6 +22,7 @@
 @property(nonatomic) long long argumentType; // @synthesize argumentType=_argumentType;
 - (id)sourceCodeInsertionOptions;
 - (id)sourceCodeInsertionArguments;
+- (id)_effectiveNameForFirstArgument:(id)arg1;
 - (id)counterpartsForInsertion;
 - (void)setConnectionPrototypeToComplete:(id)arg1;
 - (Class)userConfigurableOptionsViewControllerClass;

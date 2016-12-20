@@ -6,7 +6,6 @@
 
 #import "IDEViewController.h"
 
-#import "DVTOutlineViewDelegate.h"
 #import "IBEndPointProvider.h"
 #import "IBOutlineViewDelegate.h"
 #import "NSOutlineViewDataSource.h"
@@ -15,7 +14,7 @@
 
 @class DVTBorderedView, DVTDelayedInvocation, DVTObservingToken, IBAbstractDocumentEditor, IBCancellationToken, IBDocument, IBMutableIdentityDictionary, IBOutlineView, IBOutlineViewControllerItem, IBOutlineViewImageAndTextCell, IDEUtilityPlaceholderView, NSArray, NSMutableSet, NSPredicate, NSSet, NSString;
 
-@interface IBOutlineViewController : IDEViewController <DVTOutlineViewDelegate, IBEndPointProvider, NSOutlineViewDataSource, NSOutlineViewDelegate, NSUserInterfaceValidations, IBOutlineViewDelegate>
+@interface IBOutlineViewController : IDEViewController <IBEndPointProvider, NSOutlineViewDataSource, NSOutlineViewDelegate, NSUserInterfaceValidations, IBOutlineViewDelegate>
 {
     IBOutlineView *_outlineView;
     DVTBorderedView *_borderedView;

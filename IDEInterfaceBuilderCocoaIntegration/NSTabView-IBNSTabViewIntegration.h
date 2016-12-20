@@ -53,5 +53,9 @@
 - (void)ibPopulateEditorSelectionOrderRelationLists:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (BOOL)ibIsNSAppearanceContainer;
+- (id)ibLocalLocalizableToManyRelationshipsKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 @end
 

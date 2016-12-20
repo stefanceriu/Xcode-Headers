@@ -38,6 +38,8 @@
 - (long long)dockView:(IBStructureAreaDockView *)arg1 minimumNumberOfItemsInGroup:(id)arg2;
 - (NSImage *)dockView:(IBStructureAreaDockView *)arg1 imageForRepresentedObject:(id)arg2 inGroup:(id)arg3;
 - (BOOL)dockView:(IBStructureAreaDockView *)arg1 isShowingOpenIndicatorForRepresentedObject:(id)arg2 inGroup:(id)arg3;
+- (NSString *)dockView:(IBStructureAreaDockView *)arg1 accessibilityIdentifierForRepresentedObject:(id)arg2 inGroup:(id)arg3;
+- (NSString *)dockView:(IBStructureAreaDockView *)arg1 accessibilityTitleForRepresentedObject:(id)arg2 inGroup:(id)arg3;
 - (NSString *)dockView:(IBStructureAreaDockView *)arg1 titleForRepresentedObject:(id)arg2 inGroup:(id)arg3;
 - (NSArray *)dockView:(IBStructureAreaDockView *)arg1 representedObjectsForGroup:(id)arg2;
 - (NSArray *)dockViewRepresentedGroups:(IBStructureAreaDockView *)arg1;

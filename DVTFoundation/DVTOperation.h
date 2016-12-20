@@ -6,7 +6,7 @@
 
 #import "NSOperation.h"
 
-@class DVTDispatchLock, DVTObservingToken, NSError, NSMutableArray;
+@class DVTDispatchLock, DVTObservingToken, DVTStackBacktrace, NSError, NSMutableArray;
 
 @interface DVTOperation : NSOperation
 {
@@ -20,12 +20,14 @@
     BOOL _preventFinish;
     DVTObservingToken *_isFinishedObserverToken;
     DVTObservingToken *_isExecutingObserverToken;
+    DVTStackBacktrace *_creationBacktrace;
 }
 
 + (void)_trackStateChange:(id)arg1 ofOperation:(id)arg2 forKeyPath:(id)arg3;
 + (id)unfinishedOperations;
 + (id)operationWithBlock:(CDUnknownBlockType)arg1;
 @property BOOL preventFinish; // @synthesize preventFinish=_preventFinish;
+@property(retain) DVTStackBacktrace *creationBacktrace; // @synthesize creationBacktrace=_creationBacktrace;
 @property(copy) NSError *error; // @synthesize error=_error;
 @property(copy) CDUnknownBlockType block; // @synthesize block=_block;
 - (void).cxx_destruct;

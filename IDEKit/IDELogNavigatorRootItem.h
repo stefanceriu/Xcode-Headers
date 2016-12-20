@@ -15,6 +15,7 @@
     IDEWorkspace *_workspace;
     BOOL _groupByTime;
     NSString *_identifier;
+    BOOL _filterBotsToWorkspace;
     IDELogManager *_localGroup;
     NSArray *_logGroups;
     NSArray *_observationTokens;
@@ -29,15 +30,16 @@
 @property(retain, nonatomic) IDELogNavigatorItem *workspaceItem; // @synthesize workspaceItem=_workspaceItem;
 @property(retain, nonatomic) NSMutableArray *localCachedGroups; // @synthesize localCachedGroups=_localCachedGroups;
 @property(retain, nonatomic) NSArray *observationTokens; // @synthesize observationTokens=_observationTokens;
+@property(nonatomic) BOOL filterBotsToWorkspace; // @synthesize filterBotsToWorkspace=_filterBotsToWorkspace;
 @property(copy, nonatomic) NSArray *logGroups; // @synthesize logGroups=_logGroups;
 @property(retain, nonatomic) IDELogManager *localGroup; // @synthesize localGroup=_localGroup;
 - (void).cxx_destruct;
 @property(readonly) NSString *navigableItem_name;
 - (void)updateLogGroups;
-- (void)filterBotsToWorkspace:(BOOL)arg1;
 - (id)_groupByGroupArray;
 - (id)_groupByTimeArray;
 - (id)_getDateForObject:(id)arg1;
+- (void)_highlightNewlyCreatedBotInService:(id)arg1;
 - (void)dealloc;
 - (id)initWithLogManager:(id)arg1 groupedByTime:(BOOL)arg2;
 - (id)initWithLogManager:(id)arg1;
@@ -46,6 +48,7 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
@@ -53,6 +56,9 @@
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 

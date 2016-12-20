@@ -56,7 +56,7 @@
 - (id)init;
 
 // Remaining properties
-@property(readonly) NSArray *breakpoints; // @dynamic breakpoints;
+@property(retain) NSArray *breakpoints; // @dynamic breakpoints;
 @property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;

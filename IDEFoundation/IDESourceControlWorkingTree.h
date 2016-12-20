@@ -6,7 +6,7 @@
 
 #import <IDEFoundation/IDESourceControlTree.h>
 
-@class DVTDispatchLock, DVTFilePath, IDESourceControlBranch, IDESourceControlRepository, IDESourceControlWorkingCopyConfiguration, NSArray, NSDate, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString;
+@class DVTFilePath, IDESourceControlBranch, IDESourceControlRepository, IDESourceControlWorkingCopyConfiguration, NSArray, NSDate, NSMutableArray, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString;
 
 @interface IDESourceControlWorkingTree : IDESourceControlTree
 {
@@ -14,21 +14,24 @@
     IDESourceControlBranch *_currentBranch;
     long long _fileReferenceStatusProcessingQueueLockCount;
     NSOperationQueue *_fileReferenceStatusProcessingQueue;
+    long long _fetchFileStatusQueueLockCount;
+    NSOperationQueue *_fetchFileStatusQueue;
+    NSObject<OS_dispatch_queue> *_fileStatusScheduleQueue;
+    unsigned long long _filesAndStatusOperationCount;
+    id <DVTSourceControlCancellable> _filesAndStatusOperation;
     NSMutableArray *_itemsWithStatus;
     NSOperationQueue *_status_processing_queue;
     DVTFilePath *_filePath;
     NSString *_origin;
     BOOL _representsGitSVNBridge;
-    NSMutableDictionary *_localStatusRequests;
-    NSMutableDictionary *_serverStatusRequests;
     BOOL _initialLocalStatusUpdateIsComplete;
     BOOL _initialServerStatusUpdateIsComplete;
-    NSMutableSet *_delayedLocalStatusUpdateForDirectories;
-    DVTDispatchLock *_delayedLocalStatusUpdateForDirectoriesLock;
     BOOL _needsUpgrade;
     BOOL _checkedForUpgrade;
+    NSDate *_lastStatusUpdateDate;
 }
 
+@property(retain, nonatomic) NSDate *lastStatusUpdateDate; // @synthesize lastStatusUpdateDate=_lastStatusUpdateDate;
 @property BOOL checkedForUpgrade; // @synthesize checkedForUpgrade=_checkedForUpgrade;
 @property BOOL needsUpgrade; // @synthesize needsUpgrade=_needsUpgrade;
 @property BOOL representsGitSVNBridge; // @synthesize representsGitSVNBridge=_representsGitSVNBridge;
@@ -44,33 +47,26 @@
 - (void)clearLocalAndServerStatus;
 - (void)clearStatusForItem:(id)arg1;
 - (void)addItemWithStatus:(id)arg1;
-- (void)mergeStatusOperationResults:(id)arg1 forLocalStatusOnly:(BOOL)arg2;
+- (void)mergeStatusOperationResults:(id)arg1 pathsWithRemoteStatus:(id)arg2 forLocalStatusOnly:(BOOL)arg3;
 - (void)addNewItemsWithStatusWithResults:(id)arg1;
-- (id)updateLocalStatusForDirectory:(id)arg1 cancelable:(BOOL)arg2 withWorkspace:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
-- (id)updateLocalStatusForDirectory:(id)arg1 withWorkspace:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (void)setBatchedUpdateLocalStatusForDirectory:(id)arg1;
-- (void)setState:(unsigned long long)arg1;
-- (void)emptyBatchedUpdateLocalStatus;
-- (id)updateServerStatusForDirectory:(id)arg1 cancelable:(BOOL)arg2 withWorkspace:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
-- (id)updateServerStatusForDirectory:(id)arg1 withWorkspace:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)mutableItemsWithStatus;
 @property(readonly) NSArray *itemsWithStatus; // @synthesize itemsWithStatus=_itemsWithStatus;
 - (void)addUpdateFileReferenceStatueseBlock:(CDUnknownBlockType)arg1;
 - (void)updateFileReferenceStatusesAndWaitForFinish:(BOOL)arg1;
 - (void)blockUpdatingFileReferenceStatuses;
+- (void)unblockFetchingFilesAndStatus;
+- (void)blockFetchingFilesAndStatus;
+- (void)updateStatus:(BOOL)arg1 workspace:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)fileReferenceStatusProcessingQueue;
-- (id)trackRemoteBranch:(id)arg1 withLocalBranchName:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)invalidateCurrentBranch;
 - (id)switchToBranch:(id)arg1 inWorkspace:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (id)switchToBranch:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (id)currentDetailedBranchWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)currentBranchWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)currentBranchWithToken:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)_preprocessBranchProcessing:(id)arg1 error:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)_processBranches:(id)arg1 error:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (id)automaticallyConfigureSVNLocations:(CDUnknownBlockType)arg1;
 - (void)automaticallyConfigureSVNLocationsWithToken:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 @property(readonly) BOOL isConfiguredForBranching;
 - (id)itemForFilePath:(id)arg1;
-- (BOOL)containsItemAtLocation:(id)arg1;
 - (BOOL)containsItemAtFilePath:(id)arg1;
 - (id)subclass_createRootNode;
 @property(readonly) NSDate *dataModificationDate;

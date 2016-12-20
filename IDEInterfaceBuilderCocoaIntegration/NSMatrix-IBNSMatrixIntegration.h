@@ -75,5 +75,9 @@
 - (void)ibPopulateEditorSelectionOrderRelationLists:(id)arg1;
 - (id)ibUndoKeyPathForToManyRelationshipKeyPath:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 @end
 

@@ -18,11 +18,6 @@
 + (Class)_containerClass;
 - (id)findStringMatchingDescriptor:(id)arg1 backwards:(BOOL)arg2 from:(id)arg3 to:(id)arg4;
 @property(readonly) Xcode3Project *project;
-- (void)setSdefSupport_scmTranscript:(id)arg1;
-- (id)sdefSupport_scmTranscript;
-- (void)setSdefSupport_project:(id)arg1;
-- (id)sdefSupport_project;
-- (id)objectSpecifier;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

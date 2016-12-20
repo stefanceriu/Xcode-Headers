@@ -8,16 +8,16 @@
 
 #import "XCSUIBotDefintionEditorViewController.h"
 
-@class DVTStackBacktrace, NSString, XCSUIBotDefinitionContext, XCSUIBotDefinition_NotificationsEditor;
+@class DVTStackBacktrace, NSString, XCSUIBotDefinitionContext, XCSUIBotDefinition_TriggersEditor;
 
 @interface XCSUIBotDefinitionEditor_NotificationsCapsule : IDEViewController <XCSUIBotDefintionEditorViewController>
 {
     XCSUIBotDefinitionContext *_definitionContext;
-    XCSUIBotDefinition_NotificationsEditor *_notificationsEditor;
+    XCSUIBotDefinition_TriggersEditor *_triggersEditor;
 }
 
 + (id)title;
-@property(retain, nonatomic) XCSUIBotDefinition_NotificationsEditor *notificationsEditor; // @synthesize notificationsEditor=_notificationsEditor;
+@property(retain, nonatomic) XCSUIBotDefinition_TriggersEditor *triggersEditor; // @synthesize triggersEditor=_triggersEditor;
 @property(retain, nonatomic) XCSUIBotDefinitionContext *definitionContext; // @synthesize definitionContext=_definitionContext;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;

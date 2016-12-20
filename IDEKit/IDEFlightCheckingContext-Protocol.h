@@ -9,9 +9,9 @@
 @class DVTDeveloperAccount, NSError;
 
 @protocol IDEFlightCheckingContext <NSObject>
-@property BOOL shouldResolveLongRunningFlightChecks;
 - (void)handleError:(NSError *)arg1;
 - (BOOL)ensureValidAccount:(DVTDeveloperAccount *)arg1 error:(id *)arg2;
 - (void)performBlockRequiringAccountAndTeamSelection:(void (^)(BOOL))arg1;
+- (id)initWithPortalInfoDelegate:(id <IDEPortalInfoDelegate>)arg1 item:(id <IDEProjectItem>)arg2;
 @end
 

@@ -14,8 +14,10 @@
     NSObject<IBAutolayoutItem> *_relativeTo;
     unsigned long long _relativeAttribute;
     IBLayoutConstant *_constant;
+    id _feedbackToken;
 }
 
+@property(readonly) id feedbackToken; // @synthesize feedbackToken=_feedbackToken;
 @property(readonly) IBLayoutConstant *constant; // @synthesize constant=_constant;
 @property(readonly) unsigned long long relativeAttribute; // @synthesize relativeAttribute=_relativeAttribute;
 @property(readonly) NSObject<IBAutolayoutItem> *relativeTo; // @synthesize relativeTo=_relativeTo;
@@ -29,8 +31,8 @@
 - (BOOL)isEqualToLayoutGuideMatch:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly, getter=isAbsolute) BOOL absolute;
-- (id)initWithAttribute:(unsigned long long)arg1 constant:(id)arg2;
-- (id)initWithAttribute:(unsigned long long)arg1 relativeTo:(id)arg2 relativeAttribute:(unsigned long long)arg3 constant:(id)arg4;
+- (id)initWithAttribute:(unsigned long long)arg1 constant:(id)arg2 feedbackToken:(id)arg3;
+- (id)initWithAttribute:(unsigned long long)arg1 relativeTo:(id)arg2 relativeAttribute:(unsigned long long)arg3 constant:(id)arg4 feedbackToken:(id)arg5;
 
 @end
 

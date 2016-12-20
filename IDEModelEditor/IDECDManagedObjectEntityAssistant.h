@@ -10,13 +10,13 @@
 
 @interface IDECDManagedObjectEntityAssistant : IDEAssistant
 {
-    NSArray *availableEntities;
-    NSSet *selectedEntityItems;
+    NSArray *_availableEntities;
+    NSSet *_selectedEntityItems;
 }
 
 + (id)keyPathsForValuesAffectingCanGoForward;
-@property(retain) NSSet *selectedEntityItems; // @synthesize selectedEntityItems;
-@property(retain) NSArray *availableEntities; // @synthesize availableEntities;
+@property(retain) NSSet *selectedEntityItems; // @synthesize selectedEntityItems=_selectedEntityItems;
+@property(retain) NSArray *availableEntities; // @synthesize availableEntities=_availableEntities;
 - (void).cxx_destruct;
 - (id)nextAssistantIdentifier;
 - (BOOL)canGoForward;

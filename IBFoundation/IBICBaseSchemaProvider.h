@@ -8,35 +8,60 @@
 
 #import "IBICSchemaProvider.h"
 
-@class IBICFileType, IBICHeightClass, IBICIdiom, IBICPlatform, IBICScale, IBICSlotComponentClassCombinationAxis, IBICWidthClass, NSString;
+@class IBICColorSpace, IBICFileType, IBICHeightClass, IBICIdiom, IBICLanguageDirection, IBICPlatform, IBICScale, IBICScreenWidth, IBICSubtype, IBICWidthClass, NSArray, NSString;
 
 @interface IBICBaseSchemaProvider : NSObject <IBICSchemaProvider>
 {
     IBICPlatform *_universalPlatform;
     IBICIdiom *_universalIdiom;
+    IBICScale *_anyScale;
     IBICScale *_oneXScale;
     IBICScale *_twoXScale;
     IBICScale *_threeXScale;
     IBICFileType *_pngFileType;
     IBICFileType *_jpegFileType;
     IBICFileType *_pdfFileType;
-    IBICWidthClass *_widthClassCompact;
-    IBICWidthClass *_widthClassRegular;
-    IBICHeightClass *_heightClassCompact;
-    IBICHeightClass *_heightClassRegular;
-    IBICSlotComponentClassCombinationAxis *_widthAxisAll;
-    IBICSlotComponentClassCombinationAxis *_widthAxisCompact;
-    IBICSlotComponentClassCombinationAxis *_widthAxisRegular;
-    IBICSlotComponentClassCombinationAxis *_heightAxisAll;
-    IBICSlotComponentClassCombinationAxis *_heightAxisCompact;
-    IBICSlotComponentClassCombinationAxis *_heightAxisRegular;
+    IBICFileType *_gifFileType;
+    IBICWidthClass *_anyWidthClass;
+    IBICWidthClass *_compactWidthClass;
+    IBICWidthClass *_regularWidthClass;
+    IBICHeightClass *_anyHeightClass;
+    IBICHeightClass *_compactHeightClass;
+    IBICHeightClass *_regularHeightClass;
+    IBICColorSpace *_anyColorSpace;
+    IBICColorSpace *_sRGBColorSpace;
+    IBICColorSpace *_P3ColorSpace;
+    IBICSubtype *_anySubtype;
+    IBICScreenWidth *_anyScreenWidth;
+    IBICLanguageDirection *_anyLanguageDirection;
+    IBICLanguageDirection *_leftToRightLanguageDirection;
+    IBICLanguageDirection *_rightToLeftLanguageDirection;
+    NSArray *_cubeFaces;
+    NSArray *_mipmapLevels;
 }
 
 - (void).cxx_destruct;
-- (void)registerBaseDataSetSlots:(id)arg1;
-- (void)registerBaseImageSetSlots:(id)arg1;
-- (void)registerBaseSlotComponents:(id)arg1;
+- (void)registerBaseDataSetComponentImplications:(id)arg1;
+- (void)registerMipmapLevelSetComponentImplications:(id)arg1;
+- (void)registerCubeTextureSetComponentImplications:(id)arg1;
+- (void)registerFlatTextureSetComponentImplications:(id)arg1;
+- (void)registerImageSetComponentImplications:(id)arg1;
+- (void)applyGraphicsFeatureSetComponentImplicationsForSlotClass:(Class)arg1 schema:(id)arg2;
+- (void)applyMemoryClassComponentImplicationsForSlotClass:(Class)arg1 schema:(id)arg2;
+- (void)applyColorSpaceComponentImplicationsForSlotClass:(Class)arg1 schema:(id)arg2;
+- (void)applyScaleComponentImplicationsForSlotClass:(Class)arg1 schema:(id)arg2;
 - (void)registerSchemaComponents:(id)arg1;
+- (void)registerSuggestionSets:(id)arg1;
+- (void)registerGPUCapabilitySuggestionSets:(id)arg1 forSlotClasses:(id)arg2;
+- (void)registerSizeClassSuggestionSets:(id)arg1 forSlotClasses:(id)arg2;
+- (void)registerLanguageDirectionSuggestionSets:(id)arg1 forSlotClasses:(id)arg2;
+- (void)registerColorSpaceSuggestionSets:(id)arg1 forSlotClasses:(id)arg2;
+- (void)registerScaleSuggestionSets:(id)arg1 forSlotClasses:(id)arg2;
+- (id)registerIdiomSuggestionSets:(id)arg1 forSlotClasses:(id)arg2;
+- (void)captureExistingSlotComponents:(id)arg1;
+- (void)registerSlotComponents:(id)arg1;
+- (void)registerFileTypes:(id)arg1;
+- (void)registerClasses:(id)arg1;
 - (double)precedence;
 
 // Remaining properties

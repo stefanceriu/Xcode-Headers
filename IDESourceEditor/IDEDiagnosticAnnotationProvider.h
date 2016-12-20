@@ -14,6 +14,7 @@
 {
     IDEAnnotationContext *_context;
     DVTObservingToken *_diagnosticsObservingToken;
+    DVTNotificationToken *_textStorageDidEndEditingNotificationToken;
     DVTObservingToken *_editorLiveIssuesPrefObserver;
     id <DVTCancellable> _issueObservingToken;
     id _issueCoalescingObserver;

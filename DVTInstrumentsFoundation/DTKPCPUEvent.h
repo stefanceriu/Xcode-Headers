@@ -11,18 +11,20 @@
 @interface DTKPCPUEvent : NSObject
 {
     struct kpep_event *_kpepEvent;
+    NSString *_displayName;
     NSString *_name;
     NSString *_alias;
+    NSString *_definition;
 }
 
-@property(readonly, retain, nonatomic) NSString *alias; // @synthesize alias=_alias;
+@property(nonatomic) struct kpep_event *kpepEvent; // @synthesize kpepEvent=_kpepEvent;
+@property(readonly, retain, nonatomic) NSString *definition; // @synthesize definition=_definition;
+@property(retain, nonatomic) NSString *alias; // @synthesize alias=_alias;
 @property(readonly, retain, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-- (void)setAlias:(id)arg1;
-- (struct kpep_event *)kpepEvent;
 @property(readonly, retain, nonatomic) NSString *displayName;
 @property(readonly, retain, nonatomic) NSString *aliasOrName;
-- (id)initWithName:(id)arg1 alias:(id)arg2 kpepEvent:(struct kpep_event *)arg3;
+- (id)initWithName:(id)arg1 alias:(id)arg2 definition:(id)arg3 kpepEvent:(struct kpep_event *)arg4;
 
 @end
 

@@ -52,6 +52,7 @@
 - (id)ibDefaultImage;
 - (id)ibImageForOwnedScene;
 - (id)ibRuntimeClassName;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

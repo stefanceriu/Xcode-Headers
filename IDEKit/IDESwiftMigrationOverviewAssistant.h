@@ -18,6 +18,7 @@
 - (void)loadView;
 - (id)_messageContentsURL;
 - (BOOL)canGoForward;
+- (void)setAssistantContext:(id)arg1;
 - (id)nextAssistantIdentifier;
 
 @end

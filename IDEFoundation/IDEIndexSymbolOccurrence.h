@@ -43,6 +43,7 @@
 - (void)setObjectId:(long long)arg1 role:(long long)arg2 lineNumber:(long long)arg3 column:(long long)arg4 file:(id)arg5;
 - (id)correspondingSymbol;
 - (id)initWithCorrespondingSymbol:(id)arg1 forQueryProvider:(id)arg2;
+- (void)describeFields:(CDUnknownBlockType)arg1;
 
 @end
 

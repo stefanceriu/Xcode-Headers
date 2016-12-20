@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMapTable;
+@class NSArray, NSMapTable, _XRLazyKVOBlockToken;
 
 @interface XRLazyKVOAdapter : NSObject
 {
@@ -15,10 +15,14 @@
     struct unordered_set<const void *, std::__1::hash<const void *>, std::__1::equal_to<const void *>, std::__1::allocator<const void *>> _updatedContexts;
     struct unordered_set<const void *, std::__1::hash<const void *>, std::__1::equal_to<const void *>, std::__1::allocator<const void *>> _presentedContexts;
     id <XRLazyKVOResponder> _responder;
+    BOOL _implementsWillChangeHandler;
     BOOL _suspended;
     NSArray *_runLoopModes;
+    _XRLazyKVOBlockToken *_strongBlockAdapterToken;
 }
 
++ (id)observeKeyPath:(id)arg1 object:(id)arg2 observer:(id)arg3 lazyUpdateBlock:(CDUnknownBlockType)arg4;
+@property(retain, nonatomic) _XRLazyKVOBlockToken *strongBlockAdapterToken; // @synthesize strongBlockAdapterToken=_strongBlockAdapterToken;
 @property(nonatomic, getter=isSuspended) BOOL suspended; // @synthesize suspended=_suspended;
 @property(copy, nonatomic) NSArray *runLoopModes; // @synthesize runLoopModes=_runLoopModes;
 - (id).cxx_construct;

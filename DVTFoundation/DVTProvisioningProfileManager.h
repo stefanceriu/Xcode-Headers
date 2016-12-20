@@ -6,17 +6,25 @@
 
 #import "NSObject.h"
 
-@class NSSet;
+#import "DVTProvisioningProfileSource.h"
 
-@interface DVTProvisioningProfileManager : NSObject
+@class DVTProvisioningProfileReaper, NSArray, NSSet, NSString;
+
+@interface DVTProvisioningProfileManager : NSObject <DVTProvisioningProfileSource>
 {
     id _provider;
+    NSArray *_provisioningProfileSearchPaths;
+    DVTProvisioningProfileReaper *_provisioningProfileReaper;
 }
 
 + (id)keyPathsForValuesAffectingExpiringProfiles;
 + (id)keyPathsForValuesAffectingAllProfiles;
 + (id)keyPathsForValuesAffectingAreProfilesLoaded;
++ (id)managerWithProvisioningProfileSearchPaths:(id)arg1;
 + (id)defaultManager;
++ (id)logAspect;
+@property(readonly) DVTProvisioningProfileReaper *provisioningProfileReaper; // @synthesize provisioningProfileReaper=_provisioningProfileReaper;
+@property(readonly) NSArray *provisioningProfileSearchPaths; // @synthesize provisioningProfileSearchPaths=_provisioningProfileSearchPaths;
 - (void).cxx_destruct;
 - (void)installHostProfiles:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (id)profileWithData:(id)arg1 error:(id *)arg2;
@@ -33,6 +41,13 @@
 @property(readonly) BOOL areProfilesLoaded;
 - (id)allProfiles_sync;
 - (void)forceProfileLoading;
+- (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

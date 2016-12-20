@@ -6,10 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class NSAttributedString, NSString;
 
 @protocol DVTRadar_Associate <NSObject>
-@property(readonly, copy, nonatomic) NSString *radarSummary;
+@property(readonly, copy, nonatomic) NSAttributedString *radarSummary;
 @property(nonatomic) unsigned long long duplicateOfProblemID;
 @property(nonatomic) unsigned long long priority;
 @property(copy, nonatomic) NSString *resolution;

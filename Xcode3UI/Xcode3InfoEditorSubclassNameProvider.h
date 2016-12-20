@@ -9,13 +9,14 @@
 #import "DVTInvalidation.h"
 #import "Xcode3InfoEditorListContentProvider.h"
 
-@class DVTStackBacktrace, IDEWorkspace, NSArray, NSString;
+@class DVTNotificationToken, DVTStackBacktrace, IDEWorkspace, NSArray, NSString;
 
 @interface Xcode3InfoEditorSubclassNameProvider : NSObject <Xcode3InfoEditorListContentProvider, DVTInvalidation>
 {
     IDEWorkspace *_workspace;
     NSArray *_classNames;
     NSArray *_listContents;
+    DVTNotificationToken *_indexChangedNotificationToken;
 }
 
 + (void)initialize;

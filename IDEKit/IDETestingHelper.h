@@ -59,6 +59,7 @@
 + (id)_getSelectionForMenuItem:(id)arg1;
 + (BOOL)shouldAllowLaunchingTests:(id)arg1;
 + (void)showSheetToAddTestBundleToCurrentSchemeActionInWorkspace:(id)arg1 onWindow:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
++ (void)initialize;
 
 @end
 

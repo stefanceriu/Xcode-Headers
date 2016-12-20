@@ -25,25 +25,24 @@ struct CGSize {
     double _field2;
 };
 
-struct DYShaderProfilerTiming {
-    struct Statistics _field1;
-    struct Statistics _field2;
-    struct Statistics _field3;
-};
-
 struct GPUValueRange {
     float min;
     float max;
 };
 
-struct Statistics {
-    double _field1;
-    double _field2;
-    double _field3;
+struct NSArray {
+    Class _field1;
 };
 
 struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
+};
+
+struct mutex {
+    struct _opaque_pthread_mutex_t {
+        long long __sig;
+        char __opaque[56];
+    } __m_;
 };
 

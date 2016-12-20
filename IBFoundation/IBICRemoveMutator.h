@@ -20,9 +20,12 @@
     NSData *_pendingManifestData;
     NSString *_pendingManifestPath;
     NSNumber *_originalIndex;
+    NSString *_descriptionItemID;
+    NSString *_descriptionParentID;
 }
 
 - (void).cxx_destruct;
+- (id)description;
 - (id)inverseMutator;
 - (id)mutationDescription;
 - (void)applyToDiskWithCompletionHandler:(CDUnknownBlockType)arg1;

@@ -10,7 +10,7 @@
 
 @interface DVTMacroExpansionStatistics : NSObject
 {
-    int _lock;
+    // Error parsing type: AB, name: _lock
     unsigned long long _numMacroDefinitionLookups;
     NSCountedSet *_macroNameLookupCounts;
     unsigned long long _numMacroLookupCursorsCreated;

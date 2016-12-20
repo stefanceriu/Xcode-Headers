@@ -64,9 +64,9 @@
 @property(readonly, nonatomic) unsigned long long cachingCost;
 - (id)cubemapLabelForFaceIndex:(int)arg1;
 @property(readonly, nonatomic) BOOL isFlipped;
-@property(readonly, nonatomic) BOOL isCubemap; // @dynamic isCubemap;
-@property(readonly, nonatomic) int maxMipmapLevel; // @dynamic maxMipmapLevel;
-@property(readonly, nonatomic) int baseMipmapLevel; // @dynamic baseMipmapLevel;
+@property(readonly, nonatomic) BOOL isCubemap;
+@property(readonly, nonatomic) int maxMipmapLevel;
+@property(readonly, nonatomic) int baseMipmapLevel;
 - (unsigned int)layerCountForMipmapLevel:(unsigned int)arg1;
 - (id)_findFirstValidTextureImage;
 - (void)_findMaxLayerSpecifiedForAllLevels;

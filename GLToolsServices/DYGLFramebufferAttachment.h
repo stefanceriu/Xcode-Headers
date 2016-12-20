@@ -6,11 +6,7 @@
 
 #import "NSObject.h"
 
-#import "DYFrameBufferAttachment.h"
-
-@class NSString;
-
-@interface DYGLFramebufferAttachment : NSObject <DYFrameBufferAttachment>
+@interface DYGLFramebufferAttachment : NSObject
 {
     unsigned int _location;
     unsigned int _objectType;
@@ -30,12 +26,6 @@
 @property(readonly, nonatomic) unsigned int location; // @synthesize location=_location;
 - (id)initWithLocation:(unsigned int)arg1 objectType:(unsigned int)arg2 objectID:(unsigned int)arg3 internalID:(unsigned int)arg4 textureLevel:(unsigned int)arg5 textureLayer:(unsigned int)arg6 cubemapFace:(unsigned int)arg7;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

@@ -8,10 +8,11 @@
 
 #import "IBSelectionOwnerDelegate.h"
 #import "IBStructureAreaDockItemViewDelegate.h"
+#import "NSAccessibilityGroup.h"
 
 @class IBDockObjectAndGroupPair, IBSelectionOwner, IBStructureAreaDockLabelContainer, NSArray, NSBezierPath, NSDictionary, NSImage, NSMutableDictionary, NSString, NSValue;
 
-@interface IBStructureAreaDockView : DVTLayoutView_ML <IBSelectionOwnerDelegate, IBStructureAreaDockItemViewDelegate>
+@interface IBStructureAreaDockView : DVTLayoutView_ML <IBSelectionOwnerDelegate, IBStructureAreaDockItemViewDelegate, NSAccessibilityGroup>
 {
     NSDictionary *targetIdentifiedRepresentedObjects;
     IBStructureAreaDockLabelContainer *labelPopUpContainer;
@@ -56,6 +57,7 @@
 @property struct CGSize itemImageSize; // @synthesize itemImageSize;
 @property(nonatomic) __weak id <IBStructureAreaDockViewDelegate> delegate; // @synthesize delegate;
 - (void).cxx_destruct;
+- (id)accessibilityTitle;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)dividerShadow;
 - (void)invalidateDisplayInRects:(id)arg1;

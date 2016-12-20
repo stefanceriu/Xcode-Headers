@@ -26,6 +26,7 @@
 + (id)defaultOverlayGlassGradient;
 + (id)diffTextAnnotationThemeSelected:(BOOL)arg1 conflict:(BOOL)arg2 disabled:(BOOL)arg3 focused:(BOOL)arg4 inactive:(BOOL)arg5;
 + (id)grayGlassTextAnnotationThemeForVariant:(int)arg1;
++ (id)purpleGlassTextAnnotationThemeForVariant:(int)arg1;
 + (id)blueGlassTextAnnotationThemeForVariant:(int)arg1;
 + (id)greenGlassTextAnnotationThemeForVariant:(int)arg1;
 + (id)redGlassTextAnnotationThemeForVariant:(int)arg1;

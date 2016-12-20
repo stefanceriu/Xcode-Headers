@@ -13,9 +13,9 @@
 @property(retain) id <DYResource> stencilResourceObject;
 @property(retain) id <DYResource> depthResourceObject;
 @property(readonly) NSMutableDictionary *colorResourceObjects;
-@property(readonly) id <DYFrameBuffer> frameBufferObject;
+@property(readonly) id <DYFramebuffer> frameBufferObject;
 - (NSArray *)attachments;
-- (id <DYFrameBufferAttachment>)attachmentForAttachmentID:(unsigned long long)arg1;
-- (id)initWithFBO:(id <DYFrameBuffer>)arg1;
+- (id)attachmentForAttachmentID:(unsigned long long)arg1;
+- (id)initWithFBO:(id <DYFramebuffer>)arg1;
 @end
 

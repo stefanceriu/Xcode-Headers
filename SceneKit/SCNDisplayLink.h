@@ -21,8 +21,8 @@ __attribute__((visibility("hidden")))
     BOOL _paused;
     BOOL _invalidated;
     BOOL _asynchronous;
-    long long _frameInterval;
-    double _lastVideoOutput;
+    double _lastFrameTime;
+    float _preferredFrameRate;
     int _queuedFrameCount;
 }
 
@@ -33,12 +33,12 @@ __attribute__((visibility("hidden")))
 - (void)_teardown;
 - (void)_resume;
 - (void)_pause;
-- (void)_callbackWithTime:(double)arg1 andDeltaTime:(double)arg2;
+- (void)_callbackWithTime:(double)arg1;
 - (int)queuedFrameCount;
 @property struct _CGLPixelFormatObject *pixelFormat;
 @property struct _CGLContextObject *CGLContext;
-@property(nonatomic) long long frameInterval;
-- (void)setPaused:(BOOL)arg1 nextFrameTimeHint:(double)arg2;
+@property(nonatomic) float preferredFrameRate;
+- (BOOL)setPaused:(BOOL)arg1 nextFrameTimeHint:(double)arg2 lastUpdate:(double)arg3;
 @property(nonatomic, getter=isPaused) BOOL paused;
 - (void)dealloc;
 - (void)willDie;

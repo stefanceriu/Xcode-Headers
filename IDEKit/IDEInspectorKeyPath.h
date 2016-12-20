@@ -16,10 +16,12 @@
     NSString *_applicationKeyPath;
 }
 
++ (void)addKeyPathPrefixesToStripForHumanReadableName:(id)arg1;
 + (id)keyPathWithApplicationKeyPath:(id)arg1;
 @property(readonly) NSString *applicationKeyPath; // @synthesize applicationKeyPath=_applicationKeyPath;
 @property(readonly) NSString *observationKeyPath; // @synthesize observationKeyPath=_observationKeyPath;
 - (void).cxx_destruct;
+- (id)humanReadableName;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithApplicationKeyPath:(id)arg1;

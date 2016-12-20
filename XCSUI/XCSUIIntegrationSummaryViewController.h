@@ -25,6 +25,7 @@
     DVTReplacementView *_statusBadgesReplacementView;
     DVTReplacementView *_productsReplacementView;
     DVTReplacementView *_devicesReplacementView;
+    DVTReplacementView *_changesReplacementView;
     DVTStackView_ML *_stackView;
     long long _currentIntegrationStep;
     _XCSUIIntegrationSummaryScrollView *_scrollView;
@@ -43,6 +44,7 @@
 @property __weak _XCSUIIntegrationSummaryScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property long long currentIntegrationStep; // @synthesize currentIntegrationStep=_currentIntegrationStep;
 @property __weak DVTStackView_ML *stackView; // @synthesize stackView=_stackView;
+@property __weak DVTReplacementView *changesReplacementView; // @synthesize changesReplacementView=_changesReplacementView;
 @property __weak DVTReplacementView *devicesReplacementView; // @synthesize devicesReplacementView=_devicesReplacementView;
 @property __weak DVTReplacementView *productsReplacementView; // @synthesize productsReplacementView=_productsReplacementView;
 @property __weak DVTReplacementView *statusBadgesReplacementView; // @synthesize statusBadgesReplacementView=_statusBadgesReplacementView;
@@ -59,9 +61,12 @@
 - (void).cxx_destruct;
 - (void)selectDocumentLocations:(id)arg1;
 - (void)refreshUI;
+- (void)setError:(id)arg1;
 - (void)updateReplacementViews;
 - (void)configureIssuesInstalledReplacementView;
-- (void)sizeStatusIsssueViewFit;
+- (void)sizeChangesViewToFit;
+- (void)sizeIssuesViewToFit;
+- (id)changesViewController;
 - (id)statusViewController;
 - (id)inflightViewController;
 - (id)devicesViewController;
@@ -69,7 +74,6 @@
 - (id)issuesViewController;
 @property(readonly, copy) NSArray *currentSelectedItems;
 - (void)primitiveInvalidate;
-- (void)viewDidInstall;
 - (void)loadView;
 
 // Remaining properties

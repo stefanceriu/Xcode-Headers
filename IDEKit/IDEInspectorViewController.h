@@ -22,12 +22,12 @@
     NSArray *_inspectedDocuments;
     NSDictionary *_issueInfoDictionary;
     NSView<DVTIssueDisplayingView> *_issueDisplayingView;
-    IDEInspectorCategoryController *_categoryController;
     id _selectionProxy;
     id _selectedDocumentsProxy;
     NSMutableDictionary *_keyPathTriggeringReloadObservers;
     DVTDelayedInvocation *_reloadInspectorDelayedInvocation;
     IDEInspectorContentView *_generatedContentView;
+    IDEInspectorCategoryController *_categoryController;
 }
 
 + (BOOL)canInspectFileReferenceNavigableItems:(id)arg1;
@@ -35,12 +35,12 @@
 + (id)keyPathsForValuesAffectingInspectedObject;
 + (id)keyPathsForValuesAffectingInspectedObjects;
 + (id)inspectedArrayControllerKeys;
+@property(retain, nonatomic) IDEInspectorCategoryController *categoryController; // @synthesize categoryController=_categoryController;
 @property(retain, nonatomic) IDEInspectorContentView *generatedContentView; // @synthesize generatedContentView=_generatedContentView;
 @property(retain, nonatomic) DVTDelayedInvocation *reloadInspectorDelayedInvocation; // @synthesize reloadInspectorDelayedInvocation=_reloadInspectorDelayedInvocation;
 @property(retain, nonatomic) NSMutableDictionary *keyPathTriggeringReloadObservers; // @synthesize keyPathTriggeringReloadObservers=_keyPathTriggeringReloadObservers;
 @property(retain, nonatomic) id selectedDocumentsProxy; // @synthesize selectedDocumentsProxy=_selectedDocumentsProxy;
 @property(retain, nonatomic) id selectionProxy; // @synthesize selectionProxy=_selectionProxy;
-@property(retain, nonatomic) IDEInspectorCategoryController *categoryController; // @synthesize categoryController=_categoryController;
 @property(retain, nonatomic) NSView<DVTIssueDisplayingView> *issueDisplayingView; // @synthesize issueDisplayingView=_issueDisplayingView;
 @property(copy, nonatomic) NSDictionary *issueInfoDictionary; // @synthesize issueInfoDictionary=_issueInfoDictionary;
 @property(readonly) NSArray *inspectedDocuments; // @synthesize inspectedDocuments=_inspectedDocuments;

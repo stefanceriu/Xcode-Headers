@@ -6,7 +6,7 @@
 
 #import <IDEInterfaceBuilderKit/IBArgumentsContainer.h>
 
-@class NSArray, NSDictionary, NSMutableArray, NSString;
+@class NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSString;
 
 @interface IBImageCatalogToolArgumentsContainer : IBArgumentsContainer
 {
@@ -34,10 +34,16 @@
     NSString *_filterForDeviceOSVersion;
     NSString *_optimization;
     NSString *_targetName;
+    NSString *_stickerPackIdentifierPrefix;
+    NSMutableDictionary *_stringFilesByStickerPackAndLanguage;
+    NSString *_productType;
     NSDictionary *_assetPackOutputSpecifications;
 }
 
 @property(copy) NSDictionary *assetPackOutputSpecifications; // @synthesize assetPackOutputSpecifications=_assetPackOutputSpecifications;
+@property(copy) NSString *productType; // @synthesize productType=_productType;
+@property(retain, nonatomic) NSMutableDictionary *stringFilesByStickerPackAndLanguage; // @synthesize stringFilesByStickerPackAndLanguage=_stringFilesByStickerPackAndLanguage;
+@property(copy) NSString *stickerPackIdentifierPrefix; // @synthesize stickerPackIdentifierPrefix=_stickerPackIdentifierPrefix;
 @property(copy) NSArray *targetDevices; // @synthesize targetDevices=_targetDevices;
 @property(copy) NSString *targetName; // @synthesize targetName=_targetName;
 @property(copy) NSString *optimization; // @synthesize optimization=_optimization;

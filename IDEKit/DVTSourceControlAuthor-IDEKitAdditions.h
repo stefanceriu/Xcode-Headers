@@ -6,28 +6,17 @@
 
 #import "DVTSourceControlAuthor.h"
 
-#import "IDESourceControlNameTokenViewDelegate.h"
-
 @class ABPerson, NSArray, NSImage, NSString;
 
-@interface DVTSourceControlAuthor (IDEKitAdditions) <IDESourceControlNameTokenViewDelegate>
-- (void)email:(id)arg1;
-- (id)menuForNameToken:(id)arg1;
-- (id)_emailsFromPerson:(id)arg1;
-- (id)_arrayFromABMultiValue:(id)arg1;
-- (id)_displayNameFromPerson:(id)arg1;
+@interface DVTSourceControlAuthor (IDEKitAdditions)
 @property(readonly, copy) NSImage *image;
-- (id)_imageFromPerson:(id)arg1;
+- (id)_imageFromContact:(id)arg1;
 - (id)defaultImage;
 
 // Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly, copy) NSString *displayName;
 @property(readonly) NSArray *emails;
-@property(readonly) unsigned long long hash;
 @property(readonly, copy) NSString *name;
 @property(retain) ABPerson *pairedPerson;
-@property(readonly) Class superclass;
 @end
 

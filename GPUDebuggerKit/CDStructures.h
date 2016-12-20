@@ -6,6 +6,21 @@
 
 #pragma mark Named Structures
 
+struct Buffer {
+    char *data;
+    unsigned int size;
+    unsigned long long offset;
+    struct __CFString *label;
+};
+
+struct BufferSource {
+    unsigned int bufferIndex;
+    unsigned long long bufferOffset;
+    unsigned long long bufferStride;
+    int stepFunction;
+    unsigned int stepRate;
+};
+
 struct CGPoint {
     double _field1;
     double _field2;
@@ -17,7 +32,99 @@ struct CGRect {
 };
 
 struct CGSize {
-    double _field1;
-    double _field2;
+    double width;
+    double height;
 };
+
+struct GPUBufferViewerAdaptorElementComponentsRows {
+    unsigned long long _field1;
+    unsigned long long _field2;
+};
+
+struct GPUBufferViewerAdaptorGeometryParams {
+    unsigned long long vertexStart;
+    unsigned long long vertexCount;
+    struct Buffer indexBuffer;
+    unsigned long long indexType;
+    unsigned long long indexCount;
+    unsigned long long indexStart;
+    unsigned long long indexPrimitiveRestart;
+    struct Buffer tessellationFactorBuffer;
+    unsigned long long tessellationFactorStepFunction;
+    unsigned long long tessellationFactorBufferInstanceStride;
+    _Bool tessellationFactorScaleEnabled;
+    float tessellationFactorScale;
+    unsigned int maxTessellationFactor;
+    unsigned long long patchType;
+    unsigned long long controlPointsPerPatch;
+    unsigned long long patchCount;
+    unsigned long long patchStart;
+    struct Buffer patchIndexBuffer;
+    struct Buffer controlPointIndexBuffer;
+    unsigned long long controlPointIndexType;
+    unsigned long long instanceCount;
+    long long baseVertex;
+    unsigned long long baseInstance;
+    struct GPUBufferViewerAdaptorRegion computeStageInRegion;
+};
+
+struct GPUBufferViewerAdaptorRegion {
+    union {
+        struct {
+            unsigned long long originX;
+            unsigned long long originY;
+            unsigned long long originZ;
+            unsigned long long width;
+            unsigned long long height;
+            unsigned long long depth;
+        } ;
+        long long coords[6];
+    } ;
+};
+
+struct Struct {
+    struct __CFString *name;
+    int type;
+    unsigned int count;
+    unsigned int size;
+    int outputFormat;
+    int typeAlias;
+    unsigned long long mask;
+    struct BufferSource bufferSource;
+    struct vector<GPUToolsPlatformSupport::Common::GPUDebugger::Struct, std::__1::allocator<GPUToolsPlatformSupport::Common::GPUDebugger::Struct>> members;
+};
+
+struct _NSRange {
+    unsigned long long location;
+    unsigned long long length;
+};
+
+struct __CFString;
+
+struct vector<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer, std::__1::allocator<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer>> {
+    struct Buffer *__begin_;
+    struct Buffer *__end_;
+    struct __compressed_pair<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer *, std::__1::allocator<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer>> {
+        struct Buffer *__first_;
+    } __end_cap_;
+};
+
+struct vector<GPUToolsPlatformSupport::Common::GPUDebugger::Struct, std::__1::allocator<GPUToolsPlatformSupport::Common::GPUDebugger::Struct>> {
+    struct Struct *__begin_;
+    struct Struct *__end_;
+    struct __compressed_pair<GPUToolsPlatformSupport::Common::GPUDebugger::Struct *, std::__1::allocator<GPUToolsPlatformSupport::Common::GPUDebugger::Struct>> {
+        struct Struct *__first_;
+    } __end_cap_;
+};
+
+#pragma mark Typedef'd Structures
+
+// Template types
+typedef struct vector<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer, std::__1::allocator<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer>> {
+    struct Buffer *__begin_;
+    struct Buffer *__end_;
+    struct __compressed_pair<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer *, std::__1::allocator<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer>> {
+        struct Buffer *__first_;
+    } __end_cap_;
+} vector_f0d801d4;
 

@@ -10,28 +10,27 @@
 
 @interface IDENavigableItemAsyncFilteringCoordinator : IDENavigableItemFilteringCoordinator
 {
+    int _currentFilteringGeneration;
     NSMutableDictionary *_filteringProxiesByKey;
     DVTTimeSlicedMainThreadWorkQueue *_itemsToFilterQueue;
     DVTTimeSlicedMainThreadWorkQueue *_itemsToInvalidateChildArrangedItemsQueue;
-    long long _currentFilteringGeneration;
 }
 
 + (id)keyPathsForValuesAffectingPerformingFiltering;
-@property long long currentFilteringGeneration; // @synthesize currentFilteringGeneration=_currentFilteringGeneration;
 @property(readonly) DVTTimeSlicedMainThreadWorkQueue *itemsToInvalidateChildArrangedItemsQueue; // @synthesize itemsToInvalidateChildArrangedItemsQueue=_itemsToInvalidateChildArrangedItemsQueue;
 @property(readonly) DVTTimeSlicedMainThreadWorkQueue *itemsToFilterQueue; // @synthesize itemsToFilterQueue=_itemsToFilterQueue;
 - (void).cxx_destruct;
 - (void)_handleObjectGraphDidChange:(id)arg1;
 - (void)_handleItemsPropertiesDidChange:(id)arg1;
+- (void)_invalidateParentsChildrenOf:(id)arg1;
 - (void)_markItem:(id)arg1 matches:(BOOL)arg2;
 - (void)_invalidateArrangedChildrenOfFilterProxies;
 - (void)_itemInvalidateMatchState:(id)arg1;
-- (BOOL)_itemGenerationIsCurrent:(id)arg1;
-- (BOOL)_itemMatches:(id)arg1;
 - (id)_arrangeItems:(id)arg1 ofItem:(id)arg2;
 - (void)_performFilterEvaluationOf:(id)arg1;
 - (void)_beginFilteringFrom:(id)arg1;
 - (BOOL)performingFiltering;
+- (int)_filterCurrentGeneration;
 - (void)_filterDidChange;
 - (void)_stopAllWork;
 - (void)resumeFiltering;

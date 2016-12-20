@@ -6,11 +6,12 @@
 
 #import "DVTLayerHostingView.h"
 
+#import "CALayoutManager.h"
 #import "DVTInvalidation.h"
 
 @class CALayer, CAScrollLayer, DVTDelayedInvocation, DVTImageAndTextLayer, DVTStackBacktrace, NSArray, NSMapTable, NSString;
 
-@interface IDENavigationHUDSelectionView : DVTLayerHostingView <DVTInvalidation>
+@interface IDENavigationHUDSelectionView : DVTLayerHostingView <CALayoutManager, DVTInvalidation>
 {
     id <IDENavigationHUDSelectionViewDelegate> _delegate;
     DVTDelayedInvocation *_fileProxyInvocation;

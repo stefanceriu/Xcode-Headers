@@ -4,16 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSTextStorage.h"
+#import "NSConcreteTextStorage.h"
 
 #import "DVTSourceBufferProvider.h"
 #import "DVTSourceLanguageServiceDelegate.h"
+#import "DVTTextDocumentLocationEncodingConverter.h"
 
-@class DVTFontAndColorTheme, DVTObservingToken, DVTSourceCodeLanguage, DVTSourceLandmarkItem, DVTSourceLanguageService<DVTSourceLanguageSourceModelService>, DVTSourceLanguageService<DVTSourceLanguageSyntaxTypeService>, DVTSourceModel, NSDictionary, NSMutableAttributedString, NSString, NSTimer, _LazyInvalidationHelper;
+@class DVTFontAndColorTheme, DVTObservingToken, DVTSourceCodeLanguage, DVTSourceLandmarkItem, DVTSourceLanguageService<DVTSourceLanguageSourceModelService>, DVTSourceLanguageService<DVTSourceLanguageSyntaxTypeService>, DVTSourceModel, NSDictionary, NSString, NSTimer, _LazyInvalidationHelper;
 
-@interface DVTTextStorage : NSTextStorage <DVTSourceBufferProvider, DVTSourceLanguageServiceDelegate>
+@interface DVTTextStorage : NSConcreteTextStorage <DVTSourceBufferProvider, DVTSourceLanguageServiceDelegate, DVTTextDocumentLocationEncodingConverter>
 {
-    NSMutableAttributedString *_contents;
     struct _DVTTextLineOffsetTable _lineOffsets;
     unsigned long long _changeCapacity;
     unsigned long long _numChanges;
@@ -38,16 +38,12 @@
         unsigned int processingLazyInvalidation:1;
         unsigned int breakChangeCoalescing:1;
         unsigned int doingBatchEdit:1;
-        unsigned int batchEditMayContainTokens:1;
-        unsigned int batchEditMayContainLinks:1;
-        unsigned int batchEditMayContainAttachments:1;
         unsigned int doingSubwordMovement:1;
         unsigned int doingExpressionMovement:1;
         unsigned int delegateRespondsToShouldAllowEditing:1;
         unsigned int delegateRespondsToDidUpdateSourceLandmarks:1;
         unsigned int delegateRespondsToNodeTypeForItem:1;
         unsigned int delegateRespondsToSourceLanguageServiceContext:1;
-        unsigned int forceFixAttributes:1;
         unsigned int languageServiceSupportsSourceModel:1;
     } _tsflags;
     _LazyInvalidationHelper *_lazyInvalidationHelper;
@@ -57,10 +53,9 @@
 
 + (id)keyPathsForValuesAffectingSourceLanguageServiceContext;
 + (void)initialize;
-+ (BOOL)usesScreenFonts;
 + (id)_changeTrackingLogAspect;
 + (id)_sourceLandmarksLogAspect;
-@property unsigned long long wrappedLineIndentWidth; // @synthesize wrappedLineIndentWidth=_wrappedLineIndentWidth;
+@property(nonatomic) unsigned long long wrappedLineIndentWidth; // @synthesize wrappedLineIndentWidth=_wrappedLineIndentWidth;
 @property unsigned long long indentWidth; // @synthesize indentWidth=_indentWidth;
 @property double lastEditTimestamp; // @synthesize lastEditTimestamp=_lastEditTimestamp;
 - (void).cxx_destruct;
@@ -131,19 +126,17 @@
 - (struct _NSRange)characterRangeFromDocumentLocation:(id)arg1;
 - (void)_dumpLineOffsetsTable;
 - (id)_debugStringFromUnsignedIntegers:(const unsigned long long *)arg1 count:(unsigned long long)arg2;
+- (void)scheduleLazyInvalidationForLineRange:(struct _NSRange)arg1;
 - (void)scheduleLazyInvalidationForRange:(struct _NSRange)arg1;
 - (void)_updateLazyInvalidationForEditedRange:(struct _NSRange)arg1 changeInLength:(long long)arg2;
 - (void)_processLazyInvalidation;
 - (void)_invalidateCallback:(id)arg1;
 @property BOOL processingLazyInvalidation;
-- (void)invalidateLayoutForLineRange:(struct _NSRange)arg1;
-- (void)delayedInvalidateDisplayForLineRange:(struct _NSRange)arg1;
 - (void)invalidateDisplayForLineRange:(struct _NSRange)arg1;
-- (void)invalidateDisplayInRange:(struct _NSRange)arg1;
+- (void)invalidateDisplayForRange:(struct _NSRange)arg1;
 - (void)updateAttributesInRange:(struct _NSRange)arg1;
 - (void)fixAttributesInRange:(struct _NSRange)arg1;
 - (void)fixSyntaxColoringInRange:(struct _NSRange)arg1;
-- (void)fixAttachmentAttributeInRange:(struct _NSRange)arg1;
 @property id <DVTTextStorageDelegate> delegate;
 - (id)_associatedTextViews;
 - (void)replaceCharactersInRange:(struct _NSRange)arg1 withAttributedString:(id)arg2 withUndoManager:(id)arg3;
@@ -151,24 +144,15 @@
 - (void)addLayoutManager:(id)arg1;
 - (void)invalidateAttributesInRange:(struct _NSRange)arg1;
 - (BOOL)fixesAttributesLazily;
-- (BOOL)_forceFixAttributes;
-- (void)_setForceFixAttributes:(BOOL)arg1;
 - (void)processEditing;
 - (void)endEditing;
 - (void)beginEditing;
 - (void)replaceCharactersInRange:(struct _NSRange)arg1 withAttributedString:(id)arg2;
-- (void)removeAttribute:(id)arg1 range:(struct _NSRange)arg2;
-- (void)addAttributes:(id)arg1 range:(struct _NSRange)arg2;
-- (void)addAttribute:(id)arg1 value:(id)arg2 range:(struct _NSRange)arg3;
-- (void)setAttributes:(id)arg1 range:(struct _NSRange)arg2;
 - (void)replaceCharactersInRange:(struct _NSRange)arg1 withString:(id)arg2;
 - (void)replaceCharactersInRange:(struct _NSRange)arg1 withString:(id)arg2 evenIfNotEditable:(BOOL)arg3;
 - (BOOL)isDoingBatchEdit;
 - (void)doingBatchEdit:(BOOL)arg1;
 - (void)doingBatchEdit:(BOOL)arg1 notifyModel:(BOOL)arg2;
-@property BOOL batchEditMayContainAttachments;
-@property BOOL batchEditMayContainLinks;
-@property BOOL batchEditMayContainTokens;
 - (void)resetAdvancementForSpace;
 @property(readonly) double advancementForTab;
 @property(readonly) double advancementForSpace;
@@ -182,7 +166,6 @@
 - (id)initWithString:(id)arg1;
 - (id)initWithString:(id)arg1 attributes:(id)arg2;
 - (id)initWithAttributedString:(id)arg1;
-- (id)initWithOwnedMutableAttributedString:(id)arg1;
 - (void)_dvtTextStorageCommonInit;
 - (BOOL)_isExpressionItemLikeFunction:(id)arg1;
 - (BOOL)_isExpressionItemLikelyTarget:(id)arg1;
@@ -211,14 +194,6 @@
 - (BOOL)_isInvalidObjectLiteralItem:(id)arg1;
 - (unsigned long long)firstColonAfterItem:(id)arg1 inRange:(struct _NSRange)arg2;
 - (long long)columnForPositionConvertingTabs:(unsigned long long)arg1;
-- (id)attribute:(id)arg1 atIndex:(unsigned long long)arg2 longestEffectiveRange:(struct _NSRange *)arg3 inRange:(struct _NSRange)arg4;
-- (id)attributesAtIndex:(unsigned long long)arg1 longestEffectiveRange:(struct _NSRange *)arg2 inRange:(struct _NSRange)arg3;
-- (id)attributedSubstringFromRange:(struct _NSRange)arg1;
-- (id)attribute:(id)arg1 atIndex:(unsigned long long)arg2 effectiveRange:(struct _NSRange *)arg3;
-- (unsigned long long)length;
-- (id)attributesAtIndex:(unsigned long long)arg1 effectiveRange:(struct _NSRange *)arg2;
-- (id)contents;
-- (id)string;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

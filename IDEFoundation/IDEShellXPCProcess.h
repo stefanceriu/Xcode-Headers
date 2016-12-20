@@ -8,7 +8,7 @@
 
 #import "IDEDebugTopNavigableModel.h"
 
-@class DVTStackBacktrace, IDEDebugSession, IDELaunchSession, NSArray, NSString;
+@class DVTStackBacktrace, IDEDebugSession, IDELaunchSession, NSString;
 
 @interface IDEShellXPCProcess : NSObject <IDEDebugTopNavigableModel>
 {
@@ -33,9 +33,7 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly, nonatomic) NSArray *loadedCodeModules;
 @property(readonly, nonatomic) IDEDebugSession *parentDebugSession;
-@property(readonly) NSString *subtitle;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 

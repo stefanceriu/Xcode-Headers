@@ -13,7 +13,6 @@
     NSString *_readyNotificationName;
     NSString *_startSessionNotificationName;
     NSString *_sendApplicationEventNotificationName;
-    NSString *_requestCloudSyncNotificationName;
     NSString *_simulateLocationNotificationName;
     DVTFilePath *_path;
     NSString *_bundleIdentifier;
@@ -25,10 +24,10 @@
 + (id)_defaultSimulator;
 + (id)simulatorApplicationWithBundleIdentifier:(id)arg1;
 + (id)allSimulatorApplications;
++ (id)logAspect;
 @property(readonly) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(readonly) DVTFilePath *path; // @synthesize path=_path;
 - (void).cxx_destruct;
-- (void)sendRequestCloudSyncNotification;
 - (void)sendStopSimulateLocationNotification;
 - (void)sendSimulateLocationNotificationWithLatitude:(id)arg1 longitude:(id)arg2;
 - (void)sendApplicationEventNotificationWithUserInfo:(id)arg1;

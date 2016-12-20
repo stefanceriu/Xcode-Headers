@@ -9,6 +9,7 @@
 @class IDELogEditorScopeBar, NSString;
 
 @protocol IDELogEditorScopeBarDelegate <NSObject>
+- (void)logEditorScopeBarSaveReport:(IDELogEditorScopeBar *)arg1;
 - (void)logEditorScopeBar:(IDELogEditorScopeBar *)arg1 searchTextChanged:(NSString *)arg2;
 - (void)logEditorScopeBar:(IDELogEditorScopeBar *)arg1 showAllResultsChanged:(BOOL)arg2;
 - (void)logEditorScopeBar:(IDELogEditorScopeBar *)arg1 stateChanged:(int)arg2;

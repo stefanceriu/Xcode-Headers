@@ -15,9 +15,12 @@
 {
     long long _horizontalSizeClass;
     long long _verticalSizeClass;
+    long long _userInterfaceStyle;
+    long long _displayGamut;
 }
 
-+ (id)traitCollectionWithHorizontalSizeClass:(long long)arg1 verticalSizeClass:(long long)arg2;
+@property(readonly, nonatomic) long long displayGamut; // @synthesize displayGamut=_displayGamut;
+@property(readonly, nonatomic) long long userInterfaceStyle; // @synthesize userInterfaceStyle=_userInterfaceStyle;
 @property(readonly, nonatomic) long long verticalSizeClass; // @synthesize verticalSizeClass=_verticalSizeClass;
 @property(readonly, nonatomic) long long horizontalSizeClass; // @synthesize horizontalSizeClass=_horizontalSizeClass;
 @property(readonly, copy) NSString *description;
@@ -26,7 +29,7 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
-- (id)initWithHorizontalSizeClass:(long long)arg1 verticalSizeClass:(long long)arg2;
+- (id)initWithHorizontalSizeClass:(long long)arg1 verticalSizeClass:(long long)arg2 userInterfaceStyle:(long long)arg3 displayGamut:(long long)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

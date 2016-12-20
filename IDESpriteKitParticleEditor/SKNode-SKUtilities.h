@@ -7,7 +7,7 @@
 #import "SKNode.h"
 
 @interface SKNode (SKUtilities)
-- (struct CGRect)sk_convertFrameToView;
+- (struct CGRect)sk_convertFrameToView:(id)arg1;
 - (struct CGRect)sk_convertFrameToNode:(id)arg1;
 @end
 

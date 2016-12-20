@@ -6,18 +6,16 @@
 
 #import "DVTLayerHostingView.h"
 
+#import "CALayerDelegate.h"
 #import "DYOpenGLLayerContentProvider.h"
 
-@class CALayer, CAScrollLayer, CATextLayer, DYOpenGLLayer, GPURenderJob, NSObject<OS_dispatch_source>, NSString;
+@class CAScrollLayer, DYOpenGLLayer, GPURenderJob, NSObject<OS_dispatch_source>, NSString;
 
-@interface GPURenderBufferView : DVTLayerHostingView <DYOpenGLLayerContentProvider>
+@interface GPURenderBufferView : DVTLayerHostingView <DYOpenGLLayerContentProvider, CALayerDelegate>
 {
     CAScrollLayer *_scrollLayer;
     DYOpenGLLayer *_imageLayer;
-    CATextLayer *_titleLayer;
-    CALayer *_titleHighlightLayer;
     struct CGSize _scaledImageSize;
-    NSString *_title;
     id <DYResource> _currentResource;
     struct CGPoint _scrollPoint;
     struct CGSize _scrollPadding;
@@ -38,13 +36,10 @@
     struct CGPoint _trackedAnchorPoint;
     struct CGPoint _trackedCursorPoint;
     struct CGRect _scrollLayerBounds;
-    struct CGColor *_titleLayerForegroundColor;
-    struct CGColor *_titleLayerForegroundColorDark;
-    struct CGColor *_titleHighlightLayerColor;
-    struct CGColor *_titleHighlightLayerColorDark;
     id <GPURenderBufferViewStateCoordinationProtocol> _coordinator;
     unsigned int _stateFlags;
     GPURenderJob *_renderJob;
+    NSString *_title;
     struct CGSize _titleSize;
 }
 
@@ -52,6 +47,7 @@
 @property(copy, nonatomic) CDUnknownBlockType swipeHandler; // @synthesize swipeHandler=_swipeHandler;
 @property(nonatomic) __weak id <GPURenderBufferViewStateCoordinationProtocol> coordinator; // @synthesize coordinator=_coordinator;
 @property(nonatomic) struct CGSize titleSize; // @synthesize titleSize=_titleSize;
+@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 @property(retain, nonatomic) GPURenderJob *renderJob; // @synthesize renderJob=_renderJob;
 - (void).cxx_destruct;
 - (void)dumpImage:(id)arg1 asRaw:(BOOL)arg2;
@@ -61,22 +57,23 @@
 - (struct CGRect)imageRectScreen;
 - (void)dispatchInTransaction:(CDUnknownBlockType)arg1;
 - (void)synchronizeWithView:(id)arg1;
-@property(readonly, nonatomic) struct CGRect usableViewRect; // @dynamic usableViewRect;
-@property(readonly, nonatomic) struct CGSize scaledImageSize; // @dynamic scaledImageSize;
-@property(nonatomic) _Bool useFastShadows; // @dynamic useFastShadows;
-@property(nonatomic) _Bool flipAboutY; // @dynamic flipAboutY;
-@property(nonatomic) _Bool flipAboutX; // @dynamic flipAboutX;
-@property(readonly, nonatomic) struct CATransform3D imageTransform; // @dynamic imageTransform;
-@property(nonatomic) double zRotation; // @dynamic zRotation;
-@property(nonatomic) double scale; // @dynamic scale;
-@property(nonatomic) _Bool clampScaleToPowersOfTwo; // @dynamic clampScaleToPowersOfTwo;
+- (void)draw;
+@property(readonly, nonatomic) struct CGRect usableViewRect;
+@property(readonly, nonatomic) struct CGSize scaledImageSize;
+@property(nonatomic) _Bool useFastShadows;
+@property(nonatomic) _Bool flipAboutY;
+@property(nonatomic) _Bool flipAboutX;
+@property(readonly, nonatomic) struct CATransform3D imageTransform;
+@property(nonatomic) double zRotation;
+@property(nonatomic) double scale;
+- (void)setClampScaleToPowersOfTwo:(_Bool)arg1;
 - (_Bool)clampZoomToPowersOfTwo;
-@property(nonatomic) _Bool clampScaleToIntegers; // @dynamic clampScaleToIntegers;
-@property(nonatomic) _Bool scaleToFit; // @dynamic scaleToFit;
+@property(nonatomic) _Bool clampScaleToIntegers;
+@property(nonatomic) _Bool scaleToFit;
 - (void)_setStateFlag:(unsigned int)arg1 testingBool:(_Bool)arg2;
-@property(readonly, nonatomic) double minimumScale; // @dynamic minimumScale;
-@property(readonly, nonatomic) double maximumScale; // @dynamic maximumScale;
-@property(copy, nonatomic) NSString *title; // @dynamic title;
+@property(readonly, nonatomic) double minimumScale;
+@property(readonly, nonatomic) double maximumScale;
+- (void)_updateImageLayer;
 @property(retain, nonatomic) id <DYResource> resource;
 - (BOOL)isOpaque;
 - (BOOL)wantsDepth;
@@ -85,6 +82,7 @@
 - (BOOL)flipped;
 - (BOOL)isColor;
 - (void)viewDidMoveToSuperview;
+- (void)viewDidChangeBackingProperties;
 - (void)viewDidMoveToWindow;
 - (void)setupOrTearDown;
 - (void)tearDown;
@@ -115,7 +113,6 @@
 - (struct CGSize)_resourceImageSize;
 - (void)_updateContentsScale:(double)arg1 forLayer:(id)arg2;
 - (void)_layoutLayers;
-- (void)_updateTitleForegroundColor;
 - (_Bool)_layer:(id)arg1 intersectsLayer:(id)arg2;
 - (void)_updateScaleToFitFactor;
 - (double)_clampScale:(double)arg1 withDelta:(double)arg2;

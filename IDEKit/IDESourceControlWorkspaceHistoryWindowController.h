@@ -10,7 +10,7 @@
 #import "DVTReplacementViewDelegate.h"
 #import "NSWindowDelegate.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTSearchField, DVTSourceControlWorkspace, DVTSplitView, DVTStackBacktrace, IDESourceControlWorkspaceConfigNavigator, IDEWorkspace, NSArray, NSButton, NSString, NSTabView, NSTextField, NSView;
+@class DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTSearchField, DVTSourceControlWorkingCopy, DVTSplitView, DVTStackBacktrace, IDESourceControlWorkspaceConfigNavigator, IDEWorkspace, NSButton, NSString, NSTextField, NSView;
 
 @interface IDESourceControlWorkspaceHistoryWindowController : NSWindowController <DVTInvalidation, DVTReplacementViewDelegate, NSWindowDelegate>
 {
@@ -19,18 +19,16 @@
     DVTReplacementView *_logReplacementView;
     NSView *_sourceListView;
     IDESourceControlWorkspaceConfigNavigator *_navigator;
-    NSTabView *_tabView;
     DVTBorderedView *_detailBorderedView;
     NSButton *_doneButton;
     DVTSearchField *_searchField;
     DVTSplitView *_splitView;
     BOOL _hidesSourceList;
     id _didScanToken;
-    DVTObservingToken *_outlineViewSelectionToken;
-    NSArray *previousSelectedObjects;
+    DVTObservingToken *_tableViewSelectionToken;
+    DVTSourceControlWorkingCopy *previousSelectedWorkingCopy;
     BOOL _isScanningForWorkingCopies;
     IDEWorkspace *_workspace;
-    DVTSourceControlWorkspace *_scmWorkspace;
     NSString *_startingSearchRevision;
     NSString *_endingSearchRevision;
 }
@@ -38,7 +36,6 @@
 + (void)initialize;
 @property(copy) NSString *endingSearchRevision; // @synthesize endingSearchRevision=_endingSearchRevision;
 @property(copy) NSString *startingSearchRevision; // @synthesize startingSearchRevision=_startingSearchRevision;
-@property(retain) DVTSourceControlWorkspace *scmWorkspace; // @synthesize scmWorkspace=_scmWorkspace;
 @property BOOL isScanningForWorkingCopies; // @synthesize isScanningForWorkingCopies=_isScanningForWorkingCopies;
 @property(retain) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
 - (void).cxx_destruct;
@@ -61,7 +58,6 @@
 - (void)loadWindow;
 - (id)_logViewController;
 - (id)windowNibName;
-- (id)initWithWindow:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

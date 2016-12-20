@@ -22,6 +22,10 @@
     BOOL _isSafeToLoadMobileDevice;
 }
 
++ (id)_informativeTextFieldForAlert:(id)arg1;
++ (id)_informativeTextForQuarantineProperties:(id)arg1;
++ (id)_documentDisplayNameForDocumentType:(id)arg1;
++ (BOOL)_shouldOpenURL:(id)arg1 documentType:(id)arg2;
 + (void)_setOpenAsContextMenu:(id)arg1 withViewController:(id)arg2;
 + (BOOL)_isWorkspaceWrappingDocumentURL:(id)arg1;
 + (BOOL)_isWorkspaceDocumentURL:(id)arg1;
@@ -53,8 +57,6 @@
 + (id)editorDocumentForURL:(id)arg1;
 + (id)retainedEditorDocumentForNavigableItem:(id)arg1 forUseWithWorkspaceDocument:(id)arg2 error:(id *)arg3;
 + (id)retainedEditorDocumentForDocumentLocation:(id)arg1 forUseWithWorkspaceDocument:(id)arg2 error:(id *)arg3;
-+ (id)retainedEditorDocumentForDocumentLocation:(id)arg1 error:(id *)arg2;
-+ (id)retainedEditorDocumentForNavigableItem:(id)arg1 error:(id *)arg2;
 + (id)_retainedEditorDocumentForURL:(id)arg1 type:(id)arg2 error:(id *)arg3;
 + (id)_newEditorDocumentWithClass:(Class)arg1 forURL:(id)arg2 withContentsOfURL:(id)arg3 ofType:(id)arg4 extension:(id)arg5 error:(id *)arg6;
 + (void)releaseEditorDocument:(id)arg1;
@@ -125,16 +127,18 @@
 - (void)_printDocumentsWithContentsOfUnprocessedURLs:(id)arg1 settings:(id)arg2 showPrintPanels:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)_printDocumentsWithContentsOfURLs:(id)arg1 settings:(id)arg2 showPrintPanels:(BOOL)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)_openDocumentsWithContentsOfURLs:(id)arg1 presentErrors:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)_coordinateReadingAndGetAlternateContentsForOpeningDocumentAtURL:(id)arg1 resolvingSymlinks:(BOOL)arg2 thenContinueOnMainThreadWithAccessor:(CDUnknownBlockType)arg3;
 - (id)openDocumentWithContentsOfURL:(id)arg1 display:(BOOL)arg2;
 - (void)asyncOpenDocumentsWithContentsOfURLs:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)openDocumentWithContentsOfURL:(id)arg1 display:(BOOL)arg2 error:(id *)arg3;
+- (id)openUntitledDocumentAndDisplay:(BOOL)arg1 error:(id *)arg2;
 - (void)openDocumentWithContentsOfURL:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)asyncOpenDocumentLocation:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)_openDocumentsForDocumentLocations:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)_openProjectsPlaygroundsAndWorkspaces:(id)arg1 display:(BOOL)arg2 openedDocuments:(id)arg3 simpleFileDocumentLocations:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
 - (void)_openProjectsPlaygroundsAndWorkspaces:(id)arg1 display:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)_workspacePlaygroundOrProjectDocumentLocationsInFolderURL:(id)arg1;
-- (BOOL)_openSimpleFileDocumentLocations:(id)arg1 documents:(id *)arg2 display:(BOOL)arg3 error:(id *)arg4;
+- (void)_openSimpleFileDocumentLocations:(id)arg1 display:(BOOL)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)_frontmostSimpleFilesFocusedWorkspaceWindowForTopLevelFilePaths:(id)arg1;
 - (BOOL)_workspace:(id)arg1 topLevelChildrenMatches:(id)arg2;
 - (void)_promptToOpenWorkspaceWithCompletionBlock:(CDUnknownBlockType)arg1;
@@ -151,6 +155,7 @@
 - (id)openUntitledWorkspaceDocumentAndDisplay:(BOOL)arg1 error:(id *)arg2;
 - (id)_openUntitledWorkspaceDocumentAndDisplay:(BOOL)arg1 simpleFilesFocused:(BOOL)arg2 forSingleFile:(BOOL)arg3 editorDocumentURLOrNil:(id)arg4 error:(id *)arg5;
 - (id)documentForURL:(id)arg1;
+- (BOOL)_anyDocumentClassUsesUbiquitousStorage;
 - (id)defaultType;
 - (id)init;
 

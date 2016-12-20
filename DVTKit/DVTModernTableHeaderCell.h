@@ -8,9 +8,13 @@
 
 @interface DVTModernTableHeaderCell : NSTableHeaderCell
 {
+    BOOL _isSortable;
     double _leftTitleMargin;
+    double _topTitleMargin;
 }
 
+@property BOOL isSortable; // @synthesize isSortable=_isSortable;
+@property double topTitleMargin; // @synthesize topTitleMargin=_topTitleMargin;
 @property double leftTitleMargin; // @synthesize leftTitleMargin=_leftTitleMargin;
 - (void)drawSortIndicatorWithFrame:(struct CGRect)arg1 inView:(id)arg2 ascending:(BOOL)arg3 priority:(long long)arg4;
 - (struct CGRect)sortIndicatorRectForBounds:(struct CGRect)arg1;

@@ -6,17 +6,18 @@
 
 #import <IDEInterfaceBuilderKit/IBEditorCanvasFrameController.h>
 
-@class DVTDelayedInvocation, DVTNotificationToken, IBEditorFrameLayoutGuideGeneratorDelegate, IBLayoutGuideDrawingHandler, IBLayoutManager, IBMeasurementDrawingHandler, IBViewTracker, NSArray, NSMutableArray;
+@class DVTDelayedInvocation, DVTNotificationToken, IBCanvasOverlay, IBEditorFrameLayoutGuideGeneratorDelegate, IBLayoutGuideCanvasOverlay, IBLayoutManager, IBMeasurementDrawingHandler, IBRelativeMeasurementDrawingHandler, IBViewTracker, NSArray, NSMutableArray;
 
 @interface IBViewEditorCanvasFrameController : IBEditorCanvasFrameController
 {
     IBMeasurementDrawingHandler *measurementDrawingHandler;
-    IBLayoutGuideDrawingHandler *layoutGuideDrawingHandler;
+    IBRelativeMeasurementDrawingHandler *_relativeMeasurementDrawingHandler;
+    IBLayoutGuideCanvasOverlay *_layoutGuideCanvasOverlay;
     IBLayoutManager *layoutManager;
     IBEditorFrameLayoutGuideGeneratorDelegate *layoutGuideGeneratorDelegate;
     NSMutableArray *cachedUserGuides;
     NSMutableArray *cachedSystemGuides;
-    DVTDelayedInvocation *guideInvocation;
+    DVTDelayedInvocation *_validateUserGuidesInvocation;
     IBViewTracker *activeViewTracker;
     id <DVTInvalidation> hiddenViewDrawingToken;
     BOOL observingHiddenState;
@@ -24,8 +25,10 @@
     DVTNotificationToken *showingBoundsRectsNotification;
     DVTNotificationToken *showingPlaceholderBackgroundsNotification;
     BOOL hasHiddenViewsInViewSubgraph;
+    IBCanvasOverlay *_constraintPositioningOverlayView;
 }
 
+@property(readonly, nonatomic) IBCanvasOverlay *constraintPositioningOverlayView; // @synthesize constraintPositioningOverlayView=_constraintPositioningOverlayView;
 @property(nonatomic) BOOL hasHiddenViewsInViewSubgraph; // @synthesize hasHiddenViewsInViewSubgraph;
 @property(retain) IBViewTracker *activeViewTracker; // @synthesize activeViewTracker;
 - (void).cxx_destruct;
@@ -43,6 +46,7 @@
 - (void)takeShowingLayoutRectanglesFromDocumentEditor:(id)arg1;
 - (void)noteDescendant:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
 - (void)drawHiddenViews;
+- (struct CGRect)frameForOverlay:(id)arg1 inCanvasView:(id)arg2 scale:(double)arg3;
 - (BOOL)interceptDecoratorActionEvent:(id)arg1;
 @property(readonly) NSArray *systemLayoutGuides;
 @property(readonly) NSArray *userLayoutGuides;

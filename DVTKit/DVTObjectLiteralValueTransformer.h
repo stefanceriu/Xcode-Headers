@@ -15,6 +15,8 @@
 + (id)registeredValueTransformers;
 + (id)valueTransformerForObjectLiteral:(id)arg1;
 + (id)valueTransformerForLiteralString:(id)arg1;
++ (Class)valueTransformerClassForLiteralString:(id)arg1;
++ (unsigned long long)transformedObjectLiteralType;
 - (id)stringByUnescapingString:(id)arg1;
 - (id)stringByEscapingString:(id)arg1;
 - (id)reverseTransformedValue:(id)arg1 context:(id)arg2;

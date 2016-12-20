@@ -34,12 +34,12 @@
 - (id)referenceKey;
 @property(readonly) IDEWorkspace *workspace;
 - (void)primitiveInvalidate;
+@property(readonly, copy) NSString *description;
 - (id)initWithWorkspaceDocument:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;

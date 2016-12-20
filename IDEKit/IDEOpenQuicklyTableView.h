@@ -8,15 +8,9 @@
 
 @interface IDEOpenQuicklyTableView : DVTTableView
 {
-    id _becomeKeyNotificationObserver;
-    id _resignKeyNotificationObserver;
 }
 
-- (void).cxx_destruct;
-- (void)drawRect:(struct CGRect)arg1;
-- (void)highlightSelectionInClipRect:(struct CGRect)arg1;
 - (BOOL)acceptsFirstResponder;
-- (void)viewWillMoveToWindow:(id)arg1;
 
 @end
 

@@ -13,13 +13,12 @@
 #import "NSDraggingDestination.h"
 #import "NSUserInterfaceValidations.h"
 
-@class DVTStackBacktrace, IBAbstractDocumentEditor, IBActionForwardingResponder, IBCancellationToken, IBCanvasViewController, IBDelegatedCanvasOverlay, IBDocument, IBEditor, IBEditorCanvasFrame, IBFieldEditor, IBHitDetectionMap, IBInlineStringEditingContext, IBInvalidationToken, IBLayoutManager, IBNavigationMenuController, IBTargetIdentifier, NSDate, NSEvent, NSMutableSet, NSSet, NSString;
+@class DVTStackBacktrace, IBAbstractDocumentEditor, IBActionForwardingResponder, IBCancellationToken, IBCanvasViewController, IBDelegatedCanvasOverlay, IBDeviceBezel, IBDocument, IBEditor, IBEditorCanvasFrame, IBFieldEditor, IBHitDetectionMap, IBInlineStringEditingContext, IBInvalidationToken, IBLayoutManager, IBMemberConfiguration, IBNavigationMenuController, IBTargetIdentifier, NSAccessibilityElement, NSDate, NSEvent, NSMutableDictionary, NSMutableSet, NSSet, NSString;
 
 @interface IBEditorCanvasFrameController : NSObject <IBDelegatedCanvasOverlayDelegate, IBEndPointProvider, NSUserInterfaceValidations, NSDraggingDestination, IBDocumentArbitrationResponder, DVTInvalidation>
 {
     IBEditorCanvasFrame *editorCanvasFrame;
     IBFieldEditor *fieldEditor;
-    IBEditor *activeEditor;
     BOOL shouldSelectDeepestObjectOnNextMouseUp;
     BOOL shouldPruneToSingleSelectionOnNextMouseUp;
     IBHitDetectionMap *decoratorActionMap;
@@ -32,6 +31,8 @@
     long long lastDragSequenceNumber;
     NSEvent *lastLeftMouseDown;
     NSEvent *lastRightMouseDown;
+    IBDeviceBezel *deviceBezel;
+    IBMemberConfiguration *deviceBezelConfiguration;
     IBTargetIdentifier *targetIdentifier;
     IBInlineStringEditingContext *inlineStringEditingContext;
     IBDocument *document;
@@ -47,20 +48,27 @@
     unsigned long long targetIdentifierUseCount;
     NSObject *objectToMeasureSelectionSpeedFor;
     NSSet *objectsShowingTargetIdentifier;
-    IBDelegatedCanvasOverlay *overlayView;
+    IBDelegatedCanvasOverlay *_overlayView;
     id <DVTInvalidation> dragAndDropDrawingToken;
-    NSMutableSet *_dependentSiblingEditorFrameControllers;
+    NSMutableSet *_linkedChildEditorFrameControllers;
     BOOL _haveRunFirstSceneUpdate;
     IBInvalidationToken *_loadingToken;
+    NSMutableDictionary *_objectsToAccessibilityElements;
     BOOL _opensEditorsWithKeyEvents;
-    IBEditorCanvasFrameController *_prerequisiteSiblingEditorFrameController;
+    IBEditorCanvasFrameController *_linkedParentEditorFrameController;
+    IBEditor *_focusedEditor;
+    IBEditor *_focusedEditorBeforeLastClick;
     NSObject *_baseEditedObject;
+    NSAccessibilityElement *_baseEditedObjectAccessibilityElement;
 }
 
 + (void)initialize;
+@property(retain, nonatomic) NSAccessibilityElement *baseEditedObjectAccessibilityElement; // @synthesize baseEditedObjectAccessibilityElement=_baseEditedObjectAccessibilityElement;
 @property(retain, nonatomic) NSObject *baseEditedObject; // @synthesize baseEditedObject=_baseEditedObject;
-@property __weak IBEditorCanvasFrameController *prerequisiteSiblingEditorFrameController; // @synthesize prerequisiteSiblingEditorFrameController=_prerequisiteSiblingEditorFrameController;
-@property(retain) NSSet *dependentSiblingEditorFrameControllers; // @synthesize dependentSiblingEditorFrameControllers=_dependentSiblingEditorFrameControllers;
+@property(nonatomic) __weak IBEditor *focusedEditorBeforeLastClick; // @synthesize focusedEditorBeforeLastClick=_focusedEditorBeforeLastClick;
+@property(retain, nonatomic) IBEditor *focusedEditor; // @synthesize focusedEditor=_focusedEditor;
+@property __weak IBEditorCanvasFrameController *linkedParentEditorFrameController; // @synthesize linkedParentEditorFrameController=_linkedParentEditorFrameController;
+@property(retain) NSSet *linkedChildEditorFrameControllers; // @synthesize linkedChildEditorFrameControllers=_linkedChildEditorFrameControllers;
 @property BOOL opensEditorsWithKeyEvents; // @synthesize opensEditorsWithKeyEvents=_opensEditorsWithKeyEvents;
 @property(copy, nonatomic) NSEvent *lastRightMouseDown; // @synthesize lastRightMouseDown;
 @property(copy, nonatomic) NSEvent *lastLeftMouseDown; // @synthesize lastLeftMouseDown;
@@ -71,14 +79,14 @@
 @property(retain, nonatomic) IBDocument *document; // @synthesize document;
 @property(retain, nonatomic) IBEditorCanvasFrame *editorCanvasFrame; // @synthesize editorCanvasFrame;
 - (void).cxx_destruct;
-- (id)runSynchronousSceneUpdateForRoot:(id)arg1;
+- (id)runSynchronousSceneUpdateForRoot:(id)arg1 updateAutolayoutStatus:(BOOL)arg2;
 - (void)populateIncrementalSceneUpdates:(id)arg1 forUpdatingSceneWithRoot:(id)arg2 sceneUpdateManager:(id)arg3;
 - (void)populateFullSceneUpdates:(id)arg1 forUpdatingSceneWithRoot:(id)arg2 objectPackage:(id)arg3 sceneUpdateManager:(id)arg4;
 - (id)_makeIncrementalSceneUpdateRequest;
 - (id)_makeFullSceneUpdateRequestForRoot:(id)arg1 withObjectPackage:(id)arg2;
 - (void)configureSceneUpdateRequest:(id)arg1;
 - (long long)_sceneUpdateRenderingFidelity;
-- (id)_sceneUpdateScaleFactor;
+- (double)_sceneUpdateScaleFactor;
 - (void)document:(id)arg1 willRunArbitrationOfUnits:(id)arg2;
 - (void)prepareToResizeFrameWithTracker:(id)arg1;
 - (void)didResizeEditedObject:(id)arg1 withEvent:(id)arg2 fromKnob:(CDUnion_31865a80)arg3;
@@ -125,9 +133,11 @@
 - (void)cut:(id)arg1;
 - (void)delete:(id)arg1;
 - (BOOL)isObjectRemovalValidForMode:(unsigned long long)arg1;
+- (id)targetEditorForDeleteOrPasteboardOperation:(id)arg1;
+- (id)unvalidatedSiblingsForDeleteOrPasteboardOperation;
 - (unsigned long long)objectRemovalModeForCurrentSelection;
 - (id)pasteTarget;
-- (id)cutCopyDeleteDuplicateTarget;
+- (id)cutCopyDuplicateTarget;
 - (BOOL)shouldForwardPasteboardActionsToCanvasView;
 - (BOOL)useViewBasedImageRepSnapshotForDragImage;
 - (void)delegateDrawingDragAndDropInsertionHints;
@@ -144,7 +154,7 @@
 - (BOOL)isDragLocationWithinTheDraggingSourceEditedObject:(id)arg1;
 - (unsigned long long)draggingEntered:(id)arg1;
 - (BOOL)autoscrollEditedContentWithExternalDragEvent:(id)arg1 animate:(BOOL)arg2;
-- (BOOL)shouldBlockDragsUntilHoldFromDragginEntered;
+- (BOOL)shouldBlockDragsUntilHoldFromDraggingEntered;
 - (id)draggedImageState:(id)arg1;
 - (void)springForwardForDragAndDrop;
 - (id)springLoadedObjectAtPoint:(struct CGPoint)arg1 criteria:(long long)arg2;
@@ -159,7 +169,7 @@
 - (void)revealSpringLoadedObjectAndIndicateSuccess:(id)arg1;
 - (id)springLoadedObjectInfoAtPoint:(struct CGPoint)arg1 inView:(id)arg2 withContext:(id)arg3 forDocument:(id)arg4;
 - (void)synchronouslyFlashObjectToIndicateSuccess:(id)arg1;
-- (id)specifierWithFrameGenerator:(id)arg1 label:(id)arg2;
+- (id)specifierWithLabel:(id)arg1 frameGenerator:(CDUnknownBlockType)arg2;
 - (id)showTargetIdentifierForObject:(id)arg1 showLabel:(BOOL)arg2 duration:(double)arg3;
 - (id)showTargetIdentifierForObjects:(id)arg1 showLabels:(BOOL)arg2 duration:(double)arg3;
 - (void)addDecoratorActionRect:(struct CGRect)arg1 forEditor:(id)arg2 clipToEditedObjectsClippedRect:(BOOL)arg3;
@@ -175,20 +185,22 @@
 - (void)positionChildEditorFrames;
 - (BOOL)isEligibleForBandSelection;
 - (BOOL)shouldIncludeParentWhenScrollingToVisible;
-- (id)orderedDependentSiblingEditorFrameControllers;
-- (void)removeDependentSiblingEditorFrameController:(id)arg1;
-- (void)addDependentSiblingEditorFrameController:(id)arg1;
+- (id)orderedLinkedChildEditorFrameControllers;
+- (void)removeLinkedChildEditorFrameController:(id)arg1;
+- (void)addLinkedChildEditorFrameController:(id)arg1;
 @property(readonly, copy) NSString *description;
 - (id)overlayView;
-- (id)accessibilityDescriptionForEditedObject;
-- (id)accessibilityUniqueIDForEditedObject;
+- (id)accessibilityHitTest:(struct CGPoint)arg1;
+- (id)_accessibilityFauxElementForObject:(id)arg1;
+- (struct CGRect)_frameForCanvasOverlayInCanvasView:(id)arg1 scale:(double)arg2;
+- (struct CGRect)frameForOverlay:(id)arg1 inCanvasView:(id)arg2 scale:(double)arg3;
 - (BOOL)editorCanvasFrame:(id)arg1 interceptDoubleClickedEvent:(id)arg2;
 - (void)canvasFrameDidCompleteLayout;
 - (void)canvasFrameHasKeyLookDidChange;
 - (id)cursorRectAlwaysAtBackKey;
 - (void)editorDidChangeSelection:(id)arg1;
-- (id)editedObjectsFromBaseToActive;
-- (id)editorsFromBaseToActive;
+- (id)editedObjectsFromBaseToFocused;
+- (id)editorsFromBaseToFocused;
 - (struct CGRect)clippedRectForObject:(id)arg1;
 - (id)childOfObject:(id)arg1 atPoint:(struct CGPoint)arg2 criteria:(long long)arg3;
 - (id)objectAtPoint:(struct CGPoint)arg1 criteria:(long long)arg2;
@@ -204,7 +216,7 @@
 - (void)didAddFrameToCanvas;
 - (void)deactivate;
 - (void)activate;
-- (void)willChangeEditorStack;
+- (void)willChangeEditorTree;
 - (void)noteDescendant:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
 - (void)noteAncestor:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
 - (void)editStringWithContext:(id)arg1 forEditor:(id)arg2;
@@ -214,10 +226,11 @@
 - (unsigned long long)dragObjects:(id)arg1 withImage:(id)arg2 inMouseDownEvent:(id)arg3 mouseDraggedEvent:(id)arg4 imageLocation:(struct CGPoint)arg5 allowedOperations:(unsigned long long)arg6 editor:(id)arg7 draggingSourceContext:(id)arg8;
 - (id)lastMouseDown;
 - (id)targetIdentifier;
+@property(readonly, nonatomic) IBDeviceBezel *deviceBezel; // @synthesize deviceBezel;
+- (id)deepestChildEditor;
 - (id)descendantActiveEditor;
+- (id)topLevelController;
 - (id)parentController;
-- (void)setActiveEditor:(id)arg1;
-- (id)activeEditor;
 - (BOOL)wouldEditObject:(id)arg1;
 - (id)objectsFromBackToFrontForCriteria:(long long)arg1;
 - (void)enumerateChildrenOfObject:(id)arg1 criteria:(long long)arg2 fromBackToFrontWithBlock:(CDUnknownBlockType)arg3;

@@ -61,6 +61,7 @@
 - (id)locationForRemoteRepository:(id)arg1;
 - (id)displayNameForRemoteRepository:(id)arg1;
 - (id)initWithSingleRemoteRepository:(id)arg1;
+- (id)_dictionaryRepresentationWithOptions:(unsigned long long)arg1 mutableDictionaryClass:(Class)arg2;
 - (id)dictionaryRepresentationWithOptions:(unsigned long long)arg1;
 - (id)derivedRepositoryIdentifier;
 - (id)saveBlueprintInFolder:(id)arg1 options:(unsigned long long)arg2;
@@ -77,6 +78,8 @@
 - (id)remoteRepositoriesMissingFromBlueprint:(id)arg1;
 - (id)remoteRepositoriesMissingFromWorkspace:(id)arg1;
 - (void)getMissingCredentialsFromBlueprint:(id)arg1;
+- (void)_mergeWithBlueprint:(id)arg1 preferOtherBlueprint:(BOOL)arg2;
+- (void)updateWithBlueprint:(id)arg1;
 - (void)mergeWithBlueprint:(id)arg1;
 - (id)_repositoryLikeRepository:(id)arg1 inBlueprint:(id)arg2;
 - (id)remoteRepositoryLikeRepository:(id)arg1 inBlueprint:(id)arg2;
@@ -91,15 +94,19 @@
 - (BOOL)isFuzzyEqualToBlueprint:(id)arg1;
 - (id)init;
 - (id)checkForUpdatesWithCompletionBlock:(CDUnknownBlockType)arg1;
+- (id)validateAuthenticationAndListBranchesSkippingRepositoryIdentifiers:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (id)validateAuthenticationAndListBranchesWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)validateAuthenticationWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)listBranchesWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)automaticallyDetectBranchAndTagLocationsWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)updateRepositoryURLRootsWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)workspaceForWorkingCopiesCreatedAtURL:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (id)createWorkingCopiesAtURL:(id)arg1 progressBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)createWorkingCopiesAtURL:(id)arg1 useRevisions:(BOOL)arg2 reusingWorkingCopiesFromBlueprints:(id)arg3 progressBlock:(CDUnknownBlockType)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (id)createWorkingCopiesAtURL:(id)arg1 useRevisions:(BOOL)arg2 progressBlock:(CDUnknownBlockType)arg3 completionBlock:(CDUnknownBlockType)arg4;
 @property(readonly) NSMapTable *revisions;
 - (id)_sortedRemoteRepositoriesWithExpandedPaths:(id)arg1;
 - (id)_expandedWorkingCopyPathsFromURL:(id)arg1;
+- (id)_expandedFileURLForBaseURL:(id)arg1 repository:(id)arg2;
 @property(readonly) NSString *projectPath;
 - (BOOL)_isValid;
 - (id)__id;

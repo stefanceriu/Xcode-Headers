@@ -8,11 +8,11 @@
 
 #import "IDEFilePickerViewDelegate.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTOutlineView, DVTScrollView, DVTSearchField, IDEBuildSchemeAction, IDEScheme, IDEWorkspace, NSArray, NSString, NSView;
+@class DVTBorderedView, DVTGradientImageButton, DVTOutlineViewWithCustomGridDrawing, DVTScrollView, DVTSearchField, IDEBuildSchemeAction, IDEScheme, IDEWorkspace, NSArray, NSString, NSView;
 
 @interface IDEBuildRunPhaseSheetController : IDEViewController <IDEFilePickerViewDelegate>
 {
-    DVTOutlineView *_outlineView;
+    DVTOutlineViewWithCustomGridDrawing *_outlineView;
     DVTGradientImageButton *_addButton;
     DVTGradientImageButton *_deleteButton;
     DVTBorderedView *_topBorderedView;

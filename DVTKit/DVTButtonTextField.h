@@ -6,6 +6,8 @@
 
 #import "NSTextField.h"
 
+@class NSImage;
+
 @interface DVTButtonTextField : NSTextField
 {
     BOOL _resetingCursorRects;
@@ -17,18 +19,13 @@
 - (void)resetCursorRects;
 - (struct CGRect)visibleRect;
 - (void)mouseDown:(id)arg1;
-- (unsigned long long)imagePosition;
-- (void)setImagePosition:(unsigned long long)arg1;
-- (id)highlightImage;
-- (void)setHighlightImage:(id)arg1;
-- (id)alternateImage;
-- (void)setAlternateImage:(id)arg1;
-- (id)image;
-- (void)setImage:(id)arg1;
-- (void)setButtonAction:(SEL)arg1;
-- (SEL)buttonAction;
-- (void)setButtonTarget:(id)arg1;
-- (id)buttonTarget;
+@property unsigned long long imagePosition;
+@property(retain) NSImage *highlightImage;
+@property(retain) NSImage *alternateImage;
+@property(retain) NSImage *image;
+@property SEL buttonAction;
+@property __weak id buttonTarget;
+- (id)baseImageFromTemplateImage:(id)arg1;
 
 @end
 

@@ -15,6 +15,7 @@
 + (id)ib_collectionWithObject:(id)arg1;
 + (id)ib_emptyCollection;
 + (Class)ib_mutableClass;
+- (NSSet *)ib_setByMappingBlock:(id (^)(id))arg1;
 - (void)ib_getObjects:(id *)arg1;
 - (void)ib_removeObjectsInReceiverFromArray:(NSMutableArray *)arg1;
 - (void)ib_removeObjectsInReceiverFromOrderedSet:(NSMutableOrderedSet *)arg1;

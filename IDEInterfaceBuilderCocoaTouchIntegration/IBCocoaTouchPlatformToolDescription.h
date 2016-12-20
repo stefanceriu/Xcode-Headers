@@ -17,8 +17,6 @@
 + (id)effectiveToolDescriptionForTargetRuntime:(id)arg1 role:(long long)arg2 scaleFactor:(double)arg3;
 @property(readonly, nonatomic) long long fidelity; // @synthesize fidelity=_fidelity;
 - (id)toolName;
-- (BOOL)shouldLaunchFullFidelityApplicationAndBootstrapEnvironment;
-- (BOOL)_shouldEstablishBootstrapSession;
 - (id)preferredDeviceTypeReturningError:(id *)arg1;
 - (id)newestAvailableAndSupportedRuntimeReturningError:(id *)arg1;
 - (id)ib_verboseDescription;

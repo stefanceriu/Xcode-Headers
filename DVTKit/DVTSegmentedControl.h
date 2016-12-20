@@ -12,7 +12,7 @@
 {
     NSMutableArray *_alternateImages;
     NSTrackingArea *_trackingArea;
-    BOOL _shouldDrawMenuIndictor;
+    BOOL _shouldDrawMenuIndicators;
     BOOL _bordered;
     BOOL _shouldDrawAsRollover;
     double _menuIndicatorInset;
@@ -23,7 +23,7 @@
 @property BOOL shouldDrawAsRollover; // @synthesize shouldDrawAsRollover=_shouldDrawAsRollover;
 @property(getter=isBordered) BOOL bordered; // @synthesize bordered=_bordered;
 @property double menuIndicatorInset; // @synthesize menuIndicatorInset=_menuIndicatorInset;
-@property BOOL shouldDrawMenuIndictor; // @synthesize shouldDrawMenuIndictor=_shouldDrawMenuIndictor;
+@property BOOL shouldDrawMenuIndicators; // @synthesize shouldDrawMenuIndicators=_shouldDrawMenuIndicators;
 - (void).cxx_destruct;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;

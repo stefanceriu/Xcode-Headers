@@ -8,7 +8,7 @@
 
 #import "DTTimelineGraphDelegate.h"
 
-@class CALayer, DTTimelineGraphLayoutManager, DTTimelineGraphPlaneManager, DTTimelineMouseEventsResponder, DTTimelinePlane, DTTimelinePlaneDynamicRangeUpdateAnimation, NSArray, NSMutableDictionary, NSSet, NSString, NSTimer;
+@class CALayer, DTTimelineGraphLayoutManager, DTTimelineGraphPlaneManager, DTTimelineMouseEventsResponder, DTTimelinePlane, DTTimelinePlaneDynamicRangeUpdateAnimation, NSArray, NSColor, NSMutableDictionary, NSSet, NSString, NSTimer;
 
 @interface DTTimelineGraph : NSView <DTTimelineGraphDelegate>
 {
@@ -19,6 +19,7 @@
     DTTimelinePlane *_bottomPinnedPlane;
     DTTimelinePlane *_backgroundPlane;
     DTTimelinePlane *_overlayPlane;
+    NSSet *__decoratedPlaneSet;
     DTTimelineMouseEventsResponder *_mouseEventsResponder;
     DTTimelineGraphPlaneManager *_planeManager;
     DTTimelineGraphLayoutManager *_layoutManager;
@@ -36,6 +37,7 @@
     unsigned long long _nanosecondsPerPoint;
     NSSet *_selectedPlanes;
     id <NSAccessibility> _accessibilityProvider;
+    long long _initialDynamicRangeHigh;
     unsigned long long _rangeIndicatorState;
     struct XRTimeRange _selectedTimeRange;
     struct XRTimeRange _zoomIndicatorTimeRange;
@@ -47,6 +49,7 @@
 @property(nonatomic) BOOL displayHorizontalScroller; // @synthesize displayHorizontalScroller=_displayHorizontalScroller;
 @property(nonatomic) unsigned long long rangeIndicatorState; // @synthesize rangeIndicatorState=_rangeIndicatorState;
 @property(nonatomic) struct XRTimeRange zoomIndicatorTimeRange; // @synthesize zoomIndicatorTimeRange=_zoomIndicatorTimeRange;
+@property(nonatomic) long long initialDynamicRangeHigh; // @synthesize initialDynamicRangeHigh=_initialDynamicRangeHigh;
 @property(nonatomic) __weak id <NSAccessibility> accessibilityProvider; // @synthesize accessibilityProvider=_accessibilityProvider;
 @property(readonly, nonatomic) DTTimelineGraphPlaneManager *planeManager; // @synthesize planeManager=_planeManager;
 @property(copy, nonatomic) NSSet *selectedPlanes; // @synthesize selectedPlanes=_selectedPlanes;
@@ -66,11 +69,12 @@
 - (id)accessibilityRole;
 - (id)accessibilityContents;
 - (id)accessibilityChildren;
+- (BOOL)isAccessibilityElement;
 - (BOOL)isAccessibilitySelectorAllowed:(SEL)arg1;
 - (void)_generatePlaneLayoutMap;
 - (const unordered_map_c1fbcd3c *)_planeLayoutMap;
 - (void)clearInspectionInfo;
-- (void)displayInspectionInfoForNanosecond:(unsigned long long)arg1;
+- (void)displayInspectionInfoForNanosecond:(unsigned long long)arg1 planes:(id)arg2;
 - (void)setNextResponder:(id)arg1;
 - (void)viewDidMoveToWindow;
 - (void)_updateSelectedPlanesColors;
@@ -82,11 +86,11 @@
 - (BOOL)canBecomeKeyView;
 - (BOOL)acceptsFirstResponder;
 - (void)inputHandlerForGraph:(id)arg1 requestsHeight:(double)arg2 forPlane:(id)arg3;
-- (void)inputHandlerForGraph:(id)arg1 unhandledClickAtTime:(unsigned long long)arg2 onPlanes:(id)arg3;
+- (void)inputHandlerForGraph:(id)arg1 unhandledClickAtTime:(unsigned long long)arg2 clickCount:(long long)arg3 onPlanes:(id)arg4;
 - (void)inputHandlerForGraph:(id)arg1 requestsCollapsingGroupPlane:(id)arg2;
 - (void)inputHandlerForGraph:(id)arg1 requestsExpandingGroupPlane:(id)arg2;
 - (void)inputHandlerRequestsToClearInspectionInfoForGraph:(id)arg1;
-- (void)inputHandlerForGraph:(id)arg1 requestsDisplayInspectionInfoForNanosecond:(unsigned long long)arg2 atX:(double)arg3;
+- (void)inputHandlerForGraph:(id)arg1 requestsDisplayInspectionInfoForNanosecond:(unsigned long long)arg2 point:(struct CGPoint)arg3;
 - (void)inputHandlerForGraph:(id)arg1 requestsNanosecondsPerPoint:(unsigned long long)arg2;
 - (void)inputHandlerRequestsToClearCurrentInspectionTimeForGraph:(id)arg1;
 - (void)inputHandlerForGraph:(id)arg1 requestsCurrentInspectionTime:(unsigned long long)arg2;
@@ -135,10 +139,16 @@
 - (void)clearCurrentInspectionTime;
 @property(readonly, copy, nonatomic) NSString *rangeIndicatorDescription;
 - (void)clearZoomIndicator;
+@property(retain, nonatomic) id selectionColorEffect;
 - (void)clearSelectedTimeRange;
+@property(retain, nonatomic) NSColor *selectionPointColor;
+@property(nonatomic) BOOL hasDarkBackground;
+@property(retain, nonatomic) NSColor *inspectionColor;
+@property(nonatomic) BOOL displayCurrentInspectionTime;
 @property(readonly, nonatomic) long long midpointNanosecondOffset;
 @property(nonatomic) long long nanosecondOffset;
 - (void)_updateNanosecondOffsetIfNeeded;
+@property(nonatomic) double planeHandleWidth;
 - (void)_screenChangeNotification:(id)arg1;
 @property(readonly, nonatomic) NSArray *planes; // @synthesize planes=_planes;
 - (void)dealloc;

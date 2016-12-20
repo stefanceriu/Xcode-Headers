@@ -58,6 +58,7 @@
 - (id)allSuperClassesForClass:(id)arg1 cancelWhen:(CDUnknownBlockType)arg2;
 - (id)superClassesForClass:(id)arg1;
 - (id)categoriesForClass:(id)arg1;
+- (id)gkInspectablePropertiesForClass:(id)arg1;
 - (id)ibOutletCollectionPropertiesForClass:(id)arg1;
 - (id)ibOutletCollectionVariablesForClass:(id)arg1;
 - (id)ibOutletCollectionsForClass:(id)arg1;
@@ -104,6 +105,8 @@
 - (id)kindsStringForKinds:(id)arg1;
 - (id)symbolsForResolutions:(id)arg1 forIndex:(id)arg2;
 - (id)parsedCodeCommentAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;
+- (id)parsedCodeCommentAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3 cursorKindOut:(long long *)arg4;
+- (id)parsedCodeCommentAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3 symbolKindOut:(id *)arg4;
 - (id)impliedHeadersForModuleImportLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;
 - (id)importedFileAtDocumentLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;
 - (id)importedFilesAtDocument:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;

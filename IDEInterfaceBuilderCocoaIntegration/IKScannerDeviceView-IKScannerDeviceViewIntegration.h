@@ -11,5 +11,7 @@
 - (void)ibOverrideSetup;
 - (void)ibSwizzledCommonInit;
 - (id)ibSwizzledInitWithCoder:(id)arg1;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

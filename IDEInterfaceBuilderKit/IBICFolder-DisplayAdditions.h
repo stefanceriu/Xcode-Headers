@@ -7,7 +7,6 @@
 #import "IBICFolder.h"
 
 @interface IBICFolder (DisplayAdditions)
-+ (id)keyPathsForValuesAffectingIbInspectedProvidesNamespace;
 - (void)setIbInspectedProvidesNamespace:(BOOL)arg1;
 - (BOOL)ibInspectedProvidesNamespace;
 - (void)populatePlistWithDescriptionForIctool:(id)arg1;

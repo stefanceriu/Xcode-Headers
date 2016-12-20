@@ -13,6 +13,7 @@
 @interface IDEDistributionItem : NSObject <NSCopying>
 {
     BOOL _canHaveProvisioningProfile;
+    BOOL _hasProvisioningProfile;
     DVTFilePath *_path;
     DVTFilePath *_machOPath;
     IDEDistributionItem *_parent;
@@ -34,6 +35,7 @@
 + (id)machOFileTypesAtPath:(id)arg1 error:(id *)arg2;
 + (id)archivedUserEntitlementsForItemAtPath:(id)arg1 error:(id *)arg2;
 + (id)itemWithPath:(id)arg1 childItems:(id)arg2 logAspect:(id)arg3 error:(id *)arg4;
+@property(readonly, nonatomic) BOOL hasProvisioningProfile; // @synthesize hasProvisioningProfile=_hasProvisioningProfile;
 @property(readonly, nonatomic) BOOL canHaveProvisioningProfile; // @synthesize canHaveProvisioningProfile=_canHaveProvisioningProfile;
 @property(readonly, nonatomic) NSDictionary *archivedUserEntitlements; // @synthesize archivedUserEntitlements=_archivedUserEntitlements;
 @property(readonly, nonatomic) NSDictionary *entitlements; // @synthesize entitlements=_entitlements;
@@ -47,7 +49,8 @@
 @property(readonly, nonatomic) DVTFilePath *path; // @synthesize path=_path;
 - (void).cxx_destruct;
 - (id)platformWithError:(id *)arg1;
-@property(readonly) BOOL isAppleProvidedContent;
+@property(readonly, nonatomic) BOOL shouldRetrieveTeamIDForSigning;
+- (id)isAppleProvidedContentFromArchive:(id)arg1 error:(id *)arg2;
 - (id)debugDescription;
 - (id)description;
 - (unsigned long long)hash;
@@ -55,7 +58,7 @@
 - (long long)compare:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly, nonatomic) NSString *bundleID;
-- (id)initWithPath:(id)arg1 infoDictionary:(id)arg2 canHaveProvisioningProfile:(BOOL)arg3 teamID:(id)arg4 appID:(id)arg5 appIDWithoutPrefix:(id)arg6 entitlements:(id)arg7 archivedUserEntitlements:(id)arg8 childItems:(id)arg9;
+- (id)initWithPath:(id)arg1 infoDictionary:(id)arg2 canHaveProvisioningProfile:(BOOL)arg3 hasProvisioningProfile:(BOOL)arg4 teamID:(id)arg5 appID:(id)arg6 appIDWithoutPrefix:(id)arg7 entitlements:(id)arg8 archivedUserEntitlements:(id)arg9 childItems:(id)arg10;
 - (id)init;
 
 @end

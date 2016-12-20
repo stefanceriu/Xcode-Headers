@@ -19,6 +19,35 @@ struct ArrayBuilder {
     unsigned int _field4;
 };
 
+struct CC_MD5state_st {
+    unsigned int A;
+    unsigned int B;
+    unsigned int C;
+    unsigned int D;
+    unsigned int Nl;
+    unsigned int Nh;
+    unsigned int data[16];
+    int num;
+};
+
+struct CC_SHA1state_st {
+    unsigned int h0;
+    unsigned int h1;
+    unsigned int h2;
+    unsigned int h3;
+    unsigned int h4;
+    unsigned int Nl;
+    unsigned int Nh;
+    unsigned int data[16];
+    int num;
+};
+
+struct CC_SHA256state_st {
+    unsigned int count[2];
+    unsigned int hash[8];
+    unsigned int wbuf[16];
+};
+
 struct CGPoint {
     double _field1;
     double _field2;
@@ -73,6 +102,10 @@ struct DVTStringBuilder {
     unsigned long long _field4;
 };
 
+struct NSSet {
+    Class _field1;
+};
+
 struct UParseError {
     int _field1;
     int _field2;
@@ -99,6 +132,14 @@ struct _DVTDiffToken {
     struct _NSRange range;
     unsigned long long hash;
     int type;
+};
+
+struct _DVTTextLineOffsetTable {
+    unsigned long long capacity;
+    unsigned long long count;
+    unsigned long long *offsets;
+    unsigned long long deferredAdjustmentIndex;
+    long long deferredAdjustment;
 };
 
 struct _NSRange {

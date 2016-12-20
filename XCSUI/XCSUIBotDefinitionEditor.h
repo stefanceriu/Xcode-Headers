@@ -8,23 +8,29 @@
 
 #import "DVTTabChooserViewDelegate.h"
 
-@class DVTBorderedView, DVTChoice, DVTReplacementView, DVTTabChooserView, IDEWorkspaceTabController, NSString, XCSBot, XCSUIBotDefinitionContext, XCSUIBotDefinitionEditor_BasicInfoCapsule, XCSUIBotDefinitionEditor_DevicePickerCapsule, XCSUIBotDefinitionEditor_NotificationsCapsule, XCSUIBotDefinitionEditor_SCMCapsule, XCSUIBotDefinitionEditor_ScheduleCapsule;
+@class DVTBorderedView, DVTChoice, DVTReplacementView, DVTTabChooserView, IDEWorkspaceTabController, NSString, XCSBot, XCSSettings, XCSUIBotDefinitionContext, XCSUIBotDefinitionEditor_BasicInfoCapsule, XCSUIBotDefinitionEditor_BuildConfigurationCapsule, XCSUIBotDefinitionEditor_DevicePickerCapsule, XCSUIBotDefinitionEditor_EnvironmentCapsule, XCSUIBotDefinitionEditor_NotificationsCapsule, XCSUIBotDefinitionEditor_SCMCapsule, XCSUIBotDefinitionEditor_ScheduleCapsule;
 
 @interface XCSUIBotDefinitionEditor : IDEViewController <DVTTabChooserViewDelegate>
 {
     XCSUIBotDefinitionEditor_BasicInfoCapsule *_basicInfoViewController;
     XCSUIBotDefinitionEditor_SCMCapsule *_scmCapsule;
     XCSUIBotDefinitionEditor_ScheduleCapsule *_scheduleViewController;
+    XCSUIBotDefinitionEditor_BuildConfigurationCapsule *_buildConfigurationCapsule;
     XCSUIBotDefinitionEditor_DevicePickerCapsule *_devicePickerCapsule;
+    XCSUIBotDefinitionEditor_EnvironmentCapsule *_environmentCapsule;
     XCSUIBotDefinitionEditor_NotificationsCapsule *_notificationsCapsule;
     IDEWorkspaceTabController *_workspaceTabController;
     DVTChoice *_basicInfoChoice;
+    DVTChoice *_buildConfigurationChoice;
     DVTChoice *_devicePickerChoice;
     DVTChoice *_repositoriesChoice;
     DVTChoice *_notificationsChoice;
+    DVTChoice *_environmentChoice;
     BOOL _disableWorkspaceSpecificSettings;
     XCSUIBotDefinitionContext *_definitionContext;
     XCSBot *_bot;
+    XCSSettings *_settings;
+    CDUnknownBlockType _tabChoiceHasChangedCallback;
     DVTTabChooserView *_tabChooserView;
     DVTBorderedView *_borderedView;
     DVTReplacementView *_detailReplacementView;
@@ -35,7 +41,9 @@
 @property __weak DVTReplacementView *detailReplacementView; // @synthesize detailReplacementView=_detailReplacementView;
 @property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property __weak DVTTabChooserView *tabChooserView; // @synthesize tabChooserView=_tabChooserView;
+@property(copy, nonatomic) CDUnknownBlockType tabChoiceHasChangedCallback; // @synthesize tabChoiceHasChangedCallback=_tabChoiceHasChangedCallback;
 @property(nonatomic) BOOL disableWorkspaceSpecificSettings; // @synthesize disableWorkspaceSpecificSettings=_disableWorkspaceSpecificSettings;
+@property(retain, nonatomic) XCSSettings *settings; // @synthesize settings=_settings;
 @property(retain, nonatomic) XCSBot *bot; // @synthesize bot=_bot;
 @property(retain, nonatomic) XCSUIBotDefinitionContext *definitionContext; // @synthesize definitionContext=_definitionContext;
 - (void).cxx_destruct;

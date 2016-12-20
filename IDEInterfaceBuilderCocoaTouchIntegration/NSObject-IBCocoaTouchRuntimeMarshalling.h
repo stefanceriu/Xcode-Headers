@@ -8,7 +8,6 @@
 
 @interface NSObject (IBCocoaTouchRuntimeMarshalling)
 + (void)registerMarshallingRecordHandlers;
-- (BOOL)alwaysUsesTraitStorage;
 - (void)configureDiagnosticsHandler:(id)arg1 afterFailedMarshallingOperationNamed:(id)arg2;
 - (id)configurableKeyPathForMarshalledDesignTimeToManyRelationship:(id)arg1;
 - (id)marshalledTraitStorageCandidatesForDesignTimeToManyRelationship:(id)arg1;

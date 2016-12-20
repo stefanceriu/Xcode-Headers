@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTCustomDataSpecifier, DVTObservingToken, DVTStackBacktrace, IDEAnalyzeSchemeAction, IDEArchiveSchemeAction, IDEBuildSchemeAction, IDEContainer<IDECustomDataStoring>, IDEEntityIdentifier, IDEInstallSchemeAction, IDEIntegrateSchemeAction, IDELaunchSchemeAction, IDEProfileSchemeAction, IDERunContextManager, IDERunnable, IDESchemeOrderedWorkspaceNotificationManager, IDETestSchemeAction, NSArray, NSData, NSError, NSNumber, NSString;
+@class DVTCustomDataSpecifier, DVTDelayedInvocation, DVTObservingToken, DVTStackBacktrace, IDEAnalyzeSchemeAction, IDEArchiveSchemeAction, IDEBuildSchemeAction, IDEContainer<IDECustomDataStoring>, IDEEntityIdentifier, IDEInstallSchemeAction, IDEIntegrateSchemeAction, IDELaunchSchemeAction, IDEProfileSchemeAction, IDERunContextManager, IDERunnable, IDESchemeOrderedWorkspaceNotificationManager, IDETestSchemeAction, NSArray, NSData, NSError, NSNumber, NSString;
 
 @interface IDEScheme : NSObject <DVTInvalidation>
 {
@@ -40,6 +40,7 @@
     id _isInstallableNotificationToken;
     id _buildablesToken;
     BOOL _hasUnsupportedArchiveData;
+    DVTDelayedInvocation *_runDestinationInvalidationScheduler;
     BOOL _transient;
     BOOL _wasCreatedForAppExtension;
     BOOL _schemeRunnableRunsDirectlyOnPairedProxyDevice;
@@ -47,10 +48,11 @@
     BOOL _runDestinationInvalidationPending;
     IDEEntityIdentifier *_schemeIdentifier;
     NSError *_loadError;
-    IDESchemeOrderedWorkspaceNotificationManager *_orderedWorkspaceNotificationManager;
     DVTObservingToken *_workspaceReferenceContainersObservingToken;
+    IDESchemeOrderedWorkspaceNotificationManager *_orderedWorkspaceNotificationManager;
 }
 
++ (id)_buildParametersForPurpose:(int)arg1 schemeCommand:(id)arg2 configurationName:(id)arg3 workspaceArena:(id)arg4 overridingProperties:(id)arg5 activeRunDestination:(id)arg6 activeArchitecture:(id)arg7;
 + (BOOL)automaticallyNotifiesObserversOfOrderHint;
 + (BOOL)automaticallyNotifiesObserversOfIsShown;
 + (id)keyPathsForValuesAffectingDisambiguatedName;
@@ -63,11 +65,12 @@
 + (id)schemeFromXMLData:(id)arg1 withRunContextManager:(id)arg2 customDataStoreContainer:(id)arg3 customDataSpecifier:(id)arg4 isShown:(BOOL)arg5 orderHint:(unsigned long long)arg6 error:(id *)arg7;
 + (id)schemeWithRunContextManager:(id)arg1 customDataStoreContainer:(id)arg2 customDataSpecifier:(id)arg3;
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
+@property(retain) IDESchemeOrderedWorkspaceNotificationManager *orderedWorkspaceNotificationManager; // @synthesize orderedWorkspaceNotificationManager=_orderedWorkspaceNotificationManager;
 @property(getter=isRunDestinationInvalidationPending) BOOL runDestinationInvalidationPending; // @synthesize runDestinationInvalidationPending=_runDestinationInvalidationPending;
 @property(nonatomic, getter=isRunDestinationInvalidationSuspended) BOOL runDestinationInvalidationSuspended; // @synthesize runDestinationInvalidationSuspended=_runDestinationInvalidationSuspended;
 @property(retain) DVTObservingToken *workspaceReferenceContainersObservingToken; // @synthesize workspaceReferenceContainersObservingToken=_workspaceReferenceContainersObservingToken;
-@property(retain) IDESchemeOrderedWorkspaceNotificationManager *orderedWorkspaceNotificationManager; // @synthesize orderedWorkspaceNotificationManager=_orderedWorkspaceNotificationManager;
 @property(readonly) BOOL schemeRunnableRunsDirectlyOnPairedProxyDevice; // @synthesize schemeRunnableRunsDirectlyOnPairedProxyDevice=_schemeRunnableRunsDirectlyOnPairedProxyDevice;
 @property BOOL wasCreatedForAppExtension; // @synthesize wasCreatedForAppExtension=_wasCreatedForAppExtension;
 @property(retain) NSError *loadError; // @synthesize loadError=_loadError;
@@ -110,25 +113,16 @@
 - (BOOL)_executionActionsNeedCurrentArchiveVersion;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
 - (id)_groupAndImposeDependenciesForOrderedOperations:(id)arg1;
-- (id)_buildOperationGroupForExecutionEnvironment:(id)arg1 buildConfiguration:(id)arg2 buildPurpose:(int)arg3 buildCommand:(int)arg4 schemeCommand:(id)arg5 overridingProperties:(id)arg6 destination:(id)arg7 buildLog:(id)arg8 filePath:(id)arg9 dontActuallyRunCommands:(BOOL)arg10 restorePersistedBuildResults:(BOOL)arg11 schemeActionRecord:(id)arg12 overridingBuildables:(id)arg13 error:(id *)arg14;
-- (id)_executionOperationForExecutionEnvironment:(id)arg1 build:(BOOL)arg2 onlyBuild:(BOOL)arg3 buildPurpose:(int)arg4 buildCommand:(int)arg5 schemeCommand:(id)arg6 title:(id)arg7 overridingProperties:(id)arg8 destination:(id)arg9 buildLog:(id)arg10 filePath:(id)arg11 overridingBuildConfiguration:(id)arg12 dontActuallyRunCommands:(BOOL)arg13 restorePersistedBuildResults:(BOOL)arg14 invocationRecord:(id)arg15 overridingTestingSpecifiers:(id)arg16 error:(id *)arg17 actionCallbackBlock:(CDUnknownBlockType)arg18;
-- (id)integrateWithExecutionContext:(id)arg1 destination:(id)arg2 overridingProperties:(id)arg3 schemeCommand:(id)arg4 commandName:(id)arg5 invocationRecord:(id)arg6 error:(id *)arg7;
-- (id)integrateOperationWithExecutionContext:(id)arg1 destination:(id)arg2 overridingProperties:(id)arg3 schemeCommand:(id)arg4 invocationRecord:(id)arg5 error:(id *)arg6 buildLogCreationBlock:(CDUnknownBlockType)arg7 actionCallbackBlock:(CDUnknownBlockType)arg8;
-- (id)installWithExecutionContext:(id)arg1 onlyBuild:(BOOL)arg2 destination:(id)arg3 overridingProperties:(id)arg4 schemeCommand:(id)arg5 commandName:(id)arg6 invocationRecord:(id)arg7 error:(id *)arg8;
-- (id)archiveWithExecutionContext:(id)arg1 onlyBuild:(BOOL)arg2 destination:(id)arg3 overridingProperties:(id)arg4 schemeCommand:(id)arg5 commandName:(id)arg6 invocationRecord:(id)arg7 error:(id *)arg8;
-- (id)archiveOperationWithExecutionContext:(id)arg1 onlyBuild:(BOOL)arg2 destination:(id)arg3 overridingProperties:(id)arg4 schemeCommand:(id)arg5 buildLog:(id)arg6 overridingBuildConfiguration:(id)arg7 invocationRecord:(id)arg8 name:(id)arg9 title:(id)arg10 error:(id *)arg11 actionCallbackBlock:(CDUnknownBlockType)arg12;
-- (id)testWithExecutionContext:(id)arg1 buildIfNeeded:(BOOL)arg2 onlyBuild:(BOOL)arg3 destination:(id)arg4 overridingProperties:(id)arg5 schemeCommand:(id)arg6 commandName:(id)arg7 overridingTestingSpecifiers:(id)arg8 buildLog:(id)arg9 invocationRecord:(id)arg10 error:(id *)arg11 completionBlock:(CDUnknownBlockType)arg12;
-- (id)testOperationWithExecutionContext:(id)arg1 buildIfNeeded:(BOOL)arg2 onlyBuild:(BOOL)arg3 destination:(id)arg4 overridingProperties:(id)arg5 overridingTestingSpecifiers:(id)arg6 schemeCommand:(id)arg7 buildLog:(id)arg8 overridingBuildConfiguration:(id)arg9 restorePersistedBuildResults:(BOOL)arg10 invocationRecord:(id)arg11 name:(id)arg12 title:(id)arg13 error:(id *)arg14 actionCallbackBlock:(CDUnknownBlockType)arg15;
-- (id)profileWithExecutionContext:(id)arg1 buildIfNeeded:(BOOL)arg2 onlyBuild:(BOOL)arg3 destination:(id)arg4 overridingProperties:(id)arg5 schemeCommand:(id)arg6 commandName:(id)arg7 overridingTestingSpecifiers:(id)arg8 invocationRecord:(id)arg9 error:(id *)arg10;
-- (id)runWithExecutionContext:(id)arg1 buildIfNeeded:(BOOL)arg2 onlyBuild:(BOOL)arg3 destination:(id)arg4 overridingProperties:(id)arg5 schemeCommand:(id)arg6 commandName:(id)arg7 invocationRecord:(id)arg8 error:(id *)arg9;
-- (id)analyzeWithExecutionContext:(id)arg1 onlyBuild:(BOOL)arg2 destination:(id)arg3 overridingProperties:(id)arg4 schemeCommand:(id)arg5 commandName:(id)arg6 invocationRecord:(id)arg7 error:(id *)arg8;
-- (id)analyzeOperationWithExecutionContext:(id)arg1 onlyBuild:(BOOL)arg2 destination:(id)arg3 overridingProperties:(id)arg4 buildLog:(id)arg5 overridingBuildConfiguration:(id)arg6 dontActuallyRunCommands:(BOOL)arg7 restorePersistedBuildResults:(BOOL)arg8 invocationRecord:(id)arg9 name:(id)arg10 title:(id)arg11 error:(id *)arg12;
-- (id)analyzeOperationWithExecutionContext:(id)arg1 onlyBuild:(BOOL)arg2 destination:(id)arg3 overridingProperties:(id)arg4 buildLog:(id)arg5 overridingBuildConfiguration:(id)arg6 restorePersistedBuildResults:(BOOL)arg7 invocationRecord:(id)arg8 name:(id)arg9 title:(id)arg10 error:(id *)arg11;
-- (id)cleanWithExecutionContext:(id)arg1 destination:(id)arg2 overridingProperties:(id)arg3 schemeCommand:(id)arg4 commandName:(id)arg5 invocationRecord:(id)arg6 error:(id *)arg7;
-- (void)_reportExecutionOperationNamed:(id)arg1 shouldBuild:(BOOL)arg2 onlyBuild:(BOOL)arg3 buildPurpose:(int)arg4 destination:(id)arg5;
-- (id)buildWithPurpose:(int)arg1 buildCommand:(int)arg2 schemeCommand:(id)arg3 executionContext:(id)arg4 destination:(id)arg5 overridingProperties:(id)arg6 commandName:(id)arg7 filePath:(id)arg8 invocationRecord:(id)arg9 title:(id)arg10 error:(id *)arg11 completionBlock:(CDUnknownBlockType)arg12;
-- (id)buildOperationWithPurpose:(int)arg1 buildCommand:(int)arg2 schemeCommand:(id)arg3 executionContext:(id)arg4 destination:(id)arg5 overridingProperties:(id)arg6 filePath:(id)arg7 buildLog:(id)arg8 overridingBuildConfiguration:(id)arg9 dontActuallyRunCommands:(BOOL)arg10 restorePersistedBuildResults:(BOOL)arg11 invocationRecord:(id)arg12 title:(id)arg13 error:(id *)arg14 completionBlock:(CDUnknownBlockType)arg15;
-- (id)buildOperationWithPurpose:(int)arg1 buildCommand:(int)arg2 schemeCommand:(id)arg3 executionContext:(id)arg4 destination:(id)arg5 overridingProperties:(id)arg6 filePath:(id)arg7 buildLog:(id)arg8 overridingBuildConfiguration:(id)arg9 restorePersistedBuildResults:(BOOL)arg10 invocationRecord:(id)arg11 title:(id)arg12 error:(id *)arg13 completionBlock:(CDUnknownBlockType)arg14;
+- (id)_buildOperationGroupForSchemeOperationParameters:(id)arg1 buildParameters:(id)arg2 buildLog:(id)arg3 dontActuallyRunCommands:(BOOL)arg4 restorePersistedBuildResults:(BOOL)arg5 schemeActionRecord:(id)arg6 overridingBuildables:(id)arg7 error:(id *)arg8;
+- (id)_cleanOperationGroupForExecutionEnvironment:(id)arg1 orderedBuildables:(id)arg2 buildConfiguration:(id)arg3 buildLog:(id)arg4 overridingProperties:(id)arg5 activeRunDestination:(id)arg6 schemeActionRecord:(id)arg7 error:(id *)arg8;
+- (id)_executionOperationForSchemeOperationParameters:(id)arg1 build:(BOOL)arg2 onlyBuild:(BOOL)arg3 buildParameters:(id)arg4 title:(id)arg5 buildLog:(id)arg6 dontActuallyRunCommands:(BOOL)arg7 restorePersistedBuildResults:(BOOL)arg8 error:(id *)arg9 actionCallbackBlock:(CDUnknownBlockType)arg10;
+- (id)_buildParametersForTask:(int)arg1 executionEnvironment:(id)arg2 buildPurpose:(int)arg3 schemeCommand:(id)arg4 destination:(id)arg5 overridingProperties:(id)arg6 overridingBuildConfiguration:(id)arg7 overridingTestingSpecifiers:(id)arg8;
+- (id)_overridingBuildSettingsForSchemeCommand:(id)arg1 runDestination:(id)arg2;
+- (id)startedOperationForSchemeOperationParameters:(id)arg1 error:(id *)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)schemeOperationForSchemeOperationParameters:(id)arg1 buildLog:(id)arg2 overridingProperties:(id)arg3 overridingBuildConfiguration:(id)arg4 dontActuallyRunCommands:(BOOL)arg5 restorePersistedBuildResults:(BOOL)arg6 error:(id *)arg7 completionBlock:(CDUnknownBlockType)arg8;
+- (id)computeNameForCommand:(id)arg1 task:(int)arg2;
+- (id)_cleanOperationWithExecutionContext:(id)arg1 destination:(id)arg2 overridingProperties:(id)arg3 schemeCommand:(id)arg4 invocationRecord:(id)arg5 error:(id *)arg6;
+- (void)_reportExecutionOperationForParameters:(id)arg1 shouldBuild:(BOOL)arg2 onlyBuild:(BOOL)arg3;
 - (id)_addActionRecordToInvocationRecord:(id)arg1 shouldBuild:(BOOL)arg2 onlyBuild:(BOOL)arg3 schemeCommand:(id)arg4 runDestination:(id)arg5 title:(id)arg6;
 - (void)_updateOrderHint:(unsigned long long)arg1;
 @property unsigned long long orderHint;
@@ -139,12 +133,17 @@
 @property(copy) NSString *name;
 - (void)_primitiveSetCustomDataStoreContainer:(id)arg1;
 - (void)_updateCustomDataStoreContainer:(id)arg1 andSpecifier:(id)arg2;
+- (void)_actuallyInvalidateAvailableRunDestinations;
 - (void)_invalidateAvailableRunDestinations;
+- (void)immediatelyInvalidateAvailableRunDestinations;
 @property(readonly) NSArray *availableRunDestinations;
 - (BOOL)schemeRunnableRunsOnPairedProxyDevice;
 @property(readonly) BOOL schemeRunnableRequiresPairedProxyDevice;
 - (void)buildConfigurationDidChange:(id)arg1;
 - (id)buildParametersForSchemeCommand:(id)arg1 destination:(id)arg2;
+- (id)buildParametersForSchemeCommand:(id)arg1 buildable:(id)arg2;
+- (id)buildParametersForSchemeCommand:(id)arg1;
+- (id)buildParametersForLaunchSchemeCommandAndBuildable:(id)arg1;
 - (id)buildConfigurationForSchemeCommand:(id)arg1;
 - (id)buildablesForSchemeCommand:(id)arg1;
 - (id)runnablePathForSchemeCommand:(id)arg1 destination:(id)arg2;

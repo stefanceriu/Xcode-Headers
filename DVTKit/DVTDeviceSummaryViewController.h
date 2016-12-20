@@ -10,22 +10,22 @@
 #import "DVTTableViewDelegate.h"
 #import "NSTableViewDataSource.h"
 
-@class DVTBorderedView, DVTDevice, DVTDeviceSummaryAppsViewController, DVTObservingToken, DVTStackBacktrace, DVTStackView_AppKitAutolayout, DVTTableView, NSArray, NSBox, NSButton, NSImageView, NSMutableArray, NSScrollView, NSString, NSTextField, NSView;
+@class DVTBorderedView, DVTDevice, DVTDeviceSummaryAppsViewController, DVTGradientImageButton, DVTStackBacktrace, DVTStackView_AppKitAutolayout, DVTTableView, NSArray, NSBox, NSButton, NSImageView, NSMutableArray, NSMutableDictionary, NSScrollView, NSSet, NSString, NSTextField, NSView;
 
 @interface DVTDeviceSummaryViewController : DVTViewController <DVTDevicesWindowDetailViewController, NSTableViewDataSource, DVTTableViewDelegate>
 {
     NSArray *_additionalSliceControllers;
     NSMutableArray *_deviceObservationTokens;
-    DVTObservingToken *_proxiedDeviceSummaryObservingToken;
+    NSMutableArray *_proxiedDevicesObservingTokens;
     DVTDevice *_device;
     NSArray *_additionalSliceViewControllerClasses;
     Class _deviceLogsViewControllerClass;
     DVTTableView *_aboutTableView;
     NSTextField *_proxiedDeviceLabel;
-    NSImageView *_proxiedDeviceIcon;
     DVTTableView *_proxiedDeviceTableView;
     NSScrollView *_proxiedDeviceScrollView;
     DVTBorderedView *_proxiedDeviceScrollViewSeparator;
+    DVTBorderedView *_proxiedDevicesFooter;
     DVTStackView_AppKitAutolayout *_stackView;
     NSView *_violaterSlice;
     NSView *_aboutSlice;
@@ -34,23 +34,28 @@
     NSBox *_violaterSliceSeparator;
     DVTBorderedView *_tableHeaderLine;
     NSButton *_takeScreenshotButton;
+    DVTGradientImageButton *_addPairedDeviceButton;
+    DVTGradientImageButton *_deletePairedDeviceButton;
     DVTDeviceSummaryAppsViewController *_appsViewController;
     NSString *_violaterMessage;
     NSString *_violaterDescription;
     NSArray *_deviceInfo;
-    NSArray *_proxyInfo;
+    NSMutableDictionary *_proxyInfo;
 }
 
-+ (id)keyPathsForValuesAffectingProxiedDevice;
++ (id)keyPathsForValuesAffectingActiveProxiedDevice;
++ (id)keyPathsForValuesAffectingProxiedDevices;
 + (id)keyPathsForValuesAffectingShowProxiedDeviceSlice;
 + (id)keyPathsForValuesAffectingShowViolater;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
-@property(copy) NSArray *proxyInfo; // @synthesize proxyInfo=_proxyInfo;
+@property(retain) NSMutableDictionary *proxyInfo; // @synthesize proxyInfo=_proxyInfo;
 @property(copy) NSArray *deviceInfo; // @synthesize deviceInfo=_deviceInfo;
 @property(retain) NSString *violaterDescription; // @synthesize violaterDescription=_violaterDescription;
 @property(retain) NSString *violaterMessage; // @synthesize violaterMessage=_violaterMessage;
 @property(retain) DVTDeviceSummaryAppsViewController *appsViewController; // @synthesize appsViewController=_appsViewController;
+@property(retain) DVTGradientImageButton *deletePairedDeviceButton; // @synthesize deletePairedDeviceButton=_deletePairedDeviceButton;
+@property(retain) DVTGradientImageButton *addPairedDeviceButton; // @synthesize addPairedDeviceButton=_addPairedDeviceButton;
 @property(retain) NSButton *takeScreenshotButton; // @synthesize takeScreenshotButton=_takeScreenshotButton;
 @property(retain) DVTBorderedView *tableHeaderLine; // @synthesize tableHeaderLine=_tableHeaderLine;
 @property(retain) NSBox *violaterSliceSeparator; // @synthesize violaterSliceSeparator=_violaterSliceSeparator;
@@ -59,24 +64,35 @@
 @property(retain) NSView *aboutSlice; // @synthesize aboutSlice=_aboutSlice;
 @property(retain) NSView *violaterSlice; // @synthesize violaterSlice=_violaterSlice;
 @property(retain) DVTStackView_AppKitAutolayout *stackView; // @synthesize stackView=_stackView;
+@property(retain) DVTBorderedView *proxiedDevicesFooter; // @synthesize proxiedDevicesFooter=_proxiedDevicesFooter;
 @property(retain) DVTBorderedView *proxiedDeviceScrollViewSeparator; // @synthesize proxiedDeviceScrollViewSeparator=_proxiedDeviceScrollViewSeparator;
 @property(retain) NSScrollView *proxiedDeviceScrollView; // @synthesize proxiedDeviceScrollView=_proxiedDeviceScrollView;
 @property(retain) DVTTableView *proxiedDeviceTableView; // @synthesize proxiedDeviceTableView=_proxiedDeviceTableView;
-@property(retain) NSImageView *proxiedDeviceIcon; // @synthesize proxiedDeviceIcon=_proxiedDeviceIcon;
 @property(retain) NSTextField *proxiedDeviceLabel; // @synthesize proxiedDeviceLabel=_proxiedDeviceLabel;
 @property(retain) DVTTableView *aboutTableView; // @synthesize aboutTableView=_aboutTableView;
 @property(readonly) Class deviceLogsViewControllerClass; // @synthesize deviceLogsViewControllerClass=_deviceLogsViewControllerClass;
 @property(readonly) NSArray *additionalSliceViewControllerClasses; // @synthesize additionalSliceViewControllerClasses=_additionalSliceViewControllerClasses;
 @property(retain) DVTDevice *device; // @synthesize device=_device;
 - (void).cxx_destruct;
+- (id)_simulatorLocator;
+- (void)_reloadProxiedDevices;
+- (id)_proxiedDeviceForIdentifier:(id)arg1;
+- (id)_proxiedDeviceIdentifierForRow:(long long)arg1;
+- (id)_proxiedDeviceSummaryForDeviceSummary:(id)arg1;
 - (BOOL)panel:(id)arg1 shouldEnableURL:(id)arg2;
+- (void)deletePairedDevice:(id)arg1;
+- (void)addPairedDevice:(id)arg1;
+- (void)selectActivePairedDevice:(id)arg1;
+- (void)tableViewSelectionDidChange:(id)arg1;
+- (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
 - (long long)numberOfRowsInTableView:(id)arg1;
 - (void)takeScreenshot:(id)arg1;
 - (void)viewLogs:(id)arg1;
 @property(readonly) BOOL showApplicationList;
-@property(readonly) id <DVTBasicDeviceUI> proxiedDevice;
+- (id)activeProxiedDevice;
+@property(readonly) NSSet *proxiedDevices;
 @property(readonly) BOOL showProxiedDeviceSlice;
 @property(readonly) BOOL showViolater;
 - (void)viewDidInstall;

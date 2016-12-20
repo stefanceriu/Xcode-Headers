@@ -6,14 +6,16 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString;
+@class NSArray, NSDictionary, NSString;
 
 @interface DVTLogAspect : NSObject
 {
+    int _logLevel;
+    int _effectiveLogLevel;
     NSString *_name;
     BOOL _signalInstruments;
     BOOL _takeTimeProfile;
-    int _logLevel;
+    NSDictionary *_logHandlers;
     NSArray *_activeLoggers;
 }
 
@@ -24,13 +26,15 @@
 @property(copy) NSArray *activeLoggers; // @synthesize activeLoggers=_activeLoggers;
 @property BOOL takeTimeProfile; // @synthesize takeTimeProfile=_takeTimeProfile;
 @property BOOL signalInstruments; // @synthesize signalInstruments=_signalInstruments;
-@property int logLevel; // @synthesize logLevel=_logLevel;
 @property(readonly) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (id)description;
+- (void)unregisterLogHandler:(id)arg1;
+- (id)registerLogHandler:(CDUnknownBlockType)arg1;
 - (void)_logAndOutdentAtLogLevel:(int)arg1 withFormat:(id)arg2;
 - (void)_logAndIndentAtLogLevel:(int)arg1 withFormat:(id)arg2;
 - (void)_logAtLogLevel:(int)arg1 withFormat:(id)arg2;
+@property int logLevel;
 - (id)initWithName:(id)arg1 logLevel:(int)arg2 signalInstruments:(BOOL)arg3 takeTimeProfile:(BOOL)arg4 activeLoggers:(id)arg5;
 - (id)init;
 

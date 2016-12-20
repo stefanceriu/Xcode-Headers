@@ -22,8 +22,8 @@
     struct CGPoint _offsetFromParent;
 }
 
-@property __weak IBStoryboardSceneTreeDragImageNode *parent; // @synthesize parent=_parent;
 @property(nonatomic) struct CGSize sizeOfSubtree; // @synthesize sizeOfSubtree=_sizeOfSubtree;
+@property __weak IBStoryboardSceneTreeDragImageNode *parent; // @synthesize parent=_parent;
 @property BOOL hasReceivedLayout; // @synthesize hasReceivedLayout=_hasReceivedLayout;
 @property struct CGPoint offsetFromParent; // @synthesize offsetFromParent=_offsetFromParent;
 @property(readonly) NSImage *frameImage; // @synthesize frameImage=_frameImage;

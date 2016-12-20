@@ -11,6 +11,7 @@
 }
 
 + (id)localConnectionWithAuthorization:(struct AuthorizationOpaqueRef *)arg1 returningServerPid:(int *)arg2;
++ (BOOL)blessSimulatorServiceHub:(id)arg1 error:(id *)arg2;
 + (id)localConnectionWithAuthorization:(struct AuthorizationOpaqueRef *)arg1;
 + (id)getServerBinaryPath;
 

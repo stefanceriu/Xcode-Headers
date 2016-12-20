@@ -28,7 +28,7 @@ __attribute__((visibility("hidden")))
 - (id)accessibilityAttributeValue:(id)arg1;
 - (id)accessibilityAttributeNames;
 - (BOOL)accessibilityIsIgnored;
-@property(retain, nonatomic) NSArray *renderBuffers; // @dynamic renderBuffers;
+@property(retain, nonatomic) NSArray *renderBuffers;
 - (void)refreshLayout;
 - (void)updateConstraints;
 - (void)updateRenderBufferViewConstraints;

@@ -12,15 +12,24 @@
 {
     NSMutableDictionary *_propertyValues;
     NSArray *_propertyEntriesToBeFetched;
+    long long _unfetchedPropertyCount;
 }
 
+@property long long unfetchedPropertyCount; // @synthesize unfetchedPropertyCount=_unfetchedPropertyCount;
 @property(readonly) NSArray *propertyEntriesToBeFetched; // @synthesize propertyEntriesToBeFetched=_propertyEntriesToBeFetched;
 - (void).cxx_destruct;
+- (id)description;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)valueForUndefinedKey:(id)arg1;
+@property(readonly) BOOL isComplete;
+- (id)valuesAffectingIsComplete;
 - (id)dbgInspectedCell;
 - (void)_setPropertyValueFromMainThread:(id)arg1 forKey:(id)arg2;
+- (void)setPropertyValue:(id)arg1 forPropertyEntry:(id)arg2;
 - (void)setPropertyValue:(id)arg1 forKey:(id)arg2;
+- (BOOL)willFetchPropertyEntryWithName:(id)arg1;
+- (id)propertyEntryForKey:(id)arg1;
+- (BOOL)hasPropertyEntryForKey:(id)arg1;
 - (id)propertyValueForKey:(id)arg1;
 - (id)initWithPropertyEntriesToBeFetched:(id)arg1;
 

@@ -17,7 +17,7 @@
     unsigned long long _options;
     CDStruct_ac07b3a8 _header;
     CDStruct_32a7f38a *_hash_table;
-    CDStruct_dd296c95 *_file_table;
+    CDStruct_fa775e3a *_file_table;
     CDStruct_f6a177db *_name_table;
     unsigned int _file_table_capacity;
     unsigned int _name_table_capacity;
@@ -85,8 +85,10 @@
 - (BOOL)addFilesFromArchive:(id)arg1 error:(id *)arg2 passingTest:(CDUnknownBlockType)arg3;
 - (BOOL)addCaptureFile:(id)arg1 options:(id)arg2 error:(id *)arg3 waitUntilDone:(BOOL)arg4;
 - (BOOL)addFileWithName:(id)arg1 data:(id)arg2 options:(id)arg3 error:(id *)arg4;
+- (BOOL)addTempFileWithName:(id)arg1 options:(id)arg2 fromLocation:(id)arg3 error:(id *)arg4;
 - (BOOL)addFileWithName:(id)arg1 data:(id)arg2 options:(id)arg3 error:(id *)arg4 waitUntilDone:(BOOL)arg5;
 - (BOOL)_performFinalizeAddFileAtPosition:(unsigned int)arg1 name:(id)arg2 data:(id)arg3 error:(id *)arg4;
+- (unsigned int)_performAddFileWithName:(id)arg1 dataSize:(unsigned int)arg2 withFlags:(unsigned int)arg3 error:(id *)arg4;
 - (unsigned int)_performAddFileWithName:(id)arg1 dataSize:(unsigned int)arg2 error:(id *)arg3;
 - (BOOL)addAlias:(id)arg1 forName:(id)arg2 options:(id)arg3 error:(id *)arg4;
 - (BOOL)addAlias:(id)arg1 forName:(id)arg2 options:(id)arg3 error:(id *)arg4 waitUntilDone:(BOOL)arg5;
@@ -95,6 +97,7 @@
 - (long long)_writeBufferToBackingStore:(const void *)arg1 size:(long long)arg2 error:(id *)arg3;
 - (void)close;
 - (void)discardAndClose;
+- (BOOL)commitForExport:(id *)arg1;
 - (BOOL)commit:(id *)arg1;
 - (BOOL)_performCommit:(id *)arg1;
 - (BOOL)_writeIndexInPath:(id)arg1 error:(id *)arg2;
@@ -122,14 +125,14 @@
 - (unsigned long long *)_stringTableOffsets;
 - (void *)_stringTableStorage;
 - (CDStruct_f6a177db *)_nameTable;
-- (CDStruct_dd296c95 *)_fileTable;
+- (CDStruct_fa775e3a *)_fileTable;
 - (CDStruct_32a7f38a *)_hashTable;
 - (CDStruct_ac07b3a8 *)_header;
 - (int)_storeFileDescriptor;
-@property(readonly, nonatomic, getter=isClosed) BOOL closed; // @dynamic closed;
-@property(readonly, nonatomic, getter=isReadOnly) BOOL readOnly; // @dynamic readOnly;
-@property(readonly, retain, nonatomic) NSString *path; // @dynamic path;
-@property(readonly, retain, nonatomic) NSURL *url; // @dynamic url;
+@property(readonly, nonatomic, getter=isClosed) BOOL closed;
+@property(readonly, nonatomic, getter=isReadOnly) BOOL readOnly;
+@property(readonly, retain, nonatomic) NSString *path;
+@property(readonly, retain, nonatomic) NSURL *url;
 - (void)setTargetQueue:(struct dispatch_queue_s *)arg1;
 - (void)dealloc;
 - (id)initWithURL:(id)arg1 options:(unsigned long long)arg2 error:(id *)arg3;

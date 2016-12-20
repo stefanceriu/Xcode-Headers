@@ -22,7 +22,6 @@
 @property(retain) XCSIntegration *integration; // @synthesize integration=_integration;
 @property(retain) _XCSUIIssueSelectionManager *selectionManager; // @synthesize selectionManager=_selectionManager;
 - (void).cxx_destruct;
-- (void)setFrame:(struct CGRect)arg1;
 - (void)unassignIssue:(id)arg1;
 - (void)assignIssueToMe:(id)arg1;
 - (void)stopSilencingIssue:(id)arg1;
@@ -37,7 +36,9 @@
 - (void)fileRadarForIssue:(id)arg1;
 - (void)_fileRadarForIssueView:(id)arg1 componentName:(id)arg2 componentVersion:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)_fileRadarForNextBatchOfIssuesForPaths:(id)arg1;
+- (void)_fileRadarsForIssues:(id)arg1;
 - (void)fileRadarsForAllIssues:(id)arg1;
+- (void)fileRadarsForSelectedIssues:(id)arg1;
 - (id)_bestGroupForPath:(id)arg1 inGroups:(id)arg2;
 - (void)_validateRadarComponents:(id)arg1 foundComponents:(id)arg2 startingIndex:(unsigned long long)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)fetchAttachmentsCompletionBlock:(CDUnknownBlockType)arg1;

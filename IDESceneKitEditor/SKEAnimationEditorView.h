@@ -22,7 +22,6 @@
     struct CGPoint _origin;
     struct CGSize _canvasSize;
     long long _selectedPointIndex;
-    long long _selectedPointSubSelectionIndex;
     id <SKEAnimationEditorViewDelegate> _delegate;
     NSString *_placeholderString;
 }

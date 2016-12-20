@@ -10,6 +10,6 @@
 
 @protocol IDESimulatorPlaygroundDeviceDebugScreenViewControllerDelegate <NSObject>
 - (void)simulatorPlaygroundDeviceDebugScreenViewController:(IDESimulatorPlaygroundDeviceDebugScreenViewController *)arg1 didReceiveEvent:(NSEvent *)arg2 atDeviceLocation:(struct CGPoint)arg3;
-- (void)simulatorPlaygroundDeviceDebugScreenViewController:(IDESimulatorPlaygroundDeviceDebugScreenViewController *)arg1 didChangeFramebufferImageSize:(struct CGSize)arg2;
+- (void)simulatorPlaygroundDeviceDebugScreenViewController:(IDESimulatorPlaygroundDeviceDebugScreenViewController *)arg1 didChangeFramebufferScreenSize:(struct CGSize)arg2;
 @end
 

@@ -16,7 +16,9 @@
     NSString *_scmServerStatus;
 }
 
++ (id)keyPathsForValuesAffectingReferencedContentExists;
 + (id)keyPathsForValuesAffectingToolTip;
++ (id)keyPathsForValuesAffecting_group;
 + (id)_createExtraInfoObject;
 - (void).cxx_destruct;
 - (unsigned long long)indexOfChildItemForIdentifier:(id)arg1;
@@ -30,6 +32,7 @@
 - (BOOL)isMajorGroup;
 - (id)fileReference;
 - (id)contentDocumentLocation;
+- (BOOL)referencedContentExists;
 - (id)toolTip;
 - (id)image;
 - (id)name;
@@ -38,6 +41,7 @@
 - (id)textColor;
 - (id)childRepresentedObjects;
 - (BOOL)isLeaf;
+- (id)accessibleImageDescription;
 - (id)_group;
 - (void)primitiveInvalidate;
 - (id)initWithRepresentedObject:(id)arg1;

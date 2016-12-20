@@ -7,6 +7,7 @@
 #import "NSImage.h"
 
 @interface NSImage (IDENSImageAdditions)
++ (id)ide_textualSearchResultImage;
 + (id)ide_contextPhaseBuildImage;
 + (id)ide_appleIDAccountSmallImage;
 + (id)ide_serverAccountSmallImage;

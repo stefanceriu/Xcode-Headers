@@ -38,6 +38,8 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (BOOL)ibCanIncrementallyMarshalKeyPath:(id)arg1;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

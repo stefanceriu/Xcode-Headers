@@ -8,6 +8,7 @@
 
 @class NSMutableArray, NSMutableDictionary;
 
+__attribute__((visibility("hidden")))
 @interface DTTimelineTileDrawingContext : NSObject
 {
     struct CGContext *_cgContext;
@@ -21,6 +22,9 @@
     long long _dynamicRangeHigh;
     double _range;
     double _screenScale;
+    unsigned long long _intervals;
+    unsigned long long _circles;
+    unsigned long long _images;
 }
 
 - (id).cxx_construct;
@@ -35,11 +39,11 @@
 - (void)_renderStringsInContext:(struct CGContext *)arg1;
 - (void)_renderImages;
 - (void)lockContext:(struct CGContext *)arg1;
-- (void)addPlaneConnectionFromPlane:(int)arg1 toPlane:(int)arg2 span:(struct Span)arg3 instantaneous:(_Bool)arg4 color:(id)arg5 sourceAnchorLocation:(unsigned char)arg6 sourceImage:(id)arg7 sourceImageLocation:(unsigned char)arg8 sinkAnchorLocation:(unsigned char)arg9 sinkImage:(id)arg10 sinkImageLocation:(unsigned char)arg11 swapImagesIfInverted:(BOOL)arg12 swapImageLocationsIfInverted:(BOOL)arg13 hideSource:(BOOL)arg14 hideSink:(BOOL)arg15;
+- (void)addPlaneConnectionFromPlane:(int)arg1 toPlane:(int)arg2 span:(struct Span)arg3 instantaneous:(_Bool)arg4 color:(id)arg5 sourceAnchorLocation:(unsigned char)arg6 sourceImage:(id)arg7 sourceImageLocation:(unsigned char)arg8 sinkAnchorLocation:(unsigned char)arg9 sinkImage:(id)arg10 sinkImageLocation:(unsigned char)arg11 swapImagesIfInverted:(BOOL)arg12 swapImageLocationsIfInverted:(BOOL)arg13 hideSource:(BOOL)arg14 hideSink:(BOOL)arg15 hideLine:(BOOL)arg16;
 - (void)addAttributedString:(id)arg1 span:(struct Span)arg2;
 - (void)addAttributedString:(id)arg1 position:(double)arg2;
 - (void)addArrayOfIntervalValues:(const long long *)arg1 colors:(const id *)arg2 count:(unsigned int)arg3 span:(struct Span)arg4;
-- (void)addIntervalValue:(long long)arg1 color:(id)arg2 icon:(id)arg3 span:(struct Span)arg4;
+- (void)addIntervalValue:(long long)arg1 color:(id)arg2 secondaryColor:(id)arg3 icon:(id)arg4 span:(struct Span)arg5;
 - (void)addCenteredCircleAtPt:(double)arg1 color:(id)arg2;
 - (void)addCapsuleShapeInSpan:(struct Span)arg1 color:(id)arg2;
 - (void)addEventIcon:(id)arg1 origin:(double)arg2 multiplicity:(unsigned int)arg3;

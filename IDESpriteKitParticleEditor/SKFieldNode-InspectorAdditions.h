@@ -7,6 +7,7 @@
 #import "SKFieldNode.h"
 
 @interface SKFieldNode (InspectorAdditions)
-@property(nonatomic) struct CGPoint skEditorDirection;
++ (id)keyPathsForValuesAffectingSk_editorDirection;
+@property(nonatomic) struct CGPoint sk_editorDirection;
 @end
 

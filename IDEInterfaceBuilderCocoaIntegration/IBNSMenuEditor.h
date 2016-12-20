@@ -18,6 +18,7 @@
 - (id)draggedImageState:(id)arg1;
 - (id)draggedImageStateForMenuItems:(id)arg1;
 - (id)draggedImageStateForIdentifiedItems:(id)arg1;
+- (BOOL)shouldBlockDragsUntilHoldFromDraggingEntered;
 - (void)resizeFrameViewWithEvent:(id)arg1 fromEditorCanvasFrameKnob:(CDUnion_42e99c75)arg2;
 - (void)selectionOwner:(id)arg1 didSelect:(id)arg2 andDeselect:(id)arg3;
 - (BOOL)interceptEvent:(id)arg1;

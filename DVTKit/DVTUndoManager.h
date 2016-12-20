@@ -14,10 +14,10 @@
 {
     char *_delegateDescription;
     NSMutableArray *_undoGroupingBacktraces;
+    NSMutableArray *_undoRegistrationBacktraces;
     long long _beginCount;
     long long _endCount;
     BOOL _willAutomaticallyUndoNextChangeGroup;
-    void *_keepSelfAliveUntilInvalidationRef;
     id <DVTUndoManagerDelegate> _delegate;
 }
 
@@ -36,6 +36,7 @@
 - (void)endUndoGrouping;
 - (void)beginUndoGrouping;
 - (void)removeAllActions;
+- (id)_undoRegistrationBacktraces;
 - (id)_undoGroupingBacktraces;
 - (void)_clearUndoGroupingBacktraces;
 - (void)_setEndCount:(long long)arg1;

@@ -21,7 +21,7 @@
 @property(retain) NSTextField *positioningLabel; // @synthesize positioningLabel=_positioningLabel;
 @property(retain, nonatomic) IDEAccountTeamPickerWindowController *pagingSheetWindowController; // @synthesize pagingSheetWindowController=_pagingSheetWindowController;
 - (void).cxx_destruct;
-- (id)teamMenuItemForTeamRecord:(id)arg1 wrapper:(id)arg2 indented:(BOOL)arg3;
+- (id)teamMenuItemForTeam:(id)arg1 wrapper:(id)arg2 indented:(BOOL)arg3;
 - (id)accountMenuItemForWrapper:(id)arg1;
 - (id)menuFromAccountWrappers:(id)arg1;
 - (void)refreshMenu;

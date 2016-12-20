@@ -6,7 +6,7 @@
 
 #import <DVTFoundation/DTDKCertificateService.h>
 
-@class NSData, NSString;
+@class DVTSigningCertificateManager, NSData, NSString;
 
 @interface DTDKSubmitCSRService : DTDKCertificateService
 {
@@ -14,13 +14,14 @@
     NSData *_certificateSigningRequest;
     NSString *_certificateEmail;
     NSString *_certificateCommonName;
+    DVTSigningCertificateManager *_signingCertificateManager;
 }
 
 + (id)keyPathsForValuesAffectingCertificateRequestStatusString;
 + (id)keyPathsForValuesAffectingCertificateRequestStatusCode;
 + (id)keyPathsForValuesAffectingCertificateRequestID;
-+ (id)serviceForCertificateType:(unsigned long long)arg1 team:(id)arg2 andPlatform:(id)arg3 withCommonName:(id)arg4 andEmailAddress:(id)arg5;
-+ (id)serviceForCertificateType:(unsigned long long)arg1 team:(id)arg2 andPlatform:(id)arg3;
++ (id)serviceForCertificateType:(unsigned long long)arg1 team:(id)arg2 andPlatform:(id)arg3 signingCertificateManager:(id)arg4;
+@property(retain) DVTSigningCertificateManager *signingCertificateManager; // @synthesize signingCertificateManager=_signingCertificateManager;
 @property(copy) NSString *certificateCommonName; // @synthesize certificateCommonName=_certificateCommonName;
 @property(copy) NSString *certificateEmail; // @synthesize certificateEmail=_certificateEmail;
 @property(copy) NSData *certificateSigningRequest; // @synthesize certificateSigningRequest=_certificateSigningRequest;

@@ -6,10 +6,13 @@
 
 #import "NSObject.h"
 
-@interface IBLayoutGuide : NSObject
+#import "NSCopying.h"
+
+@interface IBLayoutGuide : NSObject <NSCopying>
 {
 }
 
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
 - (double)locationInView:(id)arg1;
 - (struct CGPoint)endInView:(id)arg1;

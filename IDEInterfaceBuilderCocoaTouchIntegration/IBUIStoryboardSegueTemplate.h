@@ -21,6 +21,7 @@
 - (Class)classToTakeInitialMarshalledKeysFrom:(id)arg1;
 - (id)runtimeClassNameForContext:(id)arg1 returningOptionalFallbackClassName:(id *)arg2;
 - (id)init;
+- (id)ibLocalAttributeKeyPaths;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

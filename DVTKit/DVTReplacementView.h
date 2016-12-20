@@ -32,7 +32,6 @@
     } _DVTReplacementViewFlags;
     BOOL _isGrouped;
     NSMapTable *_subviewFrameChangeTokens;
-    void *_keepSelfAliveUntilCancellationRef;
 }
 
 + (void)initialize;
@@ -46,7 +45,7 @@
 - (void)updateBoundControllerExtensionIdentifier;
 - (void)updateBoundControllerClass;
 @property(copy) NSString *controllerExtensionIdentifier;
-- (void)_clearCurrentController;
+- (id)_clearCurrentController;
 - (void)_tearDownBinding:(id)arg1;
 - (void)_forwardBinding:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
 - (void)_tearDownBindings;
@@ -54,7 +53,7 @@
 - (void)layoutBottomUp;
 - (void)layoutTopDown;
 @property(retain) DVTViewController *installedViewController;
-- (void)_tearDownViewController;
+- (id)_tearDownViewController;
 - (void)_setupViewController;
 - (void)_configureExtension;
 - (id)infoForBinding:(id)arg1;

@@ -29,7 +29,6 @@
 - (void)addSourceTreeDescriptor:(id)arg1;
 - (BOOL)tableView:(id)arg1 doCommandBySelector:(SEL)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
-- (void)_resizeTableView;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)loadView;

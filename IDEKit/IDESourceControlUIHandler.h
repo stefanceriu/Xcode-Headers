@@ -8,11 +8,12 @@
 
 #import "DVTSourceControlAuthenticationFailureHandler.h"
 
-@class IDESourceControlCertificateAuthenticator, NSDate, NSString;
+@class IDESourceControlCertificateAuthenticator, NSDate, NSObject<OS_dispatch_queue>, NSString;
 
 @interface IDESourceControlUIHandler : NSObject <DVTSourceControlAuthenticationFailureHandler>
 {
     IDESourceControlCertificateAuthenticator *_authenticator;
+    NSObject<OS_dispatch_queue> *_status_queue;
     NSDate *_timeDeactivated;
     NSString *_showingHostIdentityConfirmationIP;
 }

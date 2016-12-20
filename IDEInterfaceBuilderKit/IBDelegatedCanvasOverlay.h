@@ -21,8 +21,8 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (void)viewWillDraw;
 @property(readonly) long long numberOfInstalledHandlers;
-- (void)installDrawingHandler:(id)arg1 withSelector:(SEL)arg2 priority:(double)arg3 whilePerformingBlock:(CDUnknownBlockType)arg4;
-- (id)installDrawingHandler:(id)arg1 willDrawSelector:(SEL)arg2 drawSelector:(SEL)arg3 priority:(double)arg4;
+- (void)installDrawHandler:(id)arg1 withSelector:(SEL)arg2 priority:(double)arg3 whilePerformingBlock:(CDUnknownBlockType)arg4;
+- (id)installDrawHandler:(id)arg1 willDrawSelector:(SEL)arg2 drawSelector:(SEL)arg3 priority:(double)arg4;
 - (id)installWillDrawHandler:(id)arg1 selector:(SEL)arg2 priority:(double)arg3;
 - (id)installDrawHandler:(id)arg1 selector:(SEL)arg2 priority:(double)arg3;
 - (id)installWillDrawHandlerWithPriority:(double)arg1 block:(CDUnknownBlockType)arg2;

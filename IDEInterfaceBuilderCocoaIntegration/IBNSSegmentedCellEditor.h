@@ -12,7 +12,7 @@
 
 + (Class)ibDropTargetResolverClass;
 - (void)willEditChild:(id)arg1 inFrameController:(id)arg2;
-- (void)positionChildEditorFrame;
+- (void)positionChildEditorFrames;
 - (id)acceptDragInfo:(id)arg1 context:(id)arg2;
 - (void)resetCursorRects;
 - (BOOL)interceptEvent:(id)arg1;

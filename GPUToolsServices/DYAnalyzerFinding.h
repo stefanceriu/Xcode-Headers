@@ -28,12 +28,15 @@
     unsigned int _classification;
     int _warningLevel;
     int _granularity;
+    BOOL _unsorted;
+    int _platform;
     unsigned long long _graphicsEngineID;
     unsigned long long _resourceGroupID;
     NSArray *_subfindings;
 }
 
 + (id)_findingLevelString:(int)arg1;
+@property(nonatomic) BOOL unsorted; // @synthesize unsorted=_unsorted;
 @property(retain, nonatomic) NSArray *subfindings; // @synthesize subfindings=_subfindings;
 @property(retain, nonatomic) id <NSCoding><NSCopying><NSObject> additionalData; // @synthesize additionalData=_additionalData;
 @property(readonly, copy, nonatomic) NSMutableDictionary *statistics; // @synthesize statistics=_statistics;
@@ -49,6 +52,7 @@
 @property(nonatomic) unsigned long long graphicsEngineID; // @synthesize graphicsEngineID=_graphicsEngineID;
 @property(nonatomic) unsigned int classification; // @synthesize classification=_classification;
 @property(retain, nonatomic) NSString *kind; // @synthesize kind=_kind;
+@property(readonly, nonatomic) int platform; // @synthesize platform=_platform;
 - (void).cxx_destruct;
 - (BOOL)isTextureImageCompletelyUpdated;
 - (BOOL)isBufferDataCompletelyUpdated;
@@ -72,12 +76,14 @@
 - (void)appendDetailStrings:(id)arg1 fromEngine:(id)arg2;
 - (void)appendShortDetails:(id)arg1;
 - (void)appendDetails:(id)arg1;
-@property(readonly, retain, nonatomic) NSString *localizedKind; // @dynamic localizedKind;
-@property(readonly, retain, nonatomic) NSString *synopsis; // @dynamic synopsis;
+@property(readonly, retain, nonatomic) NSString *localizedKind;
+@property(readonly, retain, nonatomic) NSString *synopsis;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
+- (id)initWithPlatform:(int)arg1;
+- (id)initWithPlatform:(int)arg1 unsorted:(BOOL)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

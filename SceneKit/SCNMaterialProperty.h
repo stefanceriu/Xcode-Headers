@@ -40,7 +40,7 @@
 + (id)copyImageFromC3DImage:(struct __C3DImage *)arg1;
 + (id)_copyImageFromC3DImage:(struct __C3DImage *)arg1;
 + (struct __C3DImage *)copyC3DImageFromImage:(id)arg1;
-+ (struct __C3DImage *)copyC3DImageFromImage:(id)arg1 autoCubemap:(BOOL)arg2;
++ (struct __C3DImage *)copyC3DImageFromImage:(id)arg1 textureOptions:(int)arg2;
 + (struct __C3DImage *)_copyC3DImageFromImageData:(id)arg1 typeID:(unsigned long long)arg2;
 + (id)materialPropertyWithContents:(id)arg1;
 - (id)initWithCoder:(id)arg1;
@@ -49,6 +49,7 @@
 - (void)_didDecodeSCNMaterialProperty:(id)arg1;
 - (void)_customEncodingOfSCNMaterialProperty:(id)arg1;
 - (void)_updateMaterialColor:(id)arg1;
+- (void)_updateMaterialNumber:(id)arg1;
 - (void)_updateMaterialImage:(id)arg1;
 - (void)_updateMaterialProceduralContents:(id)arg1;
 - (void)_updateMaterialLayer:(id)arg1;
@@ -66,7 +67,10 @@
 - (void)copyPropertiesFrom:(id)arg1;
 - (void)_syncObjCModel;
 - (struct __C3DScene *)sceneRef;
+- (void)unbindAnimatablePath:(id)arg1;
+- (void)bindAnimatablePath:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
 - (BOOL)isAnimationForKeyPaused:(id)arg1;
+- (void)setSpeed:(double)arg1 forAnimationKey:(id)arg2;
 - (void)removeAnimationForKey:(id)arg1 fadeOutDuration:(double)arg2;
 - (void)resumeAnimationForKey:(id)arg1;
 - (void)pauseAnimationForKey:(id)arg1;
@@ -78,9 +82,9 @@
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
 - (void)addAnimation:(id)arg1 forKey:(id)arg2;
-- (void)__removeAnimation:(id)arg1 forKey:(id)arg2;
+- (BOOL)__removeAnimation:(id)arg1 forKey:(id)arg2;
 - (struct __C3DAnimationManager *)animationManager;
-- (void *)__CFObject;
+- (const void *)__CFObject;
 - (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (struct __C3DTextureSampler *)textureSampler;
 - (struct __C3DEffectCommonProfile *)commonProfile;
@@ -110,7 +114,7 @@
 - (void)setImage:(id)arg1;
 - (id)attachment;
 - (void)setAttachment:(id)arg1;
-- (BOOL)_supportsCubeMaps;
+- (int)_textureOptions;
 @property(nonatomic) long long wrapT;
 @property(nonatomic) long long wrapS;
 @property(retain, nonatomic) id borderColor;
@@ -124,6 +128,8 @@
 - (struct C3DColor4)color4;
 - (struct __C3DImage *)getC3DImageRef;
 - (void)_setC3DImageRef:(struct __C3DImage *)arg1;
+- (id)floatValue;
+- (void)setFloatValue:(id)arg1;
 - (id)color;
 - (void)setColor:(id)arg1;
 - (void)_setColor:(id)arg1;

@@ -6,28 +6,28 @@
 
 #import "DVTPagingSheetWindowController.h"
 
-@class DVTTeamRecord, NSArray, NSError, NSMapTable, NSString;
+@class DVTLogAspect, NSArray, NSError, NSMapTable, NSString;
 
 @interface IDEAccountTeamPickerWindowController : DVTPagingSheetWindowController
 {
     BOOL _wantsMultipleSelection;
     BOOL _wantsEmptySelectionOption;
-    DVTTeamRecord *_previouslySelectedTeam;
+    id <IDEProvisioningTeam> _previouslySelectedTeam;
     NSString *_userFacingReason;
     NSString *_comprehensiveUserFacingReason;
     CDUnknownBlockType _teamFilter;
     NSString *_noFilterResultsUserFacingReason;
     NSString *_emptySelectionOptionTitle;
+    DVTLogAspect *_logAspect;
     NSMapTable *_selectedAccountsToTeamsMap;
     NSError *_error;
-    NSMapTable *_allAccountsToAllTeamDictionariesFromToken;
     NSArray *_accountWrappers;
 }
 
 @property(copy, nonatomic) NSArray *accountWrappers; // @synthesize accountWrappers=_accountWrappers;
-@property(copy, nonatomic) NSMapTable *allAccountsToAllTeamDictionariesFromToken; // @synthesize allAccountsToAllTeamDictionariesFromToken=_allAccountsToAllTeamDictionariesFromToken;
 @property(retain, nonatomic) NSError *error; // @synthesize error=_error;
 @property(retain, nonatomic) NSMapTable *selectedAccountsToTeamsMap; // @synthesize selectedAccountsToTeamsMap=_selectedAccountsToTeamsMap;
+@property(retain, nonatomic) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
 @property(retain, nonatomic) NSString *emptySelectionOptionTitle; // @synthesize emptySelectionOptionTitle=_emptySelectionOptionTitle;
 @property(nonatomic) BOOL wantsEmptySelectionOption; // @synthesize wantsEmptySelectionOption=_wantsEmptySelectionOption;
 @property(retain, nonatomic) NSString *noFilterResultsUserFacingReason; // @synthesize noFilterResultsUserFacingReason=_noFilterResultsUserFacingReason;
@@ -35,7 +35,7 @@
 @property(nonatomic) BOOL wantsMultipleSelection; // @synthesize wantsMultipleSelection=_wantsMultipleSelection;
 @property(retain, nonatomic) NSString *comprehensiveUserFacingReason; // @synthesize comprehensiveUserFacingReason=_comprehensiveUserFacingReason;
 @property(retain, nonatomic) NSString *userFacingReason; // @synthesize userFacingReason=_userFacingReason;
-@property(retain, nonatomic) DVTTeamRecord *previouslySelectedTeam; // @synthesize previouslySelectedTeam=_previouslySelectedTeam;
+@property(retain, nonatomic) id <IDEProvisioningTeam> previouslySelectedTeam; // @synthesize previouslySelectedTeam=_previouslySelectedTeam;
 - (void).cxx_destruct;
 - (void)windowDidLoad;
 

@@ -34,7 +34,6 @@
 - (void)windowDidUpdate:(id)arg1;
 - (void)cancelAction:(id)arg1;
 - (void)goBackAction:(id)arg1;
-- (void)errorAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
 - (void)okAction:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)viewWillUninstall;

@@ -51,6 +51,7 @@
 - (id)initWithAutoImportable:(id)arg1;
 
 // Remaining properties
+@property(readonly, copy) NSString *action;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly) Class superclass;
 

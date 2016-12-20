@@ -6,11 +6,32 @@
 
 #import "JSExport.h"
 
-@class CAAnimation, NSArray, NSString;
+@class CAAnimation, MDLCamera, NSArray, NSString, SCNMaterialProperty;
 
 @protocol SCNCameraJSExport <JSExport>
++ (id)cameraWithMDLCamera:(MDLCamera *)arg1;
 + (id)camera;
 @property(nonatomic) unsigned long long categoryBitMask;
+@property(readonly, nonatomic) SCNMaterialProperty *colorGrading;
+@property(nonatomic) double contrast;
+@property(nonatomic) double saturation;
+@property(nonatomic) double colorFringeIntensity;
+@property(nonatomic) double colorFringeStrength;
+@property(nonatomic) double vignettingIntensity;
+@property(nonatomic) double vignettingPower;
+@property(nonatomic) double bloomBlurRadius;
+@property(nonatomic) double bloomIntensity;
+@property(nonatomic) double bloomThreshold;
+@property(nonatomic) double maximumExposure;
+@property(nonatomic) double minimumExposure;
+@property(nonatomic) double exposureAdaptationDarkeningSpeedFactor;
+@property(nonatomic) double exposureAdaptationBrighteningSpeedFactor;
+@property(nonatomic) BOOL wantsExposureAdaptation;
+@property(nonatomic) double whitePoint;
+@property(nonatomic) double averageGray;
+@property(nonatomic) double exposureOffset;
+@property(nonatomic) BOOL wantsHDR;
+@property(nonatomic) double motionBlurIntensity;
 @property(nonatomic) double aperture;
 @property(nonatomic) double focalBlurRadius;
 @property(nonatomic) double focalSize;
@@ -35,7 +56,6 @@
 - (void)removeAnimationForKey:(NSString *)arg1;
 - (void)removeAllAnimations;
 - (void)addAnimation:(CAAnimation *)arg1 forKey:(NSString *)arg2;
-- (void)setProjectionTransform:(struct CATransform3D)arg1;
-- (struct CATransform3D)projectionTransform;
+@property(nonatomic) struct CATransform3D projectionTransform;
 @end
 

@@ -19,16 +19,19 @@
     NSMutableDictionary *_heuristicPoolDict;
     CDUnknownBlockType _graphicsEngineInfoProvider;
     NSMutableDictionary *_resourceGroupObjectCoveragePool;
-    NSMutableSet *_enabledHeuristicNameSet;
     DYDeviceInfo *_deviceInfo;
     CDUnknownBlockType _loadURLBlock;
     BOOL _singleFrameMode;
     BOOL _abort;
     BOOL _usePreSortHeuristics;
+    CDUnknownBlockType _telemetryReportErrorBlock;
+    NSMutableSet *_enabledHeuristicNameSet;
 }
 
-+ (id)getLocalizedString:(id)arg1 table:(id)arg2 forGraphicsAPI:(unsigned int)arg3;
-+ (id)getLocalizedString:(id)arg1 forGraphicsAPI:(unsigned int)arg2;
++ (id)getLocalizedString:(id)arg1 table:(id)arg2;
++ (id)getLocalizedString:(id)arg1;
+@property(retain, nonatomic) NSMutableSet *enabledHeuristicNameSet; // @synthesize enabledHeuristicNameSet=_enabledHeuristicNameSet;
+@property(nonatomic) CDUnknownBlockType telemetryReportErrorBlock; // @synthesize telemetryReportErrorBlock=_telemetryReportErrorBlock;
 @property(nonatomic) BOOL usePreSortHeuristics; // @synthesize usePreSortHeuristics=_usePreSortHeuristics;
 @property(readonly, nonatomic) BOOL singleFrameMode; // @synthesize singleFrameMode=_singleFrameMode;
 @property(nonatomic) int drawCallNum; // @synthesize drawCallNum=_drawCallNum;
@@ -42,6 +45,7 @@
 @property(copy, nonatomic) CDUnknownBlockType graphicsEngineInfoProvider; // @synthesize graphicsEngineInfoProvider=_graphicsEngineInfoProvider;
 @property(retain, nonatomic) DYDeviceInfo *deviceInfo; // @synthesize deviceInfo=_deviceInfo;
 - (void).cxx_destruct;
+- (id)runPostShaderProfilerHeuristics:(id)arg1;
 - (id)_newHeuristicPoolWithGraphicsEngineID:(unsigned long long)arg1;
 - (id)newFrameStatisticsFinding;
 - (unsigned int)_stateMirrorProcessFunctionAndAnnotate:(const struct Function *)arg1 functionIndex:(int)arg2;

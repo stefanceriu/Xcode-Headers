@@ -7,6 +7,7 @@
 #import "NSPopUpButton.h"
 
 @interface NSPopUpButton (IBPopUpButtonAdditions)
+- (void)selectItemWithRepresentedObject:(id)arg1;
 - (long long)tagOfSelectedItem;
 @end
 

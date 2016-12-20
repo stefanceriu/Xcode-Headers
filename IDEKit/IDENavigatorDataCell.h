@@ -14,12 +14,7 @@
 
 + (void)initialize;
 @property(nonatomic) BOOL usesGroupHeaderStyle; // @synthesize usesGroupHeaderStyle=_usesGroupHeaderStyle;
-- (void)mouseExited:(id)arg1;
-- (void)mouseEntered:(id)arg1;
 - (id)accessibilityAttributeValue:(id)arg1;
-- (void)_mouseEnteredOrExited:(BOOL)arg1 event:(id)arg2;
-- (void)addTrackingAreasForView:(id)arg1 inFrame:(struct CGRect)arg2 withUserInfo:(id)arg3 mouseLocation:(struct CGPoint)arg4;
-- (void)_iterateStatusCellsRectsInControlView:(id)arg1 inFrame:(struct CGRect)arg2 withCallback:(CDUnknownBlockType)arg3;
 - (id)subtitleFont;
 - (void)setFont:(id)arg1;
 - (struct CGRect)dvt_frameOfOutlineCellForBounds:(struct CGRect)arg1 proposedFrame:(struct CGRect)arg2;

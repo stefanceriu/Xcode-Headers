@@ -22,7 +22,7 @@
 - (id)localObjectForSegueTemplate:(id)arg1;
 - (id)counterpartForStoryboardObject:(id)arg1;
 - (BOOL)isDescendantOfCompilationUnit:(id)arg1;
-- (id)storyboardObjectIDForLocalObjectID:(id)arg1;
+- (id)storyboardMemberIDForLocalMemberID:(id)arg1;
 - (void)capturePlaceholderTableFromFoldedCompilationUnit:(id)arg1 withOriginalFoldedUnitToLocalObjectIDMap:(id)arg2;
 - (id)description;
 - (id)initWithLeader:(id)arg1 content:(id)arg2 storyboard:(id)arg3 requiresIndependentInstantiation:(BOOL)arg4;

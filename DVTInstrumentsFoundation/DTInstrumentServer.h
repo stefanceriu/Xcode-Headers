@@ -20,12 +20,14 @@
 + (void)_tfpPortReceived:(unsigned int)arg1;
 + (void)_taskInvalid:(unsigned int)arg1 forPid:(int)arg2;
 + (unsigned int)taskForPid:(int)arg1;
++ (void)prohibitPromptingForAuthorization;
 + (struct AuthorizationOpaqueRef *)sharedAuthorization;
 + (void)takeOwnershipOfSharedAuthorization:(struct AuthorizationOpaqueRef *)arg1;
 + (BOOL)isAppleInternal;
 @property(copy) CDUnknownBlockType channelRestrictBlock; // @synthesize channelRestrictBlock=_channelRestrictBlock;
 @property(readonly, nonatomic) DTXConnection *connection; // @synthesize connection=_connection;
 - (void).cxx_destruct;
+- (id)_blessSimulatorHub:(int)arg1;
 - (void)_notifyOfTFPCommunicationsPort:(unsigned int)arg1;
 - (void)restrictChannelsWithBlock:(CDUnknownBlockType)arg1;
 - (void)loadServicesAtPath:(id)arg1;

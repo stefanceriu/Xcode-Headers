@@ -40,7 +40,8 @@
 - (unsigned long long)count;
 - (id)keyPath;
 @property(readonly, nonatomic) NSArray *devices;
-- (id)_initWithIntegrationID:(id)arg1 integrationNumber:(unsigned long long)arg2 targets:(id)arg3 devices:(id)arg4 validationErrors:(id *)arg5;
+- (id)_initWithIntegrationID:(id)arg1 integrationNumber:(unsigned long long)arg2 targets:(id)arg3 devices:(id)arg4 skipValidation:(BOOL)arg5 skipBindHierarchy:(BOOL)arg6 validationErrors:(id *)arg7;
+- (id)initWithContents:(id)arg1 service:(id)arg2 skipValidation:(BOOL)arg3 skipBindHierarchy:(BOOL)arg4 validationErrors:(id *)arg5;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 - (id)initWithIntegrationID:(id)arg1 integrationNumber:(unsigned long long)arg2 targets:(id)arg3 devices:(id)arg4 validationErrors:(id *)arg5;
 

@@ -12,6 +12,7 @@
 
 + (BOOL)showsCrossPlatformSection;
 + (id)supportedTemplateKind;
+- (id)nextAssistantIdentifier;
 
 @end
 

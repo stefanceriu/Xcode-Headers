@@ -10,6 +10,5 @@
 + (id)dateWithISO8601Format:(id)arg1;
 - (id)dateTime;
 - (id)stringWithISO8601Format;
-- (id)stringWithISO8061Format;
 @end
 

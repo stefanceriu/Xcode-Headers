@@ -7,8 +7,6 @@
 #import "IBICSpriteAtlas.h"
 
 @interface IBICSpriteAtlas (DisplayAdditions)
-- (BOOL)ibInspectorShowsResourceName;
-- (id)typeIcon;
 - (id)icon;
 @end
 

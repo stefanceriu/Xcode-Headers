@@ -6,52 +6,36 @@
 
 #import "DVTModelTreeNode.h"
 
-#import "IDEKeyDrivenNavigableItemRepresentedObject.h"
+@class DVTFilePath, NSArray, NSMutableArray, NSString;
 
-@class DVTDocumentLocation, DVTFileDataType, DVTFilePath, IDEFileReference, NSArray, NSImage, NSMutableArray, NSString;
-
-@interface IDESourceControlTreeNode : DVTModelTreeNode <IDEKeyDrivenNavigableItemRepresentedObject>
+@interface IDESourceControlTreeNode : DVTModelTreeNode
 {
     DVTFilePath *_filePath;
     unsigned long long _sourceControlLocalStatus;
     unsigned long long _sourceControlServerStatus;
     DVTFilePath *_basePath;
     IDESourceControlTreeNode *_parentGroup;
+    NSString *_navigableItem_sourceControlLocalStatus;
+    NSString *_navigableItem_sourceControlServerStatus;
 }
 
 + (id)keyPathsForValuesAffectingSparseChildren;
-+ (id)keyPathsForValuesAffectingNavigableItem_sourceControlServerStatus;
-+ (id)keyPathsForValuesAffectingNavigableItem_sourceControlLocalStatus;
+@property(readonly) NSString *navigableItem_sourceControlServerStatus; // @synthesize navigableItem_sourceControlServerStatus=_navigableItem_sourceControlServerStatus;
+@property(readonly) NSString *navigableItem_sourceControlLocalStatus; // @synthesize navigableItem_sourceControlLocalStatus=_navigableItem_sourceControlLocalStatus;
 @property(retain) IDESourceControlTreeNode *parentGroup; // @synthesize parentGroup=_parentGroup;
 @property(retain, nonatomic) DVTFilePath *basePath; // @synthesize basePath=_basePath;
 @property(nonatomic) unsigned long long sourceControlServerStatus; // @synthesize sourceControlServerStatus=_sourceControlServerStatus;
 @property(nonatomic) unsigned long long sourceControlLocalStatus; // @synthesize sourceControlLocalStatus=_sourceControlLocalStatus;
 @property(readonly, nonatomic) DVTFilePath *filePath; // @synthesize filePath=_filePath;
 - (void).cxx_destruct;
-@property(readonly, copy) NSString *description;
+- (id)description;
 @property(readonly) NSMutableArray *mutableChildren;
 @property(copy) NSArray *children;
 - (id)sparseChildren;
-@property(readonly) NSString *navigableItem_groupIdentifier;
-@property(readonly) DVTFileDataType *navigableItem_documentType;
-@property(readonly) NSImage *navigableItem_image;
-@property(readonly) NSString *navigableItem_sourceControlServerStatus;
-@property(readonly) NSString *navigableItem_sourceControlLocalStatus;
-@property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly, nonatomic) BOOL isLeaf;
 @property(readonly, nonatomic) NSString *relativeFilePath;
-@property(readonly) NSString *navigableItem_toolTip;
-@property(readonly) NSString *navigableItem_name;
 - (void)primitiveInvalidate;
 - (id)initWithFilePath:(id)arg1 basePath:(id)arg2 sourceControlLocalStatus:(unsigned long long)arg3 sourceControlServerStatus:(unsigned long long)arg4;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
-@property(readonly) IDEFileReference *navigableItem_fileReference;
-@property(readonly) BOOL navigableItem_isMajorGroup;
-@property(readonly) Class superclass;
 
 @end
 

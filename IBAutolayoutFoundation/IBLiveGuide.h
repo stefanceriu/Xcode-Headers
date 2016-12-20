@@ -16,6 +16,8 @@
 }
 
 - (void).cxx_destruct;
+- (BOOL)isEqual:(id)arg1;
+- (unsigned long long)hash;
 - (id)description;
 - (BOOL)isVertical;
 - (struct CGPoint)endInView:(id)arg1;

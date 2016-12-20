@@ -8,7 +8,7 @@
 
 #import "DVTXMLUnarchiving.h"
 
-@class DVTNotificationToken, DVTObservingToken, IDEDeviceAppDataReference, IDEFileReference, IDELocationScenarioReference, IDESchemeOptionReference, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSNumber, NSString;
+@class DVTNotificationToken, DVTObservingToken, IDEDeviceAppDataReference, IDELocationScenarioReference, IDESchemeOptionReference, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSNumber, NSString;
 
 @interface IDELaunchSchemeAction : IDESchemeAction <DVTXMLUnarchiving>
 {
@@ -20,26 +20,27 @@
     NSMutableDictionary *_additionalSchemeSettings;
     DVTObservingToken *_launchSessionObservingToken;
     NSDictionary *_cachedAppExtensionBuiltPaths;
+    BOOL _mallocStackLoggingSelected;
     BOOL _debugXPCServices;
     BOOL _enableAddressSanitizer;
+    BOOL _enableThreadSanitizer;
+    BOOL _stopOnEveryThreadSanitizerIssue;
     BOOL _useCustomWorkingDirectory;
     BOOL _allowLocationSimulation;
     BOOL _showNonLocalizedStrings;
     BOOL _ignoresPersistentStateOnLaunch;
     BOOL _debugDocumentVersioning;
     BOOL _enableGPUValidationMode;
-    BOOL _viewDebuggingEnabled;
     BOOL _queueDebuggingEnabled;
     unsigned int _debugProcessAsUID;
     int _launchStyle;
     int _enableGPUFrameCaptureMode;
     int _internalIOSLaunchStyle;
-    NSString *_buildConfiguration;
     NSString *_selectedDebuggerIdentifier;
     NSString *_selectedLauncherIdentifier;
     NSString *_resolvedCustomWorkingDirectory;
     NSMutableOrderedSet *_debugServiceExtensionContents;
-    IDEFileReference *_notificationPayloadFile;
+    NSString *_selectedMallocStackLoggingType;
     IDEDeviceAppDataReference *_deviceAppDataReference;
     NSDictionary *_additionalOptionEntriesDict;
     unsigned long long _launchAutomaticallySubstyle;
@@ -51,8 +52,10 @@
     NSNumber *_simulatorIPhoneDisplay;
     NSNumber *_simulatorIPadDisplay;
     NSString *_internalIOSSubstitutionApp;
+    long long _consoleMode;
     NSString *_debugServiceExtensionContentsString;
     NSString *_debugServiceExtension;
+    NSString *_selectedMallocStackLoggingTypeTooltip;
     NSString *_debugAsWhichUser;
 }
 
@@ -62,10 +65,11 @@
 + (id)keyPathsForValuesAffectingSubtitle;
 + (void)initialize;
 @property(copy) NSString *debugAsWhichUser; // @synthesize debugAsWhichUser=_debugAsWhichUser;
+@property(copy) NSString *selectedMallocStackLoggingTypeTooltip; // @synthesize selectedMallocStackLoggingTypeTooltip=_selectedMallocStackLoggingTypeTooltip;
 @property(copy) NSString *debugServiceExtension; // @synthesize debugServiceExtension=_debugServiceExtension;
 @property(copy) NSString *debugServiceExtensionContentsString; // @synthesize debugServiceExtensionContentsString=_debugServiceExtensionContentsString;
+@property long long consoleMode; // @synthesize consoleMode=_consoleMode;
 @property BOOL queueDebuggingEnabled; // @synthesize queueDebuggingEnabled=_queueDebuggingEnabled;
-@property BOOL viewDebuggingEnabled; // @synthesize viewDebuggingEnabled=_viewDebuggingEnabled;
 @property(copy) NSString *internalIOSSubstitutionApp; // @synthesize internalIOSSubstitutionApp=_internalIOSSubstitutionApp;
 @property int internalIOSLaunchStyle; // @synthesize internalIOSLaunchStyle=_internalIOSLaunchStyle;
 @property(retain) NSDictionary *additionalSchemeSettings; // @synthesize additionalSchemeSettings=_additionalSchemeSettings;
@@ -85,15 +89,14 @@
 @property BOOL useCustomWorkingDirectory; // @synthesize useCustomWorkingDirectory=_useCustomWorkingDirectory;
 @property(nonatomic) unsigned long long launchAutomaticallySubstyle; // @synthesize launchAutomaticallySubstyle=_launchAutomaticallySubstyle;
 @property(nonatomic) int launchStyle; // @synthesize launchStyle=_launchStyle;
+@property BOOL stopOnEveryThreadSanitizerIssue; // @synthesize stopOnEveryThreadSanitizerIssue=_stopOnEveryThreadSanitizerIssue;
+@property BOOL enableThreadSanitizer; // @synthesize enableThreadSanitizer=_enableThreadSanitizer;
 @property BOOL enableAddressSanitizer; // @synthesize enableAddressSanitizer=_enableAddressSanitizer;
 @property BOOL debugXPCServices; // @synthesize debugXPCServices=_debugXPCServices;
 @property(nonatomic) unsigned int debugProcessAsUID; // @synthesize debugProcessAsUID=_debugProcessAsUID;
 @property(readonly) NSDictionary *additionalOptionEntriesDict; // @synthesize additionalOptionEntriesDict=_additionalOptionEntriesDict;
 @property(retain) IDEDeviceAppDataReference *deviceAppDataReference; // @synthesize deviceAppDataReference=_deviceAppDataReference;
-@property(retain) IDEFileReference *notificationPayloadFile; // @synthesize notificationPayloadFile=_notificationPayloadFile;
 @property(copy) NSString *selectedLauncherIdentifier; // @synthesize selectedLauncherIdentifier=_selectedLauncherIdentifier;
-- (void)setBuildConfiguration:(id)arg1;
-- (id)buildConfiguration;
 - (void).cxx_destruct;
 - (void)addRoutingCoverageFileReference:(id)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)addLocationScenarioReference:(id)arg1 fromXMLUnarchiver:(id)arg2;
@@ -118,8 +121,8 @@
 - (BOOL)_launchOptionIsSet:(unsigned long long)arg1;
 - (void)setUseCustomWorkingDirectoryFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 @property(readonly) BOOL shouldAllowGPUOptions;
+- (void)setConsoleModeFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setQueueDebuggingEnabledFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
-- (void)setViewDebuggingEnabledFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setLaunchAutomaticallySubstyleFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setInternalIOSLaunchStyleFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setInternalIOSSubstitutionAppFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
@@ -134,23 +137,29 @@
 - (void)setDebugServiceExtensionContentsStringFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setDebugServiceExtensionFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setCustomLaunchCommandFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
+- (void)setStopOnEveryThreadSanitizerIssueFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
+- (void)setEnableThreadSanitizerFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setEnableAddressSanitizerFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setDebugXPCServicesFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setDebugDocumentVersioningFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setIgnoresPersistentStateOnLaunchFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 @property(copy) NSMutableOrderedSet *debugServiceExtensionContents; // @synthesize debugServiceExtensionContents=_debugServiceExtensionContents;
-- (void)setNotificationPayloadFileFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
-- (id)runOperationForExecutionEnvironment:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 schemeCommand:(id)arg5 schemeActionRecord:(id)arg6 outError:(id *)arg7 actionCallbackBlock:(CDUnknownBlockType)arg8;
-- (BOOL)_tweakEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 buildableProductDirectories:(id)arg3 schemeCommand:(id)arg4 schemeActionRecord:(id)arg5 shouldSetupRecordedFrames:(BOOL)arg6 optimizationProfileFilePath:(id *)arg7 outError:(id *)arg8;
+- (id)runOperationForSchemeOperationParameters:(id)arg1 withBuildOperation:(id)arg2 buildParameters:(id)arg3 buildableProductDirectories:(id)arg4 schemeCommand:(id)arg5 schemeActionRecord:(id)arg6 outError:(id *)arg7 actionCallbackBlock:(CDUnknownBlockType)arg8;
+- (BOOL)_tweakEnvironmentVariables:(id)arg1 buildParameters:(id)arg2 buildableProductDirectories:(id)arg3 schemeCommand:(id)arg4 schemeActionRecord:(id)arg5 shouldSetupRecordedFrames:(BOOL)arg6 optimizationProfileFilePath:(id *)arg7 extensionInfos:(id)arg8 outError:(id *)arg9;
 - (id)_preferredBuildableForSchemeCommand:(id)arg1 buildParameters:(id)arg2;
 - (void)_restoreLaunchStyleForMetalRemoteDebuggingWithEnvironmentVariables:(id)arg1;
 - (BOOL)_overrideParametersForMetalRemoteDebuggingWithEnvironmentVariables:(id)arg1 outError:(id *)arg2;
 - (BOOL)_isMetalRemoteDebuggingEnabledWithEnvironmentVariables:(id)arg1;
 - (BOOL)hasAppExtensionsInTargets;
-- (id)filePathsForContainersAndExtensionsForBuildParameters:(id)arg1;
 - (void)_setupRecordedFramesInEnvironmentVariables:(id)arg1 runDestination:(id)arg2;
+- (void)_modifyEnvironmentForMallocStackLogging:(id)arg1;
+- (void)_updateSelectedMallocStackTooltip:(id)arg1;
+- (void)_setSelectedMallocStackLoggingType:(id)arg1;
+@property BOOL mallocStackLoggingSelected; // @synthesize mallocStackLoggingSelected=_mallocStackLoggingSelected;
+@property(copy) NSString *selectedMallocStackLoggingType; // @synthesize selectedMallocStackLoggingType=_selectedMallocStackLoggingType;
+@property(readonly) NSArray *availableMallocStackLoggingTypes;
 @property(retain) NSString *customLaunchCommand;
 - (id)customLaunchCommandMacroExpanded;
 - (void)setLaunchDueToFetchEvent:(BOOL)arg1;
@@ -160,10 +169,11 @@
 @property(readonly) NSArray *additionalSourceCodeFilePaths;
 - (id)_additionalOptions;
 - (id)_additionalOptionEntries;
+- (id)_expandMacrosInString:(id)arg1 forBuildParameters:(id)arg2;
 - (id)_expandMacrosInString:(id)arg1;
 @property(readonly) NSString *resolvedCustomWorkingDirectory; // @synthesize resolvedCustomWorkingDirectory=_resolvedCustomWorkingDirectory;
-@property(readonly) NSDictionary *environmentVariables;
-- (id)commandLineArgumentsForDevice:(id)arg1;
+- (id)environmentVariablesForBuildParameters:(id)arg1;
+- (id)commandLineArgumentsForDevice:(id)arg1 buildParameters:(id)arg2;
 - (BOOL)doesNonActionWork;
 - (id)subtitle;
 - (id)name;

@@ -6,9 +6,9 @@
 
 #import "NSObject.h"
 
-@class NSString, NSWindow;
+@class NSWindow;
 
 @protocol IDEContinuousIntegrationNewServiceAccountController <NSObject>
-- (void)beginSheetModalForWindow:(NSWindow *)arg1 connectionAddress:(NSString *)arg2 completionBlock:(void (^)(long long, id, NSError *))arg3;
+- (void)beginSheetModalForWindow:(NSWindow *)arg1 completionBlock:(void (^)(long long, id <XCSLocalService>, NSError *))arg2;
 @end
 

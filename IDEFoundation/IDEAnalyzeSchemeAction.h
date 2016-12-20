@@ -12,18 +12,13 @@
 
 @interface IDEAnalyzeSchemeAction : IDESchemeAction <DVTXMLUnarchiving>
 {
-    NSString *_buildConfiguration;
 }
 
 + (void)insertsynthesizedMacrosIntoOverridingProperties:(id)arg1;
 + (id)keyPathsForValuesAffectingSubtitle;
 + (BOOL)shouldAllowCustomPhaseActions;
-- (void)setBuildConfiguration:(id)arg1;
-- (id)buildConfiguration;
-- (void).cxx_destruct;
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
-- (id)buildOperationForExecutionEnvironment:(id)arg1 buildPurpose:(int)arg2 buildCommand:(int)arg3 schemeCommand:(id)arg4 filePath:(id)arg5 buildConfiguration:(id)arg6 buildLog:(id)arg7 overridingProperties:(id)arg8 activeRunDestination:(id)arg9 activeArchitecture:(id)arg10 dontActuallyRunCommands:(BOOL)arg11 restorePersistedBuildResults:(BOOL)arg12 schemeActionRecord:(id)arg13 error:(id *)arg14;
 - (BOOL)doesNonActionWork;
 - (id)subtitle;
 - (id)name;

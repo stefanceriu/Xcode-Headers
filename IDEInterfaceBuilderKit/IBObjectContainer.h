@@ -82,7 +82,7 @@
 - (id)attributePlaceholders;
 - (id)attributePlaceholderForObject:(id)arg1 withName:(id)arg2;
 - (void)removeAttributePlaceholder:(id)arg1;
-- (void)addAttributePlaceholder:(id)arg1;
+- (void)addOrReplaceAttributePlaceholder:(id)arg1;
 - (void)replaceConnection:(id)arg1 withConnectionOfSameOrigin:(id)arg2 context:(id)arg3;
 - (void)replaceConnection:(id)arg1 withConnectionOfSameOrigin:(id)arg2;
 - (void)removeConnection:(id)arg1;
@@ -176,8 +176,8 @@
 - (id)firstAncestorOfObject:(id)arg1 passingTest:(CDUnknownBlockType)arg2;
 - (id)topLevelObjectsForObjects:(id)arg1;
 - (id)topLevelObjectForObject:(id)arg1;
-- (id)descendantsOfObjects:(id)arg1;
-- (id)descendantsOfObject:(id)arg1;
+- (id)descendantsOfObjects:(id)arg1 includingInitialObjects:(BOOL)arg2;
+- (id)descendantsOfObject:(id)arg1 includingInitialObject:(BOOL)arg2;
 - (id)objectsToTopLevelFromParentOfObject:(id)arg1;
 - (id)objectsToTopLevelFromObject:(id)arg1;
 - (id)objectsFromObject:(id)arg1 toAncestor:(id)arg2;

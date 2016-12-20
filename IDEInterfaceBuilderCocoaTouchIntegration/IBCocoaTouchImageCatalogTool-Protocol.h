@@ -10,6 +10,6 @@
 
 @protocol IBCocoaTouchImageCatalogTool <IBAbstractPlatformTool>
 - (void)registerSchemaProviders:(NSSet *)arg1 withSchemaProviderContextData:(NSDictionary *)arg2;
-- (IBICCatalogCompilerResult *)compileItemsWithCatalogRelativeIdentifierPaths:(NSDictionary *)arg1 tagSolutionSpace:(NSDictionary *)arg2 options:(IBICCatalogCompilerOptions *)arg3;
+- (IBICCatalogCompilerResult *)compileItemsWithCatalogRelativeIdentifierPaths:(NSDictionary *)arg1 tagSolutionSpace:(NSDictionary *)arg2 andStickerPacksWithCatalogRelativeIdentifierPaths:(NSDictionary *)arg3 options:(IBICCatalogCompilerOptions *)arg4;
 @end
 

@@ -16,7 +16,7 @@
 + (id)sharedManager;
 - (void).cxx_destruct;
 - (id)capabilityWithNameCreatingIfNecessary:(id)arg1 minToolsVersion:(id)arg2 minSystemVersion:(id)arg3;
-- (id)capabilityWithNameCreatingIfNecessary:(id)arg1 minToolsVersion:(id)arg2 minSystemVersion:(id)arg3 message:(id)arg4;
+- (id)capabilityWithNameCreatingIfNecessary:(id)arg1 minToolsVersion:(id)arg2 minSystemVersion:(id)arg3 requiredIntegratedClassName:(id)arg4 message:(id)arg5;
 
 @end
 

@@ -6,7 +6,7 @@
 
 #import "NSCoder.h"
 
-@class IBSelfCompressingDataWrapper, IBXMLDecoderArchiveElement, IBXMLDecoderElement, NSDictionary, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet;
+@class IBSelfCompressingDataWrapper, IBXMLDecoderArchiveElement, IBXMLDecoderElement, NSArray, NSDictionary, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet;
 
 @interface IBXMLDecoder : NSCoder
 {
@@ -21,6 +21,7 @@
     NSSet *objectElementNamesWithPotentialObjectChildren;
     NSSet *specialCaseCollectionElementNames;
     NSDictionary *specialTypesToClasses;
+    NSMutableArray *classesBeingDecoded;
     id <IBXMLDecoderDelegate> _delegate;
     IBXMLDecoderElement *_currentElement;
 }
@@ -61,6 +62,7 @@
 - (id)deserializeDictionary:(id)arg1 fromXMLElement:(id)arg2;
 - (id)deserializeArray:(id)arg1 fromXMLElement:(id)arg2;
 - (BOOL)containsValueForKey:(id)arg1;
+@property(readonly) NSArray *classesBeingDecoded;
 - (BOOL)allowsKeyedCoding;
 - (void)finishDecoding;
 - (void)dealloc;

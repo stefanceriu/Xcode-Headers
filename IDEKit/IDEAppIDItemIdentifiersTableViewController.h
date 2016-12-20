@@ -30,9 +30,11 @@
     DVTGradientImageButton *_addButton;
     DVTGradientImageButton *_refreshButton;
     DVTGradientImageButton *_removeButton;
+    NSString *_requiredPrefix;
 }
 
 @property BOOL isRefreshing; // @synthesize isRefreshing=_isRefreshing;
+@property(readonly, nonatomic) NSString *requiredPrefix; // @synthesize requiredPrefix=_requiredPrefix;
 @property(retain) DVTGradientImageButton *removeButton; // @synthesize removeButton=_removeButton;
 @property(retain) DVTGradientImageButton *refreshButton; // @synthesize refreshButton=_refreshButton;
 @property(retain) DVTGradientImageButton *addButton; // @synthesize addButton=_addButton;
@@ -52,7 +54,7 @@
 - (void)refreshIdentifiers:(id)arg1;
 - (void)removeIdentifiers:(id)arg1;
 - (void)addIdentifier:(id)arg1;
-- (void)inputDialogWithTitle:(id)arg1 description:(id)arg2 placeholderString:(id)arg3 initialString:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
+- (void)inputDialogWithTitle:(id)arg1 description:(id)arg2 initialString:(id)arg3 completionHandler:(CDUnknownBlockType)arg4;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
 - (void)tableView:(id)arg1 setObjectValue:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
 - (void)tableViewSelectionDidChange:(id)arg1;
@@ -64,7 +66,7 @@
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)loadView;
-- (id)initWithIdentifiers:(id)arg1 portalInfoDelegate:(id)arg2 defaultIdentifier:(id)arg3 contentName:(id)arg4 contentNameWithIndefiniteArticle:(id)arg5;
+- (id)initWithIdentifiers:(id)arg1 portalInfoDelegate:(id)arg2 defaultIdentifier:(id)arg3 requiredPrefix:(id)arg4 contentName:(id)arg5 contentNameWithIndefiniteArticle:(id)arg6;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,7 +6,7 @@
 
 #import "IDEIssueProvider.h"
 
-@class GPUDebuggerController, GPUSharedWorkspaceUIState, NSObject<OS_dispatch_queue>;
+@class DVTObservingToken, GPUDebuggerController, GPUSharedWorkspaceUIState, NSDictionary, NSObject<OS_dispatch_queue>;
 
 __attribute__((visibility("hidden")))
 @interface GPUAnalyzerFindingIssueProvider : IDEIssueProvider
@@ -14,13 +14,18 @@ __attribute__((visibility("hidden")))
     NSObject<OS_dispatch_queue> *_queue;
     GPUSharedWorkspaceUIState *_workspaceUIState;
     GPUDebuggerController *_controller;
-    id _gpudebuggingObserverToken;
+    id _gpuDebuggingNotifyToken;
+    DVTObservingToken *_debugStateObserverToken;
+    DVTObservingToken *_validObserverToken;
+    NSDictionary *_unsortedToSortedIndexMapDict;
 }
 
 + (int)providerType;
+@property(retain, nonatomic) NSDictionary *unsortedToSortedIndexMapDict; // @synthesize unsortedToSortedIndexMapDict=_unsortedToSortedIndexMapDict;
 - (void).cxx_destruct;
 - (id)displayNameForIssueTypeIdentifier:(id)arg1;
 - (void)_clearIssues;
+- (BOOL)_mapFunctionIndexUnsortedToSorted:(unsigned int *)arg1;
 - (id)_createIssueAndSubissuesFromAnalyzerFinding:(id)arg1;
 - (id)_createIssueFromAnalyzerFinding:(id)arg1;
 - (void)_recordNumIssues:(unsigned int)arg1;

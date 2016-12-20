@@ -6,7 +6,7 @@
 
 #import <XCSCore/XCSObject.h>
 
-@class NSArray, NSString, XCSBotSCMBlueprint, XCSDeviceSpecification;
+@class NSArray, NSDictionary, NSString, XCSBotSCMBlueprint, XCSDeviceSpecification, XCSToolchain;
 
 @interface XCSBotConfiguration : XCSObject
 {
@@ -14,35 +14,39 @@
     NSString *_userDescription;
 }
 
-+ (id)botConfigurationWithSchemeName:(id)arg1 buildConfiguration:(id)arg2 builtFromClean:(unsigned long long)arg3 performsAnalyzeAction:(BOOL)arg4 performsTestAction:(BOOL)arg5 performsArchiveAction:(BOOL)arg6 codeCoveragePreference:(unsigned long long)arg7 exportsProductFromArchive:(BOOL)arg8 triggers:(struct NSArray *)arg9 sourceControlBlueprint:(id)arg10 testingDestinationType:(unsigned long long)arg11 testingDeviceIDs:(id)arg12 deviceSpecification:(id)arg13 scheduleType:(unsigned long long)arg14 periodicScheduleInterval:(unsigned long long)arg15 weeklyScheduleDay:(long long)arg16 hourOfIntegration:(unsigned long long)arg17 minutesAfterHourToIntegrate:(unsigned long long)arg18 validationErrors:(id *)arg19;
++ (id)botConfigurationWithSchemeName:(id)arg1 buildConfiguration:(id)arg2 overrideToolchain:(id)arg3 builtFromClean:(unsigned long long)arg4 performsAnalyzeAction:(BOOL)arg5 performsTestAction:(BOOL)arg6 performsArchiveAction:(BOOL)arg7 codeCoveragePreference:(unsigned long long)arg8 exportsProductFromArchive:(BOOL)arg9 disableAppThinning:(BOOL)arg10 triggers:(struct NSArray *)arg11 sourceControlBlueprint:(id)arg12 testingDestinationType:(unsigned long long)arg13 testingDeviceIDs:(id)arg14 deviceSpecification:(id)arg15 scheduleType:(unsigned long long)arg16 periodicScheduleInterval:(unsigned long long)arg17 weeklyScheduleDay:(long long)arg18 hourOfIntegration:(unsigned long long)arg19 minutesAfterHourToIntegrate:(unsigned long long)arg20 performsUpgradeIntegration:(BOOL)arg21 buildEnvironmentVariables:(id)arg22 validationErrors:(id *)arg23;
 @property(readonly, copy) NSString *userDescription; // @synthesize userDescription=_userDescription;
 @property(retain) XCSBotSCMBlueprint *sourceControlBlueprint; // @synthesize sourceControlBlueprint;
 - (void).cxx_destruct;
-- (BOOL)_validateSchemeName:(id)arg1 buildConfiguration:(id)arg2 builtFromClean:(unsigned long long)arg3 performsAnalyzeAction:(BOOL)arg4 performsTestAction:(BOOL)arg5 performsArchiveAction:(BOOL)arg6 codeCoveragePreference:(unsigned long long)arg7 exportsProductFromArchive:(BOOL)arg8 triggers:(struct NSArray *)arg9 sourceControlBlueprint:(id)arg10 testingDestinationType:(unsigned long long)arg11 testingDeviceIDs:(id)arg12 deviceSpecification:(id)arg13 scheduleType:(unsigned long long)arg14 periodicScheduleInterval:(unsigned long long)arg15 weeklyScheduleDay:(long long)arg16 hourOfIntegration:(unsigned long long)arg17 minutesAfterHourToIntegrate:(unsigned long long)arg18 validationErrors:(id *)arg19;
+- (BOOL)_validateSchemeName:(id)arg1 buildConfiguration:(id)arg2 overrideToolchain:(id)arg3 builtFromClean:(unsigned long long)arg4 performsAnalyzeAction:(BOOL)arg5 performsTestAction:(BOOL)arg6 performsArchiveAction:(BOOL)arg7 codeCoveragePreference:(unsigned long long)arg8 exportsProductFromArchive:(BOOL)arg9 disableAppThinning:(BOOL)arg10 triggers:(struct NSArray *)arg11 sourceControlBlueprint:(id)arg12 testingDestinationType:(unsigned long long)arg13 testingDeviceIDs:(id)arg14 deviceSpecification:(id)arg15 scheduleType:(unsigned long long)arg16 periodicScheduleInterval:(unsigned long long)arg17 weeklyScheduleDay:(long long)arg18 hourOfIntegration:(unsigned long long)arg19 minutesAfterHourToIntegrate:(unsigned long long)arg20 buildEnvironmentVariables:(id)arg21 validationErrors:(id *)arg22;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)initWithSchemeName:(id)arg1 buildConfiguration:(id)arg2 builtFromClean:(unsigned long long)arg3 performsAnalyzeAction:(BOOL)arg4 performsTestAction:(BOOL)arg5 performsArchiveAction:(BOOL)arg6 codeCoveragePreference:(unsigned long long)arg7 exportsProductFromArchive:(BOOL)arg8 triggers:(struct NSArray *)arg9 sourceControlBlueprint:(id)arg10 testingDestinationType:(unsigned long long)arg11 testingDeviceIDs:(id)arg12 deviceSpecification:(id)arg13 scheduleType:(unsigned long long)arg14 periodicScheduleInterval:(unsigned long long)arg15 weeklyScheduleDay:(long long)arg16 hourOfIntegration:(unsigned long long)arg17 minutesAfterHourToIntegrate:(unsigned long long)arg18 validationErrors:(id *)arg19;
+- (id)initWithSchemeName:(id)arg1 buildConfiguration:(id)arg2 overrideToolchain:(id)arg3 builtFromClean:(unsigned long long)arg4 performsAnalyzeAction:(BOOL)arg5 performsTestAction:(BOOL)arg6 performsArchiveAction:(BOOL)arg7 codeCoveragePreference:(unsigned long long)arg8 exportsProductFromArchive:(BOOL)arg9 disableAppThinning:(BOOL)arg10 triggers:(struct NSArray *)arg11 sourceControlBlueprint:(id)arg12 testingDestinationType:(unsigned long long)arg13 testingDeviceIDs:(id)arg14 deviceSpecification:(id)arg15 scheduleType:(unsigned long long)arg16 periodicScheduleInterval:(unsigned long long)arg17 weeklyScheduleDay:(long long)arg18 hourOfIntegration:(unsigned long long)arg19 minutesAfterHourToIntegrate:(unsigned long long)arg20 performsUpgradeIntegration:(BOOL)arg21 buildEnvironmentVariables:(id)arg22 validationErrors:(id *)arg23;
 - (id)saveRepresentationHumanReadable:(BOOL)arg1;
 - (id)saveRepresentation;
 - (id)dictionaryRepresentation;
 - (id)description;
 
 // Remaining properties
-@property NSString *buildConfiguration; // @dynamic buildConfiguration;
+@property(retain) NSString *buildConfiguration; // @dynamic buildConfiguration;
+@property(retain) NSDictionary *buildEnvironmentVariables; // @dynamic buildEnvironmentVariables;
 @property unsigned long long builtFromClean; // @dynamic builtFromClean;
 @property unsigned long long codeCoveragePreference; // @dynamic codeCoveragePreference;
-@property XCSDeviceSpecification *deviceSpecification; // @dynamic deviceSpecification;
+@property(retain) XCSDeviceSpecification *deviceSpecification; // @dynamic deviceSpecification;
+@property BOOL disableAppThinning; // @dynamic disableAppThinning;
 @property BOOL exportsProductFromArchive; // @dynamic exportsProductFromArchive;
 @property unsigned long long hourOfIntegration; // @dynamic hourOfIntegration;
 @property unsigned long long minutesAfterHourToIntegrate; // @dynamic minutesAfterHourToIntegrate;
+@property(retain) XCSToolchain *overrideToolchain; // @dynamic overrideToolchain;
 @property BOOL performsAnalyzeAction; // @dynamic performsAnalyzeAction;
 @property BOOL performsArchiveAction; // @dynamic performsArchiveAction;
 @property BOOL performsTestAction; // @dynamic performsTestAction;
+@property BOOL performsUpgradeIntegration; // @dynamic performsUpgradeIntegration;
 @property unsigned long long periodicScheduleInterval; // @dynamic periodicScheduleInterval;
 @property unsigned long long scheduleType; // @dynamic scheduleType;
 @property(copy) NSString *schemeName; // @dynamic schemeName;
 @property unsigned long long testingDestinationType; // @dynamic testingDestinationType;
-@property NSArray *testingDeviceIDs; // @dynamic testingDeviceIDs;
-@property NSArray *triggers; // @dynamic triggers;
+@property(retain) NSArray *testingDeviceIDs; // @dynamic testingDeviceIDs;
+@property(retain) NSArray *triggers; // @dynamic triggers;
 @property long long weeklyScheduleDay; // @dynamic weeklyScheduleDay;
 
 @end

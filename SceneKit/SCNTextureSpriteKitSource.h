@@ -16,6 +16,7 @@ __attribute__((visibility("hidden")))
 }
 
 @property(retain, nonatomic) SKScene *scene; // @synthesize scene=_scene;
+- (id)metalTextureWithEngineContext:(struct __C3DEngineContext *)arg1 textureSampler:(struct __C3DTextureSampler *)arg2 nextFrameTime:(double *)arg3;
 - (struct __C3DTexture *)textureWithEngineContext:(struct __C3DEngineContext *)arg1 textureSampler:(struct __C3DTextureSampler *)arg2 nextFrameTime:(double *)arg3;
 - (void)cleanup:(struct __C3DRendererContext *)arg1;
 - (double)__updateTextureWithSKScene:(id)arg1 engineContext:(struct __C3DEngineContext *)arg2 sampler:(struct __C3DTextureSampler *)arg3;

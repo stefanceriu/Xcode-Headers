@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
+
 @class NSString;
 
-@interface DVTArchitecture : NSObject
+@interface DVTArchitecture : NSObject <NSCopying>
 {
     BOOL _is64Bit;
     int _CPUType;
@@ -28,6 +30,7 @@
 @property(readonly, copy) NSString *canonicalName; // @synthesize canonicalName=_canonicalName;
 - (void).cxx_destruct;
 - (_Bool)matchesCPUType:(int)arg1 andSubType:(int)arg2;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
 - (id)initWithExtension:(id)arg1;
 - (id)initWithCanonicalName:(id)arg1 displayName:(id)arg2 CPUType:(int)arg3 CPUSubType:(int)arg4 is64Bit:(BOOL)arg5;

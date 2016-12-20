@@ -10,14 +10,15 @@
 {
 }
 
-+ (id)assetComponentIDForAssetChild:(id)arg1;
 - (void)removeAssetComponentIDsFromUIImmediately:(id)arg1;
 - (void)pushData;
-- (id)cachedDecodedDragImages;
-- (void)setCachedDecodedDragImages:(CDUnknownBlockType)arg1;
+- (id)assetComponentIDForAssetComponent:(id)arg1;
+- (id)assetComponentForAssetComponentID:(id)arg1;
 - (Class)assetCapsuleClass;
 - (id)assetCapsule;
 - (id)asset;
+- (BOOL)displaysChildrenOfItem:(id)arg1;
+- (id)displayableDescendants;
 
 @end
 

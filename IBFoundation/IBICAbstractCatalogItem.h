@@ -8,10 +8,11 @@
 
 #import "NSCoding.h"
 
-@class NSArray, NSData, NSDate, NSDictionary, NSMutableDictionary, NSOrderedSet, NSSet, NSString, NSURL;
+@class NSArray, NSData, NSDate, NSDictionary, NSMutableDictionary, NSNumber, NSOrderedSet, NSSet, NSString, NSURL;
 
 @interface IBICAbstractCatalogItem : NSObject <NSCoding>
 {
+    int _retainCountMinusOne;
     NSDictionary *_cachedChildrenByIdentifier;
     NSArray *_cachedDisplayOrderedChildren;
     NSOrderedSet *_intrinsicallyOrderedChildren;
@@ -27,13 +28,18 @@
     NSDate *_manifestModificationDate;
     NSSet *_children;
     NSSet *_explicitTags;
+    NSNumber *_compressionType;
 }
 
++ (long long)validateCompressionType:(long long)arg1;
++ (BOOL)ecnodesCompressionForChildren;
++ (BOOL)supportsCompression;
 + (id)fileUTIsToAllowInUnstructuredImport;
 + (id)fileExtensionsToAllowInUnstructuredImport;
 + (id)syntehsizeItemsFromLoosePaths:(id)arg1 claimingPaths:(id *)arg2;
 + (id)importPriority;
 + (id)contentReferenceTypeName;
++ (id)catalogItemFileExtensionWithAlternatesForReading;
 + (id)catalogItemFileExtension;
 + (id)defaultEmbeddedInstanceForIdioms:(id)arg1 enforceStrictIdioms:(BOOL)arg2;
 + (BOOL)isAbstractCatalogItemClass;
@@ -48,6 +54,7 @@
 + (id)allDescendantsOfItemsIncludingItems:(id)arg1;
 + (BOOL)areItemsFromSameRoot:(id)arg1;
 + (id)pluralTypeNameForIssues;
++ (id)typeNameForDisplay;
 + (id)typeNameForIssues;
 + (id)classNameComponents;
 + (id)uniqueKeyForCatalogCompilationSelection;
@@ -56,6 +63,7 @@
 + (BOOL)canHostItems:(id)arg1;
 + (BOOL)canHostItemsOfClass:(Class)arg1;
 + (id)keysThatImpactDisplayOrder;
++ (BOOL)fileNameIsIdentifier;
 + (id)keysThatImpactIdentifier;
 + (BOOL)displayNameIsItemName;
 + (BOOL)itemNameIsFileNameWithoutCatalogExtension;
@@ -65,6 +73,8 @@
 + (id)itemWithItemName:(id)arg1;
 + (id)itemWithContentsOfPath:(id)arg1 results:(id)arg2;
 + (id)allocWithZone:(struct _NSZone *)arg1;
++ (id)createDefaultInstancesForUnitTesting;
+@property(copy, nonatomic) NSNumber *compressionType; // @synthesize compressionType=_compressionType;
 @property(copy, nonatomic) NSSet *explicitTags; // @synthesize explicitTags=_explicitTags;
 @property(readonly, nonatomic) NSOrderedSet *intrinsicallyOrderedChildren; // @synthesize intrinsicallyOrderedChildren=_intrinsicallyOrderedChildren;
 @property(readonly, nonatomic) NSSet *children; // @synthesize children=_children;
@@ -77,10 +87,14 @@
 @property long long descendantChangeCount; // @synthesize descendantChangeCount=_descendantChangeCount;
 @property long long changeCount; // @synthesize changeCount=_changeCount;
 - (void).cxx_destruct;
+- (BOOL)isEqualForUnitTests:(id)arg1;
+- (long long)effectiveCompressionType;
+- (long long)incrementThumbnailSourceChangeGeneration;
 - (id)flushCachedDisplayValuesAndRecursivelyNotifyAboutDisplayPropertiesChanged;
 - (id)flushCachedDisplayValues;
 - (id)cachedValueForDisplayProperty:(id)arg1;
 - (void)setCachedValue:(id)arg1 forDisplayProperty:(id)arg2;
+- (id)classesForImportingLooseFilesInImportOrder;
 - (id)requiredSizeForChild:(id)arg1;
 - (id)nameForContentReferenceMatchingWithStyle:(long long)arg1;
 - (void)replaceChildrenFromFileSystemSnapshot:(id)arg1 results:(id)arg2;
@@ -97,8 +111,7 @@
 - (id)allDescendantsExcludingReceiver;
 - (id)allDescendantsIncludingReceiver;
 - (id)catalog;
-- (id)enclosingFolderExcludingReceiver;
-- (id)enclosingFolderIncludingReceiver;
+- (id)destinationContainerForItemsInDropIncludingReceiver:(id)arg1;
 - (id)enclosingItemOfClass:(Class)arg1 includingReceiver:(BOOL)arg2;
 - (id)enclosingItemThatCanHostItems:(id)arg1 includingReceiver:(BOOL)arg2;
 - (id)firstEnclosingItemIncludingReceiver:(BOOL)arg1 passingTest:(CDUnknownBlockType)arg2;
@@ -111,8 +124,9 @@
 - (void)updateDescendantChangeCount;
 - (void)updateChangeCount;
 - (id)descriptionShortClassName;
-- (id)pluralTypeNameForIssues;
-- (id)typeNameForIssues;
+@property(readonly, nonatomic) NSString *pluralTypeNameForIssues;
+@property(readonly, nonatomic) NSString *typeNameForDisplay;
+@property(readonly, nonatomic) NSString *typeNameForIssues;
 - (void)populateIssues:(id)arg1 context:(id)arg2;
 - (BOOL)exportToURL:(id)arg1 error:(id *)arg2;
 - (id)fileWrapperRepresentationWithOptions:(unsigned long long)arg1;
@@ -140,6 +154,7 @@
 - (void)populateMutatorsToAddRequiredChildCounterparts:(id)arg1;
 - (void)removeAllChildren;
 - (void)removeFromParent;
+- (void)addChildren:(id)arg1 andUpdateIdentifierToBeUnique:(BOOL)arg2;
 - (void)addChildren:(id)arg1;
 - (void)removeChildren:(id)arg1;
 - (void)removeChild:(id)arg1;
@@ -147,7 +162,7 @@
 - (void)updateIdentifierOfIncommingChildToBeUnique:(id)arg1;
 - (void)addChild:(id)arg1;
 - (void)insertChild:(id)arg1 atIndex:(id)arg2;
-@property(readonly, nonatomic) int childOrdering;
+@property(readonly, nonatomic) long long childOrdering;
 - (id)fullyQualifiedRuntimeNameProvidingItemForCARCompiler;
 - (id)fullyQualifiedRuntimeName;
 - (id)fullyQualifiedRuntimeNameWithSeparator:(id)arg1;
@@ -170,7 +185,8 @@
 @property(readonly, nonatomic) NSString *relativeIdentifierPath;
 @property(copy, nonatomic) NSString *absoluteFilePath;
 - (id)effectiveContainingDirectory;
-@property(readonly, nonatomic) BOOL canBeEmbeddedInFolder;
+- (BOOL)canBeEmbeddedInContainerOfType:(Class)arg1;
+- (BOOL)canBeEmbeddedInContainer:(id)arg1;
 @property(readonly, nonatomic) BOOL canHaveChildren;
 @property(readonly, nonatomic) NSString *identifier;
 @property(readonly, nonatomic) NSString *nameForIssues;
@@ -182,6 +198,7 @@
 - (id)itemNameForProposedFileName:(id)arg1;
 - (id)fileNameForProposedItemName:(id)arg1;
 - (id)validatedFileNameForProposedFileName:(id)arg1;
+- (void)updateInitialModificationDateForOnDiskMutationIfNecessaryWithMutationResult:(id)arg1;
 - (BOOL)updateModificationDatesWithMutationResult:(id)arg1;
 - (void)setAssetDataFromPath:(id)arg1;
 @property(copy, nonatomic) NSData *assetData;
@@ -190,12 +207,14 @@
 - (void)updateManifestModificationDate:(id)arg1;
 - (BOOL)isSynchronizedWithSnapshot:(id)arg1;
 - (BOOL)fileStructureSnapshotChildWouldMapToModelChild:(id)arg1;
+@property(readonly) BOOL recursivelyContainsAssetData;
 @property(readonly) BOOL isBrokenFileReference;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 - (void)enumerateSizeProvidingItemsForValidatingBrandAssetCollection:(CDUnknownBlockType)arg1;
-- (BOOL)populateNamedAssetImportInfo:(id)arg1 allCompiledItems:(id)arg2 error:(id *)arg3;
+- (BOOL)populateNamedAssetImportInfo:(id)arg1 allCompiledItems:(id)arg2 withOptions:(id)arg3 error:(id *)arg4;
+- (id)fullyQualifiedRuntimeNameWithOptions:(id)arg1;
 - (Class)manifestArchivist:(id)arg1 childClassForChildEntry:(id)arg2 results:(id)arg3;
 - (void)manifestArchivist:(id)arg1 finishCreatingChildren:(CDStruct_dbbaf529 *)arg2;
 - (long long)manifestArchivist:(id)arg1 orderChildrenForSlotConflictResolutionByComparing:(id)arg2 to:(id)arg3;
@@ -205,7 +224,6 @@
 - (void)manifestArchivist:(id)arg1 populateManifestEntry:(id)arg2 forChild:(id)arg3;
 - (BOOL)manifestArchivist:(id)arg1 childHasDataToRecordInManifest:(id)arg2;
 - (void)manifestArchivist:(id)arg1 populateManifest:(id)arg2;
-- (void)manifestArchivist:(id)arg1 populateInfoDictionary:(id)arg2;
 - (void)manifestArchivist:(id)arg1 applyPropertiesFromManifest:(id)arg2;
 - (BOOL)manifestArchivist:(id)arg1 validateManifest:(id)arg2 results:(id)arg3;
 - (CDStruct_39925896)manifestArchivistCompatibilityVersionInfo:(id)arg1;
@@ -214,6 +232,11 @@
 - (unsigned long long)manifestArchivist:(id)arg1 conflictStateForChild:(id)arg2;
 - (id)manifestArchivist:(id)arg1 slotForChild:(id)arg2;
 - (Class)manifestArchivistSlotClassForChildren:(id)arg1;
+- (BOOL)_isDeallocating;
+- (BOOL)_tryRetain;
+- (unsigned long long)retainCount;
+- (oneway void)release;
+- (id)retain;
 
 @end
 

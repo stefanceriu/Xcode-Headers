@@ -13,8 +13,9 @@
 @interface IDENavBar : DVTLayoutView_ML <DVTInvalidation>
 {
     DVTBorderedView *_pathBorderedView;
+    BOOL _drawsTopBorder;
+    BOOL _drawsLeftBorder;
     BOOL _isGrouped;
-    int _borderSides;
     IDEPathControl *_pathControl;
     IDEControlGroup *_leftControlGroup;
     IDEControlGroup *_rightControlGroup;
@@ -31,10 +32,11 @@
 + (id)borderColorForGradientStyle:(int)arg1;
 + (void)initialize;
 @property BOOL isGrouped; // @synthesize isGrouped=_isGrouped;
-@property(nonatomic) int borderSides; // @synthesize borderSides=_borderSides;
 @property(retain) IDEControlGroup *rightControlGroup; // @synthesize rightControlGroup=_rightControlGroup;
 @property(retain) IDEControlGroup *leftControlGroup; // @synthesize leftControlGroup=_leftControlGroup;
 @property(retain) IDEPathControl *pathControl; // @synthesize pathControl=_pathControl;
+@property(nonatomic) BOOL drawsLeftBorder; // @synthesize drawsLeftBorder=_drawsLeftBorder;
+@property(nonatomic) BOOL drawsTopBorder; // @synthesize drawsTopBorder=_drawsTopBorder;
 - (void).cxx_destruct;
 - (void)refreshColorsForXcode5UI:(BOOL)arg1;
 - (void)_updateFocusStyleForGradientStyle:(int)arg1;
@@ -48,7 +50,6 @@
 - (void)_IDENavBarSharedInit;
 - (void)layoutBottomUp;
 - (void)layoutTopDown;
-- (void)_updateBorderSidesForSubviews;
 - (id)accessibilityAttributeValue:(id)arg1;
 - (BOOL)accessibilityIsIgnored;
 

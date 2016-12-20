@@ -10,6 +10,8 @@
 {
 }
 
+- (void)setError:(id)arg1;
+- (id)progressLoadingViewController;
 - (void)awakeFromNib;
 
 @end

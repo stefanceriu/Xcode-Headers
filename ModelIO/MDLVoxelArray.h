@@ -4,50 +4,57 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <ModelIO/MDLObject.h>
 
-@interface MDLVoxelArray : NSObject
+@interface MDLVoxelArray : MDLObject
 {
     struct unordered_map<unsigned long long, int, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, int>>> _voxels;
     // Error parsing type: {?="minimumExtent""maximumExtent"}, name: _extent
     // Error parsing type: {MDLAABB="maxBounds""minBounds"}, name: _bounds
     float _voxelExtent;
     struct MortonCode mortonCoder;
+    struct unique_ptr<ModelIO::Octree, std::__1::default_delete<ModelIO::Octree>> _octreeData;
+    BOOL _levelSet;
+    float _interiorThickness;
+    float _exteriorThickness;
+    // Error parsing type: , name: _originatingOffset
 }
 
+@property(nonatomic) float shellFieldExteriorThickness; // @synthesize shellFieldExteriorThickness=_exteriorThickness;
+@property(nonatomic) float shellFieldInteriorThickness; // @synthesize shellFieldInteriorThickness=_interiorThickness;
 @property(readonly, nonatomic) struct voxelIndexExtent; // @synthesize voxelIndexExtent=_extent;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (int)erodeExterior;
-- (int)erodeInterior;
-- (int)dilateExterior;
-- (int)dilateInterior;
-- (void)intersectWithVoxels:(id)arg1;
-- (void)differenceWithVoxels:(id)arg1;
-- (void)unionWithVoxels:(id)arg1;
-- (void)clearVoxelsWithIndexData:(id)arg1;
-- (void)setVoxelsWithVoxelData:(id)arg1;
-- (id)voxelIndices;
-- (id)voxelsWithinExtent:(struct)arg1;
-- (void)setVoxelsForMesh:(id)arg1 divisions:(int)arg2 interiorNBWidth:(float)arg3 exteriorNBWidth:(float)arg4;
-- (void)setVoxelsForMesh:(id)arg1 divisions:(int)arg2 interiorShells:(int)arg3 exteriorShells:(int)arg4;
 - (void)setVoxelsForMesh:(id)arg1 divisions:(int)arg2 interiorNBWidth:(float)arg3 exteriorNBWidth:(float)arg4 patchRadius:(float)arg5;
 - (void)setVoxelsForMesh:(id)arg1 divisions:(int)arg2 interiorShells:(int)arg3 exteriorShells:(int)arg4 patchRadius:(float)arg5;
-- (void)setVoxelAtIndex: /* Error: Ran out of types for this method. */;
-- (BOOL)voxelExistsAtIndex:(BOOL)arg1 allowAnyX:(BOOL)arg2 allowAnyY:(BOOL)arg3 allowAnyZ:(BOOL)arg4 allowAnyShell: /* Error: Ran out of types for this method. */;
-- (void)recalculateExtents;
-- (id)meshUsingAllocator:(id)arg1;
-- (id)initWithData:(id)arg1 boundingBox:(struct)arg2 voxelExtent:(float)arg3;
-- (id)initWithAsset:(id)arg1 divisions:(int)arg2 interiorNBWidth:(float)arg3 exteriorNBWidth:(float)arg4;
 - (id)initWithAsset:(id)arg1 divisions:(int)arg2 interiorNBWidth:(float)arg3 exteriorNBWidth:(float)arg4 patchRadius:(float)arg5;
-- (id)initWithAsset:(id)arg1 divisions:(int)arg2 interiorShells:(int)arg3 exteriorShells:(int)arg4;
 - (id)initWithAsset:(id)arg1 divisions:(int)arg2 interiorShells:(int)arg3 exteriorShells:(int)arg4 patchRadius:(float)arg5;
-- (id)init;
-@property(readonly, nonatomic) unsigned long long count;
-@property(readonly, nonatomic) struct boundingBox;
+- (vector_3203cf93)boxesPerLayer;
+- (id)coarseVoxelMeshWithStyle:(unsigned long long)arg1;
+- (id)meshUsingAllocator:(id)arg1;
+- (id)coarseMesh;
+- (id)coarseMeshUsingAllocator:(id)arg1;
+- (void)erodeNarrowBandInteriorWidthTo:(float)arg1 AndExteriorWidthTo:(float)arg2;
+- (void)dilateNarrowBandInteriorWidthTo:(float)arg1 AndExteriorWidthTo:(float)arg2;
+@property(readonly, nonatomic) BOOL isValidSignedShellField;
+- (void)convertToSignedShellField;
 - (struct)voxelBoundingBoxAtIndex: /* Error: Ran out of types for this method. */;
--     // Error parsing type: 32@0:816, name: indexOfSpatialLocation:
 -     // Error parsing type: 32@0:816, name: spatialLocationOfIndex:
+-     // Error parsing type: 32@0:816, name: indexOfSpatialLocation:
+@property(readonly, nonatomic) struct boundingBox;
+- (void)differenceWithVoxels:(id)arg1;
+- (void)intersectWithVoxels:(id)arg1;
+- (void)unionWithVoxels:(id)arg1;
+- (void)setVoxelsForMesh:(id)arg1 divisions:(int)arg2 patchRadius:(float)arg3;
+- (void)setVoxelAtIndex: /* Error: Ran out of types for this method. */;
+- (id)voxelIndices;
+- (id)voxelsWithinExtent:(struct)arg1;
+- (BOOL)voxelExistsAtIndex:(BOOL)arg1 allowAnyX:(BOOL)arg2 allowAnyY:(BOOL)arg3 allowAnyZ:(BOOL)arg4 allowAnyShell: /* Error: Ran out of types for this method. */;
+@property(readonly, nonatomic) unsigned long long count;
+- (id)initWithData:(id)arg1 boundingBox:(struct)arg2 voxelExtent:(float)arg3;
+- (id)initWithAsset:(id)arg1 divisions:(int)arg2 patchRadius:(float)arg3;
+- (id)init;
+- (void)recalculateExtents;
 
 @end
 

@@ -6,7 +6,7 @@
 
 #import <IDEInterfaceBuilderKit/IBCanvasOverlay.h>
 
-@class NSArray, NSShadow, NSTimer;
+@class NSArray, NSShadow, NSTimer, NSView;
 
 @interface IBTargetIdentifier : IBCanvasOverlay
 {
@@ -20,11 +20,15 @@
     NSArray *labelBorderRects;
     NSTimer *cancelationTimer;
     NSShadow *labelShadow;
+    BOOL _shiftsLabelsToKeepInBounds;
+    NSView *_frameRelativeView;
 }
 
 + (id)showTargetsWithSpecifiers:(id)arg1 forDuration:(double)arg2;
 + (void)runTargetIdentificationGroup:(CDUnknownBlockType)arg1;
 + (void)cancelAllOutstandingIdentifiers;
+@property(nonatomic) BOOL shiftsLabelsToKeepInBounds; // @synthesize shiftsLabelsToKeepInBounds=_shiftsLabelsToKeepInBounds;
+@property(retain, nonatomic) NSView *frameRelativeView; // @synthesize frameRelativeView=_frameRelativeView;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)drawInsertionLineInRect:(struct CGRect)arg1;
@@ -39,9 +43,9 @@
 - (id)targetBackgroundGradient;
 - (id)targetInsideBorderColor;
 - (id)targetBorderColor;
-- (id)specifierWithFrameGenerator:(id)arg1 label:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)specifierWithLabel:(id)arg1 frameGenerator:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)showInsertionLinesWithFrameGenerators:(id)arg1 andLabels:(id)arg2 forDuration:(double)arg3;
-- (void)refreshGeneratedValues;
+- (void)refreshGeneratedRects;
 - (id)showTargetsWithSpecifiers:(id)arg1 forDuration:(double)arg2;
 - (id)showTargetsWithFrameGenerators:(id)arg1 andLabels:(id)arg2 forDuration:(double)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)cancelAllNotification:(id)arg1;
@@ -54,9 +58,13 @@
 - (id)attributedLabelForLabel:(id)arg1;
 - (id)labelAttributes;
 - (id)labelParagraphStyle;
+- (struct CGRect)boundingRectInFrameRelativeView;
 - (void)setLabelBorderRects:(id)arg1;
+- (struct CGRect)_localBoundingRectForFrameRelativeLabelBorderRect:(struct CGRect)arg1;
 - (void)setInsertionRects:(id)arg1;
+- (struct CGRect)_localBoundingRectForFrameRelativeInsertionRect:(struct CGRect)arg1;
 - (void)setTargetRects:(id)arg1;
+- (struct CGRect)_localBoundingRectForFrameRelativeTargetRect:(struct CGRect)arg1;
 - (double)insertionLineOutsideStrokeWidth;
 - (double)insertionLineStrokeWidth;
 - (double)insertionLineEndPointSize;

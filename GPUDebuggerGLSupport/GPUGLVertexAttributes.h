@@ -45,6 +45,8 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) int attributeCount;
 - (id)initWithResource:(id)arg1;
 - (id)init;
+- (id)getElementAttribute;
+- (id)getAttributes;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

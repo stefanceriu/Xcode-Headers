@@ -64,11 +64,11 @@
 - (id)selectedTestsAndTestables;
 - (id)testingExpressionUsingContextMenu:(BOOL)arg1;
 - (id)refactoringExpressionUsingContextMenu:(BOOL)arg1;
-- (void)_updateFilterPredicate;
+- (void)_updateFilter;
 - (void)_updateTableCellViewsUIState:(id)arg1;
 - (void)_updateTableCellViewsUIStateForNavItem:(id)arg1;
 - (void)_updateSchemeFilter;
-- (void)setFilterPredicate:(id)arg1;
+- (void)setFilter:(id)arg1;
 - (id)filterDefinitionIdentifier;
 - (void)focusedEditorDidSelectItem:(id)arg1;
 - (void)revealTestsAndTestables:(id)arg1;

@@ -8,15 +8,15 @@
 
 #import "IBBinaryArchiving.h"
 
-@class NSString;
+@class NSObject<IBObjectRepresentationTranslator>, NSString;
 
 @interface IBObjectBasedMarshallingResult : NSObject <IBBinaryArchiving>
 {
     NSString *_identifier;
-    id <IBObjectRepresentationTranslator> _archivingTranslationContext;
+    NSObject<IBObjectRepresentationTranslator> *_archivingTranslationContext;
 }
 
-@property(readonly, nonatomic) id <IBObjectRepresentationTranslator> archivingTranslationContext; // @synthesize archivingTranslationContext=_archivingTranslationContext;
+@property(readonly, nonatomic) NSObject<IBObjectRepresentationTranslator> *archivingTranslationContext; // @synthesize archivingTranslationContext=_archivingTranslationContext;
 @property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (void)didFinishEncodingWithBinaryArchiver:(id)arg1;

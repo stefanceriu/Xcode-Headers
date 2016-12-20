@@ -99,7 +99,9 @@
 + (id)inactiveLayoutGuideLabelFillColor;
 + (id)layoutGuideLabelFrameColor;
 + (id)layoutGuideLabelFillColor;
-+ (id)liveLayoutGuideColor;
++ (id)_liveLayoutGuidePatternColorVertical:(BOOL)arg1;
++ (id)liveLayoutGuideVerticalPatternColor;
++ (id)liveLayoutGuideHorizontalPatternColor;
 + (id)measurementLineColor;
 + (id)systemGuideColor;
 + (id)userGuideColor;
@@ -112,6 +114,7 @@
 + (id)layoutRectColor;
 + (id)boundsRectColor;
 + (id)targetIdentifierColor;
++ (id)darkDeviceBezelColor;
 + (id)connectionLineShadowColor;
 + (id)connectionLineFillColor;
 + (id)connectionLineStrokeColor;

@@ -6,22 +6,40 @@
 
 #import <GPUDebuggerFoundation/GPUTraceResourceItem.h>
 
-@class GPUTraceShaderItem;
+#import "DYPProgramItem.h"
 
-@interface GPUTraceProgramItem : GPUTraceResourceItem
+@class GPUTraceShaderItem, NSMutableArray, NSMutableDictionary, NSString;
+
+@interface GPUTraceProgramItem : GPUTraceResourceItem <DYPProgramItem>
 {
     BOOL _pipeline;
     GPUTraceShaderItem *_defaultShaderItem;
 }
 
-@property(readonly, nonatomic, getter=isPipeline) BOOL pipeline; // @synthesize pipeline=_pipeline;
 @property(nonatomic) GPUTraceShaderItem *defaultShaderItem; // @synthesize defaultShaderItem=_defaultShaderItem;
+@property(readonly, nonatomic, getter=isPipeline) BOOL pipeline; // @synthesize pipeline=_pipeline;
 - (void)primitiveInvalidate;
-- (id)initProgramWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 isPipeline:(BOOL)arg4 unrealizedResourceObject:(const void *)arg5 containerID:(unsigned long long)arg6 sharegroupID:(unsigned long long)arg7 label:(id)arg8;
-- (id)initComputePipelineStateWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 unrealizedResourceObject:(const void *)arg4 containerID:(unsigned long long)arg5 label:(id)arg6;
-- (id)initRenderPipelineStateWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 unrealizedResourceObject:(const void *)arg4 containerID:(unsigned long long)arg5 label:(id)arg6;
-- (id)_initWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 unrealizedResourceObject:(const void *)arg4 containerID:(unsigned long long)arg5 sharegroupID:(unsigned long long)arg6 label:(id)arg7 type:(unsigned int)arg8;
+- (id)initProgramWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 isPipeline:(BOOL)arg4 stateMirrorObject:(const void *)arg5 containerID:(unsigned long long)arg6 sharegroupID:(unsigned long long)arg7 identifier:(id)arg8;
+- (id)initComputePipelineStateWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 stateMirrorObject:(const void *)arg4 containerID:(unsigned long long)arg5 identifier:(id)arg6;
+- (id)initRenderPipelineStateWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 stateMirrorObject:(const void *)arg4 containerID:(unsigned long long)arg5 identifier:(id)arg6;
+- (id)_initWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 stateMirrorObject:(const void *)arg4 containerID:(unsigned long long)arg5 sharegroupID:(unsigned long long)arg6 identifier:(id)arg7 type:(unsigned int)arg8;
 - (void)establishChildren;
+
+// Remaining properties
+@property(retain, nonatomic) NSMutableArray *children;
+@property(readonly, nonatomic) unsigned long long containerID;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) unsigned int functionIndex;
+@property(readonly, nonatomic) BOOL generatesThumbnail;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSString *identifier;
+@property(retain, nonatomic) NSString *label;
+@property(readonly, nonatomic) unsigned long long objectID;
+@property(readonly, nonatomic) NSMutableDictionary *properties;
+@property(readonly, nonatomic) const void *stateMirrorObject;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic) unsigned int type;
 
 @end
 

@@ -30,11 +30,14 @@
 - (BOOL)slotShouldHaveUILaunchImagesInfoPlistEntry:(id)arg1;
 - (id)launchImagesInfoPlistEntryForSlot:(id)arg1 withLaunchImageName:(id)arg2;
 - (struct CGSize)infoPlistPointSizeForLaunchScreenSlot:(id)arg1;
-- (id)compileAppIconFromSelection:(id)arg1 options:(id)arg2;
-- (id)propcessSystemPNGOutputImages:(id)arg1 forClass:(Class)arg2 withImageName:(id)arg3 fromCollection:(id)arg4 options:(id)arg5 populatingResults:(id)arg6 andReturningEmptyPlaceholder:(id *)arg7;
-- (id)propcessSystemPNGOutputImagesForClass:(Class)arg1 withImageName:(id)arg2 fromCollection:(id)arg3 ignoringItems:(id)arg4 options:(id)arg5 populatingResults:(id)arg6 andReturningEmptyPlaceholder:(id *)arg7;
+- (id)compileBundleIconFromSelection:(id)arg1 options:(id)arg2;
+- (long long)outputLocationForBundleIconSetRep:(id)arg1 withCompilationOptions:(id)arg2;
+- (void)processMissingStickersIconsUsingBaseImageName:(id)arg1 baseImages:(id)arg2 options:(id)arg3 populatingResults:(id)arg4;
+- (id)propcessSystemPNGOutputImages:(id)arg1 forClasses:(id)arg2 withImageName:(id)arg3 fromCollection:(id)arg4 options:(id)arg5 populatingResults:(id)arg6 andReturningEmptyPlaceholder:(id *)arg7;
+- (id)propcessSystemPNGOutputImagesForClasses:(id)arg1 withImageName:(id)arg2 fromCollection:(id)arg3 ignoringItems:(id)arg4 options:(id)arg5 populatingResults:(id)arg6 andReturningEmptyPlaceholder:(id *)arg7;
 - (id)imageCatalogCompilerOptionsFromToolArguments:(id)arg1 forCatalogCollection:(id)arg2 populatingResults:(id)arg3;
 - (id)targetPlatformForArguments:(id)arg1;
+- (id)minimumDeploymentTargetSupportingTexturesInCARFiles;
 - (id)minimumDeploymentTargetSupportingAppIcons;
 - (id)minimumDeploymentTargetSupportingDataInCARFiles;
 - (id)minimumDeploymentTargetSupportingSpriteAtlasesInCARFiles;

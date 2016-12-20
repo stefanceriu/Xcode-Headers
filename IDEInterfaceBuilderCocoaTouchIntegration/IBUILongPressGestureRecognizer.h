@@ -30,6 +30,7 @@
 - (id)initWithCoder:(id)arg1;
 - (BOOL)showAllowedPressTypes;
 - (id)ibSegueTriggers;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

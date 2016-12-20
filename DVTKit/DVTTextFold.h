@@ -21,10 +21,11 @@
 }
 
 + (id)keyPathsForValuesAffectingReplacementRange;
++ (id)keyPathsForValuesAffectingReplacementString;
 + (id)keyPathsForValuesAffectingDisplayString;
 + (id)foldsFromString:(id)arg1;
 + (id)decodeFold:(id)arg1 forParent:(id)arg2;
-+ (Class)_webViewAttachmentCellClass;
++ (Class)_markupViewAttachmentCellClass;
 + (Class)_inlineTokenAttachmentCellClass;
 + (void)initialize;
 @property(retain) id representedObject; // @synthesize representedObject=_representedObject;
@@ -37,6 +38,7 @@
 @property(readonly) NSAttributedString *foldedIconString;
 @property(readonly) NSTextAttachmentCell *attachmentCell; // @synthesize attachmentCell=_attachmentCell;
 @property(readonly) struct _NSRange replacementRange;
+@property(readonly) NSString *replacementString;
 @property(readonly) NSString *displayString;
 @property(readonly) NSMutableArray *children;
 @property(readonly) unsigned long long numberOfChildren;

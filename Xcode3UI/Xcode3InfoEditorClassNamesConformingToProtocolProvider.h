@@ -9,11 +9,12 @@
 #import "DVTInvalidation.h"
 #import "Xcode3InfoEditorListContentProvider.h"
 
-@class DVTObservingToken, DVTStackBacktrace, IDEWorkspace, NSArray, NSString;
+@class DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEWorkspace, NSArray, NSString;
 
 @interface Xcode3InfoEditorClassNamesConformingToProtocolProvider : NSObject <Xcode3InfoEditorListContentProvider, DVTInvalidation>
 {
     NSArray *_listContents;
+    DVTNotificationToken *_indexChangedNotificationToken;
     IDEWorkspace *_workspace;
     NSString *_protocolName;
     DVTObservingToken *_indexDidChangeObserver;

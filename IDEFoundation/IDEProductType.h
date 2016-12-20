@@ -18,6 +18,7 @@
 + (id)_expandedPlatformForBuildableProduct:(id)arg1;
 + (id)platformProductTypeOfBuildable:(id)arg1;
 + (id)productTypeForIdentifier:(id)arg1 platform:(id)arg2;
+- (long long)provisioningProfileSupport;
 - (BOOL)runsDirectlyOnProxy;
 - (BOOL)runsOnProxy;
 - (BOOL)installsOnProxy;
@@ -36,6 +37,7 @@
 @property(readonly) NSString *localizedDescription;
 @property(readonly) NSString *name;
 @property(readonly) NSString *identifier;
+- (id)debugDescription;
 
 @end
 

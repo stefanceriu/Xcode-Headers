@@ -8,14 +8,14 @@
 
 #import "DVTDraggingInfo.h"
 
-@class DVTDraggedImageState, NSDictionary, NSImage, NSMutableArray, NSPasteboard, NSSet, NSString, NSWindow;
+@class DVTDraggedImageState, NSDictionary, NSImage, NSMutableArray, NSPasteboard, NSString, NSValue, NSWindow;
 
 @interface DVTDraggingContext : NSObject <DVTDraggingInfo>
 {
     NSMutableArray *_invalidationPool;
     BOOL _draggedImageStateNeedsUpdate;
     BOOL _animatesToDestination;
-    NSSet *_draggingSnapGuides;
+    NSValue *_draggingSnapSuggestedOrigin;
     unsigned long long _draggingModifierFlags;
     long long _numberOfValidItemsForDrop;
     long long _draggingFormation;
@@ -29,7 +29,6 @@
     long long _draggingSequenceNumber;
     id _draggingSource;
     long long _springLoadingHighlight;
-    struct CGSize _draggingSnapOffset;
     struct CGPoint _draggingLocation;
     struct CGPoint _draggedImageLocation;
 }
@@ -50,8 +49,7 @@
 @property long long numberOfValidItemsForDrop; // @synthesize numberOfValidItemsForDrop=_numberOfValidItemsForDrop;
 @property BOOL animatesToDestination; // @synthesize animatesToDestination=_animatesToDestination;
 @property(nonatomic) unsigned long long draggingModifierFlags; // @synthesize draggingModifierFlags=_draggingModifierFlags;
-@property(nonatomic) struct CGSize draggingSnapOffset; // @synthesize draggingSnapOffset=_draggingSnapOffset;
-@property(retain, nonatomic) NSSet *draggingSnapGuides; // @synthesize draggingSnapGuides=_draggingSnapGuides;
+@property(retain, nonatomic) NSValue *draggingSnapSuggestedOrigin; // @synthesize draggingSnapSuggestedOrigin=_draggingSnapSuggestedOrigin;
 @property(nonatomic) BOOL draggedImageStateNeedsUpdate; // @synthesize draggedImageStateNeedsUpdate=_draggedImageStateNeedsUpdate;
 - (void).cxx_destruct;
 - (void)enumerateDraggingItemsWithOptions:(unsigned long long)arg1 forView:(id)arg2 classes:(id)arg3 searchOptions:(id)arg4 usingBlock:(CDUnknownBlockType)arg5;

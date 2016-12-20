@@ -9,7 +9,7 @@
 #import "IDEDebugGaugeReportTopSectionContentDelegate.h"
 #import "IDEGraphDelegate.h"
 
-@class DVTCapacitySegment, DVTMeterView, DVTStackView_AppKitAutolayout, IDEPlotGraph, NSButton, NSMutableArray, NSMutableString, NSString, NSTextField, NSView;
+@class DVTCapacitySegment, DVTMeterView, DVTStackView_AppKitAutolayout, IDEPlotGraph, NSButton, NSMutableArray, NSNumber, NSString, NSTextField, NSView;
 
 @interface DBGGaugeCPUEditor : DBGGaugeEditor <IDEDebugGaugeReportTopSectionContentDelegate, IDEGraphDelegate>
 {
@@ -18,31 +18,32 @@
     DVTCapacitySegment *_remainderCapacitySegment;
     DVTStackView_AppKitAutolayout *_threadsStackView;
     NSMutableArray *_threadSlices;
-    NSTextField *_sampleTextField;
-    BOOL _breakpointsWasActivated;
-    BOOL _isSampling;
-    NSMutableString *_localSampleText;
+    BOOL _shownUIForCPUCap;
+    BOOL _shownCPUPercentNoCapChart;
+    NSNumber *_capValue;
     NSView *_topSectionSpeedometerView;
     DVTMeterView *_topSectionSpeedometer;
     NSTextField *_topSectionSpeedNumberLabel;
     NSTextField *_topSectionSpeedUnitLabel;
     NSView *_utilizationGraphContainer;
-    NSTextField *_utilizationDescription1;
+    NSTextField *_utilizationDescription;
     NSTextField *_utilizationDuration;
     NSTextField *_utilizationHigh;
     NSTextField *_utilizationLow;
+    NSTextField *_utilizationCap;
+    NSTextField *_utilizationAverage;
     IDEPlotGraph *_utilizationGraph;
-    NSButton *_sampleButton;
     NSButton *_profileButton;
 }
 
 @property __weak NSButton *profileButton; // @synthesize profileButton=_profileButton;
-@property __weak NSButton *sampleButton; // @synthesize sampleButton=_sampleButton;
 @property __weak IDEPlotGraph *utilizationGraph; // @synthesize utilizationGraph=_utilizationGraph;
+@property __weak NSTextField *utilizationAverage; // @synthesize utilizationAverage=_utilizationAverage;
+@property __weak NSTextField *utilizationCap; // @synthesize utilizationCap=_utilizationCap;
 @property __weak NSTextField *utilizationLow; // @synthesize utilizationLow=_utilizationLow;
 @property __weak NSTextField *utilizationHigh; // @synthesize utilizationHigh=_utilizationHigh;
 @property __weak NSTextField *utilizationDuration; // @synthesize utilizationDuration=_utilizationDuration;
-@property __weak NSTextField *utilizationDescription1; // @synthesize utilizationDescription1=_utilizationDescription1;
+@property __weak NSTextField *utilizationDescription; // @synthesize utilizationDescription=_utilizationDescription;
 @property __weak NSView *utilizationGraphContainer; // @synthesize utilizationGraphContainer=_utilizationGraphContainer;
 @property __weak NSTextField *topSectionSpeedUnitLabel; // @synthesize topSectionSpeedUnitLabel=_topSectionSpeedUnitLabel;
 @property __weak NSTextField *topSectionSpeedNumberLabel; // @synthesize topSectionSpeedNumberLabel=_topSectionSpeedNumberLabel;
@@ -50,14 +51,20 @@
 @property __weak NSView *topSectionSpeedometerView; // @synthesize topSectionSpeedometerView=_topSectionSpeedometerView;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
+- (void)setPathStyleForGraph:(id)arg1 entry:(id)arg2 path:(id)arg3;
 - (id)translateValue:(id)arg1 keypath:(id)arg2;
+- (BOOL)lineFilledForGraph:(id)arg1 entry:(id)arg2;
+- (id)keyColorForChartNamed:(id)arg1;
 - (id)colorForChartNamed:(id)arg1;
 - (id)topSectionTitleAccessoryView;
 - (id)topSectionComponentEntries;
 - (id)topSectionTitle;
 - (void)addSectionsToView:(id)arg1;
+- (void)_setupUtilizationGraphs;
+- (void)_showNoThresholdChartIfNecessary:(id)arg1;
+- (void)_setupUtilizationDescription;
+- (void)_showUIForCPUCap;
 - (BOOL)hasDefaultTopSection;
-- (void)sample:(id)arg1;
 - (void)_updateThreadSlicesToView:(id)arg1;
 - (id)_graphSliceForThreadID:(id)arg1;
 - (id)instrumentsToolIdentifierForAnalysis;

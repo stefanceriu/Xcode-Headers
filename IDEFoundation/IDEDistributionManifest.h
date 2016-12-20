@@ -19,13 +19,13 @@
     NSString *_assetPackManifestURL;
 }
 
-@property(retain) NSString *assetPackManifestURL; // @synthesize assetPackManifestURL=_assetPackManifestURL;
-@property(retain) NSString *fullSizeImageURL; // @synthesize fullSizeImageURL=_fullSizeImageURL;
-@property(retain) NSString *displayImageURL; // @synthesize displayImageURL=_displayImageURL;
-@property(retain) NSString *appURL; // @synthesize appURL=_appURL;
-@property(retain) NSString *bundleVersion; // @synthesize bundleVersion=_bundleVersion;
-@property(retain) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
-@property(retain) NSString *name; // @synthesize name=_name;
+@property(copy) NSString *assetPackManifestURL; // @synthesize assetPackManifestURL=_assetPackManifestURL;
+@property(copy) NSString *fullSizeImageURL; // @synthesize fullSizeImageURL=_fullSizeImageURL;
+@property(copy) NSString *displayImageURL; // @synthesize displayImageURL=_displayImageURL;
+@property(copy) NSString *appURL; // @synthesize appURL=_appURL;
+@property(copy) NSString *bundleVersion; // @synthesize bundleVersion=_bundleVersion;
+@property(copy) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
+@property(copy) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (id)dictionaryRepresentationForVariants:(id)arg1 error:(id *)arg2;
 - (BOOL)isValidManifest;

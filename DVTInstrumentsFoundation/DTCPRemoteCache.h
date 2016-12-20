@@ -12,10 +12,10 @@
 }
 
 + (id)allocWithZone:(struct _NSZone *)arg1;
-+ (id)kindToString:(int)arg1;
++ (id)kindToString:(long long)arg1;
 + (id)sharedDTCPRemoteCache;
-- (BOOL)accessFileKind:(int)arg1 device:(id)arg2 fileType:(id)arg3 block:(CDUnknownBlockType)arg4;
-- (id)_filePathForKind:(int)arg1 fileType:(id)arg2 directoryURL:(id)arg3;
+- (BOOL)accessFileKind:(long long)arg1 device:(id)arg2 fileType:(id)arg3 block:(CDUnknownBlockType)arg4;
+- (id)_filePathForKind:(long long)arg1 fileType:(id)arg2 directoryURL:(id)arg3;
 - (id)_directoryForDevice:(id)arg1;
 - (void)dealloc;
 - (id)init;

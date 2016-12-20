@@ -11,7 +11,6 @@
 }
 
 - (void)_saveAPISpecificData:(id)arg1;
-- (id)_allowedSessionInfoBaseClasses;
 
 @end
 

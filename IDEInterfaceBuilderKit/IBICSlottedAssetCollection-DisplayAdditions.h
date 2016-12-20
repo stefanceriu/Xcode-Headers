@@ -7,7 +7,10 @@
 #import "IBICSlottedAssetCollection.h"
 
 @interface IBICSlottedAssetCollection (DisplayAdditions)
+- (void)mutateBySettingConflictState:(unsigned long long)arg1 forChild:(id)arg2 inDocument:(id)arg3;
+- (void)mutateBySettingSlot:(id)arg1 forChild:(id)arg2 inDocument:(id)arg3;
 - (BOOL)shouldAvoidDeletingChild:(id)arg1;
+- (void)populatePasteboardContext:(id)arg1 forChild:(id)arg2;
 - (CDUnknownBlockType)contentReferencePreservingCallbackGivenEndPointGenerator:(CDUnknownBlockType)arg1;
 - (void)populatePlistWithDescriptionForIctool:(id)arg1 forChild:(id)arg2;
 - (BOOL)displaysChildrenInOutlineView;

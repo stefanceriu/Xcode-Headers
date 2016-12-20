@@ -34,6 +34,7 @@
 }
 
 + (Class)selfInstrumentationClass;
++ (void)dumpAggregateStats:(id)arg1;
 + (id)startedMetricForAspect:(id)arg1 logLevel:(int)arg2 label:(id)arg3;
 + (id)metricWithIdentifier:(id)arg1;
 + (void)initialize;

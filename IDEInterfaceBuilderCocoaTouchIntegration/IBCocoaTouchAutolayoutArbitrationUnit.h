@@ -21,7 +21,7 @@
 - (id)computeStatusFromEngine:(id)arg1;
 - (id)computeViewToLayoutFramesFromEngine:(id)arg1;
 - (id)runArbitrationWithOptions:(id)arg1;
-- (CDUnknownBlockType)defaultDiagnosticsBlockForOperationNamed:(id)arg1 format:(id)arg2;
+- (CDUnknownBlockType)_defaultDiagnosticsBlockForOperationNamed:(id)arg1 extraStringBlock:(CDUnknownBlockType)arg2;
 - (id)buildMarshallingDescriptionWithLiveViewsManager:(id)arg1;
 - (id)buildAutolayoutStatusMarshallingRequestWithLiveViewsManager:(id)arg1;
 - (id)buildMarshallingDescriptionForcingIgnoreDesignables:(BOOL)arg1 returningProvider:(id *)arg2 andFailedLoadResult:(id *)arg3;

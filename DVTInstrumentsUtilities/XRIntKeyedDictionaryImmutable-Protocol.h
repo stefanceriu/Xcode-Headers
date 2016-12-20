@@ -9,6 +9,7 @@
 @class NSArray;
 
 @protocol XRIntKeyedDictionaryImmutable <NSObject>
+- (id)objectAtIndexedSubscript:(unsigned long long)arg1;
 - (unsigned long long)count;
 - (void)enumerateObjectsAndIntegerKeys:(void (^)(id, unsigned long long, char *))arg1;
 - (NSArray *)allObjects;

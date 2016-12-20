@@ -11,11 +11,12 @@
 @interface DVTIncrementalFindBar : DVTFindBar
 {
     DVTTextFinder *_finder;
-    DVTFindResult *_currentResult;
     DVTDocumentLocation *_findAnchor;
     struct _DVTIncrementalFindBarFlags _ifbflags;
+    DVTFindResult *_currentResult;
 }
 
+@property(retain, nonatomic) DVTFindResult *currentResult; // @synthesize currentResult=_currentResult;
 @property(copy) DVTDocumentLocation *_findAnchor; // @synthesize _findAnchor;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;

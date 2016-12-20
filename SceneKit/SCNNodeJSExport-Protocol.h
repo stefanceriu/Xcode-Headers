@@ -6,9 +6,10 @@
 
 #import "JSExport.h"
 
-@class CAAnimation, NSArray, NSDictionary, NSString, SCNAction, SCNCamera, SCNGeometry, SCNLight, SCNMorpher, SCNNode, SCNParticleSystem, SCNPhysicsBody, SCNPhysicsField, SCNSkinner;
+@class CAAnimation, MDLObject, NSArray, NSDictionary, NSString, SCNAction, SCNAudioPlayer, SCNCamera, SCNGeometry, SCNLight, SCNMorpher, SCNNode, SCNParticleSystem, SCNPhysicsBody, SCNPhysicsField, SCNSkinner;
 
 @protocol SCNNodeJSExport <JSExport>
++ (id)nodeWithMDLObject:(MDLObject *)arg1;
 + (SCNNode *)nodeWithGeometry:(SCNGeometry *)arg1;
 + (id)node;
 @property(readonly) NSArray *particleSystems;
@@ -22,6 +23,7 @@
 @property(retain, nonatomic) SCNPhysicsBody *physicsBody;
 @property(readonly, nonatomic) NSArray *childNodes;
 @property(readonly, nonatomic) SCNNode *parentNode;
+@property(nonatomic) long long movabilityHint;
 @property(nonatomic) BOOL castsShadow;
 @property(nonatomic) long long renderingOrder;
 @property(nonatomic) double opacity;
@@ -40,6 +42,7 @@
 @property(retain, nonatomic) SCNCamera *camera;
 @property(retain, nonatomic) SCNLight *light;
 @property(copy, nonatomic) NSString *name;
+@property(readonly, nonatomic) NSArray *audioPlayers;
 - (void)removeAllActions;
 - (void)removeActionForKey:(NSString *)arg1;
 - (SCNAction *)actionForKey:(NSString *)arg1;
@@ -71,6 +74,7 @@
 - (struct CATransform3D)convertTransform:(struct CATransform3D)arg1 toNode:(SCNNode *)arg2;
 - (struct SCNVector3)convertPosition:(struct SCNVector3)arg1 fromNode:(SCNNode *)arg2;
 - (struct SCNVector3)convertPosition:(struct SCNVector3)arg1 toNode:(SCNNode *)arg2;
+- (void)enumerateHierarchyUsingBlock:(void (^)(SCNNode *, char *))arg1;
 - (void)enumerateChildNodesUsingBlock:(void (^)(SCNNode *, char *))arg1;
 - (NSArray *)childNodesPassingTest:(BOOL (^)(SCNNode *, char *))arg1;
 - (SCNNode *)childNodeWithName:(NSString *)arg1 recursively:(BOOL)arg2;
@@ -78,7 +82,10 @@
 - (void)removeFromParentNode;
 - (void)insertChildNode:(SCNNode *)arg1 atIndex:(unsigned long long)arg2;
 - (void)addChildNode:(SCNNode *)arg1;
-- (SCNNode *)flattenedClone;
+- (id)flattenedClone;
 - (id)clone;
+- (void)removeAudioPlayer:(SCNAudioPlayer *)arg1;
+- (void)removeAllAudioPlayers;
+- (void)addAudioPlayer:(SCNAudioPlayer *)arg1;
 @end
 

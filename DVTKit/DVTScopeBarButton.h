@@ -11,6 +11,9 @@
 }
 
 + (Class)cellClass;
+- (void)_dvt_scopeBarButtonCommonInit;
+- (id)initWithFrame:(struct CGRect)arg1;
+- (id)initWithCoder:(id)arg1;
 
 @end
 

@@ -6,27 +6,43 @@
 
 #import <IBFoundation/IBICSlotComponent.h>
 
+#import "IBICCoreUISlotComponent.h"
+
 @class NSString;
 
-@interface IBICIdiom : IBICSlotComponent
+@interface IBICIdiom : IBICSlotComponent <IBICCoreUISlotComponent>
 {
     NSString *_platform;
     long long _coreUIIdiom;
     NSString *_infoPlistSuffix;
 }
 
++ (id)identifierFromFileName:(id)arg1 inRange:(struct _NSRange *)arg2;
 + (id)itemWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 platform:(id)arg4 coreUIIdiom:(long long)arg5 infoPlistSuffix:(id)arg6 displayOrder:(double)arg7;
 + (id)itemWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 platform:(id)arg4 coreUIIdiom:(long long)arg5 displayOrder:(double)arg6;
++ (id)displayName;
 + (id)contentsJSONKey;
++ (id)unspecifiedValuePlaceholder;
++ (void)setComponentID:(long long)arg1;
++ (long long)componentID;
 @property(readonly) NSString *infoPlistSuffix; // @synthesize infoPlistSuffix=_infoPlistSuffix;
 @property(readonly) long long coreUIIdiom; // @synthesize coreUIIdiom=_coreUIIdiom;
 @property(readonly) NSString *platform; // @synthesize platform=_platform;
 - (void).cxx_destruct;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (id)initWithBinaryUnarchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (BOOL)isEqualToSlotComponent:(id)arg1;
-- (BOOL)isEqualToIdiom:(id)arg1;
+@property(readonly, nonatomic) long long coreUIValue;
+- (BOOL)isEqualToSlotComponentCounterpartWithKnownEqualClass:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 platform:(id)arg4 coreUIIdiom:(long long)arg5 infoPlistSuffix:(id)arg6 displayOrder:(double)arg7;
+- (long long)componentID;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSActionCell.h"
+#import "NSTextFieldCell.h"
 
 @class NSAttributedString, NSNumber;
 
-@interface IDESourceControlConflictStatusCell : NSActionCell
+@interface IDESourceControlConflictStatusCell : NSTextFieldCell
 {
     NSAttributedString *_string;
     NSNumber *_conflictStateForUpdateOrMerge;
@@ -18,6 +18,7 @@
 + (void)initialize;
 @property BOOL hidden; // @synthesize hidden=_hidden;
 - (void).cxx_destruct;
+- (struct CGSize)cellSizeForBounds:(struct CGRect)arg1;
 - (struct CGSize)cellSize;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (id)_bezelPathInRect:(struct CGRect)arg1;

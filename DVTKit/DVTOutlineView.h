@@ -27,28 +27,18 @@
         unsigned int reserved:2;
     } _dvtOVFlags;
     unsigned long long _gridLineStyleBeforeEmptyContentStringShown;
-    BOOL _skipGridLinesOnLastRow;
-    BOOL _skipGridLinesOnCollapsedGroupRows;
-    BOOL _drawsGridLinesForEmptyContent;
     BOOL _wantsMouseEnteredExitedAndMovedEvents;
     int _emptyContentStringStyle;
-    int _indentationStyle;
     NSString *_emptyContentString;
     NSString *_emptyContentSubtitle;
-    double _gridLineInset;
     NSEvent *_event;
     long long _rowUnderHoveredMouse;
 }
 
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
+@property BOOL wantsMouseEnteredExitedAndMovedEvents; // @synthesize wantsMouseEnteredExitedAndMovedEvents=_wantsMouseEnteredExitedAndMovedEvents;
 @property long long rowUnderHoveredMouse; // @synthesize rowUnderHoveredMouse=_rowUnderHoveredMouse;
 @property(retain) NSEvent *event; // @synthesize event=_event;
-@property BOOL wantsMouseEnteredExitedAndMovedEvents; // @synthesize wantsMouseEnteredExitedAndMovedEvents=_wantsMouseEnteredExitedAndMovedEvents;
-@property double gridLineInset; // @synthesize gridLineInset=_gridLineInset;
-@property BOOL drawsGridLinesForEmptyContent; // @synthesize drawsGridLinesForEmptyContent=_drawsGridLinesForEmptyContent;
-@property BOOL skipGridLinesOnCollapsedGroupRows; // @synthesize skipGridLinesOnCollapsedGroupRows=_skipGridLinesOnCollapsedGroupRows;
-@property BOOL skipGridLinesOnLastRow; // @synthesize skipGridLinesOnLastRow=_skipGridLinesOnLastRow;
-@property int indentationStyle; // @synthesize indentationStyle=_indentationStyle;
 @property int emptyContentStringStyle; // @synthesize emptyContentStringStyle=_emptyContentStringStyle;
 @property(copy, nonatomic) NSString *emptyContentSubtitle; // @synthesize emptyContentSubtitle=_emptyContentSubtitle;
 @property(copy, nonatomic) NSString *emptyContentString; // @synthesize emptyContentString=_emptyContentString;
@@ -70,6 +60,7 @@
 - (void)insertText:(id)arg1;
 - (void)doCommandBySelector:(SEL)arg1;
 - (void)keyDown:(id)arg1;
+- (double)_estimatedWidthForContentAtRow:(long long)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)viewWillMoveToSuperview:(id)arg1;
 - (void)_cleanupWork;
@@ -84,10 +75,7 @@
 - (id)_dataCellForGroupRowWithClass:(Class)arg1;
 - (id)groupRowFont;
 - (void)_drawRowHeaderSeparatorInClipRect:(struct CGRect)arg1;
-- (void)drawGridInClipRect:(struct CGRect)arg1;
 - (void)_drawBackgroundForGroupRow:(long long)arg1 clipRect:(struct CGRect)arg2 isButtedUpRow:(BOOL)arg3;
-- (struct CGRect)frameOfOutlineCellAtRow:(long long)arg1;
-- (struct CGRect)frameOfCellAtColumn:(long long)arg1 row:(long long)arg2;
 @property(readonly) NSArray *contextMenuSelectedItems;
 @property(retain) NSArray *selectedItems;
 - (id)itemsAtIndexes:(id)arg1;

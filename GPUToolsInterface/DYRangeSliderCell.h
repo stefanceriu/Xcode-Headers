@@ -36,15 +36,14 @@
 - (void)drawKnob;
 - (struct CGRect)_knobRectForPart:(int)arg1 inFrame:(struct CGRect)arg2 flipped:(BOOL)arg3;
 - (struct CGRect)knobRectFlipped:(BOOL)arg1;
-- (long long)isVertical;
+- (BOOL)isVertical;
 - (struct CGSize)cellSizeForBounds:(struct CGRect)arg1;
 - (struct CGRect)getBarBounds:(struct CGRect)arg1 flipped:(BOOL)arg2;
 - (id)objectValue;
 - (id)stringValue;
 - (id)description;
-@property(nonatomic) double maxExtent; // @dynamic maxExtent;
-@property(nonatomic) double minExtent; // @dynamic minExtent;
-- (void)postInitWithOpts:(const CDStruct_0c50b91d *)arg1;
+@property(nonatomic) double maxExtent;
+@property(nonatomic) double minExtent;
 - (id)init;
 
 @end

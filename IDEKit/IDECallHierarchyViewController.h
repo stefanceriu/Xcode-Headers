@@ -37,8 +37,6 @@
 - (void)outlineView:(id)arg1 didRemoveRowView:(id)arg2 forRow:(long long)arg3;
 - (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
 - (id)domainIdentifier;
-- (void)openClickedNavigableItemAction:(id)arg1;
-- (void)_openNavigableItem:(id)arg1 eventType:(unsigned long long)arg2;
 - (id)openSpecifierForNavigableItem:(id)arg1 error:(id *)arg2;
 - (void)clearResults;
 - (void)setRootSymbols:(id)arg1;

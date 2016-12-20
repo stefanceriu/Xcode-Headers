@@ -13,7 +13,6 @@
 @interface IDERunOperation : DVTOperation <IDEExecutingOperationTrackable>
 {
     NSMutableArray *_trackerObserverTokens;
-    id <DVTCancellationBlockCompletion> _cancellationToken;
     DVTDisallowFinishToken *_finishToken;
     BOOL _workaroundIsCancelled;
     IDERunOperationWorker *_worker;
@@ -26,6 +25,7 @@
 @property(retain) IDERunOperationWorker *worker; // @synthesize worker=_worker;
 @property BOOL workaroundIsCancelled; // @synthesize workaroundIsCancelled=_workaroundIsCancelled;
 - (void).cxx_destruct;
+- (id)notFinishedReasonWithDepth:(unsigned long long)arg1;
 - (void)registerTracker:(id)arg1;
 - (void)_runningTrackerFinished:(id)arg1;
 - (void)runningDidFinish;

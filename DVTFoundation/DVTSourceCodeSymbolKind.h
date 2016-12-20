@@ -24,11 +24,17 @@
 + (id)sourceCodeSymbolKindForIdentifier:(id)arg1;
 + (id)_sourceCodeSymbolKindForExtension:(id)arg1;
 + (void)initialize;
++ (id)toDoSymbolKind;
++ (id)questionSymbolKind;
++ (id)markSymbolKind;
++ (id)fixMeSymbolKind;
++ (id)attentionSymbolKind;
 + (id)classMethodTemplateSymbolKind;
 + (id)instanceMethodTemplateSymbolKind;
 + (id)functionTemplateSymbolKind;
 + (id)classTemplateSymbolKind;
 + (id)namespaceSymbolKind;
++ (id)gkInspectablePropertySymbolKind;
 + (id)ibOutletCollectionPropertySymbolKind;
 + (id)ibOutletCollectionVariableSymbolKind;
 + (id)ibOutletCollectionSymbolKind;
@@ -53,6 +59,7 @@
 + (id)fieldSymbolKind;
 + (id)enumConstantSymbolKind;
 + (id)enumSymbolKind;
++ (id)extensionSymbolKind;
 + (id)classSymbolKind;
 + (id)classMethodSymbolKind;
 + (id)categorySymbolKind;

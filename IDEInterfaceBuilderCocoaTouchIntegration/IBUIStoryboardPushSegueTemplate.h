@@ -19,6 +19,7 @@
 
 @property long long splitViewControllerIndex; // @synthesize splitViewControllerIndex;
 @property long long destinationContainmentContext; // @synthesize destinationContainmentContext;
+- (id)ibLocalAttributeKeyPaths;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

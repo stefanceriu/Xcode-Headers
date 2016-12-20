@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)listDevicesServiceWithTeam:(id)arg1 platform:(id)arg2;
++ (id)listDevicesServiceWithTeam:(id)arg1 program:(id)arg2;
 
 @end
 

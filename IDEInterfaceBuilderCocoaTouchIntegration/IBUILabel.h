@@ -37,9 +37,6 @@
 
 + (void)registerMarshallingRecordHandlers;
 + (id)keyPathsForValuesAffectingAutoshrinkMode;
-+ (id)keyPathsForValuesAffectingShadowOffsetHeight;
-+ (id)keyPathsForValuesAffectingShadowOffsetWidth;
-+ (id)keyPathsForValuesAffectingShadowOffset;
 + (BOOL)ibSupportsCocoaTouchAccessibility;
 + (id)keyPathsForValuesAffectingIbInspectedMinimumFontSize;
 + (id)keyPathsForValuesAffectingIbInspectedAdjustsLetterSpacingToFitWidth;
@@ -65,6 +62,8 @@
 @property(copy, nonatomic) NSColor *shadowColor; // @synthesize shadowColor;
 @property(copy, nonatomic) NSColor *highlightedColor; // @synthesize highlightedColor;
 - (void).cxx_destruct;
+- (void)unarchiveTextColor:(id)arg1;
+- (void)archiveTextColor:(id)arg1;
 - (void)unarchiveFont:(id)arg1;
 - (void)archiveFont:(id)arg1;
 - (void)decodePreferredMaxLayoutWidthForUnarchiver:(id)arg1;
@@ -88,8 +87,6 @@
 - (void)setFontDescription:(id)arg1;
 @property(readonly, copy, nonatomic) IBUIFontDescription *fontDescription;
 @property(readonly) IBUIFontDescription *defaultFontDescription;
-@property double shadowOffsetHeight;
-@property double shadowOffsetWidth;
 @property(copy, nonatomic) NSColor *textColor;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (unsigned long long)ibDefaultAccessibilityTraits;
@@ -110,11 +107,14 @@
 - (int)ibInspectedLineBreakMode;
 - (long long)ibInspectedAutoshrinkMode;
 - (void)setIbInspectedAutoshrinkMode:(long long)arg1;
-- (void)setIbInspectedAttributedText:(id)arg1;
+- (void)ibWillTakeAttributedTextValue:(id)arg1;
 - (void)setIbInspectedUsesAttributedText:(BOOL)arg1;
 - (void)ibPrepareToEnterStateExclusiveToAutoShrinking;
 - (void)ibPrepareToEnableAutoShrinking;
 - (CDUnknownBlockType)ibInspectedAttributedTextFilter;
+- (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
+- (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
+- (id)ibLocalPerConfigurationAttributeKeyPaths;
 - (id)ibFontFromFontDescription;
 - (id)ibDefaultFontKeyPath;
 - (void)ibCustomizeForInsertionIntoIBUITableViewCell:(id)arg1 withObjects:(id)arg2 andInsertionContext:(id)arg3;
@@ -131,6 +131,9 @@
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (CDUnknownBlockType)ibAutoShrinkingTextAttributeFilter;
 - (CDUnknownBlockType)ibTextAttributeFilterForAutoShrinkMode:(long long)arg1 letterSpacing:(BOOL)arg2;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

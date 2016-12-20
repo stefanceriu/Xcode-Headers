@@ -13,7 +13,6 @@
 
 @property(nonatomic) unsigned long long captureCommandQueueAddress; // @synthesize captureCommandQueueAddress=_captureCommandQueueAddress;
 - (void)_saveAPISpecificData:(id)arg1;
-- (id)_allowedSessionInfoBaseClasses;
 - (void)_setupFinalConfigurationDictionary:(id)arg1;
 - (void)_postProcessArchive;
 

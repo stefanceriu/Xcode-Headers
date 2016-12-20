@@ -6,7 +6,7 @@
 
 #import <DVTFoundation/DVTOperationGroup.h>
 
-@class DTDKDeveloperPortalService, DVTLogAspect, DVTPortalOperationToken, DVTStackBacktrace, NSArray, NSString;
+@class DTDKDeveloperPortalService, DVTLogAspect, DVTPortalOperationToken, NSArray, NSString;
 
 @interface DVTPortalOperation : DVTOperationGroup
 {
@@ -16,7 +16,6 @@
     DVTLogAspect *_logAspect;
     NSString *_name;
     DTDKDeveloperPortalService *_service;
-    DVTStackBacktrace *_creationBacktrace;
 }
 
 + (id)keyPathsForValuesAffectingResultCode;
@@ -26,7 +25,6 @@
 + (id)operationWithName:(id)arg1;
 + (id)operationWithToken:(id)arg1;
 + (id)operationWithToken:(id)arg1 name:(id)arg2 andBlock:(CDUnknownBlockType)arg3;
-@property(retain) DVTStackBacktrace *creationBacktrace; // @synthesize creationBacktrace=_creationBacktrace;
 @property(retain) DTDKDeveloperPortalService *service; // @synthesize service=_service;
 @property _Bool cancelOnSuboperations; // @synthesize cancelOnSuboperations=_cancelOnSuboperations;
 @property _Bool cancelOnDependencies; // @synthesize cancelOnDependencies=_cancelOnDependencies;

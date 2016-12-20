@@ -21,10 +21,15 @@
 
 + (void)_customizeNewNavigableItemClass:(Class)arg1 forModelObjectClass:(Class)arg2 extension:(id)arg3;
 + (id)_automatic_keyPathsForValuesAffectingMajorGroup;
++ (id)keyPathsForValuesAffectingReferencedContentExists;
++ (id)keyPathsForValuesAffectingContentDocumentLocation;
++ (id)keyPathsForValuesAffectingDocumentType;
 + (id)keyPathsForValuesAffectingFileReference;
 + (id)keyPathsForValuesAffectingGroupIdentifier;
 + (id)keyPathsForValuesAffectingToolTip;
++ (id)keyPathsForValuesAffectingAccessibleDescription;
 + (id)keyPathsForValuesAffectingImage;
++ (id)keyPathsForValuesAffectingSubtitle;
 + (id)keyPathsForValuesAffectingName;
 + (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 + (id)keyPathsForValuesAffectingLeaf;
@@ -46,12 +51,16 @@
 - (id)identifierForChildItem:(id)arg1;
 - (BOOL)_automatic_isMajorGroup;
 - (BOOL)isMajorGroup;
+- (BOOL)missingReferencedContentIsImportant;
+- (BOOL)referencedContentExists;
 - (id)contentDocumentLocation;
 - (id)documentType;
 - (id)fileReference;
 - (id)groupIdentifier;
 - (id)toolTip;
+- (id)accessibleImageDescription;
 - (id)image;
+- (id)subtitle;
 - (id)name;
 - (void)_setRepresentedObject:(id)arg1;
 - (void)_invalidateValueForKey:(id)arg1;

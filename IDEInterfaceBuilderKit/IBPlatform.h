@@ -25,6 +25,7 @@
 }
 
 + (int)libraryInclusionStatusForAssetClass:(Class)arg1 assetIdentifier:(id)arg2;
++ (BOOL)alwaysRequiresExplicitDowngrade;
 + (BOOL)supportsSceneUpdates;
 + (void)customizeObjectForLibraryInstantiation:(id)arg1;
 + (Class)idiomClass;
@@ -41,7 +42,6 @@
 - (BOOL)acceptsPasteboardContentsFromPlatform:(id)arg1;
 - (BOOL)rendersLibraryAssetIconsFromContent;
 - (BOOL)hasPlatformSpecificImageForObjectClass:(Class)arg1;
-- (id)defaultSimulatedBackgroundColorForRenderingForViewPortWithSize:(struct CGSize)arg1;
 - (Class)renderingProcessingRequestClass;
 - (BOOL)supportsInternationalizationWithSystemTarget:(long long)arg1 returningError:(id *)arg2;
 - (void)populateWarnings:(id)arg1 forObject:(id)arg2 inDocument:(id)arg3 withComputationContext:(id)arg4;
@@ -51,7 +51,9 @@
 - (BOOL)validateBuildEnvironment:(id *)arg1;
 - (Class)documentDesignablesDispatcherClass;
 - (BOOL)supportsLaunchScreen;
+- (BOOL)supportsHardwarePreview;
 - (Class)previewGeniusResultsItemGroupClass;
+- (id)osVersionsToCompileForDocument:(id)arg1;
 - (BOOL)canOnlyTargetCurrentOSVersion_22887070;
 - (void)finishChangingTargetRuntimeInCompiledIntermediateDocument:(id)arg1;
 - (id)validateVersion:(id)arg1 forCompilingDocument:(id)arg2;
@@ -127,6 +129,7 @@
 - (id)ignoredConnectionLabelsForGeniusOrdering;
 - (BOOL)connectToSourceCodeShouldReleaseInstanceVariables;
 - (BOOL)connectToSourceCodeShouldInsertNonAtomicProperties;
+- (id)addCustomObjectOfExternalClass:(id)arg1 toParent:(id)arg2 inDocument:(id)arg3;
 - (long long)defaultStorageTypeForMRROutlets;
 - (id)firstOSVersionWithWeakReferences;
 - (Class)actionConnectionClass;
@@ -141,11 +144,13 @@
 - (id)defaultTargetRuntime;
 - (Class)targetRuntimeClass;
 - (id)targetRuntimeWithArchiveIdentifier:(id)arg1 variantIdentifier:(id)arg2;
+- (BOOL)shouldPromptForDeviceConfigurationDuringAutomaticUpgrade;
 - (BOOL)downgradingToAutoIncrementingIDsIsEnabled;
 - (BOOL)shouldOpenDocument:(id)arg1 error:(id *)arg2;
 - (id)systemDocumentDependency;
 - (id)interfaceBuilderDocumentDependency;
 - (id)deploymentVersionBuildSetting;
+- (id)firstXcodeVersionSupportingConfigurations;
 - (id)runtimeConfigurableConstraintConstantKeyPath;
 - (void)registerMemberConfigurationVariables;
 - (id)buildSystemPlatformIdentifier;

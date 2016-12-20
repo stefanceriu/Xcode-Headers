@@ -12,7 +12,6 @@
 
 + (id)systemMediaRepository;
 + (id)missingImage;
-- (id)foldingStrategy;
 - (id)typesForDefaultMediaRepositories;
 - (id)placeholderResourceIconForMediaType:(id)arg1;
 - (id)scaleVaraibleForForcingOneXImages;

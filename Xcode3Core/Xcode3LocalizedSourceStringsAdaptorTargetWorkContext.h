@@ -6,22 +6,15 @@
 
 #import "IDELocalizationWorkContext.h"
 
-@class NSArray, NSMutableDictionary, Xcode3Target;
-
 @interface Xcode3LocalizedSourceStringsAdaptorTargetWorkContext : IDELocalizationWorkContext
 {
-    Xcode3Target *_target;
-    NSArray *_files;
-    NSMutableDictionary *_mergedStringsByTable;
-    NSMutableDictionary *_mergedCommentsByTable;
 }
 
-@property(retain) NSMutableDictionary *mergedCommentsByTable; // @synthesize mergedCommentsByTable=_mergedCommentsByTable;
-@property(retain) NSMutableDictionary *mergedStringsByTable; // @synthesize mergedStringsByTable=_mergedStringsByTable;
-@property(retain) NSArray *files; // @synthesize files=_files;
-@property(retain) Xcode3Target *target; // @synthesize target=_target;
-- (void).cxx_destruct;
-- (void)primitiveInvalidate;
++ (id)contextWithParent:(id)arg1 target:(id)arg2 files:(id)arg3;
+- (id)mergedCommentsByTable;
+- (id)mergedStringsByTable;
+- (id)files;
+- (id)target;
 
 @end
 

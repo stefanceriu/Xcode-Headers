@@ -22,7 +22,7 @@
 - (id)saveRepresentation;
 - (id)dictionaryRepresentation;
 - (id)description;
-- (id)initWithContents:(id)arg1 validationErrors:(id *)arg2;
+- (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 - (id)initWithFilePath:(id)arg1 status:(unsigned long long)arg2 validationErrors:(id *)arg3;
 
 @end

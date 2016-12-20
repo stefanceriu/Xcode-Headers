@@ -97,7 +97,6 @@
 @property(nonatomic) BOOL showsStatistics;
 - (id)rendererOptions;
 - (BOOL)canDrawConcurrently;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithRenderer:(id)arg1 sharedContext:(struct _CGLContextObject *)arg2;
 - (id)initWithLayer:(id)arg1;

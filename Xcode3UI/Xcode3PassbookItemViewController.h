@@ -20,7 +20,7 @@
 }
 
 + (id)keyPathsForValuesAffectingUseCustomPassTypes;
-@property(getter=isRefreshing) BOOL refreshing; // @synthesize refreshing=_refreshing;
+@property(nonatomic, getter=isRefreshing) BOOL refreshing; // @synthesize refreshing=_refreshing;
 @property(retain) NSProgressIndicator *refreshTableSpinner; // @synthesize refreshTableSpinner=_refreshTableSpinner;
 @property(retain) DVTGradientImageButton *refreshTableButton; // @synthesize refreshTableButton=_refreshTableButton;
 @property(retain) DVTTableView *passTypesTable; // @synthesize passTypesTable=_passTypesTable;

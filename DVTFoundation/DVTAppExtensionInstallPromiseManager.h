@@ -8,13 +8,13 @@
 
 #import "DVTDTApplicationWorkspaceClient.h"
 
-@class DVTDispatchLock, NSMapTable, NSString;
+@class DVTDispatchLock, DVTPerformanceMetric, NSMapTable, NSString;
 
 @interface DVTAppExtensionInstallPromiseManager : NSObject <DVTDTApplicationWorkspaceClient>
 {
-    float _promiseDelay;
     NSMapTable *_promiseMap;
     DVTDispatchLock *_promiseMapLock;
+    DVTPerformanceMetric *_extensionLoggingMetric;
 }
 
 + (id)sharedManager;

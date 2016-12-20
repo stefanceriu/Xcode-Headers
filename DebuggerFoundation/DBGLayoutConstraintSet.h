@@ -22,6 +22,7 @@
 @property(readonly) __weak DBGViewWindow *parentWindow; // @synthesize parentWindow=_parentWindow;
 - (void).cxx_destruct;
 - (id)description;
+- (BOOL)isEqualToSet:(id)arg1;
 - (BOOL)containsConstraint:(id)arg1;
 - (id)constraintSetWithContraintSet:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;

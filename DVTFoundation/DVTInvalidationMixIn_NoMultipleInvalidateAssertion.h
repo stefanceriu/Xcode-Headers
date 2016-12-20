@@ -10,6 +10,7 @@
 {
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 - (void)invalidate;
 
 @end

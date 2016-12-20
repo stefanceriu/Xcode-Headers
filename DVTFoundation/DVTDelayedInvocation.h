@@ -26,7 +26,6 @@
         unsigned int isInvalidated:1;
         unsigned int _reserved:1;
     } _flags;
-    void *_keepSelfAliveUntilCancellationRef;
     DVTDelayedInvocationScheduler *_scheduler;
     NSArray *_runLoopModes;
     NSString *_terminationDisablingReason;

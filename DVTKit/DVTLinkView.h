@@ -12,7 +12,7 @@
     NSView *_contentView;
 }
 
-@property(retain, nonatomic) NSView *contentView; // @synthesize contentView=_contentView;
+@property(nonatomic) NSView *contentView; // @synthesize contentView=_contentView;
 @property(nonatomic) __weak id <DVTLinkViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)mouseUp:(id)arg1;

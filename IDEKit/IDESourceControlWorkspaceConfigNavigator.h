@@ -6,32 +6,36 @@
 
 #import <IDEKit/IDEViewController.h>
 
-@class DVTOutlineView, DVTSourceControlWorkspace, NSArray, NSMutableArray;
+#import "NSTableViewDataSource.h"
+#import "NSTableViewDelegate.h"
 
-@interface IDESourceControlWorkspaceConfigNavigator : IDEViewController
+@class DVTSourceControlWorkingCopy, DVTSourceControlWorkspace, DVTTableView, NSString;
+
+@interface IDESourceControlWorkspaceConfigNavigator : IDEViewController <NSTableViewDelegate, NSTableViewDataSource>
 {
-    DVTOutlineView *_outlineView;
-    DVTSourceControlWorkspace *_scmWorkspace;
-    NSArray *_selectedObjects;
-    NSMutableArray *_currentItems;
+    DVTSourceControlWorkspace *_sourceControlWorkspace;
+    DVTTableView *_tableView;
+    DVTSourceControlWorkingCopy *_selectedWorkingCopy;
 }
 
-@property(readonly) NSArray *selectedObjects; // @synthesize selectedObjects=_selectedObjects;
-@property(readonly) DVTOutlineView *outlineView; // @synthesize outlineView=_outlineView;
+@property(retain) DVTSourceControlWorkingCopy *selectedWorkingCopy; // @synthesize selectedWorkingCopy=_selectedWorkingCopy;
+@property(retain) DVTTableView *tableView; // @synthesize tableView=_tableView;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (void)outlineViewSelectionDidChange:(id)arg1;
-- (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
-- (BOOL)outlineView:(id)arg1 shouldSelectItem:(id)arg2;
-- (BOOL)outlineView:(id)arg1 isGroupItem:(id)arg2;
-- (BOOL)outlineView:(id)arg1 shouldShowOutlineCellForItem:(id)arg2;
-- (BOOL)outlineView:(id)arg1 isItemExpandable:(id)arg2;
-- (id)outlineView:(id)arg1 objectValueForTableColumn:(id)arg2 byItem:(id)arg3;
-- (id)outlineView:(id)arg1 child:(long long)arg2 ofItem:(id)arg3;
-- (long long)outlineView:(id)arg1 numberOfChildrenOfItem:(id)arg2;
+- (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
+- (BOOL)tableView:(id)arg1 shouldShowCellExpansionForTableColumn:(id)arg2 row:(long long)arg3;
+- (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
+- (long long)numberOfRowsInTableView:(id)arg1;
+- (void)tableViewSelectionDidChange:(id)arg1;
 - (void)doubleClickAction:(id)arg1;
-@property DVTSourceControlWorkspace *sourceControlWorkspace;
+@property(retain, nonatomic) DVTSourceControlWorkspace *sourceControlWorkspace; // @synthesize sourceControlWorkspace=_sourceControlWorkspace;
 - (void)viewDidInstall;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -38,6 +38,7 @@
 + (id)mainThreadMoc;
 + (id)moc;
 + (_Bool)_fixVersionHashesAt:(id)arg1 error:(id *)arg2;
++ (id)persistentStoreOptions;
 + (id)_managedObjectModel;
 + (void)setLastScanEventId:(unsigned long long)arg1;
 + (unsigned long long)lastScanEventId;

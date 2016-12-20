@@ -15,6 +15,7 @@
 }
 
 - (void).cxx_destruct;
+- (void)reverse;
 @property(retain, nonatomic) NSString *fileName;
 - (id)getSCNAction;
 - (id)_getSCNAction;

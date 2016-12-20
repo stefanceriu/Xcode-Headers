@@ -6,22 +6,27 @@
 
 #import <IDESceneKitEditor/SKEInspectorViewController.h>
 
-@class NSMutableArray, SCNView;
+@class DVTDelayedInvocation, NSMutableArray, SCNView, SKEMaterialPreviewDescription;
 
 @interface SKEMaterialPreviewInspector : SKEInspectorViewController
 {
     SCNView *_previewView;
     NSMutableArray *_observingTokens;
+    DVTDelayedInvocation *_previewRefreshInvocation;
+    SKEMaterialPreviewDescription *_pbrPreviewDescription;
+    SKEMaterialPreviewDescription *_nonPBRreviewDescription;
 }
 
-+ (id)previewForMaterial:(id)arg1;
-+ (void)configurePreviewScene:(id)arg1 withMaterial:(id)arg2;
-+ (id)previewScene;
++ (id)nonPBRPreviewDescription;
++ (id)pbrPreviewDescription;
++ (id)previewForMaterial:(id)arg1 withLightingEnvironmentContents:(id)arg2 size:(struct CGSize)arg3;
++ (void)configurePreviewDescription:(id)arg1 withMaterial:(id)arg2 withLightingEnvironmentContents:(id)arg3;
 - (void).cxx_destruct;
+- (void)refreshPreview:(id)arg1;
+- (void)schedulePreviewRefresh;
 - (void)primitiveInvalidate;
 - (void)loadView;
-- (void)viewDidInstall;
-- (void)configureMaterialByDefaultingIfNeeded;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 @end
 

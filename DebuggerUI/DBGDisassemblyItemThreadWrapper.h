@@ -9,13 +9,13 @@
 #import "DVTInvalidation.h"
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DBGThread, DVTDocumentLocation, DVTFileDataType, DVTObservingToken, DVTStackBacktrace, IDEFileReference, NSArray, NSImage, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTObservingToken, DVTStackBacktrace, IDEFileReference, IDEThread, NSArray, NSImage, NSString;
 
 @interface DBGDisassemblyItemThreadWrapper : NSObject <DVTInvalidation, IDEKeyDrivenNavigableItemRepresentedObject>
 {
     DVTObservingToken *_stackFramesObservingToken;
     BOOL _temporarilyCreatedForGeniusFinder;
-    DBGThread *_thread;
+    IDEThread *_thread;
     NSArray *_disassemblyItems;
 }
 
@@ -23,7 +23,7 @@
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 @property(nonatomic) BOOL temporarilyCreatedForGeniusFinder; // @synthesize temporarilyCreatedForGeniusFinder=_temporarilyCreatedForGeniusFinder;
 @property(copy, nonatomic) NSArray *disassemblyItems; // @synthesize disassemblyItems=_disassemblyItems;
-@property(retain) DBGThread *thread; // @synthesize thread=_thread;
+@property(retain) IDEThread *thread; // @synthesize thread=_thread;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 @property(readonly) NSImage *navigableItem_image;
@@ -38,12 +38,16 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;

@@ -6,7 +6,7 @@
 
 #import "IDEViewController.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTScopeBarView, NSArrayController, NSPopUpButton, SCNScene, SKESceneEditor, SKESceneView;
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTScopeBarView, NSArrayController, NSButton, NSPopUpButton, SCNScene, SKESceneEditor, SKESceneView;
 
 @interface SKECanvasViewController : IDEViewController
 {
@@ -16,6 +16,7 @@
     SCNScene *_editScene;
     NSPopUpButton *_povPopUpButton;
     NSArrayController *_povArrayController;
+    NSButton *_lockCameraButton;
     DVTGradientImageButton *_playStopButton;
     DVTGradientImagePopUpButton *_authoringEnvironmentOptionsButton;
     DVTObservingToken *_sceneBackgroundObservingToken;
@@ -54,6 +55,7 @@
 - (BOOL)autoenablesDefaultLighting;
 - (void)makeSceneViewTakeBackgroundColorOfScene;
 - (id)scopeBarViewDragRectsForView:(id)arg1;
+- (void)lockCameraChanged:(id)arg1;
 - (void)updateBottomBarColorScheme;
 - (void)configureScopeBarView;
 @property(readonly, nonatomic) DVTScopeBarView *scopeBarView;

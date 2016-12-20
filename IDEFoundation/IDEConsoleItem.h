@@ -34,6 +34,7 @@
 - (id)initWithCoder:(id)arg1;
 - (void)dvt_writeToSerializer:(id)arg1;
 - (id)dvt_initFromDeserializer:(id)arg1;
+- (id)itemAsSubitems;
 @property(readonly, getter=isError) BOOL error;
 - (void)setError:(BOOL)arg1;
 @property(readonly, getter=isOutputRequestedByUser) BOOL outputRequestedByUser;

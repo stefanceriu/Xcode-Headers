@@ -14,9 +14,11 @@ __attribute__((visibility("hidden")))
     struct __CFDictionary *_trackedResourcesToHashcode;
 }
 
++ (id)deferredGeneratorWithProfile:(int)arg1;
 + (id)generatorWithProfile:(int)arg1;
 - (void)releaseProgramForResource:(id)arg1;
 - (struct __C3DFXProgram *)programWithHashCode:(struct __C3DRendererElementProgramHashCode *)arg1 trackedResource:(id)arg2 introspectionDataPtr:(CDStruct_5d961f59 *)arg3;
+- (void)emptyShaderCache;
 @property(readonly, nonatomic) int profile;
 - (void)dealloc;
 - (id)init;

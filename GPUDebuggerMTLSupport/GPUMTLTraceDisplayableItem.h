@@ -10,12 +10,12 @@
 #import "GPUMTLStateMirrorInterface.h"
 #import "GPUMTLTraceItemInterface.h"
 
-@class GPUMTLStateMirror, NSString;
+@class NSString;
 
 __attribute__((visibility("hidden")))
 @interface GPUMTLTraceDisplayableItem : GPUTraceDisplayableItem <DYFunctionTracerDelegate, GPUMTLStateMirrorInterface, GPUMTLTraceItemInterface>
 {
-    GPUMTLStateMirror *_stateMirror;
+    id <DYPMTLStateMirror> _stateMirror;
     unsigned long long _owningDeviceID;
 }
 
@@ -27,8 +27,8 @@ __attribute__((visibility("hidden")))
 - (id)_renderedImage:(id)arg1 showDepth:(BOOL)arg2;
 - (id)generateLabel;
 @property(readonly, nonatomic) unsigned long long receiverID;
-@property(readonly) BOOL hasStateMirror;
-@property(copy) GPUMTLStateMirror *stateMirror;
+@property(readonly, nonatomic) BOOL hasStateMirror;
+@property(readonly, nonatomic) id <DYPMTLStateMirror> stateMirror;
 - (void)primitiveInvalidate;
 @property(readonly, copy) NSString *description;
 - (id)initWithController:(id)arg1 parent:(id)arg2 deviceID:(unsigned long long)arg3 functionIndex:(int)arg4 displayIndex:(int)arg5;

@@ -6,11 +6,11 @@
 
 #import <GLToolsServices/DYGLResourceObject.h>
 
-#import "DYFrameBuffer.h"
+#import "DYFramebuffer.h"
 
 @class NSArray, NSDictionary, NSMutableDictionary, NSString;
 
-@interface DYGLFrameBufferObject : DYGLResourceObject <DYFrameBuffer>
+@interface DYGLFrameBufferObject : DYGLResourceObject <DYFramebuffer>
 {
     unsigned int _readBuffer;
     NSDictionary *_attachmentsDict;

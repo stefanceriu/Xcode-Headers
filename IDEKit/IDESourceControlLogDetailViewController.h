@@ -41,7 +41,6 @@
 - (void)_loadLogMessage;
 - (void)_loadingFailed;
 - (double)_maxPopoverHeight;
-- (void)_loadChangedFiles;
 - (id)displayDate;
 - (void)showComparison:(id)arg1;
 - (void)showBlame:(id)arg1;

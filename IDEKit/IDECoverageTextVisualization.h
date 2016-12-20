@@ -17,6 +17,7 @@
     id _textViewSelectionChangedObserver;
 }
 
++ (unsigned long long)defaultDrawOrdering;
 + (id)coveredSegmentColor;
 + (id)uncoveredSegmentColor;
 + (id)colorFromUserDefaults:(id)arg1;

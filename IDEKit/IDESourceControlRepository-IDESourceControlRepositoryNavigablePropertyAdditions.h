@@ -7,9 +7,7 @@
 #import "IDESourceControlRepository.h"
 
 @interface IDESourceControlRepository (IDESourceControlRepositoryNavigablePropertyAdditions)
-+ (id)keyPathsForValuesAffectingProgress;
 + (id)keyPathsForValuesAffectingNavigableItem_URLString;
-- (id)progress;
 - (id)navigableItem_URLString;
 @end
 

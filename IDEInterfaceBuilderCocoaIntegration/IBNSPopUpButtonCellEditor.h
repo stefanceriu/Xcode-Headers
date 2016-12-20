@@ -11,9 +11,8 @@
 }
 
 - (BOOL)interceptEvent:(id)arg1;
-- (void)childEditorWillClose;
 - (void)willEditChild:(id)arg1 inFrameController:(id)arg2;
-- (void)positionChildEditorFrame;
+- (void)positionChildEditorFrames;
 - (id)editedPopUpButtonCell;
 
 @end

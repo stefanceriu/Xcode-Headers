@@ -28,6 +28,11 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)ibLocalAutoNullifyingNonChildToManyRelationshipsKeyPaths;
+- (id)ibLocalNonChildToManyRelationshipsKeyPaths;
+- (id)ibLocalAutoNullifyingNonChildToOneRelationshipsKeyPaths;
+- (id)ibLocalNonChildToOneRelationshipsKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

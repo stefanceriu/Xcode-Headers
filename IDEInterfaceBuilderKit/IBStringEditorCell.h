@@ -9,11 +9,14 @@
 @interface IBStringEditorCell : NSCell
 {
     double lineFragmentPadding;
+    long long _configurableTypesetterBehavior;
 }
 
+@property(nonatomic) long long configurableTypesetterBehavior; // @synthesize configurableTypesetterBehavior=_configurableTypesetterBehavior;
 - (id)setUpFieldEditorAttributes:(id)arg1;
 - (void)setLineFragmentPadding:(double)arg1;
 - (double)lineFragmentPadding;
+- (long long)_typesetterBehavior;
 
 @end
 

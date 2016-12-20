@@ -33,6 +33,7 @@
 - (struct CGRect)submenuIndicatorRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)imageRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)stateImageRectForBounds:(struct CGRect)arg1;
+- (double)_stateImageIndentation;
 - (struct CGSize)submenuIndicatorSize;
 - (struct CGSize)idealSize;
 - (struct CGSize)stateImageSize;

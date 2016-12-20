@@ -16,12 +16,15 @@
 
 @interface IBUISimulatedBarMetrics : NSObject <NSCoding, IBUISimulatedMetrics, NSCopying, IBDocumentArchiving, IBBinaryArchiving>
 {
+    long long _barStyle;
 }
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 + (id)simulatedBarMetricsForBarView:(id)arg1;
+@property(readonly, nonatomic) long long barStyle; // @synthesize barStyle=_barStyle;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
+- (id)initWithBarStyle:(long long)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)simulatedBarMetricsByRemovingTintColor;
@@ -34,7 +37,7 @@
 @property(readonly) unsigned long long hash;
 - (double)heightForTargetRuntime:(id)arg1;
 - (void)applyMetricsToBar:(id)arg1;
-@property(readonly) NSString *displayName;
+@property(readonly, copy) NSString *displayName;
 - (id)ibWidgetType;
 - (Class)barClass;
 - (id)copyWithZone:(struct _NSZone *)arg1;

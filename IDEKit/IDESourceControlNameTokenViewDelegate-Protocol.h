@@ -10,8 +10,6 @@
 
 @protocol IDESourceControlNameTokenViewDelegate <NSObject>
 - (NSMenu *)menuForNameToken:(IDESourceControlNameTokenView *)arg1;
-
-@optional
-- (void)pair:(id)arg1;
+- (BOOL)shouldShowToken;
 @end
 

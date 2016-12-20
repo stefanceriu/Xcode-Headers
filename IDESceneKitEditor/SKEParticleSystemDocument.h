@@ -41,6 +41,7 @@
 - (BOOL)readFromURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (BOOL)canSave;
 @property(readonly) NSArray *ideTopLevelStructureObjects;
+- (BOOL)isTextureName:(id)arg1;
 - (id)init;
 
 // Remaining properties

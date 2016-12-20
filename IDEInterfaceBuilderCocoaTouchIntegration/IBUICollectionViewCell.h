@@ -66,6 +66,8 @@
 - (long long)ibInspectedSizeMode;
 - (id)ibQualifyingInfoForDefaultLabel;
 - (struct CGSize)ibInspectedDefaultSize;
+- (id)ibEditorClass;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

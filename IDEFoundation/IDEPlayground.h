@@ -38,7 +38,8 @@
 - (id)computedChildItemSubpathsFixed;
 - (id)computedChildItemSubpathsEditable;
 - (id)context;
-- (void)_changeContainerFilePath:(id)arg1 inContext:(id)arg2;
+- (void)_didChangeContainerFilePath:(id)arg1 inContext:(id)arg2;
+- (void)_willChangeContainerFilePath:(id)arg1 inContext:(id)arg2;
 - (id)createRootGroup;
 - (void)primitiveInvalidate;
 - (id)initWithFilePath:(id)arg1 extension:(id)arg2 workspace:(id)arg3 options:(id)arg4 error:(id *)arg5;

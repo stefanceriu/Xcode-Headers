@@ -16,15 +16,24 @@
     NSArray *_minSizeConstraints;
     BOOL _enforceMinSize;
     BOOL _encodeAsRuntimeInstance;
+    BOOL _showsFrameSteppingButtons;
+    BOOL _showsFullScreenToggleButton;
+    BOOL _showsSharingServiceButton;
     long long _controlsStyle;
+    NSString *_videoGravity;
 }
 
+@property(copy, nonatomic) NSString *videoGravity; // @synthesize videoGravity=_videoGravity;
+@property(nonatomic) BOOL showsSharingServiceButton; // @synthesize showsSharingServiceButton=_showsSharingServiceButton;
+@property(nonatomic) BOOL showsFullScreenToggleButton; // @synthesize showsFullScreenToggleButton=_showsFullScreenToggleButton;
+@property(nonatomic) BOOL showsFrameSteppingButtons; // @synthesize showsFrameSteppingButtons=_showsFrameSteppingButtons;
 @property(nonatomic) long long controlsStyle; // @synthesize controlsStyle=_controlsStyle;
 - (void).cxx_destruct;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)encodeWithCoder:(id)arg1;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (Class)classForCoder;
+@property(copy, nonatomic) NSString *ibArchivedVideoGravity;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)invalidateCachedImage;
 - (void)setFrameSize:(struct CGSize)arg1;
@@ -36,8 +45,10 @@
 - (void)invokeWithMirroredPlayerView:(CDUnknownBlockType)arg1;
 - (id)ibRuntimeClassName;
 - (long long)runtimeControlsStyle;
+- (void)ibCustomizeForInsertionIntoDocument:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)ibLocalAttributeKeyPaths;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSBezierPath, NSImage, NSString, NSValue;
+@class NSBezierPath, NSImage, NSValue;
 
 @interface IBStoryboardCanvasLinkPath : NSObject
 {
@@ -22,36 +22,34 @@
     NSBezierPath *_cachedPath;
     NSBezierPath *_cachedPathForHitTesting;
     NSBezierPath *_cachedBadgePath;
-    NSBezierPath *_cachedBadgeRingPath;
+    NSBezierPath *_cachedBadgeDashedRingPath;
     NSBezierPath *_cachedArrowheadPath;
     NSBezierPath *_cachedPathForBandSelecting;
     NSValue *_cachedBadgeRectValue;
     double _opacity;
     BOOL _pathShouldBeDashed;
     BOOL _badgeShouldBeRinged;
-    NSString *_title;
+    id <IBStoryboardCanvasLink> _canvasLink;
     id <IBStoryboardCanvasLinkPathDelegate> _delegate;
 }
 
 + (struct CGPoint)pointDirectionForEdge:(unsigned long long)arg1;
 @property __weak id <IBStoryboardCanvasLinkPathDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic, getter=isSelected) BOOL selected; // @synthesize selected=_selected;
-@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 @property(nonatomic) BOOL badgeShouldBeRinged; // @synthesize badgeShouldBeRinged=_badgeShouldBeRinged;
 @property(nonatomic) BOOL pathShouldBeDashed; // @synthesize pathShouldBeDashed=_pathShouldBeDashed;
 @property(retain, nonatomic) NSImage *badge; // @synthesize badge=_badge;
 @property(nonatomic) double opacity; // @synthesize opacity=_opacity;
+@property(readonly, nonatomic) id <IBStoryboardCanvasLink> canvasLink; // @synthesize canvasLink=_canvasLink;
 @property(readonly) long long packCount; // @synthesize packCount=_packCount;
 @property(readonly) long long packIndex; // @synthesize packIndex=_packIndex;
 @property(readonly) struct CGPoint endingPoint; // @synthesize endingPoint=_endingPoint;
 @property(readonly) struct CGPoint startingPoint; // @synthesize startingPoint=_startingPoint;
 - (void).cxx_destruct;
-- (void)drawBadgeInRect:(struct CGRect)arg1;
-- (void)drawPathInRect:(struct CGRect)arg1;
-- (void)executeDrawingBlock:(CDUnknownBlockType)arg1 WithBounds:(struct CGRect)arg2 inDirtyRect:(struct CGRect)arg3;
-- (void)drawBadgeWithContext:(struct CGContext *)arg1 dirtyRect:(struct CGRect)arg2;
-- (void)drawPathAndTitleWithContext:(struct CGContext *)arg1 dirtyRect:(struct CGRect)arg2;
-- (void)drawPathWithContext:(struct CGContext *)arg1 dirtyRect:(struct CGRect)arg2;
+- (void)updateBadgeLayer:(id)arg1;
+- (void)updateArrowLayer:(id)arg1;
+- (id)createBadgeLayer;
+- (id)createArrowLayer;
 - (struct CGRect)conservativeBadgeDrawingBounds;
 - (struct CGRect)conservativePathDrawingBounds;
 - (struct CGRect)conservativeDrawingBounds;
@@ -62,16 +60,16 @@
 - (BOOL)isBadgeHitByPoint:(struct CGPoint)arg1;
 - (id)pathForBandSelecting;
 - (id)pathForHitTesting;
-- (id)badgeRingPath;
+- (id)dashedRingPath;
 - (id)badgePath;
-- (struct CGRect)ringRect;
+- (struct CGRect)dashedRingRect;
 - (struct CGRect)badgeImageRect;
 - (struct CGRect)badgeRect;
 - (struct CGPoint)badgeCenter;
 - (id)path;
 - (struct CGPoint)arrowheadStartPoint;
 - (struct CGPoint)originationPoint;
-- (id)initWithStartingPoint:(struct CGPoint)arg1 atStartEdge:(unsigned long long)arg2 endingPoint:(struct CGPoint)arg3 atEndEdge:(unsigned long long)arg4 packIndex:(long long)arg5 packCount:(long long)arg6;
+- (id)initWithStartingPoint:(struct CGPoint)arg1 atStartEdge:(unsigned long long)arg2 endingPoint:(struct CGPoint)arg3 atEndEdge:(unsigned long long)arg4 packIndex:(long long)arg5 packCount:(long long)arg6 canvasLink:(id)arg7;
 
 @end
 

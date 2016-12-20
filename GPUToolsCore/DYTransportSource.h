@@ -26,10 +26,10 @@ __attribute__((visibility("hidden")))
 - (void)_callCancellationHandler;
 - (void)_register;
 - (void)_callRegistrationHandler;
-@property(copy, nonatomic) CDUnknownBlockType registrationHandler; // @dynamic registrationHandler;
-@property(copy, nonatomic) CDUnknownBlockType cancellationHandler; // @dynamic cancellationHandler;
-@property(copy, nonatomic) CDUnknownBlockType messageHandler; // @dynamic messageHandler;
-@property(readonly, nonatomic) BOOL cancelled; // @dynamic cancelled;
+@property(copy, nonatomic) CDUnknownBlockType registrationHandler;
+@property(copy, nonatomic) CDUnknownBlockType cancellationHandler;
+@property(copy, nonatomic) CDUnknownBlockType messageHandler;
+@property(readonly, nonatomic) BOOL cancelled;
 - (void)cancel;
 - (void)suspend;
 - (void)resume;

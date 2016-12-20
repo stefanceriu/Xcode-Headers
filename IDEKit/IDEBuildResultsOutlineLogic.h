@@ -137,6 +137,7 @@
 - (id)transcriptAttributedStringForDataNode:(id)arg1;
 - (void)updateSearchFieldValue:(id)arg1;
 - (void)copyShownTranscripts:(id)arg1;
+- (id)transcriptAsAttributedString;
 - (void)copyTranscriptToNewTextFile:(id)arg1;
 - (BOOL)outlineView:(id)arg1 writeItems:(id)arg2 toPasteboard:(id)arg3;
 - (id)attributedLogStringForItems:(id)arg1 inOutlineView:(id)arg2;
@@ -178,6 +179,7 @@
 - (void)_rebuildOutline;
 - (void)_updateCounts;
 - (void)_updateRoots;
+- (id)_allLogItemRootsWithFiltering:(BOOL)arg1;
 - (BOOL)shouldDisplaySummary;
 - (void)_expandSubcommandNodesForNode:(id)arg1;
 - (void)_recursivelyExpandUnitTestNodesWithImportantMessagesForNode:(id)arg1;

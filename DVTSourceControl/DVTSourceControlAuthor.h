@@ -8,12 +8,12 @@
 
 #import "NSSecureCoding.h"
 
-@class ABPerson, NSArray, NSNotification, NSString, NSURL;
+@class CNContact, NSArray, NSNotification, NSString, NSURL;
 
 @interface DVTSourceControlAuthor : NSObject <NSSecureCoding>
 {
-    NSString *_pairedUUID;
-    ABPerson *_cachedPairedPerson;
+    NSString *_pairedIdentifier;
+    CNContact *_cachedPairedPerson;
     NSNotification *_lastSeenNotification;
     NSString *_name;
     NSString *_displayName;
@@ -27,13 +27,10 @@
 @property(retain) NSString *displayName; // @synthesize displayName=_displayName;
 @property(retain) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
-@property(retain) ABPerson *pairedPerson;
-@property(retain) NSString *pairedUUID;
-- (void)abDatabaseChangedNotification:(id)arg1;
-- (id)_emailsFromPerson:(id)arg1;
-- (id)_arrayFromABMultiValue:(id)arg1;
-- (id)_displayNameFromPerson:(id)arg1;
-- (id)_imageFromPerson:(id)arg1;
+@property(retain) CNContact *pairedPerson;
+@property(retain) NSString *pairedIdentifier;
+- (id)_emailsFromContact:(id)arg1;
+- (id)_displayNameFromContact:(id)arg1;
 - (id)description;
 - (id)initWithPairedAddressBookPerson:(id)arg1;
 - (id)initWithUsername:(id)arg1 email:(id)arg2;

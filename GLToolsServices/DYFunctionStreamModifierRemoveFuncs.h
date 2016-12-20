@@ -17,7 +17,7 @@
 @property(readonly, nonatomic) unsigned int removedFunctionCount; // @synthesize removedFunctionCount=_removedFunctionCount;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) const vector_7dcb3552 *removedContexts; // @dynamic removedContexts;
+@property(readonly, nonatomic) const vector_7dcb3552 *removedContexts;
 - (void)onBeginFileInArchiveModifier:(id)arg1;
 - (id)initWithDeltaFilesTextureAndBufferLoadFilter;
 - (id)initWithAppleInternalContextFilter;

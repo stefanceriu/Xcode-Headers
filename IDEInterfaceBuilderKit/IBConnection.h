@@ -60,11 +60,9 @@
 - (id)ibLocalAutoNullifyingNonChildToManyRelationshipsKeyPaths;
 - (id)ibLocalChildToManyRelationshipsKeyPaths;
 - (id)ibLocalNonChildToManyRelationshipsKeyPaths;
-- (id)ibLocalToManyRelationshipsKeyPaths;
 - (id)ibLocalAutoNullifyingNonChildToOneRelationshipsKeyPaths;
 - (id)ibLocalChildToOneRelationshipsKeyPaths;
 - (id)ibLocalNonChildToOneRelationshipsKeyPaths;
-- (id)ibLocalToOneRelationshipsKeyPaths;
 - (id)ibLocalAttributeKeyPaths;
 - (id)connectionByCompletingWithConnectionContext:(id)arg1;
 - (void)populateExternalConnectionRepresentation:(id)arg1 forContainer:(id)arg2 fromContainer:(id)arg3 otherExternalConnections:(id)arg4 context:(id)arg5;
@@ -127,8 +125,8 @@
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (BOOL)shouldBeArchivedByEndPoint;
-- (id)archiveKeyForEndPoint:(long long)arg1;
-- (id)archiveKeyForLabel;
+- (id)archivingKeyForEndPoint:(long long)arg1;
+- (id)archivingKeyForLabel;
 - (long long)endPointToArchive;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

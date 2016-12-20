@@ -12,9 +12,9 @@
 
 @interface IDEMediaResourceVariantContext : NSObject <DVTInvalidation>
 {
-    NSMapTable *_repositoriesToMediaTypesToNamesToVaraintSets;
+    NSMapTable *_repositoriesToMediaTypesToNamesToVariantSets;
     NSMapTable *_repositoriesToObservationTokens;
-    NSMutableDictionary *_mediaTypesToVaraintSets;
+    NSMutableDictionary *_mediaTypesToVariantSets;
     NSMutableSet *_variantSets;
     NSSet *_repositories;
     NSMutableDictionary *_observers;
@@ -32,6 +32,7 @@
 - (id)registerVariantContextObserverWithOptions:(unsigned long long)arg1 block:(CDUnknownBlockType)arg2;
 - (id)variantSetsOfMediaType:(id)arg1;
 - (id)variantSetsWithName:(id)arg1 andMediaType:(id)arg2;
+- (id)variantSetsWithNames:(id)arg1 andMediaType:(id)arg2;
 - (void)primitiveInvalidate;
 - (id)initWithFoldingStratgey:(id)arg1 andMediaRepositories:(id)arg2;
 

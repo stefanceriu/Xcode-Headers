@@ -10,14 +10,15 @@
 
 @interface DVTCrashLogSection : NSObject
 {
-    NSData *_data;
+    NSData *_rawData;
     struct _NSRange _labelRange;
     struct _NSRange _contentRange;
 }
 
 + (id)sectionsFromData:(id)arg1 error:(id *)arg2;
-@property(readonly) NSData *data; // @synthesize data=_data;
+@property(readonly) NSData *rawData; // @synthesize rawData=_rawData;
 - (void).cxx_destruct;
+- (id)description;
 @property(readonly) NSArray *contentLines;
 @property(readonly) NSString *contents;
 @property(readonly) NSString *label;

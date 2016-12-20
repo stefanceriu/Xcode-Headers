@@ -13,8 +13,6 @@
     int _sourceControlLocalStatus;
     int _sourceControlServerStatus;
     unsigned long long _conflictStateForUpdateOrMerge;
-    IDESourceControlRevision *_headRevision;
-    IDESourceControlRevision *_baseRevision;
     IDESourceControlRevision *_currentRevision;
     NSMutableDictionary *_revisions;
     NSString *_name;
@@ -36,9 +34,9 @@
 - (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
-- (id)exportToFileURL:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)clearAllRevisions;
-- (id)revisionsWithStartingRevision:(id)arg1 endingRevision:(id)arg2 limit:(unsigned long long)arg3 branch:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (id)revisionsWithStartingRevision:(id)arg1 limit:(unsigned long long)arg2 branch:(id)arg3 includeHEAD:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (id)revisionsWithStartingRevision:(id)arg1 limit:(unsigned long long)arg2 branch:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 @property(readonly) NSArray *revisions;
 - (id)revisionsDictionary;
 - (void)addRevision:(id)arg1;
@@ -48,10 +46,6 @@
 @property(readonly) IDESourceControlRevision *currentRevision;
 - (int)aggregateSourceControlServerStatus;
 - (int)aggregateSourceControlLocalStatus;
-- (id)baseRevisionWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (id)headRevisionWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)setBASERevision:(id)arg1;
-- (void)setHEADRevision:(id)arg1;
 - (id)description;
 - (id)ideModelObjectTypeIdentifier;
 - (void)repositoryURLStringAtBranch:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;

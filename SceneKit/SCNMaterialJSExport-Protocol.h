@@ -6,15 +6,17 @@
 
 #import "JSExport.h"
 
-@class CAAnimation, NSArray, NSString, SCNMaterial, SCNMaterialProperty, SCNProgram;
+@class CAAnimation, MDLMaterial, NSArray, NSString, SCNMaterial, SCNMaterialProperty, SCNProgram;
 
 @protocol SCNMaterialJSExport <JSExport>
++ (id)materialWithMDLMaterial:(MDLMaterial *)arg1;
 + (id)material;
 @property(retain, nonatomic) SCNProgram *program;
 @property(readonly, nonatomic) SCNMaterial *presentationMaterial;
 @property(nonatomic) long long fillMode;
 @property(nonatomic) BOOL avoidsOverLighting;
 @property(nonatomic) double indexOfRefraction;
+@property(nonatomic) long long blendMode;
 @property(nonatomic) double fresnelExponent;
 @property(nonatomic) BOOL readsFromDepthBuffer;
 @property(nonatomic) BOOL writesToDepthBuffer;
@@ -24,8 +26,11 @@
 @property(nonatomic, getter=isDoubleSided) BOOL doubleSided;
 @property(nonatomic, getter=isLitPerPixel) BOOL litPerPixel;
 @property(copy, nonatomic) NSString *lightingModelName;
+@property(nonatomic) double selfIlluminationOcclusion;
 @property(nonatomic) double transparency;
 @property(nonatomic) double shininess;
+@property(readonly, nonatomic) SCNMaterialProperty *roughness;
+@property(readonly, nonatomic) SCNMaterialProperty *metalness;
 @property(readonly, nonatomic) SCNMaterialProperty *selfIllumination;
 @property(readonly, nonatomic) SCNMaterialProperty *ambientOcclusion;
 @property(readonly, nonatomic) SCNMaterialProperty *normal;

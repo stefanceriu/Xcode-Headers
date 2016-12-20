@@ -25,6 +25,7 @@
 - (id)effectiveSimulatedMetrics;
 - (BOOL)canPresentSimulatedMetrics;
 - (struct CGRect)internalStatusBarFrame;
+- (id)runtimeClassNameForContext:(id)arg1 returningOptionalFallbackClassName:(id *)arg2;
 - (BOOL)prefersCachedImageBasedDrawing;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
@@ -41,6 +42,8 @@
 - (id)ibWidgetType;
 - (id)ibPasteboardTypes;
 - (id)ibDesignableContentView;
+- (id)ibEditorClass;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

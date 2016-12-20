@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class DVTProcessInformation, IDEDebuggerSpecifier, NSString;
+@class DVTProcessInformation, IDEDebuggerSpecifier, NSArray, NSString;
 
 @protocol IDEAttachToProcessSheetDelegate
-- (void)processIDEntered:(int)arg1 debuggerSpecifier:(IDEDebuggerSpecifier *)arg2 debugProcessAsUID:(unsigned int)arg3;
-- (void)processNameEntered:(NSString *)arg1 debuggerSpecifier:(IDEDebuggerSpecifier *)arg2 debugProcessAsUID:(unsigned int)arg3;
-- (void)processInformationSelected:(DVTProcessInformation *)arg1 debuggerSpecifier:(IDEDebuggerSpecifier *)arg2 debugProcessAsUID:(unsigned int)arg3;
+- (void)processIDEntered:(int)arg1 debuggerSpecifier:(IDEDebuggerSpecifier *)arg2 debugProcessAsUID:(unsigned int)arg3 toolchains:(NSArray *)arg4;
+- (void)processNameEntered:(NSString *)arg1 debuggerSpecifier:(IDEDebuggerSpecifier *)arg2 debugProcessAsUID:(unsigned int)arg3 toolchains:(NSArray *)arg4;
+- (void)processInformationSelected:(DVTProcessInformation *)arg1 debuggerSpecifier:(IDEDebuggerSpecifier *)arg2 debugProcessAsUID:(unsigned int)arg3 toolchains:(NSArray *)arg4;
 @end
 

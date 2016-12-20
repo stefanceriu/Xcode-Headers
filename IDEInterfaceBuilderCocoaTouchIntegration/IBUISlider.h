@@ -53,14 +53,19 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
+- (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
+- (id)ibLocalPerConfigurationAttributeKeyPaths;
 - (void)setIbInspectedMaxValue:(double)arg1;
 - (double)ibInspectedMaxValue;
 - (void)setIbInspectedMinValue:(double)arg1;
 - (double)ibInspectedMinValue;
 - (void)setIbInspectedValue:(double)arg1;
+- (struct CGRect)ibSquashedXcode7InitialFrameFromAddingToNonAnyAny;
 - (double)ibInspectedValue;
 - (unsigned long long)ibPreferredActionEventType;
 - (id)ibWidgetType;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

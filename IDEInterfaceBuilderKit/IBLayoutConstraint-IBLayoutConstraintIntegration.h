@@ -13,6 +13,7 @@
 + (id)unarchivedFirstItem:(id)arg1;
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 + (id)keyPathsForValuesAffectingIbInspectedAttributeInspectionType;
++ (id)keyPathsForValuesAffectingIbAutomaticallyLayoutBasedOnLanguage;
 + (id)keyPathsForValuesAffectingIbInspectedAutomaticallyLayoutBasedOnLanguage;
 + (id)keyPathsForValuesAffectingIbInspectedCanEditSecondItem;
 + (id)keyPathsForValuesAffectingIbInspectedSecondAttribute;
@@ -43,13 +44,14 @@
 - (id)ibAllConfigurationsWithValuesForInspectedConfigurableProperty:(id)arg1;
 - (void)ibTakeValue:(id)arg1 forInspectedConfigurableProperty:(id)arg2 inConfiguration:(id)arg3;
 - (id)ibValueForInspectedConfigurableProperty:(id)arg1 inConfiguration:(id)arg2;
+- (BOOL)ibBothItemsAndAncestorsAreTurnedOnAndInstalledInConfiguration:(id)arg1;
 - (BOOL)ibBothItemsAreTurnedOnAndInstalledInConfiguration:(id)arg1;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (BOOL)ibIsCompatibleWithBasaltAndEarlierPopulatingCapabilities:(id)arg1 returningReason:(id *)arg2;
 - (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
 - (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
 - (void)ibArchiveConstantForConfiguration:(id)arg1 withArchiver:(id)arg2;
-- (void)ibPopulateRequiredDocumentCapabilities:(id)arg1;
+- (void)ibPopulateRequiredDocumentCapabilities:(id)arg1 document:(id)arg2;
 - (void)awakeAfterUsingDocumentUnarchiver:(id)arg1;
 - (void)unarchiveScoringType:(id)arg1;
 - (void)unarchiveContainingView:(id)arg1;
@@ -59,7 +61,7 @@
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 @property(readonly, nonatomic) unsigned long long ibInspectedAttributeInspectionType;
 @property(nonatomic) BOOL ibInspectedAutomaticallyLayoutBasedOnLanguage;
-- (void)setIbAutomaticallyLayoutBasedOnLanguage:(BOOL)arg1;
+@property(nonatomic) BOOL ibAutomaticallyLayoutBasedOnLanguage;
 - (BOOL)ibInspectedCanEditSizeAttributes;
 - (BOOL)ibInspectedCanEditHorizontalAttributes;
 - (BOOL)ibInspectedCanEditVerticalAttributes;
@@ -74,7 +76,7 @@
 - (long long)ibInspectedRelation;
 - (BOOL)ibInspectedCanEditRelation;
 @property(readonly, nonatomic) double ibInspectedMinimumConstant;
-- (void)setIbInspectedConstant:(id)arg1 document:(id)arg2 frameDecideAfterSettingConstant:(BOOL)arg3;
+- (void)setIbInspectedConstant:(id)arg1 document:(id)arg2;
 - (id)ibInspectedConstantToSetForConstantValue:(id)arg1 document:(id)arg2;
 @property(copy, nonatomic) NSNumber *ibInspectedConstant; // @dynamic ibInspectedConstant;
 - (id)ibInspectedNonNilConstantValue;
@@ -84,7 +86,6 @@
 - (unsigned long long)ibInspectedConstantInspectionTypeReturningReasonForNonSymbolicType:(id *)arg1;
 - (id)ibInspectedNonSymbolicConstantReason;
 @property(readonly, nonatomic) unsigned long long ibInspectedConstantInspectionType;
-- (void)ibModifyPropertyOfConstraintWithOptions:(unsigned long long)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (id)ibInspectedInspectorHeaderTitle;
 - (id)ibQualifyingInfoForDefaultLabel;
@@ -97,6 +98,7 @@
 - (BOOL)ibAvoidsEditing;
 - (id)ibLocalAdditionalIbtoolDescriptionKeyPaths;
 - (id)ibLocalPerConfigurationAttributeKeyPaths;
+- (id)ibEffectiveConfigurationFromConfiguration:(id)arg1;
 - (BOOL)ibIsCopyableGivenSelection:(id)arg1;
 - (id)ibInspectedFirstAttributeName;
 - (id)ibLoggingDescription;
@@ -104,5 +106,7 @@
 @property(readonly, nonatomic) NSObject<IBIDEAutolayoutItem> *ideContainingView;
 @property(readonly, nonatomic) NSObject<IBIDEAutolayoutItem> *ideSecondItem;
 @property(readonly, nonatomic) NSObject<IBIDEAutolayoutItem> *ideFirstItem;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 @end
 

@@ -15,6 +15,9 @@
     unsigned long long _visibleRangeFromIndex;
     unsigned long long _visibleRangeToIndex;
     NSMutableArray *_subHostNodes;
+    unsigned long long _minimumRenderingOrder;
+    unsigned long long _maximumRenderingOrder;
+    int _reason;
     int _explosionStyle;
     DBGSceneNode *_rootViewNode;
     NSMutableDictionary *_nodesByZPosition;
@@ -22,13 +25,15 @@
 
 @property(readonly) NSMutableDictionary *nodesByZPosition; // @synthesize nodesByZPosition=_nodesByZPosition;
 @property int explosionStyle; // @synthesize explosionStyle=_explosionStyle;
+@property int reason; // @synthesize reason=_reason;
 @property __weak DBGSceneNode *rootViewNode; // @synthesize rootViewNode=_rootViewNode;
 - (void).cxx_destruct;
 - (unsigned long long)updateRenderingOrderRecursively:(BOOL)arg1 withRenderingOrderRangeStartingAt:(unsigned long long)arg2;
+- (void)updateTrueSpacingBoxRenderingOrder:(BOOL)arg1;
 - (void)updateNodeAppearenceAfterConstraintsUpdate:(BOOL)arg1 selectedItemCount:(unsigned long long)arg2;
-- (void)updateContraintsOnHostedNodes:(BOOL)arg1;
 - (void)removeContraintsOnHostedNodes:(BOOL)arg1;
 - (void)updateNodesByZPosition;
+- (void)updateNodesByZPositionRecursively;
 - (unsigned long long)zOrderIndexOfNode:(id)arg1;
 - (id)zOrderKeysSortedByZPosition;
 - (id)nodeInZMaxPlane;
@@ -37,22 +42,27 @@
 - (unsigned long long)hideViewsBehindNode:(id)arg1;
 - (unsigned long long)hideViewsAboveNode:(id)arg1;
 - (void)resetVisibleRangeAnimated:(BOOL)arg1;
+- (void)contentClippingModeChanged;
+- (BOOL)getSpacingBoundingBoxMin:(struct SCNVector3 *)arg1 max:(struct SCNVector3 *)arg2 forNode:(id)arg3 relativeToNode:(id)arg4;
 - (void)updateSpacing:(double)arg1 forNodesInfluencedBy:(id)arg2;
 - (void)updateSpacing:(double)arg1;
+@property(readonly) BOOL hasSubHostNodes;
 @property(readonly) BOOL hasTrueSpacingBox;
-- (void)setTrueSpacingBoxesHidden:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)traverseTrueSpacingBoxesInvokingBlock:(CDUnknownBlockType)arg1;
 - (void)updateBoxWithSpacing:(double)arg1;
 - (BOOL)boundingBoxAMin:(struct SCNVector3)arg1 max:(struct SCNVector3)arg2 overlappsBoundingBoxBMin:(struct SCNVector3)arg3 max:(struct SCNVector3)arg4;
 - (void)repositionNode:(id)arg1 spacing:(double)arg2;
-- (void)updateNodePositionsWithSpacing:(double)arg1;
-- (BOOL)transformIs3D:(struct CATransform3D)arg1;
-- (BOOL)isHostNodeNeededForView:(id)arg1;
+- (void)_repositionNodesWithSpacing:(double)arg1 recursively:(BOOL)arg2;
+- (void)_resetNodesPositionInfluencedRecursively:(BOOL)arg1;
+- (void)rebuildNodePositioningDependeciesWithSpacing:(double)arg1 recursively:(BOOL)arg2;
+- (double)nodeSpacing;
+- (BOOL)isHostNodeNeededForView:(id)arg1 style:(int *)arg2;
 - (void)addNodesWithSubviews:(id)arg1 style:(int)arg2;
 - (void)explodeFlattenedAnimated:(BOOL)arg1;
+- (void)addMinimumSpacingToContentViews;
 - (void)explodeTrueSpacingAnimated:(BOOL)arg1;
-- (void)explodeAllAnimated:(BOOL)arg1;
-- (BOOL)needsTrueSpacingExplosion;
-- (void)explodeAnimated:(BOOL)arg1;
+- (void)explodeAllWithStyle:(int)arg1;
+- (void)explodeSubviewsWithStyle:(int)arg1;
 - (id)initWithRootView:(id)arg1 host:(id)arg2 inSceneView:(id)arg3;
 
 @end

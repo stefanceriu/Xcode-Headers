@@ -6,12 +6,10 @@
 
 #import "NSView.h"
 
-@class DVTTabChooserView, NSButton, NSTextField, XCSUIInsetHorizontalDividerLine;
+@class DVTTabChooserView, NSButton, XCSUIInsetHorizontalDividerLine;
 
 @interface XCSUIIntegrationEditorHeaderView : NSView
 {
-    NSButton *_integrationLabelButton;
-    NSTextField *_integrationLabelField;
     DVTTabChooserView *_tabChooserView;
     NSButton *_editBotButton;
     NSButton *_integrateButton;
@@ -22,8 +20,6 @@
 @property __weak NSButton *integrateButton; // @synthesize integrateButton=_integrateButton;
 @property __weak NSButton *editBotButton; // @synthesize editBotButton=_editBotButton;
 @property __weak DVTTabChooserView *tabChooserView; // @synthesize tabChooserView=_tabChooserView;
-@property __weak NSTextField *integrationLabelField; // @synthesize integrationLabelField=_integrationLabelField;
-@property __weak NSButton *integrationLabelButton; // @synthesize integrationLabelButton=_integrationLabelButton;
 - (void).cxx_destruct;
 
 @end

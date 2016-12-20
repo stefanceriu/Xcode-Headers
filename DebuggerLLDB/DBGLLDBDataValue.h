@@ -6,16 +6,17 @@
 
 #import "DBGDataValue.h"
 
-@class DBGLLDBDataType, NSArray, NSMutableArray, NSString;
+@class DBGLLDBDataType, NSArray, NSMutableArray, NSMutableIndexSet, NSString;
 
 __attribute__((visibility("hidden")))
 @interface DBGLLDBDataValue : DBGDataValue
 {
     BOOL _isDictionarySynthesizedParent;
     DBGLLDBDataType *_dbgStaticType;
-    struct SBValue _lldbValueObject;
+    id <DBGSBValue> _lldbValueObject;
     int _lldbFormat;
     NSMutableArray *_childValues;
+    NSMutableIndexSet *_fetchedIndexesForPlaceHolders;
     NSString *_expr_path_str;
     NSArray *_classNameHierarchy;
     BOOL _requested_children;
@@ -25,6 +26,7 @@ __attribute__((visibility("hidden")))
     BOOL _fullSummaryHasBeenFetched_mainThreadOnly;
     BOOL _representsNilObjectiveCObject;
     BOOL _representsNullObjectPointer;
+    BOOL _representsNullClassTypedef;
     BOOL _mightRespondToSelectors;
     BOOL _value_has_changed;
     BOOL _childValuesCountValid;
@@ -35,7 +37,6 @@ __attribute__((visibility("hidden")))
     NSString *_summary_str;
     NSString *_fullSummary;
     DBGDataValue *_parent;
-    struct _NSRange _fetchRange;
 }
 
 + (id)_dataValueWithDisplayName:(id)arg1 tag:(unsigned long long)arg2;
@@ -45,7 +46,6 @@ __attribute__((visibility("hidden")))
 + (int)_persistedLLDBFormatForValueName:(id)arg1 inStackFrame:(id)arg2;
 + (BOOL)supportsInvalidationPrevention;
 + (void)initialize;
-@property struct _NSRange fetchRange; // @synthesize fetchRange=_fetchRange;
 - (id)staticType;
 - (BOOL)inScope;
 - (id)parent;
@@ -55,20 +55,22 @@ __attribute__((visibility("hidden")))
 @property BOOL childValuesCountValid; // @synthesize childValuesCountValid=_childValuesCountValid;
 - (BOOL)valueHasChanged;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (BOOL)isMemoryFault;
 - (id)_dataValueFormatForLLDBFormat:(int)arg1;
 - (void)_persistLLDBFormat:(id)arg1;
-- (id)_classNameHierarchyStartingWithType:(struct SBType)arg1;
+- (id)_classNameHierarchyStartingWithType:(id)arg1;
 - (void)classNameHierarchy:(CDUnknownBlockType)arg1;
 - (void)ensureAllDisplayablePropertiesAreLoaded:(CDUnknownBlockType)arg1;
 - (BOOL)mightRespondToSelectors;
-- (BOOL)_calculateRepresentsNullObjectPointer;
+- (BOOL)_calculateRepresentsNullClassTypedef:(long long)arg1;
+- (BOOL)representsNullClassTypedef;
+- (BOOL)_calculateRepresentsNullObjectPointer:(long long)arg1;
 - (BOOL)representsNullObjectPointer;
-- (BOOL)_calculateRepresentsNilObjectiveCObject;
+- (BOOL)_calculateRepresentsNilObjectiveCObject:(long long)arg1;
 - (BOOL)representsNilObjectiveCObject;
+- (void)_calculateZeroPointers;
 - (void)watch;
 - (BOOL)wantsToProvideSummary;
 - (id)_createNSStringForCString:(const char *)arg1;
@@ -105,8 +107,8 @@ __attribute__((visibility("hidden")))
 - (BOOL)_isSessionThread;
 - (void)_assertOnSessionThread;
 - (id)lldbStackFrame;
-- (id)initWithLLDBValueObject:(struct SBValue)arg1 forStackFrame:(id)arg2 withParent:(id)arg3 updateSummary:(BOOL)arg4;
-- (id)initWithLLDBValueObject:(struct SBValue)arg1 forStackFrame:(id)arg2 withParent:(id)arg3;
+- (id)initWithLLDBValueObject:(id)arg1 forStackFrame:(id)arg2 withParent:(id)arg3 updateSummary:(BOOL)arg4;
+- (id)initWithLLDBValueObject:(id)arg1 forStackFrame:(id)arg2 withParent:(id)arg3;
 
 @end
 

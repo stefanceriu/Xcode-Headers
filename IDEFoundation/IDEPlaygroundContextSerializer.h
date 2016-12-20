@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <IDEFoundation/IDEPlaygroundContextSerializerCommon.h>
 
-@interface IDEPlaygroundContextSerializer : NSObject
+@interface IDEPlaygroundContextSerializer : IDEPlaygroundContextSerializerCommon
 {
 }
 
@@ -14,6 +14,7 @@
 + (id)_discreteSourceCodeFileSectionElementForFileReference:(id)arg1 error:(id *)arg2;
 + (id)_discreteDocumentationFileSectionElementForFileReference:(id)arg1 context:(id)arg2 error:(id *)arg3;
 + (id)_discreteFileSectionElementForContext:(id)arg1 error:(id *)arg2;
++ (id)_pageElementNameForPageSuffix:(id)arg1 context:(id)arg2;
 + (id)_pagesElementForContext:(id)arg1 error:(id *)arg2;
 + (id)_timelineFileElementForContext:(id)arg1 error:(id *)arg2;
 + (id)_organizationNameAttributeForContext:(id)arg1 error:(id *)arg2;
@@ -25,9 +26,8 @@
 + (id)_allowsResetAttributeForContext:(id)arg1 error:(id *)arg2;
 + (id)_targetPlatformIdentifierAttributeForContext:(id)arg1 error:(id *)arg2;
 + (id)versionAttributeForContext:(id)arg1 error:(id *)arg2;
-+ (id)_rootXMLElementFromPlaygroundContext:(id)arg1 error:(id *)arg2;
-+ (id)xmlDataToSerializeFromPlaygroundContext:(id)arg1 error:(id *)arg2;
-+ (id)fileWrapperForPlaygroundContext:(id)arg1 error:(id *)arg2;
++ (id)rootXMLElementFromContext:(id)arg1 error:(id *)arg2;
++ (id)fileWrapperForContext:(id)arg1 error:(id *)arg2;
 
 @end
 

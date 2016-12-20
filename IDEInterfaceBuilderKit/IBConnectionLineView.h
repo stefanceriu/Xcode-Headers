@@ -6,25 +6,27 @@
 
 #import "DVTLayoutView_ML.h"
 
+@class NSScreen;
+
 @interface IBConnectionLineView : DVTLayoutView_ML
 {
-    struct CGPoint start;
-    struct CGPoint end;
-    double lineWidth;
-    double ballRadius;
-    double strokeWidth;
+    struct CGPoint _start;
+    struct CGPoint _end;
+    NSScreen *_screen;
+    double _ballRadius;
+    double _lineWidth;
+    double _strokeWidth;
 }
 
+@property(nonatomic) double strokeWidth; // @synthesize strokeWidth=_strokeWidth;
+@property(nonatomic) double lineWidth; // @synthesize lineWidth=_lineWidth;
+@property(nonatomic) double ballRadius; // @synthesize ballRadius=_ballRadius;
+@property(retain, nonatomic) NSScreen *screen; // @synthesize screen=_screen;
+- (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)linePath;
 - (void)layoutBottomUp;
-- (void)setBallRadius:(double)arg1;
-- (double)ballRadius;
-- (void)setLineWidth:(double)arg1;
-- (double)lineWidth;
-- (void)setStrokeWidth:(double)arg1;
-- (double)strokeWidth;
-- (double)shadowBlurRaidus;
+- (double)shadowBlurRadius;
 - (void)setStartPoint:(struct CGPoint)arg1 andEndPoint:(struct CGPoint)arg2;
 
 @end

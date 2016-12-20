@@ -6,17 +6,15 @@
 
 #import "IBObjectLibraryAssetProvider.h"
 
-@class IBCocoaPopoverObjectLibraryAsset, IBCocoaSourceListObjectLibraryAsset, IBCocoaWindowAndDrawerObjectLibraryAsset, IBObjectLibraryAsset;
+@class IBCocoaPopoverObjectLibraryAsset, IBCocoaSourceListObjectLibraryAsset, IBObjectLibraryAsset;
 
 @interface IBCocoaObjectLibraryAssetProvider : IBObjectLibraryAssetProvider
 {
-    IBObjectLibraryAsset *texturedWindowAsset;
     IBObjectLibraryAsset *windowAsset;
     IBObjectLibraryAsset *windowControllerAsset;
     IBObjectLibraryAsset *viewControllerAsset;
     IBObjectLibraryAsset *panelAsset;
     IBObjectLibraryAsset *headsUpDisplayAsset;
-    IBCocoaWindowAndDrawerObjectLibraryAsset *drawerAsset;
     IBObjectLibraryAsset *collectionViewAsset;
     IBObjectLibraryAsset *collectionViewItemAsset;
     IBObjectLibraryAsset *containerViewAsset;
@@ -38,7 +36,6 @@
     IBObjectLibraryAsset *treeControllerAsset;
     IBObjectLibraryAsset *tableCellViewAsset;
     IBObjectLibraryAsset *textOnlyTableCellViewAsset;
-    IBObjectLibraryAsset *enterFullScreenAsset;
     IBObjectLibraryAsset *pageControllerAsset;
     IBObjectLibraryAsset *tabViewController;
     IBObjectLibraryAsset *verticalSplitView;
@@ -73,7 +70,6 @@
 - (void)didAddSplitViewAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (void)didAddSourceListAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (void)didAddPopoverAssetProducts:(id)arg1 toDocument:(id)arg2;
-- (void)didAddEnterFullScreenAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (void)didAddTextOnlyTableCellViewAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (void)didAddTableCellViewAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (void)didAddImageViewAssetProducts:(id)arg1 toDocument:(id)arg2;
@@ -86,7 +82,6 @@
 - (id)createViewControllerFromAsset:(id)arg1 inContainerOrDocument:(id)arg2;
 - (void)_addItemPrototypeToCollectionViewAsset:(id)arg1 inDocument:(id)arg2;
 - (void)didAddCollectionViewAssetProducts:(id)arg1 toDocument:(id)arg2;
-- (void)didAddDrawerAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (BOOL)isMenuItemAsset:(id)arg1;
 - (BOOL)shouldIncludeAsset:(id)arg1;
 

@@ -32,9 +32,10 @@
 - (id)dvt_capitalizedWordsFromString;
 - (id)dvt_wordsFromString;
 - (id)dvt_wordsFromStringWithLetterCasing:(unsigned long long)arg1;
-- (id)dvt_stringByManglingToLegalRFC1034IdentifierAllowingPeriod:(BOOL)arg1;
+- (id)dvt_stringByManglingToLegalCIdentifier;
 - (id)dvt_stringByManglingToLegalRFC1034Identifier;
 - (id)dvt_stringByManglingToLegalBundleIdentifier;
+- (id)dvt_stringByManglingToLegalIdentifierOfType:(int)arg1;
 - (long long)dvt_versionNumberComparison:(id)arg1;
 - (id)dvt_dataForHexString;
 - (BOOL)dvt_isLegalCIdentifier;
@@ -55,6 +56,7 @@
 - (id)dvt_lastKeyPathComponent;
 - (id)dvt_firstKeyPathComponent;
 - (id)dvt_stringByReplacingWhitespaceRunsWithCharacter:(unsigned short)arg1 range:(struct _NSRange)arg2;
+- (id)dvt_stringByAppendingSuffixIfMissing:(id)arg1;
 - (id)dvt_stringByRemovingSuffix:(id)arg1;
 - (id)dvt_stringByRemovingPrefix:(id)arg1;
 - (BOOL)dvt_getFileSystemRepresentation:(char *)arg1 maxLength:(unsigned long long)arg2;

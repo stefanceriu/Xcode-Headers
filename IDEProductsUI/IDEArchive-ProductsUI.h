@@ -18,6 +18,8 @@
 - (id)inspectableIcon;
 - (id)inspectableType;
 - (id)inspectableSubtitle;
+- (id)productsUI_toolchainDisplayName;
+- (BOOL)wantsToolChainDisplayed;
 - (id)productsUI_creationDate;
 - (id)productsUI_archiveImage;
 - (id)productsUI_version;

@@ -6,50 +6,51 @@
 
 #import "DVTPagingSheetWindowController.h"
 
-@class DVTBorderedView, DVTObservingToken, DVTWatchSimulatorDeviceType, NSArray, NSArrayController, NSColor, NSPopUpButton, NSTextField, SimRuntime;
+@class DVTBorderedView, DVTSimulatorCreationViewController, NSString, NSTextField, SimDevice;
 
 @interface DVTiPhoneSimulatorCreationWindowController : DVTPagingSheetWindowController
 {
-    DVTObservingToken *_selectedDeviceTypeToken;
-    NSArray *_deviceTypes;
-    NSArrayController *_deviceTypesArrayController;
-    NSPopUpButton *_runtimesPopUpButton;
-    NSTextField *_appleWatchLabel;
-    NSPopUpButton *_appleWatchPopUpButton;
-    NSArray *_watchDeviceTypes;
-    DVTWatchSimulatorDeviceType *_selectedWatchDeviceType;
+    SimDevice *_deviceForPairing;
+    NSTextField *_sheetTitleLabel;
     DVTBorderedView *_borderedView;
-    NSTextField *_simulatorNameField;
-    NSArray *_supportedSimRuntimes;
-    SimRuntime *_selectedRuntime;
+    long long _windowState;
+    DVTSimulatorCreationViewController *_simViewController;
+    DVTSimulatorCreationViewController *_pairViewController;
+    DVTSimulatorCreationViewController *_activeViewController;
 }
 
-+ (id)keyPathsForValuesAffectingAppleWatchLabelColor;
-+ (id)keyPathsForValuesAffectingShouldEnableWatchPopUp;
-+ (id)keyPathsForValuesAffectingSelectedDeviceType;
++ (id)_simulatorGeneratorForViewController:(id)arg1;
++ (void)_createSimulatorWithContext:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
++ (void)_createPairedSimulatorForDevice:(id)arg1 withContext:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
++ (void)_createPairWithDevice:(id)arg1 otherDevice:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
++ (id)keyPathsForValuesAffectingActionButtonTitle;
++ (id)keyPathsForValuesAffectingCanPerformDefaultAction;
++ (id)keyPathsForValuesAffectingCanGoBack;
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
-@property(retain) SimRuntime *selectedRuntime; // @synthesize selectedRuntime=_selectedRuntime;
-@property(copy) NSArray *supportedSimRuntimes; // @synthesize supportedSimRuntimes=_supportedSimRuntimes;
-@property(retain) NSTextField *simulatorNameField; // @synthesize simulatorNameField=_simulatorNameField;
+@property(retain, nonatomic) DVTSimulatorCreationViewController *activeViewController; // @synthesize activeViewController=_activeViewController;
+@property(retain, nonatomic) DVTSimulatorCreationViewController *pairViewController; // @synthesize pairViewController=_pairViewController;
+@property(retain, nonatomic) DVTSimulatorCreationViewController *simViewController; // @synthesize simViewController=_simViewController;
+@property long long windowState; // @synthesize windowState=_windowState;
 @property(retain) DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
-@property(retain) DVTWatchSimulatorDeviceType *selectedWatchDeviceType; // @synthesize selectedWatchDeviceType=_selectedWatchDeviceType;
-@property(copy) NSArray *watchDeviceTypes; // @synthesize watchDeviceTypes=_watchDeviceTypes;
-@property(retain) NSPopUpButton *appleWatchPopUpButton; // @synthesize appleWatchPopUpButton=_appleWatchPopUpButton;
-@property(retain) NSTextField *appleWatchLabel; // @synthesize appleWatchLabel=_appleWatchLabel;
-@property(retain) NSPopUpButton *runtimesPopUpButton; // @synthesize runtimesPopUpButton=_runtimesPopUpButton;
-@property(retain) NSArrayController *deviceTypesArrayController; // @synthesize deviceTypesArrayController=_deviceTypesArrayController;
-@property(retain) NSArray *deviceTypes; // @synthesize deviceTypes=_deviceTypes;
+@property(retain) NSTextField *sheetTitleLabel; // @synthesize sheetTitleLabel=_sheetTitleLabel;
 - (void).cxx_destruct;
-- (void)_determineSupportedSimRuntimes;
-- (void)changedSelectedDeviceType;
-@property(readonly, nonatomic) NSColor *appleWatchLabelColor;
-@property(readonly, nonatomic) BOOL shouldEnableWatchPopUp;
-- (id)selectedDeviceType;
+- (void)_pairSimulators;
+- (void)_createSimulator;
+- (id)_createSimulatorContextFromUIState;
+- (BOOL)_deviceType:(id)arg1 canBePairingCompanionWithRuntime:(id)arg2;
+- (void)_goNext;
+- (void)_goBack;
+@property(readonly) NSString *actionButtonTitle;
+@property(readonly) BOOL canPerformDefaultAction;
+@property(readonly) BOOL canGoBack;
 - (void)primitiveInvalidate;
-- (void)selectRuntime:(id)arg1;
 - (void)cancel:(id)arg1;
-- (void)create:(id)arg1;
+- (void)defaultAction:(id)arg1;
+- (void)goBack:(id)arg1;
+- (id)slideLTRAnimation;
+- (id)slideRTLAnimation;
 - (void)windowDidLoad;
+- (id)initForPairingWithDevice:(id)arg1;
 - (id)init;
 
 @end

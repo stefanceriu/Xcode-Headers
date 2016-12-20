@@ -10,7 +10,7 @@
 {
 }
 
-- (unsigned long long)provisioningProfileType;
+- (unsigned long long)provisioningProfilePurpose;
 - (id)certificateKind;
 - (id)subtitle;
 - (id)shortTitle;

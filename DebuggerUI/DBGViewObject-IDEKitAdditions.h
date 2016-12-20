@@ -13,7 +13,6 @@
 @class DVTDocumentLocation, DVTFileDataType, IDEFileReference, IDELaunchSession, NSImage, NSString;
 
 @interface DBGViewObject (IDEKitAdditions) <IDEDebugNavigableModel, IDEKeyDrivenNavigableItemRepresentedObject, IDEInspectorMatching>
-+ (id)_urlForLaunchSession:(id)arg1;
 - (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
 - (id)_classForInspector:(id)arg1;
 @property(readonly) IDELaunchSession *launchSession;
@@ -28,10 +27,14 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 @end

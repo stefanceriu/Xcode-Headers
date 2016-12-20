@@ -13,6 +13,7 @@
 @interface XCSUIAssetDownloadHelper : NSObject <NSURLConnectionDataDelegate>
 {
     NSMutableData *_bytes;
+    BOOL _userCanceled;
     float _percentComplete;
     CDUnknownBlockType _progressBlock;
     CDUnknownBlockType _completionBlock;
@@ -33,6 +34,7 @@
 @property(copy) CDUnknownBlockType completionBlock; // @synthesize completionBlock=_completionBlock;
 @property(copy) CDUnknownBlockType progressBlock; // @synthesize progressBlock=_progressBlock;
 - (void).cxx_destruct;
+@property(readonly) BOOL userCanceled;
 - (void)cancel;
 - (void)beginDownload;
 - (void)connection:(id)arg1 didReceiveAuthenticationChallenge:(id)arg2;

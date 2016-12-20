@@ -6,20 +6,20 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSMutableDictionary, NSSet, NSString;
+@class NSArray, NSDictionary, NSMutableDictionary, NSString;
 
 @interface IBFileBuildSettingsSnapshot : NSObject
 {
     NSMutableDictionary *_cachedValueByBuildableThenConfigurationThenSetting;
     NSDictionary *_buildParametersByBuildableThenConfiguration;
     NSMutableDictionary *_cachedValuesByBuildSetting;
-    NSSet *buildables;
+    NSArray *_buildables;
 }
 
 + (id)buildSettingsSnapshotFilePath:(id)arg1 inWorkspaces:(id)arg2;
-@property(readonly) NSSet *buildables; // @synthesize buildables;
+@property(readonly) NSArray *buildables; // @synthesize buildables=_buildables;
 - (void).cxx_destruct;
-@property(readonly) NSSet *unpreprocessedInfoPlistPaths;
+@property(readonly) NSArray *unpreprocessedInfoPlistPaths;
 - (void)enumerateValuesForBuildSetting:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (id)minimumDeploymentTargetForPlatform:(id)arg1;
 @property(readonly) NSString *minimumIOSDeploymentTarget;
@@ -27,11 +27,14 @@
 - (id)minimumDeploymentTargetOfTargets:(id)arg1;
 - (id)deploymentTargetsForPlatform:(id)arg1;
 - (id)pathsToAssetCatalogAppIconsPassingTest:(CDUnknownBlockType)arg1;
-@property(readonly) NSSet *iOSDeploymentTargets;
-@property(readonly) NSSet *macOSXDeploymentTargets;
+@property(readonly) NSArray *iOSDeploymentTargets;
+@property(readonly) NSArray *macOSXDeploymentTargets;
+@property(readonly) NSArray *toolchainIdentifiers;
+@property(readonly) BOOL anyBuildablesAreUsingSwift3OrHigher;
 @property(readonly) BOOL anyBuildablesRequireManualSynthesis;
 @property(readonly) BOOL anyBuildablesAreUsingFragileIvarLayout;
 @property(readonly) BOOL allBuildablesAreUsingFragileIvarLayout;
+- (BOOL)isBuildableUsingSwift3OrHigher:(id)arg1;
 - (BOOL)isBuildableIncapableOfAutoSynthesize:(id)arg1;
 - (BOOL)isBuildableUsingFragileIvarLayout:(id)arg1;
 - (id)cachedValueForBuildSetting:(id)arg1 forConfiguration:(id)arg2 ofBuildable:(id)arg3;

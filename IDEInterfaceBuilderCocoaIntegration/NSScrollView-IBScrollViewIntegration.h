@@ -16,8 +16,6 @@
 + (id)keyPathsForValuesAffectingIbInspectedUseFixedContentInsets;
 + (id)keyPathsForValuesAffectingIbInspectedMaxMagnification;
 + (id)keyPathsForValuesAffectingIbInspectedMinMagnification;
-- (void)ibDidAddToDocument:(id)arg1 phase:(unsigned long long)arg2;
-@property(nonatomic) BOOL ibShadowedUsesManualLayerBacking;
 - (id)ibObjectsToReparentWhenAddingOrRemovingActiveContentView;
 - (id)ibVerifyContentViewCurrentContentView;
 - (BOOL)ibCanEmbedDirectlyInSplitView;
@@ -30,6 +28,7 @@
 - (void)awakeAfterUsingDocumentUnarchiver:(id)arg1;
 - (id)ibArchivedDesignableContentView;
 - (BOOL)ibInspectedUseFixedContentInsets;
+@property(retain) NSValue *ibWrappedScrollerInsets;
 @property(retain) NSValue *ibWrappedContentInsets;
 - (void)setIbShadowedSubviews:(id)arg1;
 - (id)ibShadowedSubviews;
@@ -68,5 +67,7 @@
 - (BOOL)ibCanRemoveChildren:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (BOOL)ibIsNSAppearanceContainer;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 @end
 

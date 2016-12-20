@@ -12,6 +12,7 @@
 }
 
 + (void)initNSUnarchiverClassTranslationMappings;
++ (id)getLocalizedString:(id)arg1 table:(id)arg2;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)_newHeuristicPoolWithGraphicsEngineID:(unsigned long long)arg1;
@@ -53,6 +54,8 @@
 - (id)getStaticTextureIdArray:(unsigned long long)arg1;
 - (void)_setContextIfPlatformFunc:(const struct Function *)arg1;
 - (void)processFunction:(const struct Function *)arg1 blockMode:(int)arg2 streamMode:(BOOL)arg3 analyzeInserted:(BOOL)arg4 findingsHandler:(CDUnknownBlockType)arg5;
+- (void)_populateHeuristicPool:(id)arg1;
+- (void)enableAllHeuristics;
 - (id)init;
 
 @end

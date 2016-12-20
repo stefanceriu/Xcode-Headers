@@ -59,7 +59,7 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)ibPopulateRequiredDocumentCapabilities:(id)arg1;
+- (void)ibPopulateRequiredDocumentCapabilities:(id)arg1 document:(id)arg2;
 - (void)ibUnarchiveRightBarButtonItems:(id)arg1;
 - (void)ibArchiveRightBarButtonItems:(id)arg1;
 - (void)ibUnarchiveLeftBarButtonItems:(id)arg1;
@@ -81,6 +81,11 @@
 - (id)ibLabelQualifierForChild:(id)arg1;
 - (struct CGRect)ibRectForChild:(id)arg1 inFrameController:(id)arg2;
 - (id)ibInitialConnectionLabelSearchTerm;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibEditorClass;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 - (void)setIbInspectedPrompt:(id)arg1;
 - (id)ibInspectedPrompt;
 - (id)parentViewController;

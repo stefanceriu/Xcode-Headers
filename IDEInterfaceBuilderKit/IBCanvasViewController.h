@@ -7,20 +7,21 @@
 #import "IDEViewController.h"
 
 #import "IBCanvasViewDelegate.h"
-#import "IBEditorStackDelegate.h"
+#import "IBEditorTreeDelegate.h"
 #import "IBHighlightProvider.h"
 #import "IBSelectionProvider.h"
 #import "IDEWorkspaceTabControllerCursorRectInterceptor.h"
+#import "NSScrollViewDelegate.h"
 
-@class DVTDelayedInvocation, DVTDraggedImageState, DVTMutableOrderedSet, DVTObservingToken, DVTStackView_AppKitAutolayout, IBAbstractDocumentEditor, IBCancellationToken, IBCanvasControllerLayoutGuideGeneratorDelegate, IBCanvasScrollView, IBCanvasView, IBDelegatedCanvasOverlay, IBHitDetectionMap, IBLayoutGuideDrawingHandler, IBLayoutManager, IBMutableIdentityDictionary, NSDate, NSMutableArray, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSegmentedControl, NSString, NSView, NSViewController<DVTInvalidation>;
+@class DVTDelayedInvocation, DVTDraggedImageState, DVTMutableOrderedSet, DVTNotificationToken, DVTObservingToken, IBAbstractDocumentEditor, IBCancellationToken, IBCanvasControllerLayoutGuideGeneratorDelegate, IBCanvasScrollView, IBCanvasView, IBDeviceBarViewController, IBHitDetectionMap, IBLayoutGuideCanvasOverlay, IBLayoutManager, IBMutableIdentityDictionary, NSButton, NSDate, NSMutableArray, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSegmentedControl, NSString;
 
-@interface IBCanvasViewController : IDEViewController <IBEditorStackDelegate, IBCanvasViewDelegate, IBSelectionProvider, IBHighlightProvider, IDEWorkspaceTabControllerCursorRectInterceptor>
+@interface IBCanvasViewController : IDEViewController <IBEditorTreeDelegate, NSScrollViewDelegate, IBCanvasViewDelegate, IBSelectionProvider, IBHighlightProvider, IDEWorkspaceTabControllerCursorRectInterceptor>
 {
     IBCanvasView *canvasView;
     IBCanvasScrollView *canvasScrollView;
-    IBMutableIdentityDictionary *topLevelObjectToEditorStackMap;
+    IBMutableIdentityDictionary *topLevelObjectToEditorTreeMap;
     IBMutableIdentityDictionary *canvasViewsToCanvasEditorControllers;
-    NSMutableSet *stacksBeingModified;
+    NSMutableSet *treesBeingModified;
     DVTMutableOrderedSet *selectedConnections;
     DVTDelayedInvocation *delayedEditorDeselectionInvocation;
     BOOL editorsProvidingSelection;
@@ -32,32 +33,41 @@
     BOOL canvasViewItselfHasInvalidCursorRects;
     DVTDelayedInvocation *canvasViewCursorInvocation;
     IBCanvasControllerLayoutGuideGeneratorDelegate *frameLayoutGuideGeneratorDelegate;
-    IBDelegatedCanvasOverlay *guideOverlay;
-    IBLayoutGuideDrawingHandler *layoutGuideDrawingHandler;
+    IBLayoutGuideCanvasOverlay *_layoutGuideCanvasOverlay;
     IBLayoutManager *frameLayoutManager;
     NSDate *nextAutoexpansionTime;
     struct CGPoint lastAutoExpansionPlace;
     DVTDraggedImageState *imageState;
     NSMutableArray *expansionTokens;
-    NSNumber *lastOverviewZoomFactor;
+    double _defaultEditingZoomFactor;
+    double _lastAlternateZoomFactor;
+    NSNumber *_canvasZoomFactorAfterAnimation;
+    NSSegmentedControl *_zoomSegmentedControl;
+    DVTObservingToken *_currentZoomToken;
+    DVTNotificationToken *_willStartLiveMagnifyToken;
+    BOOL _inLiveMagnify;
+    DVTNotificationToken *_didEndLiveMagnifyToken;
     unsigned long long _embedInStackSegmentIndex;
+    unsigned long long _updateFramesSegmentIndex;
     NSSegmentedControl *actionAreaButton;
     DVTObservingToken *usesAutolayoutObservingToken;
-    DVTObservingToken *_useConfigurationsObservingToken;
     IBCancellationToken *developmentTargetObservingToken;
     DVTObservingToken *_currentSelectedItemsToken;
-    NSViewController<DVTInvalidation> *_configurationChooser;
+    id <IBInvalidation> _eventMonitorToken;
+    IBCancellationToken *_autolayoutStatusChangeToken;
+    DVTDelayedInvocation *_autolayoutBarItemValidator;
     NSMutableSet *_objectsGettingAutopositioned;
     NSMutableOrderedSet *_keyFrameObservers;
+    NSButton *_deviceBarViewAsButton;
+    IBDeviceBarViewController *_deviceBarViewController;
+    DVTObservingToken *_deviceConfigurationObservingToken;
+    BOOL _deviceBarVisible;
     IBAbstractDocumentEditor *documentEditor;
-    DVTStackView_AppKitAutolayout *_canvasContainerView;
 }
 
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
-+ (void)initialize;
-@property __weak DVTStackView_AppKitAutolayout *canvasContainerView; // @synthesize canvasContainerView=_canvasContainerView;
-@property(readonly, nonatomic) IBLayoutGuideDrawingHandler *layoutGuideDrawingHandler; // @synthesize layoutGuideDrawingHandler;
-@property(readonly, nonatomic) IBDelegatedCanvasOverlay *guideOverlay; // @synthesize guideOverlay;
++ (id)zoomLevelMenuItemsWithAction:(SEL)arg1 titleFormatter:(CDUnknownBlockType)arg2;
+@property(nonatomic) BOOL deviceBarVisible; // @synthesize deviceBarVisible=_deviceBarVisible;
 @property(readonly, nonatomic) IBCanvasControllerLayoutGuideGeneratorDelegate *frameLayoutGuideGeneratorDelegate; // @synthesize frameLayoutGuideGeneratorDelegate;
 @property(readonly, nonatomic) IBLayoutManager *frameLayoutManager; // @synthesize frameLayoutManager;
 @property(copy, nonatomic) DVTMutableOrderedSet *selectedConnections; // @synthesize selectedConnections;
@@ -69,28 +79,39 @@
 - (void)canvasViewRunScrollTest:(id)arg1;
 - (void)canvasViewRunZoomTest:(id)arg1;
 - (void)measureFPSWhileInvoking:(CDUnknownBlockType)arg1;
-- (void)updateConfigurationsActionArea;
+- (void)_updateDeviceBarSelection;
+- (void)_toggleDeviceBar:(id)arg1;
+- (void)_hideDeviceBar;
+- (void)_showDeviceBar;
+- (void)_updateDeviceBarViewAsButtonWithConfiguration:(id)arg1;
+@property(readonly, nonatomic, getter=isDeviceBarInCustomizationMode) BOOL deviceBarInCustomizationMode;
+- (void)_addDeviceBarIfNeeded;
+- (id)_deviceBarViewAsButton;
+- (void)addDeviceBarButton;
 - (void)updateAutoLayoutActionArea;
 - (void)didClickActionAreaButton:(id)arg1;
-- (void)refreshButtonBarImagesForEditedConfiguration;
-- (void)refreshAutolayoutActionAreaButtonsForEditedConfiguration;
+- (void)refreshButtonBarForBranchMode;
 - (void)addAutolayoutActionArea;
+- (void)validateAutolayoutActionFrameUpdateButtons;
+- (void)validateAutolayoutActionAreaEmebedInStackButton;
 - (void)removeAutolayoutActionArea;
 - (BOOL)isShowingResolveIllegalStatesButton;
 - (BOOL)isShowingAutolayoutActionArea;
-- (BOOL)shouldShowResolveIllegalStatesButton;
 - (BOOL)shouldShowAutolayoutActionArea;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
 - (void)canvasViewDidCompleteLayout:(id)arg1;
 - (void)canvasView:(id)arg1 willRemoveCanvasFrame:(id)arg2;
+- (double)canvasView:(id)arg1 canvasFrameChromeScaleForContentScale:(double)arg2;
+- (double)canvasView:(id)arg1 scaleForOverlayView:(id)arg2 ofCanvasFrame:(id)arg3 canvasMagnification:(double)arg4;
+- (struct CGRect)canvasView:(id)arg1 frameForOverlayView:(id)arg2 ofCanvasFrame:(id)arg3 scale:(double)arg4;
 - (void)canvasViewWillInvalidateCursorRects:(id)arg1;
 - (void)canvasViewDidUpdateTrackingAreas:(id)arg1;
 - (BOOL)shouldAddSelectableObjectCursorRectsForFrameController:(id)arg1;
 - (void)canvasViewResetCursorRects:(id)arg1;
 - (void)canvasViewWillUpdateTrackingAreas:(id)arg1;
 - (id)canvasView:(id)arg1 lastKnownAnchorForCanvasFrame:(id)arg2;
-- (void)canvasView:(id)arg1 userDidMagnifyWithEvent:(id)arg2;
+- (double)canvasView:(id)arg1 validateMagnification:(double)arg2;
 - (void)canvasView:(id)arg1 userDidDoubleClickInEmptyArea:(id)arg2;
 - (void)canvasView:(id)arg1 userDidClickInEmptyArea:(id)arg2;
 - (void)canvasView:(id)arg1 userDidBandSelectCanvasFrames:(id)arg2 bandSelectionRect:(struct CGRect)arg3;
@@ -155,7 +176,6 @@
 - (unsigned long long)canvasView:(id)arg1 draggingUpdated:(id)arg2;
 - (unsigned long long)canvasView:(id)arg1 draggingEntered:(id)arg2;
 - (id)canvasView:(id)arg1 decoratorRectForCanvasFrame:(id)arg2;
-- (void)canvasView:(id)arg1 userDidAddSpaceWithArrowKeyEvent:(id)arg2;
 - (void)updateDragAutoExpansion:(struct CGPoint)arg1 willAccept:(BOOL)arg2;
 - (id)canvasAutoExpansionEdgeForPoint:(struct CGPoint)arg1;
 - (unsigned long long)dragOperationForDragInfo:(id)arg1;
@@ -166,20 +186,13 @@
 - (id)dragOffsetsForObjects:(id)arg1 fromPasteboard:(id)arg2;
 - (id)frameToWindowTransformForPasteboardViews:(id)arg1;
 - (double)scaleForRasterizedDragImages;
-- (void)toggleZoomCanvas:(id)arg1;
+- (void)_zoomCanvasInDirection:(unsigned long long)arg1;
 - (void)zoomCanvasOut:(id)arg1;
 - (void)zoomCanvasIn:(id)arg1;
 - (BOOL)isZoomedToEditingLevel;
 - (BOOL)canZoomCanvas;
-- (double)zoomFactorForZoomLevel:(id)arg1;
-- (double)lastOverviewZoomFactor;
-- (double)defaultOverviewZoomFactor;
-- (double)toggledZoomFactor;
-- (double)maxPreferredZoomFactor;
-- (double)minPreferredZoomFactor;
-- (double)nextPreferredZoomFactorInDirection:(unsigned long long)arg1;
-- (id)preferredZoomLevelForZoomFactor:(double)arg1;
-- (long long)preferredZoomLevelIndexForZoomFactor:(double)arg1;
+- (id)nextPreferredZoomFactorInDirection:(unsigned long long)arg1;
+- (void)editor:(id)arg1 willInterceptDeadDoubleClickEvent:(id)arg2;
 - (BOOL)editorCanvasFrameController:(id)arg1 interceptDoubleClickedEvent:(id)arg2;
 - (void)editorCanvasFrame:(id)arg1 wasClickedWithEvent:(id)arg2;
 - (void)editorDidChangeSelection:(id)arg1;
@@ -192,9 +205,20 @@
 - (BOOL)canZoomOut;
 - (BOOL)canZoomIn;
 - (void)updateDocumentEditorMenuTarget;
+- (id)magnificationInflectionPointsForScrollView:(id)arg1;
+- (void)canvasScrollViewDidEndLiveMagnify:(id)arg1;
+- (void)canvasScrollViewWillStartLiveMagnify:(id)arg1;
+- (void)zoomToFactorFromContextAnchoredZoomMenu:(id)arg1;
+- (void)zoomToFactorFromZoomMenu:(id)arg1;
+- (double)_magnificationFromZoomMenuItem:(id)arg1;
+- (void)updateZoomSegmentedControl;
+- (void)zoomSegmentedControlPressed:(id)arg1;
+- (void)addZoomSegmentedControlToButtonBar;
 - (void)toggleZoomWithMouseEvent:(id)arg1;
 - (void)zoomToFactor:(double)arg1 withEvent:(id)arg2 animated:(BOOL)arg3;
-- (void)zoomToFactor:(double)arg1 anchor:(struct CGPoint)arg2 animated:(BOOL)arg3 userInitiated:(BOOL)arg4;
+- (BOOL)canZoomToIdentityLevel;
+- (void)zoomToIdentityLevel:(id)arg1;
+- (void)zoomToFactor:(double)arg1 anchor:(struct CGPoint)arg2 animated:(BOOL)arg3;
 - (void)endGesture;
 - (void)beginGesture;
 - (void)jumpToDefinitionWithShiftPlusAlternate:(id)arg1;
@@ -229,7 +253,7 @@
 - (void)setSelectedConnectionsFromSelectedMembers:(id)arg1;
 - (void)setEffectiveSelectedConnections:(id)arg1;
 - (void)documentEditor:(id)arg1 pullSelection:(id)arg2;
-- (void)documentEditor:(id)arg1 selectMembers:(id)arg2 takeFocus:(BOOL)arg3 zoomIfNeeded:(BOOL)arg4;
+- (void)documentEditor:(id)arg1 selectMembers:(id)arg2 takeFocus:(BOOL)arg3;
 @property(readonly, nonatomic) BOOL onlySupportsDocumentObjectMembers;
 @property(readonly) NSString *stateSavingIdentifier;
 - (id)selectedMembers;
@@ -258,32 +282,34 @@
 - (id)activeEditors;
 - (id)editorCanvasFrameControllers;
 - (id)topOfStackEditorCanvasFrameControllers;
-- (void)closeEditorStackForRootObject:(id)arg1;
-- (id)makeEditorStackForObject:(id)arg1;
-- (id)editorStacks;
+- (void)closeEditorTreeForRootObject:(id)arg1;
+- (id)makeEditorTreeForObject:(id)arg1;
+- (id)editorTrees;
 - (void)closeFrameController:(id)arg1;
 - (id)createFrameControllerForObject:(id)arg1;
 - (void)preformCloseForCanvasFrameController:(id)arg1 event:(id)arg2;
-- (id)editorStackForObject:(id)arg1;
+- (id)deepestEditorForFrameController:(id)arg1;
+- (id)activeEditorForFrameController:(id)arg1;
+- (id)editorTreeForObject:(id)arg1;
 - (id)selectObjectsInEditor:(id)arg1 scrollSettings:(id)arg2;
 - (id)selectObjectInEditor:(id)arg1 scrollSettings:(id)arg2;
 - (void)selectMembersAfterPasteboardAction:(id)arg1;
-- (void)becomeSelectionProviderAndSelectMembers:(id)arg1 allowReconfiguration:(BOOL)arg2 makeKey:(BOOL)arg3 takeFocus:(BOOL)arg4 orderFront:(BOOL)arg5 scrollToVisible:(BOOL)arg6 zoomToLevel:(id)arg7 animate:(BOOL)arg8;
+- (void)becomeSelectionProviderAndSelectMembers:(id)arg1 allowReconfiguration:(BOOL)arg2 makeKey:(BOOL)arg3 takeFocus:(BOOL)arg4 orderFront:(BOOL)arg5 scrollToVisible:(BOOL)arg6 animate:(BOOL)arg7;
 - (id)openEditorForObject:(id)arg1 closingSubEditors:(BOOL)arg2 scrollSettings:(id)arg3;
-- (void)scrollObjectsToVisible:(id)arg1 inEditorCanvasFrame:(id)arg2 zoomToLevel:(id)arg3 shouldCenter:(BOOL)arg4 animate:(BOOL)arg5;
-- (void)editorStack:(id)arg1 closeFrameController:(id)arg2;
-- (void)editorStack:(id)arg1 addCanvasFrame:(id)arg2;
-- (id)editorStack:(id)arg1 instantiateFrameControllerForObject:(id)arg2;
-- (void)editorStackDidChange:(id)arg1 dueToOpeningEditorForObject:(id)arg2;
-- (void)editorStackWillChange:(id)arg1 dueToOpeningEditorForObject:(id)arg2;
-- (void)editorStackMightChange:(id)arg1 dueToOpeningEditorForObject:(id)arg2;
+- (void)scrollObjectsToVisible:(id)arg1 inEditorCanvasFrame:(id)arg2 shouldCenter:(BOOL)arg3 animate:(BOOL)arg4;
+- (void)editorTree:(id)arg1 closeFrameController:(id)arg2;
+- (void)editorTree:(id)arg1 addCanvasFrame:(id)arg2;
+- (id)editorTree:(id)arg1 instantiateFrameControllerForObject:(id)arg2;
+- (void)editorTreeDidChange:(id)arg1 dueToOpeningEditorForObject:(id)arg2;
+- (void)editorTreeWillChange:(id)arg1 dueToOpeningEditorForObject:(id)arg2;
+- (void)editorTreeMightChange:(id)arg1 dueToOpeningEditorForObject:(id)arg2;
 - (id)specifierForObject:(id)arg1 showLabels:(BOOL)arg2;
 @property(nonatomic) BOOL drawsWithActiveLook;
-@property(retain) NSView *leftButtonBarView;
+- (void)insertLeftButtonBarView:(id)arg1 atIndex:(unsigned long long)arg2;
+- (void)addCenterView:(id)arg1;
 - (id)buttonBar;
 @property(readonly, nonatomic) NSString *selectionProviderSwitcherTitle;
 - (void)takeFocus;
-- (void)removeAllConfigurationsAccessoryController;
 - (void)registerWithDocumentEditor;
 - (id)document;
 - (void)viewWillUninstall;

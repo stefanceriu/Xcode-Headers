@@ -27,10 +27,11 @@
 - (id)ibInspectedFlowLayout;
 @property(retain) NSCollectionViewLayout *ibShadowedCollectionViewLayout;
 @property BOOL ibShadowedAllowsEmptySelection;
-- (void)setIbInspectedLayoutMode:(long long)arg1;
-- (long long)ibInspectedLayoutMode;
+@property(nonatomic) long long ibInspectedLayoutMode;
 - (BOOL)ibInspectedRuntimeDoesNotSupportLayouts;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 @end
 

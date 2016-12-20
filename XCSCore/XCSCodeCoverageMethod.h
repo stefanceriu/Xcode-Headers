@@ -28,7 +28,8 @@
 - (unsigned long long)count;
 - (id)keyPath;
 @property(readonly, copy, nonatomic) NSString *sourceCodeSymbolKindIdentifier;
-- (id)_initWithSourceCodeSymbolKindIdentifier:(id)arg1 validationErrors:(id *)arg2;
+- (id)_initWithSourceCodeSymbolKindIdentifier:(id)arg1 skipValidation:(BOOL)arg2 skipBindHierarchy:(BOOL)arg3 validationErrors:(id *)arg4;
+- (id)initWithContents:(id)arg1 service:(id)arg2 skipValidation:(BOOL)arg3 skipBindHierarchy:(BOOL)arg4 validationErrors:(id *)arg5;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 - (id)initWithTitle:(id)arg1 sourceCodeSymbolKindIdentifier:(id)arg2;
 - (id)init;

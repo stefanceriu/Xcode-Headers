@@ -17,7 +17,6 @@
     NSMapTable *_addressToSymbolNameMap;
     NSMapTable *_addressToLeafSymbolNameMap;
     NSMapTable *_threadPortToNameMap;
-    NSMapTable *_dispatchQueueSerialNumToNameMap;
     NSString *_binaryImagesDescription;
     NSArray *_binaryImages;
 }
@@ -28,7 +27,6 @@
 - (id)addBacktrace:(id)arg1;
 - (id)addBacktrace:(id)arg1 count:(unsigned int)arg2 numBytes:(unsigned long long)arg3;
 - (id)descriptionStringForAddress:(unsigned long long)arg1 atTime:(unsigned long long)arg2 leafFrame:(BOOL)arg3 startOfRecursion:(BOOL)arg4;
-- (id)threadDescriptionStringForBacktrace:(id)arg1 returnedAddress:(unsigned long long *)arg2;
 - (void)dealloc;
 - (void)allBacktracesHaveBeenAdded;
 - (id)initWithSymbolicator:(struct _CSTypeRef)arg1 sampler:(id)arg2 options:(unsigned long long)arg3;

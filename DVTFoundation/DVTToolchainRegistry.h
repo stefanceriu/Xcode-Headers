@@ -6,32 +6,48 @@
 
 #import "NSObject.h"
 
-#import "NSFastEnumeration.h"
+@class DVTDelayedInvocation, DVTDispatchLock, DVTSearchPath, DVTToolchain, NSDictionary, NSSet;
 
-@class DVTDispatchLock, DVTMutableOrderedDictionary, DVTSearchPath, NSMutableDictionary;
-
-@interface DVTToolchainRegistry : NSObject <NSFastEnumeration>
+@interface DVTToolchainRegistry : NSObject
 {
     DVTSearchPath *_searchPath;
-    DVTMutableOrderedDictionary *_identsToToolchains;
-    NSMutableDictionary *_aliasesToToolchains;
+    NSSet *_appleApprovedPaths;
+    id <DVTUserDefaults> _userDefaults;
     DVTDispatchLock *_lock;
+    NSSet *_toolchains;
+    NSDictionary *_invalidToolchains;
+    NSDictionary *_identsToToolchains;
+    NSDictionary *_aliasesToToolchains;
+    DVTDelayedInvocation *_scanSearchPathsInvocation;
 }
 
++ (BOOL)verifySignatureRevocationStatusForPath:(id)arg1 error:(id *)arg2;
++ (id)keyPathsForValuesAffectingAvailableSwiftVersionToolchains;
++ (id)keyPathsForValuesAffectingAvailableOverrideToolchains;
++ (id)keyPathsForValuesAffectingAvailableBuildSystemToolchains;
++ (id)keyPathsForValuesAffectingActiveDefaultToolchain;
++ (id)keyPathsForValuesAffectingDefaultToolchainOverride;
++ (id)keyPathsForValuesAffectingDefaultToolchain;
++ (BOOL)registerToolchain:(id)arg1 identsToToolchains:(id)arg2 aliasesToToolchains:(id)arg3 appleApprovedPaths:(id)arg4 error:(id *)arg5;
 + (id)defaultRegistry;
-@property(readonly) DVTDispatchLock *lock; // @synthesize lock=_lock;
-@property(readonly) NSMutableDictionary *aliasesToToolchains; // @synthesize aliasesToToolchains=_aliasesToToolchains;
-@property(readonly) DVTMutableOrderedDictionary *identsToToolchains; // @synthesize identsToToolchains=_identsToToolchains;
-@property(readonly) DVTSearchPath *searchPath; // @synthesize searchPath=_searchPath;
 - (void).cxx_destruct;
-- (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
-- (BOOL)scanSearchPathAndRegisterToolchains:(id *)arg1;
-- (id)allRegisteredToolchains;
-- (id)defaultToolchain;
+- (BOOL)isBuiltInToolchain:(id)arg1;
+- (BOOL)verifyToolchain:(id)arg1 error:(id *)arg2;
+@property(readonly) NSSet *availableSwiftVersionToolchains;
+@property(readonly) NSSet *availableOverrideToolchains;
+@property(readonly) NSSet *availableBuildSystemToolchains;
+- (id)toolchainsForToolchainsBuildSettingValue:(id)arg1;
+@property(readonly) DVTToolchain *activeDefaultToolchain;
+@property(retain) DVTToolchain *defaultToolchainOverride;
+- (void)scanSearchPaths;
+@property(readonly) DVTToolchain *defaultToolchain;
+- (id)_toolchainForIdentifier:(id)arg1;
 - (id)toolchainForIdentifier:(id)arg1;
-- (BOOL)registerToolchain:(id)arg1 error:(id *)arg2;
+@property(readonly) NSDictionary *invalidToolchains;
+@property(readonly) NSSet *toolchains;
+- (void)dealloc;
 - (id)init;
-- (id)initWithSearchPath:(id)arg1;
+- (id)initWithSearchPath:(id)arg1 appleApprovedPaths:(id)arg2 userDefaults:(id)arg3;
 
 @end
 

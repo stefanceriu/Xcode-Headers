@@ -13,8 +13,10 @@
     NSMapTable *_viewAddressesToViewSurfaces;
     DBGLayoutConstraintSet *_layoutConstraintSet;
     unsigned long long _orientation;
+    double _screenBackingScale;
 }
 
+@property double screenBackingScale; // @synthesize screenBackingScale=_screenBackingScale;
 @property unsigned long long orientation; // @synthesize orientation=_orientation;
 @property(retain) DBGLayoutConstraintSet *layoutConstraintSet; // @synthesize layoutConstraintSet=_layoutConstraintSet;
 - (void).cxx_destruct;

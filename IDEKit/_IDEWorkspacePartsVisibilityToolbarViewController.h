@@ -23,8 +23,8 @@
 - (void)_toggleStateForSplitViewWithTag:(unsigned long long)arg1;
 - (id)_propertyNameForSplitViewWithTag:(unsigned long long)arg1;
 - (id)menuForMenuFormRepresentation;
-- (void)primitiveInvalidate;
 - (id)_create1010AndLaterControl;
+- (void)primitiveInvalidate;
 - (id)initWithToolbarItemIdentifier:(id)arg1 window:(id)arg2;
 
 @end

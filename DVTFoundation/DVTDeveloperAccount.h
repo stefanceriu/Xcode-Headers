@@ -11,8 +11,8 @@
 @interface DVTDeveloperAccount : NSObject
 {
     DVTDispatchLock *_lock;
-    BOOL _alwaysLogInUsingQA;
     BOOL _enabled;
+    BOOL _alwaysLogInUsingQA;
     DVTDeveloperAccountSession *_session;
     DVTDeveloperAccountCredentials *_accountCredentials;
     NSString *_userDescription;
@@ -22,11 +22,12 @@
 + (id)keyPathsForValuesAffectingUserDescriptionOrBestGuess;
 + (id)keyPathsForValuesAffectingHasPassword;
 + (id)keyPathsForValuesAffectingPassword;
-+ (id)accountWithPropertyListRepresentation:(id)arg1 keychain:(struct OpaqueSecKeychainRef *)arg2 error:(id *)arg3;
++ (id)keyPathsForValuesAffectingSession;
++ (id)_accountWithPropertyListRepresentation:(id)arg1 keychain:(struct OpaqueSecKeychainRef *)arg2 error:(id *)arg3;
 + (id)accountWithIdentity:(struct OpaqueSecIdentityRef *)arg1;
 + (id)accountWithCredentials:(id)arg1;
-@property BOOL enabled; // @synthesize enabled=_enabled;
 @property BOOL alwaysLogInUsingQA; // @synthesize alwaysLogInUsingQA=_alwaysLogInUsingQA;
+@property BOOL enabled; // @synthesize enabled=_enabled;
 @property(retain) NSString *credentialsErrorDescription; // @synthesize credentialsErrorDescription=_credentialsErrorDescription;
 @property(copy, nonatomic) NSString *userDescription; // @synthesize userDescription=_userDescription;
 @property(copy) DVTDeveloperAccountCredentials *accountCredentials; // @synthesize accountCredentials=_accountCredentials;
@@ -37,6 +38,7 @@
 @property(readonly) NSString *userDescriptionOrBestGuess;
 @property(readonly) BOOL hasPassword;
 @property(copy) NSString *password;
+@property(readonly) struct OpaqueSecIdentityRef *identity;
 @property(readonly) _Bool isCertBased;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;

@@ -11,6 +11,7 @@
 @interface GPUProcessNavigableItem : GPUTraceGroupNavigableItem
 {
     NSArray *_cachedChildRepresentedObjects;
+    BOOL _filteringEnabled;
     BOOL _showsGauges;
     int _callOrProgramMode;
     int _programSortMode;
@@ -19,6 +20,7 @@
 + (id)keyPathsForValuesAffectinImage;
 + (id)keyPathsForValuesAffectingName;
 @property(nonatomic) BOOL showsGauges; // @synthesize showsGauges=_showsGauges;
+@property(nonatomic) BOOL filteringEnabled; // @synthesize filteringEnabled=_filteringEnabled;
 @property(nonatomic) int programSortMode; // @synthesize programSortMode=_programSortMode;
 @property(nonatomic) int callOrProgramMode; // @synthesize callOrProgramMode=_callOrProgramMode;
 - (void).cxx_destruct;

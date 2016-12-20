@@ -46,7 +46,7 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (BOOL)shouldArchiveKind;
 - (Class)classForDocumentArchiver:(id)arg1;
-- (id)archiveKeyForLabel;
+- (id)archivingKeyForLabel;
 - (BOOL)shouldShowInDocumentStructure;
 - (void)populateSegueTemplates:(id)arg1 andOutletsForCompiledDocument:(id)arg2;
 - (id)ibUserHostableDocumentClasses;
@@ -55,6 +55,7 @@
 - (id)explicitDisplayNameWithRespectToPredecessors:(id)arg1;
 - (id)displayValuesWithRespectToPrototype:(id)arg1 inDocument:(id)arg2;
 - (id)kindDisplayName;
+- (id)destinationDisplayName;
 - (id)displayDescriptionInDocument:(id)arg1;
 - (id)ibDefaultLabel;
 - (id)exclusivityHintInObjectContainer:(id)arg1;

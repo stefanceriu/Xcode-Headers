@@ -12,7 +12,7 @@
 
 @interface IBEditorFrameLayoutGuideGeneratorDelegate : IBIDELayoutGuideGeneratorDelegate <DVTInvalidation>
 {
-    IBViewEditorCanvasFrameController *frameController;
+    IBViewEditorCanvasFrameController *_frameController;
 }
 
 + (void)initialize;

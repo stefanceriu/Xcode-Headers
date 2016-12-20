@@ -12,7 +12,7 @@
 
 + (id)keyPathsForValuesAffectingShowInspectedCustomObjectInstantitationBehavior;
 + (id)documentPlatform;
-- (id)toolTipContentFromKeyPath:(id)arg1 titleAttribute:(id)arg2 placeholderAttribute:(id)arg3;
+- (id)inspectorProperty:(id)arg1 toolTipContentFromKeyPath:(id)arg2 titleAttribute:(id)arg3 placeholderAttribute:(id)arg4;
 - (BOOL)shouldShowPreferCoderCheckbox;
 
 @end

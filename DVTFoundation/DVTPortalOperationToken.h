@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class DVTDeveloperAccount, NSArray, NSDictionary, NSError, NSString;
+@class DVTDeveloperAccount, DVTProvisioningProfileManager, DVTSigningCertificateManager, NSArray, NSDictionary, NSError, NSString;
 
 @interface DVTPortalOperationToken : NSObject <NSCopying>
 {
@@ -17,10 +17,14 @@
     NSArray *_teams;
     DVTDeveloperAccount *_account;
     NSError *_error;
+    DVTSigningCertificateManager *_signingCertificateManager;
+    DVTProvisioningProfileManager *_provisioningProfileManager;
 }
 
 + (id)tokenWithDeveloperAccount:(id)arg1 useServerContext:(_Bool)arg2;
 + (id)tokenWithDeveloperAccount:(id)arg1;
+@property(retain, nonatomic) DVTProvisioningProfileManager *provisioningProfileManager; // @synthesize provisioningProfileManager=_provisioningProfileManager;
+@property(retain, nonatomic) DVTSigningCertificateManager *signingCertificateManager; // @synthesize signingCertificateManager=_signingCertificateManager;
 @property _Bool userHasPicked; // @synthesize userHasPicked=_userHasPicked;
 @property(copy) NSError *error; // @synthesize error=_error;
 @property _Bool useServerContext; // @synthesize useServerContext=_useServerContext;

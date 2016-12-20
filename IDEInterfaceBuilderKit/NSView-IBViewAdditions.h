@@ -18,7 +18,6 @@
 - (id)firstAncestorPassingTest:(CDUnknownBlockType)arg1;
 - (void)scrollRectToVisible:(struct CGRect)arg1 shouldCenter:(BOOL)arg2 animatingSynchronously:(BOOL)arg3 duration:(double)arg4;
 - (void)scrollRectToVisible:(struct CGRect)arg1 shouldCenter:(BOOL)arg2 animatingSynchronously:(BOOL)arg3;
-- (struct CGRect)rectToScrollRectToVisible:(struct CGRect)arg1 keepingRectVisible:(struct CGRect)arg2;
 - (struct CGRect)intersectRectByAxisForRect:(struct CGRect)arg1 andRect:(struct CGRect)arg2;
 - (CDStruct_f6143a38)convertLine:(CDStruct_f6143a38)arg1 fromView:(id)arg2;
 - (CDStruct_f6143a38)convertLine:(CDStruct_f6143a38)arg1 toView:(id)arg2;
@@ -56,7 +55,9 @@
 - (void)insertSubview:(id)arg1 atIndex:(long long)arg2;
 - (void)foreachRectBeingDrawn:(CDUnknownBlockType)arg1;
 - (BOOL)isVisible;
+- (id)ib_animatorIfShouldAnimate:(BOOL)arg1;
 - (void)invokeWithTemporarySuperview:(id)arg1 block:(CDUnknownBlockType)arg2;
+- (id)ib_makeFastestBackingLayerForViewThatDoesNoDrawing;
 - (BOOL)ib_isLayerBackedOrHasLayerBackedDescendant;
 @end
 

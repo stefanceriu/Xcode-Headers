@@ -9,8 +9,8 @@
 @class IBMessageReceiveChannel, NSError, NSException, NSObject<OS_dispatch_queue>;
 
 @protocol IBMessageReceiveChannelTarget <NSObject>
-- (void)messageReceiveChannel:(IBMessageReceiveChannel *)arg1 didDeliverMesssage:(SEL)arg2;
-- (void)messageReceiveChannel:(IBMessageReceiveChannel *)arg1 willDeliverMesssage:(SEL)arg2;
+- (void)messageReceiveChannel:(IBMessageReceiveChannel *)arg1 didDeliverMessage:(SEL)arg2;
+- (void)messageReceiveChannel:(IBMessageReceiveChannel *)arg1 willDeliverMessage:(SEL)arg2;
 - (NSException *)messageReceiveChannel:(IBMessageReceiveChannel *)arg1 preprocessException:(NSException *)arg2;
 - (void)messageReceiveChannel:(IBMessageReceiveChannel *)arg1 shutdownWithError:(NSError *)arg2;
 - (void)messageReceiveChannelShutdown:(IBMessageReceiveChannel *)arg1;

@@ -77,6 +77,8 @@
 - (BOOL)shouldSelectObjectImmediately:(id)arg1 withEvent:(id)arg2;
 - (id)dockView:(id)arg1 imageForRepresentedObject:(id)arg2 inGroup:(id)arg3;
 - (BOOL)dockView:(id)arg1 isShowingOpenIndicatorForRepresentedObject:(id)arg2 inGroup:(id)arg3;
+- (id)dockView:(id)arg1 accessibilityIdentifierForRepresentedObject:(id)arg2 inGroup:(id)arg3;
+- (id)dockView:(id)arg1 accessibilityTitleForRepresentedObject:(id)arg2 inGroup:(id)arg3;
 - (id)dockView:(id)arg1 titleForRepresentedObject:(id)arg2 inGroup:(id)arg3;
 - (id)dockView:(id)arg1 representedObjectsForGroup:(id)arg2;
 - (id)objectIDsForGroup:(id)arg1;
@@ -97,7 +99,7 @@
 - (void)documentEditor:(id)arg1 deselectMembers:(id)arg2;
 - (void)documentEditor:(id)arg1 pullSelection:(id)arg2;
 @property(readonly, nonatomic) BOOL onlySupportsDocumentObjectMembers;
-- (void)documentEditor:(id)arg1 selectMembers:(id)arg2 takeFocus:(BOOL)arg3 zoomIfNeeded:(BOOL)arg4;
+- (void)documentEditor:(id)arg1 selectMembers:(id)arg2 takeFocus:(BOOL)arg3;
 @property(readonly) NSString *stateSavingIdentifier;
 - (void)becomeSelectionProvider;
 - (void)selectionDidChange;

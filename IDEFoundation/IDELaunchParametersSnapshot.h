@@ -6,10 +6,19 @@
 
 #import "NSObject.h"
 
-@class DVTFilePath, IDEEntityIdentifier, IDELocationScenarioReference, IDEProductType, IDESchemeOptionReference, NSArray, NSDictionary, NSMutableDictionary, NSSet, NSString;
+@class DVTFilePath, DVTVersion, IDEEntityIdentifier, IDELocationScenarioReference, IDEProductType, IDESchemeOptionReference, NSArray, NSDictionary, NSMutableDictionary, NSSet, NSString;
 
 @interface IDELaunchParametersSnapshot : NSObject
 {
+    struct {
+        unsigned int _launchStyle:1;
+        unsigned int _commandLineArgs:1;
+        unsigned int _toolchainLLDBFrameworkPath:1;
+        unsigned int _stopOnEveryThreadSanitizerIssue:1;
+        unsigned int _isLaunchedForTesting:1;
+    } _uninitializedFlags;
+    BOOL _stopOnEveryThreadSanitizerIssue;
+    BOOL _isLaunchedForTesting;
     BOOL _askOnLaunchChangedRunnable;
     BOOL _allowLocationSimulation;
     BOOL _showNonLocalizedStrings;
@@ -20,6 +29,8 @@
     BOOL _viewDebuggingEnabled;
     BOOL _queueDebuggingEnabled;
     BOOL _shouldGenerateOptimizationProfile;
+    BOOL _useDestinationArtifactsForTest;
+    BOOL _allowRsyncInstallForAllSDKs;
     int _launchStyle;
     int _runnableType;
     unsigned int _debugProcessAsUID;
@@ -28,11 +39,12 @@
     int _debugServiceFD;
     int _runnableAppExtensionHostRunMode;
     int _internalIOSLaunchStyle;
+    NSArray *_commandLineArgs;
     NSMutableDictionary *_testingEnvironmentVariables;
     NSDictionary *_environmentVariables;
-    NSArray *_commandLineArgs;
     DVTFilePath *_runnableLocation;
     DVTFilePath *_filePathToBinary;
+    NSString *_toolchainLLDBFrameworkPath;
     IDEEntityIdentifier *_schemeIdentifier;
     NSString *_selectedLauncherIdentifier;
     NSString *_selectedDebuggerIdentifier;
@@ -58,21 +70,28 @@
     NSArray *_testingAdditionalBuiltDependenciesProductPaths;
     NSDictionary *_additionalDeviceSubstitutionPaths;
     NSString *_deviceAppDataPackage;
+    long long _consoleMode;
     NSString *_optimizationProfilePathString;
     IDEProductType *_productType;
     NSString *_internalIOSSubstitutionApp;
     NSString *_customLaunchCommand;
     NSString *_debugServiceExtension;
+    DVTVersion *_runnableSwiftVersion;
 }
 
 + (id)environmentVariablesToMergeFromTestingEnvironmentVariables;
++ (id)snapshotForUnitTestingWithLauncherIdentifier:(id)arg1 debuggerIdentifier:(id)arg2 runnableLocation:(id)arg3 commandLineArgs:(id)arg4 environmentVariables:(id)arg5;
 + (id)launchParametersWithSchemeIdentifier:(id)arg1 launcherIdentifier:(id)arg2 debuggerIdentifier:(id)arg3 launchStyle:(int)arg4 runnableLocation:(id)arg5 debugProcessAsUID:(unsigned int)arg6 workingDirectory:(id)arg7 commandLineArgs:(id)arg8 environmentVariables:(id)arg9 architecture:(id)arg10 platformIdentifier:(id)arg11 buildConfiguration:(id)arg12 buildableProduct:(id)arg13 deviceAppDataPackage:(id)arg14 allowLocationSimulation:(BOOL)arg15 locationScenarioReference:(id)arg16 showNonLocalizedStrings:(BOOL)arg17 language:(id)arg18 region:(id)arg19 routingCoverageFileReference:(id)arg20 enableGPUFrameCaptureMode:(int)arg21 enableGPUValidationMode:(int)arg22 debugXPCServices:(BOOL)arg23 debugAppExtensions:(BOOL)arg24 internalIOSLaunchStyle:(int)arg25 internalIOSSubstitutionApp:(id)arg26 launchAutomaticallySubstyle:(unsigned long long)arg27;
+@property(nonatomic) BOOL allowRsyncInstallForAllSDKs; // @synthesize allowRsyncInstallForAllSDKs=_allowRsyncInstallForAllSDKs;
+@property(nonatomic) BOOL useDestinationArtifactsForTest; // @synthesize useDestinationArtifactsForTest=_useDestinationArtifactsForTest;
+@property(retain) DVTVersion *runnableSwiftVersion; // @synthesize runnableSwiftVersion=_runnableSwiftVersion;
 @property(copy) NSString *debugServiceExtension; // @synthesize debugServiceExtension=_debugServiceExtension;
 @property(copy) NSString *customLaunchCommand; // @synthesize customLaunchCommand=_customLaunchCommand;
 @property(copy) NSString *internalIOSSubstitutionApp; // @synthesize internalIOSSubstitutionApp=_internalIOSSubstitutionApp;
 @property(retain) IDEProductType *productType; // @synthesize productType=_productType;
 @property(copy, nonatomic) NSString *optimizationProfilePathString; // @synthesize optimizationProfilePathString=_optimizationProfilePathString;
 @property BOOL shouldGenerateOptimizationProfile; // @synthesize shouldGenerateOptimizationProfile=_shouldGenerateOptimizationProfile;
+@property long long consoleMode; // @synthesize consoleMode=_consoleMode;
 @property BOOL queueDebuggingEnabled; // @synthesize queueDebuggingEnabled=_queueDebuggingEnabled;
 @property BOOL viewDebuggingEnabled; // @synthesize viewDebuggingEnabled=_viewDebuggingEnabled;
 @property int internalIOSLaunchStyle; // @synthesize internalIOSLaunchStyle=_internalIOSLaunchStyle;
@@ -111,10 +130,13 @@
 @property int runnableType; // @synthesize runnableType=_runnableType;
 @property(copy) NSString *runnableBundleIdentifier; // @synthesize runnableBundleIdentifier=_runnableBundleIdentifier;
 @property(readonly) unsigned long long launchAutomaticallySubstyle; // @synthesize launchAutomaticallySubstyle=_launchAutomaticallySubstyle;
-@property(readonly) int launchStyle; // @synthesize launchStyle=_launchStyle;
+@property(nonatomic) int launchStyle; // @synthesize launchStyle=_launchStyle;
 @property(readonly) NSString *selectedDebuggerIdentifier; // @synthesize selectedDebuggerIdentifier=_selectedDebuggerIdentifier;
 @property(readonly) NSString *selectedLauncherIdentifier; // @synthesize selectedLauncherIdentifier=_selectedLauncherIdentifier;
 @property(readonly) IDEEntityIdentifier *schemeIdentifier; // @synthesize schemeIdentifier=_schemeIdentifier;
+@property(nonatomic) BOOL isLaunchedForTesting; // @synthesize isLaunchedForTesting=_isLaunchedForTesting;
+@property(nonatomic) BOOL stopOnEveryThreadSanitizerIssue; // @synthesize stopOnEveryThreadSanitizerIssue=_stopOnEveryThreadSanitizerIssue;
+@property(copy, nonatomic) NSString *toolchainLLDBFrameworkPath; // @synthesize toolchainLLDBFrameworkPath=_toolchainLLDBFrameworkPath;
 - (void).cxx_destruct;
 - (id)launchParametersByAppendingPath:(id)arg1 toSearchPathEnvironmentVariable:(id)arg2;
 - (id)launchParametersByPrependingPath:(id)arg1 toSearchPathEnvironmentVariable:(id)arg2;
@@ -123,10 +145,12 @@
 @property(readonly) DVTFilePath *filePathToBinary; // @synthesize filePathToBinary=_filePathToBinary;
 @property(readonly) DVTFilePath *originalRunnableLocation;
 @property(readonly, copy) DVTFilePath *runnableLocation; // @synthesize runnableLocation=_runnableLocation;
-@property(readonly, copy) NSArray *commandLineArgs; // @synthesize commandLineArgs=_commandLineArgs;
-@property(readonly) NSArray *rawCommandLineArgs;
 @property(readonly, copy) NSDictionary *environmentVariables; // @synthesize environmentVariables=_environmentVariables;
 @property(readonly, copy) NSMutableDictionary *testingEnvironmentVariables; // @synthesize testingEnvironmentVariables=_testingEnvironmentVariables;
+@property(copy, nonatomic) NSArray *commandLineArgs; // @synthesize commandLineArgs=_commandLineArgs;
+@property(readonly) NSArray *rawCommandLineArgs;
+- (void)_setUninitializedFlagsToInitialized;
+- (id)init;
 
 @end
 

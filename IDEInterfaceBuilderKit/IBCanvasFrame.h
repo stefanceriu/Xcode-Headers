@@ -6,23 +6,23 @@
 
 #import "DVTLayoutView_ML.h"
 
-@class IBCanvasView, NSMutableSet, NSNumber, NSSet;
+@class IBCanvasView, NSMutableSet, NSSet;
 
 @interface IBCanvasFrame : DVTLayoutView_ML
 {
     IBCanvasView *canvasView;
     IBCanvasFrame *parentFrame;
     NSMutableSet *childFrames;
-    NSNumber *dockedEdge;
     BOOL autopositionOnNextLayout;
     BOOL _frameIsSelected;
+    double _chromeScaleFactor;
     struct CGPoint _anchor;
 }
 
 @property(nonatomic) struct CGPoint anchor; // @synthesize anchor=_anchor;
+@property(nonatomic) double chromeScaleFactor; // @synthesize chromeScaleFactor=_chromeScaleFactor;
 @property BOOL frameIsSelected; // @synthesize frameIsSelected=_frameIsSelected;
 @property BOOL autopositionOnNextLayout; // @synthesize autopositionOnNextLayout;
-@property(copy, nonatomic) NSNumber *dockedEdge; // @synthesize dockedEdge;
 @property(readonly) IBCanvasFrame *parentFrame; // @synthesize parentFrame;
 @property(readonly) NSSet *childFrames; // @synthesize childFrames;
 @property(retain) IBCanvasView *canvasView; // @synthesize canvasView;
@@ -41,7 +41,6 @@
 - (struct CGRect)integralizedFrameForAnchor:(struct CGPoint)arg1 size:(struct CGSize)arg2;
 - (struct CGPoint)convertFrameSpacePointToAnchorSpacePoint:(struct CGPoint)arg1;
 - (struct CGPoint)convertAnchorSpacePointToFrameSpacePoint:(struct CGPoint)arg1;
-- (CDStruct_c519178c)dockingInset;
 - (id)hitTest:(struct CGPoint)arg1;
 - (BOOL)isEligibleForBandSelection;
 - (BOOL)shouldIncludeParentWhenScrollingToVisible;
@@ -62,6 +61,7 @@
 - (BOOL)isKeyCanvasFrame;
 - (void)removeFromParentFrame;
 - (void)addChildFrame:(id)arg1;
+- (id)initWithFrame:(struct CGRect)arg1;
 
 @end
 

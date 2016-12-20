@@ -14,11 +14,11 @@
     NSString *_fileProgressString;
 }
 
-@property(copy) NSString *fileProgressString; // @synthesize fileProgressString=_fileProgressString;
-@property(copy) NSString *stateDescription; // @synthesize stateDescription=_stateDescription;
+@property(readonly, copy) NSString *fileProgressString; // @synthesize fileProgressString=_fileProgressString;
+@property(readonly, copy) NSString *stateDescription; // @synthesize stateDescription=_stateDescription;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithStateDescription:(id)arg1;
+- (id)initWithStateDescription:(id)arg1 fileProgressString:(id)arg2;
 
 @end
 

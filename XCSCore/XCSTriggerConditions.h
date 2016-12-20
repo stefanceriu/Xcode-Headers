@@ -10,22 +10,20 @@
 {
 }
 
-+ (id)triggerConditionsWithStatus:(long long)arg1 onSuccess:(BOOL)arg2 onWarnings:(BOOL)arg3 onAnalyzerWarnings:(BOOL)arg4 onFailingTests:(BOOL)arg5 onBuildErrors:(BOOL)arg6 onInternalErrors:(BOOL)arg7 validationErrors:(id *)arg8;
++ (id)triggerConditionsWithStatus:(long long)arg1 onSuccess:(BOOL)arg2 onWarnings:(BOOL)arg3 onAnalyzerWarnings:(BOOL)arg4 onFailingTests:(BOOL)arg5 onBuildErrors:(BOOL)arg6 validationErrors:(id *)arg7;
 - (BOOL)shouldExecuteForIntegration:(id)arg1;
-- (BOOL)shouldSendAllClearEmailForIntegration:(id)arg1;
-- (id)matchingIntegrationSubStatuses;
-- (BOOL)_validateStatus:(long long)arg1 onSuccess:(BOOL)arg2 onWarnings:(BOOL)arg3 onAnalyzerWarnings:(BOOL)arg4 onFailingTests:(BOOL)arg5 onBuildErrors:(BOOL)arg6 onInternalErrors:(BOOL)arg7 validationErrors:(id *)arg8;
-- (id)initWithStatus:(long long)arg1 onSuccess:(BOOL)arg2 onWarnings:(BOOL)arg3 onAnalyzerWarnings:(BOOL)arg4 onFailingTests:(BOOL)arg5 onBuildErrors:(BOOL)arg6 onInternalErrors:(BOOL)arg7 service:(id)arg8 validationErrors:(id *)arg9;
+- (BOOL)_validateStatus:(long long)arg1 onSuccess:(BOOL)arg2 onWarnings:(BOOL)arg3 onAnalyzerWarnings:(BOOL)arg4 onFailingTests:(BOOL)arg5 onBuildErrors:(BOOL)arg6 validationErrors:(id *)arg7;
+- (id)initWithStatus:(long long)arg1 onSuccess:(BOOL)arg2 onWarnings:(BOOL)arg3 onAnalyzerWarnings:(BOOL)arg4 onFailingTests:(BOOL)arg5 onBuildErrors:(BOOL)arg6 service:(id)arg7 validationErrors:(id *)arg8;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 
 // Remaining properties
-@property BOOL onAnalyzerWarnings; // @dynamic onAnalyzerWarnings;
-@property BOOL onBuildErrors; // @dynamic onBuildErrors;
-@property BOOL onFailingTests; // @dynamic onFailingTests;
-@property BOOL onInternalErrors; // @dynamic onInternalErrors;
-@property BOOL onSuccess; // @dynamic onSuccess;
-@property BOOL onWarnings; // @dynamic onWarnings;
-@property long long status; // @dynamic status;
+@property(nonatomic) BOOL onAnalyzerWarnings; // @dynamic onAnalyzerWarnings;
+@property(nonatomic) BOOL onBuildErrors; // @dynamic onBuildErrors;
+@property(nonatomic) BOOL onFailingTests; // @dynamic onFailingTests;
+@property(nonatomic) BOOL onInternalErrors; // @dynamic onInternalErrors;
+@property(nonatomic) BOOL onSuccess; // @dynamic onSuccess;
+@property(nonatomic) BOOL onWarnings; // @dynamic onWarnings;
+@property(nonatomic) long long status; // @dynamic status;
 
 @end
 

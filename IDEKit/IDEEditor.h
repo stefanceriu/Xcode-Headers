@@ -44,6 +44,7 @@
 @property(readonly) DVTScopeBarsManager *scopeBarsManager;
 @property(readonly, getter=isPrimaryEditor) BOOL primaryEditor;
 - (void)setupContextMenuWithMenu:(id)arg1 withContext:(id)arg2;
+- (void)setupEditorMenu:(id)arg1;
 - (void)takeFocus;
 @property(readonly) DVTFindBar *findBar; // @synthesize findBar=_findBar;
 - (void)editorContextDidHideFindBar;

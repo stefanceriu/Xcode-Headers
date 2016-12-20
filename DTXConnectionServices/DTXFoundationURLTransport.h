@@ -23,7 +23,7 @@
 - (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveData:(id)arg3;
 - (void)_shutDownSession;
 - (id)initWithRemoteAddress:(id)arg1;
-- (int)supportedDirections;
+- (unsigned int)supportedDirections;
 - (id)initWithLocalAddress:(id)arg1;
 
 // Remaining properties

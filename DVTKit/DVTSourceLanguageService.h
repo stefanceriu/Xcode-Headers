@@ -15,6 +15,7 @@
     BOOL _semanticsDisabled;
     DVTSourceCodeLanguage *_language;
     id <DVTSourceLanguageServiceDelegate> _delegate;
+    CDUnknownBlockType _contentGenerationWaitingBlock;
     CDUnknownBlockType _contentGenerationCompletionBlock;
     long long _status;
 }
@@ -24,12 +25,14 @@
 + (id)generatedURLForOriginalURL:(id)arg1;
 + (void)enumerateSupportedContextScopesForLanguage:(id)arg1 block:(CDUnknownBlockType)arg2;
 + (BOOL)canGenerateContentsForURL:(id)arg1;
++ (BOOL)supportsInvalidationPrevention;
 + (void)initialize;
 + (Class)sourceLanguageServiceClassForLanguage:(id)arg1;
 + (id)sourceLanguageServiceForLanguage:(id)arg1 withDelegate:(id)arg2;
 @property(getter=isSemanticsDisabled) BOOL semanticsDisabled; // @synthesize semanticsDisabled=_semanticsDisabled;
 @property long long status; // @synthesize status=_status;
 @property(copy) CDUnknownBlockType contentGenerationCompletionBlock; // @synthesize contentGenerationCompletionBlock=_contentGenerationCompletionBlock;
+@property(copy) CDUnknownBlockType contentGenerationWaitingBlock; // @synthesize contentGenerationWaitingBlock=_contentGenerationWaitingBlock;
 @property(nonatomic) id <DVTSourceLanguageServiceDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly) DVTSourceCodeLanguage *language; // @synthesize language=_language;
 - (void).cxx_destruct;

@@ -89,6 +89,7 @@
 - (id)sceneGroups;
 - (id)primarySceneObjectGraphSources;
 - (id)primarySceneObjects;
+- (BOOL)isPrimarySceneObject:(id)arg1;
 - (BOOL)isObjectBuiltInPlaceholder:(id)arg1;
 - (BOOL)isObjectExitPlaceholder:(id)arg1;
 - (id)firstResponderForConnectingToObject:(id)arg1;
@@ -104,7 +105,7 @@
 - (id)topLevelMembers;
 - (void)invalidateSegueConnections;
 @property(readonly) DVTMutableOrderedSet *segueConnections;
-- (void)noteMember:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
+- (void)noteChange:(id)arg1;
 - (void)didFinishRedoing;
 - (void)didFinishUndoing;
 - (void)undoManagerWillCloseUndoGroup:(id)arg1;

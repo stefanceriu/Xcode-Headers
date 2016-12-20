@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DTXMessage;
+@class DTXMessage, NSString;
 
 @protocol DTXMessenger <NSObject>
 - (void)sendMessageSync:(DTXMessage *)arg1 replyHandler:(void (^)(DTXMessage *))arg2;
@@ -18,5 +18,7 @@
 - (void)registerDisconnectHandler:(void (^)(void))arg1;
 - (void)setDispatchTarget:(id <DTXAllowedRPC>)arg1;
 - (void)setMessageHandler:(void (^)(DTXMessage *))arg1;
+- (NSString *)label;
+- (void)setLabel:(NSString *)arg1;
 @end
 

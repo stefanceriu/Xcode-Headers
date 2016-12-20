@@ -6,19 +6,13 @@
 
 #import <IDEFoundation/IDELocalizationWorkReadStrings.h>
 
-@class DVTLocale, IDELocalizedStringsAdaptor;
-
 @interface _IDELocalizedStringsAdaptorReadContext : IDELocalizationWorkReadStrings
 {
-    IDELocalizedStringsAdaptor *_adaptor;
-    DVTLocale *_language;
 }
 
 + (id)contextWithParent:(id)arg1 path:(id)arg2 adaptor:(id)arg3 language:(id)arg4;
-@property(retain) DVTLocale *language; // @synthesize language=_language;
-@property(retain) IDELocalizedStringsAdaptor *adaptor; // @synthesize adaptor=_adaptor;
-- (void).cxx_destruct;
-- (void)primitiveInvalidate;
+- (id)language;
+- (id)adaptor;
 
 @end
 

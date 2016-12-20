@@ -11,7 +11,7 @@
 #import "IDEOrganizerSource.h"
 #import "NSSplitViewDelegate.h"
 
-@class DVTBorderedView, DVTDelayedInvocation, DVTFilePath, DVTGradientImagePopUpButton, DVTObservingToken, DVTReplacementView, DVTScrollView, DVTSearchField, IDENavigableItemAsyncFilteringCoordinator, IDENavigatorDataCell, IDENavigatorOutlineView, NSArrayController, NSMenu, NSMetadataQuery, NSOperationQueue, NSPredicate, NSSet, NSString, NSView, NSViewController;
+@class DVTBorderedView, DVTDelayedInvocation, DVTFilePath, DVTGradientImagePopUpButton, DVTObservingToken, DVTReplacementView, DVTScrollView, DVTSearchField, IDENavigableItemAsyncFilteringCoordinator, IDENavigatorDataCell, IDENavigatorOutlineView, NSArrayController, NSMenu, NSOperationQueue, NSSet, NSString, NSView, NSViewController;
 
 @interface IDEProjectsOrganizerViewController : IDEViewController <NSSplitViewDelegate, IDENavigatorOutlineViewDelegate, DVTReplacementViewDelegate, IDEOrganizerSource>
 {
@@ -20,19 +20,17 @@
     IDENavigatorDataCell *_dataCell;
     NSMenu *_contextualMenu;
     DVTBorderedView *_filterBar;
-    NSString *_filterString;
     DVTGradientImagePopUpButton *_actionPopUpButton;
     DVTReplacementView *_detailsArea;
     NSViewController *_currentInstalledVC;
-    NSSet *_allProjects;
     NSArrayController *_arrayController;
     DVTFilePath *_workspaceArenaFolder;
-    DVTFilePath *_snapshotsFolder;
-    NSMetadataQuery *_snapshotsSpotlightQuery;
     DVTObservingToken *_openedClosedObserver;
     DVTObservingToken *_selectionObserver;
     NSOperationQueue *_deletionQueue;
     DVTDelayedInvocation *_delayedFileIOInvocation;
+    NSString *_filterString;
+    NSSet *_allProjects;
     DVTSearchField *_filterField;
     NSView *_sourceListContainerView;
     DVTScrollView *_scrollView;
@@ -45,13 +43,12 @@
 @property __weak DVTScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property __weak NSView *sourceListContainerView; // @synthesize sourceListContainerView=_sourceListContainerView;
 @property __weak DVTSearchField *filterField; // @synthesize filterField=_filterField;
-@property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
 @property(copy) NSSet *allProjects; // @synthesize allProjects=_allProjects;
+@property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
 - (void).cxx_destruct;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
 - (id)_projectLocationFromInfoFileInFolder:(id)arg1;
-- (id)_projectsFromSnapshotsInNonStandardLocations;
 - (id)_projectInfoFromFolder:(id)arg1 usingModelKey:(id)arg2;
 - (id)_projectsCurrentlyOpened;
 - (void)_rebuildProjectsList:(id)arg1;
@@ -74,7 +71,7 @@
 - (void)outlineView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 item:(id)arg4;
 - (id)outlineView:(id)arg1 dataCellForTableColumn:(id)arg2 item:(id)arg3;
 - (BOOL)outlineView:(id)arg1 isGroupHeaderItem:(id)arg2;
-@property(readonly) NSPredicate *filterPredicate;
+- (id)filterPredicate;
 - (void)primitiveInvalidate;
 - (void)_configureDetailView;
 - (void)_configureEmptyView;

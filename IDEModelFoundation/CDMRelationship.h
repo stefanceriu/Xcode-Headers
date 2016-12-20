@@ -10,13 +10,13 @@
 
 @interface CDMRelationship : CDMProperty
 {
-    CDMEntity *destinationEntity;
-    unsigned long long minCount;
-    unsigned long long maxCount;
-    long long deletionRule;
-    CDMRelationship *inverseRelationship;
-    BOOL toMany;
-    BOOL ordered;
+    CDMEntity *_destinationEntity;
+    unsigned long long _minCount;
+    unsigned long long _maxCount;
+    long long _deletionRule;
+    CDMRelationship *_inverseRelationship;
+    BOOL _toMany;
+    BOOL _ordered;
 }
 
 + (id)keyPathsForValuesAffectingInspectedToMany;
@@ -26,13 +26,13 @@
 + (id)keyPathsForValuesAffectingInspectedDestinationEntity;
 + (id)keyPathsForValuesAffectingFilteredRelationshipsWithNoInverse;
 + (id)keyPathsForValuesAffectingPossibleInverseRelationships;
-@property(nonatomic) BOOL ordered; // @synthesize ordered;
-@property(readonly) BOOL toMany; // @synthesize toMany;
-@property(retain, nonatomic) CDMRelationship *inverseRelationship; // @synthesize inverseRelationship;
-@property(nonatomic) long long deletionRule; // @synthesize deletionRule;
-@property(readonly) unsigned long long maxCount; // @synthesize maxCount;
-@property(readonly) unsigned long long minCount; // @synthesize minCount;
-@property(retain, nonatomic) CDMEntity *destinationEntity; // @synthesize destinationEntity;
+@property(nonatomic) BOOL ordered; // @synthesize ordered=_ordered;
+@property(readonly) BOOL toMany; // @synthesize toMany=_toMany;
+@property(retain, nonatomic) CDMRelationship *inverseRelationship; // @synthesize inverseRelationship=_inverseRelationship;
+@property(nonatomic) long long deletionRule; // @synthesize deletionRule=_deletionRule;
+@property(readonly) unsigned long long maxCount; // @synthesize maxCount=_maxCount;
+@property(readonly) unsigned long long minCount; // @synthesize minCount=_minCount;
+@property(retain, nonatomic) CDMEntity *destinationEntity; // @synthesize destinationEntity=_destinationEntity;
 - (void).cxx_destruct;
 - (id)stringRepresentation;
 - (id)xmlElementDescription;
@@ -62,10 +62,15 @@
 - (id)initWithLegacyRelationship:(id)arg1 andEntityMapping:(id)arg2 belongingToEntity:(id)arg3 inModel:(id)arg4;
 - (id)initInModel:(id)arg1;
 - (void)_registerUndoBlockForFoundRelationship:(CDUnknownBlockType)arg1;
+- (id)code_accessorsObjC;
+- (id)code_accessorsSwift;
 - (id)code_accessors;
 - (id)code_relationshipDestinationClass;
 - (id)code_relationshipSetType;
-- (id)code_propertyTypePointer;
+- (id)code_propertyParameter;
+- (id)code_propertyTypeObjC;
+- (id)code_propertyTypeSwift;
+- (id)code_propertyType;
 
 @end
 

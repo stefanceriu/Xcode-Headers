@@ -8,10 +8,36 @@
 
 @interface SKEPreferencesManager : NSObject
 {
+    BOOL _materialInspectorShow_diffuse;
+    BOOL _materialInspectorShow_ambient;
+    BOOL _materialInspectorShow_specular;
+    BOOL _materialInspectorShow_roughness;
+    BOOL _materialInspectorShow_metalness;
+    BOOL _materialInspectorShow_ambientOcclusion;
+    BOOL _materialInspectorShow_selfIllumination;
+    BOOL _materialInspectorShow_emission;
+    BOOL _materialInspectorShow_transparent;
+    BOOL _materialInspectorShow_reflective;
+    BOOL _materialInspectorShow_multiply;
+    BOOL _materialInspectorShow_normal;
+    BOOL _materialInspectorShow_shininess;
 }
 
 + (id)keyPathsForValuesAffectingBakeryNeedsAttenuation;
 + (id)sharedPreferencesManager;
+@property(nonatomic) BOOL materialInspectorShow_shininess; // @synthesize materialInspectorShow_shininess=_materialInspectorShow_shininess;
+@property(nonatomic) BOOL materialInspectorShow_normal; // @synthesize materialInspectorShow_normal=_materialInspectorShow_normal;
+@property(nonatomic) BOOL materialInspectorShow_multiply; // @synthesize materialInspectorShow_multiply=_materialInspectorShow_multiply;
+@property(nonatomic) BOOL materialInspectorShow_reflective; // @synthesize materialInspectorShow_reflective=_materialInspectorShow_reflective;
+@property(nonatomic) BOOL materialInspectorShow_transparent; // @synthesize materialInspectorShow_transparent=_materialInspectorShow_transparent;
+@property(nonatomic) BOOL materialInspectorShow_emission; // @synthesize materialInspectorShow_emission=_materialInspectorShow_emission;
+@property(nonatomic) BOOL materialInspectorShow_selfIllumination; // @synthesize materialInspectorShow_selfIllumination=_materialInspectorShow_selfIllumination;
+@property(nonatomic) BOOL materialInspectorShow_ambientOcclusion; // @synthesize materialInspectorShow_ambientOcclusion=_materialInspectorShow_ambientOcclusion;
+@property(nonatomic) BOOL materialInspectorShow_metalness; // @synthesize materialInspectorShow_metalness=_materialInspectorShow_metalness;
+@property(nonatomic) BOOL materialInspectorShow_roughness; // @synthesize materialInspectorShow_roughness=_materialInspectorShow_roughness;
+@property(nonatomic) BOOL materialInspectorShow_specular; // @synthesize materialInspectorShow_specular=_materialInspectorShow_specular;
+@property(nonatomic) BOOL materialInspectorShow_ambient; // @synthesize materialInspectorShow_ambient=_materialInspectorShow_ambient;
+@property(nonatomic) BOOL materialInspectorShow_diffuse; // @synthesize materialInspectorShow_diffuse=_materialInspectorShow_diffuse;
 @property(readonly, nonatomic) BOOL bakeryNeedsAttenuation;
 @property(nonatomic) float bakeryAttenuationFactor;
 @property(nonatomic) float bakeryQuality;

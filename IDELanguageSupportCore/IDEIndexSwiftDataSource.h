@@ -29,17 +29,17 @@
 + (id)swiftLang;
 + (void)initialize;
 + (id)sourceCodeSymbolKindForSwiftSymbolKind:(int)arg1 extendedSymbolKind:(id *)arg2;
-+ (int)swiftSymbolKindForUID:(struct sourcekitd_uid_s *)arg1 isDecl:(char *)arg2;
++ (int)swiftSymbolKindForUID:(struct _sourcekit_uid_s *)arg1 isDecl:(char *)arg2;
 + (void)initializeSwiftSymbolKinds;
 - (void).cxx_destruct;
 - (BOOL)generateDataForJob:(id)arg1;
-- (void)processSymbolArray:(CDStruct_3c4b7cd8)arg1 parentKind:(int)arg2 parent:(id)arg3 grandparent:(id)arg4 isRelated:(BOOL)arg5;
-- (void)processImportArray:(CDStruct_3c4b7cd8)arg1;
+- (void)processSymbolArray:(CDStruct_68506f87)arg1 parentKind:(int)arg2 parent:(id)arg3 grandparent:(id)arg4 isRelated:(BOOL)arg5;
+- (void)processImportArray:(CDStruct_68506f87)arg1;
 - (void)importedModule:(const char *)arg1 moduleURL:(id)arg2 settings:(id)arg3;
 - (void)createSymbolWithCName:(const char *)arg1 kind:(id)arg2 role:(int)arg3 resolution:(const char *)arg4 line:(long long)arg5 column:(long long)arg6 receiver:(const char *)arg7 container:(id)arg8 pSymbol:(id *)arg9;
 - (void)cancelSourceKitRequests;
-- (void)handleSourceKitError:(void *)arg1;
-- (void)issueSourceKitRequest:(struct sourcekitd_uid_s *)arg1 requestBlock:(CDUnknownBlockType)arg2 responseBlock:(CDUnknownBlockType)arg3;
+- (void)handleSourceKitError:(struct _sourcekit_response_s *)arg1;
+- (void)issueSourceKitRequest:(struct _sourcekit_uid_s *)arg1 requestBlock:(CDUnknownBlockType)arg2 responseBlock:(CDUnknownBlockType)arg3;
 
 @end
 

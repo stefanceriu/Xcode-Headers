@@ -26,6 +26,7 @@
     IDEEditorDocument *_document;
     IDELogAndTestsEditor *_hostEditor;
     NSArray *_currentlyExpandedTestItemIdentifiers;
+    NSArray *_currentlyExpandedTestActivityIdentifiers;
     NSArray *_currentlyExpandedCoverageItemIdentifiers;
     NSArray *_currentSelectedDocumentLocations;
     NSArray *_currentSelectedItems;
@@ -40,10 +41,12 @@
     DVTObservingToken *_currentSelectedItemsToken;
     DVTObservingToken *_expandedCoverageItemsObservationToken;
     DVTObservingToken *_expandedTestItemsObservationToken;
+    DVTObservingToken *_expandedTestActivitiesObservationToken;
     DVTChoice *_coverageTab;
 }
 
 @property(retain, nonatomic) DVTChoice *coverageTab; // @synthesize coverageTab=_coverageTab;
+@property(retain) DVTObservingToken *expandedTestActivitiesObservationToken; // @synthesize expandedTestActivitiesObservationToken=_expandedTestActivitiesObservationToken;
 @property(retain) DVTObservingToken *expandedTestItemsObservationToken; // @synthesize expandedTestItemsObservationToken=_expandedTestItemsObservationToken;
 @property(retain) DVTObservingToken *expandedCoverageItemsObservationToken; // @synthesize expandedCoverageItemsObservationToken=_expandedCoverageItemsObservationToken;
 @property(retain) DVTObservingToken *currentSelectedItemsToken; // @synthesize currentSelectedItemsToken=_currentSelectedItemsToken;
@@ -58,21 +61,28 @@
 @property(copy, nonatomic) NSArray *currentSelectedItems; // @synthesize currentSelectedItems=_currentSelectedItems;
 @property(retain, nonatomic) NSArray *currentSelectedDocumentLocations; // @synthesize currentSelectedDocumentLocations=_currentSelectedDocumentLocations;
 @property(retain, nonatomic) NSArray *currentlyExpandedCoverageItemIdentifiers; // @synthesize currentlyExpandedCoverageItemIdentifiers=_currentlyExpandedCoverageItemIdentifiers;
+@property(retain, nonatomic) NSArray *currentlyExpandedTestActivityIdentifiers; // @synthesize currentlyExpandedTestActivityIdentifiers=_currentlyExpandedTestActivityIdentifiers;
 @property(retain, nonatomic) NSArray *currentlyExpandedTestItemIdentifiers; // @synthesize currentlyExpandedTestItemIdentifiers=_currentlyExpandedTestItemIdentifiers;
 @property __weak IDELogAndTestsEditor *hostEditor; // @synthesize hostEditor=_hostEditor;
 @property(retain, nonatomic) IDEEditorDocument *document; // @synthesize document=_document;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) BOOL ide_testReport_test_lazyTestRunFetchesUseNewBatchAPI;
+@property(readonly, nonatomic) BOOL ide_testReport_rootObject_canRevealActivityAssetsLocally;
 @property(readonly, nonatomic) BOOL ide_testReport_test_fetchesTestRunsLazily;
+- (BOOL)ide_testReport_shouldEnableBaselineUpdatingUIForWorkspace:(id)arg1;
 - (id)ide_testReport_rootObject_includeGroupsWithPassedTests:(BOOL)arg1 includeFailingTests:(BOOL)arg2 includeOnlyPerfTests:(BOOL)arg3;
 - (id)testGroupsIncludePassingTests:(BOOL)arg1 includeFailingTests:(BOOL)arg2 includeOnlyPerfTests:(BOOL)arg3;
+@property(readonly, copy, nonatomic) NSArray *ide_testReport_rootObject_allTestClasses;
 @property(readonly, copy, nonatomic) NSArray *ide_testReport_rootObject_perfMetricNames;
 @property(readonly, copy, nonatomic) NSArray *ide_testReport_rootObject_devices;
+@property(readonly, copy, nonatomic) NSString *ide_testReport_rootObject_identifier;
 - (id)coverageReportViewController;
 - (id)coverageResultsViewController;
 - (id)sharedTestsViewController;
 - (id)logEditor;
 - (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
+- (void)restoreExpandedTestActivitiesWithIdentifiers:(id)arg1;
+- (void)restoreExpandedTestsWithIdentifiers:(id)arg1;
+- (void)configureCoverageReport;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
 - (void)processTestSummaryGroup:(id)arg1 testableSummary:(id)arg2 parentGroup:(id)arg3;
 - (void)processTestSummary:(id)arg1 testableSummary:(id)arg2 logTestsViewTestGroup:(id)arg3;

@@ -11,6 +11,8 @@
 @protocol IDETestReport_TestActivity <NSObject>
 @property(readonly, nonatomic) BOOL ide_testReport_testActivity_containsFailure;
 @property(readonly, copy, nonatomic) NSArray *ide_testReport_testActivity_subactivities;
+@property(readonly, copy, nonatomic) NSString *ide_testReport_testActivity_diagnosticReportFileName;
+@property(readonly, copy, nonatomic) id ide_testReport_testActivity_diagnosticReport;
 @property(readonly, copy, nonatomic) id ide_testReport_testActivity_screenshot;
 @property(readonly, copy, nonatomic) NSDate *ide_testReport_testActivity_finishTime;
 @property(readonly, copy, nonatomic) NSDate *ide_testReport_testActivity_startTime;

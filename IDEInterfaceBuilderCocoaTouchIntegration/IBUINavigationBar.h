@@ -14,7 +14,7 @@
 
 @interface IBUINavigationBar : IBUIView <IBDocumentArchiving, NSCoding, IBUIEditorDecoratableView>
 {
-    int barStyle;
+    long long barStyle;
     NSMutableArray *items;
     NSArray *observedSubviews;
     NSValue *cachedTitleViewFrame;
@@ -76,9 +76,8 @@
 - (BOOL)isPrompted;
 - (BOOL)forcesPrompt;
 - (void)setForcesPrompt:(BOOL)arg1;
-@property(nonatomic) int barStyle;
+@property(nonatomic) long long barStyle;
 - (void)populateCachedGeometryInfos:(id)arg1;
-- (void)configureFullSceneUpdateRequest:(id)arg1;
 - (void)enumerateCachedImageKeyPaths:(CDUnknownBlockType)arg1;
 - (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
@@ -102,6 +101,9 @@
 - (id)ibInspectedTitleFontDescription;
 - (void)setIbInspectedTitleTextAttributes:(id)arg1;
 - (id)ibInspectedTitleTextAttributes;
+- (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
+- (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
+- (id)ibLocalPerConfigurationAttributeKeyPaths;
 - (void)editorView:(id)arg1 drawDecoratorInRect:(struct CGRect)arg2 overlayView:(id)arg3;
 - (BOOL)ibShouldChildBeIncludedInArbitrationUnitWithParent:(id)arg1;
 - (BOOL)ibCanBeCollectionViewBackgroundView;
@@ -114,6 +116,8 @@
 - (struct CGRect)ibRectForChild:(id)arg1 inFrameController:(id)arg2;
 - (BOOL)ibIsChildInitiallySelectable:(id)arg1;
 - (void)ibCustomizeForInsertionIntoIBUIView:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
 - (Class)barMetricsClass;
 
 // Remaining properties

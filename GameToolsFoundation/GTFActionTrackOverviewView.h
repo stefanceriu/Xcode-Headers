@@ -59,6 +59,7 @@
 - (void)viewWillDraw;
 - (BOOL)isOpaque;
 - (void)setPlayForTimelineControl:(double)arg1;
+- (void)pauseTimelineControl;
 - (void)updatePreviewTime:(double)arg1;
 - (void)updateTimeScaleTo:(float)arg1;
 - (void)updateSize;

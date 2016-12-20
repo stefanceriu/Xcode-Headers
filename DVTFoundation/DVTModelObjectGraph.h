@@ -16,6 +16,7 @@
     NSMutableSet *_deletedObjects;
     BOOL _coalescePending;
     BOOL _changeNotificationsAreSuspended;
+    BOOL _tracksChanges;
     BOOL _hasPendingChanges;
     NSString *_name;
     NSOperationQueue *_asyncQueue;
@@ -43,6 +44,7 @@
 - (id)description;
 - (id)initWithName:(id)arg1 asyncDispatchQueue:(id)arg2 changeDispatchQueue:(id)arg3;
 - (id)initWithName:(id)arg1 asyncQueue:(id)arg2 changeQueue:(id)arg3;
+- (id)initWithName:(id)arg1 asyncDispatchQueue:(id)arg2 changeDispatchQueue:(id)arg3 transactionScope:(id)arg4 tracksChanges:(BOOL)arg5;
 - (id)initWithName:(id)arg1 asyncDispatchQueue:(id)arg2 changeDispatchQueue:(id)arg3 transactionScope:(id)arg4;
 - (id)initWithName:(id)arg1 asyncQueue:(id)arg2 changeQueue:(id)arg3 transactionScope:(id)arg4;
 

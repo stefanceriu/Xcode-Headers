@@ -21,10 +21,12 @@
     NSSet *_conflictingConstraintSets;
     NSSet *_ambiguousViewStatusGroups;
     NSDictionary *_misplacedViewsToMisplacementStatus;
+    NSSet *_frameDecidedItems;
     NSSet *_objects;
 }
 
 @property(readonly, nonatomic) NSSet *objects; // @synthesize objects=_objects;
+@property(readonly, nonatomic) NSSet *frameDecidedItems; // @synthesize frameDecidedItems=_frameDecidedItems;
 @property(readonly, nonatomic) NSDictionary *viewsToLayoutFrames; // @synthesize viewsToLayoutFrames=_viewsToLayoutFrames;
 @property(readonly, nonatomic) NSDictionary *misplacedViewsToMisplacementStatus; // @synthesize misplacedViewsToMisplacementStatus=_misplacedViewsToMisplacementStatus;
 @property(readonly, nonatomic) NSSet *ambiguousViewStatusGroups; // @synthesize ambiguousViewStatusGroups=_ambiguousViewStatusGroups;
@@ -55,7 +57,7 @@
 - (id)statusByUnioningWithStatuses:(id)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
-- (id)initWithConflictingConstraintSets:(id)arg1 ambiguousViewStatusGroups:(id)arg2 misplacedViewsToMisplacementStatus:(id)arg3 viewsToLayoutFrames:(id)arg4;
+- (id)initWithConflictingConstraintSets:(id)arg1 ambiguousViewStatusGroups:(id)arg2 misplacedViewsToMisplacementStatus:(id)arg3 viewsToLayoutFrames:(id)arg4 frameDecidedItems:(id)arg5;
 - (id)init;
 
 // Remaining properties

@@ -6,21 +6,21 @@
 
 #import "IDEEditorDocument.h"
 
+#import "CDMModelOwner.h"
 #import "DVTTextFindable.h"
 #import "DVTTextReplacable.h"
 #import "IDEDocumentStructureProviding.h"
 #import "NSKeyedUnarchiverDelegate.h"
 #import "XDPMModelDelegate.h"
 
-@class CDMModel, DVTNotificationToken, DVTToolsVersion, DVTVersion, NSArray, NSString, XDDiagramStorage;
+@class CDMModel, DVTNotificationToken, DVTToolsVersion, DVTVersion, NSArray, NSString, NSURL, NSUndoManager, XDDiagramStorage;
 
-@interface IDEDataModelDocument : IDEEditorDocument <NSKeyedUnarchiverDelegate, IDEDocumentStructureProviding, XDPMModelDelegate, DVTTextFindable, DVTTextReplacable>
+@interface IDEDataModelDocument : IDEEditorDocument <CDMModelOwner, NSKeyedUnarchiverDelegate, IDEDocumentStructureProviding, XDPMModelDelegate, DVTTextFindable, DVTTextReplacable>
 {
-    CDMModel *_model;
     XDDiagramStorage *_diagramStorage;
-    DVTToolsVersion *_documentToolsVersion;
-    DVTVersion *_documentVersion;
     DVTNotificationToken *_documentDidSaveToken;
+    DVTVersion *_documentVersion;
+    CDMModel *_model;
 }
 
 + (id)keyPathsForValuesAffectingValueForKey:(id)arg1;
@@ -30,11 +30,7 @@
 + (BOOL)isNativeType:(id)arg1;
 + (id)writableTypes;
 + (id)readableTypes;
-+ (id)currentDocumentVersion;
-+ (id)currentToolsVersion;
-+ (id)currentSystemVersion;
-@property(copy, nonatomic) DVTVersion *documentVersion; // @synthesize documentVersion=_documentVersion;
-@property(retain, nonatomic) DVTToolsVersion *documentToolsVersion; // @synthesize documentToolsVersion=_documentToolsVersion;
++ (id)keyPathsForValuesAffectingDocumentToolsVersion;
 @property(retain) CDMModel *model; // @synthesize model=_model;
 - (void).cxx_destruct;
 - (BOOL)replaceFindResults:(id)arg1 withString:(id)arg2 withError:(id *)arg3;
@@ -42,6 +38,7 @@
 - (void)updateChangeCount:(unsigned long long)arg1;
 @property(readonly) NSArray *ideTopLevelStructureObjects;
 - (BOOL)writeToURL:(id)arg1 ofType:(id)arg2 forSaveOperation:(unsigned long long)arg3 originalContentsURL:(id)arg4 error:(id *)arg5;
+- (BOOL)documentSupportsInconsistentState;
 - (BOOL)writeToURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (BOOL)writeModel:(id)arg1 atPath:(id)arg2 error:(id *)arg3;
 - (BOOL)writeLegacyModel:(id)arg1 atPath:(id)arg2 error:(id *)arg3;
@@ -55,21 +52,21 @@
 - (BOOL)canSave;
 - (void)setDiagramStorage:(id)arg1;
 - (id)diagramStorage;
+@property(copy, nonatomic) DVTVersion *documentVersion; // @synthesize documentVersion=_documentVersion;
+@property(retain, nonatomic) DVTToolsVersion *documentToolsVersion;
 - (void)setDocumentToolsVersionWithPackageTypeCheck:(id)arg1;
 - (BOOL)isPackageDifferentForDocumentToolsVersion:(id)arg1;
 - (void)editorDocumentWillClose;
 - (id)displayName;
-- (id)objectSpecifier;
-- (id)newScriptingObjectOfClass:(Class)arg1 forValueForKey:(id)arg2 withContentsValue:(id)arg3 properties:(id)arg4;
-- (id)sdefSupport_entities;
-- (void)setDisplayName:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly, copy) NSURL *fileURL;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 @property unsigned long long supportedMatchingOptions;
+@property(readonly) NSUndoManager *undoManager;
 
 @end
 

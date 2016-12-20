@@ -12,9 +12,13 @@
 {
 }
 
++ (id)keyPathsForValuesAffectingSke_utilityAreaSubInspectedAnimationsController;
++ (id)keyPathsForValuesAffectingSke_utilityAreaSubInspectedConstraintsController;
 + (id)keyPathsForValuesAffectingSke_utilityAreaSubInspectedMaterialsController;
 + (id)inspectedArrayControllerKeys;
 - (void)setContent:(id)arg1;
+@property(readonly, nonatomic) NSArrayController *ske_utilityAreaSubInspectedAnimationsController;
+@property(readonly, nonatomic) NSArrayController *ske_utilityAreaSubInspectedConstraintsController;
 @property(readonly, nonatomic) NSArrayController *ske_utilityAreaSubInspectedMaterialsController;
 
 @end

@@ -6,29 +6,29 @@
 
 #import "CALayer.h"
 
-#import "DVTInvalidation.h"
+@class DVTObservingToken, IDEActivityActionButtonLayer, IDEActivityProgressIndicatorLayer, IDEActivityReport, IDEActivityScrollingTextLayer, NSMutableArray;
 
-@class DVTObservingToken, DVTStackBacktrace, IDEActivityActionButtonLayer, IDEActivityProgressIndicatorLayer, IDEActivityReport, IDEActivityScrollingTextLayer, NSMutableArray, NSString;
-
-@interface IDEActivityPopUpReportLayer : CALayer <DVTInvalidation>
+@interface IDEActivityPopUpReportLayer : CALayer
 {
     IDEActivityProgressIndicatorLayer *_progressIndicatorLayer;
     IDEActivityScrollingTextLayer *_scrollingTextLayer;
     IDEActivityActionButtonLayer *_cancelButtonLayer;
     NSMutableArray *_stringSegments;
+    IDEActivityReport *_immutableReportForDisplay;
     BOOL _paused;
     DVTObservingToken *_kvoActivityReportTitleSegmentsToken;
     DVTObservingToken *_kvoActivityReportProgressToken;
     DVTObservingToken *_kvoActivityReportTitleToken;
     DVTObservingToken *_kvoActivityReportThrottleFactorToken;
     BOOL _isActiveWindowStyle;
+    BOOL _makeSpaceForIndeterminateProgressIndicator;
     IDEActivityReport *_activityReport;
     double _spaceNeededForMultiActionIndicator;
 }
 
 + (id)createActivityReportLayer;
 + (struct CGSize)defaultSizeForPopUpStyle;
-+ (void)initialize;
+@property(nonatomic) BOOL makeSpaceForIndeterminateProgressIndicator; // @synthesize makeSpaceForIndeterminateProgressIndicator=_makeSpaceForIndeterminateProgressIndicator;
 @property(nonatomic) double spaceNeededForMultiActionIndicator; // @synthesize spaceNeededForMultiActionIndicator=_spaceNeededForMultiActionIndicator;
 @property(nonatomic) BOOL isActiveWindowStyle; // @synthesize isActiveWindowStyle=_isActiveWindowStyle;
 @property(retain, nonatomic) IDEActivityReport *activityReport; // @synthesize activityReport=_activityReport;
@@ -37,6 +37,7 @@
 - (BOOL)shouldShowCancelButtonLayer;
 @property(readonly) BOOL indeterminateReportInProgress;
 - (id)keyPathsForValuesAffectingIndeterminateReportInProgress;
+- (void)_updateAppearanceForReport;
 - (void)updateVisibilityForCancelButtonAndAdjustLayoutIfNeeded;
 - (void)updateVisibilityForTextFieldAndAdjustLayoutIfNeeded;
 - (BOOL)shouldHideProgress;
@@ -52,19 +53,10 @@
 - (id)defaultCompletionSummary;
 - (void)sizeToFit;
 - (struct CGPoint)imageLayerPosition;
-- (void)layoutSublayers;
 - (void)updateConstraints;
-@property(readonly, copy) NSString *description;
+- (id)description;
 - (id)init;
-- (void)primitiveInvalidate;
-
-// Remaining properties
-@property(retain) DVTStackBacktrace *creationBacktrace;
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly) Class superclass;
-@property(readonly, nonatomic, getter=isValid) BOOL valid;
+- (void)tearDownLayer;
 
 @end
 

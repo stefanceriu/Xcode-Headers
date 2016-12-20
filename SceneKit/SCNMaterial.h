@@ -26,6 +26,8 @@
     SCNMaterialProperty *_normal;
     SCNMaterialProperty *_ambientOcclusion;
     SCNMaterialProperty *_selfIllumination;
+    SCNMaterialProperty *_metalness;
+    SCNMaterialProperty *_roughness;
     SCNOrderedDictionary *_animations;
     NSString *_name;
     NSMutableDictionary *_valuesForUndefinedKeys;
@@ -33,6 +35,7 @@
     float _transparency;
     float _indexOfRefraction;
     float _fresnelExponent;
+    float _selfIlluminationOcclusion;
     long long _transparencyMode;
     NSString *_lightingModelName;
     long long _cullMode;
@@ -72,7 +75,10 @@
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)_setAttributes:(id)arg1;
+- (void)unbindAnimatablePath:(id)arg1;
+- (void)bindAnimatablePath:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
 - (BOOL)isAnimationForKeyPaused:(id)arg1;
+- (void)setSpeed:(double)arg1 forAnimationKey:(id)arg2;
 - (void)removeAnimationForKey:(id)arg1 fadeOutDuration:(double)arg2;
 - (void)resumeAnimationForKey:(id)arg1;
 - (void)pauseAnimationForKey:(id)arg1;
@@ -84,9 +90,9 @@
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
 - (void)addAnimation:(id)arg1 forKey:(id)arg2;
-- (void)__removeAnimation:(id)arg1 forKey:(id)arg2;
+- (BOOL)__removeAnimation:(id)arg1 forKey:(id)arg2;
 - (struct __C3DAnimationManager *)animationManager;
-- (void *)__CFObject;
+- (const void *)__CFObject;
 - (id)scene;
 - (struct __C3DScene *)sceneRef;
 - (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
@@ -108,12 +114,16 @@
 @property(nonatomic, getter=isLitPerPixel) BOOL litPerPixel;
 @property(copy, nonatomic) NSString *lightingModelName;
 @property(nonatomic) long long blendMode;
+- (double)selfIlluminationOcclusion;
+- (void)setSelfIlluminationOcclusion:(double)arg1;
 @property(nonatomic) double fresnelExponent;
 - (double)indexOfRefraction;
 - (void)setIndexOfRefraction:(double)arg1;
 @property(nonatomic) double transparency;
 @property(nonatomic) double shininess;
 @property(nonatomic) long long transparencyMode;
+@property(readonly, nonatomic) SCNMaterialProperty *roughness;
+@property(readonly, nonatomic) SCNMaterialProperty *metalness;
 @property(readonly, nonatomic) SCNMaterialProperty *selfIllumination;
 @property(readonly, nonatomic) SCNMaterialProperty *ambientOcclusion;
 @property(readonly, nonatomic) SCNMaterialProperty *normal;

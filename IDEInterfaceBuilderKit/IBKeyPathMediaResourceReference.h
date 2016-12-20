@@ -6,19 +6,20 @@
 
 #import <IDEInterfaceBuilderKit/IBMediaResourceReference.h>
 
-@class NSNumber, NSString;
+@class IBMemberConfiguration, NSNumber, NSString;
 
 @interface IBKeyPathMediaResourceReference : IBMediaResourceReference
 {
+    IBMemberConfiguration *_memberConfiguration;
     NSString *_keyPath;
     NSNumber *_index;
 }
 
-+ (id)referenceToVariantSet:(id)arg1 fromDocumentObject:(id)arg2 originalValue:(id)arg3 keyPath:(id)arg4 index:(id)arg5 transformer:(id)arg6;
++ (id)referenceToVariantSet:(id)arg1 fromDocumentObject:(id)arg2 originalValue:(id)arg3 keyPath:(id)arg4 memberConfiguration:(id)arg5 index:(id)arg6 transformer:(id)arg7;
 - (void).cxx_destruct;
 - (BOOL)updateValueFromResourceValueIfNeeded:(id)arg1 inDocument:(id)arg2;
 - (BOOL)isArrayBased;
-- (id)initWithVariantSet:(id)arg1 documentObject:(id)arg2 originalValue:(id)arg3 keyPath:(id)arg4 index:(id)arg5 transformer:(id)arg6;
+- (id)initWithVariantSet:(id)arg1 documentObject:(id)arg2 originalValue:(id)arg3 keyPath:(id)arg4 memberConfiguration:(id)arg5 index:(id)arg6 transformer:(id)arg7;
 
 @end
 

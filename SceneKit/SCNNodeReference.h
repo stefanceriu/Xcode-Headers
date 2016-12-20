@@ -16,6 +16,7 @@
 
 @property(copy, nonatomic) NSString *referenceNodeName; // @synthesize referenceNodeName;
 @property(copy, nonatomic) NSString *referenceSceneName; // @synthesize referenceSceneName;
+- (void)dealloc;
 - (void)_reloadWithScene:(id)arg1;
 
 @end

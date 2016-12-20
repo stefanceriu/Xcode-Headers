@@ -21,8 +21,8 @@
 
 + (id)none;
 + (id)makeKeyTakingFocus:(BOOL)arg1 orderFront:(BOOL)arg2;
-+ (id)makeKeyTakingFocus:(BOOL)arg1 orderFront:(BOOL)arg2 scrollToVisible:(BOOL)arg3 zoomToLevel:(id)arg4 shouldCenter:(BOOL)arg5 animate:(BOOL)arg6;
-+ (id)makeKey:(BOOL)arg1 takeFocus:(BOOL)arg2 orderFront:(BOOL)arg3 scrollToVisible:(BOOL)arg4 zoomToLevel:(id)arg5 shouldCenter:(BOOL)arg6 animate:(BOOL)arg7;
++ (id)makeKeyTakingFocus:(BOOL)arg1 orderFront:(BOOL)arg2 scrollToVisible:(BOOL)arg3 shouldCenter:(BOOL)arg4 animate:(BOOL)arg5;
++ (id)makeKey:(BOOL)arg1 takeFocus:(BOOL)arg2 orderFront:(BOOL)arg3 scrollToVisible:(BOOL)arg4 shouldCenter:(BOOL)arg5 animate:(BOOL)arg6;
 @property(nonatomic) BOOL animate; // @synthesize animate=_animate;
 @property(nonatomic) BOOL shouldCenter; // @synthesize shouldCenter=_shouldCenter;
 @property(retain, nonatomic) NSNumber *zoomToLevel; // @synthesize zoomToLevel=_zoomToLevel;
@@ -31,7 +31,7 @@
 @property(nonatomic) BOOL takeFocus; // @synthesize takeFocus=_takeFocus;
 @property(nonatomic) BOOL makeKey; // @synthesize makeKey=_makeKey;
 - (void).cxx_destruct;
-- (id)initWithMakeKey:(BOOL)arg1 takeFocus:(BOOL)arg2 orderFront:(BOOL)arg3 scrollToVisible:(BOOL)arg4 zoomToLevel:(id)arg5 shouldCenter:(BOOL)arg6 animate:(BOOL)arg7;
+- (id)initWithMakeKey:(BOOL)arg1 takeFocus:(BOOL)arg2 orderFront:(BOOL)arg3 scrollToVisible:(BOOL)arg4 shouldCenter:(BOOL)arg5 animate:(BOOL)arg6;
 
 @end
 

@@ -6,12 +6,12 @@
 
 #import <IDEKit/IDENavigationHUDBorderedGradientLayer.h>
 
-#import "IDENavigationHUDDisposableLayer.h"
+#import "DVTInvalidation.h"
 #import "IDENavigationHUDSelectableLayer.h"
 
-@class CALayer, IDENavigationHUDSelection, IDENavigationHUDTabBarLayer, IDEWorkspaceTabController, NSString;
+@class CALayer, DVTStackBacktrace, IDENavigationHUDSelection, IDENavigationHUDTabBarLayer, IDEWorkspaceTabController, NSString;
 
-@interface IDENavigationHUDTabBarTabLayer : IDENavigationHUDBorderedGradientLayer <IDENavigationHUDSelectableLayer, IDENavigationHUDDisposableLayer>
+@interface IDENavigationHUDTabBarTabLayer : IDENavigationHUDBorderedGradientLayer <IDENavigationHUDSelectableLayer, DVTInvalidation>
 {
     IDEWorkspaceTabController *_workspaceTabController;
     IDENavigationHUDTabBarLayer *_tabBarLayer;
@@ -20,6 +20,7 @@
     CALayer *_overlayLayer;
 }
 
++ (void)initialize;
 @property(readonly) IDENavigationHUDTabBarLayer *tabBarLayer; // @synthesize tabBarLayer=_tabBarLayer;
 @property(readonly) IDEWorkspaceTabController *workspaceTabController; // @synthesize workspaceTabController=_workspaceTabController;
 @property(nonatomic) unsigned long long tabState; // @synthesize tabState=_tabState;
@@ -28,15 +29,18 @@
 @property(readonly) IDENavigationHUDSelection *representativeSelection;
 - (id)navigationHUDController;
 - (void)layoutSublayers;
-- (void)dispose;
+- (void)primitiveInvalidate;
 - (id)initWithWorkspaceTabController:(id)arg1 tabBarLayer:(id)arg2;
 - (id)initWithTabBarLayer:(id)arg1;
 
 // Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

@@ -98,6 +98,7 @@
 - (void)_updateNewKeysStrategyDisplay;
 @property BOOL enableAnonymousStrategy;
 - (void)_updateAnonymousStrategyDisplay;
+- (void)primitiveInvalidate;
 
 @end
 

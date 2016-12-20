@@ -14,9 +14,11 @@
 + (id)inferredRepIdentifiersForImageReps:(id)arg1;
 + (id)inferredRepIdentifierForPath:(id)arg1 slotComponentTransformer:(CDUnknownBlockType)arg2;
 + (Class)slotClass;
-- (id)slot;
++ (id)identifierWithSlot:(id)arg1 fileName:(id)arg2 explicitlyUnassigned:(BOOL)arg3;
 - (id)scale;
 - (id)size;
+- (id)slot;
+- (id)initWithSlot:(id)arg1 fileName:(id)arg2 conflictState:(unsigned long long)arg3;
 
 @end
 

@@ -17,7 +17,7 @@
 @property(readonly) NSPredicate *predicate; // @synthesize predicate=_predicate;
 @property(readonly) NSString *path; // @synthesize path=_path;
 - (void).cxx_destruct;
-- (id)locationOperationForWorkspace:(id)arg1 withResultsBlock:(CDUnknownBlockType)arg2;
+- (id)locationOperationForWorkspace:(id)arg1 nameTreeResolver:(id)arg2 withResultsBlock:(CDUnknownBlockType)arg3;
 @property(readonly) BOOL requiresMainThread;
 - (id)initWithPath:(id)arg1 andPredicate:(id)arg2;
 

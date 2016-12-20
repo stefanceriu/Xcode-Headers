@@ -15,7 +15,7 @@
     NSString *_label;
 }
 
-@property(retain) NSString *label; // @synthesize label=_label;
+@property(copy) NSString *label; // @synthesize label=_label;
 @property(retain) NSColor *color; // @synthesize color=_color;
 @property double value; // @synthesize value=_value;
 - (void).cxx_destruct;

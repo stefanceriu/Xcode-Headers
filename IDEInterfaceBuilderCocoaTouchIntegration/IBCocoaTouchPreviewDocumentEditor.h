@@ -21,6 +21,7 @@
 - (BOOL)isValidRecipe:(id)arg1;
 - (void)userAddedNewConfiguration:(id)arg1;
 - (void)rotatePreviewItem:(id)arg1;
+- (void)rotateRecipe:(id)arg1;
 - (void)preparePreviewResultView:(id)arg1;
 - (void)applyScale:(double)arg1 toPreviewResultView:(id)arg2 withOriginalImage:(id)arg3;
 - (void)menuNeedsUpdate:(id)arg1;

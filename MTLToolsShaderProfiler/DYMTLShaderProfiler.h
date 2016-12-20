@@ -8,16 +8,22 @@
 
 @interface DYMTLShaderProfiler : DYShaderProfiler
 {
+    id <DYPShaderProfiler> _platformShaderProfiler;
 }
 
 + (BOOL)isDisassemblerAvailable;
 + (id)newShaderProfilerWithDelegate:(id)arg1;
+- (void).cxx_destruct;
 - (void)_preProcessUSCSampleData:(id)arg1 result:(id)arg2;
 - (id)_gatherStaticInformation;
 - (id)_constructPayload;
-- (BOOL)_isFragmentDrawCall:(unsigned long long)arg1;
+- (id)initWithDelegate:(id)arg1;
 - (id)profileShader:(id)arg1;
+- (void)_showDrawCallDataforResult:(id)arg1;
 - (id)profileFrame;
+- (id)computeFromFrameInfoResult:(id)arg1 forFuture:(id)arg2;
+- (id)computeFromShaderInfoResult:(id)arg1 forFuture:(id)arg2;
+- (void)enumerateFragmentShadersForResult:(id)arg1 andShaderInfoDictionary:(id)arg2 usingBlock:(CDUnknownBlockType)arg3;
 - (void)initializeShaderAnalyzer;
 
 @end

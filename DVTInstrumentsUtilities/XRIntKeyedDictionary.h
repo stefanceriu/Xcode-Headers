@@ -6,18 +6,19 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
 #import "NSMutableCopying.h"
+#import "NSSecureCoding.h"
 #import "XRIntKeyedDictionaryImmutable.h"
 
 @class NSString;
 
-@interface XRIntKeyedDictionary : NSObject <XRIntKeyedDictionaryImmutable, NSCoding, NSMutableCopying>
+@interface XRIntKeyedDictionary : NSObject <XRIntKeyedDictionaryImmutable, NSSecureCoding, NSMutableCopying>
 {
     struct unordered_map<unsigned long long, id, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, id>>> _hash_map;
     id <NSObject><NSMutableCopying> _prototype;
 }
 
++ (BOOL)supportsSecureCoding;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)mutableCopyWithZone:(struct _NSZone *)arg1;
@@ -26,9 +27,11 @@
 - (id)allObjects;
 - (void)removeAllObjects;
 - (void)removeObjectForIntegerKey:(unsigned long long)arg1;
+- (void)setObject:(id)arg1 atIndexedSubscript:(unsigned long long)arg2;
 - (void)setObject:(id)arg1 forIntegerKey:(unsigned long long)arg2;
 - (void)setObject:(id)arg1 forIntergerKey:(unsigned long long)arg2;
 - (void)setPrototypeObject:(id)arg1;
+- (id)objectAtIndexedSubscript:(unsigned long long)arg1;
 - (id)objectForIntegerKey:(unsigned long long)arg1 options:(unsigned long long)arg2;
 - (id)objectForIntegerKey:(unsigned long long)arg1;
 - (void)encodeWithCoder:(id)arg1;

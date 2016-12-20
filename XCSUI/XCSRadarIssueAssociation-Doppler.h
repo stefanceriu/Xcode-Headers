@@ -8,10 +8,10 @@
 
 #import "DVTRadar_Associate.h"
 
-@class NSString;
+@class NSAttributedString, NSString;
 
 @interface XCSRadarIssueAssociation (Doppler) <DVTRadar_Associate>
-@property(readonly, copy, nonatomic) NSString *radarSummary;
+@property(readonly, copy, nonatomic) NSAttributedString *radarSummary;
 @property(nonatomic) unsigned long long duplicateOfProblemID;
 @property(nonatomic) unsigned long long priority;
 @property(copy, nonatomic) NSString *assignee;

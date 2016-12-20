@@ -8,5 +8,6 @@
 
 @interface NSTextFinder (IBNSTextFinderIntegration)
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

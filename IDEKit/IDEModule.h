@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class NSDictionary, NSMutableDictionary, NSString;
+#import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@interface IDEModule : NSObject
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSDictionary, NSImage, NSMutableDictionary, NSString;
+
+@interface IDEModule : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSString *_name;
     NSDictionary *_docParams;
@@ -16,12 +18,12 @@
 }
 
 - (void).cxx_destruct;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (id)geniusResult_identifierForManualCategory;
 - (id)geniusResult_identifierForGeniusCategory;
-- (id)navigableItem_contentDocumentLocation;
-- (id)navigableItem_documentType;
-- (id)navigableItem_name;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) NSString *navigableItem_name;
 - (id)submoduleWithName:(id)arg1 documentParameters:(id)arg2 createIfNeeded:(BOOL)arg3;
 - (id)submodules;
 - (BOOL)isLeaf;
@@ -31,6 +33,21 @@
 - (id)name;
 - (id)init;
 - (id)initWithName:(id)arg1 documentParameters:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

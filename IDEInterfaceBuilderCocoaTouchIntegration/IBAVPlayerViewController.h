@@ -32,6 +32,7 @@
 - (id)ibTypeNameForDefaultLabel;
 - (id)ibTitleForEditor;
 - (id)ibImageForOwnedScene;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

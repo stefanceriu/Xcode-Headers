@@ -15,6 +15,7 @@
 - (void)userMousedOverInGraph:(DTGraph *)arg1 onEntry:(NSDictionary *)arg2 event:(NSEvent *)arg3;
 - (void)userClickedInGraph:(DTGraph *)arg1 onEntry:(id)arg2;
 - (void)graph:(DTGraph *)arg1 entry:(id)arg2 willDrawCell:(NSCell *)arg3;
+- (BOOL)useMaximumYForOrderInGraph:(DTGraph *)arg1;
 - (void)setPathStyleForGraph:(DTGraph *)arg1 entry:(id)arg2 path:(NSBezierPath *)arg3;
 - (BOOL)lineFilledForGraph:(DTGraph *)arg1 entry:(id)arg2;
 - (NSString *)translateValue:(NSNumber *)arg1 keypath:(NSString *)arg2;

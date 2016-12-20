@@ -6,9 +6,12 @@
 
 #import "NSObject.h"
 
-@class CALayer, CATextLayer, CIFilter, DTTimelineGraph, DTTimelineGraphLayoutManagerLayerDelegate, NSSet;
+#import "CALayoutManager.h"
 
-@interface DTTimelineGraphLayoutManager : NSObject
+@class CALayer, CATextLayer, DTTimelineGraph, DTTimelineGraphLayoutManagerLayerDelegate, NSColor, NSSet, NSString;
+
+__attribute__((visibility("hidden")))
+@interface DTTimelineGraphLayoutManager : NSObject <CALayoutManager>
 {
     DTTimelineGraph *_timelineGraph;
     DTTimelineGraphLayoutManagerLayerDelegate *_layerDelegate;
@@ -28,16 +31,24 @@
     CALayer *_verticalScrollerLayer;
     CALayer *_labelBackgroundLayer;
     CALayer *_labelRightBorderLayer;
-    CIFilter *_colorEffect;
+    id _colorEffect;
     BOOL _displayInspectionSummary;
+    BOOL _displayExtendedSummary;
     unsigned long long _inspectionInfoSummaryTime;
     NSSet *_inspectionSummaryContainers;
     double _computedHeight;
     NSSet *_visiblePlanes;
     BOOL _animateChanges;
+    BOOL _displayCurrentInspectionTime;
+    NSColor *_inspectionColor;
+    NSColor *_selectionPointColor;
 }
 
+@property(retain, nonatomic) NSColor *selectionPointColor; // @synthesize selectionPointColor=_selectionPointColor;
+@property(retain, nonatomic) NSColor *inspectionColor; // @synthesize inspectionColor=_inspectionColor;
+@property(nonatomic) BOOL displayCurrentInspectionTime; // @synthesize displayCurrentInspectionTime=_displayCurrentInspectionTime;
 @property(nonatomic) BOOL animateChanges; // @synthesize animateChanges=_animateChanges;
+@property(retain, nonatomic) id selectionColorEffect; // @synthesize selectionColorEffect=_colorEffect;
 - (void).cxx_destruct;
 - (struct CGPoint)_localMousePoint;
 - (void)_layoutLabelBackground:(id)arg1;
@@ -58,7 +69,7 @@
 - (void)_positionTopBorderForPlane:(id)arg1;
 - (void)_updateVisiblePlanes:(id)arg1;
 - (void)clearInspectionSummary;
-- (void)displayInspectionSummaryForNanosecond:(unsigned long long)arg1;
+- (void)displayInspectionSummaryForNanosecond:(unsigned long long)arg1 planes:(id)arg2;
 - (void)addDecorationSummaryLayer:(id)arg1;
 - (BOOL)_mouseIsOverScroller:(id)arg1;
 - (double)verticalScrollerScale;
@@ -74,6 +85,12 @@
 - (void)generatePlaneLayoutMap;
 - (void)layoutSublayersOfLayer:(id)arg1;
 - (id)initWithTimelineGraph:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

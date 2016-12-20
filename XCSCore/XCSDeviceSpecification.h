@@ -23,8 +23,8 @@
 - (id)initWithFilters:(id)arg1 deviceIdentifiers:(id)arg2 validationErrors:(id *)arg3;
 
 // Remaining properties
-@property NSArray *deviceIdentifiers; // @dynamic deviceIdentifiers;
-@property NSArray *filters; // @dynamic filters;
+@property(retain, nonatomic) NSArray *deviceIdentifiers; // @dynamic deviceIdentifiers;
+@property(retain, nonatomic) NSArray *filters; // @dynamic filters;
 
 @end
 

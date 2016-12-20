@@ -34,6 +34,7 @@
 + (id)sphere;
 + (id)box;
 + (id)plane;
++ (id)lightIES;
 + (id)lightProbe;
 + (id)ambientLight;
 + (id)spotLight;

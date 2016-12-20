@@ -12,7 +12,6 @@
 
 @interface IDEProjectItemModelFlightCheckContext : NSObject <IDEFlightCheckingContext>
 {
-    BOOL _shouldResolveLongRunningFlightChecks;
     id <IDEPortalInfoDelegate> _portalInfoDelegate;
     id <IDEProjectItem> _item;
     NSWindow *_window;
@@ -21,7 +20,6 @@
 @property(retain, nonatomic) NSWindow *window; // @synthesize window=_window;
 @property(readonly, nonatomic) id <IDEProjectItem> item; // @synthesize item=_item;
 @property(readonly, nonatomic) id <IDEPortalInfoDelegate> portalInfoDelegate; // @synthesize portalInfoDelegate=_portalInfoDelegate;
-@property BOOL shouldResolveLongRunningFlightChecks; // @synthesize shouldResolveLongRunningFlightChecks=_shouldResolveLongRunningFlightChecks;
 - (void).cxx_destruct;
 - (BOOL)ensureValidAccount:(id)arg1 error:(id *)arg2;
 - (void)handleError:(id)arg1;

@@ -17,6 +17,8 @@
 + (id)defaultInstanceForIdioms:(id)arg1 enforceStrictIdioms:(BOOL)arg2;
 + (id)defaultName;
 + (Class)assetRepClass;
++ (id)createInstanceNamed:(id)arg1 usingRenderer:(CDUnknownBlockType)arg2;
++ (id)createDefaultInstancesForUnitTesting;
 - (void)replaceChildrenFromFileSystemSnapshot:(id)arg1 results:(id)arg2;
 - (id)readIconRepIDsFromSnapshot:(id)arg1 results:(id)arg2;
 - (id)outputFileName;
@@ -25,7 +27,9 @@
 - (id)assetRepForStructuredIdentifier:(id)arg1;
 - (id)childForIdentifier:(id)arg1;
 - (id)assetRepForIdentifier:(id)arg1;
+- (id)conflictFreeChildForSlot:(id)arg1;
 - (id)assetRepForSlot:(id)arg1;
+- (void)createChildrenForSlots:(id)arg1 usingRenderer:(CDUnknownBlockType)arg2;
 
 @end
 

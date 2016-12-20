@@ -14,14 +14,15 @@
     _Bool _loading;
 }
 
-+ (void)loadPluginsWithProvider:(id)arg1 pathExtension:(id)arg2;
-+ (void)loadPluginWithBundle:(id)arg1;
-+ (void)loadGPUToolsPluginsInMainBundleOnly:(BOOL)arg1;
-+ (void)loadGPUToolsPlugins;
++ (id)getLoadedPluginNames;
++ (id)loadPluginsWithProvider:(id)arg1 pathExtension:(id)arg2;
++ (BOOL)loadPluginWithBundle:(id)arg1;
++ (id)loadGPUToolsPluginsInMainBundleOnly:(BOOL)arg1;
++ (id)loadGPUToolsPlugins;
 + (id)sharedPluginLoader;
-- (void)_loadPluginsWithProvider:(id)arg1 pathExtension:(id)arg2;
-- (void)_loadPluginsInDirectory:(id)arg1 pathExtension:(id)arg2;
-- (void)_loadBundle:(id)arg1;
+- (id)_loadPluginsWithProvider:(id)arg1 pathExtension:(id)arg2;
+- (id)_loadPluginsInDirectory:(id)arg1 pathExtension:(id)arg2;
+- (BOOL)_loadBundle:(id)arg1;
 - (void)dealloc;
 - (id)init;
 

@@ -75,7 +75,7 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (void)prepareContentInRect:(struct CGRect)arg1;
 - (void)_scrollToMatchContentView;
-- (void)_drawLineNumbersInSidebarRect:(struct CGRect)arg1 foldedIndexes:(unsigned long long *)arg2 count:(unsigned long long)arg3 linesToInvert:(id)arg4 linesToReplace:(id)arg5 getParaRectBlock:(CDUnknownBlockType)arg6;
+- (void)_drawLineNumbersInSidebarRect:(struct CGRect)arg1 foldedIndexes:(unsigned long long *)arg2 count:(unsigned long long)arg3 linesToInvert:(id)arg4 linesToHighlight:(id)arg5 linesToReplace:(id)arg6 textView:(id)arg7 getParaRectBlock:(CDUnknownBlockType)arg8;
 - (void)_drawSidebarMarkersForAnnotations:(id)arg1 atIndexes:(id)arg2 textView:(id)arg3 getParaRectBlock:(CDUnknownBlockType)arg4;
 - (unsigned long long)_drawFoldingRibbonForLine:(unsigned long long)arg1 foldbarRect:(struct CGRect)arg2 paraRect:(struct CGRect)arg3 lineNumberFontSize:(double)arg4 textView:(id)arg5;
 - (struct CGRect)foldbarRect;

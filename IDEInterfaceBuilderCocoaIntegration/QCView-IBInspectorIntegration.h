@@ -10,5 +10,6 @@
 - (unsigned long long)eventForwarding;
 - (void)setEventForwarding:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

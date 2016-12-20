@@ -6,13 +6,12 @@
 
 #import "XCSIntegration.h"
 
-@class NSURL;
-
 @interface XCSIntegration (IDEKit)
 + (id)durationStringFromTimeInterval:(double)arg1;
 + (void)componentsFromBotIntegrationURL:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-+ (id)botIntegrationURLForIntegrationWithID:(id)arg1 server:(id)arg2;
++ (id)botIntegrationURLForIntegrationWithID:(id)arg1 botIdentifier:(id)arg2 serviceIdentifier:(id)arg3;
++ (id)botIntegrationURLForIntegrationWithID:(id)arg1 botIdentifier:(id)arg2 server:(id)arg3;
 - (id)title;
-@property(readonly, copy) NSURL *botIntegrationURL;
+- (id)integrationTypeString;
 @end
 

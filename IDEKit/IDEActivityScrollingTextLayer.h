@@ -32,6 +32,7 @@
 @property(readonly) NSAttributedString *attributedStringValue;
 - (void)setHidden:(BOOL)arg1;
 - (void)layoutSublayers;
+- (void)setBounds:(struct CGRect)arg1;
 - (void)setupLayers;
 - (void)updateTextLayer;
 - (void)updateTextLayerWithContext:(id)arg1 animateUpdate:(BOOL)arg2;

@@ -6,21 +6,35 @@
 
 #import <IDEKit/IDEActivityReporter.h>
 
-@class DVTObservingToken, IDEActivityReport;
+@class DVTNotificationToken, DVTObservingToken, IDEActivityReport;
 
 @interface IDEIndexerActivityReporter : IDEActivityReporter
 {
     DVTObservingToken *_workspaceIndexObservingToken;
-    id _willIndexWorkspaceNotificationObservingToken;
-    id _isIndexingWorkspaceNotificationObservingToken;
-    id _didIndexWorkspaceNotificationObservingToken;
+    DVTNotificationToken *_willIndexWorkspaceNotificationObservingToken;
+    DVTNotificationToken *_isIndexingWorkspaceNotificationObservingToken;
+    DVTNotificationToken *_didIndexWorkspaceNotificationObservingToken;
     IDEActivityReport *_workspaceActivityReport;
     BOOL _highPriority;
+    DVTNotificationToken *_willPopulateDatabaseNotificationObservingToken;
+    DVTNotificationToken *_isPopulatingDatabaseNotificationObservingToken;
+    DVTNotificationToken *_didPopulateDatabaseNotificationObservingToken;
+    IDEActivityReport *_databasePopulationActivityReport;
+    DVTNotificationToken *_willFastScanNotificationObservingToken;
+    DVTNotificationToken *_isFastScanningNotificationObservingToken;
+    DVTNotificationToken *_didFastScanNotificationObservingToken;
+    IDEActivityReport *_fastScanActivityReport;
 }
 
 + (void)initialize;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
+- (void)cancelFastScanActivityReport;
+- (void)updateFastScanActivityReport:(id)arg1;
+- (void)publishFastScanActivityReport:(id)arg1;
+- (void)cancelDatabasePopulationActivityReport;
+- (void)updateDatabasePopulationActivityReport:(id)arg1;
+- (void)publishDatabasePopulationActivityReport:(id)arg1;
 - (void)cancelActivityReport;
 - (void)updateActivityReport:(id)arg1;
 - (void)publishActivityReport:(id)arg1;

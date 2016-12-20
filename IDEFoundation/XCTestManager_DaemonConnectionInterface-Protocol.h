@@ -7,11 +7,9 @@
 @class NSArray, NSDictionary, NSNumber, NSString, NSUUID;
 
 @protocol XCTestManager_DaemonConnectionInterface
+- (id)_IDE_collectNewCrashReportsInDirectories:(NSArray *)arg1 matchingProcessNames:(NSArray *)arg2;
 - (id)_IDE_stopRecording;
 - (id)_IDE_startRecordingProcessPID:(NSNumber *)arg1 applicationSnapshotAttributes:(NSArray *)arg2 applicationSnapshotParameters:(NSDictionary *)arg3 elementSnapshotAttributes:(NSArray *)arg4 elementSnapshotParameters:(NSDictionary *)arg5 simpleTargetGestureNames:(NSArray *)arg6;
-- (id)_IDE_startRecordingProcessPID:(NSNumber *)arg1 snapshotAttributes:(NSArray *)arg2 snapshotParameters:(NSDictionary *)arg3 simpleTargetGestureNames:(NSArray *)arg4;
-- (id)_IDE_startRecordingProcessPID:(NSNumber *)arg1;
-- (id)_IDE_startRecording;
 - (id)_IDE_beginSessionWithIdentifier:(NSUUID *)arg1 forClient:(NSString *)arg2 atPath:(NSString *)arg3;
 - (id)_IDE_initiateControlSessionForTestProcessID:(NSNumber *)arg1;
 - (id)_IDE_initiateControlSessionForTestProcessID:(NSNumber *)arg1 protocolVersion:(NSNumber *)arg2;

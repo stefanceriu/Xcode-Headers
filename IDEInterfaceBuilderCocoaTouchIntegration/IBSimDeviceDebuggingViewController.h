@@ -8,13 +8,13 @@
 
 #import "NSStreamDelegate.h"
 
-@class NSImage, NSImageView, NSInputStream, NSLayoutConstraint, NSString, NSTextView, SimDevice;
+@class NSImage, NSImageView, NSLayoutConstraint, NSString, NSTextView;
 
 @interface IBSimDeviceDebuggingViewController : NSViewController <NSStreamDelegate>
 {
     NSLayoutConstraint *_deviceImageAspectRatioConstraint;
-    NSInputStream *_consoleStream;
-    SimDevice *_device;
+    unsigned long long _lastReadConsoleOffset;
+    id <IBSimDeviceDebuggingViewControllerDelegate> _delegate;
     NSImage *_deviceImage;
     NSImageView *_deviceImageView;
     NSTextView *_deviceConsoleTextView;
@@ -23,11 +23,22 @@
 @property(retain) NSTextView *deviceConsoleTextView; // @synthesize deviceConsoleTextView=_deviceConsoleTextView;
 @property(retain) NSImageView *deviceImageView; // @synthesize deviceImageView=_deviceImageView;
 @property(retain, nonatomic) NSImage *deviceImage; // @synthesize deviceImage=_deviceImage;
-@property(retain, nonatomic) SimDevice *device; // @synthesize device=_device;
+@property(nonatomic) __weak id <IBSimDeviceDebuggingViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)openScreenshotInPreview:(id)arg1;
+- (void)resetDataMigration:(id)arg1;
+- (void)saveDiagnostics:(id)arg1;
+- (void)_teardownConsole;
+- (void)_setupConsole;
+- (void)_updateConsoleTextFromFilePath:(id)arg1;
+- (void)_updateWindowTitle;
+- (void)viewDidDisappear;
 - (void)viewDidAppear;
 - (void)viewDidLoad;
-- (void)_updateWindowTitle;
+- (id)deviceSystemLogPath;
+- (id)deviceLogPath;
+- (id)executionContext;
+- (id)device;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

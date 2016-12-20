@@ -6,23 +6,16 @@
 
 #import "DVTLayoutView_ML.h"
 
-@class NSView;
-
 @interface IBCanvasBackgroundView : DVTLayoutView_ML
 {
-    NSView *_overlayView;
     CDUnknownBlockType _drawingCompletionBlock;
 }
 
 @property(copy, nonatomic) CDUnknownBlockType drawingCompletionBlock; // @synthesize drawingCompletionBlock=_drawingCompletionBlock;
-@property(retain, nonatomic) NSView *overlayView; // @synthesize overlayView=_overlayView;
 - (void).cxx_destruct;
 - (id)hitTest:(struct CGPoint)arg1;
-- (void)drawRect:(struct CGRect)arg1;
 - (void)setBoundsOrigin:(struct CGPoint)arg1;
 - (BOOL)isFlipped;
-- (BOOL)isOpaque;
-- (void)layoutTopDown;
 
 @end
 

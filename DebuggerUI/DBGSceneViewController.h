@@ -10,11 +10,12 @@
 #import "DBGRangeSliderDelegate.h"
 #import "DBGSceneCameraDelegate.h"
 #import "DVTInvalidation.h"
+#import "DVTStatefulObject.h"
 #import "SCNSceneRendererDelegate.h"
 
-@class DBGHostNode, DBGLayoutConstraintOverlayImageProvider, DBGLayoutConstraintSet, DBGNode, DBGRangeSliderNode, DBGSceneCamera, DBGViewDebuggerAdditionUIController, DVTObservingToken, DVTStackBacktrace, NSMutableSet, NSSet, NSString;
+@class DBGHostNode, DBGLayoutConstraintOverlayImageProvider, DBGLayoutConstraintSet, DBGNode, DBGRangeSliderNode, DBGSceneCamera, DBGViewDebuggerAdditionUIController, DVTObservingToken, DVTStackBacktrace, DVTStateToken, NSMutableSet, NSSet, NSString;
 
-@interface DBGSceneViewController : NSViewController <SCNSceneRendererDelegate, DBGInteractiveSceneViewDelegate, DBGSceneCameraDelegate, DBGRangeSliderDelegate, DVTInvalidation>
+@interface DBGSceneViewController : NSViewController <SCNSceneRendererDelegate, DBGInteractiveSceneViewDelegate, DBGRangeSliderDelegate, DBGSceneCameraDelegate, DVTStatefulObject, DVTInvalidation>
 {
     DBGSceneCamera *_camera;
     DBGNode *_rotationNode;
@@ -24,52 +25,78 @@
     unsigned long long _rangeSliderRight;
     NSSet *_highlightedNodes;
     DBGHostNode *_currentMasterView;
-    DBGHostNode *_hostToRestoreAfterUnexplosion;
     BOOL _mouseOverRangeSlider;
     struct CGPoint _panLeftover;
+    BOOL _explicitZoom;
     NSSet *_selectedViewInstances;
     DBGLayoutConstraintSet *_allConstraints;
     DBGLayoutConstraintOverlayImageProvider *_constraintOverlaySource;
     DVTObservingToken *_highlightedConstraintObserver;
     NSMutableSet *_cameraFacingNodes;
-    BOOL _showOnCanvasRangeSlider;
+    BOOL _explicitlyHideTrueSpacingBoxes;
     id <DBGSceneViewControllerDataSourceProtocol> _dataSource;
+    struct CATransform3D _animatedPanStartPoint;
+    struct CATransform3D _animatedPanEndPoint;
+    double _animatedPanStartZoomFactor;
+    double _animatedPanEndZoomFactor;
+    BOOL _hierarchyContainsTrueSpacingBoxes;
+    BOOL _showTrueSpacingBoxes;
     BOOL _clippingEnabled;
     BOOL _isIn3D;
+    BOOL _showOnCanvasRangeSlider;
     BOOL _constraintsEnabled;
     BOOL _shouldHaveLineWidth;
     int _nodeContentMode;
     unsigned long long _numberOfZPlanes;
     id <DBGSceneViewControllerDelegate> _delegate;
+    double _nodeSpacing;
+    DVTStateToken *_stateToken;
     CDUnknownBlockType _mouseUpAfterDragBlock;
     DBGViewDebuggerAdditionUIController *_debuggerUIController;
 }
 
++ (long long)version;
++ (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (void)initialize;
 @property __weak DBGViewDebuggerAdditionUIController *debuggerUIController; // @synthesize debuggerUIController=_debuggerUIController;
 @property(copy) CDUnknownBlockType mouseUpAfterDragBlock; // @synthesize mouseUpAfterDragBlock=_mouseUpAfterDragBlock;
 @property(nonatomic) BOOL shouldHaveLineWidth; // @synthesize shouldHaveLineWidth=_shouldHaveLineWidth;
+@property(nonatomic) __weak DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
+@property(nonatomic) double nodeSpacing; // @synthesize nodeSpacing=_nodeSpacing;
 @property(nonatomic) int nodeContentMode; // @synthesize nodeContentMode=_nodeContentMode;
 @property __weak id <DBGSceneViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly) id <DBGSceneViewControllerDataSourceProtocol> dataSource; // @synthesize dataSource=_dataSource;
 @property(readonly, nonatomic) BOOL constraintsEnabled; // @synthesize constraintsEnabled=_constraintsEnabled;
+@property(readonly) BOOL showOnCanvasRangeSlider; // @synthesize showOnCanvasRangeSlider=_showOnCanvasRangeSlider;
 @property unsigned long long numberOfZPlanes; // @synthesize numberOfZPlanes=_numberOfZPlanes;
+@property(nonatomic) BOOL isIn3D; // @synthesize isIn3D=_isIn3D;
 - (void).cxx_destruct;
+- (void)commitStateToDictionary:(id)arg1;
+- (void)revertStateWithDictionary:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)renderer:(id)arg1 willRenderScene:(id)arg2 atTime:(double)arg3;
 - (void)cameraDidZoomTo100Percent;
 - (void)cameraIsUpdatingZoomFactor;
 - (void)moveTo2D:(BOOL)arg1;
 - (void)toggle2D3D;
-- (void)zoom100Percent;
-- (void)zoomOut;
-- (void)zoomIn;
+- (void)zoom100Percent:(id)arg1;
+- (void)zoomOut:(id)arg1;
+- (void)zoomIn:(id)arg1;
+- (BOOL)_animationRecordingEnabledForEvent:(id)arg1;
+- (void)_playbackStoredAnimation;
+- (void)_storeAnimationEndPoint;
+- (void)_storeAnimationStartPoint;
 - (struct SCNVector3)adjustedPivotPoint;
+- (struct SCNVector3)visibleCenter;
 - (void)resetPivotNode;
 - (void)updatePivotNodeWithNode:(id)arg1 withHitLocation:(struct SCNVector3)arg2;
 - (void)setConstraintsEnabled:(BOOL)arg1;
 - (void)toggleClipping;
 @property(getter=isClippingEnabled) BOOL clippingEnabled; // @synthesize clippingEnabled=_clippingEnabled;
+- (void)updateVisibilityStateOfTrueSpacingBoxes;
+@property BOOL hierarchyContainsTrueSpacingBoxes; // @synthesize hierarchyContainsTrueSpacingBoxes=_hierarchyContainsTrueSpacingBoxes;
+- (void)setShowTrueSpacingBoxesUserInitiated:(BOOL)arg1;
+@property BOOL showTrueSpacingBoxes; // @synthesize showTrueSpacingBoxes=_showTrueSpacingBoxes;
 - (void)updateRenderingOrderWithRootNode:(id)arg1;
 - (void)toggleShowConstraints;
 - (void)focusOnParent;
@@ -80,7 +107,6 @@
 - (void)sceneViewDidChangeFrameSize;
 - (void)transitionFrom3DTo2D;
 - (void)transitionFrom2DTo3D;
-@property BOOL isIn3D; // @synthesize isIn3D=_isIn3D;
 - (struct CGSize)modelSpacePixelSize;
 - (void)_adjustCameraPanWithXValue:(double)arg1 yValue:(double)arg2;
 - (void)animatedAdjustCameraPanWithXValue:(double)arg1 yValue:(double)arg2;
@@ -98,8 +124,6 @@
 - (void)adjustCameraZoomLevelWithValue:(double)arg1;
 - (void)toggleConstraintsAndSelect:(id)arg1;
 - (id)_modelViewForClickedNode:(id)arg1;
-- (void)printDescription:(id)arg1;
-- (void)focusOnNode:(id)arg1;
 - (void)hideViewsBelow:(id)arg1;
 - (void)hideViewsAbove:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
@@ -110,7 +134,6 @@
 - (void)removeCurrentHighlight;
 - (void)mousedOverNode:(id)arg1;
 - (void)mouseClickedAndHitRangeSliderNode:(id)arg1 withEvent:(id)arg2;
-- (void)mouseDoubleClickedAndHitNode:(id)arg1 withEvent:(id)arg2;
 - (void)mouseClickedAndHitNode:(id)arg1 withEvent:(id)arg2;
 - (double)screenSpaceBetweenTicks;
 - (struct SCNVector3)_positionOnPlaneForZVectorStartingAtPoint:(struct SCNVector3)arg1 relativeToNode:(id)arg2;

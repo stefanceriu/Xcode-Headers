@@ -15,16 +15,17 @@
 
 @property(readonly) NSSet *requiredTeamTypes; // @synthesize requiredTeamTypes=_requiredTeamTypes;
 - (void).cxx_destruct;
+- (BOOL)isEntitlementsProcessorApplicable:(id)arg1;
+@property(readonly) BOOL supportsCustomToolchains;
 @property(readonly) BOOL supportsFreeProvisioning;
 @property(readonly) NSString *summaryPaneNextButtonTitleOverride;
-@property(readonly) BOOL requiresDeveloperAccount;
 @property(readonly) NSString *packagingStepIdentifier;
 @property(readonly) NSString *exportStepName;
 @property(readonly) NSDictionary *requiredProfileEntitlements;
-@property(readonly) unsigned long long provisioningProfileType;
+@property(readonly) unsigned long long provisioningProfilePurpose;
 @property(readonly) NSArray *availableICloudEnvironmentsOverride;
 @property(readonly) NSString *provisioningProfilePlatform;
-@property(readonly) BOOL wantsProvisioningProfiles;
+@property(readonly) long long wantsProvisioningProfiles;
 @property(readonly) NSString *installerCertificateKind;
 @property(readonly) NSString *certificateKind;
 @property(readonly) NSArray *orderedDistributionStepViewControllerClassNames;

@@ -6,12 +6,11 @@
 
 #import <IDEKit/IDEViewController.h>
 
-@class DVTObservingToken, IDEXcodeServer, NSArray, NSButton, NSImage, NSPopUpButton, NSString;
+@class DVTObservingToken, NSArray, NSButton, NSError, NSImage, NSPopUpButton, NSString;
 
 @interface IDESourceControlNewProjectConfigurationViewController : IDEViewController
 {
     NSPopUpButton *_serverPopup;
-    IDEXcodeServer *_selectedServer;
     DVTObservingToken *_serversObservingToken;
     NSButton *_serverWarningButton;
     BOOL _enableCreateLocalRepository;
@@ -21,7 +20,9 @@
     BOOL _shouldHideServerWarningButton;
     BOOL _canCreateQueryComplete;
     BOOL _canCreateRepositoryOnServer;
+    id <XCSLocalService> _selectedServer;
     NSArray *_servers;
+    NSError *_canCreateError;
     NSImage *_warningImage;
 }
 
@@ -29,11 +30,12 @@
 + (id)keyPathsForValuesAffectingServerInErrorState;
 + (id)defaultViewNibName;
 @property(retain, nonatomic) NSImage *warningImage; // @synthesize warningImage=_warningImage;
+@property(retain, nonatomic) NSError *canCreateError; // @synthesize canCreateError=_canCreateError;
 @property(nonatomic) BOOL canCreateRepositoryOnServer; // @synthesize canCreateRepositoryOnServer=_canCreateRepositoryOnServer;
 @property(nonatomic) BOOL canCreateQueryComplete; // @synthesize canCreateQueryComplete=_canCreateQueryComplete;
 @property(nonatomic) BOOL shouldHideServerWarningButton; // @synthesize shouldHideServerWarningButton=_shouldHideServerWarningButton;
 @property(retain, nonatomic) NSArray *servers; // @synthesize servers=_servers;
-@property(retain, nonatomic) id selectedServer; // @synthesize selectedServer=_selectedServer;
+@property(retain, nonatomic) id <XCSLocalService> selectedServer; // @synthesize selectedServer=_selectedServer;
 @property(copy) NSString *repositoryCreationMessage; // @synthesize repositoryCreationMessage=_repositoryCreationMessage;
 @property(nonatomic) BOOL shouldCreateLocalRepository; // @synthesize shouldCreateLocalRepository=_shouldCreateLocalRepository;
 @property BOOL enableCreateLocalRepository; // @synthesize enableCreateLocalRepository=_enableCreateLocalRepository;

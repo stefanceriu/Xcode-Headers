@@ -19,6 +19,7 @@
     NSMapTable *_convertedFilePathForOriginalFilePathMapTable;
 }
 
++ (Class)migrationContextClass;
 + (void)initialize;
 @property unsigned long long currentConversionStage; // @synthesize currentConversionStage=_currentConversionStage;
 @property long long numberOfIncompatibilityErrors; // @synthesize numberOfIncompatibilityErrors=_numIncompatibilityErrors;

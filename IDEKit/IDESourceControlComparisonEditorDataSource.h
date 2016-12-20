@@ -7,11 +7,12 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation.h"
+#import "IDEComparisonEditorOriginalDocumentDataSource.h"
 #import "IDEWorkspaceComparisonEditorDataSource.h"
 
 @class DVTStackBacktrace, IDEEditorDocument, IDEWorkspace, NSOperationQueue, NSString;
 
-@interface IDESourceControlComparisonEditorDataSource : NSObject <IDEWorkspaceComparisonEditorDataSource, DVTInvalidation>
+@interface IDESourceControlComparisonEditorDataSource : NSObject <IDEWorkspaceComparisonEditorDataSource, IDEComparisonEditorOriginalDocumentDataSource, DVTInvalidation>
 {
     IDEEditorDocument *_originalDocument;
     NSOperationQueue *_navItemQueue;
@@ -31,15 +32,16 @@
 - (id)contentStringForPrimaryEmptyEditorWithDocumentLocation:(id)arg1;
 - (BOOL)shouldShowEmptyEditorForSecondaryDocumentLocation:(id)arg1 submodeType:(int)arg2;
 - (BOOL)shouldShowEmptyEditorForPrimaryDocumentLocation:(id)arg1 submodeType:(int)arg2;
-- (id)_calculateSelectedRevisionForWorkingTreeItem:(id)arg1 selectedBranch:(id)arg2 selectedRevisionIdenfier:(id)arg3 baseRevision:(id)arg4 headRevision:(id)arg5 allRevisions:(id)arg6 error:(id *)arg7;
-- (id)_calculateRevisionsForWorkingTreeItem:(id)arg1 withSelectedRevision:(id *)arg2 selectedBranch:(id)arg3 selectedRevisionIdenfier:(id)arg4 currentRevision:(id)arg5 error:(id *)arg6;
-- (id)_selectedRevisionForRevisionIdentifier:(id)arg1 currentRevision:(id)arg2 inRevisions:(id)arg3;
-- (id)_navigableItemsForPrimaryDocumentLocation:(id)arg1 secondaryDocumentLocation:(id)arg2 usingNavigableItemCoordinator:(id)arg3 usingQueue:(id)arg4 forceReload:(BOOL)arg5 completionBlock:(CDUnknownBlockType)arg6;
+- (id)_calculateSelectedRevisionForWorkingTreeItem:(id)arg1 selectedBranch:(id)arg2 selectedRevisionIdenfier:(id)arg3 allRevisions:(id)arg4 error:(id *)arg5;
+- (id)_calculateRevisionsForWorkingTreeItem:(id)arg1 selectedBranch:(id)arg2 error:(id *)arg3;
+- (id)_selectedRevisionForRevisionIdentifier:(id)arg1 currentRevision:(id)arg2 workingCopy:(id)arg3 inRevisions:(id)arg4;
 - (id)navigableItemsForPrimaryDocumentLocation:(id)arg1 secondaryDocumentLocation:(id)arg2 usingNavigableItemCoordinator:(id)arg3 forceReload:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (id)_documentLocationForNavigableItem:(id)arg1;
 - (id)secondaryDocumentLocationForNavigableItem:(id)arg1;
 - (id)primaryDocumentLocationForNavigableItem:(id)arg1;
-- (id)_documentLocationForRevisionName:(id)arg1 inBranch:(id)arg2;
+- (id)_documentLocationForWorkingCopy:(id)arg1 revisionName:(id)arg2 inBranch:(id)arg3;
+- (id)_documentLocationForWorkingCopy:(id)arg1 revisionName:(id)arg2 relativeFilePath:(id)arg3 inBranch:(id)arg4;
+- (id)_documentLocationForWorkingCopy:(id)arg1 revisionName:(id)arg2 relativeFilePath:(id)arg3 currentFilePath:(id)arg4 inBranch:(id)arg5;
 - (void)primitiveInvalidate;
 - (id)init;
 

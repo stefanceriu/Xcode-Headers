@@ -4,20 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "DBGMemoryData.h"
+#import "IDEMemoryData.h"
 
-@class NSArray, NSData, NSString;
+@class NSData;
 
 __attribute__((visibility("hidden")))
-@interface DBGLLDBMemoryData : DBGMemoryData
+@interface DBGLLDBMemoryData : IDEMemoryData
 {
     NSData *_shadowMemoryData;
-    NSArray *_recordedThreads;
-    NSString *_pointerDescription;
 }
 
-@property(copy, nonatomic) NSString *pointerDescription; // @synthesize pointerDescription=_pointerDescription;
-@property(copy, nonatomic) NSArray *recordedThreads; // @synthesize recordedThreads=_recordedThreads;
 @property(copy, nonatomic) NSData *shadowMemoryData; // @synthesize shadowMemoryData=_shadowMemoryData;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;

@@ -10,6 +10,6 @@
 @class NSString;
 
 @protocol IBUISimulatedMetrics <NSObject, NSCopying>
-@property(readonly) NSString *displayName;
+@property(readonly, copy) NSString *displayName;
 @end
 

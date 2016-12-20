@@ -31,7 +31,7 @@
 + (id)keyPathsForValuesAffectingIbInspectedMaximumDate;
 + (id)keyPathsForValuesAffectingIbInspectedMinimumDate;
 + (id)keyPathsForValuesAffectingIbInspectedDate;
-+ (id)keyPathsForValuesAffectingInspectedCountDownDuration;
++ (id)keyPathsForValuesAffectingIbInspectedCountDownDuration;
 + (long long)ibInstantiationSizeBehavior;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
 @property(nonatomic) BOOL useCurrentDateDuringDecoding; // @synthesize useCurrentDateDuringDecoding;
@@ -42,6 +42,7 @@
 @property(copy, nonatomic) NSLocale *locale; // @synthesize locale;
 @property(nonatomic) int datePickerMode; // @synthesize datePickerMode;
 - (void).cxx_destruct;
+- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 @property(copy) NSDate *ibArchivedMaximumDate;
 @property(copy) NSDate *ibArchivedMinimumDate;
 @property(copy) NSDate *ibArchivedDate;
@@ -65,14 +66,16 @@
 - (id)ibInspectedMinimumDate;
 - (void)setIbInspectedDate:(id)arg1;
 - (id)ibInspectedDate;
-- (void)setInspectedCountDownDuration:(double)arg1;
-- (double)inspectedCountDownDuration;
+- (void)setIbInspectedCountDownDuration:(double)arg1;
+- (double)ibInspectedCountDownDuration;
 - (BOOL)ibSupportsInsertionIntoBarButtonItems;
 - (unsigned long long)ibPreferredActionEventType;
 - (void)ibCustomizeForInsertionIntoIBUIViewController:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;
 - (void)ibCustomizeForInsertionIntoIBUIView:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;
 - (struct CGSize)ibMinimumSizeForCustomizationForTargetRuntime:(id)arg1;
 - (id)ibWidgetType;
+- (id)ibLocalAdditionalLocalizableAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

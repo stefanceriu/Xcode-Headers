@@ -22,7 +22,7 @@ __attribute__((visibility("hidden")))
 
 - (void).cxx_destruct;
 - (BOOL)isMemoryFaultForDataValue:(id)arg1;
-- (void)addMemoryDataWithExtendedInfo:(id)arg1 forThread:(id)arg2;
+- (void)handleExtendedInfo:(id)arg1 forThread:(id)arg2;
 - (void)shadowMemoryForAddress:(unsigned long long)arg1 numberOfBytes:(unsigned long long)arg2 handleOnMainQueueWithResultHandler:(CDUnknownBlockType)arg3;
 - (id)_expandShadowData:(id)arg1 withStartingAddress:(unsigned long long)arg2;
 - (void)_retrieveShadowParametersWithHandler:(CDUnknownBlockType)arg1;

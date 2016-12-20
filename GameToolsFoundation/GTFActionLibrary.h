@@ -14,6 +14,7 @@
     NSMutableDictionary *_fileTargets;
     id <GTFActionLibraryDelegate> _delegate;
     id <GTFActionLibraryUndoDelegate> _undoDelegate;
+    id <GTFActionLibraryDocumentLocationDelegate> _docLocDelegate;
     id <GTFActionLibraryReferenceLookupSourceDelegate> _referenceLookupSource;
 }
 
@@ -27,12 +28,16 @@
 + (id)allReferenceableActionNamesInFile:(id)arg1;
 + (id)allProjectReferenceableActionNames;
 + (id)allProjectActionFileURLs;
++ (BOOL)isActionContent:(id)arg1;
 + (BOOL)isURLForActionFile:(id)arg1;
 @property(nonatomic) __weak id <GTFActionLibraryReferenceLookupSourceDelegate> referenceLookupSource; // @synthesize referenceLookupSource=_referenceLookupSource;
+@property(nonatomic) __weak id <GTFActionLibraryDocumentLocationDelegate> docLocDelegate; // @synthesize docLocDelegate=_docLocDelegate;
 @property(nonatomic) __weak id <GTFActionLibraryUndoDelegate> undoDelegate; // @synthesize undoDelegate=_undoDelegate;
 @property(nonatomic) __weak id <GTFActionLibraryDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)searchReferenceActionLibariesForActionNamed:(id)arg1;
+- (id)documentLocationForActionTimeline:(id)arg1;
+- (id)documentLocationForAction:(id)arg1;
 - (BOOL)writeToFile:(id)arg1;
 - (BOOL)writeToSKScene:(id)arg1;
 - (id)generateActionTable;

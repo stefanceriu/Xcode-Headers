@@ -11,7 +11,7 @@
 #import "XCSUIStackedBarChartViewControllerDataSource.h"
 #import "XCSUIStackedBarChartViewControllerDelegate.h"
 
-@class DVTObservingToken, DVTReplacementView, DVTStackView_ML, NSArray, NSPopover, NSScrollView, NSString, XCSBot, XCSBotSupportingEditor, XCSIntegration, XCSUIInsetHorizontalDividerLine, XCSUIIntegrationHistoryViewController, XCSUIProgressReplacementView, XCSUIReflightRequiredViewController, XCSUIStackedBarChartBar, XCSUIStackedBarChartViewController, XCUIBotSummaryViewDataSource;
+@class DVTObservingToken, DVTReplacementView, DVTStackView_ML, NSArray, NSPopover, NSScrollView, NSString, NSTimer, XCSBot, XCSBotSupportingEditor, XCSIntegration, XCSUIInsetHorizontalDividerLine, XCSUIIntegrationHistoryViewController, XCSUIProgressReplacementView, XCSUIReflightRequiredViewController, XCSUIStackedBarChartBar, XCSUIStackedBarChartViewController, XCUIBotSummaryViewDataSource;
 
 @interface XCSUIBotSummaryViewController : DVTViewController <XCSUIStackedBarChartViewControllerDataSource, XCSUIStackedBarChartViewControllerDelegate, NSPopoverDelegate, XCSBotSupportingEditorHostedViewController>
 {
@@ -46,10 +46,12 @@
     NSScrollView *_scrollView;
     DVTReplacementView *_reflightReplacementView;
     XCSUIProgressReplacementView *_progressReplacementView;
+    NSTimer *_resizeReloadTimer;
 }
 
 + (BOOL)instancesCanContainDocumentLocation:(id)arg1;
 + (id)keyPathsForValuesAffectingCurrentSelectedItems;
+@property(retain) NSTimer *resizeReloadTimer; // @synthesize resizeReloadTimer=_resizeReloadTimer;
 @property __weak XCSUIProgressReplacementView *progressReplacementView; // @synthesize progressReplacementView=_progressReplacementView;
 @property __weak DVTReplacementView *reflightReplacementView; // @synthesize reflightReplacementView=_reflightReplacementView;
 @property __weak NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
@@ -93,10 +95,12 @@
 @property(readonly, copy) NSArray *currentSelectedItems;
 @property(readonly, copy) NSArray *currentSelectedDocumentLocations; // @synthesize currentSelectedDocumentLocations=_currentSelectedDocumentLocations;
 - (id)statusViewController;
-- (void)refreshUIWithIntegrations:(id)arg1 botStats:(id)arg2 isCodeCoverageAPIAvailable:(long long)arg3;
+- (void)setError:(id)arg1;
+- (void)refreshUIWithIntegrations:(id)arg1 isCodeCoverageAPIAvailable:(long long)arg2;
 - (void)primitiveInvalidate;
 - (void)viewDidInstall;
 - (void)windowDidEndResize:(id)arg1;
+- (void)updateGraphsForWindowSize;
 - (void)loadView;
 
 // Remaining properties

@@ -10,7 +10,10 @@
 {
 }
 
-- (void)drawPathWithContext:(struct CGContext *)arg1 dirtyRect:(struct CGRect)arg2;
+- (void)updateBadgeLayer:(id)arg1;
+- (void)updateArrowLayer:(id)arg1;
+- (id)createBadgeLayer;
+- (id)createArrowLayer;
 
 @end
 

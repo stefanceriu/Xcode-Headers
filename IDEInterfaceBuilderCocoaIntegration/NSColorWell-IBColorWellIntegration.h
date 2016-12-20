@@ -8,5 +8,6 @@
 
 @interface NSColorWell (IBColorWellIntegration)
 - (BOOL)ibHasSingleCell;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

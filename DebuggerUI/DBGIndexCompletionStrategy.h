@@ -6,12 +6,14 @@
 
 #import "DVTTextCompletionStrategy.h"
 
-@class DVTTextDocumentLocation, NSDictionary;
+@class DVTTextDocumentLocation, IDEEditorDocument, NSDictionary;
 
 @interface DBGIndexCompletionStrategy : DVTTextCompletionStrategy
 {
     NSDictionary *_indexCompletionsRequestDictionary;
     DVTTextDocumentLocation *_locationInAdjustedText;
+    id <DVTSourceLanguagePrimaryCompletionStrategy> _completionStrategy;
+    IDEEditorDocument *_document;
 }
 
 - (void).cxx_destruct;

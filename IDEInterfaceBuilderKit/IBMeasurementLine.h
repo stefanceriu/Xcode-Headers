@@ -10,26 +10,21 @@
 
 @interface IBMeasurementLine : NSObject
 {
-    NSAttributedString *measurementText;
-    struct CGPoint startPoint;
-    struct CGPoint endPoint;
-    struct CGPoint auxiliarlyStartPoint;
-    struct CGPoint auxiliarlyEndPoint;
-    struct CGPoint arrowPoint1;
-    struct CGPoint arrowPoint2;
-    struct CGRect measurementRect;
+    NSAttributedString *_measurementText;
+    struct CGPoint _startPoint;
+    struct CGPoint _endPoint;
+    struct CGPoint _auxiliarlyStartPoint;
+    struct CGPoint _auxiliarlyEndPoint;
+    unsigned long long _auxiliaryRectEdge;
+    long long _arrowDirection;
 }
 
 + (id)lineFromRect:(struct CGRect)arg1 withStartEdge:(unsigned long long)arg2 toEndRect:(struct CGRect)arg3 withEndEdge:(unsigned long long)arg4;
 - (void).cxx_destruct;
 - (id)description;
-- (BOOL)isEqual:(id)arg1;
-- (BOOL)isEqualToMeasurementLine:(id)arg1;
-- (unsigned long long)hash;
-- (id)boundingRectsForDrawingInRect:(struct CGRect)arg1;
-- (void)drawTextInFrame:(struct CGRect)arg1;
-- (void)drawLineInFrame:(struct CGRect)arg1;
-- (struct CGRect)measurementRectForDrawingInFrame:(struct CGRect)arg1;
+- (void)drawTextInRect:(struct CGRect)arg1 ofOverlayView:(id)arg2 fromCanvasFrame:(id)arg3;
+- (void)drawLineInRect:(struct CGRect)arg1 ofOverlayView:(id)arg2 fromCanvasFrame:(id)arg3;
+- (struct CGRect)measurementRectForDrawingInOverlayView:(id)arg1 fromCanvasFrame:(id)arg2;
 - (void)calculateLineFromStartRect:(struct CGRect)arg1 withStartEdge:(unsigned long long)arg2 andEndRect:(struct CGRect)arg3 withEndEdge:(unsigned long long)arg4;
 - (void)setMeasurementText:(id)arg1;
 - (void)calculateAuxiliarlyLineFromStartRect:(struct CGRect)arg1 withStartEdge:(unsigned long long)arg2 andEndRect:(struct CGRect)arg3 withEndEdge:(unsigned long long)arg4;

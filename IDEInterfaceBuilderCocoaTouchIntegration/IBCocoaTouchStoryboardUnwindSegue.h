@@ -31,6 +31,7 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (id)explicitDisplayNameWithRespectToPredecessors:(id)arg1;
 - (id)displayValuesWithRespectToPrototype:(id)arg1 inDocument:(id)arg2;
+- (id)destinationDisplayName;
 - (id)prototypeWithRespectTo:(id)arg1;
 - (Class)classForPrototypeWithRespectTo:(id)arg1;
 - (id)errorMessageForExistenceWithoutPrototypeInDocument:(id)arg1;

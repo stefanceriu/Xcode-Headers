@@ -14,7 +14,9 @@
 + (id)inferredRepIdentifierForPath:(id)arg1 slotComponentTransformer:(CDUnknownBlockType)arg2;
 + (BOOL)isValidFilenameForImport:(id)arg1;
 + (Class)slotClass;
++ (id)identifierWithSlot:(id)arg1 fileName:(id)arg2 explicitlyUnassigned:(BOOL)arg3;
 - (id)slot;
+- (id)initWithSlot:(id)arg1 fileName:(id)arg2 conflictState:(unsigned long long)arg3;
 
 @end
 

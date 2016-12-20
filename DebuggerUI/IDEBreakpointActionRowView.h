@@ -20,9 +20,11 @@
     NSMutableArray *_actions;
     IDEBreakpointAction *_selectedAction;
     NSViewController *_seletedActionEditorViewController;
+    BOOL _shouldSelectKeyView;
 }
 
 + (BOOL)requiresConstraintBasedLayout;
+@property BOOL shouldSelectKeyView; // @synthesize shouldSelectKeyView=_shouldSelectKeyView;
 @property(retain) IDEBreakpointAction *selectedAction; // @synthesize selectedAction=_selectedAction;
 - (void).cxx_destruct;
 - (void)_removeClicked:(id)arg1;

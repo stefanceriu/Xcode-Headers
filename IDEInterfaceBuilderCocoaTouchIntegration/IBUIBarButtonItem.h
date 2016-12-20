@@ -61,6 +61,9 @@
 - (BOOL)ibIsChildArbitrationUnitRoot:(id)arg1;
 - (BOOL)shouldAcceptImages;
 - (void)ibSetupTriggerForSegueTemplate:(id)arg1 inCompilationUnit:(id)arg2;
+- (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
+- (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
+- (id)ibLocalPerConfigurationAttributeKeyPaths;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (BOOL)isItemSizable;
 - (BOOL)ibIsChildInitiallySelectable:(id)arg1;
@@ -74,6 +77,10 @@
 - (id)ibPasteboardTypes;
 - (id)ibQualifyingInfoForDefaultLabel;
 - (BOOL)ibCanIncrementallyMarshalKeyPath:(id)arg1;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibEditorClass;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (void)setIbInspectedSystemItemIdentifier:(id)arg1;
 - (id)ibInspectedSystemItemIdentifier;

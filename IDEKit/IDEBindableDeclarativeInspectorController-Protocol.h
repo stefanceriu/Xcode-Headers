@@ -17,10 +17,11 @@
 
 @optional
 - (NSString *)filePathForExternalInspectorContentWithIdentifier:(NSString *)arg1;
+- (NSString *)accessibilityTitleForSliverElement:(NSXMLElement *)arg1;
 - (NSAttributedString *)attributedTitleForSliverElement:(NSXMLElement *)arg1;
 - (NSView *)accessoryViewForInspectorProperty:(IDEInspectorProperty *)arg1;
 - (id)aggregateReplacementBySettingValue:(id)arg1 forKeyPath:(NSString *)arg2 onObject:(id)arg3 fromKeyPath:(NSString *)arg4 ofObject:(id)arg5;
-- (NSAttributedString *)toolTipContentFromKeyPath:(NSString *)arg1 titleAttribute:(NSString *)arg2 placeholderAttribute:(NSString *)arg3;
+- (NSAttributedString *)inspectorProperty:(IDEInspectorProperty *)arg1 toolTipContentFromKeyPath:(NSString *)arg2 titleAttribute:(NSString *)arg3 placeholderAttribute:(NSString *)arg4;
 - (NSSet *)searchableAttributesForProperty:(IDEInspectorProperty *)arg1;
 @end
 

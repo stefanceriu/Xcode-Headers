@@ -6,7 +6,11 @@
 
 #import "NSObject.h"
 
-@interface IDEUtilitiesMenuDelegate : NSObject
+#import "IDEMenuKeyBindingProvider.h"
+
+@class NSString;
+
+@interface IDEUtilitiesMenuDelegate : NSObject <IDEMenuKeyBindingProvider>
 {
 }
 
@@ -15,6 +19,12 @@
 + (id)defaultMenuKeyBindingsForGroup:(id)arg1;
 + (id)_libraryCategoryExtensions;
 + (id)_inspectorCategoryExtensions;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

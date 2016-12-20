@@ -13,6 +13,7 @@
 __attribute__((visibility("hidden")))
 @interface GPUMTLBlitDisplayableStrategy : NSObject <GPUMTLDisplayableStrategy>
 {
+    id <DYPFenumUtils> _fenumUtils;
     GPUMTLTraceTextureDisplayableItem *_displayableItem;
 }
 

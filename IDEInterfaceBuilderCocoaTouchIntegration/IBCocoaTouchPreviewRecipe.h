@@ -6,24 +6,24 @@
 
 #import "IBBasePreviewRecipe.h"
 
-@class IBCocoaTouchIdiom, IBUIScreenMetrics, IBUISimulatedOrientationMetrics;
+@class IBCocoaTouchDeviceSubtype, IBCocoaTouchIdiom, IBDeviceConfiguration, IBUISimulatedOrientationMetrics;
 
 @interface IBCocoaTouchPreviewRecipe : IBBasePreviewRecipe
 {
-    IBCocoaTouchIdiom *_idiom;
-    IBUIScreenMetrics *_screenMetrics;
-    IBUISimulatedOrientationMetrics *_orientationMetrics;
+    IBDeviceConfiguration *_deviceConfiguration;
 }
 
-@property(retain) IBUISimulatedOrientationMetrics *orientationMetrics; // @synthesize orientationMetrics=_orientationMetrics;
-@property(retain) IBUIScreenMetrics *screenMetrics; // @synthesize screenMetrics=_screenMetrics;
-@property(retain) IBCocoaTouchIdiom *idiom; // @synthesize idiom=_idiom;
 - (void).cxx_destruct;
+@property(retain) IBDeviceConfiguration *deviceConfiguration;
 - (id)memberConfiguration;
 - (id)targetRuntime;
+@property(readonly) IBUISimulatedOrientationMetrics *orientationMetrics;
+- (id)screenMetrics;
+@property(readonly) IBCocoaTouchIdiom *idiom;
+@property(readonly) IBCocoaTouchDeviceSubtype *deviceSubtype;
 - (id)propertyListRepresentation;
 - (id)initWithPropertyList:(id)arg1;
-- (id)initWithLanguage:(id)arg1 idiom:(id)arg2 screenMetrics:(id)arg3 orientationMetrics:(id)arg4;
+- (id)initWithLanguage:(id)arg1 deviceConfiguration:(id)arg2;
 
 @end
 

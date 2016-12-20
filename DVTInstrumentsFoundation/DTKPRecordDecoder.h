@@ -6,50 +6,62 @@
 
 #import "NSObject.h"
 
-__attribute__((visibility("hidden")))
 @interface DTKPRecordDecoder : NSObject
 {
     struct map<unsigned long long, int, std::__1::less<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, int>>> _tidToPidMap;
     BOOL _mergeCallstacks;
-    unsigned int _numberOfPendingRecs;
     struct kpdecode_cursor *_kpcursor;
     _Bool _stopped;
     int _pmcCount;
     unsigned long long *_pmcIndices;
-    BOOL _config_seen;
+    BOOL _configSeen;
     BOOL _configInvalid;
-    unsigned char _config_mode;
-    int _config_hasPET;
-    int _config_systrace;
+    unsigned char _configMode;
+    BOOL _configHasPET;
+    BOOL _configSystrace;
     struct pmc_lastval *_pmcLastValues[32];
-    id *_pendlist;
-    int _pending_count;
-    int _pending_head;
-    int _pending_tail;
-    unsigned long long buffersProcessed;
-    unsigned long long bufferBytes;
-    unsigned long long kprecsDecoded;
-    unsigned long long kprecsInternal;
-    unsigned long long kprecsTimeFilteredOut;
-    unsigned long long kprecsProcessed;
+    struct DTKPRecordDecoderMagazine *_magazines[2];
+    struct DTKPRecordDecoderMagazine *_curMagazine;
+    struct DTKPRecordDecoderMagazine *_prevMagazine;
+    struct {
+        unsigned long long buffersProcessed;
+        unsigned long long bufferBytes;
+        unsigned long long kprecsDecoded;
+        unsigned long long kprecsInternal;
+        unsigned long long kprecsTimeFilteredOut;
+        unsigned long long dtkpRecsSent;
+        unsigned long long dtkpCallstackFixup;
+        unsigned long long dtkpBufferOverflow;
+    } _stats;
     unsigned long long _enumerateStartTime;
     unsigned long long _enumerateStopTime;
+    unsigned long long _eventHorizon;
 }
 
++ (unsigned long long)peekAtFirstRecordTimestampInDatastream:(id)arg1;
++ (void)initialize;
+@property(readonly, nonatomic) unsigned long long eventHorizon; // @synthesize eventHorizon=_eventHorizon;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)logKPRecsFromBuffer:(void *)arg1 bufferSize:(unsigned long long)arg2 finalBuffer:(BOOL)arg3 includingCallstacks:(BOOL)arg4 toFile:(struct __sFILE *)arg5;
+- (void)logKPRecsFromBuffer:(const void *)arg1 bufferSize:(unsigned long long)arg2 finalBuffer:(BOOL)arg3 includingCallstacks:(BOOL)arg4 toFile:(struct __sFILE *)arg5;
 - (void)_logKPRec:(struct kpdecode_record *)arg1 includingCallstacks:(BOOL)arg2 toFile:(struct __sFILE *)arg3;
-- (int)enumerateRecordsFromBuffer:(void *)arg1 bufferSize:(unsigned long long)arg2 finalBuffer:(BOOL)arg3 block:(CDUnknownBlockType)arg4;
+- (int)flushRecords:(CDUnknownBlockType)arg1;
+- (int)heartbeatTime:(unsigned long long)arg1 block:(CDUnknownBlockType)arg2;
+- (int)_flushRecordsFromMagazine:(struct DTKPRecordDecoderMagazine *)arg1 block:(CDUnknownBlockType)arg2;
+- (int)enumerateRecordsFromDatastream:(id)arg1 block:(CDUnknownBlockType)arg2;
+- (int)_enumerateRecordsFromBuffer:(const void *)arg1 bufferSize:(unsigned long long)arg2 block:(CDUnknownBlockType)arg3;
+- (void)_attemptToDrainMagazine:(struct DTKPRecordDecoderMagazine *)arg1 block:(CDUnknownBlockType)arg2;
 - (void)setEnumerateTimeRangeStart:(unsigned long long)arg1 stop:(unsigned long long)arg2;
-- (int)_apply_ustack:(struct kpdecode_record *)arg1;
-- (BOOL)_kprec2pending:(id)arg1 kprec:(struct kpdecode_record *)arg2;
+- (int)_applyUserstackFromKPRec:(struct kpdecode_record *)arg1 toMagazine:(struct DTKPRecordDecoderMagazine *)arg2;
+- (BOOL)_convertKPRec:(struct kpdecode_record *)arg1 toPending:(id)arg2;
 - (void)_decodeConfig:(struct kpdecode_record *)arg1;
 - (void)_setPMCConfigWordCount:(unsigned long long)arg1 wordArray:(unsigned long long *)arg2;
 - (void)dealloc;
 - (id)initAndMergeCallstacks:(BOOL)arg1 pendingBufferEntries:(unsigned int)arg2;
 - (id)init;
 - (BOOL)_commonInit;
+- (void)_updateEventHorizonWithNewTime:(unsigned long long)arg1;
+- (void)_swapMagazines;
 
 @end
 

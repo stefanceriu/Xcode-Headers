@@ -13,5 +13,7 @@
 - (void)setIbInspectedNumberOfTableColumns:(long long)arg1;
 - (void)ibRemoveChildren:(id)arg1;
 - (BOOL)ibCanRemoveChildren:(id)arg1;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 @end
 

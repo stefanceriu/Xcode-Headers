@@ -9,7 +9,6 @@
 @class IDEActivityReport, IDEActivityStatusCategory, IDEActivityViewDataSource, NSString;
 
 @protocol IDEActivityViewDataConsumer <NSObject>
-- (void)activityViewDataSource:(IDEActivityViewDataSource *)arg1 countDidChangeForBotStatusCategory:(IDEActivityStatusCategory *)arg2;
 - (void)activityViewDataSource:(IDEActivityViewDataSource *)arg1 issueCountDidChangeForIssueCategory:(IDEActivityStatusCategory *)arg2;
 - (void)activityViewDataSource:(IDEActivityViewDataSource *)arg1 workspaceRepresentingTypeStringDidChangeTo:(NSString *)arg2;
 - (void)activityReportManagerDidInvalidateForActivityViewDataSource:(IDEActivityViewDataSource *)arg1;

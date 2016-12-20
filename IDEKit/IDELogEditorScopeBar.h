@@ -8,7 +8,7 @@
 
 #import "DVTScopeBarContentController.h"
 
-@class DVTScopeBarButton, DVTSearchField, NSLayoutConstraint, NSString;
+@class DVTScopeBarButton, DVTSearchField, NSButton, NSLayoutConstraint, NSString;
 
 @interface IDELogEditorScopeBar : DVTViewController <DVTScopeBarContentController>
 {
@@ -18,6 +18,7 @@
     DVTScopeBarButton *_scopeAllIssuesButton;
     DVTScopeBarButton *_scopeErrorsOnlyButton;
     DVTSearchField *_scopeSearchField;
+    NSButton *_scopeBarSaveButton;
     id _delegate;
     double _preferredViewHeight;
     NSLayoutConstraint *_scopeBarHeight;
@@ -30,6 +31,7 @@
 @property double preferredViewHeight; // @synthesize preferredViewHeight=_preferredViewHeight;
 @property(retain) id delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
+- (void)saveButtonAction:(id)arg1;
 - (void)searchFieldAction:(id)arg1;
 - (void)showErrorsOnly:(id)arg1;
 - (void)showAllIssues:(id)arg1;

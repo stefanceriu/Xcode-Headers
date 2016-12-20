@@ -20,11 +20,17 @@
     BOOL _pitchEnabled;
     BOOL _showsUserLocation;
     BOOL _showsBuildings;
+    BOOL _showsCompass;
     BOOL _showsPointsOfInterest;
+    BOOL _showsScale;
+    BOOL _showsTraffic;
 }
 
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
+@property(nonatomic) BOOL showsTraffic; // @synthesize showsTraffic=_showsTraffic;
+@property(nonatomic) BOOL showsScale; // @synthesize showsScale=_showsScale;
 @property(nonatomic) BOOL showsPointsOfInterest; // @synthesize showsPointsOfInterest=_showsPointsOfInterest;
+@property(nonatomic) BOOL showsCompass; // @synthesize showsCompass=_showsCompass;
 @property(nonatomic) BOOL showsBuildings; // @synthesize showsBuildings=_showsBuildings;
 @property(nonatomic) BOOL showsUserLocation; // @synthesize showsUserLocation=_showsUserLocation;
 @property(nonatomic, getter=isPitchEnabled) BOOL pitchEnabled; // @synthesize pitchEnabled=_pitchEnabled;
@@ -39,6 +45,7 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)ibEditorClass;
 - (BOOL)ibSizesToFillViewControllers;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 

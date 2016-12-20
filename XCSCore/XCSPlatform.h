@@ -20,11 +20,11 @@
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 
 // Remaining properties
-@property NSString *buildNumber; // @dynamic buildNumber;
-@property NSString *displayName; // @dynamic displayName;
-@property NSString *identifier; // @dynamic identifier;
-@property NSString *simulatorIdentifier; // @dynamic simulatorIdentifier;
-@property NSString *version; // @dynamic version;
+@property(retain, nonatomic) NSString *buildNumber; // @dynamic buildNumber;
+@property(retain, nonatomic) NSString *displayName; // @dynamic displayName;
+@property(retain, nonatomic) NSString *identifier; // @dynamic identifier;
+@property(retain, nonatomic) NSString *simulatorIdentifier; // @dynamic simulatorIdentifier;
+@property(retain, nonatomic) NSString *version; // @dynamic version;
 
 @end
 

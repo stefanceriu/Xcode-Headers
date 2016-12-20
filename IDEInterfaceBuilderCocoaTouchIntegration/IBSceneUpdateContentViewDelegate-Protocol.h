@@ -9,10 +9,10 @@
 @class IBSceneUpdateContentView, IBTargetRuntime, NSColor;
 
 @protocol IBSceneUpdateContentViewDelegate <NSObject>
-- (struct CGRect)sceneUpdateContentView:(IBSceneUpdateContentView *)arg1 imageContentRectForImageSize:(struct CGSize)arg2 scaleFactor:(double)arg3;
 - (NSColor *)backgroundColorForSceneUpdateContentView:(IBSceneUpdateContentView *)arg1;
 - (IBTargetRuntime *)targetRuntimeForSceneUpdateContentView:(IBSceneUpdateContentView *)arg1;
 - (BOOL)shouldSceneUpdateContentViewRegisterForAsynchronousRendering:(IBSceneUpdateContentView *)arg1;
 - (void)invalidateSceneForContentView:(IBSceneUpdateContentView *)arg1 forReason:(NSString * (^)(void))arg2;
+- (double)scaleFactorForRenderingSceneContentView:(IBSceneUpdateContentView *)arg1;
 @end
 

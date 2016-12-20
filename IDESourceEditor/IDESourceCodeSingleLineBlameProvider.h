@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTObservingToken, DVTStackBacktrace, IDESourceCodeBlameController, NSArray, NSString;
+@class DVTObservingToken, DVTStackBacktrace, IDESourceCodeBlameController, NSMutableArray, NSString;
 
 @interface IDESourceCodeSingleLineBlameProvider : NSObject <DVTInvalidation>
 {
@@ -18,12 +18,12 @@
     long long waitingLine;
     BOOL haveBlameItems;
     BOOL _forceReload;
-    NSArray *_currentBlameAnnotations;
+    NSMutableArray *_currentBlameAnnotations;
 }
 
 + (void)initialize;
 @property BOOL forceReload; // @synthesize forceReload=_forceReload;
-@property(retain) NSArray *currentBlameAnnotations; // @synthesize currentBlameAnnotations=_currentBlameAnnotations;
+@property(retain) NSMutableArray *currentBlameAnnotations; // @synthesize currentBlameAnnotations=_currentBlameAnnotations;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)blameItemsForLine:(long long)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;

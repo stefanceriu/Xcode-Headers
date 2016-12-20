@@ -6,9 +6,11 @@
 
 #import <IBFoundation/IBICAbstractCatalogItem.h>
 
-@class IBICManifestArchivist;
+#import "IBICAssetWithSlottedChildren.h"
 
-@interface IBICSlottedAsset : IBICAbstractCatalogItem
+@class IBICManifestArchivist, NSString;
+
+@interface IBICSlottedAsset : IBICAbstractCatalogItem <IBICAssetWithSlottedChildren>
 {
     IBICManifestArchivist *_manifestArchivist;
 }
@@ -18,7 +20,7 @@
 + (id)syntehsizeItemsFromLoosePaths:(id)arg1 claimingPaths:(id *)arg2;
 + (Class)repIdentifierClass;
 + (Class)slotClass;
-+ (id)keysThatImpactIdentifier;
++ (BOOL)fileNameIsIdentifier;
 + (Class)requiredChildrenClass;
 + (Class)assetRepClass;
 + (id)catalogItemFileExtension;
@@ -26,8 +28,13 @@
 + (id)defaultName;
 + (BOOL)isAbstractCatalogItemClass;
 - (void).cxx_destruct;
-- (id)requiredCounterpartsMask;
-- (id)suggestionSetMaskForSuggestionSet:(id)arg1;
+- (BOOL)isEqualForUnitTests:(id)arg1;
+- (void)setConflictState:(unsigned long long)arg1 forChild:(id)arg2;
+- (BOOL)isChildMinimallyFitForCompiling:(id)arg1;
+- (Class)expectedChildClassForSlot:(id)arg1;
+- (id)conflictFreeChildForSlot:(id)arg1;
+- (id)slotForChild:(id)arg1;
+- (unsigned long long)conflictStateForChild:(id)arg1;
 - (long long)manifestArchivist:(id)arg1 orderChildrenForSlotConflictResolutionByComparing:(id)arg2 to:(id)arg3;
 - (void)manifestArchivist:(id)arg1 setConflictState:(unsigned long long)arg2 forChild:(id)arg3;
 - (void)manifestArchivist:(id)arg1 setSlot:(id)arg2 forChild:(id)arg3;
@@ -41,7 +48,7 @@
 - (id)assetRepForStructuredIdentifier:(id)arg1;
 - (id)assetRepForIdentifier:(id)arg1;
 - (id)childForIdentifier:(id)arg1;
-- (id)identifier;
+- (id)children;
 - (id)defaultUnqualifiedRuntimeName;
 - (id)orderedSlotComponentClasses;
 - (BOOL)fileStructureSnapshotChildWouldMapToModelChild:(id)arg1;
@@ -50,6 +57,12 @@
 - (id)initWithCoder:(id)arg1;
 - (id)init;
 - (id)initializeManifestArchivist;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

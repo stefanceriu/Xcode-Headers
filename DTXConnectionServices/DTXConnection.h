@@ -13,6 +13,7 @@
 
 @interface DTXConnection : NSObject <DTXConnectionRemoteReceiveQueueCalls, DTXMessenger>
 {
+    NSString *_label;
     NSObject<OS_dispatch_queue> *_outgoing_message_queue;
     NSObject<OS_dispatch_queue> *_outgoing_control_queue;
     DTXTransport *_controlTransport;
@@ -34,7 +35,6 @@
     DTXMessageParser *_incomingParser;
     DTXMessageTransmitter *_outgoingTransmitter;
     DTXChannel *_defaultChannel;
-    BOOL _legacyMode;
     BOOL _tracer;
     BOOL _remoteTracer;
     int _connectionIndex;
@@ -54,10 +54,8 @@
 + (void)initialize;
 + (void)observeDecompressionExceptionLogging:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) int atomicConnectionNumber; // @synthesize atomicConnectionNumber=_connectionIndex;
-@property(copy) CDUnknownBlockType channelHandler; // @synthesize channelHandler=_channelHandler;
 @property(nonatomic) BOOL remoteTracer; // @synthesize remoteTracer=_remoteTracer;
 @property(nonatomic) BOOL tracer; // @synthesize tracer=_tracer;
-@property(nonatomic) BOOL legacyMode; // @synthesize legacyMode=_legacyMode;
 - (void)_notifyCompressionHint:(unsigned int)arg1 forChannelCode:(unsigned int)arg2;
 - (void)_receiveQueueSetCompressionHint:(unsigned int)arg1 onChannel:(id)arg2;
 - (void)_setTracerState:(unsigned int)arg1;
@@ -77,12 +75,17 @@
 - (void)sendControlAsync:(id)arg1 replyHandler:(CDUnknownBlockType)arg2;
 - (void)cancel;
 - (void)registerDisconnectHandler:(CDUnknownBlockType)arg1;
+- (void)setChannelHandler:(CDUnknownBlockType)arg1;
 - (void)setDispatchTarget:(id)arg1;
 - (void)setMessageHandler:(CDUnknownBlockType)arg1;
+- (id)label;
+- (void)setLabel:(id)arg1;
 - (void)throttleBandwidthBytesPerSecond:(unsigned long long)arg1;
 - (void)resume;
 - (void)suspend;
 - (long long)remoteCapabilityVersion:(id)arg1;
+- (double)preflightSynchronouslyWithTimeout:(double)arg1;
+- (id)_sendHeartbeatAsyncWithTimeout:(double)arg1;
 - (id)localCapabilities;
 - (void)publishCapability:(id)arg1 withVersion:(long long)arg2 forClass:(Class)arg3;
 @property(nonatomic) unsigned long long maximumEnqueueSize;

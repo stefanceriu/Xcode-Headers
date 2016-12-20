@@ -14,7 +14,7 @@
     NSObject<OS_dispatch_queue> *_handlerGuard;
     DTXResourceTracker *_tracker;
     CDUnknownBlockType _dataReceivedHandler;
-    int _status;
+    unsigned int _status;
     NSObject<OS_dispatch_semaphore> *_waitForResume;
     BOOL _resumed;
 }
@@ -22,8 +22,8 @@
 + (BOOL)recognizesURL:(id)arg1;
 + (id)schemes;
 @property(readonly, nonatomic) DTXResourceTracker *resourceTracker; // @synthesize resourceTracker=_tracker;
-@property int status; // @synthesize status=_status;
-- (int)supportedDirections;
+@property unsigned int status; // @synthesize status=_status;
+- (unsigned int)supportedDirections;
 - (id)permittedBlockCompressionTypes;
 @property(readonly) NSArray *localAddresses;
 @property(copy, nonatomic) CDUnknownBlockType dataReceivedHandler;

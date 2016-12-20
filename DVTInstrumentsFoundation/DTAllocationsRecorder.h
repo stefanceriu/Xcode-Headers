@@ -10,7 +10,7 @@
 
 @interface DTAllocationsRecorder : NSObject
 {
-    struct DTXSharedMemory *_shmem;
+    // Error parsing type: ^{DTXSharedMemory=QQQIIIIiiIAiAiAiAiIII[0c]}, name: _shmem
     NSObject<OS_dispatch_queue> *_processingQueue;
     struct {
         double _field1;
@@ -21,7 +21,6 @@
         unsigned long long _field6;
         long long _field7;
         unsigned long long _field8[0];
-        char _field9[0];
     } *_partialEvent;
     unsigned int _partialSize;
     unsigned int _partialFilled;

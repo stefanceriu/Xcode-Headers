@@ -6,22 +6,12 @@
 
 #import "NSWindow.h"
 
-@class NSBezierPath;
-
 @interface IDEOpenQuicklyWindow : NSWindow
 {
-    NSBezierPath *_clippingPath;
-    double _cornerRadius;
 }
 
-+ (void)initialize;
-@property(readonly) NSBezierPath *clippingPath; // @synthesize clippingPath=_clippingPath;
-@property double cornerRadius; // @synthesize cornerRadius=_cornerRadius;
-- (void).cxx_destruct;
 - (double)animationResizeTime:(struct CGRect)arg1;
-- (void)setFrame:(struct CGRect)arg1 display:(BOOL)arg2;
 - (BOOL)canBecomeKeyWindow;
-- (id)initWithContentRect:(struct CGRect)arg1 styleMask:(unsigned long long)arg2 backing:(unsigned long long)arg3 defer:(BOOL)arg4;
 
 @end
 

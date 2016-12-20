@@ -29,17 +29,14 @@
     NSArray *_targetIdentifiers;
     id _substituteMacros;
     NSArray *_groups;
-    NSArray *_buildAttributes;
+    BOOL _omitFromProjectStructure;
     long long _sortOrder;
+    NSArray *_buildAttributes;
 }
 
-@property long long sortOrder; // @synthesize sortOrder=_sortOrder;
++ (void)addFileReference:(id)arg1 toTarget:(id)arg2 usingExtension:(id)arg3 buildAttributes:(id)arg4;
 @property(retain) id groups; // @synthesize groups=_groups;
-@property(retain) id substituteMacros; // @synthesize substituteMacros=_substituteMacros;
 @property(retain) NSArray *buildAttributes; // @synthesize buildAttributes=_buildAttributes;
-@property(retain) NSArray *targetIdentifiers; // @synthesize targetIdentifiers=_targetIdentifiers;
-@property(retain) NSArray *targetIndices; // @synthesize targetIndices=_targetIndices;
-@property(copy) NSArray *group; // @synthesize group=_group;
 @property(retain) id wrapsLines; // @synthesize wrapsLines=_wrapsLines;
 @property(retain) id usesTabs; // @synthesize usesTabs=_usesTabs;
 @property(retain) id indentWidth; // @synthesize indentWidth=_indentWidth;
@@ -47,16 +44,21 @@
 @property(copy) NSString *lineEnding; // @synthesize lineEnding=_lineEnding;
 @property(copy) NSString *textEncoding; // @synthesize textEncoding=_textEncoding;
 @property(copy) NSString *fileType; // @synthesize fileType=_fileType;
+@property long long sortOrder; // @synthesize sortOrder=_sortOrder;
+@property(retain) id substituteMacros; // @synthesize substituteMacros=_substituteMacros;
+@property(retain) NSArray *targetIdentifiers; // @synthesize targetIdentifiers=_targetIdentifiers;
+@property(retain) NSArray *targetIndices; // @synthesize targetIndices=_targetIndices;
+@property BOOL omitFromProjectStructure; // @synthesize omitFromProjectStructure=_omitFromProjectStructure;
+@property(copy) NSArray *group; // @synthesize group=_group;
+@property long long indent; // @synthesize indent=_indent;
+@property(copy) NSString *end; // @synthesize end=_end;
+@property(copy) NSString *beginning; // @synthesize beginning=_beginning;
 @property(copy) NSString *pathType; // @synthesize pathType=_pathType;
 @property(copy) DVTFilePath *filePath; // @synthesize filePath=_filePath;
 @property(copy) NSString *path; // @synthesize path=_path;
 @property(copy) NSString *name; // @synthesize name=_name;
-@property long long indent; // @synthesize indent=_indent;
-@property(copy) NSString *end; // @synthesize end=_end;
-@property(copy) NSString *beginning; // @synthesize beginning=_beginning;
 - (void).cxx_destruct;
-- (id)addFileReferenceToPath:(id)arg1 rootGroup:(id)arg2 targets:(id)arg3 basedOn:(id)arg4;
-- (id)_targetWithIdentifier:(id)arg1 inProject:(id)arg2;
+- (id)addFileReferenceToPath:(id)arg1 rootGroup:(id)arg2 targets:(id)arg3 basedOn:(id)arg4 deferredTargetAdditions:(id)arg5;
 - (id)addFileReferenceForPath:(id)arg1 toGroup:(id)arg2 absolute:(BOOL)arg3;
 - (void)applyPropertiesToReference:(id)arg1;
 - (id)replacementTargetInTargets:(id)arg1;

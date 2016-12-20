@@ -37,6 +37,7 @@
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)ibRuntimeClassName;
 - (Class)classForArchiver;
+- (id)ibLocalAttributeKeyPaths;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 

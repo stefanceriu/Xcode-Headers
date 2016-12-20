@@ -6,48 +6,57 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSData, NSDate, NSMutableArray, NSString, NSUUID, XCSynthesizedEventRecord;
+@class NSArray, NSData, NSDate, NSDictionary, NSMutableArray, NSString, NSUUID, XCElementSnapshot, XCSynthesizedEventRecord;
 
 @interface IDESchemeActionTestActivitySummary : NSObject
 {
-    NSData *_screenshotData;
-    NSData *_snapshotData;
-    NSData *_elementsOfInterestData;
-    NSData *_synthesizedEventData;
+    BOOL _hasScreenshotData;
+    BOOL _hasSnapshot;
+    BOOL _hasElementsOfInterest;
+    BOOL _hasSynthesizedEvent;
+    BOOL _hasDiagnosticReportData;
+    NSString *_diagnosticReportBaseFileName;
     NSString *_title;
+    NSString *_attachmentsDirectory;
     NSUUID *_uuid;
     NSDate *_start;
     NSDate *_finish;
     NSMutableArray *_subActivities;
-    NSString *_screenshotFileName;
-    NSString *_snapshotFileName;
-    NSString *_elementsOfInterestFileName;
-    NSString *_synthesizedEventFileName;
 }
 
 + (id)summariesFromSummaries:(id)arg1 withAttachmentsExtractedToDirectory:(id)arg2;
-@property(readonly, copy) NSString *synthesizedEventFileName; // @synthesize synthesizedEventFileName=_synthesizedEventFileName;
-@property(readonly, copy) NSString *elementsOfInterestFileName; // @synthesize elementsOfInterestFileName=_elementsOfInterestFileName;
-@property(readonly, copy) NSString *snapshotFileName; // @synthesize snapshotFileName=_snapshotFileName;
-@property(readonly, copy) NSString *screenshotFileName; // @synthesize screenshotFileName=_screenshotFileName;
-@property(copy) NSMutableArray *subActivities; // @synthesize subActivities=_subActivities;
-@property(readonly, copy) NSData *snapshotData; // @synthesize snapshotData=_snapshotData;
-@property(readonly, copy) NSData *screenshotData; // @synthesize screenshotData=_screenshotData;
+@property(readonly, copy) NSMutableArray *subActivities; // @synthesize subActivities=_subActivities;
 @property(readonly, copy) NSDate *finish; // @synthesize finish=_finish;
 @property(readonly, copy) NSDate *start; // @synthesize start=_start;
 @property(readonly, copy) NSUUID *uuid; // @synthesize uuid=_uuid;
+@property(copy) NSString *attachmentsDirectory; // @synthesize attachmentsDirectory=_attachmentsDirectory;
 @property(readonly, copy) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
 @property(readonly) struct CGRect subregionOfInterest;
-@property(readonly) XCSynthesizedEventRecord *synthesizedEvent;
-@property(readonly, copy) NSArray *elementsOfInterest;
-- (BOOL)isEqualToTestActivitySummary:(id)arg1;
+@property(copy) NSData *diagnosticReportData;
+@property(readonly, copy) NSString *diagnosticReportFileName;
+@property(readonly, copy) NSString *diagnosticReportFilePath;
+@property(copy) NSArray *elementsOfInterest;
+@property(readonly, copy) NSString *elementsOfInterestFileName;
+@property(copy) NSData *screenshotData;
+@property(readonly, copy) NSString *screenshotFileName;
+@property(copy) XCElementSnapshot *snapshot;
+@property(readonly, copy) NSString *snapshotFileName;
+@property(copy) XCSynthesizedEventRecord *synthesizedEvent;
+@property(readonly, copy) NSString *synthesizedEventFileName;
+- (BOOL)_archiveAttachment:(id)arg1 withName:(id)arg2;
+- (BOOL)_archiveData:(id)arg1 withName:(id)arg2;
+- (id)_unarchiveAttachmentWithName:(id)arg1;
+- (id)_loadDataForAttachmentWithName:(id)arg1;
+- (id)_pathForAttachmentWithName:(id)arg1;
+- (id)_fileNameForAttachmentWithName:(id)arg1;
+- (BOOL)matchesTestActivitySummary:(id)arg1;
 - (void)addSubActivity:(id)arg1;
 - (void)updateFromActivityRecord:(id)arg1;
 - (void)loadAttachmentsFromDirectory:(id)arg1;
-- (id)dictionaryRepresentation;
+@property(readonly) NSDictionary *dictionaryRepresentation;
 - (id)initWithDictionaryRepresentation:(id)arg1;
-- (id)initWithActivityRecord:(id)arg1;
+- (id)initWithActivityRecord:(id)arg1 attachmentsDirectory:(id)arg2;
 
 @end
 

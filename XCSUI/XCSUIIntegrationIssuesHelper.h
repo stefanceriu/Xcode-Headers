@@ -11,6 +11,7 @@
 }
 
 + (void)issuesCategoriesFromIntegrationIssues:(id)arg1 integration:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
++ (id)descriptionForAssignee:(id)arg1;
 
 @end
 

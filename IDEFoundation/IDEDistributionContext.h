@@ -45,7 +45,7 @@
 @property(readonly, nonatomic) IDEDistributionContext *parent; // @synthesize parent=_parent;
 - (void).cxx_destruct;
 @property(retain, nonatomic) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
-@property(readonly) BOOL strictTeamIDMatch;
+- (BOOL)strictTeamIDMatch;
 - (BOOL)isInAppContent;
 - (id)team;
 - (id)flattenedDistributionItems;
@@ -89,7 +89,7 @@
 - (id)_distributionContext_get_distributionTask;
 @property(retain, nonatomic) DVTDeveloperAccount *account; // @synthesize account=_account;
 - (id)_distributionContext_get_account;
-@property(retain, nonatomic) NSString *teamID; // @synthesize teamID=_teamID;
+@property(copy, nonatomic) NSString *teamID; // @synthesize teamID=_teamID;
 - (id)_distributionContext_get_teamID;
 @property(retain, nonatomic) IDEDistributionMethod *distributionMethod; // @synthesize distributionMethod=_distributionMethod;
 - (id)_distributionContext_get_distributionMethod;

@@ -24,9 +24,9 @@
 - (void)notifyOnQueue:(struct dispatch_queue_s *)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)resolveWithFuture:(id)arg1;
 - (void)timeoutAfter:(double)arg1 label:(id)arg2;
-@property(retain, nonatomic) NSError *error; // @dynamic error;
+@property(retain, nonatomic) NSError *error;
 - (void)_setError:(id)arg1;
-@property(retain, nonatomic) id result; // @dynamic result;
+@property(retain, nonatomic) id result;
 - (void)_setResult:(id)arg1;
 - (int)intResult;
 - (unsigned int)uint32Result;

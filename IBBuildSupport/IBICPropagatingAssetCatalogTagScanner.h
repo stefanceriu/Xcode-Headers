@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "IDEAssetTagScanner.h"
+#import "IDEFilePathCachedValueProducer.h"
 
 @class IBAssetScannerNode, NSDictionary, NSMutableArray, NSMutableDictionary, NSSet, NSString;
 
-@interface IBICPropagatingAssetCatalogTagScanner : NSObject <IDEAssetTagScanner>
+@interface IBICPropagatingAssetCatalogTagScanner : NSObject <IDEFilePathCachedValueProducer>
 {
     NSDictionary *_allTypeInfo;
     IBAssetScannerNode *_root;
@@ -21,7 +21,7 @@
     NSSet *_allTagSets;
 }
 
-+ (id)scanForTagCombinationsInContentsOfPath:(id)arg1;
++ (id)scanContentsOfPath:(id)arg1;
 + (BOOL)shouldOverrideScanningForCatalogAtPath:(id)arg1;
 - (void).cxx_destruct;
 - (BOOL)propagateAllTags;

@@ -6,20 +6,19 @@
 
 #import "NSTableCellView.h"
 
-@class DVTObservingToken, DVTTableCellViewTextField, NSAttributedString, NSColor, NSFont, NSImage, NSLayoutConstraint, NSMutableDictionary, NSString;
+@class NSAttributedString, NSDictionary, NSFont, NSImage, NSLayoutConstraint, NSMutableDictionary, NSString, _DVTTableCellViewTextField;
 
 @interface DVTTableCellView : NSTableCellView
 {
-    NSColor *_subtitleColor;
     NSMutableDictionary *_statusViewNamesToStatusViews;
-    DVTObservingToken *_objectValueValidityObserver;
+    NSString *_accessibleImageDescription;
     BOOL _usesGroupHeaderStyle;
-    BOOL _usesErrorStyleTextColor;
-    NSColor *_titleColor;
+    int _titleStyle;
     id <DVTTableCellViewTitleEditingDelegate> _titleEditingDelegate;
     NSString *_filterMatchString;
-    DVTTableCellViewTextField *_titleTextField;
-    DVTTableCellViewTextField *_subtitleTextField;
+    NSDictionary *_objectToViewOneWayPropertyBindings;
+    _DVTTableCellViewTextField *_titleTextField;
+    _DVTTableCellViewTextField *_subtitleTextField;
     NSLayoutConstraint *_imageViewHeightConstraint;
     NSLayoutConstraint *_imageViewWidthConstraint;
     NSLayoutConstraint *_imageViewToTitleSpacingConstraint;
@@ -43,10 +42,11 @@
 @property __weak NSLayoutConstraint *imageViewToTitleSpacingConstraint; // @synthesize imageViewToTitleSpacingConstraint=_imageViewToTitleSpacingConstraint;
 @property __weak NSLayoutConstraint *imageViewWidthConstraint; // @synthesize imageViewWidthConstraint=_imageViewWidthConstraint;
 @property __weak NSLayoutConstraint *imageViewHeightConstraint; // @synthesize imageViewHeightConstraint=_imageViewHeightConstraint;
-@property __weak DVTTableCellViewTextField *subtitleTextField; // @synthesize subtitleTextField=_subtitleTextField;
-@property __weak DVTTableCellViewTextField *titleTextField; // @synthesize titleTextField=_titleTextField;
+@property __weak _DVTTableCellViewTextField *subtitleTextField; // @synthesize subtitleTextField=_subtitleTextField;
+@property __weak _DVTTableCellViewTextField *titleTextField; // @synthesize titleTextField=_titleTextField;
+@property(copy, nonatomic) NSDictionary *objectToViewOneWayPropertyBindings; // @synthesize objectToViewOneWayPropertyBindings=_objectToViewOneWayPropertyBindings;
 @property(retain, nonatomic) NSString *filterMatchString; // @synthesize filterMatchString=_filterMatchString;
-@property(nonatomic) BOOL usesErrorStyleTextColor; // @synthesize usesErrorStyleTextColor=_usesErrorStyleTextColor;
+@property(nonatomic) int titleStyle; // @synthesize titleStyle=_titleStyle;
 @property(nonatomic) BOOL usesGroupHeaderStyle; // @synthesize usesGroupHeaderStyle=_usesGroupHeaderStyle;
 @property __weak id <DVTTableCellViewTitleEditingDelegate> titleEditingDelegate; // @synthesize titleEditingDelegate=_titleEditingDelegate;
 - (void).cxx_destruct;
@@ -57,8 +57,8 @@
 - (void)addStatusView:(id)arg1 withName:(id)arg2;
 @property(readonly) BOOL hasStatusViews;
 @property(readonly) NSMutableDictionary *statusViewNamesToStatusViews;
-- (void)titleColorDidUpdate;
-@property(retain, nonatomic) NSColor *titleColor; // @synthesize titleColor=_titleColor;
+- (id)toolTip;
+- (id)_titleColor;
 - (void)_updateTextFieldsBasedOnFonts;
 @property(readonly) NSFont *subtitleFont;
 @property(readonly) NSFont *titleFont;
@@ -69,12 +69,15 @@
 @property(nonatomic) BOOL titleEditable;
 @property(nonatomic) unsigned long long titleLineBreakMode;
 @property(retain, nonatomic) NSString *title;
+@property(retain, nonatomic) NSString *accessibleImageDescription;
 @property(retain, nonatomic) NSImage *image;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)_stopObservingAutoProperties;
+- (void)_startObservingAutoProperties;
+- (void)_updateAutoProperties;
 - (void)setObjectValue:(id)arg1;
 - (void)dealloc;
 - (void)awakeFromNib;
-- (void)_dvtTableCellViewCommonInit;
-- (id)initWithCoder:(id)arg1;
 
 @end
 

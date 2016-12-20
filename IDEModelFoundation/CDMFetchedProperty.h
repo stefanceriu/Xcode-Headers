@@ -12,7 +12,7 @@
 
 @interface CDMFetchedProperty : CDMProperty <IDEInspectorMatching>
 {
-    CDMFetchRequest *fetchRequest;
+    CDMFetchRequest *_fetchRequest;
 }
 
 - (void).cxx_destruct;
@@ -28,8 +28,9 @@
 - (void)cascadeChangesToLegacyFetchedProperty:(id)arg1 givenModernToLegacyEntityMapping:(id)arg2;
 - (id)initWithLegacyFetchedProperty:(id)arg1 andEntityMapping:(id)arg2 belongingToEntity:(id)arg3 inModel:(id)arg4;
 - (id)initForEntity:(id)arg1 inModel:(id)arg2;
+- (id)initInModel:(id)arg1;
 - (void)primitiveInvalidate;
-@property(retain) CDMFetchRequest *fetchRequest; // @synthesize fetchRequest;
+@property(retain) CDMFetchRequest *fetchRequest; // @synthesize fetchRequest=_fetchRequest;
 - (id)applicableInspectorsForCategory:(id)arg1 suggestion:(id)arg2;
 
 // Remaining properties

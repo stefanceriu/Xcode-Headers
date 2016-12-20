@@ -13,8 +13,11 @@
 + (Class)idiomClass;
 + (id)targetRuntimes;
 + (id)targetRuntimeWithIdentifier:(id)arg1;
++ (id)instantiateLibraryObjectForAssetIdentifier:(id)arg1;
 - (BOOL)supportsLaunchScreen;
+- (BOOL)supportsHardwarePreview;
 - (Class)previewGeniusResultsItemGroupClass;
+- (id)osVersionsToCompileForDocument:(id)arg1;
 - (id)infoPlistDesignatedEntryPointIdentifierKey;
 - (id)infoPlistPackageVersionKey;
 - (id)infoPlistReferencedBundleIdentifierKey;
@@ -52,6 +55,7 @@
 - (id)bonusedClassNamesForGeniusOrdering;
 - (id)penalizedClassNamesForGeniusOrdering;
 - (id)ignoredConnectionLabelsForGeniusOrdering;
+- (id)addCustomObjectOfExternalClass:(id)arg1 toParent:(id)arg2 inDocument:(id)arg3;
 - (long long)defaultStorageTypeForMRROutlets;
 - (Class)actionConnectionClass;
 - (BOOL)connectToSourceCodeShouldReleaseInstanceVariables;

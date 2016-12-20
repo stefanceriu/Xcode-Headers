@@ -16,7 +16,6 @@
 + (Class)symbolicatorClass;
 - (void).cxx_destruct;
 - (void)bringToForeground;
-- (void)sendToBackground;
 - (void)terminate;
 - (void)resume;
 - (void)createSymbolicator:(id)arg1;

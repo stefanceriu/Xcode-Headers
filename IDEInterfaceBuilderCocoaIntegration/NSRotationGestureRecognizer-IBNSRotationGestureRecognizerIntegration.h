@@ -8,5 +8,6 @@
 
 @interface NSRotationGestureRecognizer (IBNSRotationGestureRecognizerIntegration)
 @property(nonatomic) double ibShadowedRotationInDegrees;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

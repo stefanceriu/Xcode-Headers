@@ -14,7 +14,7 @@
 }
 
 - (void).cxx_destruct;
-@property BOOL usePVRTCIfAvailable;
+@property BOOL preferCompressedTextures;
 @property BOOL interleaveGeometrySources;
 @property BOOL forceYUp;
 - (BOOL)writeToFile:(id)arg1 atomically:(BOOL)arg2;

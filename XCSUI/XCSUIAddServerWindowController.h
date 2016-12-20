@@ -13,16 +13,14 @@
 @interface XCSUIAddServerWindowController : DVTPagingSheetWindowController <IDEContinuousIntegrationNewServiceAccountController>
 {
     CDUnknownBlockType _completionBlock;
-    NSString *_connectionAddress;
     XCSService *_service;
 }
 
 @property(retain, nonatomic) XCSService *service; // @synthesize service=_service;
 - (void).cxx_destruct;
 - (void)didEndSheetWithReturnCode:(long long)arg1;
-- (void)beginSheetModalForWindow:(id)arg1 connectionAddress:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)beginSheetModalForWindow:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)windowDidLoad;
-- (id)initWithWindow:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

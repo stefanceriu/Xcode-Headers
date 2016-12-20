@@ -11,12 +11,14 @@
 __attribute__((visibility("hidden")))
 @interface _DTKPPendingRecord : NSObject
 {
+    BOOL _userCallstackExpected;
     BOOL _userCallstackSeen;
     DTKPRecord *_record;
 }
 
 @property(retain, nonatomic) DTKPRecord *record; // @synthesize record=_record;
 @property(nonatomic) BOOL userCallstackSeen; // @synthesize userCallstackSeen=_userCallstackSeen;
+@property(nonatomic) BOOL userCallstackExpected; // @synthesize userCallstackExpected=_userCallstackExpected;
 - (void).cxx_destruct;
 - (id)init;
 

@@ -39,12 +39,13 @@
     NSMutableArray *_samples;
     BOOL _stacksFixed;
     id _delegate;
-    double _timeSpentSamplingWithoutCFI;
-    double _timeSpentSamplingWithCFI;
+    double _timeSpentSampling;
     unsigned int _dispatchThreadSoftLimit;
     unsigned int _dispatchThreadSoftLimitCount;
     unsigned int _dispatchThreadHardLimit;
     unsigned int _dispatchThreadHardLimitCount;
+    NSMapTable *_threadPortToNameMap;
+    NSMapTable *_dispatchQueueSerialNumToNameMap;
 }
 
 + (id)sampleAllThreadsOfTask:(unsigned int)arg1 symbolicate:(BOOL)arg2;
@@ -61,6 +62,7 @@
 - (void)preloadSymbols;
 - (id)delegate;
 - (void)setDelegate:(id)arg1;
+- (id)threadDescriptionStringForBacktrace:(id)arg1 returnedAddress:(unsigned long long *)arg2;
 - (id)dispatchQueueNameForSerialNumber:(unsigned long long)arg1;
 - (id)dispatchQueueNameForSerialNumber:(unsigned long long)arg1 returnedConcurrentFlag:(char *)arg2 returnedThreadId:(unsigned long long *)arg3;
 - (id)threadNameForThread:(unsigned int)arg1;
@@ -71,8 +73,6 @@
 - (id)samples;
 - (int)pid;
 - (struct _CSTypeRef)symbolicator;
-- (BOOL)shouldOutputSignature;
-- (void)setShouldOutputSignature:(BOOL)arg1;
 - (void)setRecordThreadStates:(BOOL)arg1;
 - (unsigned int)sampleLimit;
 - (void)setSampleLimit:(unsigned int)arg1;
@@ -85,14 +85,14 @@
 - (BOOL)start;
 - (id)sampleThread:(unsigned int)arg1;
 - (id)sampleAllThreadsOnce;
+- (id)sampleAllThreadsOnceWithFramePointers:(BOOL)arg1;
 - (void)_runSamplingThread;
 - (void)_fixupStacks:(id)arg1;
-- (unsigned long long)recordSampleTo:(id)arg1 beginTime:(double)arg2 endTime:(double)arg3 thread:(unsigned int)arg4;
+- (unsigned long long)recordSampleTo:(id)arg1 beginTime:(double)arg2 endTime:(double)arg3 thread:(unsigned int)arg4 recordFramePointers:(BOOL)arg5;
 - (void)_checkDispatchThreadLimits;
-- (void)initializeSamplingContext:(BOOL)arg1;
+- (void)initializeSamplingContextWithOptions:(int)arg1;
 - (void)_makeTimeshare;
 - (void)_makeHighPriority;
-- (void)finalize;
 - (void)dealloc;
 - (id)initWithTask:(unsigned int)arg1 options:(unsigned long long)arg2;
 - (id)initWithPID:(int)arg1 options:(unsigned long long)arg2;

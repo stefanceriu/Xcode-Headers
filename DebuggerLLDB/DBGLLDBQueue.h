@@ -4,24 +4,24 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "DBGQueue.h"
+#import "IDEDebugQueue.h"
 
 __attribute__((visibility("hidden")))
-@interface DBGLLDBQueue : DBGQueue
+@interface DBGLLDBQueue : IDEDebugQueue
 {
-    struct SBQueue _lldbQueue;
+    id <DBGSBQueue> _lldbQueue;
     unsigned long long _numPendingBlocks;
     BOOL _derivedPendingBlocks;
 }
 
 + (BOOL)supportsInvalidationPrevention;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (unsigned long long)numberOfPendingBlocks;
 - (id)pendingBlocksThreads;
 - (id)lldbSession;
-- (id)initWithParentProcess:(id)arg1 lldbQueue:(struct SBQueue)arg2;
+- (id)lldbQueue;
+- (id)initWithParentProcess:(id)arg1 lldbQueue:(id)arg2;
 
 @end
 

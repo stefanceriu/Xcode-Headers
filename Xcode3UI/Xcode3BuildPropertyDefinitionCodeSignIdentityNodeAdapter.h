@@ -10,6 +10,8 @@
 {
 }
 
++ (void)performOneTimePreprocessing;
++ (BOOL)requiresPreprocessingBeforeAddingMenuItemsToPopUpCell;
 - (id)_buildPropertyEditor;
 - (void)addMenuItemsToPopUpCell:(id)arg1;
 

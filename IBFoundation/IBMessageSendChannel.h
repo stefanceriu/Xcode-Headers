@@ -8,7 +8,7 @@
 
 @interface IBMessageSendChannel : IBMessageChannel
 {
-    int _concurrentWriters;
+    // Error parsing type: Ai, name: _concurrentWriters
 }
 
 - (BOOL)sendMessage:(SEL)arg1 returnValue:(id *)arg2 context:(id)arg3 error:(id *)arg4 arguments:(int)arg5;

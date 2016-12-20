@@ -25,7 +25,7 @@
 #import "IDENavigableItemArchivableRepresentationSupport.h"
 #import "NSKeyedUnarchiverDelegate.h"
 
-@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, IBAbstractClassProvider, IBClassDescriber, IBDocumentAutolayoutManager, IBDocumentIssueGenerator, IBDocumentLiveViewsDispatcher, IBDocumentPlatformAdapter, IBFileBuildSettingsSnapshot, IBIdiom, IBIndexClassDescriber, IBLiveViewsManager, IBMemberConfiguration, IBMutableIdentityDictionary, IBObjectContainer, IBPlatform, IBPlatformToolFailureHandler, IBResourceManager, IBSceneUpdateManager, IBSimulatedMetricsContainer, IBSimulatedMetricsInferrer, IBSourceCodeClassProvider, IBSystemClassProvider, IBTargetRuntime, IBTemporaryPasteboardClassProvider, IBUserDefinedActionClassProvider, IDEContainer, IDEMediaResourceVariantContext, IDEWorkspaceDocument, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSObject, NSString, NSURL;
+@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, IBAbstractClassProvider, IBClassDescriber, IBDeviceConfiguration, IBDocumentAutolayoutManager, IBDocumentIssueGenerator, IBDocumentLiveViewsDispatcher, IBDocumentPlatformAdapter, IBFileBuildSettingsSnapshot, IBIdiom, IBIndexClassDescriber, IBLiveViewsManager, IBMemberConfiguration, IBMutableIdentityDictionary, IBObjectContainer, IBPlatform, IBPlatformToolFailureHandler, IBResourceManager, IBSceneUpdateManager, IBSimulatedMetricsContainer, IBSimulatedMetricsInferrer, IBSourceCodeClassProvider, IBSystemClassProvider, IBTargetRuntime, IBTemporaryPasteboardClassProvider, IBUserDefinedActionClassProvider, IDEContainer, IDEMediaResourceVariantContext, IDEWorkspaceDocument, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSObject, NSSet, NSString, NSURL;
 
 @interface IBDocument : IDEEditorDocument <IBXMLCoderDelegate, IBXMLDecoderDelegate, IDEDocumentStructureProviding, IDENavigableItemArchivableRepresentationSupport, IDEMediaLibraryDelegate, IBAttributeSearchLocationIteratorDelegate, IBSceneUpdateManagerDelegate, IBArchivableDocument, IBUnarchivableDocument, IBObjectContainerDelegate, IBObjectContainerArchivingDelegate, IBAutolayoutInfoProvider, IBAutolayoutFrameDeciderDelegate, DVTTextFindable, DVTTextReplacable, NSKeyedUnarchiverDelegate, IBLiveViewsBundleObserverEnvironment, IBDiagnosticsHandlerConfigurator>
 {
@@ -41,6 +41,7 @@
     NSMutableDictionary *_documentDependencyChangeObservers;
     NSNumber *_cachedDevelopmentVersion;
     NSNumber *_cachedSystemVersion;
+    BOOL _wantsUpgradeToXcode8;
     BOOL _unarchiving;
     BOOL _unarchivingForPasteBoard;
     NSMutableArray *_objectsWithRepairedMemberIDs;
@@ -55,12 +56,16 @@
     IBMutableIdentityDictionary *_memberChangeObservers;
     NSMutableDictionary *_uniquedMemberChangeObservers;
     long long _nextMemberChangeObserverKey;
+    BOOL _finishedPromptingForUpdatesAndValidations;
+    BOOL _finishedShowingLoadingSpinner;
+    BOOL _completedInitialUndoManagerSetup;
+    NSMutableArray *_undoLifecycleBlocks;
+    NSMutableSet *_parentsWithChildrenNeedingMemberWrapperInstalledStateValidation;
     NSMutableSet *_editorViewControllers;
     BOOL _haveLoadedInAtLeastOneEditorViewController;
     IBMutableIdentityDictionary *_workspaceDocumentsByEditorViewController;
     DVTDelayedInvocation *_optimisticallyDropRecomputableEditorStateInvocation;
     IBSimulatedMetricsContainer *_defaultSimulatedMetricsContainer;
-    IBMutableIdentityDictionary *_asynchronousLoadingProgressTokensByEditorViewController;
     IBPlatformToolFailureHandler *_displayedPlatformToolFailureHandler;
     NSMutableSet *_dirtyLabelledObjects;
     DVTDelayedInvocation *_refreshDependentObjectLabellingInvocation;
@@ -83,9 +88,9 @@
     IBMutableIdentityDictionary *_overriddenTargetConfigurationByMemberForAllAttributes;
     IBMutableIdentityDictionary *_overriddenTargetConfigurationByMemberThenAttribute;
     IBMutableIdentityDictionary *_propertiesByMemberWithBlockedChangeForwarding;
+    IBDeviceConfiguration *_initialConfigurationFromUnarchiving;
     long long _disableXMLFormattingCount;
     NSDictionary *_customFonts;
-    BOOL _needsToPromptUserForUpgradeToXcode7;
     BOOL _previouslyAttachedToEditor;
     BOOL _usesConfigurations;
     BOOL _wasUnarchivedWithDocumentUnarchiver;
@@ -94,7 +99,7 @@
     BOOL _topLevelViewsShouldMaintainOriginalFrameWhenMovedToTheTopLevel;
     BOOL _launchScreen;
     BOOL _shouldDisplayLockedMemberAlertForNextAutomaticUndo;
-    BOOL _shouldDiscardUndoActionsAndClearChangeCount;
+    BOOL _generatesPrototypingConstraints;
     NSString *_defaultModuleName;
     IBClassDescriber *_classDescriber;
     IBSystemClassProvider *_systemClassProvider;
@@ -102,7 +107,9 @@
     IBUserDefinedActionClassProvider *_userDefinedActionClassProvider;
     IBTargetRuntime *_targetRuntime;
     IBPlatform *_platform;
-    IBMemberConfiguration *_editedMemberConfiguration;
+    NSSet *_configurationVariablesForBranching;
+    IBMemberConfiguration *_baseMemberConfigurationForViewing;
+    IBDeviceConfiguration *_deviceConfiguration;
     IBSimulatedMetricsInferrer *_metricsInferrer;
     IDEWorkspaceDocument *_explicitWorkspaceDocument;
     IBResourceManager *_resourceManager;
@@ -115,10 +122,6 @@
     NSString *_lastSavedInterfaceBuilderVersion;
     NSDictionary *_lastSavedPluginVersionsForDependentPlugins;
     IBDocumentLiveViewsDispatcher *_liveViewsDispatcher;
-    IBObjectContainer *_objectContainer;
-    IBDocumentPlatformAdapter *_platformAdapter;
-    IBDocumentAutolayoutManager *_autolayoutManager;
-    IBSceneUpdateManager *_sceneUpdateManager;
     id _previousXmlDecoderHints;
     NSString *_classNameThatPreventedDecode;
     DVTPerformanceMetric *_documentLoadingMetric;
@@ -126,6 +129,10 @@
     NSObject *_memberWarnedForLockedPropertyChange;
     IBSourceCodeClassProvider *_sourceCodeClassProvider;
     IBTemporaryPasteboardClassProvider *_temporaryPasteboardClassProvider;
+    IBObjectContainer *_objectContainer;
+    IBDocumentPlatformAdapter *_platformAdapter;
+    IBDocumentAutolayoutManager *_autolayoutManager;
+    IBSceneUpdateManager *_sceneUpdateManager;
     struct CGSize _canvasLayoutPositioningScale;
 }
 
@@ -175,8 +182,12 @@
 + (id)documentsWithFileURLs;
 + (id)documents;
 + (Class)metricsInferrerClass;
+@property(nonatomic) BOOL generatesPrototypingConstraints; // @synthesize generatesPrototypingConstraints=_generatesPrototypingConstraints;
+@property(readonly, nonatomic) IBSceneUpdateManager *sceneUpdateManager; // @synthesize sceneUpdateManager=_sceneUpdateManager;
+@property(readonly, nonatomic) IBDocumentAutolayoutManager *autolayoutManager; // @synthesize autolayoutManager=_autolayoutManager;
+@property(readonly, nonatomic) IBDocumentPlatformAdapter *platformAdapter; // @synthesize platformAdapter=_platformAdapter;
+@property(retain, nonatomic) IBObjectContainer *objectContainer; // @synthesize objectContainer=_objectContainer;
 @property(retain, nonatomic) IBTemporaryPasteboardClassProvider *temporaryPasteboardClassProvider; // @synthesize temporaryPasteboardClassProvider=_temporaryPasteboardClassProvider;
-@property BOOL shouldDiscardUndoActionsAndClearChangeCount; // @synthesize shouldDiscardUndoActionsAndClearChangeCount=_shouldDiscardUndoActionsAndClearChangeCount;
 @property(retain, nonatomic) IBSourceCodeClassProvider *sourceCodeClassProvider; // @synthesize sourceCodeClassProvider=_sourceCodeClassProvider;
 @property(retain) NSObject *memberWarnedForLockedPropertyChange; // @synthesize memberWarnedForLockedPropertyChange=_memberWarnedForLockedPropertyChange;
 @property BOOL shouldDisplayLockedMemberAlertForNextAutomaticUndo; // @synthesize shouldDisplayLockedMemberAlertForNextAutomaticUndo=_shouldDisplayLockedMemberAlertForNextAutomaticUndo;
@@ -185,10 +196,6 @@
 @property(copy, nonatomic) NSDictionary *documentMetadata; // @synthesize documentMetadata=_documentMetadata;
 @property(copy) NSString *classNameThatPreventedDecode; // @synthesize classNameThatPreventedDecode=_classNameThatPreventedDecode;
 @property(retain) id previousXmlDecoderHints; // @synthesize previousXmlDecoderHints=_previousXmlDecoderHints;
-@property(readonly, nonatomic) IBSceneUpdateManager *sceneUpdateManager; // @synthesize sceneUpdateManager=_sceneUpdateManager;
-@property(readonly, nonatomic) IBDocumentAutolayoutManager *autolayoutManager; // @synthesize autolayoutManager=_autolayoutManager;
-@property(readonly, nonatomic) IBDocumentPlatformAdapter *platformAdapter; // @synthesize platformAdapter=_platformAdapter;
-@property(retain, nonatomic) IBObjectContainer *objectContainer; // @synthesize objectContainer=_objectContainer;
 @property(nonatomic) BOOL launchScreen; // @synthesize launchScreen=_launchScreen;
 @property(readonly, nonatomic) IBDocumentLiveViewsDispatcher *liveViewsDispatcher; // @synthesize liveViewsDispatcher=_liveViewsDispatcher;
 @property(copy) NSDictionary *lastSavedPluginVersionsForDependentPlugins; // @synthesize lastSavedPluginVersionsForDependentPlugins=_lastSavedPluginVersionsForDependentPlugins;
@@ -209,7 +216,9 @@
 @property(readonly, nonatomic) BOOL undoableEditingActionNameOpenedUndoGroup; // @synthesize undoableEditingActionNameOpenedUndoGroup=_undoableEditingActionNameOpenedUndoGroup;
 @property(readonly, getter=isTransientPasteboardDocument) BOOL transientPasteboardDocument; // @synthesize transientPasteboardDocument=_transientPasteboardDocument;
 @property(readonly) BOOL wasUnarchivedWithDocumentUnarchiver; // @synthesize wasUnarchivedWithDocumentUnarchiver=_wasUnarchivedWithDocumentUnarchiver;
-@property(retain, nonatomic) IBMemberConfiguration *editedMemberConfiguration; // @synthesize editedMemberConfiguration=_editedMemberConfiguration;
+@property(retain, nonatomic) IBDeviceConfiguration *deviceConfiguration; // @synthesize deviceConfiguration=_deviceConfiguration;
+@property(retain, nonatomic) IBMemberConfiguration *baseMemberConfigurationForViewing; // @synthesize baseMemberConfigurationForViewing=_baseMemberConfigurationForViewing;
+@property(retain, nonatomic) NSSet *configurationVariablesForBranching; // @synthesize configurationVariablesForBranching=_configurationVariablesForBranching;
 @property(nonatomic) BOOL usesConfigurations; // @synthesize usesConfigurations=_usesConfigurations;
 @property BOOL previouslyAttachedToEditor; // @synthesize previouslyAttachedToEditor=_previouslyAttachedToEditor;
 @property(readonly, nonatomic) IBPlatform *platform; // @synthesize platform=_platform;
@@ -229,20 +238,26 @@
 - (BOOL)canDisplayPlatformToolError;
 - (BOOL)preflightUnarchivingDocumentHandlingOrReturningError:(id *)arg1;
 - (void)configureDiagnosticsHandler:(id)arg1;
+- (void)populateAdditionalTargetOSVersionsForCompilation:(id)arg1;
 - (void)delayAutolayoutStatusUpdatingDuring:(CDUnknownBlockType)arg1;
-- (void)performIncrementalUpdatesAndDelayAutolayoutStatusForSceneContainingObject:(id)arg1 during:(CDUnknownBlockType)arg2;
+- (void)stopDelayingSceneUpdatesAndUpdatePendingScenes:(BOOL)arg1;
+- (void)startDelayingSceneUpdates;
+- (void)performIncrementalUpdatesAndDelayAutolayoutStatusForSceneContainingObject:(id)arg1 allowIncrementalSceneUpdatesForSceneRoots:(BOOL)arg2 during:(CDUnknownBlockType)arg3;
 - (void)ignoreSceneInvalidationDuring:(CDUnknownBlockType)arg1;
+- (void)invalidateAllScenesForReason:(CDUnknownBlockType)arg1;
 - (void)invalidateSceneContainingObject:(id)arg1 forReason:(CDUnknownBlockType)arg2;
 - (void)sceneUpdateManager:(id)arg1 didUpdateScene:(id)arg2 result:(id)arg3 usingLiveViews:(BOOL)arg4;
 - (void)sceneUpdateManager:(id)arg1 didFailToUpdateSceneWithRoot:(id)arg2 diagnosticsHandler:(id)arg3;
 - (void)sceneUpdateManager:(id)arg1 configureRequest:(id)arg2 forObject:(id)arg3 ofSceneWithRoot:(id)arg4;
 - (id)sceneUpdateManager:(id)arg1 incrementalSceneUpdatesForUpdatingSceneWithRoot:(id)arg2;
+- (void)configureAutolayoutStatusUpdateForRequest:(id)arg1;
 - (id)sceneUpdateManager:(id)arg1 fullSceneUpdatesForUpdatingSceneWithRoot:(id)arg2 objectPackage:(id)arg3;
 - (id)sceneUpdateManager:(id)arg1 marshallableObjectPackageForRootObject:(id)arg2;
 - (void)sceneUpdateManager:(id)arg1 invalidateLiveViewsStatusForUpdatingScene:(id)arg2 withObjectPackage:(id)arg3;
 - (id)sceneUpdateManager:(id)arg1 liveViewsBundlesForUpdatingScene:(id)arg2 withObjectPackage:(id)arg3;
 - (BOOL)sceneUpdateManager:(id)arg1 canUpdateSceneWithRoot:(id)arg2;
 - (id)sceneUpdateManager:(id)arg1 rootOfSceneContainingObject:(id)arg2;
+- (id)_rootOfSceneContainingObject:(id)arg1;
 - (void)unarchiveCustomFontsWithArchiver:(id)arg1;
 - (void)archiveCustomFontsWithArchiver:(id)arg1;
 - (id)customFontFilenamesPlistKey;
@@ -278,14 +293,16 @@
 - (id)userDefinedRuntimeAttributesForObject:(id)arg1;
 - (void)nonUndoableUpdateUserDefinedRuntimeAttributesOfObject:(id)arg1 byReplacingValueAtIndex:(long long)arg2 withValue:(id)arg3;
 - (void)setUserDefinedRuntimeAttributes:(id)arg1 forObject:(id)arg2;
+- (void)addUserDefinedRuntimeAttributes:(id)arg1 forObject:(id)arg2;
 - (id)userDefinedRuntimeAttributesPlaceholderForObject:(id)arg1;
 - (BOOL)supportsUserDefinedRuntimeAttributesForObject:(id)arg1;
 - (Class)userDefinedRuntimeAttributesPlaceholderClass;
 - (id)effectiveRetargetedConfigurationForEditsToAttribute:(id)arg1 ofMember:(id)arg2;
+- (id)effectiveRetargetedConfigurationForRelationship:(id)arg1 object:(id)arg2 ofMember:(id)arg3;
 - (void)targetConfiguration:(id)arg1 forAllEditsToAttributesAtAndBelowMember:(id)arg2 during:(CDUnknownBlockType)arg3;
 - (id)explicitRetargetedConfigurationForAllEditsToMember:(id)arg1;
-- (void)targetConfiguration:(id)arg1 forEditsToAttribute:(id)arg2 ofMember:(id)arg3 during:(CDUnknownBlockType)arg4;
 - (id)explicitRetargetedConfigurationForEditsToAttribute:(id)arg1 ofMember:(id)arg2;
+- (id)_configurationByApplyingBranchingVariablesToConfiguration:(id)arg1 definingConfiguration:(id)arg2;
 - (void)allowForwardingPropertiesFromObjectsToConfigurationStoragesDuringBlock:(CDUnknownBlockType)arg1;
 - (void)blockForwardingChangesToProperty:(id)arg1 ofMember:(id)arg2 during:(CDUnknownBlockType)arg3;
 - (BOOL)isBlockingChangeForwardingForProperty:(id)arg1 ofMember:(id)arg2;
@@ -299,17 +316,23 @@
 - (id)transformForCanvasAnchorsWhenEnablingConfigurations;
 - (void)transformCavnvasAnchors:(id)arg1;
 - (void)updateConnectionsAfterEnablingOrDisablingConfigurations;
-- (void)switchToEditedMemberConfiguration:(id)arg1;
-- (void)switchToEditedMemberConfigurationWithoutFrameDeciding:(id)arg1;
+- (void)_dispatchToDocumentObjectsDidSwitchToDeviceConfiguration:(id)arg1;
+- (void)switchToDeviceConfigurationWithoutFrameDeciding:(id)arg1;
+- (void)switchToDeviceConfiguration:(id)arg1;
+- (id)idiomDefaultDeviceConfiguration;
 - (void)applyEditedConfigurationToObjects:(id)arg1;
-- (void)_doApplyConfiguration:(id)arg1 onObjects:(id)arg2;
+- (id)memberConfigurationForViewingObject:(id)arg1;
+- (void)scheduleMemberWrapperInstalledChildrenStateInvalidationForChildrenObjects:(id)arg1;
 - (void)noteConfigurationPropertyForwardingDirection:(long long)arg1 during:(CDUnknownBlockType)arg2;
 - (void)applyEffectiveValueFromConfigurationPropertyStorage:(id)arg1 forProperty:(id)arg2;
 - (void)configurationPropertyStorage:(id)arg1 didChangeCandidatesForToManyRelationship:(id)arg2 fromValue:(id)arg3;
 - (void)configurationPropertyStorage:(id)arg1 didChangeValueForProperty:(id)arg2 fromValue:(id)arg3 inConfiguration:(id)arg4;
+- (void)invalidateChildMemberWrapperInstalledStateIfNeededAfterObservingChangeToObject:(id)arg1 forProperty:(id)arg2;
 - (void)createConfigurationPropertyStoragesForAllObjects;
 - (void)createConfigurationPropertyStorageIfNeededForObject:(id)arg1;
 - (id)configurationPropertyStorageForObject:(id)arg1;
+- (id)defaultDeviceSubtype;
+- (id)deviceSubtypes;
 - (double)priorityForPlaceholderAmbiguousSubviewVerticalConstraintsForView:(id)arg1;
 - (double)priorityForPlaceholderAmbiguousSubviewHorizontalConstraintsForView:(id)arg1;
 - (double)priorityForPlaceholderUninitializedSubviewVerticalConstraintsForView:(id)arg1;
@@ -347,6 +370,7 @@
 - (id)misplacedItems;
 - (BOOL)isItemAmbiguous:(id)arg1;
 - (BOOL)isItemMisplaced:(id)arg1;
+- (void)conditionallyPreserveCleanAutolayoutStatusDuring:(CDUnknownBlockType)arg1;
 - (void)preserveCleanAutolayoutStatusDuring:(CDUnknownBlockType)arg1;
 - (id)registerAutolayoutStatusChangeObserver:(CDUnknownBlockType)arg1;
 - (id)mostRecentlyComputedAutolayoutStatusForArbitrationUnitsContainingAndBelowObject:(id)arg1;
@@ -357,17 +381,15 @@
 - (void)invalidateAutolayoutStatusForAllObjectHierarchiesForReasonWithBlock:(CDUnknownBlockType)arg1;
 - (void)invalidateAutolayoutStatusForArbitrationUnitContainingObject:(id)arg1 reasonBlock:(CDUnknownBlockType)arg2;
 @property(nonatomic, getter=isAutolayoutStatusUpdatingEnabled) BOOL autolayoutStatusUpdatingEnabled;
-- (void)clearAndAddAllSuggestedConstraints;
-- (void)clearAndAddSuggestedConstraintsForItems:(id)arg1;
-- (void)addAllMissingConstraints;
+- (void)clearAndAddAllSuggestedConstraintsFromSource:(long long)arg1;
+- (void)clearAndAddSuggestedConstraintsForItems:(id)arg1 fromSource:(long long)arg2;
+- (void)addMissingConstraintsForAmbiguousAndMisplacedItems;
 - (void)addMissingConstraintsForItems:(id)arg1;
-- (void)clearConstraintsForItems:(id)arg1 inAllConfigurations:(BOOL)arg2;
+- (void)clearConstraintsForItems:(id)arg1 fromSource:(long long)arg2;
 - (void)updateAllConstraintConstants;
 - (void)updateConstraintConstantsForItems:(id)arg1;
 - (void)updateAllFramesToMatchConstraints;
 - (void)updateFramesToMatchConstraintsForItems:(id)arg1;
-- (void)decideAndSetFramesOfViewHierarchyContainingObject:(id)arg1 withCurrentAutolayoutStatusAfterPerformingBlock:(CDUnknownBlockType)arg2;
-- (void)decideAndSetFramesOfAllViewHierarchiesWithCurrentAutolayoutStatusAfterPerformingBlock:(CDUnknownBlockType)arg1;
 - (id)sparseAutolayoutInfoForArbitrationUnit:(id)arg1 objectTransformationBlock:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic) Class autolayoutFrameDecisionDriverClass;
 @property(readonly, nonatomic) Class autolayoutEngineClass;
@@ -375,7 +397,10 @@
 @property(readonly, nonatomic) Class symbolicLayoutConstantClass;
 @property(readonly, nonatomic) Class layoutConstantClass;
 - (void)attemptToUpdateToLatestFormatIfNeededFromInitiatingWindow:(id)arg1;
-- (void)setNeedsToPromptUserForUpgradeToXcode7;
+- (void)noteFinishedShowingLoadingSpinner;
+- (void)noteFinishedPromptingForUpgradesAndValidations;
+- (void)beginUsingUndoManagerIfAppropriate;
+- (BOOL)needsToPromptUserForUpgradeToXcode8;
 - (void)upgradeToDevelopmentTargetIfNeeded:(id)arg1;
 - (void)disableAutolayout;
 - (void)enableAutolayout;
@@ -441,8 +466,6 @@
 - (id)effectiveVersionForDocumentDependency:(id)arg1;
 - (id)explicitVersionForDocumentDependency:(id)arg1;
 - (long long)allSystemsTarget;
-- (void)scheduleDiscardingUndoActionsAndClearingChangeCount;
-- (void)suppressAndResetUndoManagerDuring:(CDUnknownBlockType)arg1;
 - (void)hintSelectionForUndo:(id)arg1;
 - (void)undoManagerWasReset:(id)arg1;
 - (void)undoManagerWillCloseUndoGroup:(id)arg1;
@@ -453,6 +476,8 @@
 - (void)didFinishUndoing;
 - (void)didStartRedoing;
 - (void)didFinishRedoing;
+- (void)finishEditingLifeCycle;
+- (void)processesEditingLifeCycleBlocks;
 - (void)finishPushingSelection;
 - (void)beginPushingSelection;
 - (void)debugContinuousDocumentSaverFiveSecondsDelay:(id)arg1;
@@ -481,7 +506,6 @@
 - (void)suggestDerivedNameForCurrentEditingAction:(id)arg1;
 - (void)setNameForCurrentEditingAction:(id)arg1 onObjects:(id)arg2;
 - (void)suggestDerivedNameForCurrentEditingAction:(id)arg1 onObjects:(id)arg2;
-- (void)openImplicitUndoGroup;
 - (void)ensureUndoNamingSetIsOpen;
 - (void)closeUndoNamingSet;
 - (id)undoNameForAction:(id)arg1 onObjects:(id)arg2;
@@ -506,7 +530,6 @@
 - (id)decodePasteboardContent:(id)arg1 ofType:(id)arg2 forInsertionInto:(id)arg3 usingDocumentClass:(Class)arg4 andDocumentType:(id)arg5 context:(id)arg6;
 - (id)insertOrMoveChildrenFromPasteboard:(id)arg1 ofType:(id)arg2 asChildrenOfObject:(id)arg3 atIndex:(long long)arg4 context:(id)arg5 finishExtractingObjectsBlock:(CDUnknownBlockType)arg6;
 - (id)insertOrMoveChildrenFromPasteboard:(id)arg1 ofType:(id)arg2 asChildrenOfObject:(id)arg3 atIndex:(long long)arg4 context:(id)arg5;
-- (long long)insertionIndexForMovingChildrenFromPasteboard:(id)arg1 ofType:(id)arg2 toParent:(id)arg3 desiredIndex:(long long)arg4 context:(id)arg5;
 - (id)insertObjectsFromPasteboard:(id)arg1 ofType:(id)arg2 asChildrenOfObject:(id)arg3 atIndex:(long long)arg4 context:(id)arg5 finishExtractingObjectsBlock:(CDUnknownBlockType)arg6;
 - (BOOL)allowUserInitiatedAdditionOfObjectsFromPasteboard:(id)arg1;
 - (void)performBlockNotingUnarchivingFromPasteBoard:(CDUnknownBlockType)arg1;
@@ -543,16 +566,16 @@
 - (void)setPropertyAccessControl:(long long)arg1 forMember:(id)arg2;
 - (void)clearEffectivePropertyAccessControlCache;
 - (id)constraintChangesFromReceiverToTargetDocument:(id)arg1;
-- (void)internalMenuItemLocalizableStringActionsUppercaseAllStrings:(id)arg1;
-- (void)internalMenuItemLocalizableStringActionsRepeatAllStrings:(id)arg1;
 - (void)transformAllLocalizableStringsInDocumentUsingBlock:(CDUnknownBlockType)arg1;
 - (void)convertToDocumentAtFilePath:(id)arg1 forFileDataType:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (BOOL)applyStringsFileAtPath:(id)arg1 error:(id *)arg2;
-- (BOOL)applyStringsFileAtPath:(id)arg1 context:(id)arg2 error:(id *)arg3;
-- (BOOL)applyStrings:(id)arg1 withFileNameHint:(id)arg2 context:(id)arg3 error:(id *)arg4;
+- (BOOL)applyStringsFileAtPath:(id)arg1 context:(id)arg2 frameDecide:(BOOL)arg3 error:(id *)arg4;
+- (BOOL)applyStrings:(id)arg1 withFileNameHint:(id)arg2 context:(id)arg3 frameDecide:(BOOL)arg4 error:(id *)arg5;
 @property(readonly, nonatomic) long long userInterfaceLayoutDirection;
 - (BOOL)supportsInternationalizationReturningError:(id *)arg1;
-- (void)noteMember:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
+- (void)scheduleEndEditingBlockWithBehaviorInAbscenceOfUndoManager:(long long)arg1 block:(CDUnknownBlockType)arg2;
+- (void)disableGroupingUndoActionsByEventDuring:(CDUnknownBlockType)arg1;
+- (void)groupUndoActionsDuring:(CDUnknownBlockType)arg1;
+- (void)noteChange:(id)arg1;
 - (void)_noteConfigurationPropertyMember:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
 - (void)invalidateWarningsAfterObject:(id)arg1 changedProperty:(id)arg2 fromValue:(id)arg3;
 - (void)notifyMemberWrapperForObject:(id)arg1 ofChangeToRelationship:(id)arg2;
@@ -608,7 +631,7 @@
 - (id)viewsToEndPointProviders;
 - (id)attributePlaceholderForObject:(id)arg1 withName:(id)arg2;
 - (void)removeAttributePlaceholder:(id)arg1;
-- (void)addAttributePlaceholder:(id)arg1;
+- (void)addOrReplaceAttributePlaceholder:(id)arg1;
 - (void)moveObject:(id)arg1 inGroup:(id)arg2 toIndex:(long long)arg3;
 - (void)insertObject:(id)arg1 intoGroup:(id)arg2 atIndex:(long long)arg3;
 - (void)addObject:(id)arg1 toGroup:(id)arg2;
@@ -637,6 +660,7 @@
 - (void)addObject:(id)arg1 toParent:(id)arg2;
 - (void)addObject:(id)arg1;
 - (void)addObject:(id)arg1 toParent:(id)arg2 withExplicitLabel:(id)arg3 andOID:(id)arg4;
+- (long long)compareObjectInPreorderTraversal:(id)arg1 toObject:(id)arg2;
 - (id)orderedChildrenOfObject:(id)arg1;
 - (id)orderedChildrenOfObjectFromBackToFront:(id)arg1;
 - (id)orderedChildrenOfObject:(id)arg1 orderedKeyPathsProvider:(CDUnknownBlockType)arg2;
@@ -645,8 +669,8 @@
 - (id)mostSeniorObjectsOfObjects:(id)arg1;
 - (id)topLevelObjectsForObjects:(id)arg1;
 - (id)topLevelObjectForObject:(id)arg1;
-- (id)descendantsOfObjects:(id)arg1;
-- (id)descendantsOfObject:(id)arg1;
+- (id)descendantsOfObjects:(id)arg1 includingInitialObjects:(BOOL)arg2;
+- (id)descendantsOfObject:(id)arg1 includingInitialObject:(BOOL)arg2;
 - (id)rootObject;
 - (id)members;
 - (id)objects;
@@ -689,6 +713,7 @@
 - (BOOL)containsMember:(id)arg1;
 - (BOOL)containsObject:(id)arg1;
 - (id)objectRecordForObject:(id)arg1;
+- (void)prepareToBackwardsDeployToTargetRuntimeOSVersion;
 - (BOOL)compileAndWriteToPath:(id)arg1 withOptions:(id)arg2 error:(id *)arg3;
 - (BOOL)finishCompilingWithOutputPath:(id)arg1 options:(id)arg2 error:(id *)arg3;
 - (id)hybridPackageWithOptions:(id)arg1 error:(id *)arg2;
@@ -761,14 +786,14 @@
 - (void)recsindDesignTimeTokenForObject:(id)arg1;
 - (void)captureDesignTimeTokenForObject:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
-- (void)switchToEmptyConfiguration:(id)arg1;
+- (void)toggleHardwarePreview:(id)arg1;
 - (id)printOperationWithSettings:(id)arg1 error:(id *)arg2;
 - (id)variantForResolvingMediaResources;
 - (id)variantContextForMediaLibrary;
 - (void)setVariantContextForMediaLibrary:(id)arg1;
+- (void)noteMediaLibraryVariantContextChanged;
 - (void)setResourceProvidingContainer:(id)arg1;
 - (Class)defaultCanvasFrameClassForObject:(id)arg1;
-- (struct CGSize)canvasViewFramePaddingSizeForOverlayScrollers;
 - (void)ideWillAccessChildWrappersOfMemberWrapper:(id)arg1;
 - (void)childWrappersOfMemberWrapperDidChange:(id)arg1;
 - (void)immediatelyFlushPendingChildWrapperUpdatesForWrapper:(id)arg1;
@@ -794,14 +819,12 @@
 - (Class)externalReferencePlaceholderClass;
 - (id)workspaceDocuments;
 - (void)delayedOptimisticallyDropRecomputableEditorState:(id)arg1;
+- (void)asynchronouslyPreflightShowingDocumentUIForScaleFactor:(double)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)didLoadInEditorViewController:(id)arg1;
-- (void)didStopShowingLoadingUIForEditorViewController:(id)arg1;
-- (void)didStartShowingLoadingUIWithScaleFactor:(id)arg1 forEditorViewController:(id)arg2;
 - (BOOL)shouldLoadProgressively;
 - (void)editorViewControllerDidInstallView:(id)arg1;
 - (void)unregisterEditorViewController:(id)arg1;
 - (void)registerEditorViewController:(id)arg1;
-- (void)_clearAsynchronousLoadingProgressTokenForEditorViewControllerIfNeeded:(id)arg1;
 - (id)editorViewControllers;
 - (void)setDocumentMetadata:(id)arg1 forKey:(id)arg2;
 - (id)documentMetadataForKey:(id)arg1;
@@ -863,6 +886,9 @@
 - (void)archiveDocumentResourcesWithDocumentArchiver:(id)arg1;
 - (void)unarchiveDocumentDependenciesWithDocumentUnarchiver:(id)arg1;
 - (void)archiveDocumentDependenciesWithDocumentArchiver:(id)arg1;
+- (void)unarchiveDocumentDeviceConfigurationWithDocumentUnarchiver:(id)arg1;
+- (void)archiveDocumentDeviceConfigurationWithDocumentArchiver:(id)arg1;
+@property(readonly, nonatomic) IBDeviceConfiguration *effectiveInitialConfigurationForDeviceBar;
 - (void)archiveDocumentCapabilitiesWithDocumentArchiver:(id)arg1;
 - (void)populateRequiredDocumentCapabilities:(id)arg1;
 - (id)unarchiveMetadataWithUnarchiver:(id)arg1;

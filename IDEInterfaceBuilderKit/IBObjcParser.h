@@ -20,11 +20,10 @@
 + (id)primaryParsableFileTypeIdentifiers;
 + (id)supportedFileExtensions;
 - (void).cxx_destruct;
-- (id)parseData:(id)arg1 fromFile:(id)arg2 withContext:(id)arg3 errors:(id *)arg4;
+- (id)parseData:(id)arg1 fromFile:(id)arg2 withToolchainIdentifiers:(id)arg3 errors:(id *)arg4;
 - (BOOL)parseDesignableTokenUsingState:(CDStruct_67f4b74a *)arg1;
 - (void)resetParseState;
 - (BOOL)parseTopLevelBlockUsingState:(CDStruct_67f4b74a *)arg1 precededByIsDesignableToken:(BOOL)arg2;
-- (BOOL)addMethodsUsingState:(CDStruct_67f4b74a *)arg1 intoActions:(id)arg2 andOutlets:(id)arg3;
 - (BOOL)addMethodsUsingState:(CDStruct_67f4b74a *)arg1 intoActions:(id)arg2 outlets:(id)arg3 andToManyOutlets:(id)arg4 inspectables:(id)arg5;
 
 @end

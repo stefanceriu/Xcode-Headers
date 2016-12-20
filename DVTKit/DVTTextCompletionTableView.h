@@ -10,10 +10,7 @@
 {
 }
 
-- (void)highlightSelectionInClipRect:(struct CGRect)arg1;
-- (void)drawRect:(struct CGRect)arg1;
-- (void)viewDidMoveToWindow;
-- (id)window;
+- (id)accessibilityChildren;
 
 @end
 

@@ -6,9 +6,10 @@
 
 #import "NSObject.h"
 
-@class NSArray, SKEContentsPickerPopUpButton;
+@class NSArray, NSImage, NSString, SKEContentsPickerPopUpButton;
 
 @protocol SKEContentsPickerPopUpButtonDataSource <NSObject>
+- (NSImage *)imageForContentsPickerImageName:(NSString *)arg1;
 - (NSArray *)suggestedImagesForContentsPicker:(SKEContentsPickerPopUpButton *)arg1;
 @end
 

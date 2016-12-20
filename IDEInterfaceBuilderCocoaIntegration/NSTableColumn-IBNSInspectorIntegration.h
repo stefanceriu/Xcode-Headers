@@ -67,5 +67,11 @@
 - (void)setIbInspectedSortDescriptorSelector:(id)arg1;
 - (id)ibInspectedSortDescriptorKey;
 - (void)setIbInspectedSortDescriptorKey:(id)arg1;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalAdditionalLocalizableAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 @end
 

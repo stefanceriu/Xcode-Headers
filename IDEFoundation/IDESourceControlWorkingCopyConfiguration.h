@@ -28,14 +28,11 @@
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(retain) IDESourceControlRepository *repository; // @synthesize repository=_repository;
 - (void).cxx_destruct;
-- (id)removeBranchWithName:(id)arg1 message:(id)arg2 force:(BOOL)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)branchesForRemote:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (id)branchesWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)_branchesWithToken:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (id)defaultBranchStartingPoint;
 - (void)setBranches:(id)arg1;
 @property(readonly) NSMutableArray *branches;
-- (id)automaticallyConfigureSVNLocationsForOrigin:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (void)_automaticallyConfigureSVNLocationsForOrigin:(id)arg1 withToken:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)_searchRelativeLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 @property(copy) NSString *relativeTagsLocation;
@@ -46,7 +43,6 @@
 - (id)trunkLocation;
 - (id)branchesLocation;
 - (id)_createBranchingURLWithRelativePath:(id)arg1;
-- (id)removeRemoteWithName:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)remotesWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)description;
 @property(readonly) BOOL needsConfiguring;

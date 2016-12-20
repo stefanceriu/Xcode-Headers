@@ -6,16 +6,23 @@
 
 #import "NSViewController.h"
 
-@class NSString, XCSTrigger;
+@class NSButton, NSString, XCSTrigger;
 
 @interface XCSUICreateBotTriggerConditionsViewController : NSViewController
 {
     XCSTrigger *_trigger;
+    BOOL _onInternalErrors;
+    NSButton *_successCheckbox;
+    NSButton *_testFailuresCheckbox;
 }
 
+@property __weak NSButton *testFailuresCheckbox; // @synthesize testFailuresCheckbox=_testFailuresCheckbox;
+@property __weak NSButton *successCheckbox; // @synthesize successCheckbox=_successCheckbox;
+@property(nonatomic) BOOL onInternalErrors; // @synthesize onInternalErrors=_onInternalErrors;
 - (void).cxx_destruct;
+- (void)showConditionsForEmailReports;
+- (void)showConditionsForNewIssueEmails;
 @property(readonly, nonatomic) NSString *actionLabel;
-@property(nonatomic) BOOL onInternalErrors;
 @property(nonatomic) BOOL onAnalyzerWarnings;
 @property(nonatomic) BOOL onWarnings;
 @property(nonatomic) BOOL onBuildErrors;

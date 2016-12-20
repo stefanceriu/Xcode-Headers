@@ -18,5 +18,6 @@
 - (void)setDesignableStepButtonsVisible:(BOOL)arg1;
 - (BOOL)designableZoomButtonsVisible;
 - (BOOL)designableStepButtonsVisible;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

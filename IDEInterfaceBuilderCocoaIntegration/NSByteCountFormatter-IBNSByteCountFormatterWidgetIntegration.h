@@ -12,5 +12,6 @@
 - (BOOL)ibInspectedShouldShowActualByteCount;
 - (id)ibExternalSampleValueTooltipRelatedMethods;
 - (id)ibExternalSampleValueDefault;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

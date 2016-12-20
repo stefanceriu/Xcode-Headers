@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
 + (id)infoWithSemantic:(id)arg1 options:(id)arg2;
 @property(retain, nonatomic) NSDictionary *options; // @synthesize options=_options;
 @property(copy, nonatomic) NSString *semantic; // @synthesize semantic=_semantic;
+- (void)dealloc;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 

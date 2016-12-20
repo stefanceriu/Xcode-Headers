@@ -6,13 +6,31 @@
 
 #import <IDESceneKitEditor/SKEStaticTableViewInspector.h>
 
-@interface SKENodeAttributesInspector : SKEStaticTableViewInspector
+#import "NSTableViewDataSource.h"
+
+@class DVTGradientImageButton, NSString;
+
+@interface SKENodeAttributesInspector : SKEStaticTableViewInspector <NSTableViewDataSource>
 {
+    DVTGradientImageButton *_deleteButton;
 }
 
++ (id)tableColumnTitles;
++ (BOOL)wantsEditionBar;
+- (void).cxx_destruct;
+- (void)deleteAttributeAction:(id)arg1;
+- (void)configureEditionBar;
+- (void)primitiveInvalidate;
+- (void)didSetInspectedObjects:(id)arg1;
+- (void)initViewData;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
-- (void)viewDidInstall;
 - (void)loadView;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

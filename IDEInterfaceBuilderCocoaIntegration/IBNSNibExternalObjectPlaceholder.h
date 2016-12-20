@@ -34,6 +34,7 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (BOOL)ibShouldUseClassSwapper;
 - (id)ibRuntimeClassName;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

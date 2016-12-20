@@ -31,6 +31,7 @@
 @property(nonatomic) unsigned long long faceCount; // @synthesize faceCount=_faceCount;
 @property(retain, nonatomic) id <MDLMeshBuffer> faceTopology; // @synthesize faceTopology=_faceTopology;
 - (void).cxx_destruct;
+- (id)initWithSubmesh:(id)arg1;
 
 @end
 

@@ -16,6 +16,7 @@
     DVTObservingToken *_queryModeObserverToken;
     DVTObservingToken *_debugSessionStateObservingToken;
     DVTObservingToken *_gaugesForObserversStateObservingToken;
+    BOOL _usesProxiedDevice;
     BOOL _dataQueryReportMode;
     BOOL _hasStarted;
     NSString *_identifier;
@@ -32,7 +33,7 @@
 @property(retain, nonatomic) NSMutableArray *collectedQueryResults; // @synthesize collectedQueryResults=_collectedQueryResults;
 @property(retain, nonatomic) IDEGaugeDataQuery *dataQuery; // @synthesize dataQuery=_dataQuery;
 @property(retain, nonatomic) IDELaunchSession *launchSession; // @synthesize launchSession=_launchSession;
-@property(retain) NSString *identifier; // @synthesize identifier=_identifier;
+@property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property BOOL dataQueryReportMode; // @synthesize dataQueryReportMode=_dataQueryReportMode;
 - (void).cxx_destruct;
 - (void)discardDataQueries;

@@ -19,9 +19,8 @@
 - (void).cxx_destruct;
 - (BOOL)requiresSynchronousResultProcessing;
 - (void)processProcessingResultsFromSceneUpdateResult:(id)arg1 orDeliverError:(id)arg2;
-- (id)orderedProcessingRequestsAfterPhase:(long long)arg1;
+- (id)orderedProcessingRequestsAfterAndIncludingPhase:(long long)arg1;
 - (id)orderedProcessingRequestsBeforeAndIncludingPhase:(long long)arg1;
-- (id)orderedProcessingRequestsBeforePhase:(long long)arg1;
 - (id)orderedProcessingRequestsWithPhase:(long long)arg1;
 - (id)orderedProcessingRequestsWithPhaseInRange:(struct _NSRange)arg1;
 @property(readonly, nonatomic) NSArray *processingRequests;

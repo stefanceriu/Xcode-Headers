@@ -13,7 +13,7 @@
     NSDictionary *_featureKeyToSanitizedPlistValue;
 }
 
-+ (id)updateAppIDServiceWithTeam:(id)arg1 platform:(id)arg2 portalID:(id)arg3 features:(id)arg4;
++ (id)updateAppIDServiceWithTeam:(id)arg1 program:(id)arg2 portalID:(id)arg3 features:(id)arg4;
 + (id)_serviceIdentifier;
 @property(copy, nonatomic) NSDictionary *featureKeyToSanitizedPlistValue; // @synthesize featureKeyToSanitizedPlistValue=_featureKeyToSanitizedPlistValue;
 - (void).cxx_destruct;

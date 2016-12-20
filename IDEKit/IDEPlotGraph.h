@@ -10,7 +10,6 @@
 {
 }
 
-- (BOOL)lineFilledForGraph:(id)arg1 entry:(id)arg2;
 - (id)attributesForGraph;
 - (Class)graphClass;
 - (id)initWithFrame:(struct CGRect)arg1;

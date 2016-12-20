@@ -58,6 +58,7 @@
 - (BOOL)ibCanBeReplacedWithExternalStoryboardReference;
 - (id)ibQualifyingInfoForDefaultLabel;
 - (BOOL)ibWantsSceneUpdates;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

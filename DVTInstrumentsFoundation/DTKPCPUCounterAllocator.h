@@ -6,14 +6,16 @@
 
 #import "NSObject.h"
 
-@class DTKPCPU, NSMutableArray, NSString;
+@class DTKPCPU, DTKPCPUCounterAllocatorRecord, NSMutableArray, NSString;
 
 @interface DTKPCPUCounterAllocator : NSObject
 {
     struct kpep_config *_kpepConfig;
     NSMutableArray *_eventRecords;
-    NSString *_pmiEventName;
+    NSString *_pmiEventOrAliasName;
     unsigned long long _pmiThreshold;
+    unsigned long long _fixedCounterCount;
+    unsigned long long _configurableCounterCount;
     DTKPCPU *_cpu;
 }
 
@@ -21,25 +23,30 @@
 - (void).cxx_destruct;
 - (int)stopHardwareCounters:(id *)arg1;
 - (int)startHardwareCounters:(id *)arg1;
-- (int)configurePMIActionID:(unsigned int)arg1;
-- (int)configureHardwarePMIPeriods:(id *)arg1;
-- (int)configureHardwareCounters:(id *)arg1;
-- (unsigned long long)recordConfigWordsIntoBuffer:(unsigned long long *)arg1;
 - (int)unforceCounters:(id *)arg1;
 - (int)forceCounters:(id *)arg1;
-- (unsigned long long)kpcConfigWordCount;
-- (unsigned long long)pmiThreshold;
-- (BOOL)pmiEnabled;
+- (int)configurePMIActionID:(unsigned int)arg1 error:(id *)arg2;
+- (int)configureHardwarePMIPeriods:(id *)arg1;
+- (unsigned long long)_indexOfPMIEvent;
+- (int)configureHardwareCounters:(id *)arg1;
+- (unsigned long long)recordConfigWordsIntoBuffer:(unsigned long long *)arg1;
+@property(readonly, nonatomic) unsigned long long pmiThreshold;
+@property(readonly, nonatomic) BOOL pmiEnabled;
 - (unsigned long long)eventCount;
-- (unsigned long long)pmcEventCount;
+@property(readonly, nonatomic) unsigned long long pmcEventCount;
 - (unsigned int)kpcClasses;
+@property(readonly, retain, nonatomic) DTKPCPUCounterAllocatorRecord *allocatedPMIRecord;
+- (void)enumerateAllocatedPMCs:(CDUnknownBlockType)arg1;
+- (void)_enumerateAllocatedEventsWithIndex:(CDUnknownBlockType)arg1;
 - (void)removeAllEvents;
-- (int)removePMIEvent;
-- (int)removePMCEvent:(id)arg1;
-- (int)setPMIEventName:(id)arg1 pmiThreshold:(unsigned long long)arg2 error:(id *)arg3;
 - (int)addPMCEventName:(id)arg1 error:(id *)arg2;
+- (int)setPMIEventName:(id)arg1 pmiThreshold:(unsigned long long)arg2 error:(id *)arg3;
+- (id)_counterNameForEventIndex:(unsigned long long)arg1 error:(id *)arg2;
+- (unsigned long long)_counterIndexForEventIndex:(unsigned long long)arg1 absolute:(BOOL)arg2 error:(id *)arg3;
+- (unsigned int)_counterClassForEventIndex:(unsigned long long)arg1 error:(id *)arg2;
+- (unsigned long long)_hardwareEventCount;
 - (void)dealloc;
-- (id)initWithCPU:(id)arg1;
+- (id)initWithCPU:(id)arg1 error:(id *)arg2;
 
 @end
 

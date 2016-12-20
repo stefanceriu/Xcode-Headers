@@ -9,27 +9,24 @@
 #import "NSCoding.h"
 #import "NSCopying.h"
 
-@class DVTTileView, NSMutableData, NSString, NSView;
+@class DVTTileView, NSData, NSString, NSView;
 
 @interface DVTTileViewItem : NSObject <NSCopying, NSCoding>
 {
-    NSMutableData *_archive;
+    NSData *_archive;
     DVTTileView *_layoutItemOwnerView;
+    unsigned long long _containerReferenceCounter;
+    BOOL _suppressSelectionChangeNotification;
+    BOOL _selected;
     id _representedObject;
     NSView *_view;
     NSString *_title;
-    struct CGRect _targetViewFrameRect;
-    struct CGRect _appliedViewFrameRect;
-    unsigned long long _containerReferenceCounter;
-    struct __tileItemFlags {
-        unsigned int _selected:1;
-        unsigned int _clicked:1;
-        unsigned int _removalNeeded:1;
-        unsigned int _suppressSelectionChangeNotification:1;
-        unsigned int _reservedAnimationContainer:28;
-    } _layoutItemFlags;
 }
 
+@property(nonatomic, getter=isSelected) BOOL selected; // @synthesize selected=_selected;
+@property(copy) NSString *title; // @synthesize title=_title;
+@property(retain) NSView *view; // @synthesize view=_view;
+@property(retain) id representedObject; // @synthesize representedObject=_representedObject;
 - (void).cxx_destruct;
 - (id)accessibilityHitTest:(struct CGPoint)arg1;
 - (void)accessibilityPerformAction:(id)arg1;
@@ -41,30 +38,10 @@
 - (id)accessibilityAttributeNames;
 - (BOOL)accessibilityIsIgnored;
 - (id)description;
-- (void)_finishShowAnimation;
-- (void)_finishHideAnimation;
-- (void)_applyTargetConfigurationWithAnimationMoveAndResize:(id *)arg1 show:(id *)arg2 hide:(id *)arg3;
-- (void)_applyTargetConfigurationWithoutAnimation;
 - (void)toggleSelected:(id)arg1;
-- (BOOL)isSelected;
-- (void)setSelected:(BOOL)arg1;
 - (void)_setSelectedWithoutNotification:(BOOL)arg1;
-- (struct CGRect)_targetViewFrameRect;
-- (void)_setTargetViewFrameRect:(struct CGRect)arg1;
-- (BOOL)_isRemovalNeeded;
-- (void)_setRemovalNeeded:(BOOL)arg1;
-- (id)title;
-- (void)setTitle:(id)arg1;
-- (id)view;
-- (void)setView:(id)arg1;
-- (id)representedObject;
-- (void)setRepresentedObject:(id)arg1;
 - (id)layoutView;
 - (void)_setLayoutItemOwnerView:(id)arg1;
-- (void)_decreaseContainerReferenceCounter;
-- (void)_increaseContainerReferenceCounter;
-- (BOOL)isEqual:(id)arg1;
-- (void)_releaseResources;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)_copyConnectionsOfView:(id)arg1 referenceObject:(id)arg2 toView:(id)arg3 referenceObject:(id)arg4;
 - (void)encodeWithCoder:(id)arg1;

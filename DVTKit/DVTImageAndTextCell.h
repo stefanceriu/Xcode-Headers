@@ -31,15 +31,11 @@
     BOOL _drawsEmphasizeMarker;
     BOOL _showsStatusItems;
     BOOL _alwaysReserveSpaceForStatusItems;
-    BOOL _showSecondarySelection;
-    int _secondarySelectionStyle;
     NSColor *_inactiveTitleTextColor;
     double _statusItemEdgeMargin;
 }
 
 + (void)initialize;
-@property(nonatomic) int secondarySelectionStyle; // @synthesize secondarySelectionStyle=_secondarySelectionStyle;
-@property(nonatomic) BOOL showSecondarySelection; // @synthesize showSecondarySelection=_showSecondarySelection;
 @property double statusItemEdgeMargin; // @synthesize statusItemEdgeMargin=_statusItemEdgeMargin;
 @property(copy, nonatomic) NSColor *inactiveTitleTextColor; // @synthesize inactiveTitleTextColor=_inactiveTitleTextColor;
 @property BOOL alwaysReserveSpaceForStatusItems; // @synthesize alwaysReserveSpaceForStatusItems=_alwaysReserveSpaceForStatusItems;
@@ -64,7 +60,6 @@
 - (id)accessibilityAttributeValue:(id)arg1;
 - (id)accessibilityAttributeNames;
 - (void)drawInteriorWithFrame:(struct CGRect)arg1 inView:(id)arg2;
-- (void)drawSecondarySelectionInCellFrame:(struct CGRect)arg1;
 - (void)drawSubtitleWithCellFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)drawEmphasizeMarkerWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)drawStatusWithFrame:(struct CGRect)arg1 inView:(id)arg2;

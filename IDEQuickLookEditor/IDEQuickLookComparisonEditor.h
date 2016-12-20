@@ -16,7 +16,6 @@
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 - (void).cxx_destruct;
-- (void)find:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
 - (void)restoreInternalComparisonDocumentLocationWithStateDictionary:(id)arg1;
 - (void)commitStateToDictionary:(id)arg1;

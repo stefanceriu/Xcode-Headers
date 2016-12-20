@@ -13,15 +13,15 @@
     DVTSigningCertificateManager *_signingCertificateManager;
     DVTNotificationToken *_changedNotificationToken;
     NSMapTable *_certificateRefToSigningCertificateMap;
-    NSArray *_allSigningIdentityCertificates;
     NSArray *_allSigningCertificates;
     NSArray *_allSigningCertificateObjects;
     DVTDispatchLock *_certificatesLock;
+    NSMapTable *_hashToCertificateMap;
 }
 
 + (id)sharedCertificateUtilities;
 - (void).cxx_destruct;
-- (id)createCSRWithCommonName:(id)arg1 emailAddress:(id)arg2 andError:(id *)arg3;
+- (id)createCSRWithCommonName:(id)arg1 emailAddress:(id)arg2 privateKey:(struct OpaqueSecKeyRef **)arg3 andError:(id *)arg4;
 - (_Bool)areCertificatesEqual:(struct OpaqueSecCertificateRef *)arg1 cert2:(struct OpaqueSecCertificateRef *)arg2;
 - (id)expirationDateForCertificate:(struct OpaqueSecCertificateRef *)arg1;
 - (id)issueDateForCertificate:(struct OpaqueSecCertificateRef *)arg1;
@@ -31,7 +31,7 @@
 - (id)defaultDesignatedRequirementsForIdentifier:(id)arg1 andCertificate:(struct OpaqueSecCertificateRef *)arg2;
 - (_Bool)isCertificateTrusted:(struct OpaqueSecCertificateRef *)arg1;
 - (id)certificateDataForCertificate:(struct OpaqueSecCertificateRef *)arg1;
-- (struct OpaqueSecCertificateRef *)certificateWithData:(id)arg1;
+- (id)signingCertificateWithData:(id)arg1;
 - (_Bool)hasCertificateExpired:(struct OpaqueSecCertificateRef *)arg1;
 - (_Bool)isCertificateAnIdentity:(struct OpaqueSecCertificateRef *)arg1;
 - (id)portalMemberIDFromCertificate:(struct OpaqueSecCertificateRef *)arg1;
@@ -40,10 +40,7 @@
 - (id)trimmedNameForCertificate:(struct OpaqueSecCertificateRef *)arg1;
 - (id)allSigningCertificateObjects;
 - (id)allSigningCertificates;
-- (id)allSigningIdentityCertificates;
 - (id)allSigningCertificates_Sync;
-- (id)allSigningIdentityCertificates_Sync;
-- (id)allSigningIdentityCertificatesInKeychain_Sync:(struct OpaqueSecKeychainRef *)arg1;
 - (_Bool)isCertificateKindAutomaticallyRevocable:(id)arg1;
 - (_Bool)isCertificateKindRevocable:(id)arg1;
 - (id)displayNameForCertificateKind:(id)arg1;

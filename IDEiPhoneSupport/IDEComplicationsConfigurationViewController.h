@@ -19,8 +19,10 @@
 }
 
 + (id)keyPathsForValuesAffectingComplicationsController;
++ (id)keyPathsForValuesAffectingComplicationsFamilyExtraLarge;
 + (id)keyPathsForValuesAffectingComplicationsFamilyCircularSmall;
 + (id)keyPathsForValuesAffectingComplicationsFamilyUtilitarianLarge;
++ (id)keyPathsForValuesAffectingComplicationsFamilyUtilitarianSmallFlat;
 + (id)keyPathsForValuesAffectingComplicationsFamilyUtilitarianSmall;
 + (id)keyPathsForValuesAffectingComplicationsFamilyModularLarge;
 + (id)keyPathsForValuesAffectingComplicationsFamilyModularSmall;
@@ -39,10 +41,14 @@
 - (id)classesConformingToProtocol;
 - (id)complicationsController;
 - (void)setComplicationsController:(id)arg1;
+- (BOOL)complicationsFamilyExtraLarge;
+- (void)setComplicationsFamilyExtraLarge:(BOOL)arg1;
 - (BOOL)complicationsFamilyCircularSmall;
 - (void)setComplicationsFamilyCircularSmall:(BOOL)arg1;
 - (BOOL)complicationsFamilyUtilitarianLarge;
 - (void)setComplicationsFamilyUtilitarianLarge:(BOOL)arg1;
+- (BOOL)complicationsFamilyUtilitarianSmallFlat;
+- (void)setComplicationsFamilyUtilitarianSmallFlat:(BOOL)arg1;
 - (BOOL)complicationsFamilyUtilitarianSmall;
 - (void)setComplicationsFamilyUtilitarianSmall:(BOOL)arg1;
 - (BOOL)complicationsFamilyModularLarge;

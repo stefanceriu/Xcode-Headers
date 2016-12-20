@@ -6,11 +6,10 @@
 
 #import "NSView.h"
 
-@class CALayer, ViewActionForwardingLayerDelegate;
+@class CALayer;
 
 @interface ScrollableTabBarMaskingContainerView : NSView
 {
-    ViewActionForwardingLayerDelegate *_layerDelegate;
     CALayer *_maskLayer;
     CALayer *_leftMaskLayer;
     CALayer *_rightMaskLayer;

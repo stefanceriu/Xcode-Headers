@@ -16,10 +16,10 @@
     NSString *_cachedIdentifier;
     NSString *_cachedIndexName;
     NSDictionary *_cachedSettingsForFiles;
-    id <IDEIndexable> _indexableObject;
+    id <IDEIndexable><DVTInvalidation> _indexableObject;
 }
 
-@property(retain) id <IDEIndexable> indexableObject; // @synthesize indexableObject=_indexableObject;
+@property(retain) id <IDEIndexable><DVTInvalidation> indexableObject; // @synthesize indexableObject=_indexableObject;
 - (void).cxx_destruct;
 - (BOOL)isUnitTest;
 - (id)productType;

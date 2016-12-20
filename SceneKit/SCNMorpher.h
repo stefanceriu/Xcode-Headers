@@ -21,6 +21,7 @@
     NSMutableArray *_weights;
     NSString *_name;
     BOOL _shouldMorphNormals;
+    BOOL _useSparseTargets;
 }
 
 + (BOOL)supportsSecureCoding;
@@ -35,6 +36,11 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)scene;
 - (struct __C3DScene *)sceneRef;
+- (void)convertToSparseWithBaseGeometry:(id)arg1;
+- (BOOL)_isUsingSparseTargets;
+- (void)convertToAdditiveWithBaseGeometry:(id)arg1;
+- (void)setWantsCPUMorphing:(BOOL)arg1;
+- (BOOL)wantsCPUMorphing;
 @property(nonatomic) long long calculationMode;
 - (void)setWeights:(id)arg1;
 - (double)weightForTargetAtIndex:(unsigned long long)arg1;
@@ -46,7 +52,10 @@
 - (id)presentationMorpher;
 - (BOOL)isPausedOrPausedByInheritance;
 - (void)_syncObjCModel;
+- (void)unbindAnimatablePath:(id)arg1;
+- (void)bindAnimatablePath:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
 - (BOOL)isAnimationForKeyPaused:(id)arg1;
+- (void)setSpeed:(double)arg1 forAnimationKey:(id)arg2;
 - (void)removeAnimationForKey:(id)arg1 fadeOutDuration:(double)arg2;
 - (void)resumeAnimationForKey:(id)arg1;
 - (void)pauseAnimationForKey:(id)arg1;
@@ -58,9 +67,9 @@
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
 - (void)addAnimation:(id)arg1 forKey:(id)arg2;
-- (void)__removeAnimation:(id)arg1 forKey:(id)arg2;
+- (BOOL)__removeAnimation:(id)arg1 forKey:(id)arg2;
 - (struct __C3DAnimationManager *)animationManager;
-- (void *)__CFObject;
+- (const void *)__CFObject;
 @property(readonly, copy) NSString *description;
 - (struct __C3DMorph *)morphRef;
 - (void)_syncEntityObjCModel;

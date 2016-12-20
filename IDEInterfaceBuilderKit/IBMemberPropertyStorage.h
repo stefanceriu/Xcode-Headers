@@ -22,6 +22,7 @@
 }
 
 + (SEL)selectorForLazilyBoundSetter:(CDUnknownFunctionPointerType)arg1 withIdentifier:(id)arg2 forConfiguration:(id)arg3;
++ (void)enumerateValuesForAttributeKeyPath:(id)arg1 withUnarchiver:(id)arg2 during:(CDUnknownBlockType)arg3;
 @property(retain, nonatomic) NSObject *documentObject; // @synthesize documentObject=_documentObject;
 - (void).cxx_destruct;
 - (void)enumerateObservers:(CDUnknownBlockType)arg1;
@@ -37,8 +38,8 @@
 - (BOOL)isObjectTurnedOn:(id)arg1 inAnyConfigurationByRelationship:(id)arg2;
 - (BOOL)isObjectTurnedOn:(id)arg1 inRelationship:(id)arg2 inConfiguration:(id)arg3;
 - (void)flattenAllDataWithEffectiveValuesFromConfiguration:(id)arg1;
-- (BOOL)hasExplicitValueForPropertyAnyNonEmptyConfiguration:(id)arg1;
-- (BOOL)hasExplicitValueForAnyNonEmptyConfiguration;
+- (BOOL)anyNonEmptyConfigurationsHaveExplicitValuesForProperty:(id)arg1;
+- (BOOL)anyNonEmptyConfigurationsHaveExplicitValues;
 - (BOOL)allExplicitValuesAreForEmptyConfiguration;
 - (void)enumerateArchivingOrderedPropertiesGroupedByArchivingOrderedConfigurations:(CDUnknownBlockType)arg1;
 - (BOOL)isToManyRelationship:(id)arg1;
@@ -58,6 +59,7 @@
 - (void)turnOffObjects:(id)arg1 forToManyRelationship:(id)arg2 inConfiguration:(id)arg3;
 - (void)turnOnObjects:(id)arg1 forToManyRelationship:(id)arg2 inConfiguration:(id)arg3;
 - (void)turnObjects:(id)arg1 inToManyRelationship:(id)arg2 offInEmptyConfigurationAndOnInConfiguration:(id)arg3;
+- (void)removeConfigurationsContainingAnyVariableInSet:(id)arg1;
 - (void)clearAllMasksForToManyRelationship:(id)arg1;
 - (void)setCandidates:(id)arg1 forToManyRelationship:(id)arg2;
 - (void)didChangeCandidatesForRelationship:(id)arg1 fromValue:(id)arg2 toValue:(id)arg3 context:(id)arg4;
@@ -69,6 +71,7 @@
 - (void)enumerateExplicitValuesForProperty:(id)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)setBits:(id)arg1 forToManyRelationship:(id)arg2 inConfiguration:(id)arg3;
 - (void)setEvaluatedValueInEmptyConfigurationByClearingInAllOtherConfigurations:(id)arg1 forAttribute:(id)arg2;
+- (void)removeAllOverridesForAttribute:(id)arg1;
 - (void)setEvaluatedValueInEmptyConfiguration:(id)arg1 forAttribute:(id)arg2;
 - (void)setEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3;
 - (void)promoteEffectiveValueToExplicitForProperty:(id)arg1 inConfiguration:(id)arg2;
@@ -84,6 +87,9 @@
 - (id)allValuesPerConfigurationForProperty:(id)arg1;
 - (id)explicitValueForProperty:(id)arg1 inConfiguration:(id)arg2;
 - (id)explicitBitsForToManyRelationship:(id)arg1 inConfiguration:(id)arg2;
+- (id)definingConfigurationForCandidate:(id)arg1 inRelationshipProperty:(id)arg2 startingAtConfiguration:(id)arg3;
+- (void)valueAndDefiningConfigurationForProperty:(id)arg1 startingAtConfiguration:(id)arg2 returningDefiningConfiguration:(id *)arg3 returningValue:(id *)arg4;
+- (void)_definingConfigurationStartingAtConfiguration:(id)arg1 forProperty:(id)arg2 candidateForRelationship:(id)arg3 returningDefiningConfiguration:(id *)arg4 returningValue:(id *)arg5;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly, nonatomic) IBDocument *document;
 - (void)encodeWithCoder:(id)arg1;

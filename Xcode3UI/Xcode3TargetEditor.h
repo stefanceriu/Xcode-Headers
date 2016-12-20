@@ -20,6 +20,7 @@
     IDEContainerQuery *_interfaceFileNameQuery;
     NSArray *_targetMainInterfaceFiles;
     NSMutableDictionary *_assetCatalogWrappersByImageType;
+    Xcode3CodesignTroubleshootingViewController *_codesignTroubleViewController;
 }
 
 + (id)keyPathsForValuesAffectingTargetNibFiles;
@@ -36,6 +37,7 @@
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
 + (id)localizedSourceListItemEditorName;
+@property(readonly) Xcode3CodesignTroubleshootingViewController *codesignTroubleViewController; // @synthesize codesignTroubleViewController=_codesignTroubleViewController;
 @property(retain, nonatomic) id <IDEBlueprint> inspectedBlueprint; // @synthesize inspectedBlueprint=_inspectedBlueprint;
 @property(retain) Xcode3ProjectEditor *projectEditor; // @synthesize projectEditor=_projectEditor;
 - (void).cxx_destruct;
@@ -96,15 +98,20 @@
 - (BOOL)plistFileExists;
 - (BOOL)plistSettingsAreValid;
 - (id)inspectedProductTypeIdentifier;
+- (BOOL)isAWatchFrameworkEditor;
+- (BOOL)isOtherWatchAppExtensionEditor;
 - (BOOL)isAWatchAppExtensionEditor;
+- (BOOL)isAWatchKit1ExtensionEditor;
 - (BOOL)isAWatchKit2ExtensionEditor;
+- (BOOL)isAWatchKit1AppEditor;
 - (BOOL)isAWatchAppEditor;
 - (BOOL)isAFrameworkEditor;
 - (BOOL)isAnAppExtensionEditor;
 - (BOOL)isAnAppEditor;
-- (id)portalCoordinator;
+- (BOOL)isMessagingAppExtensionEditor;
+- (BOOL)isMessagingStickersOnlyAppEditor;
+- (BOOL)isMessagingOnlyAppEditor;
 - (id)infoPlistCoordinator;
-@property(readonly) Xcode3CodesignTroubleshootingViewController *codesignTroubleViewController;
 - (id)frameworksViewController;
 - (id)embeddedBinariesViewController;
 - (void)loadView;

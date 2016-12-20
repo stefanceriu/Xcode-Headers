@@ -6,7 +6,13 @@
 
 #import "NSClipView.h"
 
+@class NSValue;
+
 @interface NSClipView (IBNSClipViewIntegration)
++ (id)keyPathsForValuesAffectingIbInspectedUseFixedContentInsets;
++ (id)keyPathsForValuesAffectingContentInsets;
+@property(retain) NSValue *ibWrappedContentInsets;
+- (BOOL)ibInspectedUseFixedContentInsets;
 - (void)ibSwizzledNSClipViewWorkaround12332156UpdateConstraints;
 - (BOOL)ibChildView:(id)arg1 shouldUseConstraintsInsteadOfAutoresizingWhenAddedToDocument:(id)arg2;
 - (BOOL)ibChildPrefersToVerticallyResizeWithContainer:(id)arg1;
@@ -28,5 +34,7 @@
 - (BOOL)ibCanRemoveChildren:(id)arg1;
 - (id)ibPasteboardTypes;
 - (id)scrollView;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 @end
 

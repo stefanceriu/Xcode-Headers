@@ -6,29 +6,35 @@
 
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUISimulatedSizeMetrics.h>
 
-@class NSDictionary;
+@class IBUISimulatedMetricsModifier, NSDictionary, NSValue;
 
 @interface IBUIFixedSimulatedSizeMetrics : IBUISimulatedSizeMetrics
 {
     NSDictionary *_normalizedOrientationToSizeMap;
+    IBUISimulatedMetricsModifier *_simulatedMetricsModifier;
+    NSValue *_documentViewInset;
 }
 
-+ (id)fixedSizeMetricWithSizeForAllOrientations:(struct CGSize)arg1;
-+ (id)fixedSizeMetricWithSize:(struct CGSize)arg1 interfaceOrientation:(int)arg2;
++ (id)fixedSizeMetricWithSizeForAllOrientations:(struct CGSize)arg1 documentViewInset:(CDStruct_c519178c)arg2 metricsModifier:(id)arg3;
++ (id)fixedSizeMetricWithSize:(struct CGSize)arg1 interfaceOrientation:(int)arg2 documentViewInset:(CDStruct_c519178c)arg3 metricsModifier:(id)arg4;
 + (id)normalizedOrientationToSizeMapWithSizeForAllOrientations:(struct CGSize)arg1;
 + (id)normalizedOrientationToSizeMapForSize:(struct CGSize)arg1 interfaceOrientation:(int)arg2;
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 + (id)instantiateWithCoder:(id)arg1;
 - (void).cxx_destruct;
+- (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqualToSimulatedSizeMetrics:(id)arg1;
+- (id)effectiveSimulatedCanvasFrameContentViewSizeForOrientation:(int)arg1;
 - (struct CGSize)sizeForInterfaceOrientation:(int)arg1;
 @property(readonly, nonatomic) struct CGSize landscapeSize;
 @property(readonly, nonatomic) struct CGSize portraitSize;
 - (id)fixedSizeMetricsForScreenMetrics:(id)arg1 orientationMetrics:(id)arg2 freeformSize:(struct CGSize)arg3;
 - (id)displayName;
 @property(readonly, copy, nonatomic) NSDictionary *normalizedOrientationToSizeMap;
-- (id)initWithNormalizedOrientationToSizeMap:(id)arg1;
+@property(readonly, nonatomic) NSValue *documentViewInset;
+- (id)metricsModifier;
+- (id)initWithNormalizedOrientationToSizeMap:(id)arg1 documentViewInset:(CDStruct_c519178c)arg2 metricsModifier:(id)arg3;
 - (void)encodeWithCoder:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (BOOL)validateNormalizedOrientationToSizeMap;

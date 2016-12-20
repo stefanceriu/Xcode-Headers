@@ -6,13 +6,10 @@
 
 #import "NSObject.h"
 
-#import "NSCoding.h"
+@class NSMutableArray, NSMutableDictionary, NSString;
 
-@class NSString;
-
-@interface DVT_VMUClassInfo : NSObject <NSCoding>
+@interface DVT_VMUClassInfo : NSObject
 {
-    CDUnknownBlockType _reader;
     unsigned long long _remoteIsa;
     unsigned int _remotePointerSize;
     unsigned int _ivarCount;
@@ -20,34 +17,36 @@
     unsigned int _instanceSize;
     unsigned int _ro_flags;
     unsigned int _rw_flags;
-    struct objc_ivar **_localIvarList;
-    int *_ivarScanSizes;
+    unsigned int _defaultScanType;
+    id *_localIvarList;
     unsigned int _remoteType;
     NSString *_remoteClassName;
+    NSString *_displayName;
     NSString *_remoteBinaryPath;
     DVT_VMUClassInfo *_superclassLayout;
     DVT_VMUClassInfo *_genericLayout;
+    NSMutableArray *_variantEvaluators;
+    NSMutableArray *_variantActions;
+    NSMutableDictionary *_variantCache;
     const char *_weakLayout;
     const char *_strongLayout;
-    const char *_extendedLayout;
-    char *_scanMap;
     BOOL _hasSpecificLayout;
+    BOOL _hasVariantLayout;
 }
 
-+ (id)classInfoWithClassName:(id)arg1 binaryName:(id)arg2 type:(int)arg3;
++ (unsigned long long)sizeofClassStructure:(BOOL)arg1;
 + (id)descriptionForTypeEncoding:(const char *)arg1 ivarName:(const char *)arg2;
 + (id)classInfoWithClassName:(id)arg1 binaryPath:(id)arg2 type:(int)arg3;
++ (id)_genericBlockByrefInfo;
++ (void)disableTestingVersion;
++ (void)enableTestingVersion;
 + (void)initialize;
+@property(readonly, nonatomic) unsigned int pointerSize; // @synthesize pointerSize=_remotePointerSize;
 @property(readonly) DVT_VMUClassInfo *superclassInfo; // @synthesize superclassInfo=_superclassLayout;
 @property(readonly) NSString *className; // @synthesize className=_remoteClassName;
 @property(readonly) NSString *binaryPath; // @synthesize binaryPath=_remoteBinaryPath;
 @property(readonly) unsigned long long remoteIsa; // @synthesize remoteIsa=_remoteIsa;
 @property(readonly) unsigned int instanceSize; // @synthesize instanceSize=_instanceSize;
-@property(readonly) unsigned long long specificInstance;
-- (void)enumerateKnownSublayoutsForObject:(unsigned long long)arg1 withBlock:(CDUnknownBlockType)arg2;
-- (id)instanceSpecificInfoForObject:(unsigned long long)arg1;
-- (id)initWithIsaPointer:(unsigned long long)arg1 symbolicator:(struct _CSTypeRef)arg2;
-- (id)initWithClassName:(id)arg1 binaryName:(id)arg2 type:(int)arg3;
 @property(readonly) BOOL hasCppConstructorOrDestructor;
 @property(readonly) BOOL isRootClass;
 @property(readonly) BOOL isMetaClass;
@@ -63,43 +62,50 @@
 - (id)type;
 @property(readonly) NSString *binaryName;
 - (void)_setIsa:(unsigned long long)arg1;
-- (struct objc_ivar *)ivarWithOffset:(unsigned long long)arg1;
-- (void)enumerateScanLocationsToSize:(unsigned int)arg1 withBlock:(CDUnknownBlockType)arg2;
-- (void)enumerateIvarsWithBlock:(CDUnknownBlockType)arg1;
+- (void)_addVariantAction:(CDUnknownBlockType)arg1 withEvaluator:(CDUnknownBlockType)arg2;
+- (void)_setFields:(id)arg1;
+- (void)_replaceField:(id)arg1 withFields:(id)arg2;
+- (id)firstFieldWithName:(id)arg1;
+- (id)fieldAtOrBeforeOffset:(unsigned int)arg1;
+- (void)enumerateScanningLocationsForSize:(unsigned int)arg1 withBlock:(CDUnknownBlockType)arg2;
+- (void)enumerateTypeFieldsWithBlock:(CDUnknownBlockType)arg1;
+- (void)enumerateAllFieldsWithBlock:(CDUnknownBlockType)arg1;
+- (unsigned int)_totalIvarCount;
 @property(readonly) DVT_VMUClassInfo *genericInfo;
-- (id)instanceSpecificInfoForObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2;
-- (id)_instanceSpecificInfoForObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2 withReader:(CDUnknownBlockType)arg3;
-- (void)_setExtendedLayout:(const char *)arg1;
-- (id)_specificCopy:(unsigned long long)arg1 instanceSize:(unsigned int)arg2 superclassOffset:(unsigned int)arg3;
-- (void)enumerateKnownSublayoutsForObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2 withBlock:(CDUnknownBlockType)arg3;
-- (void)scanObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2 withBlock:(CDUnknownBlockType)arg3;
-- (void)setMemoryReader:(CDUnknownBlockType)arg1;
+- (void)enumerateExternalValuesFromObject:(unsigned long long)arg1 withSize:(unsigned int)arg2 block:(CDUnknownBlockType)arg3;
+- (void)enumerateStoredEntriesForObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2 externalValues:(id)arg3 block:(CDUnknownBlockType)arg4;
+- (id)instanceSpecificInfoForObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2 memoryReader:(CDUnknownBlockType)arg3;
+- (void)_applyExtendedLayout:(const char *)arg1 withSize:(unsigned int)arg2;
+- (id)_copyWithInstanceSize:(unsigned int)arg1 superclassOffset:(unsigned int)arg2 asVariant:(BOOL)arg3 mutable:(BOOL)arg4;
+- (void)enumerateSublayoutsForSize:(unsigned int)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)_logDescriptionWithSuperclasses:(BOOL)arg1 indentation:(int)arg2 toLogger:(CDUnknownBlockType)arg3;
 - (id)_ivarDescription:(unsigned int)arg1 withSpacing:(unsigned int)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (id)initWithSerializer:(id)arg1 classMap:(id)arg2 version:(long long)arg3;
-- (void)serializeWithClassMap:(id)arg1 simpleSerializer:(id)arg2;
+- (id)initWithSerializer:(id)arg1 classMap:(id)arg2 version:(unsigned int)arg3;
+- (void)serializeWithClassMap:(id)arg1 simpleSerializer:(id)arg2 version:(unsigned int)arg3;
+- (id)mutableCopy;
 - (void)dealloc;
-- (id)initWithRealizedClass:(unsigned long long)arg1 infoMap:(id)arg2 symbolicator:(struct _CSTypeRef)arg3 type:(int)arg4 memoryReader:(CDUnknownBlockType)arg5;
-- (id)initWithClass:(unsigned long long)arg1 infoMap:(id)arg2 symbolicator:(struct _CSTypeRef)arg3 type:(int)arg4 memoryReader:(CDUnknownBlockType)arg5;
-- (id)_initWithClass:(unsigned long long)arg1 realizedOnly:(BOOL)arg2 infoMap:(id)arg3 symbolicator:(struct _CSTypeRef)arg4 type:(int)arg5 memoryReader:(CDUnknownBlockType)arg6;
+- (void)_freeLocalIvarList;
+- (id)initWithRealizedClass:(unsigned long long)arg1 infoMap:(id)arg2 symbolicator:(struct _CSTypeRef)arg3 type:(int)arg4 swiftFieldMetadataContext:(struct libSwiftRemoteMirrorWrapper *)arg5 memoryReader:(CDUnknownBlockType)arg6;
+- (id)initWithClass:(unsigned long long)arg1 infoMap:(id)arg2 symbolicator:(struct _CSTypeRef)arg3 type:(int)arg4 swiftFieldMetadataContext:(struct libSwiftRemoteMirrorWrapper *)arg5 memoryReader:(CDUnknownBlockType)arg6;
+- (id)_initWithClass:(unsigned long long)arg1 realizedOnly:(BOOL)arg2 infoMap:(id)arg3 symbolicator:(struct _CSTypeRef)arg4 type:(int)arg5 swiftFieldMetadataContext:(struct libSwiftRemoteMirrorWrapper *)arg6 memoryReader:(CDUnknownBlockType)arg7;
+- (id)initWithClosureContext:(unsigned long long)arg1 typeInfo:(struct swift_typeinfo)arg2 infoMap:(id)arg3 swiftFieldMetadataContext:(struct libSwiftRemoteMirrorWrapper *)arg4;
 - (id)initWithClassName:(id)arg1 binaryPath:(id)arg2 type:(int)arg3;
 @property(readonly, nonatomic) BOOL hasSpecificLayout;
-- (void)_setClassNameWithAddress:(unsigned long long)arg1;
+@property(readonly, nonatomic) BOOL hasVariantLayout;
+@property(readonly, nonatomic) unsigned int defaultScanType;
+- (void)_setDefaultScanType:(unsigned int)arg1;
+- (void)_setSuperclassInfo:(id)arg1;
+- (void)_setBinaryPath:(id)arg1;
+- (void)_setDisplayName:(id)arg1;
+@property(readonly) NSString *displayName;
+- (void)_setClassNameWithAddress:(unsigned long long)arg1 reader:(CDUnknownBlockType)arg2;
 - (void)_demangleClassName;
 - (void)_parseIvarsAndLayouts;
-- (void)_processExtendedLayout:(const char *)arg1;
-- (void)_processARRLayout:(const char *)arg1 scanType:(int)arg2;
-- (void)_faultScanMap;
-- (const char *)_copyRemoteLayout:(unsigned long long)arg1;
-- (struct objc_ivar *)_copyRemoteIvarAt:(unsigned long long)arg1;
-- (const char *)_copyRemoteTypeAt:(unsigned long long)arg1;
-- (const char *)_copyRemoteNameAt:(unsigned long long)arg1;
-- (unsigned long long)_readRemotePointerAt:(unsigned long long)arg1;
-- (int)_readRemoteIntAt:(unsigned long long)arg1;
+- (void)_processARRLayout:(const char *)arg1 scanType:(unsigned int)arg2;
 
 @end
 

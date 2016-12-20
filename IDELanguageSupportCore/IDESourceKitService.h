@@ -6,22 +6,24 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray;
+@class DVTNotificationToken, NSMutableArray;
 
 @interface IDESourceKitService : NSObject
 {
     NSMutableArray *_initializationBlocks;
     NSMutableArray *_notificationDocumentUpdateBlocks;
     NSMutableArray *_notificationSemanticsDisabledBlocks;
+    DVTNotificationToken *_connectionInterruptedNotificationToken;
+    DVTNotificationToken *_connectionRestoredNotificationToken;
     int _serviceStatus;
 }
 
-+ (void)handleSourceKitError:(void *)arg1 logAspect:(id)arg2 crashed:(char *)arg3;
++ (void)handleSourceKitError:(struct _sourcekit_response_s *)arg1 logAspect:(id)arg2 crashed:(char *)arg3;
 + (id)sharedSourceKitService;
 + (void)initialize;
 @property int serviceStatus; // @synthesize serviceStatus=_serviceStatus;
 - (void).cxx_destruct;
-- (void)handleNotification:(void *)arg1;
+- (void)handleNotification:(struct _sourcekit_response_s *)arg1;
 - (void)handleConnectionRestored;
 - (void)removeSemanticsDisabledNotificationBlock:(id)arg1;
 - (id)addSemanticsDisabledNotificationBlock:(CDUnknownBlockType)arg1;
@@ -29,8 +31,8 @@
 - (id)addDocumentUpdateNotificationBlock:(CDUnknownBlockType)arg1;
 - (void)removeInitializationBlock:(id)arg1;
 - (id)addInitializationBlock:(CDUnknownBlockType)arg1;
-- (id)sendRequestAsync:(void *)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (id)sendRequestSync:(void *)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (id)sendRequestAsync:(struct _sourcekit_object_s *)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (id)sendRequestSync:(struct _sourcekit_object_s *)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)sendRequestSyncWithName:(id)arg1 parameters:(id)arg2 error:(id *)arg3;
 - (id)init;
 

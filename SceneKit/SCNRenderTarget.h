@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSString;
+@class CIImage, NSString;
 
 __attribute__((visibility("hidden")))
 @interface SCNRenderTarget : NSObject
 {
-    CDStruct_2e3d5ba3 _description;
+    CDStruct_fd8065c6 _description;
     // Error parsing type: , name: _size
+    CIImage *_ciImage;
     id _texture;
     NSString *_name;
     long long _referenceCount;
@@ -23,11 +24,13 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) long long referenceCount; // @synthesize referenceCount=_referenceCount;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(retain, nonatomic) id texture; // @synthesize texture=_texture;
-- (BOOL)matchesDescription:(CDStruct_2e3d5ba3 *)arg1 size: /* Error: Ran out of types for this method. */;
+- (id)ciImage;
+- (BOOL)matchesDescription:(CDStruct_fd8065c6 *)arg1 size: /* Error: Ran out of types for this method. */;
+@property(readonly, nonatomic) unsigned char renderBufferFormat;
 @property(readonly, nonatomic) BOOL viewportDependant;
 - (id)description;
 - (void)dealloc;
-- (id)initWithDescription:(CDStruct_2e3d5ba3 *)arg1 size: /* Error: Ran out of types for this method. */;
+- (id)initWithDescription:(CDStruct_fd8065c6 *)arg1 size: /* Error: Ran out of types for this method. */;
 
 @end
 

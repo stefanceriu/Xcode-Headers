@@ -30,6 +30,8 @@
 - (struct CGSize)ibNearestLegalBoundsSize;
 - (struct CGSize)ibPreferredSize;
 - (Class)ibTrackerClass;
+- (id)ibEditorClass;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

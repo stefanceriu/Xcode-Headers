@@ -10,18 +10,18 @@
 
 @interface IDEAppStoreSubmissionConfiguration : NSObject
 {
-    NSArray *_platformsDictionaries;
     NSDictionary *_platformToSubmissionPreferences;
     NSDictionary *_bitcodeSupportLevelToPlatformPreferences;
     DVTLogAspect *_logAspect;
+    NSArray *_platformsDictionaries;
 }
 
 + (id)platformToSubmissionPreferencesFromPlatformsDictionaries:(id)arg1 logAspect:(id)arg2 error:(id *)arg3;
 + (id)submissionPreferenceFromConfigurationResponsePlatformDictionariesToMerge:(id)arg1 error:(id *)arg2;
+@property(retain, nonatomic) NSArray *platformsDictionaries; // @synthesize platformsDictionaries=_platformsDictionaries;
 @property(retain, nonatomic) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
 @property(retain, nonatomic) NSDictionary *bitcodeSupportLevelToPlatformPreferences; // @synthesize bitcodeSupportLevelToPlatformPreferences=_bitcodeSupportLevelToPlatformPreferences;
 @property(retain, nonatomic) NSDictionary *platformToSubmissionPreferences; // @synthesize platformToSubmissionPreferences=_platformToSubmissionPreferences;
-@property(retain, nonatomic) NSArray *platformsDictionaries; // @synthesize platformsDictionaries=_platformsDictionaries;
 - (void).cxx_destruct;
 - (id)platformsForBitcodeSupportLevel:(long long)arg1;
 - (id)submissionPreferenceForPlatform:(id)arg1;

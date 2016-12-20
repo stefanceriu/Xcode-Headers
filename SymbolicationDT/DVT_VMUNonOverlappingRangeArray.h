@@ -6,7 +6,6 @@
 
 #import <SymbolicationDT/DVT_VMURangeArray.h>
 
-__attribute__((visibility("hidden")))
 @interface DVT_VMUNonOverlappingRangeArray : DVT_VMURangeArray
 {
 }

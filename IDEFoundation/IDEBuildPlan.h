@@ -19,6 +19,7 @@
 @property(readonly) NSString *debugName; // @synthesize debugName=_debugName;
 @property(copy) NSSet *productArtifactNodes; // @synthesize productArtifactNodes=_productArtifactNodes;
 - (void).cxx_destruct;
+- (void)writeDebugRepresentationToFileAtPath:(id)arg1 format:(long long)arg2 basePath:(id)arg3;
 - (id)description;
 - (void)makeImmutable;
 - (BOOL)isImmutable;

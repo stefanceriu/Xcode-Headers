@@ -6,9 +6,10 @@
 
 #import "JSExport.h"
 
-@class NSArray, NSDictionary, NSString, NSURL, SCNMaterialProperty, SCNNode, SCNParticleSystem, SCNPhysicsWorld;
+@class MDLAsset, NSArray, NSDictionary, NSString, NSURL, SCNMaterialProperty, SCNNode, SCNParticleSystem, SCNPhysicsWorld;
 
 @protocol SCNSceneJSExport <JSExport>
++ (id)sceneWithMDLAsset:(MDLAsset *)arg1;
 + (id)sceneWithURL:(NSURL *)arg1 options:(NSDictionary *)arg2 error:(id *)arg3;
 + (id)sceneNamed:(NSString *)arg1 inDirectory:(NSString *)arg2 options:(NSDictionary *)arg3;
 + (id)sceneNamed:(NSString *)arg1;
@@ -21,6 +22,7 @@
 @property(nonatomic) double fogDensityExponent;
 @property(nonatomic) double fogEndDistance;
 @property(nonatomic) double fogStartDistance;
+@property(readonly, nonatomic) SCNMaterialProperty *lightingEnvironment;
 @property(readonly, nonatomic) SCNMaterialProperty *background;
 @property(readonly, nonatomic) SCNPhysicsWorld *physicsWorld;
 @property(readonly, nonatomic) SCNNode *rootNode;

@@ -26,7 +26,8 @@
 - (void)_unregisterMonitor:(id)arg1;
 - (void)unregisterPlaygroundPageContext:(id)arg1;
 - (void)registerPlaygroundPageContext:(id)arg1;
-- (BOOL)reloadSymlinksForPlaygroundPageContext:(id)arg1 error:(id *)arg2;
+- (BOOL)_reloadSymlinksForPlaygroundPageContext:(id)arg1 error:(id *)arg2;
+- (void)reloadSymlinksForPlaygroundPageContext:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)init;
 

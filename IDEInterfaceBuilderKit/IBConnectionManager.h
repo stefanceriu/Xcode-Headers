@@ -33,7 +33,7 @@
 - (id)endPointProviderExtensionForLanguage:(id)arg1;
 - (BOOL)endPointProviderExtension:(id)arg1 supportsLanguage:(id)arg2;
 - (BOOL)languageIdentifier:(id)arg1 identifiesLanguage:(id)arg2;
-- (id)hitViewForConnectionDrag:(struct CGPoint)arg1 ingoringWindows:(id)arg2;
+- (id)hitViewForConnectionDrag:(struct CGPoint)arg1 ignoringWindows:(id)arg2;
 - (id)calculateConnectionEndPointInDocument:(id)arg1 forContext:(id)arg2 usingCandidatesBackToFront:(id)arg3;
 - (BOOL)isCandidate:(id)arg1 validConnectionEndPointForContext:(id)arg2 inDocument:(id)arg3;
 - (BOOL)isCandidate:(id)arg1 validConstraintConnectionEndPointForContext:(id)arg2 inDocument:(id)arg3;

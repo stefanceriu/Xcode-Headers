@@ -16,7 +16,7 @@
 - (void)addConstraints:(id)arg1 replacingConstraints:(id)arg2 enforcingCurrentSizeOfViews:(id)arg3 mutuallyExclusiveConstraintBreakageStrategy:(unsigned long long)arg4 returningConstraintsAdded:(id *)arg5 returningConstraintsRemoved:(id *)arg6 framePropagationBlock:(CDUnknownBlockType)arg7;
 - (CDUnknownBlockType)sizeView:(id)arg1 toLayoutSize:(struct CGSize)arg2 suggestedLayoutOrigin:(struct CGPoint)arg3 mutuallyExclusiveConstraintBreakageStrategy:(unsigned long long)arg4 framePropagationBlock:(CDUnknownBlockType)arg5;
 - (void)_runNewRequestWithRequestCreationBlock:(CDUnknownBlockType)arg1 resultProcessingBlock:(CDUnknownBlockType)arg2 framePropagationBlock:(CDUnknownBlockType)arg3;
-- (CDUnknownBlockType)defaultDiagnosticsBlockForOperationNamed:(id)arg1 format:(id)arg2;
+- (CDUnknownBlockType)_defaultDiagnosticsBlockForOperationNamed:(id)arg1 request:(id)arg2;
 @property(readonly) IBCocoaTouchAutolayoutArbitrationUnit *arbitrationUnit;
 
 @end

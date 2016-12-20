@@ -18,18 +18,18 @@
     NSString *_identifier;
     NSImage *_image;
     NSString *_name;
-    NSArray *_subitems;
     NSString *_manualDomainIdentifier;
     IDENavigableItem *_manualDomainRootNavigableItem;
+    NSArray *_subitems;
 }
 
 + (id)_rootNodeForGeniusResultsWithJumpToCounterpartCategory:(id)arg1;
 + (id)_rootNodeForGeniusResultsWithManualCategory:(id)arg1 editorContext:(id)arg2;
 + (id)_rootNodeForGeniusResults:(id)arg1 editorContext:(id)arg2 includeJumpToCounterpartCategory:(BOOL)arg3 includeManualCategory:(BOOL)arg4;
 + (void)initialize;
+@property(copy, nonatomic) NSArray *subitems; // @synthesize subitems=_subitems;
 @property(copy) IDENavigableItem *manualDomainRootNavigableItem; // @synthesize manualDomainRootNavigableItem=_manualDomainRootNavigableItem;
 @property(readonly, copy) NSString *manualDomainIdentifier; // @synthesize manualDomainIdentifier=_manualDomainIdentifier;
-@property(copy, nonatomic) NSArray *subitems; // @synthesize subitems=_subitems;
 @property(copy) NSString *name; // @synthesize name=_name;
 @property(retain) NSImage *image; // @synthesize image=_image;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
@@ -55,9 +55,13 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;

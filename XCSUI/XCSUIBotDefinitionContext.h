@@ -6,25 +6,26 @@
 
 #import "NSObject.h"
 
-@class DVTObservingToken, DVTSourceControlWorkspaceBlueprint, IDEScheme, IDEWorkspace, IDEWorkspaceTabController, NSArray, NSError, NSMapTable, NSSet, NSString, NSURL, XCSBot, XCSDeviceSpecification, XCSService;
+@class DVTObservingToken, DVTSourceControlWorkspaceBlueprint, IDEScheme, IDEWorkspace, IDEWorkspaceTabController, NSArray, NSDictionary, NSError, NSMapTable, NSSet, NSString, NSURL, XCSBot, XCSDeviceSpecification, XCSService, XCSToolchain;
 
 @interface XCSUIBotDefinitionContext : NSObject
 {
     XCSBot *_bot;
     id _deviceObserverToken;
     DVTObservingToken *_serviceReachabilityToken;
-    BOOL _userCanCreateBotsOnService;
-    BOOL _botEditorShowedPermissionDeniedSheet;
     BOOL _disableWorkspaceSpecificSettings;
     BOOL _preserveExistingServerBlueprint;
     BOOL _performsAnalyzeAction;
     BOOL _performsTestAction;
     BOOL _performsArchiveAction;
     BOOL _exportsProductFromArchive;
+    BOOL _createsThinnedApps;
+    BOOL _performsUpgradeIntegration;
     BOOL _schemeSupportsDevices;
     BOOL _hasSufficientSCMInfoToCreateBot;
     BOOL _creationComplete;
     BOOL _needsCommitAndPushUponCompletion;
+    BOOL _shareOrCommitScheme;
     BOOL _redefineBot;
     BOOL _consultSchemeForConfiguration;
     IDEWorkspaceTabController *_workspaceTabController;
@@ -41,6 +42,7 @@
     NSString *_schemeName;
     unsigned long long _buildsFromCleanSchedule;
     NSString *_buildConfiguration;
+    XCSToolchain *_overrideToolchain;
     unsigned long long _codeCoveragePreference;
     long long _initialRepositoryAuthenticationStatus;
     long long _preflightRepositoryAuthenticationStatus;
@@ -63,6 +65,11 @@
     NSArray *_availableDevices;
     long long _schemeValidity;
     long long _schemeRecoveryType;
+    NSDictionary *_buildEnvironmentVariables;
+    long long _accountReachability;
+    NSString *_hostname;
+    NSArray *_availableOverrideToolchains;
+    DVTSourceControlWorkspaceBlueprint *_localSCMWorkspaceBlueprintOriginal;
 }
 
 + (BOOL)workspace:(id)arg1 matchesBlueprintInBot:(id)arg2;
@@ -77,8 +84,13 @@
 + (id)keyPathsForValuesAffectingDefaultBotName;
 + (id)keyPathsForValuesAffectingHasSufficientSCMInfoToCreateBot;
 + (id)sourceControlLogAspect;
+@property(retain, nonatomic) DVTSourceControlWorkspaceBlueprint *localSCMWorkspaceBlueprintOriginal; // @synthesize localSCMWorkspaceBlueprintOriginal=_localSCMWorkspaceBlueprintOriginal;
+@property(retain, nonatomic) NSArray *availableOverrideToolchains; // @synthesize availableOverrideToolchains=_availableOverrideToolchains;
 @property(nonatomic) BOOL consultSchemeForConfiguration; // @synthesize consultSchemeForConfiguration=_consultSchemeForConfiguration;
 @property(nonatomic) BOOL redefineBot; // @synthesize redefineBot=_redefineBot;
+@property(retain, nonatomic) NSString *hostname; // @synthesize hostname=_hostname;
+@property(nonatomic) long long accountReachability; // @synthesize accountReachability=_accountReachability;
+@property(retain, nonatomic) NSDictionary *buildEnvironmentVariables; // @synthesize buildEnvironmentVariables=_buildEnvironmentVariables;
 @property(nonatomic) long long schemeRecoveryType; // @synthesize schemeRecoveryType=_schemeRecoveryType;
 @property(nonatomic) long long schemeValidity; // @synthesize schemeValidity=_schemeValidity;
 @property(retain, nonatomic) NSArray *availableDevices; // @synthesize availableDevices=_availableDevices;
@@ -87,6 +99,7 @@
 @property(copy, nonatomic) CDUnknownBlockType blueprintLoadedCallback; // @synthesize blueprintLoadedCallback=_blueprintLoadedCallback;
 @property(copy, nonatomic) NSArray *selectedTestingDeviceIDs; // @synthesize selectedTestingDeviceIDs=_selectedTestingDeviceIDs;
 @property(nonatomic) long long rememberAuthenticationChoice; // @synthesize rememberAuthenticationChoice=_rememberAuthenticationChoice;
+@property(nonatomic) BOOL shareOrCommitScheme; // @synthesize shareOrCommitScheme=_shareOrCommitScheme;
 @property(nonatomic) BOOL needsCommitAndPushUponCompletion; // @synthesize needsCommitAndPushUponCompletion=_needsCommitAndPushUponCompletion;
 @property(nonatomic) BOOL creationComplete; // @synthesize creationComplete=_creationComplete;
 @property(retain, nonatomic) NSArray *createEditBotValidationErrors; // @synthesize createEditBotValidationErrors=_createEditBotValidationErrors;
@@ -104,11 +117,14 @@
 @property(nonatomic) long long preflightRepositoryAuthenticationStatus; // @synthesize preflightRepositoryAuthenticationStatus=_preflightRepositoryAuthenticationStatus;
 @property(nonatomic) long long initialRepositoryAuthenticationStatus; // @synthesize initialRepositoryAuthenticationStatus=_initialRepositoryAuthenticationStatus;
 @property(nonatomic) BOOL schemeSupportsDevices; // @synthesize schemeSupportsDevices=_schemeSupportsDevices;
+@property(nonatomic) BOOL performsUpgradeIntegration; // @synthesize performsUpgradeIntegration=_performsUpgradeIntegration;
+@property(nonatomic) BOOL createsThinnedApps; // @synthesize createsThinnedApps=_createsThinnedApps;
 @property(nonatomic) BOOL exportsProductFromArchive; // @synthesize exportsProductFromArchive=_exportsProductFromArchive;
 @property(nonatomic) unsigned long long codeCoveragePreference; // @synthesize codeCoveragePreference=_codeCoveragePreference;
 @property(nonatomic) BOOL performsArchiveAction; // @synthesize performsArchiveAction=_performsArchiveAction;
 @property(nonatomic) BOOL performsTestAction; // @synthesize performsTestAction=_performsTestAction;
 @property(nonatomic) BOOL performsAnalyzeAction; // @synthesize performsAnalyzeAction=_performsAnalyzeAction;
+@property(retain, nonatomic) XCSToolchain *overrideToolchain; // @synthesize overrideToolchain=_overrideToolchain;
 @property(retain, nonatomic) NSString *buildConfiguration; // @synthesize buildConfiguration=_buildConfiguration;
 @property(nonatomic) unsigned long long buildsFromCleanSchedule; // @synthesize buildsFromCleanSchedule=_buildsFromCleanSchedule;
 @property(retain, nonatomic) NSString *schemeName; // @synthesize schemeName=_schemeName;
@@ -121,8 +137,6 @@
 @property(retain, nonatomic) DVTSourceControlWorkspaceBlueprint *updatedBotSCMWorkspaceBlueprint; // @synthesize updatedBotSCMWorkspaceBlueprint=_updatedBotSCMWorkspaceBlueprint;
 @property(retain, nonatomic) DVTSourceControlWorkspaceBlueprint *localSCMWorkspaceBlueprint; // @synthesize localSCMWorkspaceBlueprint=_localSCMWorkspaceBlueprint;
 @property(nonatomic) BOOL disableWorkspaceSpecificSettings; // @synthesize disableWorkspaceSpecificSettings=_disableWorkspaceSpecificSettings;
-@property(nonatomic) BOOL botEditorShowedPermissionDeniedSheet; // @synthesize botEditorShowedPermissionDeniedSheet=_botEditorShowedPermissionDeniedSheet;
-@property(nonatomic) BOOL userCanCreateBotsOnService; // @synthesize userCanCreateBotsOnService=_userCanCreateBotsOnService;
 @property(retain, nonatomic) XCSService *service; // @synthesize service=_service;
 @property(copy, nonatomic) NSString *defaultBotName; // @synthesize defaultBotName=_defaultBotName;
 @property(copy, nonatomic) NSString *botName; // @synthesize botName=_botName;
@@ -132,14 +146,18 @@
 - (void)fixSchemeProblem;
 - (id)defaultSpecificationForExistingBot;
 - (id)defaultSpecificationForNewBot;
+- (BOOL)shouldResetDeviceSpecification;
 - (void)assignDefaultRuleIfNeeded;
 - (unsigned long long)defaultArchitectureTypeForPlatform:(id)arg1;
 - (id)deviceFilter;
 @property(readonly, nonatomic) NSArray *selectablePlatforms;
 - (void)_listenForDeviceChangesForService:(id)arg1;
+- (void)_loadServerHostnameForService:(id)arg1;
 - (void)_loadDevicesForService:(id)arg1;
+- (void)_loadOverrideToolchainsForService:(id)arg1;
 - (void)_loadPlatformsForService:(id)arg1;
-- (void)_setupPlatformsAndDevicesForService:(id)arg1;
+- (void)_setupPlatformsToolchainsAndDevicesForService:(id)arg1;
+- (void)redefineSCMBlueprintsFromLocalBlueprint;
 @property(readonly, copy, nonatomic) NSArray *allRepositoriesInLocalBlueprint;
 @property(readonly, copy, nonatomic) NSArray *repositoriesInBotBlueprintAndInWorkspace;
 @property(readonly, copy, nonatomic) NSArray *repositoriesInBotBlueprintButNotInWorkspace;
@@ -150,11 +168,13 @@
 @property(readonly, nonatomic) BOOL schemeSupportsArchiveAction;
 @property(readonly, nonatomic) BOOL schemeSupportsTestAction;
 @property(readonly, nonatomic) BOOL schemeSupportsAnalyzeAction;
+@property(readonly, nonatomic) NSArray *availableOverrideToolchainsForScheme;
 @property(readonly, nonatomic) NSArray *supportedBuildConfigurationsForScheme;
 @property(readonly, nonatomic) BOOL canContinueInDevicePicker;
 @property(readonly, nonatomic) BOOL shouldSkipDevicePicker;
 @property(readonly, nonatomic, getter=isInvalidTestingDestinationType) BOOL invalidTestingDestinationType;
 @property(readonly, nonatomic) unsigned long long defaultTestingDestinationType;
+@property(readonly, nonatomic) BOOL schemeSupportsAppThinning;
 @property(readonly, nonatomic) BOOL schemeSupportsMac32BitArchitecture;
 @property(readonly, nonatomic) BOOL schemeSupportsMac;
 @property(readonly, nonatomic) NSSet *schemeSupportedPlatforms;

@@ -22,7 +22,7 @@
     NSNumber *_baseline;
     double _maxPercentRegression;
     double _maxPercentRelativeStandardDeviation;
-    struct NSArray *_iterations;
+    NSArray *_iterations;
     XCSTestResult *_testResult;
     unsigned long long _deviceCount;
 }

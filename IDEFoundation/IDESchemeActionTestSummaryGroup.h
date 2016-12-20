@@ -14,9 +14,11 @@
 {
     NSMutableArray *_subtests;
     NSString *_identifier;
+    double _duration;
 }
 
 + (void)initialize;
+@property double duration; // @synthesize duration=_duration;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 @property(readonly) NSMutableArray *mutableContainedTestSummaries;
@@ -24,7 +26,7 @@
 - (BOOL)updateWithDictionaryRepresentation:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)addNewTestSummaryGroupWithName:(id)arg1 identifier:(id)arg2;
-- (id)addNewTestSummaryWithName:(id)arg1 identifier:(id)arg2 status:(unsigned long long)arg3 failureSummaries:(id)arg4 performanceMetrics:(id)arg5 activitySummaries:(id)arg6;
+- (void)addTestSummary:(id)arg1;
 - (unsigned long long)status;
 - (void)loadAttachmentsFromDirectory:(id)arg1;
 - (id)initWithDictionaryRepresentation:(id)arg1;

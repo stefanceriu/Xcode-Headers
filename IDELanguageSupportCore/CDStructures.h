@@ -11,6 +11,6 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 #pragma mark Typedef'd Structures
 
 typedef struct {
-    unsigned long long _field1[3];
-} CDStruct_3c4b7cd8;
+    unsigned long long _field1[4];
+} CDStruct_68506f87;
 

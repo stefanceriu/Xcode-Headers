@@ -20,6 +20,7 @@
 - (void)ib_addObjectIfNonNil:(id)arg1;
 - (void)ib_appendObjects:(id)arg1;
 - (void)ib_addObjectsFromCollection:(id)arg1;
+- (void)ib_addObjectsFromFastEnumerable:(id)arg1;
 - (id)ib_dequeue;
 
 // Remaining properties

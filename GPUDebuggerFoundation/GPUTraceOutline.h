@@ -19,8 +19,6 @@
     GPUTraceProgramGroup *_rootProgramGroup;
     GPUTraceGroupItem *_currentGroup;
     GPUTraceDisplayableItem *_currentDisplayableItem;
-    struct shared_ptr<GPUTools::FD::TFunctionStream<GPUTools::FD::Function, void>> _captureStream;
-    struct _Iterator<GPUTools::FD::Function> _captureStreamIter;
     struct vector<unsigned int, std::__1::allocator<unsigned int>> _functionIndexToDisplayIndexMap;
     IDELaunchSession *_launchSession;
     NSMutableDictionary *_threadNameDict;
@@ -30,10 +28,6 @@
     NSMutableArray *_allAPIItems;
     unsigned long long _currentThread;
     unsigned long long _currentQueue;
-    unsigned int _currentFunctionIndex;
-    unsigned int _currentDisplayFunctionIndex;
-    unsigned int _currentFrameIndex;
-    unsigned int _currentMarkerDepth;
     BOOL _processingTraceFiles;
     NSMutableArray *_allDisplayableItems;
     NSString *_contentDelegateUUID;
@@ -58,16 +52,16 @@
 - (id)apiItemForTrueFunctionIndex:(unsigned int)arg1;
 - (id)apiItemFromFunctionIndex:(unsigned int)arg1;
 - (id)apiItemFromDisplayIndex:(unsigned int)arg1;
-@property(readonly) unsigned int totalfunctionIndexCount; // @dynamic totalfunctionIndexCount;
+@property(readonly) unsigned int totalfunctionIndexCount;
 - (id)locateDisplayableItemToDraw:(id)arg1 isAssociatedWithStateItem:(char *)arg2;
 - (void)addDisplayableItem:(id)arg1;
 - (void)performPostCaptureVisitActions;
 - (void)performPreCaptureVisitActions;
 - (void)performPreVisitActions;
-@property(readonly) __weak GPUTraceDisplayableItem *lastDisplayableItem; // @dynamic lastDisplayableItem;
-@property(readonly) GPUTraceGroupItem *rootProcessItem; // @dynamic rootProcessItem;
-@property(readonly) NSMutableArray *allPrograms; // @dynamic allPrograms;
-@property(readonly) NSURL *captureArchiveURL; // @dynamic captureArchiveURL;
+@property(readonly) __weak GPUTraceDisplayableItem *lastDisplayableItem;
+@property(readonly) GPUTraceGroupItem *rootProcessItem;
+@property(readonly) NSMutableArray *allPrograms;
+@property(readonly) NSURL *captureArchiveURL;
 - (void)primitiveInvalidate;
 - (id)initWithTraceSession:(id)arg1;
 

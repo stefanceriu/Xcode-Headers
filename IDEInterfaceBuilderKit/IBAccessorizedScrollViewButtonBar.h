@@ -4,17 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "DVTLayoutView_ML.h"
+#import "NSView.h"
 
-@class DVTStackView_ML, NSArray, NSColor;
+#import "NSAccessibilityGroup.h"
 
-@interface IBAccessorizedScrollViewButtonBar : DVTLayoutView_ML
+@class NSColor, NSStackView, NSString;
+
+@interface IBAccessorizedScrollViewButtonBar : NSView <NSAccessibilityGroup>
 {
-    DVTStackView_ML *_leftStack;
-    DVTStackView_ML *_centerStack;
-    DVTStackView_ML *_rightStack;
+    NSStackView *_verticalStackView;
+    NSStackView *_topStackView;
+    NSStackView *_topLeftStackView;
+    NSStackView *_topCenterStackView;
+    NSStackView *_topRightStackView;
+    NSStackView *_bottomStackView;
     NSColor *_barBackgroundColor;
-    double _barHeight;
 }
 
 + (id)barButtonWithTitle:(id)arg1;
@@ -22,29 +26,29 @@
 + (id)barSegmentWithSegments:(id)arg1;
 + (id)barPopUpButton;
 + (id)barButton;
-@property(nonatomic) double barHeight; // @synthesize barHeight=_barHeight;
 @property(copy, nonatomic) NSColor *barBackgroundColor; // @synthesize barBackgroundColor=_barBackgroundColor;
 - (void).cxx_destruct;
-- (void)drawRect:(struct CGRect)arg1;
-- (id)effectiveBarBackgroundColor;
+- (void)updateLayer;
+- (BOOL)wantsUpdateLayer;
 - (id)hitTest:(struct CGPoint)arg1;
-- (void)layoutBottomUp;
-- (void)layoutTopDown;
 - (void)removeCenterView:(id)arg1;
 - (void)removeRightView:(id)arg1;
 - (void)removeLeftView:(id)arg1;
+@property(nonatomic, getter=isBottomBarVisible) BOOL bottomBarVisible;
+- (void)addBottomView:(id)arg1;
 - (void)insertCenterView:(id)arg1 atIndex:(long long)arg2;
 - (void)addCenterView:(id)arg1;
 - (void)insertRightView:(id)arg1 atIndex:(long long)arg2;
 - (void)addRightView:(id)arg1;
 - (void)insertLeftView:(id)arg1 atIndex:(long long)arg2;
 - (void)addLeftView:(id)arg1;
-@property(copy) NSArray *centerViews;
-@property(copy) NSArray *rightViews;
-@property(copy) NSArray *leftViews;
-@property double rightInset;
-@property double leftInset;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

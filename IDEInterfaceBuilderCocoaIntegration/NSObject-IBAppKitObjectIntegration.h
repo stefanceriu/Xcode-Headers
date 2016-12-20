@@ -37,6 +37,7 @@
 - (id)ibSuggestedAutomaticUserInterfaceItemIdentifier;
 - (id)ibSuggestUserInterfaceItemIdentifierForObject:(id)arg1;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
+- (void)ibPrepareCocoaDocumentViewsWithTranslatesAutoresizingMaskIntoConstraintsForCompiling:(id)arg1 withContext:(id)arg2;
 @property(copy) NSString *ibExternalUserInterfaceItemIdentifier;
 - (id)ibEffectiveUserInterfaceItemIdentifier;
 - (BOOL)ibIdentifierPropertyCanConflictsWithObject:(id)arg1;
@@ -70,7 +71,7 @@
 - (void)ibSwizzledNSObjectWarnings:(id)arg1 forUserDefinedRuntimeAttributes:(id)arg2 forDocument:(id)arg3 withComputationContext:(id)arg4;
 - (BOOL)ibSwizzledNSObjectCouldIssueWarningsForUserDefinedRuntimeAttributesForDocument:(id)arg1;
 - (void)ibSwizzledNSObjectInvalidateWarningsAfterDescendant:(id)arg1 changedProperty:(id)arg2 inDocument:(id)arg3 fromValue:(id)arg4;
-- (BOOL)ibSwizzleNSIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
+- (BOOL)ibSwizzledNSObject_ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
 - (id)ibSwizzledNSObjectLocalLocalizableStringsAttributeKeyPaths;
 - (id)ibSwizzledNSObjectLocalAttributeKeyPaths;
 @end

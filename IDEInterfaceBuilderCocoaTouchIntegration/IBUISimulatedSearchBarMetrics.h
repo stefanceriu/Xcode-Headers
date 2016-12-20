@@ -7,21 +7,19 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUISimulatedBarMetrics.h>
 
 #import "IBDocumentArchiving.h"
-#import "IBUISimulatedBarMetricsBarStyle.h"
 #import "NSCoding.h"
 
 @class NSColor, NSString;
 
-@interface IBUISimulatedSearchBarMetrics : IBUISimulatedBarMetrics <NSCoding, IBDocumentArchiving, IBUISimulatedBarMetricsBarStyle>
+@interface IBUISimulatedSearchBarMetrics : IBUISimulatedBarMetrics <NSCoding, IBDocumentArchiving>
 {
-    int _barStyle;
     BOOL _translucent;
     BOOL _prompted;
     struct NSColor *_tintColor;
     struct NSColor *_barTintColor;
 }
 
-+ (id)simulatedSearchBarStyleWithStyle:(int)arg1 translucent:(BOOL)arg2 prompt:(BOOL)arg3 tintColor:(struct NSColor *)arg4 barTintColor:(struct NSColor *)arg5;
++ (id)simulatedSearchBarStyleWithStyle:(long long)arg1 translucent:(BOOL)arg2 prompt:(BOOL)arg3 tintColor:(struct NSColor *)arg4 barTintColor:(struct NSColor *)arg5;
 + (id)defaultMetrics;
 + (id)simulatedSearchBarMetricsForSearchBar:(id)arg1;
 + (id)simulatedBarMetricsForBarView:(id)arg1;
@@ -29,11 +27,11 @@
 @property(readonly, copy, nonatomic) NSColor *tintColor; // @synthesize tintColor=_tintColor;
 @property(readonly, nonatomic, getter=isPrompted) BOOL prompted; // @synthesize prompted=_prompted;
 @property(readonly, nonatomic, getter=isTranslucent) BOOL translucent; // @synthesize translucent=_translucent;
-@property(readonly, nonatomic) int barStyle; // @synthesize barStyle=_barStyle;
 - (void).cxx_destruct;
+@property(readonly, copy) NSString *description;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
-- (id)initWithStyle:(int)arg1 translucent:(BOOL)arg2 prompted:(BOOL)arg3 tintColor:(struct NSColor *)arg4 barTintColor:(struct NSColor *)arg5;
+- (id)initWithStyle:(long long)arg1 translucent:(BOOL)arg2 prompted:(BOOL)arg3 tintColor:(struct NSColor *)arg4 barTintColor:(struct NSColor *)arg5;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)simulatedBarMetricsByRemovingTintColor;
@@ -49,7 +47,6 @@
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
 

@@ -15,28 +15,22 @@
     IDEComparisonEditor *_comparisonEditor;
     IDEPathControl *_primaryPathControl;
     IDEPathControl *_secondaryPathControl;
+    DVTGradientImageButton *_centerButton;
     IDEComparisonEditorChangesStepperView *_changesStepperControl;
-    DVTGradientImageButton *_timelineActivationButton;
-    BOOL _showAsInset;
-    BOOL _hideTimelineButton;
     BOOL _hideSecondaryPathControl;
-    BOOL _hideChangesStepperControl;
 }
 
 + (void)initialize;
-@property BOOL showAsInset; // @synthesize showAsInset=_showAsInset;
 @property(readonly) IDEComparisonEditorChangesStepperView *changesStepperControl; // @synthesize changesStepperControl=_changesStepperControl;
-@property(retain) DVTGradientImageButton *timelineActivationButton; // @synthesize timelineActivationButton=_timelineActivationButton;
 @property(retain) IDEPathControl *secondaryPathControl; // @synthesize secondaryPathControl=_secondaryPathControl;
 @property(retain) IDEPathControl *primaryPathControl; // @synthesize primaryPathControl=_primaryPathControl;
 @property(retain) IDEComparisonEditor *comparisonEditor; // @synthesize comparisonEditor=_comparisonEditor;
 - (void).cxx_destruct;
 @property BOOL hideSecondaryPathControl;
-@property BOOL hideChangesStepperControl; // @synthesize hideChangesStepperControl=_hideChangesStepperControl;
-@property BOOL hideTimelineButton;
 - (void)primitiveInvalidate;
 - (void)centerChangesStepperControl;
 - (void)layoutTopDown;
+- (void)selectDiff:(id)arg1;
 - (void)_dvt_commonInit;
 - (id)initWithFrame:(struct CGRect)arg1;
 

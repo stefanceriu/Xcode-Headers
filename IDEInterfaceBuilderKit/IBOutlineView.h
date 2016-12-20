@@ -18,7 +18,6 @@
     NSString *_separatorRowViewIdentifier;
     NSMutableSet *_itemsWithDynamicHeight;
     NSString *_groupRowViewIdentifier;
-    BOOL _delegateRespondsToDynamicHeight;
     BOOL _drawsWithActiveLook;
     NSNumber *_rowIndicatingPotentialConnection;
     NSSet *_highlightedRows;
@@ -34,7 +33,6 @@
 - (void)drawPotentialConnectionIndicatorInRect:(struct CGRect)arg1;
 - (struct CGRect)rectOfRow:(long long)arg1;
 - (double)heightForItem:(id)arg1 givenContentHeight:(double)arg2;
-- (double)heightForItem:(id)arg1 givenContentHeight:(double)arg2 dynamicHeightViewIdentifier:(id)arg3 dynamicHeightViewBundle:(id)arg4 willSetupDynamicHeightBlock:(CDUnknownBlockType)arg5 didSetupDynamicHeightBlock:(CDUnknownBlockType)arg6;
 - (void)rightMouseDown:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (BOOL)delegateInterceptsRightAndContextClickActions;
@@ -46,7 +44,8 @@
 - (void)reloadData;
 - (id)makeSeparatorRowViewForItem:(id)arg1 withOwner:(id)arg2;
 - (id)makeGroupRowViewForItem:(id)arg1 withOwner:(id)arg2;
-@property(nonatomic) id <IBOutlineViewDelegate> delegate;
+- (id)delegate;
+- (void)setDelegate:(id)arg1;
 - (void)syncRowHeights;
 - (void)setFrameSize:(struct CGSize)arg1;
 

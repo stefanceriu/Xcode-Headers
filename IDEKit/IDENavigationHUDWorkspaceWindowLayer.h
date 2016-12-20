@@ -6,11 +6,12 @@
 
 #import <IDEKit/IDENavigationHUDAbstractWorkspaceWindowLayer.h>
 
+#import "CALayoutManager.h"
 #import "IDENavigationHUDSelectionDrivenLayer.h"
 
 @class CAScrollLayer, IDENavigationHUDSelection, IDENavigationHUDTabBarLayer, IDEWorkspaceWindowController, NSArray, NSDictionary, NSMapTable, NSString;
 
-@interface IDENavigationHUDWorkspaceWindowLayer : IDENavigationHUDAbstractWorkspaceWindowLayer <IDENavigationHUDSelectionDrivenLayer>
+@interface IDENavigationHUDWorkspaceWindowLayer : IDENavigationHUDAbstractWorkspaceWindowLayer <CALayoutManager, IDENavigationHUDSelectionDrivenLayer>
 {
     NSMapTable *_strongWorkspaceTabControllerToStrongTabLayerMap;
     IDEWorkspaceWindowController *_workspaceWindowController;
@@ -43,7 +44,7 @@
 @property(readonly) BOOL shouldShowTabBar;
 @property(readonly) BOOL shouldOnlySelectInitialTab;
 @property(readonly) BOOL canCreateNewTab;
-- (void)dispose;
+- (void)primitiveInvalidate;
 - (id)initWithNavigationHUDController:(id)arg1 workspaceWindowController:(id)arg2 initialSelection:(id)arg3 options:(id)arg4;
 
 // Remaining properties

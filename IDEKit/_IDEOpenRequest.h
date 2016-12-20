@@ -18,6 +18,7 @@
     IDEEditorContext *_explicitEditorContext;
     int _eventBehavior;
     int _takeFocus;
+    CDUnknownBlockType _completionBlock;
     int _requestState;
 }
 
@@ -27,7 +28,7 @@
 - (void)_enqueueForEventBehavior:(int)arg1;
 - (void)_runIfNecessary;
 - (id)initWithOpenSpecifier:(id)arg1 explicitEditorContext:(id)arg2;
-- (id)initWithOpenSpecifier:(id)arg1 workspaceTabController:(id)arg2 editorContext:(id)arg3 eventBehavior:(int)arg4 takeFocus:(int)arg5;
+- (id)initWithOpenSpecifier:(id)arg1 workspaceTabController:(id)arg2 editorContext:(id)arg3 eventBehavior:(int)arg4 takeFocus:(int)arg5 completionBlock:(CDUnknownBlockType)arg6;
 - (id)initWithIgnore;
 
 // Remaining properties

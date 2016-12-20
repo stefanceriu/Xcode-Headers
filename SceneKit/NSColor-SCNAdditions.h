@@ -7,7 +7,7 @@
 #import "NSColor.h"
 
 @interface NSColor (SCNAdditions)
-+ (id)colorWithC3DColor4:(const struct C3DColor4 *)arg1;
-- (BOOL)colorToC3DColor4:(struct C3DColor4 *)arg1;
++ (id)scn_colorWithC3DColor:(const struct C3DColor4 *)arg1;
+- (struct C3DColor4)scn_C3DColorIgnoringColorSpace:(BOOL)arg1 success:(char *)arg2;
 @end
 

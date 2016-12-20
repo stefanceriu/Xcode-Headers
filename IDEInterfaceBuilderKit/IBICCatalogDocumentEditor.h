@@ -32,6 +32,7 @@
     IBICCatalogSlicingController *_slicingController;
 }
 
++ (id)displayOrderedCatalogItemsForDetailViewFromItems:(id)arg1;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 @property(readonly, nonatomic) IBICCatalogSlicingController *slicingController; // @synthesize slicingController=_slicingController;
 @property(readonly, nonatomic) IBICCatalogOverviewController *overviewController; // @synthesize overviewController=_overviewController;
@@ -46,7 +47,6 @@
 - (void).cxx_destruct;
 - (void)splitView:(id)arg1 resizeSubviewsWithOldSize:(struct CGSize)arg2;
 - (double)splitView:(id)arg1 constrainSplitPosition:(double)arg2 ofSubviewAt:(long long)arg3;
-- (id)displayOrderedCatalogItemsForDetailViewFromItems:(id)arg1;
 - (id)itemsFromDocumentLocations:(id)arg1;
 - (void)warnAboutBogusDocumentLocations:(id)arg1;
 - (void)addAssetTagsToProject:(id)arg1;
@@ -77,7 +77,7 @@
 - (void)showImageCatalogItemsInFinderWithActionContext:(id)arg1;
 - (id)imageCatalogItemURLsForShowingInFinderForActionContext:(id)arg1;
 - (id)imageCatalogItemURLsForOpenningInExternalEditorForActionContext:(id)arg1;
-- (id)ordredURLsForItems:(id)arg1;
+- (id)orderedURLsForItems:(id)arg1;
 - (void)applyAssetInstantiationCommand:(id)arg1 inActionContext:(id)arg2;
 - (BOOL)canApplyAssetInstantiationCommand:(id)arg1 inActionContext:(id)arg2;
 - (void)removeItemsWithActionContext:(id)arg1;

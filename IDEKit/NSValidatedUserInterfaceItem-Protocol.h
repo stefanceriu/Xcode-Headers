@@ -5,7 +5,7 @@
 //
 
 @protocol NSValidatedUserInterfaceItem
-- (long long)tag;
-- (SEL)action;
+@property(readonly) long long tag;
+@property(readonly) SEL action;
 @end
 

@@ -6,59 +6,9 @@
 
 #import "NSObject.h"
 
-#import "NSSecureCoding.h"
-
-@class NSArray, SCNNode;
-
-@interface SCNLightProbes : NSObject <NSSecureCoding>
+@interface SCNLightProbes : NSObject
 {
-    CDStruct_183601bc *_probes;
-    struct {
-        int _field1[4];
-        int _field2[4];
-        float _field3;
-        _Bool _field4;
-    } *_tetrahedrons;
-    NSArray *_bakedLights;
-    long long _bakingMethod;
-    unsigned long long _probesCount;
-    unsigned long long _tetrahedronCount;
-    SCNNode *_owner;
-    unsigned long long _probesCapacity;
-    BOOL _tetrahedronsValid;
 }
-
-+ (BOOL)supportsSecureCoding;
-+ (id)lightProbes;
-@property(nonatomic) long long bakingMethod; // @synthesize bakingMethod=_bakingMethod;
-- (id)initWithCoder:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (void)_customDecodingOfSCNLightProbes:(id)arg1;
-- (void)_customEncodingOfSCNLightProbes:(id)arg1;
-- (struct __C3DScene *)sceneRef;
-- (void)_removeOwner;
-- (void)_setOwner:(id)arg1;
-- (void)computeNeighbourIndexes;
-- (void)tetrahedronAtIndex:(unsigned long long)arg1 indexes:(unsigned int *)arg2;
-@property(readonly, nonatomic) unsigned long long tetrahedronCount;
-- (void)updateTetrahedronsIfNeeded;
-- (id)copy;
-- (id)copyWithZone:(struct _NSZone *)arg1;
-@property(retain, nonatomic) NSArray *bakedLights;
-- (struct SCNVector3)probePositionAtIndex:(unsigned long long)arg1;
-- (void)setProbePosition:(struct SCNVector3)arg1 atIndex:(unsigned long long)arg2;
-- (void)arrangeProbesByDensityWithScene:(id)arg1;
-- (void)arrangeProbesByGridWithBounds:(struct SCNVector3)arg1;
-- (void)validateProbeArrayIfNeeded;
-- (void)removeAllProbes;
-- (void)removeProbeAtIndex:(unsigned long long)arg1;
-- (void)insertProbesAtIndex:(unsigned long long)arg1;
-@property(nonatomic) unsigned long long probesCount;
-- (void)invalidateTetrahedons;
-- (void)clear;
-- (id)description;
-- (void)dealloc;
-- (id)init;
 
 @end
 

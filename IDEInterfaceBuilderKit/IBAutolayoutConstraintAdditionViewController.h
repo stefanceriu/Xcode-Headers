@@ -213,6 +213,8 @@
 - (void)userDidChangeAlignPopUp:(id)arg1;
 - (void)userDidSelectCheckBox:(id)arg1;
 - (void)userDidChangeValue:(id)arg1;
+- (void)controlTextDidChange:(id)arg1;
+- (void)_syncConstraintsButtonFromModel;
 - (void)_syncUIFromModel;
 - (BOOL)_canAlignAnything;
 - (id)_objectValueForFieldForTypeConfiguration:(id)arg1 returningPlaceholderString:(id *)arg2;

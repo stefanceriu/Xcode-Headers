@@ -13,9 +13,11 @@
     SKENodePickerButton *_button;
     IDEInspectorKeyPath *_targetKeyPath;
     IDEInspectorKeyPath *_argumentKeyPath;
+    IDEInspectorKeyPath *_valueKeyPath;
 }
 
 - (void).cxx_destruct;
+- (void)refresh;
 - (void)nodeDidChange;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)action:(id)arg1;

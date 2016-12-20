@@ -18,5 +18,6 @@
 - (double)ibInspectedMinValue;
 - (void)setIbInspectedMaxValue:(double)arg1;
 - (double)ibInspectedMaxValue;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

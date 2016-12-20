@@ -6,27 +6,38 @@
 
 #import "NSObject.h"
 
-@class DVTPlatform, NSMutableDictionary, NSString;
+@class DVTFuture, DVTPlatform, DVTPromise, IDEProvisioningTeamManager, NSMutableDictionary, NSString;
 
 @interface IDETemplateTester : NSObject
 {
+    BOOL _permuteTestOptions;
     NSString *_outputPath;
     DVTPlatform *_platform;
     NSMutableDictionary *_usedTemplateNamesByPlatform;
     unsigned long long _testProjectCounter;
+    IDEProvisioningTeamManager *_teamManager;
+    DVTFuture *_teamsLoadingFuture;
+    DVTPromise *_teamsLoadingPromise;
+    id <IDEProvisioningBasicTeam> _team;
 }
 
+@property(retain) id <IDEProvisioningBasicTeam> team; // @synthesize team=_team;
+@property(retain) DVTPromise *teamsLoadingPromise; // @synthesize teamsLoadingPromise=_teamsLoadingPromise;
+@property(retain) DVTFuture *teamsLoadingFuture; // @synthesize teamsLoadingFuture=_teamsLoadingFuture;
+@property(retain) IDEProvisioningTeamManager *teamManager; // @synthesize teamManager=_teamManager;
 @property unsigned long long testProjectCounter; // @synthesize testProjectCounter=_testProjectCounter;
 @property(retain) NSMutableDictionary *usedTemplateNamesByPlatform; // @synthesize usedTemplateNamesByPlatform=_usedTemplateNamesByPlatform;
+@property BOOL permuteTestOptions; // @synthesize permuteTestOptions=_permuteTestOptions;
 @property(retain) DVTPlatform *platform; // @synthesize platform=_platform;
-@property(retain) NSString *outputPath; // @synthesize outputPath=_outputPath;
+@property(copy) NSString *outputPath; // @synthesize outputPath=_outputPath;
 - (void).cxx_destruct;
 - (void)runTemplateTests;
 - (void)doProjectTemplate:(id)arg1;
 - (void)permuteOptions:(id)arg1 inProjectTemplate:(id)arg2 withPlatformName:(id)arg3 withFolderName:(id)arg4;
 - (id)uniqueTemplateNameForName:(id)arg1 platformName:(id)arg2;
 - (id)init;
-- (id)initWithOutputPath:(id)arg1;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (id)initWithOutputPath:(id)arg1 teamID:(id)arg2;
 
 @end
 

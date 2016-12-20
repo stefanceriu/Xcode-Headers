@@ -15,7 +15,9 @@
 
 @property(readonly) XCSService *service; // @synthesize service=_service;
 - (void).cxx_destruct;
+- (id)platformsJSON;
 - (BOOL)saveAvailablePlatformsWithError:(id *)arg1;
+- (id)allPlatforms;
 - (id)initWithService:(id)arg1;
 
 @end

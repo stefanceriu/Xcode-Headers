@@ -43,6 +43,7 @@
 - (void).cxx_destruct;
 - (void)setAttachRunnablePID:(int)arg1 applicationName:(id)arg2;
 - (id)operationWithWorkingDirectory:(id)arg1 workspaceFilePath:(id)arg2 projectFilePath:(id)arg3 outError:(id *)arg4;
+- (id)_plistableExtensionInfo:(id)arg1;
 - (CDUnknownBlockType)_operationBlockWithWorkingDirectory:(id)arg1 workspaceFilePath:(id)arg2 projectFilePath:(id)arg3;
 - (void)_launch:(id)arg1 WithConfigFile:(id)arg2;
 - (id)_analysisAppPathForType:(int)arg1;

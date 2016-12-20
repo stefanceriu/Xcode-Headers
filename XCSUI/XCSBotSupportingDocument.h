@@ -6,14 +6,17 @@
 
 #import "IDEEditorDocument.h"
 
-@class XCSBot, XCSIntegration;
+@class NSError, XCSBot, XCSIntegration;
 
 @interface XCSBotSupportingDocument : IDEEditorDocument
 {
+    NSError *_error;
 }
 
 + (id)documentLocationForBotSummaryDocumentLocation:(id)arg1 blueprint:(id)arg2 inWorkspace:(id)arg3;
 + (BOOL)shouldUnlockFileURLBeforeMakingChanges;
+@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
+- (void).cxx_destruct;
 - (void)fetchGeniusResultsForDocumentLocations:(id)arg1 inWorkspace:(id)arg2 withCompletionHandler:(CDUnknownBlockType)arg3;
 - (void)updateBotIntegration:(id)arg1;
 @property(readonly, nonatomic) XCSIntegration *botIntegration;

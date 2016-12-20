@@ -7,8 +7,6 @@
 #import "IDEWorkspace.h"
 
 @interface IDEWorkspace (Xcode3ProjectScripting)
-- (void)insertInSdefSupport_projects:(id)arg1 atIndex:(unsigned long long)arg2;
-- (id)sdefSupport_newProjectForDocument:(id)arg1 withContentsValue:(id)arg2 andProperties:(id)arg3;
 - (id)sdefSupport_projectsForDocument:(id)arg1;
 @end
 

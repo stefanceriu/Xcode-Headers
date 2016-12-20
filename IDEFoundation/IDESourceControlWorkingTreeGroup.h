@@ -27,7 +27,6 @@
 - (void)setConflictStateForUpdateOrMerge:(unsigned long long)arg1;
 - (void)setSourceControlServerStatus:(int)arg1;
 - (void)setSourceControlLocalStatus:(int)arg1;
-- (id)temporaryFolderForBranchName:(id)arg1 revisionNumber:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)currentRevisionWithCompletionBlock:(CDUnknownBlockType)arg1;
 @property BOOL edited; // @synthesize edited=_edited;
 - (id)ideModelObjectTypeIdentifier;

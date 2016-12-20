@@ -55,6 +55,7 @@
 - (void)showDeviceDifferences:(id)arg1;
 - (void)showTestBundlesAction:(id)arg1;
 - (void)filterFieldAction:(id)arg1;
+- (void)restoreFilterField;
 - (void)_filterOutlineAndRefresh;
 - (id)_filterItemsBasedOnCoverageDifferencesAndTestBundleCheckboxes:(id)arg1 contextItem:(id)arg2;
 - (id)testBundleExtension;

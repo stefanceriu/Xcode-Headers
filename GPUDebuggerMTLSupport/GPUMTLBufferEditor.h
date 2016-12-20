@@ -6,59 +6,28 @@
 
 #import "GPUResourceEditor.h"
 
-#import "GPUDataTableViewDataProvider.h"
-#import "GPUDataTableViewDelegate.h"
-
-@class DVTBorderedView, DYRenderingAttributes, GPUDataTableView, GPUMTLBufferData, NSLayoutConstraint, NSPopUpButton, NSString;
+@class GPUBufferViewerViewController;
 
 __attribute__((visibility("hidden")))
-@interface GPUMTLBufferEditor : GPUResourceEditor <GPUDataTableViewDataProvider, GPUDataTableViewDelegate>
+@interface GPUMTLBufferEditor : GPUResourceEditor
 {
-    GPUMTLBufferData *_bufferData;
-    DYRenderingAttributes *_renderingAttributes;
-    double _minColumnWidth;
-    BOOL _isPopulated;
-    BOOL _isIndexBuffer;
-    BOOL _showOffset;
-    GPUDataTableView *_vboView;
-    NSPopUpButton *_displayFormatPopup;
-    NSString *_displayFormat;
-    DVTBorderedView *_bottomToolbar;
-    NSLayoutConstraint *_toolbarHeightConstraint;
-    long long _numberOfColumns;
+    GPUBufferViewerViewController *_bufferViewerViewController;
 }
 
 + (id)assetBundle;
-@property BOOL showOffset; // @synthesize showOffset=_showOffset;
-@property(nonatomic) long long numberOfColumns; // @synthesize numberOfColumns=_numberOfColumns;
-@property(nonatomic) __weak NSLayoutConstraint *toolbarHeightConstraint; // @synthesize toolbarHeightConstraint=_toolbarHeightConstraint;
-@property(nonatomic) __weak DVTBorderedView *bottomToolbar; // @synthesize bottomToolbar=_bottomToolbar;
-@property(retain, nonatomic) NSString *displayFormat; // @synthesize displayFormat=_displayFormat;
-@property(retain, nonatomic) NSPopUpButton *displayFormatPopup; // @synthesize displayFormatPopup=_displayFormatPopup;
-@property(retain, nonatomic) GPUDataTableView *vboView; // @synthesize vboView=_vboView;
+@property(retain, nonatomic) GPUBufferViewerViewController *bufferViewerViewController; // @synthesize bufferViewerViewController=_bufferViewerViewController;
 - (void).cxx_destruct;
-- (void)viewWillUninstall;
+- (void)extractGeometryParams:(struct GPUBufferViewerAdaptorGeometryParams *)arg1 fromDrawPatchesIndirectBufferPtr:(const char *)arg2;
+- (void)extractGeometryParams:(struct GPUBufferViewerAdaptorGeometryParams *)arg1 fromDrawIndexedPrimitivesIndirectBufferPtr:(const char *)arg2;
+- (void)extractGeometryParams:(struct GPUBufferViewerAdaptorGeometryParams *)arg1 fromDrawPrimitivesIndirectBufferPtr:(const char *)arg2;
+- (void)extractComputeAttributesDataLayout:(out vector_44d4fed2 *)arg1 dataBuffers:(out vector_c26b6358 *)arg2 geometryParams:(out struct GPUBufferViewerAdaptorGeometryParams *)arg3 resourceItem:(id)arg4;
+- (void)extractPatchAttributesDataLayout:(out vector_44d4fed2 *)arg1 dataBuffers:(out vector_c26b6358 *)arg2 geometryParams:(out struct GPUBufferViewerAdaptorGeometryParams *)arg3 resourceItem:(id)arg4;
+- (void)extractVertexAttributesDataLayout:(out vector_44d4fed2 *)arg1 dataBuffers:(out vector_c26b6358 *)arg2 geometryParams:(out struct GPUBufferViewerAdaptorGeometryParams *)arg3 resourceItem:(id)arg4;
+- (void)extractSingleBufferDataLayouts:(out vector_44d4fed2 *)arg1 dataBuffers:(out vector_c26b6358 *)arg2 resourceItem:(id)arg3 preferredDataStruct:(out int *)arg4 byfferType:(out id *)arg5;
 - (void)beginEditor;
-- (void)populate;
-- (void)setRepresentedObject:(id)arg1;
+- (void)viewWillUninstall;
 - (void)loadView;
-- (struct CGPoint)scrollPointForByteOffset:(long long)arg1;
-- (long long)documentVisibleRectOffsetInBytes;
-- (unsigned int)bytesPerItem;
-- (id)widthInColumns;
-- (void)setWidthInColumns:(id)arg1;
-- (double)dataTableView:(id)arg1 minimumWidthForColumn:(long long)arg2 inGroup:(long long)arg3;
-- (id)dataTableView:(id)arg1 textForCellAtRow:(long long)arg2 column:(long long)arg3 inColumnGroup:(long long)arg4;
-- (long long)dataTableView:(id)arg1 numberOfColumnsInGroup:(long long)arg2;
-- (long long)numberOfColumnGroupsInTableView:(id)arg1;
-- (long long)numberOfRowsInDataTableView:(id)arg1;
-- (id)supportedResourceClasses;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)supportedResourceProtocols;
 
 @end
 

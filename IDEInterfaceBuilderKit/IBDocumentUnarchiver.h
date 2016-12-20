@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IBDocumentArchivingSchema, IBDocumentUnarchiverRecursionState, IBMutableIdentityDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet, NSXMLDocument, NSXMLElement;
+@class IBDocumentArchivingSchema, IBDocumentUnarchiverRecursionState, IBMutableIdentityDictionary, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet, NSXMLDocument, NSXMLElement;
 
 @interface IBDocumentUnarchiver : NSObject
 {
@@ -23,8 +23,10 @@
     NSMutableArray *allUnarchivedObjects;
     NSMutableArray *softErrorMessages;
     IBMutableIdentityDictionary *postUnarchiveBlocksByObjectThenPriority;
+    NSMutableArray *classesBeingDecoded;
 }
 
+@property(readonly) NSArray *classesBeingDecoded; // @synthesize classesBeingDecoded;
 @property(readonly) NSMutableDictionary *context; // @synthesize context;
 @property(readonly) IBDocumentArchivingSchema *schema; // @synthesize schema;
 @property(readonly) id <IBUnarchivableDocument> unarchivedDocument; // @synthesize unarchivedDocument;
@@ -44,12 +46,13 @@
 - (int)unarchiveEnumeratedIntValueFromEnumeration:(id)arg1 forKey:(id)arg2 defaultValue:(int)arg3;
 - (long long)unarchiveEnumeratedValueFromEnumeration:(id)arg1 forKey:(id)arg2 defaultValue:(long long)arg3;
 - (BOOL)unarchiveBoolForKey:(id)arg1 defaultValue:(BOOL)arg2;
+- (CDStruct_e454a20b)unarchiveUnitLengthForKey:(id)arg1 defaultValue:(CDStruct_e454a20b)arg2;
 - (double)unarchiveDoubleForKey:(id)arg1 defaultValue:(double)arg2;
 - (float)unarchiveFloatForKey:(id)arg1 defaultValue:(float)arg2;
 - (long long)unarchiveInt64ForKey:(id)arg1 defaultValue:(long long)arg2;
 - (long long)unarchiveIntegerForKey:(id)arg1 defaultValue:(long long)arg2;
 - (struct _NSRange)unarchiveRangeForKey:(id)arg1 defaultValue:(struct _NSRange)arg2;
-- (CDStruct_c3b9c2ee)unarchiveOffsetForKey:(id)arg1 defaultValue:(CDStruct_c3b9c2ee)arg2;
+- (CDStruct_34734122)unarchiveOffsetForKey:(id)arg1 defaultValue:(CDStruct_34734122)arg2;
 - (struct _IBEdgeInsets)unarchiveIBEdgeInsetsForKey:(id)arg1 defaultValue:(struct _IBEdgeInsets)arg2;
 - (struct NSEdgeInsets)unarchiveEdgeInsetsForKey:(id)arg1 defaultValue:(struct NSEdgeInsets)arg2;
 - (CDStruct_c519178c)unarchiveInsetForKey:(id)arg1 defaultValue:(CDStruct_c519178c)arg2;
@@ -97,6 +100,7 @@
 - (BOOL)unarchiveDocument:(id)arg1 error:(id *)arg2;
 - (void)recurseWithElement:(id)arg1 kind:(long long)arg2 invokingBlock:(CDUnknownBlockType)arg3;
 - (id)initWithSchema:(id)arg1 data:(id)arg2 error:(id *)arg3;
+- (id)unarchiveImageForKey:(id)arg1;
 - (id)unarchiveFormattedClassSymbolForClassKey:(id)arg1 moduleKey:(id)arg2 moduleProviderKey:(id)arg3;
 - (id)unarchiveCustomFormattedClassSymbol;
 - (id)unarchivedIBDocument;

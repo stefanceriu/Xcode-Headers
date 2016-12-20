@@ -11,16 +11,16 @@
 @interface XCSBot : XCSObject
 {
     BOOL _requiresUpgrade;
-    struct NSArray *_groups;
     XCSBotSCMBlueprint *_lastRevisionBlueprint;
+    struct NSArray *_groups;
     XCSValidator *_validator;
 }
 
 + (id)botWithName:(id)arg1 group:(id)arg2 type:(unsigned long long)arg3 configuration:(id)arg4 lastRevisionBlueprint:(id)arg5 validationErrors:(id *)arg6;
 @property(retain, nonatomic) XCSValidator *validator; // @synthesize validator=_validator;
+@property(retain, nonatomic) NSArray *groups; // @synthesize groups=_groups;
 @property(nonatomic) BOOL requiresUpgrade; // @synthesize requiresUpgrade=_requiresUpgrade;
 @property(retain, nonatomic) XCSBotSCMBlueprint *lastRevisionBlueprint; // @synthesize lastRevisionBlueprint=_lastRevisionBlueprint;
-@property(retain, nonatomic) NSArray *groups; // @synthesize groups=_groups;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) NSDictionary *botSCMBlueprintAsDictionary;
 - (void)newestNonFatalIntegrationWithCompletionBlock:(CDUnknownBlockType)arg1;
@@ -37,7 +37,7 @@
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 
 // Remaining properties
-@property(nonatomic) XCSBotConfiguration *configuration; // @dynamic configuration;
+@property(retain, nonatomic) XCSBotConfiguration *configuration; // @dynamic configuration;
 @property(retain, nonatomic) XCSBotGroup *group; // @dynamic group;
 @property(copy, nonatomic) NSString *name; // @dynamic name;
 @property(nonatomic) unsigned long long type; // @dynamic type;

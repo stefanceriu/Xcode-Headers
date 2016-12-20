@@ -6,7 +6,7 @@
 
 #import "NSTableRowView.h"
 
-@class NSTrackingArea;
+@class NSColor, NSTrackingArea;
 
 @interface IDECoverageReportTableRowView : NSTableRowView
 {
@@ -14,11 +14,14 @@
     NSTrackingArea *_trackingArea;
     long long _coverageBarColumnIndex;
     id _item;
+    NSColor *_separatorColor;
 }
 
+@property(retain) NSColor *separatorColor; // @synthesize separatorColor=_separatorColor;
 @property(retain) id item; // @synthesize item=_item;
 @property long long coverageBarColumnIndex; // @synthesize coverageBarColumnIndex=_coverageBarColumnIndex;
 - (void).cxx_destruct;
+- (void)drawSeparatorInRect:(struct CGRect)arg1;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
 - (id)testTableCellView;

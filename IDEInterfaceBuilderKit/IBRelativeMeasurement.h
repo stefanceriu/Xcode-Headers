@@ -10,15 +10,15 @@
 
 @interface IBRelativeMeasurement : NSObject
 {
-    NSArray *measurementLines;
-    struct CGRect sourceFrame;
-    struct CGRect destinationFrame;
+    NSArray *_measurementLines;
+    struct CGRect _sourceFrame;
+    struct CGRect _destinationFrame;
 }
 
 + (id)emptyRelativeMeasurement;
-@property(readonly) NSArray *measurementLines; // @synthesize measurementLines;
-@property(readonly) struct CGRect destinationFrame; // @synthesize destinationFrame;
-@property(readonly) struct CGRect sourceFrame; // @synthesize sourceFrame;
+@property(readonly) struct CGRect destinationFrame; // @synthesize destinationFrame=_destinationFrame;
+@property(readonly) struct CGRect sourceFrame; // @synthesize sourceFrame=_sourceFrame;
+@property(readonly) NSArray *measurementLines; // @synthesize measurementLines=_measurementLines;
 - (void).cxx_destruct;
 - (id)description;
 - (id)initWithDesinationFrame:(struct CGRect)arg1 andSourceFrame:(struct CGRect)arg2 andMeasurementLines:(id)arg3;

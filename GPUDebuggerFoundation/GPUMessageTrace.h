@@ -24,12 +24,23 @@
     double _navUpdateMax;
     double _navUpdateAverage;
     NSError *_firstErrorInSession;
+    BOOL _multicontextProfilerError;
 }
 
 + (id)sharedTrace;
 - (void).cxx_destruct;
+- (void)reportBufferViewerTypeUsage:(id)arg1;
+- (void)reportColorFilterSelection:(id)arg1;
+- (void)reportDebugNavigatorTextFilterMatchType:(id)arg1;
+- (void)reportFunctionNavigationType:(id)arg1;
+- (void)reportDebugNavigatorFilterType:(id)arg1;
+- (void)reportCaptureTriggerAction:(id)arg1;
+- (void)reportMTLAPIValidationType:(id)arg1;
+- (void)reportDebugNavigatorViewTypeUsage:(id)arg1;
+- (void)reportResourceViewTypeUsage:(id)arg1;
 - (void)_resetUsageStatistics;
 - (void)reportUsageStatistics;
+- (void)_reportSummarizedWithDomain:(char *)arg1 withSignature:(id)arg2;
 - (void)_updateFirstErrorInSession:(id)arg1;
 - (void)recordError:(id)arg1;
 - (void)recordNavigationUpdateEnd;

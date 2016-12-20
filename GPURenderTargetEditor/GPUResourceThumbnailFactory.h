@@ -21,6 +21,7 @@ __attribute__((visibility("hidden")))
     NSCache *_thumbnailImageCache;
 }
 
++ (id)placeholderThumbnail;
 + (id)sharedThumbnailFactory;
 - (void).cxx_destruct;
 - (void)invalidateThumbnailForResource:(id)arg1;
@@ -29,7 +30,7 @@ __attribute__((visibility("hidden")))
 - (id)defaultImageForResourceItem:(id)arg1;
 - (id)_generateThumbnailForImage:(id)arg1 withContentsScale:(double)arg2 nocache:(BOOL)arg3;
 - (id)_generateDefaultThumbnailForImage:(id)arg1;
-- (id)_imageFromThumbnailCacheForResourceItem:(id)arg1;
+- (id)cachedThumbnailForResourceItem:(id)arg1;
 - (void)_addImageToThumbnailCache:(id)arg1 forResourceItem:(id)arg2 withCost:(unsigned long long)arg3;
 - (void)dealloc;
 - (id)init;

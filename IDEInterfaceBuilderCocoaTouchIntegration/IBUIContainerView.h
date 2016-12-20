@@ -24,6 +24,7 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)ibEditorClass;
 - (BOOL)ibOverridablePrefersToVerticallyResizeWithContainer;
 - (BOOL)ibOverridablePrefersToHorizontallyResizeWithContainer;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;

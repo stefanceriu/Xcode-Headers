@@ -45,7 +45,7 @@
 - (void).cxx_destruct;
 - (id)variantSetNameWithFoldingStrategy:(id)arg1;
 - (id)variantWithFoldingStrategy:(id)arg1;
-- (id)extractNonVariantNameFromString:(id)arg1 forMediaType:(id)arg2 usingVariables:(id)arg3 withFoldingStrategy:(id)arg4 returningVariant:(id *)arg5;
+- (id)extractNonVariantNameFromString:(id)arg1 withFoldingStrategy:(id)arg2 returningVariant:(id *)arg3;
 - (id)extractNonVariantNameWithFoldingStrategy:(id)arg1 returningVariant:(id *)arg2;
 - (void)populateAdditionalTypesToPasteboard:(id)arg1;
 - (id)requestContentSynchronously;

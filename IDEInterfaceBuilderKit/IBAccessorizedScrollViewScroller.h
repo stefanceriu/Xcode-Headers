@@ -8,12 +8,7 @@
 
 @interface IBAccessorizedScrollViewScroller : NSScroller
 {
-    BOOL _ignoreFrameChanges;
 }
-
-@property BOOL ignoreFrameChanges; // @synthesize ignoreFrameChanges=_ignoreFrameChanges;
-- (void)setFrameOrigin:(struct CGPoint)arg1;
-- (void)setFrameSize:(struct CGSize)arg1;
 
 @end
 

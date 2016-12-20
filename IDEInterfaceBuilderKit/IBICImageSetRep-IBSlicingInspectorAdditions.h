@@ -7,7 +7,6 @@
 #import "IBICImageSetRep.h"
 
 @interface IBICImageSetRep (IBSlicingInspectorAdditions)
-+ (id)keyPathsForValuesAffectingIbInspectedResizingBehavior;
 - (void)setIbInspectedResizingBehavior:(id)arg1;
 - (id)ibInspectedResizingBehavior;
 @end

@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTObservingToken, DVTSourceControlRevision, DVTSourceControlWorkingCopy, DVTStackBacktrace, IDEEditorDocument, IDESourceControlDocumentLocation, IDEWorkspace, NSArray, NSObject<OS_dispatch_queue>, NSString;
+@class DVTNotificationToken, DVTObservingToken, DVTSourceControlRevision, DVTSourceControlWorkingCopy, DVTStackBacktrace, IDEEditorDocument, IDESourceControlDocumentLocation, IDEWorkspace, NSArray, NSObject<OS_dispatch_queue>, NSString;
 
 @interface IDESourceCodeBlameController : NSObject <DVTInvalidation>
 {
@@ -23,8 +23,6 @@
     id <IDESourceCodeBlameControllerDelegate> _delegate;
     NSString *_specificUnavailabilityDescription;
     NSString *_genericUnavailabilityDescription;
-    DVTObservingToken *_localStatusUpdateToken;
-    DVTObservingToken *_sourceControlLocalStatusToken;
     id <DVTSourceControlCancellable> _logLoadingToken;
     NSObject<OS_dispatch_queue> *_logLoadingQueue;
     BOOL _loading;
@@ -32,6 +30,8 @@
     BOOL _showBaseButton;
     BOOL _blameItemsAreValid;
     BOOL _editorTextViewBoundsChanged;
+    DVTNotificationToken *_didScanWorkspaceToken;
+    DVTObservingToken *_localStatusToken;
     DVTSourceControlRevision *_selectedRevision;
 }
 

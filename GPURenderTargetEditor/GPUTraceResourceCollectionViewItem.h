@@ -20,6 +20,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) CALayer *imageLayer; // @synthesize imageLayer=_imageLayer;
 @property(retain, nonatomic) GPUTraceResourceItem *resourceItem; // @synthesize resourceItem=_resourceItem;
 - (void).cxx_destruct;
+- (id)imageForDrag;
 - (void)recalculateThumbnailWithScale:(double)arg1;
 - (void)updateViewUsingRepresentedObject;
 - (void)setSelected:(BOOL)arg1;

@@ -25,7 +25,7 @@
 - (id)description;
 - (void)_primitiveCancelObservation;
 - (void)cancel;
-- (id)initWithObservedObject:(id)arg1 owner:(id)arg2;
+- (id)initWithObservedObject:(id)arg1 owner:(id)arg2 creationBacktrace:(id)arg3;
 
 @end
 

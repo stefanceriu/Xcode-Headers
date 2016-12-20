@@ -6,12 +6,13 @@
 
 #import "IDEViewController.h"
 
-@class DVTBorderedView, DVTDisclosureView, DVTTabChooserView, DVTTableView, NSArray, NSDictionary, NSString, NSView;
+#import "IDECapsuleListViewDataSource.h"
 
-@interface Xcode3AutomatorTargetEditor : IDEViewController
+@class DVTBorderedView, DVTObservingToken, DVTTabChooserView, DVTTableView, IDECapsuleListView, IDEProvisioningSettingsTargetEditorViewControllersManager, NSArray, NSDictionary, NSString, NSView, Xcode3TargetEditorCapsuleViewController;
+
+@interface Xcode3AutomatorTargetEditor : IDEViewController <IDECapsuleListViewDataSource>
 {
     id _targetViewController;
-    DVTDisclosureView *_generalDisclosureView;
     DVTTabChooserView *_tabChooserView;
     NSView *_tabContentView;
     NSView *_inputView;
@@ -30,12 +31,33 @@
     DVTBorderedView *_resourcesGlassBar;
     DVTTableView *_keywordsTable;
     DVTBorderedView *_keywordsGlassBar;
+    Xcode3TargetEditorCapsuleViewController *_identityTargetEditorCapsuleViewController;
+    Xcode3TargetEditorCapsuleViewController *_automatorTargetEditorCapsuleViewController;
+    IDECapsuleListView *_capsuleListView;
+    IDEProvisioningSettingsTargetEditorViewControllersManager *_provisioningSettingsTargetEditorViewControllersManager;
+    DVTObservingToken *_provisioningSettingsTargetEditorViewControllersObserver;
 }
 
++ (id)keyPathsForValuesAffectingTargetBuildVersion;
++ (id)keyPathsForValuesAffectingTargetVersion;
++ (id)keyPathsForValuesAffectingTargetIdentifier;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
+@property(retain, nonatomic) DVTObservingToken *provisioningSettingsTargetEditorViewControllersObserver; // @synthesize provisioningSettingsTargetEditorViewControllersObserver=_provisioningSettingsTargetEditorViewControllersObserver;
+@property(retain, nonatomic) IDEProvisioningSettingsTargetEditorViewControllersManager *provisioningSettingsTargetEditorViewControllersManager; // @synthesize provisioningSettingsTargetEditorViewControllersManager=_provisioningSettingsTargetEditorViewControllersManager;
+@property(retain) IDECapsuleListView *capsuleListView; // @synthesize capsuleListView=_capsuleListView;
+@property(retain) Xcode3TargetEditorCapsuleViewController *automatorTargetEditorCapsuleViewController; // @synthesize automatorTargetEditorCapsuleViewController=_automatorTargetEditorCapsuleViewController;
+@property(retain) Xcode3TargetEditorCapsuleViewController *identityTargetEditorCapsuleViewController; // @synthesize identityTargetEditorCapsuleViewController=_identityTargetEditorCapsuleViewController;
 @property(retain, nonatomic) id targetViewController; // @synthesize targetViewController=_targetViewController;
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
+- (id)capsuleListView:(id)arg1 viewControllerForRow:(long long)arg2;
+- (long long)numberOfObjectsInCapsuleListView:(id)arg1;
+- (void)startObservations;
+- (id)subviewControllers;
+@property(copy) NSString *targetBuildVersion;
+@property(copy) NSString *targetVersion;
+@property(copy) NSString *targetIdentifier;
 @property(readonly) NSDictionary *actionCategories;
 - (BOOL)canRemoveKeyword;
 - (void)removeKeyword:(id)arg1;
@@ -85,6 +107,12 @@
 - (void)_setupGlassBar:(id)arg1 associatedTable:(id)arg2;
 - (void)loadView;
 - (id)headerFont;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

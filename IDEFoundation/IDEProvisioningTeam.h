@@ -8,22 +8,29 @@
 
 #import "IDEProvisioningTeam.h"
 
-@class NSString;
+@class NSSet, NSString;
 
 @interface IDEProvisioningTeam : NSObject <IDEProvisioningTeam>
 {
     BOOL _freeProvisioningTeam;
     NSString *_teamID;
     NSString *_name;
+    NSString *_displayName;
+    NSSet *_supportedCertificateKinds;
 }
 
+@property(copy) NSSet *supportedCertificateKinds; // @synthesize supportedCertificateKinds=_supportedCertificateKinds;
+@property(readonly, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 @property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
-@property(readonly, nonatomic) NSString *teamID; // @synthesize teamID=_teamID;
+@property(readonly, nonatomic) NSString *teamID;
 - (void).cxx_destruct;
-@property(readonly, nonatomic, getter=isFreeProvisioningTeam) BOOL freeProvisioningTeam; // @synthesize freeProvisioningTeam=_freeProvisioningTeam;
+@property(readonly, nonatomic) NSString *teamName;
+- (BOOL)canCreateCertificatesOfKind:(id)arg1;
+@property(readonly, nonatomic, getter=isFreeProvisioningTeam) BOOL freeProvisioningTeam;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)initWithTeamID:(id)arg1 name:(id)arg2 freeProvisioningTeam:(BOOL)arg3;
+- (id)initWithPortalTeam:(id)arg1;
+- (id)initWithTeamID:(id)arg1 name:(id)arg2 freeProvisioningTeam:(BOOL)arg3 supportedCertificateKinds:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DSADocSet_FastTokenCache, DSANode, DSATermManager, DSATokenIndex, NSArray, NSDictionary, NSManagedObject, NSManagedObjectContext, NSMapTable, NSMutableDictionary, NSObject<OS_dispatch_group>, NSPersistentStoreCoordinator, NSString, NSURL;
+@class DSADocSet_FastTokenCache, DSANode, DSATermManager, DSATokenIndex, DVTDispatchLock, NSArray, NSDictionary, NSManagedObject, NSManagedObjectContext, NSMapTable, NSMutableDictionary, NSObject<OS_dispatch_group>, NSPersistentStoreCoordinator, NSString, NSURL;
 
 @interface DSADocSet : NSObject
 {
@@ -32,6 +32,9 @@
     NSMapTable *_nodeTermLists;
     DSATermManager *_termManager;
     BOOL _searchTermsLoaded;
+    DVTDispatchLock *_tokenCacheLock;
+    BOOL _buildingTokenCache;
+    BOOL _discoveredInvalidTokenCache;
     DSADocSet_FastTokenCache *_fastTokenCache;
 }
 
@@ -59,6 +62,7 @@
 - (BOOL)hasTokenWithScope:(id)arg1;
 - (id)tokensMatchingString:(id)arg1 withMatchType:(unsigned long long)arg2;
 - (void)loadTokenCache;
+@property(readonly) BOOL wouldLoadTokenCache;
 - (void)serializeFastTokenCache:(id)arg1 toPath:(id)arg2;
 @property(readonly) BOOL hasTokenCache;
 - (void)buildTokenCache;

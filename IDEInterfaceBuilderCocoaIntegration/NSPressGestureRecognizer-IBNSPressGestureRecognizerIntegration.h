@@ -13,5 +13,6 @@
 + (id)keyPathsForValuesAffectingIbShadowedAllowableMovement;
 @property(retain, nonatomic) NSNumber *ibShadowedMinimumPressDuration;
 @property(retain, nonatomic) NSNumber *ibShadowedAllowableMovement;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

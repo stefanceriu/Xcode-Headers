@@ -9,7 +9,6 @@
 @class NSBitmapImageRep, NSImage, NSImageRep;
 
 @interface IBICSlottedAssetRep (DisplayAdditions)
-+ (id)unsetImageForSize:(struct CGSize)arg1;
 + (id)emptyThumbnailIcon;
 + (void)swizzleInDisplayOverrides;
 + (id)assetRepWithRepIdentifier:(id)arg1 forPasteboardReferencedFilePath:(id)arg2;
@@ -19,12 +18,12 @@
 - (id)itemsForOpeningInExternalEditor;
 - (void)populatePlistWithDescriptionForIctool:(id)arg1;
 - (BOOL)shouldIncludeInPlistDescriptionForIctool;
+- (void)populatePasteboardContext:(id)arg1 forChild:(id)arg2;
 - (void)prepareToReatatchForDragWithContext:(id)arg1;
 - (void)prepareToDetatchForDragWithContext:(id)arg1;
-- (id)synthesizeAncestorsIfNeededToAllowHostingInFolder;
+- (id)synthesizeAncestorsIfNeededToAllowHostingInContainer:(id)arg1;
 - (BOOL)isDraggable;
 - (void)performDeleteInDocument:(id)arg1;
-- (BOOL)swizzledUpdateModificationDatesWithMutationResult:(id)arg1;
 - (id)icon;
 @property(readonly, nonatomic) NSImage *thumbnail;
 - (void)setLastRequestThumbnailGeneration:(long long)arg1;

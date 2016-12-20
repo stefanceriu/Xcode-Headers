@@ -39,7 +39,7 @@
 @property(retain, nonatomic) NSPredicate *predicate; // @synthesize predicate=_predicate;
 @property(nonatomic) unsigned int fenum; // @synthesize fenum=_fenum;
 @property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
-@property(copy, nonatomic) NSString *predicateString; // @dynamic predicateString;
+@property(copy, nonatomic) NSString *predicateString;
 - (id)description;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;

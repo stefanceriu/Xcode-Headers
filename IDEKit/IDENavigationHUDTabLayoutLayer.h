@@ -6,12 +6,12 @@
 
 #import <IDEKit/IDENavigationHUDBorderedGradientLayer.h>
 
-#import "IDENavigationHUDDisposableLayer.h"
+#import "DVTInvalidation.h"
 #import "IDENavigationHUDSelectableLayer.h"
 
-@class CAGradientLayer, CALayer, IDENavigationHUDSelection, IDENavigationHUDTabLayer, IDEWorkspaceWindowController, NSString;
+@class CAGradientLayer, CALayer, DVTStackBacktrace, IDENavigationHUDSelection, IDENavigationHUDTabLayer, IDEWorkspaceWindowController, NSString;
 
-@interface IDENavigationHUDTabLayoutLayer : IDENavigationHUDBorderedGradientLayer <IDENavigationHUDSelectableLayer, IDENavigationHUDDisposableLayer>
+@interface IDENavigationHUDTabLayoutLayer : IDENavigationHUDBorderedGradientLayer <IDENavigationHUDSelectableLayer, DVTInvalidation>
 {
     IDEWorkspaceWindowController *_workspaceWindowController;
     IDENavigationHUDTabLayer *_workspaceTabLayer;
@@ -20,6 +20,7 @@
     CALayer *_imageLayer;
 }
 
++ (void)initialize;
 @property(readonly) IDEWorkspaceWindowController *workspaceWindowController; // @synthesize workspaceWindowController=_workspaceWindowController;
 @property(readonly) IDENavigationHUDTabLayer *workspaceTabLayer; // @synthesize workspaceTabLayer=_workspaceTabLayer;
 @property(nonatomic) unsigned long long state; // @synthesize state=_state;
@@ -29,15 +30,18 @@
 @property(readonly) IDENavigationHUDSelection *representativeSelection;
 - (void)layoutSublayers;
 - (struct CGSize)imageSize;
-- (void)dispose;
+- (void)primitiveInvalidate;
 - (id)initWithWorkspaceWindowController:(id)arg1 workspaceTabLayer:(id)arg2 image:(id)arg3;
 - (id)init;
 
 // Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

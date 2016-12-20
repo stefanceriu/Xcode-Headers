@@ -6,19 +6,24 @@
 
 #import <ModelIO/MDLObject.h>
 
-@class MDLTransform;
+@class CAAnimation;
 
 @interface MDLCamera : MDLObject
 {
     // Error parsing type: ^{RTCamera=^^?QQffi^f^^@{?=[4]}{?=[4]}^{RTRaySegment}ffffffffff}, name: _camera
-    MDLTransform *_mkTransform;
     float _worldToMetersConversionScale;
+    CAAnimation *_focalDistanceAnimation;
+    CAAnimation *_fStopAnimation;
+    CAAnimation *_focalLengthAnimation;
+    CAAnimation *_apertureAnimation;
+    CAAnimation *_apertureAspectAnimation;
     float _barrelDistortion;
     float _fisheyeDistortion;
     float _opticalVignetting;
     float _chromaticAberration;
     float _fStop;
     float _maximumCircleOfConfusion;
+    unsigned long long _projection;
     unsigned long long _apertureBladeCount;
     double _shutterOpenInterval;
     // Error parsing type: , name: _flash
@@ -35,6 +40,12 @@
 @property(nonatomic) float opticalVignetting; // @synthesize opticalVignetting=_opticalVignetting;
 @property(nonatomic) float fisheyeDistortion; // @synthesize fisheyeDistortion=_fisheyeDistortion;
 @property(nonatomic) float barrelDistortion; // @synthesize barrelDistortion=_barrelDistortion;
+@property(nonatomic) unsigned long long projection; // @synthesize projection=_projection;
+@property(copy, nonatomic) CAAnimation *apertureAspectAnimation; // @synthesize apertureAspectAnimation=_apertureAspectAnimation;
+@property(copy, nonatomic) CAAnimation *apertureAnimation; // @synthesize apertureAnimation=_apertureAnimation;
+@property(copy, nonatomic) CAAnimation *focalLengthAnimation; // @synthesize focalLengthAnimation=_focalLengthAnimation;
+@property(copy, nonatomic) CAAnimation *fStopAnimation; // @synthesize fStopAnimation=_fStopAnimation;
+@property(copy, nonatomic) CAAnimation *focalDistanceAnimation; // @synthesize focalDistanceAnimation=_focalDistanceAnimation;
 @property(nonatomic) float worldToMetersConversionScale; // @synthesize worldToMetersConversionScale=_worldToMetersConversionScale;
 - (void).cxx_destruct;
 - (void)lookAt:from: /* Error: Ran out of types for this method. */;
@@ -80,8 +91,8 @@
 // Error parsing type for property rtCamera:
 // Property attributes: T^{RTCamera=^^?QQffi^f^^@{?=[4]}{?=[4]}^{RTRaySegment}ffffffffff},R,N
 
-- (id)transform;
 - (long long)version;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 
 @end

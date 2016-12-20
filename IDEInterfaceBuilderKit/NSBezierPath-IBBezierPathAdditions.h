@@ -19,6 +19,7 @@
 + (id)strutPathWithDotSize:(struct CGSize)arg1 andSpacing:(double)arg2 centeredInRect:(struct CGRect)arg3;
 + (id)bezierPathForEmptyPlaceholderWithRect:(struct CGRect)arg1 radius:(double)arg2 strokeWidth:(double)arg3 inset:(double)arg4 dashOn:(double)arg5 dashOff:(double)arg6 dashPhase:(double)arg7;
 + (id)bezierPathWithDashedRoundedRect:(struct CGRect)arg1 andRadius:(double)arg2;
++ (id)bezierPathWithRoundedRect:(struct CGRect)arg1 topLeftRadius:(double)arg2 topRightRadius:(double)arg3 bottomRightRadius:(double)arg4 bottomLeftRadius:(double)arg5 flipped:(BOOL)arg6;
 + (id)bezierPathWithRoundedRect:(struct CGRect)arg1 andRadius:(double)arg2;
 + (id)bezierPathWithLineFromPoint:(struct CGPoint)arg1 toPoint:(struct CGPoint)arg2;
 + (id)arrowPathWithArmHeight:(double)arg1 inRect:(struct CGRect)arg2;

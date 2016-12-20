@@ -46,8 +46,8 @@
 - (id)saveRepresentation;
 - (id)description;
 - (BOOL)setTest:(id)arg1 error:(id *)arg2;
-- (id)initWithName:(id)arg1 contents:(id)arg2 validationErrors:(id *)arg3;
-- (id)initWithName:(id)arg1 identifier:(id)arg2 type:(unsigned long long)arg3 unit:(id)arg4 passed:(BOOL)arg5 avg:(double)arg6 min:(double)arg7 max:(double)arg8 rsd:(double)arg9 baseline:(id)arg10 maxPercentRegression:(id)arg11 maxPercentRelativeStandardDeviation:(id)arg12 iterations:(id)arg13 validationErrors:(id *)arg14;
+- (id)initWithName:(id)arg1 contents:(id)arg2 service:(id)arg3 validationErrors:(id *)arg4;
+- (id)initWithName:(id)arg1 identifier:(id)arg2 type:(unsigned long long)arg3 unit:(id)arg4 passed:(BOOL)arg5 avg:(double)arg6 min:(double)arg7 max:(double)arg8 rsd:(double)arg9 baseline:(id)arg10 maxPercentRegression:(id)arg11 maxPercentRelativeStandardDeviation:(id)arg12 iterations:(id)arg13 service:(id)arg14 validationErrors:(id *)arg15;
 
 @end
 

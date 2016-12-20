@@ -7,88 +7,42 @@
 #import "IDEViewController.h"
 
 #import "NSControlTextEditingDelegate.h"
+#import "XCSUIScheduleViewControllerDelegate.h"
 
-@class NSButton, NSDate, NSDatePicker, NSPopUpButton, NSString, NSTextField, NSView, XCSUIBotDefinitionContext;
+@class NSPopUpButton, NSString, NSView, XCSUIBotDefinitionContext, XCSUIScheduleViewController;
 
-@interface XCSUIBotDefinition_SchedulingEditor : IDEViewController <NSControlTextEditingDelegate>
+@interface XCSUIBotDefinition_SchedulingEditor : IDEViewController <NSControlTextEditingDelegate, XCSUIScheduleViewControllerDelegate>
 {
-    BOOL _hasUserManuallyTriggeredInstallableProductSetting;
-    BOOL _userInitiatedCreateInstallableProductState;
     XCSUIBotDefinitionContext *_botDefinitionContext;
+    XCSUIScheduleViewController *_scheduleViewController;
     NSView *_mainView;
     NSView *_scheduleLayer;
-    NSView *_actionsLayer;
     NSPopUpButton *_scheduleTypePopUp;
-    NSView *_periodicLayer;
-    NSPopUpButton *_periodTypePopUp;
-    NSPopUpButton *_minutePopUp;
-    NSTextField *_onLabel;
-    NSPopUpButton *_dayOfWeekPopUp;
-    NSDatePicker *_timePicker;
-    NSTextField *_minutesAfterTheHourLabel;
-    NSTextField *_atLabel;
+    NSView *_upgradeIntegrationView;
     NSView *_onCommitLayer;
     NSView *_manualLayer;
-    unsigned long long _currentScheduleType;
-    unsigned long long _currentPeriodType;
-    NSButton *_analyzeActionCheckbox;
-    NSButton *_testActionCheckbox;
-    NSTextField *_codeCoverageLabel;
-    NSPopUpButton *_codeCoveragePreferencePopUp;
-    NSButton *_archiveActionCheckbox;
-    NSButton *_exportsProductFromArchiveCheckbox;
-    NSPopUpButton *_cleaningPopUp;
-    NSTextField *_cleaningPopUpSubText;
-    NSPopUpButton *_buildConfigurationPopUp;
+    NSView *_scheduleViewContainer;
 }
 
-+ (id)keyPathsForValuesAffectingTimeOfDayToIntegrate;
 + (id)keyPathsForValuesAffectingCreateBotAssistantContext;
 + (id)keyPathsForValuesAffectingAssistantContext;
-@property __weak NSPopUpButton *buildConfigurationPopUp; // @synthesize buildConfigurationPopUp=_buildConfigurationPopUp;
-@property __weak NSTextField *cleaningPopUpSubText; // @synthesize cleaningPopUpSubText=_cleaningPopUpSubText;
-@property __weak NSPopUpButton *cleaningPopUp; // @synthesize cleaningPopUp=_cleaningPopUp;
-@property __weak NSButton *exportsProductFromArchiveCheckbox; // @synthesize exportsProductFromArchiveCheckbox=_exportsProductFromArchiveCheckbox;
-@property __weak NSButton *archiveActionCheckbox; // @synthesize archiveActionCheckbox=_archiveActionCheckbox;
-@property __weak NSPopUpButton *codeCoveragePreferencePopUp; // @synthesize codeCoveragePreferencePopUp=_codeCoveragePreferencePopUp;
-@property __weak NSTextField *codeCoverageLabel; // @synthesize codeCoverageLabel=_codeCoverageLabel;
-@property __weak NSButton *testActionCheckbox; // @synthesize testActionCheckbox=_testActionCheckbox;
-@property __weak NSButton *analyzeActionCheckbox; // @synthesize analyzeActionCheckbox=_analyzeActionCheckbox;
-@property(nonatomic) unsigned long long currentPeriodType; // @synthesize currentPeriodType=_currentPeriodType;
-@property(nonatomic) unsigned long long currentScheduleType; // @synthesize currentScheduleType=_currentScheduleType;
+@property __weak NSView *scheduleViewContainer; // @synthesize scheduleViewContainer=_scheduleViewContainer;
 @property(retain, nonatomic) NSView *manualLayer; // @synthesize manualLayer=_manualLayer;
 @property(retain, nonatomic) NSView *onCommitLayer; // @synthesize onCommitLayer=_onCommitLayer;
-@property(retain, nonatomic) NSTextField *atLabel; // @synthesize atLabel=_atLabel;
-@property(retain, nonatomic) NSTextField *minutesAfterTheHourLabel; // @synthesize minutesAfterTheHourLabel=_minutesAfterTheHourLabel;
-@property(retain, nonatomic) NSDatePicker *timePicker; // @synthesize timePicker=_timePicker;
-@property(retain, nonatomic) NSPopUpButton *dayOfWeekPopUp; // @synthesize dayOfWeekPopUp=_dayOfWeekPopUp;
-@property(retain, nonatomic) NSTextField *onLabel; // @synthesize onLabel=_onLabel;
-@property(retain, nonatomic) NSPopUpButton *minutePopUp; // @synthesize minutePopUp=_minutePopUp;
-@property(retain, nonatomic) NSPopUpButton *periodTypePopUp; // @synthesize periodTypePopUp=_periodTypePopUp;
-@property(retain, nonatomic) NSView *periodicLayer; // @synthesize periodicLayer=_periodicLayer;
+@property(retain, nonatomic) NSView *upgradeIntegrationView; // @synthesize upgradeIntegrationView=_upgradeIntegrationView;
 @property(retain, nonatomic) NSPopUpButton *scheduleTypePopUp; // @synthesize scheduleTypePopUp=_scheduleTypePopUp;
-@property(retain, nonatomic) NSView *actionsLayer; // @synthesize actionsLayer=_actionsLayer;
 @property(retain, nonatomic) NSView *scheduleLayer; // @synthesize scheduleLayer=_scheduleLayer;
 @property(retain, nonatomic) NSView *mainView; // @synthesize mainView=_mainView;
+@property(readonly) XCSUIScheduleViewController *scheduleViewController; // @synthesize scheduleViewController=_scheduleViewController;
 @property(retain, nonatomic) XCSUIBotDefinitionContext *botDefinitionContext; // @synthesize botDefinitionContext=_botDefinitionContext;
 - (void).cxx_destruct;
-- (void)exportsProductFromArchiveAction:(id)arg1;
-- (void)performsArchiveActionAction:(id)arg1;
-- (void)codeCoveragePreferenceAction:(id)arg1;
-- (void)performsTestActionAction:(id)arg1;
-- (void)performsAnalyzeActionAction:(id)arg1;
-@property(retain, nonatomic) NSDate *timeOfDayToIntegrate;
-- (void)minutePopUpAction:(id)arg1;
-- (void)cleanPreferenceAction:(id)arg1;
-- (void)buildConfigurationAction:(id)arg1;
-- (void)commitTypeAction:(id)arg1;
-- (id)preparePeriodicLayer;
-- (void)periodTypePopUpAction:(id)arg1;
-- (void)_updateMinutePopUpIndex;
+- (void)scheduleHasChanged;
+- (void)setTimeOfDayToIntegrate:(id)arg1;
+- (id)timeOfDayToIntegrate;
+- (void)saveSchedule;
 - (void)prepareLayers;
-- (void)scheduleTypePopUpAction:(id)arg1;
-- (void)moveView:(id)arg1 rightOfView:(id)arg2;
 - (void)moveView:(id)arg1 belowView:(id)arg2;
+- (void)scheduleTypePopUpAction:(id)arg1;
 - (void)addLayerToEnd:(id)arg1 belowView:(id)arg2;
 - (void)setupLayers;
 - (id)createBotAssistantContext;

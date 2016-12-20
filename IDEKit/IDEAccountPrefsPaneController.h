@@ -10,13 +10,16 @@
 #import "NSTableViewDataSource.h"
 #import "NSTableViewDelegate.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTReplacementView, DVTTableView, IDEControlGroup, IDESourceControlManager, IDEXcodeServerManager, NSArray, NSArrayController, NSLayoutConstraint, NSOperationQueue, NSString;
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTReplacementView, DVTTableView, IDEControlGroup, IDESourceControlManager, NSArray, NSArrayController, NSLayoutConstraint, NSOperationQueue, NSString;
 
 @interface IDEAccountPrefsPaneController : IDEViewController <NSTableViewDataSource, NSTableViewDelegate, DVTTableViewDelegate>
 {
     DVTObservingToken *_accountSelectionToken;
     NSOperationQueue *_multipeSelectionDeleteQueue;
-    DVTObservingToken *_serviceManagerServicesToken;
+    id <XCSLocalService> _newlyAddedService;
+    NSArray *_knownXCSServices;
+    DVTObservingToken *_sourceControlManagerObserver;
+    DVTObservingToken *_developerAccountManagerObserver;
     DVTBorderedView *_accountListBorderView;
     DVTBorderedView *_accountGlassBarBorderView;
     NSLayoutConstraint *_accountBarHeight;
@@ -27,11 +30,13 @@
     DVTGradientImageButton *_removeButton;
     DVTGradientImagePopUpButton *_actionButton;
     NSArrayController *_contentArrayController;
+    NSArray *_contentArray;
 }
 
 + (void)importAccountsFromFilePath:(id)arg1;
-+ (id)keyPathsForValuesAffectingContentArray;
 + (id)accountProviders;
++ (id)accountPrefsHelpMenuItem;
+@property(readonly) NSArray *contentArray; // @synthesize contentArray=_contentArray;
 @property(retain) NSArrayController *contentArrayController; // @synthesize contentArrayController=_contentArrayController;
 @property(retain) DVTGradientImagePopUpButton *actionButton; // @synthesize actionButton=_actionButton;
 @property(retain) DVTGradientImageButton *removeButton; // @synthesize removeButton=_removeButton;
@@ -58,12 +63,12 @@
 - (void)newServerAction:(id)arg1;
 - (void)newRepositoryAction:(id)arg1;
 - (void)newAppleIDAction:(id)arg1;
-@property(readonly) NSArray *contentArray;
+- (void)_updateArrayControllerContents;
 - (void)_removePasswordAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(id)arg3;
 - (void)removeRepositoryAccount:(id)arg1 operation:(id)arg2;
 @property(readonly) IDESourceControlManager *sourceControlManager;
 - (id)developerAccountManager;
-@property(readonly) IDEXcodeServerManager *serverManager;
+@property(readonly) id <IDEContinuousIntegrationServiceManager> xcsServiceManager;
 - (id)accountTableViewContextMenu;
 - (void)_updateReplacementView;
 - (Class)xcsServiceClass;
@@ -73,7 +78,6 @@
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)loadView;
-- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

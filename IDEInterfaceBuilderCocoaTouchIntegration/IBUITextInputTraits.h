@@ -19,7 +19,7 @@
     int _spellCheckingType;
     int _keyboardAppearance;
     int _returnKeyType;
-    int _keyboardType;
+    long long _keyboardType;
     BOOL _enablesReturnKeyAutomatically;
     BOOL _secureTextEntry;
     IBCocoaTouchTargetRuntime *_targetRuntime;
@@ -28,7 +28,7 @@
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 @property(nonatomic) BOOL secureTextEntry; // @synthesize secureTextEntry=_secureTextEntry;
 @property(nonatomic) BOOL enablesReturnKeyAutomatically; // @synthesize enablesReturnKeyAutomatically=_enablesReturnKeyAutomatically;
-@property(nonatomic) int keyboardType; // @synthesize keyboardType=_keyboardType;
+@property(nonatomic) long long keyboardType; // @synthesize keyboardType=_keyboardType;
 @property(nonatomic) int returnKeyType; // @synthesize returnKeyType=_returnKeyType;
 @property(nonatomic) int keyboardAppearance; // @synthesize keyboardAppearance=_keyboardAppearance;
 @property(nonatomic) int spellCheckingType; // @synthesize spellCheckingType=_spellCheckingType;

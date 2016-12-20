@@ -14,7 +14,7 @@
 }
 
 - (void).cxx_destruct;
-- (void)_processWorkItemsWithDeadline:(double)arg1;
+- (void)_processWorkItemsWithDeadline:(unsigned long long)arg1;
 - (void)_removeWorkItems:(id)arg1;
 - (void)_removeWorkItem:(id)arg1;
 - (BOOL)_workIsEnqueued;

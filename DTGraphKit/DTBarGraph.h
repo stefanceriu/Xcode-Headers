@@ -28,7 +28,7 @@
 @property(readonly, nonatomic) unsigned long long numberOfBars;
 - (unsigned long long)numberOfEntriesThatFitRect:(struct CGRect)arg1;
 @property(readonly, nonatomic) long long maximumYValue;
-- (long long)_maximumValueOfSeries:(id)arg1;
+- (long long)_maximumYValueOfModelWithSubEntries:(id)arg1;
 @property(readonly, nonatomic) long long minimumXValue;
 @property(readonly, nonatomic) long long maximumXValue;
 @property(readonly, nonatomic) BOOL hasBarSpacing;

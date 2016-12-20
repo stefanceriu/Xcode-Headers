@@ -25,19 +25,24 @@
     DVTObservingToken *_kvoActivityReportTitleToken;
     DVTObservingToken *_kvoActivityReportThrottleFactorToken;
     BOOL _isActiveWindowStyle;
+    IDEActivityReport *_displayedReportValidCopy;
     double _spaceNeededForMultiActionIndicator;
     double _spaceNeededForStatusLayers;
+    DVTObservingToken *_validReportObserver;
 }
 
 + (id)activityReportLayerForDisplayStyle:(long long)arg1;
 + (struct CGSize)defaultSizeForPopUpStyle;
 + (void)initialize;
+@property(retain) DVTObservingToken *validReportObserver; // @synthesize validReportObserver=_validReportObserver;
 @property(nonatomic) double spaceNeededForStatusLayers; // @synthesize spaceNeededForStatusLayers=_spaceNeededForStatusLayers;
 @property(nonatomic) double spaceNeededForMultiActionIndicator; // @synthesize spaceNeededForMultiActionIndicator=_spaceNeededForMultiActionIndicator;
 @property(nonatomic) BOOL isActiveWindowStyle; // @synthesize isActiveWindowStyle=_isActiveWindowStyle;
+@property(retain) IDEActivityReport *displayedReportValidCopy; // @synthesize displayedReportValidCopy=_displayedReportValidCopy;
 @property(nonatomic) long long displayStyle; // @synthesize displayStyle=_displayStyle;
 @property(retain, nonatomic) IDEActivityReport *activityReport; // @synthesize activityReport=_activityReport;
 - (void).cxx_destruct;
+- (void)layoutSublayers;
 - (double)spaceNeededForCancelButtonLayer;
 - (BOOL)shouldShowCancelButtonLayer;
 @property(readonly) BOOL indeterminateReportInProgress;
@@ -59,8 +64,6 @@
 - (id)defaultIdleTitle;
 - (id)defaultReportTitle;
 - (id)defaultCompletionSummary;
-- (void)sizeToFit;
-- (void)layoutSublayers;
 - (void)updateConstraints;
 @property(readonly, copy) NSString *description;
 - (id)init;

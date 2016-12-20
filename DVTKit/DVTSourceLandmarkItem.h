@@ -14,6 +14,7 @@
     NSMutableArray *_children;
     NSString *_name;
     int _type;
+    int _markStyle;
     struct _NSRange _range;
     struct _NSRange _nameRange;
     NSString *_typeName;
@@ -31,6 +32,7 @@
 @property(readonly) double timestamp; // @synthesize timestamp=_timestamp;
 @property(nonatomic) struct _NSRange nameRange; // @synthesize nameRange=_nameRange;
 @property(nonatomic) struct _NSRange range; // @synthesize range=_range;
+@property int markStyle; // @synthesize markStyle=_markStyle;
 @property(readonly) int type; // @synthesize type=_type;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property DVTSourceLandmarkItem *parent; // @synthesize parent=_parent;

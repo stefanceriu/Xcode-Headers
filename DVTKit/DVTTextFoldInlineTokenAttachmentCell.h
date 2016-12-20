@@ -12,6 +12,7 @@
 {
     NSView *_controlView;
     struct CGRect *_tmpRectArray;
+    unsigned long long _tmpRectArrayCount;
     DVTTextFold *_fold;
 }
 

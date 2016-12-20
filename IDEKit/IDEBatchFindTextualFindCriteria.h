@@ -40,7 +40,6 @@
 - (id)initWithFindDescriptor:(id)arg1 frameworks:(BOOL)arg2 filterPredicate:(id)arg3 containerScope:(id)arg4 workspace:(id)arg5 strategiesController:(id)arg6;
 - (id)initWithFindDescriptor:(id)arg1 frameworks:(BOOL)arg2 filterPredicate:(id)arg3 containerScopes:(id)arg4 workspace:(id)arg5 strategiesController:(id)arg6;
 - (void)_reportInvalidLocationPaths;
-- (void)_showScopeEditor;
 - (Class)findQueryClass;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

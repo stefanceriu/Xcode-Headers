@@ -11,9 +11,9 @@
 }
 
 + (id)verifiedDanglingSubviewParentClassWhitelist;
-- (id)verify;
-- (void)verifyTargetRuntimeOfFilesOwnerAndFirstResponder;
-- (void)verifyByEnsuringPresenceOfFirstResponder;
+- (void)verifyAndPopulateMessages:(id)arg1;
+- (void)_verifyTargetRuntimeOfFilesOwnerAndFirstResponder;
+- (void)_verifyByEnsuringPresenceOfFirstResponder;
 - (id)document;
 
 @end

@@ -15,7 +15,6 @@
 - (BOOL)interceptEvent:(id)arg1;
 - (void)tryToDragSubviewsWithLeftMouseDown:(id)arg1 andLeftMouseDragged:(id)arg2;
 - (void)reattachDraggedObjects:(id)arg1 dragContext:(id)arg2;
-- (id)selectionMaskForObject:(id)arg1;
 - (void)noteDescendant:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
 - (id)editedSplitView;
 

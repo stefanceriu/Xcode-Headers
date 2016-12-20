@@ -18,7 +18,7 @@
     NSObject<IDEBindableDeclarativeInspectorController> *_unvailableInspectorController;
     NSXMLElement *_propertyDefinition;
     NSMutableArray *_tearDownTokens;
-    NSMutableArray *_pendingAccessabilityConfigurations;
+    NSMutableArray *_pendingAccessibilityConfigurations;
     NSMutableArray *_textFieldActionFilters;
     NSMutableOrderedSet *_pendingRefreshHandlers;
     BOOL _settingUp;
@@ -43,7 +43,7 @@
 - (id)findIndicatorContentViewWithContext:(id)arg1;
 - (id)toolTipManager:(id)arg1 toolTipForView:(id)arg2 location:(struct CGPoint)arg3 tipSourceRect:(struct CGRect *)arg4 maximumWidth:(double *)arg5;
 - (void)configureAccessibilityForUIElement:(id)arg1 forAttribute:(id)arg2 withAppendedString:(id)arg3;
-- (BOOL)shouldAppplyPendingAccessabilityConfigurations;
+- (BOOL)shouldAppplyPendingAccessibilityConfigurations;
 - (id)propertyRelativeKeyPathForAttributeNamed:(id)arg1;
 - (BOOL)hasAttributeValueNamed:(id)arg1;
 - (SEL)selectorAttributeValueNamed:(id)arg1 defaultValue:(SEL)arg2;
@@ -105,6 +105,7 @@
 - (void)configureActionSelectorForControl:(id)arg1;
 - (void)configureActionFilterForTextField:(id)arg1;
 - (void)userDidChangeValue:(id)arg1;
+- (void)configureSubtitleLabels:(id)arg1;
 - (double)accessoryCenterAnchor;
 - (double)baseline;
 - (struct CGRect)frameForLabel:(id)arg1;
@@ -119,11 +120,11 @@
 - (id)nibName;
 - (BOOL)isCustomProperty;
 - (void)primitiveInvalidate;
+@property(readonly, copy) NSString *debugDescription;
 - (id)initWithPropertyDefinition:(id)arg1 andController:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
-@property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;

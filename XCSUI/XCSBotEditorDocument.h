@@ -6,17 +6,19 @@
 
 #import <XCSUI/XCSBotSupportingDocument.h>
 
-@class XCSBot;
+@class DVTObservingToken, XCSBot;
 
 @interface XCSBotEditorDocument : XCSBotSupportingDocument
 {
     XCSBot *_fetchedBot;
+    DVTObservingToken *_maintenanceTasksObserver;
 }
 
 - (void).cxx_destruct;
 - (id)displayName;
 - (id)botIntegration;
 - (id)bot;
+- (void)editorDocumentWillClose;
 - (void)setFileURL:(id)arg1;
 
 @end

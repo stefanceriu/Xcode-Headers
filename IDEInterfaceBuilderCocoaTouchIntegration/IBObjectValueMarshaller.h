@@ -10,8 +10,8 @@
 {
 }
 
-+ (id)valueForKeyPath:(id)arg1 ofObject:(id)arg2 usingMarshaller:(id)arg3 context:(id)arg4 targetRuntime:(id)arg5 liveViewsManager:(id)arg6 defaultValue:(id)arg7 diagnosticsBlock:(CDUnknownBlockType)arg8;
-+ (id)valuesForKeyPaths:(id)arg1 ofObject:(id)arg2 usingMarshallers:(id)arg3 context:(id)arg4 targetRuntime:(id)arg5 liveViewsManager:(id)arg6 defaultValues:(id)arg7 diagnosticsBlock:(CDUnknownBlockType)arg8;
++ (id)valueForKeyPath:(id)arg1 ofObject:(id)arg2 usingMarshaller:(id)arg3 context:(id)arg4 targetRuntime:(id)arg5 scaleFactor:(double)arg6 liveViewsManager:(id)arg7 defaultValue:(id)arg8 diagnosticsBlock:(CDUnknownBlockType)arg9;
++ (id)valuesForKeyPaths:(id)arg1 ofObject:(id)arg2 usingMarshallers:(id)arg3 context:(id)arg4 targetRuntime:(id)arg5 scaleFactor:(double)arg6 liveViewsManager:(id)arg7 defaultValues:(id)arg8 diagnosticsBlock:(CDUnknownBlockType)arg9;
 
 @end
 

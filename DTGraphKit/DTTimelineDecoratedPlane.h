@@ -18,12 +18,14 @@
     DTTimelineDecorator *_decorator;
     NSString *_dynamicRangePeerGroup;
     NSAttributedString *_summary;
+    NSImage *_extendedSummary;
     struct DTTimelineGraphDynamicRange _minimalDynamicRange;
     struct DTTimelineGraphDynamicRange _maximumDynamicRange;
 }
 
 + (id)planeWithHeight:(double)arg1 decorator:(id)arg2;
 + (id)planeWithDecorator:(id)arg1;
+@property(retain, nonatomic) NSImage *extendedSummary; // @synthesize extendedSummary=_extendedSummary;
 @property(retain, nonatomic) NSAttributedString *summary; // @synthesize summary=_summary;
 @property(copy, nonatomic) NSString *dynamicRangePeerGroup; // @synthesize dynamicRangePeerGroup=_dynamicRangePeerGroup;
 @property(nonatomic) struct DTTimelineGraphDynamicRange maximumDynamicRange; // @synthesize maximumDynamicRange=_maximumDynamicRange;
@@ -40,7 +42,7 @@
 - (void)makeOpaqueWithBackgroundColor:(id)arg1;
 - (void)setContentIsOptional;
 - (id)visibleStringSummaries;
-- (void)_setHeight:(double)arg1;
+- (BOOL)_setHeight:(double)arg1;
 @property(nonatomic) BOOL decoratesMajorMinorTicks;
 @property(nonatomic) unsigned long long intervalBarWidth;
 @property(nonatomic) double intervalRoundedRectRadius;
@@ -54,6 +56,7 @@
 - (BOOL)dynamicRangeWasSet;
 - (void)setDynamicRange:(struct DynamicRange)arg1;
 - (struct DynamicRange)currentDynamicRange;
+@property(readonly, nonatomic) struct DTTimelineGraphDynamicRange dynamicRange;
 - (struct DynamicRange)visibleDynamicRange;
 - (void)_enumerateVisibleTiles:(CDUnknownBlockType)arg1;
 - (id)_decoratedPlanes;
@@ -64,6 +67,7 @@
 @property(retain, nonatomic) NSImage *defaultDrawableIcon;
 @property(copy, nonatomic) NSColor *defaultDrawableTextColor;
 @property(copy, nonatomic) NSColor *defaultDrawableColor;
+- (void)setTimelineGraph:(id)arg1;
 - (void)dealloc;
 - (id)init;
 - (id)initWithHeight:(double)arg1;

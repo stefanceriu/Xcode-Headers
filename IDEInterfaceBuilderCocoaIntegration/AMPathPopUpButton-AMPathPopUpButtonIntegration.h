@@ -7,6 +7,8 @@
 #import "AMPathPopUpButton.h"
 
 @interface AMPathPopUpButton (AMPathPopUpButtonIntegration)
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
 - (BOOL)ibShouldArchiveMenuItems;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

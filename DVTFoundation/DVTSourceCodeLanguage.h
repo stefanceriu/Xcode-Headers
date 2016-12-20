@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class DVTLanguageSpecification, NSArray, NSString;
+@class DVTExtension, DVTLanguageSpecification, NSArray, NSString;
 
 @interface DVTSourceCodeLanguage : NSObject <NSCopying>
 {
@@ -26,7 +26,11 @@
     NSArray *_commentSyntaxes;
     NSArray *_lineCommentPrefixes;
     NSArray *_blockCommentCircumfixes;
+    DVTExtension *_extension;
     BOOL _isHidden;
+    BOOL _usesColorLiteral;
+    BOOL _usesFileLiteral;
+    BOOL _usesImageLiteral;
 }
 
 + (id)sourceCodeLanguageForFileDataType:(id)arg1;
@@ -35,9 +39,11 @@
 + (id)sourceCodeLanguages;
 + (id)_sourceCodeLanguageForExtension:(id)arg1;
 + (void)initialize;
+@property(readonly) BOOL usesImageLiteral; // @synthesize usesImageLiteral=_usesImageLiteral;
+@property(readonly) BOOL usesFileLiteral; // @synthesize usesFileLiteral=_usesFileLiteral;
+@property(readonly) BOOL usesColorLiteral; // @synthesize usesColorLiteral=_usesColorLiteral;
 @property(readonly) BOOL isHidden; // @synthesize isHidden=_isHidden;
 @property(readonly) BOOL supportsIndentation; // @synthesize supportsIndentation=_supportsIndentation;
-@property(readonly) Class nativeSourceModelParserClass; // @synthesize nativeSourceModelParserClass=_nativeSourceModelParserClass;
 @property(readonly, copy) NSString *documentationAbbreviation; // @synthesize documentationAbbreviation=_documentationAbbreviation;
 @property(readonly, copy) NSString *languageName; // @synthesize languageName=_languageName;
 @property(readonly, copy) NSString *identifier; // @synthesize identifier=_identifier;
@@ -48,6 +54,7 @@
 @property(readonly, copy) NSArray *conformedToLanguages;
 @property(readonly, copy) NSArray *fileDataTypes;
 @property(readonly) DVTLanguageSpecification *languageSpecification;
+@property(readonly) Class nativeSourceModelParserClass;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
 - (id)initWithSourceCodeLanguageExtension:(id)arg1;

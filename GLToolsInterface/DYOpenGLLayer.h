@@ -13,6 +13,7 @@
     struct ImageRenderer _renderer;
     struct ImageInfo _currentImageInfo;
     NSData *_currentImageData;
+    NSData *_resolvedImageData;
     BOOL _isRenderbuffer;
     struct dispatch_queue_s *_queue;
     id <DYOpenGLLayerContentProvider> _contentProvider;

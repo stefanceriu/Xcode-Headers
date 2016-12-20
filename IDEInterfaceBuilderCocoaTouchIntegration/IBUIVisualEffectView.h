@@ -48,10 +48,14 @@
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibTypeNameForDefaultLabel;
 - (BOOL)ibSizesToFillViewControllers;
+- (id)ibInspectedBlurEffectStyleValues;
+- (id)ibInspectedBlurEffectStyleTitles;
+- (id)ibDefaultImage;
 - (id)ibDesignableContentView;
 - (void)setIbArchivedDesignableContentView:(id)arg1 unarchiver:(id)arg2;
 - (id)ibArchivedDesignableContentView;
-- (void)drawRect:(struct CGRect)arg1;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

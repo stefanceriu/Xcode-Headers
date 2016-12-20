@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTDispatchLock, NSMapTable, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet;
+@class DVTDispatchLock, NSArray, NSMapTable, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet;
 
 @interface DTDKProvisioningProfileController : NSObject
 {
@@ -15,12 +15,15 @@
     NSObject<OS_dispatch_queue> *_scanQueue;
     NSMutableSet *_allProfiles;
     BOOL _hasCompletedInitialScan;
+    NSArray *_provisioningProfileSearchPaths;
 }
 
 + (id)keyPathsForValuesAffectingAllUsableProfiles;
-+ (id)provisioningProfileSearchPaths;
++ (id)standardProvisioningProfileSearchPaths;
 + (id)mobileDeviceSupportSearchPaths;
++ (id)controllerWithProvisioningProfileSearchPaths:(id)arg1;
 + (id)controller;
+@property(readonly) NSArray *provisioningProfileSearchPaths; // @synthesize provisioningProfileSearchPaths=_provisioningProfileSearchPaths;
 @property(readonly) BOOL hasCompletedInitialScan; // @synthesize hasCompletedInitialScan=_hasCompletedInitialScan;
 - (void).cxx_destruct;
 @property(readonly, copy) NSSet *allUsableProfiles;
@@ -38,7 +41,7 @@
 - (BOOL)_writeProfiles:(id)arg1 error:(id *)arg2;
 - (void)deleteProvisioningProfiles:(id)arg1;
 - (id)certificateUtilities;
-- (id)init;
+- (id)initWithProvisioningProfileSearchPaths:(id)arg1;
 
 @end
 

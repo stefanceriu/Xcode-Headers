@@ -6,9 +6,10 @@
 
 #import "JSExport.h"
 
-@class NSData;
+@class MDLSubmesh, NSData;
 
 @protocol SCNGeometryElementJSExport <JSExport>
++ (id)geometryElementWithMDLSubmesh:(MDLSubmesh *)arg1;
 + (id)geometryElementWithData:(NSData *)arg1 primitiveType:(long long)arg2 primitiveCount:(long long)arg3 bytesPerIndex:(long long)arg4;
 @property(readonly, nonatomic) long long bytesPerIndex;
 @property(readonly, nonatomic) long long primitiveCount;

@@ -8,10 +8,11 @@
 
 #import "DVTInvalidation.h"
 #import "IBMemberPropertyStorageObserver.h"
+#import "IDEInspectorAccessibilitySupport.h"
 
 @class DVTStackBacktrace, NSDictionary, NSString;
 
-@interface IBConfigurablePropertyKeyPathAdapter : NSObject <IBMemberPropertyStorageObserver, DVTInvalidation>
+@interface IBConfigurablePropertyKeyPathAdapter : NSObject <IBMemberPropertyStorageObserver, IDEInspectorAccessibilitySupport, DVTInvalidation>
 {
     id <DVTInvalidation> _memberObservationToken;
     NSDictionary *_storagesToBasePropertiesToDerivedProperties;
@@ -25,6 +26,7 @@
 + (void)initialize;
 @property(readonly) NSObject *object; // @synthesize object=_object;
 - (void).cxx_destruct;
+- (id)humanReadableNameForInspectorKeyPath:(id)arg1;
 - (void)setValue:(id)arg1 forKey:(id)arg2;
 - (id)valueForKey:(id)arg1;
 - (id)propertyConfigurationLocationForProxiedKey:(id)arg1;

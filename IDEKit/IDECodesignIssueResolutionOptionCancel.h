@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEKit/IDECodesignIssueResolutionOption.h>
+#import "IDECodesignIssueResolutionOption.h"
 
 @interface IDECodesignIssueResolutionOptionCancel : IDECodesignIssueResolutionOption
 {
 }
 
-- (id)invokeOptionWithWindowOrNil:(id)arg1;
+- (id)invokeOption;
 - (id)name;
 - (BOOL)requiresUserInteraction;
 

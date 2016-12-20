@@ -12,7 +12,8 @@
 
 @interface IDEIssue (IDEKitAdditions) <IDEKeyDrivenNavigableItemRepresentedObject>
 + (BOOL)isCandidateAnnotationRepresentedObject:(id)arg1;
-+ (id)defaultImageForIssueType:(int)arg1 ofSize:(unsigned long long)arg2;
++ (id)_descriptionForIssueType:(unsigned long long)arg1;
++ (id)defaultImageForIssueType:(unsigned long long)arg1 ofSize:(unsigned long long)arg2;
 - (id)exploredIssue;
 - (id)title;
 - (id)locations;
@@ -21,8 +22,9 @@
 - (id)parentExplorableItem;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) NSImage *navigableItem_image;
-- (id)navigableItem_subtitle;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_name;
 @property(readonly) id exploreAnnotationRepresentedObject;
 @property(readonly) id annotationRepresentedObject;
@@ -37,6 +39,8 @@
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 @end

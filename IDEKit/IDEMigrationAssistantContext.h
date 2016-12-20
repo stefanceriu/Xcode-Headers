@@ -8,14 +8,20 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, NSString;
+@class DVTStackBacktrace, IDEMigrationContext, NSString;
 
 @interface IDEMigrationAssistantContext : IDEAssistantContext <DVTInvalidation>
 {
+    IDEMigrationContext *_migrationContext;
 }
 
++ (Class)migrationContextClass;
 + (void)initialize;
+@property(readonly) IDEMigrationContext *migrationContext; // @synthesize migrationContext=_migrationContext;
+- (void).cxx_destruct;
+- (void)setWorkspaceTabController:(id)arg1;
 - (void)primitiveInvalidate;
+- (id)init;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

@@ -6,15 +6,16 @@
 
 #import "NSWindowController.h"
 
+#import "DVTInvalidation.h"
 #import "DVTReplacementViewDelegate.h"
 #import "DVTStateRepositoryDelegate.h"
 #import "DVTStatefulObject.h"
 #import "NSToolbarDelegate.h"
 #import "NSWindowRestoration.h"
 
-@class DVTDelayedInvocation, DVTExtension, DVTReplacementView, DVTStateRepository, DVTStateToken, IDEViewController, NSString;
+@class DVTDelayedInvocation, DVTExtension, DVTReplacementView, DVTStackBacktrace, DVTStateRepository, DVTStateToken, IDEViewController, NSString;
 
-@interface IDEPreferencesController : NSWindowController <NSToolbarDelegate, NSWindowRestoration, DVTStatefulObject, DVTStateRepositoryDelegate, DVTReplacementViewDelegate>
+@interface IDEPreferencesController : NSWindowController <NSToolbarDelegate, NSWindowRestoration, DVTStatefulObject, DVTStateRepositoryDelegate, DVTReplacementViewDelegate, DVTInvalidation>
 {
     struct CGRect _targetWindowFrame;
     DVTReplacementView *_paneReplacementView;
@@ -27,6 +28,7 @@
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (void)restoreWindowWithIdentifier:(id)arg1 state:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 + (id)defaultPreferencesController;
++ (void)initialize;
 @property(retain) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
 @property(readonly) DVTDelayedInvocation *stateSavingInvocation; // @synthesize stateSavingInvocation=_stateSavingInvocation;
 @property(readonly) DVTStateRepository *stateRepository; // @synthesize stateRepository=_stateRepository;
@@ -50,19 +52,22 @@
 - (id)toolbarDefaultItemIdentifiers:(id)arg1;
 - (id)toolbarAllowedItemIdentifiers:(id)arg1;
 - (id)toolbar:(id)arg1 itemForItemIdentifier:(id)arg2 willBeInsertedIntoToolbar:(BOOL)arg3;
+- (void)primitiveInvalidate;
 - (void)windowWillClose:(id)arg1;
 - (void)selectPreferencePaneWithIdentifier:(id)arg1;
 @property(readonly) IDEViewController *currentPreferencePaneViewController;
-@property(readonly) NSString *downloadsPrefPaneIdentifier;
 - (void)windowDidLoad;
 - (id)initWithWindow:(id)arg1;
 - (void)_cachePreferencePaneExtensions;
 
 // Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

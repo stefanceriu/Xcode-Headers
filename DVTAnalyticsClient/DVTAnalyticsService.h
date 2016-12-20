@@ -10,19 +10,19 @@
 
 @interface DVTAnalyticsService : NSObject
 {
+    NSArray *_orderedParameters;
     NSArray *_pathComponents;
     NSDictionary *_parameters;
     DVTServicesType *_responseType;
-    NSArray *_orderedParameters;
 }
 
 + (id)_combinedParametersFromOptions:(id)arg1 andURLComponentProvider:(id)arg2;
 + (id)serviceWithIdentifier:(id)arg1 pathComponents:(id)arg2 parameters:(id)arg3;
 + (void)initialize;
-@property(readonly) NSArray *orderedParameters; // @synthesize orderedParameters=_orderedParameters;
 @property(copy) DVTServicesType *responseType; // @synthesize responseType=_responseType;
 @property(copy) NSDictionary *parameters; // @synthesize parameters=_parameters;
 @property(copy) NSArray *pathComponents; // @synthesize pathComponents=_pathComponents;
+@property(readonly) NSArray *orderedParameters; // @synthesize orderedParameters=_orderedParameters;
 - (void).cxx_destruct;
 - (id)_requestQueryString;
 - (id)_requestEndpoint;

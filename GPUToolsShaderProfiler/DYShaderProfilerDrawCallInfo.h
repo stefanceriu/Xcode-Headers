@@ -28,12 +28,14 @@
     unsigned int _vertexCount;
     unsigned int _fragmentCount;
     unsigned int _instanceCount;
+    unsigned int _encoderIndex;
     DYShaderProfilerProgramInfo *_programInfo;
     double _vertexCountPercentage;
     double _fragmentCountPercentage;
     double _instanceCountPercentage;
 }
 
+@property(nonatomic) unsigned int encoderIndex; // @synthesize encoderIndex=_encoderIndex;
 @property(readonly, nonatomic) struct DYShaderProfilerTiming timing; // @synthesize timing=_timing;
 @property(nonatomic) BOOL blendingIsEnabled; // @synthesize blendingIsEnabled=_blendingIsEnabled;
 @property(nonatomic) BOOL fragmentShaderUseDiscard; // @synthesize fragmentShaderUseDiscard=_fragmentShaderUseDiscard;

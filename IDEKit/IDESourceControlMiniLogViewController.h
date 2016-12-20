@@ -6,16 +6,20 @@
 
 #import <IDEKit/IDESourceControlLogViewController.h>
 
-@class DVTComparisonDocumentLocation;
+@class DVTComparisonDocumentLocation, DVTNotificationToken, DVTObservingToken;
 
 @interface IDESourceControlMiniLogViewController : IDESourceControlLogViewController
 {
     DVTComparisonDocumentLocation *_comparisonDocumentLocation;
+    DVTNotificationToken *_didScanWorkspaceToken;
+    DVTObservingToken *_localStatusToken;
 }
 
 + (Class)logItemViewClass;
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
 - (void)updateBoundComparisonDocumentLocation;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)dvtExtraBindings;
 
 @end

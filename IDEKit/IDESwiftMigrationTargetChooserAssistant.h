@@ -10,7 +10,7 @@
 #import "NSOutlineViewDataSource.h"
 #import "NSOutlineViewDelegate.h"
 
-@class DVTBorderedView, DVTOutlineView, IDEFilterControlBar, IDEMigrationTargetChooserStatePersistence, NSArray, NSImageView, NSMutableIndexSet, NSString, NSTextField, NSTreeController;
+@class DVTBorderedView, DVTOutlineViewWithCustomGridDrawing, IDEFilterControlBar, NSArray, NSImageView, NSMutableIndexSet, NSString, NSTextField, NSTreeController;
 
 @interface IDESwiftMigrationTargetChooserAssistant : IDEAssistant <NSOutlineViewDataSource, NSOutlineViewDelegate, IDEFilterControlBarTarget>
 {
@@ -19,10 +19,9 @@
     NSString *_assistantTitle;
     NSMutableIndexSet *_expandedRowIndexes;
     NSArray *_selectedTargetChooserItems;
-    IDEMigrationTargetChooserStatePersistence *_statePersistence;
     IDEFilterControlBar *_filterControlBar;
     DVTBorderedView *_scopeBarBorderedView;
-    DVTOutlineView *_outlineView;
+    DVTOutlineViewWithCustomGridDrawing *_outlineView;
     DVTBorderedView *_borderedView;
     NSImageView *_warningIconImageView;
     NSTextField *_warningTextField;
@@ -36,8 +35,7 @@
 @property(copy, nonatomic) NSString *searchString; // @synthesize searchString=_searchString;
 @property(copy) NSArray *targetItems; // @synthesize targetItems=_targetItems;
 - (void).cxx_destruct;
-- (id)currentUIState;
-- (void)loadUIState:(id)arg1;
+- (void)loadUIState;
 - (id)stateRepositoryFilePath;
 - (double)outlineView:(id)arg1 heightOfRowByItem:(id)arg2;
 - (void)outlineView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 item:(id)arg4;
@@ -52,6 +50,8 @@
 - (unsigned long long)_numberOfCheckedItemsAtIndexes:(id)arg1;
 - (void)_setChecked:(BOOL)arg1 forTargetChooserItemAtIndexes:(id)arg2;
 - (id)_effectiveSelectedRowIndexes;
+- (id)filterButtonAccessibilityDescription;
+- (id)filterButtonToolTip;
 - (id)filterButtonMenu;
 - (id)filterDefinitionIdentifier;
 - (void)_restoreSelectedTargetChooserItemsAndExpandedRows;

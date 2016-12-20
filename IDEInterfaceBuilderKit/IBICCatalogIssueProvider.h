@@ -4,23 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEInterfaceBuilderKit/IBAbstractLiveIssueProvider.h>
+#import <IDEInterfaceBuilderKit/IBICAbstractCatalogIssueProvider.h>
 
-@class DVTNotificationToken;
-
-@interface IBICCatalogIssueProvider : IBAbstractLiveIssueProvider
+@interface IBICCatalogIssueProvider : IBICAbstractCatalogIssueProvider
 {
-    DVTNotificationToken *_warningsChangedToken;
 }
 
-- (void).cxx_destruct;
 - (id)documentDataTypeIdentifiers;
 - (Class)documentClass;
-- (id)updatedIssuesForDocument:(id)arg1;
 - (id)ideModelObjectTypeIdentifier;
-- (id)displayNameForIssueTypeIdentifier:(id)arg1;
-- (void)primitiveInvalidate;
-- (id)initWithIssueManager:(id)arg1 extension:(id)arg2;
 
 @end
 

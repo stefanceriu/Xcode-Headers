@@ -9,7 +9,7 @@
 #import "DVTInvalidation.h"
 #import "IDEDebugNavigableContentDelegate.h"
 
-@class DBGDebugSession, DBGGaugeCPUTrayCell, DBGGaugeMemoryTrayCell, DBGProcessNavigableItem, DBGViewDebuggerAdditionUIController, DVTObservingToken, DVTStackBacktrace, IDEDebugNavigator, IDEGaugeDocumentLocation, IDENavigableItem, IDENavigatorFilterControlBar, IDENavigatorOutlineView, IDEStackFrame, IDEThread, IDEWorkspaceTabController, NSArray, NSMenuItem, NSMutableSet, NSSet, NSString, NSView, XRMemoryGraphDebuggerAdditionUIController;
+@class DBGGaugeCPUTrayCell, DBGGaugeMemoryTrayCell, DBGProcessNavigableItem, DBGViewDebuggerAdditionUIController, DVTObservingToken, DVTStackBacktrace, IDEDebugNavigator, IDEDebugSession, IDEGaugeDocumentLocation, IDENavigableItem, IDENavigatorFilterControlBar, IDENavigatorOutlineView, IDEStackFrame, IDEThread, IDEWorkspaceTabController, NSArray, NSMenuItem, NSMutableSet, NSSet, NSString, NSView, XRMemoryGraphDebuggerAdditionUIController;
 
 @interface DBGThreadsStacksContentDelegate : NSObject <IDEDebugNavigableContentDelegate, DVTInvalidation>
 {
@@ -56,7 +56,7 @@
     BOOL _showsCompressedStackFrames;
     BOOL _showsOnlyInterestingContent;
     BOOL _showsOnlyRunningBlocks;
-    DBGDebugSession *_debugSession;
+    IDEDebugSession *_debugSession;
     IDEDebugNavigator *_debugNavigator;
 }
 
@@ -66,7 +66,7 @@
 @property(nonatomic) BOOL showsOnlyInterestingContent; // @synthesize showsOnlyInterestingContent=_showsOnlyInterestingContent;
 @property(nonatomic) BOOL showsCompressedStackFrames; // @synthesize showsCompressedStackFrames=_showsCompressedStackFrames;
 @property(retain) IDEDebugNavigator *debugNavigator; // @synthesize debugNavigator=_debugNavigator;
-@property(retain) DBGDebugSession *debugSession; // @synthesize debugSession=_debugSession;
+@property(retain) IDEDebugSession *debugSession; // @synthesize debugSession=_debugSession;
 @property(readonly) NSString *associatedProcessUUID; // @synthesize associatedProcessUUID=_associatedProcessUUID;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
@@ -80,6 +80,8 @@
 - (void)_updateForNewCompressionValue;
 - (void)_suspendContexMenuSelectedItems;
 - (void)_resumeContexMenuSelectedItems;
+- (void)_updateViewsContextMenuIfNecessary:(id)arg1;
+- (void)_updateThreadsContextMenuIfNecessary:(id)arg1;
 - (void)contextualMenuNeedsUpdate:(id)arg1;
 - (BOOL)validateUserInterfaceAction:(SEL)arg1 forRepresentedObject:(id)arg2;
 - (BOOL)validateUserInterfaceAction:(SEL)arg1;
@@ -112,13 +114,13 @@
 - (double)heightOfRowForRepresentedObject:(id)arg1;
 - (id)trayCellsForProcessHeader;
 - (void)_updateLaunchSessionWithSupportedGauges;
+- (BOOL)validateMenuItem:(id)arg1;
 - (void)configureMenuForProcessHeaderActionPopUpCell:(id)arg1;
 - (id)controllerForQueryingDescendantItem;
-- (id)_createMemoryGraphInstanceItemPredicate:(id)arg1;
+- (id)_createViewItemPredicate:(id)arg1;
 - (id)_createGaugeLocationItemPredicate;
 - (id)_createProcessItemPredicate;
-- (id)_createFilterStringPredicate:(id)arg1;
-- (void)_updateFilterPredicate;
+- (void)_updateFilter;
 - (void)updateForNewFilterString:(id)arg1;
 - (id)filterView;
 - (void)registerTableCellViewsWithOutlineView:(id)arg1;
@@ -130,20 +132,24 @@
 - (void)_nextCrashLog:(id)arg1;
 - (void)_previousCrashLog:(id)arg1;
 - (id)_createCrashLogNavigationButton;
+- (id)_createDummyMemoryGraphTableCellViewWithOutlineView:(id)arg1;
 - (id)_createCrashPointTableCellViewForCrashPoint:(id)arg1 withOutlineView:(id)arg2;
 - (void)_unfocusHierarchy:(id)arg1;
 - (id)_createUnfocusButtonForRoot:(id)arg1;
 - (id)_createFocusedTableCellViewForRoot:(id)arg1 withOutlineView:(id)arg2;
+- (id)_createViewDebuggerTableCellViewForViewSurface:(id)arg1 withOutlineView:(id)arg2;
+- (id)_createMemoryGraphTableCellViewForMemoryGraphItem:(id)arg1 withOutlineView:(id)arg2;
 - (id)_createCompressedTableCellViewWithOutlineView:(id)arg1;
 - (id)_createStackFrameTableCellViewForStackFrame:(id)arg1 withOutlineView:(id)arg2;
-- (id)_nonSymbolTextColor;
 - (id)_createMemoryDataCellViewForMemoryData:(id)arg1 withOutlineView:(id)arg2;
 - (id)_createMemoryDataGroupHeaderTableCellViewForMemoryDataProcessWrapper:(id)arg1 withOutlineView:(id)arg2;
 - (id)_createThreadHeaderTableCellViewForThread:(id)arg1 withOutlineView:(id)arg2;
 - (id)_createQueueHeaderTableCellViewWithOutlineView:(id)arg1;
 - (void)willDisplayCell:(id)arg1 forRepresentedObject:(id)arg2 item:(id)arg3;
+- (void)_expandViewsToDefaultStateStartingAt:(id)arg1 expander:(id)arg2;
+- (void)_expandViewsToDefaultStateStartingAt:(id)arg1;
+- (BOOL)_isViewNavigableItemIOS:(id)arg1;
 - (void)_expandItemsToDefaultStateStartingAt:(id)arg1;
-- (long long)_depthOfItem:(id)arg1 limitedTo:(long long)arg2;
 - (void)_handleProcessChildItemsChanged;
 - (void)debugNavigatorViewWillUninstall;
 - (void)_unbindMemoryGraphToggles;
@@ -163,7 +169,7 @@
 - (BOOL)_handleSettingCurrentStackFrame;
 - (void)_handleThreadsAutoRefreshStackFramesDone;
 - (BOOL)_handleSettingCurrentStackFrame:(id)arg1 thread:(id)arg2;
-- (void)_expandMemoryDatumForThreadItem:(id)arg1;
+- (void)_expandRecordedThreadCollectionForThreadItem:(id)arg1;
 - (void)_ensureItemAndAllChildrenExpandedAndRestoreSelection:(id)arg1 scrollToSelection:(BOOL)arg2;
 @property(readonly) IDEWorkspaceTabController *workspaceTabController;
 @property(readonly) DBGProcessNavigableItem *processNavigableItem;

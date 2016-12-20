@@ -10,12 +10,12 @@
 {
 }
 
-+ (BOOL)_device:(id)arg1 matchesPlatformForBuildable:(id)arg2 buildParameters:(id)arg3;
 - (id)initWithPlatform:(id)arg1;
 - (BOOL)isAvailable;
 - (id)deviceType;
 - (unsigned long long)supportsFetchEvents;
 - (id)deviceForRunningUnitTestsError:(id *)arg1;
+- (void)debugXPCServices:(id)arg1 onPairedDevice:(BOOL)arg2 completionSemaphore:(id)arg3;
 - (BOOL)supportsRecordedFrames;
 - (BOOL)supportsPGOReturningError:(id *)arg1;
 - (BOOL)supportsAttachByPIDOrName;
@@ -25,14 +25,16 @@
 - (BOOL)supportsExecutionForArchitecture:(id)arg1 launchSession:(id)arg2 error:(id *)arg3;
 - (BOOL)canInstallBuildablesError:(id *)arg1;
 - (id)analysisOperationWithAnalysisToolService:(id)arg1 location:(id)arg2 workingDirectory:(id)arg3 workspaceFilePath:(id)arg4 projectFilePath:(id)arg5 outError:(id *)arg6;
-- (id)generalRunErrorWithLaunchSession:(id)arg1;
-- (id)generalErrorWithVerb:(id)arg1 launchSession:(id)arg2;
+- (id)_generalRunErrorWithLaunchSession:(id)arg1;
 - (id)deviceSpecificOverridingPropertiesForBuildable:(id)arg1 withBaselineParameters:(id)arg2;
 - (id)supportedSDKsForBuildable:(id)arg1 buildParameters:(id)arg2 error:(id *)arg3;
 - (id)supportedArchitecturesForBuildable:(id)arg1 buildParameters:(id)arg2 error:(id *)arg3;
 - (id)nativeArchitecture;
 - (id)supportedArchitectures;
 - (BOOL)canBeDefaultDeviceForBuildable:(id)arg1 buildParameters:(id)arg2;
+- (id)modelUTI;
+- (id)modelName;
+- (id)modelCode;
 - (BOOL)isProxiedDevice;
 - (BOOL)isConcreteDevice;
 - (BOOL)isGenericDevice;

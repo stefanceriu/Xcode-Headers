@@ -11,7 +11,6 @@
 }
 
 + (Class)ibDropTargetResolverClass;
-- (id)viewForClippingToWhenDrawingSelectionKnobsForObject:(id)arg1;
 - (void)noteDescendant:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;
 - (id)stringEditingContextForEvent:(id)arg1;

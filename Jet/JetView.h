@@ -6,12 +6,14 @@
 
 #import "NSView.h"
 
-@class NSOpenGLContext, NSTimer;
+@class CAMetalLayer, NSOpenGLContext, NSTimer;
 
 @interface JetView : NSView
 {
     struct jet_context *_ctx;
     struct jet_framebuffer *_framebuffer;
+    CAMetalLayer *_metalLayer;
+    id <MTLDevice> _device;
     NSOpenGLContext *_glContext;
     struct jet_texture *_frameBufferColorTexture;
     struct jet_texture *_frameBufferDepthStencilTexture;

@@ -18,6 +18,8 @@
     NSData *_topLeftOriginData[14];
     NSData *_bottomLeftOriginData[14];
     BOOL _selfCreating;
+    BOOL _alphaValuesSet;
+    BOOL _hasAlphaValues;
 }
 
 + (id)irradianceTextureCubeWithTexture:(id)arg1 name:(id)arg2 dimensions:(float)arg3 roughness: /* Error: Ran out of types for this method. */;
@@ -44,8 +46,10 @@
 - (void)loadDataWithTopLeftOriginAtMipLevel:(long long)arg1 create:(BOOL)arg2;
 @property(readonly, nonatomic) unsigned long long mipLevelCount;
 - (id)initWithData:(id)arg1 topLeftOrigin:(BOOL)arg2 name:(id)arg3 dimensions:(long long)arg4 rowStride:(unsigned long long)arg5 channelCount:(long long)arg6 channelEncoding:(BOOL)arg7 isCube: /* Error: Ran out of types for this method. */;
+- (id)init;
 - (id)generateDataAtLevel:(long long)arg1;
 - (id)allocateDataAtLevel:(long long)arg1;
+@property(nonatomic) BOOL hasAlphaValues;
 @property(nonatomic) BOOL isCube;
 - (struct MDLTextureData *)textureData;
 @property(readonly, nonatomic) unsigned long long channelCount;

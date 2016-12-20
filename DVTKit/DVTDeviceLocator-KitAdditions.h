@@ -7,6 +7,7 @@
 #import "DVTDeviceLocator.h"
 
 @interface DVTDeviceLocator (KitAdditions)
+- (void)beginPairingAssistantForDevice:(id)arg1 withWindow:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)beginDeviceCreationAssistantWithWindow:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 @property(readonly) BOOL canCreateDevices;
 @end

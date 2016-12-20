@@ -21,6 +21,17 @@ struct Argument {
     unsigned short _field6;
 };
 
+struct CaptureInfo {
+    unsigned int _field1;
+    unsigned int _field2;
+    unsigned int _field3;
+    unsigned int _field4;
+    id _field5;
+    id _field6;
+    struct unordered_map<dispatch_queue_s *, std::__1::basic_string<char>, std::__1::hash<dispatch_queue_s *>, std::__1::equal_to<dispatch_queue_s *>, std::__1::allocator<std::__1::pair<dispatch_queue_s *const, std::__1::basic_string<char>>>> _field7;
+    struct unordered_map<unsigned long long, std::__1::basic_string<char>, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, std::__1::basic_string<char>>>> _field8;
+};
+
 struct CoreFunction {
     unsigned int _field1;
     unsigned int _field2;
@@ -39,10 +50,7 @@ struct CoreFunction {
 };
 
 struct Fbuf {
-    union {
-        void *_field1;
-        struct *_field2;
-    } _field1;
+    CDUnion_8f472182 _field1;
     void *_field2;
     unsigned int _field3;
 };
@@ -64,6 +72,18 @@ struct Function {
     void *_field14;
 };
 
+struct Stream {
+    struct VMBuffer *_field1;
+    CDUnion_8f472182 _field2;
+    void *_field3;
+    unsigned long long _field4;
+    struct __CFString *_field5;
+    CDUnknownBlockType _field6;
+    CDUnknownBlockType _field7;
+    int _field8;
+    _Bool _field9;
+};
+
 struct VMBuffer {
     unsigned long long _field1;
     unsigned long long _field2;
@@ -82,7 +102,11 @@ struct _NSRange {
     unsigned long long length;
 };
 
+struct __hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>;
+
 struct __hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>;
+
+struct __hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>;
 
 struct array_iterator<const GPUTools::FD::Argument> {
     struct Argument *_field1;
@@ -122,6 +146,17 @@ struct sm_region_header {
     unsigned int _field8;
 };
 
+struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>>> {
+    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>>> {
+        struct __hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>> {
+                unsigned long long _field1;
+            } _field1;
+        } _field2;
+    } _field1;
+};
+
 struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>>> {
     struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>>> {
         struct __hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *> **_field1;
@@ -130,6 +165,34 @@ struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<long long, i
                 unsigned long long _field1;
             } _field1;
         } _field2;
+    } _field1;
+};
+
+struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>>> {
+    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>>> {
+        struct __hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>> {
+                unsigned long long _field1;
+            } _field1;
+        } _field2;
+    } _field1;
+};
+
+struct unordered_map<dispatch_queue_s *, std::__1::basic_string<char>, std::__1::hash<dispatch_queue_s *>, std::__1::equal_to<dispatch_queue_s *>, std::__1::allocator<std::__1::pair<dispatch_queue_s *const, std::__1::basic_string<char>>>> {
+    struct __hash_table<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, std::__1::__unordered_map_hasher<dispatch_queue_s *, std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, std::__1::hash<dispatch_queue_s *>, true>, std::__1::__unordered_map_equal<dispatch_queue_s *, std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, std::__1::equal_to<dispatch_queue_s *>, true>, std::__1::allocator<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>>> {
+        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>>> _field1;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*> {
+                struct __hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *> *_field1;
+            } _field1;
+        } _field2;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<dispatch_queue_s *, std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, std::__1::hash<dispatch_queue_s *>, true>> {
+            unsigned long long _field1;
+        } _field3;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<dispatch_queue_s *, std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, std::__1::equal_to<dispatch_queue_s *>, true>> {
+            float _field1;
+        } _field4;
     } _field1;
 };
 
@@ -150,10 +213,34 @@ struct unordered_map<long long, id<NSObject>, std::__1::hash<long long>, std::__
     } _field1;
 };
 
+struct unordered_map<unsigned long long, std::__1::basic_string<char>, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, std::__1::basic_string<char>>>> {
+    struct __hash_table<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, std::__1::hash<unsigned long long>, true>, std::__1::__unordered_map_equal<unsigned long long, std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, std::__1::equal_to<unsigned long long>, true>, std::__1::allocator<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>>> {
+        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>>> _field1;
+        struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>>> {
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*> {
+                struct __hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *> *_field1;
+            } _field1;
+        } _field2;
+        struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, std::__1::hash<unsigned long long>, true>> {
+            unsigned long long _field1;
+        } _field3;
+        struct __compressed_pair<float, std::__1::__unordered_map_equal<unsigned long long, std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, std::__1::equal_to<unsigned long long>, true>> {
+            float _field1;
+        } _field4;
+    } _field1;
+};
+
 #pragma mark Typedef'd Structures
 
 // Template types
 typedef struct array_iterator<const GPUTools::FD::Argument> {
     struct Argument *_field1;
 } array_iterator_bff672d3;
+
+#pragma mark Typedef'd Unions
+
+typedef union {
+    void *_field1;
+    struct *_field2;
+} CDUnion_8f472182;
 

@@ -9,7 +9,7 @@
 #import "IDEProvisioningProfilesViewControllerDelegate.h"
 #import "IDEProvisioningSigningIdentitiesViewControllerDelegate.h"
 
-@class DVTDeveloperAccount, DVTDispatchLock, DVTNotificationToken, IDEProvisioningProfilesViewController, IDEProvisioningSigningIdentitiesViewController, IDEProvisioningSnapshot, NSButton, NSDate, NSMutableSet, NSOperationQueue, NSSet, NSString;
+@class DVTDeveloperAccount, DVTDispatchLock, DVTNotificationToken, DVTPortalTeam, DVTServicesSession, IDEProvisioningProfilesViewController, IDEProvisioningSigningIdentitiesViewController, IDEProvisioningSnapshot, NSButton, NSDate, NSMutableSet, NSOperationQueue, NSSet, NSString;
 
 @interface IDEProvisioningTeamDetailsViewController : IDEViewController <IDEProvisioningProfilesViewControllerDelegate, IDEProvisioningSigningIdentitiesViewControllerDelegate>
 {
@@ -17,13 +17,13 @@
     NSMutableSet *_watchProfilesForInstall;
     NSMutableSet *_watchCertificateKindsForInstall;
     NSSet *_downloadAllProfilesToWatch;
-    struct DVTPortalOperationToken *_token;
+    DVTServicesSession *_session;
+    DVTPortalTeam *_team;
     DVTNotificationToken *_profileChangeNoteToken;
     DVTNotificationToken *_identityChangeNoteToken;
     NSOperationQueue *_changeQueue;
     NSDate *_lastRefreshDate;
     DVTDeveloperAccount *_account;
-    id <IDEProvisioningTeam> _team;
     IDEProvisioningSnapshot *_provisioningSnapshot;
     IDEProvisioningProfilesViewController *_provisioningProfilesViewController;
     IDEProvisioningSigningIdentitiesViewController *_signingIdentitiesViewController;
@@ -36,7 +36,7 @@
 @property(retain, nonatomic) IDEProvisioningSigningIdentitiesViewController *signingIdentitiesViewController; // @synthesize signingIdentitiesViewController=_signingIdentitiesViewController;
 @property(retain, nonatomic) IDEProvisioningProfilesViewController *provisioningProfilesViewController; // @synthesize provisioningProfilesViewController=_provisioningProfilesViewController;
 @property(retain, nonatomic) IDEProvisioningSnapshot *provisioningSnapshot; // @synthesize provisioningSnapshot=_provisioningSnapshot;
-@property(retain, nonatomic) id <IDEProvisioningTeam> team; // @synthesize team=_team;
+@property(retain, nonatomic) DVTPortalTeam *team; // @synthesize team=_team;
 @property(retain, nonatomic) DVTDeveloperAccount *account; // @synthesize account=_account;
 - (void).cxx_destruct;
 - (BOOL)_tryResolutionOption:(id)arg1 error:(id *)arg2;
@@ -47,7 +47,8 @@
 - (void)_didEndProcessingSigningIdentity:(id)arg1;
 - (void)_didBeginProcessingSigningIdentity:(id)arg1;
 - (void)_signingIdentityBackgroundOperationCommonWithSigningIdentity:(id)arg1 workBlock:(CDUnknownBlockType)arg2;
-- (struct DVTPortalOperationToken *)_token:(id *)arg1;
+- (id)_team:(id *)arg1;
+- (id)_session:(id *)arg1;
 - (void)_didFinishDownloadingProfiles:(struct NSSet *)arg1;
 - (void)_didBeginDownloadingProfiles:(struct NSSet *)arg1;
 - (void)_didFinishDownloadAll;
@@ -55,6 +56,7 @@
 - (void)_watchForInstallsOfProfiles:(struct NSSet *)arg1;
 - (void)_profilesModifiedInSnapshotUpdate:(struct NSSet *)arg1;
 - (void)_beginDownloadAllWithProfiles:(struct NSSet *)arg1;
+- (BOOL)_installProfile:(id)arg1 error:(id *)arg2;
 - (void)_downloadProfilesAndHandleErrors:(struct NSSet *)arg1 refreshAndDownloadAll:(BOOL)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)profilesViewController:(id)arg1 updateProfiles:(struct NSSet *)arg2;
 - (void)profilesViewController:(id)arg1 downloadProfiles:(struct NSSet *)arg2;

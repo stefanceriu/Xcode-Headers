@@ -4,24 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IDETemplateInstantiationContext.h"
+#import "IDETemplateAssistantContext.h"
 
-#import "NSCopying.h"
-
-@class CDMEntity, NSSet;
-
-@interface IDECDManagedObjectAssistantContext : IDETemplateInstantiationContext <NSCopying>
+@interface IDECDManagedObjectAssistantContext : IDETemplateAssistantContext
 {
-    NSSet *files;
-    NSSet *entities;
-    CDMEntity *entity;
 }
-
-@property(retain) CDMEntity *entity; // @synthesize entity;
-@property(retain) NSSet *entities; // @synthesize entities;
-@property(retain) NSSet *files; // @synthesize files;
-- (void).cxx_destruct;
-- (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end
 

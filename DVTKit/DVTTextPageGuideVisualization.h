@@ -20,6 +20,7 @@
 @property(nonatomic) unsigned long long columnNumber; // @synthesize columnNumber=_columnNumber;
 - (void).cxx_destruct;
 - (void)drawUnderTextInRect:(struct CGRect)arg1;
+- (void)drawUnderCurrentLineHighlightInRect:(struct CGRect)arg1;
 - (void)fontAndColorThemeChanged;
 - (void)_updatePageGuideXCoordinate;
 

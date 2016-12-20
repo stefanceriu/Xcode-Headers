@@ -11,6 +11,7 @@
 }
 
 + (id)SDKIdentifierForSoftwareBundleDescription:(id)arg1;
++ (id)dSYMURLForAdamID:(id)arg1 bundleIdentifier:(id)arg2 version:(id)arg3 buildNumber:(id)arg4 platform:(id)arg5 session:(id)arg6 error:(id *)arg7;
 + (id)dSYMURLsForApplicationVersion:(id)arg1 usingSession:(id)arg2 error:(id *)arg3;
 + (id)iTunesPlatformForApplicationType:(int)arg1 usingSession:(id)arg2 error:(id *)arg3;
 + (id)iTunesPlatformForSDKIdentifier:(id)arg1 usingSession:(id)arg2 error:(id *)arg3;
@@ -18,12 +19,11 @@
 + (id)storeConfigurationUsingSession:(id)arg1 forBundleID:(id)arg2 error:(id *)arg3;
 + (id)storeConfigurationUsingSession:(id)arg1 error:(id *)arg2;
 + (id)symbolURLsByUUIDForApplicationVersion:(id)arg1 usingSession:(id)arg2 error:(id *)arg3;
-+ (id)applicationVersionWithBundleIdentifier:(id)arg1 shortVersion:(id)arg2 version:(id)arg3 platform:(id)arg4 usingSession:(id)arg5 logAspect:(id)arg6 error:(id *)arg7;
 + (id)applicationVersionsForApplicationDecription:(id)arg1 usingSession:(id)arg2 error:(id *)arg3;
 + (id)applicationDescriptionWithBundleIdentifier:(id)arg1 platformSDKIdentifier:(id)arg2 usingSession:(id)arg3 logAspect:(id)arg4 error:(id *)arg5;
 + (id)applicationDescriptionsUsingSession:(id)arg1 error:(id *)arg2;
 + (id)applicationsWithContentHostedInAppPurchasesUsingSession:(id)arg1 error:(id *)arg2;
-+ (id)uploadApplicationArchiveAtPath:(id)arg1 applicationType:(int)arg2 session:(id)arg3 willBeginCallback:(CDUnknownBlockType)arg4 updatePercentageCallback:(CDUnknownBlockType)arg5 updateMessageCallback:(CDUnknownBlockType)arg6 shouldContinueCallback:(CDUnknownBlockType)arg7 didCompleteCallback:(CDUnknownBlockType)arg8 error:(id *)arg9;
++ (id)uploadApplicationArchiveAtPath:(id)arg1 applicationType:(int)arg2 session:(id)arg3 willBeginCallback:(CDUnknownBlockType)arg4 updatePercentageCallback:(CDUnknownBlockType)arg5 updateMessageCallback:(CDUnknownBlockType)arg6 shouldContinueCallback:(CDUnknownBlockType)arg7 didCompleteCallback:(CDUnknownBlockType)arg8 logAspect:(id)arg9 error:(id *)arg10;
 + (id)validateApplicationArchiveAtPath:(id)arg1 applicationType:(int)arg2 usingSession:(id)arg3 error:(id *)arg4;
 + (id)authenticationContextForSession:(id)arg1 error:(id *)arg2;
 + (Class)ITunesAuthenticationContextClass;

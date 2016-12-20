@@ -6,25 +6,33 @@
 
 #import "DVTLayoutView_ML.h"
 
-@class NSView;
+#import "IBNSViewControllerEditorViewContainer.h"
 
-@interface IBNSViewControllerEditorView : DVTLayoutView_ML
+@class IBNSViewController, NSString, NSView;
+
+@interface IBNSViewControllerEditorView : DVTLayoutView_ML <IBNSViewControllerEditorViewContainer>
 {
+    IBNSViewController *_editedViewController;
     NSView *_contentView;
-    NSView *_editedView;
 }
 
-@property(retain, nonatomic) NSView *editedView; // @synthesize editedView=_editedView;
 @property(readonly) NSView *contentView; // @synthesize contentView=_contentView;
+@property(retain, nonatomic) IBNSViewController *editedViewController; // @synthesize editedViewController=_editedViewController;
 - (void).cxx_destruct;
 - (void)layoutBottomUp;
 - (BOOL)isOpaque;
-- (void)updateContentView:(id)arg1;
+- (void)viewDidChangeForViewController:(id)arg1;
+- (void)_updateContentView:(id)arg1;
 - (id)_placeHolderView;
 - (void)invalidateEditorView;
-- (void)setEditedViewController:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)initWithContentView:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

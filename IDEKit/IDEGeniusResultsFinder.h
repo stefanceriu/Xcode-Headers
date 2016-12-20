@@ -18,14 +18,14 @@
     IDEWorkspaceTabController *_workspaceTabController;
     NSArray *_documentLocations;
     NSSet *_geniusResults;
-    DVTExtension *_extension;
     DVTPerformanceMetric *_nonIdlePerformanceMetric;
+    DVTExtension *_extension;
 }
 
 + (void)initialize;
 + (Class)editorDocumentClass;
-@property(retain) DVTPerformanceMetric *nonIdlePerformanceMetric; // @synthesize nonIdlePerformanceMetric=_nonIdlePerformanceMetric;
 @property(retain) DVTExtension *extension; // @synthesize extension=_extension;
+@property(retain) DVTPerformanceMetric *nonIdlePerformanceMetric; // @synthesize nonIdlePerformanceMetric=_nonIdlePerformanceMetric;
 @property(copy) NSSet *geniusResults; // @synthesize geniusResults=_geniusResults;
 @property(readonly, copy) NSArray *documentLocations; // @synthesize documentLocations=_documentLocations;
 @property(retain) IDEWorkspaceTabController *workspaceTabController; // @synthesize workspaceTabController=_workspaceTabController;

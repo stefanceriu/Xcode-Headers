@@ -6,11 +6,13 @@
 
 #import <IDEKit/IDEInspectorProperty.h>
 
-@class IDEAttributedStringControl, IDEInspectorKeyPath;
+@class IDEAttributedStringControl, IDEInspectorKeyPath, NSString;
 
 @interface IDEInspectorAttributedStringProperty : IDEInspectorProperty
 {
     IDEAttributedStringControl *_attributedStringControl;
+    NSString *_explicitPlaceholder;
+    IDEInspectorKeyPath *_explicitPlaceholderKeyPath;
     IDEInspectorKeyPath *_valueKeyPath;
     IDEInspectorKeyPath *_fontDataSourceKeyPath;
 }
@@ -22,6 +24,7 @@
 - (void)awakeFromNib;
 - (void)userDidUpdateAttributedStringValue:(id)arg1;
 - (void)refresh;
+- (double)accessoryCenterAnchor;
 - (void)primitiveInvalidate;
 
 @end

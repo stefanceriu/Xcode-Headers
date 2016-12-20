@@ -14,9 +14,8 @@
 {
 }
 
-+ (id)iphoneSimulatorFromPlaygroundsDeviceSetMatchingSimulator:(id)arg1 error:(id *)arg2;
-+ (id)bestPlaygroundSimulatorDeviceMatchingDevice:(id)arg1;
-+ (BOOL)isDeviceASimulatorDevice:(id)arg1;
++ (id)deviceTypeForPlatform:(id)arg1 inContext:(id)arg2;
++ (id)bestPlaygroundSimulatorDeviceForPlatform:(id)arg1 error:(id *)arg2;
 + (BOOL)isPlaygroundSimulatorAvailable;
 
 // Remaining properties

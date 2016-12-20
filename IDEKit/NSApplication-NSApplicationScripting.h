@@ -7,6 +7,9 @@
 #import "NSApplication.h"
 
 @interface NSApplication (NSApplicationScripting)
++ (Class)sourceDocumentClass;
+- (id)sdefSupport_fileDocuments;
+- (id)sdefSupport_sourceDocuments;
 - (id)orderedDocumentsOfClass:(Class)arg1;
 @end
 

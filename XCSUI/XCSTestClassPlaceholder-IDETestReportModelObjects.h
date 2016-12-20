@@ -12,10 +12,11 @@
 
 @interface XCSTestClassPlaceholder (IDETestReportModelObjects) <IDETestReport_TestGroup>
 - (id)ide_sharedTests_testGroup_includePassingTests:(BOOL)arg1 includeFailingTests:(BOOL)arg2 includeOnlyPerfTests:(BOOL)arg3;
+- (id)ide_sharedTests_testGroup_perfTests;
 - (id)testsIncludePassing:(BOOL)arg1 includeFailing:(BOOL)arg2 perfOnly:(BOOL)arg3;
 - (id)ide_sharedTests_failingTests;
 - (id)ide_sharedTests_passingTests;
-- (id)ide_sharedTests_allTests;
+- (id)ide_sharedTests_testGroup_allTests;
 @property(readonly, copy, nonatomic) NSString *ide_testReport_testGroup_groupName;
 @property(readonly, copy, nonatomic) NSString *ide_testReport_testGroup_testTargetName;
 @property(readonly, copy, nonatomic) NSString *ide_testReport_base_identifier;

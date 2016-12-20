@@ -20,6 +20,7 @@
 - (void).cxx_destruct;
 - (void)unregisterHandler:(id)arg1;
 - (void)registerHandler:(id)arg1;
+- (BOOL)canContinueServingRequestWithIdentifier:(id)arg1;
 - (void)forwardMessage:(id)arg1;
 - (id)activeHandlerWithIdentifier:(id)arg1;
 - (id)init;

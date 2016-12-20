@@ -29,8 +29,7 @@
 + (id)containerObserverToRepositoryMap;
 - (void).cxx_destruct;
 - (void)fileReferenceObserverDidReportUpdatedAndAddedResourcesByPath:(id)arg1 removedPaths:(id)arg2;
-- (void)willRegisterMediaRepositoryObserver;
-- (void)didUnregisterMediaRepositoryObserver;
+- (id)pin;
 @property(readonly) NSSet *types;
 - (id)resources;
 - (void)primitiveInvalidate;

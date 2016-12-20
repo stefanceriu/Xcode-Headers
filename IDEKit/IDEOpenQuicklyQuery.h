@@ -32,8 +32,9 @@
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)toggleRuthless;
-- (void)validateMatchesImmediately;
-- (void)validateMatches:(id)arg1;
+- (void)validateMatchesIfNeeded;
+- (void)_validateMatches:(id)arg1;
+- (void)validateMatches;
 - (void)logMatches:(id)arg1 logLevel:(int)arg2;
 - (id)beRuthless:(id)arg1;
 - (id)trimDuplicates:(id)arg1;

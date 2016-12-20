@@ -15,9 +15,11 @@
     NSAttributedString *_localAttrString;
     NSAttributedString *_serverAttrString;
     BOOL _hidden;
+    BOOL _hideLocalStatus;
 }
 
 + (void)initialize;
+@property BOOL hideLocalStatus; // @synthesize hideLocalStatus=_hideLocalStatus;
 @property BOOL hidden; // @synthesize hidden=_hidden;
 @property(copy, nonatomic) NSString *serverStatus; // @synthesize serverStatus=_serverStatus;
 @property(copy, nonatomic) NSString *localStatus; // @synthesize localStatus=_localStatus;

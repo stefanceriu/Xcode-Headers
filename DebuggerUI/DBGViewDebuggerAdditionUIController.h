@@ -42,6 +42,10 @@
 - (void)primitiveInvalidate;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
+- (BOOL)validateMenuItem:(id)arg1;
+- (void)focusOnNode:(id)arg1;
+- (void)printDescription:(id)arg1;
+- (void)updateMenu:(id)arg1 forViewObject:(id)arg2;
 - (void)proceedToReady:(id)arg1;
 - (void)delayReady:(id)arg1;
 - (void)resetToLoading:(id)arg1;

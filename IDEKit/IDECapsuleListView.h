@@ -6,13 +6,14 @@
 
 #import "DVTStackView_ML.h"
 
+#import "CAAnimationDelegate.h"
 #import "DVTInvalidation.h"
 #import "DVTStatefulObject.h"
 #import "NSDraggingSource.h"
 
 @class DVTStackBacktrace, DVTStateToken, IDECapsuleView, NSColor, NSMutableSet, NSString, NSTimer;
 
-@interface IDECapsuleListView : DVTStackView_ML <NSDraggingSource, DVTStatefulObject, DVTInvalidation>
+@interface IDECapsuleListView : DVTStackView_ML <NSDraggingSource, CAAnimationDelegate, DVTStatefulObject, DVTInvalidation>
 {
     IDECapsuleView *_draggedView;
     id <IDECapsuleListViewDataSource> _dataSource;
@@ -22,7 +23,6 @@
     NSString *_emptyContentString;
     DVTStateToken *_stateToken;
     long long _selectedIndex;
-    id _lastFirstResponder;
     NSMutableSet *_subviewFrameChangedObservers;
     BOOL _reloadAfterDrag;
     BOOL _restoringState;

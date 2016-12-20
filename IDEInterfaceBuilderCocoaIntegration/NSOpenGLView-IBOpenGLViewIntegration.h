@@ -25,7 +25,7 @@
 - (BOOL)ibOverridablePrefersToVerticallyResizeWithContainer;
 - (BOOL)ibOverridablePrefersToHorizontallyResizeWithContainer;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
-- (id)ibVerifyForDocument:(id)arg1;
+- (void)ibVerifyAndPopulateMessages:(id)arg1 forDocument:(id)arg2;
 - (id)verifyBufferCollision:(id)arg1 document:(id)arg2;
 - (id)verifySampleAlpha:(id)arg1 document:(id)arg2;
 - (id)verifyRenderer:(id)arg1 document:(id)arg2;
@@ -56,5 +56,6 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (void)ibDrawRectIntoDependentContext:(struct CGRect)arg1;
 - (Class)ibViewRendererClass;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

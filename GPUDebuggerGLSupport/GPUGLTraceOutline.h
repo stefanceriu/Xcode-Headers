@@ -20,16 +20,28 @@ __attribute__((visibility("hidden")))
     NSMutableArray *_contextGroupList;
     BOOL _bIsMultiContextOrThread;
     BOOL _bIsMultiAPI;
+    struct shared_ptr<GPUTools::FD::TFunctionStream<GPUTools::FD::Function, void>> _captureStream;
+    struct _Iterator<GPUTools::FD::Function> _captureStreamIter;
+    unsigned int _currentFunctionIndex;
+    unsigned int _currentDisplayFunctionIndex;
+    unsigned int _currentFrameIndex;
+    unsigned int _currentMarkerDepth;
     NSMutableDictionary *_contextNameDict;
 }
 
 @property(readonly) NSMutableDictionary *contextNameDict; // @synthesize contextNameDict=_contextNameDict;
+- (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)sharegroupResourceDictionaryForSharegroupID:(id)arg1;
 - (id)stateMirrorForTraceItem:(id)arg1;
 - (id)_derivedStateMirrorFromStateMirror:(id)arg1 forFunctionIndex:(unsigned int)arg2 fromFunctionIndex:(unsigned int)arg3;
 - (void)_addFunction:(struct Function *)arg1;
 - (void)_addContext:(struct Function *)arg1;
+- (id)_buildBoundResourceFilterItems:(const struct Function *)arg1;
+- (void)_handleExtendedDrawCommand:(struct Function *)arg1;
+- (void)_handlePopGroupMarker:(struct Function *)arg1;
+- (void)_handlePushGroupMarker:(struct Function *)arg1;
+- (void)_handlePresentRenderbuffer:(struct Function *)arg1;
 - (void)visitFunctionStreamFile:(id)arg1;
 - (void)performPreCaptureVisitActions;
 - (BOOL)_openFilenames:(id)arg1 archive:(id)arg2 filesArray:(id)arg3;

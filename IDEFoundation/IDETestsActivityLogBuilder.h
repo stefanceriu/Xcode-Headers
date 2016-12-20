@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-#import "IDETestsObserver.h"
+#import "IDETestRunSessionEvents.h"
 
 @class IDEActivityLogSection, IDETestManager, NSMutableArray, NSString;
 
-@interface IDETestsActivityLogBuilder : NSObject <IDETestsObserver>
+@interface IDETestsActivityLogBuilder : NSObject <IDETestRunSessionEvents>
 {
     NSMutableArray *_subSectionRecorders;
     BOOL _aBundleDidNotFinishSuccessfully;
@@ -36,7 +36,7 @@
 - (void)testOperationGroupDidFinish;
 - (void)testOperationWillFinishWithSuccess:(BOOL)arg1 withError:(id)arg2;
 - (void)_finishSubSectionRecorders:(id)arg1 error:(id)arg2;
-- (void)testRunner:(id)arg1 didLaunchTestSessionForScheme:(id)arg2 withDisplayName:(id)arg3;
+- (void)testRunner:(id)arg1 didLaunchTestSessionForScheme:(id)arg2 withDisplayName:(id)arg3 diagnosticLogPath:(id)arg4;
 - (void)_appendAndPropagateUpText:(id)arg1 startingWithRecorder:(id)arg2;
 - (void)_popRecorderWithMessageForReason:(id)arg1 error:(id)arg2;
 - (void)_popRecorder;

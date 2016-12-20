@@ -124,7 +124,6 @@
 - (void)setFont:(id)arg1;
 - (id)font;
 - (double)lineHeight;
-- (void)_assertMaxRangeIsLessThanLineCount:(CDStruct_b3ff9733)arg1;
 - (void)setDisplayedLineRange:(CDStruct_b3ff9733)arg1;
 - (CDStruct_b3ff9733)displayedLineRange;
 - (unsigned long long)totalLineCount;

@@ -15,7 +15,7 @@
 __attribute__((visibility("hidden")))
 @interface SKThreadSafeMapTable : NSObject <NSCopying, NSCoding, NSFastEnumeration>
 {
-    int _storageLock;
+    struct _opaque_pthread_mutex_t _storageLock;
     NSMutableArray *_storage;
 }
 

@@ -10,7 +10,7 @@
 {
 }
 
-- (id)locationOperationForWorkspace:(id)arg1 withResultsBlock:(CDUnknownBlockType)arg2;
+- (id)locationOperationForWorkspace:(id)arg1 nameTreeResolver:(id)arg2 withResultsBlock:(CDUnknownBlockType)arg3;
 - (BOOL)requiresMainThread;
 
 @end

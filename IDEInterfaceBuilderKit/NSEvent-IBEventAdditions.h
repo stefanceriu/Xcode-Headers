@@ -8,7 +8,9 @@
 
 @interface NSEvent (IBEventAdditions)
 + (double)doubleClickTimeInterval;
+- (struct CGPoint)subPixelLocationOnScreen;
 - (struct CGPoint)locationOnScreen;
+- (struct CGPoint)subPixelLocationInView:(id)arg1;
 - (struct CGPoint)locationInView:(id)arg1;
 - (BOOL)isIntentionalRightDragWithRespectTo:(id)arg1;
 - (BOOL)isIntentionalLeftDragWithRespectTo:(id)arg1;
@@ -24,6 +26,7 @@
 - (BOOL)isDoubleLeftMouseUp;
 - (BOOL)isArrowKeyDown;
 - (BOOL)isBackTabKeyDown;
+- (BOOL)isOptionFlagged;
 - (BOOL)isTabKeyDown;
 - (id)facingRectEdgeForArrowKey;
 - (BOOL)isLeftArrowKeyUp;

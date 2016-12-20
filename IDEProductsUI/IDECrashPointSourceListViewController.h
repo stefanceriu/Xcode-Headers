@@ -78,7 +78,7 @@
 - (id)_previousTopCrashesAttributedTitle;
 - (void)refresh;
 - (void)_updateCrashPointsFromNetworkForCrashPointSources:(id)arg1 onDispatchLock:(id)arg2 withCallback:(CDUnknownBlockType)arg3;
-- (void)_updateCrashPointsForSource:(id)arg1 fromNetworkWithErrors:(id *)arg2;
+- (void)_updateCrashPointsForSource:(id)arg1 window:(id)arg2 fromNetworkWithErrors:(id *)arg3;
 - (void)_updateCrashPointsFromCacheForCrashPointSources:(id)arg1 onDispatchLock:(id)arg2 withCallback:(CDUnknownBlockType)arg3;
 - (BOOL)_shouldRefreshFromNetwork;
 - (void)_setBusyOnMainThread:(BOOL)arg1;
@@ -95,6 +95,8 @@
 - (id)crashPointsFilterPredicate;
 @property(readonly) DVTCrashPointSourceCollection *selectedCrashPointSourceCollection;
 @property BOOL showsUnresolvedCrashPointsOnly;
+- (id)filterButtonAccessibilityDescription;
+- (id)filterButtonToolTip;
 - (id)filterButtonMenu;
 - (id)filterDefinitionIdentifier;
 - (id)selectedCrashPointFromSelectedIndex:(id)arg1;

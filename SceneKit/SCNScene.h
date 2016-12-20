@@ -17,7 +17,9 @@
     double _lastEvalTime;
     SCNPhysicsWorld *_physicsWorld;
     SCNNode *_rootNode;
+    SCNNode *_layerRootNode[4];
     SCNMaterialProperty *_background;
+    SCNMaterialProperty *_environment;
     NSMutableDictionary *_userAttributes;
     double _fogStartDistance;
     double _fogEndDistance;
@@ -61,7 +63,7 @@
 - (void)removeParticleSystem:(id)arg1;
 - (void)addParticleSystem:(id)arg1 withTransform:(struct CATransform3D)arg2;
 - (void)addSceneAnimation:(id)arg1 forKey:(id)arg2 target:(id)arg3;
-- (void *)__CFObject;
+- (const void *)__CFObject;
 - (id)valueForUndefinedKey:(id)arg1;
 - (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 property:(id)arg2;
 - (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
@@ -72,6 +74,7 @@
 @property(nonatomic) double fogDensityExponent;
 @property(nonatomic) double fogEndDistance;
 @property(retain, nonatomic) id fogColor;
+@property(readonly, nonatomic) SCNMaterialProperty *lightingEnvironment;
 @property(readonly, nonatomic) SCNMaterialProperty *background;
 - (id)attributeForKey:(id)arg1;
 - (void)setAttribute:(id)arg1 forKey:(id)arg2;
@@ -86,6 +89,8 @@
 - (id)_physicsWorldCreateIfNeeded:(BOOL)arg1;
 @property(readonly, nonatomic) SCNPhysicsWorld *physicsWorld;
 - (void)_scaleSceneBy:(double)arg1;
+- (id)rootNodeForLayer:(int)arg1;
+- (void)setRootNode:(id)arg1 forLayer:(int)arg2;
 - (void)setRootNode:(id)arg1;
 - (void)_setRootNode:(id)arg1;
 @property(readonly, nonatomic) SCNNode *rootNode;

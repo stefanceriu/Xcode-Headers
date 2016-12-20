@@ -24,5 +24,7 @@
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (id)ibDisplayNameForKeyPath:(id)arg1;
 - (id)ibDefaultDataValueForTableView:(id)arg1;
+- (id)ibLocalLocalizableStringArrayAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

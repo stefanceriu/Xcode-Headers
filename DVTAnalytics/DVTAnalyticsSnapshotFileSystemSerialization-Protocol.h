@@ -9,5 +9,8 @@
 @protocol DVTAnalyticsSnapshotFileSystemSerialization
 + (id)objectFromFilePath:(DVTFilePath *)arg1 error:(id *)arg2;
 - (DVTAnalyticsSnapshot *)snapshotWithError:(id *)arg1;
+
+@optional
+- (DVTAnalyticsSnapshot *)deletionSnapshotWithError:(id *)arg1;
 @end
 

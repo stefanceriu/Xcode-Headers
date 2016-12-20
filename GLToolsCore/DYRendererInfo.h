@@ -25,7 +25,6 @@
 + (BOOL)_dimensionsAreSupported:(id)arg1 supportedDimensions:(id)arg2;
 + (BOOL)_rangeIsSupported:(id)arg1 supportedRange:(id)arg2;
 + (id)rendererInfoWithGLIContext:(struct __GLIContextRec *)arg1 dispatch:(struct __GLIFunctionDispatchRec *)arg2 api:(int)arg3;
-+ (void)load;
 @property(retain, nonatomic) NSDictionary *shaderPrecisionsFormats; // @synthesize shaderPrecisionsFormats;
 @property(retain, nonatomic) NSDictionary *bitCounts; // @synthesize bitCounts;
 @property(retain, nonatomic) NSDictionary *limits; // @synthesize limits;

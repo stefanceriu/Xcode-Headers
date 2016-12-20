@@ -20,7 +20,7 @@
 @property(retain, nonatomic) NSArray *sortedContributors; // @synthesize sortedContributors=_sortedContributors;
 @property(retain, nonatomic) XCSCommit *commitHistory; // @synthesize commitHistory=_commitHistory;
 @property(retain, nonatomic) NSArray *commits; // @synthesize commits=_commits;
-@property(retain, nonatomic) XCSContributor *topCommitter; // @synthesize topCommitter=_topCommitter;
+@property(nonatomic) __weak XCSContributor *topCommitter; // @synthesize topCommitter=_topCommitter;
 @property(retain, nonatomic) NSArray *committers; // @synthesize committers=_committers;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) NSArray *committersOrderedByFilesChanged;

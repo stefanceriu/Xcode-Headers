@@ -12,6 +12,7 @@
 
 @interface NSFont (IBDocumentArchiving) <IBDocumentArchiving>
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
+- (BOOL)ibIsAppearanceFont;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 

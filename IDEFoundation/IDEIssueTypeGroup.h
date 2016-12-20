@@ -10,21 +10,22 @@
 
 @interface IDEIssueTypeGroup : NSObject
 {
-    IDEIssueProvider *_issueProvider;
-    id _issueTypeIdentifier;
     NSMutableArray *_issues;
     unsigned long long _testFailureCount;
     unsigned long long _errorCount;
     unsigned long long _warningCount;
     unsigned long long _noticeCount;
     unsigned long long _analyzerResultCount;
-    int _issueType;
+    unsigned long long _runtimeCount;
+    IDEIssueProvider *_issueProvider;
+    id _issueTypeIdentifier;
+    unsigned long long _issueType;
 }
 
-@property(readonly) int issueType; // @synthesize issueType=_issueType;
-@property(readonly) NSArray *issues; // @synthesize issues=_issues;
+@property(readonly) unsigned long long issueType; // @synthesize issueType=_issueType;
 @property(readonly) id issueTypeIdentifier; // @synthesize issueTypeIdentifier=_issueTypeIdentifier;
 @property(readonly) IDEIssueProvider *issueProvider; // @synthesize issueProvider=_issueProvider;
+@property(readonly) NSArray *issues; // @synthesize issues=_issues;
 - (void).cxx_destruct;
 - (void)_removeIssues:(id)arg1;
 - (void)_addIssues:(id)arg1;

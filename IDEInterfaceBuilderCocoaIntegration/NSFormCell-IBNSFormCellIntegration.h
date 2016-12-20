@@ -14,5 +14,7 @@
 - (id)ibInspectedTitle;
 - (id)ibDefaultFontKeyPath;
 - (id)ibQualifyingInfoForDefaultLabel;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

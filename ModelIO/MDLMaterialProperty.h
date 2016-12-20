@@ -7,13 +7,12 @@
 #import "NSObject.h"
 
 #import "MDLNamed.h"
+#import "NSCopying.h"
 
-@class MDLTextureSampler, NSString, NSURL;
+@class MDLMaterialPropertyNode, MDLTextureSampler, NSString, NSURL;
 
-@interface MDLMaterialProperty : NSObject <MDLNamed>
+@interface MDLMaterialProperty : NSObject <MDLNamed, NSCopying>
 {
-    float *_shadowFloat;
-    // Error parsing type: ^, name: _shadowFloat3
     NSString *_string;
     NSString *_name;
     NSURL *_url;
@@ -22,6 +21,9 @@
     // Error parsing type: {?="columns"[4]}, name: _matrix
     struct CGColor *_color;
     unsigned long long _semantic;
+    MDLMaterialPropertyNode *_node;
+    MDLMaterialProperty *_overrider;
+    MDLMaterialProperty *_overridee;
     unsigned long long _type;
     NSURL *_URLValue;
     // Error parsing type: {?="columns"[4]}, name: _matrix4x4
@@ -43,12 +45,13 @@
 // Error parsing type for property float2Value:
 // Property attributes: T,N
 
+@property(nonatomic) float luminance;
 @property(nonatomic) float floatValue;
 @property(retain, nonatomic) MDLTextureSampler *textureSamplerValue;
 - (void)setUrl:(id)arg1;
 @property(copy, nonatomic) NSString *stringValue;
-- (void)setProperties:(id)arg1;
 @property(nonatomic) struct CGColor *color;
+- (void)setProperties:(id)arg1;
 - (void)dealloc;
 - (id)initWithName:(id)arg1 semantic:(unsigned long long)arg2 color:(struct CGColor *)arg3;
 - (id)initWithName:(id)arg1 semantic:(unsigned long long)arg2 float4WithSRGBA: /* Error: Ran out of types for this method. */;
@@ -63,6 +66,7 @@
 - (id)initWithName:(id)arg1 semantic:(unsigned long long)arg2;
 @property(nonatomic) unsigned long long semantic;
 @property(copy, nonatomic) NSString *name;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end
 

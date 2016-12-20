@@ -10,18 +10,18 @@
 #import "GPUMTLStateMirrorInterface.h"
 #import "GPUMTLTraceItemInterface.h"
 
-@class GPUMTLStateMirror, NSString;
+@class NSString;
 
 __attribute__((visibility("hidden")))
 @interface GPUMTLTraceStateItem : GPUTraceStateItem <DYFunctionTracerDelegate, GPUMTLStateMirrorInterface, GPUMTLTraceItemInterface>
 {
-    GPUMTLStateMirror *_stateMirror;
-    unsigned long long _owningDeviceID;
+    id <DYPMTLStateMirror> _stateMirror;
     BOOL _isHidden;
+    unsigned long long _owningDeviceID;
 }
 
-@property(readonly, nonatomic) unsigned long long owningDeviceID; // @synthesize owningDeviceID=_owningDeviceID;
 @property(nonatomic) BOOL isHidden; // @synthesize isHidden=_isHidden;
+@property(readonly, nonatomic) unsigned long long owningDeviceID; // @synthesize owningDeviceID=_owningDeviceID;
 - (void).cxx_destruct;
 - (id)rewriteArgument:(const struct Argument *)arg1;
 - (id)rewriteReceiver:(unsigned long long)arg1;
@@ -29,9 +29,10 @@ __attribute__((visibility("hidden")))
 - (id)generateLabel;
 - (BOOL)isGroupMarkerCall;
 @property(readonly, nonatomic) unsigned long long receiverID;
-@property(readonly) BOOL hasStateMirror;
-@property(copy) GPUMTLStateMirror *stateMirror;
-- (id)initWithController:(id)arg1 parent:(id)arg2 label:(id)arg3;
+@property(readonly, nonatomic) BOOL hasStateMirror;
+@property(readonly, nonatomic) id <DYPMTLStateMirror> stateMirror;
+- (void)primitiveInvalidate;
+- (id)initWithController:(id)arg1 parent:(id)arg2 identifier:(id)arg3;
 - (id)initWithController:(id)arg1 parent:(id)arg2 deviceID:(unsigned long long)arg3 functionIndex:(int)arg4 displayIndex:(int)arg5 markedHidden:(BOOL)arg6;
 
 // Remaining properties

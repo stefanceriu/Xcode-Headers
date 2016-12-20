@@ -7,8 +7,5 @@
 #import "IBICCatalog.h"
 
 @interface IBICCatalog (DisplayAdditions)
-- (BOOL)isDraggable;
-- (BOOL)isDisplayNameEditable;
-- (id)icon;
 @end
 

@@ -6,8 +6,10 @@
 
 #import "IDEProvisioningProfile.h"
 
+@class IDEPortalProfileWrapper;
+
 @protocol IDEEnhancedProvisioningProfile <IDEProvisioningProfile>
-@property(readonly, nonatomic) id <IDEProvisioningOnlineProfileState> onlineState;
+@property(readonly, nonatomic) IDEPortalProfileWrapper *portalProfileWrapper;
 @property(readonly, nonatomic) id <IDEProvisioningLocalProfileState> localState;
 @property(readonly, nonatomic) unsigned long long state;
 - (BOOL)isEqualToEnhancedProfile:(id <IDEEnhancedProvisioningProfile>)arg1;

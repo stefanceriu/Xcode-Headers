@@ -12,7 +12,7 @@
 
 @interface NSColor (IBDocumentArchiving) <IBDocumentArchiving>
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
-+ (CDUnion_af3ad131)unarchiveWhiteValueWithDocumentUnarchiver:(id)arg1;
++ (CDUnion_4a127b1b)unarchiveWhiteValueWithDocumentUnarchiver:(id)arg1;
 + (CDUnion_24d33b01)unarchiveRGBValueWithDocumentUnarchiver:(id)arg1;
 + (CDUnion_b8f7e27c)unarchiveCMYKValueWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;

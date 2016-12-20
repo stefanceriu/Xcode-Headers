@@ -14,8 +14,6 @@
 @interface IDEToolbarDelegate : NSObject <NSToolbarDelegate, DVTInvalidation>
 {
     NSMutableArray *_allToolbarControllers;
-    BOOL _allowsUserCustomization;
-    BOOL _autosavesConfiguration;
     NSString *_toolbarDefinitionIdentifier;
     NSWindow *_window;
     NSArray *_defaultItemIdentifiers;
@@ -30,8 +28,6 @@
 + (void)initialize;
 @property(copy) NSSet *sizeModes; // @synthesize sizeModes=_sizeModes;
 @property(copy) NSSet *displayModes; // @synthesize displayModes=_displayModes;
-@property BOOL autosavesConfiguration; // @synthesize autosavesConfiguration=_autosavesConfiguration;
-@property BOOL allowsUserCustomization; // @synthesize allowsUserCustomization=_allowsUserCustomization;
 @property(copy) NSDictionary *toolbarItemProviders; // @synthesize toolbarItemProviders=_toolbarItemProviders;
 @property(copy) NSArray *allowedItemIdentifiers; // @synthesize allowedItemIdentifiers=_allowedItemIdentifiers;
 @property(copy) NSArray *defaultItemIdentifiers; // @synthesize defaultItemIdentifiers=_defaultItemIdentifiers;

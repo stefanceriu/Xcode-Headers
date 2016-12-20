@@ -6,28 +6,30 @@
 
 #import "NSObject.h"
 
-@class CALayer, DTTimelineDecorator, _DTTimelineTileDecorationOperation;
+#import "CALayerDelegate.h"
+#import "DTRenderableContentProviderDelegate.h"
 
-@interface DTTimelineTile : NSObject
+@class CALayer, DTTimelineDecorator, DTTimelineTileDrawingContent, DTTimelineTileDrawingProvider, NSString;
+
+__attribute__((visibility("hidden")))
+@interface DTTimelineTile : NSObject <DTRenderableContentProviderDelegate, CALayerDelegate>
 {
     CALayer *_layer;
     struct TileMetrics _tileMetrics;
     DTTimelineDecorator *_decorator;
-    _DTTimelineTileDecorationOperation *_latestOperation;
-    unsigned long long _decorationState;
-    unsigned long long _renderState;
+    DTTimelineTileDrawingProvider *_drawingProvider;
+    DTTimelineTileDrawingContent *_currentDrawingContent;
+    BOOL _presentingCheckerboard;
     unsigned long long _tileIndex;
 }
 
++ (void)initialize;
 @property(readonly, nonatomic) unsigned long long tileIndex; // @synthesize tileIndex=_tileIndex;
-@property(readonly, nonatomic) unsigned long long renderState; // @synthesize renderState=_renderState;
-@property(readonly, nonatomic) unsigned long long decorationState; // @synthesize decorationState=_decorationState;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)stringSummaries;
 - (const struct TileMetrics *)tileMetrics;
-- (void)_containerMissedETA:(id)arg1;
-- (void)_containerReadyForRedraw:(id)arg1;
+- (void)providerHasNewResponse:(id)arg1;
 - (void)decorate;
 - (void)purgeDecorations;
 - (struct DynamicRange)dynamicRangeForTimeRange:(struct XRTimeRange)arg1;
@@ -45,6 +47,12 @@
 - (BOOL)backedByLayer:(id)arg1;
 @property(readonly, nonatomic) BOOL displaying;
 - (void)layoutWithOffset:(double)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

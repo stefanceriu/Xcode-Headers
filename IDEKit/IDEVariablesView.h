@@ -32,18 +32,6 @@
     DVTNotificationToken *_outlineViewSelectionObserver;
     BOOL _viewWasInstalled;
     BOOL _restoringExpandedState;
-    struct {
-        unsigned int delegateRespondsToNodeWasDoubleClicked:1;
-        unsigned int delegateRespondsToLoadingNewVariablesInBackground:1;
-        unsigned int delegateRespondsToScopePopUpTitleForScopeItem:1;
-        unsigned int delegateRespondsToNewRootFromChildrenWasInstalled:1;
-        unsigned int delegateRespondsToQuickLookProviderForDataValue:1;
-        unsigned int delegateRespondsToMenuDidClose:1;
-        unsigned int delegateRespondsToNumberOfItemsInMenu:1;
-        unsigned int delegateRespondsToMenuNeedsUpdate:1;
-        unsigned int delegateRespondsToStatusCellsDictionary:1;
-        unsigned int delegateRespondsToCompoundNodeFormatterModeForItem:1;
-    } _vvFlags;
     NSArray *_statusCellsCache;
     NSArray *_statusCellCategoriesCache;
     int _formatterSizeStyle;
@@ -152,7 +140,7 @@
 - (BOOL)delegateFirstResponder;
 - (void)_reloadNode:(id)arg1 reloadChildren:(BOOL)arg2;
 - (void)_handleVariableNode:(id)arg1 change:(id)arg2;
-- (void)_notifyOutlineViewOfOldChilren:(id)arg1 replacedWithNewChildren:(id)arg2 forNode:(id)arg3;
+- (void)_notifyOutlineViewOfOldChildren:(id)arg1 replacedWithNewChildren:(id)arg2 forNode:(id)arg3;
 - (void)_handleVariableNodesFormattedChildrenChanged:(id)arg1 change:(id)arg2;
 - (void)_observeModelObject:(id)arg1;
 - (void)_hideLoadingIndicatorIfNecessary;

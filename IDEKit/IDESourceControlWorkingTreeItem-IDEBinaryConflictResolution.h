@@ -7,6 +7,6 @@
 #import "IDESourceControlWorkingTreeItem.h"
 
 @interface IDESourceControlWorkingTreeItem (IDEBinaryConflictResolution)
-- (id)exportTemporaryItemPreservingSCMInformationWithBranchName:(id)arg1 revisionIdentifier:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)exportTemporaryItemPreservingSCMInformationWithBranch:(id)arg1 revisionIdentifier:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 @end
 

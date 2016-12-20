@@ -51,6 +51,13 @@ struct DBGPerformanceViewDebuggingStats {
     double maxTime;
 };
 
+struct NSEdgeInsets {
+    double top;
+    double left;
+    double bottom;
+    double right;
+};
+
 struct _NSRange {
     unsigned long long location;
     unsigned long long length;

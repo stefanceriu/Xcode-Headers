@@ -6,9 +6,11 @@
 
 #import "NSView.h"
 
-@class CALayer, NSArray, NSMapTable, NSMutableArray;
+#import "CALayerDelegate.h"
 
-@interface XCSUIIntegrationSteppedProgressView : NSView
+@class CALayer, NSArray, NSMapTable, NSMutableArray, NSString;
+
+@interface XCSUIIntegrationSteppedProgressView : NSView <CALayerDelegate>
 {
     NSArray *_possibleSteps;
     long long _currentStep;
@@ -23,11 +25,18 @@
 - (id)actionForLayer:(id)arg1 forKey:(id)arg2;
 - (void)layoutSublayersOfLayer:(id)arg1;
 - (void)reloadInformativeString;
+- (void)reloadLabel;
 - (void)repositionLabels;
 - (void)layoutLabels;
 @property(nonatomic) long long currentStep;
 @property(copy, nonatomic) NSArray *possibleSteps;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

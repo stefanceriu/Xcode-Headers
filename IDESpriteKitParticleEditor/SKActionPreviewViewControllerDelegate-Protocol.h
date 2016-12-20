@@ -9,6 +9,7 @@
 @class NSURL, SKActionPreviewViewController;
 
 @protocol SKActionPreviewViewControllerDelegate <NSObject>
+@property(readonly, nonatomic) long long previewState;
 - (NSURL *)actionDocumentURLForPreviewController:(SKActionPreviewViewController *)arg1;
 @end
 

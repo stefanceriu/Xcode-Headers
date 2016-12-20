@@ -57,10 +57,10 @@
 - (BOOL)isEqualToPrototype:(id)arg1;
 - (long long)previousConnectionStateIndicatorForDragFromObject:(id)arg1 toObject:(id)arg2 inDocument:(id)arg3;
 - (long long)relationshipType;
-- (id)archiveKeyForEndPoint:(long long)arg1;
+- (id)archivingKeyForEndPoint:(long long)arg1;
 - (long long)endPointToArchive;
 - (BOOL)useConnectionSourceForSearchLocation;
-- (id)archiveKeyForLabel;
+- (id)archivingKeyForLabel;
 - (BOOL)triggerMatchesConnection:(id)arg1;
 - (void)copyInstanceStateToClone:(id)arg1 withContext:(id)arg2;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;

@@ -12,13 +12,15 @@
 {
     BOOL _skipFrameworks;
     IDEContainer *_scopeContainer;
+    id <IDEBatchFindNameTreeResolver> _nameTreeResolver;
 }
 
 + (id)_containerForPath:(id)arg1 inGroup:(id)arg2;
 + (id)containerItemForWorkspacePath:(id)arg1 inWorkspace:(id)arg2;
+@property __weak id <IDEBatchFindNameTreeResolver> nameTreeResolver; // @synthesize nameTreeResolver=_nameTreeResolver;
 @property(retain) IDEContainer *scopeContainer; // @synthesize scopeContainer=_scopeContainer;
 - (void).cxx_destruct;
-- (id)locationOperationForWorkspace:(id)arg1 withResultsBlock:(CDUnknownBlockType)arg2;
+- (id)locationOperationForWorkspace:(id)arg1 nameTreeResolver:(id)arg2 withResultsBlock:(CDUnknownBlockType)arg3;
 - (id)_generateGroupTitleForPath:(id)arg1 isInFramework:(char *)arg2 fileReferenceAssociatedFiles:(id)arg3;
 - (id)_majorContainerForContainer:(id)arg1 isFramework:(char *)arg2;
 - (BOOL)requiresMainThread;

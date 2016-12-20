@@ -19,7 +19,6 @@
     DYAnalyzerArchiveVisitor *_analyzerVisitor;
     DYCaptureArchive *_modifiedCaptureArchive;
     NSMutableArray *_overviewSampleArray;
-    BOOL _finalizedOverview;
     unsigned int _passCompletedExperiments;
     NSArray *_experimentsArray;
     unsigned int _totalPhaseWeight;
@@ -38,6 +37,7 @@
 + (id)assetBundle;
 @property(readonly) DYGLExpert *expert; // @synthesize expert=_expert;
 - (void).cxx_destruct;
+- (id)invalidOverrides;
 - (id)createProgramPerformanceReportProvider:(id)arg1;
 - (id)createInvestigatorReportProvider:(id)arg1;
 - (void)resetResourceManagerWithResourceStreamer:(id)arg1;
@@ -76,12 +76,11 @@
 - (id)unarchiveDictionaryForKey:(id)arg1;
 - (void)handleUpdatedDictionary:(id)arg1 forKey:(id)arg2;
 - (void)setupGuestAppSession:(id)arg1;
-- (id)newGuestAppSessionWithGuestApp:(id)arg1 device:(id)arg2 deferLaunch:(BOOL)arg3;
+- (id)newGuestAppSessionWithGuestApp:(id)arg1 device:(id)arg2 deferLaunch:(BOOL)arg3 error:(id *)arg4;
 - (void)createModelFactory;
 - (BOOL)_isHigginsEnabled;
 - (BOOL)_configureInvestigatorWithCaseConfigData:(id)arg1;
 - (void)createReportWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)handleInferiorSessionActiveState;
 - (void)primitiveInvalidate;
 - (id)init;
 - (BOOL)supportsInvestigator;

@@ -58,8 +58,8 @@
 @property(readonly, nonatomic) unsigned long long cachingCost;
 - (void)_processTextureImageUploadInfo:(const struct Function *)arg1;
 - (id)uncompressedData;
-@property(readonly, nonatomic) NSData *palette; // @dynamic palette;
-@property(readonly, nonatomic) NSData *data; // @dynamic data;
+@property(readonly, nonatomic) NSData *palette;
+@property(readonly, nonatomic) NSData *data;
 @property(readonly, copy) NSString *description;
 - (id)_initWithProperties:(id)arg1;
 - (id)_initWithFunction:(const struct Function *)arg1 resolver:(CDUnknownBlockType)arg2;

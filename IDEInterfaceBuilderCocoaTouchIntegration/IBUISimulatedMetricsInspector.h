@@ -18,13 +18,8 @@
 - (id)availableOrientationMetrics;
 - (id)availableSplitViewMetrics;
 - (id)availablePresentationMetrics;
-- (id)groupThreeScreenMetrics;
-- (id)groupTwoScreenMetrics;
-- (id)groupOneScreenMetrics;
-- (id)screenMetricsForDocument:(id)arg1 inGroup:(long long)arg2;
 - (id)availablePlaceholderSizeMetrics;
 - (id)inferredPlaceholder;
-- (id)allStatusBarMetrics;
 
 @end
 

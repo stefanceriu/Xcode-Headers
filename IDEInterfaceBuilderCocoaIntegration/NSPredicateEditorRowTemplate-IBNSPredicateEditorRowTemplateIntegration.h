@@ -37,7 +37,6 @@
 - (BOOL)ibCanBeBoundToFromObject:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (id)ibLocalChildToManyRelationshipsKeyPaths;
-- (id)ibLocalToManyRelationshipsKeyPaths;
 - (id)ibLocalAttributeKeyPaths;
 @end
 

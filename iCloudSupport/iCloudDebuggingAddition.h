@@ -18,7 +18,7 @@
 
 + (void)initialize;
 + (BOOL)shouldInstantiateInLaunchSession:(id)arg1;
-@property(retain) NSString *identifier; // @synthesize identifier=_identifier;
+@property(retain, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(retain, nonatomic) IDELaunchSession *launchSession; // @synthesize launchSession=_launchSession;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;

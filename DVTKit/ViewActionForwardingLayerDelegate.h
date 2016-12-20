@@ -6,18 +6,26 @@
 
 #import "NSObject.h"
 
-@class NSView;
+#import "CALayerDelegate.h"
 
-@interface ViewActionForwardingLayerDelegate : NSObject
+@class NSString, NSView<CALayerDelegate>;
+
+@interface ViewActionForwardingLayerDelegate : NSObject <CALayerDelegate>
 {
-    NSView *_view;
+    NSView<CALayerDelegate> *_view;
 }
 
-@property(readonly, nonatomic) __weak NSView *view; // @synthesize view=_view;
+@property(readonly, nonatomic) __weak NSView<CALayerDelegate> *view; // @synthesize view=_view;
 - (void).cxx_destruct;
 - (id)actionForLayer:(id)arg1 forKey:(id)arg2;
 - (id)initWithView:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -6,16 +6,16 @@
 
 #import <IDEInterfaceBuilderKit/IBAccessorizedScrollViewScroller.h>
 
-@class IBCanvasView;
+@class IBCanvasScrollView;
 
 @interface IBCanvasScroller : IBAccessorizedScrollViewScroller
 {
-    IBCanvasView *canvasView;
+    IBCanvasScrollView *_canvasScrollView;
 }
 
 + (BOOL)isCompatibleWithOverlayScrollers;
+@property(nonatomic) __weak IBCanvasScrollView *canvasScrollView; // @synthesize canvasScrollView=_canvasScrollView;
 - (void).cxx_destruct;
-- (void)mouseDown:(id)arg1;
 - (void)setHidden:(BOOL)arg1;
 - (void)setHiddenIgnoringCanUpdateScrollers:(BOOL)arg1;
 

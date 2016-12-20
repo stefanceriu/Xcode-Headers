@@ -23,7 +23,6 @@
     NSMutableSet *_contentProvidersWantingDebugBarToBeShown;
     id <IDEDebugBarContentProvider> _grabRectProvider;
     id <IDEDebugBarContentProvider> _sharedLibrariesXOffsetProvider;
-    BOOL _hideStandardControls;
     BOOL _prefersToAlwaysBeShown;
     id <IDEDebuggerBarEditorInfoProvider> _editorInfoProvider;
     id _selectedModelObject;
@@ -35,7 +34,6 @@
 @property BOOL prefersToAlwaysBeShown; // @synthesize prefersToAlwaysBeShown=_prefersToAlwaysBeShown;
 @property(retain, nonatomic) NSArray *contentProviders; // @synthesize contentProviders=_contentProviders;
 @property(retain) id selectedModelObject; // @synthesize selectedModelObject=_selectedModelObject;
-@property BOOL hideStandardControls; // @synthesize hideStandardControls=_hideStandardControls;
 @property(retain) id <IDEDebuggerBarEditorInfoProvider> editorInfoProvider; // @synthesize editorInfoProvider=_editorInfoProvider;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;

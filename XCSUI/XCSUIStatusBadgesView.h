@@ -17,15 +17,12 @@
     XCSUIStatusBadge *_warningsBadge;
     XCSUIStatusBadge *_issuesBadge;
     XCSUIStatusBadge *_testsBadge;
-    BOOL _insetFirstBadge;
     NSArray *_badges;
 }
 
-@property(nonatomic) BOOL insetFirstBadge; // @synthesize insetFirstBadge=_insetFirstBadge;
 @property(copy, nonatomic) NSArray *badges; // @synthesize badges=_badges;
 - (void).cxx_destruct;
 - (id)accessibilityValue;
-- (double)renderedWidth;
 - (void)refreshBadges;
 - (void)resizeSubviewsWithOldSize:(struct CGSize)arg1;
 - (void)placeBadges;

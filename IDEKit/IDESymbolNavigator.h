@@ -10,11 +10,11 @@
 #import "IDERefactoringExpressionSource.h"
 #import "IDESourceExpressionSource.h"
 
-@class DVTDispatchLock, DVTObservingToken, DVTPerformanceMetric, DVTSDK, DVTScopeBarView, DVTScrollView, DVTSourceExpression, DVTSourceLanguageService, DVTStackBacktrace, NSArray, NSDictionary, NSMutableSet, NSSet, NSString;
+@class DVTDispatchLock, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTSDK, DVTScopeBarView, DVTScrollView, DVTSourceExpression, DVTSourceLanguageService, DVTStackBacktrace, NSArray, NSDictionary, NSMutableSet, NSSet, NSString;
 
 @interface IDESymbolNavigator : IDEOutlineBasedNavigator <IDEIndexSymbolSelectionSource, IDESourceExpressionSource, IDERefactoringExpressionSource>
 {
-    id _indexingFinishedObserver;
+    DVTNotificationToken *_indexingFinishedObserver;
     DVTObservingToken *_outlineViewSelectedObjectsObserver;
     DVTObservingToken *_outlineViewRootObjectsChangedObserver;
     DVTSourceExpression *_selectedExpression;
@@ -32,10 +32,11 @@
     BOOL _showContainersOnly;
     BOOL _showHierarchy;
     BOOL _showClassesOnly;
-    DVTSourceExpression *_mouseOverExpression;
     NSSet *_parentsForFiltering;
+    NSSet *_symbolsForFiltering;
     long long _loadingProgress;
     NSString *_symbolNamePatternString;
+    DVTSourceExpression *_mouseOverExpression;
     DVTScrollView *_symbolNavigatorScrollView;
     DVTScopeBarView *_scopeBarView;
     struct CGRect _currentSelectionFrame;
@@ -47,32 +48,30 @@
 + (void)initialize;
 @property __weak DVTScopeBarView *scopeBarView; // @synthesize scopeBarView=_scopeBarView;
 @property __weak DVTScrollView *symbolNavigatorScrollView; // @synthesize symbolNavigatorScrollView=_symbolNavigatorScrollView;
+@property(retain, nonatomic) DVTSourceExpression *mouseOverExpression; // @synthesize mouseOverExpression=_mouseOverExpression;
+@property(nonatomic) struct CGRect currentSelectionFrame; // @synthesize currentSelectionFrame=_currentSelectionFrame;
+@property(retain, nonatomic) DVTSourceExpression *selectedExpression; // @synthesize selectedExpression=_selectedExpression;
 @property(nonatomic) BOOL showClassesOnly; // @synthesize showClassesOnly=_showClassesOnly;
 @property(nonatomic) BOOL showHierarchy; // @synthesize showHierarchy=_showHierarchy;
 @property(nonatomic) BOOL showContainersOnly; // @synthesize showContainersOnly=_showContainersOnly;
 @property(nonatomic) BOOL showWorkspaceOnly; // @synthesize showWorkspaceOnly=_showWorkspaceOnly;
 @property(retain, nonatomic) NSString *symbolNamePatternString; // @synthesize symbolNamePatternString=_symbolNamePatternString;
 @property(readonly) long long loadingProgress; // @synthesize loadingProgress=_loadingProgress;
+@property(copy) NSSet *symbolsForFiltering; // @synthesize symbolsForFiltering=_symbolsForFiltering;
 @property(copy) NSSet *parentsForFiltering; // @synthesize parentsForFiltering=_parentsForFiltering;
-@property(retain, nonatomic) DVTSourceExpression *mouseOverExpression; // @synthesize mouseOverExpression=_mouseOverExpression;
-@property(nonatomic) struct CGRect currentSelectionFrame; // @synthesize currentSelectionFrame=_currentSelectionFrame;
-@property(retain, nonatomic) DVTSourceExpression *selectedExpression; // @synthesize selectedExpression=_selectedExpression;
 - (void).cxx_destruct;
 - (void)_revealNavigableItems:(id)arg1;
 - (void)revealSymbols:(id)arg1;
 - (void)revealNavigableItemsWithIdentifiers:(id)arg1 identifiersToExpand:(id)arg2 generation:(unsigned long long)arg3;
 - (id)findNavigableItemsInItems:(id)arg1 withIdentifiers:(id)arg2 includeParents:(BOOL)arg3;
 - (id)filterDefinitionIdentifier;
-- (void)updateFilterPredicate;
+- (void)_updateFilter;
 - (void)revertState;
 - (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
 - (void)outlineViewItemDidCollapse:(id)arg1;
 - (void)outlineViewItemDidExpand:(id)arg1;
 - (id)outlineView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
 - (BOOL)outlineView:(id)arg1 isGroupHeaderItem:(id)arg2;
-- (void)openDoubleClickedNavigableItemsAction:(id)arg1;
-- (void)openClickedNavigableItemAction:(id)arg1;
-- (void)openSelectedNavigableItemsKeyAction:(id)arg1;
 - (id)openSpecifierForNavigableItem:(id)arg1 error:(id *)arg2;
 - (id)refactoringExpressionUsingContextMenu:(BOOL)arg1;
 - (void)showQuickHelpForCurrentSelection:(id)arg1;

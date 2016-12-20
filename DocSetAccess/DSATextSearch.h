@@ -19,7 +19,7 @@
     long long *_documentIDs;
     const struct __CFString **_documentNames;
     float *_scores;
-    const struct __CFSet *_nodeIDFilter;
+    struct __CFSet *_nodeIDFilter;
 }
 
 - (id)searchResultsInTime:(double)arg1;

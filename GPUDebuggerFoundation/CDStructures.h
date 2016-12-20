@@ -11,29 +11,34 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 #pragma mark Named Structures
 
 struct Argument {
-    void *value;
-    unsigned int core_type;
-    unsigned int sem_type;
-    unsigned int size;
-    unsigned short length;
-    unsigned short flags;
+    void *_field1;
+    unsigned int _field2;
+    unsigned int _field3;
+    unsigned int _field4;
+    unsigned short _field5;
+    unsigned short _field6;
+};
+
+struct CGSize {
+    double _field1;
+    double _field2;
 };
 
 struct CoreFunction {
-    unsigned int fenum;
-    unsigned int flags;
-    unsigned short padding;
-    unsigned short argument_count;
+    unsigned int _field1;
+    unsigned int _field2;
+    unsigned short _field3;
+    unsigned short _field4;
     union {
-        unsigned long long context_id;
-        unsigned long long receiver_id;
-    } ;
-    struct Argument return_value;
-    struct Argument arguments[16];
-    unsigned int fbuf_size;
-    unsigned int internal_buffer_size;
-    void *fbuf;
-    void *internal_buffer;
+        unsigned long long _field1;
+        unsigned long long _field2;
+    } _field5;
+    struct Argument _field6;
+    struct Argument _field7[16];
+    unsigned int _field8;
+    unsigned int _field9;
+    void *_field10;
+    void *_field11;
 };
 
 struct DYShaderProfilerTiming {
@@ -43,20 +48,20 @@ struct DYShaderProfilerTiming {
 };
 
 struct Function {
-    struct CoreFunction core;
-    unsigned long long timestamp;
-    unsigned long long duration;
-    unsigned long long *backtrace;
-    unsigned short backtrace_length;
-    unsigned short gl_error;
-    int events_type;
-    void *events;
-    unsigned int events_size;
-    unsigned int queue_width;
-    unsigned long long queue_id;
-    unsigned long long thread_id;
-    struct Function *next_associated;
-    void *sm_context;
+    struct CoreFunction _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    unsigned long long *_field4;
+    unsigned short _field5;
+    unsigned short _field6;
+    int _field7;
+    void *_field8;
+    unsigned int _field9;
+    unsigned int _field10;
+    unsigned long long _field11;
+    unsigned long long _field12;
+    struct Function *_field13;
+    void *_field14;
 };
 
 struct GPUMessageTraceActivity {
@@ -65,34 +70,14 @@ struct GPUMessageTraceActivity {
     char _inProgress;
 };
 
-struct IFunctionDecoder;
-
 struct Statistics {
     double _field1;
     double _field2;
     double _field3;
 };
 
-struct TFunctionStream<GPUTools::FD::Function, void>;
-
-struct _Iterator<GPUTools::FD::Function> {
-    struct Function _function;
-    void *_encbuf;
-    void *_next;
-    void *_end;
-    struct IFunctionDecoder *_decoder;
-    _Bool _fast_size;
-};
-
-struct __shared_weak_count;
-
 struct shared_ptr<GPUTools::FD::Function> {
     struct Function *__ptr_;
-    struct __shared_weak_count *__cntrl_;
-};
-
-struct shared_ptr<GPUTools::FD::TFunctionStream<GPUTools::FD::Function, void>> {
-    struct TFunctionStream<GPUTools::FD::Function, void> *__ptr_;
     struct __shared_weak_count *__cntrl_;
 };
 

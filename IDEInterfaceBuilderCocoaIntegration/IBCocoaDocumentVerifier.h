@@ -10,10 +10,11 @@
 {
 }
 
-- (void)verifyTextFieldPreferredMaxLayoutWidthUsingAutomaticMode;
-- (void)verifyTextViewFrames;
-- (void)restoreMenuDefaultLayoutDirection;
-- (id)verify;
+- (void)_verifyTextFieldPreferredMaxLayoutWidthUsingAutomaticMode;
+- (void)_verifyTextViewFrames;
+- (void)_verifyPDFThumbnailViewAndPopulateMessages:(id)arg1;
+- (void)_restoreMenuDefaultLayoutDirection;
+- (void)verifyAndPopulateMessages:(id)arg1;
 
 @end
 

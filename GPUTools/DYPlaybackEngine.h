@@ -46,7 +46,7 @@
 - (_Bool)_executeFunctions:(struct CoreFunction *)arg1 count:(unsigned long long)arg2;
 - (void)_addPointerDataSizeMapToPlayer;
 - (void)_allocateAndFillDataCache;
-@property(readonly, retain, nonatomic) DYFunctionPlayer *player; // @dynamic player;
+@property(readonly, retain, nonatomic) DYFunctionPlayer *player;
 - (void)setWireframeLineWidth:(float)arg1;
 - (id)newFunctionPlayer;
 - (void)dealloc;

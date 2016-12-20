@@ -11,5 +11,6 @@
 - (id)ibDefaultMaximumRecents;
 - (id)ibInspectedMaximumRecents;
 - (void)setIbInspectedMaximumRecents:(id)arg1;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

@@ -6,9 +6,12 @@
 
 #import "NSObject.h"
 
-@class DTTimelineGroupPlane;
+#import "CALayoutManager.h"
 
-@interface DTTimelineGroupPlaneLayoutManager : NSObject
+@class DTTimelineGroupPlane, NSString;
+
+__attribute__((visibility("hidden")))
+@interface DTTimelineGroupPlaneLayoutManager : NSObject <CALayoutManager>
 {
     DTTimelineGroupPlane *_groupPlane;
 }
@@ -22,6 +25,12 @@
 - (void)_positionPlane:(id)arg1;
 - (void)_positionBottomBorderForPlane:(id)arg1 yPosition:(double)arg2;
 - (id)initWithGroupPlane:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -9,7 +9,7 @@
 #import "DVTLinkViewDelegate.h"
 #import "NSTableViewDelegate.h"
 
-@class DVTLinkView, DVTScrollView, DVTStackView_AppKitAutolayout, DVTTableView, IDEDistributionOptionLinkTextField, NSArray, NSButton, NSMenuItem, NSMutableArray, NSString, NSTextField, NSView, NSWindow;
+@class DVTLinkView, DVTScrollView, DVTStackView_AppKitAutolayout, DVTTableView, IDEDistributionOptionLinkTextField, NSArray, NSButton, NSMenuItem, NSMutableArray, NSSet, NSString, NSTextField, NSView, NSWindow;
 
 @interface IDEDistributionSummaryStepViewController : IDEDistributionStepViewController <DVTLinkViewDelegate, NSTableViewDelegate>
 {
@@ -25,6 +25,7 @@
     NSString *_sendBitcodeButtonTitle;
     DVTLinkView *_sendBitcodeLearnMoreLinkView;
     NSTextField *_sendBitcodeLearnMoreLinkTextField;
+    NSSet *_distributionItemsLackingBitcode;
     NSMenuItem *_exportPackageMenuItem;
     NSMenuItem *_exportArchiveMenuItem;
     DVTTableView *_detailTable;
@@ -46,6 +47,7 @@
 @property(retain) DVTTableView *detailTable; // @synthesize detailTable=_detailTable;
 @property(retain) NSMenuItem *exportArchiveMenuItem; // @synthesize exportArchiveMenuItem=_exportArchiveMenuItem;
 @property(retain) NSMenuItem *exportPackageMenuItem; // @synthesize exportPackageMenuItem=_exportPackageMenuItem;
+@property(retain) NSSet *distributionItemsLackingBitcode; // @synthesize distributionItemsLackingBitcode=_distributionItemsLackingBitcode;
 @property(retain) NSTextField *sendBitcodeLearnMoreLinkTextField; // @synthesize sendBitcodeLearnMoreLinkTextField=_sendBitcodeLearnMoreLinkTextField;
 @property(retain) DVTLinkView *sendBitcodeLearnMoreLinkView; // @synthesize sendBitcodeLearnMoreLinkView=_sendBitcodeLearnMoreLinkView;
 @property(retain, nonatomic) NSString *sendBitcodeButtonTitle; // @synthesize sendBitcodeButtonTitle=_sendBitcodeButtonTitle;

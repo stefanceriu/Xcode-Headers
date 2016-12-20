@@ -18,12 +18,15 @@
 {
     struct __C3DGeometry *_geometry;
     unsigned int _isPresentationInstance:1;
+    NSMutableArray *_sources;
+    NSMutableArray *_elements;
     NSMutableArray *_materials;
     SCNOrderedDictionary *_animations;
     NSArray *_levelsOfDetail;
     unsigned long long _subdivisionLevel;
     SCNGeometrySource *_edgeCreasesSource;
     SCNGeometryElement *_edgeCreasesElement;
+    CDStruct_7f1c0332 _subdivisionSettings;
     SCNShadableHelper *_shadableHelper;
     struct SCNVector3 *_fixedBoundingBoxExtrema;
     NSString *_name;
@@ -35,6 +38,7 @@
 + (id)geometryWithSources:(id)arg1 elements:(id)arg2;
 + (id)geometry;
 + (id)geometryWithGeometryRef:(struct __C3DGeometry *)arg1;
++ (id)morpherWithMDLMesh:(id)arg1;
 + (id)geometryWithMDLMesh:(id)arg1;
 + (id)floorWithOptions:(id)arg1;
 + (id)torusWithRingRadius:(double)arg1 pipeRadius:(double)arg2 options:(id)arg3;
@@ -51,7 +55,10 @@
 - (struct __C3DGeometry *)__createCFObject;
 - (void)_customDecodingOfSCNGeometry:(id)arg1;
 - (void)_customEncodingOfSCNGeometry:(id)arg1;
+- (void)unbindAnimatablePath:(id)arg1;
+- (void)bindAnimatablePath:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
 - (BOOL)isAnimationForKeyPaused:(id)arg1;
+- (void)setSpeed:(double)arg1 forAnimationKey:(id)arg2;
 - (void)removeAnimationForKey:(id)arg1 fadeOutDuration:(double)arg2;
 - (void)resumeAnimationForKey:(id)arg1;
 - (void)pauseAnimationForKey:(id)arg1;
@@ -63,9 +70,9 @@
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
 - (void)addAnimation:(id)arg1 forKey:(id)arg2;
-- (void)__removeAnimation:(id)arg1 forKey:(id)arg2;
+- (BOOL)__removeAnimation:(id)arg1 forKey:(id)arg2;
 - (struct __C3DAnimationManager *)animationManager;
-- (void *)__CFObject;
+- (const void *)__CFObject;
 @property(retain, nonatomic) SCNProgram *program;
 - (void)handleUnbindingOfSymbol:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)handleBindingOfSymbol:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
@@ -79,6 +86,8 @@
 @property(retain, nonatomic) SCNGeometrySource *edgeCreasesSource;
 @property(retain, nonatomic) SCNGeometryElement *edgeCreasesElement;
 @property(nonatomic) unsigned long long subdivisionLevel;
+- (void)set_subdivisionSettings:(CDStruct_7f1c0332)arg1;
+- (CDStruct_7f1c0332)_subdivisionSettings;
 @property(copy, nonatomic) NSArray *levelsOfDetail;
 - (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (BOOL)parseSpecialKey:(id)arg1 withPath:(id)arg2 intoDestination:(id *)arg3 remainingPath:(id *)arg4;
@@ -124,6 +133,9 @@
 - (id)geometrySourceForSemantic:(id)arg1;
 - (id)geometrySourcesForSemantic:(id)arg1;
 @property(readonly, nonatomic) NSArray *geometrySources;
+- (void)_setupGeometryElements;
+- (void)_setupGeometrySources;
+- (void)_releaseCachedSourcesAndElements;
 - (BOOL)isPausedOrPausedByInheritance;
 - (id)presentationInstance;
 - (id)presentationGeometry;
@@ -142,6 +154,11 @@
 - (id)initPresentationGeometryWithGeometryRef:(struct __C3DGeometry *)arg1;
 - (id)initWithGeometryRef:(struct __C3DGeometry *)arg1;
 - (id)init;
+- (id)_geometryByWeldingVerticesWithThreshold:(double)arg1 normalThreshold:(double)arg2;
+- (void)_discardOriginalTopology;
+- (id)_geometryByRemovingSkinnerSources;
+- (id)_geometryByAddingSourcesOfSkinner:(id)arg1;
+- (id)_geometryByUnifyingNormalsWithCreaseThreshold:(double)arg1;
 - (void)setValueForKey:(id)arg1 optionKey:(id)arg2 options:(id)arg3;
 - (id)debugQuickLookData;
 - (id)debugQuickLookObject;

@@ -10,16 +10,22 @@
 
 @interface DTTapLocal : DTTap
 {
-    CDUnknownBlockType _taskForPid;
+    CDUnknownBlockType _nextTaskForPid;
     NSObject<OS_dispatch_source> *_pollTimer;
+    id <DTTapLocalDelegate> _delegate;
 }
 
+@property(readonly, retain) id <DTTapLocalDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)_stopWithSemaphore:(id)arg1 guard:(id)arg2;
-- (void)_start:(id)arg1;
+- (void)_handleStatus:(unsigned int)arg1 timestamp:(unsigned long long)arg2 notice:(id)arg3 info:(id)arg4;
+- (id)_fetchDataForReason:(unsigned long long)arg1;
+- (BOOL)_canFetchWhileArchiving;
+- (void)_unpause;
+- (void)_pause;
+- (void)_stop;
+- (void)_start;
 - (void)setTaskForPidBlock:(CDUnknownBlockType)arg1;
-- (id)initWithDelegate:(id)arg1 config:(id)arg2;
-- (id)init;
+- (id)initWithConfig:(id)arg1 memoHandler:(id)arg2 delegate:(id)arg3;
 
 @end
 

@@ -6,18 +6,21 @@
 
 #import "NSObject.h"
 
-@class DVTFilePath, DVTSDK, DVTStackBacktrace, IDEPlaygroundAuxiliarySourceFrameworkLocation, NSString, NSUUID;
+@class DVTFilePath, DVTSDK, DVTStackBacktrace, IDEPlaygroundAuxiliarySourceFrameworkLocation, NSArray, NSHashTable, NSSet, NSString, NSUUID;
 
 @interface IDEPlaygroundCommonSharedContext : NSObject
 {
     DVTStackBacktrace *_creationBacktrace;
+    NSSet *_sourcesDirectorySwiftFiles;
+    IDEPlaygroundCommonSharedContext *_parentContext;
     IDEPlaygroundAuxiliarySourceFrameworkLocation *_expectedAuxiliarySourceFrameworkLocation;
     DVTFilePath *_expectedSymlinkedResourcesLocation;
-    DVTFilePath *_filePath;
     NSUUID *_UUID;
+    DVTFilePath *_filePath;
+    NSHashTable *_referencingContainersTable;
 }
 
-+ (id)keyPathsForValuesAffectingAuxiliarySourceFrameworkDependencies;
++ (id)keyPathsForValuesAffectingResourceDirectoryFilePaths;
 + (id)keyPathsForValuesAffectingExpectedSymlinkedResourcesLocation;
 + (id)keyPathsForValuesAffectingExpectedAuxiliarySourceFrameworkLocation;
 + (id)keyPathsForValuesAffectingTimelineFilePath;
@@ -25,23 +28,44 @@
 + (id)keyPathsForValuesAffectingSourcesDirectoryPath;
 + (id)keyPathsForValuesAffectingResourcesDirectoryPath;
 + (id)keyPathsForValuesAffectingName;
++ (Class)contextDeserializerClass;
++ (Class)contextSerializerClass;
++ (id)filePathExtension;
++ (id)UTI;
+@property(readonly) NSHashTable *referencingContainersTable; // @synthesize referencingContainersTable=_referencingContainersTable;
+@property(retain, nonatomic) DVTFilePath *filePath; // @synthesize filePath=_filePath;
 @property(retain, nonatomic) NSUUID *UUID; // @synthesize UUID=_UUID;
-@property(nonatomic) __weak DVTFilePath *filePath; // @synthesize filePath=_filePath;
 @property(retain, nonatomic) DVTFilePath *expectedSymlinkedResourcesLocation; // @synthesize expectedSymlinkedResourcesLocation=_expectedSymlinkedResourcesLocation;
 @property(retain, nonatomic) IDEPlaygroundAuxiliarySourceFrameworkLocation *expectedAuxiliarySourceFrameworkLocation; // @synthesize expectedAuxiliarySourceFrameworkLocation=_expectedAuxiliarySourceFrameworkLocation;
+@property(readonly, nonatomic) IDEPlaygroundCommonSharedContext *parentContext; // @synthesize parentContext=_parentContext;
 - (void).cxx_destruct;
+- (void)_workspaceRunContextsChanged;
+- (void)enumerateReferencingContainersWithBlock:(CDUnknownBlockType)arg1;
+- (BOOL)unregisterReferencingContainer:(id)arg1;
+- (BOOL)registerReferencingContainer:(id)arg1;
 - (void)_notifySourcesDirectoryChangedOnBackgroundQueue;
 - (void)_notifyResourcesDirectoryChangedOnBackgroundQueue;
-- (id)auxiliarySourceFrameworkDependencies;
+@property(readonly, nonatomic) NSArray *resourceDirectoryFilePaths;
+- (id)sourcesDirectorySwiftFiles;
+- (void)invalidateCachedSourcesDirectorySwiftFiles;
+- (void)addSourcesDirectoryObserver;
+- (void)removeSourcesDirectoryObserver;
+@property(readonly, nonatomic) BOOL implicit;
 @property(readonly, nonatomic) NSString *_targetTripleForAuxiliarySource;
 @property(readonly, nonatomic) DVTSDK *_sdkForAuxiliarySource;
-@property(readonly, nonatomic) DVTFilePath *timelineFilePath;
+- (id)_platformForFrameworkSearchPaths;
+@property(readonly, nonatomic) NSArray *frameworkSearchPaths;
+- (id)timelineFilePath;
 @property(readonly, nonatomic) DVTFilePath *swiftContentsFilePath;
 @property(readonly, nonatomic) DVTFilePath *sourcesDirectoryPath;
 @property(readonly, nonatomic) DVTFilePath *resourcesDirectoryPath;
+@property(readonly, nonatomic) NSString *filename;
 @property(readonly, nonatomic) NSString *name;
+- (void)_filePathDidChange;
+- (void)_filePathWillChange;
 - (id)description;
-- (id)_initWithFilePath:(id)arg1;
+- (void)dealloc;
+- (id)initWithFilePath:(id)arg1 parentContext:(id)arg2;
 - (id)init;
 
 @end

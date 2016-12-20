@@ -45,6 +45,7 @@
 - (IDEIndexCollection *)allSuperClassesForClass:(IDEIndexClassSymbol *)arg1;
 - (IDEIndexCollection *)superClassesForClass:(IDEIndexClassSymbol *)arg1;
 - (IDEIndexCollection *)categoriesForClass:(IDEIndexClassSymbol *)arg1;
+- (IDEIndexCollection *)gkInspectablePropertiesForClass:(IDEIndexClassSymbol *)arg1;
 - (IDEIndexCollection *)ibOutletCollectionPropertiesForClass:(IDEIndexClassSymbol *)arg1;
 - (IDEIndexCollection *)ibOutletCollectionVariablesForClass:(IDEIndexClassSymbol *)arg1;
 - (IDEIndexCollection *)ibOutletCollectionsForClass:(IDEIndexClassSymbol *)arg1;
@@ -97,6 +98,8 @@
 - (IDEIndexCollection *)filesContaining:(NSString *)arg1 anchorStart:(BOOL)arg2 anchorEnd:(BOOL)arg3 subsequence:(BOOL)arg4 ignoreCase:(BOOL)arg5 cancelWhen:(BOOL (^)(void))arg6 forIndex:(IDEIndex *)arg7;
 - (IDEIndexCollection *)filesIncludedByFile:(DVTFilePath *)arg1 forIndex:(IDEIndex *)arg2;
 - (IDEIndexCollection *)filesIncludingFile:(DVTFilePath *)arg1 forIndex:(IDEIndex *)arg2;
+- (NSString *)parsedCodeCommentAtLocation:(DVTDocumentLocation *)arg1 withCurrentFileContentDictionary:(NSDictionary *)arg2 forIndex:(IDEIndex *)arg3 symbolKindOut:(id *)arg4;
+- (NSString *)parsedCodeCommentAtLocation:(DVTDocumentLocation *)arg1 withCurrentFileContentDictionary:(NSDictionary *)arg2 forIndex:(IDEIndex *)arg3 cursorKindOut:(long long *)arg4;
 - (NSString *)parsedCodeCommentAtLocation:(DVTDocumentLocation *)arg1 withCurrentFileContentDictionary:(NSDictionary *)arg2 forIndex:(IDEIndex *)arg3;
 - (NSArray *)impliedHeadersForModuleImportLocation:(DVTDocumentLocation *)arg1 withCurrentFileContentDictionary:(NSDictionary *)arg2 forIndex:(IDEIndex *)arg3;
 - (DVTFilePath *)importedFileAtDocumentLocation:(DVTDocumentLocation *)arg1 withCurrentFileContentDictionary:(NSDictionary *)arg2 forIndex:(IDEIndex *)arg3;

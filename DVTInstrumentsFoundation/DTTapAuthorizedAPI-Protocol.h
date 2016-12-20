@@ -10,10 +10,10 @@
 
 @protocol DTTapAuthorizedAPI <DTXAllowedRPC>
 - (void)fetchDataNow;
-- (void)setConfig:(NSDictionary *)arg1;
 - (void)unpause;
 - (void)pause;
 - (void)stop;
 - (void)start;
+- (void)setConfig:(NSDictionary *)arg1;
 @end
 

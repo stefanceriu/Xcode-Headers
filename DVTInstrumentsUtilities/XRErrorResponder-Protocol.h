@@ -11,6 +11,6 @@
 @protocol XRErrorResponder <NSObject>
 - (void)logAnamolousErrorMessageWithFormat:(NSString *)arg1 args:(struct __va_list_tag [1])arg2;
 - (void)logAnamolousErrorMessageWithFormat:(NSString *)arg1;
-- (unsigned long long)respondToFatalError:(NSError *)arg1 from:(id)arg2;
+- (void)handleFatalError:(NSError *)arg1 from:(id)arg2;
 @end
 

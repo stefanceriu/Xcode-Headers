@@ -18,7 +18,7 @@
     DVTControllerContentView *_iosOptionsView;
     NSButton *_forceYUpButton;
     NSButton *_interleaveButton;
-    NSButton *_usePVRTCIfAvailableButton;
+    NSButton *_preferCompressedTexturesButton;
     SKEAssetCatalogCapsuleViewController *_commonOptionsViewController;
     SKEAssetCatalogCapsuleViewController *_iosOptionsViewController;
     NSArray *_currentSelectedItems;

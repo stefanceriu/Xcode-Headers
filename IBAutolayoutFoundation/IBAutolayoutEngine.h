@@ -67,6 +67,7 @@
 - (void)performEngineBootstrappingConstraintAdditionOperationForAddingConstraint:(id)arg1;
 - (void)continuouslyPerformEngineBootstrappingOperationWithName:(id)arg1 untilSuccessWhileTrackingUnsatisfiableConstraintsDuring:(CDUnknownBlockType)arg2 withUnsatisfiableConstraintRemovedHandler:(CDUnknownBlockType)arg3;
 - (BOOL)tryToAddConstraint:(id)arg1 toRepresentedView:(id)arg2 roundingAdjustment:(double)arg3 mutuallyExclusiveConstraints:(id *)arg4;
+- (BOOL)internalTryToAddConstraint:(id)arg1 toRepresentedView:(id)arg2 roundingAdjustment:(double)arg3 mutuallyExclusiveConstraints:(id *)arg4;
 - (id)addRepresentedConstraintForRealConstraint:(id)arg1;
 - (id)representedConstraintBySubstitutingRealViewsForRepresentedViewsOfConstraint:(id)arg1;
 - (id)_backingLayoutItemForSpacer:(unsigned long long)arg1;
@@ -78,6 +79,7 @@
 - (void)invalidateConstraintsForRepresentedItems:(id)arg1;
 - (void)updateConstraintsIfNeeded;
 - (void)layoutIfNeeded;
+- (void)setNeedsLayoutFixFor27106541;
 @property(readonly) Class spacerItemClass;
 - (id)debugDescription;
 @property BOOL shouldIntegralize;

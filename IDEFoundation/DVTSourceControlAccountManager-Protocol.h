@@ -10,7 +10,6 @@
 
 @protocol DVTSourceControlAccountManager <NSObject>
 @property(readonly) NSOrderedSet *knownRepositories;
-@property(readonly) NSOrderedSet *existingAccounts;
 - (void)removeAccount:(DVTSourceControlAccount *)arg1;
 - (void)addAccount:(DVTSourceControlAccount *)arg1;
 - (void)accountChanged:(DVTSourceControlAccount *)arg1 previousUsername:(NSString *)arg2;

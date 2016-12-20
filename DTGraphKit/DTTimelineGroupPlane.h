@@ -57,7 +57,7 @@
 - (BOOL)_pointIntersectsDisclosureGlyph:(struct CGPoint)arg1 groupPlane:(out id *)arg2;
 - (void)_invalidateTimeRange:(struct XRTimeRange)arg1;
 - (void)_setPosition:(struct CGPoint)arg1 size:(struct CGSize)arg2;
-- (void)_setHeight:(double)arg1;
+- (BOOL)_setHeight:(double)arg1;
 - (double)height;
 - (void)_removeFromContext;
 - (id)_decoratedPlanes;

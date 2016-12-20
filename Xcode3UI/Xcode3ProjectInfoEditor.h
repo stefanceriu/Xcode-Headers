@@ -13,7 +13,7 @@
 #import "NSTableViewDelegate.h"
 #import "Xcode3SourceListItemEditor.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTImageAndTextCell, DVTLocale, DVTLozengeTextField, DVTOutlineView, DVTPerformanceMetric, DVTSourceExpression, DVTStackView_ML, DVTTableView, IDECapsuleListView, IDEViewController<IDECapsuleViewController>, NSArray, NSButton, NSComboBox, NSMenu, NSMutableArray, NSMutableDictionary, NSPopUpButton, NSString, NSTextField, NSTextFieldCell, NSTimer, NSView, PBXProject, Xcode3ProjectEditor;
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTImageAndTextCell, DVTLocale, DVTLozengeTextField, DVTOutlineViewWithCustomGridDrawing, DVTPerformanceMetric, DVTSourceExpression, DVTStackView_ML, DVTTableView, IDECapsuleListView, IDEViewController<IDECapsuleViewController>, NSArray, NSButton, NSComboBox, NSMenu, NSMutableArray, NSMutableDictionary, NSPopUpButton, NSString, NSTextField, NSTextFieldCell, NSTimer, NSView, PBXProject, Xcode3ProjectEditor;
 
 @interface Xcode3ProjectInfoEditor : IDEViewController <Xcode3SourceListItemEditor, NSTableViewDelegate, NSTableViewDataSource, NSOutlineViewDelegate, NSOutlineViewDataSource, IDECapsuleListViewDataSource>
 {
@@ -45,7 +45,7 @@
     NSView *_iOSDeploymentTargetContainer;
     NSView *_OSXDeploymentTargetContainer;
     NSView *_configurationsContentView;
-    DVTOutlineView *_configurationsOutlineView;
+    DVTOutlineViewWithCustomGridDrawing *_configurationsOutlineView;
     DVTGradientImageButton *_removeConfigurationButton;
     DVTGradientImagePopUpButton *_addConfigurationButton;
     NSButton *_internationalizationCheckBox;

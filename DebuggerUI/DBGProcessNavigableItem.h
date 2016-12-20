@@ -19,8 +19,7 @@
     DVTObservingToken *_showOnlyVisibleViewObjectsObservingToken;
     DVTObservingToken *_focusObservingToken;
     DVTObservingToken *_memoryGraphDebuggerObservingToken;
-    DVTObservingToken *_showOnlyLeakedBlocksObservingToken;
-    DVTObservingToken *_showOnlyContentFromWorkspaceObservingToken;
+    XRMemoryGraphDebuggerAdditionUIController *_memoryDebuggingUIController;
     BOOL _usedInDebugNavigator;
     BOOL _showsCompressedStackFrames;
     BOOL _showsOnlyAncestorWithInterestingFrames;
@@ -28,11 +27,11 @@
     BOOL _showsGauges;
     int _navigatorContentMode;
     DBGViewDebuggerAdditionUIController *_viewDebuggingUIController;
-    XRMemoryGraphDebuggerAdditionUIController *_memoryGraphDebuggingUIController;
     NSString *_filterString;
 }
 
 + (id)keyPathsForValuesAffectingLeaf;
++ (id)keyPathsForValuesAffectingSubtitle;
 + (id)keyPathsForValuesAffectingImage;
 + (id)keyPathsForValuesAffectingName;
 + (id)keyPathsForValuesAffectingTopNavigableModel;
@@ -40,7 +39,7 @@
 + (id)_mainQueueName;
 @property(retain, nonatomic) DBGMemoryDataProcessWrapper *memoryDataGroup; // @synthesize memoryDataGroup=_memoryDataGroup;
 @property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
-@property(retain, nonatomic) XRMemoryGraphDebuggerAdditionUIController *memoryGraphDebuggingUIController; // @synthesize memoryGraphDebuggingUIController=_memoryGraphDebuggingUIController;
+@property(retain, nonatomic) id <IDEDebuggingAdditionUIController> memoryDebuggingUIController; // @synthesize memoryDebuggingUIController=_memoryDebuggingUIController;
 @property(retain, nonatomic) DBGViewDebuggerAdditionUIController *viewDebuggingUIController; // @synthesize viewDebuggingUIController=_viewDebuggingUIController;
 @property(nonatomic) BOOL showsGauges; // @synthesize showsGauges=_showsGauges;
 @property(nonatomic) BOOL showsOnlyRunningBlocks; // @synthesize showsOnlyRunningBlocks=_showsOnlyRunningBlocks;
@@ -58,6 +57,7 @@
 - (void)findInterestingThreads:(id *)arg1 filteredInterestingThreads:(id *)arg2 fromThreads:(id)arg3;
 - (id)_generateQueueChildrenFromFilteredInterestingThreads:(id)arg1;
 - (BOOL)isLeaf;
+- (id)subtitle;
 - (id)image;
 - (id)name;
 - (id)topNavigableModel;

@@ -11,8 +11,6 @@
 }
 
 + (id)sharedInstance;
-- (id)defaultVariantForMatching;
-- (id)mostToLeastSpecificVariablesForMediaType:(id)arg1;
 
 @end
 

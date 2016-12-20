@@ -31,7 +31,7 @@
     iCloud *_iCloud;
     NSString *_primaryContainerName;
     double _lastUpdated;
-    NSArray *_logEntries;
+    NSMutableArray *_logEntries;
     NSMutableDictionary *_progressForItemID;
     NSRecursiveLock *_itemsLock;
     NSMutableDictionary *_items;
@@ -97,7 +97,7 @@
 @property(retain, nonatomic) NSRecursiveLock *itemsLock; // @synthesize itemsLock=_itemsLock;
 @property(retain) NSMutableDictionary *progressForItemID; // @synthesize progressForItemID=_progressForItemID;
 @property(nonatomic) BOOL firstLoginAttempt; // @synthesize firstLoginAttempt=_firstLoginAttempt;
-@property(copy, nonatomic) NSArray *logEntries; // @synthesize logEntries=_logEntries;
+@property(copy, nonatomic) NSMutableArray *logEntries; // @synthesize logEntries=_logEntries;
 @property(nonatomic) double lastUpdated; // @synthesize lastUpdated=_lastUpdated;
 @property(copy, nonatomic) NSString *primaryContainerName; // @synthesize primaryContainerName=_primaryContainerName;
 @property(readonly, nonatomic) iCloud *iCloud; // @synthesize iCloud=_iCloud;

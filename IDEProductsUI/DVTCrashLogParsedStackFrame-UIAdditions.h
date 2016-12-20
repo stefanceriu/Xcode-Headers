@@ -9,8 +9,6 @@
 @class NSArray;
 
 @interface DVTCrashLogParsedStackFrame (UIAdditions)
-+ (id)_genericFrameImageIsCrash:(BOOL)arg1;
-+ (id)_createImageFromFilePath:(id)arg1 withRed:(float)arg2 green:(float)arg3 blue:(float)arg4 alpha:(float)arg5 isRecorded:(BOOL)arg6 isCrash:(BOOL)arg7;
 @property(readonly, copy, nonatomic) NSArray *allFindHighlightRanges;
 @property(retain, nonatomic) NSArray *imageTextFindMatchingSubranges; // @dynamic imageTextFindMatchingSubranges;
 @property(retain, nonatomic) NSArray *frameTextFindMatchingSubranges; // @dynamic frameTextFindMatchingSubranges;

@@ -19,8 +19,10 @@
     NSString *_pathToInterpose;
     NSString *_fullPath;
     NSString *_containerAppID;
+    NSString *_appContainerPath;
 }
 
+@property(retain) NSString *appContainerPath; // @synthesize appContainerPath=_appContainerPath;
 @property(retain) NSString *containerAppID; // @synthesize containerAppID=_containerAppID;
 @property(retain) NSString *fullPath; // @synthesize fullPath=_fullPath;
 @property(retain) NSString *pathToInterpose; // @synthesize pathToInterpose=_pathToInterpose;
@@ -37,7 +39,7 @@
 - (id)displayName;
 - (BOOL)isDebuggable;
 - (id)description;
-- (id)initWithServiceName:(id)arg1 pid:(int)arg2 parentPID:(int)arg3;
+- (id)initWithServiceName:(id)arg1 pid:(int)arg2 parentPID:(int)arg3 appContainerPath:(id)arg4;
 
 @end
 

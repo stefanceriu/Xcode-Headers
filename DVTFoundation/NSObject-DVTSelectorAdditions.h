@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @interface NSObject (DVTSelectorAdditions)
+- (id)dvt_performNonOwnershipTransferingSelector:(SEL)arg1 withObject:(id)arg2;
 - (id)dvt_performNonOwnershipTransferingSelector:(SEL)arg1;
 @end
 

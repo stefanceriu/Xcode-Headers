@@ -10,14 +10,15 @@
 
 @interface _DVTTimeSlicedMainThreadActiveWorkQueues : NSObject
 {
-    NSMutableOrderedSet *_workQueues;
+    NSMutableOrderedSet *_workQueues[5];
+    char _workQueuesActive[5];
     BOOL _nextProcessingBatchScheduled;
 }
 
++ (void)initialize;
 - (void).cxx_destruct;
-- (void)_tattleOnOvershotDeadline:(double)arg1 currentQueue:(id)arg2;
-- (void)_removeWorkQueue:(id)arg1;
-- (void)_addWorkQueue:(id)arg1;
+- (void)_removeWorkQueue:(id)arg1 atSlot:(unsigned long long)arg2;
+- (void)_addWorkQueue:(id)arg1 atSlot:(unsigned long long)arg2;
 - (void)_scheduleProcessing;
 - (id)_nextWorkQueue;
 - (void)_processWorkQueuesOnDeadline;

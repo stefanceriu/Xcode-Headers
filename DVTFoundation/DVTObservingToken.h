@@ -13,7 +13,6 @@
 @interface DVTObservingToken : NSObject <DVTCancellable>
 {
     BOOL _isCancelled;
-    void *_keepSelfAliveUntilPrimitiveCancellationRef;
     DVTStackBacktrace *_creationBacktrace;
 }
 
@@ -24,7 +23,6 @@
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (void)cancel;
 - (void)_primitiveCancelObservation;
-- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

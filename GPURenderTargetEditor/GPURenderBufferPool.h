@@ -8,33 +8,34 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, GPURenderBuffer, NSArray, NSString;
+@class DVTStackBacktrace, GPURenderBuffer, GPUTraceMainEditor, NSArray, NSString;
 
 __attribute__((visibility("hidden")))
 @interface GPURenderBufferPool : NSObject <DVTInvalidation>
 {
-    _Bool _powerOf2ZoomClamping;
-    GPURenderBuffer *_pool[24];
-    NSArray *_allActiveBuffers;
+    GPURenderBuffer *_pool[26];
+    GPUTraceMainEditor *_traceEditor;
+    id <GPURenderBufferViewStateCoordinationProtocol> _coordinator;
+    NSArray *_activeBuffers;
     NSArray *_activeColorBuffers;
     GPURenderBuffer *_activeDepthBuffer;
     GPURenderBuffer *_activeStencilBuffer;
 }
 
 + (void)initialize;
++ (unsigned int)maxRenderBuffers;
 @property(readonly, nonatomic) GPURenderBuffer *activeStencilBuffer; // @synthesize activeStencilBuffer=_activeStencilBuffer;
 @property(readonly, nonatomic) GPURenderBuffer *activeDepthBuffer; // @synthesize activeDepthBuffer=_activeDepthBuffer;
 @property(readonly, nonatomic) NSArray *activeColorBuffers; // @synthesize activeColorBuffers=_activeColorBuffers;
-@property(readonly, nonatomic) NSArray *allActiveBuffers; // @synthesize allActiveBuffers=_allActiveBuffers;
+@property(readonly, nonatomic) NSArray *activeBuffers; // @synthesize activeBuffers=_activeBuffers;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 @property(readonly, nonatomic) BOOL hasColorData;
 @property(readonly, nonatomic) BOOL hasStencilData;
 @property(readonly, nonatomic) BOOL hasDepthData;
 - (void)enableRenderbuffersWithRenderJobs:(id)arg1;
-- (void)setRenderbufferViewCoordinator:(id)arg1;
-- (id)initWithContextMenu:(id)arg1 traceEditor:(id)arg2;
-- (id)_createRenderBufferWithContextMenu:(id)arg1 andTraceEditor:(id)arg2;
+- (id)initWithTraceEditor:(id)arg1 coordinator:(id)arg2;
+- (id)_createRenderBuffer;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

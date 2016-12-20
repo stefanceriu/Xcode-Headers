@@ -44,7 +44,6 @@
 - (void)observedWorkspaceDidAddOrModifyPaths:(id)arg1 andRemovePaths:(id)arg2;
 - (void)integratePartialClassDescriptions:(id)arg1;
 - (void)batchUpdateParsing:(id)arg1;
-- (id)parsingContextForWorkItems:(id)arg1;
 - (id)nextBatchUpdatingGenerationIfNeeded;
 - (BOOL)isSchedulableWorkItem:(id)arg1;
 - (id)overridingEditorContentForWorkItems:(id)arg1;
@@ -54,7 +53,7 @@
 @property(readonly) long long completionProgress;
 - (BOOL)isPaused;
 - (void)primitiveInvalidate;
-- (id)initWithWorkspaceDocument:(id)arg1 platform:(id)arg2;
+- (id)initWithWorkspaceDocument:(id)arg1 platform:(id)arg2 toolchainIdentifiers:(id)arg3;
 
 @end
 

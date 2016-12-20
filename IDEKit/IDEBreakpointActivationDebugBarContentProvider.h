@@ -20,7 +20,6 @@
 - (void)currentDebugSessionStateDidChange;
 - (void)willBeDetachedFromDebugBar:(id)arg1;
 - (void)wasAttachedToDebugBar:(id)arg1;
-- (BOOL)wantsRightSideSeparatorBorder;
 - (id)_createBreakpointActivationButton;
 - (id)init;
 

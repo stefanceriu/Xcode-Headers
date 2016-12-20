@@ -16,6 +16,7 @@
 }
 
 - (void).cxx_destruct;
+- (BOOL)isEqualForUnitTests:(id)arg1;
 - (void)populateIssues:(id)arg1 context:(id)arg2;
 - (BOOL)hasPDFSibling;
 - (BOOL)isPDF;

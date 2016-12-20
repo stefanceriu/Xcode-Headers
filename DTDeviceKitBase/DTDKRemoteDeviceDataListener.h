@@ -30,7 +30,7 @@
 - (void)listenerThreadImplementation;
 - (void)stopListening;
 - (void)startListening;
-@property struct __CFRunLoop *listenerRunLoop; // @synthesize listenerRunLoop=_listenerRunLoop;
+@property(nonatomic) struct __CFRunLoop *listenerRunLoop; // @synthesize listenerRunLoop=_listenerRunLoop;
 - (void)dealloc;
 
 // Remaining properties

@@ -9,5 +9,6 @@
 @interface PDFView (IBIntegration)
 - (BOOL)runningWithinInterfaceBuilder;
 - (id)ibSwizzledInitWithCoder:(id)arg1;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

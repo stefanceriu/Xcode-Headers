@@ -6,30 +6,35 @@
 
 #import <IDEModelFoundation/CDMProperty.h>
 
-@class NSMutableArray, NSString;
+@class NSArray, NSString;
 
 @interface CDMAttribute : CDMProperty
 {
-    long long attributeType;
-    NSString *defaultValueString;
-    NSString *minValueString;
-    NSString *maxValueString;
-    NSString *regularExpressionString;
-    NSString *valueTransformerName;
-    NSMutableArray *attributeTypes;
-    BOOL allowsExternalBinaryDataStorage;
+    long long _attributeType;
+    NSString *_defaultValueString;
+    NSString *_minValueString;
+    NSString *_maxValueString;
+    NSString *_regularExpressionString;
+    NSString *_valueTransformerName;
+    BOOL _allowsExternalBinaryDataStorage;
+    NSString *_customClassName;
+    long long _preferredType;
 }
 
++ (id)keyPathsForValuesAffectingUsesScalarValueType;
 + (id)keyPathsForValuesAffectingInspectedAttributeType;
 + (id)keyPathsForValuesAffectingMaxValueObject;
 + (id)keyPathsForValuesAffectingMinValueObject;
 + (id)keyPathsForValuesAffectingDefaultValueObject;
-@property(nonatomic) long long attributeType; // @synthesize attributeType;
-@property(copy, nonatomic) NSString *valueTransformerName; // @synthesize valueTransformerName;
-@property(copy, nonatomic) NSString *regularExpressionString; // @synthesize regularExpressionString;
-@property(copy, nonatomic) NSString *maxValueString; // @synthesize maxValueString;
-@property(copy, nonatomic) NSString *minValueString; // @synthesize minValueString;
-@property(copy, nonatomic) NSString *defaultValueString; // @synthesize defaultValueString;
++ (id)keyPathsForValuesAffectingInspectedClassName;
++ (id)keyPathsForValuesAffectingInspectedModuleName;
+@property long long preferredType; // @synthesize preferredType=_preferredType;
+@property(copy, nonatomic) NSString *valueTransformerName; // @synthesize valueTransformerName=_valueTransformerName;
+@property(copy, nonatomic) NSString *regularExpressionString; // @synthesize regularExpressionString=_regularExpressionString;
+@property(copy, nonatomic) NSString *maxValueString; // @synthesize maxValueString=_maxValueString;
+@property(copy, nonatomic) NSString *minValueString; // @synthesize minValueString=_minValueString;
+@property(copy, nonatomic) NSString *defaultValueString; // @synthesize defaultValueString=_defaultValueString;
+@property(nonatomic) long long attributeType; // @synthesize attributeType=_attributeType;
 - (void).cxx_destruct;
 - (id)stringRepresentation;
 - (id)xmlElementDescription;
@@ -38,19 +43,16 @@
 @property(readonly) NSString *attributeTypeString;
 - (void)setAttributeTypeIndex:(long long)arg1;
 - (long long)attributeTypeIndex;
-- (void)_createAttributeTypesArray;
 - (id)addKeysToDictionary:(id)arg1;
 - (id)initWithDictionary:(id)arg1 inModel:(id)arg2;
 - (void)generateErrorsAndWarningsWithCallback:(id)arg1 forDocumentAtURL:(id)arg2;
 - (id)undoManager;
 - (BOOL)mapsDirectlyTo:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-@property BOOL allowsExternalBinaryDataStorage; // @synthesize allowsExternalBinaryDataStorage;
-- (void)setInspectedAttributeType:(long long)arg1;
-- (id)nilDefaultAttributeTypes;
-- (id)zeroDefaultAttributeTypes;
-- (id)numericalMinMaxAttributeTypes;
-- (long long)inspectedAttributeType;
+@property(copy, nonatomic) NSString *customClassName; // @synthesize customClassName=_customClassName;
+@property BOOL allowsExternalBinaryDataStorage; // @synthesize allowsExternalBinaryDataStorage=_allowsExternalBinaryDataStorage;
+@property BOOL usesScalarValueType;
+@property long long inspectedAttributeType;
 - (id)maxValueObjectNonNilValue;
 @property(copy, nonatomic) id maxValueObject;
 @property(nonatomic) BOOL hasMaxValueObject;
@@ -65,13 +67,21 @@
 - (id)_dateFormatter;
 - (void)cascadeChangesToLegacyAttribute:(id)arg1;
 - (id)initWithLegacyAttribute:(id)arg1 belongingToEntity:(id)arg2 inModel:(id)arg3;
+- (id)initInModel:(id)arg1;
 - (void)_registerUndoBlockForFoundAttribute:(CDUnknownBlockType)arg1;
-- (id)code_propertyTypePrimitiveParameter;
-- (id)code_propertyTypePrimitiveSwift;
-- (id)code_propertyTypePrimitive;
-- (id)code_propertyTypeSwift;
-- (id)code_propertyTypePointer;
+@property(copy) NSString *inspectedClassName;
+@property(copy) NSString *inspectedModuleName;
+@property(readonly, copy) NSArray *possibleModuleDisplayValues;
+@property(readonly, copy) NSArray *possibleModuleNameObjects;
 - (id)validateStringValue:(id)arg1 asType:(unsigned long long)arg2;
+- (id)code_effectiveCustomClassModuleName;
+- (id)code_effectiveCustomClassName;
+- (id)code_propertyParameter;
+- (id)code_propertyTypePrimitiveSwift;
+- (id)code_propertyTypePrimitiveObjC;
+- (id)code_propertyTypeSwift;
+- (id)code_propertyTypeObjC;
+- (id)code_propertyType;
 
 @end
 

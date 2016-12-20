@@ -15,19 +15,23 @@
     BOOL _expandsAssistantView;
     BOOL _widthResizable;
     NSString *_previousAssistantIdentifier;
+    NSString *_helpButtonDestination;
 }
 
 + (BOOL)wantsOverlayEffect;
 + (BOOL)wantsTransparentBackground;
 @property(nonatomic) BOOL widthResizable; // @synthesize widthResizable=_widthResizable;
 @property(nonatomic) BOOL expandsAssistantView; // @synthesize expandsAssistantView=_expandsAssistantView;
+@property(readonly) NSString *helpButtonDestination; // @synthesize helpButtonDestination=_helpButtonDestination;
 @property(retain) NSString *previousAssistantIdentifier; // @synthesize previousAssistantIdentifier=_previousAssistantIdentifier;
 @property(retain) NSString *nextAssistantIdentifier; // @synthesize nextAssistantIdentifier=_nextAssistantIdentifier;
 @property(retain) IDEAssistantContext *assistantContext; // @synthesize assistantContext=_assistantContext;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
+- (void)helpAction;
 - (void)willGoNextOrFinish;
 - (void)willResignCurrentAssistantInAssistantWindowController:(id)arg1;
+@property(readonly) BOOL showHelpButton;
 @property(readonly) IDEFilterControlBar *filterControlBar;
 @property(readonly) NSView *sourceListView;
 - (id)finishButtonTitle;

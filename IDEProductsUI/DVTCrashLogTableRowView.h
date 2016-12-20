@@ -33,6 +33,7 @@
 - (void)ensureTrackingArea;
 - (BOOL)mouseInside;
 - (void)setMouseInside:(BOOL)arg1;
+- (BOOL)drawsSeparator;
 - (void)drawSeparatorInRect:(struct CGRect)arg1;
 - (id)_dashColor;
 - (void)drawSelectionInRect:(struct CGRect)arg1;

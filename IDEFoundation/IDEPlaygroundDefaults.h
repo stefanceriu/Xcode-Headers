@@ -10,9 +10,12 @@
 {
 }
 
++ (BOOL)playgroundExecutionShouldSimulateHang;
++ (BOOL)playgroundShouldLogAdditionalProcessInfo;
++ (BOOL)playgroundUsesCoreFoundationResourceLinking;
++ (BOOL)playgroundUsesNativeMarkupRenderer;
 + (BOOL)playgroundDisplaysObjectLiterals;
 + (BOOL)playgroundUsesSingleViewEditor;
-+ (BOOL)playgroundShouldUseForcedLLDBTriple;
 + (BOOL)playgroundDiplaysResultControlsInline;
 + (BOOL)playgroundDiplaysResultControlsInMenu;
 + (BOOL)playgroundAuxiliarySourceEnabled;

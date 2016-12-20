@@ -6,23 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSString;
-
 @interface DVTFoldingTokenType : NSObject
 {
-    unsigned long long _tokenType;
-    NSString *_tokenStart;
-    NSString *_tokenEnd;
 }
 
-+ (id)literalFoldingTokenType;
-+ (id)placeholderFoldingTokenType;
-@property(copy) NSString *tokenEnd; // @synthesize tokenEnd=_tokenEnd;
-@property(copy) NSString *tokenStart; // @synthesize tokenStart=_tokenStart;
-@property unsigned long long tokenType; // @synthesize tokenType=_tokenType;
-- (void).cxx_destruct;
++ (void)unregisterFoldingTokenType:(id)arg1;
++ (void)registerFoldingTokenType:(id)arg1;
++ (id)registeredFoldingTokenTypeForClass:(Class)arg1;
++ (id)registeredFoldingTokenTypes;
++ (void)initialize;
 - (id)stringByStrippingTokens:(id)arg1;
-- (id)initWithType:(unsigned long long)arg1 start:(id)arg2 end:(id)arg3;
+- (struct _NSRange)rangeOfTokenMatchingInString:(id)arg1 range:(struct _NSRange)arg2;
 
 @end
 

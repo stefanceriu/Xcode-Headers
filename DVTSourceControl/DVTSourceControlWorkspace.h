@@ -30,9 +30,9 @@
 - (BOOL)representsBlueprint:(id)arg1;
 - (id)blueprintWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)filesAndStatusWithRemoteStatus:(BOOL)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (id)historySinceRevisionedBlueprint:(id)arg1 maximumLogItems:(long long)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)historySinceRevisionedBlueprint:(id)arg1 maximumLogItems:(long long)arg2 includeFilePaths:(BOOL)arg3 showMergeCommits:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (id)workingCopyForRemoteRepository:(id)arg1 inBlueprint:(id)arg2;
-- (id)historyFromRevisions:(id)arg1 toRevisions:(id)arg2 inclusionType:(unsigned long long)arg3 maximumLogItems:(long long)arg4 searchString:(id)arg5 searchType:(unsigned long long)arg6 incrementalLogBlock:(CDUnknownBlockType)arg7 completionBlock:(CDUnknownBlockType)arg8;
+- (id)historyFromRevisions:(id)arg1 toRevisions:(id)arg2 inclusionType:(unsigned long long)arg3 maximumLogItems:(long long)arg4 searchString:(id)arg5 searchType:(unsigned long long)arg6 includeFilePaths:(BOOL)arg7 showMergeCommits:(BOOL)arg8 incrementalLogBlock:(CDUnknownBlockType)arg9 completionBlock:(CDUnknownBlockType)arg10;
 @property(readonly) NSMapTable *initialRevisionsMapTable;
 @property(readonly) NSMapTable *baseRevisionsMapTable;
 @property(readonly) NSMapTable *headRevisionsMapTable;

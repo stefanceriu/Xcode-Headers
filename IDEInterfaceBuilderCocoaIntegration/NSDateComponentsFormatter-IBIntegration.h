@@ -10,6 +10,7 @@
 + (id)keyPathsForValuesAffectingZeroFormattingBehavior;
 + (id)keyPathsForValuesAffectingAllowedUnits;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (unsigned long long)ibMinOSVersionForUseInCell;
 - (id)ibExternalSampleValue;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (void)setIbInspectedCustomizeZeroFormattingBehavior:(long long)arg1;
@@ -17,5 +18,6 @@
 - (void)setIbInspectedCustomizeAllowedUnits:(BOOL)arg1;
 - (BOOL)ibInspectedCustomizeAllowedUnits;
 - (id)_getAssociatedObjectForKey:(const void *)arg1 orSetAndReturnDefaultWithPolicy:(unsigned long long)arg2 fromBlock:(CDUnknownBlockType)arg3;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

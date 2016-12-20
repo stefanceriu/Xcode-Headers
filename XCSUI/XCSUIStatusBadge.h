@@ -15,10 +15,10 @@
     NSImage *_badgeIcon;
     double _preferredFontSize;
     unsigned long long _badgeCount;
+    NSString *_badgeUnit;
     unsigned long long _secondaryBadgeCount;
-    NSColor *_secondaryBadgeColor;
     NSColor *_badgeColor;
-    NSColor *_lightBadgeColor;
+    long long _countOfNewlyIntroducedPassingTests;
     long long _countOfNewIssues;
     long long _countOfResolvedIssues;
     XCSUIStatusBadgeView *_badgeView;
@@ -27,11 +27,11 @@
 @property __weak XCSUIStatusBadgeView *badgeView; // @synthesize badgeView=_badgeView;
 @property long long countOfResolvedIssues; // @synthesize countOfResolvedIssues=_countOfResolvedIssues;
 @property long long countOfNewIssues; // @synthesize countOfNewIssues=_countOfNewIssues;
+@property long long countOfNewlyIntroducedPassingTests; // @synthesize countOfNewlyIntroducedPassingTests=_countOfNewlyIntroducedPassingTests;
 @property BOOL showNewIssuesResolvedIssuesDifferencesCount; // @synthesize showNewIssuesResolvedIssuesDifferencesCount=_showNewIssuesResolvedIssuesDifferencesCount;
-@property(copy) NSColor *lightBadgeColor; // @synthesize lightBadgeColor=_lightBadgeColor;
 @property(copy) NSColor *badgeColor; // @synthesize badgeColor=_badgeColor;
-@property(copy) NSColor *secondaryBadgeColor; // @synthesize secondaryBadgeColor=_secondaryBadgeColor;
 @property unsigned long long secondaryBadgeCount; // @synthesize secondaryBadgeCount=_secondaryBadgeCount;
+@property(copy) NSString *badgeUnit; // @synthesize badgeUnit=_badgeUnit;
 @property unsigned long long badgeCount; // @synthesize badgeCount=_badgeCount;
 @property double preferredFontSize; // @synthesize preferredFontSize=_preferredFontSize;
 @property(copy) NSImage *badgeIcon; // @synthesize badgeIcon=_badgeIcon;

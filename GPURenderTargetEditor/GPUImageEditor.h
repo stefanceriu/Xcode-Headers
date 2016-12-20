@@ -6,22 +6,24 @@
 
 #import <GPURenderTargetEditor/GPUResourceEditor.h>
 
+#import "GPUColorChannelsViewControllerDelegate.h"
 #import "GPURenderBufferViewStateCoordinationProtocol.h"
 #import "GPUTraceBubbleOwner.h"
 
-@class DVTBorderedView, DYRenderingAttributes, GPUPathControl, GPURenderBufferBezeledLabel, GPURenderBufferButton, GPURenderBufferView, GPUTraceResourceInfoBubble, GPUTraceResourceSettingsBubble, NSButton, NSImage, NSLayoutConstraint, NSObject<OS_dispatch_queue>, NSPopUpButton, NSSegmentedControl, NSString, NSTextField;
+@class DVTBorderedView, DYRenderingAttributes, GPUPathControl, GPURenderBufferBezeledLabel, GPURenderBufferView, GPUTraceResourceInfoBubble, NSButton, NSImage, NSLayoutConstraint, NSObject<OS_dispatch_queue>, NSPopUpButton, NSPopover, NSSegmentedControl, NSString, NSTextField, NSView;
 
 __attribute__((visibility("hidden")))
-@interface GPUImageEditor : GPUResourceEditor <GPUTraceBubbleOwner, GPURenderBufferViewStateCoordinationProtocol>
+@interface GPUImageEditor : GPUResourceEditor <GPUColorChannelsViewControllerDelegate, GPUTraceBubbleOwner, GPURenderBufferViewStateCoordinationProtocol>
 {
     GPURenderBufferView *_imageView;
     DVTBorderedView *_bottomToolBar;
     NSSegmentedControl *_viewSegmentedControl;
     NSSegmentedControl *_orientationSegmentedControl;
     NSTextField *_viewSegmentedControlLabel;
-    GPURenderBufferButton *_infoButton;
-    GPURenderBufferButton *_settingsButton;
-    GPURenderBufferBezeledLabel *_bezeledLabel;
+    NSButton *_infoButton;
+    NSButton *_settingsButton;
+    GPURenderBufferBezeledLabel *_bezeledZoomLabel;
+    GPURenderBufferBezeledLabel *_bezeledOrientationLabel;
     NSTextField *levelLabel;
     NSPopUpButton *levelSelector;
     GPUPathControl *_pathControl;
@@ -31,9 +33,9 @@ __attribute__((visibility("hidden")))
     DYRenderingAttributes *_renderingAttributes;
     GPUTraceResourceInfoBubble *_infoBubble;
     BOOL _enableInfoBubblePopup;
-    GPUTraceResourceSettingsBubble *_settingsBubble;
-    NSLayoutConstraint *_labelConstraint;
+    NSPopover *_settingsPopover;
     int _toolbarMode;
+    NSTextField *_nameView;
     id _controlKeyEventTap;
     NSImage *_zoomToFitIcon;
     NSImage *_zoomToActualIcon;
@@ -45,26 +47,23 @@ __attribute__((visibility("hidden")))
     double _scaleX;
     double _scaleY;
     int _rotation;
+    NSView *_overlayView;
     NSTextField *_imageLabel;
 }
 
 + (id)assetBundle;
 @property __weak NSTextField *imageLabel; // @synthesize imageLabel=_imageLabel;
 - (void).cxx_destruct;
+- (void)colorChannelViewController:(id)arg1 didChangeRenderingAttributes:(id)arg2;
 - (void)dumpImage:(id)arg1 asRaw:(BOOL)arg2;
-- (void)settingsUpdate;
-- (void)settingsToggleAlphaEnable;
-- (void)settingsToggleBlueEnable;
-- (void)settingsToggleGreenEnable;
-- (void)settingsToggleRedEnable;
 - (id)currentDisplayableItem;
 - (void)settingsBubbleClosed;
 - (void)showSettings:(id)arg1;
 - (void)infoBubbleClosed;
 - (void)reEnableInfoBubble;
 - (void)showInfo:(id)arg1;
-- (void)_showBezeledLabelWithString:(id)arg1 forTime:(double)arg2;
-- (void)_showZoomLabelWithValue:(double)arg1 forTime:(double)arg2;
+- (void)_showBezeledLabelWithString:(id)arg1;
+- (void)_showZoomLabelWithValue:(double)arg1;
 - (void)renderBufferViewDidChangeState:(id)arg1;
 - (void)changeZoom:(id)arg1;
 - (void)gpuZoomToFit:(id)arg1;
@@ -78,10 +77,10 @@ __attribute__((visibility("hidden")))
 - (void)changeOrientation:(id)arg1;
 - (void)gpuFlipHorz:(id)arg1;
 - (void)gpuFlipVert:(id)arg1;
+- (void)_handleFlipAcrossVertical:(BOOL)arg1;
 - (void)gpuRotateCW:(id)arg1;
 - (void)gpuRotateCCW:(id)arg1;
 - (void)_updateOrientation:(BOOL)arg1;
-- (void)_updateBufferButtonsState;
 - (void)_updateToolbarState;
 - (void)_switchToolbarMode:(int)arg1;
 - (void)chooseImage:(id)arg1;
@@ -92,7 +91,6 @@ __attribute__((visibility("hidden")))
 - (void)_selectLevel:(id)arg1;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)beginEditor;
-- (void)_updateConstraints;
 - (void)primitiveInvalidate;
 - (void)loadView;
 - (void)_makeSegmentedControlImagesTemplates:(id)arg1;

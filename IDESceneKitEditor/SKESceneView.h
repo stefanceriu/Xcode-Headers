@@ -21,6 +21,7 @@
 
 @property __weak id <SKESceneViewDelegate> selectionDelegate; // @synthesize selectionDelegate=_selectionDelegate;
 - (void).cxx_destruct;
+- (void)viewDidMoveToWindow;
 @property(nonatomic, getter=isMultisamplingEnabled) BOOL multisamplingEnabled;
 - (void)focusNode:(id)arg1;
 - (void)cancelOperation:(id)arg1;

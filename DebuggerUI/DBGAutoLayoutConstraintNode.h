@@ -17,7 +17,7 @@
     struct SCNVector3 _endPoint;
     DBGViewInstance *_firstItem;
     DBGViewInstance *_secondItem;
-    NSMutableArray *_geometriesBelongingToConstraint;
+    NSMutableArray *_nodesBelongingToConstraint;
     struct CGRect _rootViewRect;
     BOOL _pointingUpOrRight;
     BOOL _selected;
@@ -44,7 +44,6 @@
 - (BOOL)constraintProjectionLineNeedsBeams;
 - (BOOL)constraintNeedsProjectionLine;
 - (BOOL)firstAndScecondItemInDifferentPlanes;
-- (void)updateProjectionLines;
 - (void)_addProjectionLineAtConstraintsEnd:(BOOL)arg1;
 - (void)addProjectionLines;
 - (id)limitedSpaceDualTBeamGeometryFromDrawable:(id)arg1;
@@ -52,10 +51,9 @@
 - (id)iBeamGeometryFromDrawable:(id)arg1;
 - (id)alignmentLineGeometryFromDrawable:(id)arg1;
 - (id)connectionLineGeometryFromDrawable:(id)arg1;
-- (id)lineGeometryWithStart:(struct SCNVector3)arg1 end:(struct SCNVector3)arg2;
-- (id)lineGeometryFromIBLine:(CDStruct_e3b9714e)arg1 isConstraintLine:(BOOL)arg2;
 - (id)geometryFromDrawable:(id)arg1;
 - (void)addGuideLine:(CDStruct_e3b9714e)arg1 guidelineIsLeftOrBottom:(BOOL)arg2 color:(id)arg3 rootViewRect:(struct CGRect)arg4 firstItem:(id)arg5 secondItem:(id)arg6;
+- (void)markBaselineViewsAsInterestingForAutoLayout;
 - (id)initWithDrawable:(id)arg1 guideLineColor:(id)arg2 rootViewRect:(struct CGRect)arg3 firstItem:(id)arg4 secondItem:(id)arg5 constraintModel:(id)arg6 sceneView:(id)arg7;
 
 @end

@@ -7,6 +7,7 @@
 #import "NSMenu.h"
 
 @interface NSMenu (DVTNSMenuAdditions)
+- (id)dvt_itemWithRepresentedObject:(id)arg1;
 - (void)dvt_replaceItemsWithItemsInMenu:(id)arg1;
 @end
 

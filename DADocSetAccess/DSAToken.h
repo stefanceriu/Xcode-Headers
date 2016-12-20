@@ -68,6 +68,9 @@
 - (id)declaredInHeaderURL;
 - (id)declaredIn;
 - (void)setDeclaredIn:(id)arg1;
+- (id)throwsDiscussionAsHTML;
+- (id)throwsDiscussion;
+- (void)setThrowsDiscussion:(id)arg1;
 - (id)returnValueAbstractAsHTML;
 - (id)returnValueInfo;
 - (void)setReturnValueInfo:(id)arg1;

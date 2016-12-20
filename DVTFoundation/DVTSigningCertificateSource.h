@@ -8,16 +8,21 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTLogAspect, DVTStackBacktrace, NSString;
+@class DVTLogAspect, DVTStackBacktrace, NSArray, NSString;
 
 @interface DVTSigningCertificateSource : NSObject <DVTInvalidation>
 {
+    BOOL _wantsAllApplicationsToAccessKeychainItems;
     id <DVTSigningCertificateSourceDelegate> _delegate;
+    NSArray *_keychainSearchList;
     DVTLogAspect *_logAspect;
 }
 
++ (id)_defaultKeychainSearchList;
 + (void)initialize;
+@property(nonatomic) BOOL wantsAllApplicationsToAccessKeychainItems; // @synthesize wantsAllApplicationsToAccessKeychainItems=_wantsAllApplicationsToAccessKeychainItems;
 @property(readonly) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
+@property(readonly) NSArray *keychainSearchList; // @synthesize keychainSearchList=_keychainSearchList;
 @property(retain, nonatomic) id <DVTSigningCertificateSourceDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)_keychainUnknownEvent;
@@ -27,8 +32,15 @@
 - (void)_stopListeningForKeychainEvents;
 - (void)_startListeningForKeychainEvents;
 - (id)_fetchSigningCertificates;
+- (BOOL)_isCertificateAnIdentity:(id)arg1;
+- (BOOL)_installPrivateKey:(struct OpaqueSecKeyRef *)arg1 privateKeyName:(id)arg2 error:(id *)arg3;
+- (BOOL)_installCertificate:(id)arg1 error:(id *)arg2;
+- (BOOL)_installCertificate:(id)arg1 privateKey:(struct OpaqueSecKeyRef *)arg2 keyName:(id)arg3 error:(id *)arg4;
+- (struct OpaqueSecKeychainRef *)_installKeychain;
 - (id)allSigningCertificates;
+- (id)initWithKeychainSearchList:(id)arg1 wantsAllApplicationsToAccessKeychainItems:(BOOL)arg2 logAspect:(id)arg3;
 - (id)initWithLogAspect:(id)arg1;
+- (id)init;
 - (void)primitiveInvalidate;
 
 // Remaining properties

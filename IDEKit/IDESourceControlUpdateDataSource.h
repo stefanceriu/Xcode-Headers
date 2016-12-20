@@ -16,6 +16,7 @@
 @property(copy) NSArray *operationInfo; // @synthesize operationInfo=_operationInfo;
 - (void).cxx_destruct;
 - (void)reviewFilesNavigator:(id)arg1 outlineView:(id)arg2 willDisplayCell:(id)arg3 forNavigableItem:(id)arg4;
+- (id)localStatusForNavigableItem:(id)arg1;
 - (id)reviewFilesNavigator:(id)arg1 documentLocationForNavigableItem:(id)arg2;
 - (id)operationInfoForWorkingTree:(id)arg1;
 - (id)statusCellsForCategoryName:(id)arg1 representedObject:(id)arg2;

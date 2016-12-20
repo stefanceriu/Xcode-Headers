@@ -8,5 +8,6 @@
 
 @interface NSBlockOperation (DVTNSOperationAdditions)
 + (id)dvt_blockOperationWithBlock:(CDUnknownBlockType)arg1;
+- (void)dvt_addExecutionBlock:(CDUnknownBlockType)arg1;
 @end
 

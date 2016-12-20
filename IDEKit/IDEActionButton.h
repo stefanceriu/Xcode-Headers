@@ -6,24 +6,22 @@
 
 #import "DVTGradientImageButton.h"
 
-@class NSMenu, NSPopUpButtonCell;
+@class NSPopUpButtonCell;
 
 @interface IDEActionButton : DVTGradientImageButton
 {
     NSPopUpButtonCell *_popUpCell;
-    NSMenu *_menu;
-    struct CGSize _menuOffset;
     CDUnknownBlockType _menuProvider;
+    struct CGSize _menuOffset;
 }
 
+@property struct CGSize menuOffset; // @synthesize menuOffset=_menuOffset;
 - (void).cxx_destruct;
+- (id)accessibilityRole;
+- (BOOL)accessibilityPerformPress;
 - (void)mouseDown:(id)arg1;
-- (void)_runPopUp:(id)arg1;
+- (void)_showIssuesMenu:(id)arg1;
 - (void)setCurrentMenuProvider:(CDUnknownBlockType)arg1;
-- (id)menu;
-- (void)setMenu:(id)arg1;
-- (struct CGSize)menuOffset;
-- (void)setMenuOffset:(struct CGSize)arg1;
 
 @end
 

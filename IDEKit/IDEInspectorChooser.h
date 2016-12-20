@@ -24,6 +24,7 @@
     NSMenuItem *_defaultSeperator;
     NSMenuItem *_specialMarkMenuItem;
     id <DVTCancellable> _valueObservation;
+    id <DVTCancellable> _nilPlaceholderObservation;
     BOOL _disableWhenNil;
     IDEInspectorKeyPath *_valueKeyPath;
     DVTDelayedInvocation *_refreshInvocation;
@@ -52,7 +53,6 @@
 - (id)_attributedMenuItemTitleForHeaderTitle:(id)arg1;
 - (id)initWithTitle:(id)arg1 categories:(id)arg2 defaultChoice:(id)arg3 nilChoice:(id)arg4 disableWhenNil:(BOOL)arg5 inspectorController:(id)arg6 valueKeyPath:(id)arg7;
 - (void)configureAccessibilityForUIElement:(id)arg1 forAttribute:(id)arg2 keyPath:(id)arg3 withAppendedString:(id)arg4;
-- (id)humanReadableNameForInspectorKeyPath:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

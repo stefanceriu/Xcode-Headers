@@ -8,7 +8,7 @@
 
 @class NSDictionary;
 
-@protocol DYFrameBuffer <DYResource>
+@protocol DYFramebuffer <DYResource>
 @property(readonly, nonatomic) NSDictionary *attachmentsDict;
 - (id)initWithProperties:(NSDictionary *)arg1;
 @end

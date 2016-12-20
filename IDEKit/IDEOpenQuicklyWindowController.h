@@ -10,14 +10,15 @@
 #import "NSTableViewDelegate.h"
 #import "NSWindowDelegate.h"
 
-@class DVTSearchField, IDEOpenQuicklyQuery, IDEOpenQuicklyTableView, IDEWorkspaceTabController, NSArray, NSArrayController, NSImageView, NSMutableArray, NSString;
+@class DVTBorderedView, DVTSearchField, IDEOpenQuicklyQuery, IDEOpenQuicklyTableView, IDEWorkspaceTabController, NSArray, NSArrayController, NSImageView, NSMutableArray, NSString, NSVisualEffectView;
 
 @interface IDEOpenQuicklyWindowController : NSWindowController <IDEOpenQuicklyQueryDelegate, NSTableViewDelegate, NSWindowDelegate>
 {
     DVTSearchField *_searchField;
     NSArrayController *_arrayController;
     IDEOpenQuicklyTableView *_tableView;
-    NSImageView *_separatorView;
+    DVTBorderedView *_separatorView;
+    NSImageView *_magnifyingGlassImageView;
     NSMutableArray *_bindingTokens;
     IDEWorkspaceTabController *_workspaceTabController;
     IDEOpenQuicklyQuery *_query;
@@ -31,10 +32,12 @@
     BOOL _windowClosed;
     BOOL _waitingForBetterResults;
     BOOL _disableSelectionSave;
+    NSVisualEffectView *_visualEffectView;
 }
 
 + (id)openQuicklyWindowController;
 + (void)initialize;
+@property __weak NSVisualEffectView *visualEffectView; // @synthesize visualEffectView=_visualEffectView;
 @property BOOL windowClosed; // @synthesize windowClosed=_windowClosed;
 @property(retain) IDEOpenQuicklyQuery *query; // @synthesize query=_query;
 - (void).cxx_destruct;
@@ -58,9 +61,11 @@
 - (void)openQuicklyQueryWillUpdate:(id)arg1;
 - (void)_resizeView;
 - (void)_captureQueryString;
-- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
+- (id)_titleForMatch:(id)arg1;
+- (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
+- (void)tableView:(id)arg1 didAddRowView:(id)arg2 forRow:(long long)arg3;
 - (void)windowWillClose:(id)arg1;
-- (void)awakeFromNib;
+- (void)windowDidLoad;
 - (id)_activeWorkspaceWindowController;
 - (id)_openWindowTerminationDisablingReason;
 

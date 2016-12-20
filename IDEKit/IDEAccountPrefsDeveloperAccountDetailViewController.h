@@ -6,20 +6,16 @@
 
 #import <IDEKit/IDEViewController.h>
 
-@class DVTBorderedView, DVTDeveloperRecord, DVTObservingToken, IDERollOverTableView, NSArrayController, NSError, NSImageView, NSPredicate, NSSet, NSView;
+#import "IDEAccountDetailsRefresherDelegate.h"
 
-@interface IDEAccountPrefsDeveloperAccountDetailViewController : IDEViewController
+@class DVTBorderedView, DVTTableView, IDEAccountDetailsRefresher, NSArrayController, NSImageView, NSObjectController, NSSet, NSView;
+
+@interface IDEAccountPrefsDeveloperAccountDetailViewController : IDEViewController <IDEAccountDetailsRefresherDelegate>
 {
-    DVTObservingToken *_teamsToken;
-    DVTObservingToken *_macTeamsToken;
-    DVTObservingToken *_iosTeamsToken;
-    _Bool _loadingTeams;
-    NSSet *_teams;
-    DVTDeveloperRecord *_developer;
-    NSError *_teamLoadingError;
-    NSArrayController *_teamsArrayController;
-    IDERollOverTableView *_teamsTable;
-    NSPredicate *_fetchPredicate;
+    NSObjectController *_objectController;
+    NSArrayController *_teamDescriptionsArrayController;
+    NSSet *_teamDescriptions;
+    DVTTableView *_teamsTable;
     NSImageView *_imageView;
     DVTBorderedView *_borderedView;
     NSView *_credentialsView;
@@ -27,12 +23,14 @@
     NSView *_tokenView;
     NSImageView *_errorImageView1;
     NSImageView *_errorImageView2;
+    IDEAccountDetailsRefresher *_refresher;
 }
 
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (id)keyPathsForValuesAffectingUserDescription;
 + (id)keyPathsForValuesAffectingPassword;
 + (id)keyPathsForValuesAffectingDeveloperAccount;
+@property(retain, nonatomic) IDEAccountDetailsRefresher *refresher; // @synthesize refresher=_refresher;
 @property __weak NSImageView *errorImageView2; // @synthesize errorImageView2=_errorImageView2;
 @property __weak NSImageView *errorImageView1; // @synthesize errorImageView1=_errorImageView1;
 @property(retain) NSView *tokenView; // @synthesize tokenView=_tokenView;
@@ -40,30 +38,27 @@
 @property __weak NSView *credentialsView; // @synthesize credentialsView=_credentialsView;
 @property(retain) DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
 @property(retain) NSImageView *imageView; // @synthesize imageView=_imageView;
-@property(readonly) NSPredicate *fetchPredicate; // @synthesize fetchPredicate=_fetchPredicate;
-@property(retain) IDERollOverTableView *teamsTable; // @synthesize teamsTable=_teamsTable;
-@property(retain) NSArrayController *teamsArrayController; // @synthesize teamsArrayController=_teamsArrayController;
-@property(retain) NSError *teamLoadingError; // @synthesize teamLoadingError=_teamLoadingError;
+@property(retain) DVTTableView *teamsTable; // @synthesize teamsTable=_teamsTable;
+@property(copy, nonatomic) NSSet *teamDescriptions; // @synthesize teamDescriptions=_teamDescriptions;
+@property(retain, nonatomic) NSArrayController *teamDescriptionsArrayController; // @synthesize teamDescriptionsArrayController=_teamDescriptionsArrayController;
+@property __weak NSObjectController *objectController; // @synthesize objectController=_objectController;
 - (void).cxx_destruct;
-- (void)primitiveInvalidate;
 - (void)viewDidInstall;
 - (id)contextMenu;
 - (void)_refreshUI;
+- (void)refresherDidFail:(id)arg1;
+- (void)refresherDidFinishWithTeamDescriptions:(id)arg1;
 - (void)setRepresentedObject:(id)arg1;
 - (void)viewDetails:(id)arg1;
 - (void)viewDetailsForTeam:(id)arg1;
 - (void)tableViewDoubleClicked:(id)arg1;
-- (void)updateEmptyContentString;
 - (void)signInAgain:(id)arg1;
-@property(retain) DVTDeveloperRecord *developer; // @synthesize developer=_developer;
-@property _Bool loadingTeams; // @synthesize loadingTeams=_loadingTeams;
-@property(copy) NSSet *teams; // @synthesize teams=_teams;
 - (void)setUserDescription:(id)arg1;
 - (id)userDescription;
 - (void)setPassword:(id)arg1;
 - (id)password;
-- (id)moc;
 - (id)developerAccount;
+- (void)primitiveInvalidate;
 
 @end
 

@@ -12,6 +12,7 @@
 
 @interface XCSUIIntegrationIssue : NSObject <DVTRadarSupport_Issue>
 {
+    NSString *attachLabelTitle;
     unsigned long long _issueUIType;
     XCSIntegrationIssue *_issue;
     XCSIntegration *_integration;
@@ -23,6 +24,7 @@
 @property(readonly) XCSIntegration *integration; // @synthesize integration=_integration;
 @property(readonly) XCSIntegrationIssue *issue; // @synthesize issue=_issue;
 @property(readonly) unsigned long long issueUIType; // @synthesize issueUIType=_issueUIType;
+@property(readonly, copy, nonatomic) NSString *attachLabelTitle; // @synthesize attachLabelTitle;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) unsigned long long associatedRadarID;
 @property(readonly, copy, nonatomic) NSString *stringRepresentation;

@@ -29,7 +29,7 @@
 @property(retain, nonatomic) NSArray *children; // @synthesize children=_children;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(nonatomic) __weak XCSTestObjectPlaceholder *parent; // @synthesize parent=_parent;
-@property(retain, nonatomic) XCSIntegration *integration; // @synthesize integration=_integration;
+@property(nonatomic) __weak XCSIntegration *integration; // @synthesize integration=_integration;
 - (void).cxx_destruct;
 - (BOOL)_validateWithIntegration:(id)arg1 name:(id)arg2 keyPath:(id)arg3 validationErrors:(id *)arg4;
 - (id)_statusInfoForKeyPath:(id)arg1;

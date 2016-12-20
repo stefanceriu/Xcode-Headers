@@ -14,6 +14,7 @@
     DVTObservingToken *_blameObserver;
     id _blameInfoPanelDidShowObserver;
     id _blameInfoPanelDidHideObserver;
+    id _themeObserver;
 }
 
 + (id)annotationProviderForContext:(id)arg1 error:(id *)arg2;
@@ -23,6 +24,7 @@
 - (id)_annotationThemeWithHighlight:(BOOL)arg1 forSelected:(BOOL)arg2;
 - (void)_createAnnotations;
 - (void)_updateThemeForInfoPanelFromSender:(id)arg1;
+- (void)_clearThemeSelection;
 - (id)initWithContext:(id)arg1;
 
 @end

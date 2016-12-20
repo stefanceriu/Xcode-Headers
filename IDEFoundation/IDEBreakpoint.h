@@ -30,6 +30,7 @@
 }
 
 + (id)propertiesAffectingPersistenceState;
++ (BOOL)supportsInvalidationPrevention;
 + (void)initialize;
 @property(retain) id <IDEInternalBreakpointDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain) NSString *customStopReasonString; // @synthesize customStopReasonString=_customStopReasonString;

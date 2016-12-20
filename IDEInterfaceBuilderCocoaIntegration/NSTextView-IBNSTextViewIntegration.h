@@ -21,6 +21,10 @@
 - (void)setIbInspectedAllowsOnlyRomanCharacters:(BOOL)arg1;
 - (BOOL)ibInspectedAllowsOnlyRomanCharacters;
 @property BOOL ibShadowedIncrementalSearchingEnabled;
+- (void)unarchiveAutomaticTextCompletionEnabled:(id)arg1;
+- (void)archiveAutomaticTextCompletionEnabled:(id)arg1;
+- (void)unarchiveAllowsCharacterPickerTouchBarItem:(id)arg1;
+- (void)archiveAllowsCharacterPickerTouchBarItem:(id)arg1;
 @property long long ibArchivedFindStyle;
 @property BOOL ibShadowedUsesFindBar;
 @property long long ibShadowedLayoutOrientation;
@@ -32,5 +36,9 @@
 - (BOOL)ibIsUserSizable;
 - (id)ibPasteboardTypes;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (id)ibLocalAdditionalLocalizableAttributeKeyPaths;
+- (id)_ibLocalAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (BOOL)ibTouchBarPropertiesAreAvailable;
 @end
 

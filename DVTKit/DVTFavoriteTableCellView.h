@@ -6,15 +6,17 @@
 
 #import "NSTableCellView.h"
 
-@class NSButton, NSTrackingArea;
+@class NSButton, NSTextField, NSTrackingArea;
 
 @interface DVTFavoriteTableCellView : NSTableCellView
 {
     NSTrackingArea *trackingArea_;
     BOOL _showFavouriteButton;
     NSButton *favoriteButton;
+    NSTextField *_urlTextField;
 }
 
+@property NSTextField *urlTextField; // @synthesize urlTextField=_urlTextField;
 @property BOOL showFavouriteButton; // @synthesize showFavouriteButton=_showFavouriteButton;
 @property NSButton *favoriteButton; // @synthesize favoriteButton;
 - (void).cxx_destruct;

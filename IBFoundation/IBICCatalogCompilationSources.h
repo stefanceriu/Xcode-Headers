@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IBICCatalogCollection, IBICCatalogCompilerResult, NSMutableDictionary, NSMutableSet, NSSet;
+@class IBICCatalogCollection, IBICCatalogCompilerResult, IBICStickerPack, NSMutableDictionary, NSMutableSet, NSSet;
 
 @interface IBICCatalogCompilationSources : NSObject
 {
@@ -19,10 +19,12 @@
     NSSet *_itemsForSpriteAtlasCompiler;
     NSSet *_itemsForIconCompiler;
     NSSet *_itemsForBrandAssetCollectionsInfoPlistGeneration;
+    IBICStickerPack *_itemForStickerPack;
     IBICCatalogCompilerResult *_selectionResult;
 }
 
 @property(readonly) IBICCatalogCompilerResult *selectionResult; // @synthesize selectionResult=_selectionResult;
+@property(retain) IBICStickerPack *itemForStickerPack; // @synthesize itemForStickerPack=_itemForStickerPack;
 @property(retain) NSSet *itemsForBrandAssetCollectionsInfoPlistGeneration; // @synthesize itemsForBrandAssetCollectionsInfoPlistGeneration=_itemsForBrandAssetCollectionsInfoPlistGeneration;
 @property(retain) NSSet *itemsForIconCompiler; // @synthesize itemsForIconCompiler=_itemsForIconCompiler;
 @property(retain) NSSet *itemsForSpriteAtlasCompiler; // @synthesize itemsForSpriteAtlasCompiler=_itemsForSpriteAtlasCompiler;
@@ -32,6 +34,7 @@
 @property(readonly) NSSet *pathsToDeleteAtEndOfCompilation; // @synthesize pathsToDeleteAtEndOfCompilation=_pathsToDeleteAtEndOfCompilation;
 @property(retain) IBICCatalogCollection *catalogCollection; // @synthesize catalogCollection=_catalogCollection;
 - (void).cxx_destruct;
+- (id)description;
 - (void)addPathToDeleteAtEndOfCompilation:(id)arg1;
 - (id)allItems;
 - (id)itemsForPhase:(id)arg1;

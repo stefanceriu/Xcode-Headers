@@ -36,8 +36,8 @@
 - (BOOL)send:(id)arg1 error:(id *)arg2 replyQueue:(struct dispatch_queue_s *)arg3 timeout:(unsigned long long)arg4 handler:(CDUnknownBlockType)arg5;
 - (BOOL)send:(id)arg1 inReplyTo:(id)arg2 error:(id *)arg3;
 - (BOOL)send:(id)arg1 inReplyTo:(id)arg2 error:(id *)arg3 replyQueue:(struct dispatch_queue_s *)arg4 timeout:(unsigned long long)arg5 handler:(CDUnknownBlockType)arg6;
-@property(nonatomic) BOOL synchronous; // @dynamic synchronous;
-@property(readonly, nonatomic) BOOL invalid; // @dynamic invalid;
+@property(nonatomic) BOOL synchronous;
+@property(readonly, nonatomic) BOOL invalid;
 - (void)_scheduleInvalidation:(id)arg1;
 - (void)invalidate;
 - (long long)_sendMessage:(id)arg1 error:(id *)arg2;
@@ -46,13 +46,13 @@
 - (void)_dispatchMessage:(id)arg1;
 - (void)_handleReplyTimeout:(unsigned int)arg1 count:(unsigned int)arg2;
 - (void)_invalidate;
-@property(readonly, nonatomic) BOOL connected; // @dynamic connected;
+@property(readonly, nonatomic) BOOL connected;
 - (id)connect;
 - (void)_cancelSource:(id)arg1;
 - (BOOL)_activateSource:(id)arg1;
 - (id)newSourceWithQueue:(struct dispatch_queue_s *)arg1;
 - (void)setTargetQueue:(struct dispatch_queue_s *)arg1;
-@property(readonly, retain, nonatomic) NSURL *url; // @dynamic url;
+@property(readonly, retain, nonatomic) NSURL *url;
 - (id)debugDescription;
 - (id)description;
 - (void)dealloc;

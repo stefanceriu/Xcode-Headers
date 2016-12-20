@@ -16,6 +16,7 @@
 - (NSString *)loadStringForURL:(NSString *)arg1 variableName:(NSString *)arg2 bufferType:(NSString *)arg3;
 - (NSMutableArray *)constructTraceLinesWithFunction:(const struct Function *)arg1 arguments:(NSArray *)arg2;
 - (NSMutableString *)constructTraceLineWithFunction:(const struct Function *)arg1 arguments:(NSArray *)arg2;
+- (NSString *)typeStringForArgumentType:(unsigned int)arg1;
 - (NSString *)rewriteVariable:(const char *)arg1 receiver:(unsigned long long)arg2;
 - (NSString *)rewriteArgument:(const struct Argument *)arg1;
 - (NSString *)getCastForArgument:(const struct Argument *)arg1 inFunction:(const struct Function *)arg2;

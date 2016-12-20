@@ -29,6 +29,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)ibSegueTriggers;
 @property(readonly) NSNumber *ibInspectedNumberOfTouchesDefault;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

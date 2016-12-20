@@ -6,50 +6,29 @@
 
 #import "IDEViewController.h"
 
-#import "IDECapsuleViewController.h"
-#import "IDECapsuleViewDelegate.h"
+@class NSStackView, NSViewController<XCSUICreateBotTriggerChildViewController>, XCSTrigger, XCSUICreateBotTriggerConditionsViewController;
 
-@class NSImage, NSString, NSViewController<XCSUICreateBotTriggerChildViewController>, XCSTrigger, XCSUICreateBotTriggerConditionsViewController;
-
-@interface XCSUICreateBotTriggerViewController : IDEViewController <IDECapsuleViewController, IDECapsuleViewDelegate>
+@interface XCSUICreateBotTriggerViewController : IDEViewController
 {
     XCSTrigger *_trigger;
     NSViewController<XCSUICreateBotTriggerChildViewController> *_childViewController;
     XCSUICreateBotTriggerConditionsViewController *_conditionsViewController;
     id <XCSUICreateBotTriggerViewControllerDelegate> _delegate;
+    NSStackView *_stackView;
 }
 
+@property __weak NSStackView *stackView; // @synthesize stackView=_stackView;
 @property __weak id <XCSUICreateBotTriggerViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(readonly) XCSUICreateBotTriggerConditionsViewController *conditionsViewController; // @synthesize conditionsViewController=_conditionsViewController;
 @property(readonly) NSViewController<XCSUICreateBotTriggerChildViewController> *childViewController; // @synthesize childViewController=_childViewController;
 @property(readonly) XCSTrigger *trigger; // @synthesize trigger=_trigger;
 - (void).cxx_destruct;
-- (void)capsuleView:(id)arg1 wasDisclosed:(BOOL)arg2;
-- (void)capsuleView:(id)arg1 setTitle:(id)arg2;
-- (BOOL)capsuleViewCanBeRenamed:(id)arg1;
-- (void)capsuleViewDidClickRemoveButton:(id)arg1;
-- (BOOL)capsuleViewCanBeRemoved:(id)arg1;
 - (void)setTitle:(id)arg1;
-@property(readonly) BOOL canRename;
+- (BOOL)canRename;
 - (void)remove:(id)arg1;
-@property(readonly) BOOL canRemove;
-@property(readonly, copy) NSString *titleForDisplay;
-- (void)configureViewHierarchy;
-- (id)initWithTrigger:(id)arg1 blueprint:(id)arg2;
-
-// Remaining properties
-@property BOOL canAddItems;
-@property(readonly) BOOL canDrag;
-@property BOOL canRemoveItems;
-@property(readonly) BOOL canSelect;
-@property(readonly) BOOL canUndisclose;
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) BOOL disclosedByDefault;
-@property(readonly, copy) NSString *footerLabel;
-@property(readonly) unsigned long long hash;
-@property(readonly) NSImage *icon;
-@property(readonly) Class superclass;
+- (BOOL)canRemove;
+- (id)titleForDisplay;
+- (id)initWithTrigger:(id)arg1 botDefinitionContext:(id)arg2;
 
 @end
 

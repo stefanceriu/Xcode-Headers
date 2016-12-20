@@ -10,14 +10,14 @@
 
 @interface IDEAlertEvent : NSObject
 {
-    NSString *_identifier;
-    NSString *_title;
-    NSString *_titleSortKey;
+    NSMutableDictionary *_alerts;
+    NSMutableDictionary *_observationTokensByAlert;
     NSString *_group;
     NSString *_groupSortKey;
     NSString *_iconName;
-    NSMutableDictionary *_alerts;
-    NSMutableDictionary *_observationTokensByAlert;
+    NSString *_identifier;
+    NSString *_title;
+    NSString *_titleSortKey;
     BOOL _showInPreferences;
 }
 

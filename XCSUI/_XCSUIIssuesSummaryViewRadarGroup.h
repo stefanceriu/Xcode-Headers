@@ -6,29 +6,21 @@
 
 #import "NSObject.h"
 
-#import "DVTRadar_ComponentForPath.h"
-
 @class NSMutableArray, NSString;
 
-@interface _XCSUIIssuesSummaryViewRadarGroup : NSObject <DVTRadar_ComponentForPath>
+@interface _XCSUIIssuesSummaryViewRadarGroup : NSObject
 {
-    NSString *path;
-    NSString *radarComponentName;
-    NSString *radarComponentVersion;
     NSMutableArray *_issueViews;
+    NSString *_path;
+    NSString *_radarComponentName;
+    NSString *_radarComponentVersion;
 }
 
+@property(copy) NSString *radarComponentVersion; // @synthesize radarComponentVersion=_radarComponentVersion;
+@property(copy) NSString *radarComponentName; // @synthesize radarComponentName=_radarComponentName;
+@property(copy) NSString *path; // @synthesize path=_path;
 @property(retain) NSMutableArray *issueViews; // @synthesize issueViews=_issueViews;
-@property(copy) NSString *radarComponentVersion; // @synthesize radarComponentVersion;
-@property(copy) NSString *radarComponentName; // @synthesize radarComponentName;
-@property(copy) NSString *path; // @synthesize path;
 - (void).cxx_destruct;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

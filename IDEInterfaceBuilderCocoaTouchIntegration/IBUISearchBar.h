@@ -14,7 +14,7 @@
 
 @interface IBUISearchBar : IBUIView <IBDocumentArchiving, NSCoding, IBUITextInputTraits>
 {
-    int barStyle;
+    long long barStyle;
     int searchBarStyle;
     long long selectedScopeButtonIndex;
     NSString *text;
@@ -66,7 +66,7 @@
 @property(copy, nonatomic) NSString *prompt; // @synthesize prompt;
 @property(copy, nonatomic) NSString *text; // @synthesize text;
 @property(nonatomic) int searchBarStyle; // @synthesize searchBarStyle;
-@property(nonatomic) int barStyle; // @synthesize barStyle;
+@property(nonatomic) long long barStyle; // @synthesize barStyle;
 @property(nonatomic, getter=isTranslucent) BOOL translucent; // @synthesize translucent;
 - (void).cxx_destruct;
 - (id)localExtraMarshalledAttributesKeyPaths;
@@ -108,6 +108,14 @@
 - (id)inspectedScopeButtonTitles;
 - (void)setInspectedShowsScopeBar:(BOOL)arg1;
 - (BOOL)inspectedShowsScopeBar;
+- (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
+- (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
+- (id)ibLocalPerConfigurationAttributeKeyPaths;
+- (id)ibLocalLocalizableStringArrayAttributeKeyPaths;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibEditorClass;
+- (id)ibLocalAttributeKeyPaths;
 - (Class)barMetricsClass;
 
 // Remaining properties

@@ -27,6 +27,7 @@
 }
 
 + (id)propertiesAffectingPersistenceState;
++ (BOOL)supportsInvalidationPrevention;
 @property unsigned long long offsetFromSymbolStart; // @synthesize offsetFromSymbolStart=_offsetFromSymbolStart;
 @property(readonly) unsigned long long address; // @synthesize address=_address;
 @property(readonly) NSString *moduleName; // @synthesize moduleName=_moduleName;

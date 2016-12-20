@@ -17,9 +17,11 @@
 + (void)_replacePlaceholderItemWithTag:(unsigned long long)arg1 inMenu:(id)arg2 withGroups:(id)arg3 priorities:(id)arg4;
 + (void)_placePinnedGroups:(id)arg1 inMenu:(id)arg2 withPriorities:(id)arg3 topPinned:(BOOL)arg4;
 + (void)insertMenuItemsForContextualMenuItemIdentifier:(id)arg1 intoMenu:(id)arg2 forSubArea:(id)arg3 fileType:(id)arg4 editorDocumentExtension:(id)arg5;
-+ (id)_buildHelpSubmenuItemForMenuDefinitionIdentifier:(id)arg1 forViewController:(id)arg2 fillingExtensionIdToMenuMap:(id)arg3;
 + (id)_buildSubmenuItemForMenuDefinitionIdentifier:(id)arg1 forViewController:(id)arg2 fillingExtensionIdToMenuMap:(id)arg3;
++ (void)_openHelpBookFromContextMenu:(id)arg1;
++ (id)contextHelpMenuItemForHelpID:(id)arg1 andTitle:(id)arg2;
 + (id)contextHelpMenuItemForHelpID:(id)arg1;
++ (void)_addHelpItemsToMenu:(id)arg1 fromExtension:(id)arg2;
 + (void)_appendItemsToMenu:(id)arg1 forMenuDefinitionIdentifier:(id)arg2 forViewController:(id)arg3 fillingExtensionIdToMenuMap:(id)arg4;
 + (void)appendItemsToMenu:(id)arg1 forMenuDefinitionIdentifier:(id)arg2 forViewController:(id)arg3 extensionIdToMenuMap:(id *)arg4;
 + (id)menuForMenuDefinitionIdentifier:(id)arg1 forViewController:(id)arg2 extensionIdToMenuMap:(id *)arg3;

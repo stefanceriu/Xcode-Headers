@@ -6,25 +6,27 @@
 
 #import "NSObject.h"
 
-@class DVTPortalPermissions, NSNumber, NSString;
+@class DVTPortalPermissions, NSArray, NSNumber, NSString;
 
 @interface DVTPortalMember : NSObject
 {
-    NSString *_portalID;
-    NSString *_emailAddress;
     NSString *_firstName;
     NSString *_lastName;
     NSNumber *_personID;
     DVTPortalPermissions *_permissions;
+    NSString *_emailAddress;
+    NSArray *_roles;
 }
 
-@property(readonly, nonatomic) DVTPortalPermissions *permissions; // @synthesize permissions=_permissions;
+@property(copy, nonatomic) NSArray *roles; // @synthesize roles=_roles;
+@property(copy, nonatomic) NSString *emailAddress; // @synthesize emailAddress=_emailAddress;
+@property(retain, nonatomic) DVTPortalPermissions *permissions; // @synthesize permissions=_permissions;
 @property(copy, nonatomic) NSNumber *personID; // @synthesize personID=_personID;
 @property(copy, nonatomic) NSString *lastName; // @synthesize lastName=_lastName;
 @property(copy, nonatomic) NSString *firstName; // @synthesize firstName=_firstName;
-@property(copy, nonatomic) NSString *emailAddress; // @synthesize emailAddress=_emailAddress;
-@property(copy, nonatomic) NSString *portalID; // @synthesize portalID=_portalID;
 - (void).cxx_destruct;
+- (id)memberIDWithSession:(id)arg1 error:(id *)arg2;
+@property(readonly, nonatomic) NSString *roleDescription;
 - (id)description;
 
 @end

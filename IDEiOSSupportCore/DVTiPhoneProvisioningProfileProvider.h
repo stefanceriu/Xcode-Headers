@@ -6,13 +6,19 @@
 
 #import "DVTProvisioningProfileProvider.h"
 
+@class DTDKProvisioningProfileController;
+
 @interface DVTiPhoneProvisioningProfileProvider : DVTProvisioningProfileProvider
 {
+    DTDKProvisioningProfileController *_controller;
 }
 
 + (id)keyPathsForValuesAffectingAllProfiles;
 + (id)keyPathsForValuesAffectingAreProfilesLoaded;
++ (id)providerWithProvisioningProfileSearchPaths:(id)arg1;
+- (void).cxx_destruct;
 - (id)profileWithUUID:(id)arg1;
+- (void)uninstallHostProfiles:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)installHostProfiles:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (id)profileWithData:(id)arg1 error:(id *)arg2;
 - (id)profileWithURL:(id)arg1 error:(id *)arg2;
@@ -23,7 +29,7 @@
 - (id)allProfiles;
 - (BOOL)areProfilesLoaded;
 - (void)forceProfileLoading;
-- (id)controller;
+@property(readonly, nonatomic) DTDKProvisioningProfileController *controller; // @synthesize controller=_controller;
 - (id)certificateUtilities;
 
 @end

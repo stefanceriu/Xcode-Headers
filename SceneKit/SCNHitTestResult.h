@@ -24,6 +24,7 @@
 @property(readonly, nonatomic) struct SCNVector3 localCoordinates;
 @property(readonly, nonatomic) long long faceIndex;
 @property(readonly, nonatomic) long long geometryIndex;
+@property(readonly, nonatomic) SCNNode *boneNode;
 @property(readonly, nonatomic) SCNNode *node;
 - (void)dealloc;
 - (id)initWithResult:(struct __C3DHitTestResult *)arg1;

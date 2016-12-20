@@ -6,35 +6,16 @@
 
 #import "IBDocumentInspectorViewController.h"
 
-@class DVTDelayedInvocation, NSArray, NSString;
-
 @interface IBCocoaTouchDocumentInspectorViewController : IBDocumentInspectorViewController
 {
-    DVTDelayedInvocation *_viewAsMenusInvocation;
-    id <IBCollection> _documentObservingTokens;
-    NSArray *_viewAsMenuItems;
-    NSString *_viewAsTitle;
 }
 
 + (id)documentPlatform;
-+ (id)keyPathsForValuesAffectingShouldShowViewAsMenu;
 + (id)keyPathsForValuesAffectingShouldShowGlobalTintColor;
-@property(retain, nonatomic) NSString *viewAsTitle; // @synthesize viewAsTitle=_viewAsTitle;
-@property(retain, nonatomic) NSArray *viewAsMenuItems; // @synthesize viewAsMenuItems=_viewAsMenuItems;
-- (void).cxx_destruct;
-- (void)primitiveInvalidate;
-- (void)startObservingDocuments:(id)arg1;
-- (void)stopObservingDocuments:(id)arg1;
-- (void)documentUpdatedDependencies:(id)arg1;
 - (void)didApplyDependencyValue:(id)arg1 toDependency:(id)arg2 forDocument:(id)arg3;
-- (void)setContent:(id)arg1;
-- (void)selectViewAs:(id)arg1;
-- (void)refreshViewAsMenus;
-- (id)buildViewAsTitle;
 - (id)informativeTextForDisablingConfigurations;
 - (id)informativeTextForEnablingConfigurations;
 - (id)userLabelForConfigurations;
-- (BOOL)shouldShowViewAsMenu;
 - (BOOL)shouldShowGlobalTintColor;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 

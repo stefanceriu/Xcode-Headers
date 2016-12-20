@@ -22,6 +22,7 @@
     NSFileHandle *_standardInput;
     NSFileHandle *_standardOutput;
     NSFileHandle *_standardError;
+    NSMutableArray *_pipesToRetain;
     NSRunLoop *_waitLoop;
     NSString *_waitRunLoopMode;
     CDUnknownBlockType _runLoopSignaler;
@@ -50,6 +51,7 @@
 - (id)stringRepresentation;
 - (id)description;
 @property(readonly) BOOL isRunning;
+- (void)markPipeToRetain:(id)arg1;
 - (void)markFileHandleToStayOpenAcrossExec:(id)arg1;
 - (void)markFileDescriptorToStayOpenAcrossExec:(int)arg1;
 - (void)hookStandardInputToPipe:(id)arg1 closingParentEndOnLaunch:(BOOL)arg2;
@@ -59,6 +61,7 @@
 - (void)hookStandardErrorToFileHandle:(id)arg1 closingParentEndOnLaunch:(BOOL)arg2;
 - (void)hookStandardOutputToFileHandle:(id)arg1 closingParentEndOnLaunch:(BOOL)arg2;
 - (void)addFileHandleToCloseAfterLaunch:(id)arg1;
+- (BOOL)runLoggingOutputWithLogAspect:(id)arg1 error:(id *)arg2;
 - (BOOL)runReturningStandardOutput:(id *)arg1 standardError:(id *)arg2 error:(id *)arg3;
 - (BOOL)runReturningStandardOutput:(id *)arg1 standardError:(id *)arg2 standardInput:(id)arg3 error:(id *)arg4;
 - (BOOL)sendSignal:(int)arg1 error:(id *)arg2;

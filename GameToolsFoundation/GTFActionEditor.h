@@ -19,7 +19,7 @@
 #import "GTFActionTrackOverviewDelegate.h"
 #import "GTFFileSystemEventStreamDelegate.h"
 
-@class DVTObservingToken, DVTSplitView, GTFActionCreatePopoverController, GTFActionDocument, GTFActionLibrary, GTFActionLoopPopoverController, GTFActionMapper, GTFActionNodeOverviewView, GTFActionRefPreviewPopoverController, GTFActionTimelineControlView, GTFActionTimelineModel, GTFActionTimelineView, GTFActionTrackOverviewView, GTFFileSystemEventStream, IDEMediaResourceVariantContext, NSArray, NSDictionary, NSMapTable, NSMutableArray, NSMutableDictionary, NSPopUpButton, NSScrollView, NSSlider, NSString, NSView, SKActionReference;
+@class DVTObservingToken, DVTSplitView, GTFActionCreatePopoverController, GTFActionLibrary, GTFActionLoopPopoverController, GTFActionMapper, GTFActionNodeOverviewView, GTFActionRefPreviewPopoverController, GTFActionTimelineControlView, GTFActionTimelineModel, GTFActionTimelineView, GTFActionTrackOverviewView, GTFFileSystemEventStream, IDEEditorDocument<GTFActionDocument>, IDEMediaResourceVariantContext, NSArray, NSDictionary, NSMapTable, NSMutableArray, NSMutableDictionary, NSPopUpButton, NSScrollView, NSSlider, NSString, NSView, SKActionReference;
 
 @interface GTFActionEditor : IDEViewController <GTFActionNodeTrackViewDelegate, GTFActionTimelineViewDelegate, GTFActionLibraryDelegate, GTFActionCreateDelegate, GTFActionLoopPopoverDelegate, GTFActionRefPopoverDelegate, GTFActionOverviewViewControllerDelegate, GTFActionNodeOverviewDelegate, GTFActionTrackOverviewDelegate, GTFActionTimelineModelDelegate, GTFFileSystemEventStreamDelegate, GTFActionLibraryReferenceLookupSourceDelegate>
 {
@@ -90,9 +90,9 @@
 @property __weak DVTSplitView *sideSplitView; // @synthesize sideSplitView=_sideSplitView;
 @property __weak GTFActionTimelineControlView *actionNodeSelectorTimelineControlView; // @synthesize actionNodeSelectorTimelineControlView=_actionNodeSelectorTimelineControlView;
 @property __weak NSView *actionNodeSelectorTimelineTabSubview; // @synthesize actionNodeSelectorTimelineTabSubview=_actionNodeSelectorTimelineTabSubview;
-@property __weak GTFActionRefPreviewPopoverController *refActionViewController; // @synthesize refActionViewController=_refActionViewController;
-@property __weak GTFActionCreatePopoverController *addActionViewController; // @synthesize addActionViewController=_addActionViewController;
-@property __weak GTFActionLoopPopoverController *loopActionViewController; // @synthesize loopActionViewController=_loopActionViewController;
+@property(retain, nonatomic) GTFActionRefPreviewPopoverController *refActionViewController; // @synthesize refActionViewController=_refActionViewController;
+@property(retain, nonatomic) GTFActionCreatePopoverController *addActionViewController; // @synthesize addActionViewController=_addActionViewController;
+@property(retain, nonatomic) GTFActionLoopPopoverController *loopActionViewController; // @synthesize loopActionViewController=_loopActionViewController;
 @property(retain) NSScrollView *trackOverviewScroll; // @synthesize trackOverviewScroll=_trackOverviewScroll;
 @property(nonatomic) double playbackSpeed; // @synthesize playbackSpeed=_playbackSpeed;
 @property(nonatomic) BOOL isPreviewPaused; // @synthesize isPreviewPaused=_isPreviewPaused;
@@ -154,10 +154,14 @@
 - (void)actionTimelineViewDidBeginScrubbing:(id)arg1;
 - (void)incrementPreviewStartTime:(double)arg1 startPreview:(BOOL)arg2;
 - (void)setNodeSelectorTimelineControlViewPositionForPreviewTime;
+- (void)stopTimelineControlAnimation;
 - (void)setActionPreviewStartTime:(double)arg1 startPreview:(BOOL)arg2;
 - (void)didUpdatePreviewScene:(double)arg1;
 - (BOOL)canLiveReloadScene;
+- (void)updateAnimationForPlaybackSpeed;
 - (void)didEndPlayingPreviewScene;
+- (void)didUnpausePlayingPreviewScene;
+- (void)didPausePlayingPreviewScene;
 - (void)startPlayForTimelineControl;
 - (void)willBeginPlayingPreviewScene;
 - (void)actionRefPopover:(id)arg1 didPressGotoSourceForTimeline:(id)arg2;
@@ -254,7 +258,7 @@
 @property(readonly, nonatomic) double timeScale;
 @property(readonly, nonatomic) double previewStartTime;
 @property(readonly, nonatomic) GTFActionLibrary *actionLibrary;
-@property(readonly, nonatomic) GTFActionDocument *actionEditorDocument;
+@property(readonly, nonatomic) IDEEditorDocument<GTFActionDocument> *actionEditorDocument;
 @property(readonly, nonatomic) BOOL isActionFileEditor;
 
 // Remaining properties

@@ -41,6 +41,7 @@
 - (id)effectiveLinkBubbleFillColor;
 - (id)rolledOverLinkBubbleFillColor;
 - (id)bubblePath;
+- (void)updateTitleFieldAccessibility;
 - (void)updateConnectionWellImages;
 - (void)connectionWellDragged:(id)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;

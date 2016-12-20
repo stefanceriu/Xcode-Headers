@@ -125,7 +125,6 @@
 @property(copy) NSArray *viewControllers;
 - (id)descendentViewControllers;
 - (id)contentViewDisplayingViewController;
-- (struct CGSize)ibSimulatedViewPortSize;
 - (id)displayedViewController;
 - (id)displayedChildViewController;
 - (BOOL)displaysContentView;
@@ -178,6 +177,7 @@
 @property(readonly, nonatomic) long long simulatedMetricsExtendedEdges;
 - (id)simulatedMetricsContainerForSizing;
 - (struct CGSize)effectiveFreeformSize;
+- (struct CGSize)effectiveSimulatedEditorViewSize;
 - (struct CGSize)effectiveSimulatedViewSize;
 - (struct CGSize)effectiveSimulatedContentSize;
 - (id)initWithTargetRuntime:(id)arg1;
@@ -191,6 +191,7 @@
 - (id)ibMarshalledRepresentationForRendering;
 - (id)ibMarshallingContextForRendering;
 - (void)ibUpdatePlaceholderDrawingAttributes;
+- (id)ibEffectiveConfigurationFromConfiguration:(id)arg1;
 - (BOOL)ibIsValidTraitStorageListContainer;
 - (void)ibPreparePreviewInstance:(id)arg1 context:(id)arg2;
 - (BOOL)ibCanHaveDescendantViewHierarchy;
@@ -226,7 +227,6 @@
 - (void)setIbInspectedHasFreeformScreenSizeMetrics:(BOOL)arg1;
 - (BOOL)ibInspectedHasFreeformScreenSizeMetrics;
 @property(copy) IBUISimulatedSizeMetrics *ibInspectedSimulatedDestinationMetrics;
-@property(copy) IBUISimulatedOrientationMetrics *ibInspectedSimulatedOrientationMetrics;
 @property(copy) IBUISimulatedBarMetrics *ibInspectedSimulatedBottomBarMetrics;
 @property(copy) IBUISimulatedBarMetrics *ibInspectedSimulatedTopBarMetrics;
 @property(copy) IBUISimulatedStatusBarMetrics *ibInspectedSimulatedStatusBarMetrics;
@@ -237,10 +237,8 @@
 - (BOOL)ibInspectedUseStoryboardIdentifierAsRestorationIdentifier;
 - (void)setIbInspectedRestorationIdentifier:(id)arg1;
 - (id)ibInspectedRestorationIdentifier;
-- (void)setIbInspectedExtendsLayoutUnderBottomBars:(BOOL)arg1;
-- (BOOL)ibInspectedExtendsLayoutUnderBottomBars;
-- (void)setIbInspectedExtendsLayoutUnderTopBars:(BOOL)arg1;
-- (BOOL)ibInspectedExtendsLayoutUnderTopBars;
+@property BOOL ibInspectedExtendsLayoutUnderBottomBars;
+@property BOOL ibInspectedExtendsLayoutUnderTopBars;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)ibInvalidateWarningsAfterDescendant:(id)arg1 changedProperty:(id)arg2 inDocument:(id)arg3 fromValue:(id)arg4;
 - (void)ibInheritedTintColorDidChange;
@@ -259,6 +257,7 @@
 - (void)ibWillCopyChild:(id)arg1 forCompilationUnitLeaderOfUnitDownstreamFromUnit:(id)arg2;
 - (void)ibPopulateCompilationMarshallingContext:(id)arg1 forDocument:(id)arg2;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
+- (id)ibAcceptedToolbarItemPasteboardTypes;
 - (void)ibEstablishViewOutletsInDocument:(id)arg1;
 - (void)ibDidAcceptView:(id)arg1 fromPasteboard:(id)arg2 inDocument:(id)arg3;
 - (struct CGSize)ibViewControllerContentSizeForTargetRuntime:(id)arg1 context:(id)arg2;
@@ -302,10 +301,16 @@
 - (id)ibSimulatedMetricsContainerForEditorView;
 - (id)ibUserHostableDocumentClasses;
 - (id)ibSubtitleForEditor;
-- (BOOL)ibChildEditsWithSingleClick:(id)arg1;
 - (BOOL)ibContainsResizableContent;
 - (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
 - (BOOL)ibInspectedPresentsSimulatedMetrics;
+- (id)ibEditorClass;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalAutoNullifyingNonChildToManyRelationshipsKeyPaths;
+- (id)ibLocalNonChildToManyRelationshipsKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

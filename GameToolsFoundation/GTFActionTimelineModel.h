@@ -49,6 +49,9 @@
 - (void).cxx_destruct;
 - (id)initWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) BOOL navigableItem_isMajorGroup;
 @property(readonly, nonatomic) NSArray *nav_children;
 - (id)ideModelObjectTypeIdentifier;
 @property(readonly) NSString *navigableItem_name;
@@ -93,10 +96,10 @@
 - (void)insertNewTrackAt:(long long)arg1;
 - (BOOL)adjustNumberOfTracks;
 - (BOOL)canMoveAction:(id)arg1 toTrack:(int)arg2 atTime:(double)arg3;
-- (void)addActionToClosestOpenSlot:(id)arg1 inTrack:(int)arg2 atTime:(double)arg3 enableAllignment:(BOOL)arg4 canMoveBeforeStartTime:(BOOL)arg5;
+- (void)addActionToClosestOpenSlot:(id)arg1 inTrack:(int)arg2 atTime:(double)arg3 enableAlignment:(BOOL)arg4 canMoveBeforeStartTime:(BOOL)arg5;
 - (void)setActionStartTime:(id)arg1 inTrack:(int)arg2 atTime:(double)arg3 enableSnap:(BOOL)arg4;
 - (void)forceMoveAction:(id)arg1 toTrack:(int)arg2;
-- (BOOL)moveAction:(id)arg1 toTrack:(int)arg2 atTime:(double)arg3 enableAllignment:(BOOL)arg4;
+- (BOOL)moveAction:(id)arg1 toTrack:(int)arg2 atTime:(double)arg3 enableAlignment:(BOOL)arg4;
 - (void)removeActionFromTrack:(id)arg1;
 - (BOOL)removeAction:(id)arg1;
 - (void)pasteActions:(id)arg1 insertRequiredTracks:(BOOL)arg2 adjustTracksAfterPaste:(BOOL)arg3;
@@ -105,6 +108,7 @@
 - (void)pasteAction:(id)arg1 adjustTracksAfterPaste:(BOOL)arg2;
 - (void)pasteAction:(id)arg1;
 - (void)addAction:(id)arg1;
+- (void)_addInitialAction:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 - (void)setTarget:(id)arg1;
@@ -120,13 +124,14 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) NSImage *navigableItem_image;
-@property(readonly) BOOL navigableItem_isLeaf;
-@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 

@@ -10,7 +10,7 @@
 {
 }
 
-- (id)verify;
+- (void)verifyAndPopulateMessages:(id)arg1;
 - (id)document;
 
 @end

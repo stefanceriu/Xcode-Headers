@@ -6,12 +6,14 @@
 
 #import "JSExport.h"
 
-@class CAAnimation, NSArray, NSString, SCNLight, SCNMaterialProperty;
+@class CAAnimation, MDLLight, NSArray, NSString, NSURL, SCNLight, SCNMaterialProperty;
 
 @protocol SCNLightJSExport <JSExport>
++ (id)lightWithMDLLight:(MDLLight *)arg1;
 + (id)light;
 @property(readonly, nonatomic) SCNLight *presentationLight;
 @property(nonatomic) unsigned long long categoryBitMask;
+@property(retain, nonatomic) NSURL *IESProfileURL;
 @property(readonly, nonatomic) SCNMaterialProperty *gobo;
 @property(nonatomic) double spotOuterAngle;
 @property(nonatomic) double spotInnerAngle;
@@ -29,6 +31,8 @@
 @property(retain, nonatomic) id shadowColor;
 @property(nonatomic) BOOL castsShadow;
 @property(copy, nonatomic) NSString *name;
+@property(nonatomic) double intensity;
+@property(nonatomic) double temperature;
 @property(retain, nonatomic) id color;
 @property(copy, nonatomic) NSString *type;
 - (id)valueForKeyPath:(NSString *)arg1;

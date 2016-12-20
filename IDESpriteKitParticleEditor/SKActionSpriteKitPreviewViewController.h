@@ -6,37 +6,38 @@
 
 #import <IDESpriteKitParticleEditor/SKActionPreviewViewController.h>
 
-#import "EditOverlayDelegate.h"
 #import "SKSceneDelegate.h"
+#import "SKSceneEditControllerDelegate.h"
 
-@class EditOverlayView, NSArray, NSMutableDictionary, NSString, SKActionEditorNavigableRepresentedNode, SKDocument, SKEditView, SKScene;
+@class NSArray, NSMutableDictionary, NSString, SKActionEditorNavigableRepresentedNode, SKInputView, SKScene, SKSceneDocument, SKSceneEditController, SKSceneOverlayView;
 
-@interface SKActionSpriteKitPreviewViewController : SKActionPreviewViewController <EditOverlayDelegate, SKSceneDelegate>
+@interface SKActionSpriteKitPreviewViewController : SKActionPreviewViewController <SKSceneEditControllerDelegate, SKSceneDelegate>
 {
-    SKDocument *_skPreviewDocument;
+    SKSceneDocument *_skPreviewDocument;
     SKScene *_skPreviewScene;
     double _oldPlaybackSpeed;
     SKActionEditorNavigableRepresentedNode *_navigableScene;
     NSArray *_selectedNodes;
     NSMutableDictionary *_uidToNavNode;
-    BOOL _isInitialLayoutNext;
-    BOOL _isInitialLayout;
+    SKSceneEditController *_editController;
     BOOL _isUpdatingSelection;
-    SKEditView *_mainView;
-    EditOverlayView *_overlayView;
+    double _lastSceneReloadTime;
+    SKInputView *_inputView;
+    SKSceneOverlayView *_overlayView;
 }
 
-@property(retain, nonatomic) EditOverlayView *overlayView; // @synthesize overlayView=_overlayView;
-@property(retain, nonatomic) SKEditView *mainView; // @synthesize mainView=_mainView;
+@property(retain, nonatomic) SKSceneOverlayView *overlayView; // @synthesize overlayView=_overlayView;
+@property(retain, nonatomic) SKInputView *inputView; // @synthesize inputView=_inputView;
 - (void).cxx_destruct;
-- (void)editOverlayDidChangeScene:(id)arg1;
-- (void)didEvaluateActionsForScene:(id)arg1;
-- (void)update:(double)arg1 forScene:(id)arg2;
+- (void)sceneEditController:(id)arg1 beginEditingItem:(struct NSObject *)arg2;
+- (void)sceneEditController:(id)arg1 performAction:(SEL)arg2 withSender:(id)arg3;
+- (BOOL)sceneEditController:(id)arg1 canPerformAction:(SEL)arg2 withSender:(id)arg3;
 - (void)setActionsOnSceneNodes;
 - (void)togglePausePlay;
 - (void)togglePlayStop;
 - (void)updateActionPreview;
 - (void)forceStartSimulate;
+- (BOOL)canLiveReloadPreview;
 - (void)clearSelection;
 - (id)selectedObjects;
 - (void)_setSelectedObjects:(id)arg1 skipEditOverlay:(BOOL)arg2;
@@ -50,7 +51,6 @@
 - (void)cacheNodeAssignments;
 - (void)primitiveInvalidate;
 - (void)viewWillUninstall;
-- (void)setIsInitialLayout;
 - (void)viewDidLoad;
 
 // Remaining properties

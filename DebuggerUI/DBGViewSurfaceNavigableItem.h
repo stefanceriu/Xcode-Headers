@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IDEKeyDrivenNavigableItem.h"
+#import <DebuggerUI/DBGDebugNavigableItem.h>
 
-@class DBGViewDebuggerAdditionUIController, NSArray;
+@class DBGViewDebuggerAdditionUIController, NSArray, NSImage, NSString;
 
-@interface DBGViewSurfaceNavigableItem : IDEKeyDrivenNavigableItem
+@interface DBGViewSurfaceNavigableItem : DBGDebugNavigableItem
 {
     NSArray *_cachedChildRepresentedObjects;
     DBGViewDebuggerAdditionUIController *_viewDebuggingUIController;
@@ -21,6 +21,11 @@
 - (void)recursivelyInvalidateChildItems;
 - (void)invalidateChildItems;
 - (BOOL)isLeaf;
+@property(readonly, nonatomic) NSString *statusToolTip;
+@property(readonly, nonatomic) NSImage *statusIcon;
+- (void)setExpanded:(BOOL)arg1;
+- (id)viewObject;
+- (id)initWithRepresentedObject:(id)arg1;
 
 @end
 

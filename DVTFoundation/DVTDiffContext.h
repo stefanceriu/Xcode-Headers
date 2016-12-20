@@ -28,6 +28,7 @@
     BOOL _updatingChangedDescriptor;
 }
 
++ (BOOL)supportsInvalidationPrevention;
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 + (void)initialize;
 + (id)performanceLogAspect;

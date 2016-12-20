@@ -6,20 +6,20 @@
 
 #import "NSObject.h"
 
-@class DVTDispatchLock, NSMutableDictionary;
+@class DVTDispatchLock, DVTNotificationToken, NSMutableDictionary;
 
 @interface IDEIndexProductInfoManager : NSObject
 {
     DVTDispatchLock *_lock;
     NSMutableDictionary *_productInfos;
-    id _productInfoRegisteredObserver;
-    id _productInfoUpdatedObserver;
-    id _productInfoUnregisteredObserver;
+    DVTNotificationToken *_productInfoRegisteredObserver;
+    DVTNotificationToken *_productInfoUpdatedObserver;
+    DVTNotificationToken *_productInfoUnregisteredObserver;
 }
 
 + (id)sharedManager;
 - (void).cxx_destruct;
-- (void)informSourceKit:(struct sourcekitd_uid_s *)arg1 productInfo:(id)arg2 productBlock:(CDUnknownBlockType)arg3;
+- (void)informSourceKit:(struct _sourcekit_uid_s *)arg1 productInfo:(id)arg2 productBlock:(CDUnknownBlockType)arg3;
 - (void)reregisterProductInfo:(id)arg1 settings:(id)arg2;
 - (void)reregisterAllProductInfos;
 - (void)unregisterProductInfo:(id)arg1;

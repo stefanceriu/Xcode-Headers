@@ -14,6 +14,7 @@
 - (BOOL)validateIbShadowedLeafKeyPath:(id *)arg1 error:(id)arg2;
 - (BOOL)validateIbShadowedChildrenKeyPath:(id *)arg1 error:(id)arg2;
 - (id)ibResolvedTypeNameForControllerKey:(id)arg1;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property BOOL ibShadowedAlwaysUsesMultipleValuesMarker; // @dynamic ibShadowedAlwaysUsesMultipleValuesMarker;

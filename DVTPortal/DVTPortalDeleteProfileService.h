@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)deleteProfileServiceWithTeam:(id)arg1 platform:(id)arg2 profile:(id)arg3;
++ (id)deleteProfileServiceWithTeam:(id)arg1 program:(id)arg2 profile:(id)arg3;
 
 @end
 

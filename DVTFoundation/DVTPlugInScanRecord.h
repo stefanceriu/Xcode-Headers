@@ -8,7 +8,7 @@
 
 #import "DVTPropertyListEncoding.h"
 
-@class DVTPlugIn, DVTVersion, NSBundle, NSDictionary, NSSet, NSString;
+@class DVTPlugIn, DVTVersion, NSArray, NSBundle, NSDictionary, NSSet, NSString;
 
 @interface DVTPlugInScanRecord : NSObject <DVTPropertyListEncoding>
 {
@@ -20,17 +20,16 @@
     NSString *_marketingVersion;
     NSDictionary *_bundleRawInfoPlist;
     NSDictionary *_plugInPlist;
-    double _timestamp;
     NSSet *_requiredCapabilities;
     DVTVersion *_minimumRequiredSystemVersion;
     DVTVersion *_maximumAllowedSystemVersion;
     DVTPlugIn *_plugIn;
     NSSet *_plugInCompatibilityUUIDs;
+    NSArray *_modificationDates;
 }
 
 + (void)initialize;
 @property(retain) DVTPlugIn *plugIn; // @synthesize plugIn=_plugIn;
-@property(readonly) double timestamp; // @synthesize timestamp=_timestamp;
 @property(readonly, copy) NSDictionary *plugInPlist; // @synthesize plugInPlist=_plugInPlist;
 @property(readonly, copy) NSSet *plugInCompatibilityUUIDs; // @synthesize plugInCompatibilityUUIDs=_plugInCompatibilityUUIDs;
 @property(readonly, copy) DVTVersion *maximumAllowedSystemVersion; // @synthesize maximumAllowedSystemVersion=_maximumAllowedSystemVersion;
@@ -55,8 +54,9 @@
 - (id)initWithPropertyList:(id)arg1 owner:(id)arg2;
 @property(readonly, copy) NSString *description;
 - (long long)compare:(id)arg1;
-- (id)initWithPath:(id)arg1 bundle:(id)arg2 plugInPlist:(id)arg3 timestamp:(double)arg4;
-- (id)initWithPath:(id)arg1 bundlePath:(id)arg2 plugInPlist:(id)arg3 timestamp:(double)arg4;
+- (id)initWithPath:(id)arg1 bundle:(id)arg2 plugInPlist:(id)arg3;
+- (id)initWithPath:(id)arg1 bundlePath:(id)arg2 plugInPlist:(id)arg3;
+- (void)recordModificationDates:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

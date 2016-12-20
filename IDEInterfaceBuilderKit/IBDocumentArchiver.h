@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IBDocumentArchiverRecursionState, IBDocumentArchivingSchema, NSMutableDictionary, NSNumber;
+@class IBDocumentArchiverRecursionState, IBDocumentArchivingSchema, NSArray, NSMutableArray, NSMutableDictionary, NSNumber;
 
 @interface IBDocumentArchiver : NSObject
 {
@@ -15,9 +15,11 @@
     id <IBArchivableDocument> archivedDocument;
     NSMutableDictionary *context;
     NSMutableDictionary *objectReferenceIDs;
+    NSMutableArray *classesBeingEncoded;
     NSNumber *archiveVersion;
 }
 
+@property(readonly) NSArray *classesBeingEncoded; // @synthesize classesBeingEncoded;
 @property(readonly) id <IBArchivableDocument> archivedDocument; // @synthesize archivedDocument;
 @property(readonly) NSMutableDictionary *context; // @synthesize context;
 - (void).cxx_destruct;
@@ -28,6 +30,7 @@
 - (BOOL)isStringLosslesslyRepresentableAsElementText:(id)arg1;
 - (void)addComment:(id)arg1;
 - (void)archiveBool:(BOOL)arg1 forKey:(id)arg2 defaultValue:(BOOL)arg3;
+- (void)archiveUnitLength:(CDStruct_e454a20b)arg1 forKey:(id)arg2 defaultValue:(CDStruct_e454a20b)arg3;
 - (void)archiveDouble:(double)arg1 forKey:(id)arg2 defaultValue:(double)arg3;
 - (void)archiveFloat:(float)arg1 forKey:(id)arg2 defaultValue:(float)arg3;
 - (void)archiveInteger:(long long)arg1 forKey:(id)arg2 defaultValue:(long long)arg3;
@@ -57,6 +60,7 @@
 - (void)archiveObjectReference:(id)arg1 referenceType:(id)arg2 forKey:(id)arg3 defaultValue:(id)arg4;
 - (void)archiveObject:(id)arg1 forKey:(id)arg2 defaultValue:(id)arg3;
 - (void)archiveBool:(BOOL)arg1 forKey:(id)arg2;
+- (void)archiveUnitLength:(CDStruct_e454a20b)arg1 forKey:(id)arg2;
 - (void)archiveDouble:(double)arg1 forKey:(id)arg2;
 - (void)archiveFloat:(float)arg1 forKey:(id)arg2;
 - (void)archiveInteger:(long long)arg1 forKey:(id)arg2;
@@ -67,7 +71,7 @@
 - (void)archiveBitmask:(unsigned long long)arg1 fromBitmask:(id)arg2 forKey:(id)arg3;
 - (void)addNonKeyAttributeWithName:(id)arg1 andStringValue:(id)arg2;
 - (void)archiveRange:(struct _NSRange)arg1 forKey:(id)arg2;
-- (void)archiveOffset:(CDStruct_c3b9c2ee)arg1 forKey:(id)arg2;
+- (void)archiveOffset:(CDStruct_34734122)arg1 forKey:(id)arg2;
 - (void)archiveIBEdgeInsets:(struct _IBEdgeInsets)arg1 forKey:(id)arg2;
 - (void)archiveEdgeInsets:(struct NSEdgeInsets)arg1 forKey:(id)arg2;
 - (void)archiveInset:(CDStruct_c519178c)arg1 forKey:(id)arg2;
@@ -98,6 +102,7 @@
 - (void)recurseWithElementNamed:(id)arg1 forObject:(id)arg2 kind:(long long)arg3 invokingBlock:(CDUnknownBlockType)arg4;
 @property(readonly) long long archiveVersion;
 - (id)initWithSchema:(id)arg1;
+- (void)archiveImage:(id)arg1 forKey:(id)arg2;
 - (void)archiveFormattedClassSymbol:(id)arg1 forKey:(id)arg2 moduleKey:(id)arg3 moduleProviderKey:(id)arg4;
 - (void)archiveCustomFormattedClassSymbol:(id)arg1;
 - (id)archivedIBDocument;

@@ -7,5 +7,7 @@
 #import "IKCameraDeviceView.h"
 
 @interface IKCameraDeviceView (IBIKCameraDeviceViewIntegration)
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

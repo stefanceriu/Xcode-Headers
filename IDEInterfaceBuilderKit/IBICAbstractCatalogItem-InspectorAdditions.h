@@ -10,6 +10,5 @@
 
 @interface IBICAbstractCatalogItem (InspectorAdditions)
 @property(readonly) NSString *ibInspectedResourceName;
-@property(readonly) BOOL ibInspectorShowsResourceName;
 @end
 

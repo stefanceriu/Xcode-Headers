@@ -10,7 +10,7 @@
 #import "IDEVariablesViewContentProvider.h"
 #import "IDEVariablesViewContextMenuDelegate.h"
 
-@class DVTObservingToken, DVTStackBacktrace, GPUDebuggerController, GPUSharedTabUIState, IDEVariablesView, NSString;
+@class DVTObservingToken, DVTStackBacktrace, GPUDebuggerController, GPUSharedTabUIState, GPUSharedWorkspaceUIState, IDEVariablesView, NSString;
 
 @interface GPUVariablesViewContentProvider : NSObject <IDEVariablesViewContextMenuDelegate, IDEVariablesViewContentProvider, DVTInvalidation>
 {
@@ -30,14 +30,12 @@
     int _comparisonMode;
     int _objectFilterMode;
     int _textMode;
+    GPUSharedWorkspaceUIState *_workspaceUIState;
     GPUDebuggerController *_debuggerController;
     GPUSharedTabUIState *_sharedUIStateObj;
     IDEVariablesView *_variablesView;
 }
 
-+ (void)addMinAvgMaxPerItemToList:(id)arg1 withTitle:(id)arg2 forTiming:(const struct DYShaderProfilerTiming *)arg3 andCount:(double)arg4;
-+ (void)addMinAvgMaxToList:(id)arg1 withTitle:(id)arg2 forTiming:(const struct DYShaderProfilerTiming *)arg3;
-+ (id)formatPerfDescription:(const struct DYShaderProfilerTiming *)arg1 withBase:(const struct DYShaderProfilerTiming *)arg2 resultsUpdated:(BOOL)arg3;
 + (void)initialize;
 @property(nonatomic) int textMode; // @synthesize textMode=_textMode;
 @property(nonatomic) int objectFilterMode; // @synthesize objectFilterMode=_objectFilterMode;
@@ -45,6 +43,7 @@
 @property(readonly, nonatomic) __weak IDEVariablesView *variablesView; // @synthesize variablesView=_variablesView;
 @property(nonatomic) __weak GPUSharedTabUIState *sharedUIStateObj; // @synthesize sharedUIStateObj=_sharedUIStateObj;
 @property(retain, nonatomic) GPUDebuggerController *debuggerController; // @synthesize debuggerController=_debuggerController;
+@property(readonly, nonatomic) __weak GPUSharedWorkspaceUIState *workspaceUIState; // @synthesize workspaceUIState=_workspaceUIState;
 - (void).cxx_destruct;
 - (void)_addIssues:(id)arg1;
 - (id)_createOptionsDictionaryFromOptionsElement:(id)arg1;
@@ -57,7 +56,7 @@
 - (id)contextNameForNode:(id)arg1;
 - (id)imageToUseInDefaultQuickLookForNode:(id)arg1;
 - (id)imageForNode:(id)arg1;
-- (id)imageForIssueType:(int)arg1;
+- (id)imageForIssueType:(unsigned long long)arg1;
 - (BOOL)deleteNode:(id)arg1;
 - (void)provideScopeChoices:(id)arg1;
 - (void)providerWasInstalledForVariablesView:(id)arg1;
@@ -73,7 +72,7 @@
 - (void)updateCurrentLocation:(id)arg1;
 - (void)updateFilteredList;
 - (void)primitiveInvalidate;
-- (id)initWithIdentifier:(id)arg1;
+- (id)initWithIdentifier:(id)arg1 andWorkspaceUIState:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

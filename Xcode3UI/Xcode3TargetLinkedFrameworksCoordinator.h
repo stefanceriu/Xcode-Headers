@@ -4,11 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <Xcode3UI/Xcode3TargetCoordinator.h>
+#import "Xcode3TargetCoordinator.h"
 
-@class Xcode3BuildPhase;
+#import "IDELinkedFrameworksCoordination.h"
 
-@interface Xcode3TargetLinkedFrameworksCoordinator : Xcode3TargetCoordinator
+@class DVTStackBacktrace, NSString, Xcode3BuildPhase;
+
+@interface Xcode3TargetLinkedFrameworksCoordinator : Xcode3TargetCoordinator <IDELinkedFrameworksCoordination>
 {
 }
 
@@ -19,6 +21,15 @@
 - (id)projectRootGroup;
 @property(readonly) Xcode3BuildPhase *buildPhase;
 - (id)initWithTarget:(id)arg1;
+
+// Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

@@ -13,7 +13,6 @@
     double _autoHighlightTokenAppearancesDelay;
     long long _wrappedLinesIndentWidth;
     int _tabKeyIndentingBehavior;
-    int _autoSuggestionStyle;
     unsigned long long _defaultLineEndings;
     BOOL _codeFocusOnHover;
 }
@@ -32,7 +31,6 @@
 @property BOOL scrollToEndOfMatchingBrace;
 @property BOOL showCompletionsOnEsc;
 @property BOOL completionsIncludeParameters;
-@property int autoSuggestionStyle;
 @property double autoSuggestCompletionsDelay;
 @property BOOL autoSuggestCompletions;
 @property BOOL enableTypeOverCompletions;
@@ -61,6 +59,7 @@
 @property BOOL showCodeCoverageCounts;
 @property BOOL showCodeCoverage;
 @property BOOL showInvisibleCharacters;
+@property BOOL highlightCurrentLine;
 @property int annotationDisplayPolicy;
 @property BOOL showMessageBubbleAnnotations;
 @property double autoHighlightTokenAppearancesDelay;

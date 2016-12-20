@@ -14,6 +14,5 @@
 - (void)offerAdditionalWorkingCopies;
 - (void)warnAboutNewerRepositoryVersionWithError:(NSError *)arg1;
 - (void)askToShareNewWorkingCopies:(NSArray *)arg1;
-- (void)didFindUpgradableWorkingCopy;
 @end
 

@@ -25,7 +25,7 @@ __attribute__((visibility("hidden")))
     DSABackgroundThreadQueue *_backgroundThreadQueue;
     NSManagedObject *_docSetMO;
     DSANode *_rootNode;
-    const struct __CFDictionary *_nodesByID;
+    struct __CFDictionary *_nodesByID;
     NSArray *_apiLanguageMOs;
     NSMutableDictionary *_nodesByPath;
     NSArray *_availabilityArchitectures;

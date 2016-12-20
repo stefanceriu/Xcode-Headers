@@ -34,27 +34,6 @@ struct DTXMessageRoutingInfo {
     unsigned int :31;
 };
 
-struct DTXSharedMemory {
-    unsigned long long _field1;
-    unsigned long long _field2;
-    unsigned long long _field3;
-    unsigned int _field4;
-    unsigned int _field5;
-    unsigned int _field6;
-    unsigned int _field7;
-    int _field8;
-    int _field9;
-    unsigned int _field10;
-    unsigned int _field11;
-    unsigned int _field12;
-    unsigned int _field13;
-    unsigned int _field14;
-    unsigned int _field15;
-    unsigned int _field16;
-    unsigned int _field17;
-    char _field18[0];
-};
-
 struct __va_list_tag {
     unsigned int _field1;
     unsigned int _field2;

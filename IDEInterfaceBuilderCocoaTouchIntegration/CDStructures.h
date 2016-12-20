@@ -119,11 +119,6 @@ typedef struct {
 } CDStruct_a6775f87;
 
 typedef struct {
-    long long x;
-    long long y;
-} CDStruct_f261e59c;
-
-typedef struct {
     struct {
         struct CGRect _field1;
         char _field2;
@@ -133,7 +128,10 @@ typedef struct {
 #pragma mark Typedef'd Unions
 
 typedef union {
-    CDStruct_f261e59c _field1;
+    struct {
+        long long _field1;
+        long long _field2;
+    } _field1;
     long long _field2[2];
-} CDUnion_aed8a530;
+} CDUnion_42e99c75;
 

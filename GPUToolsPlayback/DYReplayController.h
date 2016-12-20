@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DYCaptureArchiveStack, DYPlaybackEngine, DYTransport, DYTransportMessage, DYTransportSource, NSMutableArray;
+@class DYCaptureArchiveStack, DYPlaybackEngine, DYTransport, DYTransportMessage, DYTransportSource, NSMutableArray, NSMutableDictionary;
 
 @interface DYReplayController : NSObject
 {
@@ -19,9 +19,11 @@
     DYPlaybackEngine *playbackEngine;
     id <DYReplayControllerSupport> replayControllerSupport;
     NSMutableArray *experiments;
+    NSMutableDictionary *profileInfo;
 }
 
 + (id)sharedController;
+@property(retain, nonatomic) NSMutableDictionary *profileInfo; // @synthesize profileInfo;
 @property(retain, nonatomic) NSMutableArray *experiments; // @synthesize experiments;
 @property(retain, nonatomic) id <DYReplayControllerSupport> replayControllerSupport; // @synthesize replayControllerSupport;
 @property(retain, nonatomic) DYPlaybackEngine *playbackEngine; // @synthesize playbackEngine;
@@ -47,7 +49,7 @@
 - (void)_processMessage:(id)arg1;
 - (BOOL)playbackArchive:(id)arg1;
 - (BOOL)informReady;
-- (BOOL)initializeTransport;
+- (BOOL)initializeTransportWith:(id)arg1;
 - (void)dealloc;
 - (id)init;
 

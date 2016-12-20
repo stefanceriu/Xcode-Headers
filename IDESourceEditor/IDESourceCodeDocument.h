@@ -6,19 +6,22 @@
 
 #import "IDEEditorDocument.h"
 
+#import "DVTObjectLiteralMediaResourceProvider.h"
 #import "DVTSourceLandmarkProvider.h"
+#import "DVTSourceLanguagePrimaryCompletionStrategy.h"
 #import "DVTSourceTextViewDelegate.h"
 #import "DVTTextFindable.h"
 #import "DVTTextReplacable.h"
 #import "DVTTextStorageDelegate.h"
 #import "IDEDiagnosticControllerDataSource.h"
 #import "IDEDocumentStructureProviding.h"
+#import "IDEMediaLibraryDelegate.h"
 #import "IDEObjectiveCSourceCodeGenerationDestination.h"
 #import "IDESourceCodeDocument.h"
 
-@class DVTDelayedInvocation, DVTFileDataType, DVTGeneratedContentProvider, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTSourceCodeLanguage, DVTTextStorage, IDEDiagnosticController, IDEGeneratedContentStatusContext, IDESchemeActionCodeCoverageFile, IDESourceCodeAdjustNodeTypesRequest, NSArray, NSDictionary, NSMutableArray, NSMutableSet, NSSet, NSString, NSURL;
+@class DVTDelayedInvocation, DVTFileDataType, DVTGeneratedContentProvider, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTSourceCodeLanguage, DVTTextStorage, IDEDiagnosticController, IDEGeneratedContentStatusContext, IDEMediaResourceVariantContext, IDESchemeActionCodeCoverageFile, IDESourceCodeAdjustNodeTypesRequest, NSArray, NSDictionary, NSMutableArray, NSMutableSet, NSSet, NSString, NSURL;
 
-@interface IDESourceCodeDocument : IDEEditorDocument <IDESourceCodeDocument, IDEDiagnosticControllerDataSource, IDEDocumentStructureProviding, DVTTextFindable, DVTTextReplacable, DVTTextStorageDelegate, IDEObjectiveCSourceCodeGenerationDestination, DVTSourceLandmarkProvider, DVTSourceTextViewDelegate>
+@interface IDESourceCodeDocument : IDEEditorDocument <IDESourceCodeDocument, IDEDiagnosticControllerDataSource, IDEDocumentStructureProviding, DVTTextFindable, DVTTextReplacable, DVTTextStorageDelegate, IDEMediaLibraryDelegate, DVTObjectLiteralMediaResourceProvider, IDEObjectiveCSourceCodeGenerationDestination, DVTSourceLandmarkProvider, DVTSourceTextViewDelegate, DVTSourceLanguagePrimaryCompletionStrategy>
 {
     DVTTextStorage *_textStorage;
     DVTSourceCodeLanguage *_language;
@@ -31,7 +34,9 @@
     IDEGeneratedContentStatusContext *_generatedContentStatusContext;
     BOOL _generatesContent;
     DVTObservingToken *_generatedContentProviderDisplayNameObserver;
+    DVTNotificationToken *_indexWillIndexWorkspaceObserver;
     DVTNotificationToken *_indexDidIndexWorkspaceObserver;
+    DVTNotificationToken *_indexDidChangeStateObserver;
     DVTNotificationToken *_indexDidChangeObserver;
     unsigned long long _lineEndings;
     unsigned long long _textEncoding;
@@ -46,18 +51,26 @@
     DVTObservingToken *_firstEditorWorkspaceActiveSchemeToken;
     DVTNotificationToken *_firstEditorWorkspaceActiveSchemeBuildablesDidChangeToken;
     NSMutableArray *_registeredEditors;
+    IDEMediaResourceVariantContext *_mediaResourceVariantContext;
+    NSDictionary *_variantForResolvingMediaResources;
+    DVTNotificationToken *_textStorageDidEndEditingNotificationToken;
     BOOL _notifiesWhenClosing;
     BOOL _hasCoverageData;
     IDESchemeActionCodeCoverageFile *_coverageData;
     NSSet *__firstEditorWorkspacePreferredIndexableIdentifiers;
     NSDictionary *__firstEditorWorkspaceBuildSettings;
+    id <DVTCancellable> _inFlightExtensionCommandToken;
+    id <DVTCancellable> _inFlightExtensionCommandTimer;
 }
 
 + (id)keyPathsForValuesAffecting_firstEditorWorkspace;
 + (id)keyPathsForValuesAffectingSourceLanguageServiceContext;
++ (BOOL)documentSupportsInconsistentState;
 + (id)syntaxColoringPrefetchLogAspect;
 + (id)topLevelStructureLogAspect;
 + (void)initialize;
+@property(retain) id <DVTCancellable> inFlightExtensionCommandTimer; // @synthesize inFlightExtensionCommandTimer=_inFlightExtensionCommandTimer;
+@property(retain) id <DVTCancellable> inFlightExtensionCommandToken; // @synthesize inFlightExtensionCommandToken=_inFlightExtensionCommandToken;
 @property(copy) NSDictionary *_firstEditorWorkspaceBuildSettings; // @synthesize _firstEditorWorkspaceBuildSettings=__firstEditorWorkspaceBuildSettings;
 @property(copy) NSSet *_firstEditorWorkspacePreferredIndexableIdentifiers; // @synthesize _firstEditorWorkspacePreferredIndexableIdentifiers=__firstEditorWorkspacePreferredIndexableIdentifiers;
 @property(retain) IDESchemeActionCodeCoverageFile *coverageData; // @synthesize coverageData=_coverageData;
@@ -72,12 +85,18 @@
 @property(retain, nonatomic) DVTSourceCodeLanguage *language; // @synthesize language=_language;
 @property(readonly) DVTTextStorage *textStorage; // @synthesize textStorage=_textStorage;
 - (void).cxx_destruct;
+- (id)completionItemsForDocumentLocation:(id)arg1 context:(id)arg2 highlyLikelyCompletionItems:(id *)arg3 areDefinitive:(char *)arg4;
+- (id)filePathForMediaResourceNamed:(id)arg1;
+- (id)variantForResolvingMediaResources;
+- (void)setVariantForResolvingMediaResources:(id)arg1;
+- (id)variantContextForMediaLibrary;
+- (void)setVariantContextForMediaLibrary:(id)arg1;
 - (id)derivedContentProviderForType:(id)arg1;
 - (void)_delayedDropRecomputableState:(id)arg1;
 - (void)_restoreRecomputableState;
 - (void)_dropRecomputableState;
 - (void)_documentMovingToForeground;
-- (void)_documentMovingToBackground:(BOOL)arg1;
+- (void)_documentMovingToBackground;
 - (void)registerDocumentEditor:(id)arg1;
 - (void)unregisterDocumentEditor:(id)arg1;
 - (id)_firstEditorWorkspace;
@@ -167,6 +186,8 @@
 - (BOOL)canSave;
 @property(readonly) DVTPerformanceMetric *openingPerformanceMetric;
 - (id)buildSettings;
+- (void)_getFileBuildSettingsWithMainFilesDictionaryAsync:(id)arg1 filePath:(id)arg2 workspace:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (void)_getFileBuildSettingsAsync:(id)arg1 workspace:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)editedContents;
 @property(readonly, copy) NSString *description;
 - (id)displayName;
@@ -183,20 +204,15 @@
 @property(readonly, nonatomic) NSDictionary *sourceLanguageServiceContext;
 @property(readonly) DVTFileDataType *fileDataType;
 - (id)init;
-- (void)setSdefSupport_text:(id)arg1;
-- (id)sdefSupport_text;
-- (void)setSdefSupport_selection:(id)arg1;
-- (id)sdefSupport_selection;
 - (void)setSdefSupport_selectedParagraphRange:(id)arg1;
 - (id)sdefSupport_selectedParagraphRange;
 - (void)setSdefSupport_selectedCharacterRange:(id)arg1;
 - (id)sdefSupport_selectedCharacterRange;
+- (void)setSdefSupport_text:(id)arg1;
+- (id)sdefSupport_text;
 - (void)setSdefSupport_notifiesWhenClosing:(BOOL)arg1;
-- (BOOL)sdefSupport_notifiesWhenClosing;
+- (BOOL)sdefSupport_notifiesWhenClosing:(BOOL)arg1;
 - (void)setSdefSupport_contents:(id)arg1;
-- (id)sdefSupport_contents;
-- (void)setSdefSupport_editorSettings:(id)arg1;
-- (id)sdefSupport_editorSettings;
 - (id)objectSpecifier;
 
 // Remaining properties

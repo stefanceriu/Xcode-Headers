@@ -4,52 +4,21 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEKit/IDEViewController.h>
+#import <IDEKit/IDEEditorBannerController.h>
 
-#import "DVTScopeBarContentController.h"
+@class NSURL;
 
-@class DVTButtonTextField, DVTObservingToken, NSArray, NSImage, NSString, NSTextField;
-
-@interface IDEEditorInternalErrorBannerController : IDEViewController <DVTScopeBarContentController>
+@interface IDEEditorInternalErrorBannerController : IDEEditorBannerController
 {
-    double _preferredViewHeight;
-    double *_cachedMessageTextWidths;
-    DVTObservingToken *_viewFrameObservingToken;
-    BOOL _showsReportErrorButton;
-    NSString *_messageText;
-    NSArray *_phrases;
-    CDUnknownBlockType _errorReportingBlock;
-    NSTextField *_messageTextField;
-    DVTButtonTextField *_reportErrorButtonTextField;
-    NSString *_toolTip;
+    NSURL *_reportErrorURL;
 }
 
-@property(copy) NSString *toolTip; // @synthesize toolTip=_toolTip;
-@property(retain) DVTButtonTextField *reportErrorButtonTextField; // @synthesize reportErrorButtonTextField=_reportErrorButtonTextField;
-@property(retain) NSTextField *messageTextField; // @synthesize messageTextField=_messageTextField;
-@property(nonatomic) BOOL showsReportErrorButton; // @synthesize showsReportErrorButton=_showsReportErrorButton;
-@property(copy, nonatomic) CDUnknownBlockType errorReportingBlock; // @synthesize errorReportingBlock=_errorReportingBlock;
-@property(copy, nonatomic) NSArray *phrases; // @synthesize phrases=_phrases;
-@property(copy) NSString *messageText; // @synthesize messageText=_messageText;
++ (id)defaultMessageText;
++ (id)defaultViewNibBundle;
++ (id)defaultViewNibName;
+@property(copy, nonatomic) NSURL *reportErrorURL; // @synthesize reportErrorURL=_reportErrorURL;
 - (void).cxx_destruct;
-- (void)_reportErrorButtonTextFieldAction:(id)arg1;
-- (void)wasAssociatedWithScopeBarController:(id)arg1;
-- (void)viewWillUninstall;
-- (void)viewDidInstall;
-- (void)loadView;
-- (void)_updateMessageText;
-@property(readonly) NSImage *icon;
-@property double preferredViewHeight; // @synthesize preferredViewHeight=_preferredViewHeight;
-- (void)viewDidLoad;
-- (void)primitiveInvalidate;
-- (void)dealloc;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

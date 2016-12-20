@@ -14,15 +14,16 @@
 
 @interface DBGLayoutConstraintOverlayImageProvider : NSObject <IBAutolayoutConcreteConstraintProvider, IBLayoutConstraintDrawingDestination, IBLayoutConstraintStatusProvider>
 {
-    DBGLayoutConstraintSet *_constraintSet;
     NSMutableDictionary *_constraintBadgeImageCachesByTintColor;
     NSMutableDictionary *_selectedConstraintBadgeImageCachesByTintColor;
     id <DBGSceneViewControllerDataSourceProtocol> _sceneViewDataSource;
     DBGInteractiveSceneView *_sceneView;
+    DBGLayoutConstraintSet *_constraintSet;
     NSMutableDictionary *_presentedConstraintNodes;
 }
 
 @property(retain, nonatomic) NSMutableDictionary *presentedConstraintNodes; // @synthesize presentedConstraintNodes=_presentedConstraintNodes;
+@property(readonly) DBGLayoutConstraintSet *constraintSet; // @synthesize constraintSet=_constraintSet;
 @property __weak DBGInteractiveSceneView *sceneView; // @synthesize sceneView=_sceneView;
 @property __weak id <DBGSceneViewControllerDataSourceProtocol> sceneViewDataSource; // @synthesize sceneViewDataSource=_sceneViewDataSource;
 - (void).cxx_destruct;
@@ -37,6 +38,7 @@
 - (struct CGRect)rectForConstraintLineWithLine:(CDStruct_e3b9714e)arg1 lineThickness:(double)arg2 edgeBias:(id)arg3;
 - (struct CGRect)rectForIBeamWithLine:(CDStruct_e3b9714e)arg1;
 - (BOOL)isFlipped;
+- (id)badgeStringConsideringFractionFormatForMultiplier:(double)arg1;
 - (id)equalSizeBadge;
 - (id)greaterThanOrEqualToBadge;
 - (id)lessThanOrEqualToBadge;
@@ -58,6 +60,9 @@
 - (long long)userInterfaceLayoutDirection;
 - (id)constraintOverlayView;
 - (struct CGRect)layoutRectInOverlayCoordinatesForConstraintItem:(id)arg1;
+- (CDStruct_e3b9714e)snappedLine:(CDStruct_e3b9714e)arg1 forFirstItem:(id)arg2 secondItem:(id)arg3;
+- (void)insetDrawable:(id)arg1 ifItOverlapsGuideline:(CDStruct_e3b9714e)arg2 guidelineIsLeftOrBottom:(BOOL)arg3;
+- (id)refinedDrawableFromDrawable:(id)arg1;
 - (void)updateConstraintNodesUsingConstraintSet:(id)arg1 forRootViewRect:(struct CGRect)arg2;
 - (id)_generateConstraintAbstractionsFromConstraintSet;
 - (id)initWithConstraintSet:(id)arg1;

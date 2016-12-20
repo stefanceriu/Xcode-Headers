@@ -8,22 +8,24 @@
 
 #import "IBBinaryArchiving.h"
 
-@class NSString;
+@class NSArray, NSString;
 
 @interface IBBuiltLiveViewsBundleInstance : NSObject <IBBinaryArchiving>
 {
     NSString *_bundlePath;
     NSString *_projectSourceDirectory;
     NSString *_targetName;
+    NSArray *_toolchainIdentifiers;
 }
 
+@property(readonly, nonatomic) NSArray *toolchainIdentifiers; // @synthesize toolchainIdentifiers=_toolchainIdentifiers;
 @property(readonly, nonatomic) NSString *targetName; // @synthesize targetName=_targetName;
 @property(readonly, nonatomic) NSString *projectSourceDirectory; // @synthesize projectSourceDirectory=_projectSourceDirectory;
 @property(readonly, nonatomic) NSString *bundlePath; // @synthesize bundlePath=_bundlePath;
 - (void).cxx_destruct;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
-- (id)initWithBuiltPath:(id)arg1 projectSourceDirectory:(id)arg2 targetName:(id)arg3;
+- (id)initWithBuiltPath:(id)arg1 projectSourceDirectory:(id)arg2 targetName:(id)arg3 toolchainIdentifiers:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

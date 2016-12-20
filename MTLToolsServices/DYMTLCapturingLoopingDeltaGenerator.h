@@ -6,16 +6,18 @@
 
 #import "DYCaptureVisitor.h"
 
+@class NSMutableSet;
+
 @interface DYMTLCapturingLoopingDeltaGenerator : DYCaptureVisitor
 {
-    struct unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>> _unrestoredTextures;
+    NSMutableSet *_unrestoredTextures;
 }
 
 + (id)_createEmptyFunctionBufferStream;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_determineUnrestoredTexturesWithArchive:(id)arg1;
 - (void)visitCaptureArchive:(id)arg1;
+- (id)init;
 
 @end
 

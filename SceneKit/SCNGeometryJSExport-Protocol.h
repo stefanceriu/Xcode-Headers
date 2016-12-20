@@ -6,9 +6,10 @@
 
 #import "JSExport.h"
 
-@class CAAnimation, NSArray, NSString, SCNGeometry, SCNGeometryElement, SCNGeometrySource, SCNMaterial, SCNMutableGeometry;
+@class CAAnimation, MDLMesh, NSArray, NSString, SCNGeometryElement, SCNGeometrySource, SCNMaterial;
 
 @protocol SCNGeometryJSExport <JSExport>
++ (id)geometryWithMDLMesh:(MDLMesh *)arg1;
 + (id)geometryWithSources:(NSArray *)arg1 elements:(NSArray *)arg2;
 + (id)geometry;
 @property(retain, nonatomic) SCNGeometrySource *edgeCreasesSource;
@@ -16,6 +17,8 @@
 @property(nonatomic) unsigned long long subdivisionLevel;
 @property(copy, nonatomic) NSArray *levelsOfDetail;
 @property(readonly, nonatomic) long long geometryElementCount;
+@property(readonly, nonatomic) NSArray *geometryElements;
+@property(readonly, nonatomic) NSArray *geometrySources;
 @property(retain, nonatomic) SCNMaterial *firstMaterial;
 @property(copy, nonatomic) NSArray *materials;
 @property(copy, nonatomic) NSString *name;
@@ -39,7 +42,5 @@
 - (void)replaceMaterialAtIndex:(unsigned long long)arg1 withMaterial:(SCNMaterial *)arg2;
 - (void)removeMaterialAtIndex:(unsigned long long)arg1;
 - (void)insertMaterial:(SCNMaterial *)arg1 atIndex:(unsigned long long)arg2;
-- (SCNGeometry *)interleavedCopy;
-- (SCNMutableGeometry *)mutableCopy;
 @end
 

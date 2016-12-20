@@ -11,7 +11,6 @@
 }
 
 + (Class)ibDropTargetResolverClass;
-- (BOOL)validateUserInterfaceItem:(id)arg1;
 - (struct CGRect)windowClippingRectForHighlightingObject:(id)arg1;
 - (id)editedControl;
 

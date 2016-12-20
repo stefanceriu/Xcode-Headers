@@ -6,14 +6,17 @@
 
 #import "NSObject.h"
 
-@class DVTPlatform, NSArray, NSNumber, NSString;
+@class DVTPlatform, NSArray, NSNumber, NSSet, NSString;
 
 @interface DVTExtendedPlatformInfo : NSObject
 {
     BOOL _profileCreationRequiresProvisioningProfilePlatform;
+    BOOL _devicesCanBeRegistered;
     BOOL _requiresPortalAppGroups;
+    BOOL _universalProfileRequiresCloudContainerEnvironmentString;
     BOOL _requiresExplicitAppIDForGameCenter;
     BOOL _requiresLocalGameCenterEntitlement;
+    BOOL _useFallbackEntitlementsInXBS;
     BOOL _devicesEligibleOnlyIfRunnableMatchesPlatform;
     BOOL _prefersModelSpecificSupportDirectories;
     BOOL _ignoreDevices;
@@ -24,6 +27,7 @@
     NSArray *_provisioningProfileUTIs;
     NSString *_portalPlatformIdentifier;
     NSString *_developerProgramUserDescription;
+    NSString *_pushNotificationServiceEntitlement;
     NSArray *_supportedCertificateKindNames;
     NSString *_correspondingDevicePlatformIdentifier;
     NSString *_correspondingSimulatorPlatformIdentifier;
@@ -35,6 +39,7 @@
     NSString *_defaultCodeSignIdentity;
     NSString *_productCategoryIdentifier;
     NSString *_minimumOSForASANWithoutDyldInsertLibrary;
+    NSString *_minimumOSForTSanWithoutDyldInsertLibrary;
     NSString *_minimumOSForXPCServiceDebugging;
     NSString *_minimumOSForUnhostedXPCServiceDebugging;
     NSString *_minimumOSForTestManagerDaemon;
@@ -42,9 +47,12 @@
     NSString *_minimumOSForBackgroundFetchEvents;
     NSNumber *_machOMinOSLoadCommand;
     NSString *_analyticsPlatformIdentifier;
+    NSSet *_destinationSpecifierAliases;
 }
 
++ (id)extendedPlatformInfoForPlatformIdentifier:(id)arg1 error:(id *)arg2;
 + (id)extendedPlatformInfoForPlatformIdentifier:(id)arg1;
+@property(readonly) NSSet *destinationSpecifierAliases; // @synthesize destinationSpecifierAliases=_destinationSpecifierAliases;
 @property(readonly) NSString *analyticsPlatformIdentifier; // @synthesize analyticsPlatformIdentifier=_analyticsPlatformIdentifier;
 @property(readonly) NSNumber *machOMinOSLoadCommand; // @synthesize machOMinOSLoadCommand=_machOMinOSLoadCommand;
 @property(readonly) BOOL requiresTestDaemonMediationForTestHostConnection; // @synthesize requiresTestDaemonMediationForTestHostConnection=_requiresTestDaemonMediationForTestHostConnection;
@@ -53,6 +61,7 @@
 @property(readonly) NSString *minimumOSForTestManagerDaemon; // @synthesize minimumOSForTestManagerDaemon=_minimumOSForTestManagerDaemon;
 @property(readonly) NSString *minimumOSForUnhostedXPCServiceDebugging; // @synthesize minimumOSForUnhostedXPCServiceDebugging=_minimumOSForUnhostedXPCServiceDebugging;
 @property(readonly) NSString *minimumOSForXPCServiceDebugging; // @synthesize minimumOSForXPCServiceDebugging=_minimumOSForXPCServiceDebugging;
+@property(readonly) NSString *minimumOSForTSanWithoutDyldInsertLibrary; // @synthesize minimumOSForTSanWithoutDyldInsertLibrary=_minimumOSForTSanWithoutDyldInsertLibrary;
 @property(readonly) NSString *minimumOSForASANWithoutDyldInsertLibrary; // @synthesize minimumOSForASANWithoutDyldInsertLibrary=_minimumOSForASANWithoutDyldInsertLibrary;
 @property(readonly) NSString *productCategoryIdentifier; // @synthesize productCategoryIdentifier=_productCategoryIdentifier;
 @property(readonly) BOOL ignoreDevices; // @synthesize ignoreDevices=_ignoreDevices;
@@ -67,13 +76,17 @@
 @property(readonly) NSString *correspondingSimulatorPlatformIdentifier; // @synthesize correspondingSimulatorPlatformIdentifier=_correspondingSimulatorPlatformIdentifier;
 @property(readonly) NSString *correspondingDevicePlatformIdentifier; // @synthesize correspondingDevicePlatformIdentifier=_correspondingDevicePlatformIdentifier;
 @property(readonly) NSArray *supportedCertificateKindNames; // @synthesize supportedCertificateKindNames=_supportedCertificateKindNames;
+@property(readonly) BOOL useFallbackEntitlementsInXBS; // @synthesize useFallbackEntitlementsInXBS=_useFallbackEntitlementsInXBS;
+@property(readonly) NSString *pushNotificationServiceEntitlement; // @synthesize pushNotificationServiceEntitlement=_pushNotificationServiceEntitlement;
 @property(readonly) BOOL requiresLocalGameCenterEntitlement; // @synthesize requiresLocalGameCenterEntitlement=_requiresLocalGameCenterEntitlement;
 @property(readonly) BOOL requiresExplicitAppIDForGameCenter; // @synthesize requiresExplicitAppIDForGameCenter=_requiresExplicitAppIDForGameCenter;
+@property(readonly) BOOL universalProfileRequiresCloudContainerEnvironmentString; // @synthesize universalProfileRequiresCloudContainerEnvironmentString=_universalProfileRequiresCloudContainerEnvironmentString;
 @property(readonly) BOOL requiresPortalAppGroups; // @synthesize requiresPortalAppGroups=_requiresPortalAppGroups;
 @property(readonly) NSString *developerProgramUserDescription; // @synthesize developerProgramUserDescription=_developerProgramUserDescription;
 @property(readonly) NSString *portalPlatformIdentifier; // @synthesize portalPlatformIdentifier=_portalPlatformIdentifier;
 @property(readonly) NSArray *provisioningProfileUTIs; // @synthesize provisioningProfileUTIs=_provisioningProfileUTIs;
 @property(readonly) NSString *portalDeviceClass; // @synthesize portalDeviceClass=_portalDeviceClass;
+@property(readonly) BOOL devicesCanBeRegistered; // @synthesize devicesCanBeRegistered=_devicesCanBeRegistered;
 @property(readonly) BOOL profileCreationRequiresProvisioningProfilePlatform; // @synthesize profileCreationRequiresProvisioningProfilePlatform=_profileCreationRequiresProvisioningProfilePlatform;
 @property(readonly) NSString *provisioningProfilePlatform; // @synthesize provisioningProfilePlatform=_provisioningProfilePlatform;
 @property(readonly) NSString *platformIdentifier; // @synthesize platformIdentifier=_platformIdentifier;

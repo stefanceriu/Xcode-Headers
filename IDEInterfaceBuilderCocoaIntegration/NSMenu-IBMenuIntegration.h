@@ -33,7 +33,9 @@
 - (void)ibPopulateEditorSelectionOrderRelationLists:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
 - (BOOL)ibCanBeBoundToFromObject:(id)arg1;
 - (struct CGRect)ibRectForChild:(id)arg1 inFrameController:(id)arg2;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
 @end
 

@@ -10,14 +10,17 @@
 
 @interface DYAnalyzerSubfinding : NSObject
 {
+    BOOL _unsorted;
     int _funcIndex;
     NSString *_text;
 }
 
+@property(readonly, nonatomic) BOOL unsorted; // @synthesize unsorted=_unsorted;
 @property(readonly, nonatomic) int funcIndex; // @synthesize funcIndex=_funcIndex;
 @property(readonly, nonatomic) NSString *text; // @synthesize text=_text;
 - (void).cxx_destruct;
 - (id)initWithText:(id)arg1 andFunctionIndex:(int)arg2;
+- (id)initWithText:(id)arg1 andFunctionIndex:(int)arg2 unsorted:(BOOL)arg3;
 
 @end
 

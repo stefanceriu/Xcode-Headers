@@ -4,25 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEFoundation/IDEPlaygroundCommon.h>
+#import <IDEFoundation/IDEPlaygroundPageCommon.h>
 
-@class IDEPlaygroundPageSharedContext, IDEPlaygroundSharedContext;
-
-@interface IDEPlaygroundPage : IDEPlaygroundCommon
+@interface IDEPlaygroundPage : IDEPlaygroundPageCommon
 {
-    IDEPlaygroundSharedContext *_playgroundContext;
 }
 
 + (BOOL)isSourcesDirectorySubPath:(id)arg1;
 + (id)containerTypeDisplayName;
 + (id)containerFileDataType;
-- (void).cxx_destruct;
-- (id)auxiliarySourceFrameworkDependencies;
 - (id)computedChildItemSubpathsFixed;
-- (id)context;
-@property(readonly, nonatomic) IDEPlaygroundPageSharedContext *pageContext;
-- (id)playgroundContext;
-- (id)initWithFilePath:(id)arg1 extension:(id)arg2 workspace:(id)arg3 options:(id)arg4 error:(id *)arg5;
 
 @end
 

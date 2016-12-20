@@ -35,7 +35,7 @@
 - (id)connectionByCompletingWithConnectionContext:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (id)archiveKeyForLabel;
+- (id)archivingKeyForLabel;
 - (id)printablePListForIBToolInDocument:(id)arg1;
 - (id)displayDescriptionInDocument:(id)arg1;
 - (void)populateExternalConnectionRepresentation:(id)arg1 forContainer:(id)arg2 fromContainer:(id)arg3 otherExternalConnections:(id)arg4 context:(id)arg5;

@@ -11,6 +11,7 @@
 }
 
 + (id)sharedInstance;
+- (id)configurationForScreenMetrics:(id)arg1 orientationMetrics:(id)arg2;
 - (id)fixedSizeMetricsForScreenMetrics:(id)arg1 orientationMetrics:(id)arg2 freeformSize:(struct CGSize)arg3;
 - (id)displayName;
 - (void)encodeWithCoder:(id)arg1;

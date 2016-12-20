@@ -15,6 +15,7 @@
     NSObject<OS_dispatch_queue> *_queue;
     NSFileManager *_fileManager;
     NSMapTable *_urlToCaptureArchiveTable;
+    NSObject<OS_dispatch_queue> *_backgroundSerialQueue;
     NSMapTable *_hashToURLTable;
     NSMutableSet *_reportURLSet;
 }
@@ -32,6 +33,7 @@
 - (id)retrieveArchivedDataForKey:(id)arg1 fromArchiveAtURL:(id)arg2 error:(id *)arg3;
 - (BOOL)archiveData:(id)arg1 withKey:(id)arg2 toArchiveAtURL:(id)arg3 replaceData:(BOOL)arg4 error:(id *)arg5;
 - (BOOL)invalidateArchiveWithURL:(id)arg1 eraseFromDisk:(BOOL)arg2 error:(id *)arg3;
+- (id)invalidateArchiveAsynchronouslyWithURL:(id)arg1 eraseFromDisk:(BOOL)arg2 error:(id *)arg3;
 - (void)closeArchiveAtURL:(id)arg1;
 - (id)createNewArchiveWithInferiorName:(id)arg1 error:(id *)arg2;
 - (id)openCaptureArchiveAtURL:(id)arg1 error:(id *)arg2;

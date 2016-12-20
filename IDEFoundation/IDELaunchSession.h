@@ -21,6 +21,7 @@
     BOOL _allConsoleAdaptorsTerminated;
     BOOL _hasAlreadyOutputExitString;
     DVTFuture *_appExtensionInstallFuture;
+    DVTObservingToken *_appExtensionObserverToken;
     BOOL _iconChanged;
     BOOL _representsAnXPCService;
     BOOL _hasExitCode;
@@ -52,6 +53,7 @@
 }
 
 + (id)watchLaunchOptionsForLaunchParameters:(id)arg1;
++ (id)notificationPayloadForFilePath:(id)arg1;
 + (id)languageArguments;
 + (BOOL)_isLaunchSession:(id)arg1 soleRecipientForAppExt:(id)arg2;
 + (BOOL)_unregisterLaunchSession:(id)arg1 asSoleRecipientForAppExt:(id)arg2;
@@ -79,7 +81,7 @@
 @property(readonly) IDELocationSimulator *locationSimulator; // @synthesize locationSimulator=_locationSimulator;
 @property(readonly, nonatomic) int targetOutputState; // @synthesize targetOutputState=_targetOutputState;
 @property(readonly, copy) NSString *runnableDisplayName; // @synthesize runnableDisplayName=_runnableDisplayName;
-@property(retain) IDERunDestination *runDestination; // @synthesize runDestination=_runDestination;
+@property(retain, nonatomic) IDERunDestination *runDestination; // @synthesize runDestination=_runDestination;
 @property(retain) IDESchemeCommand *schemeCommand; // @synthesize schemeCommand=_schemeCommand;
 @property BOOL iconChanged; // @synthesize iconChanged=_iconChanged;
 @property int simulatorPID; // @synthesize simulatorPID=_simulatorPID;
@@ -137,6 +139,7 @@
 - (void)setTargetOutputState:(int)arg1;
 @property(readonly) IDEExecutionEnvironment *executionEnvironment; // @synthesize executionEnvironment=_executionEnvironment;
 @property(readonly) int CPUType;
+- (void)dealloc;
 - (id)initWithExecutionEnvironment:(id)arg1 launchParameters:(id)arg2 runnableDisplayName:(id)arg3 runnableType:(id)arg4 runDestination:(id)arg5;
 
 // Remaining properties

@@ -6,18 +6,25 @@
 
 #import "IDEGeniusResultsFinder.h"
 
+#import "DYPGeniusResultsFinderDelegate.h"
+
+@class NSString;
+
 __attribute__((visibility("hidden")))
-@interface GPUMTLTraceGeniusResultsFinder : IDEGeniusResultsFinder
+@interface GPUMTLTraceGeniusResultsFinder : IDEGeniusResultsFinder <DYPGeniusResultsFinderDelegate>
 {
 }
 
 + (Class)editorDocumentClass;
-- (void)_updateGeniusResults:(id)arg1 withDevice:(const Device_5cef99fc *)arg2 withFunction:(const Function_130258c1 *)arg3;
-- (void)_addComputeFunctionGeniusResults:(id)arg1 withDevice:(const Device_5cef99fc *)arg2 objectID:(unsigned long long)arg3;
-- (void)_addRenderFunctionGeniusResults:(id)arg1 withDevice:(const Device_5cef99fc *)arg2 objectID:(unsigned long long)arg3;
-- (void)_addFunctionGeniusResults:(id)arg1 forAPIItem:(id)arg2;
-- (void)_addLibraryGeniusResults:(id)arg1 forAPIItem:(id)arg2;
+- (id)categoryKeyForCategory:(int)arg1;
+- (id)resultWithSourceURL:(id)arg1 label:(id)arg2 lineNumber:(unsigned long long)arg3 representsLibrary:(BOOL)arg4;
 - (void)_updateGeniusResults;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

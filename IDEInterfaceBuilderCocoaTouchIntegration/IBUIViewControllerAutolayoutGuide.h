@@ -45,7 +45,7 @@
 @property(nonatomic) double ibShadowedHorizontalContentCompressionResistancePriority;
 @property(nonatomic) double ibShadowedVerticalContentHuggingPriority;
 @property(nonatomic) double ibShadowedHorizontalContentHuggingPriority;
-@property(nonatomic) BOOL ibExternalTranslatesAutoresizingMaskIntoConstraints;
+@property(nonatomic) BOOL ibExternalExplicitTranslatesAutoresizingMaskIntoConstraints;
 - (id)ibNextAncestorItemForFindingReferencingConstraintsInLayoutInfo:(id)arg1;
 @property(readonly, nonatomic) id <IBCollection> ibTurnedOnButPossiblyUninstalledReferencingConstraints;
 @property(readonly, nonatomic) id <IBCollection> ibCandidateReferencingConstraints;
@@ -53,6 +53,7 @@
 - (id)ibReferencingConstraintsWithScope:(long long)arg1;
 @property(retain, nonatomic) id <IBOrderedCollection> ibTurnedOnButPossiblyUninstalledConstraints;
 @property(retain, nonatomic) id <IBOrderedCollection> ibInstalledConstraints;
+@property(readonly, nonatomic) id <IBOrderedCollection> ibInstalledConstraintsWithInstalledAncestors;
 @property(retain, nonatomic) id <IBOrderedCollection> ibCandidateConstraints;
 - (unsigned long long)ibAllowedSiblingEdgesForGuidesToSelectedItems:(id)arg1;
 - (BOOL)ibAllowsSiblingGuidesToSelectedItems:(id)arg1 ofType:(long long)arg2;
@@ -78,8 +79,11 @@
 - (void)addConstraints:(id)arg1;
 - (void)addConstraint:(id)arg1;
 @property(readonly, nonatomic) NSArray *constraints;
-- (CDUnion_aed8a530)convertKnobPosition:(CDUnion_aed8a530)arg1 fromView:(struct NSView *)arg2;
-- (CDUnion_aed8a530)convertKnobPosition:(CDUnion_aed8a530)arg1 toView:(struct NSView *)arg2;
+@property(nonatomic) BOOL ibCanFrameDecideEvenWhenAmbiguousForNextStatusUpdate;
+@property(readonly, nonatomic) BOOL ibFrameDecideDuringStatusUpdate;
+@property(readonly, nonatomic) BOOL ibIsSelfManagedContainerInEngine;
+- (CDUnion_42e99c75)convertKnobPosition:(CDUnion_42e99c75)arg1 fromView:(struct NSView *)arg2;
+- (CDUnion_42e99c75)convertKnobPosition:(CDUnion_42e99c75)arg1 toView:(struct NSView *)arg2;
 - (unsigned int)convertRectEdge:(unsigned int)arg1 fromView:(struct NSView *)arg2;
 - (unsigned int)convertRectEdge:(unsigned int)arg1 toView:(struct NSView *)arg2;
 - (CDStruct_c519178c)convertInset:(CDStruct_c519178c)arg1 fromView:(struct NSView *)arg2;
@@ -90,8 +94,8 @@
 - (struct CGSize)convertSize:(struct CGSize)arg1 fromView:(struct NSView *)arg2;
 - (struct CGPoint)convertPoint:(struct CGPoint)arg1 toView:(struct NSView *)arg2;
 - (struct CGPoint)convertPoint:(struct CGPoint)arg1 fromView:(struct NSView *)arg2;
-- (CDUnion_aed8a530)ib_convertKnobPosition:(CDUnion_aed8a530)arg1 fromItem:(id)arg2;
-- (CDUnion_aed8a530)ib_convertKnobPosition:(CDUnion_aed8a530)arg1 toItem:(id)arg2;
+- (CDUnion_42e99c75)ib_convertKnobPosition:(CDUnion_42e99c75)arg1 fromItem:(id)arg2;
+- (CDUnion_42e99c75)ib_convertKnobPosition:(CDUnion_42e99c75)arg1 toItem:(id)arg2;
 - (unsigned int)ib_convertRectEdge:(unsigned int)arg1 fromItem:(id)arg2;
 - (unsigned int)ib_convertRectEdge:(unsigned int)arg1 toItem:(id)arg2;
 - (CDStruct_c519178c)ib_convertInset:(CDStruct_c519178c)arg1 fromItem:(id)arg2;
@@ -106,7 +110,7 @@
 - (struct _IBEdgeInsets)ibLayoutMargins;
 - (BOOL)ibSupportsLayoutMargins;
 - (BOOL)ibSupportsFirstBaseline;
-- (BOOL)ibIsBaselineAtIndex:(long long)arg1 inMotionWithKnob:(CDUnion_aed8a530)arg2;
+- (BOOL)ibIsBaselineAtIndex:(long long)arg1 inMotionWithKnob:(CDUnion_42e99c75)arg2;
 - (double)ibBaselineAtIndex:(long long)arg1 inCoordinateSpaceOfItem:(id)arg2;
 @property(readonly, nonatomic) long long ibBaselineCount;
 @property(readonly, nonatomic) double ibShadowedFirstBaselineOffsetFromTop;
@@ -123,6 +127,7 @@
 @property(readonly, nonatomic) id window;
 @property(readonly, nonatomic) NSArray *subviews;
 @property(readonly, nonatomic) NSObject<IBAutolayoutItem> *superview;
+@property(readonly, nonatomic) BOOL ibExternalEffectiveTranslatesAutoresizingMaskIntoConstraints;
 - (id)initAsEngineSpacerItemWithInitialLayoutFrame:(struct CGRect)arg1;
 - (id)ibEffectiveRootCoordinateSystemForConversions;
 - (id)ibEffectiveWindowForConversions;
@@ -144,7 +149,7 @@
 - (void)ibPrimitiveRemoveConstraintsFromCandidateListOnly:(id)arg1 keepingInDocument:(id)arg2;
 - (void)ibPrimitiveAddConstraintsToCandidateListOnly:(id)arg1 thatAreAlreadyInDocument:(id)arg2;
 - (void)ibRemoveCandidateConstraints:(id)arg1;
-- (void)ibAddCandidateConstraints:(id)arg1 offInEmptyConfigurationAndOnInConfiguration:(id)arg2;
+- (void)ibAddCandidateConstraints:(id)arg1 shouldAddToEffectiveEditedConfiguration:(BOOL)arg2;
 - (double)ibPriorityForPlaceholderAmbiguousSubviewVerticalConstraints;
 - (double)ibPriorityForPlaceholderAmbiguousSubviewHorizontalConstraints;
 - (double)ibPriorityForPlaceholderUninitializedSubviewVerticalConstraints;
@@ -155,9 +160,11 @@
 - (BOOL)ibShouldGeneratePlaceholderPositionConstraintsForUninitializedSubviews;
 - (BOOL)ibShouldBeIncludedForReportingAmbiguityWithStatus:(id)arg1 inDocument:(id)arg2;
 @property(readonly, nonatomic) BOOL ibShouldPropagateFramesDuringFrameDecision;
+- (BOOL)ibShouldIgnoreForAmbiguityGroup:(id)arg1;
 @property(readonly, nonatomic) BOOL ibShouldIgnoreSizeMisplacement;
 @property(readonly, nonatomic) BOOL ibShouldIgnorePositionMisplacement;
-@property(readonly, nonatomic) BOOL ibShouldIgnoreAmbiguity;
+@property(readonly, nonatomic) BOOL ibShouldIgnoreSizeAmbiguity;
+@property(readonly, nonatomic) BOOL ibShouldIgnorePositionAmbiguity;
 @property(nonatomic) BOOL ibExternalWasMisplacedOnLastSave;
 @property(nonatomic) BOOL ibExternalHadAnyAmbiguityOnLastSave;
 @property(nonatomic) BOOL ibExternalHasUninitializedAutolayoutAmbiguityStatus;
@@ -180,6 +187,7 @@
 - (BOOL)ibHasOwnedPositionLayoutInDocument:(id)arg1;
 - (BOOL)ibHasOwnedSizeLayoutInDocument:(id)arg1;
 - (BOOL)ibIsValidConstraintItem;
+- (id)ibPasteboardTypes;
 - (BOOL)ibCanBeReferencedByConstraintWithContainingView:(id)arg1;
 - (id)localExtraMarshalledToOneRelationshipKeyPaths;
 - (id)localExtraMarshalledAttributesKeyPaths;
@@ -187,6 +195,7 @@
 - (BOOL)ibCanChangeCustomClassName;
 - (id)ibDefaultLabel;
 - (id)ibRuntimeClassName;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

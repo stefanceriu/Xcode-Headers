@@ -13,25 +13,25 @@
 
 @interface DVTFindResult : NSObject <NSCopying, NSCoding>
 {
+    int _replaceState;
     DVTDocumentLocation *_location;
     DVTFindDescriptor *_findDescriptor;
     NSString *_contextString;
-    struct _NSRange _contextRange;
-    DVTDocumentLocation *_replacedLocation;
-    int _replaceState;
     NSString *_replacedString;
+    DVTDocumentLocation *_replacedLocation;
     NSDictionary *_userInfo;
+    struct _NSRange _contextRange;
 }
 
 + (struct _NSRange)lineRangeForFoundRange:(struct _NSRange)arg1 inString:(id)arg2;
 @property(readonly, copy) NSDictionary *userInfo; // @synthesize userInfo=_userInfo;
 @property(copy) DVTDocumentLocation *replacedLocation; // @synthesize replacedLocation=_replacedLocation;
-@property int replaceState; // @synthesize replaceState=_replaceState;
 @property(copy, nonatomic) NSString *replacedString; // @synthesize replacedString=_replacedString;
+@property int replaceState; // @synthesize replaceState=_replaceState;
 @property(readonly) struct _NSRange contextRange; // @synthesize contextRange=_contextRange;
 @property(readonly) NSString *contextString; // @synthesize contextString=_contextString;
-@property(readonly) DVTDocumentLocation *location; // @synthesize location=_location;
 @property(readonly) DVTFindDescriptor *findDescriptor; // @synthesize findDescriptor=_findDescriptor;
+@property(readonly) DVTDocumentLocation *location; // @synthesize location=_location;
 - (void).cxx_destruct;
 - (id)copyWithContextString:(id)arg1 contextRange:(struct _NSRange)arg2 userInfo:(id)arg3;
 - (id)copyWithUpdatedLocation:(id)arg1;

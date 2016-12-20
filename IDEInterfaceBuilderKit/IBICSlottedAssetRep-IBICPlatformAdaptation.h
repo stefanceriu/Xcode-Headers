@@ -7,7 +7,7 @@
 #import "IBICSlottedAssetRep.h"
 
 @interface IBICSlottedAssetRep (IBICPlatformAdaptation)
-- (BOOL)validateSlottedAssetRepForWriting:(id)arg1 withOptions:(id)arg2 forOptionsKey:(id)arg3 returningSuccessIssue:(id *)arg4 andFailureIssue:(id *)arg5;
-- (BOOL)validateSlottedAssetRepForWriting:(id)arg1 withOptions:(id)arg2 returningSuccessIssue:(id *)arg3 andFailureIssue:(id *)arg4;
+- (BOOL)validateSlottedAssetRepForWriting:(id)arg1 withOptions:(id)arg2 forOptionsKey:(id)arg3 andFailureIssue:(id *)arg4;
+- (BOOL)validateSlottedAssetRepForWriting:(id)arg1 withOptions:(id)arg2 andFailureIssue:(id *)arg3;
 @end
 

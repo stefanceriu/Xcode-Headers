@@ -23,14 +23,13 @@
     NSDictionary *boldSystemFontInfo;
     NSDictionary *italicSystemFontInfo;
     IBUIFontDataSource *fontDataSource;
+    NSMutableDictionary *_filenamesByFontName;
     id <DVTCancellable> _fontsObservationToken;
-    IBCocoaTouchOSVersion *_cocoaTouchOSVersion;
 }
 
-+ (id)targetRuntimeWithSystemColor:(id)arg1;
++ (id)targetRuntimeWithSystemColor:(id)arg1 preferringIdiom:(id)arg2;
 + (id)targetRuntimeForIdiom:(id)arg1 andOSVersion:(id)arg2;
 + (id)targetRuntimeForIdiom:(id)arg1 andUserInterfaceEra:(long long)arg2;
-@property(readonly, nonatomic) IBCocoaTouchOSVersion *cocoaTouchOSVersion; // @synthesize cocoaTouchOSVersion=_cocoaTouchOSVersion;
 - (void).cxx_destruct;
 - (BOOL)populateEnvironment:(id)arg1 forExecutionContext:(id)arg2 error:(id *)arg3;
 - (id)registerSceneUpdateRenderingDelegate:(id)arg1 forScaleFactor:(double)arg2 returningSceneIdentifier:(long long *)arg3 error:(id *)arg4;
@@ -45,7 +44,6 @@
 - (id)alternateTargetRuntimeForSevenAndLater;
 - (id)nextPreviewableTargetRuntime;
 - (void)installColorListIfNeeded;
-- (id)URLForFontName:(id)arg1;
 - (id)textStyleForArchiveName:(id)arg1;
 - (id)archiveNameForTextStyle:(id)arg1;
 - (id)fontDataSource;
@@ -53,6 +51,8 @@
 - (BOOL)isValidFontName:(id)arg1;
 - (double)fontPointSizeForTextStyle:(id)arg1;
 - (double)fontPointSizeForSize:(long long)arg1;
+- (id)filenameForFontName:(id)arg1;
+- (void)registerFilename:(id)arg1 forFontName:(id)arg2;
 - (unsigned long long)fontTraitsForFontName:(id)arg1;
 - (unsigned long long)fontTraitsForType:(long long)arg1 andTextStyle:(id)arg2;
 - (id)fontFamilyForFontName:(id)arg1;
@@ -84,7 +84,7 @@
 - (id)keyPathForSystemColor:(id)arg1;
 - (id)systemNamesToGenericColorsMap;
 - (id)regeneratePerScaleSystemNamesToGenericColorsMap;
-- (id)regenerateSystemNamesToGenericColorsMapForScale:(id)arg1;
+- (id)regenerateSystemNamesToGenericColorsMapForScale:(double)arg1;
 - (id)readPerScaleExistingSystemNamesToGenericColorsMap;
 - (CDUnknownBlockType)defaultClassValueDiagnosticsBlock;
 @property(readonly) IBUISimulatedStatusBarMetrics *defaultLibraryStatusBarMetrics;
@@ -92,10 +92,10 @@
 @property(readonly) IBUISimulatedOrientationMetrics *defaultOrientationMetrics;
 @property(readonly) IBUIScreenMetrics *defaultScreenMetrics;
 - (BOOL)wantsRoundedCorners;
-- (double)defaultOverviewZoomFactor;
 - (id)icon;
 - (id)displayNameForUserInterfaceStyle;
 @property(readonly, nonatomic) long long userInterfaceEra;
+@property(readonly, nonatomic) IBCocoaTouchOSVersion *cocoaTouchOSVersion;
 @property(readonly, nonatomic) IBCocoaTouchIdiom *idiom;
 - (id)archiveVariantIdentifier;
 - (id)archiveIdentifier;

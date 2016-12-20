@@ -59,17 +59,17 @@
     BOOL _shouldAssertIfNotInvalidatedBeforeDealloc;
     BOOL _trackFileSystemChanges;
     BOOL _wholeDocumentChanged;
+    BOOL _isPerformingSynchronousFileAccess;
     NSSet *_readOnlyClients;
     DVTFilePath *_autosavedContentsFilePath;
 }
 
-+ (BOOL)shouldOpenDocumentForURL:(id)arg1;
 + (BOOL)_presentsVersionsUserInterface;
 + (BOOL)autosavesInPlace;
 + (id)editedFileContents;
 + (id)keyPathsForValuesAffectingIde_displayName;
++ (BOOL)documentSupportsInconsistentState;
 + (id)readableTypes;
-+ (BOOL)_validateDocumentExtension:(id)arg1;
 + (BOOL)_shouldShowUtilititesAreaAtLoadForSimpleFilesFocusedWorkspace;
 + (BOOL)shouldTrackFileSystemChanges;
 + (BOOL)shouldUnlockFileURLBeforeMakingChanges;
@@ -134,6 +134,7 @@
 - (void)didExternallyRelocateFileContent;
 - (void)willExternallyRelocateFileContent;
 - (void)closeToRevert;
+- (void)_closeToRevert;
 @property(readonly, getter=isClosed) BOOL closed;
 - (void)close;
 - (BOOL)_isClosing;
@@ -143,12 +144,15 @@
 - (void)_tryCloseAsynchronouslyToRevert:(BOOL)arg1 promptForUnsavedChanges:(BOOL)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 - (void)_canCloseAsynchronouslyToRevert:(BOOL)arg1 promptForUnsavedChanges:(BOOL)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 - (void)performActivityWithSynchronousWaiting:(BOOL)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (void)performSynchronousFileAccessUsingBlock:(CDUnknownBlockType)arg1;
 - (void)_didAddToDocumentController;
 - (void)canCloseDocumentWithDelegate:(id)arg1 shouldCloseSelector:(SEL)arg2 contextInfo:(void *)arg3;
 - (void)ide_editorDocument:(id)arg1 shouldClose:(BOOL)arg2 contextInfo:(void *)arg3;
 @property(readonly) NSString *messageForIsValidAssertion;
 - (void)editorDocumentDidClose;
+- (void)_editorDocumentDidClose;
 - (void)editorDocumentWillClose;
+- (void)_editorDocumentWillClose;
 - (void)saveDocumentAs:(id)arg1;
 - (void)saveDocument:(id)arg1;
 - (id)initForURL:(id)arg1 withContentsOfURL:(id)arg2 ofType:(id)arg3 error:(id *)arg4;
@@ -184,6 +188,7 @@
 - (void)_startUnlockIfNeededForWorkspace:(id)arg1 window:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)_unlockIfNeededCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)init;
+- (void)_validateClass;
 - (void)_changeWasRedone:(id)arg1;
 - (void)_changeWasUndone:(id)arg1;
 - (void)_changeWasDone:(id)arg1;
@@ -200,6 +205,7 @@
 @property(readonly) BOOL ide_isTextRepresentation;
 - (void)convertToDocumentAtFilePath:(id)arg1 forFileDataType:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 @property BOOL ide_isTemporaryDocument;
+- (id)handleCloseScriptCommand:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

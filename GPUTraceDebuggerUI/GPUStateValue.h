@@ -6,11 +6,12 @@
 
 #import "NSObject.h"
 
+#import "DYPVariablesViewGPUStateValue.h"
 #import "IDEDataValue.h"
 
 @class NSArray, NSMutableArray, NSString;
 
-@interface GPUStateValue : NSObject <IDEDataValue>
+@interface GPUStateValue : NSObject <IDEDataValue, DYPVariablesViewGPUStateValue>
 {
     NSString *_name;
     NSString *_value;
@@ -42,6 +43,7 @@
 - (id)formattedSummary;
 - (long long)compareName:(id)arg1;
 - (id)_contentDescription;
+- (void)setStateValue:(id)arg1 withName:(id)arg2 withType:(id)arg3 withItemDescription:(id)arg4 withChanged:(BOOL)arg5;
 - (id)_contentDescriptionWithChildValuesAtLevel:(unsigned long long)arg1;
 @property(readonly, copy) NSString *description;
 @property(readonly) BOOL isMemoryFault;

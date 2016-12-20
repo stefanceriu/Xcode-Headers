@@ -16,6 +16,8 @@
 - (id)ibInspectedTitle;
 - (void)setIbInspectedImage:(id)arg1;
 - (id)ibInspectedImage;
+- (id)ibInspectedSelectableMenuItemTitles;
+- (id)ibInspectedSelectableMenuItems;
 - (id)ibLocalAdditionalIbtoolDescriptionKeyPaths;
 - (id)ibEquivalentSourceForToOneOutlet:(id)arg1;
 - (BOOL)ibWouldClipContentWithCellSize:(struct CGSize)arg1;
@@ -27,5 +29,9 @@
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (id)ibButtonLocalLocalizableStringsAttributeKeyPaths;
 - (id)ibButtonLocalAttributesKeyPaths;
+- (id)ibLocalAdditionalLocalizableAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalNonChildToOneRelationshipsKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 @end
 

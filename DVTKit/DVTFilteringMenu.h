@@ -34,6 +34,7 @@
 @property(readonly) BOOL initiallyShowsSearch; // @synthesize initiallyShowsSearch=_initiallyShowsSearch;
 - (void).cxx_destruct;
 - (void)controlTextDidChange:(id)arg1;
+- (id)_singleEnabledMenuItem;
 - (BOOL)control:(id)arg1 textView:(id)arg2 doCommandBySelector:(SEL)arg3;
 - (void)menuNeedsUpdate:(id)arg1;
 - (long long)numberOfItemsInMenu:(id)arg1;

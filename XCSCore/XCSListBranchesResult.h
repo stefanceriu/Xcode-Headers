@@ -6,7 +6,7 @@
 
 #import <XCSCore/XCSBlueprintOperationResult.h>
 
-@class NSMutableDictionary;
+@class NSArray, NSMutableDictionary;
 
 @interface XCSListBranchesResult : XCSBlueprintOperationResult
 {
@@ -17,6 +17,8 @@
 - (void).cxx_destruct;
 - (void)addBranch:(id)arg1 forRepositoryID:(id)arg2;
 - (id)mutableBranchesForRepositoryID:(id)arg1;
+- (void)mergeWithResult:(id)arg1;
+@property(readonly) NSArray *repositoryIDsWithBranches;
 - (id)branchesForRepositoryID:(id)arg1;
 - (id)dictionaryRepresentation;
 - (BOOL)_validateBranches:(id)arg1 validationErrors:(id *)arg2;

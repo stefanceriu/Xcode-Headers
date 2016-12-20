@@ -11,14 +11,14 @@
 @interface IDEActivityStatusCategoryLayer : DVTClickableLayer
 {
     NSAttributedString *_cachedAttributedCountString;
-    NSString *_statusTypeDisplayName;
     DVTTextLayer *_textLayer;
     CALayer *_imageLayer;
+    NSString *_statusTypeDisplayName;
     long long _count;
 }
 
-@property(copy) NSString *statusTypeDisplayName; // @synthesize statusTypeDisplayName=_statusTypeDisplayName;
 @property(nonatomic) long long count; // @synthesize count=_count;
+@property(copy) NSString *statusTypeDisplayName; // @synthesize statusTypeDisplayName=_statusTypeDisplayName;
 - (void).cxx_destruct;
 - (id)accessibilityAttributeValue:(id)arg1;
 - (id)accessibilityAttributeNames;

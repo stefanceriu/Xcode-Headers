@@ -14,14 +14,13 @@
 
 @interface IDEActivityPopUpContentLayerController : DVTLayerController <IDEActivityViewDataConsumer, IDEActivityPopUpContentLayerDelegate, DVTInvalidation>
 {
-    id <IDEActivityPopUpContentLayerControllerDelegate> _delegate;
-    IDEWorkspaceDocument *_workspaceDocument;
     IDEActivityViewDataSource *_dataSource;
     NSMutableSet *_completedReportsToShowInPopUpAfterMinimumTimeHasExpired;
     NSMapTable *_strongReportsToStrongReportLayers;
     NSMutableArray *_orderedDisplayedReports;
     NSMutableSet *_completedReportsInPopUp;
-    id <DVTCancellable> _botStatusUpdateToken;
+    IDEWorkspaceDocument *_workspaceDocument;
+    id <IDEActivityPopUpContentLayerControllerDelegate> _delegate;
     double _spaceNeededForMultiActionIndicator;
 }
 
@@ -32,7 +31,6 @@
 - (void).cxx_destruct;
 - (void)popUpContentLayer:(id)arg1 didChangePreferredHeightTo:(double)arg2;
 - (void)doneButtonWasClickedInPopUpContentLayer:(id)arg1;
-- (void)activityViewDataSource:(id)arg1 countDidChangeForBotStatusCategory:(id)arg2;
 - (void)activityViewDataSource:(id)arg1 workspaceRepresentingTypeStringDidChangeTo:(id)arg2;
 - (void)activityViewDataSource:(id)arg1 issueCountDidChangeForIssueCategory:(id)arg2;
 - (void)activityViewDataSource:(id)arg1 displayDelayTimeWasMetForActivityReport:(id)arg2;

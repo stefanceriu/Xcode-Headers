@@ -14,17 +14,19 @@
 {
 }
 
-+ (void)mixInExtendClass:(Class)arg1 assertInDealloc:(BOOL)arg2;
++ (void)mixInExtendClass:(Class)arg1 deallocAssertionBehavior:(unsigned long long)arg2;
 + (BOOL)supportsInvalidationPrevention;
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
-- (void)DVTInvalidationMixIn_SoftAssertDealloc;
-- (void)DVTInvalidationMixIn_dealloc;
+- (void)DVTInvalidationMixIn_SoftAssertDidInvalidateDealloc;
+- (void)DVTInvalidationMixIn_HardAssertDidInvalidateDealloc;
+- (void)DVTInvalidationMixIn_DeZombifyDealloc;
 - (void)invalidate;
 - (void)primitiveInvalidate;
 @property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
+- (BOOL)__isDVTInvalidation;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

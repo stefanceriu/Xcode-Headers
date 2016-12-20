@@ -38,11 +38,13 @@
     BOOL _finalizedOverview;
     BOOL _isInvalidating;
     BOOL _isRemoteDebuggingEnabled;
+    BOOL _isOSXSession;
     unsigned int _deviceInterposeVersionGL;
     unsigned int _deviceInterposeVersionMetal;
     unsigned int _updatedResourcesChangeCount;
     NSString *_captureUnavailabilityReason;
     NSString *_inferiorAppName;
+    NSString *_sessionID;
 }
 
 + (BOOL)isRemoteDebuggingRequested:(id)arg1;
@@ -51,7 +53,9 @@
 + (id)logAspect;
 + (id)keyPathsForValuesAffectingTraceSession;
 @property unsigned int updatedResourcesChangeCount; // @synthesize updatedResourcesChangeCount=_updatedResourcesChangeCount;
+@property(readonly) NSString *sessionID; // @synthesize sessionID=_sessionID;
 @property(readonly) NSString *inferiorAppName; // @synthesize inferiorAppName=_inferiorAppName;
+@property BOOL isOSXSession; // @synthesize isOSXSession=_isOSXSession;
 @property BOOL isRemoteDebuggingEnabled; // @synthesize isRemoteDebuggingEnabled=_isRemoteDebuggingEnabled;
 @property(readonly) NSString *captureUnavailabilityReason; // @synthesize captureUnavailabilityReason=_captureUnavailabilityReason;
 @property(readonly) unsigned int deviceInterposeVersionMetal; // @synthesize deviceInterposeVersionMetal=_deviceInterposeVersionMetal;
@@ -100,7 +104,7 @@
 - (void)primitiveInvalidate;
 - (void)releaseCurrentGPUTrace;
 - (id)GPUToolsDeviceFromDVTDevice:(id)arg1 error:(id *)arg2;
-@property(readonly) DYCaptureSessionInfo *captureSessionInfo; // @dynamic captureSessionInfo;
+@property(readonly) DYCaptureSessionInfo *captureSessionInfo;
 - (id)initWithAppName:(id)arg1 launchSession:(id)arg2 controller:(id)arg3 launchCommand:(id)arg4 error:(id *)arg5;
 - (id)initWithAppName:(id)arg1 launchSession:(id)arg2 controller:(id)arg3 error:(id *)arg4;
 

@@ -11,7 +11,7 @@
 }
 
 - (BOOL)interceptEvent:(id)arg1;
-- (void)positionChildEditorFrame;
+- (void)positionChildEditorFrames;
 - (id)popUpButtonForChildEditor;
 - (id)editedPredicateEditorRowTemplate;
 

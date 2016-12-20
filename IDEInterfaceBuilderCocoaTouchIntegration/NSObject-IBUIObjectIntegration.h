@@ -6,28 +6,22 @@
 
 #import "NSObject.h"
 
-@class NSColor;
-
 @interface NSObject (IBUIObjectIntegration)
 - (void)ibCocoaTouchToolFontsDidChange;
-- (void)ibPopulateAdditionalTargetOSVersions:(id)arg1 forCompilingDocument:(id)arg2;
-- (void)ibPrepareToBackwardsDeployToOSVersion:(id)arg1 inDocument:(id)arg2;
 - (void)ibPopulateAdditionalKeyValuePairs:(id)arg1 forCompilationWithMarshallingContext:(id)arg2;
 - (id)ibPreviewingRegistrantSourceViewInDocument:(id)arg1;
 - (void)ibInheritedTintColorDidChange;
 - (void)ibInheritedTintColorWillChange;
 - (void)ibVerifySimulatedMetricsWithDocument:(id)arg1;
+- (id)effectiveSimulatedMetrics;
 - (BOOL)ibPresentsSimulatedMetricsInDocument:(id)arg1;
 - (BOOL)ibCanBeSourceOfForceTouchSegue;
 - (BOOL)ibInspectedSupportsPresentationSizeMetrics;
-- (BOOL)ibInspectedSupportsOrientationMetrics;
 - (BOOL)ibInspectedSupportsBottomBarMetrics;
 - (BOOL)ibInspectedSupportsTopBarMetrics;
 - (BOOL)ibInspectedSupportsStatusBarMetrics;
 - (BOOL)ibSupportsSimulatedMetrics;
 - (BOOL)ibCanBePushedOnNavigationController;
-@property(readonly) NSColor *ibSimulatedBackgroundColorForRendering;
-- (struct CGSize)ibSimulatedViewPortSize;
 - (void)ibSwizzledConfigureDiagnosticsHandler:(id)arg1 afterFailedMarshallingOperationNamed:(id)arg2;
 - (void)ibConfigureDiagnosticsHandler:(id)arg1 afterFailedMarshallingOperationNamed:(id)arg2;
 - (id)ibSwizzledSearchableStringValueForPrimitiveValue:(id)arg1 atLocation:(id)arg2 inDocument:(id)arg3;

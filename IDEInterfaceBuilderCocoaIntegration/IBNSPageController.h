@@ -19,6 +19,7 @@
 @property long long transitionStyle; // @synthesize transitionStyle=_transitionStyle;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)ibLocalAttributeKeyPaths;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (id)ibImageForOwnedScene;

@@ -6,20 +6,38 @@
 
 #import <IBFoundation/IBICSlotComponent.h>
 
-@interface IBICGraphicsFeatureSet : IBICSlotComponent
+#import "IBICCoreUISlotComponent.h"
+
+@class NSString;
+
+@interface IBICGraphicsFeatureSet : IBICSlotComponent <IBICCoreUISlotComponent>
 {
     long long _graphicsFeatureSetClass;
 }
 
 + (id)itemWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 displayOrder:(double)arg4 graphicsFeatureSetClass:(long long)arg5;
++ (id)displayName;
 + (id)fallbackContentsJSONKeys;
 + (id)contentsJSONKey;
++ (id)unspecifiedValuePlaceholder;
++ (void)setComponentID:(long long)arg1;
++ (long long)componentID;
 @property(readonly) long long graphicsFeatureSetClass; // @synthesize graphicsFeatureSetClass=_graphicsFeatureSetClass;
+- (void)encodeWithBinaryArchiver:(id)arg1;
+- (id)initWithBinaryUnarchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly, nonatomic) long long coreUIValue;
 @property(readonly) long long graphicsClass;
 - (id)initWithIdentifier:(id)arg1 fileNameComponent:(id)arg2 title:(id)arg3 displayOrder:(double)arg4 graphicsFeatureSetClass:(long long)arg5;
+- (long long)componentID;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

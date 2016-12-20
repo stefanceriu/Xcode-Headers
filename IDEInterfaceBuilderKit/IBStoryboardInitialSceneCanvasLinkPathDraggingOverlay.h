@@ -6,22 +6,23 @@
 
 #import <IDEInterfaceBuilderKit/IBCanvasOverlay.h>
 
-@class IBStoryboardInitialSceneCanvasLinkPath, NSString;
+@class CAShapeLayer, IBStoryboardInitialSceneCanvasLinkPath;
 
 @interface IBStoryboardInitialSceneCanvasLinkPathDraggingOverlay : IBCanvasOverlay
 {
     IBStoryboardInitialSceneCanvasLinkPath *_linkPath;
+    CAShapeLayer *_linkPathLayer;
     BOOL _selected;
-    NSString *_title;
     CDStruct_f6143a38 _canvasLinkPathLine;
 }
 
 @property(nonatomic, getter=isSelected) BOOL selected; // @synthesize selected=_selected;
-@property(retain, nonatomic) NSString *title; // @synthesize title=_title;
 @property(nonatomic) CDStruct_f6143a38 canvasLinkPathLine; // @synthesize canvasLinkPathLine=_canvasLinkPathLine;
 - (void).cxx_destruct;
-- (void)drawRect:(struct CGRect)arg1;
 - (void)layoutTopDown;
+- (BOOL)scalesWithCanvasFrameChrome;
+- (BOOL)isFlipped;
+- (id)initWithFrame:(struct CGRect)arg1;
 
 @end
 

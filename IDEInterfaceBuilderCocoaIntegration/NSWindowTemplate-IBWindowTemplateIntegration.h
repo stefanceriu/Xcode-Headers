@@ -11,8 +11,7 @@
 @class NSString, NSValue, NSView, NSViewController;
 
 @interface NSWindowTemplate (IBWindowTemplateIntegration) <IBCocoaCustomObject>
-+ (id)keyPathsForValuesAffectingIbInspectedContentRectHeight;
-+ (id)keyPathsForValuesAffectingIbInspectedContentRectWidth;
++ (id)keyPathsForValuesAffectingIbInspectedContentRectSize;
 + (id)keyPathsForValuesAffectingIbInspectedContentRectMinYnonNilValue;
 + (id)keyPathsForValuesAffectingIbInspectedContentRectMinY;
 + (id)keyPathsForValuesAffectingIbInspectedContentRectMinXnonNilValue;
@@ -39,6 +38,8 @@
 + (id)keyPathsForValuesAffectingContentBorderThicknessMinXEdge;
 + (id)keyPathsForValuesAffectingIbShadowedContentBorderThicknessMinXEdge;
 + (id)keyPathsForValuesAffectingContentRect;
++ (id)keyPathsForValuesAffectingIbShadowedTabbingMode;
++ (id)keyPathsForValuesAffectingIbShadowedTabbingIdentifier;
 + (id)keyPathsForValuesAffectingIbShadowedIsRestorable;
 + (id)keyPathsForValuesAffectingIbShadowedAnimationBehavior;
 + (id)keyPathsForValuesAffectingIbShadowedCollectionBehavior;
@@ -51,12 +52,12 @@
 + (id)keyPathsForValuesAffectingIbInheritedAppearance;
 @property(retain) NSViewController *shadowedContentViewController;
 - (BOOL)ibCanHaveDescendantViewHierarchy;
+- (void)ibUnarchiveDefaultBackingType:(id)arg1;
 - (void)ibUnarchiveContentBorderThickness:(id)arg1;
 - (void)ibArchiveContentBorderThickness:(id)arg1;
 - (struct CGRect)ibContentRectWithAutoPositionMaskApplied;
 - (struct CGRect)ibCurrentScreenLayoutFrame;
-@property(nonatomic) double ibInspectedContentRectHeight;
-@property(nonatomic) double ibInspectedContentRectWidth;
+@property struct CGSize ibInspectedContentRectSize;
 - (void)setIbInspectedContentRectMinY:(id)arg1;
 - (id)ibInspectedContentRectMinYnonNilValue;
 - (id)ibInspectedContentRectMinY;
@@ -68,10 +69,10 @@
 - (id)ibInspectedDocument;
 - (id)ibInspectedFullscreenWindowTitles;
 - (id)ibInspectedFullscreenWindowValues;
-- (BOOL)ibInspectedSupportsFullscreenPrimaryWindow;
+- (BOOL)_ibSupportsFullscreenPrimaryWindow;
 - (id)ibInspectedTilingTitles;
 - (id)ibInspectedTilingValues;
-- (BOOL)ibInspectedSupportsAllowsTiling;
+- (BOOL)_ibSupportsAllowsTiling;
 - (BOOL)ibIsUtilityOrHudForStyle:(unsigned long long)arg1;
 - (void)setIbInspectedTexturedBackgroundStyle:(BOOL)arg1;
 - (BOOL)ibInspectedTexturedBackgroundStyle;
@@ -110,6 +111,10 @@
 @property struct CGPoint contentRectOrigin;
 @property struct CGSize contentRectSize;
 @property(retain) NSView *contentView;
+- (void)setIbShadowedTabbingMode:(long long)arg1;
+- (long long)ibShadowedTabbingMode;
+- (void)setIbShadowedTabbingIdentifier:(id)arg1;
+- (id)ibShadowedTabbingIdentifier;
 @property BOOL ibShadowedIsRestorable;
 @property long long ibShadowedAnimationBehavior;
 @property unsigned long long ibShadowedCollectionBehavior;
@@ -176,14 +181,15 @@
 - (id)ibRuntimeClassName;
 - (BOOL)ibCanBeBoundToFromObject:(id)arg1;
 - (BOOL)ibShouldUseClassSwapper;
+- (id)_ibLocalAttributeKeyPaths;
 - (id)ibLocalAttributeKeyPaths;
 - (id)ibLocalChildToOneRelationshipsKeyPaths;
-- (id)ibLocalToOneRelationshipsKeyPaths;
-- (id)_ibNSWindowToOneRelationshipKeyPaths;
 - (BOOL)ibIsNSAppearanceContainer;
 - (id)ibInheritedAppearance;
 - (Class)ibSwizzledWindowClassForNibInstantiate;
 - (id)ibSwizzledInitWithCoder:(id)arg1;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

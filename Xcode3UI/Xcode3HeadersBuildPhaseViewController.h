@@ -14,6 +14,7 @@
 {
     DVTStackView_ML *_stackView;
     NSMutableArray *_groupViewControllers;
+    NSMutableArray *_hasSearchResultsObservingTokens;
     NSMutableArray *_observationTokens;
     NSIndexSet *_storedDisclosedIndexes;
     BOOL _hasSearchResults;

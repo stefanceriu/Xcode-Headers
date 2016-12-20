@@ -48,7 +48,6 @@
 - (void)_selectBreakpointAndShowBreakpointEditor:(id)arg1;
 - (BOOL)_navigableItemRepresentsEditableBreakpoint:(id)arg1;
 - (id)openSpecifierForNavigableItem:(id)arg1 error:(id *)arg2;
-- (BOOL)shouldOpenNavigableItem:(id)arg1 eventType:(unsigned long long)arg2;
 - (void)_addMenuItemToMenu:(id)arg1 forBucket:(id)arg2;
 - (void)_addMoveMenuToMenu:(id)arg1 rightClickedItems:(id)arg2 plural:(BOOL)arg3;
 - (void)_addDeleteMenuItemToMenu:(id)arg1 plural:(BOOL)arg2;
@@ -67,7 +66,7 @@
 - (BOOL)outlineView:(id)arg1 doCommandBySelector:(SEL)arg2;
 - (void)outlineView:(id)arg1 didRemoveRowView:(id)arg2 forRow:(long long)arg3;
 - (void)willForgetNavigableItems:(id)arg1;
-- (void)_bindImageAndTitleOfTableViewCell:(id)arg1 toNavItemsRepresentedObject:(id)arg2;
+- (void)_bindImageAndTitleOfTableViewCell:(id)arg1;
 - (id)_tableCellViewForFileBreakpointGroupNavItem:(id)arg1;
 - (id)_tableCellViewForBreakpointGroupNavItem:(id)arg1;
 - (void)_breakpointButtonClicked:(id)arg1;
@@ -95,9 +94,8 @@
 - (void)_pushSelection;
 - (void)_revealNavigableItems:(id)arg1;
 - (id)_createEnablementFilterPredicate;
-- (id)_createFilterStringPredicate;
 - (void)_clearFilter;
-- (void)_updateFilterPredicate;
+- (void)_updateFilter;
 - (id)_breakpointsForNavigableItems:(id)arg1;
 - (id)_breakpointsForNavigableItem:(id)arg1;
 - (void)setRootNavigableItem:(id)arg1;

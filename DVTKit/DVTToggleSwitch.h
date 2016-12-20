@@ -10,12 +10,13 @@
 
 @interface DVTToggleSwitch : NSView
 {
-    BOOL _enabled;
+    id _accessibilityDisplayOptionObserver;
     BOOL _on;
+    BOOL _enabled;
     BOOL _canDrag;
     BOOL _dragging;
-    SEL _action;
     id _target;
+    SEL _action;
     CDUnknownBlockType _onDidChangeBlock;
     CALayer *_rootLayer;
     CALayer *_knobBorderLayer;
@@ -32,15 +33,17 @@
 @property(readonly, nonatomic) CALayer *knobBorderLayer; // @synthesize knobBorderLayer=_knobBorderLayer;
 @property(readonly, nonatomic) CALayer *rootLayer; // @synthesize rootLayer=_rootLayer;
 @property(copy, nonatomic) CDUnknownBlockType onDidChangeBlock; // @synthesize onDidChangeBlock=_onDidChangeBlock;
-@property(nonatomic) id target; // @synthesize target=_target;
-@property(nonatomic, getter=isOn) BOOL on; // @synthesize on=_on;
 @property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
 @property(nonatomic) SEL action; // @synthesize action=_action;
+@property(nonatomic) id target; // @synthesize target=_target;
+@property(nonatomic, getter=isOn) BOOL on; // @synthesize on=_on;
 - (void).cxx_destruct;
-- (void)setOn:(BOOL)arg1 animated:(BOOL)arg2 sendAction:(BOOL)arg3;
-- (void)press;
-- (struct CGRect)frameForRect:(struct CGRect)arg1;
-- (void)configureAccessibility;
+- (void)_accessibilityDisplayOptionsDidChange;
+- (struct CGColor *)_trackColor;
+- (void)_setOn:(BOOL)arg1 animated:(BOOL)arg2 sendAction:(BOOL)arg3;
+- (void)_press;
+- (struct CGRect)_frameForRect:(struct CGRect)arg1;
+- (void)_configureAccessibility;
 - (void)setOn:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)accessibilityPerformAction:(id)arg1;
 - (BOOL)accessibilityIsIgnored;
@@ -49,6 +52,7 @@
 - (void)mouseUp:(id)arg1;
 - (void)mouseDragged:(id)arg1;
 - (void)mouseDown:(id)arg1;
+- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

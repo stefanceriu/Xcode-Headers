@@ -25,7 +25,7 @@
     NSString *_categoryIdent;
     NSArray *_secondaryLocations;
     NSString *_additionalDescription;
-    int _lock;
+    // Error parsing type: AB, name: _lock
 }
 
 + (id)messageWithType:(id)arg1 severity:(unsigned long long)arg2 title:(id)arg3 filePath:(id)arg4 lineNumber:(unsigned long long)arg5;

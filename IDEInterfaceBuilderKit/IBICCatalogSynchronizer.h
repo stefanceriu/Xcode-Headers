@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTDelayedInvocation, DVTFilePath, DVTStackBacktrace, IBICCatalog, NSArray, NSMutableArray, NSString;
+@class DVTDelayedInvocation, DVTFilePath, DVTStackBacktrace, IBICAbstractCatalog, NSArray, NSMutableArray, NSString;
 
 @interface IBICCatalogSynchronizer : NSObject <DVTInvalidation>
 {
@@ -20,7 +20,7 @@
     unsigned int _lastObservedDiskChangeGeneration;
     unsigned int _lastReadDiskChangeGeneration;
     id <DVTInvalidation> _fileSystemObservationToken;
-    IBICCatalog *_catalog;
+    IBICAbstractCatalog *_catalog;
     long long _disableCount;
     NSString *_path;
     id <IBICCatalogSynchronizerDelegate> _delegate;
@@ -44,10 +44,11 @@
 - (void)validateChangesToDiskIfNeeded;
 - (void)validateChangesFromDiskIfNeeded;
 - (void)resetContentFromDisk;
-@property(readonly) IBICCatalog *catalog;
+@property(readonly) IBICAbstractCatalog *catalog;
 - (void)primitiveInvalidate;
+- (id)initWithCatalogClass:(Class)arg1;
 - (id)init;
-- (id)initByTakingOwnershipsOfCatalog:(id)arg1;
+- (id)initByTakingOwnershipOfCatalog:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

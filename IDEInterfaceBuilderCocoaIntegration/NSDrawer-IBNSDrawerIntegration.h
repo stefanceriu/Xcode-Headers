@@ -10,5 +10,7 @@
 + (id)keyPathsForValuesAffectingIbShadowedContentSize;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 @property struct CGSize ibShadowedContentSize;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

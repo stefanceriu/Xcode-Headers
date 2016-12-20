@@ -35,8 +35,8 @@
 @property(readonly) NSString *title; // @synthesize title=_title;
 @property(retain) IDEKeyBindingSet *keyBindingSet; // @synthesize keyBindingSet=_keyBindingSet;
 - (void).cxx_destruct;
-- (long long)tag;
-- (SEL)action;
+@property(readonly) long long tag;
+@property(readonly) SEL action;
 @property(setter=setControlModifierMaskLocked:) BOOL isControlModifierMaskLocked;
 @property(setter=setCommandModifierMaskLocked:) BOOL isCommandModifierMaskLocked;
 @property(setter=setAlternateModifierMaskLocked:) BOOL isAlternateModifierMaskLocked;

@@ -33,5 +33,6 @@
 - (void)ibCompleteFinalSetup;
 - (BOOL)ibSwizzledForceUseDelegate;
 - (id)ibSwizzledInitWithCoder:(id)arg1;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
 @end
 

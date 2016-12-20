@@ -44,8 +44,7 @@
 - (void)_archiveState;
 - (void)setNewTraceSession:(id)arg1;
 @property(readonly, nonatomic) GPUInferiorSession *inferiorSession;
-@property(readonly, nonatomic) BOOL currentLocationIsDisplayableItem; // @dynamic currentLocationIsDisplayableItem;
-- (void)redrawDebugBar;
+@property(readonly, nonatomic) BOOL currentLocationIsDisplayableItem;
 - (void)setNewMainEditorLocation:(id)arg1;
 - (void)_setNewMainEditorLocation:(id)arg1;
 - (void)setNewMainEditorProgramLocation:(id)arg1;
@@ -55,7 +54,7 @@
 - (void)removeResourceItemForIdentifier:(id)arg1;
 - (void)addCurrentResourceItem:(id)arg1 forIdentifier:(id)arg2;
 - (BOOL)_existingItemEquals:(id)arg1 forIdentifier:(id)arg2;
-@property(readonly, nonatomic) NSSet *currentlyDisplayedResourceItems; // @dynamic currentlyDisplayedResourceItems;
+@property(readonly, nonatomic) NSSet *currentlyDisplayedResourceItems;
 - (BOOL)canExportDocument;
 - (void)primitiveInvalidate;
 - (void)updateDebuggingAdditionUIController;

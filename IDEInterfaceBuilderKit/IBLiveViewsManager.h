@@ -37,8 +37,8 @@
 - (id)cachedRequestProxyAttachingIfNeededWithDescription:(id)arg1 returningFailedLoadResult:(id *)arg2;
 - (BOOL)_INSIDE_LOCK_loadLiveViewsBundleBuiltInstances:(id)arg1 inTool:(id)arg2 returningFailedLoadResult:(id *)arg3;
 - (id)_INSIDE_LOCK_cachedRequestProxyAttachingIfNeededWithDescription:(id)arg1;
-- (id)sceneUpdateRequesterForTargetRuntime:(id)arg1 scaleFactor:(id)arg2 renderingFidelity:(long long)arg3;
-- (id)imageRequesterForTargetRuntime:(id)arg1 scaleFactor:(id)arg2;
+- (id)sceneUpdateRequesterForTargetRuntime:(id)arg1 scaleFactor:(double)arg2 renderingFidelity:(long long)arg3;
+- (id)imageRequesterForTargetRuntime:(id)arg1 scaleFactor:(double)arg2;
 - (void)tearDownAllAttachedToolsAndSpeculativelyRelaunchForNextSession;
 - (void)_INSIDE_LOCK_asynchronouslyLaunchToolsForIdentifiers:(id)arg1;
 - (id)_INSIDE_LOCK_shutdownAllAttachedTools;

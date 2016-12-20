@@ -19,12 +19,14 @@
 @property(retain, nonatomic) NSMutableArray *layouts; // @synthesize layouts=_layouts;
 @property(retain, nonatomic) NSMutableArray *attributes; // @synthesize attributes=_attributes;
 - (void).cxx_destruct;
+- (id)description;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)debugPrintToFile:(struct __sFILE *)arg1;
 - (void)setPackedOffsets;
 - (void)setPackedStrides;
 - (void)reset;
+- (void)removeAttributeNamed:(id)arg1;
 - (void)addOrReplaceAttribute:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)attributeNamed:(id)arg1;

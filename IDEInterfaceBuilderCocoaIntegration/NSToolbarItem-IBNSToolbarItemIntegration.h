@@ -7,10 +7,6 @@
 #import "NSToolbarItem.h"
 
 @interface NSToolbarItem (IBNSToolbarItemIntegration)
-+ (id)keyPathsForValuesAffectingIbInspectedMaxSizeHeight;
-+ (id)keyPathsForValuesAffectingIbInspectedMaxSizeWidth;
-+ (id)keyPathsForValuesAffectingIbInspectedMinSizeHeight;
-+ (id)keyPathsForValuesAffectingIbInspectedMinSizeWidth;
 + (id)keyPathsForValuesAffectingIbInspectedItemIdentifier;
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 - (void)ibSetupTriggerForSegueTemplate:(id)arg1 inCompilationUnit:(id)arg2;
@@ -18,14 +14,6 @@
 - (id)ibDefaultSegueTrigger;
 - (BOOL)ibCanHaveDescendantViewHierarchy;
 - (BOOL)ibIsChildArbitrationUnitRoot:(id)arg1;
-- (void)setIbInspectedMaxSizeHeight:(double)arg1;
-- (double)ibInspectedMaxSizeHeight;
-- (void)setIbInspectedMaxSizeWidth:(double)arg1;
-- (double)ibInspectedMaxSizeWidth;
-- (void)setIbInspectedMinSizeHeight:(double)arg1;
-- (double)ibInspectedMinSizeHeight;
-- (void)setIbInspectedMinSizeWidth:(double)arg1;
-- (double)ibInspectedMinSizeWidth;
 - (void)setIbInspectedItemIdentifier:(id)arg1;
 - (id)ibInspectedItemIdentifier;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
@@ -47,12 +35,15 @@
 - (BOOL)ibCanRemoveChildren:(id)arg1;
 - (BOOL)ibCanBeBoundToFromObject:(id)arg1;
 - (id)ibQualifyingInfoForDefaultLabel;
-- (void)ibTakePastedAttributes:(id)arg1 inConfiguration:(id)arg2;
+- (void)ibTakePastedAttributes:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (id)ibLocalLocalizableStringsAttributeKeyPaths;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (Class)classForDocumentArchiver:(id)arg1;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 @end
 

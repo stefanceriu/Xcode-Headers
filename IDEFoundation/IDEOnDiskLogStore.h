@@ -6,14 +6,17 @@
 
 #import <IDEFoundation/IDELogStore.h>
 
-@class NSString;
+@class DVTObservingToken, NSString;
 
 @interface IDEOnDiskLogStore : IDELogStore
 {
+    DVTObservingToken *_logFolderPathObservingToken;
 }
 
 + (id)onDiskStoreInWorkspaceArena:(id)arg1 atSubPath:(id)arg2 error:(id *)arg3;
 + (id)onDiskStoreWithRootDirectoryAtPath:(id)arg1 error:(id *)arg2;
+@property(retain) DVTObservingToken *logFolderPathObservingToken; // @synthesize logFolderPathObservingToken=_logFolderPathObservingToken;
+- (void).cxx_destruct;
 @property(readonly, copy) NSString *rootDirectoryPath;
 - (void)primitiveInvalidate;
 

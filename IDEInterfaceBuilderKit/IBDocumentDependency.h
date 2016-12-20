@@ -12,6 +12,7 @@
 {
     NSMutableArray *_versions;
     IBDocumentDependencyVersion *_defaultVersion;
+    BOOL _requiresDowngradePrompt;
     NSString *_identifier;
     NSString *_dependencyLabel;
     long long _defaultVersionNumber;
@@ -26,6 +27,7 @@
 + (id)documentDependencyWithExtension:(id)arg1;
 + (id)documentDependencyWithIdentifier:(id)arg1;
 + (void)initialize;
+@property(readonly, nonatomic) BOOL requiresDowngradePrompt; // @synthesize requiresDowngradePrompt=_requiresDowngradePrompt;
 @property(readonly, nonatomic) NSArray *versions; // @synthesize versions=_versions;
 @property(readonly, nonatomic) NSString *dependencyType; // @synthesize dependencyType=_dependencyType;
 @property(readonly, nonatomic) double positionPriority; // @synthesize positionPriority=_positionPriority;

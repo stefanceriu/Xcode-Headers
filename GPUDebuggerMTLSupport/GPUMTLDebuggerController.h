@@ -6,58 +6,67 @@
 
 #import "GPUDebuggerController.h"
 
-@class DVTFilePath, DVTObservingToken, DYMTLAnalyzerArchiveVisitor, GPUMTLFrameStats, NSCache, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>;
+#import "DYPShaderUpdaterDelegate.h"
+
+@class DVTFilePath, DVTObservingToken, DYMTLAnalyzerArchiveVisitor, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
 __attribute__((visibility("hidden")))
-@interface GPUMTLDebuggerController : GPUDebuggerController
+@interface GPUMTLDebuggerController : GPUDebuggerController <DYPShaderUpdaterDelegate>
 {
-    NSCache *_sourceCache;
     DYMTLAnalyzerArchiveVisitor *_analyzerVisitor;
+    NSArray *_invalidOverridesCache;
     DVTObservingToken *_overviewSamplesObserver;
     NSMutableArray *_overviewSampleArray;
-    BOOL _finalizedOverview;
-    NSMutableDictionary *_changedLibraries;
-    NSObject<OS_dispatch_queue> *_libraryUpdateQueue;
-    NSMutableDictionary *_perEncoderStats;
-    DVTFilePath *_libraryPath;
-    BOOL _updateLibrary;
+    DVTFilePath *_defaultLibraryPath;
+    BOOL _updateDefaultLibrary;
+    id <DYPDebuggerControllerProxy> _platformDebuggerController;
+    id <DYPShaderUpdater> _shaderUpdater;
+    NSObject<OS_dispatch_queue> *_queue;
     BOOL _shadersUpdatable;
-    GPUMTLFrameStats *_frameStats;
+    NSArray *_invalidOverrides;
 }
 
 + (id)assetBundle;
-@property(readonly) GPUMTLFrameStats *frameStats; // @synthesize frameStats=_frameStats;
-- (BOOL)shadersUpdatable;
+@property(nonatomic) BOOL shadersUpdatable; // @synthesize shadersUpdatable=_shadersUpdatable;
 - (void).cxx_destruct;
+- (id)invalidOverrides;
+- (void)defaultLibraryUpdateRequested:(id)arg1 updateBlock:(CDUnknownBlockType)arg2;
+- (void)defaultLibraryUpdateRequested:(CDUnknownBlockType)arg1;
+- (void)setInfoDictForProgram:(unsigned long long)arg1 dict:(id)arg2 container:(unsigned long long)arg3;
+- (id)infoDictForProgram:(unsigned long long)arg1 container:(unsigned long long)arg2;
+- (void)shaderUpdatedWithStatus:(BOOL)arg1 resource:(id)arg2;
 - (BOOL)supportsDebugBarShaderUpdate;
-- (id)statsForEncoder:(unsigned long long)arg1;
 - (BOOL)analyzeStoredCaptureArchive;
 - (void)onRequestProfilerData:(id)arg1;
 - (BOOL)isDisassemblerAvailable;
 - (id)runShaderProfiler;
-- (void)handleInferiorSessionActiveState;
 - (void)traceSessionEstablishedWithNewArchive:(BOOL)arg1;
 - (BOOL)_configureInvestigatorWithCaseConfigData:(id)arg1;
 - (id)createProgramPerformanceReportProvider:(id)arg1;
 - (id)createInvestigatorReportProvider:(id)arg1;
 - (void)createReportWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)_updateLibrary:(const Library_fcf3a16e *)arg1 withChanges:(id)arg2 forDocument:(id)arg3 onDevice:(unsigned long long)arg4;
-- (void)_updateDefaultLibrary:(const Library_fcf3a16e *)arg1 onDevice:(unsigned long long)arg2;
-- (BOOL)isOfflineShaderInLoadedCapture;
-- (void)_updateShaderState;
 - (void)updateShaders;
 - (void)handleDocumentChanged:(id)arg1 currentAPIItem:(id)arg2;
 - (void)resetResourceManagerWithResourceStreamer:(id)arg1;
 - (BOOL)handleCaptureSessionFinalization:(id)arg1;
 - (void)setupCaptureSessionInfoWithArchive:(id)arg1;
 - (void)handleAppSessionTransportMessage:(id)arg1;
-- (void)_unarchiveReports;
 - (void)setupGuestAppSession:(id)arg1;
-- (id)newGuestAppSessionWithGuestApp:(id)arg1 device:(id)arg2 deferLaunch:(BOOL)arg3;
+- (id)newGuestAppSessionWithGuestApp:(id)arg1 device:(id)arg2 deferLaunch:(BOOL)arg3 error:(id *)arg4;
+- (BOOL)isOfflineShaderInLoadedCapture;
 - (void)createModelFactory;
+- (void)setDeviceInfo:(id)arg1;
 - (BOOL)supportsInvestigator;
 - (void)primitiveInvalidate;
 - (id)init;
+- (void)setupCaptureSession:(id)arg1;
+- (id)appRunnableLocation;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

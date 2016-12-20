@@ -15,7 +15,6 @@
 + (id)systemSoundResources;
 - (id)placeholderResourceIconForMediaType:(id)arg1;
 - (id)placeholderResourceContentForMediaType:(id)arg1 originalValue:(id)arg2;
-- (id)foldingStrategy;
 - (id)typesForDefaultMediaRepositories;
 
 @end

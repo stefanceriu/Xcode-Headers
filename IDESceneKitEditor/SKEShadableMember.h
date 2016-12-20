@@ -17,7 +17,7 @@
 
 + (id)displayNameForShaderModifierEntryPoint:(unsigned long long)arg1;
 + (id)annotationForEntryPoint:(unsigned long long)arg1;
-+ (id)shadableMemberForShadableObject:(id)arg1;
++ (id)shadableMemberForShadableObject:(id)arg1 document:(id)arg2;
 - (void).cxx_destruct;
 - (unsigned long long)entryPointForShaderModifierAtIndex:(unsigned long long)arg1;
 - (id)entryPointsWithoutModifier;

@@ -6,11 +6,11 @@
 
 #import <IDEKit/IDEGeniusResultsFinder.h>
 
-@class DVTDispatchLock;
+@class DVTDispatchLock, DVTNotificationToken;
 
 @interface IDEIndexGeniusResultsFinder : IDEGeniusResultsFinder
 {
-    id _indexDidChangeNotificationObserver;
+    DVTNotificationToken *_indexDidChangeNotificationObserver;
     DVTDispatchLock *_generationLock;
     unsigned long long _currentGeneration;
 }

@@ -6,31 +6,34 @@
 
 #import "DVTViewController.h"
 
-@class GPUSharedInferiorSessionUIState, GPUSharedTabUIState, IDEFileTextSettings;
+@class GPUSharedInferiorSessionUIState, GPUSharedTabUIState, GPUTraceResourceItem, IDEFileTextSettings;
 
 @interface GPUResourceEditor : DVTViewController
 {
     GPUSharedTabUIState *_sharedTabState;
     GPUSharedInferiorSessionUIState *_sharedInferiorSessionState;
     id <DYResource> _resourceObject;
+    id <DYPPluginFactory> _pluginFactory;
     IDEFileTextSettings *_fileTextSettings;
 }
 
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
+@property(nonatomic) __weak id <DYPPluginFactory> pluginFactory; // @synthesize pluginFactory=_pluginFactory;
 @property(nonatomic) __weak IDEFileTextSettings *fileTextSettings; // @synthesize fileTextSettings=_fileTextSettings;
 @property(nonatomic) __weak id <DYResource> resourceObject; // @synthesize resourceObject=_resourceObject;
 @property(nonatomic) __weak GPUSharedInferiorSessionUIState *sharedInferiorSessionState; // @synthesize sharedInferiorSessionState=_sharedInferiorSessionState;
 @property(nonatomic) __weak GPUSharedTabUIState *sharedTabState; // @synthesize sharedTabState=_sharedTabState;
 - (void).cxx_destruct;
 - (BOOL)findBarSupported;
-- (void)setRepresentedObject:(id)arg1;
+@property(retain) GPUTraceResourceItem *representedObject; // @dynamic representedObject;
 - (void)primitiveInvalidate;
 - (void)loadView;
 - (void)beginEditor;
 - (BOOL)_checkResourceType;
 - (id)supportedResourceClasses;
 - (id)supportedResourceProtocols;
+- (id)initWithPluginFactory:(id)arg1;
 
 @end
 

@@ -4,30 +4,27 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <DVTKit/DVTAbstractLibraryGroup.h>
+#import "NSObject.h"
 
-@class DVTMutableOrderedSet;
+@class DVTMutableOrderedDictionary, NSMutableOrderedSet, NSString;
 
-@interface DVTLibraryGroup : DVTAbstractLibraryGroup
+@interface DVTLibraryGroup : NSObject
 {
-    DVTMutableOrderedSet *_assets;
-    BOOL _needsSort;
-    BOOL _assetsAreEditable;
-    BOOL _groupsAreEditable;
+    NSString *_name;
+    DVTLibraryGroup *_parentGroup;
+    DVTMutableOrderedDictionary *_childGroups;
+    NSMutableOrderedSet *_assets;
 }
 
-@property BOOL groupsAreEditable; // @synthesize groupsAreEditable=_groupsAreEditable;
-@property BOOL assetsAreEditable; // @synthesize assetsAreEditable=_assetsAreEditable;
 - (void).cxx_destruct;
 - (id)description;
-- (BOOL)containsAsset:(id)arg1;
-- (id)assets;
-- (long long)numberOfAssets;
-- (void)insertAsset:(id)arg1 atIndex:(long long)arg2;
+- (void)populateAssetsInDisplayOrder:(id)arg1 comparator:(CDUnknownBlockType)arg2;
 - (void)removeAsset:(id)arg1;
-- (void)sorteAssetsIfNeeded;
-- (void)primitiveInvalidate;
-- (id)initWithTitle:(id)arg1 andLibrary:(id)arg2;
+- (void)addAsset:(id)arg1;
+- (id)groupWithPathCreatingIfNeeded:(id)arg1;
+- (id)childGroupWithNameCreatingIfNeeded:(id)arg1;
+- (id)rootGroup;
+- (id)initWithName:(id)arg1;
 
 @end
 

@@ -39,10 +39,10 @@
 - (void)_displayError:(id)arg1 waitUntilDate:(id)arg2;
 - (void)_locateSigningAssetsAsync;
 - (void)_refreshDevicesFromPortal;
-- (id)_portalDeviceClass;
-- (id)_portalPlatformIdentifier;
+- (id)_portalPlatform;
 - (id)_platformForArchive;
 - (void)_promptForTeamIfNecessaryAndLocateSigningAssets;
+- (BOOL)_isValidPortalTeam:(id)arg1;
 - (id)_installAndReturnProgressView;
 - (BOOL)_shouldRetryGeneratingAssets;
 - (void)viewDidInstall;

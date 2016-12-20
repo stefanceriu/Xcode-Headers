@@ -25,6 +25,8 @@
 @property(readonly, getter=isRequired) BOOL required; // @synthesize required=_required;
 @property(readonly) IBICSlot *slot; // @synthesize slot=_slot;
 - (void).cxx_destruct;
+- (void)ibic_generateSubNodes:(CDUnknownBlockType)arg1;
+- (void)ibic_generateAttributes:(CDUnknownBlockType)arg1;
 - (BOOL)appliesToMinimumDeploymentTarget:(id)arg1;
 - (id)initWithSlot:(id)arg1 isRequired:(BOOL)arg2 versionOfIntroduction:(id)arg3 versionOfObsolescence:(id)arg4 missingRequiredMessage:(id)arg5 obsoleteMessage:(id)arg6;
 

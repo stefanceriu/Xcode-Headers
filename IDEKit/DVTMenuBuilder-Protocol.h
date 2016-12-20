@@ -9,6 +9,9 @@
 @class NSMenuItem, NSString;
 
 @protocol DVTMenuBuilder <NSObject>
++ (NSMenuItem *)contextHelpMenuItemForHelpID:(NSString *)arg1 andTitle:(NSString *)arg2;
+
+@optional
 + (NSMenuItem *)contextHelpMenuItemForHelpID:(NSString *)arg1;
 @end
 

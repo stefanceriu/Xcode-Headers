@@ -63,9 +63,11 @@
 - (struct CGRect)_selectedButtonFrameForBackgroundLayersLayoutDuringAnimation:(BOOL)arg1;
 - (struct CGRect)_frameOfView:(id)arg1 duringAnimation:(BOOL)arg2;
 - (id)accessibilityHitTest:(struct CGPoint)arg1;
-- (id)accessibilityAttributeValue:(id)arg1;
-- (BOOL)accessibilityIsAttributeSettable:(id)arg1;
-- (id)accessibilityAttributeNames;
+- (id)accessibilityChildren;
+- (id)accessibilityTabs;
+- (id)accessibilityRole;
+- (id)accessibilityIdentifier;
+- (id)accessibilityLabel;
 - (unsigned long long)_draggedURLOperationForDraggingInfo:(id)arg1;
 - (void)_performTabBarDragOperationForURLs:(id)arg1 droppedAtIndex:(unsigned long long)arg2 honorWindowPolicy:(BOOL)arg3;
 - (void)_performTabBarDragOperationForTabViewItem:(id)arg1 URL:(id)arg2;

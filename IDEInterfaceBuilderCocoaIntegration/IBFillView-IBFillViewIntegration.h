@@ -12,5 +12,6 @@
 - (id)ibDefaultTextColor;
 - (id)ibDefaultFontKeyPath;
 - (id)ibDesignableContentView;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

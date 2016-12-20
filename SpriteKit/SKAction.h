@@ -29,6 +29,9 @@
 + (id)changeReverbTo:(float)arg1 duration:(double)arg2;
 + (id)stereoPanBy:(float)arg1 duration:(double)arg2;
 + (id)stereoPanTo:(float)arg1 duration:(double)arg2;
++ (id)animateWithWarps:(id)arg1 times:(id)arg2 restore:(BOOL)arg3;
++ (id)animateWithWarps:(id)arg1 times:(id)arg2;
++ (id)warpTo:(id)arg1 duration:(double)arg2;
 + (Class)unarchiver:(id)arg1 cannotDecodeObjectOfClassName:(id)arg2 originalClasses:(id)arg3;
 + (void)clearActionTableCache;
 + (void)convertAction:(id)arg1 toDuration:(double)arg2;
@@ -89,6 +92,7 @@
 + (id)resizeToWidth:(double)arg1 duration:(double)arg2;
 + (id)resizeToWidth:(double)arg1 height:(double)arg2 duration:(double)arg3;
 + (id)resizeByWidth:(double)arg1 height:(double)arg2 duration:(double)arg3;
++ (id)scaleToSize:(struct CGSize)arg1 duration:(double)arg2;
 + (id)scaleYTo:(double)arg1 duration:(double)arg2;
 + (id)scaleXTo:(double)arg1 duration:(double)arg2;
 + (id)scaleXTo:(double)arg1 y:(double)arg2 duration:(double)arg3;
@@ -125,7 +129,7 @@
 - (void)commonInit;
 @property(nonatomic) long long timingMode;
 @property(nonatomic) double duration;
-@property(nonatomic) CDUnknownBlockType timingFunction;
+@property(copy, nonatomic) CDUnknownBlockType timingFunction;
 - (id)subactions;
 - (struct SKCAction *)caction;
 - (void)updateWithTarget:(id)arg1 forTime:(double)arg2;

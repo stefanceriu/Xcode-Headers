@@ -6,11 +6,10 @@
 
 #import "IBAbstractUserGuide.h"
 
-@class IBLayoutGuideDrawingHandler, NSView;
+@class NSView;
 
 @interface IBSystemGuide : IBAbstractUserGuide
 {
-    IBLayoutGuideDrawingHandler *_layoutGuideDrawingHandler;
     NSView *_view;
     unsigned long long _affinity;
     double _location;
@@ -19,20 +18,14 @@
 @property(nonatomic) double location; // @synthesize location=_location;
 @property(nonatomic) unsigned long long affinity; // @synthesize affinity=_affinity;
 @property(retain) NSView *view; // @synthesize view=_view;
-@property(retain, nonatomic) IBLayoutGuideDrawingHandler *layoutGuideDrawingHandler; // @synthesize layoutGuideDrawingHandler=_layoutGuideDrawingHandler;
 - (void).cxx_destruct;
-- (void)invalidate;
-- (struct CGRect)displayRectInView:(id)arg1;
-- (void)drawLineInView:(id)arg1;
 - (id)description;
 - (BOOL)isVisible;
 - (struct CGPoint)endInView:(id)arg1;
 - (struct CGPoint)startInView:(id)arg1;
 - (CDStruct_f6143a38)lineInView:(id)arg1;
-- (id)document;
 - (BOOL)isVertical;
 - (struct CGRect)containerAreaInView:(id)arg1;
-- (id)overlayView;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithView:(id)arg1 location:(double)arg2 andAffinity:(unsigned long long)arg3;

@@ -23,7 +23,7 @@
     NSDictionary *_sourceLanguageServiceContext;
 }
 
-@property(retain, nonatomic) NSDictionary *sourceLanguageServiceContext; // @synthesize sourceLanguageServiceContext=_sourceLanguageServiceContext;
+@property(copy, nonatomic) NSDictionary *sourceLanguageServiceContext; // @synthesize sourceLanguageServiceContext=_sourceLanguageServiceContext;
 @property(readonly) DVTTextStorage *sourceTextStorage; // @synthesize sourceTextStorage=_sourceTextStorage;
 @property(readonly) DVTSourceTextView *sourceTextView; // @synthesize sourceTextView=_sourceTextView;
 - (void).cxx_destruct;

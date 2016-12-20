@@ -17,6 +17,8 @@
 + (BOOL)preservesVersions;
 + (BOOL)autosavesDrafts;
 - (void).cxx_destruct;
+- (void)ide_duplicateDocument:(id)arg1;
+- (void)ide_saveDocument:(id)arg1;
 @property(readonly, nonatomic) SKEShadableMember *shadableMember;
 - (int)readOnlyStatus;
 - (BOOL)canSave;

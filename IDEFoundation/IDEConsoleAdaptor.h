@@ -6,10 +6,15 @@
 
 #import "NSObject.h"
 
-@class NSFileHandle, NSMutableArray, NSMutableData, NSObject<OS_dispatch_queue>, NSString, NSTimer;
+#import "OSActivityStreamDelegate.h"
 
-@interface IDEConsoleAdaptor : NSObject
+@class NSDateFormatter, NSFileHandle, NSMutableArray, NSMutableData, NSObject<OS_dispatch_queue>, NSString, NSTimer, OSActivityStream;
+
+@interface IDEConsoleAdaptor : NSObject <OSActivityStreamDelegate>
 {
+    OSActivityStream *_stream;
+    NSDateFormatter *_dateFormatter;
+    int _pid;
     NSString *_type;
     NSObject<OS_dispatch_queue> *_writeSerialQueue;
     NSTimer *_endOfStandardOutputReadTimer;
@@ -49,6 +54,8 @@
 @property BOOL finishedReceivingData; // @synthesize finishedReceivingData=_finishedReceivingData;
 @property(readonly) NSString *type; // @synthesize type=_type;
 - (void).cxx_destruct;
+- (BOOL)activityStream:(id)arg1 results:(id)arg2;
+- (void)setupLoggingStreamForPid:(int)arg1 withDevice:(id)arg2;
 - (id)standardErrorItems;
 - (id)standardOutputItems;
 - (id)standardInputItems;
@@ -64,6 +71,7 @@
 - (id)_getData:(id)arg1 overflowBuffer:(id *)arg2;
 - (void)_timerFiredForTargetOutputOverflow:(id)arg1;
 - (void)_setStandardInput:(id)arg1;
+- (void)outputForStandardError:(id)arg1 kind:(int)arg2;
 - (void)outputForStandardError:(id)arg1;
 - (void)outputForStandardOutput:(id)arg1;
 - (void)outputForStandardOutput:(id)arg1 isPrompt:(BOOL)arg2 isOutputRequestedByUser:(BOOL)arg3;
@@ -74,9 +82,14 @@
 - (void)_makeExpired;
 - (void)_addToCompleteContent:(id)arg1 andSupportingSequences:(struct __CFArray *)arg2;
 - (BOOL)_removeSequence:(unsigned long long)arg1 fromSupportingSequences:(struct __CFArray *)arg2;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)dealloc;
 - (id)initWithType:(id)arg1 standardInput:(id)arg2 standardOutput:(id)arg3 standardError:(id)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -7,8 +7,7 @@
 #import "IBICDataSet.h"
 
 @interface IBICDataSet (IBICDataSetDisplayAdditions)
-+ (id)variantSlotComponentClassesExcludingIdiom;
-- (id)typeIcon;
++ (CDStruct_7ddbbeae)capsuleGroupingAttributesForGroupWithPath:(id)arg1;
 - (id)icon;
 @end
 

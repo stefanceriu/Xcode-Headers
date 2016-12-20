@@ -44,5 +44,10 @@
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (void)unarchiveSegments:(id)arg1;
 - (void)archiveSegments:(id)arg1;
+- (id)ibLocalLocalizableStringArrayAttributeKeyPaths;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibLocalResourceArrayAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
 @end
 

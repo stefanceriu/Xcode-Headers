@@ -22,6 +22,7 @@
 @property(retain) NSString *distributionTaskNoun; // @synthesize distributionTaskNoun=_distributionTaskNoun;
 @property(retain) NSArray *issues; // @synthesize issues=_issues;
 - (void).cxx_destruct;
+- (void)copy:(id)arg1;
 - (void)tableViewColumnDidResize:(id)arg1;
 - (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;

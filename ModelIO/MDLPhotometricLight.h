@@ -21,6 +21,8 @@
 - (void).cxx_destruct;
 - (struct CGColor *)evaluatedColorFromSHVector: /* Error: Ran out of types for this method. */;
 - (void)generateSphericalHarmonicsFromLight:(unsigned long long)arg1;
+- (id)computeSceneKitRenderingTexture:(unsigned long long)arg1;
+- (float)computeInnerAngle;
 - (void)computeLumens;
 - (void)generateCubemapFromLight:(unsigned long long)arg1;
 - (id)initWithIESProfile:(id)arg1;

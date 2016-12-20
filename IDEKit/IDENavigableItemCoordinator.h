@@ -29,6 +29,7 @@
     } _nicFlags;
 }
 
++ (BOOL)temporaryStructureItemForDocumentURL:(id)arg1 forWorkspace:(id)arg2 error:(id *)arg3 inScope:(CDUnknownBlockType)arg4;
 + (BOOL)temporaryItemForArchivableRepresentation:(id)arg1 forWorkspace:(id)arg2 error:(id *)arg3 inScope:(CDUnknownBlockType)arg4;
 + (void)temporaryItemInDomain:(id)arg1 forWorkspace:(id)arg2 inScope:(CDUnknownBlockType)arg3;
 + (void)temporaryItemForRepresentedObject:(id)arg1 inScope:(CDUnknownBlockType)arg2;
@@ -45,6 +46,7 @@
 - (void)closeDocumentsForItems:(id)arg1;
 - (void)_collectDescendants:(id)arg1 toForgetForItem:(id)arg2;
 - (void)registerNavigableItem:(id)arg1;
+- (int)_filterCurrentGeneration;
 - (id)_arrangedChildItemsOfItem:(id)arg1;
 - (void)processPendingChanges;
 - (void)_noteNavigableItem:(id)arg1 valueWillChangeForProperty:(id)arg2;
@@ -70,6 +72,9 @@
 - (id)_providersByDomain;
 - (id)_navigableItemForFilePath:(id)arg1 inWorkspace:(id)arg2 withSeenFileReferences:(id)arg3 allowLeaf:(BOOL)arg4;
 - (id)structureNavigableItemForDocumentURL:(id)arg1 inWorkspace:(id)arg2 error:(id *)arg3;
+- (id)_structureNavigableItemForNonFileDocumentURL:(id)arg1 inWorkspace:(id)arg2 error:(id *)arg3;
+- (id)_structureNavigableItemForNonFileDocumentURL:(id)arg1 domainExtension:(id)arg2 inWorkspace:(id)arg3 error:(id *)arg4;
+- (id)_structureNavigableItemForFileDocumentURL:(id)arg1 inWorkspace:(id)arg2 error:(id *)arg3;
 - (id)rootNavigableItemWithRepresentedObject:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)init;

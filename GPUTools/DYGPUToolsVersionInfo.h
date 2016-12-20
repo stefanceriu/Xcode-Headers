@@ -24,9 +24,9 @@
 @property(copy, nonatomic) NSDictionary *infoPlist; // @synthesize infoPlist=_infoPlist;
 - (id)objectForVersionPlistKey:(id)arg1;
 - (id)objectForInfoPlistKey:(id)arg1;
-@property(readonly, retain, nonatomic) NSString *sourceVersion; // @dynamic sourceVersion;
-@property(readonly, retain, nonatomic) NSString *shortVersion; // @dynamic shortVersion;
-@property(readonly, retain, nonatomic) NSString *version; // @dynamic version;
+@property(readonly, retain, nonatomic) NSString *sourceVersion;
+@property(readonly, retain, nonatomic) NSString *shortVersion;
+@property(readonly, retain, nonatomic) NSString *version;
 - (void)encodeWithCoder:(id)arg1;
 - (id)description;
 - (void)dealloc;

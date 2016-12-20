@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTDraggedImageState, IBCanvasFrame, IBCanvasView, NSArray, NSEvent, NSSet, NSValue;
+@class DVTDraggedImageState, IBCanvasFrame, IBCanvasOverlay, IBCanvasView, NSArray, NSEvent, NSSet, NSValue;
 
 @protocol IBCanvasViewDelegate <NSObject>
 - (NSArray *)draggedTypesForCanvasView:(IBCanvasView *)arg1;
@@ -31,7 +31,6 @@
 - (void)canvasView:(IBCanvasView *)arg1 willRemoveCanvasFrame:(IBCanvasFrame *)arg2;
 - (NSValue *)canvasView:(IBCanvasView *)arg1 lastKnownAnchorForCanvasFrame:(IBCanvasFrame *)arg2;
 - (void)canvasView:(IBCanvasView *)arg1 selectionDidChange:(NSSet *)arg2;
-- (void)canvasView:(IBCanvasView *)arg1 userDidMagnifyWithEvent:(NSEvent *)arg2;
 - (void)canvasView:(IBCanvasView *)arg1 userDidDoubleClickInEmptyArea:(NSEvent *)arg2;
 - (void)canvasView:(IBCanvasView *)arg1 userDidClickInEmptyArea:(NSEvent *)arg2;
 - (void)canvasView:(IBCanvasView *)arg1 userDidBandSelectCanvasFrames:(NSSet *)arg2 bandSelectionRect:(struct CGRect)arg3;
@@ -40,8 +39,11 @@
 - (void)canvasView:(IBCanvasView *)arg1 canvasFrameDidChangeLayout:(IBCanvasFrame *)arg2;
 - (void)canvasView:(IBCanvasView *)arg1 canvasFrameDidBecomeKey:(IBCanvasFrame *)arg2;
 - (void)canvasView:(IBCanvasView *)arg1 canvasFrameDidResignKey:(IBCanvasFrame *)arg2;
+- (double)canvasView:(IBCanvasView *)arg1 validateMagnification:(double)arg2;
+- (double)canvasView:(IBCanvasView *)arg1 canvasFrameChromeScaleForContentScale:(double)arg2;
+- (struct CGRect)canvasView:(IBCanvasView *)arg1 frameForOverlayView:(IBCanvasOverlay *)arg2 ofCanvasFrame:(IBCanvasFrame *)arg3 scale:(double)arg4;
+- (double)canvasView:(IBCanvasView *)arg1 scaleForOverlayView:(IBCanvasOverlay *)arg2 ofCanvasFrame:(IBCanvasFrame *)arg3 canvasMagnification:(double)arg4;
 - (NSValue *)canvasView:(IBCanvasView *)arg1 decoratorRectForCanvasFrame:(IBCanvasFrame *)arg2;
-- (void)canvasView:(IBCanvasView *)arg1 userDidAddSpaceWithArrowKeyEvent:(NSEvent *)arg2;
 - (void)canvasView:(IBCanvasView *)arg1 didAutopositionCanvasFrame:(IBCanvasFrame *)arg2;
 - (void)canvasView:(IBCanvasView *)arg1 willAutopositionCanvasFrame:(IBCanvasFrame *)arg2;
 @end

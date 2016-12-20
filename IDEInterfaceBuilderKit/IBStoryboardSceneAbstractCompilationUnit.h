@@ -30,9 +30,9 @@
 - (id)compilationResultWithCompiledPackage:(id)arg1;
 - (CDUnknownBlockType)stringsFileKeyGenerator;
 - (BOOL)isDescendantOfCompilationUnit:(id)arg1;
-- (id)storyboardCounterpartForObject:(id)arg1;
-- (id)storyboardObjectIDForLocalObject:(id)arg1;
-- (id)storyboardObjectIDForLocalObjectID:(id)arg1;
+- (id)storyboardCounterpartForMember:(id)arg1;
+- (id)storyboardMemberIDForLocalMember:(id)arg1;
+- (id)storyboardMemberIDForLocalMemberID:(id)arg1;
 - (BOOL)upstreamCounterpartsStillExist;
 - (id)localObjectForSegueTemplate:(id)arg1;
 - (void)addFilesOwnerOutletToUnitLeader:(id)arg1;

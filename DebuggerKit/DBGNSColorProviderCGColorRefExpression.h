@@ -25,6 +25,7 @@
 @property(readonly) BOOL hasColorBeenRetrieved; // @synthesize hasColorBeenRetrieved=_hasColorBeenRetrieved;
 - (void).cxx_destruct;
 - (void)_fetchColorComponentAtIndex:(unsigned long long)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)_fetchValueNumberComponentsWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)_fetchValueFromCGFunction:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_releaseDataValue:(id)arg1;
 - (void)_fetchColorSpaceName:(CDUnknownBlockType)arg1;

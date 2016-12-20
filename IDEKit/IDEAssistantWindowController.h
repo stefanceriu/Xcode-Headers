@@ -19,6 +19,7 @@
     NSButton *_cancelButton;
     NSTextField *_titleField;
     IDEFilterControlBar *_filterControlBar;
+    NSButton *_helpButton;
     IDEAssistant *_installedAssistant;
     CDUnknownBlockType _currentCompletionBlock;
     NSMutableArray *_assistantHistory;
@@ -27,6 +28,7 @@
     double _lastAnimationDirection;
     _Bool _backtrackingFromOverlayAssistant;
     _Bool _closing;
+    BOOL _preventGoNextOrFinish;
     IDEAssistant *_currentAssistant;
     IDEAssistantContext *_assistantContext;
     NSString *_nextButtonTitle;
@@ -46,10 +48,11 @@
 @property(retain, nonatomic) NSString *nextButtonTitle; // @synthesize nextButtonTitle=_nextButtonTitle;
 @property(readonly, nonatomic) IDEAssistantContext *assistantContext; // @synthesize assistantContext=_assistantContext;
 @property(readonly, nonatomic) IDEAssistant *currentAssistant; // @synthesize currentAssistant=_currentAssistant;
+@property(nonatomic) BOOL preventGoNextOrFinish; // @synthesize preventGoNextOrFinish=_preventGoNextOrFinish;
 - (void).cxx_destruct;
 - (void)configureAnimationImageViewWithDirection:(double)arg1 actionBlock:(CDUnknownBlockType)arg2;
 - (void)setupAccessoriesForAssistant:(id)arg1 animated:(BOOL)arg2;
-- (void)setAnimationDuration;
+- (void)helpAction:(id)arg1;
 - (void)windowWillClose:(id)arg1;
 - (void)cancelSession;
 - (void)goBack:(id)arg1;

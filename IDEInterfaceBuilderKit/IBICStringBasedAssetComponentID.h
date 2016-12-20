@@ -17,7 +17,6 @@
 
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-- (id)stringRepresentation;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToImageStackLayerID:(id)arg1;
 @property(readonly) unsigned long long hash;

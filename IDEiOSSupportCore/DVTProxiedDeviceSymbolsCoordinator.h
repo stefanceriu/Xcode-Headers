@@ -38,6 +38,7 @@
 @property(retain) DVTFilePath *symbolsPath; // @synthesize symbolsPath=_symbolsPath;
 - (void).cxx_destruct;
 - (id)_downloadOpForSymbolsFileURL:(id)arg1 fromPath:(id)arg2 requireAuth:(BOOL)arg3 error:(id *)arg4;
+- (void)_completePreparationForSymbolsPath:(id)arg1;
 - (void)_downloadSymbolsToFileURL:(id)arg1 fromServers:(id)arg2;
 - (void)_downloadSymbolsToFileURL:(id)arg1;
 - (void)_checkForSymbols;

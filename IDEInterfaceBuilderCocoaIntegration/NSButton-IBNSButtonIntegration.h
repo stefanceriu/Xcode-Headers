@@ -7,13 +7,11 @@
 #import "NSButton.h"
 
 @interface NSButton (IBNSButtonIntegration)
++ (id)ibInstantiateForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
 - (unsigned long long)ibOrientationsForSizingToFitFromLibrary;
 - (void)ibVerifyFrameToControlSizeConsistency;
 - (id)ibQualifyingInfoForDefaultLabel;
 - (id)ibLocalAttributeKeyPaths;
 - (id)ibInitialConnectionLabelSearchTerm;
-
-// Remaining properties
-@property(getter=isSpringLoaded) BOOL springLoaded;
 @end
 

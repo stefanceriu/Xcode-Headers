@@ -13,7 +13,6 @@
 - (id)windowAssetForWindowObjectAsset:(id)arg1;
 - (id)processPasteboardObjectsForAsset:(id)arg1;
 - (void)document:(id)arg1 didAddDraggedObjects:(id)arg2 fromDraggedObjectLibraryAsset:(id)arg3;
-- (void)didAddCollectionViewAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (void)didAddContainerViewAssetProducts:(id)arg1 toDocument:(id)arg2;
 - (id)objectContainerFromAsset:(id)arg1 forInsertionIntoPasteboard:(id)arg2;
 - (id)objectContainerForCollectionViewItemAsset:(id)arg1;

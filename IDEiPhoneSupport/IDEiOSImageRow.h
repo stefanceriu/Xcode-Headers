@@ -20,13 +20,13 @@
     NSString *_device;
     NSString *_subtitle;
     DVTFilePath *_imageFilePath;
-    NSString *_tooltip;
     DVTVersion *_minimumOSVersion;
     DVTVersion *_maximumDeploymentOS;
     NSString *_nameSuffix;
     NSArray *_alternateNameSuffixes;
     NSString *_scale;
     NSString *_orientation;
+    NSString *_tooltip;
     struct CGSize _imageSize;
     struct CGSize _statusBarHiddenImageSize;
 }
@@ -35,6 +35,7 @@
 + (id)keyPathsForValuesAffectingStatusMessage;
 + (id)keyPathsForValuesAffectingStatusImage;
 + (id)rowForDictionary:(id)arg1 withSectionType:(int)arg2;
+@property(copy, nonatomic) NSString *tooltip; // @synthesize tooltip=_tooltip;
 @property BOOL foundCandidateImageFileWithWrongSize; // @synthesize foundCandidateImageFileWithWrongSize=_foundCandidateImageFileWithWrongSize;
 @property(copy, nonatomic) NSString *orientation; // @synthesize orientation=_orientation;
 @property(nonatomic) int sectionType; // @synthesize sectionType=_sectionType;
@@ -46,7 +47,6 @@
 @property(copy, nonatomic) NSString *nameSuffix; // @synthesize nameSuffix=_nameSuffix;
 @property(copy, nonatomic) DVTVersion *maximumDeploymentOS; // @synthesize maximumDeploymentOS=_maximumDeploymentOS;
 @property(copy, nonatomic) DVTVersion *minimumOSVersion; // @synthesize minimumOSVersion=_minimumOSVersion;
-@property(copy, nonatomic) NSString *tooltip; // @synthesize tooltip=_tooltip;
 @property(retain, nonatomic) DVTFilePath *imageFilePath; // @synthesize imageFilePath=_imageFilePath;
 @property(copy, nonatomic) NSString *subtitle; // @synthesize subtitle=_subtitle;
 @property(copy, nonatomic) NSString *device; // @synthesize device=_device;

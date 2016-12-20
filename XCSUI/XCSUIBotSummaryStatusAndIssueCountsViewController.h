@@ -6,44 +6,47 @@
 
 #import "DVTViewController.h"
 
-@class DVTScrollView, NSButton, NSPopUpButton, NSTextField, XCSBot, XCSUIBotSummaryStatsFetcher, XCSUIStatusBadge, XCSUIStatusBadgesView;
+@class NSButton, NSPopUpButton, NSProgressIndicator, NSTextField, XCSBot, XCSUIBotSummaryStatsFetcher, XCSUIStatusBadge, XCSUIStatusBadgesView;
 
 @interface XCSUIBotSummaryStatusAndIssueCountsViewController : DVTViewController
 {
-    XCSUIStatusBadge *_commitsStatusBadge;
+    XCSUIStatusBadge *_totalIntegrationsBadge;
+    XCSUIStatusBadge *_successRateBadge;
+    XCSUIStatusBadge *_commitsBadge;
     XCSUIStatusBadge *_newTestsBadge;
-    XCSUIStatusBadge *_issueAverageBadge;
-    XCSUIStatusBadge *_streakBadge;
-    XCSUIStatusBadge *_codeCoverageBadge;
+    XCSUIStatusBadge *_coverageDeltaBadge;
     XCSUIBotSummaryStatsFetcher *_statsFetcher;
     XCSBot *_bot;
+    NSTextField *_scheduleLabel;
+    NSTextField *_cleanLabel;
+    NSTextField *_lastIntegrationDateLabel;
+    NSTextField *_latestStatusLabel;
+    NSTextField *_lastSucceededLabel;
     NSButton *_botDetailsButton;
-    NSTextField *_schemeField;
-    NSTextField *_latestIntegration;
-    NSTextField *_duration;
     XCSUIStatusBadgesView *_issuesBadgeView;
     NSPopUpButton *_statsTimePeriodPopUpButton;
-    DVTScrollView *_issuesBadgeScrollView;
+    NSProgressIndicator *_statsLoadingProgressView;
 }
 
-@property __weak DVTScrollView *issuesBadgeScrollView; // @synthesize issuesBadgeScrollView=_issuesBadgeScrollView;
+@property __weak NSProgressIndicator *statsLoadingProgressView; // @synthesize statsLoadingProgressView=_statsLoadingProgressView;
 @property __weak NSPopUpButton *statsTimePeriodPopUpButton; // @synthesize statsTimePeriodPopUpButton=_statsTimePeriodPopUpButton;
 @property __weak XCSUIStatusBadgesView *issuesBadgeView; // @synthesize issuesBadgeView=_issuesBadgeView;
-@property __weak NSTextField *duration; // @synthesize duration=_duration;
-@property __weak NSTextField *latestIntegration; // @synthesize latestIntegration=_latestIntegration;
-@property __weak NSTextField *schemeField; // @synthesize schemeField=_schemeField;
 @property __weak NSButton *botDetailsButton; // @synthesize botDetailsButton=_botDetailsButton;
+@property __weak NSTextField *lastSucceededLabel; // @synthesize lastSucceededLabel=_lastSucceededLabel;
+@property __weak NSTextField *latestStatusLabel; // @synthesize latestStatusLabel=_latestStatusLabel;
+@property __weak NSTextField *lastIntegrationDateLabel; // @synthesize lastIntegrationDateLabel=_lastIntegrationDateLabel;
+@property __weak NSTextField *cleanLabel; // @synthesize cleanLabel=_cleanLabel;
+@property __weak NSTextField *scheduleLabel; // @synthesize scheduleLabel=_scheduleLabel;
 @property(retain, nonatomic) XCSBot *bot; // @synthesize bot=_bot;
 - (void).cxx_destruct;
 - (void)copyBotID:(id)arg1;
 - (void)toggleBotID:(id)arg1;
+- (id)botTitleString;
 - (void)statsTimePeriodPopupChanged:(id)arg1;
 - (void)fetchStatsSinceDate:(id)arg1;
 - (void)_updateBotStatsBadgesWithStats:(id)arg1;
 - (void)refreshUI;
 - (void)primitiveInvalidate;
-- (void)setIssuesBadgeViewFrameWidth;
-- (void)issuesBadgeScrollViewFrameDidChange:(id)arg1;
 - (void)loadView;
 
 @end

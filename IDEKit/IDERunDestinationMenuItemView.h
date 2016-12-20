@@ -6,7 +6,7 @@
 
 #import "NSView.h"
 
-@class DVTColoredSpinner, IDERunDestination, NSImage, NSImageView, NSLayoutConstraint, NSMenuItem, NSMutableArray, NSTextField;
+@class IDERunDestination, IDERunDestinationMenuItemColoredSpinner, NSImage, NSImageView, NSLayoutConstraint, NSMenuItem, NSMutableArray, NSTextField;
 
 @interface IDERunDestinationMenuItemView : NSView
 {
@@ -21,7 +21,7 @@
     NSTextField *_stateView;
     NSImageView *_imageView;
     NSTextField *_titleView;
-    DVTColoredSpinner *_spinnerView;
+    IDERunDestinationMenuItemColoredSpinner *_spinnerView;
     NSImageView *_wifiView;
 }
 
@@ -30,7 +30,7 @@
 + (id)keyPathsForValuesAffectingAccessory;
 + (void)applyToMenuItem:(id)arg1;
 @property(retain, nonatomic) NSImageView *wifiView; // @synthesize wifiView=_wifiView;
-@property(retain, nonatomic) DVTColoredSpinner *spinnerView; // @synthesize spinnerView=_spinnerView;
+@property(retain, nonatomic) IDERunDestinationMenuItemColoredSpinner *spinnerView; // @synthesize spinnerView=_spinnerView;
 @property(retain, nonatomic) NSTextField *titleView; // @synthesize titleView=_titleView;
 @property(retain, nonatomic) NSImageView *imageView; // @synthesize imageView=_imageView;
 @property(retain, nonatomic) NSTextField *stateView; // @synthesize stateView=_stateView;

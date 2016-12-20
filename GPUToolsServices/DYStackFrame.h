@@ -30,7 +30,7 @@
 - (void).cxx_destruct;
 - (id)shortFormat;
 - (id)fullFormat;
-@property(readonly, nonatomic) NSString *ownerName; // @dynamic ownerName;
+@property(readonly, nonatomic) NSString *ownerName;
 - (void)_fault;
 - (void)_reset;
 - (id)copyWithZone:(struct _NSZone *)arg1;

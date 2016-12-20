@@ -7,15 +7,13 @@
 #import "DVTInvalidation.h"
 #import "IDEDebugNavigableModel.h"
 
-@class IDEDebugSession, NSArray, NSString;
+@class IDEDebugSession, NSString;
 
 @protocol IDEDebugTopNavigableModel <IDEDebugNavigableModel, DVTInvalidation>
 @property(copy, nonatomic) NSString *name;
 - (NSString *)contentDelegateUIExtensionIdentifier;
 
 @optional
-@property(readonly) NSString *subtitle;
-@property(readonly, nonatomic) NSArray *loadedCodeModules;
 @property(readonly, nonatomic) IDEDebugSession *parentDebugSession;
 @end
 

@@ -16,6 +16,7 @@
 @property(nonatomic) id delegate;
 @property(nonatomic) double currentTime;
 @property(nonatomic) unsigned long long antialiasingMode;
+@property(nonatomic) long long preferredFramesPerSecond;
 @property(nonatomic) BOOL allowsCameraControl;
 @property(copy, nonatomic) id backgroundColor;
 @property(retain, nonatomic) SCNScene *scene;

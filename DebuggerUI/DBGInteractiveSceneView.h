@@ -33,8 +33,8 @@
 - (void)keyDown:(id)arg1;
 - (float)projectedAreaOfNode:(id)arg1;
 - (id)resultingNodeFromFollowingHitTestForwardsOfNode:(id)arg1;
-- (id)appropriateResultFromHitTestResults:(id)arg1;
-- (id)resultingNodeFromHitTestResults:(id)arg1;
+- (id)appropriateResultFromHitTestResults:(id)arg1 forEvent:(id)arg2;
+- (id)resultingNodeFromHitTestResults:(id)arg1 forEvent:(id)arg2;
 - (id)menuForEvent:(id)arg1;
 - (void)adjustCameraZoomLevelWithValue:(double)arg1;
 - (void)magnifyWithEvent:(id)arg1;
@@ -51,6 +51,7 @@
 - (id)filteredHitTestResultsFromGestureRecognizer:(id)arg1;
 - (id)filteredHitTestResultsFromEvent:(id)arg1;
 - (id)_filteredHitTestResultFromLocation:(struct CGPoint)arg1;
+- (BOOL)_isRangeSliderActive;
 - (BOOL)nodeIsPartOfRangeSlider:(id)arg1;
 - (id)rangeSliderNodeInHitTestResults:(id)arg1;
 - (void)mouseRestingTimerFired;

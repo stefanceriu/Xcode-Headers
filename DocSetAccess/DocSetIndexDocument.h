@@ -8,7 +8,7 @@
 
 @interface DocSetIndexDocument : NSObject
 {
-    const void *_searchDocument;
+    void *_searchDocument;
 }
 
 + (id)searchDocumentWithScheme:(id)arg1 parent:(id)arg2 name:(id)arg3;

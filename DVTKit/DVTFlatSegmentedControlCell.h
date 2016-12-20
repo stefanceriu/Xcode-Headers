@@ -23,6 +23,7 @@
 - (id)_segmentedControlPathForFrame:(struct CGRect)arg1;
 - (id)_segmentPathForSegmentAtIndex:(long long)arg1 forSegmentFrame:(struct CGRect)arg2;
 - (void)_drawSegment:(long long)arg1 withFrame:(struct CGRect)arg2 inView:(id)arg3;
+- (id)_borderColor;
 - (void)_drawBackgroundWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2;
 - (void)drawFocusRingMaskWithFrame:(struct CGRect)arg1 inView:(id)arg2;

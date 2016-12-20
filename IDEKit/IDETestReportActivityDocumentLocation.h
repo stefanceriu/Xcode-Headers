@@ -10,14 +10,14 @@
 
 @interface IDETestReportActivityDocumentLocation : DVTDocumentLocation
 {
-    NSURL *_screenShotURL;
+    NSURL *_dataURL;
 }
 
-@property(retain, nonatomic) NSURL *screenShotURL; // @synthesize screenShotURL=_screenShotURL;
+@property(retain, nonatomic) NSURL *dataURL; // @synthesize dataURL=_dataURL;
 - (void).cxx_destruct;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)initWithDocumentURL:(id)arg1 timestamp:(id)arg2 activityScreenShotURL:(id)arg3;
+- (id)initWithDocumentURL:(id)arg1 timestamp:(id)arg2 activityDataURL:(id)arg3;
 
 @end
 

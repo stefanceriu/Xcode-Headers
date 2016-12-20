@@ -24,15 +24,17 @@
     BOOL _restorePersistedBuildResults;
     BOOL _dontActuallyRunCommands;
     DVTFilePath *_moduleBuildSessionFilePath;
+    DVTFilePath *_singleFileToBuild;
     int _state;
     int _result;
     IDEActivityLogSection *_buildLog;
     float _percentComplete;
     IDEBuildOperationStatus *_buildStatus;
     BOOL _isFinished;
-    DVTDispatchLock *_operationLock;
+    DVTDispatchLock *_buildStatusLock;
     NSOperationQueue *_builderQueue;
     IDEBuildOperationQueueSet *_buildTaskQueueSet;
+    NSMapTable *_buildersToSerializationKeys;
     NSMapTable *_buildablesToBuilders;
     NSMapTable *_buildableOperationManagers;
     unsigned long long _buildersBuilt;
@@ -44,6 +46,7 @@
     NSMutableArray *_buildSetupNoticeStrings;
     IDEExecutionOperationTracker *_mainExecutionTracker;
     IDEBuildStatisticsSection *_topLevelStatisticsSection;
+    BOOL _allowProvisioningRepairs;
     IDEExecutionEnvironment *_executionEnvironment;
     IDEEntityIdentifier *_schemeIdentifier;
     IDESchemeActionResult *_schemeActionResult;
@@ -54,21 +57,19 @@
 }
 
 + (CDUnknownBlockType)buildStatisticsEmissionSummaryBlock;
-+ (id)buildParametersForPurpose:(int)arg1 configurationName:(id)arg2 workspaceArena:(id)arg3 overridingProperties:(id)arg4 activeRunDestination:(id)arg5 activeArchitecture:(id)arg6;
-+ (id)buildParametersForPurpose:(int)arg1 schemeCommand:(id)arg2 configurationName:(id)arg3 workspaceArena:(id)arg4 overridingProperties:(id)arg5 activeRunDestination:(id)arg6 activeArchitecture:(id)arg7;
 + (long long)defaultQualityOfServiceClass;
 + (void)setDefaultBuildStatisticsSectionParent:(id)arg1;
 + (void)initialize;
-@property(retain) DVTDynamicLogController *builderTimingDataLogController; // @synthesize builderTimingDataLogController=_builderTimingDataLogController;
-@property unsigned long long buildersBuilt; // @synthesize buildersBuilt=_buildersBuilt;
-@property(readonly) NSMapTable *buildablesToBuilders; // @synthesize buildablesToBuilders=_buildablesToBuilders;
 @property(readonly) IDEBuildOperationQueueSet *buildTaskQueueSet; // @synthesize buildTaskQueueSet=_buildTaskQueueSet;
+@property unsigned long long buildersBuilt; // @synthesize buildersBuilt=_buildersBuilt;
+@property(retain) DVTDynamicLogController *builderTimingDataLogController; // @synthesize builderTimingDataLogController=_builderTimingDataLogController;
+@property(readonly) NSMapTable *buildablesToBuilders; // @synthesize buildablesToBuilders=_buildablesToBuilders;
 @property(readonly) NSOperationQueue *builderQueue; // @synthesize builderQueue=_builderQueue;
 @property(readonly) BOOL buildImplicitDependencies; // @synthesize buildImplicitDependencies=_buildImplicitDependencies;
+@property BOOL allowProvisioningRepairs; // @synthesize allowProvisioningRepairs=_allowProvisioningRepairs;
 @property(retain) IDEBuildStatisticsSection *buildStatisticsSection; // @synthesize buildStatisticsSection=_buildStatisticsSection;
 @property(copy) NSDate *stopTime; // @synthesize stopTime=_stopTime;
 @property(copy) NSDate *startTime; // @synthesize startTime=_startTime;
-@property(retain) IDEBuildOperationStatus *buildStatus; // @synthesize buildStatus=_buildStatus;
 @property float percentComplete; // @synthesize percentComplete=_percentComplete;
 @property(readonly) int result; // @synthesize result=_result;
 @property(readonly) int state; // @synthesize state=_state;
@@ -83,7 +84,6 @@
 @property(readonly) NSArray *buildables; // @synthesize buildables=_buildables;
 @property(readonly) int buildCommand; // @synthesize buildCommand=_buildCommand;
 @property(readonly) IDEBuildOperationDescription *buildOperationDescription; // @synthesize buildOperationDescription=_buildOperationDescription;
-@property(readonly) int purpose; // @synthesize purpose=_purpose;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *description;
 - (void)registerTracker:(id)arg1;
@@ -99,12 +99,17 @@
 - (void)builderDidStartExecuting:(id)arg1;
 - (void)builder:(id)arg1 resultDidChange:(int)arg2;
 - (void)builder:(id)arg1 activityLogSectionDidChange:(id)arg2;
-- (void)addOperationsForBuildables;
+- (void)_addOperationsForSingleFileBuild;
+- (id)_buildableForSingleFileToBuildStartingWithBuildable:(id)arg1 recursionDetectionSet:(id)arg2;
+- (void)_addOperationsForAllBuildables;
+- (void)addOperationsToQueue:(id)arg1;
 - (id)_addOperationForBuildableIfNeeded:(id)arg1;
 - (id)_addOperationForBuildableIfNeeded:(id)arg1 recursionDetectionArray:(id)arg2;
+- (void)_configureBuilder:(id)arg1;
 - (id)finalBuildParametersForBuildable:(id)arg1;
 - (void)setupCallbackBlocksOnNewBuilder:(id)arg1;
-- (void)_updateBuildStatusWithStateDescription:(id)arg1 fileProgressString:(id)arg2;
+@property(retain) NSString *localizedStateDescription;
+@property(retain) IDEBuildOperationStatus *buildStatus;
 - (void)_takeMemorySnapshotsWithLog:(id)arg1;
 - (BOOL)isFinished;
 - (BOOL)isExecuting;
@@ -117,12 +122,11 @@
 - (void)addBuildSetupErrorString:(id)arg1;
 - (void)addGeneratedFileInfo:(id)arg1;
 @property(readonly) double duration;
-@property(retain) NSString *localizedStateDescription;
 - (id)_buildParametersForBuildable:(id)arg1;
 - (void)setBuildParameters:(id)arg1 forBuildable:(id)arg2;
 - (id)harvestedInfoForBuildable:(id)arg1;
 - (void)dealloc;
-- (id)initWithBuildOperationDescription:(id)arg1 purpose:(int)arg2 buildCommand:(int)arg3 schemeCommand:(id)arg4 configurationName:(id)arg5 buildables:(id)arg6 buildLog:(id)arg7 executionEnvironment:(id)arg8 overridingProperties:(id)arg9 activeRunDestination:(id)arg10 activeArchitecture:(id)arg11 parallelizeBuildables:(BOOL)arg12 dontActuallyRunCommands:(BOOL)arg13 buildImplicitDependencies:(BOOL)arg14 restorePersistedBuildResults:(BOOL)arg15 schemeIdentifier:(id)arg16 schemeActionRecord:(id)arg17;
+- (id)initWithConfiguration:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

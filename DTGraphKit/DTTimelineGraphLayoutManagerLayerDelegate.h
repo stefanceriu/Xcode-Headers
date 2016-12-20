@@ -6,9 +6,12 @@
 
 #import "NSObject.h"
 
-@class DTTimelineGraphLayoutManager;
+#import "CALayerDelegate.h"
 
-@interface DTTimelineGraphLayoutManagerLayerDelegate : NSObject
+@class DTTimelineGraphLayoutManager, NSString;
+
+__attribute__((visibility("hidden")))
+@interface DTTimelineGraphLayoutManagerLayerDelegate : NSObject <CALayerDelegate>
 {
     DTTimelineGraphLayoutManager *_layoutManager;
 }
@@ -16,6 +19,12 @@
 - (void).cxx_destruct;
 - (id)actionForLayer:(id)arg1 forKey:(id)arg2;
 - (id)initWithLayoutManager:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -25,6 +25,7 @@
     unsigned long long _highlightSidebarStyle;
     unsigned long long _severity;
     struct {
+        unsigned int drawsSidebarMarker:1;
         unsigned int sidebarMarkerAlignment:4;
         unsigned int wantsDisplayOverLineNumber:1;
         unsigned int wantsReplaceLineNumber:1;
@@ -100,7 +101,9 @@
 @property BOOL wantsDisplayOverLineNumber;
 - (void)setSidebarMarkerTopMargin:(double)arg1;
 @property unsigned long long sidebarMarkerAlignment;
+@property BOOL drawsSidebarMarker;
 - (void)setVisible:(BOOL)arg1;
+- (void)setVisibleWithoutAdditionalLayout:(BOOL)arg1;
 - (void)setTheme:(id)arg1 forState:(id)arg2;
 - (id)themeForState:(id)arg1;
 - (void)resolveLocationIfNeededForLayoutManager:(id)arg1;

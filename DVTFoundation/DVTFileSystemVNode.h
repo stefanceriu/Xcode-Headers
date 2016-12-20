@@ -13,7 +13,7 @@
     NSMutableDictionary *_derivedInfoDict;
     NSPointerArray *_filePaths;
     DVTFilePath *_filePath;
-    int _derivedInfoDictLock;
+    // Error parsing type: AB, name: _derivedInfoDictLock
     unsigned long long _inodeNumber;
     long long _fileSize;
     unsigned long long _statFlags;

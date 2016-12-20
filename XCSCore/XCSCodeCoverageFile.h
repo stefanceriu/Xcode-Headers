@@ -29,7 +29,8 @@
 - (id)dictionaryRepresentation;
 - (unsigned long long)count;
 - (id)keyPath;
-- (id)_initWithMethods:(id)arg1 documentLocation:(id)arg2 validationErrors:(id *)arg3;
+- (id)_initWithMethods:(id)arg1 documentLocation:(id)arg2 skipValidation:(BOOL)arg3 skipBindHierarchy:(BOOL)arg4 validationErrors:(id *)arg5;
+- (id)initWithContents:(id)arg1 service:(id)arg2 skipValidation:(BOOL)arg3 skipBindHierarchy:(BOOL)arg4 validationErrors:(id *)arg5;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 - (id)initWithTitle:(id)arg1 methods:(id)arg2 documentLocation:(id)arg3;
 - (id)init;

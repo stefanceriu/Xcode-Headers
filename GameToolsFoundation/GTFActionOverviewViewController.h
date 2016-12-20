@@ -18,6 +18,7 @@
     NSString *_filterString;
     BOOL _filterCallbackIsPending;
     BOOL _inFilterMethod;
+    BOOL _isScrollSyncing;
     id <GTFActionOverviewViewControllerDelegate> _delegate;
     GTFActionSplitView *_actionSplitView;
     GTFActionScrollView *_actionTimelineScrollView;

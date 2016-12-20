@@ -11,7 +11,7 @@ __attribute__((visibility("hidden")))
 {
 }
 
-- (BOOL)fallbackToUndecoratedSource;
+- (BOOL)useDecoratedSource;
 - (id)baseURL;
 - (id)userDefaultsKey;
 - (id)identifier;

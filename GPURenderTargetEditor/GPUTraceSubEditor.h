@@ -6,18 +6,18 @@
 
 #import "NSViewController.h"
 
-@class GPUMainEditor, GPUSharedTabUIState, GPUTraceDocument;
+@class GPUSharedTabUIState, GPUTraceDocument, GPUTraceMainEditor;
 
 @interface GPUTraceSubEditor : NSViewController
 {
     GPUSharedTabUIState *_sharedUIStateObj;
     GPUTraceDocument *_editorDocument;
-    GPUMainEditor *_mainEditor;
+    GPUTraceMainEditor *_mainEditor;
 }
 
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
-@property(readonly) __weak GPUMainEditor *mainEditor; // @synthesize mainEditor=_mainEditor;
+@property(readonly) __weak GPUTraceMainEditor *mainEditor; // @synthesize mainEditor=_mainEditor;
 @property(readonly) __weak GPUTraceDocument *editorDocument; // @synthesize editorDocument=_editorDocument;
 @property(readonly) __weak GPUSharedTabUIState *sharedUIStateObj; // @synthesize sharedUIStateObj=_sharedUIStateObj;
 - (void).cxx_destruct;

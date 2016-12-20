@@ -6,11 +6,10 @@
 
 #import "NSView.h"
 
-@class CALayer, CATextLayer, NSColor, XCSUIStatusBadge;
+@class CATextLayer, NSColor, XCSUIStatusBadge;
 
 @interface XCSUIBotIntegrationPopoverStatusBadgeView : NSView
 {
-    CALayer *_badgeCircleLayer;
     CATextLayer *_badgeCountLayer;
     CATextLayer *_badgeLabelLayer;
     NSColor *_badgeStrokeColor;

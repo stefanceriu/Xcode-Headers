@@ -7,19 +7,22 @@
 #import "IDERunOperationWorker.h"
 
 #import "DTMISProcessControlServiceAuthorizedAPI.h"
+#import "XCDTMobileIS_AppPosixSpawnProcotol.h"
 
 @class DTXChannel, DVTObservingToken, DVTiOSDevice, NSString;
 
-@interface IDELaunchiPhoneLauncher : IDERunOperationWorker <DTMISProcessControlServiceAuthorizedAPI>
+@interface IDELaunchiPhoneLauncher : IDERunOperationWorker <XCDTMobileIS_AppPosixSpawnProcotol, DTMISProcessControlServiceAuthorizedAPI>
 {
     DTXChannel *_serviceHubProcessControlChannel;
     DTXChannel *_assetServerChannel;
     DVTObservingToken *_passcodeLockedToken;
     BOOL _shouldSkipAppTermination;
+    int _posixSpawnSTDOUTFDForRedirection;
     BOOL _launchingToDebug;
     DVTiOSDevice *_device;
 }
 
++ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
 @property(getter=isLaunchingToDebug) BOOL launchingToDebug; // @synthesize launchingToDebug=_launchingToDebug;
 @property(retain) DVTiOSDevice *device; // @synthesize device=_device;
 - (void).cxx_destruct;
@@ -35,6 +38,7 @@
 - (id)_serviceHubProcessControlChannel;
 - (id)_bestPrimaryInstrumentsServer;
 - (void)_setupPlainLaunching;
+- (void)outputReceived:(id)arg1 fromProcess:(int)arg2 atTime:(unsigned long long)arg3;
 - (void)_setupDebugging;
 - (void)_continueStarting;
 - (void)start;

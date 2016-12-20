@@ -80,7 +80,7 @@
 @property BOOL autoActivateCustomFonts; // @synthesize autoActivateCustomFonts=_autoActivateCustomFonts;
 @property(copy) NSString *outputPartialInfoPlistPath; // @synthesize outputPartialInfoPlistPath=_outputPartialInfoPlistPath;
 @property(copy) NSString *module; // @synthesize module=_module;
-@property(nonatomic) NSNumber *launchScreen; // @synthesize launchScreen=_launchScreen;
+@property(copy) NSNumber *launchScreen; // @synthesize launchScreen=_launchScreen;
 @property BOOL shouldUpdateAutoLayoutConstraints; // @synthesize shouldUpdateAutoLayoutConstraints=_shouldUpdateAutoLayoutConstraints;
 @property BOOL shouldUpdateAutoLayoutFrames; // @synthesize shouldUpdateAutoLayoutFrames=_shouldUpdateAutoLayoutFrames;
 @property BOOL printAutoLayoutEnabled; // @synthesize printAutoLayoutEnabled=_printAutoLayoutEnabled;

@@ -15,6 +15,7 @@
 + (void)initialize;
 - (id)sortedRangeArray;
 - (id)normalizedRangeArray;
+- (void)getRanges:(struct _NSRange *)arg1 count:(unsigned long long)arg2;
 - (unsigned long long)indexOfRangeContainingOrFollowing:(unsigned long long)arg1;
 - (unsigned long long)indexOfRangeContainingOrPreceding:(unsigned long long)arg1;
 - (unsigned long long)indexOfRangeFollowing:(unsigned long long)arg1;

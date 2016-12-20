@@ -36,16 +36,17 @@
     NSSet *_targetDevices;
     NSDictionary *_assetPackOutputSpecifications;
     NSDictionary *_extendedParameters;
+    NSString *_stickerPackIdentifierPrefix;
+    NSDictionary *_stringFilesByStickerPackAndLanguage;
+    NSString *_productType;
     NSString *_issueTextForResizableImage;
     NSString *_issueTextForTemplateRenderingIntent;
     IBICDeviceThinningTraits *_filterForDeviceTraits;
     NSMutableDictionary *_masksByName;
-    NSMutableDictionary *_successIssuesByName;
     NSMutableDictionary *_failureIssuesByName;
 }
 
 @property(retain, nonatomic) NSMutableDictionary *failureIssuesByName; // @synthesize failureIssuesByName=_failureIssuesByName;
-@property(retain, nonatomic) NSMutableDictionary *successIssuesByName; // @synthesize successIssuesByName=_successIssuesByName;
 @property(retain, nonatomic) NSMutableDictionary *masksByName; // @synthesize masksByName=_masksByName;
 @property(copy) IBICDeviceThinningTraits *filterForDeviceTraits; // @synthesize filterForDeviceTraits=_filterForDeviceTraits;
 @property BOOL targetingV1CARFormat; // @synthesize targetingV1CARFormat=_targetingV1CARFormat;
@@ -53,6 +54,9 @@
 @property BOOL supportsTemplateRenderingIntent; // @synthesize supportsTemplateRenderingIntent=_supportsTemplateRenderingIntent;
 @property(copy) NSString *issueTextForResizableImage; // @synthesize issueTextForResizableImage=_issueTextForResizableImage;
 @property BOOL supportsResizableImages; // @synthesize supportsResizableImages=_supportsResizableImages;
+@property(copy, nonatomic) NSString *productType; // @synthesize productType=_productType;
+@property(copy, nonatomic) NSDictionary *stringFilesByStickerPackAndLanguage; // @synthesize stringFilesByStickerPackAndLanguage=_stringFilesByStickerPackAndLanguage;
+@property(copy, nonatomic) NSString *stickerPackIdentifierPrefix; // @synthesize stickerPackIdentifierPrefix=_stickerPackIdentifierPrefix;
 @property(nonatomic) BOOL dumpAssets; // @synthesize dumpAssets=_dumpAssets;
 @property(retain, nonatomic) NSDictionary *extendedParameters; // @synthesize extendedParameters=_extendedParameters;
 @property(copy) NSDictionary *assetPackOutputSpecifications; // @synthesize assetPackOutputSpecifications=_assetPackOutputSpecifications;
@@ -75,10 +79,6 @@
 @property BOOL compressPNGs; // @synthesize compressPNGs=_compressPNGs;
 - (void).cxx_destruct;
 - (id)uuidForCoreThemeDocument;
-- (BOOL)shouldThinSlot:(id)arg1;
-- (BOOL)shouldThinCatalogItem:(id)arg1;
-- (id)successIssueTextForName:(id)arg1;
-- (void)setSuccessIssueText:(id)arg1 forName:(id)arg2;
 - (id)failureIssueTextForName:(id)arg1;
 - (void)setFailureIssueText:(id)arg1 forName:(id)arg2;
 - (id)maskForName:(id)arg1;
@@ -91,6 +91,7 @@
 - (BOOL)isEqualToCatalogCompilerOptions:(id)arg1;
 @property(readonly) unsigned long long hash;
 @property(readonly, copy) NSString *description;
+- (id)stringRepresentationOfStringFilesByStickerPackAndLanguage;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;

@@ -12,6 +12,7 @@
 
 @optional
 - (void)networkUsageChanged:(BOOL)arg1;
+- (void)applicationStateDidChange:(NSArray *)arg1;
 - (void)applicationInstallsDidPrioritize:(NSArray *)arg1;
 - (void)applicationInstallsDidCancel:(NSArray *)arg1;
 - (void)applicationInstallsDidResume:(NSArray *)arg1;

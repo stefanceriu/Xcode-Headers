@@ -12,10 +12,10 @@
 {
     unsigned long long _constraintBreakageStrategy;
     NSMutableSet *_viewsThatHaveHadCandidatesUnconditionallyGeneratedAtLeastOnce;
+    NSMutableSet *_temporaryConstraintsForAncestorsOfWhitelistedViews;
     NSMutableSet *_viewsWithAddedTemporaryExplicitConstraints;
     NSMutableSet *_viewsWithGeneratedCandidateConstraints;
     NSSet *_constraintsInDocumentBeforeArbitration;
-    NSSet *_viewsRequiringFullArbitration;
     NSMutableSet *_viewWhitelistForArbitration;
     NSMutableSet *_constraintsToRemove;
     NSMutableSet *_constraintsToAdd;
@@ -35,13 +35,15 @@
 @property(copy) NSSet *constraintsToRemove; // @synthesize constraintsToRemove=_constraintsToRemove;
 - (void).cxx_destruct;
 - (id)arbitrateWithOptions:(id)arg1;
+- (void)removeTemporaryConstraintsForAncestorsOfWhitelistedViews;
 - (void)resolveMutuallyExclusiveConstraintsRemovedDuringEngineBootstrapping;
-- (void)removingRedundantConstraintsWithOptions:(id)arg1;
+- (void)removeRedundantConstraintsWithOptions:(id)arg1;
 - (BOOL)addApplicableCandidateConstraints:(id *)arg1;
 - (void)_updateUnsatisfiedConstraintConstantsIfNeeded;
 - (id)logArbitrationFailureAndReturnMessageForReason:(id)arg1;
 - (BOOL)attemptToAddApplicableCandidateConstraintsForViews:(id)arg1 forGenerationType:(unsigned long long)arg2;
-- (void)addTemporaryExplicitConstraintsForView:(id)arg1;
+- (void)addTemporaryConstraintsToAmbiguousAncestorsIfWhitelisted:(id)arg1;
+- (id)addTemporaryExplicitConstraintsForView:(id)arg1;
 - (void)addExplicitSizeConstraintsForView:(id)arg1;
 - (void)addApplicableCandidatePositionAndSizeConstraintsForView:(id)arg1;
 - (void)addApplicableCandidateConstraints:(id)arg1 forView:(id)arg2;

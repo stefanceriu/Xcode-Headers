@@ -14,28 +14,31 @@
     BOOL _providesNamespace;
 }
 
++ (BOOL)supportsCompression;
 + (id)contentReferenceTypeName;
 + (id)catalogItemFileExtension;
 + (Class)requiredChildrenClass;
-+ (id)keysThatImpactIdentifier;
++ (BOOL)fileNameIsIdentifier;
 + (id)classNameComponents;
 + (id)defaultInstanceForIdioms:(id)arg1 enforceStrictIdioms:(BOOL)arg2;
++ (id)createInstanceNamed:(id)arg1;
++ (id)createDefaultInstancesForUnitTesting;
 @property(nonatomic) BOOL providesNamespace; // @synthesize providesNamespace=_providesNamespace;
 - (void).cxx_destruct;
+- (BOOL)isEqualForUnitTests:(id)arg1;
 - (CDStruct_550fdc95)taggingSupport;
 - (void)replaceChildrenFromFileSystemSnapshot:(id)arg1 results:(id)arg2;
 - (id)imageSetWithName:(id)arg1;
 - (id)imageSetWithFileName:(id)arg1;
 - (id)folderForFileName:(id)arg1;
-- (id)identifier;
 - (void)manifestArchivist:(id)arg1 populateManifest:(id)arg2;
 - (void)manifestArchivist:(id)arg1 applyPropertiesFromManifest:(id)arg2;
 - (BOOL)manifestArchivist:(id)arg1 validateManifest:(id)arg2 results:(id)arg3;
+- (id)initializeManifestArchivist;
 - (id)runtimeNamespaceQualifier;
 - (id)manifestContent;
 - (id)manifestFileName;
 - (BOOL)isolatesAndConsolidatesContainedContent;
-- (void)enumerateDescriptionAttributeComponents:(CDUnknownBlockType)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;

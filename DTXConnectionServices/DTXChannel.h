@@ -12,6 +12,7 @@
 
 @interface DTXChannel : NSObject <DTXMessenger>
 {
+    NSString *_label;
     DTXConnection *_connection;
     NSObject<OS_dispatch_queue> *_serialQueue;
     NSObject<OS_dispatch_queue> *_atomicHandlers;
@@ -24,7 +25,6 @@
 }
 
 @property(nonatomic) int compressionTypeHint; // @synthesize compressionTypeHint=_compressionTypeHint;
-@property(readonly, retain, nonatomic) DTXConnection *connection; // @synthesize connection=_connection;
 @property(readonly, nonatomic) unsigned int channelCode; // @synthesize channelCode=_channelCode;
 @property BOOL isCanceled; // @synthesize isCanceled=_canceled;
 - (void)sendMessageSync:(id)arg1 replyHandler:(CDUnknownBlockType)arg2;
@@ -40,10 +40,12 @@
 - (void)_setDispatchValidator:(CDUnknownBlockType)arg1;
 @property(retain) id <DTXAllowedRPC> dispatchTarget;
 @property(copy) CDUnknownBlockType messageHandler;
+- (id)label;
+- (void)setLabel:(id)arg1;
 - (void)_scheduleMessage:(id)arg1 tracker:(id)arg2 withHandler:(CDUnknownBlockType)arg3;
 - (void)_scheduleBlock:(CDUnknownBlockType)arg1;
 - (void)dealloc;
-- (id)initWithConnection:(id)arg1 channelIdentifier:(unsigned int)arg2;
+- (id)initWithConnection:(id)arg1 channelIdentifier:(unsigned int)arg2 label:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

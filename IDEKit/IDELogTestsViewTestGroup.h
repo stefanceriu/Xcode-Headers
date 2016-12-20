@@ -28,9 +28,10 @@
 @property(readonly, copy, nonatomic) NSString *ide_testReport_testGroup_groupName;
 - (void)addTestWrapper:(id)arg1;
 - (id)ide_sharedTests_testGroup_includePassingTests:(BOOL)arg1 includeFailingTests:(BOOL)arg2 includeOnlyPerfTests:(BOOL)arg3;
+- (id)ide_sharedTests_testGroup_perfTests;
 - (id)ide_sharedTests_passingTests;
 - (id)ide_sharedTests_failingTests;
-- (id)ide_sharedTests_allTests;
+- (id)ide_sharedTests_testGroup_allTests;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

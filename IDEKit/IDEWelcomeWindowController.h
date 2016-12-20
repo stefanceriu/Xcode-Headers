@@ -6,7 +6,7 @@
 
 #import "NSWindowController.h"
 
-@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, DVTRolloverImageButton, DVTScrollView, DVTTableView, IDEButtonWithBackgroundColor, IDEFirstLaunchExperienceViewController, IDERecentsHelper, IDEWelcomeWindowHighlightButton, NSArrayController, NSBox, NSProgressIndicator, NSString, NSTextField, NSTrackingArea, NSView;
+@class DVTBorderedView, DVTNotificationToken, DVTObservingToken, DVTRolloverImageButton, DVTScrollView, DVTTableView, IDEButtonWithBackgroundColor, IDEFirstLaunchExperienceViewController, IDERecentsHelper, IDEWelcomeWindowHighlightButton, NSArrayController, NSBox, NSImageView, NSProgressIndicator, NSString, NSTextField, NSTrackingArea, NSView;
 
 @interface IDEWelcomeWindowController : NSWindowController
 {
@@ -17,7 +17,6 @@
     NSTextField *_sourceControlButtonTitle;
     NSTextField *_newProjectAssistantButtonDescription;
     NSTextField *_sourceControlButtonDescription;
-    NSView *_actualContentView;
     NSView *_welcomeWindowView;
     NSProgressIndicator *_progressIndicator;
     NSTrackingArea *_fadeControlsTrackingArea;
@@ -29,8 +28,12 @@
     id <IDEWelcomeWindowButtonProvider> _secretButtonProvider;
     BOOL _transientControlsHidden;
     NSArrayController *_projectsArrayController;
+    NSView *_leftContentsArea;
+    NSImageView *_xcodeIconView;
     NSTextField *_welcomeToXcodeLabel_10_10;
     NSTextField *_versionLabel;
+    NSTextField *_toolchainLabel;
+    DVTRolloverImageButton *_toolchainButton;
     DVTRolloverImageButton *_closeButton;
     DVTScrollView *_projectsScrollView;
     IDEButtonWithBackgroundColor *_showWindowCheckbox;
@@ -45,6 +48,7 @@
 }
 
 + (BOOL)_canCoexistWithWindow:(id)arg1;
++ (id)keyPathsForValuesAffectingToolchainDescription;
 + (BOOL)wantsReopenedWelcomeWindow;
 + (id)sharedWelcomeWindowController;
 + (void)initialize;
@@ -59,8 +63,12 @@
 @property __weak IDEButtonWithBackgroundColor *showWindowCheckbox; // @synthesize showWindowCheckbox=_showWindowCheckbox;
 @property __weak DVTScrollView *projectsScrollView; // @synthesize projectsScrollView=_projectsScrollView;
 @property __weak DVTRolloverImageButton *closeButton; // @synthesize closeButton=_closeButton;
+@property __weak DVTRolloverImageButton *toolchainButton; // @synthesize toolchainButton=_toolchainButton;
+@property __weak NSTextField *toolchainLabel; // @synthesize toolchainLabel=_toolchainLabel;
 @property __weak NSTextField *versionLabel; // @synthesize versionLabel=_versionLabel;
 @property __weak NSTextField *welcomeToXcodeLabel_10_10; // @synthesize welcomeToXcodeLabel_10_10=_welcomeToXcodeLabel_10_10;
+@property __weak NSImageView *xcodeIconView; // @synthesize xcodeIconView=_xcodeIconView;
+@property __weak NSView *leftContentsArea; // @synthesize leftContentsArea=_leftContentsArea;
 @property(nonatomic) BOOL transientControlsHidden; // @synthesize transientControlsHidden=_transientControlsHidden;
 @property(retain) NSArrayController *projectsArrayController; // @synthesize projectsArrayController=_projectsArrayController;
 - (void).cxx_destruct;
@@ -71,12 +79,15 @@
 - (void)openSourceControl:(id)arg1;
 - (void)openNewProjectAssistant:(id)arg1;
 - (void)createNewPlayground:(id)arg1;
+- (void)showToolchains:(id)arg1;
+- (void)_showInFinder:(id)arg1;
 - (void)openSelected:(id)arg1;
 - (void)_openURL:(id)arg1;
 - (void)closeWelcomeWindow:(id)arg1;
 - (void)runOpenPanel:(id)arg1;
 - (void)_openWelcomeWindowIfAppropriate;
 - (BOOL)_showFirstLaunchExperienceIfAppropriate;
+- (BOOL)_waitingForFirstLaunch;
 - (BOOL)isShowingFirstLaunchExperience;
 - (void)showFirstLaunchExperienceIfAppropriate;
 - (void)openWelcomeWindowAfterWorkspaceWindowClosedIfAppropriate:(id)arg1;
@@ -93,6 +104,8 @@
 - (void)windowDidLoad;
 - (void)_setProgressIndicatorVisible:(BOOL)arg1;
 - (void)windowWillLoad;
+@property(readonly) NSString *toolchainDescription;
+- (id)_toolchainRegistery;
 @property(readonly) NSString *xcodeVersion;
 
 @end

@@ -6,18 +6,18 @@
 
 #import "NSObject.h"
 
-@class GPUTraceEditor, NSMutableArray;
+@class GPUTraceMainEditor, NSMutableArray;
 
 @interface GPUGlobalStateManager : NSObject
 {
     BOOL _showGroupDisplayableCallCount;
-    GPUTraceEditor *_installedTraceEditor;
+    GPUTraceMainEditor *_installedTraceEditor;
     NSMutableArray *_installedTraceResourcesEditors;
 }
 
 + (id)sharedGlobalStateManager;
 @property(retain, nonatomic) NSMutableArray *installedTraceResourcesEditors; // @synthesize installedTraceResourcesEditors=_installedTraceResourcesEditors;
-@property(retain, nonatomic) GPUTraceEditor *installedTraceEditor; // @synthesize installedTraceEditor=_installedTraceEditor;
+@property(retain, nonatomic) GPUTraceMainEditor *installedTraceEditor; // @synthesize installedTraceEditor=_installedTraceEditor;
 @property(readonly, nonatomic) BOOL showGroupDisplayableCallCount; // @synthesize showGroupDisplayableCallCount=_showGroupDisplayableCallCount;
 - (void).cxx_destruct;
 @property(nonatomic) int issueFilterLevel;

@@ -9,15 +9,8 @@
 @class GPUTraceDisplayableItem;
 
 @protocol GPUTraceBubbleOwner <NSObject>
-- (GPUTraceDisplayableItem *)currentDisplayableItem;
-- (void)settingsToggleAlphaEnable;
-- (void)settingsToggleBlueEnable;
-- (void)settingsToggleGreenEnable;
-- (void)settingsToggleRedEnable;
 - (void)settingsBubbleClosed;
+- (GPUTraceDisplayableItem *)currentDisplayableItem;
 - (void)infoBubbleClosed;
-
-@optional
-- (void)settingsUpdate;
 @end
 

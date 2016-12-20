@@ -8,8 +8,12 @@
 
 @interface IDENavigableItemFilter : NSObject
 {
+    BOOL _shouldShowAllChildrenUnderMatch;
 }
 
++ (id)filterForName:(id)arg1 andPredicates:(id)arg2 options:(unsigned long long)arg3;
++ (id)filterForName:(id)arg1 andPredicate:(id)arg2;
+@property(nonatomic) BOOL shouldShowAllChildrenUnderMatch; // @synthesize shouldShowAllChildrenUnderMatch=_shouldShowAllChildrenUnderMatch;
 - (BOOL)matchesNavigableItem:(id)arg1;
 
 @end

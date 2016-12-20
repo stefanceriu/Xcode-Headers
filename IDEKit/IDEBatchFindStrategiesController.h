@@ -23,8 +23,9 @@
     int _findType;
     int _matchStyle;
     NSPopover *_popover;
-    IDEBatchFindScopeEditor *_scopeEditor;
     NSString *_findWorkspacePathDescription;
+    id <IDEBatchFindNameTreeResolver> _nameTreeResolver;
+    IDEBatchFindScopeEditor *_scopeEditor;
     NSArray *_customScopePredicates;
 }
 
@@ -35,8 +36,9 @@
 + (void)initialize;
 + (id)sharedStrategiesController;
 @property(retain) NSArray *customScopePredicates; // @synthesize customScopePredicates=_customScopePredicates;
-@property(retain) NSString *findWorkspacePathDescription; // @synthesize findWorkspacePathDescription=_findWorkspacePathDescription;
 @property(retain, nonatomic) IDEBatchFindScopeEditor *scopeEditor; // @synthesize scopeEditor=_scopeEditor;
+@property __weak id <IDEBatchFindNameTreeResolver> nameTreeResolver; // @synthesize nameTreeResolver=_nameTreeResolver;
+@property(retain) NSString *findWorkspacePathDescription; // @synthesize findWorkspacePathDescription=_findWorkspacePathDescription;
 @property(copy, nonatomic) NSString *findWorkspacePath; // @synthesize findWorkspacePath=_findWorkspacePath;
 @property(copy, nonatomic) NSString *findScopeUUID; // @synthesize findScopeUUID=_findScopeUUID;
 @property(retain) NSPopover *popover; // @synthesize popover=_popover;
@@ -55,10 +57,12 @@
 - (id)_predicateForScope;
 - (BOOL)_findScopeUUIDValid:(id)arg1;
 - (id)selectedScopeName;
+- (id)scopeNameForScopeID:(id)arg1;
 - (BOOL)doneLocationEditor;
 - (void)showScopeEditor:(id)arg1 inRect:(struct CGRect)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 - (id)addScope;
 - (void)deleteScopeWithUUID:(id)arg1;
+- (void)persistScopes;
 - (void)loadView;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;

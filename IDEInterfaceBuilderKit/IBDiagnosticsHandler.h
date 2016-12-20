@@ -17,6 +17,7 @@
     IBDocument *_document;
 }
 
++ (void)_protectAgainstReentrantDiagnosticsDuring:(CDUnknownBlockType)arg1 fallbackBlock:(CDUnknownBlockType)arg2;
 @property(retain, nonatomic) IBDocument *document; // @synthesize document=_document;
 @property(readonly, nonatomic) NSString *fileNamePrefix; // @synthesize fileNamePrefix=_fileNamePrefix;
 - (void).cxx_destruct;

@@ -43,6 +43,7 @@
 - (id)ibTypeNameForDefaultLabel;
 - (BOOL)isFirstResponder;
 - (BOOL)isFilesOwner;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

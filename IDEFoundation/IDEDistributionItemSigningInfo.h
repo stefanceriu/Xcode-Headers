@@ -6,14 +6,14 @@
 
 #import "NSObject.h"
 
-@class DVTCodesignParameterSnapshot;
+@class IDECodesignParameterSnapshot;
 
 @interface IDEDistributionItemSigningInfo : NSObject
 {
-    DVTCodesignParameterSnapshot *_codesignParameterSnapshot;
+    IDECodesignParameterSnapshot *_codesignParameterSnapshot;
 }
 
-@property(readonly) DVTCodesignParameterSnapshot *codesignParameterSnapshot; // @synthesize codesignParameterSnapshot=_codesignParameterSnapshot;
+@property(readonly) IDECodesignParameterSnapshot *codesignParameterSnapshot; // @synthesize codesignParameterSnapshot=_codesignParameterSnapshot;
 - (void).cxx_destruct;
 - (id)description;
 - (id)initWithCodesignParameterSnapshot:(id)arg1;

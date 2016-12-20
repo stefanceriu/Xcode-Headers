@@ -37,14 +37,13 @@
 - (id)children;
 @property(readonly) BOOL isRemoteDistributedRepository;
 - (id)ideModelObjectTypeIdentifier;
-- (BOOL)containsItemAtLocation:(id)arg1;
-- (id)itemAtURL:(id)arg1 isGroup:(BOOL)arg2;
 @property(copy) NSString *remoteName;
 - (BOOL)isEqual:(id)arg1;
 @property(retain) DVTSourceControlAuthenticationStrategy *authenticationStrategy;
 @property(retain) NSURL *URL; // @synthesize URL=_URL;
 - (void)setLocation:(id)arg1;
 - (void)setSourceControlExtension:(id)arg1;
+- (void)setSourceControlExtension:(id)arg1 updateUserDefaults:(BOOL)arg2;
 @property BOOL representsXcodeServiceHostedRepository; // @synthesize representsXcodeServiceHostedRepository=_representsXcodeServiceHostedRepository;
 - (void)setEnabled:(BOOL)arg1;
 - (BOOL)enabled;
@@ -52,7 +51,6 @@
 - (id)initWithDictionaryRepresentation:(id)arg1 sourceControlManager:(id)arg2 error:(id *)arg3;
 - (id)initWithDictionary:(id)arg1 sourceControlExtension:(id)arg2 sourceControlManager:(id)arg3;
 - (id)initWithLocation:(id)arg1 sourceControlManager:(id)arg2;
-- (id)_initWithLocation:(id)arg1 sourceControlManager:(id)arg2;
 - (void)primitiveInvalidate;
 
 // Remaining properties

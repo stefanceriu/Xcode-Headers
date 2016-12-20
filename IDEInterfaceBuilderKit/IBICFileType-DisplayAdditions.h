@@ -7,8 +7,11 @@
 #import "IBICFileType.h"
 
 @interface IBICFileType (DisplayAdditions)
++ (id)imageRepsForFileTypes:(id)arg1 fromPasteboard:(id)arg2;
 + (id)imageRepsForFileTypesForSlot:(id)arg1 fromPasteboard:(id)arg2;
++ (BOOL)canProduceImagesForFileTypes:(id)arg1 fromPasteboard:(id)arg2;
 + (BOOL)canProduceImageForFileTypesForSlot:(id)arg1 fromPasteboard:(id)arg2;
 + (id)orderedImageRepClassesForSlot:(id)arg1;
++ (id)orderedImageRepClassesForFileTypes:(id)arg1;
 @end
 

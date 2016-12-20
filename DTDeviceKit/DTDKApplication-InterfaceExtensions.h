@@ -14,6 +14,7 @@
 @property(readonly, copy) NSSet *rootContainerApplicationItems;
 @property(readonly) NSString *version;
 @property(readonly) NSImage *appIcon;
+- (void)_resolveApplicationIconInRunnablePath:(id)arg1 platformIdentifier:(id)arg2 setImageCallback:(CDUnknownBlockType)arg3;
 - (void)fetchUncrushedAppIcon:(CDUnknownBlockType)arg1;
 - (id)defaultIcon;
 

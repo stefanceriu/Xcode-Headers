@@ -21,7 +21,7 @@
     CDUnknownBlockType _completionBlock;
     NSMutableDictionary *_severityToLimitTable;
     NSMutableDictionary *_severityToCountTable;
-    int _lock;
+    // Error parsing type: AB, name: _lock
     BOOL _hasAddedAnyErrorMessages;
     int _hasRequestedStop;
 }

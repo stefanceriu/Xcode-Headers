@@ -23,6 +23,7 @@
 @property(readonly) NSSet *runningThrottleableActivityReports; // @synthesize runningThrottleableActivityReports=_runningThrottleableActivityReports;
 @property(readonly) NSArray *activityReports; // @synthesize activityReports=_activityReports;
 - (void).cxx_destruct;
+- (void)updateWithAddedActivityReports:(id)arg1;
 - (void)updateWithAddedActivityReports:(id)arg1 deletedActivityReports:(id)arg2;
 - (void)_stopObservingReport:(id)arg1;
 - (void)_startObservingReport:(id)arg1;

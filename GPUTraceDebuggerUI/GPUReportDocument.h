@@ -6,16 +6,19 @@
 
 #import "IDEDebugGaugeReportDocument.h"
 
-@class GPUReportResults, GPUSharedTabUIState;
+@class DVTObservingToken, GPUReportEditor, GPUReportResults, GPUSharedTabUIState;
 
 __attribute__((visibility("hidden")))
 @interface GPUReportDocument : IDEDebugGaugeReportDocument
 {
+    DVTObservingToken *_activeDebuggerControllerObserverToken;
     GPUSharedTabUIState *_sharedTabUIState;
     GPUReportResults *_reportResults;
+    GPUReportEditor *_editor;
 }
 
 + (BOOL)autosavesInPlace;
+@property(nonatomic) __weak GPUReportEditor *editor; // @synthesize editor=_editor;
 @property(retain, nonatomic) GPUReportResults *reportResults; // @synthesize reportResults=_reportResults;
 @property(nonatomic) __weak GPUSharedTabUIState *sharedTabUIState; // @synthesize sharedTabUIState=_sharedTabUIState;
 - (void).cxx_destruct;

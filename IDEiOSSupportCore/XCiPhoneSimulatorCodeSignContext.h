@@ -10,8 +10,10 @@
 {
 }
 
-+ (id)codeSignNode:(id)arg1 withMacroExpansionScope:(id)arg2;
-+ (id)prepareForCodeSigningWithMacroExpansionScope:(id)arg1 certificateUtilities:(id)arg2;
++ (id)codeSignNode:(id)arg1 withMacroExpansionScope:(id)arg2 reSignOnly:(BOOL)arg3;
++ (id)prepareForCodeSigningWithMacroExpansionScope:(id)arg1;
++ (BOOL)requiresEntitlementsWithMacroExpansionScope:(id)arg1;
++ (BOOL)shouldPassEntitlementsToCodeSign;
 + (BOOL)supportsIOSSigning;
 + (BOOL)supportsMacSigning;
 + (BOOL)supportsDeveloperIDSigning;

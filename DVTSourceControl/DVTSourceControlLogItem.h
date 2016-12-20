@@ -6,50 +6,60 @@
 
 #import "NSObject.h"
 
+#import "DVTSourceControlLogItem.h"
 #import "NSCopying.h"
 #import "NSSecureCoding.h"
 
-@class DVTSourceControlAuthor, DVTSourceControlRevision, DVTSourceControlWorkingCopy, NSDate, NSDictionary, NSString;
+@class DVTSourceControlAuthor, DVTSourceControlRevision, DVTSourceControlWorkingCopy, NSArray, NSDate, NSDictionary, NSString;
 
-@interface DVTSourceControlLogItem : NSObject <NSSecureCoding, NSCopying>
+@interface DVTSourceControlLogItem : NSObject <NSSecureCoding, NSCopying, DVTSourceControlLogItem>
 {
     BOOL _complete;
+    NSDictionary *_pathsWithStatus;
+    NSArray *_fileStatuses;
     DVTSourceControlAuthor *_author;
     DVTSourceControlRevision *_revision;
     NSDate *_date;
     NSString *_message;
-    NSDictionary *_pathsWithStatus;
     DVTSourceControlWorkingCopy *_workingCopy;
-    NSDictionary *_fileRenames;
-    NSString *_currentFilepath;
+    unsigned long long _revisionType;
 }
 
 + (id)sharedUnversionedLogItem;
 + (BOOL)supportsSecureCoding;
+@property(nonatomic) unsigned long long revisionType; // @synthesize revisionType=_revisionType;
+@property(retain, nonatomic) DVTSourceControlWorkingCopy *workingCopy; // @synthesize workingCopy=_workingCopy;
+@property(retain, nonatomic) NSString *message; // @synthesize message=_message;
+@property(retain, nonatomic) NSDate *date; // @synthesize date=_date;
+@property(retain, nonatomic) DVTSourceControlRevision *revision; // @synthesize revision=_revision;
+@property(retain, nonatomic) DVTSourceControlAuthor *author; // @synthesize author=_author;
 @property(getter=isComplete) BOOL complete; // @synthesize complete=_complete;
-@property(readonly) NSString *currentFilepath; // @synthesize currentFilepath=_currentFilepath;
-@property(retain, nonatomic) NSDictionary *fileRenames; // @synthesize fileRenames=_fileRenames;
-@property(retain) DVTSourceControlWorkingCopy *workingCopy; // @synthesize workingCopy=_workingCopy;
-@property(retain) NSDictionary *pathsWithStatus; // @synthesize pathsWithStatus=_pathsWithStatus;
-@property(retain) NSString *message; // @synthesize message=_message;
-@property(retain) NSDate *date; // @synthesize date=_date;
-@property(retain) DVTSourceControlRevision *revision; // @synthesize revision=_revision;
-@property(retain) DVTSourceControlAuthor *author; // @synthesize author=_author;
+@property(retain, nonatomic) NSArray *fileStatuses; // @synthesize fileStatuses=_fileStatuses;
+@property(retain, nonatomic) NSDictionary *pathsWithStatus; // @synthesize pathsWithStatus=_pathsWithStatus;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) BOOL isMerge;
 - (long long)compareToLogItem:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly) NSString *identifier;
-- (id)description;
+@property(readonly, nonatomic) BOOL hasLoadedPathsWithStatus;
+@property(readonly, copy) NSString *description;
 - (id)loadCompleteLogItemWithCompletionBlock:(CDUnknownBlockType)arg1;
 @property(readonly, getter=isUnversionedLogItem) BOOL unversionedLogItem;
+- (id)initWithAuthor:(id)arg1 revision:(id)arg2 date:(id)arg3 message:(id)arg4 revisionType:(unsigned long long)arg5 workingCopy:(id)arg6;
 - (id)initWithAuthor:(id)arg1 revision:(id)arg2 date:(id)arg3 message:(id)arg4 workingCopy:(id)arg5;
-- (id)initWithAuthor:(id)arg1 revision:(id)arg2 date:(id)arg3 message:(id)arg4 pathsWithStatus:(id)arg5 workingCopy:(id)arg6 fileRenames:(id)arg7;
+- (id)initWithAuthor:(id)arg1 revision:(id)arg2 date:(id)arg3 message:(id)arg4 pathsWithStatus:(id)arg5 fileStatuses:(id)arg6 workingCopy:(id)arg7;
+- (id)initWithAuthor:(id)arg1 revision:(id)arg2 date:(id)arg3 message:(id)arg4 pathsWithStatus:(id)arg5 revisionType:(unsigned long long)arg6 workingCopy:(id)arg7;
 - (id)initWithAuthor:(id)arg1 revision:(id)arg2 date:(id)arg3 message:(id)arg4 pathsWithStatus:(id)arg5 workingCopy:(id)arg6;
+- (id)initWithAuthor:(id)arg1 revision:(id)arg2 date:(id)arg3 message:(id)arg4 fileStatuses:(id)arg5 revisionType:(unsigned long long)arg6 workingCopy:(id)arg7;
 - (id)initIncompleteLogItemWithAuthor:(id)arg1 revision:(id)arg2 date:(id)arg3 workingCopy:(id)arg4;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) Class superclass;
 
 @end
 

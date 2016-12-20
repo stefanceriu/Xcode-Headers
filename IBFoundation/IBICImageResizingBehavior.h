@@ -21,6 +21,7 @@
 }
 
 + (id)resizingBehaviorWithJSONRepresentation:(id)arg1;
++ (BOOL)validateJSONRepresentation:(id)arg1 forManifestArchivist:(id)arg2 result:(id)arg3;
 + (id)defaultResizingBehavior;
 @property(readonly) CDStruct_c519178c capInsets; // @synthesize capInsets=_capInsets;
 @property(readonly) struct CGSize centerSize; // @synthesize centerSize=_centerSize;

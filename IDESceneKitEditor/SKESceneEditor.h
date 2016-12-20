@@ -29,11 +29,13 @@
     DVTNotificationToken *_documentDidReplaceMemberObservingToken;
     DVTObservingToken *_documentAvailablePointsOfViewDidChangeObservingToken;
     SCNNode *_currentPointOfView;
+    SCNNode *_freeCamera;
 }
 
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)keyPathsForValuesAffectingIsFreeBrowsingWithNodeSelected;
 + (id)keyPathsForValuesAffectingIsFreeBrowsing;
+@property(retain, nonatomic) SCNNode *freeCamera; // @synthesize freeCamera=_freeCamera;
 @property(retain, nonatomic) SCNNode *currentPointOfView; // @synthesize currentPointOfView=_currentPointOfView;
 - (void).cxx_destruct;
 - (void)commitStateToDictionary:(id)arg1;
@@ -50,9 +52,12 @@
 - (BOOL)canPaste;
 - (void)copy:(id)arg1;
 - (BOOL)canCopy;
+- (void)useJitteringDidChange:(id)arg1;
+- (void)authoringDisplayMaskJointsDidChange:(id)arg1;
 - (void)authoringDisplayMaskDefaultsDidChange:(id)arg1;
 - (void)authoringDisplayMaskNoneDidChange:(id)arg1;
 - (void)authoringDisplayMaskAllDidChange:(id)arg1;
+- (void)authoringDisplayMaskLightProbesDidChange:(id)arg1;
 - (void)authoringDisplayMaskGridDidChange:(id)arg1;
 - (void)authoringDisplayMaskFieldsDidChange:(id)arg1;
 - (void)authoringDisplayMaskPhysicsDidChange:(id)arg1;
@@ -67,8 +72,8 @@
 - (void)_addURLToProject:(id)arg1;
 - (id)groupForFilePath:(id)arg1;
 - (id)documentEnclosingFolderPath;
+- (void)sceneViewDidRequestFocusOnSelectedNodes:(id)arg1;
 - (void)sceneViewDidRequestDeselectionOfAllNodes:(id)arg1;
-- (void)sceneView:(id)arg1 didRequestDeletionOfNodeSubselection:(id)arg2;
 - (void)sceneView:(id)arg1 didRequestDeletionOfNodes:(id)arg2;
 - (void)sceneViewDidBeginFreeBrowsing:(id)arg1;
 - (BOOL)sceneView:(id)arg1 didDropPasteboardItem:(id)arg2 onNode:(id)arg3 dropLocation:(struct SCNVector3)arg4;
@@ -86,6 +91,8 @@
 - (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
 - (id)suggestedImagesForContentsPicker:(id)arg1;
+- (id)imageForContentsPickerImageName:(id)arg1;
+- (void)computeAllLightProbes:(id)arg1;
 - (void)computeLightProbe:(id)arg1;
 - (void)takeFreeCameraParametersFor:(id)arg1;
 - (void)focusNode:(id)arg1;
@@ -110,6 +117,7 @@
 - (void)currentTimeDidChange:(id)arg1;
 - (void)takeFocus;
 - (void)viewDidAppear;
+- (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)loadView;
 - (id)document;

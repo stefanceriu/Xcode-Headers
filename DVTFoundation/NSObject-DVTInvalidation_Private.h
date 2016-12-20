@@ -10,5 +10,6 @@
 + (void)_dvt_synthesizeInvalidationWithDeallocAssertion:(BOOL)arg1 multipleInvalidationAssertion:(BOOL)arg2;
 + (void)_dvt_synthesizeInvalidationWithoutDeallocAssertion;
 + (id)_dvt_invalidatableClasses;
+- (BOOL)__isDVTInvalidation;
 @end
 

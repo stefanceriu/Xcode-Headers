@@ -14,8 +14,9 @@
 - (id)firstVersionSupportingOnDemandResources;
 - (BOOL)canHostPDFContentOutsideOfCARFiles;
 - (void)compileCARItems:(id)arg1 tagSolutionSpace:(id)arg2 options:(id)arg3 queue:(id)arg4 completionHandler:(CDUnknownBlockType)arg5;
-- (id)compileAppIconFromSelection:(id)arg1 options:(id)arg2;
+- (id)compileBundleIconFromSelection:(id)arg1 options:(id)arg2;
 - (id)imageCatalogCompilerOptionsFromToolArguments:(id)arg1 forCatalogCollection:(id)arg2 populatingResults:(id)arg3;
+- (id)minimumDeploymentTargetSupportingTexturesInCARFiles;
 - (id)minimumDeploymentTargetSupportingAppIcons;
 - (id)minimumDeploymentTargetSupportingDataInCARFiles;
 - (id)minimumDeploymentTargetSupportingSpriteAtlasesInCARFiles;

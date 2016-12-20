@@ -32,6 +32,7 @@
 - (void)startBlock:(int)arg1;
 - (void)processPostMirrorHeuristics:(const struct Function *)arg1 captureBlockMode:(int)arg2 functionIndex:(int)arg3;
 - (void)processPreMirrorHeuristics:(const struct Function *)arg1 captureBlockMode:(int)arg2 functionIndex:(int)arg3;
+- (_Bool)_shouldProcessFunction:(const struct Function *)arg1;
 - (void)addHeuristic:(id)arg1;
 - (id)initWithEngine:(id)arg1 graphicsEngineID:(unsigned long long)arg2;
 

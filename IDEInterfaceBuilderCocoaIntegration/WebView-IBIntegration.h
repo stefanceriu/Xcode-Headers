@@ -61,5 +61,6 @@
 - (void)setDesignableIdentifier:(id)arg1;
 - (id)designableIdentifier;
 - (id)preferenceKeys;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

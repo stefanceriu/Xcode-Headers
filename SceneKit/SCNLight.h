@@ -11,7 +11,7 @@
 #import "SCNAnimatable.h"
 #import "SCNTechniqueSupport.h"
 
-@class MDLLightProbe, NSArray, NSString, SCNMaterialProperty, SCNOrderedDictionary, SCNTechnique;
+@class NSArray, NSData, NSString, NSURL, SCNMaterialProperty, SCNOrderedDictionary, SCNTechnique;
 
 @interface SCNLight : NSObject <SCNAnimatable, SCNTechniqueSupport, NSCopying, NSSecureCoding>
 {
@@ -30,6 +30,8 @@
     id _color;
     id _shadowColor;
     float _shadowRadius;
+    double _intensity;
+    double _temperature;
     double _orthographicScale;
     unsigned long long _shadowSampleCount;
     struct CGSize _shadowMapSize;
@@ -44,8 +46,11 @@
     float _spotOuterAngle;
     float _spotFalloffExponent;
     SCNMaterialProperty *_gobo;
+    SCNMaterialProperty *_ies;
+    NSURL *_IESProfileURL;
     SCNTechnique *_technique;
-    MDLLightProbe *_mkLightProbe;
+    NSData *_sphericalHarmonics;
+    id <MTLTexture> _probeTexture;
 }
 
 + (BOOL)supportsSecureCoding;
@@ -58,6 +63,7 @@
 - (void)_didDecodeSCNLight:(id)arg1;
 - (void)_customDecodingOfSCNLight:(id)arg1;
 - (void)_customEncodingOfSCNLight:(id)arg1;
+@property(retain, nonatomic) NSURL *IESProfileURL;
 @property(readonly, nonatomic) SCNMaterialProperty *gobo;
 @property(nonatomic) long long shadowMode;
 @property(nonatomic) double zNear;
@@ -67,6 +73,7 @@
 - (void)setUsesDeferredShadows:(BOOL)arg1;
 - (BOOL)usesDeferredShadows;
 @property(copy, nonatomic) NSString *type;
+@property(nonatomic) double temperature;
 @property(copy, nonatomic) SCNTechnique *technique;
 @property(nonatomic) double spotOuterAngle;
 @property(nonatomic) double spotInnerAngle;
@@ -78,6 +85,7 @@
 @property(retain, nonatomic) id shadowColor;
 @property(nonatomic) double shadowBias;
 @property(nonatomic) double orthographicScale;
+@property(nonatomic) double intensity;
 @property(retain, nonatomic) id color;
 @property(nonatomic) unsigned long long categoryBitMask;
 @property(nonatomic) BOOL castsShadow;
@@ -90,15 +98,20 @@
 - (BOOL)shouldBakeIndirectLighting;
 - (void)setShouldBakeDirectLighting:(BOOL)arg1;
 - (BOOL)shouldBakeDirectLighting;
-- (void)setMkLightProbe:(id)arg1;
-- (id)mkLightProbe;
+- (void)set_sphericalHarmonics:(id)arg1;
+- (id)_sphericalHarmonics;
+- (void)set_probeTexture:(id)arg1;
+- (id)_probeTexture;
 - (id)attributeForKey:(id)arg1;
 - (void)setAttribute:(id)arg1 forKey:(id)arg2;
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
+- (void)unbindAnimatablePath:(id)arg1;
+- (void)bindAnimatablePath:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
 - (BOOL)isAnimationForKeyPaused:(id)arg1;
+- (void)setSpeed:(double)arg1 forAnimationKey:(id)arg2;
 - (void)removeAnimationForKey:(id)arg1 fadeOutDuration:(double)arg2;
 - (void)resumeAnimationForKey:(id)arg1;
 - (void)pauseAnimationForKey:(id)arg1;
@@ -110,10 +123,10 @@
 - (void)removeAllAnimations;
 - (void)addAnimation:(id)arg1;
 - (void)addAnimation:(id)arg1 forKey:(id)arg2;
-- (void)__removeAnimation:(id)arg1 forKey:(id)arg2;
+- (BOOL)__removeAnimation:(id)arg1 forKey:(id)arg2;
 - (struct __C3DAnimationManager *)animationManager;
 - (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 property:(id)arg2;
-- (void *)__CFObject;
+- (const void *)__CFObject;
 - (id)scene;
 - (struct __C3DScene *)sceneRef;
 - (BOOL)isPausedOrPausedByInheritance;

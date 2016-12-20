@@ -6,16 +6,18 @@
 
 #import "NSObject.h"
 
-@class DVTFilePath, NSDictionary;
+@class DVTFilePath, NSDate, NSDictionary;
 
 @interface IDEWorkspaceArenaInfo : NSObject
 {
     NSDictionary *_infoDict;
     DVTFilePath *_workspacePath;
+    NSDate *_lastAccessedDate;
 }
 
 + (id)workspaceArenaInfoFromFileAtPath:(id)arg1 error:(id *)arg2;
 + (id)workspaceArenaInfoWithWorkspacePath:(id)arg1;
+@property(readonly) NSDate *lastAccessedDate; // @synthesize lastAccessedDate=_lastAccessedDate;
 - (void).cxx_destruct;
 - (BOOL)writeToFileAtPath:(id)arg1 withRelativeWorkspacePath:(BOOL)arg2 error:(id *)arg3;
 @property(readonly) DVTFilePath *workspacePath;

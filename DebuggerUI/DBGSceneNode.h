@@ -6,16 +6,16 @@
 
 #import <DebuggerUI/DBGNode.h>
 
-@class DBGHostNode, DBGInteractiveSceneView, DBGViewInstance, NSColor, SCNMaterial;
+@class DBGBorderNode, DBGHostNode, DBGInteractiveSceneView, DBGViewGeometry, DBGViewInstance, NSColor, SCNMaterial;
 
 @interface DBGSceneNode : DBGNode
 {
-    DBGInteractiveSceneView *_sceneView;
-    DBGNode *_borderNode;
-    DBGNode *_backsideNode;
+    DBGBorderNode *_borderNode;
     DBGNode *_connectionLine;
     DBGNode *_distanceLabel;
     SCNMaterial *_imageMaterial;
+    BOOL _isHostRoot;
+    BOOL _isSceneRoot;
     BOOL _isWireframeModeEnabled;
     BOOL _isConstraintsWireframeModeEnabled;
     BOOL _isClippingSubviewNodes;
@@ -25,9 +25,9 @@
     BOOL _currentlyOfInterestForAutoLayout;
     BOOL _hasRotation;
     int _nodeContentMode;
-    DBGViewInstance *_dbgViewInstance;
+    DBGViewInstance *_viewInstance;
+    DBGInteractiveSceneView *_sceneView;
     DBGHostNode *_host;
-    double _repositioningOffset;
     DBGNode *_constraintsNode;
 }
 
@@ -35,30 +35,29 @@
 @property(nonatomic) int nodeContentMode; // @synthesize nodeContentMode=_nodeContentMode;
 @property BOOL currentlyOfInterestForAutoLayout; // @synthesize currentlyOfInterestForAutoLayout=_currentlyOfInterestForAutoLayout;
 @property(retain) DBGNode *constraintsNode; // @synthesize constraintsNode=_constraintsNode;
-@property double repositioningOffset; // @synthesize repositioningOffset=_repositioningOffset;
 @property __weak DBGHostNode *host; // @synthesize host=_host;
-@property __weak DBGViewInstance *dbgViewInstance; // @synthesize dbgViewInstance=_dbgViewInstance;
+@property __weak DBGInteractiveSceneView *sceneView; // @synthesize sceneView=_sceneView;
+@property __weak DBGViewInstance *viewInstance; // @synthesize viewInstance=_viewInstance;
 - (void).cxx_destruct;
 - (void)unclipSubviewContentNodes;
 - (void)clipSubviewContentNodes;
-@property BOOL clippingEnabled; // @synthesize clippingEnabled=_clippingEnabled;
+@property(getter=isClippingEnabled) BOOL clippingEnabled; // @synthesize clippingEnabled=_clippingEnabled;
 - (void)updateRenderingOrderWithRangeFrom:(unsigned long long)arg1 to:(unsigned long long)arg2;
-@property(readonly) NSColor *selectedBorderColor;
-@property(readonly) NSColor *defaultBorderColor;
 - (id)_colorForDefaultKey:(id)arg1;
 - (void)updateAppearenceAfterConstraintsUpdateWithSelectedItemCount:(unsigned long long)arg1;
 - (void)changeBorderColor:(id)arg1 borderOpacity:(double)arg2;
 - (void)setBorderHidden:(BOOL)arg1;
 - (void)setWireframeModeEnabled:(BOOL)arg1;
-- (void)addBoderWithColor:(id)arg1 borderOpacity:(double)arg2;
+- (void)setupBorder;
 - (void)updateShaderModifiers;
 - (BOOL)respondsToHitTests;
 - (void)setHighlighted:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setSelected:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)updateSnapshot;
 - (id)snapshot;
-- (void)setHidden:(BOOL)arg1;
-- (id)initWithView:(id)arg1 inSceneView:(id)arg2 host:(id)arg3;
+@property(readonly) DBGViewGeometry *viewGeometry;
+- (struct CATransform3D)applicableTransform;
+- (id)initWithView:(id)arg1 inSceneView:(id)arg2 host:(id)arg3 isHostRoot:(BOOL)arg4 isSceneRoot:(BOOL)arg5;
 
 @end
 

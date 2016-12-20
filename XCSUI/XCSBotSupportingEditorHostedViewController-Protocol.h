@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTDocumentLocation, NSArray, XCSBot, XCSBotSupportingEditor, XCSIntegration;
+@class DVTDocumentLocation, NSArray, NSError, XCSBot, XCSBotSupportingEditor, XCSIntegration;
 
 @protocol XCSBotSupportingEditorHostedViewController <NSObject>
 + (BOOL)instancesCanContainDocumentLocation:(DVTDocumentLocation *)arg1;
@@ -15,6 +15,7 @@
 @property(retain, nonatomic) XCSBotSupportingEditor *botSupportingEditor;
 @property(retain, nonatomic) XCSBot *bot;
 @property(retain, nonatomic) XCSIntegration *integration;
+- (void)setError:(NSError *)arg1;
 - (void)selectDocumentLocations:(NSArray *)arg1;
 @end
 

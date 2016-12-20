@@ -8,9 +8,11 @@
 
 @interface NSEnergyFormatter (IBIntegration)
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (unsigned long long)ibMinOSVersionForUseInCell;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (id)ibExternalSampleValueTooltipRelatedMethods;
 - (id)ibExternalSampleValueDefault;
 - (id)ibSwizzledInitWithCoder:(id)arg1;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

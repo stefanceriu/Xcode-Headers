@@ -15,10 +15,10 @@
     XCSUIIntegrationIssue *_integrationIssue;
     XCSIntegration *_integration;
     NSImageView *_issueTypeIcon;
-    NSTextField *_issueCountField;
     NSTextField *_issueTypeAndCauseField;
     NSTextField *_issueFileField;
     NSTextField *_introducedInField;
+    NSTextField *_radarField;
     NSButton *_fixItButton;
     CDUnknownBlockType _issueSelectionCallback;
     CDUnknownBlockType _issueDoubleClickCallback;
@@ -27,10 +27,10 @@
 @property(copy) CDUnknownBlockType issueDoubleClickCallback; // @synthesize issueDoubleClickCallback=_issueDoubleClickCallback;
 @property(copy) CDUnknownBlockType issueSelectionCallback; // @synthesize issueSelectionCallback=_issueSelectionCallback;
 @property(retain) NSButton *fixItButton; // @synthesize fixItButton=_fixItButton;
+@property(retain) NSTextField *radarField; // @synthesize radarField=_radarField;
 @property(retain) NSTextField *introducedInField; // @synthesize introducedInField=_introducedInField;
 @property(retain) NSTextField *issueFileField; // @synthesize issueFileField=_issueFileField;
 @property(retain) NSTextField *issueTypeAndCauseField; // @synthesize issueTypeAndCauseField=_issueTypeAndCauseField;
-@property(retain) NSTextField *issueCountField; // @synthesize issueCountField=_issueCountField;
 @property __weak NSImageView *issueTypeIcon; // @synthesize issueTypeIcon=_issueTypeIcon;
 @property(nonatomic) BOOL isSelected; // @synthesize isSelected=_isSelected;
 @property(retain) XCSIntegration *integration; // @synthesize integration=_integration;

@@ -12,24 +12,21 @@
 
 @interface XCSAssigneeIssueAssociation : XCSObject <XCSIssueAssociationType>
 {
-    NSString *_username;
 }
 
 + (id)assigneeIssueAssociationWithUsername:(id)arg1 validationErrors:(id *)arg2;
 + (id)associationKey;
-@property(readonly, nonatomic) NSString *username; // @synthesize username=_username;
-- (void).cxx_destruct;
-- (id)saveRepresentation;
-- (id)dictionaryRepresentation;
-- (BOOL)_validateUsername:(id)arg1 validationErrors:(id *)arg2;
+- (BOOL)_validateUsername:(id)arg1 fullName:(id)arg2 validationErrors:(id *)arg3;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)initWithUsername:(id)arg1 validationErrors:(id *)arg2;
+- (id)initWithUsername:(id)arg1 fullName:(id)arg2 validationErrors:(id *)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(copy, nonatomic) NSString *fullName; // @dynamic fullName;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
+@property(copy, nonatomic) NSString *username; // @dynamic username;
 
 @end
 

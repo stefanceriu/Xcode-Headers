@@ -25,6 +25,7 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
 - (void)ibRemoveChildren:(id)arg1;
 
 // Remaining properties

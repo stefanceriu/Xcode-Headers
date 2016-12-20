@@ -6,11 +6,10 @@
 
 #import "NSObject.h"
 
-@class IDEArchive, NSArray, NSError, NSURLSession;
+@class IDEArchive, NSArray, NSURLSession;
 
 @interface IDEdSYMDownloader : NSObject
 {
-    NSError *_firstTaskError;
     IDEArchive *_archive;
     NSURLSession *_urlSession;
     CDUnknownBlockType _fileDownloadedCallback;

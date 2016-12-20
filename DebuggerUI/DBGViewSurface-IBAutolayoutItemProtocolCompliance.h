@@ -18,12 +18,14 @@
 @property(nonatomic) double ibShadowedHorizontalContentCompressionResistancePriority;
 @property(nonatomic) double ibShadowedVerticalContentHuggingPriority;
 @property(nonatomic) double ibShadowedHorizontalContentHuggingPriority;
-@property(nonatomic) BOOL ibExternalTranslatesAutoresizingMaskIntoConstraints;
+@property(readonly, nonatomic) BOOL ibExternalEffectiveTranslatesAutoresizingMaskIntoConstraints;
+@property(nonatomic) BOOL ibExternalExplicitTranslatesAutoresizingMaskIntoConstraints;
 @property(readonly, nonatomic) id <IBCollection> ibTurnedOnButPossiblyUninstalledReferencingConstraints;
 @property(readonly, nonatomic) id <IBCollection> ibInstalledReferencingConstraints;
 @property(readonly, nonatomic) id <IBCollection> ibCandidateReferencingConstraints;
 @property(retain, nonatomic) id <IBOrderedCollection> ibTurnedOnButPossiblyUninstalledConstraints;
 @property(retain, nonatomic) id <IBOrderedCollection> ibInstalledConstraints;
+@property(readonly, nonatomic) id <IBOrderedCollection> ibInstalledConstraintsWithInstalledAncestors;
 @property(retain, nonatomic) id <IBOrderedCollection> ibCandidateConstraints;
 @property(readonly, nonatomic) struct CGRect ibLayoutFrameworkBounds;
 @property(nonatomic) struct CGRect ibLayoutFrame;
@@ -41,6 +43,9 @@
 - (void)ibDidCreateRuntimeConstraint:(id)arg1 referencingItem:(id)arg2 context:(id)arg3;
 - (id)ibEffectiveItemForRuntimeConstraintAdjustingConstant:(double *)arg1 attribute:(unsigned long long *)arg2 orConstraintClassIfNeeded:(Class *)arg3 context:(id)arg4;
 - (unsigned long long)ibAmbiguityStatusForRepresentationOfItem:(id)arg1 inEngine:(id)arg2;
+@property(nonatomic) BOOL ibCanFrameDecideEvenWhenAmbiguousForNextStatusUpdate;
+@property(readonly, nonatomic) BOOL ibFrameDecideDuringStatusUpdate;
+@property(readonly, nonatomic) BOOL ibIsSelfManagedContainerInEngine;
 - (BOOL)ibShouldIgnoreScrollableContentHeightAmbiguityForRepresentationOfItem:(id)arg1 inEngine:(id)arg2;
 - (BOOL)ibShouldIgnoreScrollableContentWidthAmbiguityForRepresentationOfItem:(id)arg1 inEngine:(id)arg2;
 - (unsigned long long)ibAllowedSiblingEdgesForGuidesToSelectedItems:(id)arg1;

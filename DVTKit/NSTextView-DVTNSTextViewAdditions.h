@@ -9,5 +9,11 @@
 @interface NSTextView (DVTNSTextViewAdditions)
 - (void)dvt_changeZoomFocusToRange:(struct _NSRange)arg1;
 - (struct CGRect)dvt_frameForRange:(struct _NSRange)arg1;
+- (void)deleteToEndOfText:(id)arg1;
+- (void)deleteToBeginningOfText:(id)arg1;
+- (void)moveToEndOfTextAndModifySelection:(id)arg1;
+- (void)moveToEndOfText:(id)arg1;
+- (void)moveToBeginningOfTextAndModifySelection:(id)arg1;
+- (void)moveToBeginningOfText:(id)arg1;
 @end
 

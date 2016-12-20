@@ -6,22 +6,26 @@
 
 #import "NSObject.h"
 
-@class DVT_VMUClassInfoMap, DVT_VMUNonOverlappingRangeArray, NSHashTable, NSMapTable, NSMutableDictionary, NSMutableSet;
+@class DVT_VMUClassInfoMap, DVT_VMUNonOverlappingRangeArray, NSArray, NSHashTable, NSMapTable, NSMutableDictionary, NSMutableSet;
 
 @interface DVT_VMUObjectIdentifier : NSObject
 {
     unsigned int _task;
     struct _CSTypeRef _symbolicator;
     CDUnknownBlockType _memoryReader;
+    struct libSwiftRemoteMirrorWrapper *_swiftMirror;
+    NSArray *_openDylibHandles;
+    NSArray *_swiftMirrorMachOSections;
     DVT_VMUClassInfoMap *_realizedIsaToClassInfo;
     DVT_VMUClassInfoMap *_unrealizedClassInfos;
+    DVT_VMUClassInfoMap *_cfTypeIDToClassInfo;
     NSMutableDictionary *_nonobjectClassInfosDict;
     unsigned long long _coreFoundationCFTypeIsa;
     unsigned long long _foundationCFTypeIsa;
     unsigned long long _swiftClassCount;
     unsigned long long _cfClassCount;
     CDUnknownBlockType _isaTranslator;
-    unsigned long long *_nonPointerIndexMapping;
+    BOOL _fragileNonPointerIsas;
     void *_remoteObjectBuffer;
     unsigned long long _remoteObjectBufferSize;
     NSMapTable *_isaToObjectLabelHandlerMap;
@@ -33,14 +37,18 @@
 }
 
 @property(readonly, nonatomic) DVT_VMUClassInfoMap *realizedClasses; // @synthesize realizedClasses=_realizedIsaToClassInfo;
-- (id)classInfoForCFType:(struct __CFRuntimeBase *)arg1;
-- (id)classInfoForIsaPointer:(unsigned long long)arg1;
-- (id)classInfoForObject:(unsigned long long)arg1;
+@property(readonly, nonatomic) CDUnknownBlockType memoryReader; // @synthesize memoryReader=_memoryReader;
 - (id)initWithTask:(unsigned int)arg1;
+- (int)_populateSwiftReflectionInfo:(struct libSwiftRemoteMirrorWrapper *)arg1 withTask:(unsigned int)arg2;
+- (void *)_dlopenLibSwiftRemoteMirrorWithSymbolicator:(struct _CSTypeRef)arg1;
+- (void *)_dlopenLibSwiftRemoteMirrorFromDir:(id)arg1;
+- (struct _CSTypeRef)_symbolicator;
+- (id)labelForMemory:(void *)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
 - (id)labelForMemory:(void *)arg1 length:(unsigned long long)arg2;
-- (id)labelForMemory:(void *)arg1 length:(unsigned long long)arg2 usingHandlerBlock:(CDUnknownBlockType)arg3;
+- (id)labelForMemory:(void *)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3 usingHandlerBlock:(CDUnknownBlockType)arg4;
 - (id)labelForMallocBlock:(struct _VMURange)arg1 usingHandlerBlock:(CDUnknownBlockType)arg2;
 - (id)labelForMallocBlock:(struct _VMURange)arg1;
+- (id)labelFor__NSMallocBlock__:(id)arg1;
 - (id)labelForOSTransaction:(id)arg1;
 - (id)labelForNSInlineData:(id)arg1;
 - (id)labelForNSConcreteMutableData:(id)arg1;
@@ -65,15 +73,16 @@
 - (id)objectLabelHandlerForRemoteIsa:(unsigned long long)arg1;
 - (void)buildIsaToObjectLabelHandlerMap;
 - (id)osMajorMinorVersionString;
+- (unsigned long long)addressOfSymbol:(const char *)arg1 inLibrary:(const char *)arg2;
 - (struct _VMURange)vmRegionRangeForAddress:(unsigned long long)arg1;
 - (void)findObjCclasses;
 - (void)findCFTypes;
 - (id)_faultClass:(unsigned long long)arg1 ofType:(int)arg2;
+- (id)classInfoForMemory:(void *)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
 - (id)classInfoForMemory:(void *)arg1 length:(unsigned long long)arg2;
 - (id)classInfoForNonobjectMemory:(void *)arg1 length:(unsigned long long)arg2;
 - (id)_classInfoWithNonobjectType:(id)arg1 binaryPath:(id)arg2;
 - (id)classInfoForObjectWithRange:(struct _VMURange)arg1;
-- (id)nullClassInfo;
 - (void)enumerateAllClassInfosWithBlock:(CDUnknownBlockType)arg1;
 - (void)enumerateRealizedClassInfosWithBlock:(CDUnknownBlockType)arg1;
 - (id)objcRuntimeMallocBlocksHash;

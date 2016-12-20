@@ -9,14 +9,16 @@
 __attribute__((visibility("hidden")))
 @interface GPUMTLRenderJob : GPURenderJob
 {
-    unsigned int _attachmentIndex;
+    id <DYPEnumUtils> _enumUtils;
     unsigned long long _selectedLevel;
     unsigned long long _selectedSlice;
+    unsigned long long _attachmentIndex;
 }
 
-@property(readonly, nonatomic) unsigned int attachmentIndex; // @synthesize attachmentIndex=_attachmentIndex;
+@property(readonly, nonatomic) unsigned long long attachmentIndex; // @synthesize attachmentIndex=_attachmentIndex;
 @property(nonatomic) unsigned long long selectedSlice; // @synthesize selectedSlice=_selectedSlice;
 @property(nonatomic) unsigned long long selectedLevel; // @synthesize selectedLevel=_selectedLevel;
+- (void).cxx_destruct;
 - (BOOL)showOverlay;
 - (void)setRenderingAttributes:(id)arg1;
 - (struct CGSize)imageSize;
@@ -26,7 +28,7 @@ __attribute__((visibility("hidden")))
 - (BOOL)isStencilDisplayElement;
 - (BOOL)isDepthDisplayElement;
 - (void)resolveWithTraceResourceItem:(id)arg1;
-- (id)initWithResource:(id)arg1 modelFactory:(id)arg2 attachmentIndex:(unsigned int)arg3 overlayResource:(id)arg4 framebuffer:(id)arg5;
+- (id)initWithResource:(id)arg1 modelFactory:(id)arg2 attachmentIndex:(unsigned long long)arg3 overlayResource:(id)arg4 framebuffer:(id)arg5;
 
 @end
 

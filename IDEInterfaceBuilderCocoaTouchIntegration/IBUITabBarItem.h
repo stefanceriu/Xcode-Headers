@@ -50,6 +50,10 @@
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibPasteboardTypes;
 - (id)ibQualifyingInfoForDefaultLabel;
+- (id)ibLocalLocalizableGeometryAttributeKeyPaths;
+- (id)ibEditorClass;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (void)setIbInspectedTitlePositionVerticalAdjustment:(double)arg1;
 - (double)ibInspectedTitlePositionVerticalAdjustment;

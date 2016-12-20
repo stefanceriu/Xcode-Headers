@@ -20,6 +20,9 @@
 - (void)_addSampleWithPC:(unsigned int)arg1 state:(unsigned int)arg2 drawCallIdx:(unsigned int)arg3 shaderBinary:(id)arg4;
 - (void)_preProcessUSCSampleData:(id)arg1 result:(id)arg2;
 - (id)profileShader:(id)arg1;
+- (id)computeFromShaderInfoResult:(id)arg1 usingGLShaderProfilerResult:(id)arg2 forFuture:(id)arg3;
+- (void)enumerateFragmentShadersForResult:(id)arg1 andShaderInfoDictionary:(id)arg2 usingBlock:(CDUnknownBlockType)arg3;
+- (BOOL)isMultiContext;
 - (id)_getShaderList;
 - (void)initializeShaderAnalyzer;
 - (int)_getRendererType;

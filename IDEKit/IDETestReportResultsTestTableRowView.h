@@ -6,7 +6,7 @@
 
 #import "NSTableRowView.h"
 
-@class NSTrackingArea;
+@class NSColor, NSTrackingArea;
 
 @interface IDETestReportResultsTestTableRowView : NSTableRowView
 {
@@ -16,8 +16,10 @@
     id _item;
     long long _row;
     CDUnknownBlockType _selectionChangedCallback;
+    NSColor *_separatorColor;
 }
 
+@property(retain) NSColor *separatorColor; // @synthesize separatorColor=_separatorColor;
 @property(copy) CDUnknownBlockType selectionChangedCallback; // @synthesize selectionChangedCallback=_selectionChangedCallback;
 @property long long row; // @synthesize row=_row;
 @property(retain) id item; // @synthesize item=_item;
@@ -35,7 +37,6 @@
 - (void)drawBackgroundInRect:(struct CGRect)arg1;
 - (void)drawSeparatorInRect:(struct CGRect)arg1;
 - (void)setSelected:(BOOL)arg1;
-- (void)refreshSelectedState;
 
 @end
 

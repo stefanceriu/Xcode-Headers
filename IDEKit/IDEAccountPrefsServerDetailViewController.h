@@ -21,7 +21,6 @@
 @property __weak NSTextField *textField; // @synthesize textField=_textField;
 @property __weak NSTextField *addressTextField; // @synthesize addressTextField=_addressTextField;
 - (void).cxx_destruct;
-- (void)upgradeAccount:(id)arg1;
 - (id)contextMenu;
 - (void)primitiveInvalidate;
 - (void)setRepresentedObject:(id)arg1;

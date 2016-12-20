@@ -20,12 +20,12 @@
     BOOL _programmaticallyUpdatingEnabled;
     NSMutableArray *_observationTokens;
     IDEProjectItemHeaderView *_headerView;
+    NSImage *_image;
     id <IDEPortalInfoDelegate> _portalInfoDelegate;
     NSView *_editorView;
     NSDictionary *_cachedUserEnteredInfo;
 }
 
-+ (id)keyPathsForValuesAffecting_longRunningFlightChecks;
 + (id)keyPathsForValuesAffectingEnabled;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 @property(copy, nonatomic) NSDictionary *cachedUserEnteredInfo; // @synthesize cachedUserEnteredInfo=_cachedUserEnteredInfo;
@@ -44,17 +44,15 @@
 - (void)_presentTeamPickerIfNecessaryAndPerformBlock:(CDUnknownBlockType)arg1;
 - (void)_resolveFlightChecks;
 - (id)_headerView;
-- (id)_longRunningFlightChecks;
 @property(nonatomic, getter=isDisclosed) BOOL disclosed;
 @property(nonatomic, getter=isEnabled) BOOL enabled;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
 - (double)preferredWidthForProjectItemContentView:(id)arg1;
+@property(readonly, nonatomic) NSImage *image; // @synthesize image=_image;
 @property(readonly, nonatomic) id <IDEProjectItem> item;
 - (id)projectItemView;
 - (void)primitiveInvalidate;
-- (void)longRunningFlightCheckStatusChanged;
-- (void)flightCheckFailedChanged:(id)arg1;
 - (void)enabledChanged;
 - (void)onOffSwitchDidChange;
 - (void)updateEnabledAndContentView:(BOOL)arg1;

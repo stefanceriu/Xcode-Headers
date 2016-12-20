@@ -17,14 +17,13 @@
     NSMutableArray *_modernizerBuildOptions;
 }
 
-+ (BOOL)allowParallelBuild;
++ (Class)migrationContextClass;
 + (void)initialize;
 @property(copy) NSArray *targets; // @synthesize targets=_targets;
 @property unsigned long long currentConversionStage; // @synthesize currentConversionStage=_currentConversionStage;
 - (void).cxx_destruct;
 - (id)convertedFilePathForOriginalFilePath:(id)arg1;
 - (unsigned long long)numberOfConvertedFilePaths;
-- (id)_convertedFilePathForOriginalFilePathMapTableParallel;
 - (id)_convertedFilePathForOriginalFilePathMapTable;
 - (void)setWorkspaceTabController:(id)arg1;
 - (id)buildActionEntries;

@@ -12,8 +12,12 @@
     double _singleRowIssueHeight;
     double _doubleRowIssueHeight;
     double _tripleRowIssueHeight;
+    double _quadrupleRowIssueHeight;
+    double _issueRowSpacingHeight;
 }
 
+@property double issueRowSpacingHeight; // @synthesize issueRowSpacingHeight=_issueRowSpacingHeight;
+@property double quadrupleRowIssueHeight; // @synthesize quadrupleRowIssueHeight=_quadrupleRowIssueHeight;
 @property double tripleRowIssueHeight; // @synthesize tripleRowIssueHeight=_tripleRowIssueHeight;
 @property double doubleRowIssueHeight; // @synthesize doubleRowIssueHeight=_doubleRowIssueHeight;
 @property double singleRowIssueHeight; // @synthesize singleRowIssueHeight=_singleRowIssueHeight;

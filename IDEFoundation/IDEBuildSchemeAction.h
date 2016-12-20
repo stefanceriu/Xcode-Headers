@@ -21,11 +21,11 @@
     NSMutableArray *_testBuildableEntries;
     BOOL _buildablesDidChangeNotificationEnabled;
     BOOL _isBuildablesDidChangeNotificationPending;
-    NSMapTable *_overridingBuildPropertiesForBuildable;
     DVTObservingToken *_launchActionRunnableObservingToken;
     DVTObservingToken *_profileActionRunnableObservingToken;
     DVTObservingToken *_testBuildableReferencesObservingToken;
     DVTObservingToken *_testHostBuildableReferencesObservingToken;
+    NSMapTable *_overridingBuildPropertiesForBuildable;
 }
 
 + (id)_uniquedBuildablesForBuildables:(id)arg1 includingDependencies:(BOOL)arg2;
@@ -33,6 +33,7 @@
 + (id)keyPathsForValuesAffectingAvailableBuildConfigurations;
 + (id)keyPathsForValuesAffectingSubtitle;
 + (void)initialize;
+@property(readonly) NSMapTable *overridingBuildPropertiesForBuildable; // @synthesize overridingBuildPropertiesForBuildable=_overridingBuildPropertiesForBuildable;
 @property(nonatomic, getter=isBuildablesDidChangeNotificationEnabled) BOOL buildablesDidChangeNotificationEnabled; // @synthesize buildablesDidChangeNotificationEnabled=_buildablesDidChangeNotificationEnabled;
 @property BOOL buildImplicitDependencies; // @synthesize buildImplicitDependencies=_buildImplicitDependencies;
 @property BOOL parallelizeBuildables; // @synthesize parallelizeBuildables=_parallelizeBuildables;
@@ -46,7 +47,6 @@
 - (void)dvt_encodeRelationshipsWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (void)dvt_encodeAttributesWithXMLArchiver:(id)arg1 version:(id)arg2;
 - (void)dvt_awakeFromXMLUnarchiver:(id)arg1;
-- (id)overridingBuildPropertiesForBuildable:(id)arg1;
 - (void)setOverridingBuildProperties:(id)arg1 forBuildable:(id)arg2;
 - (void)postBuildablesDidChangeNotification;
 - (CDUnknownBlockType)_matcherBlockForCommand:(id)arg1;
@@ -57,12 +57,14 @@
 - (id)buildablesForSchemeCommand:(id)arg1 includingDependencies:(BOOL)arg2;
 - (id)buildablesForSchemeCommand:(id)arg1 testingSpecifiers:(id)arg2 includingDependencies:(BOOL)arg3;
 - (id)buildablesForAllSchemeCommandsIncludingDependencies:(BOOL)arg1;
+- (id)buildablesForShowingIssues;
 - (id)_buildablesIncludingDependencies:(BOOL)arg1 restrictToSchemeCommand:(id)arg2;
 - (id)buildableReferenceForBuildable:(id)arg1;
 @property(readonly) NSArray *availableBuildConfigurations;
 - (id)buildDirectoryPathsForBuildParameters:(id)arg1 schemeCommand:(id)arg2;
 - (void)moveBuildActionEntriesAtIndexes:(id)arg1 toIndex:(unsigned long long)arg2;
 - (id)addBuildActionEntryForBuildableReference:(id)arg1;
+- (void)removeBuildActionEntries:(id)arg1;
 - (void)removeBuildActionEntryAtIndex:(unsigned long long)arg1;
 - (void)forceOffBuildForProfilingForBuildActionEntry:(id)arg1;
 - (void)forceOffBuildForTestingForBuildActionEntry:(id)arg1;
@@ -71,9 +73,6 @@
 - (BOOL)doesNonActionWork;
 - (id)subtitle;
 - (id)name;
-- (id)cleanOperationForExecutionEnvironment:(id)arg1 orderedBuildables:(id)arg2 buildConfiguration:(id)arg3 buildLog:(id)arg4 overridingProperties:(id)arg5 activeRunDestination:(id)arg6 activeArchitecture:(id)arg7 schemeActionRecord:(id)arg8 error:(id *)arg9;
-- (id)buildOperationForExecutionEnvironment:(id)arg1 buildPurpose:(int)arg2 buildCommand:(int)arg3 schemeCommand:(id)arg4 filePath:(id)arg5 buildConfiguration:(id)arg6 buildLog:(id)arg7 overridingProperties:(id)arg8 activeRunDestination:(id)arg9 activeArchitecture:(id)arg10 dontActuallyRunCommands:(BOOL)arg11 restorePersistedBuildResults:(BOOL)arg12 schemeActionRecord:(id)arg13 overridingBuildables:(id)arg14 error:(id *)arg15;
-- (id)overridingBuildSettingsForSchemeCommand:(id)arg1 runDestination:(id)arg2;
 - (id)buildFolderPathForCodeCoverage;
 - (id)buildFolderPathForPGO;
 - (void)setRunContext:(id)arg1;

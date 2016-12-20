@@ -10,6 +10,7 @@
 
 @interface IBStoryboardSceneChildCompilationUnit : IBStoryboardSceneAbstractCompilationUnit
 {
+    NSMutableDictionary *_localConnectionIDToPatchedUpstreamIDMap;
     NSMutableDictionary *_upstreamObjectsToLocalPlaceholdersMap;
     NSMutableDictionary *_placeholderTableContext;
     IBStoryboardSceneAbstractCompilationUnit *_upstreamCompilationUnit;
@@ -27,11 +28,12 @@
 - (void).cxx_destruct;
 - (id)compilationResultWithCompiledPackage:(id)arg1;
 - (id)placeholderForUpstreamObject:(id)arg1;
+- (void)recordLocalConnectionID:(id)arg1 forPatchedUpstreamConnectionID:(id)arg2;
 - (id)referencedUpstreamObjectsByLocalReferenceIDs;
 - (id)counterpartForUpstreamObject:(id)arg1;
 - (id)localObjectForSegueTemplate:(id)arg1;
 - (BOOL)isDescendantOfCompilationUnit:(id)arg1;
-- (id)storyboardObjectIDForLocalObjectID:(id)arg1;
+- (id)storyboardMemberIDForLocalMemberID:(id)arg1;
 @property(readonly) id unitLeaderInUpstreamDocument;
 - (id)upstreamCounterpartForObject:(id)arg1;
 - (id)description;

@@ -6,53 +6,48 @@
 
 #import "NSObject.h"
 
-#import "DVTInvalidation.h"
+@class DVTDownloadable, DVTDownloadableManager, DVTKVOCollectionNotificationForwarder, DVTKVOQueueForwarder;
 
-@class DVTDownloadable, DVTDownloadableManager, DVTDownloadableOperation, DVTObservingToken, DVTStackBacktrace, NSImage, NSMutableSet, NSString;
-
-@interface IDEComponentDownloadsPrefPaneItem : NSObject <DVTInvalidation>
+@interface IDEComponentDownloadsPrefPaneItem : NSObject
 {
-    DVTDownloadable *_downloadable;
-    int _state;
-    DVTDownloadableOperation *_downloadOperation;
-    long long _downloadProgress;
-    NSString *_fileSizeForDisplay;
-    NSString *_fileSize;
-    CDUnknownBlockType _downloadCompletionBlock;
-    BOOL _cancelable;
     DVTDownloadableManager *_downloadableManager;
-    DVTObservingToken *_downloadCancelledToken;
-    DVTObservingToken *_downloadFinishedToken;
-    NSMutableSet *_downloadOperationObservationTokens;
+    DVTDownloadable *_downloadable;
+    DVTKVOCollectionNotificationForwarder *_downloadOperationFlatTreeForwarder;
+    DVTKVOQueueForwarder *_allOperations;
+    DVTKVOQueueForwarder *_allDownloadables;
+    DVTKVOQueueForwarder *_allDownloadedDownloadables;
 }
 
-+ (id)contextForDownloadableIdentifier:(id)arg1 ignoreDownloading:(BOOL)arg2;
-+ (id)iconForDownloadableType:(id)arg1;
-+ (id)itemWithDownloadable:(id)arg1 state:(int)arg2 downloadOperation:(id)arg3 downloadableManager:(id)arg4;
-+ (void)initialize;
-@property(readonly) BOOL cancelable; // @synthesize cancelable=_cancelable;
-@property(readonly) NSString *fileSize; // @synthesize fileSize=_fileSize;
-@property(readonly) NSString *fileSizeForDisplay; // @synthesize fileSizeForDisplay=_fileSizeForDisplay;
-@property(retain, nonatomic) DVTDownloadableOperation *downloadOperation; // @synthesize downloadOperation=_downloadOperation;
-@property(readonly) long long downloadProgress; // @synthesize downloadProgress=_downloadProgress;
-@property int state; // @synthesize state=_state;
++ (id)keyPathsForValuesAffectingDownloadProgress;
++ (id)keyPathsForValuesAffectingIsCancelable;
++ (id)keyPathsForValuesAffectingIsAvailableForDownload;
++ (id)keyPathsForValuesAffectingIsDownloading;
++ (id)keyPathsForValuesAffectingIsDownloaded;
++ (id)keyPathsForValuesAffectingDisplaySize;
++ (id)keyPathsForValuesAffectingSize;
++ (id)keyPathsForValuesAffectingdownloadOperationFlatTree;
++ (id)keyPathsForValuesAffectingDownloadOperation;
+@property(readonly) DVTKVOQueueForwarder *allDownloadedDownloadables; // @synthesize allDownloadedDownloadables=_allDownloadedDownloadables;
+@property(readonly) DVTKVOQueueForwarder *allDownloadables; // @synthesize allDownloadables=_allDownloadables;
+@property(readonly) DVTKVOQueueForwarder *allOperations; // @synthesize allOperations=_allOperations;
+@property(readonly) DVTKVOCollectionNotificationForwarder *downloadOperationFlatTreeForwarder; // @synthesize downloadOperationFlatTreeForwarder=_downloadOperationFlatTreeForwarder;
 @property(readonly) DVTDownloadable *downloadable; // @synthesize downloadable=_downloadable;
 - (void).cxx_destruct;
-@property(readonly, copy) NSString *description;
-@property(readonly) NSImage *image;
-- (void)_updateCancelable;
-- (void)cancelDownload;
-- (BOOL)downloadWithError:(id *)arg1 downloadCompletionBlock:(CDUnknownBlockType)arg2;
+- (long long)downloadProgress;
+- (BOOL)isCancelable;
+- (BOOL)isAvailableForDownload;
+- (BOOL)isDownloading;
+- (BOOL)isDownloaded;
+- (id)alternateCancelImage;
+- (id)cancelImage;
+- (id)downloadArrowDark;
+- (id)downloadArrow;
 - (long long)compare:(id)arg1;
-- (void)primitiveInvalidate;
-
-// Remaining properties
-@property(retain) DVTStackBacktrace *creationBacktrace;
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly) Class superclass;
-@property(readonly, nonatomic, getter=isValid) BOOL valid;
+- (id)displaySize;
+- (unsigned long long)size;
+- (id)downloadOperationFlatTree;
+- (id)downloadOperation;
+- (id)initWithDownloadable:(id)arg1 downloadableManager:(id)arg2;
 
 @end
 

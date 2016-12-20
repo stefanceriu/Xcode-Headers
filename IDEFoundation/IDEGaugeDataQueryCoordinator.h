@@ -10,6 +10,7 @@
 
 @interface IDEGaugeDataQueryCoordinator : NSObject
 {
+    BOOL _useProxiedDevice;
     DVTDevice *_device;
     NSNumber *_pid;
     NSMutableOrderedSet *_queries;
@@ -17,19 +18,20 @@
     NSCountedSet *_attributes;
 }
 
-+ (id)sharedQueryCoordinatorWithPID:(id)arg1 onDevice:(id)arg2;
++ (id)sharedQueryCoordinatorWithPID:(id)arg1 onDevice:(id)arg2 useProxiedDevice:(BOOL)arg3;
 @property(retain, nonatomic) NSCountedSet *attributes; // @synthesize attributes=_attributes;
 @property(retain, nonatomic) NSMutableOrderedSet *services; // @synthesize services=_services;
 @property(retain, nonatomic) NSMutableOrderedSet *queries; // @synthesize queries=_queries;
-@property(retain) NSNumber *pid; // @synthesize pid=_pid;
-@property(retain) DVTDevice *device; // @synthesize device=_device;
+@property(readonly) BOOL useProxiedDevice; // @synthesize useProxiedDevice=_useProxiedDevice;
+@property(retain, nonatomic) NSNumber *pid; // @synthesize pid=_pid;
+@property(retain, nonatomic) DVTDevice *device; // @synthesize device=_device;
 - (void).cxx_destruct;
 - (void)handleResultDict:(id)arg1;
 - (void)query:(id)arg1 didAddObservedAttributes:(id)arg2 andRemoveObservedAttributes:(id)arg3;
 - (void)removeQuery:(id)arg1;
 - (void)addQuery:(id)arg1;
 - (id)_noteAttributesDidChange;
-- (id)initForProcessWithPID:(id)arg1 onDevice:(id)arg2;
+- (id)initForProcessWithPID:(id)arg1 onDevice:(id)arg2 useProxiedDevice:(BOOL)arg3;
 
 @end
 

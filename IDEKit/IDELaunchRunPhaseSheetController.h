@@ -36,6 +36,11 @@
     NSView *_watchLaunchSettingsView;
     NSPopUpButton *_watchInterfacePopup;
     NSPopUpButton *_notificationPayloadPopup;
+    NSView *_notificationPayloadSettingsView;
+    NSButton *_enableASanButton;
+    NSButton *_enableTSanButton;
+    NSButton *_enableMallocStackButton;
+    NSPopUpButton *_mallocStackTypePopup;
     DVTChoice *_infoChoice;
     DVTChoice *_conditionsChoice;
     DVTChoice *_optionsChoice;
@@ -65,7 +70,10 @@
 }
 
 + (id)keyPathsForValuesAffectingLaunchStyleIsCustomLaunchCommands;
++ (id)keyPathsForValuesAffectingAllowEnablingMallocStackType;
++ (id)keyPathsForValuesAffectingAllowEnablingThreadSanitizer;
 + (id)keyPathsForValuesAffectingAllowEnablingAddressSanitizer;
++ (id)_keyPathsForValuesAffectingSanitizers:(id)arg1;
 + (id)keyPathsForValuesAffectingExecutableHasBeenSelected;
 + (id)keyPathsForValuesAffectingDebuggerHasBeenSelected;
 + (void)initialize;
@@ -91,6 +99,7 @@
 - (void)_updateRunnablePopUp;
 - (void)_runnableBuildableProductsDidChange;
 - (void)_updateInfoTab;
+- (void)_updateNotificationPopup;
 - (void)_updateWatchSettings;
 - (BOOL)_runnableIsWatchApp;
 - (void)_addMenuItemForBuildableProduct:(id)arg1 menu:(id)arg2;
@@ -115,7 +124,11 @@
 - (void)_setupDebugOptions;
 - (void)_updateDebugCheckboxes;
 - (void)_updateDebugOptionsEnablement;
+- (BOOL)allowEnablingMallocStackType;
+- (BOOL)allowEnablingThreadSanitizer;
 - (BOOL)allowEnablingAddressSanitizer;
+- (void)_explainAutoDisablingOfSanitizer:(id)arg1;
+- (BOOL)_allowEnableSanitizersByOtherMemoryOptions;
 - (void)updateBoundContent;
 - (void)updateBoundIDERunContextBinding;
 - (id)dvtExtraBindings;

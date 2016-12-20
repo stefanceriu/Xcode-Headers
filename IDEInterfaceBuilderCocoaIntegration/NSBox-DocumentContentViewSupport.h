@@ -7,6 +7,7 @@
 #import "NSBox.h"
 
 @interface NSBox (DocumentContentViewSupport)
-@property BOOL ibIsUsingDocumentContentView;
+- (void)setIbIsUsingDocumentContentView:(BOOL)arg1;
+- (BOOL)ibIsUsingDocumentContentView;
 @end
 

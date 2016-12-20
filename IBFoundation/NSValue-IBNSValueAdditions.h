@@ -7,6 +7,7 @@
 #import "NSValue.h"
 
 @interface NSValue (IBNSValueAdditions)
++ (id)ib_valueWithUnsafeUnretainedPointer:(id)arg1;
 + (id)ib_valueWithSize:(struct CGSize)arg1;
 + (id)ib_valueWithRect:(struct CGRect)arg1;
 + (id)ib_valueWithPoint:(struct CGPoint)arg1;
@@ -14,5 +15,6 @@
 @property(readonly) struct CGRect ib_rectValue;
 @property(readonly) struct CGPoint ib_pointValue;
 - (long long)ib_valueType;
+- (id)ib_unsafeUnretainedPointerValue;
 @end
 

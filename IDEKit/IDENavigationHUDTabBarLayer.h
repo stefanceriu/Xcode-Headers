@@ -6,13 +6,14 @@
 
 #import "CALayer.h"
 
-#import "IDENavigationHUDDisposableLayer.h"
+#import "CALayoutManager.h"
+#import "DVTInvalidation.h"
 #import "IDENavigationHUDSelectionDrivenLayer.h"
 #import "IDENavigationHUDWindowLevelNavigableLayer.h"
 
-@class CAGradientLayer, CAScrollLayer, IDENavigationHUDSelection, IDENavigationHUDTabBarNewTabLayer, IDENavigationHUDTabBarTabLayer, IDENavigationHUDWorkspaceWindowLayer, IDEWorkspaceWindowController, NSDictionary, NSMapTable, NSString;
+@class CAGradientLayer, CAScrollLayer, DVTStackBacktrace, IDENavigationHUDSelection, IDENavigationHUDTabBarNewTabLayer, IDENavigationHUDTabBarTabLayer, IDENavigationHUDWorkspaceWindowLayer, IDEWorkspaceWindowController, NSDictionary, NSMapTable, NSString;
 
-@interface IDENavigationHUDTabBarLayer : CALayer <IDENavigationHUDSelectionDrivenLayer, IDENavigationHUDWindowLevelNavigableLayer, IDENavigationHUDDisposableLayer>
+@interface IDENavigationHUDTabBarLayer : CALayer <CALayoutManager, IDENavigationHUDSelectionDrivenLayer, IDENavigationHUDWindowLevelNavigableLayer, DVTInvalidation>
 {
     IDENavigationHUDWorkspaceWindowLayer *_workspaceWindowLayer;
     NSMapTable *_strongTabControllerToStrongTabLayerMap;
@@ -26,6 +27,7 @@
     NSDictionary *_options;
 }
 
++ (void)initialize;
 @property(copy) IDENavigationHUDSelection *selection; // @synthesize selection=_selection;
 @property(readonly) IDENavigationHUDWorkspaceWindowLayer *workspaceWindowLayer; // @synthesize workspaceWindowLayer=_workspaceWindowLayer;
 - (void).cxx_destruct;
@@ -43,14 +45,17 @@
 @property(readonly) IDEWorkspaceWindowController *workspaceWindowController;
 @property(readonly) BOOL shouldOnlySelectInitialTab;
 @property(readonly) BOOL canCreateNewTab;
-- (void)dispose;
+- (void)primitiveInvalidate;
 - (id)initWithWorkspaceWindowLayer:(id)arg1 initialSelection:(id)arg2 options:(id)arg3;
 
 // Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

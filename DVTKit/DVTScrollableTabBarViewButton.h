@@ -6,11 +6,10 @@
 
 #import "NSButton.h"
 
-@class CALayer, DVTTabbedWindowTabViewItem, NSColor, ViewActionForwardingLayerDelegate;
+@class CALayer, DVTTabbedWindowTabViewItem, NSColor;
 
 @interface DVTScrollableTabBarViewButton : NSButton
 {
-    ViewActionForwardingLayerDelegate *_layerDelegate;
     NSColor *_backgroundColor;
     CALayer *_backgroundLayer;
     CALayer *_centerLayer;
@@ -30,7 +29,7 @@
 + (double)contentBoundsWidthForButtonWidth:(double)arg1;
 + (Class)cellClass;
 @property(nonatomic) BOOL forceRepaintWithActiveWindowAppearance; // @synthesize forceRepaintWithActiveWindowAppearance=_forceRepaintWithActiveWindowAppearance;
-@property(retain, nonatomic) DVTTabbedWindowTabViewItem *tabViewItem; // @synthesize tabViewItem=_tabViewItem;
+@property(nonatomic) DVTTabbedWindowTabViewItem *tabViewItem; // @synthesize tabViewItem=_tabViewItem;
 @property(nonatomic) BOOL mouseOverHighlightShouldIncludeRightBorderFrameWidth; // @synthesize mouseOverHighlightShouldIncludeRightBorderFrameWidth=_mouseOverHighlightShouldIncludeRightBorderFrameWidth;
 @property(nonatomic) BOOL hasMouseOverHighlight; // @synthesize hasMouseOverHighlight=_hasMouseOverHighlight;
 @property(nonatomic) BOOL showsRightSeparator; // @synthesize showsRightSeparator=_showsRightSeparator;

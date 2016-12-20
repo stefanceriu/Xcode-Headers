@@ -12,7 +12,7 @@
 {
     DVTDispatchLock *_clangLock;
     void *_cxIndex;
-    struct CXTranslationUnitImpl *_cxTU;
+    // Error parsing type: A^{CXTranslationUnitImpl}, name: _cxTU
     long long _filePurgeCount;
     NSArray *_astArgs;
     NSString *_workingDirectory;
@@ -45,6 +45,9 @@
 - (BOOL)_setOccurrenceForCursor:(CDStruct_a94d320b)arg1 originalCursor:(CDStruct_a94d320b)arg2 symbol:(id)arg3 index:(id)arg4;
 - (id)processedSymbolsInContext:(id)arg1 initFunction:(CDUnknownBlockType)arg2 visitorFunction:(CDUnknownBlockType)arg3 includeSymbolLocations:(BOOL)arg4 withCurrentFileContentDictionary:(id)arg5 forIndex:(id)arg6;
 - (id)codeDiagnosticsAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;
+- (id)_parsedCodeCommentAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3 symbolKindOut:(id *)arg4 cursorKindOut:(long long *)arg5;
+- (id)parsedCodeCommentAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3 symbolKindOut:(id *)arg4;
+- (id)parsedCodeCommentAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3 cursorKindOut:(long long *)arg4;
 - (id)parsedCodeCommentAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;
 - (id)_diagnosticItemsFromDiagnosticSet:(void *)arg1 parentDiagnostic:(void *)arg2 location:(id)arg3 forIndex:(id)arg4;
 - (id)codeCompletionsAtLocation:(id)arg1 withCurrentFileContentDictionary:(id)arg2 completionContext:(id *)arg3 forIndex:(id)arg4;

@@ -6,19 +6,14 @@
 
 #import "IDELocalizationWorkSystemTask.h"
 
-@class NSArray, NSString;
-
 @interface Xcode3LocalizedSourceStringsAdaptorSourceWorkContext : IDELocalizationWorkSystemTask
 {
-    NSArray *_sourcePaths;
-    NSString *_tempPath;
-    NSArray *_readTableContexts;
 }
 
-@property(retain) NSArray *readTableContexts; // @synthesize readTableContexts=_readTableContexts;
-@property(retain) NSString *tempPath; // @synthesize tempPath=_tempPath;
-@property(retain) NSArray *sourcePaths; // @synthesize sourcePaths=_sourcePaths;
-- (void).cxx_destruct;
++ (id)contextWithParent:(id)arg1 sourcePaths:(id)arg2;
+- (id)readTableContexts;
+- (id)tempPathString;
+- (id)sourcePaths;
 
 @end
 

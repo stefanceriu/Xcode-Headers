@@ -16,14 +16,12 @@
     NSString *_storyboardName;
     NSString *_bundleIdentifier;
     NSString *_referencedControllerIdentifier;
-    BOOL _encodeAsRuntimeInstance;
 }
 
 + (id)ibStandInRuntimeClassName;
 + (Class)ibViewClass;
 + (int)ibLibraryInclusionStatusForTargetRuntime:(id)arg1 andDocumentClass:(Class)arg2 assetIdentifier:(id)arg3;
 + (BOOL)ibExistsAtRuntime;
-@property(nonatomic) BOOL encodeAsRuntimeInstance; // @synthesize encodeAsRuntimeInstance=_encodeAsRuntimeInstance;
 @property(copy, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(copy, nonatomic) NSString *referencedControllerIdentifier; // @synthesize referencedControllerIdentifier=_referencedControllerIdentifier;
 @property(copy, nonatomic) NSString *storyboardName; // @synthesize storyboardName=_storyboardName;
@@ -48,7 +46,6 @@
 - (id)ibShortDisplayName;
 - (void)ibDidBecomeControllerForCompilationGroup;
 - (id)ibUniqueIdentifierForStoryboardCompilation;
-- (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (id)ibEditorCanvasFrameControllerForDocument:(id)arg1;
 - (Class)ibEditorClass;
 @property(copy, nonatomic) NSString *ibReferencedBundleIdentifier;
@@ -65,6 +62,7 @@
 - (BOOL)ibCanBeReplacedWithExternalStoryboardReference;
 - (id)ibQualifyingInfoForDefaultLabel;
 - (BOOL)ibWantsSceneUpdates;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

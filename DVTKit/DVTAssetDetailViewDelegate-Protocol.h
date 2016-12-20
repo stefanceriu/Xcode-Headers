@@ -6,13 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTAssetDetailView, DVTChoice, DVTLibraryDetailController, DVTViewController, NSEvent;
+@class DVTAssetDetailView, DVTChoice, DVTLibraryDetailController, DVTViewController;
 
 @protocol DVTAssetDetailViewDelegate <NSObject>
 - (void)assetDetailView:(DVTAssetDetailView *)arg1 userDidSelectTab:(DVTChoice *)arg2;
 - (void)assetDetailView:(DVTAssetDetailView *)arg1 didInstallDetailController:(DVTLibraryDetailController *)arg2;
 - (void)assetDetailView:(DVTAssetDetailView *)arg1 sizeViewController:(DVTViewController *)arg2 toFitSuggestedSize:(struct CGSize)arg3;
-- (void)assetDetailView:(DVTAssetDetailView *)arg1 wasDoubleClickedInHeader:(NSEvent *)arg2;
-- (void)assetDetailView:(DVTAssetDetailView *)arg1 beginDraggingWithMouseDownEvent:(NSEvent *)arg2 andMouseDraggedEvent:(NSEvent *)arg3;
 @end
 

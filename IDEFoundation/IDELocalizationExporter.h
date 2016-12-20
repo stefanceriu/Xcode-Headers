@@ -9,18 +9,17 @@
 #import "DVTInvalidation.h"
 #import "IDELocalizationWorkProgress.h"
 
-@class DVTNotificationToken, DVTStackBacktrace, IDELocalizationBundleExportContext, IDELocalizationStream, NSString;
+@class DVTNotificationToken, DVTStackBacktrace, IDELocalizationBundleExportContext, IDEStream, NSString;
 
 @interface IDELocalizationExporter : NSObject <IDELocalizationWorkProgress, DVTInvalidation>
 {
-    IDELocalizationStream *_exportWork;
+    IDEStream *_exportWork;
     IDELocalizationBundleExportContext *_exportContext;
     long long _workDone;
     long long _workOutstanding;
     DVTNotificationToken *_localizationPhaseObserver;
     DVTNotificationToken *_localizationWorkItemIncrementObserver;
     DVTNotificationToken *_localizationWorkItemDecrementObserver;
-    id <DVTCancellable> _workToken;
     BOOL _complete;
     long long _progress;
     NSString *_phase;

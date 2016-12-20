@@ -20,7 +20,7 @@
 - (void)viewDidLoad;
 - (void)primitiveInvalidate;
 - (void)finishWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (void)_finishAndOpenURL:(id)arg1;
+- (void)_finishByClosing:(BOOL)arg1 andOpenURL:(id)arg2;
 - (void)_findWorkspaceInWorkingCopy:(id)arg1;
 - (id)projectDataType;
 - (id)workspaceDataType;

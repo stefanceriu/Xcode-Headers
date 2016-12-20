@@ -26,11 +26,11 @@
 - (id)platform;
 - (id)_portalPlatform;
 @property(readonly, copy, nonatomic) NSString *certificateKind;
+@property(readonly, copy) NSString *description;
 - (id)initWithCertificateRecord:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) Class superclass;
 
 @end

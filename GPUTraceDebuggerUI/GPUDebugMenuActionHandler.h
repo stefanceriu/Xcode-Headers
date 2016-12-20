@@ -28,6 +28,7 @@ __attribute__((visibility("hidden")))
 - (void)dumpImagesAssistantEditors:(id)arg1;
 - (void)_dumpImagesMainEditor:(BOOL)arg1;
 - (void)dumpRawImagesMainEditor:(id)arg1;
+- (void)dumpRuntimeReport:(id)arg1;
 - (void)dumpImagesMainEditor:(id)arg1;
 - (void)displayGPUPerformance:(id)arg1;
 - (void)_openLocation:(id)arg1 withEventType:(unsigned long long)arg2;

@@ -8,6 +8,7 @@
 
 #import "DVTFindBarFindable.h"
 #import "DVTSourceTextViewDelegate.h"
+#import "DVTSourceTextViewQuickEditDataSource.h"
 #import "IDEComparisonEditorHostContext.h"
 #import "IDEOpenQuicklyJumpToSupport.h"
 #import "IDERefactoringExpressionSource.h"
@@ -15,13 +16,14 @@
 #import "IDESourceExpressionSource.h"
 #import "IDETestingSelection.h"
 #import "IDETextVisualizationHost.h"
+#import "NSImmediateActionAnimationController.h"
 #import "NSMenuDelegate.h"
 #import "NSPopoverDelegate.h"
 #import "NSTextViewDelegate.h"
 
 @class DVTDispatchLock, DVTLayoutManager, DVTNotificationToken, DVTObservingToken, DVTOperation, DVTSDK, DVTScopeBarController, DVTSourceExpression, DVTSourceLanguageService, DVTSourceTextView, DVTStackBacktrace, DVTTextDocumentLocation, DVTTextSidebarView, DVTWeakInterposer, IDEAnalyzerResultsExplorer, IDECoverageTextVisualization, IDENoteAnnotationExplorer, IDESchemeActionCodeCoverageFile, IDESelection, IDESingleFileProcessingToolbarController, IDESourceCodeDocument, IDESourceCodeEditorAnnotationProvider, IDESourceCodeEditorContainerView, IDESourceCodeHelpNavigationRequest, IDESourceCodeNavigationRequest, IDESourceCodeSingleLineBlameProvider, IDESourceControlLogDetailViewController, IDESourceLanguageEditorExtension, IDEViewController<IDESourceEditorViewControllerHost>, IDEWorkspaceTabController, NSArray, NSDictionary, NSImmediateActionGestureRecognizer, NSMutableArray, NSObject<OS_dispatch_queue>, NSOperationQueue, NSPopover, NSProgressIndicator, NSPulseGestureRecognizer, NSScrollView, NSString, NSTimer, NSTrackingArea, NSView;
 
-@interface IDESourceCodeEditor : IDEEditor <NSTextViewDelegate, NSMenuDelegate, NSPopoverDelegate, DVTSourceTextViewDelegate, DVTFindBarFindable, IDESourceExpressionSource, IDERefactoringExpressionSource, IDETextVisualizationHost, IDEOpenQuicklyJumpToSupport, IDEComparisonEditorHostContext, IDESourceControlLogDetailDelegate, IDETestingSelection>
+@interface IDESourceCodeEditor : IDEEditor <NSImmediateActionAnimationController, NSTextViewDelegate, NSMenuDelegate, NSPopoverDelegate, DVTSourceTextViewDelegate, DVTSourceTextViewQuickEditDataSource, DVTFindBarFindable, IDESourceExpressionSource, IDERefactoringExpressionSource, IDETextVisualizationHost, IDEOpenQuicklyJumpToSupport, IDEComparisonEditorHostContext, IDESourceControlLogDetailDelegate, IDETestingSelection>
 {
     NSScrollView *_scrollView;
     DVTSourceTextView *_textView;
@@ -53,13 +55,13 @@
     DVTObservingToken *_showCodeCoverageCountsObserverToken;
     DVTNotificationToken *_blueprintDidChangeNotificationObservingToken;
     DVTNotificationToken *_textStorageDidProcessEndingObserver;
+    DVTNotificationToken *_textStorageDidEndEditingObserver;
     DVTNotificationToken *_themeChangedObserver;
     DVTNotificationToken *_textViewBoundsDidChangeObservingToken;
     DVTNotificationToken *_sourceCodeDocumentDidSaveNotificationToken;
     DVTNotificationToken *_indexDidChangeNotificationToken;
     id <DVTCancellable> _prefetchingNodeTypesToken;
     DVTObservingToken *_semanticsDisabledObservingToken;
-    IDESourceCodeEditorAnnotationProvider *_annotationProvider;
     IDEAnalyzerResultsExplorer *_analyzerResultsExplorer;
     DVTWeakInterposer *_analyzerResultsScopeBar_dvtWeakInterposer;
     BOOL _hidingAnalyzerExplorer;
@@ -89,7 +91,8 @@
         unsigned int supportsContextMenuCustomization:1;
         unsigned int supportsAnnotationContextCreation:1;
         unsigned int wantsDidLoadAnnotationProviders:1;
-        unsigned int reserved:3;
+        unsigned int needsToUpdateCurrentSelectedLandmarkItems:1;
+        unsigned int reserved:2;
     } _hvcFlags;
     BOOL _trackingMouse;
     BOOL _scheduledInitialSetup;
@@ -102,6 +105,8 @@
     NSPulseGestureRecognizer *_recognizeGestureInSideBarView;
     NSImmediateActionGestureRecognizer *_immediateActionRecognizer;
     DVTScopeBarController *_languageServiceStatusScopeBarController;
+    DVTScopeBarController *_extensionCommandCancellationScopeBarController;
+    DVTScopeBarController *_extensionErrorScopeBarController;
 }
 
 + (id)keyPathsForValuesAffectingIsWorkspaceBuilding;
@@ -109,12 +114,14 @@
 + (void)commitStateToDictionary:(id)arg1 withSourceTextView:(id)arg2 withSourceCodeDocument:(id)arg3;
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
+@property(retain) DVTScopeBarController *extensionErrorScopeBarController; // @synthesize extensionErrorScopeBarController=_extensionErrorScopeBarController;
+@property(retain) DVTScopeBarController *extensionCommandCancellationScopeBarController; // @synthesize extensionCommandCancellationScopeBarController=_extensionCommandCancellationScopeBarController;
 @property(retain) DVTScopeBarController *languageServiceStatusScopeBarController; // @synthesize languageServiceStatusScopeBarController=_languageServiceStatusScopeBarController;
 @property(retain) NSImmediateActionGestureRecognizer *immediateActionRecognizer; // @synthesize immediateActionRecognizer=_immediateActionRecognizer;
 @property(retain) NSPulseGestureRecognizer *recognizeGestureInSideBarView; // @synthesize recognizeGestureInSideBarView=_recognizeGestureInSideBarView;
 @property(retain) IDESourceLanguageEditorExtension *editorExtension; // @synthesize editorExtension=_editorExtension;
 @property(retain) IDECoverageTextVisualization *coverageTextVisualization; // @synthesize coverageTextVisualization=_coverageTextVisualization;
-@property(retain) IDESchemeActionCodeCoverageFile *coverageData; // @synthesize coverageData=_coverageData;
+@property(retain, nonatomic) IDESchemeActionCodeCoverageFile *coverageData; // @synthesize coverageData=_coverageData;
 @property(retain) IDESingleFileProcessingToolbarController *singleFileProcessingToolbarController; // @synthesize singleFileProcessingToolbarController=_singleFileProcessingToolbarController;
 @property struct _NSRange lastEditedCharacterRange; // @synthesize lastEditedCharacterRange=_lastEditedCharRange;
 @property(retain) IDEAnalyzerResultsExplorer *analyzerResultsExplorer; // @synthesize analyzerResultsExplorer=_analyzerResultsExplorer;
@@ -157,8 +164,23 @@
 - (id)_calculateContinueToDocumentLocationFromDocumentLocation:(id)arg1;
 - (id)_calculateContinueToLineDocumentLocation;
 - (id)_calculateContinueToHereDocumentLocation;
+- (BOOL)_isSupportedFileTypeForAddDocumentationCommand;
+- (void)toggleComments:(id)arg1;
+- (id)commandForToggleComments;
+- (void)addDocumentation:(id)arg1;
+- (id)commandForAddDocumentation;
+- (void)_invokeTrueSourceEditorExtensionCommand:(id)arg1;
+- (void)_invokeSourceEditorExtensionCommand:(id)arg1;
+- (void)_presentExtensionErrorBannerForError:(id)arg1;
+- (void)_clearExtensionErrorBanner;
+- (id)_cancellationTimerForExtensionCommand:(id)arg1 cancellationToken:(id)arg2;
+- (void)_presentCancellationBannerForExtensionCommand:(id)arg1 cancellationToken:(id)arg2;
+- (void)_clearCancellationBannerForExtensionCommand:(id)arg1;
+- (void)_applyExtensionTextChange:(id)arg1 toTextStorage:(id)arg2 inSourceCodeDocument:(id)arg3;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)menuNeedsUpdate:(id)arg1;
+- (void)setupEditorMenu:(id)arg1;
+- (id)_menuItemForSourceEditorExtension:(id)arg1;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;
 - (void)mouseMoved:(id)arg1;
@@ -223,6 +245,7 @@
 - (void)continueToCurrentLine:(id)arg1;
 - (void)continueToHere:(id)arg1;
 - (void)toggleCodeCoverageShown:(id)arg1;
+- (void)toggleIgnoreWhitespace:(id)arg1;
 - (void)toggleInvisibleCharactersShown:(id)arg1;
 - (void)toggleBreakpointAtCurrentLine:(id)arg1;
 - (void)flattenMultiPathTokens:(id)arg1;
@@ -258,6 +281,10 @@
 - (void)configureStateSavingObservers;
 - (id)_transientStateDictionaryForDocument:(id)arg1;
 - (id)_stateDictionariesForDocuments;
+- (id)filesInTextView:(id)arg1;
+- (BOOL)textView:(id)arg1 shouldReadObjectLiteralFromPasteboard:(id)arg2 type:(id)arg3;
+- (void)textView:(id)arg1 objectLiteralStringsForObjects:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)mediaResourceProviderInTextView:(id)arg1;
 - (id)cursorForAltTemporaryLink;
 - (void)_textViewDidLoseFirstResponder;
 - (BOOL)completingTextViewHandleCancel:(id)arg1;
@@ -267,6 +294,8 @@
 - (void)didEndTokenizedEditingWithRanges:(id)arg1;
 - (void)willStartTokenizedEditingWithRanges:(id)arg1;
 - (void)tokenizableRangesWithRange:(struct _NSRange)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (unsigned long long)textView:(id)arg1 lineEndingForWritingSelectionToPasteboard:(id)arg2 type:(id)arg3;
+- (unsigned long long)textView:(id)arg1 lineEndingForReadingSelectionFromPasteboard:(id)arg2 type:(id)arg3;
 - (void)textViewBoundsDidChange:(id)arg1;
 - (void)textView:(id)arg1 handleMouseDidExitSidebar:(id)arg2;
 - (void)textView:(id)arg1 handleMouseDidMoveOverSidebar:(id)arg2 atLineNumber:(unsigned long long)arg3;
@@ -307,8 +336,10 @@
 - (BOOL)canBecomeMainViewController;
 - (id)undoManagerForTextView:(id)arg1;
 - (void)viewWillUninstall;
+- (void)_moreViewDidInstall;
 - (void)viewDidInstall;
 - (void)contentViewDidCompleteLayout;
+- (void)_configureFoldingManager:(id)arg1 withSourceCodeLanguage:(id)arg2;
 - (void)_doInitialSetup;
 - (void)_endObservingDiagnosticController;
 - (void)_startObservingDiagnosticController;
@@ -322,10 +353,11 @@
 - (id)_currentSelectedLandmarkItem;
 - (void)setCurrentSelectedItems:(id)arg1;
 - (id)currentSelectedItems;
+- (void)_updateCurrentSelectedLandmarkItems;
 - (void)_refreshCurrentSelectedItemsIfNeeded;
 - (BOOL)_isCurrentSelectedItemsValid;
 @property __weak IDEViewController<IDESourceEditorViewControllerHost> *hostViewController;
-@property(readonly) IDESourceCodeEditorAnnotationProvider *annotationProvider; // @synthesize annotationProvider=_annotationProvider;
+@property(readonly) IDESourceCodeEditorAnnotationProvider *annotationProvider;
 - (id)mainScrollView;
 @property(readonly) IDESourceCodeDocument *sourceCodeDocument;
 - (void)loadView;

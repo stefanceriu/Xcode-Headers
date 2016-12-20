@@ -11,6 +11,8 @@
 @class NSImage;
 
 @interface IDEThread (DBGNavigableItemPropertySupport) <DBGNavigableItemPerformance>
++ (id)keyPathsForValuesAffectingStatusIcon;
+- (id)sortValue;
 @property(readonly) NSImage *statusIcon;
 @end
 

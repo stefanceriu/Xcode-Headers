@@ -24,6 +24,7 @@
 - (void).cxx_destruct;
 - (void)cancelAllRequests;
 - (void)requestLeaksForPid:(id)arg1 context:(id)arg2 provideBacktraces:(id)arg3;
+- (id)requestMallocStackLog:(int)arg1 forAddress:(unsigned long long *)arg2 size:(unsigned long long)arg3 isLiteZone:(unsigned int)arg4;
 - (id)requestGraph:(unsigned long long)arg1 options:(id)arg2;
 - (void)_lookupGraphByToken:(unsigned long long)arg1 response:(id)arg2;
 - (id)_preserveDict:(id)arg1 forPid:(int)arg2;

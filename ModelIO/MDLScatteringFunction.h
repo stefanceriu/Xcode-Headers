@@ -35,7 +35,6 @@
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)bindShadowProperties;
 - (id)init;
 
 @end

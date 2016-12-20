@@ -9,7 +9,7 @@
 #import "IDEFilePickerViewDelegate.h"
 #import "IDETestsInTestableObserver.h"
 
-@class DVTBorderedView, DVTChoice, DVTGradientImageButton, DVTNotificationToken, DVTObservingToken, DVTOutlineView, DVTSearchField, DVTTabChooserView, IDEArgumentsCapsuleSheetController, IDECapsuleListView, IDEDebuggerSpecifier, IDEEnvironmentVariablesCapsuleSheetController, IDEScheme, IDESimulateLocationMenuController, IDETestSchemeAction, IDEWorkspace, NSArray, NSButton, NSButtonCell, NSLayoutConstraint, NSMatrix, NSPopUpButton, NSString, NSTabView, NSTableColumn, NSTextField, NSView;
+@class DVTBorderedView, DVTChoice, DVTGradientImageButton, DVTNotificationToken, DVTObservingToken, DVTOutlineViewWithCustomGridDrawing, DVTSearchField, DVTTabChooserView, IDEArgumentsCapsuleSheetController, IDECapsuleListView, IDEDebuggerSpecifier, IDEEnvironmentVariablesCapsuleSheetController, IDEScheme, IDESimulateLocationMenuController, IDETestSchemeAction, IDEWorkspace, NSArray, NSButton, NSButtonCell, NSLayoutConstraint, NSMatrix, NSPopUpButton, NSString, NSTabView, NSTableColumn, NSTextField, NSView;
 
 @interface IDETestRunPhaseSheetController : IDEViewController <IDEFilePickerViewDelegate, IDETestsInTestableObserver>
 {
@@ -17,7 +17,7 @@
     NSButton *_codeCoverageCheckbox;
     NSMatrix *_debugProcessAsMatrix;
     NSButtonCell *_debugProcessAsMeButtonCell;
-    DVTOutlineView *_outlineView;
+    DVTOutlineViewWithCustomGridDrawing *_outlineView;
     DVTGradientImageButton *_addButton;
     DVTGradientImageButton *_deleteButton;
     DVTBorderedView *_topBorderedView;
@@ -32,6 +32,9 @@
     NSTableColumn *_deviceAppDataPackagesColumn;
     NSTableColumn *_locationColumn;
     NSView *_buttonBar;
+    NSButton *_enableASanButton;
+    NSButton *_enableTSanButton;
+    NSPopUpButton *_mallocStackTypePopup;
     DVTChoice *_infoChoice;
     DVTChoice *_conditionsChoice;
     DVTChoice *_diagnosticsChoice;
@@ -53,17 +56,20 @@
     NSLayoutConstraint *_infoTabSearchFieldHeightConstraint;
 }
 
++ (id)keyPathsForValuesAffectingAllowEnablingMallocStackType;
++ (id)keyPathsForValuesAffectingAllowEnablingThreadSanitizer;
 + (id)keyPathsForValuesAffectingAllowEnablingAddressSanitizer;
++ (id)_keyPathsForValuesAffectingSanitizers:(id)arg1;
 + (id)keyPathsForValuesAffectingDebuggerHasBeenSelected;
 + (void)initialize;
 @property __weak NSLayoutConstraint *infoTabSearchFieldHeightConstraint; // @synthesize infoTabSearchFieldHeightConstraint=_infoTabSearchFieldHeightConstraint;
 @property __weak NSLayoutConstraint *tabSwitcherBarHeightConstraint; // @synthesize tabSwitcherBarHeightConstraint=_tabSwitcherBarHeightConstraint;
+@property(retain, nonatomic) NSArray *debuggerSpecifiers; // @synthesize debuggerSpecifiers=_debuggerSpecifiers;
 @property(retain) IDETestSchemeAction *runPhase; // @synthesize runPhase=_runPhase;
 @property(retain) IDEScheme *runContext; // @synthesize runContext=_runContext;
 @property BOOL supportsDebugAsDifferentUser; // @synthesize supportsDebugAsDifferentUser=_supportsDebugAsDifferentUser;
 @property(retain) DVTTabChooserView *tabChooser; // @synthesize tabChooser=_tabChooser;
 @property(copy, nonatomic) NSString *filterString; // @synthesize filterString=_filterString;
-@property(retain, nonatomic) NSArray *debuggerSpecifiers; // @synthesize debuggerSpecifiers=_debuggerSpecifiers;
 - (void).cxx_destruct;
 - (id)capsuleListView:(id)arg1 viewControllerForRow:(long long)arg2;
 - (long long)numberOfObjectsInCapsuleListView:(id)arg1;
@@ -108,7 +114,11 @@
 - (void)_setupDebugOptions;
 - (void)_updateDebugCheckboxes;
 - (void)_updateDebugOptionsEnablement;
+- (BOOL)allowEnablingMallocStackType;
+- (BOOL)allowEnablingThreadSanitizer;
 - (BOOL)allowEnablingAddressSanitizer;
+- (void)_explainAutoDisablingOfSanitizer:(id)arg1;
+- (BOOL)_allowEnableSanitizersByOtherMemoryOptions;
 - (BOOL)debuggerHasBeenSelected;
 @property(retain) IDEWorkspace *workspace;
 - (BOOL)validateMenuItem:(id)arg1;

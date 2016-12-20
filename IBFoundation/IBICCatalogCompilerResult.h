@@ -26,7 +26,7 @@
 @property(copy, nonatomic) NSArray *softErrors; // @synthesize softErrors=_softErrors;
 @property(copy, nonatomic) NSArray *hardErrors; // @synthesize hardErrors=_hardErrors;
 @property(copy, nonatomic) NSArray *outputFiles; // @synthesize outputFiles=_outputFiles;
-@property BOOL success; // @synthesize success=_success;
+@property(nonatomic) BOOL success; // @synthesize success=_success;
 - (void).cxx_destruct;
 - (void)mergeResults:(id)arg1;
 @property(readonly, copy) NSString *description;

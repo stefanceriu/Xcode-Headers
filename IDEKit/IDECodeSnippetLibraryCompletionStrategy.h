@@ -13,7 +13,7 @@
 + (id)_cacheKeyForScope:(long long)arg1 language:(id)arg2 platformNames:(id)arg3 atBOL:(BOOL)arg4;
 + (void)_clearSnippetsCompletionsCache;
 + (void)codeSnippetDidChange:(id)arg1;
-+ (void)_generateCompletionsForScope:(long long)arg1 language:(id)arg2 platformNames:(id)arg3 atBOL:(BOOL)arg4;
++ (void)_generateCompletionsForScope:(long long)arg1 textView:(id)arg2 language:(id)arg3 platformNames:(id)arg4 atBOL:(BOOL)arg5;
 + (id)_cacheKeyForPlatformFamilyNames:(id)arg1;
 + (BOOL)_isAtBOLAtLocation:(unsigned long long)arg1 inString:(id)arg2;
 + (BOOL)_shouldIncludeSnippet:(id)arg1 inScope:(long long)arg2 atBOL:(BOOL)arg3;

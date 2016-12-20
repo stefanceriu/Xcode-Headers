@@ -8,6 +8,7 @@
 
 @class DTTimelineGroupPlane, DTTimelinePlane, NSMutableArray;
 
+__attribute__((visibility("hidden")))
 @interface DTTimelineGroupPlaneChanges : NSObject
 {
     DTTimelineGroupPlane *_groupPlane;

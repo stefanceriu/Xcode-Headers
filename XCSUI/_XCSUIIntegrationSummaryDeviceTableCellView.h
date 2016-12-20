@@ -21,6 +21,7 @@
 @property __weak NSTextField *deviceModelName; // @synthesize deviceModelName=_deviceModelName;
 @property __weak NSTextField *deviceName; // @synthesize deviceName=_deviceName;
 - (void).cxx_destruct;
+- (void)drawRect:(struct CGRect)arg1;
 
 @end
 

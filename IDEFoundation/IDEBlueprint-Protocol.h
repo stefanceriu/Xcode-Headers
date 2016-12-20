@@ -5,11 +5,12 @@
 //
 
 #import "IDEIntegrityLogDataSource.h"
+#import "IDEProvisionable.h"
 #import "NSObject.h"
 
-@class DVTFilePath, DVTSDK, DVTSourceCodeLanguage, DVTToolsVersion, IDEBuildParameters, IDEContainer<IDEBlueprintProvider>, IDEContainer<IDECustomDataStoring>, IDEFileReference, IDEGroup, IDETestBlueprintHostSettings, IDEWorkspaceArenaSnapshot, NSArray, NSArray<DVTMacroExpansion>, NSDictionary, NSSet, NSString;
+@class DVTFilePath, DVTSDK, DVTSourceCodeLanguage, DVTToolsVersion, IDEBuildParameters, IDEContainer<IDEBlueprintProvider>, IDEContainer<IDECustomDataStoring>, IDEFileReference, IDEGroup, IDESourceFileBuildInfo, IDETestBlueprintHostSettings, IDEWorkspaceArenaSnapshot, NSArray, NSArray<DVTMacroExpansion>, NSDictionary, NSSet, NSString;
 
-@protocol IDEBlueprint <NSObject, IDEIntegrityLogDataSource>
+@protocol IDEBlueprint <NSObject, IDEIntegrityLogDataSource, IDEProvisionable>
 @property(readonly, copy) NSString *blueprintIdentifier;
 @property(readonly) NSString *name;
 - (DVTFilePath *)entitlementsFilePathForBuildConfiguration:(NSString *)arg1;
@@ -27,10 +28,10 @@
 @optional
 @property(readonly) NSSet *knownAssetTags;
 @property(readonly) DVTToolsVersion *createdOnToolsVersion;
-@property(copy) NSString *developmentTeam;
 @property(readonly, getter=isUnitTest) BOOL unitTest;
 @property(retain) IDETestBlueprintHostSettings *testBlueprintUITestingTargetAppSettings;
 @property(retain) IDETestBlueprintHostSettings *testBlueprintHostSettings;
+- (IDESourceFileBuildInfo *)sourceFileBuildInfoForFileAtPath:(DVTFilePath *)arg1;
 - (void)removeTagsFromKnownAssetTags:(NSSet *)arg1;
 - (void)addTagsToKnownAssetTags:(NSSet *)arg1;
 - (NSDictionary *)infoDictionaryForConfiguration:(NSString *)arg1;
@@ -45,6 +46,7 @@
 - (NSSet *)allPrivateHeaderFiles;
 - (NSSet *)allPublicHeaderFiles;
 - (NSArray *)allBuildFileReferences;
+- (BOOL)containsSwift;
 - (NSArray *)sourceCodeBuildFileReferences;
 - (DVTSourceCodeLanguage *)predominantSourceCodeLanguage;
 - (BOOL)configureToBuildMixedTargetWithDestinationGroup:(IDEGroup *)arg1 configureBridgingHeader:(BOOL)arg2 returningErrorString:(id *)arg3;
@@ -55,6 +57,7 @@
 - (BOOL)isMixedTarget;
 - (BOOL)configureToBuildWithOptimizationProfileReturningErrorString:(id *)arg1;
 - (BOOL)isConfiguredToBuildWithOptimizationProfile;
+- (void)updateSwiftCompilerTo:(NSString *)arg1;
 - (void)updateLastSwiftMigrationToCurrent;
 - (BOOL)lastSwiftMigrationIsCurrent;
 - (void)convertToUseModernUnitTests;

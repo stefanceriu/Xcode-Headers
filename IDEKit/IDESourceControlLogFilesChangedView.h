@@ -6,9 +6,11 @@
 
 #import "NSView.h"
 
+#import "NSAccessibilityButton.h"
+
 @class NSColor, NSMutableDictionary, NSString;
 
-@interface IDESourceControlLogFilesChangedView : NSView
+@interface IDESourceControlLogFilesChangedView : NSView <NSAccessibilityButton>
 {
     NSString *_value;
     struct CGRect _tokenRect;
@@ -29,10 +31,8 @@
 - (void)_drawInteriorWithTextFrame:(struct CGRect)arg1 tokenFrame:(struct CGRect)arg2;
 - (void)_drawTextWithFrame:(struct CGRect)arg1;
 - (void)_drawTokenWithFrame:(struct CGRect)arg1;
-- (id)foregroundGradient;
-- (id)selectedForegroundColor;
-- (id)backgroundColor;
-- (void)_drawTokenWithContext:(id)arg1 frame:(struct CGRect)arg2 clip:(BOOL)arg3;
+- (id)tokenSelectedColor;
+- (id)tokenColor;
 - (struct CGRect)_tokenRectForStringRect:(struct CGRect)arg1;
 @property(copy) NSString *value;
 @property(readonly) struct CGRect textFrame;
@@ -45,8 +45,16 @@
 - (void)_setTrackingRectWithRect:(struct CGRect)arg1;
 - (void)setFontSize:(double)arg1;
 - (double)fontSize;
+- (BOOL)accessibilityPerformPress;
+- (id)accessibilityLabel;
 - (void)_setFontSize:(double)arg1;
 - (id)initWithFrame:(struct CGRect)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

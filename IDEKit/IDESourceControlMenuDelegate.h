@@ -13,6 +13,8 @@
 @interface IDESourceControlMenuDelegate : NSObject <NSMenuDelegate>
 {
     NSMenuItem *_workingCopyTitle;
+    NSMenuItem *_createWorkingCopyItem;
+    NSMenuItem *_workingCopyDividerItem;
     NSMutableSet *_workingCopyMenuControllers;
     BOOL _menuOpen;
     NSWorkspace *_currentWorkspace;

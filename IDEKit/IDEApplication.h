@@ -17,6 +17,7 @@
 
 @property(retain) id <IDEApplicationEventDelegate> eventDelegate; // @synthesize eventDelegate=_ideEventDelegate;
 - (void).cxx_destruct;
+- (void)_openDocumentURLs:(id)arg1 withCompletionHandler:(CDUnknownBlockType)arg2;
 - (id)supplementalTargetForAction:(SEL)arg1 sender:(id)arg2;
 - (void)endSheet:(id)arg1 returnCode:(long long)arg2;
 - (void)beginSheet:(id)arg1 modalForWindow:(id)arg2 modalDelegate:(id)arg3 didEndSelector:(SEL)arg4 contextInfo:(void *)arg5;
@@ -34,14 +35,8 @@
 - (void)setSdefSupport_activeWorkspaceDocument:(id)arg1;
 - (id)sdefSupport_activeWorkspaceDocument;
 - (void)insertInSdefSupport_workspaceDocuments:(id)arg1;
-- (id)sdefSupport_newWorkspaceDocument:(id)arg1;
 - (id)sdefSupport_workspaceDocuments;
-- (void)insertInSdefSupport_projects:(id)arg1 atIndex:(long long)arg2;
 - (id)newScriptingObjectOfClass:(Class)arg1 forValueForKey:(id)arg2 withContentsValue:(id)arg3 properties:(id)arg4;
-- (id)sdefSupport_classModelDocuments;
-- (id)sdefSupport_symbolicBreakpoints;
-- (id)sdefSupport_fileBreakpoints;
-- (id)sdefSupport_breakpoints;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

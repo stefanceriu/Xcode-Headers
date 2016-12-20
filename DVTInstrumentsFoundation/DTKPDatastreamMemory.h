@@ -14,14 +14,15 @@
 {
     unsigned int _state;
     int _error;
-    struct vector<DTKPDataStreamMemoryRecord *, std::__1::allocator<DTKPDataStreamMemoryRecord *>> _buffers;
+    struct vector<DTKPDataStreamMemoryRecord *, std::__1::allocator<DTKPDataStreamMemoryRecord *>> _records;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_releaseRecords;
+- (int)peekAtRawDataWithError:(id *)arg1 block:(CDUnknownBlockType)arg2;
 - (int)exportRawDataWithError:(id *)arg1 block:(CDUnknownBlockType)arg2;
-- (int)importRawData:(void *)arg1 bufferSize:(unsigned long long)arg2 error:(id *)arg3;
+- (int)importRawData:(const void *)arg1 bufferSize:(unsigned long long)arg2 error:(id *)arg3 destructor:(CDUnknownBlockType)arg4;
 - (int)setWritingCompletedWithError:(id *)arg1;
 - (BOOL)hasData;
 - (void)dealloc;

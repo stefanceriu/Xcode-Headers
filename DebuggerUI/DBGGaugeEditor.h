@@ -8,11 +8,11 @@
 
 #import "IDEDebugGaugeReportContentDelegate.h"
 
-@class DBGDebugSession, NSString;
+@class IDEDebugSession, NSString;
 
 @interface DBGGaugeEditor : IDEDebugGaugeReportEditor <IDEDebugGaugeReportContentDelegate>
 {
-    DBGDebugSession *_debugSession;
+    IDEDebugSession *_debugSession;
 }
 
 - (void).cxx_destruct;

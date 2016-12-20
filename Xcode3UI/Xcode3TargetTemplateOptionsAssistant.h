@@ -7,10 +7,11 @@
 #import "IDETemplateOptionsAssistant.h"
 
 #import "IDECompletionDestinationDelegate.h"
+#import "IDETemplateTeamPickerViewControllerDelegate.h"
 
-@class IDECompletionDestinationManager, NSArray, NSMutableDictionary, NSPopUpButton, NSString, Xcode3Target, Xcode3TargetChooserViewController;
+@class IDECompletionDestinationManager, IDETemplateTeamPickerViewController, NSArray, NSMutableDictionary, NSPopUpButton, NSString, Xcode3Target, Xcode3TargetChooserViewController;
 
-@interface Xcode3TargetTemplateOptionsAssistant : IDETemplateOptionsAssistant <IDECompletionDestinationDelegate>
+@interface Xcode3TargetTemplateOptionsAssistant : IDETemplateOptionsAssistant <IDETemplateTeamPickerViewControllerDelegate, IDECompletionDestinationDelegate>
 {
     NSPopUpButton *_destinationPopUp;
     IDECompletionDestinationManager *_destinationManager;
@@ -25,6 +26,7 @@
     NSString *_associatedTargetPopUpTitle;
     NSString *_associatedTargetPopUpDescription;
     NSMutableDictionary *_prevOptionValuesFromConstraints;
+    IDETemplateTeamPickerViewController *_teamPickerViewController;
     Xcode3TargetChooserViewController *_blueprintChooser;
 }
 
@@ -35,6 +37,7 @@
 - (void)destinationManagerWorkspaceDidChange:(id)arg1;
 - (void)destinationManagerGroupDidChange:(id)arg1;
 - (BOOL)destinationManager:(id)arg1 shouldAddItemToMenu:(id)arg2;
+- (void)didSelectTeam:(id)arg1;
 - (void)restoreSelectionFromUserDefaults;
 - (void)setAssistantContext:(id)arg1;
 - (void)takeSelectedTargetFromMenuItem:(id)arg1;
@@ -50,7 +53,9 @@
 - (BOOL)validatePackageName:(id)arg1 error:(id *)arg2;
 - (void)viewWillUninstall;
 - (BOOL)itemIsProject:(id)arg1;
+- (struct CGRect)_frameForControl:(id)arg1 option:(id)arg2 mainViewBounds:(struct CGRect)arg3 minLabelWidth:(double)arg4;
 - (id)createControlForOption:(id)arg1 withOptionArray:(id)arg2;
+- (id)additionalSortedOptions;
 - (id)additionalOptions;
 - (void)primitiveInvalidate;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

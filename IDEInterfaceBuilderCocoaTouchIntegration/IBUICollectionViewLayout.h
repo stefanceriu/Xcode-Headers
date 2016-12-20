@@ -17,6 +17,7 @@
     IBCocoaTouchTargetRuntime *targetRuntime;
 }
 
++ (id)dvt_keysToSkipWeakReferenceObservingValidation;
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 @property(retain, nonatomic) IBCocoaTouchTargetRuntime *targetRuntime; // @synthesize targetRuntime;
 @property(nonatomic) __weak IBUICollectionView *collectionView; // @synthesize collectionView;

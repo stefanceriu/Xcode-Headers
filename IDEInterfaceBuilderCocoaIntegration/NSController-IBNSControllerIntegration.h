@@ -15,5 +15,6 @@
 - (id)ibShadowedControllerObjectAttribute;
 - (void)setIbShadowedControllerObjectAttribute:(id)arg1;
 - (id)ibControllerKeys;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

@@ -8,6 +8,7 @@
 
 @class NSMutableSet;
 
+__attribute__((visibility("hidden")))
 @interface _DTTimelineTileContentCacheEntry : NSObject
 {
     unsigned long long cost;

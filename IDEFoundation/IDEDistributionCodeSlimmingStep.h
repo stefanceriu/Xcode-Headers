@@ -15,7 +15,7 @@
 
 + (id)machODestinationFilePathForDistributionItem:(id)arg1 distributionItemDestinationParent:(id)arg2;
 + (id)requiresBitcodeAppStoreSubmission:(id)arg1 platformsWithRequiredBitcode:(id)arg2 error:(id *)arg3;
-+ (id)wantsBitcodeAskForItem:(id)arg1 platformsWithOptionalBitcode:(id)arg2 error:(id *)arg3;
++ (id)wantsBitcodeAskForItem:(id)arg1 platformsWithOptionalBitcode:(id)arg2 archive:(id)arg3 error:(id *)arg4;
 + (BOOL)stripMachOAtPath:(id)arg1 strippingOptions:(unsigned long long)arg2 logAspect:(id)arg3 error:(id *)arg4;
 @property(retain, nonatomic) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
 - (void).cxx_destruct;

@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class DVTPerformanceMetric, IDEIndex, IDEIndexImportSession, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>;
+@class DVTNotificationToken, DVTPerformanceMetric, IDEIndex, IDEIndexImportSession, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>;
 
 @interface IDEIndexingEngine : NSObject <NSCopying>
 {
@@ -25,7 +25,7 @@
     NSMutableDictionary *_missingFiles;
     NSMutableDictionary *_priorityFiles;
     IDEIndexImportSession *_session;
-    id _prebuildNotificationToken;
+    DVTNotificationToken *_prebuildNotificationToken;
     double _timeIndexablesChanged;
     double _timeFilesChanged;
     double _timeFileJobsChanged;

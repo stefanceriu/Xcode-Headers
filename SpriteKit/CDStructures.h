@@ -111,6 +111,32 @@ struct SKCAnimate {
     char _field26;
 };
 
+struct SKCAnimateMesh {
+    CDUnknownFunctionPointerType *_field1;
+    unsigned int _field2;
+    float _field3;
+    CDUnknownBlockType _field4;
+    id _field5;
+    _Bool _field6;
+    double _field7;
+    double _field8;
+    float _field9;
+    float _field10;
+    double _field11;
+    _Bool _field12;
+    _Bool _field13;
+    CDUnknownBlockType _field14;
+    long long _field15;
+    float _field16;
+    float _field17;
+    float _field18;
+    float _field19;
+    id _field20;
+    id _field21;
+    id _field22;
+    char _field23;
+};
+
 struct SKCColorize {
     CDUnknownFunctionPointerType *_field1;
     unsigned int _field2;
@@ -131,26 +157,11 @@ struct SKCColorize {
     float _field17;
     float _field18;
     float _field19;
-    struct {
-        float _field1;
-        float _field2;
-        float _field3;
-        float _field4;
-    } _field20;
+    CDStruct_818bb265 _field20;
     float _field21;
-    struct {
-        float _field1;
-        float _field2;
-        float _field3;
-        float _field4;
-    } _field22;
+    CDStruct_818bb265 _field22;
     float _field23;
-    struct {
-        float _field1;
-        float _field2;
-        float _field3;
-        float _field4;
-    } _field24;
+    CDStruct_818bb265 _field24;
     float _field25;
     char _field26;
 };
@@ -542,6 +553,8 @@ struct SKCScale {
     char _field30;
     char _field31;
     char _field32;
+    char _field33;
+    struct CGSize _field34;
 };
 
 struct SKCSequence {
@@ -622,9 +635,11 @@ struct SKCStats {
         int opCount;
         int quadCount;
         int nodeTraversalCount;
+        int sknodeTraversalCount;
         int nodeRenderCount;
         int drawCallCount;
         int passCount;
+        int maxBatchElementCount;
     } render;
 };
 
@@ -685,12 +700,20 @@ struct Token;
 
 struct __hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, SKTexture *>, void *>;
 
-struct __list_node<SKCAction *, void *>;
+struct __list_node_base<SKCAction *, void *> {
+    struct __list_node_base<SKCAction *, void *> *_field1;
+    struct __list_node_base<SKCAction *, void *> *_field2;
+};
 
 struct __shared_weak_count;
 
 struct __tree_end_node<std::__1::__tree_node_base<void *>*> {
     struct __tree_node_base<void *> *__left_;
+};
+
+struct _opaque_pthread_mutex_t {
+    long long __sig;
+    char __opaque[56];
 };
 
 struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> {
@@ -725,15 +748,10 @@ struct jet_framebuffer;
 
 struct jet_program;
 
-struct jet_texture {
-    CDUnknownFunctionPointerType *_field1;
-};
+struct jet_texture;
 
 struct list<SKCAction *, std::__1::allocator<SKCAction *>> {
-    struct __list_node_base<SKCAction *, void *> {
-        struct __list_node<SKCAction *, void *> *_field1;
-        struct __list_node<SKCAction *, void *> *_field2;
-    } _field1;
+    struct __list_node_base<SKCAction *, void *> _field1;
     struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<SKCAction *, void *>>> {
         unsigned long long _field1;
     } _field2;
@@ -910,6 +928,14 @@ struct vector<Token, std::__1::allocator<Token>> {
     } _field3;
 };
 
+struct vector<float __attribute__((ext_vector_type(2))), std::__1::allocator<float __attribute__((ext_vector_type(2)))>> {
+    void *__begin_;
+    void *__end_;
+    struct __compressed_pair<float * __attribute__((ext_vector_type(2))), std::__1::allocator<float __attribute__((ext_vector_type(2)))>> {
+        void *__first_;
+    } __end_cap_;
+};
+
 #pragma mark Typedef'd Structures
 
 typedef struct {
@@ -925,6 +951,19 @@ typedef struct {
 } CDStruct_febfcd7b;
 
 typedef struct {
+    float _field1;
+    float _field2;
+    float _field3;
+    float _field4;
+} CDStruct_818bb265;
+
+typedef struct {
+    float _field1;
+    float _field2;
+    float _field3;
+} CDStruct_869f9c67;
+
+typedef struct {
     unsigned int _field1;
     int _field2;
     long long _field3;
@@ -937,13 +976,6 @@ typedef struct {
 } CDStruct_e50ab651;
 
 // Ambiguous groups
-typedef struct {
-    float _field1;
-    float _field2;
-    float _field3;
-    float _field4;
-} CDStruct_818bb265;
-
 typedef struct {
     float _field1;
     float _field2;
@@ -1062,51 +1094,46 @@ typedef struct vector<Token, std::__1::allocator<Token>> {
 #pragma mark Named Unions
 
 union _GLKMatrix2 {
-    struct {
-        float m00;
-        float m01;
-        float m10;
-        float m11;
-    } ;
-    float m2[2][2];
-    float m[4];
+    CDStruct_818bb265 _field1;
+    float _field2[2][2];
+    float _field3[4];
 };
 
 union _GLKMatrix3 {
     struct {
-        float m00;
-        float m01;
-        float m02;
-        float m10;
-        float m11;
-        float m12;
-        float m20;
-        float m21;
-        float m22;
-    } ;
-    float m[9];
+        float _field1;
+        float _field2;
+        float _field3;
+        float _field4;
+        float _field5;
+        float _field6;
+        float _field7;
+        float _field8;
+        float _field9;
+    } _field1;
+    float _field2[9];
 };
 
 union _GLKMatrix4 {
     struct {
-        float m00;
-        float m01;
-        float m02;
-        float m03;
-        float m10;
-        float m11;
-        float m12;
-        float m13;
-        float m20;
-        float m21;
-        float m22;
-        float m23;
-        float m30;
-        float m31;
-        float m32;
-        float m33;
-    } ;
-    float m[16];
+        float _field1;
+        float _field2;
+        float _field3;
+        float _field4;
+        float _field5;
+        float _field6;
+        float _field7;
+        float _field8;
+        float _field9;
+        float _field10;
+        float _field11;
+        float _field12;
+        float _field13;
+        float _field14;
+        float _field15;
+        float _field16;
+    } _field1;
+    float _field2[16];
 };
 
 union _GLKVector2 {
@@ -1122,43 +1149,16 @@ union _GLKVector2 {
 };
 
 union _GLKVector3 {
-    struct {
-        float x;
-        float y;
-        float z;
-    } ;
-    struct {
-        float r;
-        float g;
-        float b;
-    } ;
-    struct {
-        float s;
-        float t;
-        float p;
-    } ;
-    float v[3];
+    CDStruct_869f9c67 _field1;
+    CDStruct_869f9c67 _field2;
+    CDStruct_869f9c67 _field3;
+    float _field4[3];
 };
 
 union _GLKVector4 {
-    struct {
-        float x;
-        float y;
-        float z;
-        float w;
-    } ;
-    struct {
-        float r;
-        float g;
-        float b;
-        float a;
-    } ;
-    struct {
-        float s;
-        float t;
-        float p;
-        float q;
-    } ;
-    float v[4];
+    CDStruct_818bb265 _field1;
+    CDStruct_818bb265 _field2;
+    CDStruct_818bb265 _field3;
+    float _field4[4];
 };
 

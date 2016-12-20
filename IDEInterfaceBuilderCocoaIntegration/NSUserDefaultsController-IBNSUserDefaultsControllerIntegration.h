@@ -16,6 +16,7 @@
 - (id)ibSwizzledAwakeAfterUsingCoder:(id)arg1;
 - (BOOL)ibIsPlaceholder;
 - (id)ibResolvedTypeNameForControllerKey:(id)arg1;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property BOOL ibShadowedAppliesImmediately; // @dynamic ibShadowedAppliesImmediately;

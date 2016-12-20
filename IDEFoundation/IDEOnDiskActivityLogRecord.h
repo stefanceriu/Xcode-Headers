@@ -6,11 +6,9 @@
 
 #import <IDEFoundation/IDEActivityLogRecord.h>
 
-#import "DVTInvalidation.h"
+@class DVTFileDataType, DVTObservingToken, IDEActivityLogSection, IDEOnDiskLogStore_Impl, IDETypeIdentifier, NSString;
 
-@class DVTFileDataType, DVTObservingToken, DVTStackBacktrace, IDEActivityLogSection, IDEOnDiskLogStore_Impl, IDETypeIdentifier, NSString;
-
-@interface IDEOnDiskActivityLogRecord : IDEActivityLogRecord <DVTInvalidation>
+@interface IDEOnDiskActivityLogRecord : IDEActivityLogRecord
 {
     IDEOnDiskLogStore_Impl *_logStore;
     IDEActivityLogSection *_strongFullLog;
@@ -28,13 +26,11 @@
 }
 
 + (id)keyPathsForValuesAffectingIsRecording;
-+ (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
-+ (void)initialize;
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 @property(retain, nonatomic) IDEActivityLogSection *recorderLog; // @synthesize recorderLog=_recorderLog;
 @property(nonatomic) double timeStoppedRecording; // @synthesize timeStoppedRecording=_timeStoppedRecording;
 - (void).cxx_destruct;
-@property(readonly, copy) NSString *description;
+- (id)description;
 - (id)highLevelStatus;
 - (id)signature;
 - (id)documentType;
@@ -50,20 +46,13 @@
 - (id)fullLogWithError:(id *)arg1;
 - (void)removeSelfWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (BOOL)isRemoved;
-- (void)primitiveInvalidate;
+- (void)tearDown;
+- (void)addObserver:(id)arg1 forKeyPath:(id)arg2 options:(unsigned long long)arg3 context:(void *)arg4;
 - (id)initWithUUID:(id)arg1 store:(id)arg2 cacheEntry:(id)arg3 updatedCache:(char *)arg4 error:(id *)arg5;
 - (id)initWithLog:(id)arg1 entityIdentifier:(id)arg2 store:(id)arg3;
 - (id)coverageReport;
 - (id)coverageReportFilePath;
 - (id)testableSummariesPlistFilePath;
-
-// Remaining properties
-@property(retain) DVTStackBacktrace *creationBacktrace;
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly) Class superclass;
-@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

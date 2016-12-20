@@ -18,6 +18,12 @@
 }
 
 + (id)versionWithMajor:(unsigned long long)arg1 minor:(unsigned long long)arg2 update:(unsigned long long)arg3;
++ (id)version8_2_0;
++ (id)version8_1_0;
++ (id)version8_0_0;
++ (id)version7_3_1;
++ (id)version7_3_0;
++ (id)version7_2_2;
 + (id)version7_2_1;
 + (id)version7_2_0;
 + (id)version7_1_1;
@@ -84,6 +90,7 @@
 - (unsigned long long)hash;
 - (long long)compare:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
+- (id)init;
 - (id)initWithVersionMajor:(unsigned long long)arg1 minor:(unsigned long long)arg2 update:(unsigned long long)arg3;
 
 @end

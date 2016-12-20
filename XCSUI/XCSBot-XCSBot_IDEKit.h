@@ -8,6 +8,7 @@
 
 @interface XCSBot (XCSBot_IDEKit)
 + (void)componentsFromBotURL:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
++ (id)botURLForBotWithID:(id)arg1 clientUUID:(id)arg2;
 + (id)botURLForBotWithID:(id)arg1 server:(id)arg2;
 - (long long)compare:(id)arg1;
 - (id)botURL;

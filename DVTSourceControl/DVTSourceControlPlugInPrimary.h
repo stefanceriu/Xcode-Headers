@@ -15,8 +15,10 @@
     double _lastProgressValueSent;
 }
 
++ (BOOL)_mustSpecifyMD5ForSSH;
++ (id)_authenticationAgentExecutablePath;
 + (id)_launchPathForTask:(id)arg1;
-- (void)createWorkingCopyFromRepository:(id)arg1 location:(id)arg2 branchAndTagLocations:(id)arg3 localAddress:(id)arg4 progressIdentifier:(id)arg5 completionBlock:(CDUnknownBlockType)arg6;
+- (void)createWorkingCopyFromRepository:(id)arg1 location:(id)arg2 branchAndTagLocations:(id)arg3 useRevision:(BOOL)arg4 localAddress:(id)arg5 existingAddress:(id)arg6 progressIdentifier:(id)arg7 completionBlock:(CDUnknownBlockType)arg8;
 - (void)validateAuthenticationOfRemoteRepository:(id)arg1 location:(id)arg2 branchAndTagLocations:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)createRepositoryAtFileURL:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)automaticallyDetectBranchAndTagLocationsForRepository:(id)arg1 fromPath:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
@@ -42,13 +44,16 @@
 - (void)baseRevisionOfWorkingCopy:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)switchLocation:(id)arg1 ofWorkingCopy:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)currentLocationOfWorkingCopy:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (void)historyOfWorkingCopy:(id)arg1 fromRevision:(id)arg2 toRevision:(id)arg3 inclusionType:(unsigned long long)arg4 maximumLogItems:(long long)arg5 searchString:(id)arg6 searchType:(unsigned long long)arg7 progressIdentifier:(id)arg8 completionBlock:(CDUnknownBlockType)arg9;
+- (void)historyOfWorkingCopy:(id)arg1 fromRevision:(id)arg2 toRevision:(id)arg3 inclusionType:(unsigned long long)arg4 maximumLogItems:(long long)arg5 searchString:(id)arg6 searchType:(unsigned long long)arg7 includeFilePaths:(BOOL)arg8 showMergeCommits:(BOOL)arg9 progressIdentifier:(id)arg10 completionBlock:(CDUnknownBlockType)arg11;
 - (void)forceUpdateWorkingCopy:(id)arg1 fromRepository:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)mergeBranch:(id)arg1 intoWorkingCopy:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (void)historyOfFile:(id)arg1 inWorkingCopy:(id)arg2 fromRevisionLocation:(id)arg3 toRevision:(id)arg4 inclusionType:(unsigned long long)arg5 maximumLogItems:(long long)arg6 searchString:(id)arg7 searchType:(unsigned long long)arg8 progressIdentifier:(id)arg9 completionBlock:(CDUnknownBlockType)arg10;
-- (void)blameFile:(id)arg1 inWorkingCopy:(id)arg2 fromRevisionLocation:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
-- (void)exportFile:(id)arg1 inWorkingCopy:(id)arg2 forParentOfRevision:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
-- (void)exportFile:(id)arg1 inWorkingCopy:(id)arg2 fromRevisionLocation:(id)arg3 toDirectory:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (void)commitDetails:(id)arg1 revisions:(id)arg2 progressIdentifier:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (void)historyOfFileWithNameStatus:(id)arg1 inWorkingCopy:(id)arg2 fromRevisionLocation:(id)arg3 showMergeCommits:(BOOL)arg4 follow:(BOOL)arg5 maxLogItems:(long long)arg6 completionBlock:(CDUnknownBlockType)arg7;
+- (void)commitDetailsWithParents:(id)arg1 forRevision:(id)arg2 path:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (void)historyOfFile:(id)arg1 inWorkingCopy:(id)arg2 searchString:(id)arg3 searchType:(unsigned long long)arg4 showMergeCommits:(BOOL)arg5 progressIdentifier:(id)arg6 completionBlock:(CDUnknownBlockType)arg7;
+- (void)blameFile:(id)arg1 inWorkingCopy:(id)arg2 fromRevisionLocation:(id)arg3 ignoreWhitespace:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (void)exportFileWithParent:(id)arg1 path:(id)arg2 revision:(id)arg3 status:(unsigned long long)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (void)exportFile:(id)arg1 inWorkingCopy:(id)arg2 fromRevisionLocation:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)commitFiles:(id)arg1 inWorkingCopy:(id)arg2 message:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)markAsResolvedFiles:(id)arg1 inWorkingCopy:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)discardAllChangesInWorkingCopy:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
@@ -66,8 +71,13 @@
 - (void)operationsFinished;
 - (void)setIncrementalLogStatus:(id)arg1 info:(id)arg2 progressIdentifier:(id)arg3;
 - (void)setProgressStatus:(long long)arg1 progressValue:(double)arg2 userReadableString:(id)arg3 progressIdentifier:(id)arg4;
+- (BOOL)shouldUpdateProgress;
 - (id)_readDataFromFileHandle:(id)arg1 intoBuffer:(id)arg2 outstandingOperationCounter:(long long *)arg3 dataParsingBlock:(CDUnknownBlockType)arg4;
-- (id)tempFilePathBasedOnFileName:(id)arg1;
+- (id)generateTemporaryPath:(id)arg1 withUTF8Content:(id)arg2 error:(id *)arg3;
+- (id)createTemporaryFolder:(id)arg1 error:(id *)arg2;
+- (id)writeRelativePath:(id)arg1 toFolder:(id)arg2 withData:(id)arg3 error:(id *)arg4;
+- (id)generateTemporaryPath:(id)arg1 withData:(id)arg2 error:(id *)arg3;
+- (id)tempFilePathBasedOnFileName:(id)arg1 outError:(id *)arg2;
 - (id)init;
 
 // Remaining properties

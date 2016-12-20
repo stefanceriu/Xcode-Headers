@@ -8,25 +8,18 @@
 
 #import "IDELocalizationWorkProvider.h"
 
-@class DVTLocale, IDEFileReference, IDELocalizationWorkReadStrings, NSString, Xcode3LocalizedIBDocumentAdaptor;
-
 @interface Xcode3LocalizedIBDocumentAdaptorReadWorkContext : IDELocalizationWorkContext <IDELocalizationWorkProvider>
 {
-    Xcode3LocalizedIBDocumentAdaptor *_adaptor;
-    IDEFileReference *_fileReference;
-    DVTLocale *_language;
-    NSString *_tempPath;
-    IDELocalizationWorkReadStrings *_readContext;
 }
 
-@property(retain) IDELocalizationWorkReadStrings *readContext; // @synthesize readContext=_readContext;
-@property(retain) NSString *tempPath; // @synthesize tempPath=_tempPath;
-@property(retain) DVTLocale *language; // @synthesize language=_language;
-@property(retain) IDEFileReference *fileReference; // @synthesize fileReference=_fileReference;
-@property(retain) Xcode3LocalizedIBDocumentAdaptor *adaptor; // @synthesize adaptor=_adaptor;
-- (void).cxx_destruct;
++ (id)contextWithParent:(id)arg1 fileReference:(id)arg2 adaptor:(id)arg3;
++ (id)contextWithParent:(id)arg1 language:(id)arg2 fileReference:(id)arg3 adaptor:(id)arg4;
 - (id)work;
-- (void)primitiveInvalidate;
+- (id)readStringsContext;
+- (id)tempPathString;
+- (id)language;
+- (id)fileReference;
+- (id)adaptor;
 
 @end
 

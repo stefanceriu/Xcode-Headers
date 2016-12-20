@@ -8,10 +8,11 @@
 
 #import "NSWindowDelegate.h"
 
-@class NSPathControl, NSString;
+@class NSPathControl, NSString, NSTextField;
 
 @interface IDEBatchFindScopeLocationRow : IDEBatchFindScopeRuleRow <NSWindowDelegate>
 {
+    NSTextField *textField;
     NSPathControl *_otherPathControl;
     BOOL _isShowingPathControl;
 }
@@ -20,6 +21,7 @@
 @property(readonly) BOOL isShowingPathControl; // @synthesize isShowingPathControl=_isShowingPathControl;
 - (void).cxx_destruct;
 - (void)pathControl:(id)arg1 willDisplayOpenPanel:(id)arg2;
+- (id)rhsPredicateValue;
 - (id)criteriaNodesForMatchingPredicate:(id)arg1;
 - (id)predicateForIndexPath:(id)arg1;
 - (id)displayValueForPath:(id)arg1;

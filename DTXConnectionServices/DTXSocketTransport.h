@@ -19,7 +19,7 @@
 + (id)addressForHost:(const char *)arg1 port:(int)arg2;
 + (id)schemes;
 @property(readonly) int port; // @synthesize port=_port;
-- (int)supportedDirections;
+- (unsigned int)supportedDirections;
 - (id)localAddresses;
 - (void)disconnect;
 - (unsigned long long)transmit:(const void *)arg1 ofLength:(unsigned long long)arg2;

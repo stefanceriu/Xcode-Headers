@@ -23,6 +23,8 @@
 - (struct CGPoint)pointForCanvasLink:(id)arg1 withIndex:(long long)arg2 inSeriesOfSeguesWithCount:(long long)arg3 atEdge:(unsigned long long)arg4;
 - (CDStruct_f6143a38)spanForAttachingSeguesToEdge:(unsigned long long)arg1 inSeriesOfSeguesWithCount:(long long)arg2;
 - (CDStruct_c519178c)contentInsetForAttachingSeguesToEdge:(unsigned long long)arg1 inSeriesOfSeguesWithCount:(long long)arg2;
+- (id)accessibilityRoleDescription;
+- (id)accessibilityChildren;
 - (void)setTitle:(id)arg1;
 - (id)storyboardCanvasViewController;
 - (void)willRemoveFromCanvas;

@@ -35,7 +35,7 @@
 - (void)insertSubplane:(id)arg1 afterSubplane:(id)arg2 inGroupPlane:(id)arg3;
 - (void)addSubplanes:(id)arg1 toGroupPlane:(id)arg2;
 - (void)addSubplane:(id)arg1 toGroupPlane:(id)arg2;
-- (void)setHeight:(double)arg1 onPlane:(id)arg2;
+- (BOOL)setHeight:(double)arg1 onPlane:(id)arg2;
 - (void)removeAllPlanes;
 - (void)removePlane:(id)arg1;
 - (void)insertPlane:(id)arg1 afterPlane:(id)arg2;

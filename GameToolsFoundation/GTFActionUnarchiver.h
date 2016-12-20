@@ -36,6 +36,7 @@
 - (int)decodeInt32ForKey:(id)arg1;
 - (int)decodeIntForKey:(id)arg1;
 - (BOOL)decodeBoolForKey:(id)arg1;
+- (void)addPairToCurrentGroupWithKey:(id)arg1 value:(id)arg2;
 - (id)decodeObjectForKey:(id)arg1;
 - (Class)classForClassName:(id)arg1;
 - (id)initForReadingWithData:(id)arg1;

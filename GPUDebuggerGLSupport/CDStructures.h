@@ -11,12 +11,12 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 #pragma mark Named Structures
 
 struct Argument {
-    void *_field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned short _field5;
-    unsigned short _field6;
+    void *value;
+    unsigned int core_type;
+    unsigned int sem_type;
+    unsigned int size;
+    unsigned short length;
+    unsigned short flags;
 };
 
 struct BindingPoint {
@@ -28,6 +28,13 @@ struct BlendChannelSetup {
     unsigned int _field1;
     unsigned int _field2;
     unsigned int _field3;
+};
+
+struct Buffer {
+    char *_field1;
+    unsigned int _field2;
+    unsigned long long _field3;
+    struct __CFString *_field4;
 };
 
 struct BufferObject<GPUGLSMObjectTypes> {
@@ -47,9 +54,12 @@ struct BufferObject<GPUGLSMObjectTypes> {
     struct DYStateElement<std::__1::basic_string<char>, GPUTools::CStateBaseAnalysis> _mObjectLabel;
 };
 
-struct CGPoint {
-    double _field1;
-    double _field2;
+struct BufferSource {
+    unsigned int _field1;
+    unsigned long long _field2;
+    unsigned long long _field3;
+    int _field4;
+    unsigned int _field5;
 };
 
 struct CGSize {
@@ -252,20 +262,20 @@ struct ContextStateMirror<GPUGLSMObjectTypes> {
 };
 
 struct CoreFunction {
-    unsigned int _field1;
-    unsigned int _field2;
-    unsigned short _field3;
-    unsigned short _field4;
+    unsigned int fenum;
+    unsigned int flags;
+    unsigned short padding;
+    unsigned short argument_count;
     union {
-        unsigned long long _field1;
-        unsigned long long _field2;
-    } _field5;
-    struct Argument _field6;
-    struct Argument _field7[16];
-    unsigned int _field8;
-    unsigned int _field9;
-    void *_field10;
-    void *_field11;
+        unsigned long long context_id;
+        unsigned long long receiver_id;
+    } ;
+    struct Argument return_value;
+    struct Argument arguments[16];
+    unsigned int fbuf_size;
+    unsigned int internal_buffer_size;
+    void *fbuf;
+    void *internal_buffer;
 };
 
 struct DYStateElement<DYMtx, GPUTools::CStateBaseAnalysis> {
@@ -364,26 +374,33 @@ struct FramebufferObject<GPUGLSMObjectTypes> {
 };
 
 struct Function {
-    struct CoreFunction _field1;
-    unsigned long long _field2;
-    unsigned long long _field3;
-    unsigned long long *_field4;
-    unsigned short _field5;
-    unsigned short _field6;
-    int _field7;
-    void *_field8;
-    unsigned int _field9;
-    unsigned int _field10;
-    unsigned long long _field11;
-    unsigned long long _field12;
-    struct Function *_field13;
-    void *_field14;
+    struct CoreFunction core;
+    unsigned long long timestamp;
+    unsigned long long duration;
+    unsigned long long *backtrace;
+    unsigned short backtrace_length;
+    unsigned short gl_error;
+    int events_type;
+    void *events;
+    unsigned int events_size;
+    unsigned int queue_width;
+    unsigned long long queue_id;
+    unsigned long long thread_id;
+    struct Function *next_associated;
+    void *sm_context;
 };
 
 struct GPUGLBindPoint {
     unsigned int _field1;
     unsigned int _field2;
+    int _field3;
+    int _field4;
+    unsigned int _field5;
+    unsigned int _field6;
+    id _field7;
 };
+
+struct IFunctionDecoder;
 
 struct ObjectStateEnum {
     int _field1;
@@ -620,6 +637,20 @@ struct StencilSideSetup {
     unsigned int _field7;
 };
 
+struct Struct {
+    struct __CFString *_field1;
+    int _field2;
+    unsigned int _field3;
+    unsigned int _field4;
+    int _field5;
+    int _field6;
+    unsigned long long _field7;
+    struct BufferSource _field8;
+    struct vector<GPUToolsPlatformSupport::Common::GPUDebugger::Struct, std::__1::allocator<GPUToolsPlatformSupport::Common::GPUDebugger::Struct>> _field9;
+};
+
+struct StructNameOffset;
+
 struct SyncObject<GPUGLSMObjectTypes> {
     int _functionIndex;
     int _objectID;
@@ -630,6 +661,8 @@ struct SyncObject<GPUGLSMObjectTypes> {
     struct DYStateElement<unsigned int, GPUTools::CStateBaseAnalysis> _mSyncFlags;
     struct DYStateElement<std::__1::basic_string<char>, GPUTools::CStateBaseAnalysis> _mObjectLabel;
 };
+
+struct TFunctionStream<GPUTools::FD::Function, void>;
 
 struct TexEnvChannelSetup {
     unsigned int _field1;
@@ -653,6 +686,12 @@ struct TextureLayer<GPUGLSMObjectTypes> {
     struct DYStateElement<GPUTools::SM::GL::StateEnum, GPUTools::CStateBaseAnalysis> _mEngineTexDataFormat;
     struct DYStateElement<GPUTools::SM::GL::StateEnum, GPUTools::CStateBaseAnalysis> _mEngineTexDataType;
     struct DYStateElement<long long, GPUTools::CStateBaseAnalysis> _mTexDataOffset;
+    struct DYStateElement<unsigned long long, GPUTools::CStateBaseAnalysis> _mTexIOSurface;
+    struct DYStateElement<unsigned long long, GPUTools::CStateBaseAnalysis> _mTexIOSurfacePlane;
+    struct DYStateElement<std::__1::basic_string<char>, GPUTools::CStateBaseAnalysis> _mTexIOSurfaceYCBCRMatrix;
+    struct DYStateElement<unsigned long long, GPUTools::CStateBaseAnalysis> _mTexIOSurfacePixelFormat;
+    struct DYStateElement<std::__1::basic_string<char>, GPUTools::CStateBaseAnalysis> _mTexIOSurfaceColorPrimaries;
+    struct DYStateElement<std::__1::basic_string<char>, GPUTools::CStateBaseAnalysis> _mTexIOSurfaceTransferFunction;
 };
 
 struct TextureObject<GPUGLSMObjectTypes> {
@@ -700,6 +739,12 @@ struct TransformFeedbackObject<GPUGLSMObjectTypes> {
     struct DYStateElement<GPUTools::SM::GL::StateBool, GPUTools::CStateBaseAnalysis> _mTransformFeedbackPaused;
     struct DYStateElement<GPUTools::SM::GL::StateBool, GPUTools::CStateBaseAnalysis> _mTransformFeedbackActive;
     struct DYStateElement<std::__1::basic_string<char>, GPUTools::CStateBaseAnalysis> _mObjectLabel;
+};
+
+struct TypeOutputFormatTypeAlias {
+    int _field1;
+    int _field2;
+    int _field3;
 };
 
 struct VecN<double, 4> {
@@ -806,6 +851,17 @@ struct VertexArrayObject<GPUGLSMObjectTypes> {
     struct DYStateElement<std::__1::basic_string<char>, GPUTools::CStateBaseAnalysis> _mObjectLabel;
 };
 
+struct _Iterator<GPUTools::FD::Function> {
+    struct Function _function;
+    void *_encbuf;
+    void *_next;
+    void *_end;
+    struct IFunctionDecoder *_decoder;
+    _Bool _fast_size;
+};
+
+struct __CFString;
+
 struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>;
 
 struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>;
@@ -869,6 +925,11 @@ struct function<void *(const char *, unsigned long *)> {
 
 struct objc_wrapper<id> {
     id _object;
+};
+
+struct shared_ptr<GPUTools::FD::TFunctionStream<GPUTools::FD::Function, void>> {
+    struct TFunctionStream<GPUTools::FD::Function, void> *__ptr_;
+    struct __shared_weak_count *__cntrl_;
 };
 
 struct type {
@@ -1337,12 +1398,36 @@ struct vector<DYMtx, std::__1::allocator<DYMtx>> {
     } __end_cap_;
 };
 
+struct vector<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer, std::__1::allocator<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer>> {
+    struct Buffer *_field1;
+    struct Buffer *_field2;
+    struct __compressed_pair<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer *, std::__1::allocator<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer>> {
+        struct Buffer *_field1;
+    } _field3;
+};
+
 struct vector<GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>, std::__1::allocator<GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>> {
     struct ProgramUniform<GPUGLSMObjectTypes> *__begin_;
     struct ProgramUniform<GPUGLSMObjectTypes> *__end_;
     struct __compressed_pair<GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>*, std::__1::allocator<GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>> {
         struct ProgramUniform<GPUGLSMObjectTypes> *__first_;
     } __end_cap_;
+};
+
+struct vector<GPUToolsPlatformSupport::Common::GPUDebugger::Struct, std::__1::allocator<GPUToolsPlatformSupport::Common::GPUDebugger::Struct>> {
+    struct Struct *_field1;
+    struct Struct *_field2;
+    struct __compressed_pair<GPUToolsPlatformSupport::Common::GPUDebugger::Struct *, std::__1::allocator<GPUToolsPlatformSupport::Common::GPUDebugger::Struct>> {
+        struct Struct *_field1;
+    } _field3;
+};
+
+struct vector<StructNameOffset, std::__1::allocator<StructNameOffset>> {
+    struct StructNameOffset *_field1;
+    struct StructNameOffset *_field2;
+    struct __compressed_pair<StructNameOffset *, std::__1::allocator<StructNameOffset>> {
+        struct StructNameOffset *_field1;
+    } _field3;
 };
 
 struct vector<double, std::__1::allocator<double>> {
@@ -1875,4 +1960,20 @@ typedef struct basic_string<char, std::__1::char_traits<char>, std::__1::allocat
         } __first_;
     } __r_;
 } basic_string_805fe43b;
+
+typedef struct vector<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer, std::__1::allocator<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer>> {
+    struct Buffer *_field1;
+    struct Buffer *_field2;
+    struct __compressed_pair<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer *, std::__1::allocator<GPUDebugger::BufferViewer::AdaptorDataSource::Buffer>> {
+        struct Buffer *_field1;
+    } _field3;
+} vector_c26b6358;
+
+typedef struct vector<StructNameOffset, std::__1::allocator<StructNameOffset>> {
+    struct StructNameOffset *_field1;
+    struct StructNameOffset *_field2;
+    struct __compressed_pair<StructNameOffset *, std::__1::allocator<StructNameOffset>> {
+        struct StructNameOffset *_field1;
+    } _field3;
+} vector_44d4fed2;
 

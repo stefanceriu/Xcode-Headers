@@ -6,22 +6,31 @@
 
 #import "NSObject.h"
 
-#import "IDEPlaygroundSimDeviceFramebufferServiceClient.h"
+#import "SimDeviceFramebufferServiceClient.h"
 
-@class IDEPlaygroundSimDeviceFramebufferService, NSString;
+@class NSHashTable, NSString, SimDeviceFramebufferService;
 
-@interface IDESimulatorPlaygroundFramebufferServiceChannel : NSObject <IDEPlaygroundSimDeviceFramebufferServiceClient>
+@interface IDESimulatorPlaygroundFramebufferServiceChannel : NSObject <SimDeviceFramebufferServiceClient>
 {
-    id <IDESimulatorPlaygroundFramebufferServiceChannelDelegate> _delegate;
-    IDEPlaygroundSimDeviceFramebufferService *_registeredFramebufferService;
+    unsigned int _ioSurfaceID;
+    NSHashTable *_contentReceivers;
+    SimDeviceFramebufferService *_registeredFramebufferService;
+    struct CGSize _ioSurfaceSize;
 }
 
-@property __weak IDEPlaygroundSimDeviceFramebufferService *registeredFramebufferService; // @synthesize registeredFramebufferService=_registeredFramebufferService;
-@property __weak id <IDESimulatorPlaygroundFramebufferServiceChannelDelegate> delegate; // @synthesize delegate=_delegate;
+@property __weak SimDeviceFramebufferService *registeredFramebufferService; // @synthesize registeredFramebufferService=_registeredFramebufferService;
+@property struct CGSize ioSurfaceSize; // @synthesize ioSurfaceSize=_ioSurfaceSize;
+@property unsigned int ioSurfaceID; // @synthesize ioSurfaceID=_ioSurfaceID;
+@property(retain) NSHashTable *contentReceivers; // @synthesize contentReceivers=_contentReceivers;
 - (void).cxx_destruct;
 - (void)framebufferService:(id)arg1 didFailWithError:(id)arg2;
 - (void)framebufferService:(id)arg1 didRotateToAngle:(double)arg2;
-- (void)framebufferService:(id)arg1 didUpdateRegion:(struct CGRect)arg2 ofBackingStore:(id)arg3;
+- (void)present;
+- (void)setIOSurface:(struct __IOSurface *)arg1;
+- (void)unregisterFramebufferServiceChannelContentReceiver:(id)arg1;
+- (void)registerFramebufferServiceChannelContentReceiver:(id)arg1;
+- (void)dealloc;
+- (id)init;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

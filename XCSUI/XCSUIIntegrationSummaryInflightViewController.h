@@ -6,45 +6,39 @@
 
 #import "DVTViewController.h"
 
-#import "NSTableViewDataSource.h"
-#import "NSTableViewDelegate.h"
-#import "XCSUIIntegrationSteppedProgressViewLabelProvider.h"
+@class NSError, NSTimer, XCSBuildAgent, XCSIntegration, XCSUIProgressViewController;
 
-@class NSButton, NSProgressIndicator, NSString, NSTextField, XCSIntegration, XCSUIIntegrationSteppedProgressView;
-
-@interface XCSUIIntegrationSummaryInflightViewController : DVTViewController <NSTableViewDelegate, NSTableViewDataSource, XCSUIIntegrationSteppedProgressViewLabelProvider>
+@interface XCSUIIntegrationSummaryInflightViewController : DVTViewController
 {
     XCSIntegration *_integration;
-    NSTextField *_progressMessageField;
-    NSProgressIndicator *_progressBar;
-    XCSUIIntegrationSteppedProgressView *_progressView;
-    NSButton *_cancelButton;
-    long long _currentStep;
-    double _stepPartialProgress;
-    NSString *_lastKnownAdvisoryStatus;
+    XCSUIProgressViewController *_progressView;
+    double _progressBarValue;
+    XCSBuildAgent *_buildAgent;
+    NSError *_buildAgentError;
+    NSTimer *_progressTimer;
 }
 
-@property(retain) NSString *lastKnownAdvisoryStatus; // @synthesize lastKnownAdvisoryStatus=_lastKnownAdvisoryStatus;
-@property double stepPartialProgress; // @synthesize stepPartialProgress=_stepPartialProgress;
-@property long long currentStep; // @synthesize currentStep=_currentStep;
-@property __weak NSButton *cancelButton; // @synthesize cancelButton=_cancelButton;
-@property __weak XCSUIIntegrationSteppedProgressView *progressView; // @synthesize progressView=_progressView;
-@property __weak NSProgressIndicator *progressBar; // @synthesize progressBar=_progressBar;
-@property __weak NSTextField *progressMessageField; // @synthesize progressMessageField=_progressMessageField;
+@property(retain) NSTimer *progressTimer; // @synthesize progressTimer=_progressTimer;
+@property(retain) NSError *buildAgentError; // @synthesize buildAgentError=_buildAgentError;
+@property(retain) XCSBuildAgent *buildAgent; // @synthesize buildAgent=_buildAgent;
+@property double progressBarValue; // @synthesize progressBarValue=_progressBarValue;
+@property(retain) XCSUIProgressViewController *progressView; // @synthesize progressView=_progressView;
 @property(retain, nonatomic) XCSIntegration *integration; // @synthesize integration=_integration;
 - (void).cxx_destruct;
+- (id)accessibilityLabel;
+- (void)shareScreen:(id)arg1;
 - (void)cancelIntegration:(id)arg1;
-- (id)informativeStringForSteppedProgressView:(id)arg1 integrationStep:(long long)arg2;
-- (id)labelForSteppedProgressView:(id)arg1 integrationStep:(long long)arg2;
-- (void)updateProgressBar;
-@property(readonly) double progressBarValue;
+- (id)primaryText;
+- (void)updateProgress:(id)arg1;
+- (unsigned long long)numberOfIntegrationsAhead;
+- (id)stringForETA;
+- (id)dateComponentsFormatter;
+- (id)relativeDistanceFromDate:(id)arg1 toDate:(id)arg2;
+- (id)upcomingIntegrations;
+- (void)updateBuilderStatus;
+- (void)setError:(id)arg1;
+- (void)primitiveInvalidate;
 - (void)loadView;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

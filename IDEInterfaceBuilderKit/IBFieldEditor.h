@@ -62,6 +62,7 @@
 - (BOOL)shouldApplySideEffectsToEditedString;
 @property(readonly) BOOL madeExplicitAttributeChanges;
 @property(readonly) BOOL madeExplicitTextChanges;
+- (BOOL)canScaleIndependentlyFromCanvasContent;
 - (id)stringEditorCellForCurrentConfiguration;
 - (id)initWithConfiguration:(id)arg1;
 

@@ -13,6 +13,7 @@
 + (id)keyPathsForValuesAffectingide_offsetY_edit;
 + (id)keyPathsForValuesAffectingide_offsetX_edit;
 + (id)keyPathsForValuesAffectingintensity_edit;
++ (id)keyPathsForValuesAffectingide_floatContents_edit;
 + (id)keyPathsForValuesAffectingide_contents_edit;
 + (id)keyPathsForValuesAffectingmappingChannel_edit;
 + (id)keyPathsForValuesAffectingwrapT_edit;
@@ -32,6 +33,8 @@
 - (double)ide_offsetX_edit;
 - (void)setintensity_edit:(double)arg1;
 - (double)intensity_edit;
+- (void)setide_floatContents_edit:(float)arg1;
+- (float)ide_floatContents_edit;
 - (void)setide_contents_edit:(id)arg1;
 - (id)ide_contents_edit;
 - (void)setmappingChannel_edit:(long long)arg1;

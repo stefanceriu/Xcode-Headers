@@ -33,7 +33,7 @@
 - (id)thresholdValue;
 - (long long)thresholdMode;
 @property(readonly) SCNGeometry *geometry;
-- (void *)__CFObject;
+- (const void *)__CFObject;
 - (id)initWithGeometry:(id)arg1 thresholdMode:(long long)arg2 thresholdValue:(id)arg3;
 - (id)initWithGeometry:(id)arg1 thresholdMode:(long long)arg2 lod:(struct __C3DLOD *)arg3;
 - (void)_setupWithGeometry:(id)arg1 thresholdMode:(long long)arg2 value:(double)arg3;

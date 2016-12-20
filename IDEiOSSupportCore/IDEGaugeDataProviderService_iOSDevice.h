@@ -17,11 +17,13 @@
 + (id)observableAttributes;
 @property(retain) DTXChannel *channel; // @synthesize channel=_channel;
 - (void).cxx_destruct;
+- (BOOL)_isTargetOSVersion:(id)arg1 atLeastSupportedVersion:(id)arg2;
 - (void)didStopSampling;
 - (id)stopSamplingForPIDs:(id)arg1;
 - (id)sampleAttributes:(id)arg1 forPIDs:(id)arg2;
 - (id)startSamplingForPIDs:(id)arg1;
 - (void)willStartSamplingAtTime:(double)arg1 withInterval:(double)arg2;
+@property(readonly) id <DVTBasicDevice> samplingDevice;
 
 @end
 

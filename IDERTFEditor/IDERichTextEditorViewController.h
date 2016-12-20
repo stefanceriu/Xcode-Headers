@@ -38,7 +38,6 @@
 - (id)documentView;
 - (void)removePage;
 - (void)addPage;
-- (unsigned long long)numberOfPages;
 - (void)convertTextForRichTextStateRemoveAttachments:(BOOL)arg1;
 - (void)updateForRichTextAndRulerState;
 - (void)removeAttachments;

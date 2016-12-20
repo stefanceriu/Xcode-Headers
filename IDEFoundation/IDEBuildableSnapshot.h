@@ -16,23 +16,23 @@
     IDEActivityLogSection *_activityLogSection;
     BOOL _cleanupDidRun;
     int _buildResult;
-    DVTDispatchLock *_syncLock;
     NSMutableArray *_postprocessingBlocks;
     NSMutableArray *_readyBuildCommands;
     NSMutableArray *_startedBuildTasks;
+    DVTDispatchLock *_syncLock;
 }
 
 + (id)_enqueue_semaphore;
 + (void)initialize;
+@property(retain) DVTDispatchLock *syncLock; // @synthesize syncLock=_syncLock;
 @property int buildResult; // @synthesize buildResult=_buildResult;
 @property(retain) NSMutableArray *startedBuildTasks; // @synthesize startedBuildTasks=_startedBuildTasks;
 @property(retain) NSMutableArray *readyBuildCommands; // @synthesize readyBuildCommands=_readyBuildCommands;
 @property(retain) NSMutableArray *postprocessingBlocks; // @synthesize postprocessingBlocks=_postprocessingBlocks;
-@property(retain) DVTDispatchLock *syncLock; // @synthesize syncLock=_syncLock;
+@property(readonly) id <IDEBuildable> buildable; // @synthesize buildable=_buildable;
 @property(retain) IDEActivityLogSection *activityLogSection; // @synthesize activityLogSection=_activityLogSection;
 @property(readonly) IDEBuildParameters *buildParameters; // @synthesize buildParameters=_buildParameters;
 @property(readonly) NSString *name; // @synthesize name=_name;
-@property(readonly) id <IDEBuildable> buildable; // @synthesize buildable=_buildable;
 - (void).cxx_destruct;
 - (id)description;
 - (void)buildTask:(id)arg1 addsPostprocessingBlocks:(id)arg2 forBuilder:(id)arg3;
@@ -53,6 +53,8 @@
 - (void)_updateBuildOperationStatusForBuilder:(id)arg1 buildTask:(id)arg2;
 - (void)_buildTaskDidStartForBuilder:(id)arg1 buildTask:(id)arg2;
 - (void)addPostprocessingBlocks:(id)arg1;
+@property(readonly) NSString *logOutputSubpath; // @dynamic logOutputSubpath;
+- (id)initWithName:(id)arg1 buildParameters:(id)arg2;
 - (id)initFromBuildable:(id)arg1 withBuildParameters:(id)arg2;
 
 @end

@@ -9,7 +9,7 @@
 #import "IDEVariablesViewContentProvider.h"
 #import "IDEVariablesViewContextMenuDelegate.h"
 
-@class DBGDebugSession, DBGStackFrame, DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEVariablesView, NSButton, NSMutableDictionary, NSMutableSet, NSOrderedSet, NSString;
+@class DVTNotificationToken, DVTObservingToken, DVTStackBacktrace, IDEDebugSession, IDEStackFrame, IDEVariablesView, NSButton, NSMutableDictionary, NSMutableSet, NSOrderedSet, NSString;
 
 @interface DBGVariablesViewContentProvider : NSObject <IDEVariablesViewContextMenuDelegate, IDEVariablesViewContentProvider>
 {
@@ -23,7 +23,6 @@
     NSOrderedSet *_autosSymbols;
     DVTObservingToken *_debugSessionObserverToken;
     DVTObservingToken *_coalecesedStateObserverToken;
-    DVTObservingToken *_debugSessionValidityObserverToken;
     DVTObservingToken *_framePointerObserverToken;
     DVTObservingToken *_returnValueObserverToken;
     DVTObservingToken *_returnValueIsValidObserverToken;
@@ -36,13 +35,13 @@
     DVTNotificationToken *_outlineViewDidHideObserver;
     DVTNotificationToken *_outlineViewDidUnhideObserver;
     BOOL _loadingNewVariablesInBackground;
-    DBGDebugSession *_debugSession;
+    IDEDebugSession *_debugSession;
 }
 
 + (id)_createOptionsDictionaryFromOptionsElement:(id)arg1;
 + (void)initialize;
 @property BOOL loadingNewVariablesInBackground; // @synthesize loadingNewVariablesInBackground=_loadingNewVariablesInBackground;
-@property(retain) DBGDebugSession *debugSession; // @synthesize debugSession=_debugSession;
+@property(retain, nonatomic) IDEDebugSession *debugSession; // @synthesize debugSession=_debugSession;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)provideHelpMenuItem:(id)arg1;
@@ -126,7 +125,7 @@
 @property(readonly) BOOL showsArguments;
 @property(readonly) BOOL showsLocals;
 @property(readonly) BOOL showsAutos;
-@property(readonly) DBGStackFrame *currentStackFrame;
+@property(readonly) IDEStackFrame *currentStackFrame;
 - (void)_handleCurrentStackFrameFramePointerChanged;
 
 // Remaining properties

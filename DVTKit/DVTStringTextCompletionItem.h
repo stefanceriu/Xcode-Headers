@@ -41,6 +41,7 @@
 - (id)initWithName:(id)arg1;
 
 // Remaining properties
+@property(readonly, copy) NSString *action;
 @property(readonly, copy) NSArray *additionalCompletions;
 @property(readonly) int completionItemStyle;
 @property(readonly, copy) NSString *debugDescription;

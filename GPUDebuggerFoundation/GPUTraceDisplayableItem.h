@@ -6,16 +6,20 @@
 
 #import <GPUDebuggerFoundation/GPUTraceAPIItem.h>
 
+@class NSSet;
+
 @interface GPUTraceDisplayableItem : GPUTraceAPIItem
 {
     id <GPUTraceDisplaySet> _displaySet;
     int _displayableCallIndex;
+    NSSet *_precomputedFilterItems;
 }
 
+@property(retain, nonatomic) NSSet *precomputedFilterItems; // @synthesize precomputedFilterItems=_precomputedFilterItems;
 @property int displayableCallIndex; // @synthesize displayableCallIndex=_displayableCallIndex;
 @property(readonly) id <GPUTraceDisplaySet> displaySet; // @synthesize displaySet=_displaySet;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) BOOL showAsAPIItem; // @dynamic showAsAPIItem;
+@property(readonly, nonatomic) BOOL showAsAPIItem;
 - (void)_connectWireframeImageToDisplaySet:(id)arg1;
 - (void)_connectElementResourceToDisplaySet:(unsigned long long)arg1 resourceObject:(id)arg2;
 - (id)_startLoadingWireframeImage;
@@ -24,6 +28,7 @@
 - (id)_startLoadingDisplaySet;
 - (id)imageToExportToFile;
 - (id)updateDisplaySet;
+- (void)generateFilterItems;
 - (id)createRenderJobsForDisplaySet:(BOOL)arg1;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;

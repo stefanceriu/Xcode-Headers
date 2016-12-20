@@ -9,7 +9,7 @@
 #import "DVTInvalidation.h"
 #import "IDEReviewFilesDataSource.h"
 
-@class DVTStackBacktrace, IDENavigatorDataCell, NSArray, NSMutableSet, NSString;
+@class DVTStackBacktrace, IDENavigatorDataCell, IDESourceControlCommitViewerComparisonEditorDataSource, NSArray, NSMutableSet, NSString;
 
 @interface IDESourceControlCommitViewerNavigatorDataSource : NSObject <IDEReviewFilesDataSource, DVTInvalidation>
 {
@@ -17,9 +17,11 @@
     IDENavigatorDataCell *_cachedRepositoryContainerCell;
     NSArray *_navigableItems;
     NSMutableSet *_bindingTokens;
+    IDESourceControlCommitViewerComparisonEditorDataSource *_comparisonEditorDataSource;
 }
 
 + (void)initialize;
+@property __weak IDESourceControlCommitViewerComparisonEditorDataSource *comparisonEditorDataSource; // @synthesize comparisonEditorDataSource=_comparisonEditorDataSource;
 @property(retain) NSArray *navigableItems; // @synthesize navigableItems=_navigableItems;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;

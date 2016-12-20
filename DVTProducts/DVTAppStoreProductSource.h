@@ -11,19 +11,19 @@
 @interface DVTAppStoreProductSource : DVTProductSource
 {
     DVTPerformanceMetric *_perfMetric;
-    DVTFilePath *_productsRootDirectory;
     DVTDelayedInvocation *_delayedRefreshInvocation;
     DVTObservingToken *_developerAccountsObserver;
     NSSet *_developerAccountPasswordObservers;
+    DVTFilePath *_productsRootDirectory;
 }
 
 + (id)defaultProductsRootDirectory;
 + (BOOL)isAdamIdWhitelisted:(id)arg1;
 + (id)whiteListedAppByAdamId;
+@property(retain, nonatomic) DVTFilePath *productsRootDirectory; // @synthesize productsRootDirectory=_productsRootDirectory;
 @property(retain) NSSet *developerAccountPasswordObservers; // @synthesize developerAccountPasswordObservers=_developerAccountPasswordObservers;
 @property(retain) DVTObservingToken *developerAccountsObserver; // @synthesize developerAccountsObserver=_developerAccountsObserver;
 @property(retain, nonatomic) DVTDelayedInvocation *delayedRefreshInvocation; // @synthesize delayedRefreshInvocation=_delayedRefreshInvocation;
-@property(retain, nonatomic) DVTFilePath *productsRootDirectory; // @synthesize productsRootDirectory=_productsRootDirectory;
 - (void).cxx_destruct;
 - (id)_binaryInfosForVersion:(id)arg1;
 - (id)_supportedDeviceTypesForAppVersion:(id)arg1 productCategory:(id)arg2;

@@ -6,26 +6,16 @@
 
 #import "NSObject.h"
 
-@class DVTPortalCertificateType, NSDate, NSString;
+@class NSString;
 
 @interface DVTPortalCSR : NSObject
 {
-    NSString *_portalID;
     NSString *_portalCertificateID;
-    NSString *_name;
-    NSString *_status;
-    NSDate *_dateRequested;
-    DVTPortalCertificateType *_portalCertificateType;
 }
 
-+ (id)listCertificateRequestsWithSession:(id)arg1 andTeam:(id)arg2 ofType:(id)arg3 error:(id *)arg4;
-+ (id)requestCertificateWithSession:(id)arg1 andTeam:(id)arg2 ofType:(id)arg3 error:(id *)arg4;
-@property(readonly, copy, nonatomic) DVTPortalCertificateType *portalCertificateType; // @synthesize portalCertificateType=_portalCertificateType;
-@property(readonly, copy, nonatomic) NSDate *dateRequested; // @synthesize dateRequested=_dateRequested;
-@property(readonly, copy, nonatomic) NSString *status; // @synthesize status=_status;
-@property(readonly, copy, nonatomic) NSString *name; // @synthesize name=_name;
++ (id)createCertificateWithSession:(id)arg1 team:(id)arg2 type:(id)arg3 machineName:(id)arg4 machineID:(id)arg5 csrData:(id)arg6 error:(id *)arg7;
++ (id)createCertificateWithSession:(id)arg1 team:(id)arg2 type:(id)arg3 machineName:(id)arg4 machineID:(id)arg5 keyName:(id)arg6 privateKey:(struct OpaqueSecKeyRef **)arg7 error:(id *)arg8;
 @property(readonly, copy, nonatomic) NSString *portalCertificateID; // @synthesize portalCertificateID=_portalCertificateID;
-@property(readonly, copy, nonatomic) NSString *portalID; // @synthesize portalID=_portalID;
 - (void).cxx_destruct;
 - (id)description;
 

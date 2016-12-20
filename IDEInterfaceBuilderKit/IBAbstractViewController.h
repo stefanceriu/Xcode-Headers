@@ -24,6 +24,7 @@
 - (struct CGSize)effectiveSimulatedViewSize;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)ibChildEditsWithSingleClick:(id)arg1;
 - (id)ibShortDisplayName;
 - (BOOL)ibIsPrimarySceneObject:(id)arg1 validSplitViewDetailWithSegue:(id)arg2;
 - (BOOL)ibIsPrimarySceneObject:(id)arg1 validSplitViewMasterWithSegue:(id)arg2;
@@ -33,7 +34,9 @@
 - (BOOL)ibSegueTemplatesAreTopLevel;
 - (void)ibResizeToEffectiveSimulatedSizeForSceneTreeDragImageNode;
 @property(nonatomic) BOOL ibInspectedIsDesignatedEntryPoint;
-- (BOOL)ibIsStrandedInStoryboard:(id)arg1;
+- (BOOL)ibIsUnreachableInStoryboard;
+- (BOOL)ibCanBeValidSegueDestination;
+- (BOOL)ibIsPrimarySceneObjectInStoryboard;
 - (void)ibDidPutObjects:(id)arg1 onPasteboard:(id)arg2 fromDocument:(id)arg3 context:(id)arg4;
 - (void)ibSetupTriggerForSegueTemplate:(id)arg1 inCompilationUnit:(id)arg2;
 - (id)ibSegueTriggers;

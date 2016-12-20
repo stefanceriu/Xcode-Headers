@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTLogAspect, NSDate, NSNumber, NSString, SFCertificateData;
+@class DVTLogAspect, NSArray, NSDate, NSNumber, NSString, SFCertificateData;
 
 @interface DVTSigningCertificate : NSObject
 {
@@ -24,9 +24,10 @@
     NSString *_sha1Hash;
     NSString *_serialNumber;
     id _underlyingType;
+    NSArray *_keychainSearchList;
 }
 
-+ (id)keychainSearchList;
+@property(readonly) NSArray *keychainSearchList; // @synthesize keychainSearchList=_keychainSearchList;
 @property(readonly) id underlyingType; // @synthesize underlyingType=_underlyingType;
 @property(readonly) NSString *portalTeamName; // @synthesize portalTeamName=_portalTeamName;
 @property(readonly) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
@@ -36,6 +37,7 @@
 - (id)_dateFromCertificate:(struct OpaqueSecCertificateRef *)arg1 forOID:(id)arg2;
 - (id)certificateData;
 - (id)defaultDesignatedRequirementsForIdentifier:(id)arg1;
+- (id)defaultDesignatedRequirements;
 @property(readonly) NSString *serialNumber; // @synthesize serialNumber=_serialNumber;
 @property(readonly) NSString *sha1Hash; // @synthesize sha1Hash=_sha1Hash;
 @property(readonly, getter=isForServer) BOOL forServer;
@@ -43,6 +45,7 @@
 @property(readonly, getter=isExpired) BOOL expired;
 @property(readonly) NSDate *expirationDate; // @synthesize expirationDate=_expirationDate;
 @property(readonly) NSDate *issueDate; // @synthesize issueDate=_issueDate;
+- (BOOL)isIdentityOnKeychains:(id)arg1;
 @property(readonly, getter=isIdentity) BOOL identity;
 @property(readonly) NSString *portalMemberID; // @synthesize portalMemberID=_portalMemberID;
 - (id)portalTeamName:(struct OpaqueSecCertificateRef *)arg1;
@@ -57,6 +60,7 @@
 - (struct OpaqueSecCertificateRef *)certificateRef;
 - (id)description;
 - (id)initWithUnderlyingType:(id)arg1 logAspect:(id)arg2;
+- (id)initWithUnderlyingType:(id)arg1 keychainSearchList:(id)arg2 logAspect:(id)arg3;
 
 @end
 

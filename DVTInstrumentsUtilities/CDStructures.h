@@ -4,13 +4,33 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>;
+
 #pragma mark Blocks
 
 typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
 
 #pragma mark Named Structures
 
+struct ActivityInfo {
+    char shutdown;
+    int startedActivities;
+    struct multimap<qos_class_t, ActivityInstance, std::__1::greater<qos_class_t>, std::__1::allocator<std::__1::pair<const qos_class_t, ActivityInstance>>> scheduledActivities;
+    NSObject<OS_dispatch_semaphore> *scheduledActivitiesCount;
+    int readyForNextFrame;
+};
+
+struct XRSerializedAccess<ActivityInfo> {
+    struct ActivityInfo _guarded;
+    NSObject<OS_dispatch_queue> *_queue;
+};
+
 struct XRTimeRange {
+    unsigned long long _field1;
+    unsigned long long _field2;
+};
+
+struct _NSRange {
     unsigned long long _field1;
     unsigned long long _field2;
 };
@@ -29,6 +49,25 @@ struct __va_list_tag {
     unsigned int _field2;
     void *_field3;
     void *_field4;
+};
+
+struct _opaque_pthread_rwlock_t {
+    long long __sig;
+    char __opaque[192];
+};
+
+struct multimap<qos_class_t, ActivityInstance, std::__1::greater<qos_class_t>, std::__1::allocator<std::__1::pair<const qos_class_t, ActivityInstance>>> {
+    struct __tree<std::__1::__value_type<qos_class_t, ActivityInstance>, std::__1::__map_value_compare<qos_class_t, std::__1::__value_type<qos_class_t, ActivityInstance>, std::__1::greater<qos_class_t>, true>, std::__1::allocator<std::__1::__value_type<qos_class_t, ActivityInstance>>> {
+        struct __tree_node<std::__1::__value_type<qos_class_t, ActivityInstance>, void *> *__begin_node_;
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<qos_class_t, ActivityInstance>, void *>>> {
+            struct __tree_end_node<std::__1::__tree_node_base<void *>*> {
+                struct __tree_node_base<void *> *__left_;
+            } __first_;
+        } __pair1_;
+        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<qos_class_t, std::__1::__value_type<qos_class_t, ActivityInstance>, std::__1::greater<qos_class_t>, true>> {
+            unsigned long long __first_;
+        } __pair3_;
+    } __tree_;
 };
 
 struct unique_ptr<std::__1::__hash_node<const void *, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<const void *, void *>*>>> {
@@ -85,5 +124,13 @@ struct unordered_set<const void *, std::__1::hash<const void *>, std::__1::equal
             float __first_;
         } __p3_;
     } __table_;
+};
+
+struct vector<XRFrameActivityManager *__weak, std::__1::allocator<XRFrameActivityManager *__weak>> {
+    id *__begin_;
+    id *__end_;
+    struct __compressed_pair<XRFrameActivityManager *__weak *, std::__1::allocator<XRFrameActivityManager *__weak>> {
+        id *__first_;
+    } __end_cap_;
 };
 

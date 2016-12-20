@@ -13,6 +13,7 @@
 @interface IDEExecutionTracker : NSObject <IDEExecutionTrackerReporting>
 {
     NSMutableArray *_subtrackers;
+    NSError *_error;
     BOOL _isFinished;
     BOOL _wantsHold;
     BOOL _isCanceling;
@@ -20,7 +21,6 @@
     int _cancellationReason;
     NSString *_statusDisplayName;
     DVTFilePath *_statusImageFilePath;
-    NSError *_error;
     IDELaunchSession *_launchSession;
     IDEExecutionTracker *_cancelingTracker;
     NSString *_debugName;
@@ -32,13 +32,13 @@
 @property int cancellationReason; // @synthesize cancellationReason=_cancellationReason;
 @property(readonly) BOOL isCanceling; // @synthesize isCanceling=_isCanceling;
 @property(retain) IDELaunchSession *launchSession; // @synthesize launchSession=_launchSession;
-@property(retain) NSError *error; // @synthesize error=_error;
 @property BOOL wantsHold; // @synthesize wantsHold=_wantsHold;
 @property BOOL isFinished; // @synthesize isFinished=_isFinished;
 @property int serviceTier; // @synthesize serviceTier=_serviceTier;
 @property(retain) DVTFilePath *statusImageFilePath; // @synthesize statusImageFilePath=_statusImageFilePath;
 @property(copy) NSString *statusDisplayName; // @synthesize statusDisplayName=_statusDisplayName;
 - (void).cxx_destruct;
+@property(retain) NSError *error;
 @property(readonly, copy) NSString *description;
 - (void)setStatusDisplayName:(id)arg1 statusImageFilePath:(id)arg2;
 - (void)addSubtracker:(id)arg1;

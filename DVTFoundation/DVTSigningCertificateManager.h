@@ -15,27 +15,34 @@
 {
     DVTDispatchLock *_certificateLock;
     NSMutableSet *_signingCertificates;
-    NSMutableSet *_signingIdentityCertificates;
+    BOOL _areCertificatesLoaded;
     DVTSigningCertificateSource *_certificateSource;
 }
 
 + (id)defaultCertificateManager;
 + (void)initialize;
 @property(retain) DVTSigningCertificateSource *certificateSource; // @synthesize certificateSource=_certificateSource;
+@property BOOL areCertificatesLoaded; // @synthesize areCertificatesLoaded=_areCertificatesLoaded;
 - (void).cxx_destruct;
 - (void)_delayedPostCertificatesChangedNotification;
+- (void)forceFullSyncWithCallback:(CDUnknownBlockType)arg1;
 - (void)forceFullSync;
 - (void)signingCertificateSourceShouldDoFullResetFromSigningCertificates:(id)arg1;
 - (void)signingCertificateSourcePrivateKeyStatusForCertificatesMayHaveChanged:(id)arg1;
 - (void)signingCertificateSource:(id)arg1 didRemoveCertificate:(id)arg2;
 - (void)signingCertificateSource:(id)arg1 didAddCertificate:(id)arg2;
-@property(readonly) NSSet *signingIdentityCertificates;
+- (id)signingCertificateFromDataObject:(id)arg1;
+- (BOOL)isCertificateAnIdentity:(id)arg1;
+- (BOOL)installCertificate:(id)arg1 privateKey:(struct OpaqueSecKeyRef *)arg2 keyName:(id)arg3 error:(id *)arg4;
+- (id)keychainSearchList;
 @property(readonly) NSSet *signingCertificates;
 - (id)logAspect;
 @property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
 - (id)initWithCertificateSource:(id)arg1;
 - (id)init;
+- (BOOL)_legacy_installPrivateKey:(struct OpaqueSecKeyRef *)arg1 privateKeyName:(id)arg2 error:(id *)arg3;
+- (BOOL)_legacy_installCertificate:(id)arg1 error:(id *)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

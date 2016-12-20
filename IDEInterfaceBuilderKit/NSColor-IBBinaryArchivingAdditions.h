@@ -12,13 +12,15 @@
 @class NSString;
 
 @interface NSColor (IBBinaryArchivingAdditions) <IBBinaryArchiving, IBBinaryArchivableColor>
-+ (id)ibColorWithRed:(double)arg1 green:(double)arg2 blue:(double)arg3 alpha:(double)arg4;
-+ (id)ibColorWithWhite:(double)arg1 alpha:(double)arg2;
++ (id)ibColorWithDisplayP3Red:(double)arg1 green:(double)arg2 blue:(double)arg3 alpha:(double)arg4;
++ (id)ibColorWithSRGBRed:(double)arg1 green:(double)arg2 blue:(double)arg3 alpha:(double)arg4;
++ (id)ibColorWithGenericGamma22White:(double)arg1 alpha:(double)arg2;
 + (id)decodeWithBinaryUnarchiver:(id)arg1;
 - (const char *)cStringClassNameForBinaryArchiver:(id)arg1;
 - (id)ibArchivedSystemKeyPathForBinaryArchiver:(id)arg1;
-- (BOOL)ibGetRed:(double *)arg1 green:(double *)arg2 blue:(double *)arg3 alpha:(double *)arg4;
-- (BOOL)ibGetWhite:(double *)arg1 alpha:(double *)arg2;
+- (BOOL)ibGetDisplayP3Red:(double *)arg1 green:(double *)arg2 blue:(double *)arg3 alpha:(double *)arg4;
+- (BOOL)ibGetSRGBRed:(double *)arg1 green:(double *)arg2 blue:(double *)arg3 alpha:(double *)arg4;
+- (BOOL)ibGetGenericGamma22White:(double *)arg1 alpha:(double *)arg2;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 
 // Remaining properties

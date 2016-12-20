@@ -6,7 +6,7 @@
 
 #import "IDEAssistantContext.h"
 
-@class DVTSourceControlWorkspaceBlueprint, IDEScheme, NSArray, NSError, NSMapTable, NSSet, NSString, NSURL, XCSBot, XCSService, XCSUIBotDefinitionContext, XCSUICreateBotAssistantContextWindowController;
+@class DVTSourceControlWorkspaceBlueprint, IDEScheme, NSArray, NSError, NSMapTable, NSSet, NSString, NSURL, XCSBot, XCSService, XCSToolchain, XCSUIBotDefinitionContext, XCSUICreateBotAssistantContextWindowController;
 
 @interface XCSUICreateBotAssistantContext : IDEAssistantContext
 {
@@ -43,6 +43,7 @@
 @property(readonly, nonatomic) BOOL performsAnalyzeAction;
 @property(readonly, nonatomic) unsigned long long defaultTestingDestinationType;
 @property(readonly, nonatomic) unsigned long long testingDestinationType;
+@property(readonly, nonatomic) XCSToolchain *overrideToolchain;
 @property(readonly, nonatomic) NSString *buildConfiguration;
 @property(readonly, copy, nonatomic) NSArray *triggers;
 @property(readonly, nonatomic) unsigned long long buildsFromCleanSchedule;

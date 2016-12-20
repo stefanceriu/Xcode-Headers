@@ -6,7 +6,7 @@
 
 #import "NSWindowController.h"
 
-@class DVTReplacementView, IDEWorkspaceTabController, NSTextField, NSWindow, XCSBot, XCSUIBotDefinitionContext, XCSUIBotDefinitionEditor;
+@class DVTReplacementView, IDEWorkspaceTabController, NSButton, NSTextField, NSWindow, XCSBot, XCSSettings, XCSUIBotDefinitionContext, XCSUIBotDefinitionEditor;
 
 @interface XCSUIBotDefinitionEditorWindowController : NSWindowController
 {
@@ -16,12 +16,16 @@
     NSWindow *_hostWindow;
     XCSUIBotDefinitionEditor *_definitionEditor;
     long long _selectPane;
+    XCSSettings *_settings;
     DVTReplacementView *_replacementView;
     NSTextField *_editBotLabel;
+    NSButton *_triggersHelpButton;
 }
 
+@property __weak NSButton *triggersHelpButton; // @synthesize triggersHelpButton=_triggersHelpButton;
 @property __weak NSTextField *editBotLabel; // @synthesize editBotLabel=_editBotLabel;
 @property __weak DVTReplacementView *replacementView; // @synthesize replacementView=_replacementView;
+@property(retain, nonatomic) XCSSettings *settings; // @synthesize settings=_settings;
 @property long long selectPane; // @synthesize selectPane=_selectPane;
 @property(retain, nonatomic) XCSUIBotDefinitionEditor *definitionEditor; // @synthesize definitionEditor=_definitionEditor;
 @property(nonatomic) BOOL disableWorkspaceSpecificSettings; // @synthesize disableWorkspaceSpecificSettings=_disableWorkspaceSpecificSettings;
@@ -29,6 +33,7 @@
 @property(retain, nonatomic) XCSBot *bot; // @synthesize bot=_bot;
 @property(retain, nonatomic) IDEWorkspaceTabController *workspaceTabController; // @synthesize workspaceTabController=_workspaceTabController;
 - (void).cxx_destruct;
+- (void)triggersHelp:(id)arg1;
 - (void)done:(id)arg1;
 - (void)cancel:(id)arg1;
 @property(readonly, nonatomic) XCSUIBotDefinitionContext *definitionContext;

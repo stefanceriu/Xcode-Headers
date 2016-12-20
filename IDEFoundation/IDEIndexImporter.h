@@ -49,6 +49,7 @@
 
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
++ (BOOL)supportsInvalidationPrevention;
 + (void)initialize;
 @property(readonly, nonatomic) BOOL isReady; // @synthesize isReady=_isReady;
 @property(readonly, nonatomic) IDEIndexDatabase *database; // @synthesize database=_database;

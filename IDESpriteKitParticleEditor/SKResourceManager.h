@@ -10,7 +10,7 @@
 #import "GTFFileSystemEventStreamDelegate.h"
 #import "IDEMediaLibraryDelegate.h"
 
-@class DVTObservingToken, DVTStackBacktrace, GTFFileSystemEventStream, IDEMediaResourceVariantContext, IDEWorkspace, NSArray, NSMutableDictionary, NSString, NSURL, SKWorkspaceBundle;
+@class DVTObservingToken, DVTStackBacktrace, GTFFileSystemEventStream, IDEMediaResourceVariantContext, IDEWorkspace, NSArray, NSMutableDictionary, NSString, NSURL, SKWorkspace, SKWorkspaceBundle;
 
 @interface SKResourceManager : NSObject <DVTInvalidation, IDEMediaLibraryDelegate, GTFFileSystemEventStreamDelegate>
 {
@@ -27,18 +27,16 @@
     BOOL _buildingCache;
     BOOL _directoryCacheBuilt;
     SKWorkspaceBundle *_bundle;
-    IDEWorkspace *_workspace;
-    NSURL *_url;
+    SKWorkspace *_workspace;
 }
 
 + (id)soundMediaTypes;
 + (id)imageMediaTypes;
-+ (id)resourceManagerForWorkspace:(id)arg1;
++ (id)resourceManagerForSKWorkspace:(id)arg1;
 + (void)initialize;
 @property(getter=isDirectoryCacheBuilt) BOOL directoryCacheBuilt; // @synthesize directoryCacheBuilt=_directoryCacheBuilt;
 @property(getter=isBuildingCache) BOOL buildingCache; // @synthesize buildingCache=_buildingCache;
-@property(readonly, nonatomic) NSURL *url; // @synthesize url=_url;
-@property(readonly, nonatomic) IDEWorkspace *workspace; // @synthesize workspace=_workspace;
+@property(readonly, nonatomic) SKWorkspace *workspace; // @synthesize workspace=_workspace;
 - (void).cxx_destruct;
 - (void)mediaLibraryController:(id)arg1 populatePasteboard:(id)arg2 withMediaResourceVariantSets:(id)arg3;
 @property(readonly, nonatomic) SKWorkspaceBundle *bundle; // @synthesize bundle=_bundle;
@@ -53,6 +51,7 @@
 @property(readonly, nonatomic) NSArray *currentSoundNames;
 - (struct NSObject *)registerImageResourceObserver:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) NSArray *currentImageNames;
+- (void)_checkFilePathRequiresTextureCacheReload:(id)arg1;
 - (void)fileSystemEventStream:(id)arg1 notedChangeAtPath:(id)arg2 scanRecursively:(BOOL)arg3;
 - (void)_startBuildingDirectoryCache;
 - (void)_ensureDirectoryCache;
@@ -63,8 +62,10 @@
 - (void)_startManagingMediaCache;
 - (void)_ensureMediaCache;
 - (void)startBuildingCache;
+@property(readonly, nonatomic) NSURL *url;
+@property(readonly, nonatomic) IDEWorkspace *ideWorkspace;
 - (void)primitiveInvalidate;
-- (id)initWithWorkspace:(id)arg1;
+- (id)initWithSKWorkspace:(id)arg1;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

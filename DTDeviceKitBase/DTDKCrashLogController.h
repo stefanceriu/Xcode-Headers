@@ -14,7 +14,6 @@
     NSString *_symbolicationStatus;
 }
 
-+ (id)pathToSymbolicationTool;
 + (id)keyPathsForValuesAffectingStatusMessage;
 + (id)controller;
 @property(copy) NSString *symbolicationStatus; // @synthesize symbolicationStatus=_symbolicationStatus;

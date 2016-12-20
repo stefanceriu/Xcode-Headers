@@ -25,7 +25,6 @@ __attribute__((visibility("hidden")))
 - (struct __C3DScene *)scene;
 - (void)modelTypeChanged:(id)arg1;
 - (void)dealloc;
-- (void)finalize;
 - (void)awakeFromNib;
 - (void)showModelInspector:(int)arg1;
 

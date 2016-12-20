@@ -15,7 +15,7 @@
 }
 
 - (void)registerSchemaProviders:(id)arg1 withSchemaProviderContextData:(id)arg2;
-- (id)compileItemsWithCatalogRelativeIdentifierPaths:(id)arg1 tagSolutionSpace:(id)arg2 options:(id)arg3;
+- (id)compileItemsWithCatalogRelativeIdentifierPaths:(id)arg1 tagSolutionSpace:(id)arg2 andStickerPacksWithCatalogRelativeIdentifierPaths:(id)arg3 options:(id)arg4;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

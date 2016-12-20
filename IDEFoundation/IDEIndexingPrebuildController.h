@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class IDEIndex, NSObject<OS_dispatch_queue>;
+@class IDEWorkspace, NSObject<OS_dispatch_queue>;
 
 @interface IDEIndexingPrebuildController : NSObject
 {
-    IDEIndex *_index;
+    IDEWorkspace *_workspace;
     NSObject<OS_dispatch_queue> *_queue;
     BOOL _hasInitiatedPrebuild;
     BOOL _hasPerformedPrebuild;
@@ -21,7 +21,7 @@
 - (void)cancelAnyPrebuild;
 - (void)needsPrebuild;
 - (void)initiatePrebuild;
-- (id)initWithIndex:(id)arg1;
+- (id)initWithWorkspace:(id)arg1;
 
 @end
 

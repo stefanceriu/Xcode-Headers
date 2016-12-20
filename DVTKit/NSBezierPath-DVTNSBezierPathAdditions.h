@@ -12,8 +12,8 @@
 + (id)dvt_bezierPathWithRoundRectInRect:(struct CGRect)arg1 radius:(double)arg2;
 + (id)dvt_bezierPathWithLineFrom:(struct CGPoint)arg1 to:(struct CGPoint)arg2;
 - (BOOL)_isPointValid:(struct CGPoint)arg1;
-- (struct CGPath *)dvt_cgPathShouldEnsurePathIsClosed:(BOOL)arg1;
-- (struct CGPath *)dvt_cgPath;
+- (struct CGPath *)dvt_CGPathShouldEnsurePathIsClosed:(BOOL)arg1;
+- (struct CGPath *)dvt_CGPath;
 - (void)dvt_fillWithInnerShadow:(id)arg1;
 - (id)dvt_bezierPathFromStrokedPath;
 - (BOOL)dvt_isStrokeHitByPoint:(struct CGPoint)arg1;

@@ -37,7 +37,6 @@
 - (double)constrainContentWidthAndChangeModesIfNeeded:(double)arg1;
 - (double)outlineViewWidth;
 - (id)storyboardCanvasViewController;
-- (double)maximumContentWidth;
 - (double)minimumContentWidth;
 - (double)contentWidth;
 - (id)highlightProviders;

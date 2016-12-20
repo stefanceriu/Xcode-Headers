@@ -6,38 +6,42 @@
 
 #import "NSObject.h"
 
-@class NSTimer;
+@class NSScreen, NSTimer;
 
 __attribute__((visibility("hidden")))
 @interface SKDisplayLink : NSObject
 {
     NSTimer *_timer;
+    id _client;
     struct __CVDisplayLink *_cvDisplayLink;
+    unsigned int _activeDisplayCount;
+    unsigned int _activeDisplayIDs[10];
     SKDisplayLink *_keepAlive;
-    unsigned long long _mode;
+    NSScreen *_display;
     BOOL _paused;
-    long long _frameInterval;
+    _Bool _callbackAlreadyInProgress;
     double _previousFrameTime;
+    float _preferredFramesPerSecond;
     CDUnknownBlockType _block;
     float _averageFrameTime;
     long long _frameCount;
     double _frameCountBeginTime;
 }
 
-+ (id)displayLinkWithBlock:(CDUnknownBlockType)arg1;
++ (id)displayLinkWithDisplay:(id)arg1 handler:(CDUnknownBlockType)arg2 client:(id)arg3;
 - (void).cxx_destruct;
-- (void)_nsTimerCallback;
 - (void)dealloc;
 - (void)_callbackForNextFrame:(double)arg1;
-- (void)_restart;
+- (void)invalidate;
 - (void)_teardown;
-- (void)_start;
 - (void)_setup;
-@property(nonatomic) unsigned long long mode;
-@property(nonatomic) long long frameInterval;
+@property(retain, nonatomic) NSScreen *display;
+@property(nonatomic) long long preferredFramesPerSecond;
 @property(nonatomic, getter=isPaused) BOOL paused;
 - (id)init;
-- (id)initWithBlock:(CDUnknownBlockType)arg1;
+- (id)initWithDisplay:(id)arg1 handler:(CDUnknownBlockType)arg2 client:(id)arg3;
+- (void)_setCallbackAlreadyInProgress:(_Bool)arg1;
+- (_Bool)_callbackAlreadyInProgress;
 
 @end
 

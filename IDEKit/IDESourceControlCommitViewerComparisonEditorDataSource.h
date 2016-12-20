@@ -6,21 +6,49 @@
 
 #import "NSObject.h"
 
-#import "IDEComparisonEditorDataSource.h"
+#import "IDEComparisonEditorOriginalDocumentDataSource.h"
 
-@class NSString;
+@class DVTSourceControlRevision, DVTSourceControlWorkingCopy, IDEEditorDocument, NSArray, NSDictionary, NSString;
 
-@interface IDESourceControlCommitViewerComparisonEditorDataSource : NSObject <IDEComparisonEditorDataSource>
+@interface IDESourceControlCommitViewerComparisonEditorDataSource : NSObject <IDEComparisonEditorOriginalDocumentDataSource>
 {
+    NSDictionary *_pathsWithStatus;
+    DVTSourceControlRevision *_revision;
+    id <DVTSourceControlCancellable> _token;
+    NSString *_lastExportedSecondaryRevision;
+    NSString *_lastExportedPrimaryRevision;
+    NSArray *_secondaryDocumentRevisions;
+    NSArray *_primaryDocumentRevisions;
+    DVTSourceControlWorkingCopy *_workingCopy;
+    IDEEditorDocument *_originalDocument;
 }
 
++ (id)dataSourceLogAspect;
+@property(retain) IDEEditorDocument *originalDocument; // @synthesize originalDocument=_originalDocument;
+@property(retain) DVTSourceControlWorkingCopy *workingCopy; // @synthesize workingCopy=_workingCopy;
+@property(retain) NSArray *primaryDocumentRevisions; // @synthesize primaryDocumentRevisions=_primaryDocumentRevisions;
+@property(retain) NSArray *secondaryDocumentRevisions; // @synthesize secondaryDocumentRevisions=_secondaryDocumentRevisions;
+- (void).cxx_destruct;
+- (id)contentStringForPrimaryEmptyEditorWithDocumentLocation:(id)arg1;
+- (id)contentStringForSecondaryEmptyEditorWithDocumentLocation:(id)arg1;
+- (id)_emptyContentString:(id)arg1;
+- (BOOL)_shouldEmptyEditorForDocumentLocation:(id)arg1 isPrimary:(BOOL)arg2;
+- (unsigned long long)_statusForDocumentLocation:(id)arg1;
+- (BOOL)shouldShowEmptyEditorForSecondaryDocumentLocation:(id)arg1 submodeType:(int)arg2;
+- (BOOL)shouldShowEmptyEditorForPrimaryDocumentLocation:(id)arg1 submodeType:(int)arg2;
+- (id)documentForAncestorDocumentLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)_exportDocument:(id)arg1 withLastRevision:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)documentForSecondaryDocumentLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)documentForPrimaryDocumentLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (id)_documentLocationForWorkingCopy:(id)arg1 revisionName:(id)arg2 relativeFilePath:(id)arg3 currentFilePath:(id)arg4;
 - (void)_cachedDocumentForDocumentLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (id)_documentLocationForNavigableItem:(id)arg1;
 - (id)secondaryDocumentLocationForNavigableItem:(id)arg1;
 - (id)primaryDocumentLocationForNavigableItem:(id)arg1;
-- (id)navigableItemsForSecondaryDocumentLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (id)navigableItemsForPrimaryDocumentLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (id)navigableItemsForPrimaryDocumentLocation:(id)arg1 usingNavigableItemCoordinator:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)navigableItemsForSecondaryDocumentLocation:(id)arg1 usingNavigableItemCoordinator:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)loadPaths:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (id)loadRevisions:(id)arg1 path:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

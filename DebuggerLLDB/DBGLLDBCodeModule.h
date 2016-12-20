@@ -9,12 +9,11 @@
 __attribute__((visibility("hidden")))
 @interface DBGLLDBCodeModule : IDECodeModule
 {
-    struct SBModule _lldbModule;
+    id <DBGSBModule> _lldbModule;
 }
 
-- (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)initWithIdentifier:(id)arg1 pathString:(id)arg2 lldbModule:(struct SBModule)arg3;
+- (id)initWithIdentifier:(id)arg1 pathString:(id)arg2 lldbModule:(id)arg3;
 
 @end
 

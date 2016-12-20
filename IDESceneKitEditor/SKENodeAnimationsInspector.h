@@ -6,13 +6,40 @@
 
 #import <IDESceneKitEditor/SKEStaticTableViewInspector.h>
 
-@interface SKENodeAnimationsInspector : SKEStaticTableViewInspector
+#import "NSTableViewDataSource.h"
+
+@class DVTGradientImageButton, NSString;
+
+@interface SKENodeAnimationsInspector : SKEStaticTableViewInspector <NSTableViewDataSource>
 {
+    DVTGradientImageButton *_deleteButton;
+    DVTGradientImageButton *_addButton;
+    DVTGradientImageButton *_toolsButton;
 }
 
-- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
++ (id)tableColumnTitles;
++ (BOOL)wantsEditionBar;
+- (void).cxx_destruct;
+- (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
+- (long long)numberOfRowsInTableView:(id)arg1;
+- (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
+- (void)titleChanged:(id)arg1;
 - (void)viewDidInstall;
 - (void)loadView;
+- (void)saveAnimationAction:(id)arg1;
+- (void)popupToolsMenuAction:(id)arg1;
+- (void)addAnimationAction:(id)arg1;
+- (void)deleteAnimationAction:(id)arg1;
+- (void)configureEditionBar;
+- (void)primitiveInvalidate;
+- (void)didSetInspectedObjects:(id)arg1;
+- (void)initViewData;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

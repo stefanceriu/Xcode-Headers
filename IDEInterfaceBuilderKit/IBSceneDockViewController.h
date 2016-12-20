@@ -24,7 +24,7 @@
     IBStoryboardDocument *_document;
     IBGroup *_sceneGroup;
     IBAbstractDocumentEditor *_documentEditor;
-    NSObject<IBPrimarySceneObject> *_priamrySceneObject;
+    NSObject<IBPrimarySceneObject> *_primarySceneObject;
     id <IBHighlightProvider> _highlightProvider;
     DVTMutableOrderedSet *_selectedObjects;
     IBStructureAreaDockView *_dockView;
@@ -33,7 +33,7 @@
 @property(retain) IBStructureAreaDockView *dockView; // @synthesize dockView=_dockView;
 @property(copy, nonatomic) DVTMutableOrderedSet *selectedObjects; // @synthesize selectedObjects=_selectedObjects;
 @property(readonly) id <IBHighlightProvider> highlightProvider; // @synthesize highlightProvider=_highlightProvider;
-@property(readonly) NSObject<IBPrimarySceneObject> *priamrySceneObject; // @synthesize priamrySceneObject=_priamrySceneObject;
+@property(readonly) NSObject<IBPrimarySceneObject> *primarySceneObject; // @synthesize primarySceneObject=_primarySceneObject;
 @property(nonatomic) __weak IBAbstractDocumentEditor *documentEditor; // @synthesize documentEditor=_documentEditor;
 - (void).cxx_destruct;
 - (void)incrementHighlightGeneration;
@@ -91,6 +91,8 @@
 - (BOOL)dockView:(id)arg1 shouldSelectObject:(id)arg2 inGroup:(id)arg3 withEvent:(id)arg4;
 - (id)dockView:(id)arg1 imageForRepresentedObject:(id)arg2 inGroup:(id)arg3;
 - (BOOL)dockView:(id)arg1 isShowingOpenIndicatorForRepresentedObject:(id)arg2 inGroup:(id)arg3;
+- (id)dockView:(id)arg1 accessibilityIdentifierForRepresentedObject:(id)arg2 inGroup:(id)arg3;
+- (id)dockView:(id)arg1 accessibilityTitleForRepresentedObject:(id)arg2 inGroup:(id)arg3;
 - (id)dockView:(id)arg1 titleForRepresentedObject:(id)arg2 inGroup:(id)arg3;
 - (id)requiredObjectForObjectID:(id)arg1;
 - (id)dockView:(id)arg1 representedObjectsForGroup:(id)arg2;
@@ -105,7 +107,7 @@
 - (BOOL)documentEditor:(id)arg1 canSelectMembers:(id)arg2;
 - (void)documentEditor:(id)arg1 deselectMembers:(id)arg2;
 - (void)documentEditor:(id)arg1 pullSelection:(id)arg2;
-- (void)documentEditor:(id)arg1 selectMembers:(id)arg2 takeFocus:(BOOL)arg3 zoomIfNeeded:(BOOL)arg4;
+- (void)documentEditor:(id)arg1 selectMembers:(id)arg2 takeFocus:(BOOL)arg3;
 @property(readonly, nonatomic) BOOL onlySupportsDocumentObjectMembers;
 - (id)groupToOIDsMapForObjects:(id)arg1;
 - (void)didChangeSelectedObjects;

@@ -6,28 +6,47 @@
 
 #import <GPUDebuggerFoundation/GPUTraceResourceItem.h>
 
-@class GPUFunctionInfo, NSString;
+#import "DYPShaderItem.h"
 
-@interface GPUTraceShaderItem : GPUTraceResourceItem
+@class NSMutableDictionary, NSString;
+
+@interface GPUTraceShaderItem : GPUTraceResourceItem <DYPShaderItem>
 {
-    unsigned long long _shaderType;
+    unsigned int _shaderType;
     NSString *_infoLog;
-    GPUFunctionInfo *_functionInfo;
+    id <DYPFunctionInfo> _functionInfo;
 }
 
-@property(readonly, nonatomic) GPUFunctionInfo *functionInfo; // @synthesize functionInfo=_functionInfo;
+@property(readonly, nonatomic) id <DYPFunctionInfo> functionInfo; // @synthesize functionInfo=_functionInfo;
 @property(readonly, nonatomic) NSString *infoLog; // @synthesize infoLog=_infoLog;
-@property(readonly, nonatomic) unsigned long long shaderType; // @synthesize shaderType=_shaderType;
+@property(readonly, nonatomic) unsigned int shaderType; // @synthesize shaderType=_shaderType;
 - (void).cxx_destruct;
+- (id)_locationURLScheme;
+- (id)_locationURLPath;
 - (void)releaseRealizedResources;
 - (id)program;
 - (id)associatedTraceItem;
 - (id)parentResourceGroup;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initFunctionWithParent:(id)arg1 shaderType:(unsigned long long)arg2 functionInfo:(id)arg3 label:(id)arg4 sharegroupID:(unsigned long long)arg5;
-- (id)initShaderWithParent:(id)arg1 shaderType:(unsigned long long)arg2 infoLog:(const char *)arg3 label:(id)arg4 sharegroupID:(unsigned long long)arg5;
-- (id)_initWithParent:(id)arg1 shaderType:(unsigned long long)arg2 infoLog:(const char *)arg3 functionInfo:(id)arg4 label:(id)arg5 type:(unsigned int)arg6 sharegroupID:(unsigned long long)arg7;
+- (id)initFunctionWithParent:(id)arg1 shaderType:(unsigned int)arg2 functionInfo:(id)arg3 identifier:(id)arg4 sharegroupID:(unsigned long long)arg5;
+- (id)initShaderWithParent:(id)arg1 shaderType:(unsigned int)arg2 infoLog:(const char *)arg3 identifier:(id)arg4 sharegroupID:(unsigned long long)arg5;
+- (id)_initWithParent:(id)arg1 shaderType:(unsigned int)arg2 infoLog:(const char *)arg3 functionInfo:(id)arg4 identifier:(id)arg5 type:(unsigned int)arg6 sharegroupID:(unsigned long long)arg7;
 - (id)navigableItem_subtitle;
+
+// Remaining properties
+@property(readonly, nonatomic) unsigned long long containerID;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly, nonatomic) unsigned int functionIndex;
+@property(readonly, nonatomic) BOOL generatesThumbnail;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) NSString *identifier;
+@property(retain, nonatomic) NSString *label;
+@property(readonly, nonatomic) unsigned long long objectID;
+@property(readonly, nonatomic) NSMutableDictionary *properties;
+@property(readonly, nonatomic) const void *stateMirrorObject;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic) unsigned int type;
 
 @end
 

@@ -31,6 +31,7 @@
     DVTObservingToken *_debuggingAdditionsObservation;
     DVTObservingToken *_usableDevicesObservation;
     BOOL _isKojakFile;
+    BOOL _disableDeviceCompabilityCheck;
 }
 
 + (id)assetBundle;
@@ -45,6 +46,7 @@
 - (void)onDeviceSelected:(id)arg1;
 - (void)onTraceSessionActivated:(id)arg1;
 - (void)_handleTraceSessionActivation:(id)arg1;
+- (BOOL)_shouldRunOnIncompatibleDevice:(id)arg1;
 - (void)_buildDevicesMenu;
 - (void)beginEditor;
 - (id)_documentDescription;

@@ -6,6 +6,7 @@
 
 #import "NSAnimation.h"
 
+__attribute__((visibility("hidden")))
 @interface DTTimelinePlaneDynamicRangeUpdateAnimation : NSAnimation
 {
     struct vector<std::__1::pair<DTTimelineInternal::DynamicRange, NSArray *>, std::__1::allocator<std::__1::pair<DTTimelineInternal::DynamicRange, NSArray *>>> _targetPairs;

@@ -11,6 +11,7 @@
 }
 
 + (id)sharedInstance;
+- (id)actionForLayer:(id)arg1 forKey:(id)arg2;
 - (BOOL)layer:(id)arg1 shouldInheritContentsScale:(double)arg2 fromWindow:(id)arg3;
 
 @end

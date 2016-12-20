@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDEViewController.h>
 
-@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTPopUpButtonCell, DVTTableView, IDEControlGroup, IDEWorkspace, NSArrayController, NSButton, NSWindow;
+@class DVTBorderedView, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTTableView, IDEControlGroup, IDEWorkspace, NSArrayController, NSButton, NSWindow;
 
 @interface IDEManageRunContextsSheetController : IDEViewController
 {
@@ -16,7 +16,6 @@
     NSArrayController *_customDataStoresArrayController;
     DVTTableView *_tableView;
     NSButton *_editButton;
-    DVTPopUpButtonCell *_containerPopUpCell;
     DVTGradientImageButton *_addButton;
     DVTGradientImageButton *_deleteButton;
     DVTGradientImagePopUpButton *_actionPopUpButton;
@@ -34,13 +33,14 @@
 - (void)windowDidResize:(id)arg1;
 - (void)tableView:(id)arg1 setObjectValue:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
+- (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
 - (BOOL)tableView:(id)arg1 acceptDrop:(id)arg2 row:(long long)arg3 dropOperation:(unsigned long long)arg4;
 - (unsigned long long)tableView:(id)arg1 validateDrop:(id)arg2 proposedRow:(long long)arg3 proposedDropOperation:(unsigned long long)arg4;
 - (BOOL)tableView:(id)arg1 writeRowsWithIndexes:(id)arg2 toPasteboard:(id)arg3;
 - (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;
 - (BOOL)tableView:(id)arg1 shouldEditTableColumn:(id)arg2 row:(long long)arg3;
-- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
 - (BOOL)tableView:(id)arg1 doCommandBySelector:(SEL)arg2;
+- (void)checkToggleAction:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (void)editAction:(id)arg1;
 - (void)_updateEditEnabledState;

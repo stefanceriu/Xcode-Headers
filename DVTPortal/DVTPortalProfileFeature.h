@@ -8,34 +8,38 @@
 
 #import "NSCopying.h"
 
-@class NSArray, NSString;
+@class NSSet, NSString;
 
 @interface DVTPortalProfileFeature : NSObject <NSCopying>
 {
     BOOL _requiresExplicitAppID;
     NSString *_identifier;
-    NSArray *_supportedPlatforms;
+    NSSet *_supportedPlatforms;
+    NSString *_userDescription;
     NSString *_portalKey;
+    NSString *_legacyFeatureName;
     long long _valueType;
 }
 
 + (long long)_valueTypeFromValueTypeName:(id)arg1;
 + (id)profileFeatureFromExtension:(id)arg1;
-+ (id)_defaultPlatforms;
++ (id)profileFeatureWithLegacyFeatureName:(id)arg1;
 + (id)profileFeatureWithPortalKey:(id)arg1;
 + (id)profileFeatureWithIdentifier:(id)arg1;
 + (id)profileFeatures;
 @property(readonly, nonatomic) long long valueType; // @synthesize valueType=_valueType;
-@property(readonly, nonatomic) NSString *portalKey; // @synthesize portalKey=_portalKey;
 @property(readonly, nonatomic) BOOL requiresExplicitAppID; // @synthesize requiresExplicitAppID=_requiresExplicitAppID;
-@property(readonly, nonatomic) NSArray *supportedPlatforms; // @synthesize supportedPlatforms=_supportedPlatforms;
+@property(readonly, nonatomic) NSString *legacyFeatureName; // @synthesize legacyFeatureName=_legacyFeatureName;
+@property(readonly, nonatomic) NSString *portalKey; // @synthesize portalKey=_portalKey;
+@property(readonly, nonatomic) NSString *userDescription; // @synthesize userDescription=_userDescription;
+@property(readonly, nonatomic) NSSet *supportedPlatforms; // @synthesize supportedPlatforms=_supportedPlatforms;
 @property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (BOOL)isValidFeatureValue:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;
-- (id)initWithIdentifier:(id)arg1 portalKey:(id)arg2 supportedPlatforms:(id)arg3 valueType:(long long)arg4 requiresExplicitAppID:(BOOL)arg5;
+- (id)initWithIdentifier:(id)arg1 portalKey:(id)arg2 supportedPlatforms:(id)arg3 valueType:(long long)arg4 requiresExplicitAppID:(BOOL)arg5 userDescription:(id)arg6 legacyFeatureName:(id)arg7;
 
 @end
 

@@ -7,10 +7,9 @@
 #import "IBICIconSet.h"
 
 @interface IBICIconSet (DisplayAdditions)
++ (CDStruct_7ddbbeae)capsuleGroupingAttributesForGroupWithPath:(id)arg1;
 - (id)ibInspectedResourceName;
-- (BOOL)ibInspectorShowsResourceName;
 - (id)detachedSlottedAssetRepByAcceptingPasteboardObject:(id)arg1 forRepIdentifier:(id)arg2;
 - (id)includedAttributeUtilitySlicesForChild:(id)arg1;
-- (id)typeIcon;
 @end
 

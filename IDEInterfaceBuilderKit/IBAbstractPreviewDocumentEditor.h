@@ -95,6 +95,7 @@
 - (void)viewDidInstall;
 - (void)viewWillUninstall;
 - (id)initialRecipe;
+- (void)loadView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
 
 // Remaining properties

@@ -14,6 +14,7 @@
 {
     NSObject<OS_dispatch_queue> *_queue;
     NSMutableDictionary *_modelObjectDictionary;
+    id <DYPPluginFactory> _pluginFactory;
     GPUDebuggerController *_controller;
     Class _variablesViewContentProviderClass;
     NSMapTable *_resourceTypeToViewClassMaptable;
@@ -51,6 +52,7 @@
 @property(readonly, nonatomic) NSMapTable *resourceTypeToViewClassMaptable; // @synthesize resourceTypeToViewClassMaptable=_resourceTypeToViewClassMaptable;
 @property(readonly, nonatomic) Class variablesViewContentProviderClass; // @synthesize variablesViewContentProviderClass=_variablesViewContentProviderClass;
 @property(readonly, nonatomic) __weak GPUDebuggerController *controller; // @synthesize controller=_controller;
+@property(readonly, nonatomic) __weak id <DYPPluginFactory> pluginFactory; // @synthesize pluginFactory=_pluginFactory;
 - (void).cxx_destruct;
 - (id)createInfoBubbleForImageResource:(id)arg1 parentView:(id)arg2 owner:(id)arg3 renderingAttributes:(id)arg4;
 - (id)resourceItemOfType:(unsigned int)arg1 resourceID:(unsigned int)arg2 forFunctionIndex:(unsigned int)arg3;
@@ -58,7 +60,6 @@
 - (id)resolveCurrentResourceItemWithPreviousItem:(id)arg1 currentMainEditorItem:(id)arg2 topLevelObjects:(id)arg3;
 - (void)establishChildrenForProgramItem:(id)arg1;
 - (id)programObjectFromProgramItem:(id)arg1 shaderType:(unsigned int)arg2;
-- (id)realizeResourcesForResourceItem:(id)arg1;
 - (void)generateResourcesForGroup:(id)arg1 apiItem:(id)arg2 boundOnly:(BOOL)arg3;
 - (void)createParentResourceGroupsForAPIItem:(id)arg1;
 - (id)apiItemForTrueFunctionIndex:(unsigned int)arg1;
@@ -71,7 +72,7 @@
 @property(readonly, nonatomic) __weak DYGLCaptureSessionInfo *captureSessionInfo;
 - (id)itemForUUID:(id)arg1;
 - (void)addModelItem:(id)arg1;
-- (id)initWithController:(id)arg1 variablesViewContentProviderClass:(Class)arg2;
+- (id)initWithController:(id)arg1 variablesViewContentProviderClass:(Class)arg2 pluginFactory:(id)arg3;
 - (void)primitiveInvalidate;
 
 // Remaining properties

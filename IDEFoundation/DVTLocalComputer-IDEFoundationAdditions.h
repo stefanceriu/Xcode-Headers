@@ -7,6 +7,7 @@
 #import "DVTLocalComputer.h"
 
 @interface DVTLocalComputer (IDEFoundationAdditions)
+- (void)showTodayViewForExtensions:(id)arg1 pid:(int)arg2;
 - (BOOL)canBeDefaultDeviceForBuildable:(id)arg1 buildParameters:(id)arg2;
 @end
 

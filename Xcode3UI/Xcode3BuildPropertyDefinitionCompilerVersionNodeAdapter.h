@@ -11,7 +11,7 @@
 }
 
 + (id)configuredCompilerSpecifications;
-- (id)menuItemForUnknownValue:(id)arg1;
+- (id)menuItemForUnknownValue:(id)arg1 existingItems:(id)arg2;
 - (id)_buildPropertyEditor;
 - (void)addMenuItemsToPopUpCell:(id)arg1;
 

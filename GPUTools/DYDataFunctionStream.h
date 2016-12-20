@@ -26,7 +26,7 @@
 - (void)clearResetMarker;
 - (void)setResetMarker;
 - (void)reset;
-@property(readonly, nonatomic) BOOL swapsByteOrder; // @dynamic swapsByteOrder;
+@property(readonly, nonatomic) BOOL swapsByteOrder;
 - (void)dealloc;
 - (id)initWithData:(id)arg1 header:(const void *)arg2 error:(id *)arg3;
 - (id)initWithData:(id)arg1 error:(id *)arg2;

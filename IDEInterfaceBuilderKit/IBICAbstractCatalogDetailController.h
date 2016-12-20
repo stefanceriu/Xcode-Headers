@@ -11,12 +11,12 @@
 #import "IBICDetailDocumentViewDelegate.h"
 #import "IBSelectionChannelApplicator.h"
 
-@class DVTDelayedInvocation, DVTMainViewControllerDrawingStrategy, IBICCatalogDocument, IBICCatalogDocumentEditor, IBICDetailDocumentView, IBICDetailOverlay, IBICDetailPlaceholderView, IBICDetailScrollView, IBSelectionChannel, NSArray, NSSegmentedControl, NSString;
+@class DVTDelayedInvocation, DVTMainViewControllerDrawingStrategy, IBICAbstractCatalogDocument, IBICCatalogDocumentEditor, IBICDetailDocumentView, IBICDetailOverlay, IBICDetailPlaceholderView, IBICDetailScrollView, IBSelectionChannel, NSArray, NSSegmentedControl, NSString;
 
 @interface IBICAbstractCatalogDetailController : IDEViewController <DVTMainViewControllerDrawingStrategyDelegate, IBICDetailDocumentViewDelegate, IBICCatalogItemObserver, IBSelectionChannelApplicator>
 {
     DVTMainViewControllerDrawingStrategy *_mainViewControllerDrawingStrategy;
-    IBICCatalogDocument *_document;
+    IBICAbstractCatalogDocument *_document;
     IBSelectionChannel *_selectionChannel;
     id <IBInvalidation> _catalogObservation;
     id <DVTInvalidation> _scrollViewToken;
@@ -36,8 +36,8 @@
 @property(readonly) BOOL drawsWithKeyAppearance; // @synthesize drawsWithKeyAppearance=_drawsWithKeyAppearance;
 @property(retain, nonatomic) IBICDetailScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(readonly) IBICDetailOverlay *overlay; // @synthesize overlay=_overlay;
-@property(retain) IBICDetailDocumentView *detailDocumentView; // @synthesize detailDocumentView=_detailDocumentView;
-@property(readonly) IBICCatalogDocument *document; // @synthesize document=_document;
+@property(retain, nonatomic) IBICDetailDocumentView *detailDocumentView; // @synthesize detailDocumentView=_detailDocumentView;
+@property(readonly) IBICAbstractCatalogDocument *document; // @synthesize document=_document;
 @property(readonly) IBICCatalogDocumentEditor *documentEditor; // @synthesize documentEditor=_documentEditor;
 @property(readonly) IBSelectionChannel *selectionChannel; // @synthesize selectionChannel=_selectionChannel;
 - (void).cxx_destruct;

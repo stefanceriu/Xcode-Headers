@@ -6,12 +6,13 @@
 
 #import <DVTSourceControl/DVTSourceControlRepository.h>
 
-@class DVTSourceControlAccount, DVTSourceControlAuthenticationStrategy, NSString, NSURL;
+@class DVTSourceControlAccount, DVTSourceControlAuthenticationStrategy, DVTSourceControlPathLocation, NSString, NSURL;
 
 @interface DVTSourceControlRemoteRepository : DVTSourceControlRepository
 {
     BOOL _enforceTrustedServerFingerprint;
     DVTSourceControlAccount *_account;
+    DVTSourceControlPathLocation *_defaultAuthenticationPath;
     unsigned long long _state;
     NSString *_trustedServerFingerprint;
 }
@@ -24,8 +25,10 @@
 @property(retain) DVTSourceControlAccount *account; // @synthesize account=_account;
 - (void).cxx_destruct;
 @property(retain) DVTSourceControlAuthenticationStrategy *authenticationStrategy;
-- (id)createWorkingCopyAtURL:(id)arg1 location:(id)arg2 branchAndTagLocations:(id)arg3 progressBlock:(CDUnknownBlockType)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (id)createWorkingCopyAtURL:(id)arg1 usingExistingWorkingCopyAtURL:(id)arg2 location:(id)arg3 branchAndTagLocations:(id)arg4 useRevision:(BOOL)arg5 progressBlock:(CDUnknownBlockType)arg6 completionBlock:(CDUnknownBlockType)arg7;
+- (id)createWorkingCopyAtURL:(id)arg1 location:(id)arg2 branchAndTagLocations:(id)arg3 useRevision:(BOOL)arg4 progressBlock:(CDUnknownBlockType)arg5 completionBlock:(CDUnknownBlockType)arg6;
 - (id)validateAuthenticationForLocation:(id)arg1 branchAndTagLocations:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+@property(copy) DVTSourceControlPathLocation *defaultAuthenticationPath; // @synthesize defaultAuthenticationPath=_defaultAuthenticationPath;
 - (id)updateRepositoryURLRootWithCompletionBlock:(CDUnknownBlockType)arg1;
 @property(readonly) NSURL *anonymousURL;
 - (id)description;

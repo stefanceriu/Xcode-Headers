@@ -18,8 +18,10 @@
     MDLScatteringFunction *_scatteringFunction;
     NSString *_name;
     MDLMaterial *_baseMaterial;
+    unsigned long long _materialFace;
 }
 
+@property(nonatomic) unsigned long long materialFace; // @synthesize materialFace=_materialFace;
 @property(retain, nonatomic) MDLMaterial *baseMaterial; // @synthesize baseMaterial=_baseMaterial;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
@@ -31,6 +33,7 @@
 - (void)removeAllProperties;
 - (void)removeProperty:(id)arg1;
 - (void)setProperty:(id)arg1;
+- (id)propertiesWithSemantic:(unsigned long long)arg1;
 - (id)propertyWithSemantic:(unsigned long long)arg1;
 - (id)propertyNamed:(id)arg1;
 - (id)initWithName:(id)arg1 physicallyPlausibleBSDF:(struct PhysicallyPlausibleDistribution *)arg2;

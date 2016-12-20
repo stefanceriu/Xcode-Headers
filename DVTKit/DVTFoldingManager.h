@@ -13,15 +13,22 @@
 @interface DVTFoldingManager : NSObject <DVTInvalidation>
 {
     DVTTextFold *_topLevelFold;
-    id <DVTFoldingManagerDelegate> delegate;
+    id <DVTFoldingManagerDelegate> _delegate;
+    BOOL _usesColorLiteral;
+    BOOL _usesFileLiteral;
+    BOOL _usesImageLiteral;
 }
 
 + (void)initialize;
-@property(retain, nonatomic) DVTTextFold *topLevelFold; // @synthesize topLevelFold=_topLevelFold;
-@property __weak id <DVTFoldingManagerDelegate> delegate; // @synthesize delegate;
+@property BOOL usesImageLiteral; // @synthesize usesImageLiteral=_usesImageLiteral;
+@property BOOL usesFileLiteral; // @synthesize usesFileLiteral=_usesFileLiteral;
+@property BOOL usesColorLiteral; // @synthesize usesColorLiteral=_usesColorLiteral;
+@property __weak id <DVTFoldingManagerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(copy, nonatomic) DVTTextFold *topLevelFold; // @synthesize topLevelFold=_topLevelFold;
 - (void).cxx_destruct;
 - (id)fixedSelectionRangesForRanges:(id)arg1 affinity:(unsigned long long)arg2 inTextView:(id)arg3;
 - (id)adjustFoldsForRange:(struct _NSRange)arg1 changeInLength:(long long)arg2;
+- (id)blockFoldsEnclosingRange:(struct _NSRange)arg1;
 - (id)foldsEnclosingRange:(struct _NSRange)arg1;
 - (id)lastFoldTouchingCharacterIndex:(unsigned long long)arg1;
 - (id)firstFoldTouchingCharacterIndex:(unsigned long long)arg1;
@@ -34,7 +41,9 @@
 - (void)foldRangesRecursively:(id)arg1;
 - (void)unfoldRanges:(id)arg1;
 - (void)foldRanges:(id)arg1;
+- (void)unfoldBlockFoldsEnclosingRange:(struct _NSRange)arg1;
 - (void)unfoldRecursiveRange:(struct _NSRange)arg1;
+- (void)_unfoldFolds:(id)arg1 inRange:(struct _NSRange)arg2;
 - (void)unfoldEnclosingRange:(struct _NSRange)arg1;
 - (void)unfoldRange:(struct _NSRange)arg1;
 - (void)unfoldAtCharacterIndex:(unsigned long long)arg1;
@@ -42,6 +51,7 @@
 - (void)unfoldInlineFoldsInRange:(struct _NSRange)arg1;
 - (void)foldInlineText:(id)arg1 inRange:(struct _NSRange)arg2 tokenType:(id)arg3;
 - (void)foldRange:(struct _NSRange)arg1;
+@property BOOL usesAllObjectLiterals;
 - (void)_applyFoldsRecursively:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithRange:(struct _NSRange)arg1;

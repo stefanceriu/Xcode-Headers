@@ -29,6 +29,9 @@
 
 + (id)keyPathsForValuesAffectingDisplayImage;
 + (id)findResultsSortedByFileByDocumentLocation:(id)arg1;
++ (id)keyPathsForValuesAffectingNavigableItem_referencedContentExists;
++ (id)keyPathsForValuesAffectingNavigableItem_image;
++ (id)keyPathsForValuesAffectingNavigableItem_name;
 @property BOOL doesParentsBackingFileExist; // @synthesize doesParentsBackingFileExist=_doesParentsBackingFileExist;
 @property(nonatomic) __weak IDEBatchFindResultGroup *parentFindResultGroup; // @synthesize parentFindResultGroup=_parentFindResultGroup;
 @property(nonatomic) BOOL shouldIncludeInReplacement; // @synthesize shouldIncludeInReplacement=_shouldIncludeInReplacement;
@@ -57,16 +60,20 @@
 - (id)ideModelObjectTypeIdentifier;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) BOOL navigableItem_referencedContentExists;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) NSString *navigableItem_name;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 

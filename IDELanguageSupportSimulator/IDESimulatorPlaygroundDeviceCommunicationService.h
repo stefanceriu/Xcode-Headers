@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IDEPlaygroundSimDeviceFramebufferService, IDEPlaygroundSimDeviceHIDService, IDESimulatorPlaygroundDeviceDebugWindowController, NSObject<OS_dispatch_queue>, SimDevice;
+@class IDEPlaygroundSimDeviceHIDService, IDESimulatorPlaygroundDeviceDebugWindowController, IDESimulatorPlaygroundFramebufferServiceChannel, NSObject<OS_dispatch_queue>, SimDevice, SimDeviceFramebufferService;
 
 @interface IDESimulatorPlaygroundDeviceCommunicationService : NSObject
 {
@@ -15,23 +15,31 @@
     SimDevice *_simDevice;
     IDEPlaygroundSimDeviceHIDService *_deviceHIDService;
     IDESimulatorPlaygroundDeviceDebugWindowController *_simDebugWindowController;
-    IDEPlaygroundSimDeviceFramebufferService *_mainFramebufferService;
-    IDEPlaygroundSimDeviceFramebufferService *_tvOutFramebufferService;
+    SimDeviceFramebufferService *_mainFramebufferService;
+    IDESimulatorPlaygroundFramebufferServiceChannel *_mainFramebufferServiceChannel;
+    SimDeviceFramebufferService *_tvOutFramebufferService;
+    IDESimulatorPlaygroundFramebufferServiceChannel *_tvOutFramebufferServiceChannel;
+    unsigned long long _previousModifierFlags;
 }
 
-@property(retain) IDEPlaygroundSimDeviceFramebufferService *tvOutFramebufferService; // @synthesize tvOutFramebufferService=_tvOutFramebufferService;
-@property(retain) IDEPlaygroundSimDeviceFramebufferService *mainFramebufferService; // @synthesize mainFramebufferService=_mainFramebufferService;
+@property unsigned long long previousModifierFlags; // @synthesize previousModifierFlags=_previousModifierFlags;
+@property(retain) IDESimulatorPlaygroundFramebufferServiceChannel *tvOutFramebufferServiceChannel; // @synthesize tvOutFramebufferServiceChannel=_tvOutFramebufferServiceChannel;
+@property(retain) SimDeviceFramebufferService *tvOutFramebufferService; // @synthesize tvOutFramebufferService=_tvOutFramebufferService;
+@property(retain) IDESimulatorPlaygroundFramebufferServiceChannel *mainFramebufferServiceChannel; // @synthesize mainFramebufferServiceChannel=_mainFramebufferServiceChannel;
+@property(retain) SimDeviceFramebufferService *mainFramebufferService; // @synthesize mainFramebufferService=_mainFramebufferService;
 @property(retain) IDESimulatorPlaygroundDeviceDebugWindowController *simDebugWindowController; // @synthesize simDebugWindowController=_simDebugWindowController;
 @property(retain) IDEPlaygroundSimDeviceHIDService *deviceHIDService; // @synthesize deviceHIDService=_deviceHIDService;
 @property __weak SimDevice *simDevice; // @synthesize simDevice=_simDevice;
 - (void).cxx_destruct;
 - (void)_closeSimDebugWindow;
 - (void)_presentSimDebugWindow;
+- (void)syncHIDModifiers:(unsigned long long)arg1;
+- (void)purgeHIDModifiers;
 - (void)sendHomeButtonPressedEvent;
-- (void)sendHIDEvent:(id)arg1 deviceRelativeLocation:(struct CGPoint)arg2 screen:(long long)arg3 screenSize:(struct CGSize)arg4;
+- (BOOL)sendHIDMouseEvent:(id)arg1 deviceRelativeLocation:(struct CGPoint)arg2 screen:(long long)arg3 screenSize:(struct CGSize)arg4;
+- (BOOL)sendHIDKeyboardEvent:(id)arg1 screen:(long long)arg2;
 - (void)deviceScreen:(long long)arg1 sizeChanged:(struct CGSize)arg2;
-- (void)closeFramebufferServiceChannel:(id)arg1;
-- (id)openFramebufferServiceChannelForDeviceScreen:(long long)arg1;
+- (id)framebufferServiceChannelForDeviceScreen:(long long)arg1;
 - (id)framebufferServiceForDeviceScreen:(long long)arg1;
 - (void)_dispatchToDeviceManagementQueue:(CDUnknownBlockType)arg1;
 - (void)dealloc;

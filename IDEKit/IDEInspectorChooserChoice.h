@@ -17,16 +17,19 @@
     BOOL _separator;
     BOOL _header;
     NSString *_title;
+    IDEInspectorKeyPath *_titleKeyPath;
     IDEInspectorKeyPath *_visibleKeyPath;
     NSImage *_image;
     id <NSCopying> _value;
     NSMenuItem *_menuItem;
     IDEInspectorChooserCategory *_category;
+    long long _indentationLevel;
 }
 
 + (id)headerChoiceWithTitle:(id)arg1 visibleKeyPath:(id)arg2 andLayoutGroup:(id)arg3;
 + (id)separatorChoiceWithVisibleKeyPath:(id)arg1 andLayoutGroup:(id)arg2;
 + (void)initialize;
+@property(readonly) long long indentationLevel; // @synthesize indentationLevel=_indentationLevel;
 @property(getter=isHeader) BOOL header; // @synthesize header=_header;
 @property(getter=isSeparator) BOOL separator; // @synthesize separator=_separator;
 @property(retain, nonatomic) IDEInspectorChooserCategory *category; // @synthesize category=_category;
@@ -34,11 +37,13 @@
 @property(readonly) id <NSCopying> value; // @synthesize value=_value;
 @property(readonly) NSImage *image; // @synthesize image=_image;
 @property(readonly) IDEInspectorKeyPath *visibleKeyPath; // @synthesize visibleKeyPath=_visibleKeyPath;
+@property(readonly) IDEInspectorKeyPath *titleKeyPath; // @synthesize titleKeyPath=_titleKeyPath;
 @property(readonly) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
 @property(readonly) IDEInspectorLayoutGroup *inspectorLayoutGroup;
 - (void)primitiveInvalidate;
-- (id)initWithTitle:(id)arg1 image:(id)arg2 value:(id)arg3 visibleKeyPath:(id)arg4 andLayoutGroup:(id)arg5;
+- (id)initWithTitleKeyPath:(id)arg1 image:(id)arg2 value:(id)arg3 visibleKeyPath:(id)arg4 andLayoutGroup:(id)arg5 indentationLevel:(long long)arg6;
+- (id)initWithTitle:(id)arg1 image:(id)arg2 value:(id)arg3 visibleKeyPath:(id)arg4 andLayoutGroup:(id)arg5 indentationLevel:(long long)arg6;
 - (id)initWithTitle:(id)arg1 image:(id)arg2 value:(id)arg3 visibleKeyPath:(id)arg4 sliceXML:(id)arg5 inspectorController:(id)arg6;
 
 // Remaining properties

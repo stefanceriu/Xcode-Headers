@@ -36,11 +36,13 @@
 @property(retain, nonatomic) NSView *editedView; // @synthesize editedView;
 @property(readonly) IBCocoaTouchTargetRuntime *targetRuntime; // @synthesize targetRuntime;
 - (void).cxx_destruct;
-- (struct CGRect)sceneUpdateContentView:(id)arg1 imageContentRectForImageSize:(struct CGSize)arg2 scaleFactor:(double)arg3;
+- (CDStruct_c519178c)ibEffectiveSimulatedEditorViewInset;
+- (struct CGSize)ibEffectiveSimulatedCanvasFrameContentViewSize;
 - (id)backgroundColorForSceneUpdateContentView:(id)arg1;
 - (id)targetRuntimeForSceneUpdateContentView:(id)arg1;
 - (BOOL)shouldSceneUpdateContentViewRegisterForAsynchronousRendering:(id)arg1;
 - (void)invalidateSceneForContentView:(id)arg1 forReason:(CDUnknownBlockType)arg2;
+- (double)scaleFactorForRenderingSceneContentView:(id)arg1;
 - (id)overlayView:(id)arg1 hitTest:(struct CGPoint)arg2 defaultHit:(id)arg3;
 - (void)overlayView:(id)arg1 drawRect:(struct CGRect)arg2;
 - (void)layoutBottomUp;

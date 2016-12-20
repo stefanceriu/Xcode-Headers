@@ -29,9 +29,12 @@
 @property(retain) DVTTableView *profileTable; // @synthesize profileTable=_profileTable;
 @property(readonly) DVTDevice *device; // @synthesize device=_device;
 - (void).cxx_destruct;
-- (void)removeProfile:(id)arg1;
+- (void)removeProfiles:(id)arg1;
+- (void)delete:(id)arg1;
 - (void)addProfile:(id)arg1;
+- (void)selectAll:(id)arg1;
 - (void)done:(id)arg1;
+- (BOOL)validateMenuItem:(id)arg1;
 - (void)windowDidLoad;
 - (id)initWithDevice:(id)arg1;
 

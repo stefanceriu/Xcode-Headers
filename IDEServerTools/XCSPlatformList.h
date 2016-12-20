@@ -15,6 +15,7 @@
 
 @property(retain, nonatomic) NSMutableDictionary *platforms; // @synthesize platforms=_platforms;
 - (void).cxx_destruct;
+- (id)JSONRepresentation;
 - (id)blocksForSavingOnService:(id)arg1;
 - (void)addSimulatorPlatform:(id)arg1;
 - (void)addPlatform:(id)arg1;

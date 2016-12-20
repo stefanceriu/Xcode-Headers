@@ -15,17 +15,16 @@ __attribute__((visibility("hidden")))
 @interface GPUGLTraceStateItem : GPUTraceStateItem <DYFunctionTracerDelegate, GPUGLStateMirrorInterface>
 {
     GPUGLStateMirror *_stateMirror;
-    BOOL _hasStateMirror;
 }
 
-@property(readonly) BOOL hasStateMirror; // @synthesize hasStateMirror=_hasStateMirror;
 - (void).cxx_destruct;
 - (BOOL)isGroupMarkerCall;
 - (id)rewriteReceiver:(unsigned long long)arg1;
 - (id)rewriteURL:(const char *)arg1;
 - (id)rewriteVariable:(const char *)arg1 receiver:(unsigned long long)arg2;
 - (id)generateLabel;
-@property(copy) GPUGLStateMirror *stateMirror; // @synthesize stateMirror=_stateMirror;
+@property(readonly) BOOL hasStateMirror;
+@property(copy) GPUGLStateMirror *stateMirror;
 - (void)primitiveInvalidate;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 

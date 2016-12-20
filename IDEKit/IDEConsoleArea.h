@@ -12,7 +12,7 @@
 #import "IDEConsoleTextViewObjectiveCExpressionRangeDelegate.h"
 #import "IDEConsoleTextViewStandardIODelegate.h"
 
-@class DVTFindBar, DVTNotificationToken, DVTObservingToken, DVTScopeBarController, DVTScopeBarView, DVTScopeBarsManager, DVTScrollView, IDEConsoleTextView, IDEWorkspaceDocument, NSButton, NSMapTable, NSMutableArray, NSMutableSet, NSPopUpButton, NSScrollView, NSSet, NSString, NSTimer, NSUndoManager, NSView;
+@class DVTFindBar, DVTNotificationToken, DVTObservingToken, DVTScopeBarController, DVTScopeBarView, DVTScopeBarsManager, DVTScrollView, DVTSearchField, IDEConsoleTextView, IDELayoutControlView, IDEWorkspaceDocument, NSButton, NSMapTable, NSMutableArray, NSMutableSet, NSPopUpButton, NSScrollView, NSSet, NSString, NSTimer, NSUndoManager, NSView;
 
 @interface IDEConsoleArea : IDEViewController <IDEConsoleTextViewObjectiveCExpressionRangeDelegate, DVTFindBarHostable, DVTScopeBarHost, IDEConsoleTextViewStandardIODelegate, DVTCompletingTextViewDelegate>
 {
@@ -20,6 +20,12 @@
     IDEConsoleTextView *_consoleView;
     NSPopUpButton *_filterModePopUpButton;
     NSButton *_clearConsoleButton;
+    NSPopUpButton *_filterModePopUpButton_legacy;
+    NSPopUpButton *_filterModePopUpButton_new;
+    DVTSearchField *_consoleFilterField;
+    IDELayoutControlView *_consoleFilterLayoutView;
+    NSString *_consoleFilterString;
+    NSString *_previousConsoleFilterString;
     IDEWorkspaceDocument *_workspaceDocument;
     NSMutableArray *_inputHistoryForDebugger;
     unsigned long long _inputHistoryIndexForDebugger;
@@ -40,12 +46,16 @@
     DVTScopeBarsManager *_scopeBarsManager;
     struct _NSRange _originalSelection;
     int _filterMode;
+    unsigned long long _filteredItemsCount;
+    unsigned long long _filteredOutItemsCount;
     DVTScrollView *_consoleScrollView;
 }
 
 + (long long)availableCompletionTypes:(unsigned long long)arg1 fullTextAfterPrompt:(id)arg2 forDebugSession:(id)arg3;
 + (long long)version;
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
++ (id)consoleStateSavingString;
+@property(retain) NSString *consoleFilterString; // @synthesize consoleFilterString=_consoleFilterString;
 @property __weak DVTScrollView *consoleScrollView; // @synthesize consoleScrollView=_consoleScrollView;
 @property(readonly) DVTScopeBarView *scopeBarView; // @synthesize scopeBarView=_scopeBar;
 @property(nonatomic) int filterMode; // @synthesize filterMode=_filterMode;
@@ -91,6 +101,8 @@
 - (void)_addConsoleAdaptors:(id)arg1;
 - (void)_updateConsoleAdaptorsForCurrentLaunchSession;
 - (void)_timerFiredToClearInitialConsoleItems:(id)arg1;
+- (BOOL)_shouldAppendItem_new:(id)arg1;
+- (BOOL)_shouldAppendItem_legacy:(id)arg1;
 - (BOOL)_shouldAppendItem:(id)arg1;
 - (void)_appendItems:(id)arg1;
 - (void)_appendItem:(id)arg1;

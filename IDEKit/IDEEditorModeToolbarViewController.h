@@ -16,6 +16,7 @@
     DVTObservingToken *_editorSubmodeObservingToken;
     DVTBindingToken *_workspaceIsIdleToken;
     DVTNotificationToken *_segmentedControllVersionEditorEnabledToken;
+    DVTObservingToken *_segmentedControllVersionEditorDocumentEnabledToken;
     DVTSegmentedControl *_editorSegmentedControl;
     NSMenu *_assistantEditorModeMenu;
     NSMenu *_versionEditorModeMenu;
@@ -32,7 +33,8 @@
 - (void)_showVersionComparisonMode:(id)arg1;
 - (void)_segmentStateDidChange:(id)arg1;
 - (void)_setEditorModeForMenuItem:(id)arg1;
-- (void)_updateVersionEditorMenuForSubmode:(int)arg1;
+- (void)_updateVersionEditorMenuForSubmode:(int)arg1 enabled:(BOOL)arg2;
+- (void)_updateVersionEditorModeMenu:(BOOL)arg1;
 - (void)_setEditorMode:(int)arg1;
 - (long long)_stateForMenuItemTag:(long long)arg1 editorModeClass:(Class)arg2 classAccessor:(SEL)arg3 instanceAccessor:(SEL)arg4;
 - (id)_editorModeViewController;

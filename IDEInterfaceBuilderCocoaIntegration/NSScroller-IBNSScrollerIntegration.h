@@ -16,5 +16,6 @@
 - (Class)ibEditorClass;
 - (struct CGSize)ibMaximumSize;
 - (struct CGSize)ibMinimumSize;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

@@ -44,7 +44,7 @@
 - (void)trackWithEvent:(id)arg1;
 - (void)clearGuides;
 - (void)displayGuides;
-- (id)layoutFrameAfterApplyingLayoutGuides:(struct CGRect)arg1;
+- (id)layoutFrameAfterApplyingLayoutGuides:(struct CGRect)arg1 withEvent:(id)arg2;
 - (void)placeSubviewInFrame:(struct CGRect)arg1 event:(id)arg2;
 - (struct CGRect)snapToGuidedLayoutFrame:(struct CGRect)arg1 originalLayoutFrame:(struct CGRect)arg2;
 - (void)resumeAutoResizingSubviews:(id)arg1;

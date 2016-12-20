@@ -7,6 +7,7 @@
 #import "NSForm.h"
 
 @interface NSForm (IBNSFormIntegration)
+- (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (struct CGSize)ibPreferredCellSize;
 - (void)setIbInspectedControlSize:(unsigned long long)arg1;
 - (Class)ibEditorClass;

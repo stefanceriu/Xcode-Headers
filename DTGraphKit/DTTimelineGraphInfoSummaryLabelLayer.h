@@ -6,13 +6,15 @@
 
 #import "CALayer.h"
 
-@class NSAttributedString;
+@class NSAttributedString, NSImage;
 
 @interface DTTimelineGraphInfoSummaryLabelLayer : CALayer
 {
     NSAttributedString *_string;
+    NSImage *_image;
 }
 
+@property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
 @property(copy, nonatomic) NSAttributedString *string; // @synthesize string=_string;
 - (void).cxx_destruct;
 - (void)setContentsScale:(double)arg1;

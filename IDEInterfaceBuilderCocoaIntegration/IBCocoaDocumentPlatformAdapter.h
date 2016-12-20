@@ -6,16 +6,16 @@
 
 #import "IBDocumentPlatformAdapter.h"
 
-@class IBBindingManager, NSNumber;
+@class IBCocoaBindingsManager, NSNumber;
 
 @interface IBCocoaDocumentPlatformAdapter : IBDocumentPlatformAdapter
 {
-    IBBindingManager *_bindingManager;
+    IBCocoaBindingsManager *_bindingManager;
     NSNumber *_explicitCustomObjectInstantiationBehavior;
 }
 
 @property(retain, nonatomic) NSNumber *explicitCustomObjectInstantiationBehavior; // @synthesize explicitCustomObjectInstantiationBehavior=_explicitCustomObjectInstantiationBehavior;
-@property(readonly, nonatomic) IBBindingManager *bindingManager; // @synthesize bindingManager=_bindingManager;
+@property(readonly, nonatomic) IBCocoaBindingsManager *bindingManager; // @synthesize bindingManager=_bindingManager;
 - (void).cxx_destruct;
 - (id)applicableInspectorCategoriesGivenSuggestion:(id)arg1;
 - (id)storyboardExitPlaceholder;
@@ -37,7 +37,6 @@
 - (id)archiveTypeForFileType:(id)arg1;
 - (id)forcedUpgradeFileTypeForFileType:(id)arg1;
 - (id)intrinsicPackageContentForNewlyGeneratedPackageWithFileType:(id)arg1;
-- (struct CGSize)canvasViewFramePaddingSizeForOverlayScrollers;
 - (id)documentCIImageNamed:(id)arg1 usingSizeValueForPlaceholderImageIfNeeded:(id)arg2;
 - (void)frameDecider:(id)arg1 didPropagateFrameSize:(struct CGSize)arg2 toView:(id)arg3;
 - (void)frameDecider:(id)arg1 didPropagateFrame:(struct CGRect)arg2 toView:(id)arg3;

@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDEInspectorEnumerationProperty.h>
 
-@class IDEInspectorKeyPath, NSArray, NSMenuItem, NSPopUpButton, NSString;
+@class DVTNotificationToken, IDEInspectorKeyPath, NSArray, NSMenuItem, NSPopUpButton, NSString;
 
 @interface IDEInspectorTextEnumerationProperty : IDEInspectorEnumerationProperty
 {
@@ -21,6 +21,7 @@
     BOOL _isBitField;
     BOOL _rebuildPopUps;
     BOOL _nilPlaceholderIsSelectable;
+    DVTNotificationToken *_notificationToken;
     NSArray *optionGroups;
     id controllerValue;
     NSPopUpButton *_popupButton;
@@ -33,9 +34,14 @@
 - (void)refresh;
 - (void)showValueItem:(id)arg1;
 - (void)showMarkerItem:(id)arg1;
+- (void)showTextForItem:(id)arg1;
 - (void)userDidChangeValue:(id)arg1;
+- (void)tearDownRefreshTriggers;
 - (void)setupRefreshTriggersAndConfigure;
-- (id)menuItemWithTitle:(id)arg1 image:(id)arg2 representedObject:(id)arg3 hidden:(BOOL)arg4 enabled:(BOOL)arg5;
+- (id)placeholderItemWithTitle:(id)arg1;
+- (id)separatorItem;
+- (id)placeholderOptionWithTitle:(id)arg1;
+- (id)menuItemForOption:(id)arg1;
 - (double)baseline;
 
 @end

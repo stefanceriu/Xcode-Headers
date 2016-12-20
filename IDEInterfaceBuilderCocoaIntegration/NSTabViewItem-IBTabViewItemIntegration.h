@@ -30,8 +30,7 @@
 - (BOOL)ibCanRemoveChildren:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
 - (id)ibLocalChildToOneRelationshipsKeyPaths;
-- (id)ibLocalToOneRelationshipsKeyPaths;
-- (id)ibToOneRelationshipKeyPaths;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
 - (id)ibLocalAttributeKeyPaths;
 @end
 

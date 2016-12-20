@@ -22,9 +22,8 @@
 @property(readonly, nonatomic) BOOL alias; // @synthesize alias=_alias;
 @property(readonly, retain, nonatomic) NSString *name; // @synthesize name=_name;
 @property(readonly, nonatomic) DYCaptureArchive *archive; // @synthesize archive=_archive;
+- (id)description;
 - (id)decodeSerializedPropertyListWithOptions:(unsigned long long)arg1 error:(id *)arg2;
-- (id)decodeArchivedObjectWithAllowedBaseClasses:(id)arg1;
-- (id)decodeArchivedObjectWithAllowedBaseClass:(Class)arg1;
 - (id)decodeArchivedObject;
 - (void)updateName:(id)arg1;
 - (id)openFunctionStream:(id *)arg1;
@@ -38,9 +37,6 @@
 - (void)dealloc;
 - (id)_initWithArchive:(id)arg1 hashPosition:(unsigned int)arg2 name:(id)arg3;
 - (id)init;
-
-// Remaining properties
-@property(readonly, nonatomic) BOOL functionStream; // @dynamic functionStream;
 
 @end
 

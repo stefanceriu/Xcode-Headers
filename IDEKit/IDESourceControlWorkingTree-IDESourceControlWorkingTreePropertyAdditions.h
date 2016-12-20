@@ -8,12 +8,10 @@
 
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSNumber, NSString;
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString;
 
 @interface IDESourceControlWorkingTree (IDESourceControlWorkingTreePropertyAdditions) <IDEKeyDrivenNavigableItemRepresentedObject>
-+ (id)keyPathsForValuesAffectingProgress;
 + (id)keyPathsForValuesAffectingNavigableItem_name;
-@property(readonly) NSNumber *progress;
 @property(readonly) NSString *navigableItem_lastModifiedDate;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) NSString *navigableItem_name;
@@ -22,12 +20,16 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 @end

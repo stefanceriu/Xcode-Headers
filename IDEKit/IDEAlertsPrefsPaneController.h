@@ -50,7 +50,7 @@
 - (id)view;
 - (void)awakeFromNib;
 - (void)reloadTableData;
-- (void)restoreSelection;
+- (void)restoreSelection:(id)arg1;
 
 @end
 

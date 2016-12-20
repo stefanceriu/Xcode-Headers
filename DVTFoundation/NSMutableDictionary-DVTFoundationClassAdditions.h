@@ -7,7 +7,10 @@
 #import "NSMutableDictionary.h"
 
 @interface NSMutableDictionary (DVTFoundationClassAdditions)
+- (void)dvt_setObject:(id)arg1 forKeyIfNonNil:(id)arg2;
+- (void)dvt_setObjectIfNonNil:(id)arg1 forKey:(id)arg2;
 - (id)dvt_objectForKey:(id)arg1 creatingIfNecessaryWithBlock:(CDUnknownBlockType)arg2;
+- (id)dvt_objectForKey:(id)arg1 creatingIfNecessaryFromClass:(Class)arg2;
 - (void)dvt_recursivelyRemoveAllObjects;
 - (void)dvt_setRect:(struct CGRect)arg1 forKey:(id)arg2;
 - (void)dvt_setSize:(struct CGSize)arg1 forKey:(id)arg2;

@@ -11,21 +11,28 @@
 @class NSColor, NSString, NSURL, SKNode, SKShader;
 
 @interface SKEmitterNode (InspectorAdditions) <SKNodeWithShader>
-+ (id)keyPathsForValuesAffectingParticleTextureImageName;
-@property(retain, nonatomic) NSURL *customSpriteShader;
++ (id)keyPathsForValuesAffectingSk_inspectorTargetNode;
++ (id)keyPathsForValuesAffectingSk_particleRotationSpeedDeg;
++ (id)keyPathsForValuesAffectingSk_particleRotationRangeDeg;
++ (id)keyPathsForValuesAffectingSk_particleRotationDeg;
++ (id)keyPathsForValuesAffectingSk_emissionAngleRangeDeg;
++ (id)keyPathsForValuesAffectingSk_emissionAngleDeg;
++ (id)keyPathsForValuesAffectingSk_backgroundColor;
++ (id)keyPathsForValuesAffectingSk_particleTextureImageName;
+@property(retain, nonatomic) NSURL *sk_customSpriteShader;
 - (id)ide_undoKVOKeypaths;
 - (void)setNilValueForKey:(id)arg1;
 - (id)inspectorAttributes;
-@property(retain, nonatomic) SKNode *inspectorTargetNode;
-@property BOOL shouldShowParentInInspector;
-@property(nonatomic) struct CGPoint previewParticlePosition;
-@property(nonatomic) double particleRotationSpeedDeg;
-@property(nonatomic) double particleRotationRangeDeg;
-@property(nonatomic) double particleRotationDeg;
-@property(nonatomic) double emissionAngleRangeDeg;
-@property(nonatomic) double emissionAngleDeg;
-@property(retain, nonatomic) NSColor *backgroundColor;
-@property(retain, nonatomic) NSString *particleTextureImageName;
+@property(retain, nonatomic) SKNode *sk_inspectorTargetNode;
+@property(nonatomic) struct CGPoint sk_previewParticlePosition;
+@property(nonatomic) double sk_particleRotationSpeedDeg;
+@property(nonatomic) double sk_particleRotationRangeDeg;
+@property(nonatomic) double sk_particleRotationDeg;
+@property(nonatomic) double sk_emissionAngleRangeDeg;
+@property(nonatomic) double sk_emissionAngleDeg;
+@property(retain, nonatomic) NSColor *sk_backgroundColor;
+@property(retain, nonatomic) NSString *sk_particleTextureImageName;
+@property(readonly, nonatomic) SKNode *node;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

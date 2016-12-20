@@ -7,31 +7,37 @@
 #import "DTXService.h"
 
 #import "DTTapAuthorizedAPI.h"
+#import "DTTapBulkDataReceiver.h"
 
-@class DTTapServiceGuarded, NSRecursiveLock, NSString;
+@class DTTapConfig, DTTapLocal, DTTapServiceMessageSender, NSObject<OS_dispatch_queue>, NSString;
 
-@interface DTTapService : DTXService <DTTapAuthorizedAPI>
+@interface DTTapService : DTXService <DTTapAuthorizedAPI, DTTapBulkDataReceiver>
 {
-    NSRecursiveLock *_lock;
-    DTTapServiceGuarded *_lockedObj;
+    unsigned int _tapServiceID;
+    BOOL _tapIsRunning;
+    id <DTTapServiceDelegate> _delegate;
+    DTTapConfig *_config;
+    DTTapLocal *_tap;
+    BOOL _useExpiredPidCache;
+    NSObject<OS_dispatch_queue> *_serialQueue;
+    DTTapServiceMessageSender *_messageSender;
 }
 
++ (void)registerCapabilities:(id)arg1 forDelegateClass:(Class)arg2 forConnection:(id)arg3;
++ (id)playbackServiceName;
++ (void)initialize;
 - (void).cxx_destruct;
-- (id)_didStop:(id)arg1;
-- (id)_willStart:(id)arg1;
-- (BOOL)_validateConfig:(id)arg1;
+- (void)sendHeartbeatTime:(unsigned long long)arg1;
+- (void)sendFrameMessage:(id)arg1;
+- (void)handleBulkData:(const void *)arg1 size:(unsigned long long)arg2 destructor:(CDUnknownBlockType)arg3;
 - (void)fetchDataNow;
 - (void)unpause;
 - (void)pause;
 - (void)stop;
 - (void)start;
 - (void)setConfig:(id)arg1;
-- (id)_createConfigWithPlist:(id)arg1;
 - (void)messageReceived:(id)arg1;
 - (id)initWithChannel:(id)arg1;
-- (Class)_guardedClass;
-- (void)_Access:(CDUnknownBlockType)arg1;
-- (void)_SendMsg:(id)arg1 toChannel:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

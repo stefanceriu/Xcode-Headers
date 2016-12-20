@@ -27,6 +27,7 @@
 - (void)setIsInitialLayout;
 - (id)restoreCachedNodeAssignmentsForEditorURL:(id)arg1;
 - (void)cacheNodeAssignmentsForEditorURL:(id)arg1;
+- (BOOL)canLiveReloadPreview;
 - (void)forceStartSimulate;
 - (void)updateActionPreview;
 - (void)togglePausePlay;

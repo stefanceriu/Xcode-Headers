@@ -20,8 +20,9 @@
     BOOL _settingDiffDescriptorToggledState;
     DVTObservingToken *_checkedFilePathsToken;
     DVTObservingToken *_mixedStateFilePathsToken;
-    DVTObservingToken *_selectedViewIndexesToken;
+    DVTObservingToken *_selectedNavigatorToken;
     DVTObservingToken *_allDiffDescriptorsToggledStateToken;
+    DVTObservingToken *_navigatorFilterToken;
     BOOL _showIgnoredFiles;
     IDEReviewFilesViewController *_reviewFilesViewController;
     IDEWorkspace *_workspace;
@@ -61,7 +62,7 @@
 - (id)defaultCheckedFilePaths;
 - (id)workingTreeItemFilterPredicate;
 - (id)workspaceItemFilterPredicate;
-- (void)reloadNavigableItemsIfNecessary;
+- (void)reloadNavigableItems;
 - (void)setInitialSelectionForNavigatorOutlineView:(id)arg1;
 - (void)setupNavigableItemsForFlatDataSource;
 - (void)setupNavigableItemsForFileSystemDataSource;

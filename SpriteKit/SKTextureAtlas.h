@@ -24,6 +24,7 @@
 + (id)atlasNamed:(id)arg1;
 + (id)atlasWithDictionary:(id)arg1;
 + (BOOL)canUseObjectForAtlas:(id)arg1;
++ (id)lookupCachedTextureNamed:(id)arg1;
 + (id)findTextureNamed:(id)arg1;
 + (id)getSupportedPostfixes;
 + (struct CGImage *)createCGImageFromCUINamedImage:(struct CGImage *)arg1 withSize:(struct CGSize)arg2 atRect:(struct CGRect)arg3;
@@ -46,7 +47,6 @@
 - (void)commonInit;
 - (void)_prePopulateCache;
 - (void)unload;
-- (void)preload;
 - (id)_copyImageData;
 
 @end

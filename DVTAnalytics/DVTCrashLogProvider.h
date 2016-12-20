@@ -8,20 +8,22 @@
 
 #import "DVTServicesFileSystemSerialization.h"
 
-@class DVTFilePath, NSMutableDictionary, NSOrderedSet, NSString;
+@class DVTFilePath, NSArray, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
 
 @interface DVTCrashLogProvider : NSObject <DVTServicesFileSystemSerialization>
 {
-    NSOrderedSet *_crashLogIdentifiers;
+    NSMutableArray *_crashLogIdentifiers;
     DVTFilePath *_cacheDirectory;
     NSMutableDictionary *_crashLogDict;
+    NSMutableSet *_crashLogsToDelete;
 }
 
 + (id)objectFromFilePath:(id)arg1 error:(id *)arg2;
 + (id)crashLogProviderWithCacheDirectory:(id)arg1 crashLogIdentifiers:(id)arg2;
-@property(retain, nonatomic) NSMutableDictionary *crashLogDict; // @synthesize crashLogDict=_crashLogDict;
+@property(readonly, nonatomic) NSMutableSet *crashLogsToDelete; // @synthesize crashLogsToDelete=_crashLogsToDelete;
+@property(readonly, nonatomic) NSMutableDictionary *crashLogDict; // @synthesize crashLogDict=_crashLogDict;
 @property(readonly, nonatomic) DVTFilePath *cacheDirectory; // @synthesize cacheDirectory=_cacheDirectory;
-@property(retain) NSOrderedSet *crashLogIdentifiers; // @synthesize crashLogIdentifiers=_crashLogIdentifiers;
+@property(retain, nonatomic) NSArray *crashLogIdentifiers; // @synthesize crashLogIdentifiers=_crashLogIdentifiers;
 - (void).cxx_destruct;
 - (BOOL)writeToFilePath:(id)arg1 error:(id *)arg2;
 - (BOOL)_writeCrashLogSnapshots:(id)arg1 error:(id *)arg2;

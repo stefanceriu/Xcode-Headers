@@ -6,13 +6,14 @@
 
 #import <DVTFoundation/DVTOperation.h>
 
-@class DVTDispatchLock, NSArray, NSMutableArray, NSOperationQueue;
+@class DVTDispatchLock, NSArray, NSError, NSMutableArray, NSOperationQueue;
 
 @interface DVTOperationGroup : DVTOperation
 {
     NSOperationQueue *_queue;
     DVTDispatchLock *_lock;
     NSMutableArray *_suboperations;
+    NSError *_error;
 }
 
 + (id)operationGroupWithSuboperations:(id)arg1;
@@ -21,6 +22,8 @@
 - (id)description;
 - (void)enumerateUsingBlock:(CDUnknownBlockType)arg1;
 - (void)_enumerateWithStop:(char *)arg1 usingBlock:(CDUnknownBlockType)arg2;
+- (id)error;
+- (void)setError:(id)arg1;
 - (void)cancel;
 - (void)main;
 - (void)start;

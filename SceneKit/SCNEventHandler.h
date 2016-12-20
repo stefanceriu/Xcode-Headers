@@ -6,15 +6,21 @@
 
 #import "NSObject.h"
 
-@class NSMutableArray, SCNView;
+@class NSMutableArray, SCNNode, SCNView;
 
 @interface SCNEventHandler : NSObject
 {
     SCNView *_view;
     struct __IOHIDManager *_hidManager;
     NSMutableArray *_controllers;
+    BOOL _enableFreeCamera;
+    BOOL _autoSwitchToFreeCamera;
 }
 
+- (void)activateFreeCamera;
+@property BOOL autoSwitchToFreeCamera;
+@property BOOL enableFreeCamera;
+@property(readonly) SCNNode *freeCamera;
 - (BOOL)wantsRedraw;
 - (void)viewDidDraw;
 - (void)viewWillDraw;

@@ -10,6 +10,7 @@
 {
 }
 
+- (id)typeSymbolForSymbol:(id)arg1 withCurrentFileContentDictionary:(id)arg2 forIndex:(id)arg3;
 - (id)symbolsMatchingName:(id)arg1 inContext:(id)arg2 withCurrentFileContentDictionary:(id)arg3 forIndex:(id)arg4;
 - (id)symbolsMatchingName:(id)arg1 inContext:(id)arg2 forIndex:(id)arg3;
 

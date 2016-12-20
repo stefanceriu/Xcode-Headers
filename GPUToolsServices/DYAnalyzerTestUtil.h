@@ -13,9 +13,9 @@
 + (BOOL)_diffAndTestFindingsFile:(id)arg1 withTraceFile:(id)arg2 refName:(id)arg3;
 + (void)_printFindings:(id)arg1 toFile:(id)arg2;
 + (id)_openFile:(id)arg1 create:(BOOL)arg2;
-+ (BOOL)_compareReferenceFindings:(id)arg1 refName:(id)arg2;
++ (BOOL)_compareReferenceFindings:(id)arg1 refName:(id)arg2 refBundle:(id)arg3;
 + (BOOL)_generateReferenceFindings:(id)arg1 refName:(id)arg2;
-+ (BOOL)testFindings:(id)arg1 refName:(id)arg2;
++ (BOOL)testFindings:(id)arg1 refName:(id)arg2 refBundle:(id)arg3;
 + (id)findingsOfKind:(id)arg1 kind:(id)arg2;
 + (void)debugPrintFormattedFindingsOfKind:(id)arg1 kind:(id)arg2;
 + (void)debugPrintFormattedFindings:(id)arg1;

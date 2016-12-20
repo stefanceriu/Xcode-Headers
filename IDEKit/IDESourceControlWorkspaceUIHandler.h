@@ -11,7 +11,7 @@
 #import "NSAlertDelegate.h"
 #import "NSWindowDelegate.h"
 
-@class DVTFilePath, DVTStackBacktrace, IDESourceControlCreateGitRepositoryOperationInfo, IDESourceControlUpgradeWindowController, IDEWorkspaceDocument, IDEXcodeServer, NSAlert, NSMutableSet, NSOperationQueue, NSString;
+@class DVTFilePath, DVTStackBacktrace, IDESourceControlCreateGitRepositoryOperationInfo, IDESourceControlUpgradeWindowController, IDEWorkspaceDocument, NSAlert, NSMutableSet, NSOperationQueue, NSString;
 
 @interface IDESourceControlWorkspaceUIHandler : NSObject <IDESourceControlWorkspaceUIHandlerProtocol, DVTInvalidation, NSAlertDelegate, NSWindowDelegate>
 {
@@ -23,7 +23,6 @@
     IDESourceControlUpgradeWindowController *_upgradeWindowController;
     BOOL _initialScanAlertIsShowing;
     BOOL _initialWorkspaceScanIsComplete;
-    BOOL _shouldShowUpgradeAlert;
     IDEWorkspaceDocument *_workspaceDocument;
     NSMutableSet *_windowControllers;
     IDESourceControlCreateGitRepositoryOperationInfo *_operationInfo;
@@ -31,11 +30,11 @@
     BOOL _shouldShowMissingWorkingCopies;
     BOOL _shouldCreateLocalRepository;
     DVTFilePath *_pathToCreateLocalGitRepository;
-    IDEXcodeServer *_serverToPushTo;
+    id <XCSLocalService> _serverToPushTo;
 }
 
 + (void)initialize;
-@property IDEXcodeServer *serverToPushTo; // @synthesize serverToPushTo=_serverToPushTo;
+@property id <XCSLocalService> serverToPushTo; // @synthesize serverToPushTo=_serverToPushTo;
 @property DVTFilePath *pathToCreateLocalGitRepository; // @synthesize pathToCreateLocalGitRepository=_pathToCreateLocalGitRepository;
 @property BOOL shouldCreateLocalRepository; // @synthesize shouldCreateLocalRepository=_shouldCreateLocalRepository;
 @property(copy) CDUnknownBlockType sourceControlCommandContinuationBlock; // @synthesize sourceControlCommandContinuationBlock=_sourceControlCommandContinuationBlock;
@@ -46,21 +45,18 @@
 - (void)createGitRepositoryForFilePath:(id)arg1 workingTree:(id)arg2 repoName:(id)arg3 pushingToServer:(id)arg4;
 - (void)displayError:(id)arg1;
 - (void)shouldCreateLocalRepository:(BOOL)arg1 atFilePath:(id)arg2 pushToServer:(id)arg3;
-- (void)initialWorkspaceScanIsFinished;
+- (void)initialWorkspaceScanIsFinished:(id)arg1;
 - (void)displayWaitingOnInitialWorkspaceScanAlertInWindow:(id)arg1 withContinuationBlock:(CDUnknownBlockType)arg2;
 - (id)waitingOnInitialScanAlert;
 - (void)primitiveInvalidate;
 - (void)windowWillClose:(id)arg1;
 - (void)requestOperationConfirmationForOperationName:(id)arg1 workingCopyName:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (void)presentCheckoutsForProject:(id)arg1 scopingToWorkingCopyConfigurations:(id)arg2 attachedToWindow:(id)arg3;
-- (void)_askToCheckOutDidEnd:(id)arg1 returnCode:(long long)arg2 workspaceMonitor:(id)arg3;
 - (void)offerAdditionalWorkingCopies;
 - (void)warnAboutNewerRepositoryVersionWithError:(id)arg1;
 - (void)_newWorkingCopyDidEnd:(id)arg1 returnCode:(long long)arg2 workingCopies:(id)arg3;
 - (void)askToShareNewWorkingCopies:(id)arg1;
-- (void)showUpgradeWindowForWindow:(id)arg1 workingCopiesNeedingUpgrade:(id)arg2 showsSuppressionButton:(BOOL)arg3;
+- (void)showUpgradeWindowForWindow:(id)arg1 workingCopyNeedingUpgrade:(id)arg2;
 - (void)workspaceMonitorDidFinishScanning:(id)arg1;
-- (void)didFindUpgradableWorkingCopy;
 - (id)initWithWorkspaceDocument:(id)arg1;
 - (void)finishedUpgrade;
 - (BOOL)alertShowHelp:(id)arg1;

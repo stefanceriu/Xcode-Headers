@@ -21,7 +21,6 @@
 - (void)deleteAction:(id)arg1;
 - (void)quickLookAction:(id)arg1;
 - (void)configureEditionBar;
-- (void)viewDidInstall;
 - (void)loadView;
 - (void)primitiveInvalidate;
 

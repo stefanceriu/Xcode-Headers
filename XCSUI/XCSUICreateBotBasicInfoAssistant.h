@@ -18,7 +18,6 @@
 @property(retain) XCSUIBotDefinition_BasicInfoEditor *basicInfoEditor; // @synthesize basicInfoEditor=_basicInfoEditor;
 - (void).cxx_destruct;
 - (void)loadView;
-- (void)willGoNextOrFinish;
 - (BOOL)canGoForward;
 - (id)assistantTitle;
 - (id)nextAssistantIdentifier;

@@ -6,10 +6,10 @@
 
 #import "NSObject.h"
 
-@class IDEProvisioningProfileSource, NSSet;
+@class NSSet;
 
 @protocol IDEProvisioningProfileSourceDelegate <NSObject>
-- (void)provisioningProfileSource:(IDEProvisioningProfileSource *)arg1 didRemoveProfiles:(NSSet *)arg2;
-- (void)provisioningProfileSource:(IDEProvisioningProfileSource *)arg1 didAddProfiles:(NSSet *)arg2;
+- (void)provisioningProfileSource:(id <IDEProvisioningProfileSource>)arg1 didRemoveProfiles:(NSSet *)arg2;
+- (void)provisioningProfileSource:(id <IDEProvisioningProfileSource>)arg1 didAddProfiles:(NSSet *)arg2;
 @end
 

@@ -6,7 +6,7 @@
 
 #import <IDEKit/IDEEditorStepperView.h>
 
-@class IDEActionButton, NSImage;
+@class IDEActionButton;
 
 @interface IDEEditorMenuStepperView : IDEEditorStepperView
 {
@@ -25,7 +25,9 @@
 - (id)menuForActionButton;
 - (struct CGSize)centerViewSizeInHeight:(double)arg1;
 - (id)newCenterView;
-@property(retain) NSImage *image;
+- (id)_toolTipForRightArrow;
+- (id)_toolTipForLeftArrow;
+- (void)setImage:(id)arg1;
 
 @end
 

@@ -21,13 +21,14 @@
 + (id)sharedInstance;
 @property(readonly, getter=isCanceled) BOOL canceled; // @synthesize canceled=_canceled;
 - (void).cxx_destruct;
-- (void)messageReceiveChannel:(id)arg1 didDeliverMesssage:(SEL)arg2;
-- (void)messageReceiveChannel:(id)arg1 willDeliverMesssage:(SEL)arg2;
+- (void)messageReceiveChannel:(id)arg1 didDeliverMessage:(SEL)arg2;
+- (void)messageReceiveChannel:(id)arg1 willDeliverMessage:(SEL)arg2;
 - (void)keepPersistentObjectInContext:(id)arg1;
 - (void)loadExtensions:(id)arg1;
 - (void)startServingWriteDescriptor:(int)arg1 readDescriptor:(int)arg2;
 - (void)startServingSocket:(int)arg1;
 - (void)startServingReceiveChannel:(id)arg1;
+- (void)_WAIT_FOR_PARENT_TO_EXIT:(id)arg1;
 - (BOOL)shouldExitWhenStandardInputCloses;
 - (BOOL)shouldStartEventProcessingRunloop;
 - (id)messageReceiveChannel:(id)arg1 preprocessException:(id)arg2;

@@ -6,19 +6,21 @@
 
 #import "NSObject.h"
 
-@class IBPlatform, IDEWorkspaceDocument;
+@class IBPlatform, IDEWorkspaceDocument, NSArray;
 
 @interface IBWorkspaceDocumentAndPlatformReferenceKey : NSObject
 {
     IDEWorkspaceDocument *workspaceDocument;
     IBPlatform *platform;
+    NSArray *_toolchainIdentifiers;
 }
 
+@property(retain) NSArray *toolchainIdentifiers; // @synthesize toolchainIdentifiers=_toolchainIdentifiers;
 - (void).cxx_destruct;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToReferenceKey:(id)arg1;
-- (id)initWithWorkspaceDocument:(id)arg1 platform:(id)arg2;
+- (id)initWithWorkspaceDocument:(id)arg1 platform:(id)arg2 toolchainIdentifiers:(id)arg3;
 
 @end
 

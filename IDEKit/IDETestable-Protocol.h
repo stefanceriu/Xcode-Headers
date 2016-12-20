@@ -8,17 +8,16 @@
 #import "IDETestContainer.h"
 #import "NSObject.h"
 
-@class DVTDocumentLocation, IDEBuildOperation, IDEBuildParameters, IDEExecutionEnvironment, IDERunDestination, IDETest, IDETestRunner, IDEWorkspace, NSSet, NSString, NSURL;
+@class DVTDocumentLocation, IDEBuildOperation, IDEBuildParameters, IDEExecutionEnvironment, IDERunDestination, IDETest, IDETestRunSpecification, IDEWorkspace, NSSet, NSString, NSURL;
 
 @protocol IDETestable <IDETestContainer, DVTInvalidation, NSObject>
 @property(readonly) BOOL isSearchingForTests;
 @property(readonly) BOOL isUITest;
-@property(readonly) BOOL usesXCTest;
 @property(readonly) NSSet *testFiles;
 @property(readonly) NSString *name;
 @property(readonly) id <IDETestableProvider> testableProvider;
-- (id <IDEBuildable>)targetApplicationBuildableForWorkspace:(IDEWorkspace *)arg1;
-- (NSString *)identifierForTestClass:(NSString *)arg1 method:(NSString *)arg2;
+- (id <IDEBuildableProduct>)targetApplicationBuildableForWorkspace:(IDEWorkspace *)arg1;
+- (id <IDEBuildableProduct>)targetApplicationBuildableForWorkspace:(IDEWorkspace *)arg1 withBuildParameters:(IDEBuildParameters *)arg2;
 - (void)removeSubtest:(IDETest *)arg1;
 - (BOOL)canHaveSubtestsForTestWithIdentifier:(NSString *)arg1;
 - (IDETest *)supertestForTestWithIdentifier:(NSString *)arg1;
@@ -30,8 +29,7 @@
 - (id <IDEBuildable>)parentBuildableInWorkspace:(IDEWorkspace *)arg1;
 - (id <IDEBuildableProduct>)testHostBuildableInWorkspace:(IDEWorkspace *)arg1;
 - (id <IDEBuildable>)primaryBuildable;
-- (void)waitUntilTestSearchIsFinished;
 - (void)searchForTestsInWorkspace:(IDEWorkspace *)arg1;
-- (IDETestRunner *)newTestRunnerWithTestingSpecifier:(id <IDETestingSpecifier>)arg1 executionEnvironment:(IDEExecutionEnvironment *)arg2 buildOperation:(IDEBuildOperation *)arg3 withBuildParameters:(IDEBuildParameters *)arg4 runDestination:(IDERunDestination *)arg5 error:(id *)arg6;
+- (IDETestRunSpecification *)testRunSpecificationWithTestingSpecifier:(id <IDETestingSpecifier>)arg1 executionEnvironment:(IDEExecutionEnvironment *)arg2 buildOperation:(IDEBuildOperation *)arg3 withBuildParameters:(IDEBuildParameters *)arg4 runDestination:(IDERunDestination *)arg5 error:(id *)arg6;
 @end
 

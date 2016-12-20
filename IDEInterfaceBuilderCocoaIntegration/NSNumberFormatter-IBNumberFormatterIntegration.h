@@ -6,7 +6,7 @@
 
 #import "NSNumberFormatter.h"
 
-@class NSAttributedString, NSNumber, NSString;
+@class NSNumber, NSString;
 
 @interface NSNumberFormatter (IBNumberFormatterIntegration)
 + (id)keyPathsForValuesAffectingIbShadowedNilSymbol;
@@ -14,6 +14,8 @@
 + (id)keyPathsForValuesAffectingIbShadowedRoundingIncrement;
 + (id)keyPathsForValuesAffectingIbShadowedThousandSeparator;
 + (id)keyPathsForValuesAffectingIbShadowedAttributedStringForZero;
++ (id)keyPathsForValuesAffectingIbShadowedAttributedStringForNotANumber;
++ (id)keyPathsForValuesAffectingIbShadowedAttributedStringForNil;
 + (id)keyPathsForValuesAffectingIbShadowedPaddingCharacter;
 + (id)keyPathsForValuesAffectingIbShadowedExponentSymbol;
 + (id)keyPathsForValuesAffectingIbShadowedPlusSign;
@@ -50,7 +52,12 @@
 - (long long)ibInspectedRoundingIncrement;
 @property(retain) NSNumber *ibShadowedRoundingIncrement;
 @property(retain) NSString *ibShadowedThousandSeparator;
-@property(retain) NSAttributedString *ibShadowedAttributedStringForZero;
+- (void)setIbShadowedAttributedStringForZero:(id)arg1;
+- (id)ibShadowedAttributedStringForZero;
+- (void)setIbShadowedAttributedStringForNotANumber:(id)arg1;
+- (id)ibShadowedAttributedStringForNotANumber;
+- (void)setIbShadowedAttributedStringForNil:(id)arg1;
+- (id)ibShadowedAttributedStringForNil;
 @property(retain) NSString *ibShadowedPaddingCharacter;
 @property(retain) NSString *ibShadowedExponentSymbol;
 @property(retain) NSString *ibShadowedPlusSign;
@@ -75,5 +82,6 @@
 @property(retain) NSString *ibShadowedNegativeFormat;
 @property(retain) NSString *ibShadowedPositiveFormat;
 - (id)ibExplicitValueForKey:(id)arg1;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

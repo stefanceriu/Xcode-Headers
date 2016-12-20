@@ -13,7 +13,7 @@
 #import "IDESourceEditorViewControllerHost.h"
 #import "NSSplitViewDelegate.h"
 
-@class DVTBorderedView, DVTComparisonScrollCoordinator, DVTComparisonSplitView, DVTDiffSession, DVTObservingToken, DVTSourceTextView, IDEEditor, IDESourceCodeDocument, IDESourceCodeVersionsLayoutView, IDESourceControlMergeData, NSDictionary, NSString;
+@class DVTBorderedView, DVTComparisonScrollCoordinator, DVTComparisonSplitView, DVTDiffSession, DVTNotificationToken, DVTObservingToken, DVTSourceTextView, IDEEditor, IDESourceCodeDocument, IDESourceCodeVersionsLayoutView, IDESourceControlMergeData, NSDictionary, NSString;
 
 @interface IDESourceCodeVersionsTwoUpSubmode : IDEComparisonEditorSubmode <IDEComparisonEditorDelegate, NSSplitViewDelegate, IDESourceEditorViewControllerHost, DVTDiffSessionDelegate, DVTComparisonSplitViewDelegate, IDEComparisonEditorSavableMergeState>
 {
@@ -27,6 +27,7 @@
     IDEEditor *_primaryEditor;
     IDEEditor *_secondaryEditor;
     DVTObservingToken *_responderToken;
+    DVTNotificationToken *_primaryScrollChangeToken;
     id _resignKeyWindowNotificationObserver;
     id _becomeKeyWindowNotificationObserver;
     NSDictionary *_previouslyRestoredStateDictionary;
@@ -43,6 +44,8 @@
 
 + (BOOL)automaticallyNotifiesObserversOfCanSelectNext;
 + (BOOL)automaticallyNotifiesObserversOfCanSelectPrevious;
++ (BOOL)automaticallyNotifiesObserversOfSecondaryEditor;
++ (BOOL)automaticallyNotifiesObserversOfPrimaryEditor;
 + (id)logAspect;
 + (id)keyPathsForValuesAffectingCurrentSelectedDocumentLocations;
 + (id)keyPathsForValuesAffectingCurrentSelectedItems;
@@ -104,6 +107,7 @@
 - (void)primitiveInvalidate;
 - (void)loadView;
 - (void)_syncStructureDocument;
+- (void)scrollBoundsDidChange:(id)arg1;
 - (void)_initializeDiffSession;
 - (void)_tearDownDiffSession;
 - (void)_validateMergeData:(id)arg1;

@@ -6,28 +6,9 @@
 
 #import "SKCameraNode.h"
 
-@class NSNumber;
-
 @interface SKCameraNode (InspectorAdditions)
-+ (id)keyPathsForValuesAffectingHasPhysicsBody;
-- (id)ide_undoKVOKeypaths;
-- (void)setNilValueForKey:(id)arg1;
-- (id)inspectorAttributes;
-@property(nonatomic) float spriteKitEditorMass;
-@property(nonatomic) double physicsBodyAngularDamping;
-@property(nonatomic) double physicsBodyLinearDamping;
-@property(nonatomic) double physicsBodyRestitution;
-@property(nonatomic) double physicsBodyFriction;
-@property(nonatomic) BOOL physicsBodyAffectedByGravity;
-@property(nonatomic) BOOL physicsBodyPinned;
-@property(nonatomic) BOOL physicsBodyAllowsRotation;
-@property(nonatomic) BOOL physicsBodyDynamicType;
-@property(retain, nonatomic) NSNumber *skEditorFieldMask;
-@property(retain, nonatomic) NSNumber *skEditorContactMask;
-@property(retain, nonatomic) NSNumber *skEditorCollisionMask;
-@property(retain, nonatomic) NSNumber *skEditorCategoryMask;
-@property(nonatomic) float physicsBodyRadius;
-@property(nonatomic) int physicsBodyType;
-- (BOOL)hasPhysicsBody;
+@property(nonatomic) float sk_physicsBodyRadius;
+- (void)setSk_physicsBodyType:(int)arg1;
+- (int)sk_physicsBodyType;
 @end
 

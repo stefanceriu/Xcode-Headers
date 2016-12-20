@@ -19,12 +19,14 @@
 + (id)inferredRepIdentifierForPath:(id)arg1 slotComponentTransformer:(CDUnknownBlockType)arg2;
 + (CDUnknownBlockType)slotComponentTransformerForPaths:(id)arg1;
 + (Class)slotClass;
-- (id)slot;
++ (id)identifierWithSlot:(id)arg1 fileName:(id)arg2 explicitlyUnassigned:(BOOL)arg3;
 @property(readonly) IBICHeightClass *heightClass;
 @property(readonly) IBICWidthClass *widthClass;
 @property(readonly) IBICScale *scale;
 @property(readonly) IBICSubtype *subtype;
 @property(readonly) IBICIdiom *idiom;
+- (id)slot;
+- (id)initWithSlot:(id)arg1 fileName:(id)arg2 conflictState:(unsigned long long)arg3;
 
 @end
 

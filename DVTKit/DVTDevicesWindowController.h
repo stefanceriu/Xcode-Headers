@@ -22,6 +22,7 @@
     NSMutableDictionary *_wirelessEnablingFutures;
     DVTDelayedInvocation *_delayedDevicesDisplayUpdateInvocation;
     BOOL _updatingDevicesForDisplay;
+    BOOL _promptingForDelete;
     DVTLozengeTextField *_emptyContentView;
     DVTDeviceProvisioningProfilesSheetController *_provisioningProfilesSheet;
     DVTObservingToken *_selectedDeviceProxiedDeviceObserver;

@@ -22,8 +22,8 @@
 - (void)sendHomeButtonPressedEvent;
 - (void)sendHomeButtonUpEvent;
 - (void)sendHomeButtonDownEvent;
-- (void)sendHIDEvent:(id)arg1 deviceRelativeLocation:(struct CGPoint)arg2 indigoHIDscreen:(unsigned int)arg3 screenSize:(struct CGSize)arg4;
-- (void)sendHIDEvent:(id)arg1 deviceRelativeLocation:(struct CGPoint)arg2;
+- (BOOL)sendHIDMouseEvent:(id)arg1 deviceRelativeLocation:(struct CGPoint)arg2 indigoHIDscreen:(unsigned int)arg3 screenSize:(struct CGSize)arg4;
+- (BOOL)sendHIDKeyboardEvent:(id)arg1 indigoHIDscreen:(unsigned int)arg2;
 - (void)_sendPurpleEvent:(struct _PurpleEventMessage *)arg1;
 - (void)_queuedSendHIDMessage:(CDStruct_a0abbf41 *)arg1;
 - (void)sendHIDMessage:(CDStruct_a0abbf41 *)arg1;

@@ -27,9 +27,11 @@
     BOOL wraps;
     BOOL importsGraphics;
     BOOL allowsEditingTextAttributes;
+    long long _typesetterBehavior;
 }
 
 + (id)fieldEditorConfigurationFromCell:(id)arg1;
+@property long long typesetterBehavior; // @synthesize typesetterBehavior=_typesetterBehavior;
 @property BOOL allowsEditingTextAttributes; // @synthesize allowsEditingTextAttributes;
 @property BOOL importsGraphics; // @synthesize importsGraphics;
 @property BOOL usesFontPanel; // @synthesize usesFontPanel;

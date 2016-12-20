@@ -27,7 +27,6 @@
 - (void)addSubview:(id)arg1;
 - (void)_checkDataTipEvent:(id)arg1;
 - (void)viewDidMoveToWindow;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

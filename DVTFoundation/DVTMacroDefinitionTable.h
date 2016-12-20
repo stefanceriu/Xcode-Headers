@@ -15,7 +15,7 @@
 {
     struct DVTMacroValueAssignmentMapTable *_mapTable;
     NSString *_label;
-    int _cacheLock;
+    // Error parsing type: AB, name: _cacheLock
     NSDictionary *_cachedDictRep;
     NSSet *_cachedMacroNameSet;
     unsigned long long _cachedHash;

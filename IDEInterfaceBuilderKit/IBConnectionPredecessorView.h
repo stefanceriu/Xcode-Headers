@@ -35,7 +35,7 @@
 @property(copy) NSArray *displayValues;
 - (id)titleFields;
 - (id)connectionInterfaceStyle;
-- (id)initWithFrame:(struct CGRect)arg1 andInterfaceStyle:(id)arg2;
+- (id)initWithFrame:(struct CGRect)arg1 interfaceStyle:(id)arg2 prototypeTitle:(id)arg3;
 
 @end
 

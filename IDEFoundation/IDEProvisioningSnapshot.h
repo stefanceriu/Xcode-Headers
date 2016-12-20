@@ -13,7 +13,7 @@
     BOOL _localOnly;
     NSSet *_enhancedProfiles;
     NSArray *_enhancedSigningIdentities;
-    NSSet *_onlineProfiles;
+    NSSet *_portalProfileWrappers;
     NSSet *_onlineSigningIdentities;
     NSArray *_localSigningIdentities;
     id <IDEProvisioningTeam> _team;
@@ -21,15 +21,15 @@
 
 + (id)_profileManager;
 + (id)_prototypeIdentities;
-+ (id)_onlineSigningIdentitiesForToken:(id)arg1 account:(id)arg2 error:(id *)arg3;
++ (id)_onlineSigningIdentitiesWithSession:(id)arg1 team:(id)arg2 error:(id *)arg3;
 + (id)_localProfilesForTeam:(id)arg1;
-+ (id)_onlineProfilesForToken:(id)arg1 error:(id *)arg2;
++ (id)_portalProfileWrappersWithSession:(id)arg1 team:(id)arg2;
 + (id)localSnapshotWithTeam:(id)arg1 error:(id *)arg2;
 + (id)snapshotWithAccount:(id)arg1 team:(id)arg2 error:(id *)arg3;
 @property(retain, nonatomic) id <IDEProvisioningTeam> team; // @synthesize team=_team;
 @property(copy, nonatomic) NSArray *localSigningIdentities; // @synthesize localSigningIdentities=_localSigningIdentities;
 @property(copy, nonatomic) NSSet *onlineSigningIdentities; // @synthesize onlineSigningIdentities=_onlineSigningIdentities;
-@property(copy, nonatomic) NSSet *onlineProfiles; // @synthesize onlineProfiles=_onlineProfiles;
+@property(copy, nonatomic) NSSet *portalProfileWrappers; // @synthesize portalProfileWrappers=_portalProfileWrappers;
 @property(nonatomic, getter=isLocalOnly) BOOL localOnly; // @synthesize localOnly=_localOnly;
 @property(readonly, nonatomic) NSArray *enhancedSigningIdentities; // @synthesize enhancedSigningIdentities=_enhancedSigningIdentities;
 @property(readonly, nonatomic) NSSet *enhancedProfiles; // @synthesize enhancedProfiles=_enhancedProfiles;
@@ -37,8 +37,8 @@
 - (id)_logAspect;
 - (id)description;
 - (id)snapshotByUpdatingLocalProfiles;
-- (id)initWithEnhancedProfiles:(id)arg1 team:(id)arg2 onlineProfiles:(id)arg3 enhancedSigningIdentities:(id)arg4 onlineSigningIdentities:(id)arg5 localSigningIdentities:(id)arg6 localOnly:(BOOL)arg7;
-- (id)initWithTeam:(id)arg1 localProfiles:(id)arg2 onlineProfiles:(id)arg3 onlineSigningIdentities:(id)arg4 localSigningIdentities:(id)arg5 localOnly:(BOOL)arg6;
+- (id)initWithEnhancedProfiles:(id)arg1 team:(id)arg2 portalProfileWrappers:(id)arg3 enhancedSigningIdentities:(id)arg4 onlineSigningIdentities:(id)arg5 localSigningIdentities:(id)arg6 localOnly:(BOOL)arg7;
+- (id)initWithTeam:(id)arg1 localProfiles:(id)arg2 portalProfileWrappers:(id)arg3 onlineSigningIdentities:(id)arg4 localSigningIdentities:(id)arg5 localOnly:(BOOL)arg6;
 
 @end
 

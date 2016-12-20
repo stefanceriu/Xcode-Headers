@@ -10,8 +10,8 @@
 {
 }
 
-+ (id)insertToolbarForToolbarDefinitionIdentifier:(id)arg1 forID:(id)arg2 inWindow:(id)arg3;
-+ (id)toolbarIdentifierForToolbarDefinition:(id)arg1 andUniqueIdentifier:(id)arg2;
++ (id)insertToolbarForToolbarDefinitionIdentifier:(id)arg1 inWindow:(id)arg2;
++ (id)toolbarIdentifierForToolbarDefinition:(id)arg1;
 
 @end
 

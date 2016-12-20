@@ -36,12 +36,12 @@
     unsigned long long _testsCount;
     unsigned long long _testsFailedCount;
     DVTFilePath *_creatingWorkspaceFilePath;
+    id _remoteTestSummaryIdentifier;
+    id _remoteCodeCoverageIdentifier;
     NSString *_archiveGUID;
     NSString *_productGUID;
     DVTFilePath *_filePath;
     id <IDESchemeActionsInvocationRecordUpdateDelegate> _updateDelegate;
-    id _remoteTestSummaryIdentifier;
-    id _remoteCodeCoverageIdentifier;
 }
 
 + (id)keyPathsForValuesAffectingSimpleOperationStatus;
@@ -49,21 +49,21 @@
 + (BOOL)updateSummariesFromDictionaryRepresentations:(id)arg1 withSummaryOwner:(id)arg2 summaryPropertyName:(id)arg3 summaryiVarArrayRef:(id *)arg4 summariesAreTestFailures:(BOOL)arg5;
 + (BOOL)automaticallyNotifiesObserversOfActions;
 + (void)invocationRecordWithLocalActionResultFilePath:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+@property(readonly, nonatomic) id <IDESchemeActionsInvocationRecordUpdateDelegate> updateDelegate; // @synthesize updateDelegate=_updateDelegate;
+@property(retain, nonatomic) DVTFilePath *filePath; // @synthesize filePath=_filePath;
+@property(retain, nonatomic) NSString *productGUID; // @synthesize productGUID=_productGUID;
+@property(retain, nonatomic) NSString *archiveGUID; // @synthesize archiveGUID=_archiveGUID;
 @property(nonatomic) BOOL remoteCodeCoverageNeedsFetch; // @synthesize remoteCodeCoverageNeedsFetch=_remoteCodeCoverageNeedsFetch;
 @property(copy, nonatomic) id remoteCodeCoverageIdentifier; // @synthesize remoteCodeCoverageIdentifier=_remoteCodeCoverageIdentifier;
 @property(nonatomic) BOOL remoteTestSummaryNeedsFetch; // @synthesize remoteTestSummaryNeedsFetch=_remoteTestSummaryNeedsFetch;
 @property(copy, nonatomic) id remoteTestSummaryIdentifier; // @synthesize remoteTestSummaryIdentifier=_remoteTestSummaryIdentifier;
 @property(nonatomic) BOOL shouldClearExistingFileOnSave; // @synthesize shouldClearExistingFileOnSave=_shouldClearExistingFileOnSave;
-@property(readonly, nonatomic) id <IDESchemeActionsInvocationRecordUpdateDelegate> updateDelegate; // @synthesize updateDelegate=_updateDelegate;
-@property(retain, nonatomic) DVTFilePath *filePath; // @synthesize filePath=_filePath;
-@property(retain, nonatomic) NSString *productGUID; // @synthesize productGUID=_productGUID;
-@property(retain, nonatomic) NSString *archiveGUID; // @synthesize archiveGUID=_archiveGUID;
 @property(retain, nonatomic) DVTFilePath *creatingWorkspaceFilePath; // @synthesize creatingWorkspaceFilePath=_creatingWorkspaceFilePath;
 @property(retain, nonatomic) NSArray *testableSummaries; // @synthesize testableSummaries=_testableSummaries;
-@property(retain, nonatomic) NSArray *testFailureSummaries; // @synthesize testFailureSummaries=_testFailureSummaries;
-@property(retain, nonatomic) NSArray *analyzerWarningSummaries; // @synthesize analyzerWarningSummaries=_analyzerWarningSummaries;
-@property(retain, nonatomic) NSArray *errorSummaries; // @synthesize errorSummaries=_errorSummaries;
-@property(retain, nonatomic) NSArray *warningSummaries; // @synthesize warningSummaries=_warningSummaries;
+@property(retain, nonatomic) NSMutableArray *testFailureSummaries; // @synthesize testFailureSummaries=_testFailureSummaries;
+@property(retain, nonatomic) NSMutableArray *analyzerWarningSummaries; // @synthesize analyzerWarningSummaries=_analyzerWarningSummaries;
+@property(retain, nonatomic) NSMutableArray *errorSummaries; // @synthesize errorSummaries=_errorSummaries;
+@property(retain, nonatomic) NSMutableArray *warningSummaries; // @synthesize warningSummaries=_warningSummaries;
 @property(nonatomic) unsigned long long testsFailedCount; // @synthesize testsFailedCount=_testsFailedCount;
 @property(nonatomic) unsigned long long testsCount; // @synthesize testsCount=_testsCount;
 @property(nonatomic) unsigned long long analyzerWarningCount; // @synthesize analyzerWarningCount=_analyzerWarningCount;
@@ -77,7 +77,7 @@
 @property(nonatomic) unsigned long long archiveSize; // @synthesize archiveSize=_archiveSize;
 @property(retain, nonatomic) NSString *archiveName; // @synthesize archiveName=_archiveName;
 @property(retain, nonatomic) DVTFilePath *archivePath; // @synthesize archivePath=_archivePath;
-@property(retain, nonatomic) NSArray *actions; // @synthesize actions=_actions;
+@property(retain, nonatomic) NSMutableArray *actions; // @synthesize actions=_actions;
 @property(nonatomic, getter=isRunning) BOOL running; // @synthesize running=_running;
 - (void).cxx_destruct;
 - (void)fetchCodeCoverageAndUpdateRecordWithCompletionBlock:(CDUnknownBlockType)arg1;

@@ -16,9 +16,11 @@
 }
 
 - (void).cxx_destruct;
+@property(nonatomic) int kind;
 - (id)plist;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initAsKind:(int)arg1;
 - (id)init;
 
 @end

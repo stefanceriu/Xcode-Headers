@@ -4,18 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <IDEKit/IDENavigableItemFilter.h>
+#import <IDEKit/_IDENavigableItemPredicateFilter.h>
 
-@class NSPredicate;
-
-@interface IDENavigableItemPredicateFilter : IDENavigableItemFilter
+@interface IDENavigableItemPredicateFilter : _IDENavigableItemPredicateFilter
 {
-    NSPredicate *_predicate;
 }
 
-@property(readonly) NSPredicate *predicate; // @synthesize predicate=_predicate;
-- (void).cxx_destruct;
-- (BOOL)matchesNavigableItem:(id)arg1;
 - (id)initWithPredicate:(id)arg1;
 
 @end

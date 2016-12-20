@@ -34,11 +34,10 @@
 - (void)startProviderSession;
 - (id)displayNameForIssueTypeIdentifier:(id)arg1;
 - (void)removeIssues:(id)arg1 forProviderContext:(id)arg2 providerSession:(id)arg3;
-- (void)removeIssues:(id)arg1 forProviderContext:(id)arg2;
+- (void)addIssues:(id)arg1 forProviderContext:(id)arg2 providerSession:(id)arg3 container:(id)arg4 blueprint:(id)arg5 runtimeGroupingObject:(id)arg6;
 - (void)addIssues:(id)arg1 forProviderContext:(id)arg2 providerSession:(id)arg3 container:(id)arg4 blueprint:(id)arg5;
-- (void)addIssues:(id)arg1 forProviderContext:(id)arg2 container:(id)arg3 blueprint:(id)arg4;
+- (void)setIssues:(id)arg1 forProviderContext:(id)arg2 providerSession:(id)arg3 container:(id)arg4 blueprint:(id)arg5 runtimeGroupingObject:(id)arg6;
 - (void)setIssues:(id)arg1 forProviderContext:(id)arg2 providerSession:(id)arg3 container:(id)arg4 blueprint:(id)arg5;
-- (void)setIssues:(id)arg1 forProviderContext:(id)arg2 container:(id)arg3 blueprint:(id)arg4;
 @property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
 - (id)initWithIssueManager:(id)arg1 extension:(id)arg2;

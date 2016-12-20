@@ -75,7 +75,7 @@
 - (id)ibInspectedAction;
 - (void)populateSegueTemplates:(id)arg1 andOutletsForCompiledDocument:(id)arg2;
 - (void)ibPrepareToBackwardsDeployToOSVersion:(id)arg1 inDocument:(id)arg2;
-- (void)ibPopulateRequiredDocumentCapabilities:(id)arg1;
+- (void)ibPopulateRequiredDocumentCapabilities:(id)arg1 document:(id)arg2;
 - (void)ibPopulateAdditionalTargetOSVersions:(id)arg1 forCompilingDocument:(id)arg2;
 - (id)identifier;
 - (id)destination;

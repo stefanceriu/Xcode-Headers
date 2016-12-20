@@ -6,31 +6,29 @@
 
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUISimulatedBarMetrics.h>
 
-#import "IBUISimulatedBarMetricsBarStyle.h"
 #import "NSCoding.h"
 
-@class NSColor, NSString;
+@class NSColor;
 
-@interface IBUISimulatedTabBarMetrics : IBUISimulatedBarMetrics <NSCoding, IBUISimulatedBarMetricsBarStyle>
+@interface IBUISimulatedTabBarMetrics : IBUISimulatedBarMetrics <NSCoding>
 {
-    int _barStyle;
     BOOL _translucent;
     struct NSColor *_tintColor;
     struct NSColor *_barTintColor;
 }
 
-+ (id)simulatedTabBarMetricsWithStyle:(int)arg1 translucent:(BOOL)arg2 tintColor:(struct NSColor *)arg3 barTintColor:(struct NSColor *)arg4;
++ (id)simulatedTabBarMetricsWithStyle:(long long)arg1 translucent:(BOOL)arg2 tintColor:(struct NSColor *)arg3 barTintColor:(struct NSColor *)arg4;
 + (id)defaultMetrics;
 + (id)simulatedTabBarMetricsForTabBar:(id)arg1;
 + (id)simulatedBarMetricsForBarView:(id)arg1;
 @property(readonly, copy, nonatomic) NSColor *barTintColor; // @synthesize barTintColor=_barTintColor;
 @property(readonly, copy, nonatomic) NSColor *tintColor; // @synthesize tintColor=_tintColor;
 @property(readonly, nonatomic, getter=isTranslucent) BOOL translucent; // @synthesize translucent=_translucent;
-@property(readonly, nonatomic) int barStyle; // @synthesize barStyle=_barStyle;
 - (void).cxx_destruct;
+- (id)description;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
-- (id)initWithStyle:(int)arg1 translucent:(BOOL)arg2 tintColor:(struct NSColor *)arg3 barTintColor:(struct NSColor *)arg4;
+- (id)initWithStyle:(long long)arg1 translucent:(BOOL)arg2 tintColor:(struct NSColor *)arg3 barTintColor:(struct NSColor *)arg4;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)simulatedBarMetricsByRemovingTintColor;
@@ -43,12 +41,6 @@
 - (Class)barClass;
 - (id)ibWidgetType;
 - (BOOL)isTranslucentForTargetRuntime:(id)arg1;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

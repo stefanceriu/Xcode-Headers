@@ -10,13 +10,13 @@
 #import "IBICCatalogItemObserver.h"
 #import "IDEAssetTagInfoProvider.h"
 
-@class DVTStackBacktrace, IBICAssetTagSolver, IBICCatalogDocument, IDEFileReference, NSMutableDictionary, NSMutableSet, NSString;
+@class DVTStackBacktrace, IBICAbstractCatalogDocument, IBICAssetTagSolver, IDEFileReference, NSMutableDictionary, NSMutableSet, NSString;
 
 @interface IBICAssetTagInfoProvider : NSObject <IDEAssetTagInfoProvider, IBICCatalogItemObserver, DVTInvalidation>
 {
     IBICAssetTagSolver *_assetTagSolver;
     IDEFileReference *_fileReference;
-    IBICCatalogDocument *_catalogDocument;
+    IBICAbstractCatalogDocument *_catalogDocument;
     NSMutableSet *_taggedAsetItems;
     NSMutableDictionary *_catalogItemsToTaggedAssetItems;
     id <IBInvalidation> _catalogObserverToken;
@@ -32,7 +32,7 @@
 @property(retain, nonatomic) id <IBInvalidation> catalogObserverToken; // @synthesize catalogObserverToken=_catalogObserverToken;
 @property(retain, nonatomic) NSMutableDictionary *catalogItemsToTaggedAssetItems; // @synthesize catalogItemsToTaggedAssetItems=_catalogItemsToTaggedAssetItems;
 @property(retain, nonatomic) NSMutableSet *taggedAsetItems; // @synthesize taggedAsetItems=_taggedAsetItems;
-@property(retain, nonatomic) IBICCatalogDocument *catalogDocument; // @synthesize catalogDocument=_catalogDocument;
+@property(retain, nonatomic) IBICAbstractCatalogDocument *catalogDocument; // @synthesize catalogDocument=_catalogDocument;
 @property(retain, nonatomic) IDEFileReference *fileReference; // @synthesize fileReference=_fileReference;
 @property(readonly, nonatomic) IBICAssetTagSolver *assetTagSolver; // @synthesize assetTagSolver=_assetTagSolver;
 - (void).cxx_destruct;

@@ -16,11 +16,13 @@
     NSProgressIndicator *_progressIndicator;
     DVTObservingToken *_workspaceActivityObserver;
     BOOL _hideWorkspaceLoadingProgressIndicator;
+    BOOL _useSourceTextBackgroundColor;
 }
 
 @property BOOL hideWorkspaceLoadingProgressIndicator; // @synthesize hideWorkspaceLoadingProgressIndicator=_hideWorkspaceLoadingProgressIndicator;
 - (void).cxx_destruct;
 - (void)setEmptyContentString:(id)arg1;
+@property BOOL useSourceTextBackgroundColor; // @synthesize useSourceTextBackgroundColor=_useSourceTextBackgroundColor;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
 - (void)_finishViewDidInstall;

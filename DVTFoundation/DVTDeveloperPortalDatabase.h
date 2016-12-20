@@ -32,9 +32,9 @@
 + (void)_refreshFromToken:(id)arg1 andServiceResponses:(id)arg2 logAspect:(id)arg3;
 + (void)_purgeOrphanedEntitiesInContext:(id)arg1 withLogAspect:(id)arg2;
 + (_Bool)_purgeOrphanedEntitiesOfType:(id)arg1 inContext:(id)arg2 withLogAspect:(id)arg3;
-+ (void)_refreshFromServiceResponse:(id)arg1 logAspect:(id)arg2;
-+ (id)certificateFromPortalResponse:(id)arg1 updateIfFound:(_Bool)arg2 logAspect:(id)arg3;
-+ (id)certificatesFromPortalResponses:(id)arg1 updateIfFound:(_Bool)arg2 logAspect:(id)arg3;
++ (void)_refreshFromServiceResponse:(id)arg1 signingCertificateManager:(id)arg2 provisioningProfileManager:(id)arg3 logAspect:(id)arg4;
++ (id)certificateFromPortalResponse:(id)arg1 updateIfFound:(_Bool)arg2 signingCertificateManager:(id)arg3 logAspect:(id)arg4;
++ (id)certificatesFromPortalResponses:(id)arg1 updateIfFound:(_Bool)arg2 signingCertificateManager:(id)arg3 logAspect:(id)arg4;
 + (id)certificatesInContext:(id)arg1;
 + (id)certificateMatchingPredicate:(id)arg1 inContext:(id)arg2;
 + (id)certificatesMatchingPredicate:(id)arg1 inContext:(id)arg2;

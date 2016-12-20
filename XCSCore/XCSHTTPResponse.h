@@ -16,16 +16,16 @@
     NSString *_rawText;
     NSData *_rawData;
     NSDictionary *_body;
-    NSError *_error;
     NSError *_unpackingError;
     XCSUser *_user;
     NSURL *_location;
+    NSError *_error;
 }
 
+@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
 @property(retain, nonatomic) NSURL *location; // @synthesize location=_location;
 @property(retain, nonatomic) XCSUser *user; // @synthesize user=_user;
 @property(retain, nonatomic) NSError *unpackingError; // @synthesize unpackingError=_unpackingError;
-@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
 @property(retain, nonatomic) NSDictionary *body; // @synthesize body=_body;
 @property(retain, nonatomic) NSData *rawData; // @synthesize rawData=_rawData;
 @property(retain, nonatomic) NSString *rawText; // @synthesize rawText=_rawText;

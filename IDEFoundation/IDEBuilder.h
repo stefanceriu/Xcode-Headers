@@ -66,6 +66,7 @@
 - (void)buildTask:(id)arg1 activityLogSectionDidChange:(id)arg2;
 - (void)buildTaskDidStartExecuting:(id)arg1;
 - (void)cleanupAfterBuilding;
+- (void)primitiveMain;
 - (void)main;
 - (void)prepareForBuilding;
 - (id)init;

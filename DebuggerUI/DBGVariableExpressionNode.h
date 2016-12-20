@@ -6,12 +6,12 @@
 
 #import "IDEVariablesViewNode.h"
 
-@class DBGStackFrame, DVTObservingToken, NSString;
+@class DVTObservingToken, IDEStackFrame, NSString;
 
 @interface DBGVariableExpressionNode : IDEVariablesViewNode
 {
     NSString *_expression;
-    DBGStackFrame *_stackFrame;
+    IDEStackFrame *_stackFrame;
     BOOL _requestedLoad;
     BOOL _filteredChildrenWereRequestedWhileDataValueWasNil;
     DVTObservingToken *_stackFrameValidityObserver;

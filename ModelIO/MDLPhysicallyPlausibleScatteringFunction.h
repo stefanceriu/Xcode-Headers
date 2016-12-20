@@ -38,7 +38,6 @@
 - (void).cxx_destruct;
 - (id)init;
 @property(readonly, nonatomic) long long version;
-- (void)bindShadowProperties;
 
 @end
 

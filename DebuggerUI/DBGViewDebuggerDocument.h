@@ -6,15 +6,18 @@
 
 #import "IDEEditorDocument.h"
 
-@class DBGViewDebugger, DVTObservingToken;
+@class DBGViewDebugger, DBGViewDebuggerDocumentIssueGenerator, DVTObservingToken;
 
 @interface DBGViewDebuggerDocument : IDEEditorDocument
 {
     DVTObservingToken *_controlStateObserver;
     DVTObservingToken *_coalescedStateObserver;
     DBGViewDebugger *_viewDebugger;
+    DBGViewDebuggerDocumentIssueGenerator *_issueGenerator;
 }
 
++ (id)documentForViewDebugger:(id)arg1;
+@property(retain) DBGViewDebuggerDocumentIssueGenerator *issueGenerator; // @synthesize issueGenerator=_issueGenerator;
 @property(retain) DBGViewDebugger *viewDebugger; // @synthesize viewDebugger=_viewDebugger;
 - (void).cxx_destruct;
 - (id)_viewDebuggerForURL:(id)arg1 inWorkspace:(id)arg2;

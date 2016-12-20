@@ -6,20 +6,18 @@
 
 #import "NSObject.h"
 
-#import "NSCopying.h"
-
 @class NSRegularExpression, NSSet, NSString;
 
-@interface IDEMediaResourceVariantVariable : NSObject <NSCopying>
+@interface IDEMediaResourceVariantVariable : NSObject
 {
     CDUnknownBlockType _searchValuesBlock;
     CDUnknownBlockType _displayStringForValueBlock;
     CDUnknownBlockType _matchesValueBlock;
     NSString *_displayName;
-    NSRegularExpression *_expression;
     long long _valueStartOffset;
     long long _valueEndOffset;
     NSSet *_validValues;
+    NSRegularExpression *_expression;
 }
 
 + (id)OSXImageScaleFactorVariantVariable;
@@ -29,11 +27,11 @@
 + (id)iOSIdiomVariantVariable;
 + (id)iOSImageScaleFactorVariantVariable;
 + (id)iOSImageResolutionVariantVariable;
-@property(readonly, copy, nonatomic) NSSet *validValues; // @synthesize validValues=_validValues;
-@property(readonly, nonatomic) long long valueEndOffset; // @synthesize valueEndOffset=_valueEndOffset;
-@property(readonly, nonatomic) long long valueStartOffset; // @synthesize valueStartOffset=_valueStartOffset;
-@property(readonly, copy, nonatomic) NSRegularExpression *expression; // @synthesize expression=_expression;
-@property(readonly, copy, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
+@property(retain, nonatomic) NSRegularExpression *expression; // @synthesize expression=_expression;
+@property(retain, nonatomic) NSSet *validValues; // @synthesize validValues=_validValues;
+@property(nonatomic) long long valueEndOffset; // @synthesize valueEndOffset=_valueEndOffset;
+@property(nonatomic) long long valueStartOffset; // @synthesize valueStartOffset=_valueStartOffset;
+@property(retain, nonatomic) NSString *displayName; // @synthesize displayName=_displayName;
 - (void).cxx_destruct;
 - (BOOL)value:(id)arg1 matches:(id)arg2;
 - (id)description;

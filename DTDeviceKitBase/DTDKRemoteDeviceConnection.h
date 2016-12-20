@@ -29,9 +29,9 @@
     NSString *_identifier;
     NSString *_bonjourServiceName;
     NSString *_companionIdentifier;
-    DTXConnection *_instrumentsConnection;
     struct _AMDevice *_deviceRef;
     void *_wakeupToken;
+    DTXConnection *_instrumentsConnection;
     double _averageLatency;
     unsigned long long _pings;
     unsigned long long _pongs;
@@ -51,9 +51,9 @@
 @property(readonly) unsigned long long pongs; // @synthesize pongs=_pongs;
 @property(readonly) unsigned long long pings; // @synthesize pings=_pings;
 @property(readonly) double averageLatency; // @synthesize averageLatency=_averageLatency;
+@property(retain, nonatomic) DTXConnection *instrumentsConnection; // @synthesize instrumentsConnection=_instrumentsConnection;
 @property(readonly) void *wakeupToken; // @synthesize wakeupToken=_wakeupToken;
 @property(readonly) struct _AMDevice *deviceRef; // @synthesize deviceRef=_deviceRef;
-@property(retain, nonatomic) DTXConnection *instrumentsConnection; // @synthesize instrumentsConnection=_instrumentsConnection;
 @property(readonly, copy) NSString *companionIdentifier; // @synthesize companionIdentifier=_companionIdentifier;
 @property(readonly) unsigned int location; // @synthesize location=_location;
 @property(readonly, copy) NSString *bonjourServiceName; // @synthesize bonjourServiceName=_bonjourServiceName;

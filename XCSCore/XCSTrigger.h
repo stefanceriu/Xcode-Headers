@@ -13,6 +13,7 @@
 }
 
 + (id)triggerWithType:(unsigned long long)arg1 name:(id)arg2 phase:(unsigned long long)arg3 conditions:(id)arg4 scriptBody:(id)arg5 emailConfiguration:(id)arg6 validationErrors:(id *)arg7;
+- (id)duplicate;
 - (BOOL)_validateType:(unsigned long long)arg1 name:(id)arg2 phase:(unsigned long long)arg3 conditions:(id)arg4 scriptBody:(id)arg5 emailConfiguration:(id)arg6 validationErrors:(id *)arg7;
 - (BOOL)shouldExecuteForIntegration:(id)arg1;
 - (unsigned long long)executionReasonForIntegration:(id)arg1;
@@ -20,12 +21,12 @@
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
 
 // Remaining properties
-@property XCSTriggerConditions *conditions; // @dynamic conditions;
-@property XCSTriggerEmailConfiguration *emailConfiguration; // @dynamic emailConfiguration;
-@property NSString *name; // @dynamic name;
-@property unsigned long long phase; // @dynamic phase;
-@property NSString *scriptBody; // @dynamic scriptBody;
-@property unsigned long long type; // @dynamic type;
+@property(retain, nonatomic) XCSTriggerConditions *conditions; // @dynamic conditions;
+@property(retain, nonatomic) XCSTriggerEmailConfiguration *emailConfiguration; // @dynamic emailConfiguration;
+@property(retain, nonatomic) NSString *name; // @dynamic name;
+@property(nonatomic) unsigned long long phase; // @dynamic phase;
+@property(retain, nonatomic) NSString *scriptBody; // @dynamic scriptBody;
+@property(nonatomic) unsigned long long type; // @dynamic type;
 
 @end
 

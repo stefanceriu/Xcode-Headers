@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSTableViewDelegate.h"
+#import "DVTOutlineViewDelegate.h"
 
 @class IBOutlineView, NSEvent, NSOutlineView;
 
-@protocol IBOutlineViewDelegate <NSTableViewDelegate>
+@protocol IBOutlineViewDelegate <DVTOutlineViewDelegate>
 - (BOOL)outlineView:(NSOutlineView *)arg1 isGroupHeaderItem:(id)arg2;
 
 @optional
@@ -16,6 +16,5 @@
 - (void)outlineView:(IBOutlineView *)arg1 handleRightOrControlLeftClick:(NSEvent *)arg2;
 - (void)outlineView:(IBOutlineView *)arg1 didHandleMouseDown:(NSEvent *)arg2;
 - (void)outlineView:(IBOutlineView *)arg1 handleMouseDown:(NSEvent *)arg2;
-- (BOOL)outlineView:(NSOutlineView *)arg1 hasDynamicHeightDeterminedByAutolayout:(id)arg2;
 @end
 

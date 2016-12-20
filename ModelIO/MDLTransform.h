@@ -7,29 +7,33 @@
 #import "NSObject.h"
 
 #import "MDLTransformComponent.h"
+#import "NSCopying.h"
 
-@class NSString;
+@class CAAnimation, NSArray, NSString;
 
-@interface MDLTransform : NSObject <MDLTransformComponent>
+@interface MDLTransform : NSObject <NSCopying, MDLTransformComponent>
 {
-    // Error parsing type: {MDLAffineTransform="_keyedTranslation"{vector<std::__1::pair<double, float __attribute__((ext_vector_type(3)))>, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__begin_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_cap_"{__compressed_pair<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> *, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__first_"^{pair<double, float __attribute__((ext_vector_type(3)))>}}}"_keyedRotation"{vector<std::__1::pair<double, float __attribute__((ext_vector_type(3)))>, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__begin_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_cap_"{__compressed_pair<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> *, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__first_"^{pair<double, float __attribute__((ext_vector_type(3)))>}}}"_keyedShear"{vector<std::__1::pair<double, float __attribute__((ext_vector_type(3)))>, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__begin_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_cap_"{__compressed_pair<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> *, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__first_"^{pair<double, float __attribute__((ext_vector_type(3)))>}}}"_keyedScale"{vector<std::__1::pair<double, float __attribute__((ext_vector_type(3)))>, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__begin_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_cap_"{__compressed_pair<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> *, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__first_"^{pair<double, float __attribute__((ext_vector_type(3)))>}}}"_startTime"d"_greatestTime"d"_identity"B"_evaluationTime"d"_transform"{float4x4="columns"[4]}"_invTransform"{float4x4="columns"[4]}"_jacobiRotation"{float4x4="columns"[4]}"_invJacobiRotation"{float4x4="columns"[4]}}, name: _transform
-    double _minTime;
-    double _maxTime;
+    // Error parsing type: {MDLAffineTransform="_keyedTranslation"{vector<std::__1::pair<double, float __attribute__((ext_vector_type(3)))>, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__begin_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_cap_"{__compressed_pair<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> *, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__first_"^{pair<double, float __attribute__((ext_vector_type(3)))>}}}"_keyedRotation"{vector<std::__1::pair<double, float __attribute__((ext_vector_type(3)))>, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__begin_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_cap_"{__compressed_pair<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> *, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__first_"^{pair<double, float __attribute__((ext_vector_type(3)))>}}}"_keyedShear"{vector<std::__1::pair<double, float __attribute__((ext_vector_type(3)))>, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__begin_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_cap_"{__compressed_pair<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> *, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__first_"^{pair<double, float __attribute__((ext_vector_type(3)))>}}}"_keyedScale"{vector<std::__1::pair<double, float __attribute__((ext_vector_type(3)))>, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__begin_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_"^{pair<double, float __attribute__((ext_vector_type(3)))>}"__end_cap_"{__compressed_pair<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> *, std::__1::allocator<std::__1::pair<double, float __attribute__((ext_vector_type(3)))> > >="__first_"^{pair<double, float __attribute__((ext_vector_type(3)))>}}}"_startTime"d"_greatestTime"d"_identity"B"_resetTransformStack"B"_evaluationTime"d"_transform"{float4x4="columns"[4]}"_invTransform"{float4x4="columns"[4]}"_jacobiRotation"{float4x4="columns"[4]}"_invJacobiRotation"{float4x4="columns"[4]}}, name: _transform
 }
 
 +     // Error parsing type: {?=[4]}32@0:8@16d24, name: globalTransformWithObject:atTime:
 +     // Error parsing type: {?=[4]}32@0:8@16d24, name: localTransformWithObject:atTime:
 - (id).cxx_construct;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) CAAnimation *transformAnimation;
 -     // Error parsing type: {?=[4]}24@0:8d16, name: rotationMatrixAtTime:
 -     // Error parsing type: {?=[4]}24@0:8d16, name: localTransformAtTime:
 -     // Error parsing type: v80@0:8{?=[4]}16, name: setLocalTransform:
 -     // Error parsing type: v88@0:8{?=[4]}16d80, name: setLocalTransform:forTime:
+- (id)copyWithZone:(struct _NSZone *)arg1;
+-     // Error parsing type: @84@0:8{?=[4]}16c80, name: initWithMatrix:resetsTransform:
 -     // Error parsing type: @80@0:8{?=[4]}16, name: initWithMatrix:
+- (id)initWithTransformComponent:(id)arg1 resetsTransform:(BOOL)arg2;
 - (id)initWithTransformComponent:(id)arg1;
 - (void)setIdentity;
 - (id)initWithIdentity;
 - (id)init;
+@property(nonatomic) BOOL resetsTransform;
 - (void)setTranslation:(double)arg1 forTime: /* Error: Ran out of types for this method. */;
 - (void)setScale:(double)arg1 forTime: /* Error: Ran out of types for this method. */;
 - (void)setShear:(double)arg1 forTime: /* Error: Ran out of types for this method. */;
@@ -55,6 +59,7 @@
 
 @property(readonly, nonatomic) double maximumTime;
 @property(readonly, nonatomic) double minimumTime;
+@property(readonly, copy, nonatomic) NSArray *keyTimes;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

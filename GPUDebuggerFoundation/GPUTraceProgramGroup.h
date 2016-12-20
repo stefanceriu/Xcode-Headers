@@ -6,21 +6,32 @@
 
 #import <GPUDebuggerFoundation/GPUTraceProgramItem.h>
 
-@class GPUTraceGroupItem;
+#import "DYPProgramGroup.h"
 
-@interface GPUTraceProgramGroup : GPUTraceProgramItem
+@class GPUTraceGroupItem, NSMutableArray, NSString;
+
+@interface GPUTraceProgramGroup : GPUTraceProgramItem <DYPProgramGroup>
 {
     GPUTraceGroupItem *_relatedDisplayablesGroupItem;
 }
 
 @property(readonly, nonatomic) GPUTraceGroupItem *relatedDisplayablesGroupItem; // @synthesize relatedDisplayablesGroupItem=_relatedDisplayablesGroupItem;
 - (void).cxx_destruct;
+- (id)_locationURLScheme;
+- (id)_locationURLPath;
 - (unsigned int)functionIndex;
 - (id)associatedDisplayableItem;
 - (void)primitiveInvalidate;
 - (void)addNewDisplayableItem:(id)arg1;
 - (id)relatedDisplayableItems;
 - (id)navigableItem_subtitle;
+
+// Remaining properties
+@property(retain, nonatomic) NSMutableArray *children;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

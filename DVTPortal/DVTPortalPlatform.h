@@ -6,28 +6,41 @@
 
 #import "NSObject.h"
 
-@class DVTPlatform, DVTPortalProfileType, NSString;
+@class DVTPlatform, DVTPortalProgram, NSDictionary, NSSet, NSString;
 
 @interface DVTPortalPlatform : NSObject
 {
-    NSString *_portalIdentifier;
+    NSString *_xcodeportalIdentifier;
+    NSString *_provisioningProfilePlatformIdentifier;
+    NSString *_portalSubplatformIdentifier;
+    NSSet *_portalDeviceClasses;
+    NSDictionary *_profileTypesByPurposeName;
+    NSString *_identifier;
     DVTPlatform *_platform;
-    NSString *_developmentProfileTypeIdentifier;
+    NSString *_parentPlatformIdentifier;
 }
 
-+ (id)portalPlatformWithPlatformIdentifier:(id)arg1;
++ (id)portalPlatformsForPortalPrograms:(id)arg1;
 + (id)portalPlatformWithIdentifier:(id)arg1;
-+ (id)_platformIdentifierToPortalPlatformMap;
-+ (id)_portalIdentifierToPortalPlatformMap;
-+ (id)_portalPlatforms;
-@property(readonly, nonatomic) NSString *developmentProfileTypeIdentifier; // @synthesize developmentProfileTypeIdentifier=_developmentProfileTypeIdentifier;
++ (id)portalPlatformWithPlatform:(id)arg1;
++ (id)_portalIdentifierToPortalPlatformsMap;
++ (id)_extensionPointIdentifierToPortalPlatformMap;
++ (id)_platformIdentifierToPortalPlatformsMap;
++ (id)portalPlatforms;
+@property(readonly) NSString *parentPlatformIdentifier; // @synthesize parentPlatformIdentifier=_parentPlatformIdentifier;
 @property(readonly, nonatomic) DVTPlatform *platform; // @synthesize platform=_platform;
-@property(readonly, nonatomic) NSString *portalIdentifier; // @synthesize portalIdentifier=_portalIdentifier;
+@property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
-@property(readonly, nonatomic) DVTPortalProfileType *developmentProfileType;
-- (id)initWithPlatform:(id)arg1 portalIdentifier:(id)arg2 developmentProfileTypeIdentifier:(id)arg3;
+- (id)profileTypeForPurpose:(id)arg1;
+@property(readonly, nonatomic) NSDictionary *profileTypesByPurposeName; // @synthesize profileTypesByPurposeName=_profileTypesByPurposeName;
+@property(readonly, nonatomic) NSSet *portalDeviceClasses; // @synthesize portalDeviceClasses=_portalDeviceClasses;
+@property(readonly, nonatomic) NSString *portalSubplatformIdentifier; // @synthesize portalSubplatformIdentifier=_portalSubplatformIdentifier;
+@property(readonly, nonatomic) NSString *provisioningProfilePlatformIdentifier; // @synthesize provisioningProfilePlatformIdentifier=_provisioningProfilePlatformIdentifier;
+@property(readonly, nonatomic) DVTPortalProgram *portalProgram;
+@property(readonly) NSString *xcodeportalIdentifier; // @synthesize xcodeportalIdentifier=_xcodeportalIdentifier;
+- (id)parentPortalPlatform;
 
 @end
 

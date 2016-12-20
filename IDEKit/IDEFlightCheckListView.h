@@ -36,7 +36,8 @@
 - (void)layoutTopDown;
 - (BOOL)_shouldShowStepsLabel;
 - (BOOL)_shouldShowResolveButton;
-- (BOOL)_haveFailedFlightChecks;
+- (id)_resolvableFailedFlightChecks;
+- (id)_failedFlightChecks;
 - (BOOL)isFlipped;
 - (void)resolveIssues:(id)arg1;
 - (void)_updateFlightCheckViews;

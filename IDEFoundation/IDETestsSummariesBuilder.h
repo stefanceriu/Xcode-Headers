@@ -6,12 +6,14 @@
 
 #import "NSObject.h"
 
-#import "IDETestsObserver.h"
+#import "IDETestRunSessionEvents.h"
 
-@class IDESchemeActionResult, IDESchemeActionTestSummaryGroup, IDESchemeActionTestableSummary, NSMutableArray, NSString;
+@class IDESchemeActionResult, IDESchemeActionTestSummaryGroup, IDESchemeActionTestableSummary, IDEWorkspaceArena, NSMutableArray, NSString;
 
-@interface IDETestsSummariesBuilder : NSObject <IDETestsObserver>
+@interface IDETestsSummariesBuilder : NSObject <IDETestRunSessionEvents>
 {
+    IDEWorkspaceArena *_workspaceArena;
+    NSString *_attachmentsDirectory;
     IDESchemeActionTestableSummary *_currentTestableSummary;
     IDESchemeActionTestSummaryGroup *_currentTestGroup;
     NSMutableArray *_testSuiteStack;
@@ -36,8 +38,8 @@
 - (void)testSuite:(id)arg1 willFinishAt:(id)arg2 rawOutput:(id)arg3;
 - (void)testDidOutput:(id)arg1;
 - (void)testSuite:(id)arg1 didStartAt:(id)arg2 rawOutput:(id)arg3;
-- (void)testRunner:(id)arg1 didLaunchTestSessionForScheme:(id)arg2 withDisplayName:(id)arg3;
-- (id)initWithActionResult:(id)arg1;
+- (void)testRunner:(id)arg1 didLaunchTestSessionForScheme:(id)arg2 withDisplayName:(id)arg3 diagnosticLogPath:(id)arg4;
+- (id)initWithActionResult:(id)arg1 workspaceArena:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

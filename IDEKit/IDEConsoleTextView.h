@@ -10,10 +10,11 @@
 #import "DVTInvalidation.h"
 #import "DVTTextFindable.h"
 
-@class DVTObservingToken, DVTStackBacktrace, DVTTextCompletionDataSource, NSDictionary, NSMutableArray, NSString;
+@class DVTDispatchLock, DVTObservingToken, DVTStackBacktrace, DVTTextCompletionDataSource, NSDictionary, NSMutableArray, NSString;
 
 @interface IDEConsoleTextView : DVTCompletingTextView <DVTTextFindable, DVTFindBarFindable, DVTInvalidation>
 {
+    DVTDispatchLock *_appendItemsLock;
     unsigned long long _startLocationOfLastLine;
     long long _lastRemovableTextLocation;
     NSString *_promptString;
@@ -58,7 +59,6 @@
 - (BOOL)_isValidForHistoryTracking;
 - (BOOL)readSelectionFromPasteboard:(id)arg1;
 - (id)writablePasteboardTypes;
-- (void)_undoManagerDidUndoChangeNotification:(id)arg1;
 - (BOOL)shouldChangeTextInRanges:(id)arg1 replacementStrings:(id)arg2;
 - (void)keyDown:(id)arg1;
 - (void)_sendKeyImmediatelyIfNecessary:(id)arg1 event:(id)arg2;
@@ -87,6 +87,7 @@
 - (void)_themeFontsAndColorsUpdated;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)setCompletionStrategies:(id)arg1;
+- (void)invalidateCompletionsDataSource;
 - (id)completionsDataSource;
 - (BOOL)shouldAutoCompleteAtLocation:(unsigned long long)arg1;
 - (id)autoCompleteChars;

@@ -17,6 +17,7 @@
 + (void)initialize;
 @property(copy, nonatomic) NSArray *bookmarksAsObjects; // @synthesize bookmarksAsObjects=m_bookmarksAsObjects;
 - (void).cxx_destruct;
+- (id)bookmarkForURLString:(id)arg1;
 - (id)bookmarkForNode:(id)arg1;
 - (void)persistBookmarkDictionaries:(id)arg1;
 - (void)persistBookmarks:(id)arg1;

@@ -19,7 +19,7 @@
 - (id)fontForTitleEditing;
 - (id)nextItemToEditWithTextMovement:(long long)arg1;
 - (void)willEditChild:(id)arg1 inFrameController:(id)arg2;
-- (void)positionChildEditorFrame;
+- (void)positionChildEditorFrames;
 - (id)editedMenuItem;
 - (id)menuView;
 

@@ -10,26 +10,26 @@
 
 @interface IBICCatalogCollection : NSObject
 {
-    NSArray *_imageCatalogsOrderedByPath;
-    NSSet *_imageCatalogs;
+    NSArray *_catalogsOrderedByPath;
+    NSSet *_catalogs;
 }
 
-+ (id)collectionWithImageCatalogPaths:(id)arg1 results:(id)arg2;
++ (id)collectionWithCatalogPaths:(id)arg1 results:(id)arg2;
 + (id)catalogsFromPaths:(id)arg1 results:(id)arg2;
-@property(readonly) NSSet *imageCatalogs; // @synthesize imageCatalogs=_imageCatalogs;
-@property(readonly) NSArray *imageCatalogsOrderedByPath; // @synthesize imageCatalogsOrderedByPath=_imageCatalogsOrderedByPath;
+@property(readonly) NSSet *catalogs; // @synthesize catalogs=_catalogs;
+@property(readonly) NSArray *catalogsOrderedByPath; // @synthesize catalogsOrderedByPath=_catalogsOrderedByPath;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) NSSet *allTags;
 - (id)itemsFromCatalogPathsToIdentifierPaths:(id)arg1;
 - (id)catalogPathsToIdentifierPathsForItems:(id)arg1;
 - (id)debugDescription;
 - (id)description;
-- (id)findEmptyPlaceholderForSlottedAssetOfClass:(Class)arg1 withName:(id)arg2 error:(id *)arg3;
+- (id)findEmptyPlaceholderForSlottedAssetOfPossibleClasses:(id)arg1 withName:(id)arg2 error:(id *)arg3;
 - (id)allSlottedAssetsOfClass:(Class)arg1 withName:(id)arg2;
 - (id)allCatalogItemsOfClass:(Class)arg1;
 - (id)slottedAssetRepsForCompilingSlottedAssetsOfClass:(Class)arg1 options:(id)arg2 ignoringItems:(id)arg3 populatingIssues:(id)arg4 slottedAssetFilter:(CDUnknownBlockType)arg5;
 - (id)catalogForAbsolutePath:(id)arg1;
-- (id)initWithImageCatalogs:(id)arg1;
+- (id)initWithCatalogs:(id)arg1;
 - (id)catalogCollectionByAddingCatalogsAtPaths:(id)arg1 results:(id)arg2;
 
 @end

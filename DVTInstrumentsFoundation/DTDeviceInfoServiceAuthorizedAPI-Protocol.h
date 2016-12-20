@@ -12,6 +12,8 @@
 - (NSString *)cpDeviceName;
 - (NSString *)cpDeviceInfoAsXML;
 - (NSString *)cpKDebugEventsAsXML;
+- (NSData *)kpepDatabase;
+- (NSString *)traceCodesFile;
 - (NSDictionary *)networkInformation;
 - (NSDictionary *)systemInformation;
 - (NSDictionary *)hardwareInformation;

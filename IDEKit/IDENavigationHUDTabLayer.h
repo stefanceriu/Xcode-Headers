@@ -6,13 +6,13 @@
 
 #import "CALayer.h"
 
-#import "IDENavigationHUDDisposableLayer.h"
+#import "DVTInvalidation.h"
 #import "IDENavigationHUDNavigableLayer.h"
 #import "IDENavigationHUDSelectionDrivenLayer.h"
 
-@class IDENavigationHUDNewSplitTabLayoutTreeLayer, IDENavigationHUDSelection, IDENavigationHUDTabLayout, IDENavigationHUDWorkspaceWindowLayer, IDEWorkspaceTabController, NSMapTable, NSString;
+@class DVTStackBacktrace, IDENavigationHUDNewSplitTabLayoutTreeLayer, IDENavigationHUDSelection, IDENavigationHUDTabLayout, IDENavigationHUDWorkspaceWindowLayer, IDEWorkspaceTabController, NSMapTable, NSString;
 
-@interface IDENavigationHUDTabLayer : CALayer <IDENavigationHUDSelectionDrivenLayer, IDENavigationHUDNavigableLayer, IDENavigationHUDDisposableLayer>
+@interface IDENavigationHUDTabLayer : CALayer <IDENavigationHUDSelectionDrivenLayer, IDENavigationHUDNavigableLayer, DVTInvalidation>
 {
     NSMapTable *_strongLayoutTreeNodeToStrongLayoutTreeNodeLayerMap;
     IDENavigationHUDWorkspaceWindowLayer *_workspaceWindowLayer;
@@ -23,6 +23,7 @@
     IDENavigationHUDSelection *_selection;
 }
 
++ (void)initialize;
 @property(copy) IDENavigationHUDSelection *selection; // @synthesize selection=_selection;
 @property(readonly) IDEWorkspaceTabController *workspaceTabController; // @synthesize workspaceTabController=_workspaceTabController;
 @property(readonly) IDENavigationHUDWorkspaceWindowLayer *workspaceWindowLayer; // @synthesize workspaceWindowLayer=_workspaceWindowLayer;
@@ -42,14 +43,17 @@
 - (id)selectedLayoutTreeLayer;
 - (id)layoutTreeNodeLayerForLayoutTreeNode:(id)arg1;
 - (id)workspaceWindowController;
-- (void)dispose;
+- (void)primitiveInvalidate;
 - (id)initWithWorkspaceTabController:(id)arg1 workspaceWindowLayer:(id)arg2;
 
 // Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

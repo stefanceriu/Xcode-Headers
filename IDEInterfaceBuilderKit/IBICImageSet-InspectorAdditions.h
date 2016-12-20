@@ -7,7 +7,6 @@
 #import "IBICImageSet.h"
 
 @interface IBICImageSet (InspectorAdditions)
-+ (id)keyPathsForValuesAffectingIbInspectedTemplateRenderingIntent;
 - (void)setIbInspectedTemplateRenderingIntent:(long long)arg1;
 - (long long)ibInspectedTemplateRenderingIntent;
 @end

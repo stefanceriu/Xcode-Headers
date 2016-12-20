@@ -7,6 +7,11 @@
 #import "SCNLight.h"
 
 @interface SCNLight (SKEUndoRedoSupport)
++ (id)keyPathsForValuesAffectingshadowMode_edit;
++ (id)keyPathsForValuesAffectingide_IESProfileURL_edit;
++ (id)keyPathsForValuesAffectingshouldBakeIndirectLighting_edit;
++ (id)keyPathsForValuesAffectingshouldBakeDirectLighting_edit;
++ (id)keyPathsForValuesAffectingide_intensity_edit;
 + (id)keyPathsForValuesAffectingide_spotOuterAngle_edit;
 + (id)keyPathsForValuesAffectingide_spotInnerAngle_edit;
 + (id)keyPathsForValuesAffectingorthographicScale_edit;
@@ -15,6 +20,7 @@
 + (id)keyPathsForValuesAffectingide_attenuationFalloffExponent_edit;
 + (id)keyPathsForValuesAffectingide_attenuationEnd_edit;
 + (id)keyPathsForValuesAffectingide_attenuationStart_edit;
++ (id)keyPathsForValuesAffectingshadowMapSize_edit;
 + (id)keyPathsForValuesAffectingshadowBias_edit;
 + (id)keyPathsForValuesAffectingshadowSampleCount_edit;
 + (id)keyPathsForValuesAffectingshadowRadius_edit;
@@ -24,6 +30,16 @@
 + (id)keyPathsForValuesAffectingske_modeNumber_edit;
 + (id)keyPathsForValuesAffectingske_typeNumber_edit;
 + (id)keyPathsForValuesAffectingname_edit;
+- (void)setshadowMode_edit:(long long)arg1;
+- (long long)shadowMode_edit;
+- (void)setide_IESProfileURL_edit:(id)arg1;
+- (id)ide_IESProfileURL_edit;
+- (void)setshouldBakeIndirectLighting_edit:(BOOL)arg1;
+- (BOOL)shouldBakeIndirectLighting_edit;
+- (void)setshouldBakeDirectLighting_edit:(BOOL)arg1;
+- (BOOL)shouldBakeDirectLighting_edit;
+- (void)setide_intensity_edit:(float)arg1;
+- (float)ide_intensity_edit;
 - (void)setide_spotOuterAngle_edit:(float)arg1;
 - (float)ide_spotOuterAngle_edit;
 - (void)setide_spotInnerAngle_edit:(float)arg1;
@@ -40,6 +56,8 @@
 - (float)ide_attenuationEnd_edit;
 - (void)setide_attenuationStart_edit:(float)arg1;
 - (float)ide_attenuationStart_edit;
+- (void)setshadowMapSize_edit:(struct CGSize)arg1;
+- (struct CGSize)shadowMapSize_edit;
 - (void)setshadowBias_edit:(double)arg1;
 - (double)shadowBias_edit;
 - (void)setshadowSampleCount_edit:(unsigned long long)arg1;

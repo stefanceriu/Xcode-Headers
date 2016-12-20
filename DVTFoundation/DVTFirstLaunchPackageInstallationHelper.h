@@ -11,13 +11,13 @@
 @interface DVTFirstLaunchPackageInstallationHelper : NSObject
 {
     DVTWeakInterposer *_delegate_dvtWeakInterposer;
-    BOOL _shouldForceInstallationForRadar24218331;
     NSArray *_packagesToInstall;
 }
 
 + (void)initialize;
 @property(retain) NSArray *packagesToInstall; // @synthesize packagesToInstall=_packagesToInstall;
 - (void).cxx_destruct;
+- (id)_getLastTwoDottedNumbers:(id)arg1;
 - (id)_determinePackagesToInstall;
 - (void)installPackagesWithAuthRef:(struct AuthorizationOpaqueRef *)arg1;
 - (id)_packageURLsToInstall;

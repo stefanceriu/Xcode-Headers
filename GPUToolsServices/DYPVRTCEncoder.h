@@ -19,6 +19,7 @@
 - (id)describeOptions:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (id)options;
+- (BOOL)supportsFormat:(unsigned int)arg1;
 - (id)name;
 
 @end

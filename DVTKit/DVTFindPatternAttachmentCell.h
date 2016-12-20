@@ -52,6 +52,7 @@
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initImageCell:(id)arg1;
 - (id)init;
 - (id)initTextCell:(id)arg1;
 

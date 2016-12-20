@@ -54,6 +54,8 @@
 - (BOOL)tableView:(id)arg1 doCommandBySelector:(SEL)arg2;
 - (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
+- (id)filterButtonAccessibilityDescription;
+- (id)filterButtonToolTip;
 - (id)filterButtonMenu;
 - (id)filterDefinitionIdentifier;
 - (void)primitiveInvalidate;

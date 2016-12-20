@@ -14,18 +14,21 @@
     BOOL _hideEmptyMarkerGroups;
     BOOL _hideGroupMarkerCalls;
     NSMutableArray *_cachedChildRepresentedObjects;
+    BOOL _showOnlyIssues;
 }
 
+@property BOOL showOnlyIssues; // @synthesize showOnlyIssues=_showOnlyIssues;
 @property BOOL hideGroupMarkerCalls; // @synthesize hideGroupMarkerCalls=_hideGroupMarkerCalls;
 @property BOOL hideEmptyMarkerGroups; // @synthesize hideEmptyMarkerGroups=_hideEmptyMarkerGroups;
 @property BOOL showOnlyInterestingTrace; // @synthesize showOnlyInterestingTrace=_showOnlyInterestingTrace;
 - (void).cxx_destruct;
 - (BOOL)setHideEmptyMarkerGroups:(BOOL)arg1 hideGroupMarkerCalls:(BOOL)arg2;
-- (BOOL)setShowOnlyInterestingTrace:(BOOL)arg1 hideEmptyMarkerGroups:(BOOL)arg2 hideGroupMarkerCalls:(BOOL)arg3;
+- (BOOL)setShowOnlyInterestingTrace:(BOOL)arg1 hideEmptyMarkerGroups:(BOOL)arg2 hideGroupMarkerCalls:(BOOL)arg3 showOnlyIssues:(BOOL)arg4;
 - (void)invalidateChildItems;
 - (id)childRepresentedObjects;
 - (void)_filterGroup:(id)arg1;
-- (BOOL)_isNotHiddenStateItem:(id)arg1;
+- (BOOL)_isHiddenStateItem:(id)arg1;
+- (BOOL)_isHiddenForShowOnlyIssues:(int)arg1 andIssueFilterLevel:(int)arg2;
 - (void)primitiveInvalidate;
 - (void)_clearCachedItems;
 - (id)initWithRepresentedObject:(id)arg1;

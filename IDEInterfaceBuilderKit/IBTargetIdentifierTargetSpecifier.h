@@ -6,22 +6,21 @@
 
 #import "NSObject.h"
 
-@class IBRectGenerator, IBTargetIdentifier, NSString;
+@class IBTargetIdentifier, NSString;
 
 @interface IBTargetIdentifierTargetSpecifier : NSObject
 {
-    IBTargetIdentifier *identifier;
-    IBRectGenerator *frameGenerator;
-    NSString *label;
-    IBTargetIdentifier *targetIdentifier;
-    CDUnknownBlockType completionBlock;
+    NSString *_label;
+    IBTargetIdentifier *_targetIdentifier;
+    CDUnknownBlockType _frameGenerator;
+    CDUnknownBlockType _completionBlock;
 }
 
-+ (id)specifierForTargetIdentifier:(id)arg1 withLabel:(id)arg2 andFrameGenerator:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
-@property(copy) CDUnknownBlockType completionBlock; // @synthesize completionBlock;
-@property(retain) IBTargetIdentifier *targetIdentifier; // @synthesize targetIdentifier;
-@property(retain) IBRectGenerator *frameGenerator; // @synthesize frameGenerator;
-@property(copy) NSString *label; // @synthesize label;
++ (id)specifierForTargetIdentifier:(id)arg1 withFrameGenerator:(CDUnknownBlockType)arg2 label:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+@property(copy) CDUnknownBlockType completionBlock; // @synthesize completionBlock=_completionBlock;
+@property(copy) CDUnknownBlockType frameGenerator; // @synthesize frameGenerator=_frameGenerator;
+@property(retain) IBTargetIdentifier *targetIdentifier; // @synthesize targetIdentifier=_targetIdentifier;
+@property(copy) NSString *label; // @synthesize label=_label;
 - (void).cxx_destruct;
 
 @end

@@ -28,7 +28,7 @@
 - (void)reattachDraggedObjects:(id)arg1 dragContext:(id)arg2;
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;
 - (CDStruct_b58c4854)activeKnobRectsForObject:(id)arg1;
-- (id)trackerForChild:(id)arg1 withView:(id)arg2 fromKnob:(CDUnion_aed8a530)arg3;
+- (id)trackerForChild:(id)arg1 withView:(id)arg2 fromKnob:(CDUnion_42e99c75)arg3;
 - (id)editedView;
 - (BOOL)wantsDefaultDragInsertionIndicatorForDragInfo:(id)arg1;
 - (void)drawDragAndDropInsertionHints;
@@ -36,7 +36,6 @@
 - (id)acceptDragInfo:(id)arg1 context:(id)arg2;
 - (void)failToAcceptDragInfo:(id)arg1;
 - (void)prepareToAcceptDragInfo:(id)arg1;
-- (id)buildHighlightMaskForObject:(id)arg1;
 - (id)draggedImageState:(id)arg1;
 - (id)initialDragImageState:(id)arg1;
 - (id)draggedImageStateForViews:(id)arg1 withName:(id)arg2;

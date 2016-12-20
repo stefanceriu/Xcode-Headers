@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class IBLiveViewsManager, IBMutableOrderedDictionary, IBSemaphore, IBTargetRuntime, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
+@class IBLiveViewsManager, IBMutableOrderedDictionary, IBSemaphore, IBTargetRuntime, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
 
 @interface IBPlatformToolRequester : NSObject
 {
@@ -17,6 +17,7 @@
     IBSemaphore *_waitingRequestSemaphore;
     IBMutableOrderedDictionary *_finishedRequestsByID;
     NSMutableSet *_cancelledRequestIDs;
+    NSMutableDictionary *_pendingRequestsBySupersessionIdentifier;
     NSObject<OS_dispatch_queue> *_processingQueue;
     NSString *_waitingRequestID;
     long long _batchSize;
@@ -30,8 +31,8 @@
 - (void)processResults;
 - (BOOL)waitForRequestWithID:(id)arg1 timeout:(id)arg2;
 - (void)cancelRequestWithID:(id)arg1;
-- (id)issueRequestWithData:(id)arg1 diagnosticsBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (id)initWithTargetRuntime:(id)arg1 scaleFactor:(id)arg2 liveViewsManager:(id)arg3 batchSize:(long long)arg4 requestProcessor:(id)arg5;
+- (id)issueRequestWithData:(id)arg1 supersessionIdentifier:(id)arg2 diagnosticsBlock:(CDUnknownBlockType)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (id)initWithTargetRuntime:(id)arg1 scaleFactor:(double)arg2 liveViewsManager:(id)arg3 batchSize:(long long)arg4 requestProcessor:(id)arg5;
 - (id)init;
 
 @end

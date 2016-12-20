@@ -10,7 +10,7 @@
 {
 }
 
-+ (id)addAppIDServiceWithTeam:(id)arg1 platform:(id)arg2 name:(id)arg3 appID:(id)arg4 features:(id)arg5;
++ (id)addAppIDServiceWithTeam:(id)arg1 program:(id)arg2 name:(id)arg3 appID:(id)arg4 features:(id)arg5;
 + (id)_serviceIdentifier;
 
 @end

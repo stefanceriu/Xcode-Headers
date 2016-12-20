@@ -14,12 +14,14 @@
 }
 
 - (void).cxx_destruct;
+@property BOOL showMergeCommits;
 - (void)setComparisonLocalRevisionSide:(id)arg1;
 @property BOOL enableSourceControl;
 @property BOOL alwaysAddFiles;
 @property BOOL showLocalStatus;
 @property BOOL showRemoteStatus;
 - (void)viewDidInstall;
+- (void)loadView;
 - (id)nibName;
 
 @end

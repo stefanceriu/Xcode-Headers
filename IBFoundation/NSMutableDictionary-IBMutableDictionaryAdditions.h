@@ -8,6 +8,7 @@
 
 @interface NSMutableDictionary (IBMutableDictionaryAdditions)
 + (Class)ib_mutableClass;
+- (void)ib_setOrClearObject:(id)arg1 forKey:(id)arg2;
 - (void)ib_mapValues:(CDUnknownBlockType)arg1;
 - (void)ib_overrideObject:(id)arg1 forKey:(id)arg2 during:(CDUnknownBlockType)arg3;
 - (void)ib_setObject:(id)arg1 forClassKey:(Class)arg2;
@@ -40,10 +41,14 @@
 - (void)ib_addObject:(id)arg1 toSetForKey:(id)arg2;
 - (void)ib_addObject:(id)arg1 toArrayForKey:(id)arg2 inDictionaryForKey:(id)arg3 inDictionaryForKey:(id)arg4 subDictionaryClass:(Class)arg5;
 - (void)ib_addObject:(id)arg1 toArrayForKey:(id)arg2 inDictionaryForKey:(id)arg3 subDictionaryClass:(Class)arg4;
+- (void)ib_addObjects:(id)arg1 toSetForKey:(id)arg2 inDictionaryForKey:(id)arg3 inDictionaryForKey:(id)arg4;
+- (void)ib_addObjectsFromSet:(id)arg1 toSetForKey:(id)arg2 inDictionaryForKey:(id)arg3;
+- (void)ib_addObjects:(id)arg1 toSetForKey:(id)arg2 inDictionaryForKey:(id)arg3;
 - (void)ib_addObject:(id)arg1 toSetForKey:(id)arg2 inDictionaryForKey:(id)arg3 inDictionaryForKey:(id)arg4;
 - (void)ib_addObject:(id)arg1 toArrayForKey:(id)arg2 inDictionaryForKey:(id)arg3 inDictionaryForKey:(id)arg4;
 - (void)ib_addObject:(id)arg1 toArrayForKey:(id)arg2 inDictionaryForKey:(id)arg3;
 - (void)ib_addObject:(id)arg1 toArrayForKey:(id)arg2;
+- (void)ib_addObjectsFromSet:(id)arg1 toSetForKey:(id)arg2;
 - (void)ib_addObjects:(id)arg1 toSetForKey:(id)arg2;
 - (void)ib_addObjects:(id)arg1 toArrayForKey:(id)arg2;
 - (id)ib_collectionOfClass:(Class)arg1 forKey:(id)arg2;

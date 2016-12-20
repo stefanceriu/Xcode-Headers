@@ -55,6 +55,11 @@
 - (id)ibQualifyingInfoForDefaultLabel;
 - (void)setIbInspectedNumberOfRows:(long long)arg1;
 - (long long)ibInspectedNumberOfRows;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibEditorClass;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

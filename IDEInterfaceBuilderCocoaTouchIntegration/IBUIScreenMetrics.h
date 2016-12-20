@@ -6,23 +6,23 @@
 
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIFixedSimulatedSizeMetrics.h>
 
-@class IBCocoaTouchIdiom, IBCocoaTouchOSVersion, NSDictionary, NSString;
+@class IBCocoaTouchIdiom, IBCocoaTouchOSVersion, NSDictionary, NSSet, NSString;
 
 @interface IBUIScreenMetrics : IBUIFixedSimulatedSizeMetrics
 {
     NSDictionary *_normalizedOrientationToSizeMap;
     NSString *_displayName;
     IBCocoaTouchIdiom *_idiom;
-    NSString *_displayNameForPreviewEditor;
     NSString *_archiveIdentifier;
+    NSSet *_legacyIdentifiersForMigration;
     IBCocoaTouchOSVersion *_minimumSupportedOSVersion;
 }
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
 + (id)instantiateWithCoder:(id)arg1;
 @property(readonly, copy, nonatomic) IBCocoaTouchOSVersion *minimumSupportedOSVersion; // @synthesize minimumSupportedOSVersion=_minimumSupportedOSVersion;
+@property(readonly, copy, nonatomic) NSSet *legacyIdentifiersForMigration; // @synthesize legacyIdentifiersForMigration=_legacyIdentifiersForMigration;
 @property(readonly, copy, nonatomic) NSString *archiveIdentifier; // @synthesize archiveIdentifier=_archiveIdentifier;
-@property(readonly) NSString *displayNameForPreviewEditor; // @synthesize displayNameForPreviewEditor=_displayNameForPreviewEditor;
 - (id)idiom;
 - (id)displayName;
 - (void).cxx_destruct;
@@ -35,8 +35,10 @@
 - (id)formSheetFixedSizeMetricsForOrientationMetrics:(id)arg1;
 - (id)splitViewDetailFixedSizeMetricsForOrientationMetrics:(id)arg1;
 - (id)splitViewMasterFixedSizeMetricsForOrientationMetrics:(id)arg1;
+- (id)splitViewDetailSimulatedMemberConfigurationForOrientationMetrics:(id)arg1;
+- (id)splitViewMasterSimulatedMemberConfigurationForOrientationMetrics:(id)arg1;
+- (id)migratableSimulatedDestinationMetricsOrNil;
 - (id)fixedSizeMetricsForScreenMetrics:(id)arg1 orientationMetrics:(id)arg2 freeformSize:(struct CGSize)arg3;
-- (BOOL)isAbstractSizeClassScreen;
 - (BOOL)supportsMultipleOrientations;
 - (BOOL)supportsOrientation:(int)arg1;
 - (struct CGSize)sizeForOrientation:(int)arg1;
@@ -45,10 +47,9 @@
 - (id)inheritableModalPageSheetSizeMetrics;
 - (id)inheritableModalFormSheetSizeMetrics;
 - (id)init;
-- (id)_initWithIdiom:(id)arg1 displayName:(id)arg2 displayNameForPreviewEditor:(id)arg3 archiveIdentifier:(id)arg4 landscapeSize:(struct CGSize)arg5 portraitSize:(struct CGSize)arg6 supportsMultipleOrientations:(BOOL)arg7 minimumSupportedOSVersion:(id)arg8;
-- (id)initWithIdiom:(id)arg1 displayName:(id)arg2 displayNameForPreviewEditor:(id)arg3 archiveIdentifier:(id)arg4 landscapeSize:(struct CGSize)arg5 portraitSize:(struct CGSize)arg6 minimumSupportedOSVersion:(id)arg7;
-- (id)initWithIdiom:(id)arg1 displayName:(id)arg2 displayNameForPreviewEditor:(id)arg3 archiveIdentifier:(id)arg4 size:(struct CGSize)arg5 supportsMultipleOrientations:(BOOL)arg6 minimumSupportedOSVersion:(id)arg7;
-- (id)initWithIdiom:(id)arg1 displayName:(id)arg2 displayNameForPreviewEditor:(id)arg3 archiveIdentifier:(id)arg4 size:(struct CGSize)arg5 supportsMultipleOrientations:(BOOL)arg6;
+- (id)_initWithIdiom:(id)arg1 displayName:(id)arg2 archiveIdentifier:(id)arg3 landscapeSize:(struct CGSize)arg4 portraitSize:(struct CGSize)arg5 minimumSupportedOSVersion:(id)arg6 legacyIdentifiersForMigration:(id)arg7;
+- (id)initWithIdiom:(id)arg1 displayName:(id)arg2 archiveIdentifier:(id)arg3 landscapeSize:(struct CGSize)arg4 portraitSize:(struct CGSize)arg5 minimumSupportedOSVersion:(id)arg6 legacyIdentifiersForMigration:(id)arg7;
+- (id)initWithIdiom:(id)arg1 displayName:(id)arg2 archiveIdentifier:(id)arg3 size:(struct CGSize)arg4 supportsMultipleOrientations:(BOOL)arg5 minimumSupportedOSVersion:(id)arg6;
 
 @end
 

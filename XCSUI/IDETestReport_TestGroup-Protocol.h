@@ -12,6 +12,8 @@
 @protocol IDETestReport_TestGroup <NSObject, IDETestReport_Base>
 @property(readonly, copy, nonatomic) NSString *ide_testReport_testGroup_testTargetName;
 @property(readonly, copy, nonatomic) NSString *ide_testReport_testGroup_groupName;
+- (NSArray *)ide_sharedTests_testGroup_allTests;
+- (NSArray *)ide_sharedTests_testGroup_perfTests;
 - (NSArray *)ide_sharedTests_testGroup_includePassingTests:(BOOL)arg1 includeFailingTests:(BOOL)arg2 includeOnlyPerfTests:(BOOL)arg3;
 @end
 

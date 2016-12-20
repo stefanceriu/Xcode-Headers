@@ -6,11 +6,11 @@
 
 #import "NSObject.h"
 
-@class IDEContainerItem, IDEGroup, IDETemplateAssistantContext, NSArray;
+@class IDEContainerItem, IDEGroup, IDETemplateAssistantContext, IDETemplateKind, NSArray;
 
 @protocol IDETemplateSupportingNavigator <NSObject>
 - (IDEGroup *)defaultDestinationGroupForTemplateInstantiationWithDestinationIndex:(long long *)arg1;
 - (void)addTemplateInstantiatedItems:(NSArray *)arg1 primaryItem:(IDEContainerItem *)arg2 shouldEdit:(BOOL)arg3;
-- (void)setupTemplateContext:(IDETemplateAssistantContext *)arg1;
+- (void)setupTemplateContext:(IDETemplateAssistantContext *)arg1 forTemplateKind:(IDETemplateKind *)arg2;
 @end
 

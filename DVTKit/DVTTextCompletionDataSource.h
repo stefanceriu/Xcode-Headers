@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTSourceCodeLanguage, DVTWeakInterposer, NSArray, NSMapTable, NSMutableArray, NSMutableSet, NSOperationQueue;
+#import "DVTInvalidation.h"
 
-@interface DVTTextCompletionDataSource : NSObject
+@class DVTSourceCodeLanguage, DVTStackBacktrace, DVTWeakInterposer, NSArray, NSMapTable, NSMutableArray, NSMutableSet, NSOperationQueue, NSString;
+
+@interface DVTTextCompletionDataSource : NSObject <DVTInvalidation>
 {
     DVTSourceCodeLanguage *_language;
     DVTWeakInterposer *_delegate_dvtWeakInterposer;
@@ -18,14 +20,24 @@
     NSMapTable *_lastGeneratedCompletionItemsPerStrategy;
 }
 
++ (void)initialize;
 @property(retain, nonatomic) DVTSourceCodeLanguage *language; // @synthesize language=_language;
 - (void).cxx_destruct;
 @property(readonly) NSArray *strategies;
-- (id)bestMatchForPrefix:(id)arg1 withContext:(id)arg2;
 - (void)generateCompletionsForDocumentLocation:(id)arg1 context:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)primitiveInvalidate;
 - (id)initWithLanguage:(id)arg1;
 - (id)init;
 @property __weak id <DVTTextCompletionDataSourceDelegate> delegate;
+
+// Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

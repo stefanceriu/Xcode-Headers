@@ -7,7 +7,7 @@
 #import "DVTPlatform.h"
 
 @interface DVTPlatform (DVTPortalAdditions)
-- (id)portalIdentifier;
+- (id)portalProgramIdentifier;
 - (id)portalPlatform;
 @end
 

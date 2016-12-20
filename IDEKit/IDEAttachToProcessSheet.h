@@ -6,14 +6,14 @@
 
 #import "DVTViewController.h"
 
-@class DVTStackView_AppKitAutolayout, IDEDebuggerSpecifier, IDEWorkspaceTabController, NSArray, NSButton, NSButtonCell, NSImageView, NSMatrix, NSTextField, NSView, NSWindow;
+@class DVTStackView_AppKitAutolayout, DVTToolchain, IDEWorkspaceTabController, NSArray, NSButton, NSButtonCell, NSImageView, NSMatrix, NSTextField, NSView, NSWindow;
 
 @interface IDEAttachToProcessSheet : DVTViewController
 {
     IDEWorkspaceTabController *_workspaceTabController;
     id <IDEAttachToProcessSheetDelegate> _delegate;
-    NSArray *_debuggerSpecifiers;
-    IDEDebuggerSpecifier *_selectedDebuggerSpecifier;
+    NSArray *_toolchains;
+    DVTToolchain *_selectedToolchain;
     unsigned int _debugProcessAsUID;
     NSButton *_attachButton;
     NSButton *_cancelButton;
@@ -31,9 +31,10 @@
 
 + (void)showAttachToProcessSheetForWorkspaceTabController:(id)arg1 delegate:(id)arg2;
 @property unsigned int debugProcessAsUID; // @synthesize debugProcessAsUID=_debugProcessAsUID;
-@property(readonly) IDEDebuggerSpecifier *selectedDebuggerSpecifier; // @synthesize selectedDebuggerSpecifier=_selectedDebuggerSpecifier;
-@property(readonly) NSArray *debuggerSpecifiers; // @synthesize debuggerSpecifiers=_debuggerSpecifiers;
+@property(readonly) DVTToolchain *selectedToolchain; // @synthesize selectedToolchain=_selectedToolchain;
+@property(readonly) NSArray *toolchainSpecifiers; // @synthesize toolchainSpecifiers=_toolchains;
 - (void).cxx_destruct;
+- (void)_rememberToolchain;
 - (void)_rememberEnteredProcessNameIfNecessary;
 - (void)_rememberDebugProcessAsSelection;
 - (void)_attachToProcessUsingProcessInformations:(id)arg1;
@@ -47,11 +48,12 @@
 - (id)_processInformationForProcessName:(id)arg1 processInformations:(id)arg2;
 - (id)_processInformationForUserEnteredText:(id)arg1;
 - (id)_processInformationForPID:(int)arg1 processInformations:(id)arg2;
-- (void)setSelectedDebuggerSpecifier:(id)arg1;
+- (void)setSelectedToolchain:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)loadView;
 - (void)_setupDebugProcessAsSlice;
 - (BOOL)_supportsDebugAs;
+- (id)defaultDebuggerSpecifier;
 - (id)_initWithWorkspaceTabControler:(id)arg1 delegate:(id)arg2;
 
 @end

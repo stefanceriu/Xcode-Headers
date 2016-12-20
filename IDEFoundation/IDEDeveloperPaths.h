@@ -20,6 +20,7 @@
 
 - (void).cxx_destruct;
 - (id)templateSearchPath;
+- (id)defaultXcodeServerDataLocation;
 - (id)defaultWorkspaceDerivedDataLocation;
 - (id)defaultDistributionArchivesLocation;
 - (id)distributionArchivesLocation;

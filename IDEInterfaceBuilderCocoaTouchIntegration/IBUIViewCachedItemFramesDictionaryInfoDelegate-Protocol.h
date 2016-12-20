@@ -10,5 +10,8 @@
 
 @protocol IBUIViewCachedItemFramesDictionaryInfoDelegate <NSObject>
 - (NSArray *)orderedItemsForCachedItemFramesDictionaryInfo:(IBUIViewCachedItemFramesDictionaryInfo *)arg1;
+
+@optional
+- (BOOL)ignoreItemCountMismatchRadar23282644ForCachedItemFramesDictionaryInfo:(IBUIViewCachedItemFramesDictionaryInfo *)arg1;
 @end
 

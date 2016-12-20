@@ -15,8 +15,10 @@
     NSString *_symbolName;
     NSString *_fileName;
     NSString *_symbolOwnerName;
+    NSString *_rawSymbolName;
 }
 
+@property(copy) NSString *rawSymbolName; // @synthesize rawSymbolName=_rawSymbolName;
 @property(copy) NSString *symbolOwnerName; // @synthesize symbolOwnerName=_symbolOwnerName;
 @property(copy) NSString *fileName; // @synthesize fileName=_fileName;
 @property(copy) NSString *symbolName; // @synthesize symbolName=_symbolName;
@@ -25,6 +27,7 @@
 - (void).cxx_destruct;
 - (id)frameStringRepresentationWithAddress:(BOOL)arg1;
 - (id)frameStringRepresentation;
+- (id)_initWithStackAddress:(unsigned long long)arg1 usingSymbolicator:(struct _CSTypeRef)arg2;
 
 @end
 

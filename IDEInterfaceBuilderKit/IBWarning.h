@@ -29,7 +29,6 @@
 + (id)documentLocationTimestampForDocument:(id)arg1;
 + (id)documentLocationForDocument:(id)arg1;
 + (id)documentLocationForMember:(id)arg1;
-+ (id)displayNameForInvalidMacOSXVersionRange:(long long)arg1;
 + (id)categoryList;
 + (id)symbolNameForWarningType:(long long)arg1;
 + (id)displayNameForWarningType:(long long)arg1;

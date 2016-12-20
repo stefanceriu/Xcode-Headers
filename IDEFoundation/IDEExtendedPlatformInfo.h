@@ -17,8 +17,11 @@
     BOOL _canBeJetsamedDuringGPUTracing;
     BOOL _tryOtherArchWhenDesignatedArchFails;
     BOOL _hasQualityOfService;
+    BOOL _conditionalizeCodeSignIdentityBySDK;
     BOOL _requiresGameCenterDeviceCompatibilityInfoPlistEntry;
     BOOL _onlySupportsAppStoreDeployment;
+    BOOL _wantsMapsRoutingOptions;
+    BOOL _supportsAppThinning;
     BOOL _supportsLaunchScreenXibs;
     BOOL _supportsCloudDocuments;
     BOOL _appStoreArchivesRequirePreciseSizeEstimate;
@@ -40,11 +43,12 @@
     NSString *_gaugeCPUMeterScale;
     NSString *_codeSignIdentityDefaultAutomaticSelector;
     NSArray *_codeSignIdentityAutomaticSelectors;
+    NSDictionary *_automaticSelectorToUserDescription;
     NSString *_conditionalSDKPostfix;
     NSString *_sdkName;
     NSString *_internalSDKName;
-    NSArray *_productTypesRequiringProvisioning;
     NSString *_addressSanitizerLibraryName;
+    NSString *_threadSanitizerLibraryName;
     NSString *_appStoreSubmissionConfigurationResponseIdentifier;
     NSString *_appStoreSubmissionConfigurationCompiledCodeDefaultSupportLevel;
     NSString *_appStoreSubmissionConfigurationOnDemandResourcesDefaultSupportLevel;
@@ -67,13 +71,17 @@
 @property(readonly) BOOL appStoreArchivesRequirePreciseSizeEstimate; // @synthesize appStoreArchivesRequirePreciseSizeEstimate=_appStoreArchivesRequirePreciseSizeEstimate;
 @property(readonly) BOOL supportsCloudDocuments; // @synthesize supportsCloudDocuments=_supportsCloudDocuments;
 @property(readonly) BOOL supportsLaunchScreenXibs; // @synthesize supportsLaunchScreenXibs=_supportsLaunchScreenXibs;
+@property(readonly) NSString *threadSanitizerLibraryName; // @synthesize threadSanitizerLibraryName=_threadSanitizerLibraryName;
 @property(readonly) NSString *addressSanitizerLibraryName; // @synthesize addressSanitizerLibraryName=_addressSanitizerLibraryName;
-@property(readonly) NSArray *productTypesRequiringProvisioning; // @synthesize productTypesRequiringProvisioning=_productTypesRequiringProvisioning;
+@property(readonly) BOOL supportsAppThinning; // @synthesize supportsAppThinning=_supportsAppThinning;
+@property(readonly) BOOL wantsMapsRoutingOptions; // @synthesize wantsMapsRoutingOptions=_wantsMapsRoutingOptions;
 @property(readonly) BOOL onlySupportsAppStoreDeployment; // @synthesize onlySupportsAppStoreDeployment=_onlySupportsAppStoreDeployment;
 @property(readonly, copy) NSString *internalSDKName; // @synthesize internalSDKName=_internalSDKName;
 @property(readonly, copy) NSString *sdkName; // @synthesize sdkName=_sdkName;
 @property(readonly) BOOL requiresGameCenterDeviceCompatibilityInfoPlistEntry; // @synthesize requiresGameCenterDeviceCompatibilityInfoPlistEntry=_requiresGameCenterDeviceCompatibilityInfoPlistEntry;
+@property(readonly) BOOL conditionalizeCodeSignIdentityBySDK; // @synthesize conditionalizeCodeSignIdentityBySDK=_conditionalizeCodeSignIdentityBySDK;
 @property(readonly, copy) NSString *conditionalSDKPostfix; // @synthesize conditionalSDKPostfix=_conditionalSDKPostfix;
+@property(readonly, copy) NSDictionary *automaticSelectorToUserDescription; // @synthesize automaticSelectorToUserDescription=_automaticSelectorToUserDescription;
 @property(readonly, copy) NSArray *codeSignIdentityAutomaticSelectors; // @synthesize codeSignIdentityAutomaticSelectors=_codeSignIdentityAutomaticSelectors;
 @property(readonly, copy) NSString *codeSignIdentityDefaultAutomaticSelector; // @synthesize codeSignIdentityDefaultAutomaticSelector=_codeSignIdentityDefaultAutomaticSelector;
 @property(readonly) BOOL hasQualityOfService; // @synthesize hasQualityOfService=_hasQualityOfService;
@@ -98,7 +106,6 @@
 @property(readonly, copy) NSString *deploymentTargetSettingHumanReadableNameSentenceCase;
 @property(readonly, copy) NSString *deploymentTargetSettingHumanReadableNameTitleCase;
 - (id)supportedInterfaceBuilderDocumentUTIsForProductType:(id)arg1;
-@property(readonly) Class portalEntitlementsCoordinatorPlatformClass;
 
 @end
 

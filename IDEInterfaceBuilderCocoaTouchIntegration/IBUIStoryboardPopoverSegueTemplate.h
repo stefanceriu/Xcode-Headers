@@ -24,6 +24,11 @@
 @property(copy) NSArray *passthroughViews; // @synthesize passthroughViews;
 @property unsigned long long permittedArrowDirections; // @synthesize permittedArrowDirections;
 - (void).cxx_destruct;
+- (id)ibLocalAutoNullifyingNonChildToManyRelationshipsKeyPaths;
+- (id)ibLocalNonChildToManyRelationshipsKeyPaths;
+- (id)ibLocalAutoNullifyingNonChildToOneRelationshipsKeyPaths;
+- (id)ibLocalNonChildToOneRelationshipsKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;

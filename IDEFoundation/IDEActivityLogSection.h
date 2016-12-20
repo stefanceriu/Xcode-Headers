@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class DVTDocumentLocation, IDEActivityLogSectionRecorder, IDESchemeActionCodeCoverage, IDETypeIdentifier, NSArray, NSMutableArray, NSMutableString, NSString, NSURL;
+@class DVTDocumentLocation, IDEActivityLogSectionRecorder, IDESchemeActionCodeCoverage, IDETypeIdentifier, NSArray, NSMapTable, NSMutableArray, NSMutableString, NSString, NSURL;
 
 @interface IDEActivityLogSection : NSObject <NSCopying>
 {
@@ -39,7 +39,8 @@
     BOOL _hasAddedIssueMessage;
     NSString *_uniqueIdentifier;
     NSString *_localizedResultString;
-    int _lock;
+    // Error parsing type: AB, name: _lock
+    NSMapTable *_customDataObjectsByClass;
     IDESchemeActionCodeCoverage *_coverageReport;
 }
 
@@ -72,6 +73,8 @@
 - (id)enumerateMessagesUsingBlock:(CDUnknownBlockType)arg1;
 - (id)enumerateSubsectionsRecursivelyUsingPreorderBlock:(CDUnknownBlockType)arg1;
 - (void)_enumerateSubsectionsRecursivelyUsingPreorderBlock:(CDUnknownBlockType)arg1 returningFilteredSections:(id)arg2;
+- (id)customDataObjectForClass:(Class)arg1;
+- (void)registerCustomDataObject:(id)arg1 forClass:(Class)arg2;
 @property(readonly) NSURL *logSectionURL;
 - (id)emittedOutputText;
 - (void)logRecorder:(id)arg1 setCommandDetailDescription:(id)arg2;

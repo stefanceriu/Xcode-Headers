@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSData, NSString;
+@class DYGLBufferObject, NSData, NSString;
 
 __attribute__((visibility("hidden")))
 @interface GPUGLVertexAttributeComponent : NSObject
@@ -19,10 +19,12 @@ __attribute__((visibility("hidden")))
     int _stride;
     NSData *_data;
     NSString *_name;
+    DYGLBufferObject *_buffer;
 }
 
 + (id)maxLengthStringForFormat:(unsigned int)arg1;
 + (void)initialize;
+@property(retain, nonatomic) DYGLBufferObject *buffer; // @synthesize buffer=_buffer;
 @property(retain, nonatomic) NSString *name; // @synthesize name=_name;
 @property(nonatomic) int stride; // @synthesize stride=_stride;
 @property(nonatomic) BOOL showAsHex; // @synthesize showAsHex=_showAsHex;
@@ -35,7 +37,7 @@ __attribute__((visibility("hidden")))
 - (id)formattedDataAtIndex:(int)arg1;
 - (id)dataAtIndex:(int)arg1;
 @property(readonly, nonatomic) int bufferLength;
-- (id)initWithData:(id)arg1;
+- (id)initWithBuffer:(id)arg1;
 - (id)init;
 
 @end

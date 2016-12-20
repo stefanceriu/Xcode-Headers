@@ -4,13 +4,16 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "IDEProvisioningBasicTeam.h"
 #import "NSObject.h"
 
 @class NSString;
 
-@protocol IDEProvisioningTeam <NSObject>
+@protocol IDEProvisioningTeam <NSObject, IDEProvisioningBasicTeam>
 @property(readonly, nonatomic, getter=isFreeProvisioningTeam) BOOL freeProvisioningTeam;
 @property(readonly, nonatomic) NSString *teamID;
+@property(readonly, nonatomic) NSString *displayName;
 @property(readonly, nonatomic) NSString *name;
+- (BOOL)canCreateCertificatesOfKind:(NSString *)arg1;
 @end
 

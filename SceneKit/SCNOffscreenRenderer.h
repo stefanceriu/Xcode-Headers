@@ -10,21 +10,12 @@
 {
 }
 
++ (id)offscreenRendererWithDevice:(id)arg1 size:(struct CGSize)arg2;
 + (id)offscreenRendererWithContext:(struct _CGLContextObject *)arg1 size:(struct CGSize)arg2;
-- (void)_createFramebufferIfNeeded;
-- (void)_resolveAndDiscard;
-- (void)_unbindFramebuffer;
-- (void)_bindFramebuffer:(BOOL)arg1;
-- (void)_deleteFramebuffer;
-@property(readonly, nonatomic) unsigned int textureID;
-- (id)snapshotAtTime:(double)arg1;
-- (id)snapshot;
-- (struct CGImage *)copySnapshotWithSize:(struct CGSize)arg1;
-- (struct CGImage *)createCGImageSnapshot:(double)arg1;
-- (void)_render;
 @property(nonatomic) unsigned long long antialiasingMode;
 @property(nonatomic) struct CGSize size;
-- (id)_initOffscreenRendererWithOptions:(id)arg1 isPrivateRenderer:(BOOL)arg2 privateRendererOwner:(id)arg3 clearsOnDraw:(BOOL)arg4 size:(struct CGSize)arg5 context:(void *)arg6 renderingAPI:(unsigned long long)arg7;
+@property(readonly, nonatomic) unsigned int textureID;
+- (id)snapshot;
 
 @end
 

@@ -1105,6 +1105,11 @@ struct _NSRange {
     unsigned long long length;
 };
 
+struct dvt_mergedIndexes {
+    unsigned int :1;
+    unsigned int :31;
+};
+
 #pragma mark Typedef'd Structures
 
 typedef struct {
@@ -1118,4 +1123,12 @@ typedef struct {
     double leftInset;
     double rightInset;
 } CDStruct_2b6e6e30;
+
+typedef struct {
+    struct CGSize unfilledViewSpace;
+    unsigned long long numberOfRows;
+    unsigned long long numberOfColumns;
+    struct CGSize gridSize;
+    struct CGSize frameSize;
+} CDStruct_8cfbf51b;
 

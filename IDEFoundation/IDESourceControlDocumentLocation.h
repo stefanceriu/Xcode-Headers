@@ -4,26 +4,37 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "DVTDocumentLocation.h"
+#import "DVTTextDocumentLocation.h"
 
-@class NSString;
+@class DVTSourceControlWorkingCopy, IDESourceControlBranch, NSString, NSURL;
 
-@interface IDESourceControlDocumentLocation : DVTDocumentLocation
+@interface IDESourceControlDocumentLocation : DVTTextDocumentLocation
 {
-    NSString *_branchName;
+    IDESourceControlBranch *_branch;
     NSString *_revisionName;
+    DVTSourceControlWorkingCopy *_workingCopy;
+    NSURL *_currentDocumentURL;
 }
 
+@property(readonly) NSURL *currentDocumentURL; // @synthesize currentDocumentURL=_currentDocumentURL;
 @property(readonly) NSString *revisionName; // @synthesize revisionName=_revisionName;
-@property(readonly) NSString *branchName; // @synthesize branchName=_branchName;
+@property(readonly) IDESourceControlBranch *branch; // @synthesize branch=_branch;
+@property(readonly) DVTSourceControlWorkingCopy *workingCopy; // @synthesize workingCopy=_workingCopy;
 - (void).cxx_destruct;
 - (id)description;
 - (BOOL)isEqualDisregardingTimestamp:(id)arg1;
 - (id)workingTreeItem;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithDocumentLocation:(id)arg1 branchName:(id)arg2 revisionName:(id)arg3;
-- (id)initWithDocumentURL:(id)arg1 branchName:(id)arg2 revisionName:(id)arg3;
+@property(readonly) NSString *relativeDocumentPath;
+@property(readonly) NSURL *relativeDocumentURL;
+@property(readonly) NSString *relativeCurrentDocumentPath;
+@property(readonly) NSURL *relativeCurrentDocumentURL;
+- (id)initWithDocumentURL:(id)arg1 currentDocumentURL:(id)arg2 workingCopy:(id)arg3 branch:(id)arg4 revisionName:(id)arg5;
+- (id)initWithDocumentURL:(id)arg1 currentDocumentURL:(id)arg2 workingCopy:(id)arg3;
+- (id)initWithDocumentURL:(id)arg1 currentDocumentURL:(id)arg2 workingCopy:(id)arg3 timestamp:(id)arg4 lineRange:(struct _NSRange)arg5;
+- (id)initWithDocumentLocation:(id)arg1 workingCopy:(id)arg2 branch:(id)arg3 revisionName:(id)arg4;
+- (id)initWithDocumentURL:(id)arg1 workingCopy:(id)arg2 branch:(id)arg3 revisionName:(id)arg4;
 
 @end
 

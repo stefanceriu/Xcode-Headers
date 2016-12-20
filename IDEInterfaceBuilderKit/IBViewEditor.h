@@ -88,12 +88,11 @@
 - (void)addEffectiveViewsInvolvedInConstraintToDraw:(id)arg1 toCollection:(id)arg2;
 - (void)clearAllConstraintDrawing;
 - (void)updateConstraintsForViews;
-- (void)willDrawConstriants;
+- (void)willDrawConstraints;
 - (void)pushOrderedConstraintAbstractionsToDraw:(id)arg1;
 - (void)didChangeShowingInvolvedViewsForSelectedConstraints:(id)arg1;
 - (void)didChangeShowingIntrinsicSizeConstraints:(id)arg1;
 - (void)didChangeShowingConstraints:(id)arg1;
-- (void)didChangeShowingResizeKnobs:(id)arg1;
 - (void)invalidateConstraintsForViews;
 - (void)invalidateMisplacedViewRectsBasedDidSelect:(id)arg1 andDeselect:(id)arg2;
 - (id)constraintsToDrawForView:(id)arg1;
@@ -103,7 +102,6 @@
 - (struct CGRect)drawingAreaForDrawable:(id)arg1;
 - (void)updateConstraintDrawablesAndGuideLinesForOrderedConstraintAbstractions:(id)arg1;
 - (void)_populateEngineEvaluatedConstantsByConstraint:(id)arg1 andPopulateConstraintsByAbstraction:(id)arg2 forDrawingConstraintAbstractions:(id)arg3;
-- (void)drawSelectionHighlightForObject:(id)arg1;
 - (void)drawConstraintItem:(id)arg1;
 - (void)drawGuideLine:(CDStruct_f6143a38)arg1;
 - (struct CGRect)rectForGuideLine:(CDStruct_f6143a38)arg1;
@@ -118,11 +116,12 @@
 - (void)drawIBeamWithLine:(CDStruct_f6143a38)arg1 withColor:(id)arg2 strokeColor:(id)arg3 lineThickness:(double)arg4 dashed:(BOOL)arg5 badgeRect:(struct CGRect)arg6;
 - (id)dashedBezierPathLineForLine:(CDStruct_f6143a38)arg1 withThickness:(double)arg2 onDashLength:(double)arg3 offDashLength:(double)arg4 phase:(double)arg5 edgeBias:(id)arg6;
 - (void)drawConstraints;
-- (void)drawTrackingKnobs;
-- (id)viewForClippingToWhenDrawingSelectionKnobsForObject:(id)arg1;
+- (void)drawResizeKnobs;
 - (void)drawMisplacedViewIndicator;
 - (struct CGRect)misplacedViewIndicatorRectForView:(id)arg1 returningIsMisplacedOnly:(char *)arg2;
 - (void)drawBandSelection;
+- (id)descendantsDrawingOverlayContent;
+- (struct CGRect)rectForDecorationsOverlayWithScale:(double)arg1;
 - (CDStruct_c519178c)decorationInsetForChild:(id)arg1;
 - (void)drawKnobsForView:(id)arg1;
 - (id)effectiveKnobImageForObject:(id)arg1;
@@ -144,7 +143,7 @@
 - (id)viewForTrackingObject:(id)arg1;
 - (BOOL)shouldResizeChild:(id *)arg1 fromKnob:(CDUnion_31865a80 *)arg2 inEvent:(id)arg3;
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;
-- (BOOL)objectHasSelectionIndicatorOtherThanMask:(id)arg1;
+- (BOOL)objectShouldShowSelectionHighlight:(id)arg1;
 - (BOOL)areKnobsLockedForObject:(id)arg1;
 - (BOOL)wasChildSelectedBeforeClick:(id)arg1;
 - (void)validateMouseRested:(id)arg1;
@@ -156,7 +155,6 @@
 - (id)installedChildViewsInRect:(struct CGRect)arg1;
 - (void)editorCanvasFrameDidCompleteLayout;
 - (void)noteDescendant:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;
-- (BOOL)isUndoingOrRedoing;
 - (void)updatePasteInsertionPointFromMouseDown:(id)arg1;
 - (void)updatePasteInsertionPointFromSelection;
 - (id)acceptDragInfo:(id)arg1 context:(id)arg2;
@@ -165,6 +163,8 @@
 - (id)guideContextForDraggingInfo:(id)arg1;
 - (id)calculateFramesForViews:(id)arg1 withDraggingInfo:(id)arg2;
 - (id)draggedObjectStateToUseForGuidingFromDragInfo:(id)arg1;
+- (BOOL)handleDragForChild:(id)arg1 forDragEvent:(id)arg2;
+- (void)dragChildViews:(id)arg1 withMouseDown:(id)arg2 andMouseDragged:(id)arg3;
 - (void)dragSelectedViewsWithMouseDown:(id)arg1 andMouseDragged:(id)arg2;
 - (void)drawBordersOnDraggedViewsWhilePerformingBlock:(CDUnknownBlockType)arg1;
 - (unsigned long long)dragOperationForDraggingViews:(id)arg1 withMouseDown:(id)arg2 andMouseDragged:(id)arg3;

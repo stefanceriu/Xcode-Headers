@@ -11,9 +11,9 @@ typedef void (^CDUnknownBlockType)(void); // return type and parameters are unkn
 #pragma mark Named Structures
 
 struct BSDFMaterialValues {
-    float _field1;
+    struct CGColor *_field1;
     float _field2;
-    float _field3;
+    struct CGColor *_field3;
     float _field4;
     float _field5;
     float _field6;
@@ -25,6 +25,8 @@ struct BSDFMaterialValues {
     float _field12;
     float _field13;
     float _field14;
+    float _field15;
+    float _field16;
 };
 
 struct BidirectionalScatteringDistributionFunction {
@@ -32,14 +34,16 @@ struct BidirectionalScatteringDistributionFunction {
     struct BSDFMaterialValues _field2;
 };
 
+struct CGColor;
+
 struct Detail;
 
 struct IESData {
     int _field1;
     int _field2;
-    struct vector<float, std::__1::allocator<float>> _field3;
-    struct vector<float, std::__1::allocator<float>> _field4;
-    struct vector<float, std::__1::allocator<float>> _field5;
+    vector_f9ed6fc8 _field3;
+    vector_f9ed6fc8 _field4;
+    vector_f9ed6fc8 _field5;
     float _field6;
     float _field7;
     float _field8;
@@ -66,28 +70,9 @@ struct PhysicallyPlausibleDistribution {
     struct BSDFMaterialValues _field2;
 };
 
-struct RTAreaLight {
-    CDUnknownFunctionPointerType *_field1;
-    struct RTColor _field2;
-    id _field3;
-    int _field4;
-    float _field5;
-    float _field6;
-    float _field7;
-    float _field8;
-    float _field9;
-    float _field10;
-    float _field11;
-    float _field12;
-};
-
-struct RTColor {
-    int _field1;
-};
-
 struct RTIESLight {
     CDUnknownFunctionPointerType *_field1;
-    struct RTColor _field2;
+    struct CGColor *_field2;
     id _field3;
     int _field4;
     float _field5;
@@ -103,26 +88,14 @@ struct RTIESLight {
 
 struct RTLight {
     CDUnknownFunctionPointerType *_field1;
-    struct RTColor _field2;
+    struct CGColor *_field2;
     id _field3;
     int _field4;
-};
-
-struct RTPhysicallyPlausibleLight {
-    CDUnknownFunctionPointerType *_field1;
-    struct RTColor _field2;
-    id _field3;
-    int _field4;
-    float _field5;
-    float _field6;
-    float _field7;
-    float _field8;
-    float _field9;
-    float _field10;
-    float _field11;
 };
 
 struct RTRenderable;
+
+struct SCNOctree;
 
 struct SkyDescriptor {
     float _field1;
@@ -201,6 +174,12 @@ struct unique_ptr<ModelIO::Octree, std::__1::default_delete<ModelIO::Octree>> {
     } __ptr_;
 };
 
+struct unique_ptr<ModelIO::SCNOctree, std::__1::default_delete<ModelIO::SCNOctree>> {
+    struct __compressed_pair<ModelIO::SCNOctree *, std::__1::default_delete<ModelIO::SCNOctree>> {
+        struct SCNOctree *__first_;
+    } __ptr_;
+};
+
 struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>>> {
     struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>>> {
         struct __hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *> **__first_;
@@ -253,6 +232,14 @@ struct vector<float, std::__1::allocator<float>> {
     } _field3;
 };
 
+struct vector<int, std::__1::allocator<int>> {
+    int *_field1;
+    int *_field2;
+    struct __compressed_pair<int *, std::__1::allocator<int>> {
+        int *_field1;
+    } _field3;
+};
+
 struct vector<unsigned long long, std::__1::allocator<unsigned long long>> {
     unsigned long long *__begin_;
     unsigned long long *__end_;
@@ -269,4 +256,21 @@ typedef struct {
     unsigned long long *_field3;
     unsigned long long _field4[5];
 } CDStruct_70511ce9;
+
+// Template types
+typedef struct vector<float, std::__1::allocator<float>> {
+    float *_field1;
+    float *_field2;
+    struct __compressed_pair<float *, std::__1::allocator<float>> {
+        float *_field1;
+    } _field3;
+} vector_f9ed6fc8;
+
+typedef struct vector<int, std::__1::allocator<int>> {
+    int *_field1;
+    int *_field2;
+    struct __compressed_pair<int *, std::__1::allocator<int>> {
+        int *_field1;
+    } _field3;
+} vector_3203cf93;
 

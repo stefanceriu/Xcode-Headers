@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTFilePath, DVTObservingToken, IDEActivityLogSection, IDESchemeActionCodeCoverage, NSArray, NSError, NSMutableArray, NSString;
+@class DVTFilePath, DVTObservingToken, IDEActivityLogSection, IDESchemeActionCodeCoverage, NSError, NSHashTable, NSMutableArray, NSString;
 
 @interface IDESchemeActionResult : NSObject
 {
@@ -32,27 +32,29 @@
     unsigned long long _testsCount;
     unsigned long long _testsFailedCount;
     id _remoteTestSummaryIdentifier;
-    DVTFilePath *_localCodeCoverageFilePath;
     id _remoteCodeCoverageIdentifier;
     NSString *_testSummaryPath;
     NSString *_codeCoveragePath;
     NSString *_logPath;
+    DVTFilePath *_localCodeCoverageFilePath;
     DVTFilePath *_localResultDirectoryFilePath;
     DVTFilePath *_creatingWorkspaceFilePath;
+    NSHashTable *_blueprintsForShowingIssues;
 }
 
 + (int)actionResultStatusForString:(id)arg1;
 + (id)stringForActionResultStatus:(int)arg1;
 + (id)testableSummariesForFilePath:(id)arg1 loadAttachments:(BOOL)arg2 runDestinationRecord:(id *)arg3 error:(id *)arg4;
 + (BOOL)automaticallyNotifiesObserversOfLog;
+@property(retain, nonatomic) NSHashTable *blueprintsForShowingIssues; // @synthesize blueprintsForShowingIssues=_blueprintsForShowingIssues;
 @property(retain, nonatomic) DVTFilePath *creatingWorkspaceFilePath; // @synthesize creatingWorkspaceFilePath=_creatingWorkspaceFilePath;
 @property(retain, nonatomic) DVTFilePath *localResultDirectoryFilePath; // @synthesize localResultDirectoryFilePath=_localResultDirectoryFilePath;
+@property(retain, nonatomic) DVTFilePath *localCodeCoverageFilePath; // @synthesize localCodeCoverageFilePath=_localCodeCoverageFilePath;
 @property(copy, nonatomic) NSString *logPath; // @synthesize logPath=_logPath;
 @property(copy, nonatomic) NSString *codeCoveragePath; // @synthesize codeCoveragePath=_codeCoveragePath;
 @property(copy, nonatomic) NSString *testSummaryPath; // @synthesize testSummaryPath=_testSummaryPath;
 @property(nonatomic) BOOL remoteCodeCoverageNeedsFetch; // @synthesize remoteCodeCoverageNeedsFetch=_remoteCodeCoverageNeedsFetch;
 @property(copy, nonatomic) id remoteCodeCoverageIdentifier; // @synthesize remoteCodeCoverageIdentifier=_remoteCodeCoverageIdentifier;
-@property(retain, nonatomic) DVTFilePath *localCodeCoverageFilePath; // @synthesize localCodeCoverageFilePath=_localCodeCoverageFilePath;
 @property(nonatomic) BOOL remoteTestSummaryNeedsFetch; // @synthesize remoteTestSummaryNeedsFetch=_remoteTestSummaryNeedsFetch;
 @property(copy, nonatomic) id remoteTestSummaryIdentifier; // @synthesize remoteTestSummaryIdentifier=_remoteTestSummaryIdentifier;
 @property(nonatomic) unsigned long long testsFailedCount; // @synthesize testsFailedCount=_testsFailedCount;
@@ -67,11 +69,11 @@
 @property(copy, nonatomic) NSError *error; // @synthesize error=_error;
 @property(nonatomic) int status; // @synthesize status=_status;
 @property(copy, nonatomic) NSString *resultName; // @synthesize resultName=_resultName;
-@property(retain, nonatomic) NSArray *testableSummaries; // @synthesize testableSummaries=_testableSummaries;
-@property(retain, nonatomic) NSArray *testFailureSummaries; // @synthesize testFailureSummaries=_testFailureSummaries;
-@property(retain, nonatomic) NSArray *analyzerWarningSummaries; // @synthesize analyzerWarningSummaries=_analyzerWarningSummaries;
-@property(retain, nonatomic) NSArray *errorSummaries; // @synthesize errorSummaries=_errorSummaries;
-@property(retain, nonatomic) NSArray *warningSummaries; // @synthesize warningSummaries=_warningSummaries;
+@property(retain, nonatomic) NSMutableArray *testableSummaries; // @synthesize testableSummaries=_testableSummaries;
+@property(retain, nonatomic) NSMutableArray *testFailureSummaries; // @synthesize testFailureSummaries=_testFailureSummaries;
+@property(retain, nonatomic) NSMutableArray *analyzerWarningSummaries; // @synthesize analyzerWarningSummaries=_analyzerWarningSummaries;
+@property(retain, nonatomic) NSMutableArray *errorSummaries; // @synthesize errorSummaries=_errorSummaries;
+@property(retain, nonatomic) NSMutableArray *warningSummaries; // @synthesize warningSummaries=_warningSummaries;
 - (void).cxx_destruct;
 - (BOOL)updateLocalCodeCoverageWithRemoteCodeCoverage:(id)arg1 forSchemeActionRecord:(id)arg2 error:(id *)arg3;
 - (BOOL)saveCodeCoverageWithError:(id *)arg1;
@@ -83,6 +85,7 @@
 @property(readonly, nonatomic) DVTFilePath *localTestSummaryFilePath;
 - (void)_readIssueSummaries;
 - (id)_issueSummaryForMessage:(id)arg1 blueprint:(id)arg2;
+- (void)filterWarningsToBuildables:(id)arg1;
 - (BOOL)waitUntilBuildLogHasBeenClosed:(id)arg1 error:(id *)arg2;
 - (BOOL)loadInMemoryLogFromLocalLogFileReturningError:(id *)arg1;
 - (BOOL)flushInMemoryLogIfPossibleReturningError:(id *)arg1;

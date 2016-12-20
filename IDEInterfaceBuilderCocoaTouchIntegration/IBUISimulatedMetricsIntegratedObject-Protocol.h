@@ -6,11 +6,10 @@
 
 #import "IBUISimulatedMetricsObject.h"
 
-@class IBUISimulatedBarMetrics, IBUISimulatedOrientationMetrics, IBUISimulatedSizeMetrics, IBUISimulatedStatusBarMetrics;
+@class IBUISimulatedBarMetrics, IBUISimulatedSizeMetrics, IBUISimulatedStatusBarMetrics;
 
 @protocol IBUISimulatedMetricsIntegratedObject <IBUISimulatedMetricsObject>
 @property(copy) IBUISimulatedSizeMetrics *ibInspectedSimulatedDestinationMetrics;
-@property(copy) IBUISimulatedOrientationMetrics *ibInspectedSimulatedOrientationMetrics;
 @property(copy) IBUISimulatedBarMetrics *ibInspectedSimulatedBottomBarMetrics;
 @property(copy) IBUISimulatedBarMetrics *ibInspectedSimulatedTopBarMetrics;
 @property(copy) IBUISimulatedStatusBarMetrics *ibInspectedSimulatedStatusBarMetrics;

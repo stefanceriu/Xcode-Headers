@@ -9,6 +9,7 @@
 #import "DVTFindBarFindable.h"
 #import "DVTReplacementViewDelegate.h"
 #import "IBDocumentArbitrationResponder.h"
+#import "IBDocumentAsynchronousToolLoadingQueueDelegate.h"
 #import "IBDocumentEditorLoadingViewControllerDelegate.h"
 #import "IBStructureViewControllerDelegate.h"
 #import "IDESourceExpressionSource.h"
@@ -16,9 +17,9 @@
 #import "NSTextFinderClient.h"
 #import "NSUserInterfaceValidations.h"
 
-@class DVTDelayedInvocation, DVTMutableOrderedSet, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTReplacementView, DVTSDK, DVTSourceExpression, DVTSourceLanguageService, DVTSplitView, DVTStackBacktrace, IBAttributeSearchLocation, IBAutolayoutStatus, IBCancellationToken, IBCanvasView, IBCanvasViewController, IBDocument, IBDocumentEditorLoadingViewController, IBMenuTargetResponderForwarder, IBMutableIdentityDictionary, IBStructureAreaDockLabelContainer, IBStructureViewController, NSArray, NSDictionary, NSMutableOrderedSet, NSMutableSet, NSObject<OS_dispatch_queue>, NSOrderedSet, NSPopover, NSSegmentedControl, NSSet, NSString, NSTimer;
+@class DVTDelayedInvocation, DVTMutableOrderedSet, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, DVTReplacementView, DVTSDK, DVTSourceExpression, DVTSourceLanguageService, DVTSplitView, DVTStackBacktrace, IBAttributeSearchLocation, IBAutolayoutStatus, IBCancellationToken, IBCanvasView, IBCanvasViewController, IBDocument, IBDocumentAsynchronousToolLoadingQueue, IBDocumentEditorLoadingViewController, IBInvalidationToken, IBMenuTargetResponderForwarder, IBMutableIdentityDictionary, IBStructureAreaDockLabelContainer, IBStructureViewController, NSArray, NSDictionary, NSMutableOrderedSet, NSMutableSet, NSObject<OS_dispatch_queue>, NSOrderedSet, NSPopover, NSSegmentedControl, NSSet, NSString, NSTimer;
 
-@interface IBAbstractDocumentEditor : IDEEditor <IBStructureViewControllerDelegate, NSPopoverDelegate, DVTFindBarFindable, NSTextFinderClient, IBDocumentEditorLoadingViewControllerDelegate, DVTReplacementViewDelegate, IDESourceExpressionSource, NSUserInterfaceValidations, IBDocumentArbitrationResponder>
+@interface IBAbstractDocumentEditor : IDEEditor <IBStructureViewControllerDelegate, NSPopoverDelegate, DVTFindBarFindable, NSTextFinderClient, IBDocumentEditorLoadingViewControllerDelegate, IBDocumentAsynchronousToolLoadingQueueDelegate, DVTReplacementViewDelegate, IDESourceExpressionSource, NSUserInterfaceValidations, IBDocumentArbitrationResponder>
 {
     NSSegmentedControl *_toggleStructureButton;
     NSArray *_currentSelectedItemsMembers;
@@ -33,13 +34,13 @@
     DVTNotificationToken *_documentMemberRemovedObserver;
     DVTNotificationToken *_colorPanelObservation;
     DVTObservingToken *_kvoDocumentObservingToken;
-    DVTObservingToken *_memberConfigurationDidChangeToken;
     BOOL _registeredWithDocument;
     DVTDelayedInvocation *_selectionPushInvocation;
     DVTDelayedInvocation *_ensureAnObjectEditorIsOpenInvocation;
     NSMutableSet *_highlightProviders;
     DVTMutableOrderedSet *_selectionProviders;
     DVTObservingToken *_mainViewControllerObservationToken;
+    DVTNotificationToken *_windowBackingObservationToken;
     NSObject<OS_dispatch_queue> *_quickHelpIndexAccessQueue;
     IBMutableIdentityDictionary *_flattenedObjectObservers;
     IBMutableIdentityDictionary *_objectObservers;
@@ -54,17 +55,18 @@
     NSMutableOrderedSet *_activeLookObservers;
     IBDocumentEditorLoadingViewController *_loadingOverlayViewController;
     BOOL _isShowingLoadUI;
+    BOOL _contentViewWantedLayerBeforeShowingLoadUI;
     NSTimer *_loadingUIMinimumTimeTimer;
     NSMutableSet *_loadingProgressTokenIdentifiers;
     DVTDelayedInvocation *_fadeOutLoadingUIDelayedInvocation;
     DVTPerformanceMetric *_loadingMetric;
+    IBDocumentAsynchronousToolLoadingQueue *_asynchronousToolLoadingQueue;
+    DVTDelayedInvocation *_asynchronousToolLoadingInvocation;
+    IBInvalidationToken *_asynchronousToolLoadingProgressToken;
     BOOL _displayedToolFailure;
     BOOL _turnedOnBoundsRectsForToolFailure;
     IBCanvasViewController *_canvasViewController;
     IBStructureAreaDockLabelContainer *_dockItemLabelPopUpContainer;
-    DVTMutableOrderedSet *_selectedOrPreviouslySelectedMembersFromOldToFresh;
-    id <IBSelectionProvider> _selectionProvider;
-    IBMenuTargetResponderForwarder *_editorMenuTarget;
     DVTReplacementView *_structureAreaContainer;
     DVTSplitView *_structureAreaSplitView;
     DVTReplacementView *_canvasContainer;
@@ -73,6 +75,9 @@
     DVTSourceExpression *_selectedExpression;
     IBAutolayoutStatus *_scopedAutolayoutStatus;
     NSOrderedSet *_autolayoutStatusArbitrationUnitsScope;
+    DVTMutableOrderedSet *_selectedOrPreviouslySelectedMembersFromOldToFresh;
+    id <IBSelectionProvider> _selectionProvider;
+    IBMenuTargetResponderForwarder *_editorMenuTarget;
 }
 
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
@@ -86,6 +91,9 @@
 + (void)noteEditorDidActivate:(id)arg1 inWorkspaceTabController:(id)arg2 isActive:(BOOL)arg3;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
+@property(readonly) IBMenuTargetResponderForwarder *editorMenuTarget; // @synthesize editorMenuTarget=_editorMenuTarget;
+@property(retain, nonatomic) id <IBSelectionProvider> selectionProvider; // @synthesize selectionProvider=_selectionProvider;
+@property(readonly) DVTMutableOrderedSet *selectedOrPreviouslySelectedMembersFromOldToFresh; // @synthesize selectedOrPreviouslySelectedMembersFromOldToFresh=_selectedOrPreviouslySelectedMembersFromOldToFresh;
 @property(retain, nonatomic) NSOrderedSet *autolayoutStatusArbitrationUnitsScope; // @synthesize autolayoutStatusArbitrationUnitsScope=_autolayoutStatusArbitrationUnitsScope;
 @property(retain, nonatomic) IBAutolayoutStatus *scopedAutolayoutStatus; // @synthesize scopedAutolayoutStatus=_scopedAutolayoutStatus;
 @property(retain, nonatomic) DVTSourceExpression *selectedExpression; // @synthesize selectedExpression=_selectedExpression;
@@ -94,10 +102,7 @@
 @property(retain, nonatomic) DVTReplacementView *canvasContainer; // @synthesize canvasContainer=_canvasContainer;
 @property(retain, nonatomic) DVTSplitView *structureAreaSplitView; // @synthesize structureAreaSplitView=_structureAreaSplitView;
 @property(retain, nonatomic) DVTReplacementView *structureAreaContainer; // @synthesize structureAreaContainer=_structureAreaContainer;
-@property(readonly) IBMenuTargetResponderForwarder *editorMenuTarget; // @synthesize editorMenuTarget=_editorMenuTarget;
-@property(retain, nonatomic) id <IBSelectionProvider> selectionProvider; // @synthesize selectionProvider=_selectionProvider;
-@property(readonly) DVTMutableOrderedSet *selectedOrPreviouslySelectedMembersFromOldToFresh; // @synthesize selectedOrPreviouslySelectedMembersFromOldToFresh=_selectedOrPreviouslySelectedMembersFromOldToFresh;
-@property(retain) IBStructureAreaDockLabelContainer *dockItemLabelPopUpContainer; // @synthesize dockItemLabelPopUpContainer=_dockItemLabelPopUpContainer;
+@property(retain, nonatomic) IBStructureAreaDockLabelContainer *dockItemLabelPopUpContainer; // @synthesize dockItemLabelPopUpContainer=_dockItemLabelPopUpContainer;
 @property(retain, nonatomic) IBCanvasViewController *canvasViewController; // @synthesize canvasViewController=_canvasViewController;
 - (void).cxx_destruct;
 - (void)debugShowRemoteToolErrorBanner:(id)arg1;
@@ -109,8 +114,14 @@
 - (void)fadeOutLoadingUI;
 - (void)hideLoadingUIIfPossible;
 - (void)minimumLoadingUITimerDidFire:(id)arg1;
-- (void)teardownLoadingViewIfNeeded;
+- (void)teardownLoadingViewIfNeededAndClearPendingToolLoadingProgressToken:(BOOL)arg1;
 - (void)_clearLoadingPerformanceMetric;
+- (void)canvasFrameControllerDidFinishRestoringDeviceConfiguration;
+- (void)asynchronousToolLoadingQueue:(id)arg1 launchToolForScaleFactor:(double)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)asynchronousToolLoadingQueue:(id)arg1 didTransitionFromState:(long long)arg2 toState:(long long)arg3;
+- (void)_clearAsyncToolLoadingProgressTokenAndUpdatePendingScenes:(BOOL)arg1;
+- (void)_enqueueRemoteTools;
+- (id)_scaleFactorsForEnqueueingRemoteTools;
 - (void)setupLoadingViewIfNeeded;
 - (BOOL)isShowingLoadingUI;
 - (BOOL)shouldShowLoadingProgress;
@@ -126,6 +137,28 @@
 - (void)resetLocalizationLocking:(id)arg1;
 - (void)toggleUserInterfaceEra:(id)arg1;
 - (void)debugCompileDocument:(id)arg1;
+- (void)fakeActionForValidatingTitleOfAutolayoutIssuesMenuAllItemsHeader:(id)arg1;
+- (void)clearAndAddSuggestedConstraintsInArbitrationUnit:(id)arg1;
+- (void)clearAndAddSuggestedConstraints:(id)arg1;
+- (void)addMissingConstraintsInArbitrationUnit:(id)arg1;
+- (void)addMissingConstraints:(id)arg1;
+- (void)clearConstraintsInArbitrationUnit:(id)arg1;
+- (void)clearConstraints:(id)arg1;
+- (void)updateConstraintConstantsInArbitrationUnit:(id)arg1;
+- (void)updateConstraintConstants:(id)arg1;
+- (void)updateFramesToMatchConstraintsInArbitrationUnit:(id)arg1;
+- (void)updateFramesToMatchConstraintsRecursively:(id)arg1;
+- (void)updateFramesToMatchConstraints:(id)arg1;
+- (BOOL)canUpdateConstraintConstantsWithScope:(long long)arg1;
+- (BOOL)canUpdateFramesToMatchConstraintsWithScope:(long long)arg1;
+- (BOOL)canClearAndAddConstraintsWithScope:(long long)arg1;
+- (BOOL)canAddMissingConstraintsWithScope:(long long)arg1;
+- (BOOL)canClearConstraintsWithScope:(long long)arg1;
+- (id)itemsForResolvingAmbiguityInScope:(long long)arg1;
+- (id)itemsForResolvingMisplacementOrAmbiguityInScope:(long long)arg1;
+- (id)itemsForResolvingMisplacementInScope:(long long)arg1;
+- (id)viewsForAutolayoutCommandScope:(long long)arg1;
+- (id)allObjectsInArbitrationUnitsOfObjects:(id)arg1;
 - (void)openAlignmentConstraintAdditionPopover:(id)arg1;
 - (void)openSpacingConstraintAdditionPopover:(id)arg1;
 - (void)_openConstraintAdditionPopoverWithType:(long long)arg1 sender:(id)arg2;
@@ -153,28 +186,19 @@
 - (void)updateCanvasLayoutPositioningScale;
 - (void)centerCanvasOnAnchorSpacePoint:(struct CGPoint)arg1;
 - (struct CGPoint)canvasAnchorSpaceCenter;
-- (void)zoomCanvasTo8:(id)arg1;
-- (void)zoomCanvasTo4:(id)arg1;
-- (void)zoomCanvasTo2:(id)arg1;
-- (void)zoomCanvasTo1:(id)arg1;
-- (void)performZoomAction:(SEL)arg1;
-- (void)toggleZoomCanvas:(id)arg1;
+- (void)zoomToFactorFromZoomMenu:(id)arg1;
+- (void)zoomCanvasToIrrationalFactor:(id)arg1;
 - (void)zoomCanvasOut:(id)arg1;
 - (void)zoomCanvasIn:(id)arg1;
-- (long long)fixedZoomDenominatorForAction:(SEL)arg1;
 - (void)toggleShowingInvolvedViewsForSelectedConstraints:(id)arg1;
 - (void)toggleShowingIntrinsicSizeConstraints:(id)arg1;
 - (void)toggleShowingConstraints:(id)arg1;
-- (void)toggleShowingSelectionHighlights:(id)arg1;
-- (void)toggleShowingResizeKnobs:(id)arg1;
 - (void)toggleShowingBoundsRectangles:(id)arg1;
 - (void)toggleShowingPlaceholderBackgrounds:(id)arg1;
 - (void)toggleShowingLayoutRectangles:(id)arg1;
 @property(getter=isShowingInvolvedViewsForSelectedConstraints) BOOL showingInvolvedViewsForSelectedConstraints;
 @property(getter=isShowingIntrinsicSizeConstraints) BOOL showingIntrinsicSizeConstraints;
 @property(getter=isShowingConstraints) BOOL showingConstraints;
-@property(getter=isShowingSelectionHighlights) BOOL showingSelectionHighlights;
-@property(getter=isShowingResizeKnobs) BOOL showingResizeKnobs;
 @property(getter=isShowingPlaceholderBackgrounds) BOOL showingPlaceholderBackgrounds;
 @property(getter=isShowingBoundsRectangles) BOOL showingBoundsRectangles;
 @property(getter=isShowingLayoutRectangles) BOOL showingLayoutRectangles;
@@ -220,11 +244,9 @@
 - (BOOL)splitView:(id)arg1 canCollapseSubview:(id)arg2;
 - (double)splitView:(id)arg1 constrainSplitPosition:(double)arg2 ofSubviewAt:(long long)arg3;
 - (double)splitView:(id)arg1 constrainMinCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
-- (double)splitView:(id)arg1 constrainMaxCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
 - (void)resizeSplitViewToFitStructureAreaView;
 - (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
-- (void)refreshButtonBarImagesForEditedConfiguration;
 - (void)refreshToggleStructureButtonForEditedConfiguration;
 - (void)updateBarGlyphsForCurrentMemberConfigurationForSegmentedControl:(id)arg1;
 - (id)barGlyphImageForCurrentMemberConfigurationBasedOnBarGlyphTemplate:(id)arg1;
@@ -233,6 +255,7 @@
 - (void)structureViewControllerDidChangeContentSize:(id)arg1;
 - (BOOL)isEditorForTopLevelObjectOpenAndShowingKey:(id)arg1;
 - (BOOL)isEditorForTopLevelObjectOpen:(id)arg1;
+- (void)zoomCanvasToFitSelection:(id)arg1;
 - (void)showConnectionPanelWithEvent:(id)arg1 onEditorCanvasFrameController:(id)arg2 withInitialEndPoint:(id)arg3;
 - (void)showConnectionPanelForObject:(id)arg1 atLocation:(struct CGPoint)arg2;
 - (void)removeConnectionPanelController:(id)arg1;
@@ -253,11 +276,11 @@
 - (void)showFindIndicator;
 - (void)cancelFindIndicator;
 - (void)selectDocumentLocations:(id)arg1;
-- (id)membersFromDocumentLocations:(id)arg1;
+- (id)selectableMembersFromDocumentLocations:(id)arg1;
 - (void)warnAboutBogusDocumentLocations:(id)arg1;
-- (void)selectDocumentMembers:(id)arg1 takeFocus:(BOOL)arg2 zoomIfNeeded:(BOOL)arg3;
+- (void)selectDocumentMembers:(id)arg1 takeFocus:(BOOL)arg2;
 - (void)selectDocumentMembers:(id)arg1;
-- (void)selectMembersInCanvasView:(id)arg1 takeFocus:(BOOL)arg2 zoomIfNeeded:(BOOL)arg3;
+- (void)selectMembersInCanvasView:(id)arg1 takeFocus:(BOOL)arg2;
 - (void)selectMembersInCanvasView:(id)arg1;
 - (void)selectMembersInDocumentOutline:(id)arg1;
 - (void)navigateToAnnotationWithRepresentedObject:(id)arg1 wantsIndicatorAnimation:(BOOL)arg2 exploreAnnotationRepresentedObject:(id)arg3;
@@ -292,13 +315,14 @@
 - (id)beginObservingAllConfigurationStoragesWithChangeObserver:(CDUnknownBlockType)arg1;
 - (id)beginObservingAllObjectsWithChangeObserver:(CDUnknownBlockType)arg1;
 - (id)beginObservingDescendantsOfObject:(id)arg1 withChangeObserver:(CDUnknownBlockType)arg2;
-- (id)reigsteredChangeObserversForDescendantsOfObject:(id)arg1;
-- (void)verificationAlertDidEnd:(id)arg1 returnCode:(long long)arg2 contextInfo:(void *)arg3;
+- (id)_registeredChangeObserversForDescendantsOfObject:(id)arg1;
 - (BOOL)presentVerificationWarningIfNeeded;
+- (void)documentWillBeginRegisteringUndoableChanges;
 - (void)didLoadEditor;
 - (void)didSetupEditor;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;
+- (id)view;
 @property(readonly) IBCanvasView *canvasView;
 - (Class)canvasViewControllerClass;
 - (Class)structureViewControllerClass;

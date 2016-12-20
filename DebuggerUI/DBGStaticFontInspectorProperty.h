@@ -22,6 +22,7 @@
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (double)baseline;
+- (void)_configureForNilFont;
 - (void)refresh;
 
 @end

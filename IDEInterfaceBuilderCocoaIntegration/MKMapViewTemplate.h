@@ -22,11 +22,13 @@
     BOOL _showsCompass;
     BOOL _showsZoomControls;
     BOOL _showsScale;
+    BOOL _showsTraffic;
     BOOL _encodeAsRuntimeInstance;
     unsigned long long _mapType;
 }
 
 @property BOOL encodeAsRuntimeInstance; // @synthesize encodeAsRuntimeInstance=_encodeAsRuntimeInstance;
+@property(nonatomic) BOOL showsTraffic; // @synthesize showsTraffic=_showsTraffic;
 @property(nonatomic) BOOL showsScale; // @synthesize showsScale=_showsScale;
 @property(nonatomic) BOOL showsZoomControls; // @synthesize showsZoomControls=_showsZoomControls;
 @property(nonatomic) BOOL showsCompass; // @synthesize showsCompass=_showsCompass;
@@ -48,6 +50,7 @@
 - (Class)classForCoder;
 - (id)ibRuntimeClassName;
 - (void)drawRect:(struct CGRect)arg1;
+- (id)ibLocalAttributeKeyPaths;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 

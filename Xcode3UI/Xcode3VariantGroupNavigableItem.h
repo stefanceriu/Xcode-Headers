@@ -28,6 +28,7 @@
 - (id)contentDocumentLocation;
 - (id)documentType;
 - (id)textColor;
+- (id)accessibleImageDescription;
 - (id)image;
 - (id)defaultReference;
 - (id)variantGroup;

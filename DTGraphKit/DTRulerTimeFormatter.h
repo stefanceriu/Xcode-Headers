@@ -8,15 +8,10 @@
 
 @interface DTRulerTimeFormatter : NSNumberFormatter
 {
-    BOOL _fixedPrecision;
 }
 
-+ (id)stringForObjectValue:(id)arg1;
-+ (id)stringFromNumber:(id)arg1;
-+ (id)stringForDouble:(double)arg1;
++ (id)stringForNanoseconds:(unsigned long long)arg1;
 - (id)stringForObjectValue:(id)arg1;
-- (id)stringFromNumber:(id)arg1;
-- (void)setFixedPrecision:(BOOL)arg1;
 
 @end
 

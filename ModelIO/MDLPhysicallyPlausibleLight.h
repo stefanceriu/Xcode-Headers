@@ -8,7 +8,6 @@
 
 @interface MDLPhysicallyPlausibleLight : MDLLight
 {
-    struct RTPhysicallyPlausibleLight *_ppLight;
     float _lumens;
     float _innerConeAngle;
     float _outerConeAngle;
@@ -23,10 +22,8 @@
 @property(nonatomic) float outerConeAngle; // @synthesize outerConeAngle=_outerConeAngle;
 @property(nonatomic) float innerConeAngle; // @synthesize innerConeAngle=_innerConeAngle;
 @property(nonatomic) float lumens; // @synthesize lumens=_lumens;
-- (void)setLightType:(unsigned long long)arg1;
 - (void)setColorByTemperature:(float)arg1;
 @property(nonatomic) struct CGColor *color;
-- (void)dealloc;
 - (id)init;
 
 @end

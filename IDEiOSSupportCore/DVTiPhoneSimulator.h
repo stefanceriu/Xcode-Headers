@@ -11,12 +11,13 @@
 #import "NSFileManagerDelegate.h"
 #import "XCDTMobileIS_XPCDebuggingProcotol.h"
 
-@class DTAssetProviderService, DTXChannel, DTXConnection, DVTPlatform, DVTSimulatorApplication, NSArray, NSDictionary, NSNumber, NSObject<OS_dispatch_semaphore>, NSSet, NSString, SimDevice, SimDeviceType;
+@class DTAssetProviderService, DTXChannel, DTXConnection, DVTObservingToken, DVTPlatform, DVTProxiedDeviceSet, DVTSimulatorApplication, NSArray, NSDictionary, NSNumber, NSObject<OS_dispatch_semaphore>, NSSet, NSString, SimDevice, SimDeviceType;
 
 @interface DVTiPhoneSimulator : DVTAbstractiOSDevice <NSFileManagerDelegate, IDERunDestinationFallbackSelectorDeviceInfo, DVTDeviceApplicationProvider, XCDTMobileIS_XPCDebuggingProcotol>
 {
     id <DVTCancellable> _deviceNotificationToken;
     id <DVTCancellable> _deviceSetNotificationToken;
+    DVTObservingToken *_locatedDeviceObservingToken;
     NSString *_displayOrder;
     struct __CFDictionary *_xpcStdoutFDForPid;
     NSString *_recordedFramesBacktraceRecordingDylibPath;
@@ -26,19 +27,22 @@
     NSObject<OS_dispatch_semaphore> *_instrumentsConnectionSemaphore;
     int _simulatorPID;
     DVTPlatform *_platform;
-    NSSet *_proxiedDevices;
     SimDevice *_device;
     DVTSimulatorApplication *_simulatorApplication;
     DTXChannel *_xpcAttachServiceChannel;
     DTXChannel *_xpcProxyAttachServiceChannel;
     DTAssetProviderService *_assetProvider;
+    DVTProxiedDeviceSet *_proxiedDeviceSet;
 }
 
++ (id)keyPathsForValuesAffectingActiveProxiedDevice;
++ (id)keyPathsForValuesAffectingProxiedDevices;
 + (id)keyPathsForValuesAffectingState;
 + (id)simulatorWithDevice:(id)arg1;
 + (void)initialize;
 + (void)_trackPid:(int)arg1 forDevice:(id)arg2 launchService:(id)arg3;
 + (void)cleanUpSessionMap;
+@property(retain) DVTProxiedDeviceSet *proxiedDeviceSet; // @synthesize proxiedDeviceSet=_proxiedDeviceSet;
 @property(retain) DTAssetProviderService *assetProvider; // @synthesize assetProvider=_assetProvider;
 @property(retain) DTXChannel *xpcProxyAttachServiceChannel; // @synthesize xpcProxyAttachServiceChannel=_xpcProxyAttachServiceChannel;
 @property(retain) DTXChannel *xpcAttachServiceChannel; // @synthesize xpcAttachServiceChannel=_xpcAttachServiceChannel;
@@ -56,17 +60,18 @@
 - (void)outputReceived:(id)arg1 fromProcess:(int)arg2 atTime:(unsigned long long)arg3;
 - (void)_debugXPCServices:(id)arg1 onChannel:(id)arg2 completionSemaphore:(id)arg3;
 - (void)debugXPCServices:(id)arg1 onPairedDevice:(BOOL)arg2 completionSemaphore:(id)arg3;
+- (id)primaryInstrumentsServerWithError:(id *)arg1;
 - (id)primaryInstrumentsServer;
 - (BOOL)installApplicationWithLaunchSession:(id)arg1 error:(id *)arg2;
 - (id)_installedPathForBundleIdentifier:(id)arg1;
 - (id)makeTransportForTestManagerService:(id *)arg1;
 - (id)_waitForSimLaunchdToLoadENVAndReturnTestConnectionSocketPath:(id *)arg1;
-- (BOOL)supportsTestManagerDaemon;
 - (id)startAssetServerForApplicationAtPath:(id)arg1;
 - (id)testArchitectureForBuildableProduct:(id)arg1 withBuildParameters:(id)arg2;
 - (id)_availableArchitecturesForArchitecture:(id)arg1;
 - (id)deviceForRunningUnitTestsWithHost:(id)arg1 error:(id *)arg2;
 - (BOOL)testingShouldAttachDebuggerWithHost:(id)arg1;
+- (id)connectionServicesFrameworkPath;
 - (id)testHostPathForBuildableProduct:(id)arg1 buildParameters:(id)arg2 outError:(id *)arg3;
 - (id)taskForDeviceCommand:(id)arg1 withArguments:(id)arg2 error:(id *)arg3;
 - (id)systemBasePath;
@@ -98,6 +103,13 @@
 - (void)setDisplayOrder:(id)arg1;
 - (id)displayOrder;
 @property(readonly, copy) NSArray *supportedDeviceFamilies;
+- (BOOL)isProxiedDevice;
+- (void)setActiveProxiedDevice:(id)arg1;
+- (BOOL)canSetActiveProxiedDevice;
+- (void)_updateProxiedDeviceSet;
+- (id)activeProxiedDevice;
+- (id)proxiedDevices;
+- (BOOL)canBeWatchCompanion;
 - (id)deviceType;
 - (BOOL)isAvailable;
 - (id)supportedArchitectures;
@@ -110,9 +122,6 @@
 - (id)name;
 - (BOOL)canIgnore;
 - (BOOL)canRename;
-- (BOOL)isProxiedDevice;
-- (id)proxiedDevices;
-- (BOOL)canBeWatchCompanion;
 - (id)modelCode;
 @property(readonly, nonatomic) NSString *ide_fallbackSelectorDeviceGroupingFamily;
 - (id)modelUTI;
@@ -123,11 +132,12 @@
 - (BOOL)supportsRoutingCoverageFile;
 - (void)performUbiquityFetchEvent;
 - (BOOL)canPerformUbiquityFetchEvent;
-- (void)performFetchEventForPID:(int)arg1;
+- (void)performFetchEventForBundleIdentifier:(id)arg1 orPid:(int)arg2 onProxy:(BOOL)arg3;
 - (id)recordedFramesBacktraceRecordingDylibPath;
 - (id)recordedFramesLibdispatchIntrospectionDylibPath;
 - (unsigned long long)supportsFetchEvents;
 - (BOOL)supportsLocationSimulation;
+- (unsigned long long)supportedLaunchOptionsForProxiedDevice;
 - (unsigned long long)supportedLaunchOptions;
 - (BOOL)supportsApplicationDataUploading;
 - (id)launchApplicationWithBundleIdentifier:(id)arg1 andOptions:(id)arg2;

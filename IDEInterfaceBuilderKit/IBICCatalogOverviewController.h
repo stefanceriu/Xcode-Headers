@@ -11,7 +11,7 @@
 #import "IBICAssetOverviewCapsuleControllerDelegate.h"
 #import "IBICCommandMenuDelegate.h"
 
-@class IBDragAndDropInsertionIndicator, IBICCatalogActionContext, IBICCommandMenuBuilder, IBICQuickLookController, IBMutableIdentityDictionary, NSArray, NSMutableArray, NSString;
+@class IBDragAndDropInsertionIndicator, IBICCatalogActionContext, IBICCommandMenuBuilder, IBICQuickLookController, IBMutableIdentityDictionary, NSMutableArray, NSString;
 
 @interface IBICCatalogOverviewController : IBICAbstractCatalogDetailController <DVTStatefulObject, IBDragAndDropInsertionIndicatorDelegate, IBICAssetOverviewCapsuleControllerDelegate, IBICCommandMenuDelegate>
 {
@@ -22,11 +22,11 @@
     IBICCatalogActionContext *_contextMenuActionContext;
     IBICQuickLookController *_quickLookController;
     IBICCommandMenuBuilder *_contextClickInsertionItemsMenuBuilder;
-    NSArray *_draggedImageCatalogContent;
+    IBMutableIdentityDictionary *_draggedImageCatalogContent;
 }
 
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
-@property(retain, nonatomic) NSArray *draggedImageCatalogContent; // @synthesize draggedImageCatalogContent=_draggedImageCatalogContent;
+@property(retain, nonatomic) IBMutableIdentityDictionary *draggedImageCatalogContent; // @synthesize draggedImageCatalogContent=_draggedImageCatalogContent;
 - (void).cxx_destruct;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
@@ -38,7 +38,7 @@
 - (void)detailDocumentView:(id)arg1 cancelPreview:(id)arg2;
 - (void)detailDocumentView:(id)arg1 togglePreview:(id)arg2;
 - (void)updateQuickLookController;
-- (struct CGRect)frameForItem:(id)arg1 inView:(id)arg2;
+- (struct CGRect)quicklookFrameForItem:(id)arg1 inView:(id)arg2;
 - (id)objectsForSelectAll;
 - (void)detailDocumentView:(id)arg1 performDelete:(id)arg2;
 - (void)assetOverviewCapsuleController:(id)arg1 trackBandSelectionWithInitialMouseDown:(id)arg2 currentMouseDragged:(id)arg3 selectionBeforeMouseDown:(id)arg4;
@@ -66,15 +66,18 @@
 - (void)view:(id)arg1 draggingEnded:(id)arg2;
 - (void)view:(id)arg1 concludeDragOperation:(id)arg2;
 - (void)view:(id)arg1 draggingExited:(id)arg2;
-- (id)destinationFolderForDraggingInfo:(id)arg1;
-- (id)destinationFolderForDraggingLocation:(struct CGPoint)arg1;
+- (id)destinationContainerForItems:(id)arg1 withDraggingInfo:(id)arg2;
+- (id)destinationContainerForItems:(id)arg1 atDraggingLocation:(struct CGPoint)arg2;
+- (id)targetedItemForDragOperationWithDraggingInfo:(id)arg1;
+- (id)targettedItemForDragOperationAtDraggingLocation:(struct CGPoint)arg1;
 - (BOOL)view:(id)arg1 performDragOperation:(id)arg2;
 - (BOOL)view:(id)arg1 prepareForDragOperation:(id)arg2;
 - (unsigned long long)view:(id)arg1 draggingUpdated:(id)arg2;
 - (unsigned long long)view:(id)arg1 draggingEntered:(id)arg2;
+- (id)draggedImageCatalogContentForDragInfo:(id)arg1;
 - (id)dragTypesForView:(id)arg1;
 - (void)updateDropIndicators:(id)arg1;
-- (long long)displayInsertionIndexForItem:(id)arg1 intoFolder:(id)arg2;
+- (long long)displayInsertionIndexForItem:(id)arg1 intoContainer:(id)arg2;
 - (id)assetCapsuleControllerAtPoint:(struct CGPoint)arg1;
 - (BOOL)isController:(id)arg1 hitByPoint:(struct CGPoint)arg2;
 - (void)drawsWithKeyAppearanceDidChange;
@@ -82,8 +85,10 @@
 - (void)updateSelectionOwner:(id)arg1 forBandSelectionHittingObjects:(id)arg2 withEvent:(id)arg3 initialSelection:(id)arg4;
 - (id)bandSelectionCandidates;
 - (void)assetOverviewCapsuleController:(id)arg1 userDidDragItems:(id)arg2 withMouseDown:(id)arg3 andMouseDragged:(id)arg4;
+- (void)assetOverviewCapsuleController:(id)arg1 userDidOpenItems:(id)arg2;
 - (void)assetOverviewCapsuleController:(id)arg1 userDidSelectItems:(id)arg2 withEvent:(id)arg3;
 - (void)pushSelectionToViews;
+- (id)capsuleProvidingParentItemForItem:(id)arg1;
 - (BOOL)isSubEditorExistanceInSyncForItem:(id)arg1;
 - (id)showAlternateDetailControllerTitle;
 - (void)viewDidInstall;

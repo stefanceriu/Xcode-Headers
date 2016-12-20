@@ -4,11 +4,12 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "DVTInvalidation.h"
 #import "NSObject.h"
 
 @class NSArray, NSString;
 
-@protocol IDETestableProvider <NSObject>
+@protocol IDETestableProvider <DVTInvalidation, NSObject>
 @property(readonly) NSString *name;
 @property(readonly, copy) NSArray *testables;
 @property(readonly, copy) NSArray *allTestables;

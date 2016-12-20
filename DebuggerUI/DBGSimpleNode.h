@@ -13,8 +13,11 @@
     struct CATransform3D _scaleTransform;
     BOOL _scales;
     BOOL _geometryShinesThrough;
-    BOOL _respondsToHitTests;
     BOOL _hiddenForClipping;
+    BOOL _hiddenForRangeSlider;
+    BOOL _hiddenForOptionalVisibility;
+    BOOL _hiddenForUninterestingFilter;
+    BOOL _respondsToHitTests;
     double _shineThroughOpacity;
     NSString *_identifier;
     DBGSimpleNode *_forwardsHitTestsToNode;
@@ -27,7 +30,6 @@
 
 + (id)nodeWithGeometry:(id)arg1;
 + (id)node;
-@property BOOL hiddenForClipping; // @synthesize hiddenForClipping=_hiddenForClipping;
 @property struct CGRect rectRespondingToHitTests; // @synthesize rectRespondingToHitTests=_rectRespondingToHitTests;
 @property(retain) DBGSimpleNode *shineThroughNode; // @synthesize shineThroughNode=_shineThroughNode;
 @property double maxScaleFactor; // @synthesize maxScaleFactor=_maxScaleFactor;
@@ -36,12 +38,15 @@
 @property BOOL respondsToHitTests; // @synthesize respondsToHitTests=_respondsToHitTests;
 @property(retain) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
-- (void)unclip;
-- (void)clipToLocalRect:(struct CGRect)arg1 originalPlaneSize:(struct CGSize)arg2;
 - (void)recursivelyUpdateRenderingOrder:(long long)arg1 withRootNode:(id)arg2;
 - (void)setRenderingOrder:(long long)arg1 includingChildNodes:(BOOL)arg2;
 @property double shineThroughOpacity; // @synthesize shineThroughOpacity=_shineThroughOpacity;
 @property BOOL geometryShinesThrough; // @synthesize geometryShinesThrough=_geometryShinesThrough;
+- (void)_updateHiddenState;
+@property BOOL hiddenForUninterestingFilter; // @synthesize hiddenForUninterestingFilter=_hiddenForUninterestingFilter;
+@property BOOL hiddenForOptionalVisibility; // @synthesize hiddenForOptionalVisibility=_hiddenForOptionalVisibility;
+@property BOOL hiddenForRangeSlider; // @synthesize hiddenForRangeSlider=_hiddenForRangeSlider;
+@property BOOL hiddenForClipping; // @synthesize hiddenForClipping=_hiddenForClipping;
 - (void)adjustToUpdatedCameraZoomFactor:(double)arg1;
 @property BOOL scales; // @synthesize scales=_scales;
 - (struct CATransform3D)transform;

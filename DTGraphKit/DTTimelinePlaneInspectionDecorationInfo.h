@@ -8,6 +8,7 @@
 
 @class DTTimelineInspectionDecoration, DTTimelinePlane;
 
+__attribute__((visibility("hidden")))
 @interface DTTimelinePlaneInspectionDecorationInfo : NSObject
 {
     DTTimelinePlane *_plane;

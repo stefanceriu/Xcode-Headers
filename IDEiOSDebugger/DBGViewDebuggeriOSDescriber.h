@@ -19,7 +19,9 @@
 - (void)_asyncAskForInspectableImageFromDataValue:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (void)_asyncAskForInspectableColorFromDataValue:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (BOOL)inspectableValueForDataValue:(id)arg1 handler:(CDUnknownBlockType)arg2;
-- (id)_turnOnLayersAsSnapshotsOptionString;
+- (id)_forceImageRenderingForEffectViewClassesOptionValue;
+- (id)_alwaysEncodeLayersOptionValue;
+- (id)_turnOnLayersAsSnapshotsOptionValue;
 - (void)fetchViewInfo:(CDUnknownBlockType)arg1 resultHandler:(CDUnknownBlockType)arg2;
 - (BOOL)isViewObjectInteresting:(id)arg1;
 - (unsigned long long)shouldChild:(id)arg1 flattenIntoParent:(id)arg2;

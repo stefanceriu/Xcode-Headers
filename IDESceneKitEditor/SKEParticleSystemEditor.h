@@ -30,12 +30,14 @@
 }
 
 - (void).cxx_destruct;
+- (id)imageForContentsPickerImageName:(id)arg1;
 - (id)suggestedImagesForContentsPicker:(id)arg1;
 - (void)selectDocumentLocations:(id)arg1;
 - (void)updateBottomBarColorScheme;
 - (void)configureScopeBarView;
-- (void)backgroundColorDidChange:(id)arg1;
+- (void)changeColor:(id)arg1;
 - (void)changeBackgroundColorAction:(id)arg1;
+- (BOOL)acceptsFirstResponder;
 - (void)resetCameraAction:(id)arg1;
 - (void)particleSystemIsPlayingDidChange:(id)arg1;
 - (void)restartParticleSystemAction:(id)arg1;

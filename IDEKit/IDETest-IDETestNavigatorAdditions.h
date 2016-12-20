@@ -15,6 +15,7 @@
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 + (id)keyPathsForValuesAffectingNavigableItem_isLeaf;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) NSString *navigableItem_name;
 @property(readonly) BOOL navigableItem_isLeaf;
@@ -27,6 +28,9 @@
 @property(readonly) IDEFileReference *navigableItem_fileReference;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) Class superclass;
 @end

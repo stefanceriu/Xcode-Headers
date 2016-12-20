@@ -12,7 +12,7 @@
 {
     int _messageType;
     int _compressionType;
-    int _status;
+    unsigned int _status;
     CDUnknownBlockType _destructor;
     const char *_internalBuffer;
     unsigned long long _internalBufferLength;
@@ -31,7 +31,7 @@
 + (_Bool)extractSerializedCompressionInfoFromBuffer:(const char *)arg1 length:(unsigned long long)arg2 compressionType:(int *)arg3 uncompressedLength:(unsigned long long *)arg4 compressedDataOffset:(unsigned long long *)arg5;
 + (id)message;
 + (id)messageWithSelector:(SEL)arg1 objectArguments:(id)arg2;
-+ (id)messageWithSelector:(SEL)arg1 typesAndArguments:(int)arg2;
++ (id)messageWithSelector:(SEL)arg1 typesAndArguments:(unsigned int)arg2;
 + (id)messageReferencingBuffer:(const void *)arg1 length:(unsigned long long)arg2 destructor:(CDUnknownBlockType)arg3;
 + (id)messageWithBuffer:(const void *)arg1 length:(unsigned long long)arg2;
 + (id)messageWithPrimitive:(void *)arg1;
@@ -40,7 +40,7 @@
 + (void)setReportCompressionBlock:(CDUnknownBlockType)arg1;
 + (void)initialize;
 @property(readonly, nonatomic) unsigned long long cost; // @synthesize cost=_cost;
-@property(nonatomic) int errorStatus; // @synthesize errorStatus=_status;
+@property(nonatomic) unsigned int errorStatus; // @synthesize errorStatus=_status;
 @property(readonly, nonatomic) BOOL deserialized; // @synthesize deserialized=_deserialized;
 @property(nonatomic) unsigned int conversationIndex; // @synthesize conversationIndex=_conversationIndex;
 @property(nonatomic) BOOL expectsReply; // @synthesize expectsReply=_expectsReply;
@@ -62,7 +62,7 @@
 - (void)setObject:(id)arg1 forMessageKey:(id)arg2;
 - (id)orderedValues;
 - (void)appendObject:(id)arg1;
-- (void)_appendTypesAndValues:(int)arg1 withKey:(id)arg2 list:(struct __va_list_tag [1])arg3;
+- (void)_appendTypesAndValues:(unsigned int)arg1 withKey:(id)arg2 list:(struct __va_list_tag [1])arg3;
 - (void)_willModifyAuxiliary;
 - (void)_makeBarrier;
 - (void)_makeDispatch;
@@ -80,8 +80,6 @@
 - (id)newReply;
 - (void)compressWithCompressor:(id)arg1 usingType:(int)arg2 forCompatibilityWithVersion:(long long)arg3;
 - (id)description;
-- (id)initWithCoder:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
 
 @end
 

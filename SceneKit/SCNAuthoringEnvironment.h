@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSIndexSet, NSMutableArray, NSMutableOrderedSet, NSOrderedSet, NSSet, SCNManipulator;
+@class NSArray, NSMutableArray, NSMutableOrderedSet, NSSet, SCNAuthoringEnvironment2, SCNManipulator;
 
 @interface SCNAuthoringEnvironment : NSObject
 {
@@ -28,8 +28,8 @@
     CDStruct_4aabc75a _overlayDynamicTriangleInfo;
     CDStruct_4aabc75a _textInfo;
     CDStruct_4aabc75a _lightProbesInfo;
-    CDStruct_dd363de5 _normalTextInfo;
-    CDStruct_dd363de5 _boldTextInfo;
+    CDStruct_c23cf450 _normalTextInfo;
+    CDStruct_c23cf450 _boldTextInfo;
     struct __C3DRasterizerStates *_depthOnCullOnStates;
     struct __C3DRasterizerStates *_depthOffCullOnStates;
     struct __C3DRasterizerStates *_depthOnCullOffStates;
@@ -44,9 +44,7 @@
     unsigned int _hasLighting:1;
     BOOL _shouldSnapOnGrid;
     BOOL _shouldSnapToAlign;
-    BOOL _isEditingSubComponent;
     BOOL _selectionIsReadonly;
-    Class _componentType;
     long long _editingSpace;
     BOOL _graphicalSelectionEnabled;
     // Error parsing type: , name: _selectionP0
@@ -54,9 +52,7 @@
     BOOL _selecting;
     BOOL _surroundToSelect;
     NSSet *_initialSelection;
-    NSSet *_initialSubSelection;
     NSMutableOrderedSet *_selection;
-    NSMutableOrderedSet *_subSelection;
     NSArray *_selectedNodes;
     float _lastGridDistance;
     double _gridUnit;
@@ -77,6 +73,7 @@
     SCNManipulator *_manipulator;
     struct __C3DFXPass *_pass;
     id _delegate;
+    SCNAuthoringEnvironment2 *_authEnv2;
 }
 
 + (id)authoringEnvironmentForSceneRenderer:(id)arg1;
@@ -88,7 +85,7 @@
 @property(readonly, nonatomic) double gridUnit; // @synthesize gridUnit=_gridUnit;
 @property(nonatomic) BOOL shouldSnapToAlign; // @synthesize shouldSnapToAlign=_shouldSnapToAlign;
 @property(nonatomic) BOOL shouldSnapOnGrid; // @synthesize shouldSnapOnGrid=_shouldSnapOnGrid;
-@property(readonly, nonatomic) BOOL isEditingSubComponent; // @synthesize isEditingSubComponent=_isEditingSubComponent;
+- (BOOL)isEditingSubComponent;
 - (void)dealloc;
 - (void)drawString:(id)arg1 atPoint:(struct CGPoint)arg2 color:(id)arg3;
 - (void)drawLineFromPoint:(struct SCNVector3)arg1 toPoint:(struct SCNVector3)arg2 color:(id)arg3;
@@ -96,22 +93,20 @@
 - (BOOL)mouseMoved:(id)arg1;
 - (BOOL)mouseUp:(id)arg1;
 - (BOOL)mouseDown:(id)arg1;
+@property(readonly, nonatomic) BOOL selecting;
 - (void)setSelecting:(BOOL)arg1;
 - (void)saveInitialSelection;
 - (void)_updateSelectionWithSelectionFrame:(unsigned long long)arg1;
 - (void)_updateManipulatorTargets;
 - (void)beginEditingNodes:(id)arg1;
-- (void)beginEditingNodeComponents:(id)arg1;
 - (void)beginEditingNode:(id)arg1;
 - (id)selectedItems;
 @property(readonly, nonatomic) NSArray *selectedNodes;
 - (void)cancelEdition;
 @property(nonatomic) long long authoringDisplayMask;
 @property(readonly, nonatomic) SCNManipulator *manipulator;
+- (void)update;
 @property(nonatomic) BOOL selectionIsReadonly;
-@property(retain, nonatomic) NSOrderedSet *subSelection;
-@property(readonly, nonatomic) NSIndexSet *subSelectionIndexes;
-@property(nonatomic) Class componentType;
 @property(readonly, nonatomic) struct CATransform3D viewMatrix;
 @property(readonly) id <SCNSceneRenderer> sceneRenderer;
 - (id)_initWithEngineContext:(struct __C3DEngineContext *)arg1;

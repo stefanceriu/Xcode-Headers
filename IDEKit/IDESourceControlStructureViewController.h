@@ -60,7 +60,6 @@
 - (id)outlineView:(id)arg1 selectionIndexesForProposedSelection:(id)arg2;
 @property(readonly) id selectedObject; // @synthesize selectedObject=_selectedObject;
 @property(retain) NSArray *expandedItems;
-- (void)setBranchesFromWorkingTree:(id)arg1;
 - (void)setRootRepository:(id)arg1;
 - (void)setRootSourceTreeGroup:(id)arg1;
 - (void)viewWillUninstall;

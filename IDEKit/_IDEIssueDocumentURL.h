@@ -11,13 +11,13 @@
 @interface _IDEIssueDocumentURL : NSObject
 {
     NSURL *_url;
-    int _type;
+    unsigned long long _type;
 }
 
-@property(readonly) int issueType; // @synthesize issueType=_type;
+@property(readonly) unsigned long long issueType; // @synthesize issueType=_type;
 @property(readonly) NSURL *url; // @synthesize url=_url;
 - (void).cxx_destruct;
-- (id)initWithURL:(id)arg1 type:(int)arg2;
+- (id)initWithURL:(id)arg1 type:(unsigned long long)arg2;
 
 @end
 

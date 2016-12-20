@@ -6,10 +6,12 @@
 
 #import "GPUTraceModelFactory.h"
 
-@class GPUMTLTraceOutline, NSMapTable;
+#import "DYPMTLResourceItemFactory.h"
+
+@class GPUMTLTraceOutline, NSMapTable, NSString;
 
 __attribute__((visibility("hidden")))
-@interface GPUMTLModelFactory : GPUTraceModelFactory
+@interface GPUMTLModelFactory : GPUTraceModelFactory <DYPMTLResourceItemFactory>
 {
     NSMapTable *_resourceTypeToViewMaptable;
     GPUMTLTraceOutline *_outline;
@@ -24,13 +26,19 @@ __attribute__((visibility("hidden")))
 + (Class)captureSessionInfoClassWithAPI:(unsigned int)arg1;
 @property(retain, nonatomic) GPUMTLTraceOutline *outline; // @synthesize outline=_outline;
 - (void).cxx_destruct;
+- (id)functionWithPipeline:(id)arg1 shaderType:(unsigned int)arg2 functionInfo:(id)arg3 identifier:(id)arg4;
+- (id)pipelineStateWithProgramGroup:(id)arg1 programType:(unsigned int)arg2 pipelineStateID:(unsigned long long)arg3 stateMirrorObject:(const void *)arg4 containerID:(unsigned long long)arg5 identifier:(id)arg6;
+- (id)functionInfoWithSourceURL:(id)arg1 lineNumber:(long long)arg2 onlineCompiled:(BOOL)arg3;
+- (id)rawBytesItemWithGroup:(id)arg1 bytesType:(unsigned long long)arg2 bindingIndex:(unsigned int)arg3 stateMirrorObject:(const void *)arg4 containerID:(unsigned long long)arg5 identifier:(id)arg6;
+- (id)shaderItemWithProgram:(id)arg1 shaderType:(unsigned int)arg2 functionInfo:(id)arg3 identifier:(id)arg4;
+- (id)programItemWithGroup:(id)arg1 programType:(unsigned int)arg2 programID:(unsigned long long)arg3 stateMirrorObject:(const void *)arg4 containerID:(unsigned long long)arg5 identifier:(id)arg6;
+- (id)resourceItemWithGroup:(id)arg1 type:(unsigned int)arg2 objectID:(unsigned long long)arg3 stateMirrorObject:(const void *)arg4 containerID:(unsigned long long)arg5 identifier:(id)arg6;
 - (id)createInfoBubbleForImageResource:(id)arg1 parentView:(id)arg2 owner:(id)arg3 renderingAttributes:(id)arg4;
 - (id)resourceItemOfType:(unsigned int)arg1 resourceID:(unsigned int)arg2 forFunctionIndex:(unsigned int)arg3;
 - (id)storedRenderingAttributesForResourceItem:(id)arg1;
 - (id)resolveCurrentResourceItemWithPreviousItem:(id)arg1 currentMainEditorItem:(id)arg2 topLevelObjects:(id)arg3;
 - (void)establishChildrenForProgramItem:(id)arg1;
 - (id)programObjectFromProgramItem:(id)arg1 shaderType:(unsigned int)arg2;
-- (id)realizeResourcesForResourceItem:(id)arg1;
 - (void)generateResourcesForGroup:(id)arg1 apiItem:(id)arg2 boundOnly:(BOOL)arg3;
 - (void)createParentResourceGroupsForAPIItem:(id)arg1;
 - (id)_createResourceGroup:(id)arg1 parentItem:(id)arg2 boundOnly:(BOOL)arg3;
@@ -52,7 +60,13 @@ __attribute__((visibility("hidden")))
 - (id)allPrograms;
 - (id)allTraceItems;
 - (id)rootProcessItem;
-- (id)initWithController:(id)arg1 variablesViewContentProviderClass:(Class)arg2;
+- (id)initWithController:(id)arg1 variablesViewContentProviderClass:(Class)arg2 pluginFactory:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

@@ -16,7 +16,6 @@
 - (id)draggedImageState:(id)arg1;
 - (id)initialDragImageState:(id)arg1;
 - (id)draggedImageStateForTabBarItems:(id)arg1 withName:(id)arg2;
-- (id)buildHighlightMaskForObject:(id)arg1;
 - (id)editedTabBar;
 
 @end

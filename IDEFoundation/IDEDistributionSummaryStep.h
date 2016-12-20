@@ -11,9 +11,13 @@
 }
 
 + (id)_platformsRequiringBitcodeWithAppStoreSubmissionConfiguration:(id)arg1 flattenedDistributionItems:(id)arg2 error:(id *)arg3;
-+ (id)_platformsWantingBitcodeAskWithAppStoreSubmissionConfiguration:(id)arg1 flattenedDistributionItems:(id)arg2 error:(id *)arg3;
++ (id)_distributionItemsWithoutBitcodeForPlatforms:(id)arg1 flattenedDistributionItems:(id)arg2 archive:(id)arg3 withError:(id *)arg4;
++ (id)_isAllAppleProvidedContentWithFlattenedDistributionItems:(id)arg1 archive:(id)arg2 error:(id *)arg3;
++ (id)_platformsWantingBitcodeAskWithAppStoreSubmissionConfiguration:(id)arg1 flattenedDistributionItems:(id)arg2 archive:(id)arg3 error:(id *)arg4;
 + (id)availableOptionsForPropertyList;
 - (id)platformsRequiringBitcodeForDistributionItemsWithError:(id *)arg1;
+- (id)distributionItemsWithoutBitcodeForPlatforms:(id)arg1 withError:(id *)arg2;
+- (id)isAllAppleProvidedContentWithError:(id *)arg1;
 - (id)platformsWantingBitcodeAskWithError:(id *)arg1;
 @property(readonly) BOOL requiresBitcode;
 @property(readonly) BOOL wantsCompileBitcodeAsk;

@@ -33,7 +33,7 @@
 - (id)_descriptionSubstringForLabel;
 - (id)displayDescriptionInDocument:(id)arg1;
 - (id)userPresentableLabel;
-- (id)_relationshipDescription;
+- (id)_relationshipDescriptionForKeyPath:(id)arg1;
 @property(readonly) NSString *relationshipKeyPath;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;

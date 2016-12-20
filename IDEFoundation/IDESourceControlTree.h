@@ -14,7 +14,6 @@
     IDESourceControlExtension *_sourceControlExtension;
     NSString *_location;
     NSString *_name;
-    unsigned long long _state;
     BOOL _disallowLoadingChildren;
     NSString *_identifier;
     NSString *_cachedFirstRevision;
@@ -26,7 +25,6 @@
 @property(copy) NSString *cachedFirstRevision; // @synthesize cachedFirstRevision=_cachedFirstRevision;
 @property(readonly) NSString *identifier; // @synthesize identifier=_identifier;
 @property BOOL disallowLoadingChildren; // @synthesize disallowLoadingChildren=_disallowLoadingChildren;
-@property unsigned long long state; // @synthesize state=_state;
 @property(copy) NSString *location; // @synthesize location=_location;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(retain) IDESourceControlExtension *sourceControlExtension; // @synthesize sourceControlExtension=_sourceControlExtension;
@@ -34,13 +32,13 @@
 - (void).cxx_destruct;
 - (id)copyRepository;
 - (id)description;
-- (BOOL)containsItemAtLocation:(id)arg1;
+- (void)setSourceControlExtension:(id)arg1 updateUserDefaults:(BOOL)arg2;
+- (void)setName:(id)arg1 updateUserDefaults:(BOOL)arg2;
 - (id)subclass_createRootNode;
 - (void)primitiveInvalidate;
 - (id)dictionaryRepresentation;
 - (id)initWithDictionary:(id)arg1 sourceControlExtension:(id)arg2 sourceControlManager:(id)arg3;
 - (id)initWithLocation:(id)arg1 sourceControlManager:(id)arg2;
-- (id)_initWithLocation:(id)arg1 sourceControlManager:(id)arg2;
 
 // Remaining properties
 @property(readonly) IDESourceControlTreeGroup *rootGroup; // @dynamic rootGroup;

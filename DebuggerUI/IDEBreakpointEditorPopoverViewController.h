@@ -32,6 +32,7 @@
 + (id)_breakpointEditorExtensions;
 + (id)breakpointEditorExtensionsSortedByPriority;
 + (id)keyPathsForValuesAffectingIgnoreCountPostText;
++ (id)sourceStyleFont;
 + (void)hideCurrentEditorIfEditingBreakpoint:(id)arg1;
 + (void)hideCurrentEditor;
 + (void)showEditorForBreakpoint:(id)arg1 relativeToRect:(struct CGRect)arg2 ofView:(id)arg3;
@@ -53,14 +54,17 @@
 - (id)initialFirstResponder;
 - (void)cancelOperation:(id)arg1;
 - (void)addFirstAction:(id)arg1;
-- (id)_addBreakpointActionRowToStackViewForAction:(id)arg1 atIndex:(unsigned long long)arg2;
-- (id)_addBreakpointActionRowToStackViewBelow:(id)arg1;
+- (double)sizeForFont:(id)arg1 fittingHeightOfTextField:(id)arg2;
+- (id)sourceStyleFontFittingHeightOfTextField:(id)arg1;
+- (id)_addBreakpointActionRowToStackViewForAction:(id)arg1 atIndex:(unsigned long long)arg2 becomeFirstResponder:(BOOL)arg3;
+- (id)_addBreakpointActionRowToStackViewBelow:(id)arg1 becomeFirstResponder:(BOOL)arg2;
 - (void)_addInitialActions;
 - (id)_createBreakpointSpecificViewController;
 - (void)_addBreakpointSpecificView;
 - (int)_placementFromString:(id)arg1;
 - (int)_placmentForElement:(id)arg1;
 - (void)loadView;
+- (void)awakeFromNib;
 - (id)_initWithBreakpoint:(id)arg1;
 
 // Remaining properties

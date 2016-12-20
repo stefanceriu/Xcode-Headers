@@ -11,20 +11,19 @@
 __attribute__((visibility("hidden")))
 @interface DBGLLDBDataType : DBGDataType
 {
-    struct SBType _lldbType;
+    id <DBGSBType> _lldbType;
     NSString *_pointeeTypeName;
     NSString *_displayTypeName;
     BOOL _isPointer;
 }
 
 @property(retain) NSString *pointeeTypeName; // @synthesize pointeeTypeName=_pointeeTypeName;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (BOOL)isUnknownType;
 - (BOOL)isPointer;
 - (id)displayTypeName;
 - (id)_createNSStringForCString:(const char *)arg1;
-- (id)initWithTypename:(id)arg1 withType:(struct SBType)arg2;
+- (id)initWithTypename:(id)arg1 withType:(id)arg2;
 
 @end
 

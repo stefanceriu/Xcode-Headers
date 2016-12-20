@@ -13,5 +13,6 @@
 @optional
 - (void)reviewFilesViewController:(IDEReviewFilesViewController *)arg1 didInstallComparisonEditor:(IDEComparisonEditor *)arg2;
 - (void)willOpenDocumentLocation:(DVTDocumentLocation *)arg1 completionBlock:(void (^)(IDEEditorOpenSpecifier *, NSError *))arg2;
+- (BOOL)enableDiffToggles;
 @end
 

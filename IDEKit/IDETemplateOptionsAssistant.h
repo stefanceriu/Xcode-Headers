@@ -8,11 +8,11 @@
 
 #import "NSComboBoxDataSource.h"
 
-@class NSArray, NSMutableDictionary, NSString, NSTextField, NSView;
+@class IDETemplateOptionsView, NSArray, NSMutableDictionary, NSString, NSTextField;
 
 @interface IDETemplateOptionsAssistant : IDETemplateInstantiationAssistant <NSComboBoxDataSource>
 {
-    NSView *_mainView;
+    IDETemplateOptionsView *_mainView;
     NSArray *_classNames;
     NSMutableDictionary *_controlsForOptionIds;
     BOOL _canGoForward;
@@ -31,7 +31,9 @@
 - (id)classNamesForComboBox:(id)arg1;
 - (void)writeStateToUserDefaults;
 - (void)restoreSelectionFromUserDefaults;
+- (struct CGRect)_frameForControl:(id)arg1 option:(id)arg2 mainViewBounds:(struct CGRect)arg3 minLabelWidth:(double)arg4;
 - (void)setupOptionViews;
+- (id)additionalSortedOptions;
 - (id)additionalOptions;
 - (double)requiredViewSpacingForOption:(id)arg1;
 - (id)createLabelForOption:(id)arg1;
@@ -39,7 +41,6 @@
 - (id)_valueProvidingOptionForOption:(id)arg1 fromOptionArray:(id)arg2;
 - (void)_setControl:(id)arg1 forOptionIdentifier:(id)arg2;
 - (id)controlForOptionIdentifier:(id)arg1;
-- (void)_setAccessibilityForCell:(id)arg1 withOption:(id)arg2 prefix:(id)arg3;
 - (id)assistantTitle;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;

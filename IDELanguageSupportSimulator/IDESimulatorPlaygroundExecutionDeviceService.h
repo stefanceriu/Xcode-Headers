@@ -6,15 +6,14 @@
 
 #import "IDEPlaygroundExecutionDeviceService.h"
 
-#import "IDEPlaygroundFramebufferCaptureProvider.h"
-#import "IDESimulatorPlaygroundFramebufferServiceChannelDelegate.h"
+#import "IDEPlaygroundExecutionDeviceInputEventProcessing.h"
+#import "IDESimulatorPlaygroundFramebufferServiceChannelContentReceiver.h"
 
-@class IDESimulatorPlaygroundDeviceCommunicationService, IDESimulatorPlaygroundFramebufferServiceChannel, NSObject<OS_dispatch_queue>, NSString;
+@class IDESimulatorPlaygroundDeviceCommunicationService, IDESimulatorPlaygroundFramebufferServiceChannel, NSString;
 
-@interface IDESimulatorPlaygroundExecutionDeviceService : IDEPlaygroundExecutionDeviceService <IDESimulatorPlaygroundFramebufferServiceChannelDelegate, IDEPlaygroundFramebufferCaptureProvider>
+@interface IDESimulatorPlaygroundExecutionDeviceService : IDEPlaygroundExecutionDeviceService <IDESimulatorPlaygroundFramebufferServiceChannelContentReceiver, IDEPlaygroundExecutionDeviceInputEventProcessing>
 {
-    NSObject<OS_dispatch_queue> *_deviceFramebufferImageAccessQueue;
-    struct CGImage *_deviceFramebufferImage;
+    struct CGSize _deviceFramebufferScreenSize;
     BOOL _usingAlternateFramebuffer;
     IDESimulatorPlaygroundDeviceCommunicationService *_deviceCommunicationService;
     IDESimulatorPlaygroundFramebufferServiceChannel *_framebufferServiceChannel;
@@ -26,24 +25,25 @@
 @property(retain) IDESimulatorPlaygroundFramebufferServiceChannel *framebufferServiceChannel; // @synthesize framebufferServiceChannel=_framebufferServiceChannel;
 @property(retain) IDESimulatorPlaygroundDeviceCommunicationService *deviceCommunicationService; // @synthesize deviceCommunicationService=_deviceCommunicationService;
 - (void).cxx_destruct;
-- (void)simulatorPlaygroundFramebufferServiceChannel:(id)arg1 didReceiveFramebufferImage:(struct CGImage *)arg2;
+- (void)applicationDidResignActive:(id)arg1;
+- (void)purgeHIDModifiers;
+- (BOOL)_processFlagsChangedEvent:(id)arg1;
+- (BOOL)_processKeyboardEvent:(id)arg1;
+- (BOOL)_processMouseEvent:(id)arg1 fromView:(id)arg2 deviceRelativeLocation:(struct CGPoint)arg3 screen:(long long)arg4;
+- (BOOL)processInputEvent:(id)arg1 fromView:(id)arg2 deviceRelativeLocation:(struct CGPoint)arg3;
+- (void)simulatorPlaygroundFramebufferServiceChannel:(id)arg1 didUpdateWithIOSurfaceID:(unsigned int)arg2 screenSize:(struct CGSize)arg3;
 - (id)_disabledSimulatorJobs;
 - (BOOL)_shouldDisableUnnecessarySimulatorJobs;
 - (BOOL)_shouldDisableSimulatorDataMigration;
 - (void)_setAlternateFramebufferSize:(struct CGSize)arg1;
 - (BOOL)configureFramebufferServiceChannelWithDevice:(id)arg1 error:(out id *)arg2;
-- (struct CGImage *)copyOfLastDeviceFramebufferImage;
-- (void)setDeviceFramebufferImage:(struct CGImage *)arg1;
-- (void)synchronizeDeviceFramebufferImageAccessWithBlock:(CDUnknownBlockType)arg1;
-- (int)_launchAppAtURL:(id)arg1 withDevice:(id)arg2 launchOptions:(id)arg3 checkForCancellationBlock:(CDUnknownBlockType)arg4 error:(id *)arg5;
+- (void)_launchAppAtURL:(id)arg1 withDevice:(id)arg2 launchOptions:(id)arg3 cancellationCallback:(CDUnknownBlockType)arg4 completion:(CDUnknownBlockType)arg5;
 - (BOOL)bootDevice:(id)arg1 error:(out id *)arg2;
-- (int)_launchAppInFullSimulatorModeWithExecutablePath:(id)arg1 environment:(id)arg2 checkForCancellationBlock:(CDUnknownBlockType)arg3 slaveFilename:(id)arg4 error:(out id *)arg5;
+- (void)_launchAppInFullSimulatorModeWithExecutablePath:(id)arg1 environment:(id)arg2 slaveFilename:(id)arg3 cancellationCallback:(CDUnknownBlockType)arg4 completion:(CDUnknownBlockType)arg5;
 - (int)_launchAppInSimpleSimulatorModeWithExecutablePath:(id)arg1 environment:(id)arg2 slaveFilename:(id)arg3 error:(id *)arg4;
 - (id)_sandboxProfileDataWithContainerPath:(id)arg1 socketPath:(id)arg2 parameters:(id)arg3 error:(id *)arg4;
-- (CDUnknownBlockType)_createPlaygroundLauncherForPreparationParameters:(id)arg1;
-- (id)sessionForExecutingPlaygroundWithParameters:(id)arg1;
+- (void)launchWithPendingParameters;
 - (void)dealloc;
-- (id)defaultStubPathForSDK:(id)arg1;
 - (id)initForDevice:(id)arg1 extension:(id)arg2 capability:(id)arg3;
 
 // Remaining properties

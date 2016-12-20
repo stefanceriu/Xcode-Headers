@@ -19,5 +19,6 @@
 - (void)setIbInspectedLevelIndicatorStyle:(unsigned long long)arg1;
 - (unsigned long long)ibInspectedLevelIndicatorStyle;
 @property unsigned long long ibArchivedTickMarkPosition;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

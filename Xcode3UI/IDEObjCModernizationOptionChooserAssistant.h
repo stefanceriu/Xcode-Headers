@@ -10,7 +10,7 @@
 #import "NSOutlineViewDataSource.h"
 #import "NSOutlineViewDelegate.h"
 
-@class DVTOutlineView, DVTPopUpButtonCell, IDEFilterControlBar, IDEMigrationTargetChooserStatePersistence, NSArray, NSMutableIndexSet, NSString, NSTreeController;
+@class DVTOutlineViewWithCustomGridDrawing, DVTPopUpButtonCell, IDEFilterControlBar, IDEMigrationTargetChooserStatePersistence, NSArray, NSMutableIndexSet, NSString, NSTreeController;
 
 @interface IDEObjCModernizationOptionChooserAssistant : IDEAssistant <NSOutlineViewDataSource, NSOutlineViewDelegate, IDEFilterControlBarTarget>
 {
@@ -20,7 +20,7 @@
     NSArray *_selectedOptionItems;
     IDEMigrationTargetChooserStatePersistence *_statePersistence;
     IDEFilterControlBar *_filterControlBar;
-    DVTOutlineView *_outlineView;
+    DVTOutlineViewWithCustomGridDrawing *_outlineView;
     NSTreeController *_optionItemsController;
 }
 
@@ -48,6 +48,8 @@
 - (void)_setChecked:(BOOL)arg1 forOptionItemAtIndexes:(id)arg2;
 - (id)_effectiveSelectedRowIndexes;
 @property(readonly) DVTPopUpButtonCell *valuePopUpButtonCellTemplate;
+- (id)filterButtonAccessibilityDescription;
+- (id)filterButtonToolTip;
 - (id)filterButtonMenu;
 - (id)filterDefinitionIdentifier;
 - (void)_restoreSelectedOptionItemsAndExpandedRows;

@@ -10,6 +10,7 @@
 
 @protocol SCNAnimatable <NSObject>
 @property(readonly) NSArray *animationKeys;
+- (void)setSpeed:(double)arg1 forAnimationKey:(NSString *)arg2;
 - (void)removeAnimationForKey:(NSString *)arg1 fadeOutDuration:(double)arg2;
 - (BOOL)isAnimationForKeyPaused:(NSString *)arg1;
 - (void)resumeAnimationForKey:(NSString *)arg1;

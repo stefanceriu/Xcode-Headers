@@ -20,6 +20,8 @@
     NSString *_opName;
 }
 
++ (void)runWhenAllOperationsFinish:(id)arg1 block:(CDUnknownBlockType)arg2;
++ (void)runWhenOperationFinishes:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (void).cxx_destruct;
 - (void)_removeNotificationShim:(id)arg1;
 - (void)stopObservationsOfObject:(id)arg1 forObserver:(id)arg2;

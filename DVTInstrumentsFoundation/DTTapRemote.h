@@ -6,34 +6,26 @@
 
 #import <DVTInstrumentsFoundation/DTTap.h>
 
-@class DTXChannel, DTXConnection, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
+@class DTTapMessageHandler, DTXChannel, DTXConnection, NSObject<OS_dispatch_queue>;
 
 @interface DTTapRemote : DTTap
 {
     DTXConnection *_connection;
-    NSString *_serviceName;
     DTXChannel *_channel;
-    long long _version;
     NSObject<OS_dispatch_queue> *_unprocessedMessageQueue;
-    NSObject<OS_dispatch_source> *_receivedMessage;
+    BOOL _connectionEnabled;
+    DTTapMessageHandler *_messageHandler;
 }
 
-+ (BOOL)stopOnChannel:(id)arg1;
-+ (BOOL)unpauseOnChannel:(id)arg1;
-+ (BOOL)pauseOnChannel:(id)arg1;
-+ (BOOL)startOnChannel:(id)arg1 withConfiguration:(id)arg2;
+@property(readonly, retain, nonatomic) DTTapMessageHandler *messageHandler; // @synthesize messageHandler=_messageHandler;
 - (void).cxx_destruct;
-- (void)_reset:(id)arg1;
-- (void)_fetch:(id)arg1;
-- (void)_unpause:(id)arg1;
-- (void)_pause:(id)arg1;
-- (void)_stopWithSemaphore:(id)arg1 guard:(id)arg2;
-- (void)_start:(id)arg1;
+- (id)_fetchDataForReason:(unsigned long long)arg1;
+- (void)_unpause;
+- (void)_pause;
+- (void)_stop;
+- (void)_start;
 - (void)messageReceived:(id)arg1;
-- (void)_setConnection:(id)arg1 guarded:(id)arg2;
-- (void)setConnection:(id)arg1;
-- (void)dealloc;
-- (id)initWithDelegate:(id)arg1 config:(id)arg2 connection:(id)arg3 serviceName:(id)arg4 version:(long long)arg5;
+- (id)initWithConfig:(id)arg1 memoHandler:(id)arg2 messageHandler:(id)arg3 connection:(id)arg4;
 
 @end
 

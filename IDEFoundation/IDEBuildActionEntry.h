@@ -21,6 +21,7 @@
     BOOL _mustBuildForProfiling;
     BOOL _shouldBuildForArchiving;
     BOOL _shouldBuildForAnalyzing;
+    BOOL _shouldHideIssues;
     IDESchemeBuildableReference *_buildableReference;
     IDEBuildSchemeAction *_buildAction;
 }
@@ -37,6 +38,7 @@
 @property(readonly) BOOL isExplicitEntry; // @synthesize isExplicitEntry=_isExplicitEntry;
 - (void).cxx_destruct;
 - (void)addBuildableReference:(id)arg1 fromXMLUnarchiver:(id)arg2;
+- (void)setHideIssuesFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setBuildForAnalyzingFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setBuildForArchivingFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
 - (void)setBuildForProfilingFromUTF8String:(char *)arg1 fromXMLUnarchiver:(id)arg2;
@@ -47,6 +49,7 @@
 - (void)enableBuildEntry;
 - (void)disableBuildEntry;
 @property(readonly) BOOL canRemoveEntry;
+@property BOOL shouldHideIssues;
 @property BOOL shouldBuildForAnalyzing;
 @property BOOL shouldBuildForArchiving;
 @property BOOL shouldBuildForProfiling;

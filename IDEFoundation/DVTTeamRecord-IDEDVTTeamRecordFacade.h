@@ -7,6 +7,7 @@
 #import "DVTTeamRecord.h"
 
 @interface DVTTeamRecord (IDEDVTTeamRecordFacade)
+- (id)teamID;
 - (id)provisioningTeam;
 @end
 

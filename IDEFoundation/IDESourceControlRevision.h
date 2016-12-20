@@ -17,25 +17,34 @@
     BOOL _isHEAD;
     BOOL _isBASE;
     BOOL _isCurrent;
+    NSString *_displayRevision;
+    NSString *_filePath;
+    NSString *_currentFilePath;
+    NSString *_subtext;
 }
 
 + (id)inMemoryRevision;
 + (id)localRevision;
 + (id)keyPathsForValuesAffectingLongRevisionString;
+@property(retain) NSString *subtext; // @synthesize subtext=_subtext;
+@property(readonly) NSString *currentFilePath; // @synthesize currentFilePath=_currentFilePath;
+@property(readonly) NSString *filePath; // @synthesize filePath=_filePath;
 @property BOOL isCurrent; // @synthesize isCurrent=_isCurrent;
 @property BOOL isBASE; // @synthesize isBASE=_isBASE;
 @property BOOL isHEAD; // @synthesize isHEAD=_isHEAD;
 @property(readonly) NSString *message; // @synthesize message=_message;
 @property(readonly) NSDate *date; // @synthesize date=_date;
 @property(readonly) NSString *author; // @synthesize author=_author;
+@property(readonly) NSString *displayRevision; // @synthesize displayRevision=_displayRevision;
 @property(readonly) NSString *revision; // @synthesize revision=_revision;
 - (void).cxx_destruct;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
-@property(readonly) NSString *longRevisionString;
+@property(readonly) NSString *shortRevisionString;
 - (id)ideModelObjectTypeIdentifier;
 - (id)description;
-- (id)initWithRevision:(id)arg1 author:(id)arg2 date:(id)arg3 message:(id)arg4;
+- (id)initWithRevision:(id)arg1 displayRevision:(id)arg2 author:(id)arg3 date:(id)arg4 message:(id)arg5 filePath:(id)arg6 currentFilePath:(id)arg7 isBASE:(BOOL)arg8 isHEAD:(BOOL)arg9 isCurrent:(BOOL)arg10;
+- (id)initWithRevision:(id)arg1 displayRevision:(id)arg2 author:(id)arg3 date:(id)arg4 message:(id)arg5;
 
 @end
 

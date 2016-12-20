@@ -74,10 +74,10 @@
 - (void)invalidateAutolayoutStatusForAllObjectHierarchiesForReasonWithBlock:(CDUnknownBlockType)arg1;
 - (void)invalidateAutolayoutStatusForArbitrationUnitContainingObject:(id)arg1 reasonBlock:(CDUnknownBlockType)arg2;
 - (void)_invalidateAutolayoutStatusForHierarchyContainingObject:(id)arg1;
-- (void)didInvalidateAutolayoutStatusForObject:(id)arg1;
 - (void)_runBlockIfStatusInvalidationIsEnabledForObject:(id)arg1 withReasonBlock:(CDUnknownBlockType)arg2 block:(CDUnknownBlockType)arg3;
 - (void)__runBlockIfStatusUpdatingIsEnabledForObject:(id)arg1 operationName:(id)arg2 withReasonBlock:(CDUnknownBlockType)arg3 block:(CDUnknownBlockType)arg4;
 - (void)preserveCleanAutolayoutStatusDuring:(CDUnknownBlockType)arg1;
+- (void)conditionallyPreserveCleanAutolayoutStatusDuring:(CDUnknownBlockType)arg1;
 - (void)_clearPendingAutolayoutStatusTables;
 - (void)ensureAutolayoutStatusIsValid;
 - (void)_scheduleDelayedAutolayoutStatusInvocation;
@@ -88,13 +88,12 @@
 - (id)mostRecentlyComputedAutolayoutStatusForArbitrationUnitContainingObject:(id)arg1;
 - (id)mostRecentlyComputedAutolayoutStatusForArbitrationUnitsContainingAndBelowObject:(id)arg1;
 - (id)autolayoutStatusForArbitrationUnitContainingObject:(id)arg1;
-- (void)_forwardAutolayoutStatusToConfigurationPropertyStorageForViewsInArbitrationUnit:(id)arg1;
 - (void)processAutolayoutStatus:(id)arg1 forArbitrationUnit:(id)arg2;
 - (void)_updateStatusForUninstalledViewsInUnit:(id)arg1;
 - (void)_updateMisplacedViewsInUnit:(id)arg1 effectiveMisplacedViews:(id)arg2;
 - (BOOL)_shouldUpdateMisplacementStateOnAutolayoutItemsDuringStatusComputation;
 - (void)_updateViewsWithAnyAmbiguityInUnit:(id)arg1 forStatus:(id)arg2;
-- (id)_autolayoutStatusFromConflictingConstraintSets:(id)arg1 ambiguousViews:(id)arg2 misplacedViews:(id)arg3 viewsToLayoutFrames:(id)arg4;
+- (id)_autolayoutStatusFromConflictingConstraintSets:(id)arg1 ambiguousViews:(id)arg2 misplacedViews:(id)arg3 viewsToLayoutFrames:(id)arg4 frameDecidedItems:(id)arg5;
 - (void)_updateMisplacedAndAmbiguousViewsThatCannotHaveConstraintsInUnit:(id)arg1 mutableEffectiveAmbiguousViewStatusGroups:(id)arg2 mutableEffectiveMisplacedViews:(id)arg3;
 - (void)_updateMisplacedViewsAlsoMarkedAsUninitializedInUnit:(id)arg1 mutableEffectiveAmbiguousViewStatusGroups:(id)arg2 mutableEffectiveMisplacedViews:(id)arg3;
 - (void)_updateUninitializedAmbiguityStatusInUnit:(id)arg1 mutableEffectiveAmbiguousViewStatusGroups:(id)arg2;
@@ -111,8 +110,7 @@
 - (id)misplacedItems;
 - (BOOL)isItemAmbiguous:(id)arg1;
 - (BOOL)isItemMisplaced:(id)arg1;
-- (void)clearAndAddAllSuggestedConstraints;
-- (void)clearAndAddSuggestedConstraintsForItems:(id)arg1;
+- (void)clearAndAddSuggestedConstraintsForItems:(id)arg1 inAllConfigurations:(BOOL)arg2;
 - (void)addAllMissingConstraints;
 - (void)addMissingConstraintsForItems:(id)arg1;
 - (void)clearConstraintsForItems:(id)arg1 inAllConfigurations:(BOOL)arg2;
@@ -125,9 +123,7 @@
 - (void)_primitiveClearConstraintsForItems:(id)arg1 inAllConfigurations:(BOOL)arg2;
 - (void)_removeConstraintsTurnedOffInAllConfigurations:(id)arg1 fromItem:(id)arg2;
 - (void)_scheduleArbitrationOfUnit:(id)arg1 withOptions:(id)arg2;
-- (void)decideAndSetFramesOfViewHierarchyContainingObject:(id)arg1 withCurrentAutolayoutStatusAfterPerformingBlock:(CDUnknownBlockType)arg2;
 - (void)decideAndSetFramesOfAllViewHierarchiesWithCurrentAutolayoutStatusAfterPerformingBlock:(CDUnknownBlockType)arg1;
-- (void)decideAndSetFramesOfAllViewHierarchies;
 - (id)sparseAutolayoutInfoForArbitrationUnit:(id)arg1 objectTransformationBlock:(CDUnknownBlockType)arg2;
 - (CDUnknownBlockType)_orderedChildrenChildProducerBlockForBuildingSparseInfo;
 - (void)_runAutolayoutCommandForArbitrationUnits:(id)arg1 withBlock:(CDUnknownBlockType)arg2;

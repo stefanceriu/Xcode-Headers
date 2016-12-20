@@ -17,7 +17,6 @@
 @property(readonly) BOOL hasRealDebugSession;
 - (void)currentDebugSessionDidChange;
 - (void)currentDebugSessionStateDidChange;
-- (BOOL)wantsRightSideSeparatorBorder;
 - (void)_updatePauseResumeButtonBasedOnDebugSessionState;
 - (void)pauseOrResume:(id)arg1;
 - (id)_createPauseResumeButton;

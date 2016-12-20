@@ -17,12 +17,15 @@ __attribute__((visibility("hidden")))
 }
 
 @property(retain, nonatomic) CALayer *layer; // @synthesize layer=_layer;
+- (struct __C3DTexture *)_textureWithEngineContext:(struct __C3DEngineContext *)arg1 textureSampler:(struct __C3DTextureSampler *)arg2 nextFrameTime:(double *)arg3;
 - (struct __C3DTexture *)textureWithEngineContext:(struct __C3DEngineContext *)arg1 textureSampler:(struct __C3DTextureSampler *)arg2 nextFrameTime:(double *)arg3;
 - (struct CGSize)layerSizeInPixels;
 - (void)cleanup:(struct __C3DRendererContext *)arg1;
 - (double)__updateTextureWithLayer:(id)arg1 engineContext:(struct __C3DEngineContext *)arg2 sampler:(struct __C3DTextureSampler *)arg3;
 - (double)__renderLayer:(id)arg1 withCARenderer:(id)arg2 engineContext:(struct __C3DEngineContext *)arg3 viewport:(double)arg4 atTime:(BOOL)arg5 forceUpdate:(char *)arg6 didUpdate: /* Error: Ran out of types for this method. */;
 - (void)renderWithEngineContext:(struct __C3DEngineContext *)arg1 nextFrameTime:(double *)arg2;
+- (BOOL)prefersGL3;
+- (BOOL)supportsMetal;
 - (void)dealloc;
 
 @end

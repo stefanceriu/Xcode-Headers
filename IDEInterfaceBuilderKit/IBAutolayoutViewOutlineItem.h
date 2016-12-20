@@ -6,14 +6,14 @@
 
 #import <IDEInterfaceBuilderKit/IBAutolayoutIssueOutlineItem.h>
 
-@class NSObject<IBAutolayoutItem>;
+@class NSObject<IBIDEAutolayoutItem>;
 
 @interface IBAutolayoutViewOutlineItem : IBAutolayoutIssueOutlineItem
 {
-    NSObject<IBAutolayoutItem> *_view;
+    NSObject<IBIDEAutolayoutItem> *_view;
 }
 
-@property(readonly, nonatomic) NSObject<IBAutolayoutItem> *view; // @synthesize view=_view;
+@property(readonly, nonatomic) NSObject<IBIDEAutolayoutItem> *view; // @synthesize view=_view;
 - (void).cxx_destruct;
 - (id)initWithView:(id)arg1;
 

@@ -13,7 +13,6 @@
 }
 
 @property(readonly) DVTPlatform *supportedPlatform;
-- (BOOL)requiresDeveloperAccount;
 - (BOOL)isAppStoreBound;
 - (id)orderedDistributionStepClassNamesForTask:(int)arg1;
 - (id)orderedDistributionStepClassNames;

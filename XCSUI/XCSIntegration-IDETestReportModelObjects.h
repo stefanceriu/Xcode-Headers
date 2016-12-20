@@ -11,12 +11,15 @@
 @class NSArray, NSString;
 
 @interface XCSIntegration (IDETestReportModelObjects) <IDETestReport_RootObject>
-@property(readonly, nonatomic) BOOL ide_testReport_test_lazyTestRunFetchesUseNewBatchAPI;
+@property(readonly, nonatomic) BOOL ide_testReport_rootObject_canRevealActivityAssetsLocally;
 @property(readonly, nonatomic) BOOL ide_testReport_test_fetchesTestRunsLazily;
+- (BOOL)ide_testReport_shouldEnableBaselineUpdatingUIForWorkspace:(id)arg1;
 - (id)ide_testReport_rootObject_includeGroupsWithPassedTests:(BOOL)arg1 includeFailingTests:(BOOL)arg2 includeOnlyPerfTests:(BOOL)arg3;
 @property(readonly, copy, nonatomic) NSArray *ide_testReport_rootObject_perfMetricNames;
 - (id)testsIncludePassing:(BOOL)arg1 includeFailing:(BOOL)arg2 perfOnly:(BOOL)arg3;
+@property(readonly, copy, nonatomic) NSArray *ide_testReport_rootObject_allTestClasses;
 @property(readonly, copy, nonatomic) NSArray *ide_testReport_rootObject_devices;
+@property(readonly, copy, nonatomic) NSString *ide_testReport_rootObject_identifier;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

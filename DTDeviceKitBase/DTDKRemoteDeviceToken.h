@@ -53,7 +53,6 @@
     DTDKRemoteDeviceConnection *_primaryWiredConection;
     DTDKRemoteDeviceConnection *_primaryWirelessConection;
     NSString *_deviceIdentifier;
-    NSString *_deviceSoftwareVersion;
     NSArray *_applicationDictionaries;
     NSArray *_systemApplicationDictionaries;
     long long _deviceSSHPort;
@@ -62,6 +61,7 @@
     long long _deviceMountPort;
     long long _deviceNFSPort;
     id _darwinNotificationService;
+    NSString *_deviceSoftwareVersion;
 }
 
 + (id)keyPathsForValuesAffectingApplications;
@@ -125,10 +125,11 @@
 + (id)tokenWithDeviceIdentifier:(id)arg1;
 + (id)deviceLock;
 + (id)devices;
+@property(copy, nonatomic) NSString *deviceSoftwareVersion; // @synthesize deviceSoftwareVersion=_deviceSoftwareVersion;
+@property(retain) id darwinNotificationService; // @synthesize darwinNotificationService=_darwinNotificationService;
 @property _Bool inReloadProvisioningProfiles; // @synthesize inReloadProvisioningProfiles=_inReloadProvisioningProfiles;
 @property _Bool inReloadSystemApplications; // @synthesize inReloadSystemApplications=_inReloadSystemApplications;
 @property _Bool inReloadApplications; // @synthesize inReloadApplications=_inReloadApplications;
-@property(retain) id darwinNotificationService; // @synthesize darwinNotificationService=_darwinNotificationService;
 @property long long deviceNFSPort; // @synthesize deviceNFSPort=_deviceNFSPort;
 @property long long deviceMountPort; // @synthesize deviceMountPort=_deviceMountPort;
 @property long long deviceRsyncPort; // @synthesize deviceRsyncPort=_deviceRsyncPort;
@@ -136,7 +137,6 @@
 @property long long deviceSSHPort; // @synthesize deviceSSHPort=_deviceSSHPort;
 @property(copy, nonatomic) NSArray *systemApplicationDictionaries; // @synthesize systemApplicationDictionaries=_systemApplicationDictionaries;
 @property(copy, nonatomic) NSArray *applicationDictionaries; // @synthesize applicationDictionaries=_applicationDictionaries;
-@property(copy, nonatomic) NSString *deviceSoftwareVersion; // @synthesize deviceSoftwareVersion=_deviceSoftwareVersion;
 @property(copy, nonatomic) NSString *deviceIdentifier; // @synthesize deviceIdentifier=_deviceIdentifier;
 @property(retain, nonatomic) DTDKRemoteDeviceConnection *primaryWirelessConection; // @synthesize primaryWirelessConection=_primaryWirelessConection;
 @property(retain, nonatomic) DTDKRemoteDeviceConnection *primaryWiredConection; // @synthesize primaryWiredConection=_primaryWiredConection;
@@ -296,6 +296,7 @@
 - (id)copyAndProcessSharedCache;
 - (id)developerDiskImageMountError;
 - (_Bool)mountDeveloperDiskImageWithError:(id *)arg1;
+- (id)developerDiskImageForDeviceType:(id)arg1 productVersion:(id)arg2 buildVersion:(id)arg3;
 - (_Bool)mountDeveloperDiskImage:(id)arg1 withError:(id *)arg2;
 - (id)exactSymbolsDirectory:(id *)arg1;
 - (id)idealExistingSymbolsDirectory:(id *)arg1;

@@ -11,7 +11,7 @@
 #import "NSCoding.h"
 #import "NSCopying.h"
 
-@class IBCocoaTouchIdiom, NSString;
+@class IBCocoaTouchIdiom, IBUISimulatedMetricsModifier, NSString, NSValue;
 
 @interface IBUISimulatedSizeMetrics : NSObject <IBDocumentArchiving, NSCoding, NSCopying, IBUISimulatedMetrics>
 {
@@ -24,13 +24,18 @@
 + (id)sharedInstance;
 + (id)instantiateWithCoder:(id)arg1;
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
+@property(readonly, nonatomic) NSValue *documentViewInset;
+- (id)effectiveSimulatedCanvasFrameContentViewSizeForOrientation:(int)arg1;
+@property(readonly, nonatomic) IBUISimulatedMetricsModifier *metricsModifier;
+- (id)migratableSimulatedDestinationMetricsOrNil;
+- (id)configurationForScreenMetrics:(id)arg1 orientationMetrics:(id)arg2;
 - (id)fixedSizeMetricsForScreenMetrics:(id)arg1 orientationMetrics:(id)arg2 freeformSize:(struct CGSize)arg3;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToSimulatedSizeMetrics:(id)arg1;
 @property(readonly, nonatomic) IBCocoaTouchIdiom *idiom;
-@property(readonly) NSString *displayName;
+@property(readonly, copy) NSString *displayName;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

@@ -12,8 +12,8 @@
 
 @interface IDEIssueAnnotationProvider : DVTAnnotationProvider <DVTMessageBubbleAnnotationDelegate>
 {
-    IDEAnnotationContext *_context;
     id <DVTCancellable> _fileIssueObservingToken;
+    IDEAnnotationContext *_context;
 }
 
 + (id)annotationProviderForContext:(id)arg1 error:(id *)arg2;

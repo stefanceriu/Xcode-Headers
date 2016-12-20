@@ -30,7 +30,7 @@ __attribute__((visibility("hidden")))
     unsigned int _originalDataCount;
     // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]), name: _worldInitialMatrix
     // Error parsing type: (C3DMatrix4x4="components"[16f]"m"[4]), name: _worldMatrix
-    unsigned int _snapToAlignCount;
+    long long _snapToAlignCount;
     CDStruct_62d14fc2 *_snapToAlignOnX;
     CDStruct_62d14fc2 *_snapToAlignOnY;
     CDStruct_62d14fc2 *_snapToAlignOnZ;
@@ -48,7 +48,7 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) long long yAlignment; // @synthesize yAlignment=_yAlignment;
 @property(nonatomic) long long xAlignment; // @synthesize xAlignment=_xAlignment;
 @property(nonatomic) BOOL readonly; // @synthesize readonly=_readonly;
--     // Error parsing type: 116@0:816{SCNVector3=ddd}32d56B646884^B100^i108, name: _snapPositionToAlign:original:unit:axisMove:rayStart:rayDir:didSnap:snapIndexes:
+-     // Error parsing type: 116@0:816{SCNVector3=ddd}32d56B646884^B100^q108, name: _snapPositionToAlign:original:unit:axisMove:rayStart:rayDir:didSnap:snapIndexes:
 - (void)prepareSnapToAlignDataIfNeeded;
 - (void)prepareSnapToAlignData;
 - (void)_prepareSnapToAlignData:(unsigned short)arg1 minOffset:maxOffset: /* Error: Ran out of types for this method. */;

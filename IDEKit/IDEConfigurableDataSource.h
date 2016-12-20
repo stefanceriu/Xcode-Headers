@@ -149,7 +149,6 @@
 - (void)reloadDataAndDisplayedNodes;
 - (id)displayedRoots;
 - (void)voidDisplayedRoots;
-- (void)dealloc;
 - (void)primitiveInvalidate;
 - (BOOL)isCleared;
 - (void)clear;

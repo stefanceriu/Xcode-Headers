@@ -11,8 +11,12 @@ __attribute__((visibility("hidden")))
 {
 }
 
++ (void)setGlobalMetalDevice:(id)arg1;
++ (id)globalMetalDevice;
 + (void)setGlobalGLSharedContext:(id)arg1;
 + (id)globalGLSharedContext;
++ (BOOL)getPrefersOpenGL;
++ (void)setPrefersOpenGL:(BOOL)arg1;
 
 @end
 

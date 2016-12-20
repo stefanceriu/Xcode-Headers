@@ -6,18 +6,22 @@
 
 #import "DVTDevice.h"
 
+@class NSString;
+
 @interface DVTDevice (IDEFoundationAdditions)
+@property(readonly) BOOL shouldWriteTestConfigurationToTestBundleResourceDir;
 - (Class)testingUIRecorderClass;
 @property(readonly) BOOL runningSupportedBuildForUITesting;
 @property(readonly) BOOL supportsUIRecording;
 @property(readonly) BOOL supportsUITesting;
-- (id)testingFrameworkPathForRunDestination:(id)arg1 usesXCTest:(BOOL)arg2 usesGC:(BOOL)arg3;
+@property(readonly) NSString *mockObjectsFrameworkDirForRunDestination;
+@property(readonly) NSString *testingFrameworkPathForRunDestination;
 - (id)deviceForRunningUnitTestsWithHost:(id)arg1 error:(id *)arg2;
-- (void)modifyTestingEnvironmentVariables:(id)arg1 host:(id)arg2 testBundlePath:(id)arg3;
 - (id)testArchitectureForBuildableProduct:(id)arg1 withBuildParameters:(id)arg2;
 - (id)testHostPathForBuildableProduct:(id)arg1 buildParameters:(id)arg2 outError:(id *)arg3;
 - (id)analysisOperationWithAnalysisToolService:(id)arg1 location:(id)arg2 workingDirectory:(id)arg3 workspaceFilePath:(id)arg4 projectFilePath:(id)arg5 outError:(id *)arg6;
-- (void)createInstallWithName:(id)arg1 path:(id)arg2 buildables:(id)arg3 buildParameters:(id)arg4 killProcesses:(id)arg5 workspace:(id)arg6;
+- (void)createInstallWithName:(id)arg1 path:(id)arg2 buildables:(id)arg3 buildParameters:(id)arg4 includeDebugSupportFiles:(BOOL)arg5 killProcesses:(id)arg6 workspace:(id)arg7;
+- (BOOL)performInstallWithName:(id)arg1 path:(id)arg2 buildables:(id)arg3 buildParameters:(id)arg4 includeDebugSupportFiles:(BOOL)arg5 killProcesses:(id)arg6 workspace:(id)arg7 outError:(id *)arg8;
 - (BOOL)canInstallBuildablesError:(id *)arg1;
 - (id)scriptingEnvironment;
 - (id)closestRelativeOfTargetArchitecture:(id)arg1 forBuildArchitectures:(id)arg2;

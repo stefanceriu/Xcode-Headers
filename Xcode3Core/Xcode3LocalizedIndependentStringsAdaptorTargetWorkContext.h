@@ -8,23 +8,16 @@
 
 #import "IDELocalizationWorkProvider.h"
 
-@class NSArray, NSString, Xcode3Target;
-
 @interface Xcode3LocalizedIndependentStringsAdaptorTargetWorkContext : IDELocalizationWorkContext <IDELocalizationWorkProvider>
 {
-    Xcode3Target *_target;
-    NSArray *_sourcePaths;
-    NSArray *_tableNames;
-    NSString *_tempPath;
 }
 
-@property(retain) NSString *tempPath; // @synthesize tempPath=_tempPath;
-@property(retain) NSArray *tableNames; // @synthesize tableNames=_tableNames;
-@property(retain) NSArray *sourcePaths; // @synthesize sourcePaths=_sourcePaths;
-@property(retain) Xcode3Target *target; // @synthesize target=_target;
-- (void).cxx_destruct;
++ (id)contextWithParent:(id)arg1 sourcePaths:(id)arg2 target:(id)arg3;
 - (id)work;
-- (void)primitiveInvalidate;
+- (id)tempPathString;
+- (id)tableNames;
+- (id)target;
+- (id)sourcePaths;
 
 @end
 

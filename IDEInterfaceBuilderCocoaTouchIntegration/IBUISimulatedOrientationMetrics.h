@@ -27,7 +27,7 @@
 - (BOOL)isPortrait;
 @property(readonly, copy) NSString *description;
 - (id)debugNameForInterfaceOrientation:(int)arg1;
-@property(readonly) NSString *displayName;
+@property(readonly, copy) NSString *displayName;
 @property(readonly) unsigned long long hash;
 - (void)normalizeUnarchivedOrientationValue:(id)arg1;
 - (void)unarchiveOlderInterfaceOrientationKeyIfNeeded:(id)arg1;

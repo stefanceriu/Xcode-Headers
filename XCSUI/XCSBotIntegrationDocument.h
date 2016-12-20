@@ -6,18 +6,22 @@
 
 #import <XCSUI/XCSBotSupportingDocument.h>
 
-@class XCSIntegration;
+@class DVTObservingToken, XCSIntegration;
 
 @interface XCSBotIntegrationDocument : XCSBotSupportingDocument
 {
-    XCSIntegration *_fetchedIntegration;
+    DVTObservingToken *_maintenanceTasksObserverToken;
+    XCSIntegration *botIntegration;
 }
 
++ (id)keyPathsAffectingDisplayName;
++ (id)keyPathsAffectingBot;
+@property(retain) XCSIntegration *botIntegration; // @synthesize botIntegration;
 - (void).cxx_destruct;
 - (id)displayName;
 - (id)bot;
-- (id)botIntegration;
 - (void)updateBotIntegration:(id)arg1;
+- (void)editorDocumentWillClose;
 - (void)setFileURL:(id)arg1;
 
 @end

@@ -7,5 +7,6 @@
 #import "IKDeviceBrowserView.h"
 
 @interface IKDeviceBrowserView (IBIKDeviceBrowserViewIntegration)
+- (id)ibLocalAttributeKeyPaths;
 @end
 

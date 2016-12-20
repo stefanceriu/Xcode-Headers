@@ -6,20 +6,19 @@
 
 #import "IDEEditorDocument.h"
 
-@class DBGMemoryData, DBGProcess, DVTObservingToken, NSString;
+@class DVTObservingToken, IDEMemoryData, NSString;
 
 @interface DBGMemoryBrowserDocument : IDEEditorDocument
 {
-    DBGMemoryData *_memoryData;
-    DBGProcess *_process;
-    NSString *_customDisplayName;
     DVTObservingToken *_memoryDatasObserver;
     DVTObservingToken *_controlStateObserver;
+    NSString *_customDisplayName;
+    IDEMemoryData *_memoryData;
 }
 
 + (BOOL)shouldUnlockFileURLBeforeMakingChanges;
 + (id)keyPathsForValuesAffectingNavigableItem_name;
-@property(retain) DBGMemoryData *memoryData; // @synthesize memoryData=_memoryData;
+@property(retain) IDEMemoryData *memoryData; // @synthesize memoryData=_memoryData;
 @property(copy) NSString *customDisplayName; // @synthesize customDisplayName=_customDisplayName;
 - (void).cxx_destruct;
 - (id)_memoryDataForURLParts:(id)arg1 inLaunchSession:(id)arg2;

@@ -6,19 +6,22 @@
 
 #import <XCSUI/XCSBotSupportingDocument.h>
 
-@class XCSService;
+@class NSString, XCSService;
 
 @interface XCSBotServiceDocument : XCSBotSupportingDocument
 {
+    NSString *_theRealDisplayName;
     XCSService *_service;
 }
 
++ (id)keyPathsForValuesAffectingDisplayName;
 @property(retain, nonatomic) XCSService *service; // @synthesize service=_service;
 - (void).cxx_destruct;
 - (id)botIntegration;
 - (id)bot;
 - (id)displayName;
 - (void)setFileURL:(id)arg1;
+- (id)initForURL:(id)arg1 withContentsOfURL:(id)arg2 ofType:(id)arg3 error:(id *)arg4;
 
 @end
 

@@ -20,6 +20,8 @@
 - (void)removeAnimationForKey:(NSString *)arg1;
 - (void)removeAllAnimations;
 - (void)addAnimation:(CAAnimation *)arg1 forKey:(NSString *)arg2;
+- (void)setObject:(id)arg1 forKeyedSubscript:(id <NSCopying>)arg2;
+- (id)objectForKeyedSubscript:(id)arg1;
 - (void)handleBindingOfSymbol:(NSString *)arg1 usingBlock:(void (^)(unsigned int, unsigned int, SCNNode *, SCNRenderer *))arg2;
 @end
 

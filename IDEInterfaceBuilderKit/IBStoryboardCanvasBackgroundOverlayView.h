@@ -4,32 +4,39 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "DVTLayoutView_ML.h"
+#import <IDEInterfaceBuilderKit/IBCanvasOverlay.h>
 
 #import "IBStoryboardCanvasLinkPathDelegate.h"
 
-@class DVTMutableOrderedSet, NSString;
+@class DVTMutableOrderedSet, IBMutableIdentityDictionary, NSString;
 
-@interface IBStoryboardCanvasBackgroundOverlayView : DVTLayoutView_ML <IBStoryboardCanvasLinkPathDelegate>
+@interface IBStoryboardCanvasBackgroundOverlayView : IBCanvasOverlay <IBStoryboardCanvasLinkPathDelegate>
 {
     CDUnknownBlockType _canvasLinkPathProducer;
     id <IBStoryboardCanvasBackgroundOverlayViewDelegate> _delegate;
     DVTMutableOrderedSet *_canvasLinkPaths;
+    IBMutableIdentityDictionary *_seguesToArrowLayers;
+    IBMutableIdentityDictionary *_seguesToBadgeLayers;
 }
 
+@property(copy, nonatomic) IBMutableIdentityDictionary *seguesToBadgeLayers; // @synthesize seguesToBadgeLayers=_seguesToBadgeLayers;
+@property(copy, nonatomic) IBMutableIdentityDictionary *seguesToArrowLayers; // @synthesize seguesToArrowLayers=_seguesToArrowLayers;
 @property(copy, nonatomic) DVTMutableOrderedSet *canvasLinkPaths; // @synthesize canvasLinkPaths=_canvasLinkPaths;
 @property __weak id <IBStoryboardCanvasBackgroundOverlayViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(copy) CDUnknownBlockType canvasLinkPathProducer; // @synthesize canvasLinkPathProducer=_canvasLinkPathProducer;
 - (void).cxx_destruct;
-- (void)drawRect:(struct CGRect)arg1;
-- (void)layoutTopDown;
+- (void)updateLayer;
+- (void)layoutBottomUp;
 - (struct CGRect)frameForCanvasLinkPath:(id)arg1;
 - (id)canvasLinkPathsIntersectedByRect:(struct CGRect)arg1;
+- (void)smartMagnifyWithEvent:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (id)hitTest:(struct CGPoint)arg1;
 - (id)canvasLinkPathAtPoint:(struct CGPoint)arg1;
 - (void)storyboardCanvasLinkPathNeedsDisplay:(id)arg1;
 - (void)invalidateData;
+- (BOOL)scalesWithCanvasFrameChrome;
+- (BOOL)wantsUpdateLayer;
 - (id)initWithFrame:(struct CGRect)arg1 delegate:(id)arg2 canvasLinkPathProducer:(CDUnknownBlockType)arg3;
 
 // Remaining properties

@@ -38,6 +38,7 @@
 - (id)ibPasteboardTypes;
 - (id)ibTypeNameForDefaultLabel;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
+- (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -8,18 +8,18 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, IBICCatalogDocument, NSString;
+@class DVTStackBacktrace, IBICAbstractCatalogDocument, NSString;
 
 @interface IBICPasteboardManager : NSObject <DVTInvalidation>
 {
     NSString *_localPasteboarParentIDType;
     NSString *_localPasteboarItemIDType;
-    IBICCatalogDocument *_document;
+    IBICAbstractCatalogDocument *_document;
 }
 
 + (id)pasteboardTypesForAcceptingCatalogItems;
 + (void)initialize;
-@property(readonly) IBICCatalogDocument *document; // @synthesize document=_document;
+@property(readonly) IBICAbstractCatalogDocument *document; // @synthesize document=_document;
 - (void).cxx_destruct;
 - (id)localDragMovedItems:(id)arg1;
 - (id)parentsOfDocumentLocalDragMovedItems:(id)arg1;
@@ -29,12 +29,12 @@
 - (BOOL)canDragItems:(id)arg1;
 - (void)addItems:(id)arg1 toPasteboard:(id)arg2;
 - (id)pasteboardTypesForItems:(id)arg1;
-- (id)decodeCatalogContentFromPasteboard:(id)arg1;
-- (id)cobbleTogetherCatalogItemsFromContentAtPath:(id)arg1;
-- (void)populateItems:(id)arg1 withContentFromPaths:(id)arg2;
+- (id)decodeCatalogContentFromPasteboard:(id)arg1 proposedDropTarget:(id)arg2;
+- (id)cobbleTogetherCatalogItemsFromContentAtPath:(id)arg1 proposedDropTarget:(id)arg2;
+- (void)populateItems:(id)arg1 withContentFromPaths:(id)arg2 proposedDropTarget:(id)arg3;
 - (id)decodeCatalogItemsFromPasteboard:(id)arg1;
-- (void)scanForNativeCatalogItemSourcesInPath:(id)arg1 populatingReadItems:(id)arg2 andCollectingLoosePaths:(id)arg3;
-- (void)populateItems:(id)arg1 fromLooseFilesAtPaths:(id)arg2;
+- (void)scanForNativeCatalogItemSourcesInPath:(id)arg1 populatingReadItems:(id)arg2 andCollectingLoosePaths:(id)arg3 proposedDropTarget:(id)arg4;
+- (void)populateItems:(id)arg1 fromLooseFilesAtPaths:(id)arg2 proposedDropTarget:(id)arg3;
 - (id)pathsFromPasteboard:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithDocument:(id)arg1;

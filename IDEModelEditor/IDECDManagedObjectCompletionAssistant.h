@@ -12,19 +12,14 @@
 
 @interface IDECDManagedObjectCompletionAssistant : Xcode3FileTemplateCompletionAssistant <NSOpenSavePanelDelegate>
 {
-    BOOL _usePrimitiveDataTypes;
     BOOL _deleteFilesForReplacement;
-    long long _selectedLanguageTag;
 }
 
-+ (id)keyPathsForValuesAffectingAllowPrimitiveDataTypes;
 @property BOOL deleteFilesForReplacement; // @synthesize deleteFilesForReplacement=_deleteFilesForReplacement;
-@property(nonatomic) long long selectedLanguageTag; // @synthesize selectedLanguageTag=_selectedLanguageTag;
-@property BOOL usePrimitiveDataTypes; // @synthesize usePrimitiveDataTypes=_usePrimitiveDataTypes;
 - (BOOL)panel:(id)arg1 validateURL:(id)arg2 error:(id *)arg3;
 - (id)configuredSavePanel;
 - (id)configuredOpenPanel;
-@property(readonly) BOOL allowPrimitiveDataTypes;
+- (void)configureDataSourceFileTypes;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

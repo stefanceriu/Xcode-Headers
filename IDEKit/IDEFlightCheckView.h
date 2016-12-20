@@ -8,24 +8,32 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTDelayedInvocation, DVTStackBacktrace, NSColor, NSError, NSImageView, NSString, NSTextView;
+@class DVTDelayedInvocation, DVTStackBacktrace, NSColor, NSError, NSImageView, NSProgressIndicator, NSString, NSTextView;
 
 @interface IDEFlightCheckView : DVTLayoutView_ML <DVTInvalidation>
 {
     DVTDelayedInvocation *_stateUpdatingDelayedInvocation;
+    BOOL _blockHidingProgressView;
+    BOOL _wantsToHideProgressView;
     int _state;
     int _style;
     id <IDEFlightChecking> _flightCheck;
     NSError *_errorForTooltip;
     NSTextView *_textView;
     NSImageView *_imageView;
+    NSProgressIndicator *_progressView;
     NSColor *_textColor;
+    DVTDelayedInvocation *_delayedHideProgressView;
 }
 
 + (void)initialize;
+@property(nonatomic) BOOL wantsToHideProgressView; // @synthesize wantsToHideProgressView=_wantsToHideProgressView;
+@property(nonatomic) BOOL blockHidingProgressView; // @synthesize blockHidingProgressView=_blockHidingProgressView;
+@property(retain, nonatomic) DVTDelayedInvocation *delayedHideProgressView; // @synthesize delayedHideProgressView=_delayedHideProgressView;
 @property int style; // @synthesize style=_style;
 @property(retain, nonatomic) NSColor *textColor; // @synthesize textColor=_textColor;
 @property(nonatomic) int state; // @synthesize state=_state;
+@property(retain, nonatomic) NSProgressIndicator *progressView; // @synthesize progressView=_progressView;
 @property(retain, nonatomic) NSImageView *imageView; // @synthesize imageView=_imageView;
 @property(retain, nonatomic) NSTextView *textView; // @synthesize textView=_textView;
 @property(retain, nonatomic) NSError *errorForTooltip; // @synthesize errorForTooltip=_errorForTooltip;
@@ -33,8 +41,9 @@
 - (void).cxx_destruct;
 - (void)layoutBottomUp;
 - (void)layoutTopDown;
+- (void)hideProgress;
+- (void)showProgress;
 - (id)errorImage;
-- (id)unfinishedImage;
 - (id)finishedImage;
 - (id)title;
 - (void)setTitle:(id)arg1;

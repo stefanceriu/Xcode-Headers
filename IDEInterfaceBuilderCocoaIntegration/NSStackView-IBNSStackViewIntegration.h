@@ -22,7 +22,6 @@
 + (id)keyPathsForValuesAffectingIbDesignableContentView;
 + (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
 + (id)keyPathsForValuesAffectingIbShadowedSubviews;
-+ (BOOL)ibIsAutoLayoutSelfManagedContainer;
 + (id)keyPathsForValuesAffectingIbInspectedStackingDistribution;
 + (id)keyPathsForValuesAffectingIbShadowedStackingDistribution;
 + (id)keyPathsForValuesAffectingIbIsUsingGravityAreas;
@@ -70,7 +69,7 @@
 - (id)ibSubgroupIdentifiers;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
-- (void)ibPopulateRequiredDocumentCapabilities:(id)arg1;
+- (void)ibPopulateRequiredDocumentCapabilities:(id)arg1 document:(id)arg2;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (struct CGRect)ibDropInsetLayoutBoundsForSubviews;
 - (Class)ibEditorClass;
@@ -78,10 +77,8 @@
 - (void)drawRect:(struct CGRect)arg1;
 - (struct CGRect)frameForGravityArea:(long long)arg1 betweenGravityPadding:(double)arg2;
 - (BOOL)ibShouldEnsureChildViewHasTranslatesAutoresizingMaskIntoConstraintsInCanvas:(id)arg1;
-- (BOOL)ibPropogatedTranslatesAutoresizingConstraintsOfChildView:(id)arg1 forCopyOfChildView:(id)arg2;
 - (void)ibMapCopyOfReceiver:(id)arg1 intoLayoutEngine:(id)arg2;
 - (BOOL)ibShouldArchiveAutolayoutPropertiesWithNSViewProperties;
-- (id)constraintsAffectingLayoutForOrientation:(unsigned long long)arg1;
 - (BOOL)ibCanUnembedChildrenInDocument:(id)arg1;
 - (BOOL)ibIsUserSizable;
 - (BOOL)ibIsChildViewUserSizable:(id)arg1;
@@ -94,7 +91,7 @@
 - (id)ibShadowedSubviews;
 - (id)ibArrangedSubviews;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
-- (BOOL)ibIsAutoLayoutSelfManagedContainerCurrentlyActive;
+- (long long)ibManagedContainerBehavior;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (id)ibArchivedSubviewsWithConfigurationPropertyStorage:(id)arg1;
 @property BOOL ibExternalDetachesHiddenViews;
@@ -108,6 +105,8 @@
 - (long long)ibShadowedStackingDistribution;
 - (BOOL)ibIsUsingGravityAreas;
 - (void)ibDidAddToDocument:(id)arg1 phase:(unsigned long long)arg2;
+- (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
 
 // Remaining properties
 @property(nonatomic) long long orientation;

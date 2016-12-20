@@ -15,23 +15,27 @@
     NSMapTable *__contextToSourceMonitorMap;
     NSMapTable *__monitorToCompilerOperationMap;
     NSMapTable *__monitorToModificationObservingTokenMap;
+    NSMapTable *__pageContextToCurrentCompilerFutureMap;
     NSOperationQueue *__compilerOperationQueue;
 }
 
 + (void)initialize;
 + (id)sharedManager;
 @property(retain) NSOperationQueue *_compilerOperationQueue; // @synthesize _compilerOperationQueue=__compilerOperationQueue;
+@property(retain) NSMapTable *_pageContextToCurrentCompilerFutureMap; // @synthesize _pageContextToCurrentCompilerFutureMap=__pageContextToCurrentCompilerFutureMap;
 @property(retain) NSMapTable *_monitorToModificationObservingTokenMap; // @synthesize _monitorToModificationObservingTokenMap=__monitorToModificationObservingTokenMap;
 @property(retain) NSMapTable *_monitorToCompilerOperationMap; // @synthesize _monitorToCompilerOperationMap=__monitorToCompilerOperationMap;
 @property(retain) NSMapTable *_contextToSourceMonitorMap; // @synthesize _contextToSourceMonitorMap=__contextToSourceMonitorMap;
 - (void).cxx_destruct;
+- (id)frameworkLocationsForCompilerOperations:(id)arg1;
+- (void)compileAuxiliarySourcesForPageContext:(id)arg1;
 - (id)_createCompilerOperationForMonitor:(id)arg1 dependency:(id)arg2;
 - (id)_createMonitorForPlaygroundContext:(id)arg1 dependency:(id)arg2;
 - (id)_findOrCreateMonitorsForPlaygroundPageContext:(id)arg1;
 - (id)_updatedCompilerOperationForPlaygroundMonitor:(id)arg1 dependency:(id)arg2;
-- (id)frameworksForPlaygroundPage:(id)arg1;
 - (id)buildSettingsForSourceFile:(id)arg1;
 - (void)_unregisterMonitor:(id)arg1;
+- (id)frameworkLocationsForPageContext:(id)arg1;
 - (void)unregisterPlaygroundPageContext:(id)arg1;
 - (void)registerPlaygroundPageContext:(id)arg1;
 - (void)primitiveInvalidate;

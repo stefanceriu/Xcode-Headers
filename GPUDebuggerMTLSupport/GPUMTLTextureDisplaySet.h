@@ -23,11 +23,12 @@ __attribute__((visibility("hidden")))
 @property(readonly) NSMutableDictionary *baseLevels; // @synthesize baseLevels=_baseLevels;
 @property(readonly) NSMutableDictionary *colorResourceObjects; // @synthesize colorResourceObjects=_colorResourceObjects;
 - (void).cxx_destruct;
-@property(readonly, nonatomic) NSArray *elementIDs; // @dynamic elementIDs;
-@property(readonly, nonatomic) unsigned int numElements; // @dynamic numElements;
+@property(readonly, nonatomic) NSArray *elementIDs;
+@property(readonly, nonatomic) unsigned int numElements;
 - (void)addTexture:(unsigned long long)arg1 slice:(unsigned long long)arg2 level:(unsigned long long)arg3;
 - (void)addTexture:(unsigned long long)arg1;
 - (id)init;
+- (id)initWithTextureIDs:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

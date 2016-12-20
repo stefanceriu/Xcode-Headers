@@ -10,14 +10,16 @@
 #import "DVTSourceControlIdentifiable.h"
 #import "NSSecureCoding.h"
 
-@class DVTSourceControlBranchAndTagLocations, DVTSourceControlRemoteRepository, DVTSourceControlRepository, DVTSourceControlRevision, DVTSourceControlRevisionLocation, NSMapTable, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString, NSURL;
+@class DVTSourceControlBranchAndTagLocations, DVTSourceControlRemoteRepository, DVTSourceControlRepository, DVTSourceControlRevision, DVTSourceControlRevisionLocation, NSDate, NSMapTable, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString, NSURL;
 
 @interface DVTSourceControlWorkingCopy : NSObject <DVTSourceControlIdentifiable, NSSecureCoding, DVTSourceControlDisplayable>
 {
     NSMutableSet *_cachedRemoteRepositories;
+    NSDate *_cachedStatusUpdateDate;
     NSMapTable *_cachedLocalStatus;
     NSMapTable *_cachedRemoteStatus;
     NSObject<OS_dispatch_queue> *_cachedStatusChangeQueue;
+    NSObject<OS_dispatch_queue> *_pathsStatusChangeQueue;
     BOOL _needsUpgrade;
     NSString *__id;
     NSURL *_fileURL;
@@ -42,25 +44,27 @@
 @property(retain) NSURL *fileURL; // @synthesize fileURL=_fileURL;
 @property(copy) NSString *_id; // @synthesize _id=__id;
 - (void).cxx_destruct;
+- (id)parentBranchesOfBranch:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)upgradeWithProgressBlock:(CDUnknownBlockType)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)baseRevisionWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)switchLocation:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)currentLocationWithCompletionBlock:(CDUnknownBlockType)arg1;
-- (id)historyFromRevision:(id)arg1 toRevision:(id)arg2 inclusionType:(unsigned long long)arg3 maximumLogItems:(long long)arg4 searchString:(id)arg5 searchType:(unsigned long long)arg6 incrementalLogBlock:(CDUnknownBlockType)arg7 completionBlock:(CDUnknownBlockType)arg8;
+- (id)historyFromRevision:(id)arg1 toRevision:(id)arg2 inclusionType:(unsigned long long)arg3 maximumLogItems:(long long)arg4 searchString:(id)arg5 searchType:(unsigned long long)arg6 includeFilePaths:(BOOL)arg7 showMergeCommits:(BOOL)arg8 incrementalLogBlock:(CDUnknownBlockType)arg9 completionBlock:(CDUnknownBlockType)arg10;
 - (id)updateWorkingCopyFromRepository:(id)arg1 location:(id)arg2 pathsToUpdate:(id)arg3 progressBlock:(CDUnknownBlockType)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (id)fastUpdateWorkingCopyFromRepository:(id)arg1 location:(id)arg2 progressBlock:(CDUnknownBlockType)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)forceUpdateWorkingCopyFromRepository:(id)arg1 progressBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)mergeBranch:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (id)historyOfFile:(id)arg1 revision:(id)arg2 toRevision:(id)arg3 inclusionType:(unsigned long long)arg4 maximumLogItems:(long long)arg5 incrementalLogBlock:(CDUnknownBlockType)arg6 completionBlock:(CDUnknownBlockType)arg7;
-- (id)historyOfFile:(id)arg1 fromRevision:(id)arg2 location:(id)arg3 toRevision:(id)arg4 inclusionType:(unsigned long long)arg5 maximumLogItems:(long long)arg6 incrementalLogBlock:(CDUnknownBlockType)arg7 completionBlock:(CDUnknownBlockType)arg8;
-- (id)historyOfFile:(id)arg1 fromRevisionLocation:(id)arg2 toRevision:(id)arg3 inclusionType:(unsigned long long)arg4 maximumLogItems:(long long)arg5 incrementalLogBlock:(CDUnknownBlockType)arg6 completionBlock:(CDUnknownBlockType)arg7;
-- (id)blameFile:(id)arg1 revision:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (id)blameFile:(id)arg1 revision:(id)arg2 fromLocation:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
-- (id)blameFile:(id)arg1 fromRevisionLocation:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (id)exportFile:(id)arg1 revision:(id)arg2 toDirectory:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
-- (id)exportFile:(id)arg1 revision:(id)arg2 fromLocation:(id)arg3 toDirectory:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
-- (id)exportFile:(id)arg1 fromRevisionLocation:(id)arg2 toDirectory:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
-- (id)exportFile:(id)arg1 forParentOfRevision:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)commitDetails:(id)arg1 incrementalLogBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)historyOfFileWithNameStatus:(id)arg1 fromRevisionLocation:(id)arg2 showMergeCommits:(BOOL)arg3 follow:(BOOL)arg4 maxLogItems:(long long)arg5 completionBlock:(CDUnknownBlockType)arg6;
+- (id)historyOfFile:(id)arg1 showMergeCommits:(BOOL)arg2 incrementalLogBlock:(CDUnknownBlockType)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (id)blameFile:(id)arg1 revision:(id)arg2 ignoreWhitespace:(BOOL)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (id)blameFile:(id)arg1 revision:(id)arg2 fromLocation:(id)arg3 ignoreWhitespace:(BOOL)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (id)commitDetailsWithParents:(id)arg1 path:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)blameFile:(id)arg1 fromRevisionLocation:(id)arg2 ignoreWhitespace:(BOOL)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (id)exportFile:(id)arg1 fromRevision:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)exportFile:(id)arg1 fromRevision:(id)arg2 location:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (id)exportFile:(id)arg1 fromRevisionLocation:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)exportFileWithParent:(id)arg1 revision:(id)arg2 status:(unsigned long long)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)commitFiles:(id)arg1 message:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)markAsResolvedFiles:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)discardAllChangesWithCompletionBlock:(CDUnknownBlockType)arg1;
@@ -75,6 +79,7 @@
 @property(readonly) NSSet *cachedPathsWithStatus;
 - (unsigned long long)cachedSourceControlRemoteStatusForFile:(id)arg1;
 - (unsigned long long)cachedSourceControlLocalStatusForFile:(id)arg1;
+@property(readonly) NSDate *cachedStatusLastUpdatedDate;
 - (id)filesAndStatusWithRemoteStatus:(BOOL)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)updateRepositoryIdentifierWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (BOOL)isEqual:(id)arg1;

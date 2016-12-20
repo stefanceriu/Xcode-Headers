@@ -18,6 +18,7 @@
 @property(retain) NSControl *cellHostingControl; // @synthesize cellHostingControl=_cellHostingControl;
 @property(retain, nonatomic) NSCell *hostedCell; // @synthesize hostedCell=_hostedCell;
 - (void).cxx_destruct;
+- (BOOL)allowsVibrancy;
 - (void)_ideDebugCellHostingTableCellViewCommonInit;
 - (id)initWithFrame:(struct CGRect)arg1;
 - (id)initWithCoder:(id)arg1;

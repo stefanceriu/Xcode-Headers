@@ -8,7 +8,7 @@
 
 #import "IBICSchemaProvider.h"
 
-@class IBICFileType, IBICIdiom, IBICPlatform, IBICScale, IBICSize, NSString;
+@class IBICColorSpace, IBICFileType, IBICIdiom, IBICLanguageDirection, IBICPlatform, IBICScale, IBICSize, NSString;
 
 @interface IBICCocoaSchemaAdditions : NSObject <IBICSchemaProvider>
 {
@@ -16,6 +16,7 @@
     IBICPlatform *_OSXPlatform;
     IBICIdiom *_universalIdiom;
     IBICIdiom *_macIdiom;
+    IBICScale *_anyScale;
     IBICScale *_oneXScale;
     IBICScale *_twoXScale;
     IBICSize *_size16;
@@ -23,19 +24,28 @@
     IBICSize *_size128;
     IBICSize *_size256;
     IBICSize *_size512;
+    IBICColorSpace *_anyColorSpace;
+    IBICColorSpace *_sRGBColorSpace;
+    IBICColorSpace *_P3ColorSpace;
+    IBICLanguageDirection *_anyLanguageDirection;
+    IBICLanguageDirection *_leftToRightLanguageDirection;
+    IBICLanguageDirection *_rightToLeftLanguageDirection;
     IBICFileType *_pngFileType;
     IBICFileType *_jpegFileType;
-    IBICFileType *_pdfFileType;
 }
 
 - (void).cxx_destruct;
+- (void)registerTextureSetSlots:(id)arg1;
 - (void)registerDataSetSlots:(id)arg1;
 - (void)registerAppIconSetSlots:(id)arg1;
+- (id)macAppIconDetailAreaGroupPathForSize:(id)arg1;
 - (void)registerIconSetSlots:(id)arg1;
 - (void)registerImageSetSlots:(id)arg1;
-- (void)registerSlotComponents:(id)arg1;
-- (void)captureExistingComponents:(id)arg1;
 - (void)registerSchemaComponents:(id)arg1;
+- (void)captureExistingSlotComponents:(id)arg1;
+- (void)registerSlotComponents:(id)arg1;
+- (id)platformID;
+- (void)registerClasses:(id)arg1;
 - (double)precedence;
 
 // Remaining properties

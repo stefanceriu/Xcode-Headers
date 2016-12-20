@@ -4,40 +4,62 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "DVTViewController.h"
+#import "IDEViewController.h"
 
+#import "DVTReplacementViewDelegate.h"
 #import "DVTSplitViewDelegate.h"
 #import "XCSBotSupportingEditorHostedViewController.h"
 
-@class DVTBorderedView, DVTLozengeTextField, DVTReplacementView, DVTSplitView, NSArray, NSString, XCSBot, XCSBotSupportingEditor, XCSIntegration;
+@class DVTBorderedView, DVTLozengeTextField, DVTObservingToken, DVTSplitView, IDETestReportTestRunFetcher, NSArray, NSError, NSString, XCSBot, XCSBotSupportingEditor, XCSIntegration, XCSUIProgressReplacementView;
 
-@interface XCSUIIntegrationTestsViewController : DVTViewController <DVTSplitViewDelegate, XCSBotSupportingEditorHostedViewController>
+@interface XCSUIIntegrationTestsViewController : IDEViewController <DVTSplitViewDelegate, DVTReplacementViewDelegate, XCSBotSupportingEditorHostedViewController>
 {
+    BOOL _inSetIntegration;
+    IDETestReportTestRunFetcher *_testRunFetcher;
     XCSBotSupportingEditor *_botSupportingEditor;
     NSArray *_currentSelectedItems;
     NSArray *_currentSelectedDocumentLocations;
     XCSIntegration *_integration;
     XCSBot *_bot;
-    DVTReplacementView *_detailReplacementView;
+    NSError *_error;
+    XCSUIProgressReplacementView *_detailReplacementView;
     DVTBorderedView *_borderedView;
     DVTSplitView *_splitView;
     DVTLozengeTextField *_errorTextField;
+    DVTObservingToken *_expandedTestItemsObservationToken;
+    DVTObservingToken *_expandedTestActivitiesObservationToken;
+    NSArray *_currentlyExpandedTestItemIdentifiers;
+    NSArray *_currentlyExpandedTestActivityIdentifiers;
 }
 
 + (BOOL)instancesCanContainDocumentLocation:(id)arg1;
 + (id)keyPathsForValuesAffectingCurrentSelectedItems;
+@property(retain, nonatomic) NSArray *currentlyExpandedTestActivityIdentifiers; // @synthesize currentlyExpandedTestActivityIdentifiers=_currentlyExpandedTestActivityIdentifiers;
+@property(retain, nonatomic) NSArray *currentlyExpandedTestItemIdentifiers; // @synthesize currentlyExpandedTestItemIdentifiers=_currentlyExpandedTestItemIdentifiers;
+@property(retain) DVTObservingToken *expandedTestActivitiesObservationToken; // @synthesize expandedTestActivitiesObservationToken=_expandedTestActivitiesObservationToken;
+@property(retain) DVTObservingToken *expandedTestItemsObservationToken; // @synthesize expandedTestItemsObservationToken=_expandedTestItemsObservationToken;
 @property __weak DVTLozengeTextField *errorTextField; // @synthesize errorTextField=_errorTextField;
 @property __weak DVTSplitView *splitView; // @synthesize splitView=_splitView;
 @property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
-@property __weak DVTReplacementView *detailReplacementView; // @synthesize detailReplacementView=_detailReplacementView;
+@property __weak XCSUIProgressReplacementView *detailReplacementView; // @synthesize detailReplacementView=_detailReplacementView;
+@property(retain, nonatomic) NSError *error; // @synthesize error=_error;
 @property(retain, nonatomic) XCSBot *bot; // @synthesize bot=_bot;
 @property(retain, nonatomic) XCSIntegration *integration; // @synthesize integration=_integration;
 @property(readonly, copy) NSArray *currentSelectedItems; // @synthesize currentSelectedItems=_currentSelectedItems;
 @property(retain, nonatomic) XCSBotSupportingEditor *botSupportingEditor; // @synthesize botSupportingEditor=_botSupportingEditor;
 - (void).cxx_destruct;
+- (void)_restoreExpandedItems;
+- (void)_saveExpandedItems;
+- (id)expandedTestActivityDefaultsDictionary;
+- (id)expandedTestItemsDefaultsDictionary;
+- (id)expandedTestActivityUserDefaultsKey;
+- (id)expandedTestItemsUserDefaultsKey;
+- (id)_defaultsKeyDateFormatter;
 - (void)selectDocumentLocations:(id)arg1;
 @property(readonly, copy) NSArray *currentSelectedDocumentLocations; // @synthesize currentSelectedDocumentLocations=_currentSelectedDocumentLocations;
-- (id)installedDetailsViewController;
+- (id)testReportViewController;
+- (void)_configureTestReport;
+- (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
 - (void)primitiveInvalidate;
 - (void)loadView;
 

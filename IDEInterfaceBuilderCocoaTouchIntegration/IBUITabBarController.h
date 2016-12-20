@@ -70,6 +70,8 @@
 - (void)ibRemoveChildren:(id)arg1;
 - (BOOL)ibIsChildViewUserSizable:(id)arg1;
 - (BOOL)ibIsChildViewUserMovable:(id)arg1;
+- (id)ibLocalChildToManyRelationshipsKeyPaths;
+- (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

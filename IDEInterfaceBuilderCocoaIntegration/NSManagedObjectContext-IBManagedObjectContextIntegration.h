@@ -10,5 +10,6 @@
 - (id)ibDefaultFiniteStalenessInterval;
 - (void)setIbInspectedStalenessInterval:(id)arg1;
 - (id)ibInspectedStalenessInterval;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

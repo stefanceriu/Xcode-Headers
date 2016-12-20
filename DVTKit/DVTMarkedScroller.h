@@ -6,13 +6,16 @@
 
 #import "NSScroller.h"
 
-@class CALayer, DVTObservingToken, _DVTMarkerList;
+#import "CALayerDelegate.h"
 
-@interface DVTMarkedScroller : NSScroller
+@class CALayer, DVTObservingToken, NSString, _DVTMarkerList;
+
+@interface DVTMarkedScroller : NSScroller <CALayerDelegate>
 {
     _DVTMarkerList *_errorMarks;
     _DVTMarkerList *_warningMarks;
     _DVTMarkerList *_analyzerMarks;
+    _DVTMarkerList *_runtimeIssueMarks;
     _DVTMarkerList *_breakpointMarks;
     _DVTMarkerList *_diffMarks;
     _DVTMarkerList *_diffConflictMarks;
@@ -46,6 +49,12 @@
 - (void)setLayer:(id)arg1;
 - (void)_invalidateMarksLayer;
 - (void)dealloc;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

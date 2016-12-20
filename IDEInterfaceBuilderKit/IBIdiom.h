@@ -8,12 +8,14 @@
 
 #import "IBScopedSingleton.h"
 
-@class IBInspectorSearchDataManager, NSSet, NSString;
+@class IBInspectorSearchDataManager, NSArray, NSMutableDictionary, NSSet, NSString;
 
 @interface IBIdiom : NSObject <IBScopedSingleton>
 {
     IBInspectorSearchDataManager *_searchDataManager;
+    NSArray *_subtypes;
     NSSet *_embeddingPolicyExtensions;
+    NSMutableDictionary *_bezelCacheByIdentifier;
 }
 
 + (id)idiomExplicitlyTargetedByFilePath:(id)arg1;
@@ -22,6 +24,8 @@
 + (id)allInstances;
 + (id)sharedInstance;
 - (void).cxx_destruct;
+- (id)deviceBarAdaptationsSectionTitle;
+- (id)deviceSubtypeWithIdentifier:(id)arg1;
 - (double)effectiveScaleFactorForPlatformToolDescriptionScaleFactor:(double)arg1;
 - (id)systemGuideSetsByIdentifier;
 - (id)guideSetForIdentifier:(id)arg1;
@@ -29,18 +33,21 @@
 - (id)designablesAgentName;
 - (void)populateVariantForResolvingMediaResources:(id)arg1 forDocument:(id)arg2;
 - (id)variantForResolvingMediaResourcesForDocument:(id)arg1;
+- (id)foldingStrategy;
+- (BOOL)allowsEditingWhileCanvasZoomed;
+- (BOOL)allowsZoomingCanvas;
 - (BOOL)allowsEditingConfigurations;
 - (BOOL)usesAutolayoutActionArea;
-- (BOOL)requiresConfigurations;
-- (BOOL)requiresAutolayout;
 - (void)unarchiveIdiomDependentDataForDocument:(id)arg1 withDocumentUnarchiver:(id)arg2;
 - (void)archiveIdiomDependentDataForDocument:(id)arg1 withDocumentArchiver:(id)arg2;
 - (id)archivingDefaultSceneMemberID;
 - (id)embeddingPolicyExtensions;
+- (id)preferredMemberConfigurationsForFlatteningFrameVariation;
 - (id)memberConfigurationVariables;
 - (id)extensionsForExtensionPoint:(id)arg1;
 - (BOOL)matchesExtension:(id)arg1;
 - (BOOL)wantsDefaultMatchesForExtension:(id)arg1;
+- (Class)screenMetricsClass;
 - (Class)storyboardVerifierClass;
 - (Class)xibVerifierClass;
 - (Class)storyboardCompilerClass;
@@ -55,7 +62,6 @@
 - (id)objectPasteboardType;
 - (Class)storyboardAssetProviderClass;
 - (Class)xibAssetProviderClass;
-- (Class)canvasConfigurationChooserControllerClass;
 - (id)designatedIdiomForConfigurations;
 - (id)pluralUserLabelForConfigurations;
 - (id)singularUserLabelForConfigurations;
@@ -67,8 +73,24 @@
 - (id)filePathWithTargetDeviceSuffixForBaseFilePath:(id)arg1;
 - (id)unsupportedSegueClasses;
 - (id)inspectorSearchDataManager;
+- (id)imageForDeviceConfiguration:(id)arg1 sizeHint:(id)arg2 context:(id)arg3;
+- (id)contextForGeneratingDeviceBarIconsForDeviceConfigurations:(id)arg1 withMaximumDimension:(double)arg2;
+- (id)deviceSubtypeForConfiguration:(id)arg1;
+- (id)makeDeviceBezelForSubtype:(id)arg1 style:(long long)arg2;
+- (id)deviceBezelForSubtype:(id)arg1 style:(long long)arg2;
+- (id)bezelCacheIdentifierForSubtype:(id)arg1 style:(long long)arg2;
+- (void)cacheDeviceBezel:(id)arg1 forSubtype:(id)arg2 style:(long long)arg3;
+- (id)cachedDeviceBezelForSubtype:(id)arg1 style:(long long)arg2;
+- (void)populateSubtypes:(id)arg1;
+- (id)subtypes;
+- (id)presentationOrderedSiblingIdioms;
+- (id)defaultSubtype;
+- (id)effectiveIdiomForProvidingDefaultSubtypesInDocument:(id)arg1;
+- (Class)deviceSubtypeClass;
+- (BOOL)supportsBranchingForTraitVariations;
+- (id)branchModeLabelSuffixForConfiguration:(id)arg1;
 - (BOOL)supportsConnectionClass:(Class)arg1;
-- (double)defaultOverviewZoomFactor;
+- (double)defaultEditingZoomFactorForCanvasBackingScaleFactor:(double)arg1;
 - (id)pluginName;
 - (id)icon;
 - (id)targetDeviceFileNameSuffix;

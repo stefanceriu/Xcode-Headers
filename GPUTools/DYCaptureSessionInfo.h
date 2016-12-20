@@ -26,6 +26,7 @@
     NSDictionary *_configurationDictionary;
 }
 
++ (int)platformOfCaptureStore:(id)arg1;
 + (id)symbolicatorSignatureFromCaptureStore:(id)arg1;
 + (unsigned int)graphicsAPIOfCaptureStore:(id)arg1;
 @property(readonly, nonatomic) unsigned int graphicsApi; // @synthesize graphicsApi=_graphicsApi;
@@ -46,17 +47,17 @@
 - (id)labelForQueueID:(unsigned long long)arg1;
 - (int)linkTimeVersionForLibrary:(id)arg1;
 @property(readonly, nonatomic) BOOL lockGraphicsAfterCompletion;
-@property(readonly, nonatomic) BOOL suspendAfterCompletion; // @dynamic suspendAfterCompletion;
-@property(readonly, nonatomic) BOOL harvestStateAtEnd; // @dynamic harvestStateAtEnd;
+@property(readonly, nonatomic) BOOL suspendAfterCompletion;
+@property(readonly, nonatomic) BOOL harvestStateAtEnd;
 @property(readonly, nonatomic) BOOL triggerOnNextGraphicsCommand;
-@property(readonly, nonatomic) unsigned int frameLimit; // @dynamic frameLimit;
-@property(readonly, nonatomic) unsigned int triggerFrame; // @dynamic triggerFrame;
-@property(readonly, retain, nonatomic) NSDictionary *guestAppEnvironment; // @dynamic guestAppEnvironment;
-@property(readonly, retain, nonatomic) NSArray *guestAppArguments; // @dynamic guestAppArguments;
-@property(readonly, retain, nonatomic) NSString *guestAppCurrentDirectory; // @dynamic guestAppCurrentDirectory;
-@property(readonly, retain, nonatomic) NSString *guestAppPath; // @dynamic guestAppPath;
-@property(readonly, retain, nonatomic) NSString *guestAppBundleIdentifier; // @dynamic guestAppBundleIdentifier;
-@property(readonly, retain, nonatomic) NSString *guestAppTitle; // @dynamic guestAppTitle;
+@property(readonly, nonatomic) unsigned int frameLimit;
+@property(readonly, nonatomic) unsigned int triggerFrame;
+@property(readonly, retain, nonatomic) NSDictionary *guestAppEnvironment;
+@property(readonly, retain, nonatomic) NSArray *guestAppArguments;
+@property(readonly, retain, nonatomic) NSString *guestAppCurrentDirectory;
+@property(readonly, retain, nonatomic) NSString *guestAppPath;
+@property(readonly, retain, nonatomic) NSString *guestAppBundleIdentifier;
+@property(readonly, retain, nonatomic) NSString *guestAppTitle;
 - (void)dealloc;
 - (id)initWithCaptureStore:(id)arg1;
 - (id)init;

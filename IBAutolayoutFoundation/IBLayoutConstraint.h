@@ -27,10 +27,10 @@
     IBLayoutConstant *_constant;
     double _priority;
     NSObject<IBAutolayoutItem> *_containingView;
-    long long _contentType;
     long long _scoringClass;
     double _scoringType;
     NSString *_identifier;
+    long long _contentType;
 }
 
 + (id)dvt_keysToSkipWeakReferenceObservingValidation;
@@ -39,15 +39,19 @@
 + (double)minimumPriority;
 + (double)maximumPriority;
 + (id)constraintsWithVisualFormat:(id)arg1 options:(unsigned long long)arg2 metrics:(id)arg3 views:(id)arg4 layoutInfo:(id)arg5;
++ (BOOL)doesItem:(id)arg1 contain:(id)arg2;
++ (BOOL)isAttributeRightTrailingOrBottom:(unsigned long long)arg1;
++ (BOOL)isAttributeLeftLeadingOrTop:(unsigned long long)arg1;
++ (unsigned long long)marginAttributeForAttribute:(unsigned long long)arg1;
 + (id)explicitLayoutConstraintWithItem:(id)arg1 attribute:(unsigned long long)arg2 constant:(id)arg3;
 + (id)explicitLayoutConstraintWithFirstItem:(id)arg1 firstAttribute:(unsigned long long)arg2 relation:(long long)arg3 secondItem:(id)arg4 secondAttribute:(unsigned long long)arg5 constant:(id)arg6;
 + (id)systemRequiredLayoutConstraintWithItem:(id)arg1 attribute:(unsigned long long)arg2 constant:(id)arg3;
 + (id)systemRequiredLayoutConstraintWithFirstItem:(id)arg1 firstAttribute:(unsigned long long)arg2 relation:(long long)arg3 secondItem:(id)arg4 secondAttribute:(unsigned long long)arg5 constant:(id)arg6;
+@property(nonatomic) long long contentType; // @synthesize contentType=_contentType;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(nonatomic, getter=isPlaceholder) BOOL placeholder; // @synthesize placeholder=_placeholder;
 @property(nonatomic) double scoringType; // @synthesize scoringType=_scoringType;
 @property(nonatomic) long long scoringClass; // @synthesize scoringClass=_scoringClass;
-@property(nonatomic) long long contentType; // @synthesize contentType=_contentType;
 @property(nonatomic) NSObject<IBAutolayoutItem> *containingView; // @synthesize containingView=_containingView;
 @property(nonatomic) double priority; // @synthesize priority=_priority;
 @property(retain, nonatomic) IBLayoutConstant *constant; // @synthesize constant=_constant;
@@ -65,10 +69,10 @@
 - (BOOL)satisfyConstantUpdatingIfNeededWithLayoutInfo:(id)arg1 substitutingCurrentConstant:(id)arg2 context:(id)arg3;
 - (unsigned long long)satisfiabilityStateAccordingToFrameworkMetricsWithLayoutDirection:(long long)arg1 substitutingConstant:(id)arg2 returningCurrentCanvasConstant:(double *)arg3 differenceBetweenDeclaredConstantAndCurrentCanvasConstant:(double *)arg4 context:(id)arg5;
 - (double)roundingAdjustmentWithUserInterfaceLayoutDirection:(long long)arg1;
-- (CDStruct_474337f7)geometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2;
+- (CDStruct_00258f55)geometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2;
 - (id)suggestedViewForGeometricDescription;
-- (CDStruct_474337f7)relativeGeometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2;
-- (CDStruct_474337f7)absoluteGeometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2 ofItem:(id)arg3 attribute:(unsigned long long)arg4;
+- (CDStruct_00258f55)relativeGeometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2;
+- (CDStruct_00258f55)absoluteGeometricDescriptionInCoordinateSpaceOfView:(id)arg1 userInterfaceLayoutDirection:(long long)arg2 ofItem:(id)arg3 attribute:(unsigned long long)arg4;
 - (void)enumerateItems:(CDUnknownBlockType)arg1;
 - (unsigned long long)attributeReferencingItem:(id)arg1;
 - (id)itemNotMatchingItem:(id)arg1;

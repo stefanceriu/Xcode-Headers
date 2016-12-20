@@ -25,7 +25,6 @@
 @property(readonly) NSSet *supportedFileExtensions; // @synthesize supportedFileExtensions=_supportedFileExtensions;
 @property(readonly) IBPlatform *platform; // @synthesize platform=_platform;
 - (void).cxx_destruct;
-- (id)workItemsByParserClassForWorkItems:(id)arg1 limitedToParsersRequiringContext:(BOOL)arg2;
 - (id)parserForFileExtension:(id)arg1;
 - (id)initWithPlatform:(id)arg1;
 

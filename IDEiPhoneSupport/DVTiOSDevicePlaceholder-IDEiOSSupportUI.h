@@ -21,12 +21,12 @@
 @property(readonly) NSArray *deviceSummaryPropertyDictionaries;
 @property(readonly) int deviceWindowCategory;
 @property(readonly) unsigned long long hash;
-@property(readonly, copy) NSString *identifier;
+@property(readonly, copy, nonatomic) NSString *identifier;
 @property(readonly) BOOL isProxiedDevice;
 @property(readonly, copy, nonatomic) NSString *modelCode;
 @property(readonly, copy, nonatomic) NSString *modelName;
 @property(readonly, copy, nonatomic) NSString *modelUTI;
-@property(readonly, copy) NSString *name;
+@property(readonly, copy, nonatomic) NSString *name;
 @property(readonly, copy) NSString *nameForDeveloperPortal;
 @property(readonly, copy) NSString *nativeArchitecture;
 @property(readonly, copy) NSString *operatingSystemBuild;

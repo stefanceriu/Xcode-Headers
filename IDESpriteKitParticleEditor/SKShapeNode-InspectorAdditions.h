@@ -6,33 +6,12 @@
 
 #import "SKShapeNode.h"
 
-#import "IDEKeyDrivenNavigableItemRepresentedObject.h"
+@class NSString;
 
-@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString;
-
-@interface SKShapeNode (InspectorAdditions) <IDEKeyDrivenNavigableItemRepresentedObject>
-+ (id)keyPathsForValuesAffectingFillTextureImageName;
-+ (id)keyPathsForValuesAffectingStrokeTextureImageName;
-+ (id)keyPathsForValuesAffectingZRotationDeg;
-@property(retain, nonatomic) NSString *fillTextureImageName;
-@property(retain, nonatomic) NSString *strokeTextureImageName;
-- (id)ide_undoKVOKeypaths;
-- (void)setNilValueForKey:(id)arg1;
-- (id)inspectorAttributes;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
-@property(readonly) DVTFileDataType *navigableItem_documentType;
-@property(readonly) IDEFileReference *navigableItem_fileReference;
-@property(readonly) NSString *navigableItem_groupIdentifier;
-@property(readonly) NSImage *navigableItem_image;
-@property(readonly) BOOL navigableItem_isLeaf;
-@property(readonly) BOOL navigableItem_isMajorGroup;
-@property(readonly) NSString *navigableItem_name; // @dynamic navigableItem_name;
-@property(readonly) NSString *navigableItem_toolTip;
-@property(readonly) Class superclass;
+@interface SKShapeNode (InspectorAdditions)
++ (id)keyPathsForValuesAffectingSk_fillTextureImageName;
+@property(retain, nonatomic) NSString *sk_fillTextureImageName;
+@property(retain, nonatomic) NSString *sk_strokeTextureImageName;
+- (id)keyPathsForValuesAffectingSk_strokeTextureImageName;
 @end
 

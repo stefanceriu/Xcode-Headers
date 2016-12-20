@@ -35,6 +35,7 @@
     NSView *_watchLaunchSettingsView;
     NSPopUpButton *_watchInterfacePopup;
     NSPopUpButton *_notificationPayloadPopup;
+    NSView *_notificationPayloadSettingsView;
     DVTChoice *_infoChoice;
     DVTChoice *_conditionsChoice;
     DVTChoice *_optionsChoice;

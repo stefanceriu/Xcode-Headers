@@ -10,18 +10,16 @@
 #import "DVTReplacementViewDelegate.h"
 #import "DVTTabChooserViewDelegate.h"
 
-@class DVTNotificationToken, DVTReplacementView, DVTStackBacktrace, DVTTabChooserView, NSAttributedString, NSEvent, NSImage, NSString, NSView;
+@class DVTNotificationToken, DVTReplacementView, DVTStackBacktrace, DVTTabChooserView, NSAttributedString, NSImage, NSString, NSView;
 
 @interface DVTAssetDetailView : DVTLayoutView_ML <DVTTabChooserViewDelegate, DVTReplacementViewDelegate, DVTInvalidation>
 {
     NSView *_helpButton;
     DVTNotificationToken *_replacementViewFrameChangeToken;
-    BOOL _pressed;
     DVTTabChooserView *_detailControllerChooserView;
     DVTReplacementView *_replacementView;
     NSAttributedString *_label;
     NSString *_helpIdentifier;
-    NSEvent *_lastMouseDown;
     NSView *_editingView;
     NSImage *_image;
     id <DVTAssetDetailViewDelegate> _delegate;
@@ -31,20 +29,14 @@
 @property(retain) id <DVTAssetDetailViewDelegate> delegate; // @synthesize delegate=_delegate;
 @property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
 @property(retain, nonatomic) NSView *editingView; // @synthesize editingView=_editingView;
-@property(retain) NSEvent *lastMouseDown; // @synthesize lastMouseDown=_lastMouseDown;
 @property(copy, nonatomic) NSString *helpIdentifier; // @synthesize helpIdentifier=_helpIdentifier;
 @property(copy, nonatomic) NSAttributedString *label; // @synthesize label=_label;
-@property(nonatomic, getter=isPressed) BOOL pressed; // @synthesize pressed=_pressed;
 @property(readonly) DVTReplacementView *replacementView; // @synthesize replacementView=_replacementView;
 @property(readonly) DVTTabChooserView *detailControllerChooserView; // @synthesize detailControllerChooserView=_detailControllerChooserView;
 - (void).cxx_destruct;
 - (void)uninstallEditingView;
 - (void)installEditingView;
 - (void)tabChooserView:(id)arg1 userDidChooseChoice:(id)arg2;
-- (void)mouseDragged:(id)arg1;
-- (void)mouseUp:(id)arg1;
-- (void)mouseDown:(id)arg1;
-- (BOOL)acceptsFirstMouse:(id)arg1;
 - (void)replacementViewFrameDidChange:(id)arg1;
 - (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;

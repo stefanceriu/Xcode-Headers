@@ -6,21 +6,26 @@
 
 #import "NSObject.h"
 
-@class DVTPlatform, DVTPortalPlatform, NSString;
+@class DVTPortalProgram, DVTPortalTeam, NSSet, NSString;
 
 @interface DVTPortalMembership : NSObject
 {
     NSString *_portalID;
-    DVTPortalPlatform *_portalPlatform;
+    NSString *_membershipProductId;
+    DVTPortalProgram *_portalProgram;
+    DVTPortalTeam *_team;
 }
 
-@property(retain, nonatomic) DVTPortalPlatform *portalPlatform; // @synthesize portalPlatform=_portalPlatform;
-@property(copy, nonatomic) NSString *portalID; // @synthesize portalID=_portalID;
+@property(nonatomic) __weak DVTPortalTeam *team; // @synthesize team=_team;
+@property(retain, nonatomic) DVTPortalProgram *portalProgram; // @synthesize portalProgram=_portalProgram;
+@property(readonly, copy, nonatomic) NSString *membershipProductId; // @synthesize membershipProductId=_membershipProductId;
+@property(readonly, copy, nonatomic) NSString *portalID; // @synthesize portalID=_portalID;
 - (void).cxx_destruct;
+@property(readonly, nonatomic) NSSet *portalPrograms;
+@property(readonly, nonatomic) NSSet *platforms;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
-@property(readonly, nonatomic) DVTPlatform *platform;
 
 @end
 

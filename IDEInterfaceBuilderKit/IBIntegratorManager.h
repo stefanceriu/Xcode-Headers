@@ -32,9 +32,7 @@
 - (id)typeIdentifierForObject:(id)arg1;
 - (id)typeIdentifierForClass:(Class)arg1;
 - (void)installInspectedKeyPathsForValuesAffectingForIntegrator:(id)arg1;
-- (void)assertExistenceOfAccessorsForIntegrator:(id)arg1;
 - (void)assertKVOComplianceOfIbInspectedAccessorsForIntegrator:(id)arg1;
-- (void)installExtensionBackedMethodsForIntegrator:(id)arg1;
 - (void)installDefaultImageClassMethodsForIntegrator:(id)arg1;
 - (BOOL)assertExpensiveKVOComplianceTests;
 - (id)init;

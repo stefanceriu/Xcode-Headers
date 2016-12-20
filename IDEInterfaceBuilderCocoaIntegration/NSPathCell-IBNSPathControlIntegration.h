@@ -24,5 +24,7 @@
 - (id)ibPreferredSizeForSize:(struct CGSize)arg1 suggestedWidth:(char *)arg2 suggestedHeight:(char *)arg3 scaleAxesIndependently:(char *)arg4;
 - (Class)ibEditorClass;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
+- (id)ibLocalLocalizableStringsAttributeKeyPaths;
+- (id)ibLocalAttributeKeyPaths;
 @end
 

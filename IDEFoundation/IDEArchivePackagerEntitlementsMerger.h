@@ -10,8 +10,14 @@
 {
 }
 
++ (id)genericallyDefinedAppKeysToCopyFromProfile;
++ (BOOL)_copyGenericallyDefinedAppKeysFromProfile;
++ (id)keysToAlwaysCopyFromProfile;
++ (id)extraKeysToSkipWhenCopyingFromProfileFor25642247;
 + (id)genericallyDefinedProfileKeysToSkipWhenCopyingFromProfile;
++ (BOOL)_wantsExtraKeysFor25642247;
 + (id)sharedMerger;
++ (void)initialize;
 - (id)entitlementsByMergingProfileEntitlements:(id)arg1 appEntitlements:(id)arg2 bundleIdentifier:(id)arg3 warnings:(id)arg4 error:(id *)arg5;
 
 @end

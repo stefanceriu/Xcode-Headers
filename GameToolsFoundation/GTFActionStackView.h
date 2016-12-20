@@ -6,12 +6,14 @@
 
 #import "NSView.h"
 
-@class NSMutableArray;
+@class NSLayoutConstraint, NSMutableArray;
 
 @interface GTFActionStackView : NSView
 {
     BOOL _framesDirty;
     double _trackEndY;
+    NSLayoutConstraint *_widthConstraint;
+    NSLayoutConstraint *_heightConstraint;
     BOOL _isSuperviewOfNodeTrackViews;
     NSMutableArray *_nodeTrackViews;
     struct CGSize _size;
@@ -31,7 +33,6 @@
 - (void)removeAllNodeTracks;
 - (void)removeNodeTrackFromStack:(id)arg1;
 - (void)addNodeTrackToEndOfStack:(id)arg1;
-- (struct CGSize)intrinsicContentSize;
 - (id)initWithCoder:(id)arg1;
 
 @end

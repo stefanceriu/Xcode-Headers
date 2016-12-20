@@ -8,7 +8,7 @@
 
 #import "DVTProgressIndicatorProvidingView.h"
 
-@class NSEvent, NSIndexSet, NSMapTable, NSString, NSTextField;
+@class NSEvent, NSFont, NSIndexSet, NSMapTable, NSString, NSTextField;
 
 @interface DVTTableView : NSTableView <DVTProgressIndicatorProvidingView>
 {
@@ -23,6 +23,7 @@
     BOOL _drawsGridLinesForEmptyContent;
     int _emptyContentStringStyle;
     NSString *_emptyContentString;
+    NSFont *_emptyContentFont;
     NSIndexSet *_draggedRows;
     NSEvent *_event;
     CDStruct_2b6e6e30 _gridLineInset;
@@ -33,6 +34,7 @@
 @property BOOL drawsGridLinesForEmptyContent; // @synthesize drawsGridLinesForEmptyContent=_drawsGridLinesForEmptyContent;
 @property BOOL skipGridLinesOnLastRow; // @synthesize skipGridLinesOnLastRow=_skipGridLinesOnLastRow;
 @property(copy) NSIndexSet *draggedRows; // @synthesize draggedRows=_draggedRows;
+@property(copy, nonatomic) NSFont *emptyContentFont; // @synthesize emptyContentFont=_emptyContentFont;
 @property int emptyContentStringStyle; // @synthesize emptyContentStringStyle=_emptyContentStringStyle;
 @property(copy, nonatomic) NSString *emptyContentString; // @synthesize emptyContentString=_emptyContentString;
 - (void).cxx_destruct;
@@ -49,6 +51,7 @@
 - (void)insertText:(id)arg1;
 - (void)doCommandBySelector:(SEL)arg1;
 - (void)keyDown:(id)arg1;
+- (void)mouseDown:(id)arg1;
 @property(readonly) NSIndexSet *contextMenuSelectedRowIndexes;
 - (id)clickedRowIndexes;
 - (void)viewWillDraw;

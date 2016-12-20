@@ -18,7 +18,7 @@
     DVTBorderedView *_comparisonBorderedView;
     IDEReviewFilesNavigator *_navigator;
     IDEEditorVersionsMode *_versionsMode;
-    DVTObservingToken *_navigatorSelectedViewIndexesObservingToken;
+    DVTObservingToken *_navigatorSelectedNavigatorObservingToken;
     DVTObservingToken *_navigatorSelectedObjectsObservingToken;
     id <IDEReviewFilesViewControllerDelegate> _delegate;
     IDESourceControlConflictResolutionController *_conflictResolutionController;
@@ -40,6 +40,7 @@
 - (BOOL)splitView:(id)arg1 canCollapseSubview:(id)arg2;
 - (id)workspaceForEditorContext:(id)arg1;
 - (id)editorContext:(id)arg1 shouldEditNavigableItem:(id)arg2;
+@property(readonly) BOOL enableDiffToggles;
 @property(readonly) IDESourceControlInteractiveCommitController *interactiveCommitController; // @dynamic interactiveCommitController;
 - (void)setupInteractiveCommitController;
 @property(readonly) IDESourceControlConflictResolutionController *conflictResolutionController; // @dynamic conflictResolutionController;

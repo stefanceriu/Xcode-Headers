@@ -9,12 +9,13 @@
 #import "DVTProvisioningProfile.h"
 #import "NSCopying.h"
 
-@class DVTAppIDFeatures, DVTCertificateUtilities, DVTFilePath, DVTNotificationToken, DVTPlatform, NSArray, NSData, NSDate, NSDictionary, NSSet, NSString;
+@class DVTAppIDFeatures, DVTCertificateUtilities, DVTFilePath, DVTNotificationToken, DVTPlatform, NSArray, NSData, NSDate, NSDictionary, NSNumber, NSSet, NSString;
 
 @interface DTDKProvisioningProfile : NSObject <NSCopying, DVTProvisioningProfile>
 {
     DVTNotificationToken *_notificationToken;
     DVTCertificateUtilities *_certificateUtilities;
+    NSNumber *_isAppleInternal;
     BOOL _usesExplicitAppIdentifier;
     BOOL _isUniversal;
     BOOL _isMacProfile;
@@ -51,8 +52,6 @@
 @property(readonly) NSString *teamID; // @synthesize teamID=_teamID;
 @property(readonly) NSSet *supportedUDIDs; // @synthesize supportedUDIDs=_supportedUDIDs;
 @property(readonly) NSString *preferredFilenameExtension; // @synthesize preferredFilenameExtension=_preferredFilenameExtension;
-@property(readonly) DVTPlatform *dvt_platform; // @synthesize dvt_platform=_dvt_platform;
-@property(readonly) NSString *platform; // @synthesize platform=_platform;
 @property(readonly) BOOL isMacProfile; // @synthesize isMacProfile=_isMacProfile;
 @property(readonly) BOOL isUniversal; // @synthesize isUniversal=_isUniversal;
 @property(readonly) NSDate *creationDate; // @synthesize creationDate=_creationDate;
@@ -71,6 +70,7 @@
 - (void).cxx_destruct;
 @property(readonly) NSArray *identityCertificates;
 - (BOOL)containsCertificate:(struct OpaqueSecCertificateRef *)arg1;
+- (BOOL)isXcodeManaged;
 @property(readonly, copy) NSString *localPath;
 - (id)longDescription;
 @property(readonly) BOOL isPushEnabled;
@@ -85,11 +85,15 @@
 @property(readonly) BOOL isGameCenterEnabled;
 @property(readonly) BOOL isMapsEnabled;
 @property(readonly) BOOL isInterAppAudioEnabled;
+@property(readonly) BOOL isSiriEnabled;
 @property(readonly) BOOL isDataProtectionEnabled;
 @property(readonly) NSString *dataProtectionLevel;
 @property(readonly) BOOL isPassbookEnabled;
 @property(readonly) BOOL isICloudEnabled;
 - (BOOL)allowsFeatures:(id)arg1 missingFeatures:(id *)arg2;
+- (BOOL)isAppleInternal;
+@property(readonly) NSString *platform; // @synthesize platform=_platform;
+@property(readonly) DVTPlatform *dvt_platform; // @synthesize dvt_platform=_dvt_platform;
 @property(readonly) NSString *teamName; // @synthesize teamName=_teamName;
 @property(readonly, copy) NSString *description;
 - (long long)dateCompareDecending:(id)arg1;

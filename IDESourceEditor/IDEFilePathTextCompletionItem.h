@@ -21,6 +21,7 @@
 - (id)initWithName:(id)arg1 filePath:(id)arg2;
 
 // Remaining properties
+@property(readonly, copy) NSString *action;
 @property(readonly, copy) NSArray *additionalCompletions;
 @property(readonly) int completionItemStyle;
 @property(readonly, copy) NSString *completionText;

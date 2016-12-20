@@ -6,20 +6,22 @@
 
 #import "NSObject.h"
 
-@class NSDictionary;
+@class NSDictionary, NSString;
 
 @interface DVTPortalResponse : NSObject
 {
     NSDictionary *_payload;
+    NSString *_sessionID;
 }
 
 + (id)portalResponseFromData:(id)arg1 URLResponse:(id)arg2 error:(id *)arg3;
+@property(readonly, nonatomic) NSString *sessionID; // @synthesize sessionID=_sessionID;
 @property(readonly, nonatomic) NSDictionary *payload; // @synthesize payload=_payload;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) long long resultCode;
 - (id)debugDescription;
 - (id)description;
-- (id)initWithPayload:(id)arg1;
+- (id)initWithPayload:(id)arg1 headers:(id)arg2;
 
 @end
 

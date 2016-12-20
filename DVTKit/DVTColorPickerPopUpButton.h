@@ -6,7 +6,7 @@
 
 #import <DVTKit/DVTAbstractColorPicker.h>
 
-@class NSDictionary;
+@class NSAccessibilityElement, NSDictionary;
 
 @interface DVTColorPickerPopUpButton : DVTAbstractColorPicker
 {
@@ -16,10 +16,20 @@
     struct CGRect swatchRect;
     struct CGRect colorLabelTitleRect;
     NSDictionary *imageStateDictionary;
+    NSAccessibilityElement *_colorWellAccessibilityElement;
+    NSAccessibilityElement *_colorListAccessibilityElement;
 }
 
 + (id)imageStateDictionaryForControlSize:(unsigned long long)arg1;
 - (void).cxx_destruct;
+- (void)_updateColorAccessibilityValue;
+- (void)setColor:(id)arg1;
+- (void)setAccessibilityLabel:(id)arg1;
+- (id)accessibilityRole;
+- (BOOL)isAccessibilityElement;
+- (id)_colorListAccessibilityElement;
+- (id)_colorWellAccessibilityElement;
+- (id)accessibilityChildren;
 - (void)mouseDown:(id)arg1;
 - (BOOL)isMouseEventInColorWellRect:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
@@ -28,6 +38,7 @@
 - (void)drawPopUpButtonArrows;
 - (void)drawDebuggingRects;
 - (void)drawFocusRing;
+- (id)effectiveTitle;
 - (id)effectiveAttributedTitle;
 - (id)attributedTitleForTitle:(id)arg1;
 - (id)titleAttributes;

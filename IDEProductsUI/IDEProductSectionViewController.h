@@ -22,7 +22,7 @@
 
 + (BOOL)canShowContentForProduct:(id)arg1;
 @property(readonly, nonatomic) BOOL empty; // @synthesize empty=_empty;
-@property(retain) id <IDEProductsInspectable> currentInspectable; // @synthesize currentInspectable=_currentInspectable;
+@property(retain, nonatomic) id <IDEProductsInspectable> currentInspectable; // @synthesize currentInspectable=_currentInspectable;
 @property(readonly, nonatomic) NSString *busyReason; // @synthesize busyReason=_busyReason;
 @property(readonly, nonatomic) BOOL busy; // @synthesize busy=_busy;
 @property __weak IDEProductsViewController *productsViewController; // @synthesize productsViewController=_productsViewController;

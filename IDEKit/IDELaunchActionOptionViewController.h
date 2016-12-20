@@ -16,6 +16,7 @@
 + (BOOL)availableForScheme:(id)arg1;
 @property(readonly) IDEScheme *scheme; // @synthesize scheme=_scheme;
 - (void).cxx_destruct;
+- (void)primitiveInvalidate;
 - (id)initWithScheme:(id)arg1;
 - (id)initUsingDefaultNib;
 

@@ -15,21 +15,30 @@
     unsigned long long _scrubberMode;
     BOOL _trulyEditable;
     BOOL _trulySelectable;
+    BOOL _dragInteraction;
     float _v0;
     float _delta;
+    BOOL _hasButtons;
+    BOOL _integerValues;
+    BOOL _roundPrecision;
     BOOL _reachedStage2;
     float _minValue;
     float _maxValue;
     float _increment;
+    float _precision;
     struct CGRect _rectForPulse;
 }
 
 + (Class)cellClass;
 @property BOOL reachedStage2; // @synthesize reachedStage2=_reachedStage2;
 @property struct CGRect rectForPulse; // @synthesize rectForPulse=_rectForPulse;
+@property BOOL roundPrecision; // @synthesize roundPrecision=_roundPrecision;
+@property float precision; // @synthesize precision=_precision;
 @property float increment; // @synthesize increment=_increment;
 @property float maxValue; // @synthesize maxValue=_maxValue;
 @property float minValue; // @synthesize minValue=_minValue;
+@property BOOL integerValues;
+@property BOOL hasButtons;
 - (void)textDidEndEditing:(id)arg1;
 - (void)gestureRecognizerAction:(id)arg1;
 - (void)mouseUp:(id)arg1;

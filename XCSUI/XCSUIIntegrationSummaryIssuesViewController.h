@@ -11,8 +11,8 @@
 @interface XCSUIIntegrationSummaryIssuesViewController : DVTViewController
 {
     NSMutableArray *_showMoreRows;
-    NSView *_lozengeView;
     _XCSUIIssueSelectionManager *_selectionManager;
+    NSMutableArray *_expandedSectionTitles;
     XCSIntegration *_integration;
     XCSIntegrationIssues *_integrationIssues;
     CDUnknownBlockType _viewSizeChangedCallback;
@@ -22,8 +22,10 @@
     double _requiredHeight;
     NSArray *_issueSections;
     _XCSUIIssuesSummaryView *_issuesSummaryView;
+    NSView *_dividerLineView;
 }
 
+@property(retain) NSView *dividerLineView; // @synthesize dividerLineView=_dividerLineView;
 @property __weak _XCSUIIssuesSummaryView *issuesSummaryView; // @synthesize issuesSummaryView=_issuesSummaryView;
 @property(copy) NSArray *issueSections; // @synthesize issueSections=_issueSections;
 @property double requiredHeight; // @synthesize requiredHeight=_requiredHeight;
@@ -34,14 +36,21 @@
 @property(retain, nonatomic) XCSIntegrationIssues *integrationIssues; // @synthesize integrationIssues=_integrationIssues;
 @property(retain, nonatomic) XCSIntegration *integration; // @synthesize integration=_integration;
 - (void).cxx_destruct;
+- (void)fixIt:(id)arg1 editingMode:(long long)arg2;
+- (void)missingProjectWorkspaceFixIt:(id)arg1;
+- (void)invalidDestinationFixIt:(id)arg1;
+- (void)schemeMissingFixIt:(id)arg1;
 - (void)triggerErrorFixIt:(id)arg1;
 - (void)deviceFailureFixIt:(id)arg1;
 - (void)scmFailureFixIt:(id)arg1;
 - (void)calculateRequiredHeight;
+- (void)_showMoreIssuesInSection:(id)arg1;
 - (void)showMoreIssuesInSection:(id)arg1;
+- (void)_restoreExpandedIssueGroups;
+- (void)_persistExpandedSection:(id)arg1;
 - (void)refreshIssuesView;
 - (void)populateIssueSectionView:(id)arg1 withSection:(id)arg2;
-- (void)populateIssueView:(id)arg1 withIssue:(id)arg2 issueIndex:(unsigned long long)arg3;
+- (void)populateIssueView:(id)arg1 withIssue:(id)arg2;
 - (void)refreshIssueGroups;
 - (void)refreshUI;
 - (void)loadView;

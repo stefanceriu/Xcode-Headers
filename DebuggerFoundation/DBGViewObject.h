@@ -14,6 +14,7 @@
 {
     DBGViewChildMemberList *_memberList;
     NSArray *_childViewObjects;
+    BOOL _memberListFinished;
     BOOL _shouldConsiderInteresting;
     BOOL _hidden;
     id <DBGViewDescriber> _viewDescriber;
@@ -23,13 +24,18 @@
     NSString *_representedObjectClassNameForDisplay;
     DBGViewObject *_parentViewObject;
     NSSet *_constraintAddressesAffectingViewObject;
+    unsigned long long _numberOfIssues;
+    unsigned long long _numberOfChildObjectsWithIssues;
     struct CGRect _frame;
 }
 
++ (struct NSEdgeInsets)edgeInsetsFromArray:(id)arg1;
 + (struct CATransform3D)transformFromArray:(id)arg1;
 + (struct CGPoint)pointFromArray:(id)arg1;
 + (struct CGRect)rectFromArray:(id)arg1;
 + (void)initialize;
+@property unsigned long long numberOfChildObjectsWithIssues; // @synthesize numberOfChildObjectsWithIssues=_numberOfChildObjectsWithIssues;
+@property unsigned long long numberOfIssues; // @synthesize numberOfIssues=_numberOfIssues;
 @property(readonly) NSSet *constraintAddressesAffectingViewObject; // @synthesize constraintAddressesAffectingViewObject=_constraintAddressesAffectingViewObject;
 @property BOOL hidden; // @synthesize hidden=_hidden;
 @property __weak DBGViewObject *parentViewObject; // @synthesize parentViewObject=_parentViewObject;
@@ -48,8 +54,13 @@
 - (id)recursiveDescription;
 - (id)_collectSubViewDescriptions:(id)arg1 level:(long long)arg2;
 @property(readonly, copy) NSString *description;
+- (unsigned long long)recursivelyUpdateNumberOfChildObjectsWithIssues;
+- (BOOL)childObjectsHaveIssues;
+- (BOOL)hasIssues;
+@property(readonly) NSArray *classHierarchy;
 @property(retain, nonatomic) id object;
-@property NSArray *childViewObjects;
+- (id)fetchedMemberList;
+@property(retain) NSArray *childViewObjects;
 @property(readonly) NSString *identifier;
 - (void)primitiveInvalidate;
 - (id)initWithViewDescriber:(id)arg1 parent:(id)arg2 dictionary:(id)arg3;

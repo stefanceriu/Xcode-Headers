@@ -6,25 +6,27 @@
 
 #import "NSObject.h"
 
-#import "GPUResourceManager.h"
+#import "DYPResourceManager.h"
 
 @class DYGLCaptureSessionInfo, NSString;
 
 __attribute__((visibility("hidden")))
-@interface GPUGLResourceManager : NSObject <GPUResourceManager>
+@interface GPUGLResourceManager : NSObject <DYPResourceManager>
 {
     struct unique_ptr<GPUTools::GL::ResourceManager<GPUGLSMObjectTypes>, std::__1::default_delete<GPUTools::GL::ResourceManager<GPUGLSMObjectTypes>>> _spResMgr;
     DYGLCaptureSessionInfo *_captureSessionInfo;
 }
 
++ (id)updatedResourceWithType:(unsigned int)arg1 objectID:(unsigned long long)arg2 containerID:(unsigned long long)arg3 changes:(id)arg4;
 + (unsigned int)realFunctionIndexForIndex:(unsigned int)arg1;
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)loadClientDataBufferFromArchive:(id)arg1 offset:(long long)arg2 functionIndex:(unsigned int)arg3;
-- (id)updateResource:(id)arg1;
+- (id)performUpdateWithResource:(id)arg1;
 - (id)loadWireframeImageWithContainerID:(unsigned long long)arg1 functionIndex:(unsigned int)arg2;
 - (id)loadResourceWithType:(unsigned int)arg1 containerID:(unsigned long long)arg2 stateMirrorObject:(const void *)arg3 functionIndex:(unsigned int)arg4;
-- (id)loadResourceWithItem:(id)arg1 containerID:(unsigned long long)arg2 stateMirrorObject:(const void *)arg3 functionIndex:(unsigned int)arg4;
+- (id)loadResourceItem:(id)arg1 withStateMirror:(id)arg2;
+- (id)loadResourceItem:(id)arg1;
 - (void)invalidateDeviceCache;
 - (id)initWithCaptureStore:(id)arg1 resourceStreamer:(id)arg2;
 

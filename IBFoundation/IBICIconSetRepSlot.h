@@ -18,15 +18,19 @@
 + (id)slotWithSize:(id)arg1 scale:(id)arg2;
 + (id)slotForFileName:(id)arg1;
 + (id)requiredFileNamesToSlots;
++ (id)allSlots;
++ (Class)assetRepClass;
++ (Class)assetSetClass;
++ (id)slotFilterWithSizeFilter:(id)arg1 scaleFilter:(id)arg2;
 @property(readonly) IBICScale *scale; // @synthesize scale=_scale;
 @property(readonly) IBICSize *size; // @synthesize size=_size;
 - (void).cxx_destruct;
 - (id)requiredPixelSize;
 - (id)outputFileNameGivenBaseName:(id)arg1 andExtension:(id)arg2;
-- (id)detailAreaKey;
+- (id)detailAreaPath;
 - (id)requiredFileName;
 - (long long)compareDisplayOrder:(id)arg1;
-- (id)shortDisplayName;
+- (id)shortDisplayNameConsideringCounterparts:(id)arg1;
 - (void)captureComponents;
 
 @end

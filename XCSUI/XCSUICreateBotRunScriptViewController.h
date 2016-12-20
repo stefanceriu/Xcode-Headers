@@ -9,14 +9,20 @@
 #import "NSTextDelegate.h"
 #import "XCSUICreateBotTriggerChildViewController.h"
 
-@class DVTScriptSourceTextView, NSString, XCSTrigger;
+@class DVTBorderedView, DVTScriptSourceTextView, NSLayoutConstraint, NSString, XCSTrigger;
 
 @interface XCSUICreateBotRunScriptViewController : NSViewController <NSTextDelegate, XCSUICreateBotTriggerChildViewController>
 {
     XCSTrigger *_trigger;
     DVTScriptSourceTextView *_scriptView;
+    NSLayoutConstraint *_scriptViewHeightConstraint;
+    DVTBorderedView *_borderedView;
+    NSLayoutConstraint *_scriptScrollViewTopConstraint;
 }
 
+@property __weak NSLayoutConstraint *scriptScrollViewTopConstraint; // @synthesize scriptScrollViewTopConstraint=_scriptScrollViewTopConstraint;
+@property __weak DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
+@property __weak NSLayoutConstraint *scriptViewHeightConstraint; // @synthesize scriptViewHeightConstraint=_scriptViewHeightConstraint;
 @property DVTScriptSourceTextView *scriptView; // @synthesize scriptView=_scriptView;
 - (void).cxx_destruct;
 - (void)textDidChange:(id)arg1;

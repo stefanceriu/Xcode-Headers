@@ -10,6 +10,7 @@
 
 @class DTTimelineGraph, DTTimelineMouseStateValidator, DTTimelinePlane, NSEvent, NSString, NSTimer, NSTrackingArea;
 
+__attribute__((visibility("hidden")))
 @interface DTTimelineMouseEventsResponder : NSResponder <DTTimelineMouseStateValidatorDelegate>
 {
     DTTimelineGraph *_timelineGraph;
@@ -20,6 +21,7 @@
     double _zoomIndicatorStartX;
     long long _magnifyGestureCenter;
     BOOL _mouseDraggedSinceMouseDown;
+    BOOL _delegateSupportsInspectionCB;
     NSEvent *_mouseDownEvent;
     DTTimelinePlane *_resizingPlane;
     NSTimer *_longPressTimer;
@@ -84,6 +86,7 @@
 - (void)flagsChanged:(id)arg1;
 - (void)mouseStateValidator:(id)arg1 didTransistionToState:(unsigned long long)arg2 fromState:(unsigned long long)arg3 event:(id)arg4;
 - (void)_assertOrLogInvalidStateInEvent:(id)arg1;
+- (void)selectedTimeRangeChanged;
 - (id)initWithTimelineGraph:(id)arg1;
 
 // Remaining properties

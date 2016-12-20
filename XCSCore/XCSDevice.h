@@ -13,7 +13,9 @@
 }
 
 + (id)deviceWithName:(id)arg1 identifier:(id)arg2 deviceUDID:(id)arg3 deviceECID:(id)arg4 serialNumber:(id)arg5 deviceType:(id)arg6 modelName:(id)arg7 modelCode:(id)arg8 architecture:(id)arg9 osVersion:(id)arg10 processor:(id)arg11 modelUTI:(id)arg12 platformIdentifier:(id)arg13 isSimulator:(BOOL)arg14 displaySize:(id)arg15 isRetina:(BOOL)arg16 isConnected:(BOOL)arg17 isSupported:(BOOL)arg18 isTrusted:(BOOL)arg19 enabledForDevelopment:(BOOL)arg20 activeProxiedDevice:(id)arg21 validationErrors:(id *)arg22;
+@property(readonly, copy, nonatomic) NSString *platformDisplayName;
 - (BOOL)_validateName:(id)arg1 identifier:(id)arg2 deviceUDID:(id)arg3 deviceECID:(id)arg4 serialNumber:(id)arg5 deviceType:(id)arg6 modelName:(id)arg7 modelCode:(id)arg8 architecture:(id)arg9 osVersion:(id)arg10 processor:(id)arg11 modelUTI:(id)arg12 platformIdentifier:(id)arg13 isSimulator:(BOOL)arg14 displaySize:(id)arg15 isRetina:(BOOL)arg16 isConnected:(BOOL)arg17 isSupported:(BOOL)arg18 enabledForDevelopment:(BOOL)arg19 activeProxiedDevice:(id)arg20 validationErrors:(id *)arg21;
+@property(readonly, nonatomic, getter=isMac) BOOL mac;
 - (long long)architectureType;
 - (id)saveRepresentationHumanReadable:(BOOL)arg1;
 - (id)saveRepresentation;

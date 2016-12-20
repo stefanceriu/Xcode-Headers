@@ -6,20 +6,22 @@
 
 #import "IDEAssistant.h"
 
-@class XCSUIBotDefinition_NotificationsEditor;
+@class XCSUIBotDefinition_TriggersEditor;
 
 @interface XCSUICreateBotNotificationsAssistant : IDEAssistant
 {
     BOOL _viewIsInstalled;
-    XCSUIBotDefinition_NotificationsEditor *_notificationsEditor;
+    XCSUIBotDefinition_TriggersEditor *_triggersEditor;
 }
 
 + (id)keyPathsForValuesAffectingCanGoForward;
 + (id)keyPathsForValuesAffectingCreateBotAssistantContext;
-@property(retain, nonatomic) XCSUIBotDefinition_NotificationsEditor *notificationsEditor; // @synthesize notificationsEditor=_notificationsEditor;
+@property(retain, nonatomic) XCSUIBotDefinition_TriggersEditor *triggersEditor; // @synthesize triggersEditor=_triggersEditor;
 @property(nonatomic) BOOL viewIsInstalled; // @synthesize viewIsInstalled=_viewIsInstalled;
 - (void).cxx_destruct;
 - (BOOL)alwaysShowFinish;
+- (void)helpAction;
+- (BOOL)showHelpButton;
 - (BOOL)canGoForward;
 - (void)viewWillUninstall;
 - (void)viewDidInstall;

@@ -7,6 +7,7 @@
 #import "SCNNode.h"
 
 @interface SCNNode (SKEUndoRedoSupport)
++ (id)keyPathsForValuesAffectingske_movable_edit;
 + (id)keyPathsForValuesAffectingcastsShadow_edit;
 + (id)keyPathsForValuesAffectingske_referenceLoadingPolicy_edit;
 + (id)keyPathsForValuesAffectingske_physicsFieldType_edit;
@@ -27,6 +28,8 @@
 + (id)keyPathsForValuesAffectingske_worldPosition_edit;
 + (id)keyPathsForValuesAffectingposition_edit;
 + (id)keyPathsForValuesAffectingname_edit;
+- (void)setske_movable_edit:(BOOL)arg1;
+- (BOOL)ske_movable_edit;
 - (void)setcastsShadow_edit:(BOOL)arg1;
 - (BOOL)castsShadow_edit;
 - (void)setske_referenceLoadingPolicy_edit:(long long)arg1;

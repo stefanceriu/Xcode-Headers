@@ -18,8 +18,11 @@
     IBICExtent *_extent;
 }
 
++ (id)detailAreaGroupPathForVersion:(id)arg1 idiom:(id)arg2 orientation:(id)arg3 extent:(id)arg4;
 + (id)orderedComponentClasses;
 + (id)slotWithIdiom:(id)arg1 subtype:(id)arg2 scale:(id)arg3 deviceOrientation:(id)arg4 extent:(id)arg5 minimumSystemVersion:(id)arg6;
++ (Class)assetRepClass;
++ (Class)assetSetClass;
 @property(readonly) IBICExtent *extent; // @synthesize extent=_extent;
 @property(readonly) IBICSystemVersion *minimumSystemVersion; // @synthesize minimumSystemVersion=_minimumSystemVersion;
 @property(readonly) IBICScale *scale; // @synthesize scale=_scale;
@@ -31,9 +34,9 @@
 - (id)outputFileNameGivenBaseName:(id)arg1 andExtension:(id)arg2;
 - (id)baseFileNameForVersionedInfoPlistEntryForSlottedAssetSetName:(id)arg1;
 - (id)pixelSize;
-- (id)detailAreaKey;
+- (id)detailAreaPath;
 - (long long)compareDisplayOrder:(id)arg1;
-- (id)shortDisplayName;
+- (id)shortDisplayNameConsideringCounterparts:(id)arg1;
 - (void)captureComponents;
 
 @end

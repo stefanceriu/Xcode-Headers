@@ -18,7 +18,6 @@
 }
 
 + (BOOL)canUserViewBotsOnService:(id)arg1;
-+ (void)refreshACLCacheForService:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 @property(retain) XCSUIBotDefinitionEditorWindowController *definitionEditorWindowController; // @synthesize definitionEditorWindowController=_definitionEditorWindowController;
 - (void).cxx_destruct;
 - (void)_handleCommitAndIntegrateOptionsWithBotDefinitionContext:(id)arg1 window:(id)arg2;
@@ -27,12 +26,15 @@
 - (void)createHostedRepositoryWithName:(id)arg1 onService:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (id)webURLForIntegration:(id)arg1;
 - (id)webURLForBot:(id)arg1;
+- (BOOL)canUserDuplicateBot:(id)arg1;
 - (BOOL)canUserCreateAndDeleteBotsOnServiceForBotOrIntegration:(id)arg1;
-- (BOOL)canUserCreateBotsOnAnyService;
 - (id)projectNameInBlueprintForBot:(id)arg1;
+- (void)findBotInServicesForXCBotUrlWithBotId:(id)arg1 hostname:(id)arg2 andCompletionBlock:(CDUnknownBlockType)arg3;
 - (void)fetchBotForBotId:(id)arg1 onService:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 - (void)serviceMatchingHostName:(id)arg1 withTimeout:(double)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)fetchMostRecentIntegrationForBot:(id)arg1 onService:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
 - (void)fetchIntegrationForId:(id)arg1 onService:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;
+- (void)populateIntegrations:(unsigned long long)arg1 forBot:(id)arg2 andIntegrationId:(id)arg3 onService:(id)arg4 withCompletionBlock:(CDUnknownBlockType)arg5;
 - (void)deleteIntegration:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (void)cancelIntegration:(id)arg1 withCompletionBlock:(CDUnknownBlockType)arg2;
 - (void)deleteBot:(id)arg1 workspace:(id)arg2 withCompletionBlock:(CDUnknownBlockType)arg3;

@@ -21,6 +21,7 @@
     long long _sessionLifecycleProgress;
 }
 
++ (id)logAspect;
 + (void)initialize;
 @property(nonatomic) long long sessionLifecycleProgress; // @synthesize sessionLifecycleProgress=_sessionLifecycleProgress;
 @property(copy, nonatomic) DTiPhoneSimulatorSessionConfig *sessionConfig; // @synthesize sessionConfig=_sessionConfig;
@@ -30,7 +31,6 @@
 @property int simulatedApplicationPID; // @synthesize simulatedApplicationPID=_simulatedApplicationPID;
 @property(retain, nonatomic) id <DTiPhoneSimulatorSessionDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)doUbiquityFetchEvent;
 - (void)doFetchEventForPID:(int)arg1;
 - (void)backgroundAllApps:(int)arg1;
 - (BOOL)_startSessionInSimulatorWithError:(id *)arg1;

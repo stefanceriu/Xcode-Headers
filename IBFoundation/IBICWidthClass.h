@@ -10,8 +10,13 @@
 {
 }
 
++ (id)displayName;
 + (id)fallbackContentsJSONKeys;
 + (id)contentsJSONKey;
++ (id)unspecifiedValuePlaceholder;
++ (void)setComponentID:(long long)arg1;
++ (long long)componentID;
+- (long long)componentID;
 
 @end
 

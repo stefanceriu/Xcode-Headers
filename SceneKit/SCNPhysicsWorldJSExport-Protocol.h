@@ -9,6 +9,7 @@
 @class NSArray, NSDictionary, SCNPhysicsBehavior, SCNPhysicsBody, SCNPhysicsShape;
 
 @protocol SCNPhysicsWorldJSExport <JSExport>
+@property(readonly, nonatomic) NSArray *allBehaviors;
 @property id <SCNPhysicsContactDelegate> contactDelegate;
 @property(nonatomic) double timeStep;
 @property(nonatomic) double speed;
@@ -18,7 +19,6 @@
 - (NSArray *)contactTestWithBody:(SCNPhysicsBody *)arg1 options:(NSDictionary *)arg2;
 - (NSArray *)contactTestBetweenBody:(SCNPhysicsBody *)arg1 andBody:(SCNPhysicsBody *)arg2 options:(NSDictionary *)arg3;
 - (NSArray *)rayTestWithSegmentFromPoint:(struct SCNVector3)arg1 toPoint:(struct SCNVector3)arg2 options:(NSDictionary *)arg3;
-- (NSArray *)allBehaviors;
 - (void)removeAllBehaviors;
 - (void)removeBehavior:(SCNPhysicsBehavior *)arg1;
 - (void)addBehavior:(SCNPhysicsBehavior *)arg1;

@@ -10,7 +10,7 @@
 #import "IDEFilterControlBarTarget.h"
 #import "IDENavigableItemCoordinatorDelegate.h"
 
-@class DVTNotificationToken, IDENavigableItem, IDENavigableItemAsyncFilteringCoordinator, NSMenu, NSMutableDictionary, NSPredicate, NSString, NSView;
+@class DVTNotificationToken, IDENavigableItem, IDENavigableItemAsyncFilteringCoordinator, IDENavigableItemFilter, NSMenu, NSMutableDictionary, NSPredicate, NSString, NSView;
 
 @interface IDENavigator : IDEViewController <IDENavigableItemCoordinatorDelegate, IDEFilterControlBarTarget, DVTReplacementViewDelegate>
 {
@@ -21,12 +21,14 @@
     BOOL _wantsUniquingNavigableItemCoordinator;
     IDENavigableItem *_rootNavigableItem;
     IDENavigableItemAsyncFilteringCoordinator *_navigableItemCoordinator;
+    IDENavigableItemFilter *_filter;
     NSPredicate *_filterPredicate;
     NSMutableDictionary *_cachedStateForParentViewController;
     NSView *__primaryFilterControl;
 }
 
 + (id)keyPathsForValuesAffectingFilterProgress;
++ (id)keyPathsForValuesAffectingFilteringEnabled;
 + (BOOL)automaticallyNotifiesObserversOfRootNavigableItem;
 + (void)initialize;
 @property(retain) NSView *_primaryFilterControl; // @synthesize _primaryFilterControl=__primaryFilterControl;
@@ -35,6 +37,7 @@
 @property __weak NSMutableDictionary *cachedStateForParentViewController; // @synthesize cachedStateForParentViewController=_cachedStateForParentViewController;
 @property(nonatomic, getter=isFilteringEnabled) BOOL filteringEnabled; // @synthesize filteringEnabled=_filteringEnabled;
 @property(retain, nonatomic) NSPredicate *filterPredicate; // @synthesize filterPredicate=_filterPredicate;
+@property(retain, nonatomic) IDENavigableItemFilter *filter; // @synthesize filter=_filter;
 @property(readonly, nonatomic) IDENavigableItemAsyncFilteringCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
 @property(retain, nonatomic) IDENavigableItem *rootNavigableItem; // @synthesize rootNavigableItem=_rootNavigableItem;
 - (void).cxx_destruct;

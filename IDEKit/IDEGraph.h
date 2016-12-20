@@ -16,8 +16,14 @@
     NSCache *_gradientTable;
     NSView *_keyView;
     BOOL _haveEverSetInsets;
-    BOOL _modelDelegateRespondsTo_TranslateValue;
     NSMutableDictionary *_attributesForGraph;
+    struct {
+        unsigned int implementsLineFilledForGraphEntry:1;
+        unsigned int implementsLineWidthForGraphChart:1;
+        unsigned int implementsTranslateValueKeypath:1;
+        unsigned int implementsSetPathStyleForGraphEntry:1;
+        unsigned int implementsUseFlatColorForGraphChart:1;
+    } _modelDelegateFlags;
     BOOL _showsKey;
     BOOL _showsLabels;
     BOOL _showsOnlyStartAndEndLabels;
@@ -46,7 +52,11 @@
 @property(nonatomic) double keyViewOffset; // @synthesize keyViewOffset=_keyViewOffset;
 @property(nonatomic) BOOL showsKey; // @synthesize showsKey=_showsKey;
 - (void).cxx_destruct;
+- (BOOL)useFlatColorForGraphChart:(id)arg1;
+- (void)setPathStyleForGraph:(id)arg1 entry:(id)arg2 path:(id)arg3;
 - (id)translateValue:(id)arg1 keypath:(id)arg2;
+- (double)lineWidthForGraphChart:(id)arg1;
+- (BOOL)lineFilledForGraph:(id)arg1 entry:(id)arg2;
 - (void)drawGraph:(id)arg1 entry:(id)arg2 inRect:(struct CGRect)arg3;
 - (void)drawGraph:(id)arg1 entrySeries:(id)arg2 inPath:(id)arg3;
 - (void)graphChartWasAdded:(id)arg1;

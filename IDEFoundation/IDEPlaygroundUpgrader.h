@@ -10,9 +10,6 @@
 {
 }
 
-- (BOOL)playgroundContextRepresentsLegacyInteractiveLearningDocument:(id)arg1;
-- (void)_requestPermissionToUpgradeInteractiveLearningPlaygroundWithSharedContext:(id)arg1 toModernFormatWithCompletionHandler:(CDUnknownBlockType)arg2;
-- (void)_requestPermissionToUpgradeSimplePlaygroundWithSharedContext:(id)arg1 toModernFormatWithCompletionHandler:(CDUnknownBlockType)arg2;
 - (void)_bumpPlaygroundSharedContextVersion:(id)arg1;
 - (BOOL)_migratePlaygroundWithContext:(id)arg1 fromVersion5ToVersion6WithError:(id *)arg2;
 - (BOOL)_migratePlaygroundWithContext:(id)arg1 fromVersion4ToVersion5WithError:(id *)arg2;
@@ -21,7 +18,6 @@
 - (BOOL)_migratePlaygroundWithContext:(id)arg1 fromVersion1ToVersion2WithError:(id *)arg2;
 - (BOOL)upgradePlaygroundWithContext:(id)arg1 toVersion:(id)arg2 error:(id *)arg3;
 - (BOOL)upgradePlaygroundWithSharedContext:(id)arg1 error:(id *)arg2;
-- (void)requestPermissionToUpgradePlaygroundWithSharedContext:(id)arg1 toLatestVersionWithCompletionHandler:(CDUnknownBlockType)arg2;
 
 @end
 

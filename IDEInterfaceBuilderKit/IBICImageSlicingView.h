@@ -7,15 +7,16 @@
 #import "DVTLayoutView_ML.h"
 
 #import "DVTFirstResponderShowingView.h"
+#import "NSAccessibilityGroup.h"
 
-@class DVTFirstResponderDrawingStrategy, IBICImageResizingBehavior, NSBitmapImageRep, NSMutableDictionary, NSString, NSValue;
+@class DVTFirstResponderDrawingStrategy, IBICImageResizingBehavior, NSBitmapImageRep, NSMutableArray, NSString, NSValue;
 
-@interface IBICImageSlicingView : DVTLayoutView_ML <DVTFirstResponderShowingView>
+@interface IBICImageSlicingView : DVTLayoutView_ML <DVTFirstResponderShowingView, NSAccessibilityGroup>
 {
     BOOL _refreshImagesOnNextLayout;
     BOOL _showsFirstResponder;
     DVTFirstResponderDrawingStrategy *_firstResponderDrawingStrategy;
-    NSMutableDictionary *_dividerColors;
+    NSMutableArray *_accessibilitySplitters;
     BOOL _drawsSelected;
     BOOL _drawsWithKeyAppearance;
     id _representedObject;
@@ -26,8 +27,6 @@
     NSValue *_selectedDivider;
 }
 
-+ (id)dividerPatternForDirection:(long long)arg1 wholeControlIsFirstResponder:(BOOL)arg2 wholeImageIsSelected:(BOOL)arg3 wholeImageIsKey:(BOOL)arg4 dividerIsSelected:(BOOL)arg5;
-+ (id)uncachedDividerPatternForDirection:(long long)arg1 wholeControlIsFirstResponder:(BOOL)arg2 wholeImageIsSelected:(BOOL)arg3 wholeImageIsKey:(BOOL)arg4 dividerIsSelected:(BOOL)arg5;
 + (id)inactiveSelectedBorderColor;
 + (id)selectedBorderColor;
 + (id)normalBorderColor;
@@ -41,6 +40,12 @@
 @property(retain, nonatomic) NSBitmapImageRep *bitmap; // @synthesize bitmap=_bitmap;
 @property(retain) id representedObject; // @synthesize representedObject=_representedObject;
 - (void).cxx_destruct;
+- (id)accessibilityHelp;
+- (id)accessibilityHitTest:(struct CGPoint)arg1;
+- (id)accessibilityChildren;
+- (id)accessibilitySplitters;
+- (id)accessibilityRoleDescription;
+- (id)accessibilityRole;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)keyDown:(id)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;
@@ -54,30 +59,29 @@
 - (void)moveLeft:(id)arg1;
 - (void)moveSelectedDividerByDelta:(long long)arg1 forDirection:(long long)arg2;
 - (void)mouseDown:(id)arg1;
-- (void)moveDivider:(CDStruct_f261e59c)arg1 originalResizingBehavior:(id)arg2 toLocation:(long long)arg3;
+- (void)moveDivider:(CDStruct_912cb5d2)arg1 originalResizingBehavior:(id)arg2 toLocation:(long long)arg3;
 - (id)hitDividerAtPoint:(struct CGPoint)arg1;
-- (struct CGRect)hitTestRectForDivider:(CDStruct_f261e59c)arg1;
+- (struct CGRect)hitTestRectForDivider:(CDStruct_912cb5d2)arg1;
 - (void)resetCursorRects;
-- (id)cursorForDivider:(CDStruct_f261e59c)arg1;
+- (id)cursorForDivider:(CDStruct_912cb5d2)arg1;
 - (void)didCompleteLayout;
 - (void)layoutTopDown;
 - (void)resetScale;
 - (struct CGSize)frameSizeForScale:(long long)arg1;
 - (struct CGPoint)imageLocationForLocation:(struct CGPoint)arg1;
-- (id)imageForPart:(CDStruct_f261e59c)arg1;
+- (id)imageForPart:(CDStruct_912cb5d2)arg1;
 - (struct CGSize)idealSize;
-- (struct CGRect)frameForPart:(CDStruct_f261e59c)arg1;
-- (struct CGRect)frameForDivider:(CDStruct_f261e59c)arg1;
-- (CDStruct_c3b9c2ee)dividerOffsetForPart:(CDStruct_f261e59c)arg1;
+- (struct CGRect)frameForPart:(CDStruct_912cb5d2)arg1;
+- (struct CGRect)frameForDivider:(CDStruct_912cb5d2)arg1;
+- (CDStruct_34734122)dividerOffsetForPart:(CDStruct_912cb5d2)arg1;
 - (CDStruct_c519178c)scaledCapInsets;
 - (struct CGRect)contentRect;
 - (struct CGSize)contentSizeWithoutDividers;
 - (struct CGSize)contentSizeWithoutDividersForScale:(long long)arg1;
 - (BOOL)isFlipped;
 - (void)setShowsFirstResponder:(BOOL)arg1;
-- (void)updateDividerColors;
-- (BOOL)isShowingPart:(CDStruct_f261e59c)arg1;
-- (BOOL)isShowingDivider:(CDStruct_f261e59c)arg1;
+- (BOOL)isShowingPart:(CDStruct_912cb5d2)arg1;
+- (BOOL)isShowingDivider:(CDStruct_912cb5d2)arg1;
 - (struct CGSize)bitmapPixelSize;
 - (struct CGSize)centerSize;
 - (CDStruct_c519178c)capInsets;

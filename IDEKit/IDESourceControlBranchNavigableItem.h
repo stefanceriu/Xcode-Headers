@@ -18,7 +18,7 @@
 @property(retain) IDESourceControlTreeItem *treeItem; // @synthesize treeItem=_treeItem;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (void)_childRepresentedObjectsFromStartingRevision:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)_childRepresentedObjects:(CDUnknownBlockType)arg1;
 - (id)childRepresentedObjects;
 - (void)idesc_setChildRepresentedObjects:(id)arg1;
 - (BOOL)isLeaf;

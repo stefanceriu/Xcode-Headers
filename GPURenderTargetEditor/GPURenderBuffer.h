@@ -7,58 +7,50 @@
 #import "NSViewController.h"
 
 #import "DVTInvalidation.h"
+#import "GPUColorChannelsViewControllerDelegate.h"
 #import "GPUTraceBubbleOwner.h"
 
-@class DVTStackBacktrace, DYRenderingAttributes, GPURenderBufferButton, GPURenderBufferView, GPURenderJob, GPUTraceEditor, GPUTraceResourceInfoBubble, GPUTraceResourceSettingsBubble, NSLayoutConstraint, NSMenu, NSString, NSTextField;
+@class DVTStackBacktrace, DYRenderingAttributes, GPURenderBufferView, GPURenderJob, GPUTraceMainEditor, GPUTraceResourceInfoBubble, NSButton, NSLayoutConstraint, NSPopover, NSString, NSTextField;
 
-@interface GPURenderBuffer : NSViewController <GPUTraceBubbleOwner, DVTInvalidation>
+@interface GPURenderBuffer : NSViewController <GPUColorChannelsViewControllerDelegate, GPUTraceBubbleOwner, DVTInvalidation>
 {
-    GPURenderBufferButton *_infoButton;
-    GPURenderBufferButton *_settingsButton;
+    NSButton *_infoButton;
+    NSButton *_settingsButton;
     NSLayoutConstraint *_labelConstraint;
-    NSMenu *_contextMenuInitedWith;
     GPUTraceResourceInfoBubble *_infoBubble;
-    GPUTraceResourceSettingsBubble *_settingsBubble;
-    GPUTraceEditor *_gpuTraceEditor;
-    BOOL _showDepth;
-    unsigned int _attachmentEnum;
+    NSPopover *_settingsPopover;
+    GPUTraceMainEditor *_traceMainEditor;
     GPURenderJob *_renderJob;
     id <DYResource> _resource;
-    DYRenderingAttributes *_displayAttributes;
+    DYRenderingAttributes *_renderingAttributes;
     NSTextField *_bufferLabelProxyTextField;
 }
 
 + (void)initialize;
 + (id)assetBundle;
 @property __weak NSTextField *bufferLabelProxyTextField; // @synthesize bufferLabelProxyTextField=_bufferLabelProxyTextField;
-@property(readonly, nonatomic) DYRenderingAttributes *displayAttributes; // @synthesize displayAttributes=_displayAttributes;
+@property(readonly, nonatomic) DYRenderingAttributes *renderingAttributes; // @synthesize renderingAttributes=_renderingAttributes;
 @property(retain, nonatomic) id <DYResource> resource; // @synthesize resource=_resource;
 @property(retain, nonatomic) GPURenderJob *renderJob; // @synthesize renderJob=_renderJob;
 - (void).cxx_destruct;
+- (void)colorChannelViewController:(id)arg1 didChangeRenderingAttributes:(id)arg2;
 - (void)dumpImage:(id)arg1 asRaw:(BOOL)arg2;
 - (id)accessibleChildren;
 - (id)currentDisplayableItem;
-- (void)settingsUpdate;
-- (void)settingsToggleAlphaEnable;
-- (void)settingsToggleBlueEnable;
-- (void)settingsToggleGreenEnable;
-- (void)settingsToggleRedEnable;
 - (void)unloadView;
 - (void)updateView;
-- (void)settingsBubbleClosed;
 - (void)showSettings:(id)arg1;
+- (void)settingsBubbleClosed;
 - (void)infoBubbleClosed;
 - (void)showInfo:(id)arg1;
 - (struct CGPoint)_popoverPointForParentButton:(id)arg1;
-- (void)hideButtons:(BOOL)arg1;
-@property(readonly, nonatomic) __weak GPURenderBufferView *renderBufferView; // @dynamic renderBufferView;
+@property(readonly, nonatomic) __weak GPURenderBufferView *renderBufferView;
 @property(readonly, nonatomic) NSString *name;
 @property(readonly) struct CGSize resourceImageSize;
-- (void)_updateConstraints;
 - (void)loadView;
 @property(readonly, copy) NSString *description;
 - (void)primitiveInvalidate;
-- (id)initWithContextMenu:(id)arg1 traceEditor:(id)arg2 displayAttributes:(id)arg3 showDepth:(BOOL)arg4;
+- (id)initWithTraceEditor:(id)arg1 renderingAttributes:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

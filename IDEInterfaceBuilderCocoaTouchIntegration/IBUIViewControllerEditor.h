@@ -35,9 +35,8 @@
 - (id)acceptDragInfo:(id)arg1 context:(id)arg2;
 - (void)prepareToAcceptDragInfo:(id)arg1;
 - (BOOL)wantsDefaultDragInsertionIndicatorForDragInfo:(id)arg1;
-- (id)buildHighlightMaskForObject:(id)arg1;
 - (void)performCut:(id)arg1;
-- (void)performDelete:(id)arg1;
+- (void)performDeleteWithChildren:(id)arg1;
 - (void)performPaste:(id)arg1;
 - (void)didDeactivate;
 - (void)willClose;
@@ -45,12 +44,11 @@
 - (BOOL)shouldDragFrameWithMouseDownInEditedRect:(id)arg1;
 - (id)viewForTrackingObject:(id)arg1;
 - (id)containedBarButtonItemForObject:(id)arg1;
-- (void)resizeChild:(id)arg1 fromKnob:(CDUnion_aed8a530)arg2 withEvent:(id)arg3;
-- (id)viewForClippingToWhenDrawingSelectionKnobsForObject:(id)arg1;
+- (void)resizeChild:(id)arg1 fromKnob:(CDUnion_42e99c75)arg2 withEvent:(id)arg3;
 - (BOOL)areKnobsLockedForObject:(id)arg1;
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;
 - (CDStruct_b58c4854)activeKnobRectsForObject:(id)arg1;
-- (id)trackerForChild:(id)arg1 withView:(id)arg2 fromKnob:(CDUnion_aed8a530)arg3;
+- (id)trackerForChild:(id)arg1 withView:(id)arg2 fromKnob:(CDUnion_42e99c75)arg3;
 - (id)viewToTrackForFrameResizing;
 - (id)editedView;
 - (void)noteDescendant:(id)arg1 didChangeProperty:(id)arg2 fromValue:(id)arg3;

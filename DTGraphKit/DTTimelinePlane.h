@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "CALayerDelegate.h"
+
 @class CALayer, DTTimelineGraph, DTTimelineGraphPlaneLabelLayer, DTTimelineGroupPlane, NSDictionary, NSImage, NSMenu, NSString;
 
-@interface DTTimelinePlane : NSObject
+@interface DTTimelinePlane : NSObject <CALayerDelegate>
 {
     struct PlaneMetrics _planeMetrics;
     struct TimelineViewContext *_ctx;
@@ -92,13 +94,13 @@
 - (id)_selectedBackgroundColor;
 - (id)_immediatelyPriorSiblingPlane;
 @property(nonatomic) double baseZPosition;
-- (void)_setHeight:(double)arg1;
+- (BOOL)_setHeight:(double)arg1;
 @property(readonly, nonatomic) struct CGRect accessibilityLabelFrame;
 @property(readonly, nonatomic) struct CGRect accessibilityFrame;
 @property(readonly, nonatomic) double height;
 - (BOOL)_pointIntersectsDisclosureGlyph:(struct CGPoint)arg1 groupPlane:(out id *)arg2;
 @property(readonly, nonatomic) CALayer *layer;
-- (id)description;
+@property(readonly, copy) NSString *description;
 - (void)dealloc;
 - (id)initWithHeight:(double)arg1;
 - (id)init;
@@ -112,6 +114,11 @@
 - (void)_layoutLabelLayerAtPlanePosition:(struct CGPoint)arg1 planeSize:(struct CGSize)arg2 centerLabelWithin:(double)arg3;
 - (void)_updateIconAndLabelLayerZPosition;
 - (double)_centerOfLabelWithin:(double)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

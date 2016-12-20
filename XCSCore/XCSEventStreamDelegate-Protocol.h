@@ -13,6 +13,7 @@
 @optional
 - (void)eventStream:(XCSEventStream *)arg1 didUpdatePrivilegesWithUsername:(NSString *)arg2;
 - (void)eventStreamDidRejectClientCertificate:(XCSEventStream *)arg1;
+- (void)eventStreamDidConnect:(XCSEventStream *)arg1;
 - (void)eventStream:(XCSEventStream *)arg1 didDisconnectWithError:(NSError *)arg2;
 @end
 

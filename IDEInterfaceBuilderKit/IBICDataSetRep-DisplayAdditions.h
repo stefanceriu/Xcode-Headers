@@ -9,7 +9,6 @@
 @class NSString;
 
 @interface IBICDataSetRep (DisplayAdditions)
-+ (id)keyPathsForValuesAffectingIbInspectedUniversalTypeIdentifier;
 + (id)assetRepWithRepIdentifier:(id)arg1 forPasteboardReferencedFilePath:(id)arg2;
 - (id)image;
 - (id)icon;

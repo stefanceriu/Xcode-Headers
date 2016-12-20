@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
-@class IBMemberConfiguration, IBTargetRuntime;
+@class IBDeviceConfiguration, IBMemberConfiguration, IBTargetRuntime;
 
 @interface IBAbstractPreviewRecipe : NSObject
 {
 }
 
+@property(readonly) IBDeviceConfiguration *deviceConfiguration;
 @property(readonly) IBMemberConfiguration *memberConfiguration;
 @property(readonly) IBTargetRuntime *targetRuntime;
 - (id)propertyListRepresentation;

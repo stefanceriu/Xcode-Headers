@@ -19,11 +19,14 @@
     DVTObservingToken *_agreementStatusObserver;
     BOOL _needToInstallPackages;
     BOOL _didShowLicense;
+    BOOL _didRequestUITestingAccess;
+    BOOL _waitingOnFirstLaunchExperience;
 }
 
 + (void)setTitle:(id)arg1 forRightAnchoredButton:(id)arg2;
 + (id)sharedFirstLaunchExperienceViewController;
 + (BOOL)needToQuitAfterFLE;
+@property(getter=isWaitingOnFirstLaunchExperience) BOOL waitingOnFirstLaunchExperience; // @synthesize waitingOnFirstLaunchExperience=_waitingOnFirstLaunchExperience;
 - (void).cxx_destruct;
 - (void)_restartXcode;
 - (BOOL)_needToRestartXcode;

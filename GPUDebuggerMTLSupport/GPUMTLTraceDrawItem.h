@@ -13,8 +13,11 @@ __attribute__((visibility("hidden")))
     unsigned long long _commandBufferIndex;
     unsigned long long _commandEncoderIndex;
     unsigned long long _drawCallIndex;
+    id <DYPEnumUtils> _enumUtils;
+    id <DYPFenumUtils> _fenumUtils;
 }
 
+- (void).cxx_destruct;
 - (BOOL)showAsAPIItem;
 - (id)createRenderJobsForDisplaySet:(BOOL)arg1;
 - (id)imageToExportToFile;

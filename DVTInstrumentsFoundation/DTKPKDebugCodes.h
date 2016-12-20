@@ -6,21 +6,28 @@
 
 #import "NSObject.h"
 
+#import "NSCoding.h"
+
 @class NSSet, XRIntKeyedDictionary;
 
-@interface DTKPKDebugCodes : NSObject
+@interface DTKPKDebugCodes : NSObject <NSCoding>
 {
-    NSSet *_kdebugCodes;
-    XRIntKeyedDictionary *_codeMap;
     NSSet *_allKDebugCodes;
+    XRIntKeyedDictionary *_codeMap;
 }
 
-+ (id)remoteKDebugCodesFromURL:(id)arg1 error:(id *)arg2;
++ (id)legacyTraceCodesURLForOS:(unsigned long long)arg1 productVersion:(id)arg2;
++ (id)codesFromString:(id)arg1 error:(id *)arg2;
++ (id)codesFromURL:(id)arg1 error:(id *)arg2;
 + (id)localKDebugCodes:(id *)arg1;
 + (void)initialize;
 @property(readonly, retain, nonatomic) NSSet *allKDebugCodes; // @synthesize allKDebugCodes=_allKDebugCodes;
 - (void).cxx_destruct;
 - (id)kdebugCodeByValue:(unsigned int)arg1;
+- (id)kdebugCodeWithNameForCode:(CDUnion_1678db3a)arg1;
+- (id)kdebugCodeWithNameForValue:(unsigned int)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithCodes:(id)arg1;
 
 @end
