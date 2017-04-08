@@ -349,17 +349,29 @@ struct VecN<int, 4> {
     int _field1[4];
 };
 
-struct __hash_node<std::__1::__hash_value_type<int, int>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*> *_field1;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> *_field1;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> *_field1;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> *_field1;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> *_field1;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> *_field1;
+};
 
 struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> {
     struct __compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__rep, std::__1::allocator<char>> {
@@ -385,66 +397,66 @@ struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>
     } _field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, int>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
     } _field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
     } _field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
     } _field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
     } _field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
     } _field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
@@ -453,11 +465,9 @@ struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__
 
 struct unordered_map<int, int, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, int>>> {
     struct __hash_table<std::__1::__hash_value_type<int, int>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, int>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, int>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, int>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, int>, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, int>, std::__1::hash<int>, true>> {
             unsigned long long _field1;
@@ -470,11 +480,9 @@ struct unordered_map<int, int, std::__1::hash<int>, std::__1::equal_to<int>, std
 
 struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::hash<int>, true>> {
             unsigned long long _field1;
@@ -487,11 +495,9 @@ struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPU
 
 struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::hash<int>, true>> {
             unsigned long long _field1;
@@ -504,11 +510,9 @@ struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUT
 
 struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::hash<int>, true>> {
             unsigned long long _field1;
@@ -521,11 +525,9 @@ struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<G
 
 struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::hash<int>, true>> {
             unsigned long long _field1;
@@ -538,11 +540,9 @@ struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedba
 
 struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUTools::AnalyzerBaseObjectTypes>>>, std::__1::hash<int>, true>> {
             unsigned long long _field1;
@@ -766,5 +766,5 @@ typedef struct ContextStateMirror<GPUTools::AnalyzerBaseObjectTypes> {
     struct SharegroupStateMirror<GPUTools::AnalyzerBaseObjectTypes> *_field189;
     struct StateMirrorManager<GPUTools::AnalyzerBaseObjectTypes> *_field190;
     unsigned long long _field191;
-} ContextStateMirror_c1e8f92a;
+} ContextStateMirror_c02390f8;
 

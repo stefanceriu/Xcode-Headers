@@ -16,6 +16,7 @@
 - (id)dvt_applicationIsInstalledWithBundleIdentifier:(id)arg1;
 - (id)dvt_uninstallApplicationWithBundleIdentifier:(id)arg1 andOptions:(id)arg2;
 - (id)dvt_uninstallApplicationWithBundleIdentifier:(id)arg1;
+- (id)dvt_propertiesOfApplicationWithBundleIdentifier:(id)arg1;
 - (id)dvt_installApplicationAtPath:(id)arg1 withOptions:(id)arg2;
 - (id)dvt_installApplicationAtPath:(id)arg1;
 - (id)dvt_restoreContentsAndSettingsFrom:(id)arg1;

@@ -6,7 +6,7 @@
 
 #import <IDEInterfaceBuilderKit/IBAbstractDocumentEditor.h>
 
-@class DVTDelayedInvocation, DVTNotificationToken, IBCancellationToken, IBStoryboardCanvasViewController;
+@class DVTDelayedInvocation, DVTNotificationToken, IBCancellationToken;
 
 @interface IBStoryboardDocumentEditor : IBAbstractDocumentEditor
 {
@@ -30,7 +30,7 @@
 - (BOOL)memberCanBeSelected:(id)arg1;
 - (void)deselectMembers:(id)arg1;
 - (void)setCurrentSelectedItems:(id)arg1;
-@property(readonly, nonatomic) IBStoryboardCanvasViewController *canvasViewController;
+- (id)canvasViewController;
 - (Class)structureViewControllerClass;
 - (Class)canvasViewControllerClass;
 - (void)unregisterWithDocument;

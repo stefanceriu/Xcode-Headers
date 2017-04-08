@@ -10,23 +10,24 @@
 
 @interface IBToolbarItemView : DVTLayoutView_ML
 {
-    NSImageView *imageView;
-    NSTextField *textField;
-    BOOL useLabelInsteadOfPaletteLabel;
-    NSToolbarItem *item;
-    NSView *contentView;
-    BOOL showsLabel;
-    id <DVTInvalidation> frameSizeToken;
-    id <DVTInvalidation> frameOriginToken;
-    id <DVTInvalidation> paletteLabelToken;
-    id <DVTInvalidation> labelToken;
-    id <DVTInvalidation> imageToken;
+    id <DVTInvalidation> _frameSizeToken;
+    id <DVTInvalidation> _frameOriginToken;
+    id <DVTInvalidation> _paletteLabelToken;
+    id <DVTInvalidation> _labelToken;
+    id <DVTInvalidation> _imageToken;
+    NSView *_contentView;
+    BOOL _useLabelInsteadOfPaletteLabel;
+    BOOL _showsLabel;
+    NSImageView *_imageView;
+    NSToolbarItem *_item;
+    NSTextField *_textField;
 }
 
-@property(readonly) NSImageView *imageView; // @synthesize imageView;
-@property(readonly) NSToolbarItem *item; // @synthesize item;
-@property(nonatomic) BOOL showsLabel; // @synthesize showsLabel;
-@property(nonatomic) BOOL useLabelInsteadOfPaletteLabel; // @synthesize useLabelInsteadOfPaletteLabel;
+@property(nonatomic) BOOL showsLabel; // @synthesize showsLabel=_showsLabel;
+@property(retain) NSTextField *textField; // @synthesize textField=_textField;
+@property(readonly) NSToolbarItem *item; // @synthesize item=_item;
+@property(retain) NSImageView *imageView; // @synthesize imageView=_imageView;
+@property(nonatomic) BOOL useLabelInsteadOfPaletteLabel; // @synthesize useLabelInsteadOfPaletteLabel=_useLabelInsteadOfPaletteLabel;
 - (void).cxx_destruct;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 @property(readonly) struct CGRect titleRect;

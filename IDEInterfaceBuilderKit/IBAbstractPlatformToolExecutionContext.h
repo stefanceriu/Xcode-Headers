@@ -9,16 +9,17 @@
 #import "IBDiagnosticsHandlerConfigurator.h"
 #import "IBVerboseDescriptionProvider.h"
 
-@class NSString;
+@class NSDictionary, NSString;
 
 @interface IBAbstractPlatformToolExecutionContext : NSObject <IBDiagnosticsHandlerConfigurator, IBVerboseDescriptionProvider>
 {
+    NSDictionary *_additionalEnvironment;
 }
 
-- (id)registerSceneUpdateRenderingDelegate:(id)arg1 returningSceneIdentifier:(long long *)arg2;
+@property(copy, nonatomic) NSDictionary *additionalEnvironment; // @synthesize additionalEnvironment=_additionalEnvironment;
+- (void).cxx_destruct;
 - (id)ib_verboseDescription;
 - (void)configureDiagnosticsHandler:(id)arg1;
-- (void)toolProxyWillDispatchMessage:(id)arg1;
 - (BOOL)populateEnvironment:(id)arg1 launchContext:(id)arg2 error:(id *)arg3;
 - (void)populateDYLDFrameworkSearchPaths:(id)arg1 launchContext:(id)arg2;
 - (id)environmentWithLaunchContext:(id)arg1 error:(id *)arg2;

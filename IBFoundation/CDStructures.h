@@ -30,7 +30,7 @@ struct IBObjectIDHashEntry_tag {
     id _field2;
 };
 
-struct _IBEdgeInsets {
+struct NSEdgeInsets {
     double _field1;
     double _field2;
     double _field3;

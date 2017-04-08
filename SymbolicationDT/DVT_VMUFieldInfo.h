@@ -32,6 +32,7 @@
 @property(readonly) NSString *typeName; // @synthesize typeName=_typeName;
 @property(readonly) NSString *ivarName; // @synthesize ivarName=_ivarName;
 - (id)description;
+- (id)descriptionOfFieldValueInObjectMemory:(void *)arg1 scanner:(id)arg2;
 @property(readonly) DVT_VMUClassInfo *destinationLayout;
 - (void)_setDestinationLayout:(id)arg1;
 - (void)_setStride:(unsigned int)arg1;
@@ -46,6 +47,7 @@
 @property(readonly, nonatomic) BOOL isStorageImplPointer;
 @property(readonly, nonatomic) BOOL isByref;
 @property(readonly, nonatomic) BOOL isCapture;
+@property(readonly) unsigned int bitfieldWidth;
 - (void)_setFlags:(unsigned int)arg1;
 - (void)_setSize:(unsigned int)arg1;
 - (void)_setOffset:(unsigned int)arg1;

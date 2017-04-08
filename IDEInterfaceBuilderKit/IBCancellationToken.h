@@ -12,7 +12,7 @@
 
 @interface IBCancellationToken : NSObject <DVTCancellable>
 {
-    CDUnknownBlockType cancellationBlock;
+    CDUnknownBlockType _cancellationBlock;
 }
 
 + (id)tokenWithCancellable:(id)arg1;

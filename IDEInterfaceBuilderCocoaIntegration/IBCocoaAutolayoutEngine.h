@@ -10,12 +10,12 @@
 
 @interface IBCocoaAutolayoutEngine : IBAutolayoutEngine
 {
-    NSWindowTemplate *topLevelRealWindowTemplate;
-    NSWindow *window;
+    NSWindowTemplate *_topLevelRealWindowTemplate;
+    NSWindow *_window;
 }
 
 + (id)defaultWindowForContentViewSize:(struct CGSize)arg1;
-@property(readonly) NSWindow *window; // @synthesize window;
+@property(readonly) NSWindow *window; // @synthesize window=_window;
 - (void).cxx_destruct;
 - (id)candidateRedundantRepresentedConstraints;
 - (id)viewForApplyingSystemRequiredConstraints;

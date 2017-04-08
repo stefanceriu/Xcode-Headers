@@ -10,10 +10,11 @@
 #import "DVTSourceControlSerializable.h"
 #import "NSCopying.h"
 
-@class DVTSourceControlBranchAndTagLocations, DVTSourceControlRemoteRepository, DVTSourceControlRevisionLocation, NSMapTable, NSOperationQueue, NSOrderedSet, NSString;
+@class DVTSourceControlBranchAndTagLocations, DVTSourceControlRemoteRepository, DVTSourceControlRevisionLocation, NSMapTable, NSObject<OS_dispatch_queue>, NSOperationQueue, NSOrderedSet, NSString;
 
 @interface DVTSourceControlWorkspaceBlueprint : NSObject <DVTSourceControlIdentifiable, DVTSourceControlSerializable, NSCopying>
 {
+    NSObject<OS_dispatch_queue> *_blueprintChangeQueue;
     NSOperationQueue *_blueprintOperationQueue;
     BOOL _needsToUseSecondaryIdentifiers;
     BOOL _favorite;
@@ -45,6 +46,7 @@
 - (id)repositoriesWithWorkingCopyPathsAboveRootFolder;
 - (id)blueprintForRemoteRepository:(id)arg1;
 - (void)setWorkingCopyState:(unsigned long long)arg1 forRepository:(id)arg2;
+- (void)setWorkingCopyNumberState:(id)arg1 forRepository:(id)arg2;
 - (void)setLocation:(id)arg1 forRepository:(id)arg2;
 - (void)removeRemoteRepository:(id)arg1;
 - (void)addRemoteRepository:(id)arg1 inBlueprint:(id)arg2;
@@ -56,6 +58,7 @@
 @property(readonly) BOOL representsSingleRepository;
 - (id)revisionForRemoteRepository:(id)arg1;
 - (unsigned long long)workingCopyStateForRemoteRepository:(id)arg1;
+- (id)workingCopyNumberStateForRemoteRepository:(id)arg1;
 - (id)workingCopyPathForRemoteRepository:(id)arg1;
 - (id)branchAndTagLocationsForRemoteRepository:(id)arg1;
 - (id)locationForRemoteRepository:(id)arg1;

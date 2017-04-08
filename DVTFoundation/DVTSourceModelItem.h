@@ -95,11 +95,6 @@
 - (id)description;
 - (id)innerDescription:(id)arg1 showSelf:(BOOL)arg2;
 - (id)initWithRange:(struct _NSRange)arg1 language:(long long)arg2 token:(long long)arg3 nodeType:(short)arg4;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 @end
 

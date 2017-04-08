@@ -8,7 +8,7 @@
 
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTPlistNode, IDEFileReference, IDEPlistDocument, NSImage, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTPlistNode, IDEFileReference, IDEPlistDocument, NSArray, NSImage, NSNull, NSString;
 
 @interface IDEPlistNodeNavigable : NSObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
@@ -31,6 +31,9 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;

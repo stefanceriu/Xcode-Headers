@@ -11,7 +11,7 @@
 @protocol IBArchivableDocument <NSObject>
 - (void)documentArchiver:(IBDocumentArchiver *)arg1 didArchiveObject:(id)arg2;
 - (void)documentArchiver:(IBDocumentArchiver *)arg1 willArchiveObject:(id)arg2;
-- (NSString *)documentArchiver:(IBDocumentArchiver *)arg1 referenceIDForObject:(id)arg2 referenceType:(NSString *)arg3;
+- (NSString *)documentArchiver:(IBDocumentArchiver *)arg1 referenceIDForObject:(id)arg2 referenceType:(NSString *)arg3 forFirstReferencingThroughKey:(NSString *)arg4;
 - (void)archiveDocument:(IBDocumentArchiver *)arg1;
 @end
 

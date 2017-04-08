@@ -8,7 +8,7 @@
 
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSString;
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSNull, NSString;
 
 @interface Xcode3EditingGroup : DVTModelObject <IDEKeyDrivenNavigableItemRepresentedObject>
 {
@@ -17,10 +17,13 @@
     NSString *_name;
 }
 
-@property(readonly, copy) NSArray *childItems; // @synthesize childItems=_childItems;
-@property(readonly) id representedObject; // @synthesize representedObject=_representedObject;
++ (id)keyPathsForValuesAffectingNavigableItem_childRepresentedObjects;
 @property(copy) NSString *name; // @synthesize name=_name;
+@property(readonly) id representedObject; // @synthesize representedObject=_representedObject;
+@property(readonly, copy) NSArray *childItems; // @synthesize childItems=_childItems;
 - (void).cxx_destruct;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
+@property(readonly) BOOL navigableItem_isMajorGroup;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) NSString *navigableItem_name;
 - (BOOL)acceptDrop:(id)arg1 atIndex:(long long)arg2;
@@ -33,12 +36,13 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
-@property(readonly) BOOL navigableItem_isMajorGroup;
 @property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
 @property(readonly) BOOL navigableItem_referencedContentExists;
 @property(readonly) NSString *navigableItem_subtitle;

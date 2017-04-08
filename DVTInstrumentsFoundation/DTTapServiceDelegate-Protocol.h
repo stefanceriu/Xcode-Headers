@@ -11,7 +11,6 @@
 - (void)didStop;
 - (DTTapMessage *)willStartWithConfig:(DTTapConfig *)arg1;
 - (BOOL)requiresExpiredPIDCacheForConfig:(DTTapConfig *)arg1;
-- (BOOL)validateConfig:(DTTapConfig *)arg1;
 - (DTTapConfig *)createConfigWithPlist:(NSDictionary *)arg1;
 - (id)initWithMessageSender:(DTTapServiceMessageSender *)arg1;
 @end

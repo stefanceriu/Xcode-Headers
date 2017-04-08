@@ -15,10 +15,6 @@ __attribute__((visibility("hidden")))
     NSTextField *_rangeMinTextField;
     NSTextField *_rangeMaxTextField;
     NSButton *_autoRangeCheckBox;
-    double _userSliderMin;
-    double _userSliderMax;
-    double _userExtentMin;
-    double _userExtentMax;
     double _toneMapDefaultMin;
     double _toneMapDefaultMax;
     double _toneMapLimitMin;
@@ -29,16 +25,12 @@ __attribute__((visibility("hidden")))
     NSButton *_enableButton;
     NSLayoutConstraint *_linkViewSpacerConstraint;
     id <GPUTraceResourceSettingsChannelStripDelegate> _delegate;
-    double _toneMapExtentMin;
-    double _toneMapExtentMax;
-    double _toneMapSliderMin;
-    double _toneMapSliderMax;
+    double _toneMapValueMin;
+    double _toneMapValueMax;
 }
 
-@property(nonatomic) double toneMapSliderMax; // @synthesize toneMapSliderMax=_toneMapSliderMax;
-@property(nonatomic) double toneMapSliderMin; // @synthesize toneMapSliderMin=_toneMapSliderMin;
-@property(nonatomic) double toneMapExtentMax; // @synthesize toneMapExtentMax=_toneMapExtentMax;
-@property(nonatomic) double toneMapExtentMin; // @synthesize toneMapExtentMin=_toneMapExtentMin;
+@property(nonatomic) double toneMapValueMax; // @synthesize toneMapValueMax=_toneMapValueMax;
+@property(nonatomic) double toneMapValueMin; // @synthesize toneMapValueMin=_toneMapValueMin;
 @property(nonatomic) __weak id <GPUTraceResourceSettingsChannelStripDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) unsigned char tag; // @synthesize tag=_tag;
 @property(nonatomic) unsigned char stripType; // @synthesize stripType=_stripType;
@@ -51,11 +43,7 @@ __attribute__((visibility("hidden")))
 - (void)_updateMinTextField:(id)arg1;
 - (void)_updateToneMapSlider:(id)arg1;
 - (void)_toggleEnableState:(id)arg1;
-- (void)_applyToneMapValues;
-- (void)_applySliderMin:(double)arg1 andSliderMax:(double)arg2 withExtentMin:(double)arg3 andExtentMax:(double)arg4 informingDelegate:(BOOL)arg5;
-- (void)_updateTextFieldWithType:(unsigned char)arg1;
-- (void)_setToneMapRange:(const struct DYRangeValue *)arg1 informingDelegate:(BOOL)arg2;
-- (void)_setToneMapExtentsWithMin:(double)arg1 andMax:(double)arg2 informingDelegate:(BOOL)arg3;
+- (void)_updateSliderAndTextfields;
 @property(nonatomic) long long autoRangeCheckBoxState;
 @property(nonatomic) long long enableButtonState;
 @property(readonly, nonatomic) double uiWidth;

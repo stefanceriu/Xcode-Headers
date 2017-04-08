@@ -10,7 +10,7 @@
 #import "IDEDebugNavigableModel.h"
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DTMemoryGraphItem, DTXChannel, DTXConnection, DVTDocumentLocation, DVTFileDataType, DVTObservingToken, DVTStackBacktrace, IDEDebugSession, IDEFileReference, IDELaunchSession, NSData, NSError, NSImage, NSString, NSURL, XRMemoryGraphDebuggerIndex, XRMemoryGraphIssueGenerator;
+@class DTMemoryGraphItem, DTXChannel, DTXConnection, DVTDocumentLocation, DVTFileDataType, DVTObservingToken, DVTStackBacktrace, IDEDebugSession, IDEFileReference, IDELaunchSession, NSArray, NSData, NSError, NSImage, NSNull, NSString, NSURL, XRMemoryGraphDebuggerIndex, XRMemoryGraphIssueGenerator;
 
 @interface XRMemoryGraphDebugger : NSObject <IDEDebugNavigableModel, IDEKeyDrivenNavigableItemRepresentedObject, DVTInvalidation>
 {
@@ -41,7 +41,6 @@
 @property(retain, nonatomic) XRMemoryGraphDebuggerIndex *memoryGraphIndex; // @synthesize memoryGraphIndex=_unfilteredIndex;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (id)mallocStackLogForAddress:(unsigned long long)arg1 size:(unsigned long long)arg2 isLiteZone:(BOOL)arg3 error:(id *)arg4;
 @property(readonly, nonatomic) NSError *mallocStackLoggingStateError;
 - (void)fetchMemoryGraphIfNecessary;
 @property(readonly, nonatomic) DTMemoryGraphItem *initialItem;
@@ -62,7 +61,10 @@
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;

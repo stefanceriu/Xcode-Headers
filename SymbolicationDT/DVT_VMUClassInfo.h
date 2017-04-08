@@ -65,6 +65,7 @@
 - (void)_addVariantAction:(CDUnknownBlockType)arg1 withEvaluator:(CDUnknownBlockType)arg2;
 - (void)_setFields:(id)arg1;
 - (void)_replaceField:(id)arg1 withFields:(id)arg2;
+- (void)_addFields:(id)arg1;
 - (id)firstFieldWithName:(id)arg1;
 - (id)fieldAtOrBeforeOffset:(unsigned int)arg1;
 - (void)enumerateScanningLocationsForSize:(unsigned int)arg1 withBlock:(CDUnknownBlockType)arg2;
@@ -74,6 +75,7 @@
 @property(readonly) DVT_VMUClassInfo *genericInfo;
 - (void)enumerateExternalValuesFromObject:(unsigned long long)arg1 withSize:(unsigned int)arg2 block:(CDUnknownBlockType)arg3;
 - (void)enumerateStoredEntriesForObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2 externalValues:(id)arg3 block:(CDUnknownBlockType)arg4;
+- (id)instanceSpecificInfoForObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2 withScanner:(id)arg3 memoryReader:(CDUnknownBlockType)arg4;
 - (id)instanceSpecificInfoForObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2 memoryReader:(CDUnknownBlockType)arg3;
 - (void)_applyExtendedLayout:(const char *)arg1 withSize:(unsigned int)arg2;
 - (id)_copyWithInstanceSize:(unsigned int)arg1 superclassOffset:(unsigned int)arg2 asVariant:(BOOL)arg3 mutable:(BOOL)arg4;

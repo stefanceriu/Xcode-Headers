@@ -6,28 +6,28 @@
 
 #import "DVTMessageBubbleAnnotation.h"
 
-@class DVTDevice, IDETest, NSArray, NSString;
+@class DVTDevice, DVTTestPerformanceMetricOutput, IDETest, NSArray, NSString;
 
 @interface _IDETestPerformanceMetricAnnotation : DVTMessageBubbleAnnotation
 {
     DVTDevice *_targetDevice;
     NSString *_targetArchitecture;
     IDETest *_test;
+    DVTTestPerformanceMetricOutput *_performanceMetric;
     NSArray *_performanceMetricsForPreviousRun;
 }
 
-+ (id)locationForTest:(id)arg1 inDocument:(id)arg2 withTestManager:(id)arg3;
++ (id)locationForTest:(id)arg1 inDocument:(id)arg2 performanceMetric:(id)arg3;
 + (id)defaultTheme;
 @property(retain) NSArray *performanceMetricsForPreviousRun; // @synthesize performanceMetricsForPreviousRun=_performanceMetricsForPreviousRun;
+@property(retain) DVTTestPerformanceMetricOutput *performanceMetric; // @synthesize performanceMetric=_performanceMetric;
 @property __weak IDETest *test; // @synthesize test=_test;
 @property(copy) NSString *targetArchitecture; // @synthesize targetArchitecture=_targetArchitecture;
 @property(retain) DVTDevice *targetDevice; // @synthesize targetDevice=_targetDevice;
 - (void).cxx_destruct;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)contextMenu_revealInReport:(id)arg1;
-- (void)contextMenu_acceptPreviousAverageForPersistentAllocations:(id)arg1;
-- (void)contextMenu_acceptPreviousAverageForTotalAllocations:(id)arg1;
-- (void)contextMenu_acceptPreviousAverageForTime:(id)arg1;
+- (void)contextMenu_acceptPreviousAverage:(id)arg1;
 - (void)contextMenu_acceptPreviousAverageForAllMetrics:(id)arg1;
 - (void)contextMenu_performSelector:(SEL)arg1 sender:(id)arg2;
 - (void)updateBaselineForPerformanceMetricWithIdentifier:(id)arg1 average:(id)arg2 maxStandardDeviation:(id)arg3;

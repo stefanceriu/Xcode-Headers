@@ -18,7 +18,7 @@
 
 @property(nonatomic) GPUTraceShaderItem *defaultShaderItem; // @synthesize defaultShaderItem=_defaultShaderItem;
 @property(readonly, nonatomic, getter=isPipeline) BOOL pipeline; // @synthesize pipeline=_pipeline;
-- (void)primitiveInvalidate;
+- (void)dealloc;
 - (id)initProgramWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 isPipeline:(BOOL)arg4 stateMirrorObject:(const void *)arg5 containerID:(unsigned long long)arg6 sharegroupID:(unsigned long long)arg7 identifier:(id)arg8;
 - (id)initComputePipelineStateWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 stateMirrorObject:(const void *)arg4 containerID:(unsigned long long)arg5 identifier:(id)arg6;
 - (id)initRenderPipelineStateWithController:(id)arg1 parent:(id)arg2 programID:(unsigned long long)arg3 stateMirrorObject:(const void *)arg4 containerID:(unsigned long long)arg5 identifier:(id)arg6;
@@ -36,6 +36,7 @@
 @property(readonly, nonatomic) NSString *identifier;
 @property(retain, nonatomic) NSString *label;
 @property(readonly, nonatomic) unsigned long long objectID;
+@property(readonly, nonatomic) BOOL placeholder;
 @property(readonly, nonatomic) NSMutableDictionary *properties;
 @property(readonly, nonatomic) const void *stateMirrorObject;
 @property(readonly) Class superclass;

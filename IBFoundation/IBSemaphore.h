@@ -10,8 +10,8 @@
 
 @interface IBSemaphore : NSObject
 {
-    NSConditionLock *lock;
-    long long count;
+    NSConditionLock *_lock;
+    long long _count;
 }
 
 - (void).cxx_destruct;

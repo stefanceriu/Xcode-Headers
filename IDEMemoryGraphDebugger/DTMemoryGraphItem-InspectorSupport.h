@@ -18,10 +18,10 @@
 - (id)addressRangeDescription;
 @property(readonly, nonatomic) NSString *instanceSizeDescription;
 @property(readonly, nonatomic) NSString *addressDescription;
-- (id)typeKindDescription;
+@property(readonly, nonatomic) NSString *mallocZoneNameDescription;
+@property(readonly, nonatomic) NSString *typeKindDescription;
 @property(readonly, nonatomic) NSString *typeNameDescription;
-@property(readonly, nonatomic) BOOL typeIsNotClass;
-@property(readonly, nonatomic) BOOL typeIsClass;
+@property(readonly, nonatomic) BOOL isMallocBlock;
 @property(readonly, nonatomic) BOOL isVMRegion;
 - (id)ideModelObjectTypeIdentifier;
 @end

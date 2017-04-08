@@ -11,13 +11,15 @@
 #import "DVTSplitViewDelegate.h"
 #import "NSTableViewDelegate.h"
 
-@class DVTBorderedView, DVTGradientImageButton, DVTNotificationToken, DVTObservingToken, DVTProduct, DVTProductManager, DVTReplacementView, DVTScrollView, DVTSplitView, DVTTableView, IDEProductSectionViewController, IDEProductsUtilityViewController, NSArray, NSArrayController, NSIndexSet, NSMutableDictionary, NSString, NSView;
+@class DVTBorderedView, DVTDelayedInvocation, DVTGradientImageButton, DVTNotificationToken, DVTObservingToken, DVTProduct, DVTProductManager, DVTReplacementView, DVTScrollView, DVTSplitView, DVTTableView, IDEProductSectionViewController, IDEProductsUtilityViewController, NSArray, NSArrayController, NSIndexSet, NSMutableDictionary, NSString, NSView;
 
 @interface IDEProductsViewController : IDEViewController <NSTableViewDelegate, DVTSplitViewDelegate, DVTProductManagerDelegate, DVTReplacementViewDelegate>
 {
     BOOL _programmaticallyManipulatingProductsSourceListSplitPosition;
     BOOL _restoringSelectedSegmentIndex;
+    BOOL _restoringSelectedProductIndex;
     BOOL _displayedLogInErrors;
+    BOOL _hasCompletedInitialLoading;
     NSArray *_productSectionSegments;
     long long _selectedSegmentIndex;
     DVTSplitView *_splitView;
@@ -36,26 +38,34 @@
     IDEProductsUtilityViewController *_utilityViewController;
     IDEProductSectionViewController *_currentSectionViewController;
     NSMutableDictionary *_sourcesToErrorsMap;
+    CDUnknownBlockType _showProductAfterInitialLoading;
     DVTObservingToken *_productsObserver;
     DVTObservingToken *_productsForDisplayObserver;
     DVTObservingToken *_inspectableObserver;
-    DVTObservingToken *_selectedProductObserver;
     DVTObservingToken *_busyObserver;
     DVTObservingToken *_currentSectionEmptyObserver;
+    DVTObservingToken *_appStoreProductSourceHasCompletedInitialLoading;
+    DVTObservingToken *_archiveProductSourceHasCompletedInitialLoading;
     DVTNotificationToken *_splitViewResizeObserver;
+    DVTDelayedInvocation *_updateProductsDelayedInvocation;
 }
 
 + (id)keyPathsForValuesAffectingBusyReason;
 + (id)keyPathsForValuesAffectingBusy;
 + (void)initialize;
+@property(retain, nonatomic) DVTDelayedInvocation *updateProductsDelayedInvocation; // @synthesize updateProductsDelayedInvocation=_updateProductsDelayedInvocation;
 @property(retain) DVTNotificationToken *splitViewResizeObserver; // @synthesize splitViewResizeObserver=_splitViewResizeObserver;
+@property(retain) DVTObservingToken *archiveProductSourceHasCompletedInitialLoading; // @synthesize archiveProductSourceHasCompletedInitialLoading=_archiveProductSourceHasCompletedInitialLoading;
+@property(retain) DVTObservingToken *appStoreProductSourceHasCompletedInitialLoading; // @synthesize appStoreProductSourceHasCompletedInitialLoading=_appStoreProductSourceHasCompletedInitialLoading;
 @property(retain) DVTObservingToken *currentSectionEmptyObserver; // @synthesize currentSectionEmptyObserver=_currentSectionEmptyObserver;
 @property(retain) DVTObservingToken *busyObserver; // @synthesize busyObserver=_busyObserver;
-@property(retain) DVTObservingToken *selectedProductObserver; // @synthesize selectedProductObserver=_selectedProductObserver;
 @property(retain) DVTObservingToken *inspectableObserver; // @synthesize inspectableObserver=_inspectableObserver;
 @property(retain) DVTObservingToken *productsForDisplayObserver; // @synthesize productsForDisplayObserver=_productsForDisplayObserver;
 @property(retain) DVTObservingToken *productsObserver; // @synthesize productsObserver=_productsObserver;
+@property(copy, nonatomic) CDUnknownBlockType showProductAfterInitialLoading; // @synthesize showProductAfterInitialLoading=_showProductAfterInitialLoading;
+@property(nonatomic) BOOL hasCompletedInitialLoading; // @synthesize hasCompletedInitialLoading=_hasCompletedInitialLoading;
 @property(nonatomic, getter=hasDisplayedLogInErrors) BOOL displayedLogInErrors; // @synthesize displayedLogInErrors=_displayedLogInErrors;
+@property(nonatomic, getter=isRestoringSelectedProductIndex) BOOL restoringSelectedProductIndex; // @synthesize restoringSelectedProductIndex=_restoringSelectedProductIndex;
 @property(nonatomic, getter=isRestoringSelectedSegmentIndex) BOOL restoringSelectedSegmentIndex; // @synthesize restoringSelectedSegmentIndex=_restoringSelectedSegmentIndex;
 @property(nonatomic, getter=isProgrammaticallyManipulatingProductsSourceListSplitPosition) BOOL programmaticallyManipulatingProductsSourceListSplitPosition; // @synthesize programmaticallyManipulatingProductsSourceListSplitPosition=_programmaticallyManipulatingProductsSourceListSplitPosition;
 @property(retain) NSMutableDictionary *sourcesToErrorsMap; // @synthesize sourcesToErrorsMap=_sourcesToErrorsMap;
@@ -85,6 +95,7 @@
 - (double)splitView:(id)arg1 constrainMaxCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
 - (double)splitView:(id)arg1 constrainMinCoordinate:(double)arg2 ofSubviewAt:(long long)arg3;
 - (void)primitiveInvalidate;
+- (void)setSelectedSegmentIndex:(long long)arg1 immediately:(BOOL)arg2;
 @property(readonly) NSArray *productSectionSegments; // @synthesize productSectionSegments=_productSectionSegments;
 - (id)sortedExtensionsWithDefinitionIdentifier:(id)arg1;
 - (id)tableView:(id)arg1 viewForTableColumn:(id)arg2 row:(long long)arg3;
@@ -112,7 +123,7 @@
 - (void)_toggleSourceListVisibility;
 - (BOOL)shouldShowSourceList;
 - (void)_updateProductsTableIssueDisplay;
-- (id)showProductsSectionWithIdentifier:(id)arg1 forProductIdentifier:(id)arg2;
+- (void)showProductsSectionWithIdentifier:(id)arg1 forProductIdentifier:(id)arg2 didShowProduct:(CDUnknownBlockType)arg3;
 - (unsigned long long)indexForProductSectionDefinitionIdentifier:(id)arg1;
 - (id)indexSetForProductIdentifier:(id)arg1;
 - (id)selectedProductFromSelectedIndex:(id)arg1;

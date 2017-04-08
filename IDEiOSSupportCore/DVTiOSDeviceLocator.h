@@ -36,6 +36,8 @@
 - (void)forgetDevice:(id)arg1;
 - (void)beginWatchingDevice:(id)arg1;
 - (void)updateDefaultsForDevice:(id)arg1;
+- (void)updateSavedDeviceTokenForDevice:(id)arg1;
+- (void)removeSavedDeviceTokenForDeviceIdentifier:(id)arg1;
 - (id)init;
 
 @end

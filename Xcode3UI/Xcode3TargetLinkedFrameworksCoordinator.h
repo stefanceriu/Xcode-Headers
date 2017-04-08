@@ -20,7 +20,7 @@
 - (BOOL)linkFrameworkWithName:(id)arg1 error:(id *)arg2;
 - (id)projectRootGroup;
 @property(readonly) Xcode3BuildPhase *buildPhase;
-- (id)initWithTarget:(id)arg1;
+- (id)initWithTarget:(id)arg1 buildConfiguration:(id)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

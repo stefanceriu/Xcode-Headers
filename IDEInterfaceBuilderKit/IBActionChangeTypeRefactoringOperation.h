@@ -10,18 +10,18 @@
 
 @interface IBActionChangeTypeRefactoringOperation : IBRefactoringOperation
 {
-    NSString *actionName;
-    NSString *className;
-    NSString *oldType;
-    NSString *newType;
+    NSString *_actionName;
+    NSString *_className;
+    NSString *_oldType;
+    NSString *_newType;
 }
 
+@property(readonly) NSString *newType; // @synthesize newType=_newType;
+@property(readonly) NSString *oldType; // @synthesize oldType=_oldType;
+@property(readonly) NSString *className; // @synthesize className=_className;
+@property(readonly) NSString *actionName; // @synthesize actionName=_actionName;
 - (void).cxx_destruct;
 - (BOOL)refactorObject:(id)arg1 inDocument:(id)arg2 error:(id *)arg3;
-- (id)newType;
-- (id)oldType;
-- (id)className;
-- (id)actionName;
 - (id)initWithClassName:(id)arg1 actionName:(id)arg2 oldType:(id)arg3 andNewType:(id)arg4;
 
 @end

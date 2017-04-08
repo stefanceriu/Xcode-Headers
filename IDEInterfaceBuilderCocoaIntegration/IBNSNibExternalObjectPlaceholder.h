@@ -14,8 +14,8 @@
 @interface IBNSNibExternalObjectPlaceholder : NSObject <IBDocumentArchiving, IBExternalReferencePlaceholder>
 {
     NSString *_externalReferenceIdentifier;
-    IBTargetRuntime *_targetRuntime;
     BOOL _encodeAsRuntimeInstance;
+    IBTargetRuntime *_targetRuntime;
 }
 
 + (id)externalReferenceWithIdentifier:(id)arg1 targetRuntime:(id)arg2;

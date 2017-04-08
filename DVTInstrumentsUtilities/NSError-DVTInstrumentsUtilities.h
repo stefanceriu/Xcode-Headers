@@ -7,6 +7,10 @@
 #import "NSError.h"
 
 @interface NSError (DVTInstrumentsUtilities)
++ (id)dvtiu_errorWithCode:(unsigned long long)arg1 description:(id)arg2 recoverySuggestion:(id)arg3;
++ (id)dvtiuErrorWithFormat:(id)arg1;
 + (id)dvtiuErrorWithCode:(unsigned long long)arg1;
+- (BOOL)dvtiu_isURLAlreadyExistsError;
+- (BOOL)getRecommendedRecoveryAction:(id *)arg1 parameter:(id *)arg2;
 @end
 

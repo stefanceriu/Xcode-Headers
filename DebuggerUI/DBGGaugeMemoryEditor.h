@@ -9,18 +9,15 @@
 #import "IDEDebugGaugeReportTopSectionContentDelegate.h"
 #import "IDEGraphDelegate.h"
 
-@class DVTCapacitySegment, DVTMeterView, IDEPlotGraph, NSButton, NSByteCountFormatter, NSMutableString, NSString, NSTextField, NSView;
+@class DVTCapacitySegment, DVTMeterView, IDEPlotGraph, NSButton, NSByteCountFormatter, NSString, NSTextField, NSView;
 
 @interface DBGGaugeMemoryEditor : DBGGaugeEditor <IDEDebugGaugeReportTopSectionContentDelegate, IDEGraphDelegate>
 {
     NSView *_topSectionUtilizationView;
     DVTCapacitySegment *_remainderCapacitySegment;
     DVTCapacitySegment *_processCapacitySegment;
-    NSTextField *_heapTextField;
     BOOL _useLogScaleInSpeedometer;
     BOOL _breakpointsWasActivated;
-    BOOL _isTakingHeap;
-    NSMutableString *_localHeapText;
     NSString *_topChartName;
     NSString *_bottomChartName;
     NSByteCountFormatter *_byteFormatter;
@@ -30,7 +27,6 @@
     NSTextField *_topSectionSpeedTopUnitLabel;
     NSTextField *_topSectionSpeedBottomNumberLabel;
     NSTextField *_topSectionSpeedBottomUnitLabel;
-    NSButton *_heapButton;
     NSButton *_profileButton;
     NSView *_topGraphContainer;
     IDEPlotGraph *_topGraph;
@@ -44,8 +40,12 @@
     NSTextField *_bottomGraphDuration;
     NSTextField *_bottomGraphHigh;
     NSTextField *_bottomGraphLow;
+    NSView *_disabledMessageContainer;
+    NSTextField *_disabledMessageText;
 }
 
+@property __weak NSTextField *disabledMessageText; // @synthesize disabledMessageText=_disabledMessageText;
+@property __weak NSView *disabledMessageContainer; // @synthesize disabledMessageContainer=_disabledMessageContainer;
 @property __weak NSTextField *bottomGraphLow; // @synthesize bottomGraphLow=_bottomGraphLow;
 @property __weak NSTextField *bottomGraphHigh; // @synthesize bottomGraphHigh=_bottomGraphHigh;
 @property __weak NSTextField *bottomGraphDuration; // @synthesize bottomGraphDuration=_bottomGraphDuration;
@@ -59,7 +59,6 @@
 @property __weak IDEPlotGraph *topGraph; // @synthesize topGraph=_topGraph;
 @property __weak NSView *topGraphContainer; // @synthesize topGraphContainer=_topGraphContainer;
 @property __weak NSButton *profileButton; // @synthesize profileButton=_profileButton;
-@property __weak NSButton *heapButton; // @synthesize heapButton=_heapButton;
 @property __weak NSTextField *topSectionSpeedBottomUnitLabel; // @synthesize topSectionSpeedBottomUnitLabel=_topSectionSpeedBottomUnitLabel;
 @property __weak NSTextField *topSectionSpeedBottomNumberLabel; // @synthesize topSectionSpeedBottomNumberLabel=_topSectionSpeedBottomNumberLabel;
 @property __weak NSTextField *topSectionSpeedTopUnitLabel; // @synthesize topSectionSpeedTopUnitLabel=_topSectionSpeedTopUnitLabel;
@@ -73,12 +72,13 @@
 - (id)topSectionTitleAccessoryView;
 - (id)topSectionComponentEntries;
 - (id)topSectionTitle;
+- (void)_addGraphViews:(id)arg1;
+- (void)_addDisabledMessage:(id)arg1 toStackView:(id)arg2;
 - (void)addSectionsToView:(id)arg1;
 - (void)_configureBottomGraphLabels;
 - (void)_configureTopGraphLabels;
 - (void)_setupMemoryGraph:(id)arg1;
 - (BOOL)hasDefaultTopSection;
-- (void)heap:(id)arg1;
 - (id)instrumentsToolIdentifierForAnalysis;
 - (void)_setupTopSectionComponentViews;
 - (void)_setupSpeedometer;

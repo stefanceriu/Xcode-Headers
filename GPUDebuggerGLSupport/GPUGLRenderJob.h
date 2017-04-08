@@ -18,9 +18,7 @@ __attribute__((visibility("hidden")))
 @property(retain, nonatomic) GPUFramebufferAttachmentInfo *attachmentInfo; // @synthesize attachmentInfo=_attachmentInfo;
 @property(readonly, nonatomic) unsigned int attachment; // @synthesize attachment=_attachment;
 - (void).cxx_destruct;
-- (BOOL)showOverlay;
 - (void)setRenderingAttributes:(id)arg1;
-- (BOOL)isColor;
 - (BOOL)flipped;
 - (struct CGSize)imageSize;
 - (id)displayElementName;

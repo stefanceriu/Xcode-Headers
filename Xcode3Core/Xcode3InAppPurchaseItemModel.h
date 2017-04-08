@@ -10,7 +10,6 @@
 {
 }
 
-- (BOOL)isEnabledUsingEducatedGuess;
 - (id)flightChecks;
 
 @end

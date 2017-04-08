@@ -65,6 +65,7 @@
 - (id)loadedBinaryNamed:(id)arg1;
 @property(readonly) NSArray *loadedBinaries;
 - (id)_parseProcessString:(id)arg1 withError:(id *)arg2;
+@property(readonly) NSString *dataSource;
 @property(readonly) NSString *appName;
 - (BOOL)_parseLastExceptionBacktraceWithError:(id *)arg1;
 - (BOOL)_parseThreadsWithError:(id *)arg1;

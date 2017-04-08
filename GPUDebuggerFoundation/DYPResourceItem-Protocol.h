@@ -9,6 +9,7 @@
 @class NSMutableDictionary, NSString;
 
 @protocol DYPResourceItem <NSObject>
+@property(readonly, nonatomic) BOOL placeholder;
 @property(readonly, nonatomic) NSMutableDictionary *properties;
 @property(readonly, nonatomic) BOOL generatesThumbnail;
 @property(retain, nonatomic) NSString *label;

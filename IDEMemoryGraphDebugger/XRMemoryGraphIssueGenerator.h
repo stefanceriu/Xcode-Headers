@@ -19,7 +19,7 @@
 - (void).cxx_destruct;
 - (void)_issuesChanged;
 - (void)clearAllIssues;
-- (void)addLeakedItems:(id)arg1;
+- (void)addLeakedItems:(id)arg1 abandonedItems:(id)arg2;
 - (id)initWithDebugSession:(id)arg1;
 
 @end

@@ -10,18 +10,18 @@
 
 @interface IBUIButtonStateAttribtues : NSObject
 {
-    IBUIButtonPerStateAttributes *normal;
-    IBUIButtonPerStateAttributes *highlighted;
-    IBUIButtonPerStateAttributes *disabled;
-    IBUIButtonPerStateAttributes *selected;
-    IBUIButtonPerStateAttributes *focused;
+    IBUIButtonPerStateAttributes *_normal;
+    IBUIButtonPerStateAttributes *_highlighted;
+    IBUIButtonPerStateAttributes *_disabled;
+    IBUIButtonPerStateAttributes *_selected;
+    IBUIButtonPerStateAttributes *_focused;
 }
 
-@property(retain, nonatomic) IBUIButtonPerStateAttributes *focused; // @synthesize focused;
-@property(retain, nonatomic) IBUIButtonPerStateAttributes *selected; // @synthesize selected;
-@property(retain, nonatomic) IBUIButtonPerStateAttributes *disabled; // @synthesize disabled;
-@property(retain, nonatomic) IBUIButtonPerStateAttributes *highlighted; // @synthesize highlighted;
-@property(retain, nonatomic) IBUIButtonPerStateAttributes *normal; // @synthesize normal;
+@property(retain, nonatomic) IBUIButtonPerStateAttributes *focused; // @synthesize focused=_focused;
+@property(retain, nonatomic) IBUIButtonPerStateAttributes *selected; // @synthesize selected=_selected;
+@property(retain, nonatomic) IBUIButtonPerStateAttributes *disabled; // @synthesize disabled=_disabled;
+@property(retain, nonatomic) IBUIButtonPerStateAttributes *highlighted; // @synthesize highlighted=_highlighted;
+@property(retain, nonatomic) IBUIButtonPerStateAttributes *normal; // @synthesize normal=_normal;
 - (void).cxx_destruct;
 - (id)init;
 

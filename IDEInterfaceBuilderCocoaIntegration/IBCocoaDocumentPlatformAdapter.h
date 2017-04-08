@@ -17,6 +17,7 @@
 @property(retain, nonatomic) NSNumber *explicitCustomObjectInstantiationBehavior; // @synthesize explicitCustomObjectInstantiationBehavior=_explicitCustomObjectInstantiationBehavior;
 @property(readonly, nonatomic) IBCocoaBindingsManager *bindingManager; // @synthesize bindingManager=_bindingManager;
 - (void).cxx_destruct;
+- (void)performAdditionDocumentVerificationAndPopulateMessages:(id)arg1;
 - (id)applicableInspectorCategoriesGivenSuggestion:(id)arg1;
 - (id)storyboardExitPlaceholder;
 - (id)storyboardFirstResponderPlaceholder;

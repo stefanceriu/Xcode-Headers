@@ -10,14 +10,14 @@
 
 @interface IBSourceCodeConnectionPopUpOptionsViewController : DVTViewController
 {
-    IBSourceCodeConnectionContext *connectionContext;
-    BOOL connectionContextConnectionIsValid;
-    IBDocument *document;
+    BOOL _connectionContextConnectionIsValid;
+    IBSourceCodeConnectionContext *_connectionContext;
+    IBDocument *_document;
 }
 
-@property BOOL connectionContextConnectionIsValid; // @synthesize connectionContextConnectionIsValid;
-@property(readonly) IBDocument *document; // @synthesize document;
-@property(readonly) IBSourceCodeConnectionContext *connectionContext; // @synthesize connectionContext;
+@property BOOL connectionContextConnectionIsValid; // @synthesize connectionContextConnectionIsValid=_connectionContextConnectionIsValid;
+@property(readonly) IBDocument *document; // @synthesize document=_document;
+@property(readonly) IBSourceCodeConnectionContext *connectionContext; // @synthesize connectionContext=_connectionContext;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)didCancelInsertingRepresentedConnectionContext;

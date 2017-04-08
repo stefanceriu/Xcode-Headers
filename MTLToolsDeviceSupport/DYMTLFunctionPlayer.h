@@ -8,7 +8,7 @@
 
 @interface DYMTLFunctionPlayer : DYFunctionPlayer
 {
-    unordered_map_d8b431c8 _objectMap;
+    unordered_map_d80d8ad0 _objectMap;
     struct set<id, std::__1::less<id>, std::__1::allocator<id>> _commandQueueSet;
     id <MTLDevice> _device;
 }
@@ -24,7 +24,7 @@
 - (void)_saveBytes;
 - (id)_createPrivateBufferForFunctionWithDevice:(id)arg1 bytes:(char *)arg2 length:(unsigned long long)arg3 resourceOptions:(unsigned long long)arg4;
 - (void)executePlatformFunction;
-- (unordered_map_d8b431c8 *)objectMap;
+- (unordered_map_d80d8ad0 *)objectMap;
 - (void)removeObjectForKey:(unsigned long long)arg1;
 - (id)objectForKey:(unsigned long long)arg1;
 - (void)setObject:(id)arg1 forKey:(unsigned long long)arg2;

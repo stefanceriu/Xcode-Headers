@@ -21,6 +21,7 @@
 - (id <DVTRadar_ComponentForIdentifier>)bestComponentForClassName:(NSString *)arg1;
 - (id <DVTRadar_ComponentForIdentifier>)bestComponentForFrame:(DVTStackBacktraceFrame *)arg1;
 - (id <DVTRadar_ComponentForIdentifier>)bestComponentForPath:(NSString *)arg1;
+- (id <DVTRadar_ComponentForIdentifier>)defaultComponent;
 - (NSArray *)hltComponentForClassNames;
 - (NSArray *)hltComponentForPaths;
 - (id)attachmentFromData:(NSData *)arg1 withFilename:(NSString *)arg2 isPicture:(BOOL)arg3;

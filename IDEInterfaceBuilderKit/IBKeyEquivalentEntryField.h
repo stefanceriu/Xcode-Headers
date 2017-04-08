@@ -13,29 +13,29 @@
 
 @interface IBKeyEquivalentEntryField : DVTLayoutView_ML <IBKeyEquivalentTrackingDelegate, DVTFirstResponderShowingView>
 {
-    IBKeyEquivalent *keyEquivalent;
-    unsigned long long allowableModifiers;
-    DVTFirstResponderDrawingStrategy *firstResponderDrawingStrategy;
-    BOOL showsFirstResponder;
-    NSMenu *alternatesMenu;
-    IBImageButton *alternatesButton;
-    IBImageButton *clearButton;
-    BOOL inMixedState;
-    NSString *customEmptyPlaceholderString;
-    BOOL usesBezeledStyle;
-    long long backgroundStyle;
+    DVTFirstResponderDrawingStrategy *_firstResponderDrawingStrategy;
+    NSMenu *_alternatesMenu;
+    IBImageButton *_alternatesButton;
+    IBImageButton *_clearButton;
+    BOOL _inMixedState;
+    BOOL _showsFirstResponder;
+    BOOL _usesBezeledStyle;
     id _target;
     SEL _action;
+    IBKeyEquivalent *_keyEquivalent;
+    NSString *_customEmptyPlaceholderString;
+    unsigned long long _allowableModifiers;
+    long long _backgroundStyle;
 }
 
+@property(nonatomic) long long backgroundStyle; // @synthesize backgroundStyle=_backgroundStyle;
+@property unsigned long long allowableModifiers; // @synthesize allowableModifiers=_allowableModifiers;
+@property(nonatomic) BOOL usesBezeledStyle; // @synthesize usesBezeledStyle=_usesBezeledStyle;
+@property(copy, nonatomic) NSString *customEmptyPlaceholderString; // @synthesize customEmptyPlaceholderString=_customEmptyPlaceholderString;
+@property(nonatomic) BOOL showsFirstResponder; // @synthesize showsFirstResponder=_showsFirstResponder;
+@property(copy, nonatomic) IBKeyEquivalent *keyEquivalent; // @synthesize keyEquivalent=_keyEquivalent;
 @property SEL action; // @synthesize action=_action;
 @property __weak id target; // @synthesize target=_target;
-@property(nonatomic) long long backgroundStyle; // @synthesize backgroundStyle;
-@property(nonatomic) BOOL usesBezeledStyle; // @synthesize usesBezeledStyle;
-@property(copy, nonatomic) NSString *customEmptyPlaceholderString; // @synthesize customEmptyPlaceholderString;
-@property unsigned long long allowableModifiers; // @synthesize allowableModifiers;
-@property(copy, nonatomic) IBKeyEquivalent *keyEquivalent; // @synthesize keyEquivalent;
-@property(nonatomic) BOOL showsFirstResponder; // @synthesize showsFirstResponder;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)isFlipped;

@@ -12,14 +12,17 @@
 + (id)keyPathsForValuesAffectingDvtDevicesWindow_canTelnet;
 + (id)keyPathsForValuesAffectingDvtDevicesWindow_canSSH;
 + (id)keyPathsForValuesAffectingDeviceSummaryInternalPropertyDictionaries;
++ (id)keyPathsForValuesAffectingDvtDevicesWindow_isWirelessEnabled;
 + (id)keyPathsForValuesAffectingDvtDevicesWindow_rsyncPort;
 + (id)keyPathsForValuesAffectingDvtDevicesWindow_telnetPort;
 + (id)keyPathsForValuesAffectingDvtDevicesWindow_sshPort;
 - (_Bool)dvtDevicesWindow_canTelnet;
 - (_Bool)dvtDevicesWindow_canSSH;
 @property(readonly) NSArray *deviceSummaryInternalPropertyDictionaries;
+- (id)dvtDevicesWindow_isWirelessEnabled;
 - (id)dvtDevicesWindow_rsyncPort;
 - (id)dvtDevicesWindow_telnetPort;
 - (id)dvtDevicesWindow_sshPort;
+- (id)_placeholderValue;
 @end
 

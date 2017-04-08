@@ -40,7 +40,7 @@
 - (void)_setUpParentExtensionPoint;
 @property(readonly, copy) NSString *description;
 - (void)encodeIntoPropertyList:(id)arg1;
-- (void)awakeWithPropertyList:(id)arg1;
+- (void)awakeFromPropertyList;
 - (id)initWithPropertyList:(id)arg1 owner:(id)arg2;
 - (id)initWithExtensionPointData:(id)arg1 plugIn:(id)arg2;
 

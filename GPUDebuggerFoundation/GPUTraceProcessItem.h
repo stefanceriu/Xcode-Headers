@@ -14,13 +14,14 @@
 {
 }
 
++ (void)initialize;
+- (void)primitiveInvalidate;
+@property(readonly, copy) NSString *associatedProcessUUID;
 - (id)contentDelegateUIExtensionIdentifier;
 @property(copy, nonatomic) NSString *name;
-- (id)UUIDSection;
 - (id)initWithController:(id)arg1 identifier:(id)arg2;
 
 // Remaining properties
-@property(readonly, copy) NSString *associatedProcessUUID;
 @property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;

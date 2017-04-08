@@ -17,7 +17,7 @@ __attribute__((visibility("hidden")))
 }
 
 - (void).cxx_destruct;
-- (void)populatePlaneLayoutMap:(unordered_map_c1fbcd3c *)arg1 offsetFromTop:(double)arg2;
+- (void)populatePlaneLayoutMap:(unordered_map_b8b4eb21 *)arg1 offsetFromTop:(double)arg2;
 - (struct CGRect)_frameForZOrderedPlane:(id)arg1 yOffet:(double)arg2;
 - (id)planesUnderPoint:(struct CGPoint)arg1;
 - (void)layoutSublayersOfLayer:(id)arg1;

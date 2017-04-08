@@ -12,7 +12,6 @@
 {
     CDStruct_6db0658e *_map;
     long long _mapCount;
-    unsigned long long _fallbackValue;
     NSString *_typeName;
 }
 
@@ -23,7 +22,7 @@
 - (void)insertIntoSchema:(id)arg1;
 - (id)stringForValue:(long long)arg1;
 - (BOOL)decodeValue:(long long *)arg1 fromString:(id)arg2;
-- (id)initWithTypeName:(id)arg1 enumerationMap:(CDStruct_6db0658e *)arg2 count:(long long)arg3 copy:(BOOL)arg4 fallbackValue:(long long)arg5;
+- (id)initWithTypeName:(id)arg1 enumerationMap:(CDStruct_6db0658e *)arg2 count:(long long)arg3 copy:(BOOL)arg4;
 
 @end
 

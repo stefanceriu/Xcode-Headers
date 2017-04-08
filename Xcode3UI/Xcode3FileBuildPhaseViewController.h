@@ -107,7 +107,6 @@
 - (id)rootItemsForFilePickerPanel;
 - (void)configureFilePickerPanel:(id)arg1;
 @property(readonly) BOOL hasSearchResults;
-- (id)_filterPredicate;
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)contextMenu_revealInProjectNavigator:(id)arg1;
 - (void)revealInProjectNavigator:(id)arg1;

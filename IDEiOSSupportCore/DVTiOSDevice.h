@@ -10,30 +10,29 @@
 #import "IDERunDestinationFallbackSelectorDeviceInfo.h"
 #import "XCDTMobileIS_XPCDebuggingProcotol.h"
 
-@class DTDKRemoteDeviceToken, DTXChannel, DVTFuture, DVTNotificationToken, DVTObservingToken, IDELaunchParametersSnapshot, NSError, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString;
+@class DTXChannel, DVTDeviceOperation, DVTNotificationToken, DVTObservingToken, DVTPlatform, IDELaunchParametersSnapshot, NSError, NSMutableArray, NSMutableSet, NSObject<DTDKRemoteDeviceToken>, NSObject<OS_dispatch_queue>, NSSet, NSString;
 
 @interface DVTiOSDevice : DVTAbstractiOSDevice <DVTDeviceApplicationInstaller, IDERunDestinationFallbackSelectorDeviceInfo, XCDTMobileIS_XPCDebuggingProcotol>
 {
     NSObject<OS_dispatch_queue> *_deviceInstallQueue;
-    DVTObservingToken *_developmentStateToken1;
-    DVTObservingToken *_developmentStateToken2;
-    DVTObservingToken *_developmentStateToken3;
+    NSMutableArray *_developmentStateObservingTokens;
     DVTObservingToken *_proxiedTokensObservingToken;
     DVTNotificationToken *_deviceProgressToken;
-    DVTFuture *_wakeupInFlight;
+    DVTNotificationToken *_deviceConnectionDidAppearToken;
+    DVTDeviceOperation *_deviceProgressOperation;
+    DVTDeviceOperation *_deviceConnectingOperation;
+    NSObject<DTDKRemoteDeviceToken> *_token;
+    _Bool _deviceWantsToBeForgotten;
     struct __CFDictionary *_xpcStdoutFDForPid;
     NSMutableSet *_proxiedDevices;
-    BOOL _activityIsUserInitiated;
-    BOOL _deviceIsBusy;
+    DVTPlatform *_platform;
     BOOL _ignored;
     BOOL _removedProfDataFiles;
     _Bool _deviceReady;
     _Bool _inHasConnected;
     BOOL _deviceInstallIsCancelled;
     BOOL _deviceIsTransient;
-    DTDKRemoteDeviceToken *_token;
-    long long _activityProgress;
-    NSString *_activityTitle;
+    NSString *bootArgs;
     NSError *_developerPrepError;
     IDELaunchParametersSnapshot *_scriptLaunchParameters;
     DTXChannel *_xpcAttachServiceChannel;
@@ -47,14 +46,12 @@
 + (id)keyPathsForValuesAffectingIsPaired;
 + (id)keyPathsForValuesAffectingIsWirelessEnabled;
 + (id)keyPathsForValuesAffectingAddresses;
++ (id)keyPathsForValuesAffectingPrimaryAddress;
 + (id)keyPathsForValuesAffectingHostname;
 + (id)keyPathsForValuesAffectingHasWiredConnection;
 + (id)keyPathsForValuesAffectingHasWirelessConnection;
 + (id)keyPathsForValuesAffectingIsWireless;
 + (void)presentError:(id)arg1;
-+ (id)keyPathsForValuesAffectingStatusIsIndeterminate;
-+ (id)keyPathsForValuesAffectingActivityProgress;
-+ (id)keyPathsForValuesAffectingActivityVisible;
 + (id)keyPathsForValuesAffectingSystemApplications;
 + (id)keyPathsForValuesAffectingApplications;
 + (id)keyPathsForValuesAffectingDeviceIsPaired;
@@ -90,26 +87,24 @@
 @property _Bool inHasConnected; // @synthesize inHasConnected=_inHasConnected;
 @property _Bool deviceReady; // @synthesize deviceReady=_deviceReady;
 @property BOOL removedProfDataFiles; // @synthesize removedProfDataFiles=_removedProfDataFiles;
-@property(copy) NSString *activityTitle; // @synthesize activityTitle=_activityTitle;
+@property(readonly) _Bool deviceWantsToBeForgotten; // @synthesize deviceWantsToBeForgotten=_deviceWantsToBeForgotten;
+@property(retain, nonatomic) id <DTDKRemoteDeviceToken> token; // @synthesize token=_token;
 - (void)setIgnored:(BOOL)arg1;
+@property(retain) NSString *bootArgs; // @synthesize bootArgs;
 - (void).cxx_destruct;
 - (void)_syncDeviceCrashLogsDirectoryWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (id)monitorWirelessConnection;
 - (id)primaryInstrumentsServer;
 - (id)platform;
-- (BOOL)runningSupportedBuildForUITesting;
-- (id)crashReportsDirectoryPaths;
-- (id)crashReportsDirectoryPath;
-- (id)makeTransportForTestManagerService:(id *)arg1;
-- (id)testHostPathForBuildableProduct:(id)arg1 buildParameters:(id)arg2 outError:(id *)arg3;
-- (id)connectionServicesFrameworkPath;
-- (id)deviceForRunningUnitTestsWithHost:(id)arg1 error:(id *)arg2;
 - (_Bool)isPasscodeLocked;
 - (id)processorDescription;
 - (void)setUsedForDevelopment:(BOOL)arg1;
 - (BOOL)isUsedForDevelopment;
 - (BOOL)isIgnored;
 - (_Bool)isPaired;
+- (void)attemptRecoveryFromUnavailabilityError;
+- (id)hostPairingToken;
+- (void)forget;
 - (void)unpair;
 - (_Bool)usesPairingRecord;
 - (_Bool)canEnableWireless;
@@ -117,21 +112,14 @@
 - (id)enableWireless;
 - (_Bool)isWirelessEnabled;
 - (id)addresses;
+- (id)primaryAddress;
 - (id)hostname;
 - (_Bool)hasWiredConnection;
 - (_Bool)hasWirelessConnection;
 - (_Bool)isWireless;
-- (void)didBecomeActiveDeviceForRunContext:(id)arg1;
 - (BOOL)deviceHasUI;
-@property BOOL deviceIsBusy; // @synthesize deviceIsBusy=_deviceIsBusy;
 @property(readonly, copy) NSString *description;
 - (void)updateExpansionProgress:(double)arg1 withMessage:(id)arg2;
-- (void)setDeviceIsBusyOnMainThread:(BOOL)arg1;
-- (void)setStatusOnMainThread:(id)arg1 userInitiated:(BOOL)arg2 progress:(long long)arg3;
-@property(readonly) BOOL statusIsIndeterminate;
-@property BOOL activityIsUserInitiated; // @synthesize activityIsUserInitiated=_activityIsUserInitiated;
-@property long long activityProgress; // @synthesize activityProgress=_activityProgress;
-@property(readonly, getter=isActivityVisible) BOOL activityVisible;
 @property(readonly) NSSet *systemApplications;
 @property(readonly) NSSet *applications;
 - (BOOL)canChangeDeviceSoftwareVersion;
@@ -200,10 +188,11 @@
 - (BOOL)supportsLocationSimulation;
 - (BOOL)supportsApplicationDataUploading;
 - (void)cancelDeviceInstall;
+- (id)startUpDevice;
+- (void)markDeviceIsNotWaitingForConnection;
+- (void)markDeviceIsWaitingForConnection;
 - (id)initWithDeviceLocation:(id)arg1 extension:(id)arg2;
-- (void)_respondToDeviceProgressNotification:(id)arg1;
 - (id)activeProxiedDevice;
-@property(retain) DTDKRemoteDeviceToken *token; // @synthesize token=_token;
 - (void)stopDebuggingXPCServices:(id)arg1 forPairedDevice:(BOOL)arg2;
 - (void)xpcServiceObserved:(id)arg1 withProcessIdentifier:(int)arg2 requestedByProcess:(int)arg3 options:(id)arg4;
 - (void)outputReceived:(id)arg1 fromProcess:(int)arg2 atTime:(unsigned long long)arg3;
@@ -228,9 +217,9 @@
 - (BOOL)installForRsyncDeveloperModeWithSession:(id)arg1 error:(id *)arg2;
 - (BOOL)installForNFSDeveloperModeWithSession:(id)arg1 error:(id *)arg2;
 - (id)deviceInstallPathForLaunchSession:(id)arg1 andBuildProductsPath:(id)arg2;
+- (BOOL)_configureTestingForLaunchSession:(id)arg1 outError:(id *)arg2;
 - (BOOL)installForMobileInstallWithSession:(id)arg1 error:(id *)arg2;
-- (id)_updateTestingEnvironmentVariables:(id)arg1 forApplication:(id)arg2 deviceConfigPath:(id)arg3 destinationTestBundlePath:(id)arg4 error:(id *)arg5;
-- (BOOL)_updateTestConfiguration:(id)arg1 atPath:(id)arg2 destinationTestBundlePath:(id)arg3 error:(id *)arg4;
+- (id)_updateTestingEnvironmentVariables:(id)arg1 forApplication:(id)arg2 deviceConfigPath:(id)arg3 testConfiguration:(id)arg4 error:(id *)arg5;
 - (BOOL)installForTestBundleWithSession:(id)arg1 error:(id *)arg2;
 - (id)applicationForSession:(id)arg1;
 - (id)deviceBuiltProductsDir;
@@ -256,7 +245,7 @@
 - (id)_openTCPRelayConnection;
 - (BOOL)_hasSpringBoard;
 - (BOOL)_bothHaveInternalSupport;
-- (id)_transformPathForDevice:(id)arg1;
+- (id)_transformPathForDevice:(id)arg1 error:(id *)arg2;
 - (id)_deviceHostname;
 - (id)_rsyncEnvironment;
 - (id)enableKeyBasedSSH;
@@ -275,6 +264,14 @@
 - (id)validateApplicationAtPath:(id)arg1 forInstallationToToken:(id)arg2;
 - (BOOL)_checkForARM64SliceAtPath:(id)arg1 executableName:(id)arg2 zipFile:(id)arg3 subpath:(id)arg4;
 - (id)installedApplicationWithBundleIdentifier:(id)arg1;
+- (id)crashReportsDirectoryPaths;
+- (id)connectionServicesFrameworkPath;
+- (BOOL)runningSupportedBuildForUITesting;
+- (id)deviceForRunningTestsWithHost:(id)arg1 error:(id *)arg2;
+- (id)testRunnerSessionForConfiguration:(id)arg1;
+- (id)testDaemonRecordingSession;
+- (id)testDaemonControlSession;
+- (id)testDaemonTransportProvider;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

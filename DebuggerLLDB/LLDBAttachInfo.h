@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface LLDBAttachInfo : NSObject <DBGSBAttachInfo>
 {
     struct unique_ptr<lldb::SBAttachInfo, std::__1::default_delete<lldb::SBAttachInfo>> _attachInfo;

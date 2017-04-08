@@ -7,36 +7,36 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUICollectionViewLayout.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUICollectionViewFlowLayout : IBUICollectionViewLayout <IBDocumentArchiving, NSCoding>
+@interface IBUICollectionViewFlowLayout : IBUICollectionViewLayout <IBDocumentArchiving>
 {
-    int scrollDirection;
-    struct CGSize itemSize;
-    struct CGSize headerReferenceSize;
-    struct CGSize footerReferenceSize;
-    double minimumLineSpacing;
-    double minimumInteritemSpacing;
-    CDStruct_c519178c sectionInset;
+    int _scrollDirection;
+    double _minimumLineSpacing;
+    double _minimumInteritemSpacing;
+    struct CGSize _itemSize;
+    struct CGSize _headerReferenceSize;
+    struct CGSize _footerReferenceSize;
+    CDStruct_c519178c _sectionInset;
 }
 
-@property(nonatomic) CDStruct_c519178c sectionInset; // @synthesize sectionInset;
-@property(nonatomic) double minimumInteritemSpacing; // @synthesize minimumInteritemSpacing;
-@property(nonatomic) double minimumLineSpacing; // @synthesize minimumLineSpacing;
-@property(nonatomic) struct CGSize footerReferenceSize; // @synthesize footerReferenceSize;
-@property(nonatomic) struct CGSize headerReferenceSize; // @synthesize headerReferenceSize;
-@property(nonatomic) struct CGSize itemSize; // @synthesize itemSize;
-@property(nonatomic) int scrollDirection; // @synthesize scrollDirection;
++ (void)registerMarshallingRecordHandlers;
+@property(nonatomic) CDStruct_c519178c sectionInset; // @synthesize sectionInset=_sectionInset;
+@property(nonatomic) double minimumInteritemSpacing; // @synthesize minimumInteritemSpacing=_minimumInteritemSpacing;
+@property(nonatomic) double minimumLineSpacing; // @synthesize minimumLineSpacing=_minimumLineSpacing;
+@property(nonatomic) struct CGSize footerReferenceSize; // @synthesize footerReferenceSize=_footerReferenceSize;
+@property(nonatomic) struct CGSize headerReferenceSize; // @synthesize headerReferenceSize=_headerReferenceSize;
+@property(nonatomic) struct CGSize itemSize; // @synthesize itemSize=_itemSize;
+@property(nonatomic) int scrollDirection; // @synthesize scrollDirection=_scrollDirection;
 - (long long)cellsGrowthDirection;
 - (long long)sectionsGrowthDirection;
 - (BOOL)supportsSectionHeadersAndFooters;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithTargetRuntime:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)ibCanIncrementallyMarshalKeyPath:(id)arg1;
 - (id)ibLocalLocalizableGeometryAttributeKeyPaths;
 - (id)ibLocalAttributeKeyPaths;

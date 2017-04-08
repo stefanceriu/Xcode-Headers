@@ -18,7 +18,6 @@
     DVTObservingToken *_currentStackFrameFramePointerObservingToken;
     DVTObservingToken *_viewDebuggerOpenRequestStateObservingToken;
     DVTObservingToken *_memoryGraphDebuggerOpenRequestStateObservingToken;
-    DVTObservingToken *_debugSessionStateObservingtToken;
     BOOL _isNavigatingToViewDebuggerDocument;
     BOOL _isNavigatingToMemoryGraphDebuggerDocument;
     DBGDataTipController *_dataTipController;
@@ -60,7 +59,7 @@
 - (void)setSelectedNavigableItemFromUserInterface:(id)arg1;
 - (void)_handleShowDisassemblyWhenDebuggingChanged;
 - (void)_handleDebugSessionStateChanged;
-- (void)_handleFinishedRunPausesAlert;
+- (void)_handleFinishedRunPausesAlert:(id)arg1;
 - (void)_handleWatchpointHit:(id)arg1;
 - (void)_handleProcessRunStateChanged;
 - (void)_handleCurrentStackFrameChanged;

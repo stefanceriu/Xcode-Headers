@@ -29,6 +29,7 @@
     DYCaptureSession *_activeCaptureSession;
     unsigned int _captureSessionSerial;
     NSMutableArray *_displayLinkInfo;
+    int _displayLinkInfoUpdateLock;
     struct dy_timebase _appTimebase;
     BOOL _didTerminate;
     BOOL _interposeSemaphoreSignalSent;

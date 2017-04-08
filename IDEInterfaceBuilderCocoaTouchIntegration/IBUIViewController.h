@@ -11,33 +11,11 @@
 #import "IBUISimulatedMetricsIntegratedObject.h"
 #import "IBUISimulatedMetricsObject.h"
 #import "IBUIViewControllerAutolayoutGuideDelegate.h"
-#import "NSCoding.h"
 
 @class IBCocoaTouchTargetRuntime, IBPlaceholderDrawingAttributes, IBUINavigationItem, IBUISimulatedBarMetrics, IBUISimulatedMetricsContainer, IBUISimulatedOrientationMetrics, IBUISimulatedSizeMetrics, IBUISimulatedStatusBarMetrics, IBUITabBarItem, IBUIView, NSArray, NSMutableSet, NSString, NSValue;
 
-@interface IBUIViewController : IBAbstractViewController <IBDocumentArchiving, NSCoding, IBUISimulatedMetricsIntegratedObject, IBIDEUIViewControllerAutolayoutGuideDelegate, IBUISimulatedMetricsObject, IBUIViewControllerAutolayoutGuideDelegate>
+@interface IBUIViewController : IBAbstractViewController <IBDocumentArchiving, IBUISimulatedMetricsIntegratedObject, IBIDEUIViewControllerAutolayoutGuideDelegate, IBUISimulatedMetricsObject, IBUIViewControllerAutolayoutGuideDelegate>
 {
-    NSString *_title;
-    NSString *_explicitStoryboardIdentifier;
-    NSString *_restorationIdentifier;
-    NSArray *_storyboardSegueTemplates;
-    NSArray *_storyboardPreviewSegueTemplates;
-    NSArray *_storyboardCommitSegueTemplates;
-    NSArray *_storyboardPreviewingRegistrants;
-    NSMutableSet *_viewsWithPreviewingRegistrants;
-    IBUIView *_view;
-    IBUITabBarItem *_tabBarItem;
-    IBUINavigationItem *_navigationItem;
-    NSArray *_toolbarItems;
-    IBUIViewController *_parentViewController;
-    IBUISimulatedStatusBarMetrics *_simulatedStatusBarMetrics;
-    IBUISimulatedBarMetrics *_simulatedTopBarMetrics;
-    IBUISimulatedBarMetrics *_simulatedBottomBarMetrics;
-    IBUISimulatedOrientationMetrics *_simulatedOrientationMetrics;
-    IBUISimulatedSizeMetrics *_simulatedDestinationMetrics;
-    IBUISimulatedMetricsContainer *_inheritedSimulatedMetrics;
-    NSString *_nibName;
-    long long _edgesForExtendedLayout;
     BOOL _extendedLayoutIncludesOpaqueBars;
     BOOL _automaticallyAdjustsScrollViewInsets;
     BOOL _autoresizesArchivedViewToFullSize;
@@ -45,16 +23,37 @@
     BOOL _definesPresentationContext;
     BOOL _providesPresentationContextTransitionStyle;
     BOOL _useStoryboardIdentifierAsRestorationIdentifier;
+    BOOL _hidesBottomBarWhenPushed;
     int _modalTransitionStyle;
     int _modalPresentationStyle;
-    BOOL _hidesBottomBarWhenPushed;
-    NSArray *_topLevelObjectsToKeepAliveFromStoryboard;
-    NSArray *_keyCommands;
+    IBUISimulatedSizeMetrics *_simulatedDestinationMetrics;
+    IBUISimulatedOrientationMetrics *_simulatedOrientationMetrics;
+    IBUISimulatedStatusBarMetrics *_simulatedStatusBarMetrics;
+    IBUISimulatedBarMetrics *_simulatedBottomBarMetrics;
+    IBUISimulatedBarMetrics *_simulatedTopBarMetrics;
+    NSString *_explicitStoryboardIdentifier;
+    IBUISimulatedMetricsContainer *_inheritedSimulatedMetrics;
+    NSArray *_storyboardSegueTemplates;
+    IBUIView *_view;
     IBCocoaTouchTargetRuntime *_targetRuntime;
+    NSString *_title;
+    NSString *_restorationIdentifier;
+    long long _edgesForExtendedLayout;
+    NSString *_nibName;
+    IBUITabBarItem *_tabBarItem;
+    IBUINavigationItem *_navigationItem;
+    NSArray *_toolbarItems;
+    NSArray *_topLevelObjectsToKeepAliveFromStoryboard;
     NSValue *_contentSizeForViewInPopover;
+    NSArray *_keyCommands;
     NSValue *_freeformSize;
     IBPlaceholderDrawingAttributes *_placeholderDrawingAttributes;
+    IBUIViewController *_parentViewController;
     NSArray *_layoutGuides;
+    NSArray *_storyboardPreviewSegueTemplates;
+    NSArray *_storyboardCommitSegueTemplates;
+    NSArray *_storyboardPreviewingRegistrants;
+    NSMutableSet *_viewsWithPreviewingRegistrants;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -74,6 +73,10 @@
 + (id)ibViewPasteboardType;
 + (Class)ibViewClass;
 + (id)ibInstantiateForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
+@property(retain) NSMutableSet *viewsWithPreviewingRegistrants; // @synthesize viewsWithPreviewingRegistrants=_viewsWithPreviewingRegistrants;
+@property(retain) NSArray *storyboardPreviewingRegistrants; // @synthesize storyboardPreviewingRegistrants=_storyboardPreviewingRegistrants;
+@property(retain) NSArray *storyboardCommitSegueTemplates; // @synthesize storyboardCommitSegueTemplates=_storyboardCommitSegueTemplates;
+@property(retain) NSArray *storyboardPreviewSegueTemplates; // @synthesize storyboardPreviewSegueTemplates=_storyboardPreviewSegueTemplates;
 @property(copy, nonatomic) NSArray *layoutGuides; // @synthesize layoutGuides=_layoutGuides;
 @property IBUIViewController *parentViewController; // @synthesize parentViewController=_parentViewController;
 @property(retain) IBPlaceholderDrawingAttributes *placeholderDrawingAttributes; // @synthesize placeholderDrawingAttributes=_placeholderDrawingAttributes;
@@ -100,6 +103,10 @@
 @property(copy) NSString *title; // @synthesize title=_title;
 @property(retain, nonatomic) IBCocoaTouchTargetRuntime *targetRuntime; // @synthesize targetRuntime=_targetRuntime;
 @property(retain, nonatomic) IBUIView *view; // @synthesize view=_view;
+@property(retain) NSArray *storyboardSegueTemplates; // @synthesize storyboardSegueTemplates=_storyboardSegueTemplates;
+@property(copy, nonatomic) IBUISimulatedMetricsContainer *inheritedSimulatedMetrics; // @synthesize inheritedSimulatedMetrics=_inheritedSimulatedMetrics;
+- (void)setExplicitStoryboardIdentifier:(id)arg1;
+- (id)explicitStoryboardIdentifier;
 @property(copy) IBUISimulatedBarMetrics *simulatedTopBarMetrics; // @synthesize simulatedTopBarMetrics=_simulatedTopBarMetrics;
 @property(copy) IBUISimulatedBarMetrics *simulatedBottomBarMetrics; // @synthesize simulatedBottomBarMetrics=_simulatedBottomBarMetrics;
 @property(copy) IBUISimulatedStatusBarMetrics *simulatedStatusBarMetrics; // @synthesize simulatedStatusBarMetrics=_simulatedStatusBarMetrics;
@@ -153,11 +160,6 @@
 - (id)simulatedMetricsForPipeline;
 - (void)resetAllSimulatedMetricsToNone;
 - (void)resetAllSimulatedMetricsToInferred;
-@property(copy, nonatomic) IBUISimulatedMetricsContainer *inheritedSimulatedMetrics;
-- (void)setStoryboardSegueTemplates:(id)arg1;
-- (id)storyboardSegueTemplates;
-- (id)explicitStoryboardIdentifier;
-- (void)setExplicitStoryboardIdentifier:(id)arg1;
 - (BOOL)usesHonestUIEra;
 - (void)decodeContentSizeForViewInPopoverWithCoder:(id)arg1;
 - (void)encodeContentSizeForViewInPopoverWithCoder:(id)arg1;
@@ -180,11 +182,11 @@
 - (struct CGSize)effectiveSimulatedEditorViewSize;
 - (struct CGSize)effectiveSimulatedViewSize;
 - (struct CGSize)effectiveSimulatedContentSize;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithTargetRuntime:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (void)ibAddStoryboardCommitSegueTemplate:(id)arg1 inDocument:(id)arg2;
 - (void)ibAddStoryboardPreviewSegueTemplate:(id)arg1 inDocument:(id)arg2;
 - (void)ibAddStoryboardPreviewingRegistrantIfNecessaryForView:(id)arg1 inDocument:(id)arg2;
@@ -282,6 +284,7 @@
 - (void)ibRemoveChildren:(id)arg1;
 - (BOOL)ibCanRemoveChildren:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
+- (void)ibPopulateChildBackToFrontRelationOrder:(id)arg1;
 - (id)ibPasteboardTypes;
 - (id)ibQualifyingInfoForDefaultLabel;
 - (BOOL)ibIsRequiredToHaveNavigationItem;

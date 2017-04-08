@@ -15,7 +15,7 @@
     CDUnknownBlockType _block;
     DVTStackBacktrace *_creationBacktrace;
     BOOL _mustCancel;
-    unsigned char _cancelled;
+    // Error parsing type: AC, name: _cancelled
 }
 
 - (void).cxx_destruct;

@@ -9,18 +9,21 @@
 #import "DVTInvalidation.h"
 #import "IDETraceInferiorSession.h"
 
-@class DVTObservingToken, DVTStackBacktrace, DYCaptureArchive, DYCaptureSession, DYCaptureSessionInfo, DYFuture, DYGuestAppSession, GPUDebuggerController, GPUTraceGroupItem, GPUTraceProgramGroup, GPUTraceSession, IDELaunchSession, NSError, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
+@class DVTObservingToken, DVTStackBacktrace, DYCaptureArchive, DYCaptureSession, DYCaptureSessionInfo, DYFuture, DYGuestAppSession, DYProgressDigest, GPUDebuggerController, GPUTraceGroupItem, GPUTraceProgramGroup, GPUTraceSession, IDELaunchSession, NSError, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSString;
 
 @interface GPUInferiorSession : NSObject <IDETraceInferiorSession, DVTInvalidation>
 {
     NSObject<OS_dispatch_queue> *_queue;
     NSObject<OS_dispatch_queue> *_resourceQueue;
+    NSObject<OS_dispatch_group> *_captureSessionProcessingGroup;
+    DYFuture *_modelCreationFuture;
     DVTObservingToken *_launchSessionStateObserverToken;
     DVTObservingToken *_traceSessionStateObserverToken;
     IDELaunchSession *_launchSession;
     int _state;
     GPUDebuggerController *_debuggerController;
     GPUTraceSession *_currentTraceSession;
+    GPUTraceSession *_candidateTraceSession;
     GPUTraceGroupItem *_workspaceRootResourceGroup;
     GPUTraceProgramGroup *_workspaceRootProgramGroup;
     DYGuestAppSession *_guestAppSession;
@@ -37,12 +40,14 @@
     BOOL _archiveFinalized;
     BOOL _finalizedOverview;
     BOOL _isInvalidating;
+    BOOL _isDeferredHarvested;
     BOOL _isRemoteDebuggingEnabled;
     BOOL _isOSXSession;
     unsigned int _deviceInterposeVersionGL;
     unsigned int _deviceInterposeVersionMetal;
     unsigned int _updatedResourcesChangeCount;
     NSString *_captureUnavailabilityReason;
+    DYProgressDigest *_progressDigest;
     NSString *_inferiorAppName;
     NSString *_sessionID;
 }
@@ -57,6 +62,7 @@
 @property(readonly) NSString *inferiorAppName; // @synthesize inferiorAppName=_inferiorAppName;
 @property BOOL isOSXSession; // @synthesize isOSXSession=_isOSXSession;
 @property BOOL isRemoteDebuggingEnabled; // @synthesize isRemoteDebuggingEnabled=_isRemoteDebuggingEnabled;
+@property(retain, nonatomic) DYProgressDigest *progressDigest; // @synthesize progressDigest=_progressDigest;
 @property(readonly) NSString *captureUnavailabilityReason; // @synthesize captureUnavailabilityReason=_captureUnavailabilityReason;
 @property(readonly) unsigned int deviceInterposeVersionMetal; // @synthesize deviceInterposeVersionMetal=_deviceInterposeVersionMetal;
 @property(readonly) unsigned int deviceInterposeVersionGL; // @synthesize deviceInterposeVersionGL=_deviceInterposeVersionGL;
@@ -105,6 +111,7 @@
 - (void)releaseCurrentGPUTrace;
 - (id)GPUToolsDeviceFromDVTDevice:(id)arg1 error:(id *)arg2;
 @property(readonly) DYCaptureSessionInfo *captureSessionInfo;
+- (void)_setupProgressDigest:(BOOL)arg1;
 - (id)initWithAppName:(id)arg1 launchSession:(id)arg2 controller:(id)arg3 launchCommand:(id)arg4 error:(id *)arg5;
 - (id)initWithAppName:(id)arg1 launchSession:(id)arg2 controller:(id)arg3 error:(id *)arg4;
 

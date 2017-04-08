@@ -13,7 +13,7 @@
 
 @class DVTStackBacktrace, IBAddPerConfigurationOverrideController, IBIdiom, IBInspectorViewController, NSArray, NSPopover, NSSet, NSString, NSXMLElement;
 
-@interface IBPerConfigurationInspectorPropertyTemplate : NSObject <NSPopoverDelegate, NSMenuDelegate, DVTInvalidation, IBImageButtonDelegate>
+@interface IBPerConfigurationInspectorPropertyTemplate : NSObject <NSMenuDelegate, NSPopoverDelegate, IBImageButtonDelegate, DVTInvalidation>
 {
     IBInspectorViewController *_inspector;
     NSSet *_currentConfigurations;

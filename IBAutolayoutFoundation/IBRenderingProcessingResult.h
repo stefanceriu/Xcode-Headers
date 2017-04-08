@@ -6,20 +6,20 @@
 
 #import <IBAutolayoutFoundation/IBSceneUpdateProcessingResult.h>
 
-@class NSData;
+@class IBBitmap;
 
 @interface IBRenderingProcessingResult : IBSceneUpdateProcessingResult
 {
-    NSData *_bitmapData;
+    IBBitmap *_bitmap;
     double _scaleFactor;
 }
 
 @property(readonly, nonatomic) double scaleFactor; // @synthesize scaleFactor=_scaleFactor;
-@property(readonly, nonatomic) NSData *bitmapData; // @synthesize bitmapData=_bitmapData;
+@property(readonly, nonatomic) IBBitmap *bitmap; // @synthesize bitmap=_bitmap;
 - (void).cxx_destruct;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
-- (id)initWithBitmapData:(id)arg1 scaleFactor:(double)arg2;
+- (id)initWithBitmap:(id)arg1 scaleFactor:(double)arg2;
 
 @end
 

@@ -6,10 +6,11 @@
 
 #import "NSObject.h"
 
-@class DVTLocalComputer, NSMapTable, NSMutableDictionary, NSMutableSet, NSSet;
+@class DVTDeviceStateManager, DVTLocalComputer, NSMapTable, NSMutableDictionary, NSMutableSet, NSSet;
 
 @interface DVTDeviceManager : NSObject
 {
+    DVTDeviceStateManager *_stateManager;
     NSMutableDictionary *_locatorTrackers;
     NSMapTable *_observingTokens;
     NSMutableSet *_availableDevices;
@@ -31,6 +32,7 @@
 - (void)stopLocating;
 - (BOOL)startLocatingWithError:(id *)arg1;
 - (void)startLocating;
+- (void)_updateDefaultsForDevice:(id)arg1;
 - (void)_adjustAvailableDevicesForChangeKind:(unsigned long long)arg1 addedObjects:(id)arg2 removedObjects:(id)arg3;
 - (void)_stopObservingDevice:(id)arg1;
 - (void)_startObservingDevice:(id)arg1;

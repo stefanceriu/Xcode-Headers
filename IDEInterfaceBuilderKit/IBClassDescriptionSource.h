@@ -14,7 +14,6 @@
 
 @interface IBClassDescriptionSource : NSObject <NSCoding, NSCopying, IBDocumentArchiving>
 {
-    int _retainCountMinusOne;
     long long _sourceType;
     NSString *_qualifier;
 }
@@ -57,11 +56,6 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithSourceType:(long long)arg1 andQualifier:(id)arg2;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

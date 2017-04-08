@@ -23,11 +23,14 @@
     struct DTKPRecordDecoderMagazine *_magazines[2];
     struct DTKPRecordDecoderMagazine *_curMagazine;
     struct DTKPRecordDecoderMagazine *_prevMagazine;
+    unsigned int _magazineSize;
     struct {
         unsigned long long buffersProcessed;
         unsigned long long bufferBytes;
         unsigned long long kprecsDecoded;
         unsigned long long kprecsInternal;
+        unsigned long long kprecsWithUserStacks;
+        unsigned long long kprecsWithKernelStacks;
         unsigned long long kprecsTimeFilteredOut;
         unsigned long long dtkpRecsSent;
         unsigned long long dtkpCallstackFixup;

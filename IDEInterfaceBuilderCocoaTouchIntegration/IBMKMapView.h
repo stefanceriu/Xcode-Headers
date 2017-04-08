@@ -7,13 +7,11 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBMKMapView : IBUIView <IBDocumentArchiving, NSCoding>
+@interface IBMKMapView : IBUIView <IBDocumentArchiving>
 {
-    unsigned long long _mapType;
     BOOL _zoomEnabled;
     BOOL _scrollEnabled;
     BOOL _rotateEnabled;
@@ -24,6 +22,7 @@
     BOOL _showsPointsOfInterest;
     BOOL _showsScale;
     BOOL _showsTraffic;
+    unsigned long long _mapType;
 }
 
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
@@ -38,13 +37,13 @@
 @property(nonatomic, getter=isScrollEnabled) BOOL scrollEnabled; // @synthesize scrollEnabled=_scrollEnabled;
 @property(nonatomic, getter=isZoomEnabled) BOOL zoomEnabled; // @synthesize zoomEnabled=_zoomEnabled;
 @property(nonatomic) unsigned long long mapType; // @synthesize mapType=_mapType;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)shouldDrawAsPlaceholder;
 - (BOOL)prefersCachedImageBasedDrawing;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (id)ibEditorClass;
 - (BOOL)ibSizesToFillViewControllers;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;

@@ -6,22 +6,33 @@
 
 #import <GPUDebuggerFoundation/GPUTraceOutlineItem.h>
 
-@class NSArray, NSString;
+#import "DVTInvalidation.h"
 
-@interface GPUInvestigatorReportItem : GPUTraceOutlineItem
+@class DVTStackBacktrace, NSArray, NSString;
+
+@interface GPUInvestigatorReportItem : GPUTraceOutlineItem <DVTInvalidation>
 {
     NSArray *_currentAutomaticItems;
     NSString *_reportUUID;
 }
 
++ (void)initialize;
 @property(readonly, nonatomic) NSString *reportUUID; // @synthesize reportUUID=_reportUUID;
 @property(retain, nonatomic) NSArray *currentAutomaticItems; // @synthesize currentAutomaticItems=_currentAutomaticItems;
 - (void).cxx_destruct;
 - (id)archive;
-- (unsigned long long)hash;
+@property(readonly) unsigned long long hash;
 - (void)setParent:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)initWithController:(id)arg1 parent:(id)arg2 identifier:(id)arg3;
+
+// Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly) Class superclass;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

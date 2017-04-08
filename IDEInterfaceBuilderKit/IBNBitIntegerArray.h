@@ -8,9 +8,9 @@
 
 @interface IBNBitIntegerArray : NSObject
 {
-    long long bitsPerValue;
-    long long count;
-    char *bits;
+    long long _bitsPerValue;
+    long long _count;
+    char *_bits;
 }
 
 - (long long)integerValueAtIndex:(long long)arg1;

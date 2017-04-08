@@ -17,6 +17,7 @@
     GPUDebuggingAdditionUIController *_debuggingAdditionUIController;
 }
 
++ (BOOL)shouldTrackFileSystemChanges;
 + (BOOL)preservesVersions;
 + (BOOL)autosavesInPlace;
 @property(nonatomic) BOOL editorWasInstalled; // @synthesize editorWasInstalled=_editorWasInstalled;

@@ -7,11 +7,10 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIStoryboardSegueTemplate.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIStoryboardUnwindSegueTemplate : IBUIStoryboardSegueTemplate <IBDocumentArchiving, NSCoding>
+@interface IBUIStoryboardUnwindSegueTemplate : IBUIStoryboardSegueTemplate <IBDocumentArchiving>
 {
     NSString *_action;
 }
@@ -19,11 +18,11 @@
 + (BOOL)requiresDestinationControllerIdentifier;
 @property(copy, nonatomic) NSString *action; // @synthesize action=_action;
 - (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)ibLocalAttributeKeyPaths;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -10,9 +10,9 @@
 
 @interface IBDocumentGeniusResultsFinder : IDEIndexGeniusResultsFinder
 {
-    NSSet *interfaceBuilderObjectKVOObservations;
-    NSSet *documentNotificationTokens;
-    DVTDelayedInvocation *delayedUpdateInvocation;
+    DVTDelayedInvocation *_delayedUpdateInvocation;
+    NSSet *_interfaceBuilderObjectKVOObservations;
+    NSSet *_documentNotificationTokens;
 }
 
 + (Class)editorDocumentClass;

@@ -15,7 +15,6 @@
 @interface IBMemberID : NSObject <NSCopying, NSCoding, IBBinaryArchiving>
 {
     NSString *_memberIdentifier;
-    int _retainCountMinusOne;
     unsigned long long _hash;
 }
 
@@ -45,11 +44,6 @@
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToMemberID:(id)arg1;
 @property(readonly) unsigned long long hash;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

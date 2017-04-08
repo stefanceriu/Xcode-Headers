@@ -10,17 +10,17 @@
 
 @interface IBGeniusConnectionDefinition : NSObject
 {
-    NSString *className;
-    NSString *memberName;
-    DVTSourceCodeSymbolKind *kind;
-    NSString *geniusCategory;
+    NSString *_className;
+    NSString *_memberName;
+    DVTSourceCodeSymbolKind *_kind;
+    NSString *_geniusCategory;
 }
 
 + (id)connectionDefinitionForClass:(id)arg1 member:(id)arg2 kind:(id)arg3 category:(id)arg4;
-@property(retain) NSString *geniusCategory; // @synthesize geniusCategory;
-@property(retain) DVTSourceCodeSymbolKind *kind; // @synthesize kind;
-@property(retain) NSString *memberName; // @synthesize memberName;
-@property(retain) NSString *className; // @synthesize className;
+@property(retain) NSString *geniusCategory; // @synthesize geniusCategory=_geniusCategory;
+@property(retain) DVTSourceCodeSymbolKind *kind; // @synthesize kind=_kind;
+@property(retain) NSString *memberName; // @synthesize memberName=_memberName;
+@property(retain) NSString *className; // @synthesize className=_className;
 - (void).cxx_destruct;
 - (id)description;
 - (id)symbolFromIndex:(id)arg1;

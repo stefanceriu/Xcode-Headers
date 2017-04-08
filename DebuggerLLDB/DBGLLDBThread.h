@@ -6,9 +6,8 @@
 
 #import "IDEThread.h"
 
-@class DBGLLDBSession, DVTDispatchLock, NSMutableArray;
+@class DBGLLDBSession, DVTDispatchLock, NSArray, NSMutableArray;
 
-__attribute__((visibility("hidden")))
 @interface DBGLLDBThread : IDEThread
 {
     id <DBGSBThread> _lldbThread;
@@ -19,6 +18,8 @@ __attribute__((visibility("hidden")))
     NSMutableArray *_delayedInvalidationStackFrames;
     unsigned long long _reuseGeneration;
     DVTDispatchLock *_reuseGenerationLock;
+    BOOL _currentThread;
+    BOOL _delayToAllowFastPCDrawing;
 }
 
 + (id)createPendingBlockThreadWithParentProcess:(id)arg1 queueItem:(id)arg2 name:(id)arg3;
@@ -26,6 +27,9 @@ __attribute__((visibility("hidden")))
 + (BOOL)_isLookingForNSOperationInStackFrames:(id)arg1;
 + (BOOL)supportsInvalidationPrevention;
 + (void)initialize;
+@property BOOL delayToAllowFastPCDrawing; // @synthesize delayToAllowFastPCDrawing=_delayToAllowFastPCDrawing;
+@property(getter=isCurrentThread) BOOL currentThread; // @synthesize currentThread=_currentThread;
+@property(readonly) NSArray *backingStackFrames; // @synthesize backingStackFrames=_backingStackFrames;
 - (void).cxx_destruct;
 - (void)_invalidateAndClearBackingStackFrames:(id)arg1;
 - (void)primitiveInvalidate;

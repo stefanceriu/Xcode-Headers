@@ -11,11 +11,13 @@
 }
 
 + (id)keyPathsForValuesAffectingChildItems;
++ (id)keyPathsForValuesAffectingValue_project;
 - (BOOL)acceptDrop:(id)arg1 atIndex:(long long)arg2;
 - (BOOL)allowsDrop:(id)arg1 atIndex:(long long)arg2;
 - (id)_projectForTargets:(id)arg1;
 - (id)_draggedTargetsForDraggingInfo:(id)arg1;
 - (id)childItems;
+- (id)_project;
 - (id)initWithName:(id)arg1 project:(id)arg2;
 - (id)initWithName:(id)arg1 representedObject:(id)arg2;
 

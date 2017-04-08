@@ -22,6 +22,7 @@
 - (BOOL)_canUseInAppPurchaseFeatureForProgram:(id)arg1;
 - (BOOL)_canUseSiriFeature;
 - (BOOL)_canUseServerPortalServices;
+- (BOOL)canUseFeatures:(id)arg1 forProgram:(id)arg2 unsupportedFeatures:(id *)arg3;
 - (BOOL)canAssociateContainersOfType:(id)arg1;
 - (BOOL)canViewContainersOfType:(id)arg1;
 - (BOOL)canModifyContainersOfType:(id)arg1;

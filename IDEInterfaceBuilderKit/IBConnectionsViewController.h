@@ -13,23 +13,24 @@
 
 @interface IBConnectionsViewController : NSViewController <IBConnectionPrototypeViewDelegate, DVTInvalidation>
 {
-    DVTDelayedInvocation *delayedInvocation;
-    DVTMutableOrderedDictionary *dicslosureViews;
-    NSColor *lastDisclosureBottomBorderColor;
-    IBDocument *document;
-    IBConnectionPrototypeView *identifiedPrototypeView;
-    IBCancellationToken *identifiedPrototypeViewCancellationToken;
-    IBConnectionInterfaceStyle *connectionInterfaceStyle;
-    id endPoint;
-    id <DVTCancellable> classesObservingToken;
-    DVTNotificationToken *documentDidAddConnectionToken;
-    DVTNotificationToken *documentWillRemoveConnectionToken;
-    DVTNotificationToken *documentDidReorderConnectionToken;
-    DVTNotificationToken *documentDidAddObjectToken;
-    DVTNotificationToken *documentWillRemoveObjectToken;
+    DVTNotificationToken *_documentDidAddConnectionToken;
+    DVTNotificationToken *_documentWillRemoveConnectionToken;
+    DVTNotificationToken *_documentDidReorderConnectionToken;
+    DVTNotificationToken *_documentDidAddObjectToken;
+    DVTNotificationToken *_documentWillRemoveObjectToken;
+    DVTDelayedInvocation *_delayedInvocation;
+    DVTMutableOrderedDictionary *_dicslosureViews;
+    NSColor *_lastDisclosureBottomBorderColor;
+    IBDocument *_document;
+    IBConnectionPrototypeView *_identifiedPrototypeView;
+    IBCancellationToken *_identifiedPrototypeViewCancellationToken;
+    id _endPoint;
+    id <DVTCancellable> _classesObservingToken;
+    IBConnectionInterfaceStyle *_connectionInterfaceStyle;
 }
 
 + (void)initialize;
+@property(retain) IBConnectionInterfaceStyle *connectionInterfaceStyle; // @synthesize connectionInterfaceStyle=_connectionInterfaceStyle;
 - (void).cxx_destruct;
 - (id)findIndicatorContentViewForConnection:(id)arg1;
 - (void)refreshConnectionsData:(id)arg1;
@@ -44,7 +45,6 @@
 - (void)primitiveInvalidate;
 - (void)setLastDisclosureBottomBorderColor:(id)arg1;
 - (id)disclosureViews;
-- (id)connectionInterfaceStyle;
 - (id)document;
 - (id)window;
 - (id)view;

@@ -10,13 +10,14 @@
 
 @interface IBStructureAreaBackgroundView : DVTLayoutView_ML
 {
-    DVTLayoutView_ML *contentView;
-    DVTBorderedView *borderedView;
-    BOOL drawsWithActiveLook;
+    BOOL _drawsWithActiveLook;
+    DVTLayoutView_ML *_contentView;
+    DVTBorderedView *_borderedView;
 }
 
-@property(retain, nonatomic) DVTLayoutView_ML *contentView; // @synthesize contentView;
-@property(nonatomic) BOOL drawsWithActiveLook; // @synthesize drawsWithActiveLook;
+@property(retain) DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
+@property(retain, nonatomic) DVTLayoutView_ML *contentView; // @synthesize contentView=_contentView;
+@property(nonatomic) BOOL drawsWithActiveLook; // @synthesize drawsWithActiveLook=_drawsWithActiveLook;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)effectiveBackgroundColor;

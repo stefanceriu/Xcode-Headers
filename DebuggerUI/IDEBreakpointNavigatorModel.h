@@ -9,7 +9,7 @@
 #import "DVTInvalidation.h"
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTObservingToken, DVTStackBacktrace, IDEFileReference, IDEWorkspace, NSArray, NSImage, NSMutableArray, NSMutableSet, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTObservingToken, DVTStackBacktrace, IDEFileReference, IDEWorkspace, NSArray, NSImage, NSMutableArray, NSMutableSet, NSNull, NSString;
 
 @interface IDEBreakpointNavigatorModel : NSObject <IDEKeyDrivenNavigableItemRepresentedObject, DVTInvalidation>
 {
@@ -19,11 +19,13 @@
     NSMutableSet *_observers;
 }
 
++ (id)keyPathsForValuesAffectingNavigableItem_childRepresentedObjects;
 + (id)modelForWorkspace:(id)arg1;
 + (void)initialize;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (id)ideModelObjectTypeIdentifier;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) NSString *navigableItem_name;
 - (id)_findGroupForBreakpoint:(id)arg1;
 - (void)_notifyObserversOfBreakpointAdded:(id)arg1;
@@ -46,9 +48,11 @@
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly, copy) NSMutableArray *mutableGroups; // @dynamic mutableGroups;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) BOOL navigableItem_isLeaf;

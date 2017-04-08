@@ -7,35 +7,34 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class IBUIImageView, IBUILabel, IBUIStoryboardPreviewingSegueTemplateStorage, IBUITableView, IBUITableViewSection, NSDictionary, NSMutableSet, NSNumber, NSString, NSValue;
 
-@interface IBUITableViewCell : IBUIView <IBDocumentArchiving, NSCoding>
+@interface IBUITableViewCell : IBUIView <IBDocumentArchiving>
 {
-    NSNumber *style;
-    int selectionStyle;
-    int accessoryType;
-    int editingAccessoryType;
-    int focusStyle;
-    BOOL showsReorderControl;
-    BOOL hidesAccessoryWhenEditing;
-    long long indentationLevel;
-    double indentationWidth;
-    BOOL shouldIndentWhileEditing;
-    IBUIView *contentView;
-    NSString *reuseIdentifier;
-    IBUITableViewSection *section;
-    NSNumber *rowHeight;
-    NSDictionary *cachedLayoutFrames;
-    BOOL isUpdatingSubviewAttributes;
-    BOOL isLayingOutSubviews;
-    BOOL suppressFutherSubviewObservation;
-    IBUIImageView *imageView;
-    IBUILabel *textLabel;
-    IBUILabel *detailTextLabel;
-    NSMutableSet *observedSubviews;
-    NSValue *separatorInset;
+    NSDictionary *_cachedLayoutFrames;
+    BOOL _isUpdatingSubviewAttributes;
+    BOOL _isLayingOutSubviews;
+    BOOL _suppressFutherSubviewObservation;
+    NSMutableSet *_observedSubviews;
+    NSValue *_separatorInset;
+    BOOL _showsReorderControl;
+    BOOL _hidesAccessoryWhenEditing;
+    BOOL _shouldIndentWhileEditing;
+    int _selectionStyle;
+    int _accessoryType;
+    int _editingAccessoryType;
+    int _focusStyle;
+    NSNumber *_style;
+    long long _indentationLevel;
+    double _indentationWidth;
+    NSString *_reuseIdentifier;
+    NSNumber *_rowHeight;
+    IBUIView *_contentView;
+    IBUIImageView *_imageView;
+    IBUILabel *_textLabel;
+    IBUILabel *_detailTextLabel;
+    IBUITableViewSection *_section;
     IBUIStoryboardPreviewingSegueTemplateStorage *_accessoryActionPreviewingSegueTemplateStorage;
 }
 
@@ -60,24 +59,24 @@
 + (long long)ibInstantiationSizeBehavior;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
 @property(retain, nonatomic) IBUIStoryboardPreviewingSegueTemplateStorage *accessoryActionPreviewingSegueTemplateStorage; // @synthesize accessoryActionPreviewingSegueTemplateStorage=_accessoryActionPreviewingSegueTemplateStorage;
-@property(nonatomic) int focusStyle; // @synthesize focusStyle;
-@property(copy, nonatomic) NSValue *separatorInset; // @synthesize separatorInset;
-@property(retain, nonatomic) IBUILabel *detailTextLabel; // @synthesize detailTextLabel;
-@property(retain, nonatomic) IBUILabel *textLabel; // @synthesize textLabel;
-@property(retain, nonatomic) IBUIImageView *imageView; // @synthesize imageView;
-@property(copy, nonatomic) NSNumber *rowHeight; // @synthesize rowHeight;
-@property __weak IBUITableViewSection *section; // @synthesize section;
-@property(copy, nonatomic) NSString *reuseIdentifier; // @synthesize reuseIdentifier;
-@property(nonatomic) BOOL shouldIndentWhileEditing; // @synthesize shouldIndentWhileEditing;
-@property(nonatomic) long long indentationLevel; // @synthesize indentationLevel;
-@property(nonatomic) int accessoryType; // @synthesize accessoryType;
-@property(nonatomic) BOOL showsReorderControl; // @synthesize showsReorderControl;
-@property(nonatomic) int selectionStyle; // @synthesize selectionStyle;
-@property(nonatomic) int editingAccessoryType; // @synthesize editingAccessoryType;
-@property(nonatomic) BOOL hidesAccessoryWhenEditing; // @synthesize hidesAccessoryWhenEditing;
-@property(retain, nonatomic) IBUIView *contentView; // @synthesize contentView;
-@property(nonatomic) double indentationWidth; // @synthesize indentationWidth;
-@property(retain, nonatomic) NSNumber *style; // @synthesize style;
+@property __weak IBUITableViewSection *section; // @synthesize section=_section;
+@property(retain, nonatomic) IBUILabel *detailTextLabel; // @synthesize detailTextLabel=_detailTextLabel;
+@property(retain, nonatomic) IBUILabel *textLabel; // @synthesize textLabel=_textLabel;
+@property(retain, nonatomic) IBUIImageView *imageView; // @synthesize imageView=_imageView;
+@property(retain, nonatomic) IBUIView *contentView; // @synthesize contentView=_contentView;
+@property(copy, nonatomic) NSValue *separatorInset; // @synthesize separatorInset=_separatorInset;
+@property(copy, nonatomic) NSNumber *rowHeight; // @synthesize rowHeight=_rowHeight;
+@property(copy, nonatomic) NSString *reuseIdentifier; // @synthesize reuseIdentifier=_reuseIdentifier;
+@property(nonatomic) BOOL shouldIndentWhileEditing; // @synthesize shouldIndentWhileEditing=_shouldIndentWhileEditing;
+@property(nonatomic) double indentationWidth; // @synthesize indentationWidth=_indentationWidth;
+@property(nonatomic) long long indentationLevel; // @synthesize indentationLevel=_indentationLevel;
+@property(nonatomic) BOOL hidesAccessoryWhenEditing; // @synthesize hidesAccessoryWhenEditing=_hidesAccessoryWhenEditing;
+@property(nonatomic) int focusStyle; // @synthesize focusStyle=_focusStyle;
+@property(nonatomic) int editingAccessoryType; // @synthesize editingAccessoryType=_editingAccessoryType;
+@property(nonatomic) int accessoryType; // @synthesize accessoryType=_accessoryType;
+@property(nonatomic) BOOL showsReorderControl; // @synthesize showsReorderControl=_showsReorderControl;
+@property(nonatomic) int selectionStyle; // @synthesize selectionStyle=_selectionStyle;
+@property(retain, nonatomic) NSNumber *style; // @synthesize style=_style;
 - (void).cxx_destruct;
 - (void)decodeSeparatorInset:(id)arg1;
 - (void)encodeSeparatorInset:(id)arg1;
@@ -125,13 +124,13 @@
 - (void)preventFurtherObservationOfSubviews;
 - (void)stopObservingAllViews;
 - (void)dealloc;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (unsigned long long)ibDefaultAccessibilityTraits;
 - (BOOL)ibIsAccessibilityElementByDefault;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (void)ibAddPreviewingSegueTemplateStorage:(id)arg1 forSegue:(id)arg2;
 - (id)ibPrefersMarginRelativeConstraintsToChildItem:(id)arg1;
 - (id)ibViewForAncestorViewEdgeMovementQuestionsOfSubview:(id)arg1;
@@ -173,12 +172,12 @@
 - (void)ibPrepareToChangeInspectedStyle:(id)arg1;
 - (void)ibRemoveInspectedImageView;
 - (void)ibSetupInspectedImageView;
-- (CDUnknownBlockType)ibWillDelayInvalidationOfImageAndLayoutUntilFinishingUndoAndReturnDidFinishBlock;
 - (void)ibClearContentView;
 - (id)ibInspectedImage;
 - (void)setIbInspectedImage:(id)arg1;
 - (id)ibEditorClass;
 - (id)ibLocalAttributeKeyPaths;
+- (id)ibLocalNonChildToOneRelationshipsKeyPaths;
 - (id)ibLocalChildToOneRelationshipsKeyPaths;
 
 // Remaining properties

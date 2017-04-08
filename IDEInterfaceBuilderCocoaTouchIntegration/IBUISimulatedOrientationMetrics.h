@@ -13,7 +13,7 @@
 
 @class NSString;
 
-@interface IBUISimulatedOrientationMetrics : NSObject <NSCoding, IBDocumentArchiving, IBUISimulatedMetrics, NSCopying>
+@interface IBUISimulatedOrientationMetrics : NSObject <IBDocumentArchiving, IBUISimulatedMetrics, NSCoding, NSCopying>
 {
     int _interfaceOrientation;
 }
@@ -36,9 +36,9 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)initWithOrientation:(int)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithOrientation:(int)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

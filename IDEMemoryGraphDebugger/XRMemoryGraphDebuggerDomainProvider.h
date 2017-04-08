@@ -9,7 +9,7 @@
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 #import "XRMemoryGraphDebuggerDomainWorkspaceDelegate.h"
 
-@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSMutableArray, NSString;
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSMutableArray, NSNull, NSString;
 
 @interface XRMemoryGraphDebuggerDomainProvider : IDENavigableItemDomainProvider <IDEKeyDrivenNavigableItemRepresentedObject, XRMemoryGraphDebuggerDomainWorkspaceDelegate>
 {
@@ -39,9 +39,12 @@
 @property(readonly) NSArray *memoryGraphDebuggers; // @dynamic memoryGraphDebuggers;
 @property(readonly) NSMutableArray *mutableMemoryGraphDebuggers; // @dynamic mutableMemoryGraphDebuggers;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) BOOL navigableItem_isLeaf;

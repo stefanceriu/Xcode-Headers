@@ -12,11 +12,11 @@
 
 @interface IBADBannerView : IBUIView <IBDocumentArchiving>
 {
-    int adType;
+    int _adType;
 }
 
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
-@property int adType; // @synthesize adType;
+@property int adType; // @synthesize adType=_adType;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)shouldDrawAsPlaceholder;
 - (void)archiveRequiredContentSizeIdentifiers:(id)arg1;

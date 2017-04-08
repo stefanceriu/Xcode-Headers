@@ -6,20 +6,25 @@
 
 #import "NSObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString, NSURL;
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSNull, NSString, NSURL;
 
 @protocol IDEKeyDrivenNavigableItemRepresentedObject <NSObject>
 @property(readonly) NSString *navigableItem_name;
 
 @optional
++ (NSString *)navigableItem_childRepresentedObjectsKeyPathForConformance:(NSString *)arg1;
++ (NSString *)navigableItem_childRepresentedObjectsKeyPath;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
 @property(readonly) BOOL navigableItem_referencedContentExists;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
-@property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
 @property(readonly) NSString *navigableItem_toolTip;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
 @property(readonly) NSImage *navigableItem_image;

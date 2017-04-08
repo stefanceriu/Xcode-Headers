@@ -6,7 +6,7 @@
 
 #import <GPUToolsCore/DYBaseStreamTransport.h>
 
-@class NSURL;
+@class NSMutableArray, NSURL;
 
 @interface DYSharedMemoryTransport : DYBaseStreamTransport
 {
@@ -20,10 +20,13 @@
     SEL _consumeBytesSEL;
     unsigned int _currentPacketBytesLeft;
     int _mode;
+    BOOL _deferred;
+    NSMutableArray *_bufferedMessages;
     char _sendName[64];
     char _receiveName[64];
 }
 
+@property(readonly, nonatomic) BOOL deferred; // @synthesize deferred=_deferred;
 - (void)_dequeueIncomingMessages;
 - (void)_dequeuePacket;
 - (void)_relayPacket;
@@ -49,6 +52,7 @@
 - (void *)_mapSharedMemoryFile:(int)arg1 size:(unsigned long long)arg2 error:(id *)arg3;
 - (unsigned long long)_calculateVMRegionMapSize:(unsigned long long)arg1;
 - (id)_getSharedMemoryNameWithSuffix:(id)arg1;
+- (BOOL)send:(id)arg1 inReplyTo:(id)arg2 error:(id *)arg3 replyQueue:(struct dispatch_queue_s *)arg4 timeout:(unsigned long long)arg5 handler:(CDUnknownBlockType)arg6;
 - (void)setRelayTransport:(id)arg1;
 @property(retain, nonatomic) NSURL *url; // @dynamic url;
 - (void)dealloc;

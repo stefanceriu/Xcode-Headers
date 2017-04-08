@@ -7,24 +7,23 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUINavigationController.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIImagePickerController : IBUINavigationController <IBDocumentArchiving, NSCoding>
+@interface IBUIImagePickerController : IBUINavigationController <IBDocumentArchiving>
 {
-    unsigned long long sourceType;
-    BOOL allowsImageEditing;
+    BOOL _allowsImageEditing;
+    unsigned long long _sourceType;
 }
 
-@property BOOL allowsImageEditing; // @synthesize allowsImageEditing;
-@property unsigned long long sourceType; // @synthesize sourceType;
+@property BOOL allowsImageEditing; // @synthesize allowsImageEditing=_allowsImageEditing;
+@property unsigned long long sourceType; // @synthesize sourceType=_sourceType;
 - (void)verifyDecodedValues:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)init;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
 - (id)ibLocalAttributeKeyPaths;
 

@@ -13,7 +13,7 @@
 
 @interface IBNavigationMenuController : NSObject <NSMenuDelegate, DVTInvalidation>
 {
-    IBAbstractDocumentEditor *documentEditor;
+    IBAbstractDocumentEditor *_documentEditor;
 }
 
 + (void)initialize;

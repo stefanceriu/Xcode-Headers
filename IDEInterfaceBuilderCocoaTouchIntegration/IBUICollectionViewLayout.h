@@ -13,26 +13,26 @@
 
 @interface IBUICollectionViewLayout : NSObject <IBDocumentArchiving, NSCoding>
 {
-    IBUICollectionView *collectionView;
-    IBCocoaTouchTargetRuntime *targetRuntime;
+    IBUICollectionView *_collectionView;
+    IBCocoaTouchTargetRuntime *_targetRuntime;
 }
 
 + (id)dvt_keysToSkipWeakReferenceObservingValidation;
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
-@property(retain, nonatomic) IBCocoaTouchTargetRuntime *targetRuntime; // @synthesize targetRuntime;
-@property(nonatomic) __weak IBUICollectionView *collectionView; // @synthesize collectionView;
+@property(retain, nonatomic) IBCocoaTouchTargetRuntime *targetRuntime; // @synthesize targetRuntime=_targetRuntime;
+@property(nonatomic) __weak IBUICollectionView *collectionView; // @synthesize collectionView=_collectionView;
 - (void).cxx_destruct;
 - (id)runtimeClassNameForContext:(id)arg1 returningOptionalFallbackClassName:(id *)arg2;
 - (Class)classToTakeInitialMarshalledKeysFrom:(id)arg1;
 - (long long)cellsGrowthDirection;
 - (long long)sectionsGrowthDirection;
 - (BOOL)supportsSectionHeadersAndFooters;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithTargetRuntime:(id)arg1;
 - (id)init;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibPasteboardTypes;
 

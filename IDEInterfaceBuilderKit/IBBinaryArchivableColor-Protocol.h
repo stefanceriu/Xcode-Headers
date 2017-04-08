@@ -7,13 +7,15 @@
 #import "IBBinaryArchiving.h"
 #import "NSObject.h"
 
-@class IBBinaryArchiver, NSString;
+@class IBBinaryArchiver, IBBitmap, NSString;
 
 @protocol IBBinaryArchivableColor <NSObject, IBBinaryArchiving>
 + (id)blackColor;
++ (id)ibColorWithPatternBitmap:(IBBitmap *)arg1 colorSpace:(struct CGColorSpace *)arg2;
 + (id)ibColorWithDisplayP3Red:(double)arg1 green:(double)arg2 blue:(double)arg3 alpha:(double)arg4;
 + (id)ibColorWithSRGBRed:(double)arg1 green:(double)arg2 blue:(double)arg3 alpha:(double)arg4;
 + (id)ibColorWithGenericGamma22White:(double)arg1 alpha:(double)arg2;
+- (struct CGColor *)CGColor;
 - (NSString *)ibArchivedSystemKeyPathForBinaryArchiver:(IBBinaryArchiver *)arg1;
 - (void)set;
 - (BOOL)ibGetDisplayP3Red:(double *)arg1 green:(double *)arg2 blue:(double *)arg3 alpha:(double *)arg4;

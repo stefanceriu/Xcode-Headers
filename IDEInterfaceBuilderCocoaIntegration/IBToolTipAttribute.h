@@ -10,13 +10,13 @@
 
 @interface IBToolTipAttribute : IBAttributePlaceholder
 {
-    NSString *toolTip;
+    NSString *_toolTip;
 }
 
 + (void)addToolTipAccessorsToClass:(Class)arg1;
+@property(retain) NSString *toolTip; // @synthesize toolTip=_toolTip;
 - (void).cxx_destruct;
 - (id)archiveConnection;
-- (id)toolTip;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithObject:(id)arg1 andToolTip:(id)arg2;

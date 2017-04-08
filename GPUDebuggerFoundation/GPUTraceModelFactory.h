@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, DYGLCaptureSessionInfo, GPUDebuggerController, GPUTraceDisplayableItem, GPUTraceGroupItem, GPUTraceProgramGroup, GPUTraceSession, NSArray, NSMapTable, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
+@class DVTStackBacktrace, DYGLCaptureSessionInfo, GPUDebuggerController, GPUTraceDisplayableItem, GPUTraceGroupItem, GPUTraceProcessItem, GPUTraceProgramGroup, GPUTraceSession, NSArray, NSMapTable, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
 
 @interface GPUTraceModelFactory : NSObject <DVTInvalidation>
 {
@@ -20,8 +20,7 @@
     NSMapTable *_resourceTypeToViewClassMaptable;
     GPUTraceGroupItem *_domainProviderRootResourceGroup;
     GPUTraceProgramGroup *_domainProviderRootProgramGroup;
-    NSMutableArray *_frames;
-    id <IDEDebugTopNavigableModel> _rootProcessItem;
+    GPUTraceProcessItem *_rootProcessItem;
     NSArray *_allTraceItems;
     NSMutableArray *_allPrograms;
     NSMutableArray *_allDisplayableItems;
@@ -45,8 +44,7 @@
 @property(readonly, nonatomic) NSMutableArray *allDisplayableItems; // @synthesize allDisplayableItems=_allDisplayableItems;
 @property(readonly, nonatomic) NSMutableArray *allPrograms; // @synthesize allPrograms=_allPrograms;
 @property(readonly, nonatomic) NSArray *allTraceItems; // @synthesize allTraceItems=_allTraceItems;
-@property(readonly, nonatomic) id <IDEDebugTopNavigableModel> rootProcessItem; // @synthesize rootProcessItem=_rootProcessItem;
-@property(readonly, nonatomic) NSMutableArray *frames; // @synthesize frames=_frames;
+@property(readonly, nonatomic) GPUTraceProcessItem *rootProcessItem; // @synthesize rootProcessItem=_rootProcessItem;
 @property(readonly, nonatomic) GPUTraceProgramGroup *domainProviderRootProgramGroup; // @synthesize domainProviderRootProgramGroup=_domainProviderRootProgramGroup;
 @property(readonly, nonatomic) GPUTraceGroupItem *domainProviderRootResourceGroup; // @synthesize domainProviderRootResourceGroup=_domainProviderRootResourceGroup;
 @property(readonly, nonatomic) NSMapTable *resourceTypeToViewClassMaptable; // @synthesize resourceTypeToViewClassMaptable=_resourceTypeToViewClassMaptable;
@@ -60,16 +58,19 @@
 - (id)resolveCurrentResourceItemWithPreviousItem:(id)arg1 currentMainEditorItem:(id)arg2 topLevelObjects:(id)arg3;
 - (void)establishChildrenForProgramItem:(id)arg1;
 - (id)programObjectFromProgramItem:(id)arg1 shaderType:(unsigned int)arg2;
+- (void)populateUnusedResourcesMetadataForGroup:(id)arg1 stateMirror:(id)arg2;
 - (void)generateResourcesForGroup:(id)arg1 apiItem:(id)arg2 boundOnly:(BOOL)arg3;
 - (void)createParentResourceGroupsForAPIItem:(id)arg1;
 - (id)apiItemForTrueFunctionIndex:(unsigned int)arg1;
 - (id)apiItemFromFunctionIndex:(unsigned int)arg1;
 - (id)apiItemFromDisplayIndex:(unsigned int)arg1;
 - (id)locateDisplayableItemToDraw:(id)arg1 isAssociatedWithStateItem:(char *)arg2;
+- (void)notifyUnusedResourcesStreamAvailable;
 - (void)invalidateModel;
 - (void)generateModelWithTraceSession:(id)arg1;
 @property(readonly) unsigned long long totalDisplayableCount;
 @property(readonly, nonatomic) __weak DYGLCaptureSessionInfo *captureSessionInfo;
+- (void)removeModelItem:(id)arg1;
 - (id)itemForUUID:(id)arg1;
 - (void)addModelItem:(id)arg1;
 - (id)initWithController:(id)arg1 variablesViewContentProviderClass:(Class)arg2 pluginFactory:(id)arg3;

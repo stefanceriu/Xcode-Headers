@@ -27,9 +27,11 @@ __attribute__((visibility("hidden")))
 - (id)_renderedImage:(id)arg1 showDepth:(BOOL)arg2;
 - (id)generateLabel;
 @property(readonly, nonatomic) unsigned long long receiverID;
+- (void)populateUnusedResourcesData;
+- (void)populateUnusedResourcesMetadata;
 @property(readonly, nonatomic) BOOL hasStateMirror;
 @property(readonly, nonatomic) id <DYPMTLStateMirror> stateMirror;
-- (void)primitiveInvalidate;
+- (void)dealloc;
 @property(readonly, copy) NSString *description;
 - (id)initWithController:(id)arg1 parent:(id)arg2 deviceID:(unsigned long long)arg3 functionIndex:(int)arg4 displayIndex:(int)arg5;
 

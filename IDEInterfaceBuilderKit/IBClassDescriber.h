@@ -13,7 +13,6 @@
 
 @interface IBClassDescriber : NSObject <NSCoding, DVTInvalidation>
 {
-    int _retainCountMinusOne;
     DVTDelayedInvocation *_classDataIsUpdatingDelayedInvocation;
     NSSet *_readonlyPartialsToIntegrateWhenClassProvidersAreFirstSet;
     IBMutableIdentityDictionary *_classProviderObservingTokens;
@@ -64,6 +63,7 @@
 - (id)actionsForClassNamed:(id)arg1 recursive:(BOOL)arg2;
 - (id)namedRelationsOfRelationshipType:(long long)arg1 forClassNamed:(id)arg2 matchingClassNamed:(id)arg3 recursive:(BOOL)arg4;
 - (id)namedRelationsOfRelationshipType:(long long)arg1;
+- (id)suggestedClassSymbolForUnqualifiedClassName:(id)arg1 inWorkspace:(id)arg2;
 - (BOOL)moduleNamed:(id)arg1 inWorkspace:(id)arg2 containsAllClassesNamed:(id)arg3;
 - (BOOL)blueprint:(id)arg1 inWorkspace:(id)arg2 containsClassNamed:(id)arg3;
 - (id)namesOfModulesContainingClassNamed:(id)arg1 inWorkspace:(id)arg2;
@@ -94,11 +94,6 @@
 - (void)initializeClassDataIsUpdatingDelayedInvocation;
 - (id)initWithDocument:(id)arg1;
 - (id)init;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

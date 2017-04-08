@@ -7,22 +7,22 @@
 #import "NSObject.h"
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class IBTargetRuntime, NSString;
 
-@interface IBSceneExitPlaceholder : NSObject <IBDocumentArchiving, NSCoding>
+@interface IBSceneExitPlaceholder : NSObject <IBDocumentArchiving>
 {
-    IBTargetRuntime *targetRuntime;
+    IBTargetRuntime *_targetRuntime;
 }
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
+@property(retain) IBTargetRuntime *targetRuntime; // @synthesize targetRuntime=_targetRuntime;
 - (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithTargetRuntime:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)ibIsCopyableGivenSelection:(id)arg1;
 - (BOOL)ibNeedsToBeArchived;
 - (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;

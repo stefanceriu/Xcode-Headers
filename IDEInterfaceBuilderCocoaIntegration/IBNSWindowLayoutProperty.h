@@ -12,12 +12,13 @@
 
 @interface IBNSWindowLayoutProperty : IDEInspectorProperty <IBWindowLayoutViewDelegate>
 {
-    IBWindowLayoutView *layoutView;
     IDEInspectorKeyPath *_strutsKeyPath;
     IDEInspectorKeyPath *_screenFrameKeyPath;
     IDEInspectorKeyPath *_contentRectKeyPath;
+    IBWindowLayoutView *_layoutView;
 }
 
+@property(retain) IBWindowLayoutView *layoutView; // @synthesize layoutView=_layoutView;
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;

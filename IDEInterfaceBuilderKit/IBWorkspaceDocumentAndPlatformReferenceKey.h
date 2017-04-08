@@ -10,8 +10,8 @@
 
 @interface IBWorkspaceDocumentAndPlatformReferenceKey : NSObject
 {
-    IDEWorkspaceDocument *workspaceDocument;
-    IBPlatform *platform;
+    IDEWorkspaceDocument *_workspaceDocument;
+    IBPlatform *_platform;
     NSArray *_toolchainIdentifiers;
 }
 

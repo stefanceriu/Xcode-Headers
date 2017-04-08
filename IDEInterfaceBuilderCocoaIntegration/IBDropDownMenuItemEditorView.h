@@ -10,15 +10,15 @@
 
 @interface IBDropDownMenuItemEditorView : IBMenuItemEditorView
 {
-    NSFont *font;
-    double keyEquivalentOffset;
-    double keyEquivalentKeyWidth;
+    double _keyEquivalentOffset;
+    NSFont *_font;
+    double _keyEquivalentKeyWidth;
 }
 
 + (void)layoutItemViewsCollectively:(id)arg1 minimumFixedDimensionMagnitude:(double)arg2;
 + (double)singleLineHeightForFont:(id)arg1;
-@property(copy, nonatomic) NSFont *font; // @synthesize font;
-@property double keyEquivalentKeyWidth; // @synthesize keyEquivalentKeyWidth;
+@property double keyEquivalentKeyWidth; // @synthesize keyEquivalentKeyWidth=_keyEquivalentKeyWidth;
+@property(copy, nonatomic) NSFont *font; // @synthesize font=_font;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)submenuIndicatorPath;

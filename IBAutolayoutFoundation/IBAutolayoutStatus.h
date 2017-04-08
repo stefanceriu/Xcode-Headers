@@ -37,8 +37,10 @@
 - (void)enumerateMisplacedViewsUsingBlock:(CDUnknownBlockType)arg1;
 - (void)enumerateAmbiguousViewsUsingBlock:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) NSSet *misplacedOnlyStatusSet; // @synthesize misplacedOnlyStatusSet=_lazyMisplacedOnlyStatusSet;
+- (BOOL)isViewMisplaced:(id)arg1 forOrientation:(unsigned long long)arg2;
 - (BOOL)isViewMisplaced:(id)arg1;
 - (BOOL)isViewUninitialized:(id)arg1;
+- (BOOL)isViewAmbiguous:(id)arg1 forOrientation:(unsigned long long)arg2;
 - (BOOL)isViewAmbiguous:(id)arg1;
 - (BOOL)isViewAffectedByConflictingConstraints:(id)arg1;
 - (void)enumerateAmbiguityGroupsForView:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;

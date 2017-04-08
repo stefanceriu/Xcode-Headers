@@ -6,17 +6,19 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString, NSTimer, NSURL, XCSService;
+@class NSArray, NSString, NSTimer, NSURL, XCSService, XCSVersionInfo;
 
 @interface XCSLocalService : NSObject
 {
     XCSService *_cachedService;
     NSTimer *_maintenanceTaskTimer;
+    XCSVersionInfo *_cachedVersionInfo;
     BOOL _isPerformingMaintenanceTask;
     BOOL _attemptGuestAuthentication;
     BOOL _presumedDisconnected;
     NSArray *_fetchedBots;
     NSString *_versionsDisplayString;
+    NSString *_smallVersionsDisplayString;
     NSString *_platformsDisplayString;
     NSArray *_currentMaintenanceTasks;
     NSString *_displayName;
@@ -49,6 +51,7 @@
 @property(retain, nonatomic) NSArray *currentMaintenanceTasks; // @synthesize currentMaintenanceTasks=_currentMaintenanceTasks;
 @property(nonatomic) BOOL isPerformingMaintenanceTask; // @synthesize isPerformingMaintenanceTask=_isPerformingMaintenanceTask;
 @property(retain, nonatomic) NSString *platformsDisplayString; // @synthesize platformsDisplayString=_platformsDisplayString;
+@property(retain, nonatomic) NSString *smallVersionsDisplayString; // @synthesize smallVersionsDisplayString=_smallVersionsDisplayString;
 @property(retain, nonatomic) NSString *versionsDisplayString; // @synthesize versionsDisplayString=_versionsDisplayString;
 @property(retain, nonatomic) NSArray *fetchedBots; // @synthesize fetchedBots=_fetchedBots;
 - (void).cxx_destruct;
@@ -70,11 +73,16 @@
 @property(readonly, nonatomic) NSString *identifier;
 - (void)_observeLocalBot:(id)arg1;
 - (void)fetchServerInfo:(CDUnknownBlockType)arg1;
+- (void)versionInfo:(CDUnknownBlockType)arg1;
 - (void)_updateBuildQueue;
+- (void)fetchBuildQueueWithCallback:(CDUnknownBlockType)arg1;
 - (void)populateBots:(CDUnknownBlockType)arg1;
+@property(readonly, nonatomic) BOOL hasBotsWithIssues;
 - (void)updateFetchedBots:(id)arg1;
+- (id)botsSortedByName:(id)arg1;
 - (id)initWithService:(id)arg1;
 - (void)flushLocalData;
+- (id)description;
 
 @end
 

@@ -9,7 +9,7 @@
 #import "DVTInvalidation.h"
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTFilePath, DVTObservingToken, DVTStackBacktrace, IDEBreakpointBucket, IDEFileBreakpoint, IDEFileReference, NSArray, NSImage, NSMutableArray, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTFilePath, DVTObservingToken, DVTStackBacktrace, IDEBreakpointBucket, IDEFileBreakpoint, IDEFileReference, NSArray, NSImage, NSMutableArray, NSNull, NSString;
 
 @interface IDEFileBreakpointGroup : NSObject <IDEKeyDrivenNavigableItemRepresentedObject, DVTInvalidation>
 {
@@ -26,6 +26,7 @@
 
 + (id)keyPathsForValuesAffectingAssociatedFileExists;
 + (void)initialize;
++ (id)keyPathsForValuesAffectingNavigableItem_childRepresentedObjects;
 + (id)keyPathsForValuesAffectingNavigableItem_referencedContentExists;
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 @property(retain) IDEFileBreakpoint *breakpointObservingTheNameOf; // @synthesize breakpointObservingTheNameOf=_breakpointObservingTheNameOf;
@@ -46,6 +47,7 @@
 - (void)removeFileBreakpoint:(id)arg1;
 - (void)addFileBreakpointInSortedOrder:(id)arg1;
 - (id)initWithBucket:(id)arg1;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) BOOL navigableItem_referencedContentExists;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) NSImage *navigableItem_image;
@@ -57,10 +59,12 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(copy) NSMutableArray *mutableBreakpoints; // @dynamic mutableBreakpoints;
+@property(retain) NSMutableArray *mutableBreakpoints; // @dynamic mutableBreakpoints;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;

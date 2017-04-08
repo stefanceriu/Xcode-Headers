@@ -64,3 +64,9 @@ struct sockaddr_in6 {
     unsigned int _field6;
 };
 
+struct sockaddr_un {
+    unsigned char _field1;
+    unsigned char _field2;
+    char _field3[104];
+};
+

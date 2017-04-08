@@ -11,8 +11,6 @@
 @protocol IBSceneUpdateContentViewDelegate <NSObject>
 - (NSColor *)backgroundColorForSceneUpdateContentView:(IBSceneUpdateContentView *)arg1;
 - (IBTargetRuntime *)targetRuntimeForSceneUpdateContentView:(IBSceneUpdateContentView *)arg1;
-- (BOOL)shouldSceneUpdateContentViewRegisterForAsynchronousRendering:(IBSceneUpdateContentView *)arg1;
 - (void)invalidateSceneForContentView:(IBSceneUpdateContentView *)arg1 forReason:(NSString * (^)(void))arg2;
-- (double)scaleFactorForRenderingSceneContentView:(IBSceneUpdateContentView *)arg1;
 @end
 

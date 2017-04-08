@@ -13,20 +13,20 @@
 
 @interface IBUICustomObject : NSObject <IBDocumentArchiving, NSCoding>
 {
-    IBCocoaTouchTargetRuntime *targetRuntime;
+    IBCocoaTouchTargetRuntime *_targetRuntime;
 }
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
-@property(retain) IBCocoaTouchTargetRuntime *targetRuntime; // @synthesize targetRuntime;
+@property(retain) IBCocoaTouchTargetRuntime *targetRuntime; // @synthesize targetRuntime=_targetRuntime;
 - (void).cxx_destruct;
 - (Class)classToTakeInitialMarshalledKeysFrom:(id)arg1;
 - (id)runtimeClassNameForContext:(id)arg1 returningOptionalFallbackClassName:(id *)arg2;
 - (id)ibRuntimeClassName;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithTargetRuntime:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 
 // Remaining properties

@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "GCDAsyncSocketDelegate.h"
+
 @class GCDAsyncSocket, NSData, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
 
-@interface XCSMessageChannel : NSObject
+@interface XCSMessageChannel : NSObject <GCDAsyncSocketDelegate>
 {
     id <XCSMessageChannelDelegate> _delegate;
     NSObject<OS_dispatch_queue> *_delegateQueue;
@@ -45,6 +47,7 @@
 @property unsigned short port; // @synthesize port=_port;
 @property(retain) NSString *hostname; // @synthesize hostname=_hostname;
 - (void).cxx_destruct;
+- (void)socket:(id)arg1 didReceiveTrust:(struct __SecTrust *)arg2 completionHandler:(CDUnknownBlockType)arg3;
 - (void)socketDidSecure:(id)arg1;
 - (void)socketDidDisconnect:(id)arg1 withError:(id)arg2;
 - (void)socket:(id)arg1 didWriteDataWithTag:(long long)arg2;
@@ -73,6 +76,12 @@
 - (void)dealloc;
 - (id)initWithHostname:(id)arg1 port:(unsigned short)arg2;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

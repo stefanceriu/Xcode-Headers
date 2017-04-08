@@ -4,9 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class NSArray, NSSet;
+@class NSArray, NSDictionary;
 
 @protocol DVTSourceControlWorkingCopyScannerProtocol
-- (void)scanFolderPaths:(NSArray *)arg1 traversingUp:(BOOL)arg2 workingCopyIdentifiers:(NSSet *)arg3 completionBlock:(void (^)(NSArray *))arg4;
+- (void)scanFolderPaths:(NSArray *)arg1 traversingUp:(BOOL)arg2 ignoringFolders:(NSArray *)arg3 workingCopyIdentifiers:(NSDictionary *)arg4 completionBlock:(void (^)(NSDictionary *))arg5;
 @end
 

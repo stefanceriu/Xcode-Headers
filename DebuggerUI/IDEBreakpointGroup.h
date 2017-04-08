@@ -7,11 +7,11 @@
 #import "NSObject.h"
 
 #import "DVTInvalidation.h"
-#import "IDEKeyDrivenNavigableItemRepresentedObject.h"
+#import "IDEKeyDrivenNavigableItemSparseChildrenRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEBreakpointBucket, IDEFileReference, NSArray, NSImage, NSMapTable, NSMutableArray, NSString;
+@class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEBreakpointBucket, IDEFileReference, NSArray, NSImage, NSMapTable, NSMutableArray, NSNull, NSString;
 
-@interface IDEBreakpointGroup : NSObject <IDEKeyDrivenNavigableItemRepresentedObject, DVTInvalidation>
+@interface IDEBreakpointGroup : NSObject <IDEKeyDrivenNavigableItemSparseChildrenRepresentedObject, DVTInvalidation>
 {
     NSMutableArray *_subGroups;
     NSMapTable *_breakpointToObserverTokenMap;
@@ -21,6 +21,7 @@
 }
 
 + (void)initialize;
++ (id)keyPathsForValuesAffectingNavigableItem_childRepresentedObjects;
 + (id)keyPathsForValuesAffectingNavigableItem_image;
 + (id)keyPathsForValuesAffectingNavigableItem_subtitle;
 + (id)keyPathsForValuesAffectingNavigableItem_name;
@@ -42,6 +43,10 @@
 - (void)removeBreakpoint:(id)arg1;
 - (void)addBreakpoint:(id)arg1;
 - (id)initWithBucket:(id)arg1;
+- (id)navigableItem_childRepresentedObjectIndexesForFilter:(id)arg1;
+- (id)navigableItem_childRepresentedObjectsObjectsAtIndexes:(id)arg1;
+- (id)objectInNavigableItem_childRepresentedObjectsAtIndex:(unsigned long long)arg1;
+- (unsigned long long)countOfNavigableItem_childRepresentedObjects;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_name;
@@ -51,11 +56,14 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(copy) NSMutableArray *mutableSubGroups; // @dynamic mutableSubGroups;
+@property(retain) NSMutableArray *mutableSubGroups; // @dynamic mutableSubGroups;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;

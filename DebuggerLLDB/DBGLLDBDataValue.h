@@ -8,7 +8,6 @@
 
 @class DBGLLDBDataType, NSArray, NSMutableArray, NSMutableIndexSet, NSString;
 
-__attribute__((visibility("hidden")))
 @interface DBGLLDBDataValue : DBGDataValue
 {
     BOOL _isDictionarySynthesizedParent;
@@ -81,7 +80,7 @@ __attribute__((visibility("hidden")))
 - (void)setFormat:(id)arg1;
 - (id)format;
 - (const char *)valueAsCString;
-- (void)rawDataWithHandler:(CDUnknownBlockType)arg1;
+- (void)_rawDataWithHandler:(CDUnknownBlockType)arg1;
 - (id)primitiveChildValues;
 - (void)_faultNextSetOfChildValuesStartingAtIndex:(unsigned long long)arg1;
 - (void)_setChildValuesToArrayOfPlaceholders;

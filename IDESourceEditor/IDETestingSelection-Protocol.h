@@ -6,9 +6,10 @@
 
 #import "IDESelectionSource.h"
 
-@class NSSet;
+@class IDETest, NSSet;
 
 @protocol IDETestingSelection <IDESelectionSource>
 - (NSSet *)selectedTestsAndTestables;
+- (IDETest *)selectedTest;
 @end
 

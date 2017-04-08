@@ -27,6 +27,7 @@
 + (int)libraryInclusionStatusForAssetClass:(Class)arg1 assetIdentifier:(id)arg2;
 + (BOOL)alwaysRequiresExplicitDowngrade;
 + (BOOL)supportsSceneUpdates;
++ (BOOL)supportsHighFidelityBackgroundTools;
 + (void)customizeObjectForLibraryInstantiation:(id)arg1;
 + (Class)idiomClass;
 + (id)targetRuntimes;

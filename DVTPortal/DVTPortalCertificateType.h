@@ -33,6 +33,7 @@
     NSString *_revokeServiceIdentifier;
     NSString *_listCSRServiceIdentifier;
     NSString *_keyNameFormat;
+    NSString *_nameForManageCertificates;
 }
 
 + (id)_certificateTypeWithPlatformIdentifier:(id)arg1 distributionType:(id)arg2 andDistributionMethod:(id)arg3;
@@ -41,6 +42,7 @@
 + (id)certificateTypesForPortalProgram:(id)arg1;
 + (id)allCertificateTypes;
 + (id)_certificateTypeMap;
+@property(readonly, nonatomic) NSString *nameForManageCertificates; // @synthesize nameForManageCertificates=_nameForManageCertificates;
 @property(readonly, nonatomic) BOOL canBeRevokedByEnterpriseTeams; // @synthesize canBeRevokedByEnterpriseTeams=_canBeRevokedByEnterpriseTeams;
 @property(readonly, nonatomic) BOOL canBeRevoked; // @synthesize canBeRevoked=_canBeRevoked;
 @property(readonly, nonatomic) BOOL canBeCreatedByUniversityTeams; // @synthesize canBeCreatedByUniversityTeams=_canBeCreatedByUniversityTeams;

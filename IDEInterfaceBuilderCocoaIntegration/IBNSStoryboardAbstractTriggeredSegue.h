@@ -6,17 +6,17 @@
 
 #import "IBStoryboardAbstractTriggeredSegue.h"
 
-#import "NSCoding.h"
-
 @class NSString;
 
-@interface IBNSStoryboardAbstractTriggeredSegue : IBStoryboardAbstractTriggeredSegue <NSCoding>
+@interface IBNSStoryboardAbstractTriggeredSegue : IBStoryboardAbstractTriggeredSegue
 {
     NSString *_customSegueClassName;
     NSString *_customSegueClassModuleProvider;
 }
 
 + (id)ibKeyPathsAcceptingModuleNameBackfill;
++ (id)keyPathsForValuesAffectingCustomSegueClassModule;
++ (id)keyPathsForValuesAffectingCustomSegueFormattedClassSymbol;
 + (BOOL)wantsDefaultCustomClassCompatibilityWarning;
 + (BOOL)isObjectValidDestination:(id)arg1;
 + (BOOL)isObjectValidSource:(id)arg1;
@@ -33,7 +33,6 @@
 - (BOOL)isPrototypeFor:(id)arg1;
 - (BOOL)isEqualToPrototype:(id)arg1;
 @property(copy) NSString *customSegueClassModule;
-- (id)keyPathsAffectingCustomSegueClassModule;
 - (void)setCustomSegueFormattedClassSymbol:(id)arg1;
 - (id)customSegueFormattedClassSymbol;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;

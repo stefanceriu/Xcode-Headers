@@ -38,7 +38,7 @@
 @property(readonly) NSMapTable *headRevisionsMapTable;
 - (id)_revisionTableWithRevison:(id)arg1;
 - (id)forceUpdateWorkingCopiesFromBlueprint:(id)arg1 progressBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
-- (id)forceUpdateWorkingCopiesFromRepositories:(id)arg1 progressBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)forceUpdateWorkingCopiesLocations:(id)arg1 fromRepositories:(id)arg2 progressBlock:(CDUnknownBlockType)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)workingCopyForRepositoryID:(id)arg1;
 - (id)workingCopyForURL:(id)arg1;
 - (id)initWithPrimaryWorkingCopy:(id)arg1 relativePathToProject:(id)arg2 workingCopies:(id)arg3;

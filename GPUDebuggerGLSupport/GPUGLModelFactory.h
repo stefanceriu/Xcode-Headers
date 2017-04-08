@@ -42,7 +42,6 @@ __attribute__((visibility("hidden")))
 - (void)invalidateModel;
 - (void)generateModelWithTraceSession:(id)arg1;
 - (id)resourceTypeToViewClassMaptable;
-- (id)frames;
 - (id)domainProviderRootProgramGroup;
 - (id)domainProviderRootResourceGroup;
 - (id)allAPIItems;

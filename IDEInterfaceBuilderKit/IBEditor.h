@@ -11,48 +11,52 @@
 #import "IBSelectionOwnerDelegate.h"
 #import "NSUserInterfaceValidations.h"
 
-@class DVTNotificationToken, IBDecodedPasteboardContent, IBDelegatedCanvasOverlay, IBDocument, IBDragAndDropInsertionIndicator, IBDropTargetResolver, IBEditorCanvasFrameController, IBMutableIdentityDictionary, IBSelectionOwner, NSBezierPath, NSDictionary, NSSet, NSString;
+@class DVTNotificationToken, IBAbstractDocumentEditor, IBCanvasView, IBDecodedPasteboardContent, IBDelegatedCanvasOverlay, IBDocument, IBDragAndDropInsertionIndicator, IBDropTargetResolver, IBEditorCanvasFrame, IBEditorCanvasFrameController, IBMutableIdentityDictionary, IBSelectionOwner, NSBezierPath, NSDictionary, NSSet, NSString;
 
 @interface IBEditor : NSObject <IBSelectionOwnerDelegate, IBDropTargetResolverDelegate, IBSceneUpdateRequestConfiguring, NSUserInterfaceValidations>
 {
-    IBSelectionOwner *selection;
-    IBEditorCanvasFrameController *frameController;
-    IBDropTargetResolver *dropTargetResolver;
-    IBDragAndDropInsertionIndicator *insertionIndicator;
-    IBDocument *document;
-    IBEditor *parentEditor;
-    IBMutableIdentityDictionary *childEditors;
-    id <DVTInvalidation> selctionDrawingToken;
-    id <DVTInvalidation> activationDarkeningToken;
-    NSObject *editedObject;
-    NSBezierPath *activationHighlightPath;
-    BOOL recalculateActivationPath;
-    BOOL draggedObjectsAreInObjectModel;
-    NSDictionary *dragSourceContext;
-    unsigned long long allowedDragSourceOperations;
-    BOOL drawsActivationDarkening;
-    IBDecodedPasteboardContent *decodedPasteboardContextCache;
-    NSString *decodedPasteboardContextCacheID;
-    NSObject *orderedSelectionAnchor;
-    NSSet *selectionPriorToEventRouting;
-    BOOL closing;
-    BOOL closed;
-    DVTNotificationToken *frameChangeToken;
+    IBSelectionOwner *_selection;
+    IBDragAndDropInsertionIndicator *_insertionIndicator;
+    IBDocument *_document;
+    IBMutableIdentityDictionary *_childEditors;
+    id <DVTInvalidation> _selctionDrawingToken;
+    id <DVTInvalidation> _activationDarkeningToken;
+    NSBezierPath *_activationHighlightPath;
+    BOOL _recalculateActivationPath;
+    BOOL _draggedObjectsAreInObjectModel;
+    NSDictionary *_dragSourceContext;
+    unsigned long long _allowedDragSourceOperations;
+    BOOL _drawsActivationDarkening;
+    IBDecodedPasteboardContent *_decodedPasteboardContextCache;
+    NSString *_decodedPasteboardContextCacheID;
+    NSObject *_orderedSelectionAnchor;
+    NSSet *_selectionPriorToEventRouting;
+    BOOL _closing;
+    DVTNotificationToken *_frameChangeToken;
     DVTNotificationToken *_overlayBoundsChangeToken;
     NSSet *_entryPointObservations;
-    BOOL active;
-    BOOL frameControllerDragAndDropInProgress;
-    BOOL hasAnyObjectsSelected;
+    BOOL _active;
+    BOOL _closed;
+    BOOL _hasAnyObjectsSelected;
+    BOOL _frameControllerDragAndDropInProgress;
+    NSObject *_editedObject;
+    IBEditor *_parentEditor;
+    IBDropTargetResolver *_dropTargetResolver;
+    IBEditorCanvasFrameController *_frameController;
 }
 
 + (void)resetCursorRectsForObject:(id)arg1 inFrameController:(id)arg2;
 + (Class)ibDropTargetResolverClass;
 + (Class)ibDragAndDropInsertionIndicatorClass;
-@property(nonatomic) BOOL hasAnyObjectsSelected; // @synthesize hasAnyObjectsSelected;
-@property(nonatomic, getter=isFrameControllerDragAndDropInProgress) BOOL frameControllerDragAndDropInProgress; // @synthesize frameControllerDragAndDropInProgress;
-@property(nonatomic, getter=isActive) BOOL active; // @synthesize active;
-@property(getter=isClosed) BOOL closed; // @synthesize closed;
-@property(copy, nonatomic) NSSet *selectionPriorToEventRouting; // @synthesize selectionPriorToEventRouting;
+@property(copy, nonatomic) NSSet *selectionPriorToEventRouting; // @synthesize selectionPriorToEventRouting=_selectionPriorToEventRouting;
+@property(nonatomic, getter=isFrameControllerDragAndDropInProgress) BOOL frameControllerDragAndDropInProgress; // @synthesize frameControllerDragAndDropInProgress=_frameControllerDragAndDropInProgress;
+@property(readonly) IBEditorCanvasFrameController *frameController; // @synthesize frameController=_frameController;
+@property(nonatomic) BOOL hasAnyObjectsSelected; // @synthesize hasAnyObjectsSelected=_hasAnyObjectsSelected;
+@property(getter=isClosed) BOOL closed; // @synthesize closed=_closed;
+@property(readonly) IBDropTargetResolver *dropTargetResolver; // @synthesize dropTargetResolver=_dropTargetResolver;
+@property(nonatomic, getter=isActive) BOOL active; // @synthesize active=_active;
+@property(readonly) IBEditor *parentEditor; // @synthesize parentEditor=_parentEditor;
+@property(readonly) NSObject *editedObject; // @synthesize editedObject=_editedObject;
 - (void).cxx_destruct;
 - (void)configureIncrementalSceneUpdateRequest:(id)arg1;
 - (void)configureFullSceneUpdateRequest:(id)arg1;
@@ -107,7 +111,6 @@
 - (void)clearDecodedPasteboardContextCache;
 - (id)acceptDragInfo:(id)arg1 context:(id)arg2;
 - (void)prepareToAcceptDragInfo:(id)arg1;
-@property(readonly) IBDropTargetResolver *dropTargetResolver;
 - (id)tellObjectToAcceptContentsOfPasteboard:(id)arg1 selectNewObjects:(BOOL)arg2;
 - (void)customizePasteboardInsertionContext:(id)arg1 fromPasteboard:(id)arg2 andDraggingInfo:(id)arg3;
 - (void)populatePasteboardInsertionContext:(id)arg1 fromPasteboard:(id)arg2 isGeneratingDragPreview:(BOOL)arg3;
@@ -202,10 +205,8 @@
 - (BOOL)actuallyShowsSelectionIndicators;
 - (BOOL)forbidsShowingSelectionIndicators;
 - (BOOL)wantsToShowSelectionIndicators;
-- (id)parentEditor;
-- (id)editorCanvasFrame;
-- (id)frameController;
-- (id)documentEditor;
+@property(readonly) IBEditorCanvasFrame *editorCanvasFrame;
+@property(readonly) IBAbstractDocumentEditor *documentEditor;
 - (BOOL)isClosing;
 - (BOOL)isSimulatingSheet;
 - (id)children;
@@ -215,10 +216,9 @@
 - (id)childEditors;
 - (id)editorView;
 - (id)editorWindow;
-- (id)canvasView;
+@property(readonly) IBCanvasView *canvasView;
 - (id)canvasViewController;
 - (id)document;
-- (id)editedObject;
 - (id)initWithEditedObject:(id)arg1 parentEditor:(id)arg2 frameController:(id)arg3;
 
 // Remaining properties

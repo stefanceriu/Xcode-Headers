@@ -25,7 +25,6 @@
 - (void)registerProduct:(id)arg1;
 - (id)malformedProductWithArchives:(id)arg1;
 - (id)productWithProductIdentifier:(id)arg1 productVersions:(id)arg2;
-- (id)productWithBundleIdentifier:(id)arg1 productCategory:(id)arg2 productVersions:(id)arg3;
 - (void)primitiveInvalidate;
 - (id)init;
 

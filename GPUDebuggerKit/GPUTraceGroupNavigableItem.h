@@ -4,34 +4,35 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IDEKeyDrivenNavigableItem.h"
+#import <GPUDebuggerKit/GPUGenericNavigableItem.h>
 
-@class NSMutableArray;
+#import "GPUStringFilterableNavigableItem.h"
 
-@interface GPUTraceGroupNavigableItem : IDEKeyDrivenNavigableItem
+@class GPUFilterString, GPUTraceGroupItem, NSArray, NSString;
+
+@interface GPUTraceGroupNavigableItem : GPUGenericNavigableItem <GPUStringFilterableNavigableItem>
 {
-    BOOL _showOnlyInterestingTrace;
-    BOOL _hideEmptyMarkerGroups;
-    BOOL _hideGroupMarkerCalls;
-    NSMutableArray *_cachedChildRepresentedObjects;
-    BOOL _showOnlyIssues;
+    BOOL _filterInterestingTrace;
+    BOOL _filterIssues;
+    NSArray *_cachedChildRepresentedObjects;
+    GPUFilterString *_filterString;
 }
 
-@property BOOL showOnlyIssues; // @synthesize showOnlyIssues=_showOnlyIssues;
-@property BOOL hideGroupMarkerCalls; // @synthesize hideGroupMarkerCalls=_hideGroupMarkerCalls;
-@property BOOL hideEmptyMarkerGroups; // @synthesize hideEmptyMarkerGroups=_hideEmptyMarkerGroups;
-@property BOOL showOnlyInterestingTrace; // @synthesize showOnlyInterestingTrace=_showOnlyInterestingTrace;
+@property(retain, nonatomic) GPUFilterString *filterString; // @synthesize filterString=_filterString;
 - (void).cxx_destruct;
-- (BOOL)setHideEmptyMarkerGroups:(BOOL)arg1 hideGroupMarkerCalls:(BOOL)arg2;
-- (BOOL)setShowOnlyInterestingTrace:(BOOL)arg1 hideEmptyMarkerGroups:(BOOL)arg2 hideGroupMarkerCalls:(BOOL)arg3 showOnlyIssues:(BOOL)arg4;
+- (void)setToggleFilters:(BOOL)arg1 issues:(BOOL)arg2;
 - (void)invalidateChildItems;
-- (id)childRepresentedObjects;
-- (void)_filterGroup:(id)arg1;
-- (BOOL)_isHiddenStateItem:(id)arg1;
-- (BOOL)_isHiddenForShowOnlyIssues:(int)arg1 andIssueFilterLevel:(int)arg2;
+@property(readonly, nonatomic) NSArray *childRepresentedObjects;
+- (id)_filterChildren;
 - (void)primitiveInvalidate;
-- (void)_clearCachedItems;
 - (id)initWithRepresentedObject:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) GPUTraceGroupItem *representedObject; // @dynamic representedObject;
+@property(readonly) Class superclass;
 
 @end
 

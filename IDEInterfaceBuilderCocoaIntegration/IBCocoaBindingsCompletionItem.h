@@ -10,14 +10,14 @@
 
 @interface IBCocoaBindingsCompletionItem : NSObject
 {
-    NSString *displayText;
-    NSString *displayType;
-    BOOL shouldAppearInSuggestions;
+    BOOL _shouldAppearInSuggestions;
+    NSString *_displayText;
+    NSString *_displayType;
 }
 
-@property BOOL shouldAppearInSuggestions; // @synthesize shouldAppearInSuggestions;
-@property(copy) NSString *displayType; // @synthesize displayType;
-@property(copy) NSString *displayText; // @synthesize displayText;
+@property BOOL shouldAppearInSuggestions; // @synthesize shouldAppearInSuggestions=_shouldAppearInSuggestions;
+@property(readonly) NSString *displayType; // @synthesize displayType=_displayType;
+@property(readonly) NSString *displayText; // @synthesize displayText=_displayText;
 - (void).cxx_destruct;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;

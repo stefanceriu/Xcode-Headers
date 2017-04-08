@@ -33,6 +33,7 @@
 - (void)_prepareXPCConnection;
 - (void)setTaskForPidBlock:(CDUnknownBlockType)arg1;
 - (void)setTap:(id)arg1;
+- (id)validateConfig;
 - (id)initWithConfig:(id)arg1;
 - (id)_getSessionMetadata;
 

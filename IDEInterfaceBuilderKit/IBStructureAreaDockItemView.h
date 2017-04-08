@@ -10,39 +10,40 @@
 
 @interface IBStructureAreaDockItemView : DVTLayoutView_ML
 {
-    NSImage *image;
-    NSString *title;
-    struct CGSize imageSize;
-    id representedObject;
-    IBAbstractStructureAreaDockLabelPopUp *labelPopUp;
-    NSImage *cachedPressedImageMask;
-    BOOL pressed;
-    BOOL drawsWithActiveLook;
-    BOOL drawsSelected;
-    BOOL drawsHighlighted;
-    IBStructureAreaDockLabelContainer *labelPopUpContainer;
-    BOOL showingOpenIndicator;
-    unsigned long long labelArrowEdge;
-    BOOL shouldShowLabelPopUp;
+    IBAbstractStructureAreaDockLabelPopUp *_labelPopUp;
+    NSImage *_cachedPressedImageMask;
+    BOOL _drawsWithActiveLook;
+    BOOL _drawsSelected;
+    BOOL _drawsHighlighted;
+    BOOL _showingOpenIndicator;
+    BOOL _shouldShowLabelPopUp;
     BOOL _drawsWithFlatStyle;
+    BOOL _pressed;
+    id _representedObject;
+    NSString *_title;
+    NSImage *_image;
+    IBStructureAreaDockLabelContainer *_labelPopUpContainer;
+    unsigned long long _labelArrowEdge;
     id <IBStructureAreaDockItemViewDelegate> _delegate;
+    struct CGSize _imageSize;
 }
 
 + (id)openIndicatorImageDrawnAsSelected:(BOOL)arg1;
 + (id)openIndicatorImage;
+@property(nonatomic, getter=isPressed) BOOL pressed; // @synthesize pressed=_pressed;
 @property(nonatomic) BOOL drawsWithFlatStyle; // @synthesize drawsWithFlatStyle=_drawsWithFlatStyle;
 @property(nonatomic) __weak id <IBStructureAreaDockItemViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(nonatomic) BOOL shouldShowLabelPopUp; // @synthesize shouldShowLabelPopUp;
-@property(nonatomic) unsigned long long labelArrowEdge; // @synthesize labelArrowEdge;
-@property(nonatomic, getter=isShowingOpenIndicator) BOOL showingOpenIndicator; // @synthesize showingOpenIndicator;
-@property(retain) IBStructureAreaDockLabelContainer *labelPopUpContainer; // @synthesize labelPopUpContainer;
-@property(nonatomic) BOOL drawsWithActiveLook; // @synthesize drawsWithActiveLook;
-@property(nonatomic) BOOL drawsHighlighted; // @synthesize drawsHighlighted;
-@property(nonatomic) BOOL drawsSelected; // @synthesize drawsSelected;
-@property(retain) id representedObject; // @synthesize representedObject;
-@property(nonatomic) struct CGSize imageSize; // @synthesize imageSize;
-@property(retain, nonatomic) NSImage *image; // @synthesize image;
-@property(copy, nonatomic) NSString *title; // @synthesize title;
+@property(nonatomic) BOOL shouldShowLabelPopUp; // @synthesize shouldShowLabelPopUp=_shouldShowLabelPopUp;
+@property(nonatomic) unsigned long long labelArrowEdge; // @synthesize labelArrowEdge=_labelArrowEdge;
+@property(nonatomic, getter=isShowingOpenIndicator) BOOL showingOpenIndicator; // @synthesize showingOpenIndicator=_showingOpenIndicator;
+@property(nonatomic) BOOL drawsHighlighted; // @synthesize drawsHighlighted=_drawsHighlighted;
+@property(nonatomic) BOOL drawsSelected; // @synthesize drawsSelected=_drawsSelected;
+@property(retain) IBStructureAreaDockLabelContainer *labelPopUpContainer; // @synthesize labelPopUpContainer=_labelPopUpContainer;
+@property(nonatomic) BOOL drawsWithActiveLook; // @synthesize drawsWithActiveLook=_drawsWithActiveLook;
+@property(nonatomic) struct CGSize imageSize; // @synthesize imageSize=_imageSize;
+@property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
+@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
+@property(retain) id representedObject; // @synthesize representedObject=_representedObject;
 - (void).cxx_destruct;
 - (id)accessibilityRoleDescription;
 - (BOOL)accessibilityPerformPress;
@@ -57,8 +58,6 @@
 - (void)rightMouseDown:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)trackMouse:(id)arg1;
-- (BOOL)isPressed;
-- (void)setPressed:(BOOL)arg1;
 - (id)labelPopUp;
 - (void)layoutBottomUp;
 - (struct CGPoint)labelPopOutPoint;

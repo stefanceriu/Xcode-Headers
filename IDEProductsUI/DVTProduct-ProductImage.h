@@ -10,6 +10,7 @@
 
 @interface DVTProduct (ProductImage)
 @property(readonly) NSImage *productImage;
+- (id)processProductImageWithApplicationBundle:(id)arg1;
 - (id)_placeholderImage;
 @end
 

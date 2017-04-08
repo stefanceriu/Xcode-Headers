@@ -8,14 +8,14 @@
 
 @interface IBRepresentedObjectRect : NSObject
 {
-    struct CGRect rect;
-    id representedObject;
+    id _representedObject;
+    struct CGRect _rect;
 }
 
+@property(readonly) id representedObject; // @synthesize representedObject=_representedObject;
+@property(readonly) struct CGRect rect; // @synthesize rect=_rect;
 - (void).cxx_destruct;
 - (id)description;
-- (id)representedObject;
-- (struct CGRect)rect;
 - (id)initWithRect:(struct CGRect)arg1 andRepresentedObject:(id)arg2;
 
 @end

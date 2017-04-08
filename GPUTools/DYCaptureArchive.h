@@ -8,7 +8,7 @@
 
 #import "DYCaptureStore.h"
 
-@class NSMutableData, NSMutableDictionary, NSString, NSURL;
+@class NSMutableDictionary, NSString, NSURL;
 
 @interface DYCaptureArchive : NSObject <DYCaptureStore>
 {
@@ -29,11 +29,16 @@
     void *_store_write_buffer;
     void *_store_write_ptr;
     NSMutableDictionary *_metadata;
-    NSMutableData *_filename_buffer;
     void *_read_buffer;
     long long _read_buffer_capacity;
+    int _read_buffer_tokens_lock;
+    struct vector<unsigned int, std::__1::allocator<unsigned int>> _read_buffer_tokens;
+    struct dispatch_semaphore_s *_read_buffer_sem;
     struct dispatch_queue_s *_write_queue;
     struct dispatch_group_s *_add_group;
+    int _lock_readers;
+    struct dispatch_semaphore_s *_lock_global_semaphore;
+    int _blocking_readers;
     long long _backingStoreSize;
     long long _backingStoreWritePosition;
     int _backingStoreFD;
@@ -57,6 +62,8 @@
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 @property(nonatomic) BOOL deleteOnClose; // @synthesize deleteOnClose=_deleteOnClose;
 @property(readonly, nonatomic) struct __CFUUID *uuid; // @synthesize uuid=_uuid;
+- (id).cxx_construct;
+- (void).cxx_destruct;
 - (BOOL)acceptCaptureVisitor:(id)arg1;
 - (BOOL)adjunctFileExistsForFilename:(id)arg1 error:(id *)arg2;
 - (id)copyAdjunctDataForFilename:(id)arg1 error:(id *)arg2;
@@ -68,6 +75,7 @@
 - (BOOL)fileExistsForFilenameBuffer:(const char *)arg1 error:(id *)arg2;
 - (BOOL)getInfo:(CDStruct_61ea625d *)arg1 forFilename:(id)arg2 error:(id *)arg3;
 - (BOOL)getInfo:(CDStruct_61ea625d *)arg1 forFilenameBuffer:(const char *)arg2 error:(id *)arg3;
+- (BOOL)_getInfo:(CDStruct_61ea625d *)arg1 forFilePosition:(unsigned long long)arg2 error:(id *)arg3;
 - (BOOL)getInfo:(CDStruct_61ea625d *)arg1 forFilePosition:(unsigned long long)arg2 error:(id *)arg3;
 - (id)getFilenameForFilePosition:(unsigned long long)arg1 error:(id *)arg2;
 - (void *)allocateAndReadDataForFilenameBuffer:(const char *)arg1 outSize:(unsigned long long *)arg2 error:(id *)arg3;
@@ -76,7 +84,9 @@
 - (long long)readDataForFilename:(id)arg1 buffer:(void *)arg2 size:(unsigned long long)arg3 error:(id *)arg4;
 - (long long)readDataForFilenameBuffer:(const char *)arg1 buffer:(void *)arg2 size:(unsigned long long)arg3 error:(id *)arg4;
 - (id)openFileWithFilename:(id)arg1 error:(id *)arg2;
+- (id)_copyDataForFilePosition:(unsigned long long)arg1 error:(id *)arg2;
 - (id)copyDataForFilePosition:(unsigned long long)arg1 error:(id *)arg2;
+- (long long)_readDataForFilePosition:(unsigned long long)arg1 buffer:(void *)arg2 size:(unsigned long long)arg3 error:(id *)arg4;
 - (long long)readDataForFilePosition:(unsigned long long)arg1 buffer:(void *)arg2 size:(unsigned long long)arg3 error:(id *)arg4;
 - (id)_readRawDataForFilePosition:(unsigned int)arg1 error:(id *)arg2;
 - (BOOL)updateDataReferenceCounts:(id)arg1 error:(id *)arg2;
@@ -119,7 +129,7 @@
 - (unsigned int)_createNewFileEntry;
 - (unsigned int)_createNewHashEntry:(const char *)arg1 didGrowTable:(char *)arg2;
 - (void)_growHashTable;
-- (char *)_getCFilename:(id)arg1 outSize:(unsigned long long *)arg2 error:(id *)arg3;
+- (id)_getCFilename:(id)arg1 outSize:(unsigned long long *)arg2 error:(id *)arg3;
 - (void)_fileObjectDidDeallocate;
 - (void)_fileObjectDidInitialize;
 - (unsigned long long *)_stringTableOffsets;

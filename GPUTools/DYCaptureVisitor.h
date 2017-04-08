@@ -9,8 +9,10 @@
 @interface DYCaptureVisitor : NSObject
 {
     BOOL _abort;
+    BOOL _visitUnusedResoures;
 }
 
+@property(nonatomic) BOOL visitUnusedResoures; // @synthesize visitUnusedResoures=_visitUnusedResoures;
 - (void)abort;
 - (void)visitInternalFile:(id)arg1;
 - (void)visitDataFile:(id)arg1;
@@ -18,6 +20,7 @@
 - (void)visitCaptureArchive:(id)arg1;
 - (void)visitCaptureArchiveStack:(id)arg1;
 - (void)visitCaptureStore:(id)arg1;
+- (id)init;
 
 @end
 

@@ -40,7 +40,7 @@
 + (id)sharedDocSetLoader;
 @property unsigned long long docSetLoadingProgress; // @synthesize docSetLoadingProgress=_docSetLoadingProgress;
 @property(copy) NSArray *docSetRecords; // @synthesize docSetRecords=_docSetRecords;
-@property(copy) NSMutableArray *nonstandardDocSetPaths; // @synthesize nonstandardDocSetPaths=_nonstandardDocSetPaths;
+@property(readonly, copy) NSArray *nonstandardDocSetPaths; // @synthesize nonstandardDocSetPaths=_nonstandardDocSetPaths;
 @property BOOL testingMode; // @synthesize testingMode=m_testingMode;
 - (void).cxx_destruct;
 - (void)docSetUpdateEnteredInstallationPhase:(id)arg1;

@@ -10,11 +10,12 @@
 
 @interface IBNSNumberFormatterPresetsSlice : IDEInspectorProperty
 {
-    NSTableView *presetsTableView;
+    NSTableView *_presetsTableView;
 }
 
 + (id)presetFormattersToDescriptions;
 + (id)formatDescriptions;
+@property(retain) NSTableView *presetsTableView; // @synthesize presetsTableView=_presetsTableView;
 - (void).cxx_destruct;
 - (double)baseline;
 - (long long)numberOfRowsInTableView:(id)arg1;

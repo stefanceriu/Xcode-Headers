@@ -10,7 +10,7 @@
 {
 }
 
-- (void)generateCodeForModel:(id)arg1 atFilePath:(id)arg2 inWorkspace:(id)arg3 withDeploymentTargets:(id)arg4 inDirectoryAtURL:(id)arg5 completionHandler:(CDUnknownBlockType)arg6;
+- (void)generateCodeForModel:(id)arg1 atFilePath:(id)arg2 inWorkspace:(id)arg3 withDeploymentTargets:(id)arg4 inDirectoryAtURL:(id)arg5 completionQueue:(id)arg6 completionHandler:(CDUnknownBlockType)arg7;
 - (id)generatedFileNamesForModel:(id)arg1 atFilePath:(id)arg2;
 
 @end

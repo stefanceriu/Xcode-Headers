@@ -10,19 +10,19 @@
 
 @interface IBBinaryUnarchiver : NSObject
 {
-    NSMutableDictionary *overrideClassesByClassName;
-    NSMutableArray *objectsIndexedByOID;
-    unsigned long long currentDataBufferIndex;
-    long long archiveVersion;
-    NSData *data;
+    NSMutableDictionary *_overrideClassesByClassName;
+    NSMutableArray *_objectsIndexedByOID;
+    unsigned long long _currentDataBufferIndex;
+    NSData *_data;
     struct {
         unsigned long long length;
         union {
             char *bytes;
             char *characters;
         } ;
-    } buffer;
+    } _buffer;
     NSMutableArray *_objectTranslationDelegateStack;
+    long long _archiveVersion;
     NSDictionary *_context;
 }
 
@@ -32,7 +32,7 @@
 + (id)unarchiveObjectWithData:(id)arg1 context:(id)arg2 minArchiveVersion:(long long)arg3;
 + (id)unarchiveObjectWithData:(id)arg1 context:(id)arg2;
 @property(readonly, nonatomic) NSDictionary *context; // @synthesize context=_context;
-@property(readonly, nonatomic) long long archiveVersion; // @synthesize archiveVersion;
+@property(readonly, nonatomic) long long archiveVersion; // @synthesize archiveVersion=_archiveVersion;
 - (void).cxx_destruct;
 - (Class)classForClassName:(id)arg1;
 - (void)setClass:(Class)arg1 forClassName:(id)arg2;

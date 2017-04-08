@@ -10,14 +10,14 @@
 
 @interface IBHitDetectionMap : NSObject
 {
-    NSMutableDictionary *layeredRepresentedObjectRects;
-    IBMutableOrderedSet *representedObjects;
-    NSArray *indexedRepresentedObjects;
-    long long width;
-    long long height;
-    IBNBitIntegerArray *map;
-    NSArray *indexedRepresentedObjectRects;
-    long long count;
+    NSMutableDictionary *_layeredRepresentedObjectRects;
+    IBMutableOrderedSet *_representedObjects;
+    NSArray *_indexedRepresentedObjects;
+    long long _height;
+    long long _width;
+    IBNBitIntegerArray *_map;
+    NSArray *_indexedRepresentedObjectRects;
+    long long _count;
 }
 
 + (id)alwaysOnTopKey;

@@ -18,9 +18,9 @@
     NSSet *_breakpointActionEditorExtensions;
     BOOL _selectedActionEditorWantsToBeOnRight;
     NSMutableArray *_actions;
-    IDEBreakpointAction *_selectedAction;
-    NSViewController *_seletedActionEditorViewController;
+    NSViewController *_selectedActionEditorViewController;
     BOOL _shouldSelectKeyView;
+    IDEBreakpointAction *_selectedAction;
 }
 
 + (BOOL)requiresConstraintBasedLayout;

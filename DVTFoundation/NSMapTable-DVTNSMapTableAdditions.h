@@ -14,6 +14,7 @@
 - (id)dvt_collectionOfClass:(Class)arg1 forKey:(id)arg2;
 - (id)dvt_removeObjectForKey:(id)arg1;
 - (void)dvt_enumerateKeysAndObjectsUsingBlock:(CDUnknownBlockType)arg1;
+- (BOOL)dvt_isNonEmpty;
 - (id)dvt_allValues;
 - (id)dvt_allKeys;
 @end

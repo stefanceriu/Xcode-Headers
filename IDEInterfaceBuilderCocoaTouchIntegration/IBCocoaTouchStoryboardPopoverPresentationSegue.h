@@ -7,11 +7,10 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIStoryboardAbstractTriggeredSegue.h>
 
 #import "IBCocoaTouchStoryboardAbstractPopoverSegue.h"
-#import "NSCoding.h"
 
 @class IBUIBarButtonItem, IBUIView, NSOrderedSet, NSString;
 
-@interface IBCocoaTouchStoryboardPopoverPresentationSegue : IBUIStoryboardAbstractTriggeredSegue <NSCoding, IBCocoaTouchStoryboardAbstractPopoverSegue>
+@interface IBCocoaTouchStoryboardPopoverPresentationSegue : IBUIStoryboardAbstractTriggeredSegue <IBCocoaTouchStoryboardAbstractPopoverSegue>
 {
     unsigned long long _permittedArrowDirections;
     NSOrderedSet *_passthroughViews;
@@ -41,9 +40,9 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)setIbInspectedAnchorObject:(id)arg1;
 - (id)ibInspectedAnchorObject;
-- (id)initWithSource:(id)arg1 label:(id)arg2 destination:(id)arg3;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithSource:(id)arg1 label:(id)arg2 destination:(id)arg3;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

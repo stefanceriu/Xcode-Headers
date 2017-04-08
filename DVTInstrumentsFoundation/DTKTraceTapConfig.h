@@ -17,6 +17,8 @@
     NSMutableArray *_recordHandlers;
 }
 
++ (BOOL)localMachineSupportsPMI;
++ (BOOL)localMachineSupportsPMC;
 + (void)initialize;
 @property(nonatomic) unsigned int kdebugTriggerIndex; // @synthesize kdebugTriggerIndex=_kdebugTriggerIndex;
 @property(readonly, nonatomic) BOOL hasAtLeastOneRecordHandler; // @synthesize hasAtLeastOneRecordHandler=_hasAtLeastOneRecordHandler;

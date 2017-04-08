@@ -9,13 +9,14 @@
 @class IBAutolayoutAmbiguityGroup, IBAutolayoutStatus, IBDocument, NSMutableArray, NSObject<IBIDEAutolayoutItem>, NSString;
 
 @protocol IBIDEAutolayoutItem <IBAutolayoutItem>
+@property(nonatomic) BOOL ibCanFrameDecideEvenWhenAmbiguousForNextStatusUpdate;
 @property(readonly, nonatomic) BOOL ibShouldPropagateFramesDuringFrameDecision;
 @property(readonly, nonatomic) BOOL ibShouldIgnoreSizeMisplacement;
 @property(readonly, nonatomic) BOOL ibShouldIgnorePositionMisplacement;
 @property(readonly, nonatomic) BOOL ibShouldIgnoreSizeAmbiguity;
 @property(readonly, nonatomic) BOOL ibShouldIgnorePositionAmbiguity;
-@property(nonatomic) BOOL ibExternalWasMisplacedOnLastSave;
-@property(nonatomic) BOOL ibExternalHadAnyAmbiguityOnLastSave;
+@property(nonatomic) BOOL ibExternalWasMisplacedOnLastStatusUpdate;
+@property(nonatomic) BOOL ibExternalWasAmbiguousOnLastStatusUpdate;
 @property(nonatomic) BOOL ibExternalHasUninitializedAutolayoutAmbiguityStatus;
 @property(readonly, nonatomic) NSObject<IBIDEAutolayoutItem> *ibDesignableContentItem;
 - (BOOL)ibAllowsShowingControlDragConstraintFromAttribute:(unsigned long long)arg1 toAttribute:(unsigned long long)arg2 ofItem:(NSObject<IBIDEAutolayoutItem> *)arg3;

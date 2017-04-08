@@ -10,8 +10,8 @@
 {
 }
 
-+ (id)valueForKeyPath:(id)arg1 ofClassNamed:(id)arg2 usingMarshaller:(id)arg3 targetRuntime:(id)arg4 toolDescription:(id)arg5 defaultValue:(id)arg6 context:(id)arg7 diagnosticsBlock:(CDUnknownBlockType)arg8;
-+ (id)valueForKeyPath:(id)arg1 ofClassNamed:(id)arg2 usingMarshaller:(id)arg3 targetRuntime:(id)arg4 scaleFactor:(double)arg5 defaultValue:(id)arg6 context:(id)arg7 diagnosticsBlock:(CDUnknownBlockType)arg8;
++ (id)valueForKeyPath:(id)arg1 ofClassNamed:(id)arg2 targetRuntime:(id)arg3 toolDescription:(id)arg4 defaultValue:(id)arg5 context:(id)arg6 diagnosticsBlock:(CDUnknownBlockType)arg7;
++ (id)valueForKeyPath:(id)arg1 ofClassNamed:(id)arg2 targetRuntime:(id)arg3 scaleFactor:(double)arg4 defaultValue:(id)arg5 context:(id)arg6 diagnosticsBlock:(CDUnknownBlockType)arg7;
 
 @end
 

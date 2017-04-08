@@ -20,6 +20,7 @@
 - (void)providerWasInstalledForVariablesView:(IDEVariablesView *)arg1;
 
 @optional
+@property(readonly) BOOL recordedStackFrameSelected;
 @property(readonly) BOOL loadingNewVariablesInBackground;
 - (int)formatterSizeStyle;
 - (int)compoundNodeFormatterModeForItem:(IDEVariablesViewNode *)arg1 atRow:(long long)arg2;

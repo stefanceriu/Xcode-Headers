@@ -8,7 +8,7 @@
 
 #import "VMUCommonGraphInterface.h"
 
-@class DVT_VMUClassInfoMap, DVT_VMUObjectIdentifier, DVT_VMUProcessObjectGraph, DVT_VMURangeArray, DVT_VMUVMRegionIdentifier, NSString;
+@class DVT_VMUClassInfoMap, DVT_VMUDebugTimer, DVT_VMUObjectIdentifier, DVT_VMUProcessObjectGraph, DVT_VMURangeArray, DVT_VMUVMRegionIdentifier, NSString;
 
 @interface DVT_VMUTaskMemoryScanner : NSObject <VMUCommonGraphInterface>
 {
@@ -39,6 +39,7 @@
     BOOL _exactScanningEnabled;
     unsigned long long _maxInteriorOffset;
     unsigned int _scanningMask;
+    DVT_VMUDebugTimer *_debugTimer;
     CDUnknownBlockType _referenceLogger;
     CDUnknownBlockType _nodeLogger;
     BOOL _abandonedMarkingEnabled;
@@ -51,6 +52,7 @@
 + (id)referenceDescription:(CDStruct_8b65991f)arg1 withSourceNode:(CDStruct_599faf0f)arg2 destinationNode:(CDStruct_599faf0f)arg3 sortedVMRegions:(id)arg4 symbolicator:(struct _CSTypeRef)arg5 alignmentSpacing:(unsigned int)arg6;
 + (id)nodeDescription:(CDStruct_599faf0f)arg1 withNodeOffset:(unsigned long long)arg2 sortedVMRegions:(id)arg3;
 + (void)initialize;
+@property(retain, nonatomic) DVT_VMUDebugTimer *debugTimer; // @synthesize debugTimer=_debugTimer;
 @property(nonatomic) BOOL abandonedMarkingEnabled; // @synthesize abandonedMarkingEnabled=_abandonedMarkingEnabled;
 @property(nonatomic) BOOL saveNodeLabelsInGraph; // @synthesize saveNodeLabelsInGraph=_saveNodeLabelsInGraph;
 @property(nonatomic) unsigned int scanningMask; // @synthesize scanningMask=_scanningMask;
@@ -59,6 +61,8 @@
 @property(readonly, nonatomic) unsigned int nodeCount; // @synthesize nodeCount=_blocksCount;
 @property(nonatomic) BOOL exactScanningEnabled; // @synthesize exactScanningEnabled=_exactScanningEnabled;
 @property(nonatomic) unsigned long long maxInteriorOffset; // @synthesize maxInteriorOffset=_maxInteriorOffset;
+@property(readonly, nonatomic) DVT_VMUObjectIdentifier *objectIdentifier; // @synthesize objectIdentifier=_objectIdentifier;
+@property(readonly, nonatomic) unsigned int task; // @synthesize task=_task;
 @property(readonly, nonatomic) int pid; // @synthesize pid=_pid;
 - (id)referenceDescription:(CDStruct_8b65991f)arg1 withSourceNode:(unsigned int)arg2 destinationNode:(unsigned int)arg3 symbolicator:(struct _CSTypeRef)arg4 alignmentSpacing:(unsigned int)arg5;
 - (id)nodeDescription:(unsigned int)arg1 withOffset:(unsigned long long)arg2;
@@ -73,6 +77,7 @@
 - (unsigned int)enumerateMarkedObjects:(void *)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (unsigned int)enumerateObjectsWithBlock:(CDUnknownBlockType)arg1;
 - (unsigned int)enumerateNodesWithBlock:(CDUnknownBlockType)arg1;
+- (id)classInfoForObjectAtAddress:(unsigned long long)arg1;
 @property(readonly, nonatomic) unsigned int mallocNodeCount;
 - (void *)contentForNode:(unsigned int)arg1;
 - (id)labelForNode:(unsigned int)arg1;
@@ -82,7 +87,6 @@
 - (CDStruct_599faf0f)nodeDetails:(unsigned int)arg1;
 @property(readonly, nonatomic) DVT_VMUClassInfoMap *realizedClasses;
 - (id)processSnapshotGraph;
-- (id)scanNodesIntoGraph;
 - (void)scanNodesForReferences:(CDUnknownBlockType)arg1;
 - (void)removeRootReachableNodes;
 - (void)markReachableNodesFromRoots:(void *)arg1 inMap:(void *)arg2;
@@ -91,6 +95,7 @@
 - (void)orderedNodeTraversal:(int)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)_withOrderedNodeMapper:(CDUnknownBlockType)arg1;
 - (void)_withScanningContext:(CDUnknownBlockType)arg1;
+- (void)_buildRegionPageBlockMaps;
 - (void)refineTypesWithOverlay:(id)arg1;
 - (void)_findMarkedAbandonedBlocks;
 - (void)_fixupBlockIsas;
@@ -104,7 +109,6 @@
 - (void)dealloc;
 - (void)detachFromTask;
 - (BOOL)_suspend;
-- (unsigned int)scanningMaskForAllReferences;
 - (id)initWithTask:(unsigned int)arg1;
 - (id)initWithTask:(unsigned int)arg1 options:(unsigned long long)arg2;
 - (id)initWithSelfTaskAndOptions:(unsigned long long)arg1;

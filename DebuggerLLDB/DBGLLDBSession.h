@@ -34,6 +34,7 @@
     unsigned long long _CPUCapIntervalCounter;
     BOOL _profilingCPUCapForWatch;
     NSMutableString *_previousProfileDataString;
+    NSString *_memoryProfilingDisabledMessage;
     NSMutableArray *_threadSanitizerIssues;
     BOOL _RPCServerExited;
     BOOL _RPCServerCrashed;
@@ -83,6 +84,7 @@
 - (void)_handleThreadEvent:(id)arg1;
 - (id)dbgLLDBProcess;
 - (void)forceRefreshPausedStates;
+- (id)memoryProfilingDisabledMessage;
 - (void)appendProfileDataString:(id)arg1;
 - (void)processProfileDataString:(id)arg1;
 - (id)_stringFromHexString:(id)arg1;

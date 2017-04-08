@@ -8,7 +8,6 @@
 
 @class DBGLLDBAddressSanitizerHelper, DBGLLDBSession, DBGLLDBThreadSanitizerHelper, DVTDispatchLock, NSArray, NSMutableDictionary, NSMutableSet;
 
-__attribute__((visibility("hidden")))
 @interface DBGLLDBProcess : IDEDebugProcess
 {
     id <DBGSBTarget> _lldbTarget;
@@ -35,6 +34,8 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 - (BOOL)isAddressSanitizerRuntimePresent;
 - (BOOL)isThreadSanitizerRuntimePresent;
+- (id)_mallocStackLogForAddress:(unsigned long long)arg1 size:(unsigned long long)arg2 isLiteZone:(BOOL)arg3 error:(id *)arg4;
+- (void)symbolicatedThreadFromAddress:(unsigned long long)arg1 size:(unsigned long long)arg2 isLiteZone:(BOOL)arg3 handler:(CDUnknownBlockType)arg4;
 - (id)symbolicatedThreadWithAddresses:(id)arg1;
 - (id)_threadSanitizerHelper;
 - (BOOL)isMemoryFaultForDataValue:(id)arg1;
@@ -58,9 +59,9 @@ __attribute__((visibility("hidden")))
 - (void)rawMemoryDataForAddressExpression:(id)arg1 numberOfBytes:(unsigned long long)arg2 resultHandler:(CDUnknownBlockType)arg3;
 - (Class)classForMemoryData;
 - (BOOL)updateQueuesAndThreads:(int *)arg1;
-- (void)_setInitialCurrentStackFrame;
-- (BOOL)_shouldLookForStackFrameWithDebugSymbols;
-- (BOOL)_shouldSelectFirstSymbolFrame;
+- (void)_setInitialCurrentStackFrameForThread:(id)arg1;
+- (BOOL)_shouldLookForStackFrameWithDebugSymbols:(id)arg1;
+- (BOOL)_shouldSelectFirstSymbolFrame:(id)arg1;
 - (void)_updateQueues:(id *)arg1 withComputedThreads:(id)arg2;
 - (void)_updateThreads:(id *)arg1 currentThread:(id *)arg2 controlState:(int *)arg3;
 - (id)_currentLLDBThread;

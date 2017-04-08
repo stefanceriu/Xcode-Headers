@@ -10,8 +10,10 @@
 
 @interface DVTMockSigningCertificate : DVTSigningCertificate
 {
+    struct OpaqueSecCertificateRef *_certificateRef;
     BOOL _isIdentityMock;
     BOOL _isTrustedMock;
+    BOOL _isValidForCodesigningMock;
     NSString *_certificateKindMock;
     NSString *_commonNameMock;
     NSString *_portalTeamIDMock;
@@ -24,6 +26,7 @@
 }
 
 + (id)underlyingObject;
+@property BOOL isValidForCodesigningMock; // @synthesize isValidForCodesigningMock=_isValidForCodesigningMock;
 @property(copy) NSString *serialNumberMock; // @synthesize serialNumberMock=_serialNumberMock;
 @property(copy) NSString *sha1HashMock; // @synthesize sha1HashMock=_sha1HashMock;
 @property BOOL isTrustedMock; // @synthesize isTrustedMock=_isTrustedMock;
@@ -57,6 +60,7 @@
 - (id)initWithDictionary:(id)arg1;
 - (id)initWithPlist:(id)arg1;
 - (id)init;
+- (id)initWithUnderlyingType:(id)arg1 logAspect:(id)arg2;
 
 @end
 

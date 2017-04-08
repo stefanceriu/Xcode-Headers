@@ -8,10 +8,10 @@
 
 @interface IBNSSegmentedControlTracker : IBNSViewTracker
 {
-    BOOL stretch;
-    long long targetWidth;
-    long long roundRobin;
-    BOOL wasGrowing;
+    BOOL _stretch;
+    long long _targetWidth;
+    long long _roundRobin;
+    BOOL _wasGrowing;
 }
 
 - (void)trackWithEvent:(id)arg1;

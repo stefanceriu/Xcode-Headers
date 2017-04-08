@@ -8,7 +8,7 @@
 
 #import "DYPTraceAPIItem.h"
 
-@class GPUTraceDisplayableItem, GPUTraceResourceGroup, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
+@class GPUTraceDisplayableItem, GPUTraceResourceGroup, NSArray, NSObject<OS_dispatch_queue>, NSString;
 
 @interface GPUTraceAPIItem : GPUTraceOutlineItem <DYPTraceAPIItem>
 {
@@ -18,24 +18,25 @@
     int _functionIndex;
     int _displayIndex;
     GPUTraceResourceGroup *_resourceGroups;
-    NSMutableArray *_stackFrames;
     BOOL _loadingResourceTree;
     BOOL _hasResourceTree;
     BOOL _hasStateMirror;
     int _maxIssueSeverity;
     GPUTraceDisplayableItem *_previousDisplayableItem;
+    NSArray *_stackFrames;
 }
 
 @property(retain, nonatomic) id <DYPTraceAPIItem> previousDisplayableItem; // @synthesize previousDisplayableItem=_previousDisplayableItem;
 @property BOOL loadingResourceTree; // @synthesize loadingResourceTree=_loadingResourceTree;
 @property BOOL hasResourceTree; // @synthesize hasResourceTree=_hasResourceTree;
-@property(retain) NSMutableArray *stackFrames; // @synthesize stackFrames=_stackFrames;
 @property(retain) GPUTraceResourceGroup *resourceGroups; // @synthesize resourceGroups=_resourceGroups;
 @property(readonly) int displayIndex; // @synthesize displayIndex=_displayIndex;
 @property(readonly) int functionIndex; // @synthesize functionIndex=_functionIndex;
 @property(retain) NSArray *allResources; // @synthesize allResources=_allResources;
 @property(retain) NSArray *boundResources; // @synthesize boundResources=_boundResources;
 - (void).cxx_destruct;
+- (void)populateUnusedResourcesData;
+- (void)populateUnusedResourcesMetadata;
 @property(readonly, nonatomic) id <DYPStateMirror> stateMirror;
 - (id)generateLabel;
 - (void)generateFilterItems;
@@ -43,11 +44,10 @@
 - (void)_generateResources:(BOOL)arg1;
 - (BOOL)generateResources;
 - (BOOL)generateResourceTopLevelGroups;
-- (id)stackFramesWithVisibleSource;
-- (void)generateStackFrameItems;
+- (id)stackFramesWithFilter:(long long)arg1;
+@property(readonly, nonatomic) NSArray *stackFrames;
 @property(readonly, copy) NSString *description;
-- (void)primitiveInvalidate;
-- (id)UUIDSection;
+- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)initWithController:(id)arg1 parent:(id)arg2 functionIndex:(int)arg3 displayIndex:(int)arg4;
 

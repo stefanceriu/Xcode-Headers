@@ -12,6 +12,7 @@
 
 @interface IDEProductSectionViewController : IDEViewController <IDEProductsInspectableVending>
 {
+    BOOL _hasCompletedInitialLoading;
     BOOL _busy;
     BOOL _empty;
     DVTProduct *_selectedProduct;
@@ -25,6 +26,7 @@
 @property(retain, nonatomic) id <IDEProductsInspectable> currentInspectable; // @synthesize currentInspectable=_currentInspectable;
 @property(readonly, nonatomic) NSString *busyReason; // @synthesize busyReason=_busyReason;
 @property(readonly, nonatomic) BOOL busy; // @synthesize busy=_busy;
+@property(nonatomic) BOOL hasCompletedInitialLoading; // @synthesize hasCompletedInitialLoading=_hasCompletedInitialLoading;
 @property __weak IDEProductsViewController *productsViewController; // @synthesize productsViewController=_productsViewController;
 @property(retain, nonatomic) DVTProduct *selectedProduct; // @synthesize selectedProduct=_selectedProduct;
 - (void).cxx_destruct;

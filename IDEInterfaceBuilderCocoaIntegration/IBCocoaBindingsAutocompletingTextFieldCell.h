@@ -10,11 +10,11 @@
 
 @interface IBCocoaBindingsAutocompletingTextFieldCell : NSTextFieldCell
 {
-    IBCocoaBindingsAutocompletingTextFieldEditor *bindingFieldEditor;
-    long long validationStatus;
-    DVTColoredSpinner *progressIndicator;
-    NSString *validationStatusToolTip;
-    BOOL showingProgressIndicator;
+    IBCocoaBindingsAutocompletingTextFieldEditor *_bindingFieldEditor;
+    long long _validationStatus;
+    DVTColoredSpinner *_progressIndicator;
+    NSString *_validationStatusToolTip;
+    BOOL _showingProgressIndicator;
 }
 
 - (void).cxx_destruct;

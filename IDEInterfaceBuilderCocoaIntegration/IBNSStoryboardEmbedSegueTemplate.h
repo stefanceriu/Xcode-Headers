@@ -7,11 +7,10 @@
 #import <IDEInterfaceBuilderCocoaIntegration/IBNSStoryboardSegueTemplate.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString, NSView;
 
-@interface IBNSStoryboardEmbedSegueTemplate : IBNSStoryboardSegueTemplate <NSCoding, IBDocumentArchiving>
+@interface IBNSStoryboardEmbedSegueTemplate : IBNSStoryboardSegueTemplate <IBDocumentArchiving>
 {
     NSView *_containerView;
 }

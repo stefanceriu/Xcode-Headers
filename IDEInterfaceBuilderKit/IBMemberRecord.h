@@ -10,7 +10,6 @@
 
 @interface IBMemberRecord : NSObject
 {
-    int _retainCountMinusOne;
     id _member;
     id _memberID;
     NSMutableDictionary *_metadata;
@@ -32,11 +31,6 @@
 - (BOOL)isObjectRecord;
 - (id)initWithMember:(id)arg1 andMemberID:(id)arg2;
 - (id)initWithMember:(id)arg1;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 @end
 

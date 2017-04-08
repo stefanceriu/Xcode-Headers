@@ -27,7 +27,6 @@
 - (id)ib_arrayBySortingUsingSelector:(SEL)arg1;
 - (void)ib_enumerateCopyOfObjectsUsingBlock:(CDUnknownBlockType)arg1;
 - (void)ib_enumerateObjectsUsingMutatingBlock:(CDUnknownBlockType)arg1;
-- (void)ib_enumerateObjectsUsingBlock:(CDUnknownBlockType)arg1;
 - (BOOL)ib_binarySearchForObject:(id)arg1 usingComparator:(CDUnknownBlockType)arg2;
 - (unsigned long long)ib_indexOfFirstObjectPassingTest:(CDUnknownBlockType)arg1;
 - (id)ib_collectionByKeepingObjectsInSet:(id)arg1;

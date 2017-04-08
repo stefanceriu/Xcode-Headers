@@ -6,10 +6,16 @@
 
 #import "IDEDebugSession.h"
 
+@class IDEWorkspace;
+
 @interface XRMemoryGraphDummyDebugSession : IDEDebugSession
 {
+    IDEWorkspace *_workspace;
 }
 
+@property __weak IDEWorkspace *workspace; // @synthesize workspace=_workspace;
+- (void).cxx_destruct;
+- (void)primitiveInvalidate;
 - (void)requestPause;
 
 @end

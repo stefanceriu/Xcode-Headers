@@ -7,40 +7,35 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSImage, NSString;
 
-@interface IBUIImageView : IBUIView <IBDocumentArchiving, NSCoding>
+@interface IBUIImageView : IBUIView <IBDocumentArchiving>
 {
-    NSImage *image;
-    NSImage *highlightedImage;
-    BOOL highlighted;
-    BOOL adjustsImageWhenAncestorFocused;
+    BOOL _highlighted;
+    BOOL _adjustsImageWhenAncestorFocused;
+    NSImage *_image;
+    NSImage *_highlightedImage;
 }
 
 + (void)registerMarshallingRecordHandlers;
 + (BOOL)ibSupportsCocoaTouchAccessibility;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
+@property(nonatomic) BOOL adjustsImageWhenAncestorFocused; // @synthesize adjustsImageWhenAncestorFocused=_adjustsImageWhenAncestorFocused;
+@property(nonatomic) BOOL highlighted; // @synthesize highlighted=_highlighted;
+@property(retain, nonatomic) NSImage *highlightedImage; // @synthesize highlightedImage=_highlightedImage;
+@property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
 - (void).cxx_destruct;
 - (struct CGSize)sizeForStrechableImageContent;
 - (BOOL)shouldDrawAsPlaceholder;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)prefersCachedImageBasedDrawing;
-- (void)setAdjustsImageWhenAncestorFocused:(BOOL)arg1;
-- (BOOL)adjustsImageWhenAncestorFocused;
-- (void)setHighlighted:(BOOL)arg1;
-- (BOOL)highlighted;
-- (void)setHighlightedImage:(id)arg1;
-- (id)highlightedImage;
-- (void)setImage:(id)arg1;
-- (id)image;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (unsigned long long)ibDefaultAccessibilityTraits;
 - (BOOL)ibIsAccessibilityElementByDefault;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
 - (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
 - (id)ibLocalPerConfigurationAttributeKeyPaths;

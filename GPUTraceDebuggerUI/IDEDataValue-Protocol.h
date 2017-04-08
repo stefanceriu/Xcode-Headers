@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString;
+@class IDEStackFrame, NSArray, NSString;
 
 @protocol IDEDataValue <NSObject>
 @property(readonly) BOOL isMemoryFault;
@@ -25,5 +25,6 @@
 @property(readonly) BOOL isValueEditable;
 @property(copy) NSString *value;
 @property(readonly, copy) NSString *name;
+@property(readonly) IDEStackFrame *stackFrame;
 @end
 

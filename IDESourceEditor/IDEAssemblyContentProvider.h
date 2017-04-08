@@ -10,7 +10,7 @@
 {
 }
 
-+ (int)buildOperationCommand;
++ (long long)buildOperationCommand;
 + (id)urlScheme;
 - (void)_kickOffContentGenerationWithFilePath:(id)arg1 schemeCommand:(id)arg2;
 

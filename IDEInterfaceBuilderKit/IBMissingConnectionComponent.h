@@ -10,16 +10,16 @@
 
 @interface IBMissingConnectionComponent : NSObject
 {
-    NSString *title;
-    NSString *keyPath;
-    id value;
+    NSString *_title;
+    NSString *_keyPath;
+    id _value;
 }
 
 + (id)sortedComponentsForLabels:(id)arg1;
 + (id)componentWithTitle:(id)arg1 keyPath:(id)arg2 value:(id)arg3;
-@property(readonly) id value; // @synthesize value;
-@property(readonly) NSString *keyPath; // @synthesize keyPath;
-@property(readonly) NSString *title; // @synthesize title;
+@property(readonly) id value; // @synthesize value=_value;
+@property(readonly) NSString *keyPath; // @synthesize keyPath=_keyPath;
+@property(readonly) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
 - (id)initWithTitle:(id)arg1 keyPath:(id)arg2 value:(id)arg3;
 

@@ -6,19 +6,21 @@
 
 #import "NSObject.h"
 
-@class XCSService;
+@class XCSService, XCSXcode;
 
 @interface XCSPlatformManager : NSObject
 {
     XCSService *_service;
+    XCSXcode *_xcode;
 }
 
+@property(readonly) XCSXcode *xcode; // @synthesize xcode=_xcode;
 @property(readonly) XCSService *service; // @synthesize service=_service;
 - (void).cxx_destruct;
 - (id)platformsJSON;
 - (BOOL)saveAvailablePlatformsWithError:(id *)arg1;
 - (id)allPlatforms;
-- (id)initWithService:(id)arg1;
+- (id)initWithService:(id)arg1 xcode:(id)arg2;
 
 @end
 

@@ -6,15 +6,15 @@
 
 #import <IDEInterfaceBuilderKit/IBAbstractClassProvider.h>
 
-@class NSMutableSet;
+@class NSSet;
 
 @interface IBTemporaryPasteboardClassProvider : IBAbstractClassProvider
 {
-    NSMutableSet *_partialClassDescriptions;
+    NSSet *_partialClassDescriptions;
 }
 
-- (void).cxx_destruct;
 - (id)partialClassDescriptions;
+- (void).cxx_destruct;
 - (id)initWithPartialClassDescriptions:(id)arg1;
 
 @end

@@ -10,6 +10,9 @@
 
 @interface DVTProductVersionExtension : DVTProductVersion
 {
+    NSString *_bundleIdentifier;
+    NSString *_version;
+    NSString *_buildNumber;
     DVTProductExtensionCategory *_extensionCategory;
     NSString *_extensionPointIdentifier;
 }
@@ -18,13 +21,16 @@
 + (id)productVersionByMerging:(id)arg1;
 @property(retain) NSString *extensionPointIdentifier; // @synthesize extensionPointIdentifier=_extensionPointIdentifier;
 @property(readonly) DVTProductExtensionCategory *extensionCategory; // @synthesize extensionCategory=_extensionCategory;
+@property(retain) NSString *buildNumber; // @synthesize buildNumber=_buildNumber;
+@property(retain) NSString *version; // @synthesize version=_version;
+@property(retain) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 - (void).cxx_destruct;
 - (id)JSONRepresentation;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)productExtensionCategory;
 - (id)cachePathWithProductDirectory:(id)arg1;
-- (id)initWithBundleIdentifier:(id)arg1 version:(id)arg2 buildNumber:(id)arg3 name:(id)arg4 childProducts:(id)arg5 productCategory:(id)arg6 extensionPointIdentifier:(id)arg7;
+- (id)initWithProductVersionIdentifier:(id)arg1 bundleIdentifier:(id)arg2 version:(id)arg3 buildNumber:(id)arg4 name:(id)arg5 childProducts:(id)arg6 productCategory:(id)arg7 extensionPointIdentifier:(id)arg8;
 
 @end
 

@@ -19,7 +19,6 @@
     NSDictionary *_cachedDictRep;
     NSSet *_cachedMacroNameSet;
     unsigned long long _cachedHash;
-    int _retainCount;
     BOOL _isImmutable;
     BOOL _postsChangeNotifications;
     CDUnknownBlockType _willSetValueBlock;
@@ -66,11 +65,6 @@
 - (void)dealloc;
 - (id)init;
 - (id)initWithLabel:(id)arg1;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 @end
 

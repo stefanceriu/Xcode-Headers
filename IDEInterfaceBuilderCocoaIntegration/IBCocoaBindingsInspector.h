@@ -12,10 +12,6 @@
 
 @interface IBCocoaBindingsInspector : IBInspectorViewController <IBCocoaBindingsInspectorSliceDelegate>
 {
-    NSScrollView *_scrollView;
-    DVTStackView_ML *_mainView;
-    IBCocoaBindingsSuggestedKeyPathProvider *_keyPathProvider;
-    NSArray *_controllers;
     NSArray *_controllerInfo;
     NSArray *_connections;
     NSMutableArray *_bindingSlicePool;
@@ -31,9 +27,15 @@
     DVTDelayedInvocation *_refreshInvalidator;
     BOOL _establishingBinding;
     BOOL _refreshing;
+    IBCocoaBindingsSuggestedKeyPathProvider *_keyPathProvider;
+    NSArray *_controllers;
+    NSScrollView *_scrollView;
+    DVTStackView_ML *_mainView;
 }
 
 + (BOOL)supportsMultipleObjectInspection;
+@property(retain) DVTStackView_ML *mainView; // @synthesize mainView=_mainView;
+@property(retain) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
 @property(readonly, nonatomic) NSArray *controllers; // @synthesize controllers=_controllers;
 @property(retain) IBCocoaBindingsSuggestedKeyPathProvider *keyPathProvider; // @synthesize keyPathProvider=_keyPathProvider;
 - (void).cxx_destruct;

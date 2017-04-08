@@ -6,63 +6,52 @@
 
 #import "IDEInspectorProperty.h"
 
-@class IBAutoCompletingComboBoxDataSource, IBButtonComboBox, IDEInspectorKeyPath, NSTextField;
+@class IBAutoCompletingComboBoxDataSource, IBButtonComboBox, IDEInspectorKeyPath, NSButton;
 
 @interface IBAbstractCustomClassInspectorProperty : IDEInspectorProperty
 {
     IDEInspectorKeyPath *_valueKeyPath;
-    IBAutoCompletingComboBoxDataSource *_moduleComboBoxDatasource;
+    IBAutoCompletingComboBoxDataSource *_classComboBoxDataSource;
+    IBAutoCompletingComboBoxDataSource *_moduleComboBoxDataSource;
     IBButtonComboBox *_classComboBox;
-    IBAutoCompletingComboBoxDataSource *_classComboBoxDatasource;
     IBButtonComboBox *_moduleComboBox;
-    NSTextField *_classComboBoxLabel;
-    NSTextField *_moduleComboBoxLabel;
+    NSButton *_useContainingModuleCheckbox;
 }
 
-@property(retain) NSTextField *moduleComboBoxLabel; // @synthesize moduleComboBoxLabel=_moduleComboBoxLabel;
-@property(retain) NSTextField *classComboBoxLabel; // @synthesize classComboBoxLabel=_classComboBoxLabel;
+@property(retain) NSButton *useContainingModuleCheckbox; // @synthesize useContainingModuleCheckbox=_useContainingModuleCheckbox;
 @property(retain) IBButtonComboBox *moduleComboBox; // @synthesize moduleComboBox=_moduleComboBox;
-@property(retain) IBAutoCompletingComboBoxDataSource *classComboBoxDatasource; // @synthesize classComboBoxDatasource=_classComboBoxDatasource;
 @property(retain) IBButtonComboBox *classComboBox; // @synthesize classComboBox=_classComboBox;
 - (void).cxx_destruct;
 - (void)awakeFromNib;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;
-- (void)refreshClassComboBox;
-- (void)refreshModuleComboBox;
+- (id)suggestedModuleNamesForClassName:(id)arg1;
+- (void)userDidChangeUseContainingModuleCheckbox:(id)arg1;
 - (void)userDidChangeModuleName:(id)arg1;
 - (void)userDidChangeClassName:(id)arg1;
 - (void)revealCustomClassInEditor:(id)arg1;
-- (void)applyValidatedModuleName:(id)arg1 toMember:(id)arg2;
-- (void)applyValidatedClassName:(id)arg1 toMember:(id)arg2;
-- (void)applyValidatedClassName:(id)arg1 moduleName:(id)arg2 toMember:(id)arg3;
-- (id)formattedClassSymbolByApplyingValidatedClassName:(id)arg1 moduleName:(id)arg2 toMemberWithRuntimeClassName:(id)arg3 moduleProvider:(id)arg4;
-- (BOOL)anyCustomClasses;
 - (BOOL)allObjectsCanChangeClassName;
-- (id)commonModuleProvider;
-- (id)commonModuleName;
-- (id)commonEffectiveUnformattedClassName;
-- (id)commonEffectiveClassName;
-- (id)commonRuntimeClassName;
-- (id)commonBaseClassOfMembers;
+- (id)explicitModuleProviders;
+- (id)explicitModuleNames;
+- (id)explicitUnformattedClassNames;
+- (id)explicitClassNames;
+- (id)effectiveModuleProviders;
+- (id)effectiveModuleNames;
+- (id)effectiveUnformattedClassNames;
+- (id)effectiveClassNames;
+- (id)commonEffectiveBaseClassOfMembers;
 - (id)leastDerivedValidClassName;
 - (BOOL)isLegalClassName:(id)arg1 minimumName:(id)arg2;
 - (BOOL)isCompleteType:(id)arg1;
 - (id)findIndicatorContentViewWithContext:(id)arg1;
 - (double)baseline;
+- (id)nibName;
 - (id)inspectedDocumentMembers;
 - (BOOL)canMemberChangeCustomClassName:(id)arg1;
-- (id)externalCustomClassModuleProviderForMember:(id)arg1;
-- (id)externalCustomFormattedClassNameForMember:(id)arg1;
 - (id)externalCustomFormattedClassSymbolForMember:(id)arg1;
 - (void)setExternalCustomFormattedClassSymbol:(id)arg1 forMember:(id)arg2;
-- (id)externalCustomClassNameForMember:(id)arg1;
 - (id)runtimeClassNameForMember:(id)arg1;
 - (id)effectiveFormattedClassSymbolForMember:(id)arg1;
-- (id)effectiveUnformattedClassNameForMember:(id)arg1;
-- (id)effectiveClassNameForMember:(id)arg1;
-- (id)nibName;
-- (id)nibBundle;
 - (id)inspectedDocument;
 - (id)inspectorController;
 - (void)primitiveInvalidate;

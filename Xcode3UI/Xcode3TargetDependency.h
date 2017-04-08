@@ -8,7 +8,7 @@
 
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString, Xcode3BuildFileGroup, Xcode3BuildPhase;
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSNull, NSString, Xcode3BuildFileGroup, Xcode3BuildPhase;
 
 @interface Xcode3TargetDependency : DVTModelTreeNode <IDEKeyDrivenNavigableItemRepresentedObject>
 {
@@ -29,9 +29,12 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;

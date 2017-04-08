@@ -6,7 +6,6 @@
 
 #import "IDECodeModule.h"
 
-__attribute__((visibility("hidden")))
 @interface DBGLLDBCodeModule : IDECodeModule
 {
     id <DBGSBModule> _lldbModule;

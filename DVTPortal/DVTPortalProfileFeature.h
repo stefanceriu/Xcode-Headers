@@ -12,6 +12,9 @@
 
 @interface DVTPortalProfileFeature : NSObject <NSCopying>
 {
+    BOOL _isAvailableWithFreeProvisioning;
+    BOOL _isAvailableWithEnterprise;
+    BOOL _isAvailableWithDirectDistribution;
     BOOL _requiresExplicitAppID;
     NSString *_identifier;
     NSSet *_supportedPlatforms;
@@ -29,6 +32,9 @@
 + (id)profileFeatures;
 @property(readonly, nonatomic) long long valueType; // @synthesize valueType=_valueType;
 @property(readonly, nonatomic) BOOL requiresExplicitAppID; // @synthesize requiresExplicitAppID=_requiresExplicitAppID;
+@property(readonly, nonatomic) BOOL isAvailableWithDirectDistribution; // @synthesize isAvailableWithDirectDistribution=_isAvailableWithDirectDistribution;
+@property(readonly, nonatomic) BOOL isAvailableWithEnterprise; // @synthesize isAvailableWithEnterprise=_isAvailableWithEnterprise;
+@property(readonly, nonatomic) BOOL isAvailableWithFreeProvisioning; // @synthesize isAvailableWithFreeProvisioning=_isAvailableWithFreeProvisioning;
 @property(readonly, nonatomic) NSString *legacyFeatureName; // @synthesize legacyFeatureName=_legacyFeatureName;
 @property(readonly, nonatomic) NSString *portalKey; // @synthesize portalKey=_portalKey;
 @property(readonly, nonatomic) NSString *userDescription; // @synthesize userDescription=_userDescription;
@@ -39,7 +45,7 @@
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;
-- (id)initWithIdentifier:(id)arg1 portalKey:(id)arg2 supportedPlatforms:(id)arg3 valueType:(long long)arg4 requiresExplicitAppID:(BOOL)arg5 userDescription:(id)arg6 legacyFeatureName:(id)arg7;
+- (id)initWithIdentifier:(id)arg1 portalKey:(id)arg2 supportedPlatforms:(id)arg3 valueType:(long long)arg4 requiresExplicitAppID:(BOOL)arg5 userDescription:(id)arg6 legacyFeatureName:(id)arg7 isAvailableWithFreeProvisioning:(BOOL)arg8 isAvailableWithEnterprise:(BOOL)arg9 isAvailableWithDirectDistribution:(BOOL)arg10;
 
 @end
 

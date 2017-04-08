@@ -10,9 +10,9 @@
 
 @interface IBDocumentNavigableItem : IDEKeyDrivenNavigableItem
 {
-    DVTObservingToken *nameToken;
-    id <DVTCancellable> childWrappersToken;
-    NSString *name;
+    DVTObservingToken *_nameToken;
+    id <DVTCancellable> _childWrappersToken;
+    NSString *_name;
 }
 
 + (id)keyPathsForValuesAffectingLeaf;

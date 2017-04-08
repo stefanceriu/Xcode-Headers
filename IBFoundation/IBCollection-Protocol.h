@@ -29,7 +29,6 @@
 - (NSArray *)ib_arrayBySortingUsingSelector:(SEL)arg1;
 - (void)ib_enumerateObjectsUsingMutatingBlock:(void (^)(id))arg1;
 - (void)ib_enumerateCopyOfObjectsUsingBlock:(void (^)(id))arg1;
-- (void)ib_enumerateObjectsUsingBlock:(void (^)(id))arg1;
 - (id <IBCollection>)ib_collectionByMappingAndFilteringWithBlock:(id (^)(id))arg1;
 - (id <IBCollection>)ib_collectionByRemovingObject:(id)arg1;
 - (id <IBCollection>)ib_collectionByAddingObject:(id)arg1;

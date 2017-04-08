@@ -106,8 +106,8 @@
 - (id)ibViewForAncestorViewEdgeMovementQuestionsOfSubview:(id)arg1;
 - (BOOL)ib_hasAmbiguousLayout;
 - (id)initAsEngineSpacerItemWithInitialLayoutFrame:(struct CGRect)arg1;
-@property(nonatomic) BOOL ibExternalWasMisplacedOnLastSave;
-@property(nonatomic) BOOL ibExternalHadAnyAmbiguityOnLastSave;
+@property(nonatomic) BOOL ibExternalWasMisplacedOnLastStatusUpdate;
+@property(nonatomic) BOOL ibExternalWasAmbiguousOnLastStatusUpdate;
 - (BOOL)ibShouldIgnoreScrollableContentHeightAmbiguityForRepresentationOfItem:(id)arg1 inEngine:(id)arg2;
 - (BOOL)ibShouldIgnoreScrollableContentWidthAmbiguityForRepresentationOfItem:(id)arg1 inEngine:(id)arg2;
 - (BOOL)ibCanHaveUninitializedAutolayoutAmbiguityStatusInDocument:(id)arg1;
@@ -140,17 +140,9 @@
 - (unsigned long long)ibAmbiguityStatusForRepresentationOfItem:(id)arg1 inEngine:(id)arg2;
 - (void)ibPropagatePropertiesToCopyOfReceiver:(id)arg1 forLayoutEngine:(id)arg2;
 - (void)ibMapCopyOfReceiver:(id)arg1 intoLayoutEngine:(id)arg2;
-- (void)ibApplySubviewsFramesFromAutolayoutStatus:(id)arg1;
-- (void)ibUpdateFramesBasedOnAutolayoutStatus:(id)arg1;
-- (BOOL)ibHasFramesToUpdateBasedOnAutoLayoutStatus:(id)arg1;
-- (struct CGRect)ibEffectiveIntegralizedLayoutFrameForSubview:(id)arg1 fromStatus:(id)arg2;
-- (struct CGRect)ibEffectiveIntegralizedLayoutFrameFromStatus:(id)arg1;
 - (struct CGRect)ibDropInsetLayoutBoundsForSubviews;
-- (void)ibWillUpdateFrameOnAutoLayoutSelfLayoutManagedView;
-- (BOOL)ibShouldAutoLayoutSelfManagedContainerApplyFramesToSubviews;
 @property(readonly, nonatomic) BOOL ibIsSelfManagedContainerInEngine;
 - (BOOL)_ibSupportsSelfManagedContainerWithConstraintsInEngineOrCanvas;
-@property(readonly) long long ibManagedContainerBehavior;
 - (id)ibEffectiveDesignTimeIntrinsicContentSizeForLayoutEngine:(id)arg1;
 - (id)ibDefaultDesignTimeIntrinsicContentSizeForChild:(id)arg1;
 @property(readonly, nonatomic) NSValue *ibDesignTimeDefaultIntrinsicContentSizeForSelfSizingContainers;
@@ -168,7 +160,7 @@
 - (BOOL)ibPrefersToVerticallyResizeWithContainer;
 - (BOOL)ibPrefersToHorizontallyResizeWithContainer;
 - (BOOL)ibShouldApplyConstraintsWhenAutoresizingByDefault;
-- (struct _IBEdgeInsets)ibLayoutMargins;
+- (struct NSEdgeInsets)ibLayoutMargins;
 - (BOOL)ibSupportsLayoutMargins;
 - (BOOL)ibSupportsFirstBaseline;
 - (BOOL)ibAllowsConstrainingAttribute:(unsigned long long)arg1 toAttribute:(unsigned long long)arg2 ofItem:(id)arg3;
@@ -241,6 +233,8 @@
 - (void)ibUnarchiveAutoresizingMask:(id)arg1;
 - (void)ibArchiveAutoresizingMask:(id)arg1;
 - (BOOL)ibShouldPersistAutoresizingMaskInDocument:(id)arg1;
+- (void)ibUnarchiveFrameCenterRotation:(id)arg1;
+- (void)ibArchiveFrameCenterRotation:(id)arg1;
 - (void)ibUnarchiveFrame:(id)arg1;
 - (struct CGRect)ibSquashedXcode7InitialFrameFromAddingToNonAnyAny;
 - (BOOL)ibHasSquashedAnyAnyFrame:(struct CGRect)arg1;
@@ -305,7 +299,7 @@
 - (BOOL)ibUseFrameDecisionForSuggestingLayout;
 - (BOOL)ibShouldUpdateConstraintsForSuggestLayoutInDocument:(id)arg1;
 - (void)ibSetFrameAndMarkAsExplicitlyMisplaced:(struct CGRect)arg1;
-@property(readonly, nonatomic) BOOL ibFrameDecideDuringStatusUpdate;
+@property(readonly, nonatomic) long long ibFrameDecisionStrategy;
 - (void)ibTakeTrackedFrame:(struct CGRect)arg1;
 - (BOOL)ibIsDistanceFromSubviewEdge:(unsigned long long)arg1 ofSubview:(id)arg2 toSameEdgeOfSuperviewChangingOneToOneWithKnob:(CDUnion_31865a80)arg3;
 - (BOOL)ibIsEdge:(unsigned long long)arg1 ofSubview:(id)arg2 fixedInPositionOnWindowDuringResizeFromKnob:(CDUnion_31865a80)arg3;

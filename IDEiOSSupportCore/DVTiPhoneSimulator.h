@@ -19,6 +19,7 @@
     id <DVTCancellable> _deviceSetNotificationToken;
     DVTObservingToken *_locatedDeviceObservingToken;
     NSString *_displayOrder;
+    BOOL _ignored;
     struct __CFDictionary *_xpcStdoutFDForPid;
     NSString *_recordedFramesBacktraceRecordingDylibPath;
     NSSet *_applications;
@@ -37,6 +38,7 @@
 
 + (id)keyPathsForValuesAffectingActiveProxiedDevice;
 + (id)keyPathsForValuesAffectingProxiedDevices;
++ (id)keyPathsForValuesAffectingSimDeviceState;
 + (id)keyPathsForValuesAffectingState;
 + (id)simulatorWithDevice:(id)arg1;
 + (void)initialize;
@@ -64,15 +66,7 @@
 - (id)primaryInstrumentsServer;
 - (BOOL)installApplicationWithLaunchSession:(id)arg1 error:(id *)arg2;
 - (id)_installedPathForBundleIdentifier:(id)arg1;
-- (id)makeTransportForTestManagerService:(id *)arg1;
-- (id)_waitForSimLaunchdToLoadENVAndReturnTestConnectionSocketPath:(id *)arg1;
 - (id)startAssetServerForApplicationAtPath:(id)arg1;
-- (id)testArchitectureForBuildableProduct:(id)arg1 withBuildParameters:(id)arg2;
-- (id)_availableArchitecturesForArchitecture:(id)arg1;
-- (id)deviceForRunningUnitTestsWithHost:(id)arg1 error:(id *)arg2;
-- (BOOL)testingShouldAttachDebuggerWithHost:(id)arg1;
-- (id)connectionServicesFrameworkPath;
-- (id)testHostPathForBuildableProduct:(id)arg1 buildParameters:(id)arg2 outError:(id *)arg3;
 - (id)taskForDeviceCommand:(id)arg1 withArguments:(id)arg2 error:(id *)arg3;
 - (id)systemBasePath;
 - (void)stopLocationSimulation;
@@ -80,8 +74,8 @@
 @property(readonly, copy) NSString *description;
 - (BOOL)attachedToTarget:(id)arg1 launchService:(id)arg2 error:(id *)arg3;
 - (BOOL)launchSimulatedExecutable:(id)arg1 launchService:(id)arg2 error:(id *)arg3;
+- (id)_updateTestConfigurationFileAtPath:(id)arg1 forLaunchSession:(id)arg2 applicationBundleID:(id)arg3;
 - (BOOL)_launchSimulatorAppForLaunchSession:(id)arg1 error:(id *)arg2;
-- (_Bool)_launchSimulatorAppWithExternalDisplayType:(long long)arg1 andError:(id *)arg2;
 - (_Bool)_launchSimulatorAppWithError:(id *)arg1;
 - (void)transferDirectionsFileToBundlePath:(id)arg1 launchService:(id)arg2;
 - (void)uploadApplicationDataToBundlePath:(id)arg1 launchService:(id)arg2;
@@ -120,6 +114,8 @@
 - (void)renameDevice:(id)arg1;
 - (void)setName:(id)arg1;
 - (id)name;
+- (void)setIgnored:(BOOL)arg1;
+- (BOOL)isIgnored;
 - (BOOL)canIgnore;
 - (BOOL)canRename;
 - (id)modelCode;
@@ -145,6 +141,7 @@
 - (id)spawnExecutableAtPath:(id)arg1 withOptions:(id)arg2 andTerminationHandler:(CDUnknownBlockType)arg3;
 - (id)spawnExecutableAtPath:(id)arg1 withOptions:(id)arg2;
 - (id)applicationIsInstalledWithBundleIdentifier:(id)arg1;
+- (id)propertiesOfApplicationWithBundleIdentifier:(id)arg1;
 - (id)uninstallApplicationWithBundleIdentifier:(id)arg1 andOptions:(id)arg2;
 - (id)uninstallApplicationWithBundleIdentifier:(id)arg1;
 - (id)installApplicationAtPath:(id)arg1 withOptions:(id)arg2;
@@ -154,15 +151,26 @@
 - (id)shutdown;
 - (id)bootWithOptions:(id)arg1;
 - (id)boot;
-@property(readonly) unsigned long long state;
+@property(readonly) unsigned long long simDeviceState;
 @property(readonly) SimDeviceType *deviceInfo;
 - (id)shutDownDevice;
 - (id)startUpDevice;
-- (unsigned long long)startupState;
+- (unsigned long long)state;
+- (BOOL)allowsManagedStateControl;
 - (BOOL)canStartUpAndShutDown;
 - (void)dealloc;
 @property(readonly) NSNumber *simulatedDeviceFamily;
 - (_Bool)_canStartSession:(id *)arg1;
+- (id)connectionServicesFrameworkPath;
+- (id)testArchitectureForBuildableProduct:(id)arg1 buildParameters:(id)arg2;
+- (id)_availableArchitecturesForArchitecture:(id)arg1;
+- (id)deviceForRunningTestsWithHost:(id)arg1 error:(id *)arg2;
+- (id)testRunnerSessionForConfiguration:(id)arg1;
+- (id)testDaemonRecordingSession;
+- (id)testDaemonControlSession;
+- (id)testDaemonTransportProvider;
+- (id)automationFrameworkPath;
+- (id)targetBootstrapInjectionPath;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

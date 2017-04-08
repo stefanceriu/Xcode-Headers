@@ -18,11 +18,15 @@
     double _height;
     CALayer *_labelLayer;
     CALayer *_iconLayer;
-    CALayer *_iconContextGlyphLayer;
     DTTimelineGraphPlaneLabelLayer *_displayNameLayer;
     CALayer *_bottomBorderLayer;
     CALayer *_topBorderLayer;
     double _baseZPosition;
+    BOOL _labelAreaIsHovered;
+    CALayer *_iconContextGlyphLayer;
+    BOOL _iconIsClickable;
+    BOOL _iconGlyphOnlyOnHover;
+    struct DTTimelinePlaneGlyph _glyphs[4];
     BOOL _resizable;
     BOOL _selected;
     BOOL _displayBottomBorder;
@@ -35,7 +39,7 @@
     NSString *_displayDescription;
     NSImage *_icon;
     unsigned long long _iconLocation;
-    NSMenu *_iconContextMenu;
+    NSMenu *_contextMenu;
     unsigned long long _displayNameType;
     DTTimelineGroupPlane *_groupPlane;
     NSDictionary *_userInfo;
@@ -55,7 +59,7 @@
 @property(nonatomic) BOOL resizable; // @synthesize resizable=_resizable;
 @property(nonatomic) unsigned long long displayNameType; // @synthesize displayNameType=_displayNameType;
 @property(readonly, nonatomic) int serialNumber; // @synthesize serialNumber=_serialNumber;
-@property(retain, nonatomic) NSMenu *iconContextMenu; // @synthesize iconContextMenu=_iconContextMenu;
+@property(retain, nonatomic) NSMenu *contextMenu; // @synthesize contextMenu=_contextMenu;
 @property(nonatomic) unsigned long long iconLocation; // @synthesize iconLocation=_iconLocation;
 @property(retain, nonatomic) NSImage *icon; // @synthesize icon=_icon;
 @property(copy, nonatomic) NSString *displayDescription; // @synthesize displayDescription=_displayDescription;
@@ -67,7 +71,7 @@
 - (void)_enumeratePlanesWithStopPtr:(char *)arg1 block:(CDUnknownBlockType)arg2;
 - (void)enumeratesPlanesHavingKey:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (id)_planesUnderPoint:(struct CGPoint)arg1;
-- (void)_populatePlaneLayoutMap:(unordered_map_c1fbcd3c *)arg1 offsetFromTop:(double)arg2;
+- (void)_populatePlaneLayoutMap:(unordered_map_b8b4eb21 *)arg1 offsetFromTop:(double)arg2;
 - (BOOL)_wantsBottomBorderLayerWhenInGroupPlane;
 - (id)_topBorderLayer;
 - (id)_bottomBorderLayer;
@@ -75,6 +79,10 @@
 - (id)_backgroundColor;
 - (void)_invalidateLabel;
 - (id)_labelIconLayer;
+- (void)setGlyph:(id)arg1 atLocation:(unsigned long long)arg2 hover:(BOOL)arg3;
+- (struct CGRect)iconRectGraphRelative:(BOOL)arg1;
+- (BOOL)iconIsClickable;
+- (void)setIconIsClickable:(BOOL)arg1 showOnlyOnHover:(BOOL)arg2;
 - (void)_didMoveOutOfView;
 - (void)_willMoveIntoView;
 - (id)actionForLayer:(id)arg1 forKey:(id)arg2;
@@ -98,7 +106,14 @@
 @property(readonly, nonatomic) struct CGRect accessibilityLabelFrame;
 @property(readonly, nonatomic) struct CGRect accessibilityFrame;
 @property(readonly, nonatomic) double height;
+- (BOOL)_pointIntersectsIcon:(struct CGPoint)arg1 plane:(out id *)arg2 rect:(out struct CGRect *)arg3;
+- (BOOL)_pointIntersectsIcon:(struct CGPoint)arg1 rect:(out struct CGRect *)arg2;
 - (BOOL)_pointIntersectsDisclosureGlyph:(struct CGPoint)arg1 groupPlane:(out id *)arg2;
+@property(nonatomic) BOOL labelAreaIsHovered;
+- (void)_updateHoverStatusForGlyphs;
+- (void)_updateHoverStatusForIconGlyph;
+- (BOOL)_pointIntersectsGlyph:(struct CGPoint)arg1 plane:(out id *)arg2 location:(out unsigned long long *)arg3 rect:(out struct CGRect *)arg4;
+- (BOOL)_pointIntersectsGlyph:(struct CGPoint)arg1 location:(out unsigned long long *)arg2 rect:(out struct CGRect *)arg3;
 @property(readonly, nonatomic) CALayer *layer;
 @property(readonly, copy) NSString *description;
 - (void)dealloc;
@@ -110,8 +125,16 @@
 - (void)_setContext:(struct TimelineViewContext *)arg1 layer:(id)arg2 anchorPoint:(struct CGPoint)arg3;
 - (void)_invalidateTimeRange:(struct XRTimeRange)arg1;
 - (void)_setPosition:(struct CGPoint)arg1 size:(struct CGSize)arg2;
+- (BOOL)hasGlyphs;
+- (void)_layoutGlyphsAtPlanePosition:(struct CGPoint)arg1 planeSize:(struct CGSize)arg2;
+- (void)_layoutGlyphAtPlanePosition:(struct CGPoint)arg1 planeSize:(struct CGSize)arg2 location:(unsigned long long)arg3;
+- (void)_createGlyphLayerAtLocation:(unsigned long long)arg1;
 - (void)_layoutLabelLayerAtPlanePosition:(struct CGPoint)arg1 planeSize:(struct CGSize)arg2;
 - (void)_layoutLabelLayerAtPlanePosition:(struct CGPoint)arg1 planeSize:(struct CGSize)arg2 centerLabelWithin:(double)arg3;
+- (void)_updateIconGlyphForceHiddenState:(BOOL)arg1;
+- (void)_updateGlyphsForceHiddenState:(BOOL)arg1;
+- (void)_updateGlyphColors;
+- (void)_updateGlyphsZPosition;
 - (void)_updateIconAndLabelLayerZPosition;
 - (double)_centerOfLabelWithin:(double)arg1;
 

@@ -20,7 +20,6 @@
 - (void)didStop;
 - (id)willStartWithConfig:(id)arg1;
 - (BOOL)requiresExpiredPIDCacheForConfig:(id)arg1;
-- (BOOL)validateConfig:(id)arg1;
 - (id)createConfigWithPlist:(id)arg1;
 - (id)initWithMessageSender:(id)arg1;
 

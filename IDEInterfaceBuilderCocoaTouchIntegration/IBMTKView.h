@@ -7,40 +7,39 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSColor, NSString;
 
-@interface IBMTKView : IBUIView <NSCoding, IBDocumentArchiving>
+@interface IBMTKView : IBUIView <IBDocumentArchiving>
 {
-    NSColor *clearColor;
-    double clearDepth;
-    unsigned int clearStencil;
-    unsigned long long colorPixelFormat;
-    unsigned long long depthStencilPixelFormat;
-    unsigned long long sampleCount;
-    long long preferredFramesPerSecond;
-    BOOL paused;
-    BOOL enableSetNeedsDisplay;
-    BOOL autoResizeDrawable;
+    BOOL _paused;
+    BOOL _enableSetNeedsDisplay;
+    BOOL _autoResizeDrawable;
+    unsigned int _clearStencil;
+    NSColor *_clearColor;
+    double _clearDepth;
+    unsigned long long _colorPixelFormat;
+    unsigned long long _depthStencilPixelFormat;
+    unsigned long long _sampleCount;
+    long long _preferredFramesPerSecond;
 }
 
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
-@property(nonatomic) BOOL paused; // @synthesize paused;
-@property(nonatomic) BOOL autoResizeDrawable; // @synthesize autoResizeDrawable;
-@property(nonatomic) BOOL enableSetNeedsDisplay; // @synthesize enableSetNeedsDisplay;
-@property(nonatomic) long long preferredFramesPerSecond; // @synthesize preferredFramesPerSecond;
-@property(nonatomic) unsigned long long sampleCount; // @synthesize sampleCount;
-@property(nonatomic) unsigned long long depthStencilPixelFormat; // @synthesize depthStencilPixelFormat;
-@property(nonatomic) unsigned long long colorPixelFormat; // @synthesize colorPixelFormat;
-@property(nonatomic) unsigned int clearStencil; // @synthesize clearStencil;
-@property(nonatomic) double clearDepth; // @synthesize clearDepth;
-@property(retain, nonatomic) NSColor *clearColor; // @synthesize clearColor;
+@property(nonatomic) BOOL autoResizeDrawable; // @synthesize autoResizeDrawable=_autoResizeDrawable;
+@property(nonatomic) BOOL enableSetNeedsDisplay; // @synthesize enableSetNeedsDisplay=_enableSetNeedsDisplay;
+@property(nonatomic) BOOL paused; // @synthesize paused=_paused;
+@property(nonatomic) long long preferredFramesPerSecond; // @synthesize preferredFramesPerSecond=_preferredFramesPerSecond;
+@property(nonatomic) unsigned long long sampleCount; // @synthesize sampleCount=_sampleCount;
+@property(nonatomic) unsigned long long depthStencilPixelFormat; // @synthesize depthStencilPixelFormat=_depthStencilPixelFormat;
+@property(nonatomic) unsigned long long colorPixelFormat; // @synthesize colorPixelFormat=_colorPixelFormat;
+@property(nonatomic) unsigned int clearStencil; // @synthesize clearStencil=_clearStencil;
+@property(nonatomic) double clearDepth; // @synthesize clearDepth=_clearDepth;
+@property(retain, nonatomic) NSColor *clearColor; // @synthesize clearColor=_clearColor;
 - (void).cxx_destruct;
-- (void)drawRect:(struct CGRect)arg1;
-- (BOOL)shouldDrawAsPlaceholder;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)drawRect:(struct CGRect)arg1;
+- (BOOL)shouldDrawAsPlaceholder;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (BOOL)ibSizesToFillViewControllers;

@@ -11,10 +11,9 @@
 @protocol DYOpenGLLayerContentProvider <NSObject>
 - (DYRenderingAttributes *)renderingAttributes;
 - (BOOL)flipped;
-- (BOOL)isColor;
 - (BOOL)wantsDepth;
-- (struct CGSize)scaledImageSize;
+- (struct CGSize)imageSize;
 - (id <DYResource>)resource;
-- (id <DYResource>)overlay;
+- (id <DYResource>)overlayResource;
 @end
 

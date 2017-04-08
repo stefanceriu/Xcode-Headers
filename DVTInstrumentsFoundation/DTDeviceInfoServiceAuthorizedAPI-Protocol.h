@@ -6,9 +6,17 @@
 
 #import "DTXAllowedRPC.h"
 
-@class NSArray, NSData, NSDictionary, NSNumber, NSString;
+@class NSArray, NSData, NSDictionary, NSNumber, NSSet, NSString;
 
 @protocol DTDeviceInfoServiceAuthorizedAPI <DTXAllowedRPC>
+- (NSArray *)networkInterfaceNames;
+- (NSSet *)netstatRouteAttributes;
+- (NSSet *)netstatUDPAttributes;
+- (NSSet *)netstatTCPAttributes;
+- (NSSet *)netstatCountsAttributes;
+- (NSSet *)sysmonCoalitionAttributes;
+- (NSSet *)sysmonSystemAttributes;
+- (NSSet *)sysmonProcessAttributes;
 - (NSString *)cpDeviceName;
 - (NSString *)cpDeviceInfoAsXML;
 - (NSString *)cpKDebugEventsAsXML;

@@ -10,22 +10,28 @@
 
 @interface IBToManyCIFilterEffectsInspector : IBCIFilterEffectsInspector
 {
-    NSArrayController *filtersArrayController;
-    NSView *filterListContainerView;
-    DVTTableView *filtersTableView;
-    IDEControlGroup *controlGroup;
-    DVTBorderedView *controlBar;
-    DVTStackView_ML *stackView;
-    DVTObservingToken *filtersArrayControllerSelectionIndexesObservingToken;
-    DVTBindingToken *filtersArraySelectedIndexBindingToken;
-    DVTBindingToken *filtersArrayContentBindingToken;
-    DVTObservingToken *filtersObservingToken;
-    NSIndexSet *lastKnownIndexes;
-    BOOL canEditSelectedFilter;
     IDEInspectorContentView *_inspectedFilterView;
+    DVTObservingToken *_filtersArrayControllerSelectionIndexesObservingToken;
+    DVTBindingToken *_filtersArraySelectedIndexBindingToken;
+    DVTBindingToken *_filtersArrayContentBindingToken;
+    DVTObservingToken *_filtersObservingToken;
+    NSIndexSet *_lastKnownIndexes;
+    BOOL _canEditSelectedFilter;
+    NSArrayController *_filtersArrayController;
+    NSView *_filterListContainerView;
+    DVTTableView *_filtersTableView;
+    IDEControlGroup *_controlGroup;
+    DVTBorderedView *_controlBar;
+    DVTStackView_ML *_stackView;
 }
 
-@property BOOL canEditSelectedFilter; // @synthesize canEditSelectedFilter;
+@property(retain) DVTStackView_ML *stackView; // @synthesize stackView=_stackView;
+@property(retain) DVTBorderedView *controlBar; // @synthesize controlBar=_controlBar;
+@property(retain) IDEControlGroup *controlGroup; // @synthesize controlGroup=_controlGroup;
+@property(retain) DVTTableView *filtersTableView; // @synthesize filtersTableView=_filtersTableView;
+@property(retain) NSView *filterListContainerView; // @synthesize filterListContainerView=_filterListContainerView;
+@property(retain) NSArrayController *filtersArrayController; // @synthesize filtersArrayController=_filtersArrayController;
+@property BOOL canEditSelectedFilter; // @synthesize canEditSelectedFilter=_canEditSelectedFilter;
 - (void).cxx_destruct;
 - (BOOL)tableView:(id)arg1 acceptDrop:(id)arg2 row:(long long)arg3 dropOperation:(unsigned long long)arg4;
 - (BOOL)tableView:(id)arg1 writeRowsWithIndexes:(id)arg2 toPasteboard:(id)arg3;

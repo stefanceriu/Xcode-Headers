@@ -10,7 +10,7 @@
 #import "DVTInvalidation.h"
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class CDMInheritanceRelationship, CDMModel, DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, NSArray, NSDictionary, NSImage, NSMutableArray, NSMutableDictionary, NSNumber, NSString;
+@class CDMInheritanceRelationship, CDMModel, DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, NSArray, NSDictionary, NSImage, NSMutableArray, NSMutableDictionary, NSNull, NSNumber, NSString;
 
 @interface CDMEntity : NSObject <CDMIdentification, DVTInvalidation, IDEKeyDrivenNavigableItemRepresentedObject>
 {
@@ -36,27 +36,25 @@
 
 + (id)dictionaryOfPropertyPLists:(id)arg1;
 + (id)keyPathsForValuesAffectingCodeGenerationType;
-+ (id)keyPathsForValuesAffectingInspectedUniquenessConstraints;
-+ (id)keyPathsForValuesAffectingInspectedCompoundIndexes;
 + (id)keyPathsForValuesAffectingRelationshipsIncludingInheritance;
 + (id)keyPathsForValuesAffectingRepresentedClassName;
-+ (id)keyPathsForValuesAffectingInspectedClassName;
-+ (id)keyPathsForValuesAffectingInspectedModuleName;
 + (id)keyPathsForValuesAffectingAllProperties;
 + (void)initialize;
 + (id)keyPathsForValuesAffectingSortedFetchedProperties;
 + (id)keyPathsForValuesAffectingSortedRelationships;
 + (id)keyPathsForValuesAffectingSortedAttributes;
++ (id)keyPathsForValuesAffectingInspectedUniquenessConstraints;
++ (id)keyPathsForValuesAffectingInspectedCompoundIndexes;
++ (id)keyPathsForValuesAffectingInspectedClassName;
++ (id)keyPathsForValuesAffectingInspectedModuleName;
 + (id)keyPathsForValuesAffectingAllRelationshipsIncludingInheritance;
 + (id)keyPathsForValuesAffectingAllAttributesIncludingInheritance;
 + (id)keyPathsForValuesAffectingAllPropertiesIncludingInheritance;
-@property(copy) NSArray *uniquenessConstraints; // @synthesize uniquenessConstraints=_uniquenessConstraints;
-@property(copy) NSArray *compoundIndexes; // @synthesize compoundIndexes=_compoundIndexes;
 @property(retain) CDMInheritanceRelationship *oldInheritanceRelationship; // @synthesize oldInheritanceRelationship=_oldInheritanceRelationship;
 @property(retain) CDMInheritanceRelationship *inheritanceRelationship; // @synthesize inheritanceRelationship=_inheritanceRelationship;
 @property(copy) NSNumber *uniqueID; // @synthesize uniqueID=_uniqueID;
 @property(retain) CDMModel *model; // @synthesize model=_model;
-@property(copy) NSMutableArray *descendants; // @synthesize descendants=_descendants;
+@property(copy) NSArray *descendants; // @synthesize descendants=_descendants;
 @property(copy, nonatomic) NSString *versionHashModifier; // @synthesize versionHashModifier=_versionHashModifier;
 @property(copy, nonatomic) NSString *elementID; // @synthesize elementID=_elementID;
 @property(copy, nonatomic) NSDictionary *userInfoDictionary; // @synthesize userInfoDictionary=_userInfoDictionary;
@@ -72,7 +70,6 @@
 - (id)uniquenessConstraintsXMLElementTree;
 - (id)compoundIndexesXMLElementTree;
 - (id)userInfoXMLElementTree;
-- (id)syncKeys;
 - (void)stitchToRelatedModelElements;
 - (id)initWithXMLElementDescription:(id)arg1 belongingToModel:(id)arg2;
 - (id)xmlElementAttributes;
@@ -103,25 +100,16 @@
 - (void)removeDescendantEntity:(id)arg1;
 - (void)addDescendantEntity:(id)arg1;
 - (void)didChangeValueForKey:(id)arg1;
-- (void)setInspectedParentEntity:(id)arg1;
-- (id)inspectedParentEntity;
 @property(retain) CDMEntity *parentEntity;
 @property(nonatomic) long long codeGenerationType; // @synthesize codeGenerationType=_codeGenerationType;
-- (void)setInspectedUniquenessConstraints:(id)arg1;
-- (id)inspectedUniquenessConstraints;
-- (void)setInspectedCompoundIndexes:(id)arg1;
-- (id)inspectedCompoundIndexes;
+@property(copy) NSArray *uniquenessConstraints; // @synthesize uniquenessConstraints=_uniquenessConstraints;
+@property(copy) NSArray *compoundIndexes; // @synthesize compoundIndexes=_compoundIndexes;
 - (BOOL)mapsDirectlyTo:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly) unsigned long long hash;
+@property(readonly, copy) NSString *description;
 - (id)relationshipsIncludingInheritance;
 @property(readonly) BOOL hasRepresentedClassName;
-- (void)setInspectedClassName:(id)arg1;
-- (id)inspectedClassName;
-- (void)setInspectedModuleName:(id)arg1;
-- (id)inspectedModuleName;
-- (id)possibleModuleDisplayValues;
-- (id)possibleModuleNameObjects;
 @property(readonly) NSArray *allProperties;
 - (void)updateAllProperties;
 - (id)targetedConfigurations;
@@ -135,8 +123,6 @@
 - (id)possibleParentEntities;
 - (id)owningConfigurations;
 - (void)_disableCodeGenerationIfNecessary;
-- (id)_commaSeparatedStringFromPropertyNames:(id)arg1;
-- (id)_propertyNamesFromCommaSeparatedString:(id)arg1;
 - (void)_registerUndoBlockForFoundEntity:(CDUnknownBlockType)arg1;
 - (void)code_classReferences:(id *)arg1 headers:(id *)arg2 modules:(id *)arg3;
 - (BOOL)_notSelfOrNSManagedObjectClassName:(id)arg1 norInAncestors:(id)arg2;
@@ -149,6 +135,15 @@
 - (id)sortedFetchedProperties;
 - (id)sortedRelationships;
 - (id)sortedAttributes;
+@property(retain) CDMEntity *inspectedParentEntity;
+@property(copy) NSArray *inspectedUniquenessConstraints;
+@property(copy) NSArray *inspectedCompoundIndexes;
+- (id)_commaSeparatedStringFromPropertyNames:(id)arg1;
+- (id)_propertyNamesFromCommaSeparatedString:(id)arg1;
+@property(copy) NSString *inspectedClassName;
+@property(copy) NSString *inspectedModuleName;
+@property(readonly) NSArray *possibleModuleDisplayValues;
+@property(readonly) NSArray *possibleModuleNameObjects;
 - (id)allRelationshipsIncludingInheritance;
 - (id)allAttributesIncludingInheritance;
 - (id)allPropertiesIncludingInheritance;
@@ -157,12 +152,14 @@
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;
 @property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) BOOL navigableItem_isLeaf;

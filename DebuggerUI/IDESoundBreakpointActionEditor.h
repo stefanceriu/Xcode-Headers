@@ -19,6 +19,7 @@
 - (void)soundSelected:(id)arg1;
 - (void)loadView;
 - (id)initWithAction:(id)arg1;
+- (id)initWithAction:(id)arg1 breakpointLocation:(id)arg2;
 
 @end
 

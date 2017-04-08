@@ -6,13 +6,11 @@
 
 #import "IBPlatformToolLaunchContext.h"
 
-@class IBCocoaTouchPlatformToolDescription;
-
 @interface IBSimulatorToolLaunchContext : IBPlatformToolLaunchContext
 {
 }
 
-@property(readonly, nonatomic) IBCocoaTouchPlatformToolDescription *toolDescription;
+- (id)toolDescription;
 - (id)initWithDescription:(id)arg1 launchPath:(id)arg2 frameworkSearchPaths:(id)arg3;
 
 @end

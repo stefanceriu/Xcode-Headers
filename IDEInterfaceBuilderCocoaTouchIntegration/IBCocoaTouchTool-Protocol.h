@@ -19,8 +19,8 @@
 - (NSDictionary *)unregisterFontsAtURLs:(NSArray *)arg1;
 - (NSDictionary *)registerFontsAtURLs:(NSArray *)arg1;
 - (NSString *)fontNameForFamily:(NSString *)arg1 withSymbolicTraits:(NSNumber *)arg2;
-- (id)valueForKeyPath:(NSString *)arg1 ofClassWithName:(NSString *)arg2 resultMarshaller:(NSString *)arg3 resultMarshallerContext:(NSDictionary *)arg4;
-- (NSArray *)valuesForKeyPaths:(NSArray *)arg1 ofMarshalledObjectRequest:(NSDictionary *)arg2 resultMarshallerClassNames:(NSArray *)arg3 resultMarshallerContexts:(NSArray *)arg4;
+- (id)valueForKeyPath:(NSString *)arg1 ofClassWithName:(NSString *)arg2;
+- (NSArray *)valuesForKeyPaths:(NSArray *)arg1 ofMarshalledObjectRequest:(NSDictionary *)arg2;
 - (NSData *)compileNibForRequest:(NSDictionary *)arg1 minimumCompatibility:(NSNumber *)arg2 layoutInfo:(IBSparseAutolayoutInfo *)arg3 imagesToImageNames:(NSDictionary *)arg4;
 @end
 

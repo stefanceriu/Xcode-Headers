@@ -7,27 +7,26 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIStoryboardSegueTemplate.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIStoryboardModalSegueTemplate : IBUIStoryboardSegueTemplate <IBDocumentArchiving, NSCoding>
+@interface IBUIStoryboardModalSegueTemplate : IBUIStoryboardSegueTemplate <IBDocumentArchiving>
 {
-    BOOL useDefaultModalPresentationStyle;
-    BOOL useDefaultModalTransitionStyle;
-    int modalPresentationStyle;
-    int modalTransitionStyle;
+    BOOL _useDefaultModalPresentationStyle;
+    BOOL _useDefaultModalTransitionStyle;
+    int _modalPresentationStyle;
+    int _modalTransitionStyle;
 }
 
 + (id)segueTemplateWithIdentifier:(id)arg1 trigger:(id)arg2 segueClassName:(id)arg3 destinationControllerIdentifier:(id)arg4 modalPresentationStyleOrNilForDefault:(id)arg5 modalTransitionStyleOrNilForDefault:(id)arg6 animates:(BOOL)arg7;
-@property int modalTransitionStyle; // @synthesize modalTransitionStyle;
-@property int modalPresentationStyle; // @synthesize modalPresentationStyle;
-@property BOOL useDefaultModalPresentationStyle; // @synthesize useDefaultModalPresentationStyle;
-@property BOOL useDefaultModalTransitionStyle; // @synthesize useDefaultModalTransitionStyle;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
+@property int modalTransitionStyle; // @synthesize modalTransitionStyle=_modalTransitionStyle;
+@property int modalPresentationStyle; // @synthesize modalPresentationStyle=_modalPresentationStyle;
+@property BOOL useDefaultModalTransitionStyle; // @synthesize useDefaultModalTransitionStyle=_useDefaultModalTransitionStyle;
+@property BOOL useDefaultModalPresentationStyle; // @synthesize useDefaultModalPresentationStyle=_useDefaultModalPresentationStyle;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
 - (id)ibLocalAttributeKeyPaths;
 
 // Remaining properties

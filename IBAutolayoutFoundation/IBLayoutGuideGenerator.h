@@ -10,18 +10,18 @@
 
 @interface IBLayoutGuideGenerator : NSObject
 {
-    id <IBLayoutGuideGeneratorDelegate> delegate;
-    NSObject<IBAutolayoutItem> *coordinateSpaceView;
-    NSString *fallbackWidgetType;
-    NSString *fallbackContainerWidgetType;
+    id <IBLayoutGuideGeneratorDelegate> _delegate;
     id <IBLayoutGuideGeneratorSnappingDelegate> _snappingDelegate;
+    NSObject<IBAutolayoutItem> *_coordinateSpaceView;
+    NSString *_fallbackWidgetType;
+    NSString *_fallbackContainerWidgetType;
 }
 
+@property(copy, nonatomic) NSString *fallbackContainerWidgetType; // @synthesize fallbackContainerWidgetType=_fallbackContainerWidgetType;
+@property(copy, nonatomic) NSString *fallbackWidgetType; // @synthesize fallbackWidgetType=_fallbackWidgetType;
+@property(readonly) NSObject<IBAutolayoutItem> *coordinateSpaceView; // @synthesize coordinateSpaceView=_coordinateSpaceView;
 @property(retain) id <IBLayoutGuideGeneratorSnappingDelegate> snappingDelegate; // @synthesize snappingDelegate=_snappingDelegate;
-@property(copy, nonatomic) NSString *fallbackContainerWidgetType; // @synthesize fallbackContainerWidgetType;
-@property(copy, nonatomic) NSString *fallbackWidgetType; // @synthesize fallbackWidgetType;
-@property(readonly) NSObject<IBAutolayoutItem> *coordinateSpaceView; // @synthesize coordinateSpaceView;
-@property(readonly) id <IBLayoutGuideGeneratorDelegate> delegate; // @synthesize delegate;
+@property(readonly) id <IBLayoutGuideGeneratorDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)generateGuidesForRootedView:(id)arg1 optionsMask:(unsigned long long)arg2;
 - (id)generateGuidesForUnionedBoundingRect:(struct CGRect)arg1 ofViews:(id)arg2 targetSuperview:(id)arg3 siblings:(id)arg4 baselines:(id)arg5 knobPosition:(CDUnion_42e99c75)arg6 snapDistance:(double)arg7 optionsMask:(unsigned long long)arg8;
@@ -30,7 +30,7 @@
 - (void)applySelectionToSubviewGuidesToViews:(id)arg1 targetSuperview:(id)arg2 selectionRect:(struct CGRect)arg3 knobPosition:(CDUnion_42e99c75)arg4 snapDistance:(double)arg5 displayOnly:(BOOL)arg6 widgetTypeSubKey:(long long)arg7 fallbackViewSubKey:(long long)arg8 fallbackContainerSubKey:(long long)arg9 applicationState:(id)arg10;
 - (void)applySelectionToSuperviewGuidesToViews:(id)arg1 targetSuperview:(id)arg2 selectionRect:(struct CGRect)arg3 knobPosition:(CDUnion_42e99c75)arg4 snapDistance:(double)arg5 displayOnly:(BOOL)arg6 widgetTypeSubKey:(long long)arg7 fallbackViewSubKey:(long long)arg8 fallbackContainerSubKey:(long long)arg9 applicationState:(id)arg10;
 - (void)enumerateLayoutRules:(id)arg1 ofSuperview:(id)arg2 forSelectionEdge:(unsigned int)arg3 usingBlock:(CDUnknownBlockType)arg4;
-- (double)layoutMarginValueForAttribute:(unsigned long long)arg1 fromLayoutMargins:(struct _IBEdgeInsets)arg2;
+- (double)layoutMarginValueForAttribute:(unsigned long long)arg1 fromLayoutMargins:(struct NSEdgeInsets)arg2;
 - (void)applyPreferredDesignSizeGuidesToViews:(id)arg1 targetSuperview:(id)arg2 selectionRect:(struct CGRect)arg3 knobPosition:(CDUnion_42e99c75)arg4 snapDistance:(double)arg5 displayOnly:(BOOL)arg6 widgetTypeSubKey:(long long)arg7 fallbackViewSubKey:(long long)arg8 fallbackContainerSubKey:(long long)arg9 applicationState:(id)arg10;
 - (void)applySelectionToSiblingGuidesToViews:(id)arg1 siblings:(id)arg2 targetSuperview:(id)arg3 selectionRect:(struct CGRect)arg4 baselines:(id)arg5 knobPosition:(CDUnion_42e99c75)arg6 snapDistance:(double)arg7 displayOnly:(BOOL)arg8 widgetTypeSubKey:(long long)arg9 fallbackViewSubKey:(long long)arg10 fallbackContainerSubKey:(long long)arg11 applicationState:(id)arg12;
 - (void)applySelectionToSiblingIndentationGuidesToViews:(id)arg1 sibling:(id)arg2 siblingRect:(struct CGRect)arg3 targetSuperview:(id)arg4 selectionRect:(struct CGRect)arg5 baselines:(id)arg6 knobPosition:(CDUnion_42e99c75)arg7 snapDistance:(double)arg8 displayOnly:(BOOL)arg9 useVerticalGuides:(BOOL)arg10 useHorizontalGuides:(BOOL)arg11 widgetTypeSubKey:(long long)arg12 fallbackViewSubKey:(long long)arg13 fallbackContainerSubKey:(long long)arg14 siblingWidgetTypeSubKey:(long long)arg15 applicationState:(id)arg16;

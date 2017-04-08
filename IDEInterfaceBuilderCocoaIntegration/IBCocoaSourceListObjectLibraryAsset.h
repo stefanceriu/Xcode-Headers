@@ -10,13 +10,13 @@
 
 @interface IBCocoaSourceListObjectLibraryAsset : IBObjectLibraryAsset
 {
-    NSView *sourceListDataCell;
-    NSView *sourceListHeaderCell;
+    NSView *_sourceListDataCell;
+    NSView *_sourceListHeaderCell;
 }
 
+@property(retain, nonatomic) NSView *sourceListHeaderCell; // @synthesize sourceListHeaderCell=_sourceListHeaderCell;
+@property(retain, nonatomic) NSView *sourceListDataCell; // @synthesize sourceListDataCell=_sourceListDataCell;
 - (void).cxx_destruct;
-@property(readonly) NSView *sourceListHeaderCell;
-@property(readonly) NSView *sourceListDataCell;
 
 @end
 

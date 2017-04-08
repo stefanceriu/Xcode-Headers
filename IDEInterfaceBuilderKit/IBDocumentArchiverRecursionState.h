@@ -10,17 +10,17 @@
 
 @interface IBDocumentArchiverRecursionState : NSObject
 {
-    id object;
-    NSXMLElement *element;
-    long long kind;
-    NSMutableArray *blocksToRunPostSubgraphArchiving;
+    id _object;
+    NSXMLElement *_element;
+    long long _kind;
+    NSMutableArray *_blocksToRunPostSubgraphArchiving;
 }
 
 + (id)recursionStateWithElement:(id)arg1 object:(id)arg2 kind:(long long)arg3;
-@property(retain, nonatomic) NSMutableArray *blocksToRunPostSubgraphArchiving; // @synthesize blocksToRunPostSubgraphArchiving;
-@property(nonatomic) long long kind; // @synthesize kind;
-@property(retain, nonatomic) NSXMLElement *element; // @synthesize element;
-@property(retain, nonatomic) id object; // @synthesize object;
+@property(retain, nonatomic) NSMutableArray *blocksToRunPostSubgraphArchiving; // @synthesize blocksToRunPostSubgraphArchiving=_blocksToRunPostSubgraphArchiving;
+@property(nonatomic) long long kind; // @synthesize kind=_kind;
+@property(retain, nonatomic) NSXMLElement *element; // @synthesize element=_element;
+@property(retain, nonatomic) id object; // @synthesize object=_object;
 - (void).cxx_destruct;
 
 @end

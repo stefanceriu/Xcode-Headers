@@ -34,6 +34,7 @@
 @property(retain, nonatomic) DYTransport *transport; // @synthesize transport;
 @property(nonatomic) struct dispatch_queue_s *queue; // @synthesize queue;
 - (void).cxx_destruct;
+- (void)_replayDebugArchiveTo:(unsigned int)arg1 replyTo:(id)arg2 complete:(CDUnknownBlockType)arg3;
 - (void)_replayDebugArchiveTo:(unsigned int)arg1 replyTo:(id)arg2;
 - (void)_beginDebugArchive;
 - (void)_playbackArchiveWithExperiment:(id)arg1 passingFuture:(id)arg2 resolvingFuture:(_Bool)arg3;

@@ -75,11 +75,6 @@
 - (void)dealloc;
 - (id)initWithStartProduction:(id)arg1 langSpec:(id)arg2;
 - (id)initWithStartToken:(int)arg1 endToken:(int)arg2 langSpec:(id)arg3 predictSet:(id)arg4;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 @end
 

@@ -16,6 +16,7 @@
 + (id)keyPathsForValuesAffectingActivityImage;
 + (id)keyPathsForValuesAffectingImage;
 + (id)keyPathsForValuesAffectingIconImage;
++ (id)keyPathsForValuesAffectingTokenUI;
 + (id)keyPathsForValuesAffectingStatusImage;
 + (void)userInterfacePresentBasicAlertWithMessageText:(id)arg1 informativeText:(id)arg2;
 - (_Bool)_askForAlternateApplicationIfNeeded:(id *)arg1;
@@ -28,6 +29,7 @@
 - (id)activityImage;
 @property(readonly) NSImage *image;
 - (id)iconImage;
+- (id)tokenUI;
 - (id)statusImage;
 - (BOOL)shouldApplicationTerminate;
 - (void)userInterfacePresentAlertForNoRoutingCoverageFileAtPath:(id)arg1;

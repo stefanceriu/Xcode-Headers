@@ -15,7 +15,6 @@
 
 @property __weak IBUIScrollView *scrollView; // @synthesize scrollView=_scrollView;
 - (void).cxx_destruct;
-- (id)marshaller;
 - (BOOL)computesValue;
 - (id)initWithScrollView:(id)arg1;
 

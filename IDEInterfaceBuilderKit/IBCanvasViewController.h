@@ -15,30 +15,25 @@
 
 @class DVTDelayedInvocation, DVTDraggedImageState, DVTMutableOrderedSet, DVTNotificationToken, DVTObservingToken, IBAbstractDocumentEditor, IBCancellationToken, IBCanvasControllerLayoutGuideGeneratorDelegate, IBCanvasScrollView, IBCanvasView, IBDeviceBarViewController, IBHitDetectionMap, IBLayoutGuideCanvasOverlay, IBLayoutManager, IBMutableIdentityDictionary, NSButton, NSDate, NSMutableArray, NSMutableOrderedSet, NSMutableSet, NSNumber, NSSegmentedControl, NSString;
 
-@interface IBCanvasViewController : IDEViewController <IBEditorTreeDelegate, NSScrollViewDelegate, IBCanvasViewDelegate, IBSelectionProvider, IBHighlightProvider, IDEWorkspaceTabControllerCursorRectInterceptor>
+@interface IBCanvasViewController : IDEViewController <IBEditorTreeDelegate, NSScrollViewDelegate, IDEWorkspaceTabControllerCursorRectInterceptor, IBCanvasViewDelegate, IBSelectionProvider, IBHighlightProvider>
 {
-    IBCanvasView *canvasView;
-    IBCanvasScrollView *canvasScrollView;
-    IBMutableIdentityDictionary *topLevelObjectToEditorTreeMap;
-    IBMutableIdentityDictionary *canvasViewsToCanvasEditorControllers;
-    NSMutableSet *treesBeingModified;
-    DVTMutableOrderedSet *selectedConnections;
-    DVTDelayedInvocation *delayedEditorDeselectionInvocation;
-    BOOL editorsProvidingSelection;
-    DVTDelayedInvocation *fontAndColorInvocation;
-    IBHitDetectionMap *cursorMap;
-    BOOL invalidating;
-    BOOL resettingCursorRects;
-    BOOL canvasViewDescendentHasInvalidCursorRects;
-    BOOL canvasViewItselfHasInvalidCursorRects;
-    DVTDelayedInvocation *canvasViewCursorInvocation;
-    IBCanvasControllerLayoutGuideGeneratorDelegate *frameLayoutGuideGeneratorDelegate;
+    IBMutableIdentityDictionary *_topLevelObjectToEditorTreeMap;
+    IBMutableIdentityDictionary *_canvasViewsToCanvasEditorControllers;
+    NSMutableSet *_treesBeingModified;
+    DVTDelayedInvocation *_delayedEditorDeselectionInvocation;
+    DVTDelayedInvocation *_fontAndColorInvocation;
+    IBHitDetectionMap *_cursorMap;
+    BOOL _invalidating;
+    BOOL _resettingCursorRects;
+    BOOL _canvasViewDescendentHasInvalidCursorRects;
+    BOOL _canvasViewItselfHasInvalidCursorRects;
+    DVTDelayedInvocation *_canvasViewCursorInvocation;
+    IBCancellationToken *_clipViewBoundsDidChangeToken;
     IBLayoutGuideCanvasOverlay *_layoutGuideCanvasOverlay;
-    IBLayoutManager *frameLayoutManager;
-    NSDate *nextAutoexpansionTime;
-    struct CGPoint lastAutoExpansionPlace;
-    DVTDraggedImageState *imageState;
-    NSMutableArray *expansionTokens;
+    NSDate *_nextAutoexpansionTime;
+    struct CGPoint _lastAutoExpansionPlace;
+    DVTDraggedImageState *_imageState;
+    NSMutableArray *_expansionTokens;
     double _defaultEditingZoomFactor;
     double _lastAlternateZoomFactor;
     NSNumber *_canvasZoomFactorAfterAnimation;
@@ -49,9 +44,9 @@
     DVTNotificationToken *_didEndLiveMagnifyToken;
     unsigned long long _embedInStackSegmentIndex;
     unsigned long long _updateFramesSegmentIndex;
-    NSSegmentedControl *actionAreaButton;
-    DVTObservingToken *usesAutolayoutObservingToken;
-    IBCancellationToken *developmentTargetObservingToken;
+    NSSegmentedControl *_actionAreaButton;
+    DVTObservingToken *_usesAutolayoutObservingToken;
+    IBCancellationToken *_developmentTargetObservingToken;
     DVTObservingToken *_currentSelectedItemsToken;
     id <IBInvalidation> _eventMonitorToken;
     IBCancellationToken *_autolayoutStatusChangeToken;
@@ -62,28 +57,36 @@
     IBDeviceBarViewController *_deviceBarViewController;
     DVTObservingToken *_deviceConfigurationObservingToken;
     BOOL _deviceBarVisible;
-    IBAbstractDocumentEditor *documentEditor;
+    BOOL _editorsProvidingSelection;
+    IBAbstractDocumentEditor *_documentEditor;
+    IBCanvasView *_canvasView;
+    IBLayoutManager *_frameLayoutManager;
+    IBCanvasControllerLayoutGuideGeneratorDelegate *_frameLayoutGuideGeneratorDelegate;
+    IBCanvasScrollView *_canvasScrollView;
+    DVTMutableOrderedSet *_selectedConnections;
 }
 
 + (void)configureStateSavingObjectPersistenceByName:(id)arg1;
 + (id)zoomLevelMenuItemsWithAction:(SEL)arg1 titleFormatter:(CDUnknownBlockType)arg2;
+@property(nonatomic) BOOL editorsProvidingSelection; // @synthesize editorsProvidingSelection=_editorsProvidingSelection;
+@property(copy, nonatomic) DVTMutableOrderedSet *selectedConnections; // @synthesize selectedConnections=_selectedConnections;
+@property(retain) IBCanvasScrollView *canvasScrollView; // @synthesize canvasScrollView=_canvasScrollView;
 @property(nonatomic) BOOL deviceBarVisible; // @synthesize deviceBarVisible=_deviceBarVisible;
-@property(readonly, nonatomic) IBCanvasControllerLayoutGuideGeneratorDelegate *frameLayoutGuideGeneratorDelegate; // @synthesize frameLayoutGuideGeneratorDelegate;
-@property(readonly, nonatomic) IBLayoutManager *frameLayoutManager; // @synthesize frameLayoutManager;
-@property(copy, nonatomic) DVTMutableOrderedSet *selectedConnections; // @synthesize selectedConnections;
-@property(nonatomic) BOOL editorsProvidingSelection; // @synthesize editorsProvidingSelection;
-@property(readonly, nonatomic) IBCanvasView *canvasView; // @synthesize canvasView;
-@property(nonatomic) __weak IBAbstractDocumentEditor *documentEditor; // @synthesize documentEditor;
+@property(readonly, nonatomic) IBCanvasControllerLayoutGuideGeneratorDelegate *frameLayoutGuideGeneratorDelegate; // @synthesize frameLayoutGuideGeneratorDelegate=_frameLayoutGuideGeneratorDelegate;
+@property(readonly, nonatomic) IBLayoutManager *frameLayoutManager; // @synthesize frameLayoutManager=_frameLayoutManager;
+@property(retain, nonatomic) IBCanvasView *canvasView; // @synthesize canvasView=_canvasView;
+@property(nonatomic) __weak IBAbstractDocumentEditor *documentEditor; // @synthesize documentEditor=_documentEditor;
 - (void).cxx_destruct;
 - (void)canvasViewRunResizeTest:(id)arg1;
 - (void)canvasViewRunScrollTest:(id)arg1;
+- (id)runZoomPerformanceTestForDuration:(double)arg1;
 - (void)canvasViewRunZoomTest:(id)arg1;
-- (void)measureFPSWhileInvoking:(CDUnknownBlockType)arg1;
 - (void)_updateDeviceBarSelection;
 - (void)_toggleDeviceBar:(id)arg1;
 - (void)_hideDeviceBar;
 - (void)_showDeviceBar;
 - (void)_updateDeviceBarViewAsButtonWithConfiguration:(id)arg1;
+- (id)effectiveDeviceBarTitleWithConfiguration:(id)arg1;
 @property(readonly, nonatomic, getter=isDeviceBarInCustomizationMode) BOOL deviceBarInCustomizationMode;
 - (void)_addDeviceBarIfNeeded;
 - (id)_deviceBarViewAsButton;
@@ -202,6 +205,7 @@
 - (void)refreshSelectedMembers;
 - (void)captureCanvasAsImage:(id)arg1;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
+- (void)canvasClipViewBoundsDidChange:(id)arg1;
 - (BOOL)canZoomOut;
 - (BOOL)canZoomIn;
 - (void)updateDocumentEditorMenuTarget;

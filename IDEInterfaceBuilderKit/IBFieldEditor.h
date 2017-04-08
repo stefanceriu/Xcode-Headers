@@ -13,31 +13,34 @@
 
 @interface IBFieldEditor : IBCanvasOverlay <IBFieldEditorTextViewDelegate, NSTextViewDelegate>
 {
-    NSAttributedString *attributedStringValue;
-    CDUnknownBlockType titleRectCalculator;
-    IBFieldEditorConfiguration *configuration;
-    IBStringEditorCell *editedCell;
-    IBFieldEditorTextView *textView;
-    NSNumber *concludingTextMovement;
-    id userInfo;
-    BOOL madeExplicitTextChanges;
-    BOOL madeExplicitAttributeChanges;
-    long long conclusion;
-    CDUnknownBlockType completionHandler;
-    BOOL alreadyFinished;
-    NSFont *font;
-    struct CGRect borderRect;
-    BOOL beginEditingOnNextLayout;
+    NSAttributedString *_attributedStringValue;
+    CDUnknownBlockType _titleRectCalculator;
+    IBFieldEditorConfiguration *_configuration;
+    IBStringEditorCell *_editedCell;
+    IBFieldEditorTextView *_textView;
+    NSNumber *_concludingTextMovement;
+    id _userInfo;
+    BOOL _madeExplicitTextChanges;
+    BOOL _madeExplicitAttributeChanges;
+    long long _conclusion;
+    CDUnknownBlockType _completionHandler;
+    BOOL _alreadyFinished;
+    NSFont *_font;
+    struct CGRect _borderRect;
+    BOOL _beginEditingOnNextLayout;
     DVTNotificationToken *_textViewFrameChangeToken;
 }
 
-@property(readonly) NSNumber *concludingTextMovement; // @synthesize concludingTextMovement;
-@property(copy) CDUnknownBlockType titleRectCalculator; // @synthesize titleRectCalculator;
-@property(copy) NSAttributedString *attributedStringValue; // @synthesize attributedStringValue;
-@property(readonly) IBFieldEditorConfiguration *configuration; // @synthesize configuration;
-@property(copy) NSFont *font; // @synthesize font;
-@property(readonly) IBFieldEditorTextView *textView; // @synthesize textView;
-@property(retain) id userInfo; // @synthesize userInfo;
+@property(readonly) long long conclusion; // @synthesize conclusion=_conclusion;
+@property(readonly) NSNumber *concludingTextMovement; // @synthesize concludingTextMovement=_concludingTextMovement;
+@property(copy) CDUnknownBlockType titleRectCalculator; // @synthesize titleRectCalculator=_titleRectCalculator;
+@property(readonly) BOOL madeExplicitAttributeChanges; // @synthesize madeExplicitAttributeChanges=_madeExplicitAttributeChanges;
+@property(readonly) BOOL madeExplicitTextChanges; // @synthesize madeExplicitTextChanges=_madeExplicitTextChanges;
+@property(copy) NSFont *font; // @synthesize font=_font;
+@property(copy) NSAttributedString *attributedStringValue; // @synthesize attributedStringValue=_attributedStringValue;
+@property(readonly) IBFieldEditorTextView *textView; // @synthesize textView=_textView;
+@property(readonly) IBFieldEditorConfiguration *configuration; // @synthesize configuration=_configuration;
+@property(retain) id userInfo; // @synthesize userInfo=_userInfo;
 - (void).cxx_destruct;
 - (void)textViewDidChangeAttributes:(id)arg1;
 - (void)textDidEndEditing:(id)arg1;
@@ -52,16 +55,13 @@
 - (void)mouseDown:(id)arg1;
 - (id)hitTest:(struct CGPoint)arg1;
 - (void)finishEditingWithConclusion:(long long)arg1;
-- (void)beginDelayedEditingDurringLayout;
+- (void)beginDelayedEditingDuringLayout;
 - (void)beginEditingWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (BOOL)isFlipped;
 - (id)clipView;
 - (void)setBorderRect:(struct CGRect)arg1;
-@property(readonly) long long conclusion;
-@property(readonly, copy) NSString *stringValue; // @dynamic stringValue;
+@property(readonly, copy) NSString *stringValue;
 - (BOOL)shouldApplySideEffectsToEditedString;
-@property(readonly) BOOL madeExplicitAttributeChanges;
-@property(readonly) BOOL madeExplicitTextChanges;
 - (BOOL)canScaleIndependentlyFromCanvasContent;
 - (id)stringEditorCellForCurrentConfiguration;
 - (id)initWithConfiguration:(id)arg1;

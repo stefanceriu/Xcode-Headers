@@ -12,11 +12,11 @@
 
 @interface IBUISplitViewControllerEditor : IBUIViewControllerEditor <IBUISplitViewControllerEditorViewDelegate>
 {
-    NSString *targetRelation;
+    NSString *_targetRelation;
 }
 
 + (Class)ibDropTargetResolverClass;
-@property(copy, nonatomic) NSString *targetRelation; // @synthesize targetRelation;
+@property(copy, nonatomic) NSString *targetRelation; // @synthesize targetRelation=_targetRelation;
 - (void).cxx_destruct;
 - (id)editorView:(id)arg1 explanitoryTextForPlaceholderView:(id)arg2;
 - (id)editorView:(id)arg1 subtitleForPlaceholderView:(id)arg2;

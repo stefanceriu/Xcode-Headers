@@ -10,31 +10,31 @@
 
 @interface IBViewEditorCanvasFrameController : IBEditorCanvasFrameController
 {
-    IBMeasurementDrawingHandler *measurementDrawingHandler;
+    IBMeasurementDrawingHandler *_measurementDrawingHandler;
     IBRelativeMeasurementDrawingHandler *_relativeMeasurementDrawingHandler;
     IBLayoutGuideCanvasOverlay *_layoutGuideCanvasOverlay;
-    IBLayoutManager *layoutManager;
-    IBEditorFrameLayoutGuideGeneratorDelegate *layoutGuideGeneratorDelegate;
-    NSMutableArray *cachedUserGuides;
-    NSMutableArray *cachedSystemGuides;
+    IBLayoutManager *_layoutManager;
+    IBEditorFrameLayoutGuideGeneratorDelegate *_layoutGuideGeneratorDelegate;
+    NSMutableArray *_cachedUserGuides;
+    NSMutableArray *_cachedSystemGuides;
     DVTDelayedInvocation *_validateUserGuidesInvocation;
-    IBViewTracker *activeViewTracker;
-    id <DVTInvalidation> hiddenViewDrawingToken;
-    BOOL observingHiddenState;
-    DVTNotificationToken *showingLayoutRectsNotification;
-    DVTNotificationToken *showingBoundsRectsNotification;
-    DVTNotificationToken *showingPlaceholderBackgroundsNotification;
-    BOOL hasHiddenViewsInViewSubgraph;
+    id <DVTInvalidation> _hiddenViewDrawingToken;
+    BOOL _observingHiddenState;
+    DVTNotificationToken *_showingLayoutRectsNotification;
+    DVTNotificationToken *_showingBoundsRectsNotification;
+    DVTNotificationToken *_showingPlaceholderBackgroundsNotification;
+    BOOL _hasHiddenViewsInViewSubgraph;
+    IBViewTracker *_activeViewTracker;
     IBCanvasOverlay *_constraintPositioningOverlayView;
 }
 
+@property(nonatomic) BOOL hasHiddenViewsInViewSubgraph; // @synthesize hasHiddenViewsInViewSubgraph=_hasHiddenViewsInViewSubgraph;
 @property(readonly, nonatomic) IBCanvasOverlay *constraintPositioningOverlayView; // @synthesize constraintPositioningOverlayView=_constraintPositioningOverlayView;
-@property(nonatomic) BOOL hasHiddenViewsInViewSubgraph; // @synthesize hasHiddenViewsInViewSubgraph;
-@property(retain) IBViewTracker *activeViewTracker; // @synthesize activeViewTracker;
+@property(retain) IBViewTracker *activeViewTracker; // @synthesize activeViewTracker=_activeViewTracker;
+@property(readonly) IBEditorFrameLayoutGuideGeneratorDelegate *layoutGuideGeneratorDelegate; // @synthesize layoutGuideGeneratorDelegate=_layoutGuideGeneratorDelegate;
 - (void).cxx_destruct;
 - (void)resetCursorRects;
 @property(readonly, nonatomic) IBLayoutManager *layoutManager;
-@property(readonly) IBEditorFrameLayoutGuideGeneratorDelegate *layoutGuideGeneratorDelegate;
 - (unsigned long long)dragObjects:(id)arg1 withImage:(id)arg2 inMouseDownEvent:(id)arg3 mouseDraggedEvent:(id)arg4 imageLocation:(struct CGPoint)arg5 allowedOperations:(unsigned long long)arg6 editor:(id)arg7 draggingSourceContext:(id)arg8;
 - (void)sendEvent:(id)arg1;
 - (void)trackMeasurementsWithEvent:(id)arg1 atPoint:(struct CGPoint)arg2;

@@ -12,6 +12,7 @@
 {
     NSSet *_provisioningProfiles;
     NSMutableDictionary *_pidToXPCServiceConnectionDict;
+    NSString *_nameForDeveloperPortal;
     NSString *_cpuKind;
     unsigned long long _cpuCount;
     unsigned long long _cpuSpeedInMHz;
@@ -31,7 +32,6 @@
 @property unsigned long long cpuCount; // @synthesize cpuCount=_cpuCount;
 @property(copy) NSString *cpuKind; // @synthesize cpuKind=_cpuKind;
 - (void).cxx_destruct;
-- (id)connectionServicesFrameworkPath;
 - (id)primaryInstrumentsServer;
 - (id)listenForInstallOfAppExtensionIdentifiers:(id)arg1 onPairedDevice:(BOOL)arg2;
 - (void)stopDebuggingXPCServices:(id)arg1 forPairedDevice:(BOOL)arg2;

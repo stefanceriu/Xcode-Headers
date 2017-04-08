@@ -7,14 +7,13 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIViewController.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class IBUIRefreshControl, IBUITableView, NSString;
 
-@interface IBUITableViewController : IBUIViewController <IBDocumentArchiving, NSCoding>
+@interface IBUITableViewController : IBUIViewController <IBDocumentArchiving>
 {
-    IBUIRefreshControl *refreshControl;
-    BOOL clearsSelectionOnViewWillAppear;
+    BOOL _clearsSelectionOnViewWillAppear;
+    IBUIRefreshControl *_refreshControl;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -22,15 +21,15 @@
 + (id)ibViewPasteboardType;
 + (Class)ibViewClass;
 + (id)ibInstantiateForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
-@property BOOL clearsSelectionOnViewWillAppear; // @synthesize clearsSelectionOnViewWillAppear;
-@property(retain) IBUIRefreshControl *refreshControl; // @synthesize refreshControl;
+@property BOOL clearsSelectionOnViewWillAppear; // @synthesize clearsSelectionOnViewWillAppear=_clearsSelectionOnViewWillAppear;
+@property(retain) IBUIRefreshControl *refreshControl; // @synthesize refreshControl=_refreshControl;
 - (void).cxx_destruct;
 - (BOOL)hasTableView;
 @property(retain) IBUITableView *tableView;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
 - (BOOL)ibShouldChildBeIncludedInArbitrationUnitWithParent:(id)arg1;
 - (BOOL)ibCanBeEmbeddedInSplitViewControllerController;
 - (BOOL)ibCanBeEmbeddedInNavigationController;

@@ -22,6 +22,7 @@
     NSMutableArray *_childFrames;
 }
 
++ (void)_addBuilders:(id)arg1 toReport:(id)arg2 rootDuration:(double)arg3 backtraceIdentifiers:(id)arg4 backtracesForIdentifiers:(id)arg5;
 @property(retain) NSMutableArray *childFrames; // @synthesize childFrames=_childFrames;
 @property(retain) DVTStackBacktrace *eventPostingBacktrace; // @synthesize eventPostingBacktrace=_eventPostingBacktrace;
 @property(retain) DVTStackBacktrace *currentBacktrace; // @synthesize currentBacktrace=_currentBacktrace;
@@ -46,7 +47,7 @@
 - (void)insertChildFrame:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)addChildFrame:(id)arg1;
 - (id)createReport;
-- (void)_addToReport:(id)arg1 rootDuration:(double)arg2 indentString:(id)arg3 ancestorsWithMultipleChildren:(unsigned long long)arg4 currentDepth:(unsigned long long)arg5 addNextBacktrace:(BOOL)arg6 backtraceIdentifiers:(id)arg7 backtracesForIdentifiers:(id)arg8;
+- (void)_addToReport:(id)arg1 rootDuration:(double)arg2 backtraceIdentifiers:(id)arg3 backtracesForIdentifiers:(id)arg4;
 
 @end
 

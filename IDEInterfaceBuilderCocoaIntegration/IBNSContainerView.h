@@ -31,7 +31,7 @@
 - (id)ibSegueTriggers;
 - (id)ibDefaultSegueTrigger;
 - (BOOL)ibCanAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 targetChildRelation:(id *)arg3;
-- (id)ibSupportsMultipleSeguesFromTrigger;
+- (BOOL)ibSupportsMultipleSeguesFromTrigger;
 - (id)ibQualifyingInfoForDefaultLabel;
 - (void)ibPrepareCocoaDocumentForCompiling:(id)arg1 withContext:(id)arg2;
 - (id)ibTypeNameForDefaultLabel;

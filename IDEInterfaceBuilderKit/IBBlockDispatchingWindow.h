@@ -10,8 +10,8 @@
 
 @interface IBBlockDispatchingWindow : NSWindow
 {
-    NSMutableDictionary *blocks;
-    long long nextBlockID;
+    NSMutableDictionary *_blocks;
+    long long _nextBlockID;
 }
 
 + (id)sharedInstance;

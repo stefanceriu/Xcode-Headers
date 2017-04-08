@@ -7,29 +7,27 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIPickerView : IBUIView <IBDocumentArchiving, NSCoding>
+@interface IBUIPickerView : IBUIView <IBDocumentArchiving>
 {
-    BOOL showsSelectionIndicator;
+    BOOL _showsSelectionIndicator;
 }
 
 + (void)registerMarshallingRecordHandlers;
 + (BOOL)ibSupportsCocoaTouchAccessibility;
 + (long long)ibInstantiationSizeBehavior;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
+@property(nonatomic) BOOL showsSelectionIndicator; // @synthesize showsSelectionIndicator=_showsSelectionIndicator;
 - (id)localExtraMarshalledAttributesKeyPaths;
 - (id)defaultBackgroundColor;
-- (void)setShowsSelectionIndicator:(BOOL)arg1;
-- (BOOL)showsSelectionIndicator;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (unsigned long long)ibDefaultAccessibilityTraits;
 - (BOOL)ibIsAccessibilityElementByDefault;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (void)ibCustomizeForInsertionIntoIBUIViewController:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;
 - (struct CGRect)ibSquashedXcode7InitialFrameFromAddingToNonAnyAny;
 - (void)ibCustomizeForInsertionIntoIBUIView:(id)arg1 withObjects:(id)arg2 fromLibraryOrDifferentTargetRuntime:(BOOL)arg3 andInsertionContext:(id)arg4;

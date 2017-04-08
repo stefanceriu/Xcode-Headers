@@ -10,22 +10,26 @@
 
 @interface DVTModelGraphTransactionScope : NSObject
 {
+    unsigned long long _transactionCount;
     DVTModelGraphTransactionScope *_parentScope;
     NSMapTable *_subTransactionScopesByWeakOwner;
+    NSMapTable *_pendedBlocks;
     BOOL _performingTransaction;
-    unsigned long long _transactionCount;
 }
 
 + (id)transactionScopeForOwner:(id)arg1;
 + (id)_globalTransactionScope;
-@property(nonatomic) unsigned long long transactionCount; // @synthesize transactionCount=_transactionCount;
 @property(nonatomic) BOOL performingTransaction; // @synthesize performingTransaction=_performingTransaction;
 - (void).cxx_destruct;
+- (void)dispatchAfterScopeCloseForKey:(id)arg1 block:(CDUnknownBlockType)arg2;
+- (void)_dispatchPendedBlocks;
 - (void)performTransaction:(CDUnknownBlockType)arg1;
 - (void)_endTransactionUpward;
 - (void)_beginTransactionUpward;
 - (void)_endTransactionDownward;
 - (void)_beginTransactionDownward;
+- (void)_decrementTransactionCount;
+- (void)_incrementTransactionCount;
 - (id)subTransactionScopeForOwner:(id)arg1;
 - (id)_initWithParentScope:(id)arg1;
 

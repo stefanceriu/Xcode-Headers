@@ -19,8 +19,6 @@
 + (id)dvt_uncachedBundleIdentifierAtPath:(id)arg1;
 + (id)dvt_uncachedBundleExecutableAtURL:(id)arg1;
 + (id)dvt_uncachedBundleIdentifierAtURL:(id)arg1;
-+ (id)dvt_platformFamilyForBundleAtPath:(id)arg1 error:(id *)arg2;
-+ (id)dvt_platformForBundleAtPath:(id)arg1 error:(id *)arg2;
 + (id)dvt_executablePathForBundleAtPath:(id)arg1;
 @property(readonly, nonatomic) NSString *dvt_contentsPath;
 @end

@@ -6,13 +6,10 @@
 
 #import "NSObject.h"
 
-#import "NSCopying.h"
-
 @class DYSymbolicator, NSString;
 
-@interface DYStackFrame : NSObject <NSCopying>
+@interface DYStackFrame : NSObject
 {
-    BOOL _faulted;
     DYSymbolicator *_symbolicator;
     unsigned long long _address;
     unsigned long long _index;
@@ -30,10 +27,8 @@
 - (void).cxx_destruct;
 - (id)shortFormat;
 - (id)fullFormat;
+@property(readonly, nonatomic) NSString *ownerPath;
 @property(readonly, nonatomic) NSString *ownerName;
-- (void)_fault;
-- (void)_reset;
-- (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end
 

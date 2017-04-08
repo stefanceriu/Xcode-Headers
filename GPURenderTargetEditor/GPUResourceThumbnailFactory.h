@@ -13,11 +13,6 @@ __attribute__((visibility("hidden")))
 {
     NSBundle *_assetBundle;
     NSObject<OS_dispatch_semaphore> *_renderersSema;
-    struct {
-        void *opaque1;
-        long long opaque2;
-    } _freeRenderers;
-    struct ImageRenderer *_renderers[8];
     NSCache *_thumbnailImageCache;
 }
 

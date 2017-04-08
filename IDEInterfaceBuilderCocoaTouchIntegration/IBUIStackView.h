@@ -8,17 +8,16 @@
 
 #import "IBDocumentArchiving.h"
 #import "IBStackView.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIStackView : IBUIView <IBStackView, NSCoding, IBDocumentArchiving>
+@interface IBUIStackView : IBUIView <IBStackView, IBDocumentArchiving>
 {
-    long long _cachedAxis;
-    long long _cachedDistribution;
-    long long _cachedAlignment;
-    double _cachedSpacing;
-    BOOL _cachedBaselineRelativeArrangement;
+    BOOL _baselineRelativeArrangement;
+    long long _axis;
+    long long _distribution;
+    long long _alignment;
+    double _spacing;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -30,6 +29,11 @@
 + (id)keyPathsForValuesAffectingIbIsStackingWithHorizontalAxisWithMultipleConfigurations;
 + (void)ibDidInstantiateView:(id)arg1 forAsset:(id)arg2 role:(long long)arg3;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
+@property(nonatomic, getter=isBaselineRelativeArrangement) BOOL baselineRelativeArrangement; // @synthesize baselineRelativeArrangement=_baselineRelativeArrangement;
+@property(nonatomic) double spacing; // @synthesize spacing=_spacing;
+@property(nonatomic) long long alignment; // @synthesize alignment=_alignment;
+@property(nonatomic) long long distribution; // @synthesize distribution=_distribution;
+@property(nonatomic) long long axis; // @synthesize axis=_axis;
 - (void)unarchiveBaselineRelativeArrangement:(id)arg1;
 - (void)archiveBaselineRelativeArrangement:(id)arg1;
 - (void)unarchiveSpacing:(id)arg1;
@@ -43,12 +47,9 @@
 - (void)archive:(id)arg1 enumeration:(id)arg2 forArchiveKey:(id)arg3 propertyPath:(id)arg4 defaultValue:(int)arg5;
 - (id)localExtraMarshalledAttributesKeyPaths;
 - (void)drawRect:(struct CGRect)arg1;
-@property(nonatomic, getter=isBaselineRelativeArrangement) BOOL baselineRelativeArrangement;
-@property(nonatomic) double spacing;
-@property(nonatomic) long long alignment;
-@property(nonatomic) long long distribution;
-@property(nonatomic) long long axis;
 - (id)ibDesignableContentView;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (double)ibPriorityForPlaceholderUninitializedSubviewVerticalConstraints;
 - (double)ibPriorityForPlaceholderUninitializedSubviewHorizontalConstraints;
@@ -80,8 +81,6 @@
 - (BOOL)ibIsStackingWithHorizontalAxisWithMultipleConfigurations;
 - (BOOL)ibHasNonEmptyAxisConfiguration;
 - (id)ibLocalAttributeKeyPaths;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 

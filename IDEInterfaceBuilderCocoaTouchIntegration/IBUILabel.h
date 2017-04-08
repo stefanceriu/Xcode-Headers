@@ -8,31 +8,31 @@
 
 #import "IBDocumentArchiving.h"
 #import "IBUIAttributedTextContainer.h"
-#import "NSCoding.h"
 
 @class IBUIFontDescription, NSAttributedString, NSColor, NSNumber, NSString;
 
-@interface IBUILabel : IBUIView <IBDocumentArchiving, NSCoding, IBUIAttributedTextContainer>
+@interface IBUILabel : IBUIView <IBDocumentArchiving, IBUIAttributedTextContainer>
 {
-    NSString *text;
-    NSAttributedString *attributedText;
-    IBUIFontDescription *fontDescription;
-    NSColor *textColor;
-    NSColor *highlightedColor;
-    NSColor *shadowColor;
-    struct CGSize shadowOffset;
-    int baselineAdjustment;
-    BOOL adjustsLetterSpacingToFitWidth;
-    BOOL adjustsFontSizeToFitWidth;
-    BOOL enabled;
-    BOOL highlighted;
-    BOOL usesAttributedText;
-    double minimumFontSize;
-    double minimumScaleFactor;
-    int textAlignment;
-    int lineBreakMode;
-    long long numberOfLines;
+    BOOL _usesAttributedText;
+    BOOL _adjustsLetterSpacingToFitWidth;
+    BOOL _adjustsFontForContentSizeCategory;
+    BOOL _adjustsFontSizeToFitWidth;
+    BOOL _enabled;
+    BOOL _highlighted;
+    int _textAlignment;
+    int _baselineAdjustment;
+    int _lineBreakMode;
+    NSAttributedString *_attributedText;
+    IBUIFontDescription *_fontDescription;
+    NSString *_text;
+    NSColor *_textColor;
+    NSColor *_highlightedColor;
+    NSColor *_shadowColor;
+    double _minimumFontSize;
+    double _minimumScaleFactor;
+    long long _numberOfLines;
     NSNumber *_preferredMaxLayoutWidth;
+    struct CGSize _shadowOffset;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -45,22 +45,24 @@
 + (long long)ibInstantiationSizeBehavior;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
 @property(copy, nonatomic) NSNumber *preferredMaxLayoutWidth; // @synthesize preferredMaxLayoutWidth=_preferredMaxLayoutWidth;
-@property(nonatomic) BOOL usesAttributedText; // @synthesize usesAttributedText;
-@property(nonatomic) BOOL enabled; // @synthesize enabled;
-@property(copy, nonatomic) NSAttributedString *attributedText; // @synthesize attributedText;
-@property(copy, nonatomic) NSString *text; // @synthesize text;
-@property(nonatomic) long long numberOfLines; // @synthesize numberOfLines;
-@property(nonatomic) int lineBreakMode; // @synthesize lineBreakMode;
-@property(nonatomic) int textAlignment; // @synthesize textAlignment;
-@property(nonatomic) double minimumScaleFactor; // @synthesize minimumScaleFactor;
-@property(nonatomic) double minimumFontSize; // @synthesize minimumFontSize;
-@property(nonatomic) BOOL adjustsFontSizeToFitWidth; // @synthesize adjustsFontSizeToFitWidth;
-@property(nonatomic) BOOL adjustsLetterSpacingToFitWidth; // @synthesize adjustsLetterSpacingToFitWidth;
-@property(nonatomic) int baselineAdjustment; // @synthesize baselineAdjustment;
-@property(nonatomic) struct CGSize shadowOffset; // @synthesize shadowOffset;
-@property(nonatomic) BOOL highlighted; // @synthesize highlighted;
-@property(copy, nonatomic) NSColor *shadowColor; // @synthesize shadowColor;
-@property(copy, nonatomic) NSColor *highlightedColor; // @synthesize highlightedColor;
+@property(nonatomic) BOOL highlighted; // @synthesize highlighted=_highlighted;
+@property(nonatomic) BOOL enabled; // @synthesize enabled=_enabled;
+@property(nonatomic) BOOL adjustsFontSizeToFitWidth; // @synthesize adjustsFontSizeToFitWidth=_adjustsFontSizeToFitWidth;
+@property(nonatomic) BOOL adjustsFontForContentSizeCategory; // @synthesize adjustsFontForContentSizeCategory=_adjustsFontForContentSizeCategory;
+@property(nonatomic) BOOL adjustsLetterSpacingToFitWidth; // @synthesize adjustsLetterSpacingToFitWidth=_adjustsLetterSpacingToFitWidth;
+@property(nonatomic) int lineBreakMode; // @synthesize lineBreakMode=_lineBreakMode;
+@property(nonatomic) int baselineAdjustment; // @synthesize baselineAdjustment=_baselineAdjustment;
+@property(nonatomic) long long numberOfLines; // @synthesize numberOfLines=_numberOfLines;
+@property(nonatomic) double minimumScaleFactor; // @synthesize minimumScaleFactor=_minimumScaleFactor;
+@property(nonatomic) double minimumFontSize; // @synthesize minimumFontSize=_minimumFontSize;
+@property(nonatomic) struct CGSize shadowOffset; // @synthesize shadowOffset=_shadowOffset;
+@property(copy, nonatomic) NSColor *shadowColor; // @synthesize shadowColor=_shadowColor;
+@property(copy, nonatomic) NSColor *highlightedColor; // @synthesize highlightedColor=_highlightedColor;
+@property(nonatomic) BOOL usesAttributedText; // @synthesize usesAttributedText=_usesAttributedText;
+@property(copy, nonatomic) NSColor *textColor; // @synthesize textColor=_textColor;
+@property(nonatomic) int textAlignment; // @synthesize textAlignment=_textAlignment;
+@property(copy, nonatomic) NSString *text; // @synthesize text=_text;
+@property(copy, nonatomic) NSAttributedString *attributedText; // @synthesize attributedText=_attributedText;
 - (void).cxx_destruct;
 - (void)unarchiveTextColor:(id)arg1;
 - (void)archiveTextColor:(id)arg1;
@@ -82,19 +84,18 @@
 - (void)encodeAttributedText:(id)arg1;
 - (void)decodeFont:(id)arg1;
 - (void)encodeFont:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 @property(readonly) long long autoshrinkMode;
 @property(readonly, nonatomic, getter=isMultiline) BOOL multiline;
 - (void)setFontDescription:(id)arg1;
 @property(readonly, copy, nonatomic) IBUIFontDescription *fontDescription;
 @property(readonly) IBUIFontDescription *defaultFontDescription;
-@property(copy, nonatomic) NSColor *textColor;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (unsigned long long)ibDefaultAccessibilityTraits;
 - (BOOL)ibIsAccessibilityElementByDefault;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (id)ibCompiledValueForKeyPath:(id)arg1 withPropertyStorage:(id)arg2 inConfiguration:(id)arg3;
 - (id)ibValueForInspectedConfigurableProperty:(id)arg1 inConfiguration:(id)arg2;
 - (long long)ibPreferredResizeDirection;

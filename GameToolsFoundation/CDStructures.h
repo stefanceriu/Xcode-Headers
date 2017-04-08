@@ -46,6 +46,10 @@ struct _NSRange {
     unsigned long long _field2;
 };
 
+struct __tree_end_node<std::__1::__tree_node_base<void *>*> {
+    struct __tree_node_base<void *> *__left_;
+};
+
 struct deque<NSMutableArray *, std::__1::allocator<NSMutableArray *>> {
     struct __split_buffer<NSMutableArray *__strong *, std::__1::allocator<NSMutableArray *__strong *>> {
         id **__first_;
@@ -63,11 +67,9 @@ struct deque<NSMutableArray *, std::__1::allocator<NSMutableArray *>> {
 
 struct map<int, NSMutableArray *, std::__1::less<int>, std::__1::allocator<std::__1::pair<const int, NSMutableArray *>>> {
     struct __tree<std::__1::__value_type<int, NSMutableArray *>, std::__1::__map_value_compare<int, std::__1::__value_type<int, NSMutableArray *>, std::__1::less<int>, true>, std::__1::allocator<std::__1::__value_type<int, NSMutableArray *>>> {
-        struct __tree_node<std::__1::__value_type<int, NSMutableArray *>, void *> *__begin_node_;
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *__begin_node_;
         struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<int, NSMutableArray *>, void *>>> {
-            struct __tree_end_node<std::__1::__tree_node_base<void *>*> {
-                struct __tree_node_base<void *> *__left_;
-            } __first_;
+            struct __tree_end_node<std::__1::__tree_node_base<void *>*> __first_;
         } __pair1_;
         struct __compressed_pair<unsigned long, std::__1::__map_value_compare<int, std::__1::__value_type<int, NSMutableArray *>, std::__1::less<int>, true>> {
             unsigned long long __first_;

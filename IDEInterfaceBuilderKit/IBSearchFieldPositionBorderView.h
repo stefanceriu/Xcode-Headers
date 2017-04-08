@@ -10,10 +10,11 @@
 
 @interface IBSearchFieldPositionBorderView : DVTBorderedView
 {
-    NSSearchField *searchField;
-    CDStruct_c519178c initialInset;
+    CDStruct_c519178c _initialInset;
+    NSSearchField *_searchField;
 }
 
+@property(retain) NSSearchField *searchField; // @synthesize searchField=_searchField;
 - (void).cxx_destruct;
 - (void)layoutTopDown;
 - (void)awakeFromNib;

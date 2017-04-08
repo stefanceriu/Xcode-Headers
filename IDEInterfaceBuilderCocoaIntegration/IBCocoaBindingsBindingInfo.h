@@ -13,10 +13,11 @@
 @interface IBCocoaBindingsBindingInfo : NSObject <NSCopying>
 {
     NSDictionary *_dictionary;
-    NSString *_category;
     NSMutableArray *_options;
+    NSString *_category;
 }
 
+@property(readonly) NSString *category; // @synthesize category=_category;
 - (void).cxx_destruct;
 - (BOOL)isKeyOptional;
 - (BOOL)isKeyless;
@@ -33,7 +34,6 @@
 - (id)acceptableControllers;
 - (id)controller;
 - (id)binding;
-- (id)category;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;

@@ -34,7 +34,6 @@
 
 + (void)initialize;
 + (id)summaryUnavailableAttributedString;
-+ (id)summaryUnavailableString;
 + (id)keyPathsForValuesAffectingFormattedSummary;
 + (id)keyPathsForValuesAffectingTypeHasChanged;
 + (id)keyPathsForValuesAffectingType;

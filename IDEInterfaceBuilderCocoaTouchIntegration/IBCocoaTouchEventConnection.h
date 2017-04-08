@@ -6,9 +6,7 @@
 
 #import "IBConnection.h"
 
-#import "NSCoding.h"
-
-@interface IBCocoaTouchEventConnection : IBConnection <NSCoding>
+@interface IBCocoaTouchEventConnection : IBConnection
 {
     unsigned long long _eventType;
 }
@@ -36,6 +34,8 @@
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (id)archivingKeyForLabel;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)printablePListForIBToolInDocument:(id)arg1;
 - (id)displayDescriptionInDocument:(id)arg1;
 - (void)populateExternalConnectionRepresentation:(id)arg1 forContainer:(id)arg2 fromContainer:(id)arg3 otherExternalConnections:(id)arg4 context:(id)arg5;
@@ -61,8 +61,6 @@
 - (long long)relationshipType;
 - (void)copyInstanceStateToClone:(id)arg1 withContext:(id)arg2;
 - (id)connectionDefinitionForObject:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (id)localExtraMarshalledAttributesKeyPaths;
 - (id)runtimeClassNameForContext:(id)arg1 returningOptionalFallbackClassName:(id *)arg2;
 - (BOOL)refactorWithActionChangeTypeRefactoringOperation:(id)arg1 inDocument:(id)arg2 error:(id *)arg3;

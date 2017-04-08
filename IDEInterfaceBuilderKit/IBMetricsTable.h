@@ -10,12 +10,12 @@
 
 @interface IBMetricsTable : NSObject
 {
-    NSDictionary *maxSizes;
-    NSDictionary *minSizes;
-    NSDictionary *insets;
-    struct CGSize defaultMinSize;
-    struct CGSize defaultMaxSize;
-    CDStruct_c519178c defaultInset;
+    NSDictionary *_maxSizes;
+    NSDictionary *_minSizes;
+    NSDictionary *_insets;
+    struct CGSize _defaultMinSize;
+    struct CGSize _defaultMaxSize;
+    CDStruct_c519178c _defaultInset;
 }
 
 - (void).cxx_destruct;

@@ -26,7 +26,7 @@
 - (void)_closeDocument;
 - (void)_getDisassemblyForSettingPC:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)_createDebugSessionStateObserver:(id)arg1;
-- (void)_createCurrentStackFrameObserver:(id)arg1;
+- (void)_createObserversForReloading:(id)arg1;
 - (void)generateContentForURL:(id)arg1 waitingBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
 
 @end

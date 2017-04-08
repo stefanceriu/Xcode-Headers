@@ -10,9 +10,10 @@
 
 @interface IBCocoaBindingsAutocompletingResizingTextFieldView : DVTLayoutView_ML
 {
-    IBCocoaBindingsAutocompletingTextField *textField;
+    IBCocoaBindingsAutocompletingTextField *_textField;
 }
 
+@property(retain) IBCocoaBindingsAutocompletingTextField *textField; // @synthesize textField=_textField;
 - (void).cxx_destruct;
 - (void)didCompleteLayout;
 - (void)layoutBottomUp;

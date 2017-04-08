@@ -4,13 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
+#import "DVTQualifiableProfile.h"
 #import "NSObject.h"
 
 @class DVTAppIDFeatures, DVTDevice, DVTFilePath, DVTPlatform, DVTSigningCertificate, NSArray, NSData, NSDate, NSDictionary, NSSet, NSString, NSURL;
 
-@protocol DVTProvisioningProfile <NSObject>
+@protocol DVTProvisioningProfile <NSObject, DVTQualifiableProfile>
 @property(readonly) NSArray *identityCertificates;
 @property(readonly) NSArray *certificates;
+@property(readonly) BOOL isActive;
 @property(readonly) BOOL isPushEnabled;
 @property(readonly) BOOL isOMCEnabled;
 @property(readonly) BOOL isWACEnabled;
@@ -24,6 +26,7 @@
 @property(readonly) BOOL isGameCenterEnabled;
 @property(readonly) BOOL isMapsEnabled;
 @property(readonly) BOOL isInterAppAudioEnabled;
+@property(readonly) BOOL isNetworkExtensionsEnabled;
 @property(readonly) BOOL isSiriEnabled;
 @property(readonly) BOOL isDataProtectionEnabled;
 @property(readonly) BOOL isPassbookEnabled;
@@ -34,6 +37,7 @@
 @property(readonly) NSData *dataRepresentation;
 @property(readonly) NSSet *supportedUDIDs;
 @property(readonly) DVTPlatform *dvt_platform;
+@property(readonly) NSString *provisioningProfilePlatformIdentifier;
 @property(readonly) NSString *platform;
 @property(readonly) NSString *preferredFilenameExtension;
 @property(readonly) BOOL isMacProfile;
@@ -44,11 +48,12 @@
 @property(readonly) NSArray *identitySigningCertificates;
 @property(readonly) NSArray *signingCertificates;
 @property(readonly, copy) DVTFilePath *filePath;
-@property(readonly, copy) NSString *localPath;
 @property(readonly) NSDate *expirationDate;
 @property(readonly) NSDate *creationDate;
 @property(readonly) NSArray *teamIdentifierPrefixes;
+@property(readonly) NSString *appIdentifierName;
 @property(readonly) NSArray *appIdentifierPrefixes;
+@property(readonly) NSString *appIdentifierUserDescription;
 @property(readonly) NSString *appIdentifierEntitlementWithoutPrefix;
 @property(readonly) NSString *appIdentifierEntitlement;
 @property(readonly) DVTAppIDFeatures *features;

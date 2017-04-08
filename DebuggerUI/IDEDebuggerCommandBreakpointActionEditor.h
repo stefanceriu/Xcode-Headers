@@ -6,18 +6,19 @@
 
 #import "NSViewController.h"
 
-@class IDEDebuggerCommandBreakpointAction, NSTextField;
+@class DBGBreakpointEditorTextField, DVTTextDocumentLocation, IDEDebuggerCommandBreakpointAction;
 
 @interface IDEDebuggerCommandBreakpointActionEditor : NSViewController
 {
     IDEDebuggerCommandBreakpointAction *_action;
-    NSTextField *_consoleCommandField;
+    DVTTextDocumentLocation *_breakpointLocation;
+    DBGBreakpointEditorTextField *_consoleCommandField;
 }
 
 - (void).cxx_destruct;
 - (void)commandDidChange:(id)arg1;
 - (void)awakeFromNib;
-- (id)initWithAction:(id)arg1;
+- (id)initWithAction:(id)arg1 breakpointLocation:(id)arg2;
 
 @end
 

@@ -13,7 +13,7 @@
 
 @interface IBGlassStyleEditorCanvasFrame : IBEditorCanvasFrame <IBGlassCanvasFrameBackgroundDelegate, IBImageButtonDelegate>
 {
-    IBGlassCanvasFrameBackground *background;
+    IBGlassCanvasFrameBackground *_background;
 }
 
 - (void).cxx_destruct;

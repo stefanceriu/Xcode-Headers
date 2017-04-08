@@ -24,6 +24,7 @@
 - (BOOL)ibInspectedCustomizationLabelIsVisible;
 - (id)ibDefaultImage;
 - (id)ibTypeNameForDefaultLabel;
+- (BOOL)_identifierIsCharacterPicker;
 - (BOOL)ibInspectedIdentifierIsVisible;
 
 // Remaining properties

@@ -1030,17 +1030,19 @@ struct __GLIFunctionDispatchRec {
     CDUnknownFunctionPointerType _field974;
 };
 
-struct __hash_node<unsigned int, void *>;
+struct __hash_node_base<std::__1::__hash_node<unsigned int, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<unsigned int, void *>*> *__next_;
+};
 
 struct array_iterator<const GPUTools::FD::Argument> {
     struct Argument *_field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<unsigned int, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned int, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<unsigned int, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned int, void *>*>>> {
-        struct __hash_node<unsigned int, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned int, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<unsigned int, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<unsigned int, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<unsigned int, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<unsigned int, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<unsigned int, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<unsigned int, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<unsigned int, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<unsigned int, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
@@ -1049,11 +1051,9 @@ struct unique_ptr<std::__1::__hash_node<unsigned int, void *>*[], std::__1::__bu
 
 struct unordered_set<unsigned int, std::__1::hash<unsigned int>, std::__1::equal_to<unsigned int>, std::__1::allocator<unsigned int>> {
     struct __hash_table<unsigned int, std::__1::hash<unsigned int>, std::__1::equal_to<unsigned int>, std::__1::allocator<unsigned int>> {
-        struct unique_ptr<std::__1::__hash_node<unsigned int, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<unsigned int, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<unsigned int, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<unsigned int, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<unsigned int, void *>*>, std::__1::allocator<std::__1::__hash_node<unsigned int, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<unsigned int, void *>*> {
-                struct __hash_node<unsigned int, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<unsigned int, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::hash<unsigned int>> {
             unsigned long long __first_;

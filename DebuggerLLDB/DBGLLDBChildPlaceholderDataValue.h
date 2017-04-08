@@ -6,7 +6,6 @@
 
 #import <DebuggerLLDB/DBGLLDBDataValue.h>
 
-__attribute__((visibility("hidden")))
 @interface DBGLLDBChildPlaceholderDataValue : DBGLLDBDataValue
 {
     DBGLLDBDataValue *_parentDataValue;

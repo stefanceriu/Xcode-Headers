@@ -44,6 +44,7 @@
 - (id)subgraphWithMarkedNodes:(void *)arg1;
 - (void)invertEdges;
 - (void)_dumpAdjacencyList;
+- (void)_reorderEdgesNaturally;
 - (void)breadthFirstSearch:(unsigned int)arg1 nodeVisitBlock:(CDUnknownBlockType)arg2 edgeVisitBlock:(CDUnknownBlockType)arg3;
 - (void)depthFirstSearch:(unsigned int)arg1 nodeVisitBlock:(CDUnknownBlockType)arg2 edgeVisitBlock:(CDUnknownBlockType)arg3;
 - (void)_searchMainLoop:(unsigned int)arg1 action:(CDUnknownBlockType)arg2;
@@ -62,6 +63,7 @@
 - (void)_renameWithNodeMap:(unsigned int *)arg1 nodeNamespace:(unsigned int)arg2 edgeMap:(unsigned int *)arg3 edgeNamespace:(unsigned int)arg4;
 - (void)_renormalize;
 - (BOOL)_adjustAdjacencyMap;
+@property(readonly, nonatomic) unsigned int pointerSize;
 @property(nonatomic) BOOL inverted;
 - (void)ungroupNode:(unsigned int)arg1;
 - (unsigned int)addGroupNodeForNodes:(const unsigned int *)arg1 count:(unsigned int)arg2;
@@ -81,10 +83,6 @@
 - (id)initWithArchived:(id)arg1 version:(long long)arg2 options:(unsigned long long)arg3;
 - (id)initWithPlistRepresentation:(id)arg1;
 - (id)initWithNodes:(unsigned int)arg1;
-- (id)subgraphWithUniquePathsFromNode:(unsigned int)arg1 toNodes:(void *)arg2;
-- (id)subgraphWithShortestPathsFromNode:(unsigned int)arg1 toNodes:(void *)arg2;
-- (void)markReachableNodesFromRoots:(void *)arg1 inMap:(void *)arg2;
-- (void)stronglyConnectedComponentSearch:(unsigned int)arg1 withRecorder:(CDUnknownBlockType)arg2;
 
 @end
 

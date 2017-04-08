@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface LLDBRPCEvent : NSObject <DBGSBEvent>
 {
     struct SBEvent {

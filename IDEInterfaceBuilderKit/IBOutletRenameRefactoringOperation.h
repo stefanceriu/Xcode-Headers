@@ -10,16 +10,16 @@
 
 @interface IBOutletRenameRefactoringOperation : IBRefactoringOperation
 {
-    NSString *oldOutletName;
-    NSString *newOutletName;
-    NSString *className;
+    NSString *_oldOutletName;
+    NSString *_newOutletName;
+    NSString *_className;
 }
 
+@property(readonly) NSString *className; // @synthesize className=_className;
+@property(readonly) NSString *newOutletName; // @synthesize newOutletName=_newOutletName;
+@property(readonly) NSString *oldOutletName; // @synthesize oldOutletName=_oldOutletName;
 - (void).cxx_destruct;
 - (BOOL)refactorObject:(id)arg1 inDocument:(id)arg2 error:(id *)arg3;
-- (id)className;
-- (id)newOutletName;
-- (id)oldOutletName;
 - (id)initWithClassName:(id)arg1 oldOutletName:(id)arg2 newOutletName:(id)arg3;
 
 @end

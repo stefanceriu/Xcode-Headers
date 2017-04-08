@@ -12,6 +12,7 @@
 @class NSString;
 
 @interface NSColor (IBBinaryArchivingAdditions) <IBBinaryArchiving, IBBinaryArchivableColor>
++ (id)ibColorWithPatternBitmap:(id)arg1 colorSpace:(struct CGColorSpace *)arg2;
 + (id)ibColorWithDisplayP3Red:(double)arg1 green:(double)arg2 blue:(double)arg3 alpha:(double)arg4;
 + (id)ibColorWithSRGBRed:(double)arg1 green:(double)arg2 blue:(double)arg3 alpha:(double)arg4;
 + (id)ibColorWithGenericGamma22White:(double)arg1 alpha:(double)arg2;

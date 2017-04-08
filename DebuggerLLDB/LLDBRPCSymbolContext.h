@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface LLDBRPCSymbolContext : NSObject <DBGSBSymbolContext>
 {
     struct SBSymbolContext {

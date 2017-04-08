@@ -17,7 +17,7 @@
 - (void).cxx_destruct;
 - (void)chooseCommand:(id)arg1;
 - (void)awakeFromNib;
-- (id)initWithAction:(id)arg1;
+- (id)initWithAction:(id)arg1 breakpointLocation:(id)arg2;
 
 @end
 

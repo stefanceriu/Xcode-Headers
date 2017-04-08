@@ -7,19 +7,18 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIControl.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIStepper : IBUIControl <IBDocumentArchiving, NSCoding>
+@interface IBUIStepper : IBUIControl <IBDocumentArchiving>
 {
-    BOOL continuous;
-    BOOL autorepeat;
-    BOOL wraps;
-    double value;
-    double minimumValue;
-    double maximumValue;
-    double stepValue;
+    BOOL _continuous;
+    BOOL _autorepeat;
+    BOOL _wraps;
+    double _value;
+    double _minimumValue;
+    double _maximumValue;
+    double _stepValue;
 }
 
 + (BOOL)shouldArchiveTintColorWithUIViewProperties;
@@ -28,19 +27,19 @@
 + (id)keyPathsForValuesAffectingIbInspectedMinimumValue;
 + (id)keyPathsForValuesAffectingIbInspectedValue;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
-@property(nonatomic) BOOL wraps; // @synthesize wraps;
-@property BOOL autorepeat; // @synthesize autorepeat;
-@property BOOL continuous; // @synthesize continuous;
-@property(nonatomic) double stepValue; // @synthesize stepValue;
-@property(nonatomic) double maximumValue; // @synthesize maximumValue;
-@property(nonatomic) double minimumValue; // @synthesize minimumValue;
-@property(nonatomic) double value; // @synthesize value;
+@property(nonatomic) double stepValue; // @synthesize stepValue=_stepValue;
+@property(nonatomic) double maximumValue; // @synthesize maximumValue=_maximumValue;
+@property(nonatomic) double minimumValue; // @synthesize minimumValue=_minimumValue;
+@property(nonatomic) double value; // @synthesize value=_value;
+@property(nonatomic) BOOL wraps; // @synthesize wraps=_wraps;
+@property BOOL autorepeat; // @synthesize autorepeat=_autorepeat;
+@property BOOL continuous; // @synthesize continuous=_continuous;
 - (void)willChangeTargetRuntimeInDocument:(id)arg1 withContext:(id)arg2;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (void)setIbInspectedStepValue:(double)arg1;
 - (double)ibInspectedStepValue;
 - (void)setIbInspectedMaximumValue:(double)arg1;

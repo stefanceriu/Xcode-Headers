@@ -11,6 +11,5 @@
 @protocol DYPResourceGroup <NSObject>
 @property(retain, nonatomic) NSMutableArray *children;
 @property(readonly, nonatomic) struct Function *decodedFunction;
-- (void)sortChildren;
 @end
 

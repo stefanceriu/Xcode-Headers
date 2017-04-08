@@ -11,11 +11,11 @@
 @interface IBAnnotation : DVTTextAnnotation
 {
     NSMutableSet *_referencingLocations;
-    NSString *expectedEndPointClassName;
-    BOOL shouldDisplayInverted;
-    BOOL rolledOver;
+    BOOL _rolledOver;
+    BOOL _shouldDisplayInverted;
     NSString *_annotationName;
     NSString *_containingClassName;
+    NSString *_expectedEndPointClassName;
     unsigned long long _kind;
     struct CGRect _lastRectDrawnIn;
 }
@@ -23,13 +23,13 @@
 + (id)invertedConnectionInterfaceStyle;
 + (id)connectionInterfaceStyle;
 @property unsigned long long kind; // @synthesize kind=_kind;
+@property(nonatomic) BOOL shouldDisplayInverted; // @synthesize shouldDisplayInverted=_shouldDisplayInverted;
+@property(nonatomic) BOOL rolledOver; // @synthesize rolledOver=_rolledOver;
+@property(readonly) NSSet *referencingLocations; // @synthesize referencingLocations=_referencingLocations;
+@property(copy, nonatomic) NSString *expectedEndPointClassName; // @synthesize expectedEndPointClassName=_expectedEndPointClassName;
 @property(retain) NSString *containingClassName; // @synthesize containingClassName=_containingClassName;
 @property(retain) NSString *annotationName; // @synthesize annotationName=_annotationName;
 @property struct CGRect lastRectDrawnIn; // @synthesize lastRectDrawnIn=_lastRectDrawnIn;
-@property(copy, nonatomic) NSString *expectedEndPointClassName; // @synthesize expectedEndPointClassName;
-@property(nonatomic) BOOL shouldDisplayInverted; // @synthesize shouldDisplayInverted;
-@property(readonly) NSSet *referencingLocations; // @synthesize referencingLocations=_referencingLocations;
-@property(nonatomic) BOOL rolledOver; // @synthesize rolledOver;
 - (void).cxx_destruct;
 - (id)annotationDisplayDescription;
 - (id)annotationDisplayName;

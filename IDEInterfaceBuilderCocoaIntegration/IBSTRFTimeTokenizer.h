@@ -10,38 +10,37 @@
 
 @interface IBSTRFTimeTokenizer : IBDateTokenizer
 {
-    NSArray *dayYearOptions;
-    NSArray *percentOptions;
-    NSArray *weekdayOptions;
-    NSArray *minutesOptions;
-    NSArray *secondsOptions;
-    NSArray *monthsOptions;
-    NSArray *periodOptions;
-    NSArray *yearsOptions;
-    NSArray *hoursOptions;
-    NSArray *stampOptions;
-    NSArray *daysOptions;
-    NSArray *zoneOptions;
+    NSArray *_dayYearOptions;
+    NSArray *_percentOptions;
+    NSArray *_weekdayOptions;
+    NSArray *_minutesOptions;
+    NSArray *_secondsOptions;
+    NSArray *_monthsOptions;
+    NSArray *_periodOptions;
+    NSArray *_yearsOptions;
+    NSArray *_hoursOptions;
+    NSArray *_stampOptions;
+    NSArray *_daysOptions;
+    NSArray *_zoneOptions;
 }
 
-+ (id)strftimeTokenizerWithDelegate:(id)arg1;
+@property(retain) NSArray *zoneOptions; // @synthesize zoneOptions=_zoneOptions;
+@property(retain) NSArray *daysOptions; // @synthesize daysOptions=_daysOptions;
+@property(retain) NSArray *stampOptions; // @synthesize stampOptions=_stampOptions;
+@property(retain) NSArray *hoursOptions; // @synthesize hoursOptions=_hoursOptions;
+@property(retain) NSArray *yearsOptions; // @synthesize yearsOptions=_yearsOptions;
+@property(retain) NSArray *periodOptions; // @synthesize periodOptions=_periodOptions;
+@property(retain) NSArray *monthsOptions; // @synthesize monthsOptions=_monthsOptions;
+@property(retain) NSArray *secondsOptions; // @synthesize secondsOptions=_secondsOptions;
+@property(retain) NSArray *minutesOptions; // @synthesize minutesOptions=_minutesOptions;
+@property(retain) NSArray *weekdayOptions; // @synthesize weekdayOptions=_weekdayOptions;
+@property(retain) NSArray *percentOptions; // @synthesize percentOptions=_percentOptions;
+@property(retain) NSArray *dayYearOptions; // @synthesize dayYearOptions=_dayYearOptions;
 - (void).cxx_destruct;
 - (long long)fieldTypeForString:(id)arg1;
 - (id)strftimeTokens;
 - (void)_regenerateTokenOptions;
 - (void)setDelegate:(id)arg1;
-- (void)_setZoneOptions:(id)arg1;
-- (void)_setDaysOptions:(id)arg1;
-- (void)_setStampOptions:(id)arg1;
-- (void)_setHoursOptions:(id)arg1;
-- (void)_setYearsOptions:(id)arg1;
-- (void)_setPeriodOptions:(id)arg1;
-- (void)_setMonthsOptions:(id)arg1;
-- (void)_setSecondsOptions:(id)arg1;
-- (void)_setMinutesOptions:(id)arg1;
-- (void)_setWeekdayOptions:(id)arg1;
-- (void)_setPercentOptions:(id)arg1;
-- (void)_setDayYearOptions:(id)arg1;
 - (id)tokenizeString:(id)arg1;
 - (id)initWithDelegate:(id)arg1;
 

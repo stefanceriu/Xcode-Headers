@@ -8,7 +8,7 @@
 
 @interface IBNSViewPrioritySliderCell : NSSliderCell
 {
-    BOOL isStartingTracking;
+    BOOL _isStartingTracking;
     BOOL _showMultipleValues;
 }
 

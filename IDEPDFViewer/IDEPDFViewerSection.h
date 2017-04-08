@@ -10,7 +10,7 @@
 {
 }
 
-- (id)pdfoutline_children;
+- (id)navigableItem_childRepresentedObjects;
 
 @end
 

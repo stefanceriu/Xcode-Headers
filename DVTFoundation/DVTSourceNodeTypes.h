@@ -10,7 +10,7 @@
 {
 }
 
-+ (BOOL)nodeType:(short)arg1 conformsToNodeTypesInList:(long long *)arg2;
++ (BOOL)nodeType:(short)arg1 conformsToNodeTypesInList:(const long long *)arg2;
 + (long long *)nodeTypeListForTypeNames:(id)arg1;
 + (BOOL)nodeType:(short)arg1 conformsToNodeTypeNamed:(id)arg2;
 + (long long)nodeTypesCount;

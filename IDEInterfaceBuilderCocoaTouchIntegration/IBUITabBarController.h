@@ -7,15 +7,14 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIViewController.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class IBUITabBar, NSArray, NSString;
 
-@interface IBUITabBarController : IBUIViewController <IBDocumentArchiving, NSCoding>
+@interface IBUITabBarController : IBUIViewController <IBDocumentArchiving>
 {
-    IBUITabBar *tabBar;
-    NSArray *viewControllers;
-    IBUIViewController *selectedViewController;
+    NSArray *_viewControllers;
+    IBUITabBar *_tabBar;
+    IBUIViewController *_selectedViewController;
     NSArray *_simulatedTabBarItems;
 }
 
@@ -24,10 +23,11 @@
 + (id)ibObservedPropertiesForInheritableMetricsInvalidation;
 + (id)ibInstantiateForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
 @property(retain, nonatomic) NSArray *simulatedTabBarItems; // @synthesize simulatedTabBarItems=_simulatedTabBarItems;
-@property(retain) IBUITabBar *tabBar; // @synthesize tabBar;
-@property(retain) IBUIViewController *selectedViewController; // @synthesize selectedViewController;
+@property(retain) IBUIViewController *selectedViewController; // @synthesize selectedViewController=_selectedViewController;
+@property(retain) IBUITabBar *tabBar; // @synthesize tabBar=_tabBar;
 - (void).cxx_destruct;
 - (id)localExtraMarshalledToManyRelationshipKeyPaths;
+- (id)localExtraMarshalledAttributesKeyPaths;
 - (id)simulatedMetricsFromParentChainForPipeline;
 - (id)displayedChildViewController;
 - (BOOL)displaysContentView;
@@ -36,10 +36,10 @@
 - (void)setViewControllers:(id)arg1;
 - (id)viewControllers;
 @property long long selectedViewControllerIndex;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
 - (BOOL)ibIsChildArbitrationUnitRoot:(id)arg1;
 - (BOOL)ibCanBeEmbeddedInSplitViewControllerController;
 - (BOOL)ibCanBeEmbeddedInNavigationController;

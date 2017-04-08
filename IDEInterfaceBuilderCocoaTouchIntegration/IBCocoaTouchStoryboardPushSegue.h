@@ -6,11 +6,9 @@
 
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIStoryboardAbstractTriggeredSegue.h>
 
-#import "NSCoding.h"
-
 @class NSNumber;
 
-@interface IBCocoaTouchStoryboardPushSegue : IBUIStoryboardAbstractTriggeredSegue <NSCoding>
+@interface IBCocoaTouchStoryboardPushSegue : IBUIStoryboardAbstractTriggeredSegue
 {
     NSNumber *_splitViewControllerTargetIndex;
 }

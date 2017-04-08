@@ -30,9 +30,6 @@
 - (void)framebufferService:(id)arg1 didFailWithError:(id)arg2;
 - (void)framebufferService:(id)arg1 didRotateToAngle:(double)arg2;
 - (BOOL)bootDeviceIfNeededWithContext:(id)arg1 error:(id *)arg2;
-- (void)_setUpDevicePreferences;
-- (void)updateDevicePreferencesWithBlock:(CDUnknownBlockType)arg1;
-- (BOOL)_writePreferences:(BOOL)arg1 forDomain:(id)arg2 key:(id)arg3 withArguments:(id)arg4 error:(id *)arg5;
 - (id)_defaultsExecutableFilePath;
 - (BOOL)_setupFramebufferServiceReturningError:(id *)arg1;
 - (id)_disabledSimulatorJobs;

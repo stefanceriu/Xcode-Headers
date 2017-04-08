@@ -8,18 +8,15 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, IBDocument, IDEIndex, NSArray, NSMutableDictionary, NSOperationQueue, NSString;
+@class DVTStackBacktrace, IBDocument, NSArray, NSMutableDictionary, NSString;
 
 @interface IBCocoaBindingsSuggestedKeyPathProvider : NSObject <DVTInvalidation>
 {
-    IBDocument *document;
-    IDEIndex *index;
-    NSMutableDictionary *classNameToBindingCompletionItems;
-    NSArray *allObjectClasses;
-    NSArray *availableControllers;
-    NSOperationQueue *accessQueue;
-    NSOperationQueue *processQueue;
-    id <DVTCancellable> classDescriberToken;
+    IBDocument *_document;
+    NSMutableDictionary *_classNameToBindingCompletionItems;
+    NSArray *_allObjectClasses;
+    NSArray *_availableControllers;
+    id <DVTCancellable> _classDescriberToken;
 }
 
 + (void)initialize;
@@ -43,8 +40,6 @@
 - (void)clearCache;
 - (void)stopCachingIndexInformationForClassesReachableFromControllers;
 - (void)beginCachingIndexInformationForClassesReachableFromControllers;
-- (void)prefetchIndexInformationForClassNamesInArray:(id)arg1;
-- (void)prefetchIndexInformationForClassNamed:(id)arg1;
 - (BOOL)shouldPrefetchIndexInfoForClassNamed:(id)arg1;
 - (id)queryIndexAndCacheAllBindingCompletionItemsInClassNamed:(id)arg1;
 - (void)prepareForInstallation;

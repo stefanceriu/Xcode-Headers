@@ -8,28 +8,28 @@
 
 #import "IBBinaryArchiving.h"
 
-@class NSString;
+@class NSObject<IBBinaryArchivableColor>, NSString;
 
 @interface IBCustomViewDrawingDescription : NSObject <IBBinaryArchiving>
 {
-    id <IBBinaryArchivableColor> _customViewDarkTexturedBorderColor;
-    id <IBBinaryArchivableColor> _customViewDarkBorderColor;
-    id <IBBinaryArchivableColor> _customViewLightBorderColor;
-    id <IBBinaryArchivableColor> _containerCustomViewBackgroundColor;
-    id <IBBinaryArchivableColor> _childlessCustomViewBackgroundColor;
-    id <IBBinaryArchivableColor> _containerCustomViewTextColor;
-    id <IBBinaryArchivableColor> _childlessCustomViewTextColor;
+    NSObject<IBBinaryArchivableColor> *_customViewDarkTexturedBorderColor;
+    NSObject<IBBinaryArchivableColor> *_customViewDarkBorderColor;
+    NSObject<IBBinaryArchivableColor> *_customViewLightBorderColor;
+    NSObject<IBBinaryArchivableColor> *_containerCustomViewBackgroundColor;
+    NSObject<IBBinaryArchivableColor> *_childlessCustomViewBackgroundColor;
+    NSObject<IBBinaryArchivableColor> *_containerCustomViewTextColor;
+    NSObject<IBBinaryArchivableColor> *_childlessCustomViewTextColor;
     double _borderThickness;
 }
 
 @property(nonatomic) double borderThickness; // @synthesize borderThickness=_borderThickness;
-@property(retain, nonatomic) id <IBBinaryArchivableColor> childlessCustomViewTextColor; // @synthesize childlessCustomViewTextColor=_childlessCustomViewTextColor;
-@property(retain, nonatomic) id <IBBinaryArchivableColor> containerCustomViewTextColor; // @synthesize containerCustomViewTextColor=_containerCustomViewTextColor;
-@property(retain, nonatomic) id <IBBinaryArchivableColor> childlessCustomViewBackgroundColor; // @synthesize childlessCustomViewBackgroundColor=_childlessCustomViewBackgroundColor;
-@property(retain, nonatomic) id <IBBinaryArchivableColor> containerCustomViewBackgroundColor; // @synthesize containerCustomViewBackgroundColor=_containerCustomViewBackgroundColor;
-@property(retain, nonatomic) id <IBBinaryArchivableColor> customViewLightBorderColor; // @synthesize customViewLightBorderColor=_customViewLightBorderColor;
-@property(retain, nonatomic) id <IBBinaryArchivableColor> customViewDarkBorderColor; // @synthesize customViewDarkBorderColor=_customViewDarkBorderColor;
-@property(retain, nonatomic) id <IBBinaryArchivableColor> customViewDarkTexturedBorderColor; // @synthesize customViewDarkTexturedBorderColor=_customViewDarkTexturedBorderColor;
+@property(retain, nonatomic) NSObject<IBBinaryArchivableColor> *childlessCustomViewTextColor; // @synthesize childlessCustomViewTextColor=_childlessCustomViewTextColor;
+@property(retain, nonatomic) NSObject<IBBinaryArchivableColor> *containerCustomViewTextColor; // @synthesize containerCustomViewTextColor=_containerCustomViewTextColor;
+@property(retain, nonatomic) NSObject<IBBinaryArchivableColor> *childlessCustomViewBackgroundColor; // @synthesize childlessCustomViewBackgroundColor=_childlessCustomViewBackgroundColor;
+@property(retain, nonatomic) NSObject<IBBinaryArchivableColor> *containerCustomViewBackgroundColor; // @synthesize containerCustomViewBackgroundColor=_containerCustomViewBackgroundColor;
+@property(retain, nonatomic) NSObject<IBBinaryArchivableColor> *customViewLightBorderColor; // @synthesize customViewLightBorderColor=_customViewLightBorderColor;
+@property(retain, nonatomic) NSObject<IBBinaryArchivableColor> *customViewDarkBorderColor; // @synthesize customViewDarkBorderColor=_customViewDarkBorderColor;
+@property(retain, nonatomic) NSObject<IBBinaryArchivableColor> *customViewDarkTexturedBorderColor; // @synthesize customViewDarkTexturedBorderColor=_customViewDarkTexturedBorderColor;
 - (void).cxx_destruct;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;

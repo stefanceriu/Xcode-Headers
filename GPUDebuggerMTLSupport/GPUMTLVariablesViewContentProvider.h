@@ -18,6 +18,7 @@ __attribute__((visibility("hidden")))
     id _gpuDebuggingNotifyToken;
     DVTObservingToken *_debugStateObserverToken;
     DVTObservingToken *_validObserverToken;
+    id <DYPOutlineItem> _currentItem;
     NSString *_sessionID;
 }
 
@@ -42,7 +43,9 @@ __attribute__((visibility("hidden")))
 - (void)_updateFilteredListForCommandEncoder;
 - (void)_updateFilteredList;
 - (void)updateFilteredList;
+- (void)updateUnusedResourceFilteredList;
 - (void)updateCurrentLocation:(id)arg1;
+- (void)_installNewVariableValuesOnMainThread:(id)arg1;
 - (void)primitiveInvalidate;
 - (void)setDebuggerController:(id)arg1;
 - (void)_setupObservers;

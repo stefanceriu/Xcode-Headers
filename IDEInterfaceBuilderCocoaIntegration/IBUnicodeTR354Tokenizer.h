@@ -25,21 +25,20 @@
 }
 
 + (long long)fieldTypeForUnichar:(unsigned short)arg1;
-+ (id)possibleFieldTypes;
-+ (id)unicodeTR354TokenizerWithDelegate:(id)arg1;
++ (id)_possibleFieldTypes;
+@property(retain) NSArray *eraOptions; // @synthesize eraOptions=_eraOptions;
+@property(retain) NSArray *dayOptions; // @synthesize dayOptions=_dayOptions;
+@property(retain) NSArray *zoneOptions; // @synthesize zoneOptions=_zoneOptions;
+@property(retain) NSArray *hourOptions; // @synthesize hourOptions=_hourOptions;
+@property(retain) NSArray *weekOptions; // @synthesize weekOptions=_weekOptions;
+@property(retain) NSArray *yearOptions; // @synthesize yearOptions=_yearOptions;
+@property(retain) NSArray *monthOptions; // @synthesize monthOptions=_monthOptions;
+@property(retain) NSArray *secondOptions; // @synthesize secondOptions=_secondOptions;
+@property(retain) NSArray *minuteOptions; // @synthesize minuteOptions=_minuteOptions;
+@property(retain) NSArray *periodOptions; // @synthesize periodOptions=_periodOptions;
+@property(retain) NSArray *weekdayOptions; // @synthesize weekdayOptions=_weekdayOptions;
+@property(retain) NSArray *quarterOptions; // @synthesize quarterOptions=_quarterOptions;
 - (void).cxx_destruct;
-- (void)_setEraOptions:(id)arg1;
-- (void)_setDayOptions:(id)arg1;
-- (void)_setZoneOptions:(id)arg1;
-- (void)_setHourOptions:(id)arg1;
-- (void)_setWeekOptions:(id)arg1;
-- (void)_setYearOptions:(id)arg1;
-- (void)_setMonthOptions:(id)arg1;
-- (void)_setSecondOptions:(id)arg1;
-- (void)_setMinuteOptions:(id)arg1;
-- (void)_setPeriodOptions:(id)arg1;
-- (void)_setWeekdayOptions:(id)arg1;
-- (void)_setQuarterOptions:(id)arg1;
 - (void)_regenerateTokenOptions;
 - (void)setDelegate:(id)arg1;
 - (id)_zoneTokenWithType:(id)arg1 count:(id)arg2;

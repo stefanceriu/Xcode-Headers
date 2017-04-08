@@ -101,7 +101,6 @@
 - (id)pluginName;
 - (id)archiveIdentifier;
 - (id)idiomName;
-- (id)cocoaTouchApplicationName;
 - (id)cocoaTouchToolName;
 - (id)platform;
 - (id)defaultOrientationForPreviewEditor;

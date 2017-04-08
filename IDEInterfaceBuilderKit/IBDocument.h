@@ -25,7 +25,7 @@
 #import "IDENavigableItemArchivableRepresentationSupport.h"
 #import "NSKeyedUnarchiverDelegate.h"
 
-@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, IBAbstractClassProvider, IBClassDescriber, IBDeviceConfiguration, IBDocumentAutolayoutManager, IBDocumentIssueGenerator, IBDocumentLiveViewsDispatcher, IBDocumentPlatformAdapter, IBFileBuildSettingsSnapshot, IBIdiom, IBIndexClassDescriber, IBLiveViewsManager, IBMemberConfiguration, IBMutableIdentityDictionary, IBObjectContainer, IBPlatform, IBPlatformToolFailureHandler, IBResourceManager, IBSceneUpdateManager, IBSimulatedMetricsContainer, IBSimulatedMetricsInferrer, IBSourceCodeClassProvider, IBSystemClassProvider, IBTargetRuntime, IBTemporaryPasteboardClassProvider, IBUserDefinedActionClassProvider, IDEContainer, IDEMediaResourceVariantContext, IDEWorkspaceDocument, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSObject, NSSet, NSString, NSURL;
+@class DVTDelayedInvocation, DVTNotificationToken, DVTObservingToken, DVTPerformanceMetric, IBAbstractClassProvider, IBClassDescriber, IBDeviceConfiguration, IBDocumentAutolayoutManager, IBDocumentIssueGenerator, IBDocumentLiveViewsDispatcher, IBDocumentPlatformAdapter, IBFileBuildSettingsSnapshot, IBIdiom, IBIndexClassDescriber, IBLiveViewsManager, IBMemberConfiguration, IBMutableIdentityDictionary, IBObjectContainer, IBPlatform, IBPlatformToolFailureHandler, IBResourceManager, IBSceneUpdateManager, IBSimulatedMetricsContainer, IBSimulatedMetricsInferrer, IBSourceCodeClassProvider, IBSystemClassProvider, IBTargetRuntime, IBTemporaryPasteboardClassProvider, IBUserDefinedActionClassProvider, IDEContainer, IDEMediaResourceVariantContext, IDEWorkspaceDocument, NSAlert, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSNumber, NSObject, NSSet, NSString, NSURL;
 
 @interface IBDocument : IDEEditorDocument <IBXMLCoderDelegate, IBXMLDecoderDelegate, IDEDocumentStructureProviding, IDENavigableItemArchivableRepresentationSupport, IDEMediaLibraryDelegate, IBAttributeSearchLocationIteratorDelegate, IBSceneUpdateManagerDelegate, IBArchivableDocument, IBUnarchivableDocument, IBObjectContainerDelegate, IBObjectContainerArchivingDelegate, IBAutolayoutInfoProvider, IBAutolayoutFrameDeciderDelegate, DVTTextFindable, DVTTextReplacable, NSKeyedUnarchiverDelegate, IBLiveViewsBundleObserverEnvironment, IBDiagnosticsHandlerConfigurator>
 {
@@ -45,6 +45,9 @@
     BOOL _unarchiving;
     BOOL _unarchivingForPasteBoard;
     NSMutableArray *_objectsWithRepairedMemberIDs;
+    DVTDelayedInvocation *_delayedVerifyArchivingInvocation;
+    NSMutableArray *_editLogSinceLastVerifyArchiving;
+    BOOL _softAssertOnArchiveChildRelationshipViolation;
     long long _defaultPropertyAccessControl;
     id <DVTInvalidation> _sourceCodeClassProviderObserverToken;
     IBIndexClassDescriber *_indexClassDescriber;
@@ -67,6 +70,7 @@
     DVTDelayedInvocation *_optimisticallyDropRecomputableEditorStateInvocation;
     IBSimulatedMetricsContainer *_defaultSimulatedMetricsContainer;
     IBPlatformToolFailureHandler *_displayedPlatformToolFailureHandler;
+    NSAlert *_upgradeDocumentAlert;
     NSMutableSet *_dirtyLabelledObjects;
     DVTDelayedInvocation *_refreshDependentObjectLabellingInvocation;
     NSMutableSet *_containerInterfaceBuilderDocumentFilePaths;
@@ -371,7 +375,6 @@
 - (BOOL)isItemAmbiguous:(id)arg1;
 - (BOOL)isItemMisplaced:(id)arg1;
 - (void)conditionallyPreserveCleanAutolayoutStatusDuring:(CDUnknownBlockType)arg1;
-- (void)preserveCleanAutolayoutStatusDuring:(CDUnknownBlockType)arg1;
 - (id)registerAutolayoutStatusChangeObserver:(CDUnknownBlockType)arg1;
 - (id)mostRecentlyComputedAutolayoutStatusForArbitrationUnitsContainingAndBelowObject:(id)arg1;
 - (id)mostRecentlyComputedAutolayoutStatusForArbitrationUnitContainingObject:(id)arg1;
@@ -388,8 +391,8 @@
 - (void)clearConstraintsForItems:(id)arg1 fromSource:(long long)arg2;
 - (void)updateAllConstraintConstants;
 - (void)updateConstraintConstantsForItems:(id)arg1;
-- (void)updateAllFramesToMatchConstraints;
-- (void)updateFramesToMatchConstraintsForItems:(id)arg1;
+- (void)scheduleUpdateAllFramesToMatchConstraints;
+- (void)scheduleUpdateFramesToMatchConstraintsForItems:(id)arg1;
 - (id)sparseAutolayoutInfoForArbitrationUnit:(id)arg1 objectTransformationBlock:(CDUnknownBlockType)arg2;
 @property(readonly, nonatomic) Class autolayoutFrameDecisionDriverClass;
 @property(readonly, nonatomic) Class autolayoutEngineClass;
@@ -400,7 +403,7 @@
 - (void)noteFinishedShowingLoadingSpinner;
 - (void)noteFinishedPromptingForUpgradesAndValidations;
 - (void)beginUsingUndoManagerIfAppropriate;
-- (BOOL)needsToPromptUserForUpgradeToXcode8;
+- (BOOL)wantsToUpgradeToXcode8;
 - (void)upgradeToDevelopmentTargetIfNeeded:(id)arg1;
 - (void)disableAutolayout;
 - (void)enableAutolayout;
@@ -414,6 +417,7 @@
 - (id)arbitrationUnitsAtAndBelowObjects:(id)arg1;
 - (id)arbitrationUnitsForObjects:(id)arg1;
 - (id)arbitrationUnitForObject:(id)arg1;
+- (id)itemsInArbitrationUnitsOfObjects:(id)arg1;
 - (id)itemsInAllArbitrationUnits;
 - (id)allArbitrationUnits;
 - (unsigned long long)navigableItem_indexOfRepresentedObjectForIdentifier:(id)arg1 inRelationshipKeyPath:(id)arg2;
@@ -476,6 +480,7 @@
 - (void)didFinishUndoing;
 - (void)didStartRedoing;
 - (void)didFinishRedoing;
+- (void)delayedVerifyArchiving:(id)arg1;
 - (void)finishEditingLifeCycle;
 - (void)processesEditingLifeCycleBlocks;
 - (void)finishPushingSelection;
@@ -871,7 +876,8 @@
 - (void)documentUnarchiver:(id)arg1 willUnarchiveDocumentObject:(id)arg2;
 - (BOOL)documentUnarchiverIsUnarchivingStackBasedTreeNode:(id)arg1;
 - (id)documentUnarchiverAllowedReferenceTypes:(id)arg1;
-- (id)documentArchiver:(id)arg1 referenceIDForObject:(id)arg2 referenceType:(id)arg3;
+- (id)documentArchiver:(id)arg1 referenceIDForObject:(id)arg2 referenceType:(id)arg3 forFirstReferencingThroughKey:(id)arg4;
+- (id)synthesizeReferencingKeyForArchiver:(id)arg1 givenFirstReferencingKey:(id)arg2;
 - (void)archivePlatformIndependentDataWithDocumentArchiver:(id)arg1;
 - (void)archiveDocument:(id)arg1;
 - (void)archiveAndVerifyArchivingOfTopLevelObjects:(id)arg1;

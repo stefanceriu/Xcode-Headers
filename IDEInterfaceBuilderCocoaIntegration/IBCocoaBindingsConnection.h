@@ -10,11 +10,11 @@
 
 @interface IBCocoaBindingsConnection : IBConnection
 {
-    NSNibBindingConnector *connector;
-    IBCocoaBindingsBindingInfo *bindingInfo;
-    NSString *binding;
-    NSString *keyPath;
-    NSObject *controller;
+    NSNibBindingConnector *_connector;
+    IBCocoaBindingsBindingInfo *_bindingInfo;
+    NSString *_binding;
+    NSString *_keyPath;
+    NSObject *_controller;
 }
 
 + (BOOL)prototypeMatchConnectionContextIsValid:(id)arg1 forConnectingFromObject:(id)arg2 toObject:(id)arg3 document:(id)arg4;
@@ -27,9 +27,9 @@
 + (id)outboundPrototypeConnectionsForObject:(id)arg1 inDocument:(id)arg2;
 + (id)inboundPrototypeConnectionsForObject:(id)arg1 inDocument:(id)arg2;
 + (id)prototypeConnectionsFromObject:(id)arg1 toObject:(id)arg2;
-@property(copy) NSString *keyPath; // @synthesize keyPath;
-@property(retain) NSObject *controller; // @synthesize controller;
-@property(copy) NSString *binding; // @synthesize binding;
+@property(retain) NSObject *controller; // @synthesize controller=_controller;
+@property(copy) NSString *keyPath; // @synthesize keyPath=_keyPath;
+@property(copy) NSString *binding; // @synthesize binding=_binding;
 - (void).cxx_destruct;
 - (BOOL)canHaveSourceSeparatedWithSeparationType:(int)arg1;
 - (BOOL)canHaveDestinationSeparatedWithSeparationType:(int)arg1;

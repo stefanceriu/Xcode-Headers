@@ -24,6 +24,7 @@
 - (void)_setupObservingWithOptions:(unsigned long long)arg1;
 - (id)description;
 - (void)_primitiveCancelObservation;
+- (id)_dvt_keyPath;
 - (void)cancel;
 - (id)initWithObservedObject:(id)arg1 owner:(id)arg2 creationBacktrace:(id)arg3;
 

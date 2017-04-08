@@ -10,13 +10,13 @@
 
 @interface IBAnnotationDataCache : NSObject
 {
-    IDEWorkspace *workspace;
-    NSMapTable *documentToAnnotationData;
-    DVTDispatchLock *documentToAnnotationDataLock;
-    id indexDidChangeNotificationToken;
-    id documentWillCloseNotificationToken;
-    DVTObservingToken *workspaceDidInvalidateToken;
-    DVTObservingToken *kvoAssociatedWorkspaceIndexToken;
+    IDEWorkspace *_workspace;
+    NSMapTable *_documentToAnnotationData;
+    DVTDispatchLock *_documentToAnnotationDataLock;
+    id _indexDidChangeNotificationToken;
+    id _documentWillCloseNotificationToken;
+    DVTObservingToken *_workspaceDidInvalidateToken;
+    DVTObservingToken *_kvoAssociatedWorkspaceIndexToken;
 }
 
 + (id)sharedAnnotationCacheForWorkspace:(id)arg1;

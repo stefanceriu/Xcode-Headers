@@ -7,11 +7,10 @@
 #import "DVTLayerHostingView.h"
 
 #import "CALayerDelegate.h"
-#import "DYOpenGLLayerContentProvider.h"
 
 @class CAScrollLayer, DYOpenGLLayer, GPURenderJob, NSObject<OS_dispatch_source>, NSString;
 
-@interface GPURenderBufferView : DVTLayerHostingView <DYOpenGLLayerContentProvider, CALayerDelegate>
+@interface GPURenderBufferView : DVTLayerHostingView <CALayerDelegate>
 {
     CAScrollLayer *_scrollLayer;
     DYOpenGLLayer *_imageLayer;
@@ -59,7 +58,6 @@
 - (void)synchronizeWithView:(id)arg1;
 - (void)draw;
 @property(readonly, nonatomic) struct CGRect usableViewRect;
-@property(readonly, nonatomic) struct CGSize scaledImageSize;
 @property(nonatomic) _Bool useFastShadows;
 @property(nonatomic) _Bool flipAboutY;
 @property(nonatomic) _Bool flipAboutX;
@@ -76,11 +74,6 @@
 - (void)_updateImageLayer;
 @property(retain, nonatomic) id <DYResource> resource;
 - (BOOL)isOpaque;
-- (BOOL)wantsDepth;
-- (id)overlay;
-- (id)renderingAttributes;
-- (BOOL)flipped;
-- (BOOL)isColor;
 - (void)viewDidMoveToSuperview;
 - (void)viewDidChangeBackingProperties;
 - (void)viewDidMoveToWindow;

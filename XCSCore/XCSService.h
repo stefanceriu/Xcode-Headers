@@ -175,7 +175,12 @@
 - (void)listenForPlatformUpdates:(CDUnknownBlockType)arg1 owner:(id)arg2;
 - (long long)isPlatformsAPIAvailable;
 - (void)allPlatformsWithCompletionHandler:(CDUnknownBlockType)arg1;
-- (void)savePlatform:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)savePlatform:(id)arg1 forXcode:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)removeXcode:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)updateXcode:(id)arg1 withID:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
+- (void)createXcode:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
+- (void)allXcodesForCurrentBuildAgentWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)allXcodesWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)fetchServiceHealthWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)createHostedRepository:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)allHostedRepositoriesWithCompletionHandler:(CDUnknownBlockType)arg1;
@@ -242,6 +247,7 @@
 - (void)requestToBuildIntegration:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)allPendingIntegrationsWithCompletionHandler:(CDUnknownBlockType)arg1;
 - (void)allBuildAgentsWithCompletionHandler:(CDUnknownBlockType)arg1;
+- (void)listenOnceForAgentRegistration:(CDUnknownBlockType)arg1;
 - (void)registerIntegrationService;
 - (void)registerBuildListenerWithUsername:(id)arg1 fullName:(id)arg2;
 - (id)allAssetsURLForIntegration:(id)arg1;

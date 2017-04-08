@@ -17,6 +17,7 @@
 + (int)providerType;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
+- (id)identifierForStatePreservationForModel:(id)arg1;
 - (id)imageForIssueTypeIdentifier:(id)arg1 ofSize:(long long)arg2;
 - (id)ideModelObjectTypeIdentifier;
 - (id)displayNameForIssueTypeIdentifier:(id)arg1;

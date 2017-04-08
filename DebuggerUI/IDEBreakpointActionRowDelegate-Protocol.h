@@ -4,9 +4,10 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class IDEBreakpointActionRowView;
+@class DVTTextDocumentLocation, IDEBreakpointActionRowView;
 
 @protocol IDEBreakpointActionRowDelegate
+@property(retain) DVTTextDocumentLocation *breakpointLocation;
 - (void)removeRowRequestedByRow:(IDEBreakpointActionRowView *)arg1;
 - (void)addRowRequestedByRow:(IDEBreakpointActionRowView *)arg1;
 @end

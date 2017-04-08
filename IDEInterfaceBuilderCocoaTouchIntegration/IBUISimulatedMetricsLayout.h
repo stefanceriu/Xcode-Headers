@@ -8,12 +8,12 @@
 
 @interface IBUISimulatedMetricsLayout : NSObject
 {
-    BOOL overlaysContent;
-    double height;
+    BOOL _overlaysContent;
+    double _height;
 }
 
-@property(readonly, nonatomic) BOOL overlaysContent; // @synthesize overlaysContent;
-@property(readonly, nonatomic) double height; // @synthesize height;
+@property(readonly, nonatomic) BOOL overlaysContent; // @synthesize overlaysContent=_overlaysContent;
+@property(readonly, nonatomic) double height; // @synthesize height=_height;
 - (id)initWithHeight:(double)arg1 overlaysContent:(BOOL)arg2;
 
 @end

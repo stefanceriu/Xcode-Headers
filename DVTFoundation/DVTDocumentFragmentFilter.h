@@ -21,7 +21,6 @@
 @property(readonly) NSString *usageDescription;
 - (long long)indexSize;
 - (BOOL)mightContainFragment:(id)arg1;
-- (void)awakeWithPropertyList:(id)arg1;
 - (void)encodeIntoPropertyList:(id)arg1;
 - (id)initWithPropertyList:(id)arg1 owner:(id)arg2;
 - (id)initWithDocument:(id)arg1 filterSpecification:(CDStruct_92de0e9e)arg2;

@@ -10,10 +10,10 @@
 
 @interface IBMouseMovedObserver : NSObject
 {
-    struct __CFRunLoopObserver *runLoopObserver;
-    NSMutableDictionary *restObservers;
-    NSMutableDictionary *moveObservers;
-    struct CGPoint lastPoint;
+    struct __CFRunLoopObserver *_runLoopObserver;
+    NSMutableDictionary *_restObservers;
+    NSMutableDictionary *_moveObservers;
+    struct CGPoint _lastPoint;
 }
 
 + (unsigned long long)mouseButtonState;

@@ -18,7 +18,6 @@
         long long length;
         long long capacity;
     } _characterData;
-    int _retainCountMinusOne;
 }
 
 - (id)stringFromCharacters:(const char *)arg1;
@@ -27,11 +26,6 @@
 - (void)growCharacterStorage;
 - (void)dealloc;
 - (id)init;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 @end
 

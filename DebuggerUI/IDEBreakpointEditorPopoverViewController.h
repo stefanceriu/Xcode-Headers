@@ -9,7 +9,7 @@
 #import "IDEBreakpointActionRowDelegate.h"
 #import "NSPopoverDelegate.h"
 
-@class DVTExtension, DVTStackView_AppKitAutolayout, IDEBreakpoint, NSMapTable, NSPopover, NSString, NSTextField, NSView, NSViewController<IDEBreakpointEditor>;
+@class DBGBreakpointEditorTextField, DVTExtension, DVTStackView_AppKitAutolayout, DVTTextDocumentLocation, IDEBreakpoint, NSMapTable, NSPopover, NSString, NSView, NSViewController<IDEBreakpointEditor>;
 
 @interface IDEBreakpointEditorPopoverViewController : NSViewController <NSPopoverDelegate, IDEBreakpointActionRowDelegate>
 {
@@ -18,15 +18,16 @@
     NSMapTable *_actionRowViewsToObservationTokens;
     DVTExtension *_breakpointEditorExtension;
     NSViewController<IDEBreakpointEditor> *_breakpointSpecificViewController;
-    NSTextField *_conditionTextField;
+    DVTTextDocumentLocation *_breakpointLocation;
+    NSPopover *_popover;
     DVTStackView_AppKitAutolayout *_stackView;
     DVTStackView_AppKitAutolayout *_actionsStackView;
-    NSView *_addActionButtonView;
-    NSPopover *_popover;
     NSView *_conditionView;
+    DBGBreakpointEditorTextField *_conditionTextField;
     NSView *_ignoreCountView;
     NSView *_actionsView;
     NSView *_automaticallyContinueView;
+    NSView *_addActionButtonView;
 }
 
 + (id)_breakpointEditorExtensions;
@@ -36,12 +37,17 @@
 + (void)hideCurrentEditorIfEditingBreakpoint:(id)arg1;
 + (void)hideCurrentEditor;
 + (void)showEditorForBreakpoint:(id)arg1 relativeToRect:(struct CGRect)arg2 ofView:(id)arg3;
+@property(retain) NSView *addActionButtonView; // @synthesize addActionButtonView=_addActionButtonView;
 @property(retain) NSView *automaticallyContinueView; // @synthesize automaticallyContinueView=_automaticallyContinueView;
 @property(retain) NSView *actionsView; // @synthesize actionsView=_actionsView;
 @property(retain) NSView *ignoreCountView; // @synthesize ignoreCountView=_ignoreCountView;
+@property(retain) DBGBreakpointEditorTextField *conditionTextField; // @synthesize conditionTextField=_conditionTextField;
 @property(retain) NSView *conditionView; // @synthesize conditionView=_conditionView;
-@property(readonly) IDEBreakpoint *breakpoint; // @synthesize breakpoint=_breakpoint;
+@property(retain) DVTStackView_AppKitAutolayout *actionsStackView; // @synthesize actionsStackView=_actionsStackView;
+@property(retain) DVTStackView_AppKitAutolayout *stackView; // @synthesize stackView=_stackView;
 @property(retain) NSPopover *popover; // @synthesize popover=_popover;
+@property(readonly) IDEBreakpoint *breakpoint; // @synthesize breakpoint=_breakpoint;
+@property(retain) DVTTextDocumentLocation *breakpointLocation; // @synthesize breakpointLocation=_breakpointLocation;
 - (void).cxx_destruct;
 - (id)_findAssociatedBreakpointEditorExtension;
 - (void)popoverDidClose:(id)arg1;
@@ -62,7 +68,7 @@
 - (id)_createBreakpointSpecificViewController;
 - (void)_addBreakpointSpecificView;
 - (int)_placementFromString:(id)arg1;
-- (int)_placmentForElement:(id)arg1;
+- (int)_placementForElement:(id)arg1;
 - (void)loadView;
 - (void)awakeFromNib;
 - (id)_initWithBreakpoint:(id)arg1;

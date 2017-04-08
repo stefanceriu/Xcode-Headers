@@ -60,6 +60,8 @@ __attribute__((visibility("hidden")))
 - (BOOL)_shouldInstallGPUEditorWithPreviousStateDictionaryOrNil:(id)arg1;
 - (id)arrangedItems;
 - (id)originalItems;
+- (id)filterButtonAccessibilityDescription;
+- (id)filterButtonToolTip;
 - (void)_filteringDidFinish;
 - (id)filterButtonMenu;
 - (id)filterDefinitionIdentifier;
@@ -81,6 +83,7 @@ __attribute__((visibility("hidden")))
 - (id)_editorForResourceItem:(id)arg1;
 - (void)handleResourceItemThumbnailsRecalculation:(id)arg1;
 - (void)handleReloadResourceItem:(id)arg1;
+- (void)updateUnusedResources;
 - (void)updateResourcesView;
 - (void)resetResourcesInTree:(id)arg1;
 - (void)_resetResource:(id)arg1;

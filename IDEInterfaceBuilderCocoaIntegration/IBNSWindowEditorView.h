@@ -12,18 +12,21 @@
 
 @interface IBNSWindowEditorView : DVTLayoutView_ML <IBWindowContentBorderThicknessTarget>
 {
-    NSWindow *windowToMimic;
-    int contentResizingMode;
-    NSShadow *windowShadow;
-    NSView *contentView;
-    NSView *contentViewContainer;
-    NSImage *cachedWindowImage;
-    IBNinePartImage *cachedShadowImage;
+    NSShadow *_windowShadow;
+    NSView *_contentViewContainer;
+    NSImage *_cachedWindowImage;
+    IBNinePartImage *_cachedShadowImage;
     BOOL _liveResizing;
+    int _contentResizingMode;
+    NSWindow *_windowToMimic;
+    NSView *_contentView;
 }
 
 + (id)windowViewForWindow:(id)arg1 andContentView:(id)arg2;
 @property BOOL liveResizing; // @synthesize liveResizing=_liveResizing;
+@property(nonatomic) int contentResizingMode; // @synthesize contentResizingMode=_contentResizingMode;
+@property(retain, nonatomic) NSView *contentView; // @synthesize contentView=_contentView;
+@property(retain, nonatomic) NSWindow *windowToMimic; // @synthesize windowToMimic=_windowToMimic;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)drawEverything;
@@ -60,11 +63,8 @@
 @property BOOL showsToolbarButton;
 @property(copy) NSString *title;
 @property BOOL hasShadow;
-@property int contentResizingMode;
-@property(retain) NSView *contentView;
 - (id)windowShadowImage;
 - (id)windowShadow;
-@property(retain) NSWindow *windowToMimic;
 - (void)viewWillMoveToWindow:(id)arg1;
 - (void)awakeFromNib;
 - (id)initWithFrame:(struct CGRect)arg1;

@@ -8,7 +8,7 @@
 
 @interface IBCocoaTargetRuntime : IBTargetRuntime
 {
-    id <DVTFontTextFieldDataSource> fontDataSource;
+    id <DVTFontTextFieldDataSource> _fontDataSource;
 }
 
 + (id)sharedInstance;
@@ -17,7 +17,7 @@
 - (Class)imageRequestProcessorClass;
 - (id)toolProxyManager;
 - (id)idiom;
-@property(readonly) id <DVTFontTextFieldDataSource> fontDataSource;
+@property(readonly) id <DVTFontTextFieldDataSource> fontDataSource; // @synthesize fontDataSource=_fontDataSource;
 - (id)archiveIdentifier;
 - (id)identifier;
 - (id)platform;

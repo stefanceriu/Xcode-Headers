@@ -10,8 +10,11 @@
 
 @interface IDEDistributionMethodEnterprise : IDEDistributionMethodExport
 {
+    DVTPlatform *_supportedPlatform;
 }
 
+@property(readonly) DVTPlatform *supportedPlatform; // @synthesize supportedPlatform=_supportedPlatform;
+- (void).cxx_destruct;
 - (id)summaryPaneNextButtonTitleOverride;
 - (BOOL)supportsManifestDistribution;
 - (id)requiredTeamTypes;
@@ -27,7 +30,6 @@
 - (id)shortTitle;
 - (id)title;
 - (id)commandLineName;
-@property(readonly) DVTPlatform *supportedPlatform;
 - (id)appStoreName;
 - (_Bool)supportsDistributionOfArchive:(id)arg1;
 - (double)sortOrder;

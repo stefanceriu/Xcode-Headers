@@ -22,7 +22,6 @@
 @property(readonly, nonatomic) struct Function *decodedFunction;
 - (void)releaseRealizedResources;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (id)UUIDSection;
 - (id)_locationURLScheme;
 - (id)_locationURLPath;
 - (id)initWithController:(id)arg1 parent:(id)arg2 identifier:(id)arg3 category:(id)arg4;

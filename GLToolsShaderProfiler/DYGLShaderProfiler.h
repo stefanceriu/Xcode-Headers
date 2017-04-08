@@ -16,7 +16,7 @@
 + (BOOL)isRenderBeginWithEvents:(void *)arg1 type:(unsigned int)arg2;
 + (BOOL)isRenderEndWithEvents:(void *)arg1 type:(unsigned int)arg2;
 + (id)newShaderProfilerWithDelegate:(id)arg1;
-+ (id)_shaderInfoDictForProgram:(unsigned int)arg1 stages:(unsigned int)arg2 contextStateMirror:(ContextStateMirror_c1e8f92a *)arg3 archiveModifier:(id)arg4;
++ (id)_shaderInfoDictForProgram:(unsigned int)arg1 stages:(unsigned int)arg2 contextStateMirror:(ContextStateMirror_c02390f8 *)arg3 archiveModifier:(id)arg4;
 - (void)_addSampleWithPC:(unsigned int)arg1 state:(unsigned int)arg2 drawCallIdx:(unsigned int)arg3 shaderBinary:(id)arg4;
 - (void)_preProcessUSCSampleData:(id)arg1 result:(id)arg2;
 - (id)profileShader:(id)arg1;

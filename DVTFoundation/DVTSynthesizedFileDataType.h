@@ -17,6 +17,7 @@
 - (void).cxx_destruct;
 - (id)description;
 - (id)stringRepresentation;
+- (id)displayName;
 - (id)secondaryFileDataTypes;
 - (id)primaryFileDataType;
 - (id)init;

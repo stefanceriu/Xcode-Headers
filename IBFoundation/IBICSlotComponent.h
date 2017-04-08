@@ -15,7 +15,6 @@
 
 @interface IBICSlotComponent : NSObject <NSCopying, NSCoding, IBICDetailAreaPathComponent, IBBinaryArchiving>
 {
-    int _retainCountMinusOne;
     unsigned long long _cachedHash;
     BOOL _deprecated;
     NSString *_title;
@@ -59,11 +58,6 @@
 @property(readonly) long long componentID;
 - (BOOL)isSpecifiedExplicitValue;
 - (BOOL)isUnspecifiedValuePlaceholder;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

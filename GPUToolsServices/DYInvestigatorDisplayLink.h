@@ -12,17 +12,17 @@
 {
     BOOL _running;
     unsigned int _identifier;
-    unsigned int _interval;
+    unsigned int _targetFPS;
     unsigned long long _timeStamp;
 }
 
 @property(readonly, nonatomic) unsigned long long timeStamp; // @synthesize timeStamp=_timeStamp;
-@property(nonatomic) unsigned int interval; // @synthesize interval=_interval;
+@property(nonatomic) unsigned int targetFPS; // @synthesize targetFPS=_targetFPS;
 @property(nonatomic) BOOL running; // @synthesize running=_running;
 @property(nonatomic) unsigned int identifier; // @synthesize identifier=_identifier;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithIdentifier:(unsigned int)arg1 withRunning:(BOOL)arg2 withInterval:(unsigned int)arg3;
+- (id)initWithIdentifier:(unsigned int)arg1 withRunning:(BOOL)arg2 withTargetFPS:(unsigned int)arg3;
 - (id)init;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)description;

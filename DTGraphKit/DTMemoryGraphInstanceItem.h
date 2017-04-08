@@ -6,7 +6,6 @@
 
 #import <DTGraphKit/DTMemoryGraphItem.h>
 
-__attribute__((visibility("hidden")))
 @interface DTMemoryGraphInstanceItem : DTMemoryGraphItem
 {
     unsigned int _nodeName;

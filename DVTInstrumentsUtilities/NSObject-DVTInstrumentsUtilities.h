@@ -8,5 +8,7 @@
 
 @interface NSObject (DVTInstrumentsUtilities)
 + (BOOL)xr_object:(id)arg1 isEqual:(id)arg2;
+- (id)xr_clipsStringRepresentation;
+- (BOOL)xr_isCLIPSSymbol;
 @end
 

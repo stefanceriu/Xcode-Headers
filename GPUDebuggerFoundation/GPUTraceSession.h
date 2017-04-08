@@ -9,12 +9,16 @@
 #import "DVTInvalidation.h"
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, DYSymbolicator, GPUDebuggerController, GPUTraceGroupItem, GPUTraceProgramGroup, GPUTraceReplayController, IDEFileReference, IDELaunchSession, NSDictionary, NSImage, NSObject<OS_dispatch_queue>, NSString, NSURL;
+@class DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, DYFuture, DYSymbolicator, GPUDebuggerController, GPUTraceGroupItem, GPUTraceProgramGroup, GPUTraceReplayController, IDEFileReference, IDELaunchSession, NSArray, NSDictionary, NSImage, NSNull, NSObject<OS_dispatch_queue>, NSString, NSURL;
 
 @interface GPUTraceSession : NSObject <IDEKeyDrivenNavigableItemRepresentedObject, DVTInvalidation>
 {
     NSObject<OS_dispatch_queue> *_queue;
+    DYFuture *_harvestDoneFuture;
     BOOL _debugReplayActive;
+    BOOL _deferredHarvestEnabled;
+    BOOL _unusedResourcesMetadataAvailable;
+    BOOL _unusedResourcesDataAvailable;
     BOOL _presentDrawCallsOnDevice;
     BOOL _presentWireframeOnDevice;
     int _state;
@@ -35,6 +39,9 @@
 @property(nonatomic) BOOL presentDrawCallsOnDevice; // @synthesize presentDrawCallsOnDevice=_presentDrawCallsOnDevice;
 @property(readonly, nonatomic) GPUTraceProgramGroup *workspaceRootProgramGroup; // @synthesize workspaceRootProgramGroup=_workspaceRootProgramGroup;
 @property(readonly, nonatomic) GPUTraceGroupItem *workspaceRootResourceGroup; // @synthesize workspaceRootResourceGroup=_workspaceRootResourceGroup;
+@property(nonatomic) BOOL unusedResourcesDataAvailable; // @synthesize unusedResourcesDataAvailable=_unusedResourcesDataAvailable;
+@property(nonatomic) BOOL unusedResourcesMetadataAvailable; // @synthesize unusedResourcesMetadataAvailable=_unusedResourcesMetadataAvailable;
+@property(nonatomic) BOOL deferredHarvestEnabled; // @synthesize deferredHarvestEnabled=_deferredHarvestEnabled;
 @property(nonatomic) int state; // @synthesize state=_state;
 @property(readonly, nonatomic) NSURL *captureArchiveURL; // @synthesize captureArchiveURL=_captureArchiveURL;
 @property(readonly, nonatomic) GPUDebuggerController *debuggerController; // @synthesize debuggerController=_debuggerController;
@@ -45,11 +52,13 @@
 @property(readonly, nonatomic) IDELaunchSession *launchSession; // @synthesize launchSession=_launchSession;
 - (void).cxx_destruct;
 @property(readonly) NSString *navigableItem_name;
+- (void)notifyHarvestDone;
 - (id)resetEmbeddedReplaySession;
 - (id)establishEmbeddedReplaySession;
 - (BOOL)_loadReplayControllerWithError:(id *)arg1;
+- (id)_setupReplaySessionBase:(BOOL)arg1;
 - (id)_setupReplaySession:(BOOL)arg1;
-- (BOOL)_loadReplayControllerWithLastFunctionIndex:(unsigned int)arg1;
+- (BOOL)_loadReplayController;
 - (BOOL)isInActiveState;
 - (void)primitiveInvalidate;
 - (id)initWithLaunchSession:(id)arg1 debuggerController:(id)arg2 symbolicator:(id)arg3 rootResourceGroup:(id)arg4 rootProgramGroup:(id)arg5;
@@ -61,9 +70,12 @@
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) BOOL navigableItem_isLeaf;

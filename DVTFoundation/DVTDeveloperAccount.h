@@ -47,6 +47,7 @@
 - (id)sessionIfAvailable;
 @property(readonly) DVTDeveloperAccountSession *session; // @synthesize session=_session;
 - (void)executeWithSession:(CDUnknownBlockType)arg1;
+- (id)_sessionByLoggingInIfNeededWithinLock:(id *)arg1;
 - (id)sessionByLoggingInIfNeeded:(id *)arg1;
 - (id)_sessionByLoggingIn:(id *)arg1;
 - (id)init;

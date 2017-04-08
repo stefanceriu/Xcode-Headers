@@ -25,7 +25,7 @@ __attribute__((visibility("hidden")))
 - (id)generateLabel;
 @property(readonly) BOOL hasStateMirror;
 @property(copy) GPUGLStateMirror *stateMirror;
-- (void)primitiveInvalidate;
+- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 
 // Remaining properties

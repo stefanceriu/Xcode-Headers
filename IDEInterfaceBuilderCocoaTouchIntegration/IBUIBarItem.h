@@ -14,14 +14,15 @@
 
 @interface IBUIBarItem : NSObject <IBDocumentArchiving, NSCoding, NSCopying>
 {
+    IBCocoaTouchTargetRuntime *_targetRuntime;
     BOOL _enabled;
+    long long _tag;
     NSString *_title;
     NSImage *_image;
     CDStruct_c519178c _imageInsets;
-    long long _tag;
-    IBCocoaTouchTargetRuntime *_targetRuntime;
 }
 
++ (void)registerMarshallingRecordHandlers;
 + (id)keyPathsForValuesAffectingImageInsetsRight;
 + (id)keyPathsForValuesAffectingImageInsetsLeft;
 + (id)keyPathsForValuesAffectingImageInsetsBottom;
@@ -50,12 +51,12 @@
 - (struct CGRect)frame;
 - (id)barView;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithTargetRuntime:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (void)setIbInspectedImage:(id)arg1;
 - (id)ibInspectedImage;
 - (void)setIbInspectedTitle:(id)arg1;

@@ -12,10 +12,10 @@
 
 @interface IBParameterizedRenderingDestination : NSObject <IBRenderingDestination>
 {
-    double backingScaleFactor;
+    double _backingScaleFactor;
 }
 
-@property(readonly) double backingScaleFactor; // @synthesize backingScaleFactor;
+@property(readonly) double backingScaleFactor; // @synthesize backingScaleFactor=_backingScaleFactor;
 - (id)initWithBackingScaleFactor:(double)arg1;
 
 // Remaining properties

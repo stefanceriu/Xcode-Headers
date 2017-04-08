@@ -4,28 +4,38 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IDEKeyDrivenNavigableItem.h"
+#import <GPUDebuggerKit/GPUGenericNavigableItem.h>
 
-@class GPUTraceDocumentLocation, NSArray;
+#import "GPUStringFilterableNavigableItem.h"
+
+@class GPUFilterString, GPUTraceDocumentLocation, GPUTraceProgramGroup, NSArray, NSString;
 
 __attribute__((visibility("hidden")))
-@interface GPUTraceProgramGroupNavigableItem : IDEKeyDrivenNavigableItem
+@interface GPUTraceProgramGroupNavigableItem : GPUGenericNavigableItem <GPUStringFilterableNavigableItem>
 {
     NSArray *_cachedChildRepresentedObjects;
     GPUTraceDocumentLocation *_cachedLocation;
-    BOOL _displayRelatedDisplayables;
+    GPUFilterString *_filterString;
 }
 
+@property(retain, nonatomic) GPUFilterString *filterString; // @synthesize filterString=_filterString;
 - (void).cxx_destruct;
-- (BOOL)displayRelatedDisplayables:(BOOL)arg1;
 - (void)invalidateChildItems;
-- (id)childRepresentedObjects;
+@property(readonly, nonatomic) NSArray *childRepresentedObjects;
+- (id)_filterChildren;
 - (id)contentDocumentLocation;
 - (id)name;
 - (id)image;
 - (id)documentType;
 - (id)ideModelObjectTypeIdentifier;
 - (id)initWithRepresentedObject:(id)arg1;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly, nonatomic) GPUTraceProgramGroup *representedObject; // @dynamic representedObject;
+@property(readonly) Class superclass;
 
 @end
 

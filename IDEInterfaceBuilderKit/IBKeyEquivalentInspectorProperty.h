@@ -10,10 +10,11 @@
 
 @interface IBKeyEquivalentInspectorProperty : IDEInspectorProperty
 {
-    IBKeyEquivalentEntryField *keyEquivalentEntryField;
     IDEInspectorKeyPath *_valueKeyPath;
+    IBKeyEquivalentEntryField *_keyEquivalentEntryField;
 }
 
+@property(retain) IBKeyEquivalentEntryField *keyEquivalentEntryField; // @synthesize keyEquivalentEntryField=_keyEquivalentEntryField;
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)refresh;

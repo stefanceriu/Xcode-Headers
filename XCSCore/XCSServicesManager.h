@@ -8,10 +8,11 @@
 
 #import "XCSServiceConnectionDelegate.h"
 
-@class NSArray, NSMapTable, NSMutableSet, NSString;
+@class NSArray, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSTimer;
 
 @interface XCSServicesManager : NSObject <XCSServiceConnectionDelegate>
 {
+    NSMutableArray *_progressLoadingDelegates;
     NSArray *_defaultsArray;
     NSMutableSet *_services;
     NSMapTable *_statusChangedListeners;
@@ -25,6 +26,9 @@
     NSMutableSet *_servicesUserCanCreateBotsOn;
     NSMutableSet *_servicesUserCanViewBotsOn;
     BOOL _isRunningInTestContext;
+    NSTimer *_statusCallbackTimer;
+    NSTimer *_advisoryCallbackTimer;
+    NSMutableDictionary *_versionInfoByServiceID;
     BOOL _ignoreUserDefaults;
     NSString *_clientApplicationName;
     CDUnknownBlockType _serviceInfoCallback;
@@ -38,6 +42,15 @@
 @property(nonatomic) BOOL ignoreUserDefaults; // @synthesize ignoreUserDefaults=_ignoreUserDefaults;
 @property(retain, nonatomic) NSString *clientApplicationName; // @synthesize clientApplicationName=_clientApplicationName;
 - (void).cxx_destruct;
+- (void)fetchUpcomingIntegrationsForServiceWithID:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)botSnapshotDataForBotWithID:(id)arg1 serviceID:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)testResultChangesInLastWeekForBot:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)issuesStreakForBot:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)xcodeVersionForService:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)newestIntegrationsForBotWithIdentifier:(id)arg1 serviceIdentifier:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (void)rawBotsForServiceWithIdentifier:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)issuesForIntegrationID:(id)arg1 serviceID:(id)arg2 completion:(CDUnknownBlockType)arg3;
+- (id)_cachedServiceForIdentifier:(id)arg1;
 - (void)maintenanceTaskStatusChangedInService:(id)arg1;
 - (void)serviceConnectionStatusDidDisconnect:(id)arg1;
 - (void)serviceConnectionStatusDidConnect:(id)arg1;
@@ -53,7 +66,8 @@
 - (void)reloadService:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)reloadServices;
 - (void)deactivateService:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (void)activateService:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
+- (void)activateService:(id)arg1 completion:(CDUnknownBlockType)arg2;
+- (void)configureCallbacksForService:(id)arg1 handler:(CDUnknownBlockType)arg2;
 - (id)_legacyAccountsCachePath;
 - (void)cacheAccounts:(id)arg1;
 - (id)cachedAccounts;

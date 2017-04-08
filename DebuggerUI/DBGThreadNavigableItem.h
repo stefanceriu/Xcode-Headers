@@ -27,7 +27,7 @@
 - (BOOL)isLeaf;
 - (id)subtitle;
 - (id)name;
-- (BOOL)_isRecordedThreadForQueue;
+- (BOOL)_isRecordedThread;
 - (void)primitiveInvalidate;
 - (id)initWithRepresentedObject:(id)arg1;
 

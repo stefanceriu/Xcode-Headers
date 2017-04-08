@@ -53,6 +53,13 @@ struct Function {
     void *_field14;
 };
 
+struct ProgressDigest<3> {
+    long long MaxMonitorValue;
+    long long InvalidIndex;
+    long long _indices[3];
+    struct vector<long long, std::__1::allocator<long long>> _monitorValues;
+};
+
 struct _CSTypeRef {
     unsigned long long _opaque_1;
     unsigned long long _opaque_2;
@@ -63,7 +70,9 @@ struct _NSRange {
     unsigned long long length;
 };
 
-struct __hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*> *__next_;
+};
 
 struct dy_timebase {
     struct mach_timebase_info mach_timebase;
@@ -76,11 +85,11 @@ struct mach_timebase_info {
     unsigned int denom;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
@@ -89,11 +98,9 @@ struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned lon
 
 struct unordered_map<unsigned long long, DYDevice *, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, DYDevice *>>> {
     struct __hash_table<std::__1::__hash_value_type<unsigned long long, DYDevice *>, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, DYDevice *>, std::__1::hash<unsigned long long>, true>, std::__1::__unordered_map_equal<unsigned long long, std::__1::__hash_value_type<unsigned long long, DYDevice *>, std::__1::equal_to<unsigned long long>, true>, std::__1::allocator<std::__1::__hash_value_type<unsigned long long, DYDevice *>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, DYDevice *>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, DYDevice *>, std::__1::hash<unsigned long long>, true>> {
             unsigned long long __first_;
@@ -109,6 +116,14 @@ struct vector<GPUTools::FD::Function, std::__1::allocator<GPUTools::FD::Function
     struct Function *__end_;
     struct __compressed_pair<GPUTools::FD::Function *, std::__1::allocator<GPUTools::FD::Function>> {
         struct Function *__first_;
+    } __end_cap_;
+};
+
+struct vector<long long, std::__1::allocator<long long>> {
+    long long *__begin_;
+    long long *__end_;
+    struct __compressed_pair<long long *, std::__1::allocator<long long>> {
+        long long *__first_;
     } __end_cap_;
 };
 

@@ -8,7 +8,7 @@
 
 #import "SKEDocumentMember.h"
 
-@class DVTDocumentLocation, DVTFileDataType, IDEEditorDocument<SKEDocumentProtocol>, IDEFileReference, IDETypeIdentifier, NSArray, NSImage, NSString, SKEDocumentLocation, SKESceneDocument;
+@class DVTDocumentLocation, DVTFileDataType, IDEEditorDocument<SKEDocumentProtocol>, IDEFileReference, IDETypeIdentifier, NSArray, NSImage, NSNull, NSString, SKEDocumentLocation, SKESceneDocument;
 
 @interface SKEDocumentGroup : NSObject <SKEDocumentMember>
 {
@@ -80,9 +80,12 @@
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly) unsigned long long hash;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) BOOL navigableItem_isLeaf;

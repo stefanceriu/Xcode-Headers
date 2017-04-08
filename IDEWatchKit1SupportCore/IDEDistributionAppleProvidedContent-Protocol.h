@@ -14,7 +14,6 @@
 - (NSNumber *)isAppleProvidedContent:(IDEDistributionItem *)arg1 archive:(IDEArchive *)arg2 error:(id *)arg3;
 - (BOOL)shouldCopySidecarContentFromArchive:(IDEArchive *)arg1;
 - (BOOL)shouldRemoveForAppStoreDistributionDistributionItem:(IDEDistributionItem *)arg1 shouldRemoveParentDirectory:(char *)arg2;
-- (BOOL)shouldRetrieveTeamIDForSigningFromDistributionItem:(IDEDistributionItem *)arg1;
 - (BOOL)shouldCodeSignDistributionItem:(IDEDistributionItem *)arg1;
 @end
 

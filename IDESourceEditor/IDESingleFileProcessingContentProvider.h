@@ -17,7 +17,7 @@
 + (BOOL)_canProcessURL:(id)arg1;
 + (id)_blacklistedUTISet;
 + (id)sourceFilePathForGeneratedContentURL:(id)arg1;
-+ (int)buildOperationCommand;
++ (long long)buildOperationCommand;
 + (id)urlScheme;
 + (void)setSingleFileProcessingSchemeCommand:(id)arg1;
 + (id)singleFileProcessingSchemeCommand;

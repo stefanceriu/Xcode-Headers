@@ -13,12 +13,12 @@
 
 @interface IBUIGestureRecognizer : NSObject <IBDocumentArchiving, NSCoding>
 {
-    IBCocoaTouchTargetRuntime *_targetRuntime;
     BOOL _enabled;
     BOOL _cancelsTouchesInView;
     BOOL _delaysTouchesBegan;
     BOOL _delaysTouchesEnded;
     unsigned long long _allowedPressTypes;
+    IBCocoaTouchTargetRuntime *_targetRuntime;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -31,11 +31,11 @@
 @property BOOL cancelsTouchesInView; // @synthesize cancelsTouchesInView=_cancelsTouchesInView;
 @property(getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
 - (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithTargetRuntime:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)showAllowedPressTypes;
 - (id)ibSegueTriggers;
 - (id)ibDefaultSegueTrigger;

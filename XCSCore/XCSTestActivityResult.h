@@ -18,15 +18,19 @@
     NSString *_screenshotFilePath;
     NSString *_snapshotFilePath;
     NSString *_diagnosticReportFilePath;
+    NSString *_memoryGraphFilePath;
     XCSIntegrationAsset *_screenshot;
     XCSIntegrationAsset *_snapshot;
     XCSIntegrationAsset *_diagnosticReport;
+    XCSIntegrationAsset *_memoryGraph;
 }
 
+@property(retain, nonatomic) XCSIntegrationAsset *memoryGraph; // @synthesize memoryGraph=_memoryGraph;
 @property(retain, nonatomic) XCSIntegrationAsset *diagnosticReport; // @synthesize diagnosticReport=_diagnosticReport;
 @property(retain, nonatomic) XCSIntegrationAsset *snapshot; // @synthesize snapshot=_snapshot;
 @property(retain, nonatomic) XCSIntegrationAsset *screenshot; // @synthesize screenshot=_screenshot;
 @property(readonly, nonatomic) NSArray *subactivityResults; // @synthesize subactivityResults=_subactivityResults;
+@property(readonly, nonatomic) NSString *memoryGraphFilePath; // @synthesize memoryGraphFilePath=_memoryGraphFilePath;
 @property(readonly, nonatomic) NSString *diagnosticReportFilePath; // @synthesize diagnosticReportFilePath=_diagnosticReportFilePath;
 @property(readonly, nonatomic) NSString *snapshotFilePath; // @synthesize snapshotFilePath=_snapshotFilePath;
 @property(readonly, nonatomic) NSString *screenshotFilePath; // @synthesize screenshotFilePath=_screenshotFilePath;
@@ -37,8 +41,8 @@
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 - (void)uploadAttachmentsToIntegration:(id)arg1 completion:(CDUnknownBlockType)arg2;
-- (id)activityResultWithTitle:(id)arg1 UUID:(id)arg2 start:(id)arg3 finish:(id)arg4 screenshotFilePath:(id)arg5 snapshotFilePath:(id)arg6 diagnosticReportFilePath:(id)arg7 validationErrors:(id *)arg8;
-- (id)initWithTitle:(id)arg1 UUID:(id)arg2 start:(id)arg3 finish:(id)arg4 screenshotFilePath:(id)arg5 snapshotFilePath:(id)arg6 diagnosticReportFilePath:(id)arg7 validationErrors:(id *)arg8;
+- (id)activityResultWithTitle:(id)arg1 UUID:(id)arg2 start:(id)arg3 finish:(id)arg4 screenshotFilePath:(id)arg5 snapshotFilePath:(id)arg6 diagnosticReportFilePath:(id)arg7 memoryGraphFilePath:(id)arg8 validationErrors:(id *)arg9;
+- (id)initWithTitle:(id)arg1 UUID:(id)arg2 start:(id)arg3 finish:(id)arg4 screenshotFilePath:(id)arg5 snapshotFilePath:(id)arg6 diagnosticReportFilePath:(id)arg7 memoryGraphFilePath:(id)arg8 validationErrors:(id *)arg9;
 
 @end
 

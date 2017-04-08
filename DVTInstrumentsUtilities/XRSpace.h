@@ -10,7 +10,6 @@
 
 @interface XRSpace : NSObject
 {
-    BOOL _supportsOpNames;
     BOOL _overridesQoS;
     NSOperationQueue *_queue;
     NSMutableString *_tag;
@@ -18,10 +17,13 @@
     NSMutableDictionary *_userDataByToken;
     NSMutableSet *_notificationShims;
     NSString *_opName;
+    BOOL _supportsOpNames;
 }
 
 + (void)runWhenAllOperationsFinish:(id)arg1 block:(CDUnknownBlockType)arg2;
 + (void)runWhenOperationFinishes:(id)arg1 block:(CDUnknownBlockType)arg2;
+@property(readonly, nonatomic) NSOperationQueue *queue; // @synthesize queue=_queue;
+@property(nonatomic) BOOL supportsOpNames; // @synthesize supportsOpNames=_supportsOpNames;
 - (void).cxx_destruct;
 - (void)_removeNotificationShim:(id)arg1;
 - (void)stopObservationsOfObject:(id)arg1 forObserver:(id)arg2;

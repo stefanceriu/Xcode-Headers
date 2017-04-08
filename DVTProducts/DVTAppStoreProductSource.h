@@ -6,14 +6,17 @@
 
 #import <DVTProducts/DVTProductSource.h>
 
-@class DVTDelayedInvocation, DVTFilePath, DVTObservingToken, DVTPerformanceMetric, NSSet;
+@class DVTDelayedInvocation, DVTFilePath, DVTObservingToken, DVTPerformanceMetric, NSMutableDictionary, NSMutableSet, NSSet;
 
 @interface DVTAppStoreProductSource : DVTProductSource
 {
     DVTPerformanceMetric *_perfMetric;
+    BOOL _hasCompletedInitialLoading;
     DVTDelayedInvocation *_delayedRefreshInvocation;
     DVTObservingToken *_developerAccountsObserver;
     NSSet *_developerAccountPasswordObservers;
+    NSMutableDictionary *_deliveryQueue;
+    NSMutableSet *_priorityDeliveryQueue;
     DVTFilePath *_productsRootDirectory;
 }
 
@@ -21,28 +24,40 @@
 + (BOOL)isAdamIdWhitelisted:(id)arg1;
 + (id)whiteListedAppByAdamId;
 @property(retain, nonatomic) DVTFilePath *productsRootDirectory; // @synthesize productsRootDirectory=_productsRootDirectory;
+@property(retain, nonatomic) NSMutableSet *priorityDeliveryQueue; // @synthesize priorityDeliveryQueue=_priorityDeliveryQueue;
+@property(retain, nonatomic) NSMutableDictionary *deliveryQueue; // @synthesize deliveryQueue=_deliveryQueue;
 @property(retain) NSSet *developerAccountPasswordObservers; // @synthesize developerAccountPasswordObservers=_developerAccountPasswordObservers;
 @property(retain) DVTObservingToken *developerAccountsObserver; // @synthesize developerAccountsObserver=_developerAccountsObserver;
 @property(retain, nonatomic) DVTDelayedInvocation *delayedRefreshInvocation; // @synthesize delayedRefreshInvocation=_delayedRefreshInvocation;
+@property BOOL hasCompletedInitialLoading; // @synthesize hasCompletedInitialLoading=_hasCompletedInitialLoading;
 - (void).cxx_destruct;
-- (id)_binaryInfosForVersion:(id)arg1;
-- (id)_supportedDeviceTypesForAppVersion:(id)arg1 productCategory:(id)arg2;
-- (id)_productFromAppDescription:(id)arg1 versionDescriptions:(id)arg2 session:(id)arg3 coordinator:(id)arg4 errors:(id *)arg5;
-- (id)_productsForAccount:(id)arg1 coordinator:(id)arg2;
-- (id)_productsFromITunesWithCoordinator:(id)arg1;
+- (id)binaryInfosForVersion:(id)arg1;
+- (id)supportedDeviceTypesForAppVersion:(id)arg1 productCategory:(id)arg2;
+- (id)productFromAppDescription:(id)arg1 versionDescriptions:(id)arg2 session:(id)arg3 coordinator:(id)arg4 errors:(id *)arg5;
+- (id)appStoreProductsResultForAccount:(id)arg1 coordinator:(id)arg2 productLocationResultNotification:(CDUnknownBlockType)arg3;
+- (id)appStoreProductsForCoordinator:(id)arg1 productLocationResultNotification:(CDUnknownBlockType)arg2;
+- (id)productForAppDescription:(id)arg1 session:(id)arg2 coordinator:(id)arg3;
+- (id)versionDescriptionsForAppDescription:(id)arg1 session:(id)arg2 error:(id *)arg3;
+- (id)appDescriptionsForAccountSession:(id)arg1 error:(id *)arg2;
 - (void)_setBusyOnMainThread:(BOOL)arg1;
-- (void)_delayedRefreshProducts;
+- (void)delayedRefreshProducts;
+- (void)drainAllProductsInPriorityDeliveryQueue;
+- (void)drainAllProductsInDeliveryQueue;
+- (id)drainProductsDeliveryQueueOfProductIdentifiers:(id)arg1;
+- (void)addToProductDeliveryQueue:(id)arg1;
+- (void)prioritizeDeliveryOfResultsForProductIdentifier:(id)arg1;
 - (void)refreshProducts;
-- (void)_startLocating;
-- (BOOL)_networkRefreshEnabled;
-- (id)_resultByMergingProductResults:(id)arg1 withCoordinator:(id)arg2;
+- (void)startLocating;
+- (BOOL)networkRefreshEnabled;
+- (id)resultByMergingProductResults:(id)arg1 withCoordinator:(id)arg2;
 - (id)updateCacheWithResult:(id)arg1;
 - (id)readProductsFromCacheWithCoordinator:(id)arg1;
+- (id)readProductFromCachedProductDir:(id)arg1 withCoordinator:(id)arg2;
 - (id)appIconPathForProduct:(id)arg1;
 - (id)filePathForProductVersion:(id)arg1 parentProduct:(id)arg2;
 - (id)filePathForProduct:(id)arg1;
-- (id)_cacheAndNetworkLock;
-- (void)primitiveInvalidate;
+- (id)cacheAndNetworkLock;
+- (void)dealloc;
 - (id)initWithProductManager:(id)arg1 productsRootDirectory:(id)arg2;
 - (id)initWithProductManager:(id)arg1;
 

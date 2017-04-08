@@ -15,7 +15,6 @@
     id _containerDidOpenContainerNotificationObserver;
     DVTCommandLineParser *_parser;
     BOOL _shouldExit;
-    BOOL _exportWithOriginalSigningIdentity;
     BOOL _allTargets;
     BOOL _skipUnsupportedDestinations;
     BOOL _parallelizeTargets;
@@ -23,6 +22,7 @@
     BOOL _dontActuallyRunCommands;
     BOOL _skipUnavailableActions;
     BOOL _quieterOutput;
+    BOOL _runSkippedTestsOnly;
     BOOL _outputAsJSON;
     int _toolCommand;
     NSString *_name;
@@ -44,10 +44,6 @@
     NSString *_archivePath;
     NSString *_exportOptionsPlist;
     NSString *_exportDestinationPath;
-    NSString *_exportFormat;
-    NSString *_exportSigningIdentity;
-    NSString *_exportInstallerIdentity;
-    NSString *_exportProvisioningProfile;
     NSArray *_buildActions;
     NSArray *_potentialBuildActions;
     NSArray *_buildSettingAssignmentStrings;
@@ -71,8 +67,11 @@
     NSString *_testRunSpecificationPathString;
     NSArray *_skipTestIdentifiers;
     NSArray *_onlyTestIdentifiers;
-    NSString *_permuteTemplatesToPath;
+    NSString *_templateOutputPath;
     NSString *_templateTeamID;
+    NSString *_templateName;
+    NSString *_templatePlatform;
+    NSString *_templateOptions;
     DVTMacroDefinitionTable *_synthesizedMacros;
     DVTMacroDefinitionTable *_macrosFromCommandLine;
     DVTMacroDefinitionTable *_macrosFromXcconfigOption;
@@ -98,8 +97,12 @@
 @property(retain) DVTMacroDefinitionTable *macrosFromXcconfigOption; // @synthesize macrosFromXcconfigOption=_macrosFromXcconfigOption;
 @property(retain) DVTMacroDefinitionTable *macrosFromCommandLine; // @synthesize macrosFromCommandLine=_macrosFromCommandLine;
 @property(retain) DVTMacroDefinitionTable *synthesizedMacros; // @synthesize synthesizedMacros=_synthesizedMacros;
+@property(retain) NSString *templateOptions; // @synthesize templateOptions=_templateOptions;
+@property(retain) NSString *templatePlatform; // @synthesize templatePlatform=_templatePlatform;
+@property(retain) NSString *templateName; // @synthesize templateName=_templateName;
 @property(retain) NSString *templateTeamID; // @synthesize templateTeamID=_templateTeamID;
-@property(retain) NSString *permuteTemplatesToPath; // @synthesize permuteTemplatesToPath=_permuteTemplatesToPath;
+@property(retain) NSString *templateOutputPath; // @synthesize templateOutputPath=_templateOutputPath;
+@property BOOL runSkippedTestsOnly; // @synthesize runSkippedTestsOnly=_runSkippedTestsOnly;
 @property(retain) NSArray *onlyTestIdentifiers; // @synthesize onlyTestIdentifiers=_onlyTestIdentifiers;
 @property(retain) NSArray *skipTestIdentifiers; // @synthesize skipTestIdentifiers=_skipTestIdentifiers;
 @property(retain) NSString *testRunSpecificationPathString; // @synthesize testRunSpecificationPathString=_testRunSpecificationPathString;
@@ -130,11 +133,6 @@
 @property(retain) NSArray *buildSettingAssignmentStrings; // @synthesize buildSettingAssignmentStrings=_buildSettingAssignmentStrings;
 @property(retain) NSArray *potentialBuildActions; // @synthesize potentialBuildActions=_potentialBuildActions;
 @property(retain) NSArray *buildActions; // @synthesize buildActions=_buildActions;
-@property BOOL exportWithOriginalSigningIdentity; // @synthesize exportWithOriginalSigningIdentity=_exportWithOriginalSigningIdentity;
-@property(copy) NSString *exportProvisioningProfile; // @synthesize exportProvisioningProfile=_exportProvisioningProfile;
-@property(copy) NSString *exportInstallerIdentity; // @synthesize exportInstallerIdentity=_exportInstallerIdentity;
-@property(copy) NSString *exportSigningIdentity; // @synthesize exportSigningIdentity=_exportSigningIdentity;
-@property(copy) NSString *exportFormat; // @synthesize exportFormat=_exportFormat;
 @property(copy) NSString *exportDestinationPath; // @synthesize exportDestinationPath=_exportDestinationPath;
 @property(copy) NSString *exportOptionsPlist; // @synthesize exportOptionsPlist=_exportOptionsPlist;
 @property(copy) NSString *archivePath; // @synthesize archivePath=_archivePath;
@@ -159,10 +157,10 @@
 - (void).cxx_destruct;
 - (long long)_buildLogVerbosity;
 - (void)run;
+- (void)_createNewProjectAndExit;
 - (void)_permuteTemplatesAndExit;
 - (void)_importLocalizationsAndExit;
 - (void)_exportLocalizationsAndExit;
-- (void)_exportArchiveAndExit;
 - (void)_distributeArchiveAndExit;
 - (id)_availableExportArchiveOptionsSection;
 - (void)_printVerboseSDKListAndExit;
@@ -185,7 +183,8 @@
 - (id)_stringByResolvingSymlinksInPath:(id)arg1;
 - (void)_parseOptions;
 - (id)_actionStringForBuildAction:(id)arg1;
-- (id)_schemeCommandForBuildAction:(id)arg1 outSchemeTask:(int *)arg2;
+- (id)_schemeCommandForBuildAction:(id)arg1 outSchemeTask:(long long *)arg2;
+- (id)_legacyBuildActionMapping;
 - (id)_supportedBuildActions;
 - (void)_printErrorString:(id)arg1 andFailWithCode:(long long)arg2;
 - (void)_printWarningString:(id)arg1;

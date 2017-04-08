@@ -13,18 +13,18 @@
 
 @interface IBUITableViewDataSource : NSObject <IBDocumentArchiving, NSCoding>
 {
-    NSArray *sections;
+    NSArray *_sections;
 }
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
-@property(copy) NSArray *sections; // @synthesize sections;
+@property(copy) NSArray *sections; // @synthesize sections=_sections;
 - (void).cxx_destruct;
 - (id)runtimeClassNameForContext:(id)arg1 returningOptionalFallbackClassName:(id *)arg2;
 - (Class)classToTakeInitialMarshalledKeysFrom:(id)arg1;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
 - (id)ibLocalChildToManyRelationshipsKeyPaths;
 - (void)ibRemoveChildren:(id)arg1;
 

@@ -10,12 +10,12 @@
 
 @interface IBLayoutRuleManager : NSObject
 {
-    NSMutableDictionary *sharedLayoutRules;
-    NSMutableOrderedSet *fallbackWidgetTypes;
-    NSMapTable *widgetCodes;
-    NSMapTable *compactLayoutRules;
-    BOOL maxRuleDistanceIsValid;
-    double maxRuleDistance;
+    NSMutableDictionary *_sharedLayoutRules;
+    NSMutableOrderedSet *_fallbackWidgetTypes;
+    NSMapTable *_widgetCodes;
+    NSMapTable *_compactLayoutRules;
+    BOOL _maxRuleDistanceIsValid;
+    double _maxRuleDistance;
 }
 
 + (id)sharedInstance;

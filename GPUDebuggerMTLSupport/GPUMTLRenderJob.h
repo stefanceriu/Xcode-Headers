@@ -19,10 +19,8 @@ __attribute__((visibility("hidden")))
 @property(nonatomic) unsigned long long selectedSlice; // @synthesize selectedSlice=_selectedSlice;
 @property(nonatomic) unsigned long long selectedLevel; // @synthesize selectedLevel=_selectedLevel;
 - (void).cxx_destruct;
-- (BOOL)showOverlay;
 - (void)setRenderingAttributes:(id)arg1;
 - (struct CGSize)imageSize;
-- (BOOL)isColor;
 - (BOOL)flipped;
 - (id)displayElementName;
 - (BOOL)isStencilDisplayElement;

@@ -11,11 +11,11 @@
 @interface DVTPortalResponse : NSObject
 {
     NSDictionary *_payload;
-    NSString *_sessionID;
+    NSString *_portalSessionID;
 }
 
 + (id)portalResponseFromData:(id)arg1 URLResponse:(id)arg2 error:(id *)arg3;
-@property(readonly, nonatomic) NSString *sessionID; // @synthesize sessionID=_sessionID;
+@property(readonly, nonatomic) NSString *portalSessionID; // @synthesize portalSessionID=_portalSessionID;
 @property(readonly, nonatomic) NSDictionary *payload; // @synthesize payload=_payload;
 - (void).cxx_destruct;
 @property(readonly, nonatomic) long long resultCode;

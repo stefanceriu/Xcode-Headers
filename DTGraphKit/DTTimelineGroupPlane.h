@@ -49,11 +49,13 @@
 - (void)setBaseZPosition:(double)arg1;
 - (void)_updateSubplaneHiddenState;
 - (void)_setType:(long long)arg1;
-- (void)_populatePlaneLayoutMap:(unordered_map_c1fbcd3c *)arg1 offsetFromTop:(double)arg2;
+- (void)_populatePlaneLayoutMap:(unordered_map_b8b4eb21 *)arg1 offsetFromTop:(double)arg2;
 - (void)_didMoveOutOfView;
 - (void)_willMoveIntoView;
 - (void)setTimelineGraph:(id)arg1;
 - (id)_planesUnderPoint:(struct CGPoint)arg1;
+- (BOOL)_pointIntersectsGlyph:(struct CGPoint)arg1 plane:(out id *)arg2 location:(out unsigned long long *)arg3 rect:(out struct CGRect *)arg4;
+- (BOOL)_pointIntersectsIcon:(struct CGPoint)arg1 plane:(out id *)arg2 rect:(out struct CGRect *)arg3;
 - (BOOL)_pointIntersectsDisclosureGlyph:(struct CGPoint)arg1 groupPlane:(out id *)arg2;
 - (void)_invalidateTimeRange:(struct XRTimeRange)arg1;
 - (void)_setPosition:(struct CGPoint)arg1 size:(struct CGSize)arg2;

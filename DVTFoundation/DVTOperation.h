@@ -31,8 +31,6 @@
 @property(copy) NSError *error; // @synthesize error=_error;
 @property(copy) CDUnknownBlockType block; // @synthesize block=_block;
 - (void).cxx_destruct;
-- (void)trackFuture:(id)arg1;
-- (void)trackFuture:(id)arg1 cancel:(BOOL)arg2 error:(BOOL)arg3;
 - (id)notFinishedReasonWithDepth:(unsigned long long)arg1;
 - (id)stateString;
 - (void)enumerateUsingBlock:(CDUnknownBlockType)arg1;
@@ -47,6 +45,8 @@
 - (id)description;
 - (void)dealloc;
 - (id)init;
+- (void)trackFuture:(id)arg1;
+- (void)trackFuture:(id)arg1 cancel:(BOOL)arg2 error:(BOOL)arg3;
 
 @end
 

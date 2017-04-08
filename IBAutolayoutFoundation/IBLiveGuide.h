@@ -10,9 +10,9 @@
 
 @interface IBLiveGuide : IBLayoutGuide
 {
-    struct CGPoint start;
-    struct CGPoint end;
-    NSObject<IBAutolayoutItem> *view;
+    struct CGPoint _start;
+    struct CGPoint _end;
+    NSObject<IBAutolayoutItem> *_view;
 }
 
 - (void).cxx_destruct;

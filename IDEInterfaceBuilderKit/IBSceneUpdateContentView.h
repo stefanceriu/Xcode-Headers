@@ -9,13 +9,10 @@
 #import "IBSceneUpdateRenderingDelegate.h"
 #import "IBSceneUpdateRequestConfiguring.h"
 
-@class IBCancellationToken, IBSceneImageData, NSString;
+@class IBSceneImageData, NSString;
 
 @interface IBSceneUpdateContentView : DVTLayoutView_ML <IBSceneUpdateRenderingDelegate, IBSceneUpdateRequestConfiguring>
 {
-    long long _asyncUpdateSceneIdentifier;
-    IBCancellationToken *_renderingDelegateToken;
-    double _currentScaleFactor;
     id <IBSceneUpdateContentViewDelegate> _delegate;
     IBSceneImageData *_sceneImageData;
 }
@@ -29,12 +26,10 @@
 - (void)configureFullSceneUpdateRequest:(id)arg1;
 - (void)updateLayer;
 - (BOOL)wantsUpdateLayer;
-- (void)_teardownRenderingDelegate;
 - (Class)renderingProcessingRequestClass;
 - (id)targetRuntime;
 - (id)makeBackingLayer;
 - (void)invalidateOnMainQueueForReason:(CDUnknownBlockType)arg1;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 // Remaining properties

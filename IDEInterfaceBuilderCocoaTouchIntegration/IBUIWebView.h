@@ -7,47 +7,47 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIWebView : IBUIView <IBDocumentArchiving, NSCoding>
+@interface IBUIWebView : IBUIView <IBDocumentArchiving>
 {
-    BOOL scalesPageToFit;
-    BOOL allowsInlineMediaPlayback;
-    BOOL mediaPlaybackRequiresUserAction;
-    BOOL mediaPlaybackAllowsAirPlay;
-    BOOL suppressesIncrementalRendering;
-    BOOL keyboardDisplayRequiresUserAction;
-    unsigned long long dataDetectorTypes;
-    long long paginationMode;
-    long long paginationBreakingMode;
-    double pageLength;
-    double gapBetweenPages;
+    BOOL _scalesPageToFit;
+    BOOL _allowsInlineMediaPlayback;
+    BOOL _mediaPlaybackRequiresUserAction;
+    BOOL _mediaPlaybackAllowsAirPlay;
+    BOOL _suppressesIncrementalRendering;
+    BOOL _keyboardDisplayRequiresUserAction;
+    unsigned long long _dataDetectorTypes;
+    long long _paginationMode;
+    long long _paginationBreakingMode;
+    double _pageLength;
+    double _gapBetweenPages;
 }
 
++ (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
-@property(nonatomic) BOOL keyboardDisplayRequiresUserAction; // @synthesize keyboardDisplayRequiresUserAction;
-@property(nonatomic) BOOL suppressesIncrementalRendering; // @synthesize suppressesIncrementalRendering;
-@property(nonatomic) BOOL mediaPlaybackAllowsAirPlay; // @synthesize mediaPlaybackAllowsAirPlay;
-@property(nonatomic) BOOL mediaPlaybackRequiresUserAction; // @synthesize mediaPlaybackRequiresUserAction;
-@property(nonatomic) BOOL allowsInlineMediaPlayback; // @synthesize allowsInlineMediaPlayback;
-@property(nonatomic) double gapBetweenPages; // @synthesize gapBetweenPages;
-@property(nonatomic) double pageLength; // @synthesize pageLength;
-@property(nonatomic) long long paginationBreakingMode; // @synthesize paginationBreakingMode;
-@property(nonatomic) long long paginationMode; // @synthesize paginationMode;
-@property(nonatomic) BOOL scalesPageToFit; // @synthesize scalesPageToFit;
-@property(nonatomic) unsigned long long dataDetectorTypes; // @synthesize dataDetectorTypes;
+@property(nonatomic) double gapBetweenPages; // @synthesize gapBetweenPages=_gapBetweenPages;
+@property(nonatomic) double pageLength; // @synthesize pageLength=_pageLength;
+@property(nonatomic) long long paginationBreakingMode; // @synthesize paginationBreakingMode=_paginationBreakingMode;
+@property(nonatomic) long long paginationMode; // @synthesize paginationMode=_paginationMode;
+@property(nonatomic) BOOL keyboardDisplayRequiresUserAction; // @synthesize keyboardDisplayRequiresUserAction=_keyboardDisplayRequiresUserAction;
+@property(nonatomic) BOOL suppressesIncrementalRendering; // @synthesize suppressesIncrementalRendering=_suppressesIncrementalRendering;
+@property(nonatomic) BOOL mediaPlaybackAllowsAirPlay; // @synthesize mediaPlaybackAllowsAirPlay=_mediaPlaybackAllowsAirPlay;
+@property(nonatomic) BOOL mediaPlaybackRequiresUserAction; // @synthesize mediaPlaybackRequiresUserAction=_mediaPlaybackRequiresUserAction;
+@property(nonatomic) BOOL allowsInlineMediaPlayback; // @synthesize allowsInlineMediaPlayback=_allowsInlineMediaPlayback;
+@property(nonatomic) BOOL scalesPageToFit; // @synthesize scalesPageToFit=_scalesPageToFit;
+@property(nonatomic) unsigned long long dataDetectorTypes; // @synthesize dataDetectorTypes=_dataDetectorTypes;
 - (void)backportDetectsPhoneNumbers:(id)arg1;
 - (void)upgradeDetectsPhoneNumbers:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)defaultBackgroundColor;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)shouldDrawAsPlaceholder;
 - (BOOL)prefersCachedImageBasedDrawing;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (BOOL)ibSizesToFillViewControllers;
 - (id)ibLocalAttributeKeyPaths;

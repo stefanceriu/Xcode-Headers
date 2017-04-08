@@ -10,14 +10,13 @@
 
 @interface IBCocoaPopoverObjectLibraryAsset : IBObjectLibraryAsset
 {
-    NSPopover *popover;
-    IBNSViewController *contentViewController;
+    NSPopover *_popover;
+    IBNSViewController *_contentViewController;
 }
 
+@property(retain, nonatomic) IBNSViewController *contentViewController; // @synthesize contentViewController=_contentViewController;
+@property(retain, nonatomic) NSPopover *popover; // @synthesize popover=_popover;
 - (void).cxx_destruct;
-@property(readonly) IBNSViewController *contentViewController;
-@property(readonly) NSPopover *popover;
-- (void)createContentIfNeeded;
 - (id)initWithCoder:(id)arg1;
 
 @end

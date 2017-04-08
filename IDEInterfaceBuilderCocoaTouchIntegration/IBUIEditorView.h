@@ -14,35 +14,33 @@
 
 @interface IBUIEditorView : DVTLayoutView_ML <IBDocumentArbitrationResponder, IBUIOverlayViewDelegate, IBSceneUpdateContentViewDelegate>
 {
-    IBCocoaTouchTargetRuntime *targetRuntime;
-    IBUISimulatedMetricsContainer *simulatedMetricsContainer;
-    NSView *editedView;
-    IBUIOverlayView *decoratorOverlayView;
-    NSMutableDictionary *cornerImageViews;
-    NSColor *cornerColor;
-    NSColor *backgroundColor;
     NSArray *_decoratorableViews;
     BOOL _needsSynchronize;
     IBUIStatusBar *_statusBarView;
     NSView *_bottomBarView;
     NSView *_topBarView;
     NSColor *_effectiveBackgroundColor;
+    IBUIOverlayView *_decoratorOverlayView;
+    NSMutableDictionary *_cornerImageViews;
+    NSColor *_backgroundColor;
+    IBUISimulatedMetricsContainer *_simulatedMetricsContainer;
+    NSColor *_cornerColor;
+    IBCocoaTouchTargetRuntime *_targetRuntime;
+    NSView *_editedView;
     IBUIEditorView *_parentEditorView;
     NSView *_wrapperView;
 }
 
 @property(retain, nonatomic) NSView *wrapperView; // @synthesize wrapperView=_wrapperView;
 @property(nonatomic) __weak IBUIEditorView *parentEditorView; // @synthesize parentEditorView=_parentEditorView;
-@property(retain, nonatomic) NSView *editedView; // @synthesize editedView;
-@property(readonly) IBCocoaTouchTargetRuntime *targetRuntime; // @synthesize targetRuntime;
+@property(retain, nonatomic) NSView *editedView; // @synthesize editedView=_editedView;
+@property(readonly) IBCocoaTouchTargetRuntime *targetRuntime; // @synthesize targetRuntime=_targetRuntime;
 - (void).cxx_destruct;
 - (CDStruct_c519178c)ibEffectiveSimulatedEditorViewInset;
 - (struct CGSize)ibEffectiveSimulatedCanvasFrameContentViewSize;
 - (id)backgroundColorForSceneUpdateContentView:(id)arg1;
 - (id)targetRuntimeForSceneUpdateContentView:(id)arg1;
-- (BOOL)shouldSceneUpdateContentViewRegisterForAsynchronousRendering:(id)arg1;
 - (void)invalidateSceneForContentView:(id)arg1 forReason:(CDUnknownBlockType)arg2;
-- (double)scaleFactorForRenderingSceneContentView:(id)arg1;
 - (id)overlayView:(id)arg1 hitTest:(struct CGPoint)arg2 defaultHit:(id)arg3;
 - (void)overlayView:(id)arg1 drawRect:(struct CGRect)arg2;
 - (void)layoutBottomUp;
@@ -64,11 +62,10 @@
 - (void)layoutCornerImageViewsInFrame:(struct CGRect)arg1;
 - (BOOL)shouldDrawCorners;
 @property(readonly) double cornerRadius;
-@property(copy) NSColor *cornerColor;
+@property(copy) NSColor *cornerColor; // @synthesize cornerColor=_cornerColor;
 @property(readonly, nonatomic) IBUITabBar *tabBar;
 @property(readonly, nonatomic) IBUIToolbar *toolbar;
 @property(readonly, nonatomic) IBUINavigationBar *navigationBar;
-- (id)decoratorOverlayView;
 - (unsigned long long)innerShadowEdgeMask;
 @property(readonly, nonatomic) NSView *bottomBarView;
 @property(readonly, nonatomic) NSView *topBarView;
@@ -80,10 +77,10 @@
 - (void)editedViewDidChangeInvalidatingProperty;
 - (id)contentView;
 - (void)setSimulatedMetricsContainer:(id)arg1;
-@property(readonly, copy, nonatomic) IBUISimulatedMetricsContainer *simulatedMetricsContainer; // @synthesize simulatedMetricsContainer;
+@property(readonly, copy, nonatomic) IBUISimulatedMetricsContainer *simulatedMetricsContainer; // @synthesize simulatedMetricsContainer=_simulatedMetricsContainer;
 - (void)setTargetRuntime:(id)arg1;
 - (void)_invalidateEffectiveBackgroundColor;
-@property(copy, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor;
+@property(copy, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
 - (void)setBottomBarView:(id)arg1;
 - (void)setTopBarView:(id)arg1;
 - (void)setStatusBarView:(id)arg1;

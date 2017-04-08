@@ -10,12 +10,12 @@
 
 @interface IBMutableIdentityDictionary : NSMutableDictionary
 {
-    NSMapTable *table;
-    NSSortDescriptor *codingSortDescriptor;
+    NSMapTable *_table;
+    NSSortDescriptor *_codingSortDescriptor;
 }
 
 + (id)dictionaryWithObject:(id)arg1 forKey:(id)arg2;
-@property(copy) NSSortDescriptor *codingSortDescriptor; // @synthesize codingSortDescriptor;
+@property(copy) NSSortDescriptor *codingSortDescriptor; // @synthesize codingSortDescriptor=_codingSortDescriptor;
 - (void).cxx_destruct;
 - (void)removeObjectForKey:(id)arg1;
 - (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;

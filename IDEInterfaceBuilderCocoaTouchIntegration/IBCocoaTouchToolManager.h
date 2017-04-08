@@ -11,7 +11,7 @@
 @interface IBCocoaTouchToolManager : IBAbstractInterfaceBuilderPlatformToolManager
 {
     IBSimulatorToolDVTTaskExecutionContext *_sharedDVTTaskExecutionContext;
-    IBMutableIdentityDictionary *_executionContextsByDeviceThenFidelity;
+    IBMutableIdentityDictionary *_executionContextsByDevice;
     NSMutableSet *_fonts;
 }
 

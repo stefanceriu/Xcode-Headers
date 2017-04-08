@@ -72,7 +72,7 @@
 - (BOOL)isAccessibilityElement;
 - (BOOL)isAccessibilitySelectorAllowed:(SEL)arg1;
 - (void)_generatePlaneLayoutMap;
-- (const unordered_map_c1fbcd3c *)_planeLayoutMap;
+- (const unordered_map_b8b4eb21 *)_planeLayoutMap;
 - (void)clearInspectionInfo;
 - (void)displayInspectionInfoForNanosecond:(unsigned long long)arg1 planes:(id)arg2;
 - (void)setNextResponder:(id)arg1;
@@ -147,7 +147,6 @@
 @property(nonatomic) BOOL displayCurrentInspectionTime;
 @property(readonly, nonatomic) long long midpointNanosecondOffset;
 @property(nonatomic) long long nanosecondOffset;
-- (void)_updateNanosecondOffsetIfNeeded;
 @property(nonatomic) double planeHandleWidth;
 - (void)_screenChangeNotification:(id)arg1;
 @property(readonly, nonatomic) NSArray *planes; // @synthesize planes=_planes;

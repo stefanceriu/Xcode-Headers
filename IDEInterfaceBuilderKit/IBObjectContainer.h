@@ -13,11 +13,8 @@
 
 @interface IBObjectContainer : NSObject <IBGroupDelegate, NSCoding>
 {
-    IBMutableIdentityDictionary *connectionsBySource;
-    IBMutableIdentityDictionary *connectionsByDestination;
-    NSString *sourceID;
-    NSString *uniqueID;
-    NSArray *verificationIssues;
+    IBMutableIdentityDictionary *_connectionsBySource;
+    IBMutableIdentityDictionary *_connectionsByDestination;
     IBObjectRecord *_rootRecord;
     NSMutableOrderedSet *_objects;
     NSArray *_cachedConnections;
@@ -26,22 +23,26 @@
     IBMutableIdentityDictionary *_membersToRecords;
     NSMutableDictionary *_memberIDsToRecords;
     BOOL _usesAutoincrementingIDs;
+    NSString *_uniqueID;
+    NSString *_sourceID;
     NSObject *_rootObject;
     long long _maxID;
     id <IBObjectContainerDelegate> _delegate;
+    NSArray *_verificationIssues;
 }
 
 + (id)objectContainerFromData:(id)arg1 withArchivingDelegate:(id)arg2;
 + (id)objectContainerWithInitilallyDesignableChildrenOfObjects:(id)arg1 usingAutoincrementingIDs:(BOOL)arg2;
+@property(retain) NSArray *verificationIssues; // @synthesize verificationIssues=_verificationIssues;
 @property id <IBObjectContainerDelegate> delegate; // @synthesize delegate=_delegate;
 @property(nonatomic) long long maxID; // @synthesize maxID=_maxID;
 @property(nonatomic) BOOL usesAutoincrementingIDs; // @synthesize usesAutoincrementingIDs=_usesAutoincrementingIDs;
 @property(readonly) NSObject *rootObject; // @synthesize rootObject=_rootObject;
+@property(readonly) NSString *sourceID; // @synthesize sourceID=_sourceID;
+@property(readonly) NSString *uniqueID; // @synthesize uniqueID=_uniqueID;
 - (void).cxx_destruct;
 - (void)removeObject:(id)arg1;
 - (void)setSourceID:(id)arg1;
-- (id)uniqueID;
-- (id)sourceID;
 - (void)setConfigurationPropertyStorage:(id)arg1 forObject:(id)arg2;
 - (id)configurationPropertyStorageForObject:(id)arg1;
 - (BOOL)containsObject:(id)arg1 andIfSoGetPropertyStorage:(id *)arg2;
@@ -162,7 +163,6 @@
 - (void)decodeObjectsWithCoder:(id)arg1;
 - (id)initUsingAutoincrementingIDs:(BOOL)arg1;
 - (id)init;
-@property(readonly) NSArray *verificationIssues;
 - (void)verify;
 - (void)verifyMembersHaveUniqueIDs;
 - (id)verifyMaxID;

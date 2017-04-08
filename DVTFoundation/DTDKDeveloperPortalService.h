@@ -34,7 +34,7 @@
 @property(copy) NSDictionary *responseDictionary; // @synthesize responseDictionary=_responseDictionary;
 @property(copy) CDUnknownBlockType callback; // @synthesize callback=_callback;
 @property(retain) NSMutableDictionary *requestDictionary; // @synthesize requestDictionary=_requestDictionary;
-@property(copy) NSMutableURLRequest *request; // @synthesize request=_request;
+@property(retain) NSMutableURLRequest *request; // @synthesize request=_request;
 @property int remainingLoginAttempts; // @synthesize remainingLoginAttempts=_remainingLoginAttempts;
 @property(retain) DVTPortalOperationToken *token; // @synthesize token=_token;
 @property _Bool ignoreSession; // @synthesize ignoreSession=_ignoreSession;

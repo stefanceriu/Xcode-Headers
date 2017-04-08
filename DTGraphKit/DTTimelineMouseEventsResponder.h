@@ -8,7 +8,7 @@
 
 #import "DTTimelineMouseStateValidatorDelegate.h"
 
-@class DTTimelineGraph, DTTimelineMouseStateValidator, DTTimelinePlane, NSEvent, NSString, NSTimer, NSTrackingArea;
+@class DTTimelineGraph, DTTimelineMouseStateValidator, DTTimelinePlane, NSEvent, NSSet, NSString, NSTimer, NSTrackingArea;
 
 __attribute__((visibility("hidden")))
 @interface DTTimelineMouseEventsResponder : NSResponder <DTTimelineMouseStateValidatorDelegate>
@@ -22,6 +22,9 @@ __attribute__((visibility("hidden")))
     long long _magnifyGestureCenter;
     BOOL _mouseDraggedSinceMouseDown;
     BOOL _delegateSupportsInspectionCB;
+    BOOL _mouseIsInLabelArea;
+    NSSet *_labelAreaHoverPlanes;
+    long long _freezeGlyphHoverState;
     NSEvent *_mouseDownEvent;
     DTTimelinePlane *_resizingPlane;
     NSTimer *_longPressTimer;
@@ -50,16 +53,18 @@ __attribute__((visibility("hidden")))
 - (void)_moveHorizontalScrollerByX:(double)arg1;
 - (void)_moveByY:(double)arg1;
 - (void)_moveByX:(double)arg1;
+- (BOOL)_mouseIsOverGlyph:(id)arg1 plane:(out id *)arg2 location:(out unsigned long long *)arg3 rect:(out struct CGRect *)arg4;
+- (BOOL)_mouseIsOverIcon:(id)arg1 plane:(out id *)arg2 rect:(out struct CGRect *)arg3;
 - (BOOL)_mouseIsOverDisclosureTriangle:(id)arg1 groupPlane:(out id *)arg2;
 - (BOOL)_mouseIsOverResizablePlaneBorder:(id)arg1;
 - (id)_planeToResizeForEvent:(id)arg1;
-- (BOOL)_mouseIsOverFilterEnd:(id)arg1;
-- (BOOL)_mouseIsOverFilterStart:(id)arg1;
-- (BOOL)_mouseIsInLabelOverlayArea:(id)arg1;
-- (BOOL)_mouseIsInBottomPinnedPlane:(id)arg1;
-- (BOOL)_mouseIsInRuler:(id)arg1;
-- (BOOL)_mouseIsInHoverArea:(id)arg1;
-- (BOOL)_mouseIsOverGraph:(id)arg1;
+- (BOOL)_mouseIsOverFilterEnd:(struct CGPoint)arg1;
+- (BOOL)_mouseIsOverFilterStart:(struct CGPoint)arg1;
+- (BOOL)_mouseIsInLabelOverlayArea:(struct CGPoint)arg1;
+- (BOOL)_mouseIsInBottomPinnedPlane:(struct CGPoint)arg1;
+- (BOOL)_mouseIsInRuler:(struct CGPoint)arg1;
+- (BOOL)_mouseIsInHoverArea:(struct CGPoint)arg1;
+- (BOOL)_mouseIsOverGraph:(struct CGPoint)arg1;
 - (void)_updateFilterStateFromTimeline;
 - (long long)_maxOffset;
 - (double)_rulerHeight;
@@ -79,6 +84,7 @@ __attribute__((visibility("hidden")))
 - (void)magnifyWithEvent:(id)arg1;
 - (void)mouseDragged:(id)arg1;
 - (void)mouseMoved:(id)arg1;
+- (void)_updateMouseHoverStatus:(struct CGPoint)arg1;
 - (void)mouseUp:(id)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)mouseExited:(id)arg1;

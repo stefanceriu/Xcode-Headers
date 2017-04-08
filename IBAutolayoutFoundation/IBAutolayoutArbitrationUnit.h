@@ -33,7 +33,9 @@
 - (BOOL)doesChangingPriorityOfConstraint:(id)arg1 to:(double)arg2 preventClippingContentOfView:(id)arg3;
 - (id)constraintsAffectingLayoutOfView:(id)arg1 forOrientations:(unsigned long long)arg2 inEngine:(id)arg3;
 - (id)constraintsAffectingLayoutOfView:(id)arg1 forOrientations:(unsigned long long)arg2;
+- (id)applyFrameDecisionForEffectiveItemsToFramesMap:(id)arg1 misplacedViewsToMisplacementStatus:(id)arg2 ambiguousGroups:(id)arg3;
 - (id)computeStatusFromEngine:(id)arg1;
+- (BOOL)hasMisplacementOnlyAlongAmbiguousAxisWithStatus:(id)arg1 andAmbiguity:(id)arg2;
 - (id)computeViewToLayoutFramesFromEngine:(id)arg1;
 - (void)_updateUninitializedAmbiguityStatusForMutableEffectiveAmbiguousViewStatusGroups:(id)arg1;
 - (id)_makeAmbiguityGroupForAmbiguityStatus:(id)arg1 orientationMask:(unsigned long long)arg2;

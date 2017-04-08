@@ -12,20 +12,17 @@
 
 @interface IBToken : NSObject <NSCoding>
 {
-    NSString *editingString;
-    NSString *displayString;
-    long long type;
+    NSString *_editingString;
+    NSString *_displayString;
+    long long _type;
 }
 
 + (id)tokenWithEditingString:(id)arg1 displayString:(id)arg2 type:(long long)arg3;
+@property long long type; // @synthesize type=_type;
+@property(retain) NSString *displayString; // @synthesize displayString=_displayString;
+@property(retain) NSString *editingString; // @synthesize editingString=_editingString;
 - (void).cxx_destruct;
 - (id)description;
-- (void)setType:(long long)arg1;
-- (long long)type;
-- (void)setDisplayString:(id)arg1;
-- (id)displayString;
-- (void)setEditingString:(id)arg1;
-- (id)editingString;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithEditingString:(id)arg1 displayString:(id)arg2 type:(long long)arg3;

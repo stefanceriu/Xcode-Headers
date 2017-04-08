@@ -8,10 +8,10 @@
 
 @interface IBColorList : NSColorList
 {
-    BOOL editable;
+    BOOL _editable;
 }
 
-@property(getter=isEditable) BOOL editable; // @synthesize editable;
+@property(getter=isEditable) BOOL editable; // @synthesize editable=_editable;
 - (id)initWithName:(id)arg1;
 
 @end

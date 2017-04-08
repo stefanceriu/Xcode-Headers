@@ -35,11 +35,13 @@
     DVTNotificationToken *_outlineViewDidHideObserver;
     DVTNotificationToken *_outlineViewDidUnhideObserver;
     BOOL _loadingNewVariablesInBackground;
+    BOOL _recordedStackFrameSelected;
     IDEDebugSession *_debugSession;
 }
 
 + (id)_createOptionsDictionaryFromOptionsElement:(id)arg1;
 + (void)initialize;
+@property BOOL recordedStackFrameSelected; // @synthesize recordedStackFrameSelected=_recordedStackFrameSelected;
 @property BOOL loadingNewVariablesInBackground; // @synthesize loadingNewVariablesInBackground=_loadingNewVariablesInBackground;
 @property(retain, nonatomic) IDEDebugSession *debugSession; // @synthesize debugSession=_debugSession;
 - (void).cxx_destruct;

@@ -18,6 +18,7 @@
 + (BOOL)supportsInvalidationPrevention;
 + (unsigned long long)assertionBehaviorForKeyValueObservationsAtEndOfEvent;
 + (unsigned long long)assertionBehaviorAfterEndOfEventForSelector:(SEL)arg1;
++ (BOOL)__classIsDVTInvalidation;
 - (void)DVTInvalidationMixIn_SoftAssertDidInvalidateDealloc;
 - (void)DVTInvalidationMixIn_HardAssertDidInvalidateDealloc;
 - (void)DVTInvalidationMixIn_DeZombifyDealloc;

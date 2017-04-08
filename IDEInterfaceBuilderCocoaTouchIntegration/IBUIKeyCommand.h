@@ -14,11 +14,11 @@
 
 @interface IBUIKeyCommand : NSObject <IBDocumentArchiving, NSCoding, NSCopying>
 {
-    NSString *_input;
     int _modifierFlags;
+    NSString *_input;
     NSString *_actionName;
-    NSString *_segueName;
     NSString *_discoverabilityTitle;
+    NSString *_segueName;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -32,12 +32,12 @@
 - (Class)classToTakeInitialMarshalledKeysFrom:(id)arg1;
 - (id)runtimeClassNameForContext:(id)arg1 returningOptionalFallbackClassName:(id *)arg2;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)ibLocalAttributeKeyPaths;
 - (id)inputAndModifierMaskAsIBKeyEquivalent;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

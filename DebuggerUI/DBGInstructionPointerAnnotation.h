@@ -21,6 +21,7 @@
     DVTObservingToken *_theadNameObserverToken;
     DVTObservingToken *_uniqueIDObserverToken;
     DVTObservingToken *_lastReasonStoppedObserverToken;
+    unsigned long long _perfMeasurementCounter;
 }
 
 + (id)dvt_instructionPointerPathWithSize:(struct CGSize)arg1 tipWidth:(double)arg2;
@@ -31,6 +32,7 @@
 - (id)annotationDisplayName;
 - (void)_moveInstructionPointerToAnnotationLocation;
 - (void)didMoveAnnotation:(id)arg1;
+- (void)annotation:(id)arg1 willDrawInTextSidebarView:(id)arg2 withAnnotationsInSameLine:(id)arg3;
 - (unsigned long long)annotation:(id)arg1 willMoveToParagraphNumber:(unsigned long long)arg2;
 - (id)_themeBasedOnCurrentThreadState;
 - (id)_iconForRect:(struct CGRect)arg1;

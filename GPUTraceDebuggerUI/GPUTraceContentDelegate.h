@@ -9,59 +9,49 @@
 #import "DVTInvalidation.h"
 #import "IDEDebugNavigableContentDelegate.h"
 
-@class DVTStackBacktrace, GPUDebuggingAdditionUIController, GPUNavigatorFilterControlBar, GPUNavigatorStatusCell, GPUSharedTabUIState, IDEDebugNavigator, IDEDebugSession, IDENavigableItem, IDENavigatorDataCell, IDENavigatorOutlineView, NSMenuItem, NSSet, NSString;
+@class DVTStackBacktrace, GPUDebuggingAdditionUIController, GPUNavigableItemFilteringCoordinator, GPUNavigatorFilterControlBar, GPUNavigatorStatusCell, GPUSharedTabUIState, IDEDebugNavigator, IDEDebugSession, IDENavigableItem, IDENavigatorDataCell, IDENavigatorOutlineView, NSMenuItem, NSString;
 
 __attribute__((visibility("hidden")))
 @interface GPUTraceContentDelegate : NSObject <IDEDebugNavigableContentDelegate, DVTInvalidation>
 {
-    NSString *_filterString;
-    int _navigatorProgramSortMode;
+    unsigned long long _navigatorProgramSortMode;
     GPUDebuggingAdditionUIController *_debuggingAdditionUIController;
     GPUSharedTabUIState *_sharedUIStateObj;
     IDENavigatorOutlineView *_outlineView;
     IDENavigatorDataCell *_subtitleCell;
     GPUNavigatorStatusCell *_subtitleStatusCell;
     NSMenuItem *_traceItemMenuItem;
-    unsigned long long _compressionValue;
     BOOL _ignoreStateForDebugNavigator;
     BOOL _haveRequestedUIController;
     id <DVTCancellable> _uiControllerObserver;
     id <DVTCancellable> _buttonBindingToken;
     id <DVTCancellable> _sessionStateObserver;
-    NSSet *_preFilterExpandedItemTokens;
+    GPUNavigableItemFilteringCoordinator *_filteringCoordinator;
     GPUNavigatorFilterControlBar *_filterControlBar;
-    BOOL _compressStackFrames;
+    NSString *_associatedProcessUUID;
     BOOL _showOnlyIssues;
     BOOL _showOnlyInterestingContent;
-    int _navigatorMode;
     IDEDebugNavigator *_debugNavigator;
     IDEDebugSession *_debugSession;
+    long long _stackFrameFilter;
+    unsigned long long _traceOutlineMode;
 }
 
 + (void)initialize;
 @property(nonatomic) BOOL showOnlyInterestingContent; // @synthesize showOnlyInterestingContent=_showOnlyInterestingContent;
-@property(nonatomic) int navigatorMode; // @synthesize navigatorMode=_navigatorMode;
+@property(nonatomic) unsigned long long traceOutlineMode; // @synthesize traceOutlineMode=_traceOutlineMode;
 @property(nonatomic) BOOL showOnlyIssues; // @synthesize showOnlyIssues=_showOnlyIssues;
-@property(nonatomic) BOOL compressStackFrames; // @synthesize compressStackFrames=_compressStackFrames;
+@property(nonatomic) long long stackFrameFilter; // @synthesize stackFrameFilter=_stackFrameFilter;
 @property(readonly) IDEDebugSession *debugSession; // @synthesize debugSession=_debugSession;
 @property(readonly) IDEDebugNavigator *debugNavigator; // @synthesize debugNavigator=_debugNavigator;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
-- (void)setStoredCompressionValue:(id)arg1;
-- (id)storedCompressionValue;
-- (void)setProgramSortMode:(id)arg1;
-- (id)storedProgramSortMode;
-- (void)setDisplayableCallOrProgramMode:(id)arg1;
-- (id)storedDisplayableCallOrProgramMode;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
-- (void)_updateForNewCompressionValue;
-- (void)_updateForNewProgramSortMode:(int)arg1;
+- (void)_updateForNewProgramSortMode:(unsigned long long)arg1;
 - (void)_recordPersistenceStateChangesIfNecessary;
-- (void)_updateForNewNavigatorContentMode;
-- (void)_updateForNewNavigatorMode:(id)arg1;
+- (void)_updateForNewTraceOutlineMode:(id)arg1;
 - (void)configureMenuForProcessHeaderActionPopUpCell:(id)arg1;
-- (void)_reportNavigatorMode:(int)arg1;
 - (void)_threadContextuallyClicked;
 - (void)contextualMenuNeedsUpdate:(id)arg1;
 - (void)_showAllIssues:(id)arg1;
@@ -73,10 +63,6 @@ __attribute__((visibility("hidden")))
 - (void)_setProgramMetricsAsTime:(id)arg1;
 - (void)_setShowShaderProfilingInFrameNavigator:(id)arg1;
 - (void)_setHideShaderProfilingInFrameNavigator:(id)arg1;
-- (void)_setShowGroupMarkerCalls:(id)arg1;
-- (void)_setHideGroupMarkerCalls:(id)arg1;
-- (void)_setShowEmptyMarkerGroups:(id)arg1;
-- (void)_setHideEmptyMarkerGroups:(id)arg1;
 - (void)_setTextModeCompact:(id)arg1;
 - (void)_setTextModeVerbose:(id)arg1;
 - (void)_refreshNavigator;
@@ -87,11 +73,17 @@ __attribute__((visibility("hidden")))
 - (id)pasteboardStringForRepresentedObject:(id)arg1;
 - (void)_appendDisplayStringForCopiedOrDraggedGroupItem:(id)arg1 toString:(id)arg2 level:(unsigned int)arg3;
 - (BOOL)shouldHandleUserDirectMoveUpOrDown:(BOOL)arg1 forRepresentedObject:(id)arg2 newRow:(long long *)arg3;
-- (void)_updateForNewShowOnlyInterestingContent:(BOOL)arg1;
+- (void)_updateForNewStackFrameFilter;
 - (void)didCollapseForItem:(id)arg1;
 - (void)didExpandForItem:(id)arg1;
 - (void)willExpandForItem:(id)arg1;
+- (void)_willExpandForItemDefault:(id)arg1;
+- (void)_willExpandForItemRevertFilterString:(id)arg1;
+- (void)_willExpandForItemApplyFilterString:(id)arg1;
+- (void)handleExpandForItem:(id)arg1;
+- (id)expandableItemsForProcessItem:(id)arg1 tokens:(id)arg2;
 - (id)expandableItemsForProcessItem:(id)arg1;
+- (void)_recursiveExpanableItemsWithItem:(id)arg1 tokens:(id)arg2 output:(id)arg3;
 - (id)tokenForExpandedRepresentedObject:(id)arg1;
 - (id)launchSessionForSelectedRepresentedObject:(id)arg1;
 - (void)openSelectedRepresentedObject:(id)arg1 withEventType:(unsigned long long)arg2;
@@ -100,7 +92,6 @@ __attribute__((visibility("hidden")))
 - (id)filterView;
 - (void)registerTableCellViewsWithOutlineView:(id)arg1;
 - (id)tableCellViewForRepresentedObject:(id)arg1 withOutlineView:(id)arg2;
-- (id)compressedTableCellViewWithOutlineView:(id)arg1;
 - (id)relatedDisplayablesTableCellViewWithOutlineView:(id)arg1;
 - (id)commandEncoderHeaderTableCellViewWithOutlineView:(id)arg1;
 - (id)commandBufferHeaderTableCellViewWithOutlineView:(id)arg1;
@@ -113,7 +104,6 @@ __attribute__((visibility("hidden")))
 - (id)markerGroupTableCellViewWithOutlineView:(id)arg1;
 - (void)willDisplayCell:(id)arg1 forRepresentedObject:(id)arg2 item:(id)arg3;
 - (void)updateForNewFilterString:(id)arg1;
-- (id)_createFilterPredicateForFilterString:(id)arg1;
 - (void)_navigatorFirstShownWithNoSelectedItems:(id)arg1;
 - (void)debugNavigatorViewWillUninstall;
 - (void)_handleDebuggingAdditionUIControllerCreated:(id)arg1;

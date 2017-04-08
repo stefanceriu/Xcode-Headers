@@ -8,7 +8,7 @@
 
 @interface IBMatrixTracker : IBNSViewTracker
 {
-    BOOL stretch;
+    BOOL _stretch;
 }
 
 - (void)trackWithEvent:(id)arg1;

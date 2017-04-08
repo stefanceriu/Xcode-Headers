@@ -10,8 +10,8 @@
 
 @interface IBSelectionOwner : NSObject
 {
-    DVTMutableOrderedSet *selection;
-    DVTMutableOrderedSet *cachedSelectionCopy;
+    DVTMutableOrderedSet *_selection;
+    DVTMutableOrderedSet *_cachedSelectionCopy;
     id <IBSelectionOwnerDelegate> _delegate;
 }
 

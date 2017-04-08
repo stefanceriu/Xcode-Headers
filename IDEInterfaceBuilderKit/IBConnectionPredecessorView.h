@@ -10,18 +10,18 @@
 
 @interface IBConnectionPredecessorView : DVTLayoutView_ML
 {
-    IBConnectionInterfaceStyle *connectionInterfaceStyle;
-    IBImageButton *disconnectButton;
-    DVTStackView_ML *displayValueStack;
-    BOOL enabled;
-    id representedObject;
+    IBConnectionInterfaceStyle *_connectionInterfaceStyle;
+    IBImageButton *_disconnectButton;
+    DVTStackView_ML *_displayValueStack;
+    BOOL _enabled;
+    id _representedObject;
     id <IBConnectionPredecessorViewDelegate> _delegate;
 }
 
 + (id)defaultTitleFieldWithInterfaceStyle:(id)arg1;
 @property __weak id <IBConnectionPredecessorViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled;
-@property(retain) id representedObject; // @synthesize representedObject;
+@property(retain) id representedObject; // @synthesize representedObject=_representedObject;
+@property(nonatomic, getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
 - (void).cxx_destruct;
 - (void)disconnect:(id)arg1;
 - (void)layoutBottomUp;

@@ -36,6 +36,7 @@
 - (id)currentSelectedDocumentLocations;
 - (void)selectPreviousContentSibling:(id)arg1;
 - (void)selectNextContentSibling:(id)arg1;
+- (void)revealInProjectNavigator:(id)arg1;
 - (void)pause:(id)arg1;
 - (void)play:(id)arg1;
 - (void)nextPage:(id)arg1;

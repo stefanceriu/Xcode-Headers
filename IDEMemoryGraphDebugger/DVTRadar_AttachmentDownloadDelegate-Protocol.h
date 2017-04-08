@@ -7,6 +7,7 @@
 #import "NSObject.h"
 
 @protocol DVTRadar_AttachmentDownloadDelegate <NSObject>
-- (void)fetchAttachmentsCompletionBlock:(void (^)(NSError *, double, BOOL, NSArray *))arg1;
+- (void)cancelFetchAttachments:(id)arg1;
+- (id)fetchAttachmentsCompletionBlock:(void (^)(NSError *, double, BOOL, NSArray *))arg1;
 @end
 

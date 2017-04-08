@@ -7,32 +7,31 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString, NSValue;
 
-@interface IBUIScrollView : IBUIView <IBDocumentArchiving, NSCoding>
+@interface IBUIScrollView : IBUIView <IBDocumentArchiving>
 {
-    CDStruct_c519178c _contentInset;
+    NSValue *_cachedContentSize;
+    NSValue *_cachedEffectiveContentInset;
     BOOL _directionalLockEnabled;
-    BOOL _bounces;
     BOOL _alwaysBounceVertical;
     BOOL _alwaysBounceHorizontal;
+    BOOL _bounces;
     BOOL _scrollEnabled;
     BOOL _pagingEnabled;
     BOOL _showsHorizontalScrollIndicator;
     BOOL _showsVerticalScrollIndicator;
-    CDStruct_c519178c _scrollIndicatorInsets;
-    int _indicatorStyle;
     BOOL _delaysContentTouches;
     BOOL _canCancelContentTouches;
+    BOOL _bouncesZoom;
+    int _indicatorStyle;
+    int _keyboardDismissMode;
     double _minimumZoomScale;
     double _maximumZoomScale;
-    BOOL _bouncesZoom;
-    NSValue *_cachedContentSize;
-    NSValue *_cachedEffectiveContentInset;
-    int _keyboardDismissMode;
     struct CGPoint _contentOffsetAdjustment;
+    CDStruct_c519178c _contentInset;
+    CDStruct_c519178c _scrollIndicatorInsets;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -80,10 +79,10 @@
 - (void)setFrame:(struct CGRect)arg1;
 - (CDStruct_c519178c)effectiveContentInset;
 - (void)layoutSubviews;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)setIbInspectedScrollIndicatorInsetsMaxY:(double)arg1;
 - (double)ibInspectedScrollIndicatorInsetsMaxY;
 - (void)setIbInspectedScrollIndicatorInsetsMinY:(double)arg1;

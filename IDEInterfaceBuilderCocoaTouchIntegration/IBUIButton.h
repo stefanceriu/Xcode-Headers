@@ -8,27 +8,26 @@
 
 #import "IBDocumentArchiving.h"
 #import "IBUIFontedObject.h"
-#import "NSCoding.h"
 
 @class IBUIButtonStateAttribtues, IBUIFontDescription, NSAttributedString, NSColor, NSImage, NSString;
 
-@interface IBUIButton : IBUIControl <IBDocumentArchiving, NSCoding, IBUIFontedObject>
+@interface IBUIButton : IBUIControl <IBDocumentArchiving, IBUIFontedObject>
 {
-    IBUIFontDescription *fontDescription;
-    BOOL reversesTitleShadowWhenHighlighted;
-    BOOL showsTouchWhenHighlighted;
-    BOOL adjustsImageWhenHighlighted;
-    BOOL adjustsImageWhenDisabled;
-    BOOL hasAttributedTitle;
-    int buttonType;
-    int lineBreakMode;
-    struct CGSize titleShadowOffset;
     struct {
         CDStruct_c519178c content;
         CDStruct_c519178c title;
         CDStruct_c519178c image;
-    } edgeInsets;
-    IBUIButtonStateAttribtues *stateAttributes;
+    } _edgeInsets;
+    IBUIButtonStateAttribtues *_stateAttributes;
+    BOOL _reversesTitleShadowWhenHighlighted;
+    BOOL _showsTouchWhenHighlighted;
+    BOOL _adjustsImageWhenHighlighted;
+    BOOL _adjustsImageWhenDisabled;
+    BOOL _hasAttributedTitle;
+    int _buttonType;
+    int _lineBreakMode;
+    IBUIFontDescription *_fontDescription;
+    struct CGSize _titleShadowOffset;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -49,6 +48,7 @@
 + (id)keyPathsForValuesAffectingIbInspectedImageEdgeInsets;
 + (id)keyPathsForValuesAffectingIbInspectedTitleEdgeInsets;
 + (id)keyPathsForValuesAffectingIbInspectedContentEdgeInsets;
++ (id)keyPathsForValuesAffectingIbInspectedHasAttributedTitle;
 + (id)keyPathsForValuesAffectingDefaultFocusedTitleColor;
 + (id)keyPathsForValuesAffectingDefaultSelectedTitleColor;
 + (id)keyPathsForValuesAffectingDefaultDisabledTitleColor;
@@ -87,26 +87,24 @@
 + (id)keyPathsForValuesAffectingIbInspectedNormalTitle;
 + (id)keyPathsForValuesAffectingIbInspectedFontDescription;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
-@property(nonatomic) BOOL hasAttributedTitle; // @synthesize hasAttributedTitle;
-@property(nonatomic) BOOL adjustsImageWhenHighlighted; // @synthesize adjustsImageWhenHighlighted;
-@property(nonatomic) BOOL showsTouchWhenHighlighted; // @synthesize showsTouchWhenHighlighted;
-@property(nonatomic) BOOL reversesTitleShadowWhenHighlighted; // @synthesize reversesTitleShadowWhenHighlighted;
-@property(nonatomic) struct CGSize titleShadowOffset; // @synthesize titleShadowOffset;
-@property(nonatomic) int lineBreakMode; // @synthesize lineBreakMode;
-@property(copy, nonatomic) IBUIFontDescription *fontDescription; // @synthesize fontDescription;
-@property(nonatomic) int buttonType; // @synthesize buttonType;
-@property(nonatomic) BOOL adjustsImageWhenDisabled; // @synthesize adjustsImageWhenDisabled;
+@property(nonatomic) struct CGSize titleShadowOffset; // @synthesize titleShadowOffset=_titleShadowOffset;
+@property(nonatomic) int lineBreakMode; // @synthesize lineBreakMode=_lineBreakMode;
+@property(nonatomic) int buttonType; // @synthesize buttonType=_buttonType;
+@property(nonatomic) BOOL hasAttributedTitle; // @synthesize hasAttributedTitle=_hasAttributedTitle;
+@property(nonatomic) BOOL adjustsImageWhenDisabled; // @synthesize adjustsImageWhenDisabled=_adjustsImageWhenDisabled;
+@property(nonatomic) BOOL adjustsImageWhenHighlighted; // @synthesize adjustsImageWhenHighlighted=_adjustsImageWhenHighlighted;
+@property(nonatomic) BOOL showsTouchWhenHighlighted; // @synthesize showsTouchWhenHighlighted=_showsTouchWhenHighlighted;
+@property(nonatomic) BOOL reversesTitleShadowWhenHighlighted; // @synthesize reversesTitleShadowWhenHighlighted=_reversesTitleShadowWhenHighlighted;
+@property(copy, nonatomic) IBUIFontDescription *fontDescription; // @synthesize fontDescription=_fontDescription;
 - (void).cxx_destruct;
 - (void)unarchiveFont:(id)arg1;
 - (void)archiveFont:(id)arg1;
 - (void)decodeFont:(id)arg1;
 - (void)encodeFont:(id)arg1;
-- (void)decodeHighlightedTitleColor:(id)arg1;
-- (void)encodeHighlightedTitleColor:(id)arg1;
-- (void)decodeNormalTitleColor:(id)arg1;
-- (void)encodeNormalTitleColor:(id)arg1;
 - (id)decodedTitleColorForKey:(id)arg1 withCoder:(id)arg2 defaultLegacyColor:(id)arg3;
 - (void)encodeTitleColor:(id)arg1 forKey:(id)arg2 withCoder:(id)arg3 defaultLegacyColor:(id)arg4;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (void)willChangeTargetRuntimeInDocument:(id)arg1 withContext:(id)arg2;
 - (CDStruct_c519178c)insetForStandardTypeWithRuntimeMutationContext:(id)arg1;
 - (void)unarchiveHasAttributedTitle:(id)arg1;
@@ -170,8 +168,6 @@
 - (BOOL)ibIsAccessibilityElementByDefault;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (void)setIbInspectedImageEdgeInsets:(struct NSEdgeInsets)arg1;
 - (struct NSEdgeInsets)ibInspectedImageEdgeInsets;
@@ -181,7 +177,6 @@
 - (struct NSEdgeInsets)ibInspectedContentEdgeInsets;
 - (void)setIbInspectedHasAttributedTitle:(BOOL)arg1;
 - (BOOL)ibInspectedHasAttributedTitle;
-- (id)keyPathsForValuesAffectingIbInspectedHasAttributedTitle;
 - (id)defaultFocusedTitleColor;
 - (id)defaultSelectedTitleColor;
 - (id)defaultDisabledTitleColor;
@@ -260,6 +255,7 @@
 - (BOOL)ibShouldRefreshInspectorBeforeShowingFindIndicatorForAttributeSearchLocation:(id)arg1 inDocument:(id)arg2;
 - (id)ibContextLabelForAttributeSearchLocation:(id)arg1 inDocument:(id)arg2;
 - (BOOL)ibIsSearchableAttributeKeyPathVisible:(id)arg1 inDocument:(id)arg2;
+- (BOOL)showFocusState;
 - (id)ibFontFromFontDescription;
 - (id)ibDefaultFontDescriptionKeyPath;
 - (id)ibDefaultFontKeyPath;

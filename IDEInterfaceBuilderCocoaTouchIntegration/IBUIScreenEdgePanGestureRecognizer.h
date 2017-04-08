@@ -7,20 +7,19 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIPanGestureRecognizer.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIScreenEdgePanGestureRecognizer : IBUIPanGestureRecognizer <IBDocumentArchiving, NSCoding>
+@interface IBUIScreenEdgePanGestureRecognizer : IBUIPanGestureRecognizer <IBDocumentArchiving>
 {
     unsigned long long _edges;
 }
 
 @property(nonatomic) unsigned long long edges; // @synthesize edges=_edges;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibLocalAttributeKeyPaths;
 

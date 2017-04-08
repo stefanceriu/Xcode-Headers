@@ -10,11 +10,11 @@
 
 @interface IBIntraprocessPasteboard : NSPasteboard
 {
-    NSString *name;
-    DVTMutableOrderedDictionary *datastore;
-    long long changeCount;
-    NSMutableDictionary *owners;
-    DVTMutableOrderedSet *types;
+    NSString *_name;
+    DVTMutableOrderedDictionary *_datastore;
+    long long _changeCount;
+    NSMutableDictionary *_owners;
+    DVTMutableOrderedSet *_types;
 }
 
 + (id)typesFilterableTo:(id)arg1;
@@ -24,7 +24,6 @@
 + (id)generalPasteboard;
 + (id)pasteboardWithUniqueName;
 + (id)pasteboardWithName:(id)arg1;
-+ (id)_cachedPasteboardWithName:(id)arg1;
 + (id)allocWithZone:(struct _NSZone *)arg1;
 + (id)alloc;
 + (void)initialize;

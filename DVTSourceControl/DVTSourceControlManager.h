@@ -54,7 +54,7 @@
 - (id)switchLocation:(id)arg1 ofWorkingCopy:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)currentLocationOfWorkingCopy:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)historyOfWorkingCopy:(id)arg1 fromRevision:(id)arg2 toRevision:(id)arg3 inclusionType:(unsigned long long)arg4 maximumLogItems:(long long)arg5 searchString:(id)arg6 searchType:(unsigned long long)arg7 includeFilePaths:(BOOL)arg8 showMergeCommits:(BOOL)arg9 incrementalLogBlock:(CDUnknownBlockType)arg10 completionBlock:(CDUnknownBlockType)arg11;
-- (id)forceUpdateWorkingCopy:(id)arg1 fromRepository:(id)arg2 progressBlock:(CDUnknownBlockType)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (id)forceUpdateWorkingCopy:(id)arg1 location:(id)arg2 fromRepository:(id)arg3 progressBlock:(CDUnknownBlockType)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (id)mergeBranch:(id)arg1 intoWorkingCopy:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)commitDetails:(id)arg1 revisions:(id)arg2 incrementalLogBlock:(CDUnknownBlockType)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)historyOfFile:(id)arg1 inWorkingCopy:(id)arg2 searchString:(id)arg3 searchType:(unsigned long long)arg4 showMergeCommits:(BOOL)arg5 incrementalLogBlock:(CDUnknownBlockType)arg6 completionBlock:(CDUnknownBlockType)arg7;
@@ -88,7 +88,7 @@
 - (id)generateSSHKeysWithPassphrase:(id)arg1 comment:(id)arg2 inFolder:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)generateSSHKeysWithPassphrase:(id)arg1 inFolder:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)validateSSHKeysWithPrivateKeyURL:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
-- (id)scanForWorkingCopiesInFolderPaths:(id)arg1 traversingUp:(BOOL)arg2 usingSourceControlSystems:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
+- (id)scanForWorkingCopiesInFolderPaths:(id)arg1 traversingUp:(BOOL)arg2 ignoringFolders:(id)arg3 usingSourceControlSystems:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (id)systemWithIdentifer:(id)arg1;
 - (id)sourceControlSystemsWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (id)_allPlugInIdentifiers;

@@ -107,6 +107,7 @@
 - (BOOL)isAWatchAppEditor;
 - (BOOL)isAFrameworkEditor;
 - (BOOL)isAnAppExtensionEditor;
+- (id)productType;
 - (BOOL)isAnAppEditor;
 - (BOOL)isMessagingAppExtensionEditor;
 - (BOOL)isMessagingStickersOnlyAppEditor;

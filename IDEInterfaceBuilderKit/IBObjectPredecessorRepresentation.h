@@ -8,7 +8,7 @@
 
 @interface IBObjectPredecessorRepresentation : IBPredecessorRepresentation
 {
-    id object;
+    id _object;
 }
 
 - (void).cxx_destruct;

@@ -7,30 +7,29 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIWindow : IBUIView <IBDocumentArchiving, NSCoding>
+@interface IBUIWindow : IBUIView <IBDocumentArchiving>
 {
-    BOOL visibleAtLaunch;
-    BOOL resizesToFullScreen;
+    BOOL _visibleAtLaunch;
+    BOOL _resizesToFullScreen;
 }
 
 + (void)registerMarshallingRecordHandlers;
 + (int)ibLibraryInclusionStatusForTargetRuntime:(id)arg1 andDocumentClass:(Class)arg2 assetIdentifier:(id)arg3;
-@property BOOL resizesToFullScreen; // @synthesize resizesToFullScreen;
-@property(getter=isVisibleAtLaunch) BOOL visibleAtLaunch; // @synthesize visibleAtLaunch;
+@property BOOL resizesToFullScreen; // @synthesize resizesToFullScreen=_resizesToFullScreen;
+@property(getter=isVisibleAtLaunch) BOOL visibleAtLaunch; // @synthesize visibleAtLaunch=_visibleAtLaunch;
 - (BOOL)shouldStatusBarMetricsAlwaysOverlayContentForLayoutPolicy:(id)arg1;
 - (id)effectiveSimulatedMetrics;
 - (BOOL)canPresentSimulatedMetrics;
 - (struct CGRect)internalStatusBarFrame;
 - (id)runtimeClassNameForContext:(id)arg1 returningOptionalFallbackClassName:(id *)arg2;
 - (BOOL)prefersCachedImageBasedDrawing;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
 - (BOOL)ibInspectedSupportsOrientationMetrics;
 - (BOOL)ibInspectedSupportsBottomBarMetrics;
 - (BOOL)ibInspectedSupportsTopBarMetrics;

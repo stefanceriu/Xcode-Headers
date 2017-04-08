@@ -24,7 +24,6 @@
 - (id)productsUI_archiveImage;
 - (id)productsUI_version;
 - (id)productsUI_userRepresentationOfVersion;
-- (id)productsUI_onDiskSize;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

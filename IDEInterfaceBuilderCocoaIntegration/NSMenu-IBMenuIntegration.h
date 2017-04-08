@@ -6,9 +6,10 @@
 
 #import "NSMenu.h"
 
+@class NSArray;
+
 @interface NSMenu (IBMenuIntegration)
 + (id)keyPathsForValuesAffectingIbInspectedUserInterfaceLayoutDirection;
-- (BOOL)ibUsesStandardIdentifierPropertySlice;
 - (BOOL)ibCanSupportIdentifierProperty;
 @property long long ibArchivedSystemMenuType;
 - (id)ibAcceptContentsOfPasteboard:(id)arg1 inDocument:(id)arg2 insertionContext:(id)arg3;
@@ -19,8 +20,7 @@
 @property long long ibInspectedUserInterfaceLayoutDirection;
 - (void)setIbInspectedTitle:(id)arg1;
 - (id)ibInspectedTitle;
-- (void)setIbShadowedItemArray:(id)arg1;
-- (id)ibShadowedItemArray;
+@property(copy) NSArray *ibShadowedItemArray;
 - (id)ibPasteboardTypes;
 - (BOOL)ibMustBeBaseObjectOfEditorFrame;
 - (Class)ibEditorClass;

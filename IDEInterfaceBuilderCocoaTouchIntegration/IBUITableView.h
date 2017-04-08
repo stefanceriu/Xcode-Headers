@@ -7,36 +7,35 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIScrollView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class IBUIRefreshControl, IBUITableViewLayoutInfo, IBUITableViewSection, IBUIView, NSArray, NSColor, NSDictionary, NSFont, NSMutableDictionary, NSShadow, NSString, NSValue;
 
-@interface IBUITableView : IBUIScrollView <IBDocumentArchiving, NSCoding>
+@interface IBUITableView : IBUIScrollView <IBDocumentArchiving>
 {
-    int _style;
-    NSColor *_separatorColor;
-    NSColor *_sectionIndexColor;
-    NSColor *_sectionIndexBackgroundColor;
-    NSColor *_sectionIndexTrackingBackgroundColor;
-    long long _dataMode;
-    long long _sectionIndexMinimumDisplayRowCount;
+    IBUITableViewLayoutInfo *_cachedSectionLayoutInfo;
+    NSShadow *_shadowBoxShadow;
+    IBUITableViewSection *_prototypeSection;
+    NSMutableDictionary *_compiledPrototypeNIBs;
     BOOL _allowsSelection;
     BOOL _allowsSelectionDuringEditing;
     BOOL _allowsMultipleSelection;
     BOOL _allowsMultipleSelectionDuringEditing;
+    int _style;
+    int _separatorStyle;
+    NSColor *_separatorColor;
+    long long _sectionIndexMinimumDisplayRowCount;
     double _rowHeight;
     double _sectionHeaderHeight;
     double _sectionFooterHeight;
+    NSArray *_sections;
     IBUIView *_tableHeaderView;
     IBUIView *_tableFooterView;
     IBUIRefreshControl *_refreshControl;
-    NSArray *_sections;
-    NSMutableDictionary *_compiledPrototypeNIBs;
-    IBUITableViewLayoutInfo *_cachedSectionLayoutInfo;
-    NSShadow *_shadowBoxShadow;
-    IBUITableViewSection *_prototypeSection;
-    int _separatorStyle;
+    NSColor *_sectionIndexColor;
+    NSColor *_sectionIndexBackgroundColor;
+    NSColor *_sectionIndexTrackingBackgroundColor;
     NSValue *_separatorInset;
+    long long _dataMode;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -133,13 +132,13 @@
 - (void)encodeSeparatorStyle:(id)arg1;
 - (void)setUnarchivedSeparatorStyle:(int)arg1 forDocument:(id)arg2;
 - (int)archivedSeparatorStyleForDocument:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 @property(readonly, nonatomic) int effectiveSeparatorStyle;
 @property(readonly, nonatomic) int defaultSeparatorStyle;
 - (void)dealloc;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (id)ibPreviewingRegistrantSourceViewInDocument:(id)arg1;
 - (BOOL)ibChildView:(id)arg1 shouldUseConstraintsInsteadOfAutoresizingWhenAddedToDocument:(id)arg2;
 - (BOOL)ibShouldChildBeIncludedInArbitrationUnitWithParent:(id)arg1;

@@ -7,39 +7,38 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIControl.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSColor, NSString;
 
-@interface IBUIPageControl : IBUIControl <IBDocumentArchiving, NSCoding>
+@interface IBUIPageControl : IBUIControl <IBDocumentArchiving>
 {
-    long long numberOfPages;
-    long long currentPage;
-    BOOL hidesForSinglePage;
-    BOOL defersCurrentPageDisplay;
-    NSColor *pageIndicatorTintColor;
-    NSColor *currentPageIndicatorTintColor;
+    BOOL _hidesForSinglePage;
+    BOOL _defersCurrentPageDisplay;
+    long long _numberOfPages;
+    long long _currentPage;
+    NSColor *_pageIndicatorTintColor;
+    NSColor *_currentPageIndicatorTintColor;
 }
 
 + (void)registerMarshallingRecordHandlers;
 + (id)keyPathsForValuesAffectingCurrentPage;
 + (BOOL)ibSupportsCocoaTouchAccessibility;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
-@property(copy, nonatomic) NSColor *currentPageIndicatorTintColor; // @synthesize currentPageIndicatorTintColor;
-@property(copy, nonatomic) NSColor *pageIndicatorTintColor; // @synthesize pageIndicatorTintColor;
-@property(nonatomic) BOOL defersCurrentPageDisplay; // @synthesize defersCurrentPageDisplay;
-@property(nonatomic) BOOL hidesForSinglePage; // @synthesize hidesForSinglePage;
-@property(nonatomic) long long currentPage; // @synthesize currentPage;
-@property(nonatomic) long long numberOfPages; // @synthesize numberOfPages;
+@property(copy, nonatomic) NSColor *currentPageIndicatorTintColor; // @synthesize currentPageIndicatorTintColor=_currentPageIndicatorTintColor;
+@property(copy, nonatomic) NSColor *pageIndicatorTintColor; // @synthesize pageIndicatorTintColor=_pageIndicatorTintColor;
+@property(nonatomic) BOOL defersCurrentPageDisplay; // @synthesize defersCurrentPageDisplay=_defersCurrentPageDisplay;
+@property(nonatomic) BOOL hidesForSinglePage; // @synthesize hidesForSinglePage=_hidesForSinglePage;
+@property(nonatomic) long long currentPage; // @synthesize currentPage=_currentPage;
+@property(nonatomic) long long numberOfPages; // @synthesize numberOfPages=_numberOfPages;
 - (void).cxx_destruct;
 - (void)willChangeTargetRuntimeInDocument:(id)arg1 withContext:(id)arg2;
 - (double)adjustWidthAmountForRuntimeMutationContext:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (unsigned long long)ibDefaultAccessibilityTraits;
 - (BOOL)ibIsAccessibilityElementByDefault;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
 - (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
 - (id)ibLocalPerConfigurationAttributeKeyPaths;

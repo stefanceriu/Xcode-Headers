@@ -47,6 +47,7 @@
 @property(readonly, nonatomic) BOOL is64bit;
 @property(copy, nonatomic) NSString *processName;
 @property(copy, nonatomic) NSString *toolHeaderDescription;
+- (void)setUserMarked:(void *)arg1;
 - (void *)copyUserMarked;
 - (void)_renameWithNodeMap:(unsigned int *)arg1 nodeNamespace:(unsigned int)arg2 edgeMap:(unsigned int *)arg3 edgeNamespace:(unsigned int)arg4;
 - (unsigned int)enumerateRegionsWithBlock:(CDUnknownBlockType)arg1;
@@ -57,15 +58,18 @@
 - (void *)contentForNode:(unsigned int)arg1;
 - (id)labelForNode:(unsigned int)arg1;
 - (void)setLabel:(id)arg1 forNode:(unsigned int)arg2;
+- (unsigned int)nodeReferencedFromDataRegion:(id)arg1 byGlobalSymbol:(id)arg2;
+- (unsigned int)enumerateReferencesFromDataRegion:(id)arg1 atGlobalSymbol:(id)arg2 withBlock:(CDUnknownBlockType)arg3;
+- (struct _VMURange)rangeForSymbolName:(id)arg1 inRegion:(id)arg2;
 - (struct _VMURange)regionSymbolRangeContainingAddress:(unsigned long long)arg1;
 - (id)regionSymbolNameForAddress:(unsigned long long)arg1;
+- (void)_deriveObjcClassStructureRanges;
 - (void)setRegionSymbolName:(id)arg1 forRange:(struct _VMURange)arg2;
 - (struct _VMURange)binarySectionRangeContainingAddress:(unsigned long long)arg1;
 - (id)binarySectionNameForAddress:(unsigned long long)arg1;
 - (void)setBinarySectionName:(id)arg1 forRange:(struct _VMURange)arg2;
 - (id)threadNameForAddress:(unsigned long long)arg1;
 - (void)setThreadName:(id)arg1 forRange:(struct _VMURange)arg2;
-- (void)_deriveObjcClassStructureRanges;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)archiveDictionaryRepresentation:(id)arg1 options:(unsigned long long)arg2;
 - (id)initWithArchived:(id)arg1 version:(long long)arg2 options:(unsigned long long)arg3;

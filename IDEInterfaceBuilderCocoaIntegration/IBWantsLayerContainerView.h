@@ -10,9 +10,10 @@
 
 @interface IBWantsLayerContainerView : DVTLayoutView_ML
 {
-    NSTableView *tableView;
+    NSTableView *_tableView;
 }
 
+@property(retain) NSTableView *tableView; // @synthesize tableView=_tableView;
 - (void).cxx_destruct;
 - (void)layoutBottomUp;
 - (void)layoutTopDown;

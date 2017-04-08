@@ -12,7 +12,6 @@
 
 @interface DVTModelObject : NSObject <DVTModelObject>
 {
-    int _retainCount;
     DVTModelObjectGraph *_objectGraph;
     id _observationInfo;
 }
@@ -21,11 +20,6 @@
 @property(retain, nonatomic) DVTModelObjectGraph *objectGraph;
 - (void)setObservationInfo:(id)arg1;
 - (id)observationInfo;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

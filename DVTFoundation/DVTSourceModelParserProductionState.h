@@ -10,7 +10,6 @@
 
 @interface DVTSourceModelParserProductionState : NSObject
 {
-    int _rc;
     DVTSourceModelParserProductionRule *_productionRule;
     unsigned long long _stackOffset;
     DVTSourceModelParserProductionState *_innerState;
@@ -34,11 +33,6 @@
 @property(readonly, nonatomic) BOOL completeMatch; // @synthesize completeMatch=_completeMatch;
 - (void)resetWithProductionRule:(id)arg1 stackOffset:(unsigned long long)arg2;
 - (id)initWithProductionRule:(id)arg1 stackOffset:(unsigned long long)arg2;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 @end
 

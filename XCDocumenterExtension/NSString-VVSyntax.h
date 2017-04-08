@@ -21,6 +21,7 @@
 - (BOOL)vv_isProperty;
 - (BOOL)vv_isCFunction;
 - (BOOL)vv_isObjCMethod;
+- (BOOL)isImport;
 - (id)vv_stringByTrimEndSpaces;
 - (id)vv_stringByConvertingToUniform;
 @end

@@ -39,6 +39,7 @@
     NSString *_stickerPackIdentifierPrefix;
     NSDictionary *_stringFilesByStickerPackAndLanguage;
     NSString *_productType;
+    NSDictionary *_additionalEnvironment;
     NSString *_issueTextForResizableImage;
     NSString *_issueTextForTemplateRenderingIntent;
     IBICDeviceThinningTraits *_filterForDeviceTraits;
@@ -54,6 +55,7 @@
 @property BOOL supportsTemplateRenderingIntent; // @synthesize supportsTemplateRenderingIntent=_supportsTemplateRenderingIntent;
 @property(copy) NSString *issueTextForResizableImage; // @synthesize issueTextForResizableImage=_issueTextForResizableImage;
 @property BOOL supportsResizableImages; // @synthesize supportsResizableImages=_supportsResizableImages;
+@property(copy, nonatomic) NSDictionary *additionalEnvironment; // @synthesize additionalEnvironment=_additionalEnvironment;
 @property(copy, nonatomic) NSString *productType; // @synthesize productType=_productType;
 @property(copy, nonatomic) NSDictionary *stringFilesByStickerPackAndLanguage; // @synthesize stringFilesByStickerPackAndLanguage=_stringFilesByStickerPackAndLanguage;
 @property(copy, nonatomic) NSString *stickerPackIdentifierPrefix; // @synthesize stickerPackIdentifierPrefix=_stickerPackIdentifierPrefix;

@@ -12,14 +12,14 @@
 {
     NSMutableSet *_layoutGuideMatches;
     NSMutableArray *_guides;
-    long long _exclusivity;
     double _coordinate;
+    long long _exclusivity;
 }
 
-@property(copy) NSArray *guides; // @synthesize guides=_guides;
-@property double coordinate; // @synthesize coordinate=_coordinate;
-@property long long exclusivity; // @synthesize exclusivity=_exclusivity;
 @property(copy) NSSet *layoutGuideMatches; // @synthesize layoutGuideMatches=_layoutGuideMatches;
+@property(copy) NSArray *guides; // @synthesize guides=_guides;
+@property long long exclusivity; // @synthesize exclusivity=_exclusivity;
+@property double coordinate; // @synthesize coordinate=_coordinate;
 - (void).cxx_destruct;
 - (void)addLayoutGuideMatch:(id)arg1;
 - (void)addLayoutGuide:(id)arg1;

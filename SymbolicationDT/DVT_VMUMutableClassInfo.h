@@ -12,9 +12,11 @@
 {
 }
 
+- (void)setVariantScanType:(unsigned int)arg1 withEvaluator:(CDUnknownBlockType)arg2;
 - (void)addVariant:(id)arg1 forField:(id)arg2 withEvaluator:(CDUnknownBlockType)arg3;
 - (void)setFields:(id)arg1;
 - (void)replaceField:(id)arg1 withFields:(id)arg2;
+- (void)addFields:(id)arg1;
 - (void)mutateTypeFieldsWithBlock:(CDUnknownBlockType)arg1;
 @property(nonatomic) unsigned int defaultScanType; // @dynamic defaultScanType;
 @property(retain, nonatomic) DVT_VMUClassInfo *superclassInfo; // @dynamic superclassInfo;

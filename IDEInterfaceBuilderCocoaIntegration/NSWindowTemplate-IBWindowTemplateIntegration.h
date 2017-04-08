@@ -166,6 +166,7 @@
 - (BOOL)ibShouldEncodeContentViewController;
 - (id)ibWindowFromTemplateUsingDocument:(id)arg1;
 - (Class)ibClassToUseWhenCreatingEditorInDocument:(id)arg1;
+- (long long)ibFrameDecisionStrategyDuringFrameDecisionForChild:(id)arg1 hasCleanStatus:(BOOL)arg2;
 - (id)ibQualifyingInfoForDefaultLabel;
 - (Class)ibEditorClass;
 - (void)ibRemoveChildren:(id)arg1;

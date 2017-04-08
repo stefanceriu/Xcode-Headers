@@ -7,20 +7,20 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
-@class NSString;
+@class NSColor, NSString;
 
-@interface IBSCNView : IBUIView <IBDocumentArchiving, NSCoding>
+@interface IBSCNView : IBUIView <IBDocumentArchiving>
 {
     BOOL _jitteringEnabled;
     BOOL _playing;
     BOOL _loops;
     BOOL _autoenablesDefaultLighting;
-    NSString *_ibSceneName;
     BOOL _allowsCameraControl;
     BOOL _ibWantsMultisampling;
     int _ibPreferredRenderingAPI;
+    NSColor *_backgroundColor;
+    NSString *_ibSceneName;
 }
 
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
@@ -32,15 +32,17 @@
 @property(nonatomic) BOOL loops; // @synthesize loops=_loops;
 @property(nonatomic) BOOL playing; // @synthesize playing=_playing;
 @property(nonatomic) BOOL jitteringEnabled; // @synthesize jitteringEnabled=_jitteringEnabled;
+- (void)setBackgroundColor:(id)arg1;
+- (id)backgroundColor;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)shouldDrawAsPlaceholder;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (BOOL)prefersCachedImageBasedDrawing;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)ibSizesToFillViewControllers;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibLocalAttributeKeyPaths;

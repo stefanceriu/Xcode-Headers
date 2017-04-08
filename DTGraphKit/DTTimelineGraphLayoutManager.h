@@ -79,9 +79,9 @@ __attribute__((visibility("hidden")))
 - (id)resizablePlaneForRect:(struct CGRect)arg1;
 - (id)planesUnderPoint:(struct CGPoint)arg1;
 - (void)addBottomBorderLayer:(id)arg1;
-- (void)_addPlane:(id)arg1 toMap:(unordered_map_c1fbcd3c *)arg2 distanceFromTop:(double)arg3;
+- (void)_addPlane:(id)arg1 toMap:(unordered_map_b8b4eb21 *)arg2 distanceFromTop:(double)arg3;
 - (double)computedHeight;
-- (const unordered_map_c1fbcd3c *)planeLayoutMap;
+- (const unordered_map_b8b4eb21 *)planeLayoutMap;
 - (void)generatePlaneLayoutMap;
 - (void)layoutSublayersOfLayer:(id)arg1;
 - (id)initWithTimelineGraph:(id)arg1;

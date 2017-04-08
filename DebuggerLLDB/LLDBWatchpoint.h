@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface LLDBWatchpoint : NSObject <DBGSBWatchpoint>
 {
     struct SBWatchpoint {

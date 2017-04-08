@@ -27,7 +27,7 @@
 @property(retain, nonatomic) NSArray *encoderTilerParamBufBytesUsedArray; // @synthesize encoderTilerParamBufBytesUsedArray=_encoderTilerParamBufBytesUsedArray;
 @property(nonatomic) unsigned int encoderCount; // @synthesize encoderCount=_encoderCount;
 - (void).cxx_destruct;
-- (id)perLineInfoForDocumentURL:(id)arg1 withLibraryIdSet:(unordered_set_febeaddf *)arg2 atFunctionIndex:(unsigned int)arg3;
+- (id)perLineInfoForDocumentURL:(id)arg1 withLibraryIdSet:(unordered_set_ef4c6246 *)arg2 atFunctionIndex:(unsigned int)arg3;
 - (void)calculateRealTimeInfoWithGPUTime:(double)arg1;
 - (void)_dividePerLineCost:(id)arg1 by:(double)arg2;
 - (void)_addPerLineCost:(id)arg1 to:(id)arg2;

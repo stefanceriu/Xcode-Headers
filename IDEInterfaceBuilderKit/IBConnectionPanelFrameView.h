@@ -10,12 +10,12 @@
 
 @interface IBConnectionPanelFrameView : DVTLayoutView_ML
 {
-    IBConnectionPanelScrollView *scrollView;
-    IBImageButton *closeButton;
-    DVTColoredSpinner *spinner;
-    NSTextField *titleField;
-    BOOL pinned;
-    NSEvent *lastMouseDown;
+    IBConnectionPanelScrollView *_scrollView;
+    IBImageButton *_closeButton;
+    NSTextField *_titleField;
+    BOOL _pinned;
+    DVTColoredSpinner *_spinner;
+    NSEvent *_lastMouseDown;
 }
 
 + (id)defaultSpinner;
@@ -27,8 +27,9 @@
 + (void)setDefaultContentWidth:(double)arg1;
 + (double)defaultContentWidth;
 + (double)minimumContentWidth;
-@property(nonatomic) BOOL pinned; // @synthesize pinned;
-@property(copy) NSEvent *lastMouseDown; // @synthesize lastMouseDown;
+@property(nonatomic) BOOL pinned; // @synthesize pinned=_pinned;
+@property(copy) NSEvent *lastMouseDown; // @synthesize lastMouseDown=_lastMouseDown;
+@property(readonly) DVTColoredSpinner *spinner; // @synthesize spinner=_spinner;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)viewWillMoveToWindow:(id)arg1;
@@ -60,7 +61,6 @@
 - (double)footerHeight;
 - (double)headerHeight;
 - (BOOL)isFlipped;
-- (id)spinner;
 @property(copy) NSString *title;
 @property(retain) NSView *contentView;
 - (id)initWithFrame:(struct CGRect)arg1;

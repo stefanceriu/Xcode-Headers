@@ -9,16 +9,12 @@
 @interface IBRenderingProcessingRequest : IBSceneUpdateProcessingRequest
 {
     BOOL _shouldRequestAsynchronously;
-    long long _sceneIdentifier;
 }
 
 + (struct CGColorSpace *)colorSpace;
 @property(readonly, nonatomic) BOOL shouldRequestAsynchronously; // @synthesize shouldRequestAsynchronously=_shouldRequestAsynchronously;
-@property(readonly, nonatomic) long long sceneIdentifier; // @synthesize sceneIdentifier=_sceneIdentifier;
 - (BOOL)requiresSynchronousResultProcessing;
-- (void)encodeWithBinaryArchiver:(id)arg1;
-- (id)initWithBinaryUnarchiver:(id)arg1;
-- (id)initWithSceneIdentifier:(long long)arg1 shouldRequestAsynchronously:(BOOL)arg2 resultPhase:(long long)arg3 postProcessingBlock:(CDUnknownBlockType)arg4;
+- (id)initWithResultPhase:(long long)arg1 shouldRequestAsynchronously:(BOOL)arg2 postProcessingBlock:(CDUnknownBlockType)arg3;
 - (id)initWithResultPhase:(long long)arg1 postProcessingBlock:(CDUnknownBlockType)arg2;
 - (id)init;
 

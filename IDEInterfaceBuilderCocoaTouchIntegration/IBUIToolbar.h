@@ -9,21 +9,20 @@
 #import "IBDocumentArchiving.h"
 #import "IBUIEditorDecoratableView.h"
 #import "IBUIViewCachedItemFramesDictionaryInfoDelegate.h"
-#import "NSCoding.h"
 
 @class IBMutableIdentityDictionary, NSArray, NSColor, NSMutableArray, NSString;
 
-@interface IBUIToolbar : IBUIView <IBDocumentArchiving, NSCoding, IBUIEditorDecoratableView, IBUIViewCachedItemFramesDictionaryInfoDelegate>
+@interface IBUIToolbar : IBUIView <IBDocumentArchiving, IBUIEditorDecoratableView, IBUIViewCachedItemFramesDictionaryInfoDelegate>
 {
-    IBMutableIdentityDictionary *cachedItemFrames;
-    IBMutableIdentityDictionary *cachedTitleRects;
-    IBMutableIdentityDictionary *cachedItemImages;
-    long long barStyle;
-    NSMutableArray *items;
-    NSArray *observedSubviews;
-    BOOL isTopBar;
-    BOOL translucent;
-    NSColor *barTintColor;
+    IBMutableIdentityDictionary *_cachedItemFrames;
+    IBMutableIdentityDictionary *_cachedTitleRects;
+    IBMutableIdentityDictionary *_cachedItemImages;
+    NSArray *_observedSubviews;
+    NSMutableArray *_items;
+    BOOL _translucent;
+    BOOL _isTopBar;
+    NSColor *_barTintColor;
+    long long _barStyle;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -31,8 +30,10 @@
 + (id)ibObservedPropertiesForInheritableMetricsInvalidation;
 + (long long)ibInstantiationSizeBehavior;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
-@property(copy, nonatomic) NSColor *barTintColor; // @synthesize barTintColor;
-@property(nonatomic, getter=isTranslucent) BOOL translucent; // @synthesize translucent;
+@property(nonatomic) BOOL isTopBar; // @synthesize isTopBar=_isTopBar;
+@property(nonatomic) long long barStyle; // @synthesize barStyle=_barStyle;
+@property(copy, nonatomic) NSColor *barTintColor; // @synthesize barTintColor=_barTintColor;
+@property(nonatomic, getter=isTranslucent) BOOL translucent; // @synthesize translucent=_translucent;
 - (void).cxx_destruct;
 - (void)layoutSubviews;
 - (void)setObservedSubviews:(id)arg1;
@@ -53,22 +54,18 @@
 - (id)localExtraMarshalledAttributesKeyPaths;
 - (void)validateTopBarIfNeeded;
 - (void)setTopBar:(BOOL)arg1;
-- (BOOL)isTopBar;
 - (BOOL)effectiveIsTopBar;
-- (void)setBarStyle:(long long)arg1;
-- (long long)barStyle;
-- (void)setItems:(id)arg1;
+@property(retain, nonatomic) NSArray *items;
 - (BOOL)ignoreItemCountMismatchRadar23282644ForCachedItemFramesDictionaryInfo:(id)arg1;
 - (id)orderedItemsForCachedItemFramesDictionaryInfo:(id)arg1;
-- (id)items;
 - (void)removeItem:(id)arg1;
 - (void)dealloc;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (Class)barMetricsClass;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)ibWantsPlaceholderContainingViewController;
 - (void)editorView:(id)arg1 drawDecoratorInRect:(struct CGRect)arg2 overlayView:(id)arg3;
 - (BOOL)ibShouldChildBeIncludedInArbitrationUnitWithParent:(id)arg1;

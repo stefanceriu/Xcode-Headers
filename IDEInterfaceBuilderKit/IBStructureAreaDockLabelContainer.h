@@ -10,9 +10,9 @@
 
 @interface IBStructureAreaDockLabelContainer : DVTLayoutView_ML
 {
-    IBMutableIdentityDictionary *installedLabels;
-    IBMutableIdentityDictionary *previouslyInstalledLabels;
-    NSView *labelLayoutToken;
+    IBMutableIdentityDictionary *_installedLabels;
+    IBMutableIdentityDictionary *_previouslyInstalledLabels;
+    NSView *_labelLayoutToken;
 }
 
 - (void).cxx_destruct;

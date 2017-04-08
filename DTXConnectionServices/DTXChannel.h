@@ -24,7 +24,7 @@
     int _compressionTypeHint;
 }
 
-@property(nonatomic) int compressionTypeHint; // @synthesize compressionTypeHint=_compressionTypeHint;
+@property int compressionTypeHint; // @synthesize compressionTypeHint=_compressionTypeHint;
 @property(readonly, nonatomic) unsigned int channelCode; // @synthesize channelCode=_channelCode;
 @property BOOL isCanceled; // @synthesize isCanceled=_canceled;
 - (void)sendMessageSync:(id)arg1 replyHandler:(CDUnknownBlockType)arg2;

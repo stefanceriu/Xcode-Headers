@@ -7,18 +7,15 @@
 #import "IBSceneExitPlaceholder.h"
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBNSSceneExitPlaceholder : IBSceneExitPlaceholder <IBDocumentArchiving, NSCoding>
+@interface IBNSSceneExitPlaceholder : IBSceneExitPlaceholder <IBDocumentArchiving>
 {
 }
 
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

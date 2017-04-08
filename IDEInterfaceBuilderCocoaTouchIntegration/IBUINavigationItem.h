@@ -17,9 +17,9 @@
     NSString *_prompt;
     IBUIView *_titleView;
     IBUIBarButtonItem *_backBarButtonItem;
-    IBUINavigationBar *_navigationBar;
     NSArray *_leftBarButtonItems;
     NSArray *_rightBarButtonItems;
+    IBUINavigationBar *_navigationBar;
     IBCocoaTouchTargetRuntime *_targetRuntime;
 }
 
@@ -38,10 +38,6 @@
 - (void).cxx_destruct;
 - (Class)classToTakeInitialMarshalledKeysFrom:(id)arg1;
 - (id)runtimeClassNameForContext:(id)arg1 returningOptionalFallbackClassName:(id *)arg2;
-- (void)decodeRightBarButtonItems:(id)arg1;
-- (void)encodeRightBarButtonItems:(id)arg1;
-- (void)decodeLeftBarButtonItems:(id)arg1;
-- (void)encodeLeftBarButtonItems:(id)arg1;
 - (id)_decodeBarButtonItemsForToManyKey:(id)arg1 toOneKey:(id)arg2 coder:(id)arg3;
 - (void)_encodeBarButtonItems:(id)arg1 forToManyKey:(id)arg2 toOneKey:(id)arg3 coder:(id)arg4;
 - (void)removeRightBarButtonItems:(id)arg1;
@@ -53,12 +49,13 @@
 - (void)_setBarButtonItems:(id)arg1 forItemArrayReference:(id *)arg2;
 - (void)invalidateNavBarIfNeeded;
 - (void)decodeOldValuesNames:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithTargetRuntime:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
+- (BOOL)ibIsChildViewMovable:(id)arg1;
 - (void)ibPopulateRequiredDocumentCapabilities:(id)arg1 document:(id)arg2;
 - (void)ibUnarchiveRightBarButtonItems:(id)arg1;
 - (void)ibArchiveRightBarButtonItems:(id)arg1;

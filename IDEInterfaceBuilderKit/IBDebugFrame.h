@@ -10,12 +10,12 @@
 
 @interface IBDebugFrame : IBCanvasFrame
 {
-    NSColor *color;
-    NSString *title;
+    NSColor *_color;
+    NSString *_title;
 }
 
-@property(copy, nonatomic) NSString *title; // @synthesize title;
-@property(copy, nonatomic) NSColor *color; // @synthesize color;
+@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
+@property(copy, nonatomic) NSColor *color; // @synthesize color=_color;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)mouseDown:(id)arg1;

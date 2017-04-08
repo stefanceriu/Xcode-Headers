@@ -7,20 +7,19 @@
 #import <IDEInterfaceBuilderCocoaIntegration/IBNSStoryboardSegueTemplate.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString, NSView;
 
-@interface IBNSStoryboardPopoverSegueTemplate : IBNSStoryboardSegueTemplate <NSCoding, IBDocumentArchiving>
+@interface IBNSStoryboardPopoverSegueTemplate : IBNSStoryboardSegueTemplate <IBDocumentArchiving>
 {
-    NSView *anchorView;
-    long long popoverBehavior;
-    unsigned long long preferredEdge;
+    NSView *_anchorView;
+    long long _popoverBehavior;
+    unsigned long long _preferredEdge;
 }
 
-@property unsigned long long preferredEdge; // @synthesize preferredEdge;
-@property long long popoverBehavior; // @synthesize popoverBehavior;
-@property(retain) NSView *anchorView; // @synthesize anchorView;
+@property unsigned long long preferredEdge; // @synthesize preferredEdge=_preferredEdge;
+@property long long popoverBehavior; // @synthesize popoverBehavior=_popoverBehavior;
+@property(retain) NSView *anchorView; // @synthesize anchorView=_anchorView;
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

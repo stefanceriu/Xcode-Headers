@@ -10,16 +10,16 @@
 
 @interface IBActionRenameRefactoringOperation : IBRefactoringOperation
 {
-    NSString *oldActionName;
-    NSString *newActionName;
-    NSString *className;
+    NSString *_oldActionName;
+    NSString *_newActionName;
+    NSString *_className;
 }
 
+@property(readonly) NSString *className; // @synthesize className=_className;
+@property(readonly) NSString *newActionName; // @synthesize newActionName=_newActionName;
+@property(readonly) NSString *oldActionName; // @synthesize oldActionName=_oldActionName;
 - (void).cxx_destruct;
 - (BOOL)refactorObject:(id)arg1 inDocument:(id)arg2 error:(id *)arg3;
-- (id)className;
-- (id)newActionName;
-- (id)oldActionName;
 - (id)initWithClassName:(id)arg1 oldActionName:(id)arg2 newActionName:(id)arg3;
 
 @end

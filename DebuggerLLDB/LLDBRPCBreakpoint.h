@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface LLDBRPCBreakpoint : NSObject <DBGSBBreakpoint>
 {
     struct SBBreakpoint {

@@ -11,20 +11,20 @@
 #import "IDEInspectorAccessibilitySupport.h"
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class CDMModel, DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, NSImage, NSMutableArray, NSNumber, NSString;
+@class CDMModel, DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, NSArray, NSImage, NSNull, NSNumber, NSString;
 
 @interface CDMConfiguration : NSObject <IDEInspectorAccessibilitySupport, CDMIdentification, DVTInvalidation, IDEKeyDrivenNavigableItemRepresentedObject>
 {
     NSNumber *_uniqueID;
     NSString *_name;
-    NSMutableArray *_entities;
+    NSArray *_entities;
     CDMModel *_model;
 }
 
 + (id)configurationFromPasteboradPlist:(id)arg1 model:(id)arg2;
 + (void)initialize;
 @property(retain) CDMModel *model; // @synthesize model=_model;
-@property(copy) NSMutableArray *entities; // @synthesize entities=_entities;
+@property(copy) NSArray *entities; // @synthesize entities=_entities;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(copy) NSNumber *uniqueID; // @synthesize uniqueID=_uniqueID;
 - (void).cxx_destruct;
@@ -58,9 +58,12 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) BOOL navigableItem_isLeaf;

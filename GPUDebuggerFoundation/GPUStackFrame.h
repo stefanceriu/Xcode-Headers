@@ -4,20 +4,51 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "DYStackFrame.h"
+#import "NSObject.h"
 
-@class IDELaunchSession;
+#import "IDEDebugNavigableModel.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@interface GPUStackFrame : DYStackFrame
+@class DVTDocumentLocation, DVTFileDataType, DYStackFrame, IDEFileReference, IDELaunchSession, NSArray, NSImage, NSNull, NSString;
+
+@interface GPUStackFrame : NSObject <IDEDebugNavigableModel, IDEKeyDrivenNavigableItemRepresentedObject>
 {
     IDELaunchSession *_launchSession;
+    NSString *_associatedProcessUUID;
+    DYStackFrame *_stackFrame;
 }
 
-@property(retain, nonatomic) IDELaunchSession *launchSession; // @synthesize launchSession=_launchSession;
 - (void).cxx_destruct;
-- (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
-- (id)initWithLaunchSession:(id)arg1;
+- (id)contentDelegateUIExtensionIdentifier;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) NSString *navigableItem_name;
+@property(readonly) NSImage *navigableItem_image;
+- (id)gpudebugger_createImageFromFilePath:(id)arg1 withRed:(float)arg2 green:(float)arg3 blue:(float)arg4 alpha:(float)arg5;
+- (id)gpudebugger_uti;
+- (id)gpudebugger_sourceURL;
+@property(readonly, copy) NSString *associatedProcessUUID;
+@property(readonly) IDELaunchSession *launchSession;
+@property(readonly, nonatomic) DYStackFrame *stackFrame;
+- (id)initWithStackFrame:(id)arg1 parent:(id)arg2;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 
 @end
 

@@ -21,6 +21,7 @@
     BOOL _restoringState;
     IDEBreakpointIcon *_breakpointIcon;
     DVTObservingToken *_selectedObjectsListToken;
+    DVTObservingToken *_systemRowSizeStyleToken;
     NSArray *_draggedItems;
     NSPasteboard *_draggedPasteboard;
     BOOL _enabledBreakpointsFilteringEnabled;
@@ -59,6 +60,7 @@
 - (void)_addEnableOrDisableMenuItemToMenu:(id)arg1 rightClickedItems:(id)arg2 plural:(BOOL)arg3;
 - (BOOL)_canEditRightClickedItems:(id)arg1;
 - (void)menuNeedsUpdate:(id)arg1;
+- (struct CGSize)_breakpointSizeForRowSizeStyle:(long long)arg1;
 - (unsigned long long)_itemDepth:(id)arg1;
 - (void)_setCollapsedItems:(id)arg1;
 - (void)outlineViewItemDidCollapse:(id)arg1;
@@ -107,6 +109,7 @@
 - (id)filterButtonToolTip;
 - (id)filterDefinitionIdentifier;
 - (id)domainIdentifier;
+- (void)_updateBreakpointButtonSizesForAllRows;
 - (void)loadView;
 
 // Remaining properties

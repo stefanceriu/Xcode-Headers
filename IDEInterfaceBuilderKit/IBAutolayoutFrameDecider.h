@@ -17,13 +17,11 @@
 }
 
 + (void)decideAndSetFramesOfAllViewHierarchiesWithLayoutInfo:(id)arg1 delegate:(id)arg2 statusInitializationBlock:(CDUnknownBlockType)arg3;
-+ (void)decideAndSetFramesOfEntireViewHierarchyToReflectChangeInConstraintsOfObjectHierarchy:(id)arg1 layoutInfo:(id)arg2 delegate:(id)arg3 forcingFramesForViewsInIllegalStatesPassingTest:(CDUnknownBlockType)arg4;
 + (id)frameDeciderForViewHierarchyOfObject:(id)arg1 layoutInfo:(id)arg2 delegate:(id)arg3 options:(id)arg4;
 @property(readonly) IBAutolayoutArbitrationUnit *arbitrationUnit; // @synthesize arbitrationUnit=_arbitrationUnit;
 @property(readonly) IBAbstractAutolayoutFrameDecisionDriver *driver; // @synthesize driver=_driver;
 @property(readonly) id <IBAutolayoutFrameDeciderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)decideAndSetFramesOfEntireViewHierarchyToReflectChangeInConstraintsOfObjectHierarchy:(id)arg1 forcingFramesForViewsInIllegalStatesPassingTest:(CDUnknownBlockType)arg2;
 - (void)propagateAllLayoutEngineFramesToCanvasForcingFramesForViewsInIllegalStatesPassingTest:(CDUnknownBlockType)arg1;
 - (CDUnknownBlockType)defaultFramePropagationBlockForcingFramesForViewsInIllegalStatesPassingTest:(CDUnknownBlockType)arg1;
 - (void)_propagateSize:(struct CGSize)arg1 toCanvasForItem:(id)arg2 forceFramesForIllegalStates:(BOOL)arg3;

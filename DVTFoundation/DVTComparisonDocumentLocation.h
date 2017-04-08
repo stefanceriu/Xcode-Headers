@@ -19,7 +19,6 @@
 - (void).cxx_destruct;
 - (long long)compare:(id)arg1;
 - (id)description;
-- (BOOL)isEqualToDocumentLocationDisregardingDocumentURL:(id)arg1;
 - (unsigned long long)hash;
 - (BOOL)isEqualDisregardingTimestamp:(id)arg1;
 - (BOOL)isEqual:(id)arg1;

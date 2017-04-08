@@ -12,6 +12,7 @@
 {
     NSMutableDictionary *_registrationDictsByPid;
     NSObject<OS_dispatch_queue> *_guard;
+    NSObject<OS_dispatch_queue> *_execMonitorQueue;
 }
 
 + (id)sharedInstance;

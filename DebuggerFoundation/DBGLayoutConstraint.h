@@ -25,7 +25,7 @@
 
 @property(retain) DBGViewSurface *secondItem; // @synthesize secondItem=_secondItem;
 @property(retain) DBGViewSurface *firstItem; // @synthesize firstItem=_firstItem;
-@property(copy, nonatomic) NSString *constraintIdentifier; // @synthesize constraintIdentifier=_constraintIdentifier;
+@property(readonly) NSString *constraintIdentifier; // @synthesize constraintIdentifier=_constraintIdentifier;
 @property long long relation; // @synthesize relation=_relation;
 @property long long secondAttribute; // @synthesize secondAttribute=_secondAttribute;
 @property long long firstAttribute; // @synthesize firstAttribute=_firstAttribute;

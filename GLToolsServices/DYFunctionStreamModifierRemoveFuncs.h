@@ -13,7 +13,7 @@
     unsigned int _removedFunctionCount;
 }
 
-+ (BOOL)isAppleInternalContextFunction:(struct Function *)arg1 contextSet:(unordered_set_febeaddf *)arg2;
++ (BOOL)isAppleInternalContextFunction:(struct Function *)arg1 contextSet:(unordered_set_ef4c6246 *)arg2;
 @property(readonly, nonatomic) unsigned int removedFunctionCount; // @synthesize removedFunctionCount=_removedFunctionCount;
 - (id).cxx_construct;
 - (void).cxx_destruct;

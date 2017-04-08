@@ -7,11 +7,10 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIStoryboardSegueTemplate.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class IBUIBarButtonItem, IBUIView, NSArray, NSString;
 
-@interface IBUIStoryboardPopoverPresentationSegueTemplate : IBUIStoryboardSegueTemplate <IBDocumentArchiving, NSCoding>
+@interface IBUIStoryboardPopoverPresentationSegueTemplate : IBUIStoryboardSegueTemplate <IBDocumentArchiving>
 {
     unsigned long long _permittedArrowDirections;
     NSArray *_passthroughViews;
@@ -24,10 +23,10 @@
 @property(copy, nonatomic) NSArray *passthroughViews; // @synthesize passthroughViews=_passthroughViews;
 @property(nonatomic) unsigned long long permittedArrowDirections; // @synthesize permittedArrowDirections=_permittedArrowDirections;
 - (void).cxx_destruct;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
 - (id)ibLocalAutoNullifyingNonChildToManyRelationshipsKeyPaths;
 - (id)ibLocalNonChildToManyRelationshipsKeyPaths;
 - (id)ibLocalAutoNullifyingNonChildToOneRelationshipsKeyPaths;

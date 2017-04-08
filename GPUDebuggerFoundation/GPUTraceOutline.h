@@ -8,7 +8,7 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, DYCaptureSessionInfo, DYFunctionTracer, GPUTraceDisplayableItem, GPUTraceGroupItem, GPUTraceProgramGroup, GPUTraceSession, IDELaunchSession, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSURL;
+@class DVTStackBacktrace, DYCaptureSessionInfo, DYFunctionTracer, GPUTraceDisplayableItem, GPUTraceGroupItem, GPUTraceProcessItem, GPUTraceProgramGroup, GPUTraceSession, IDELaunchSession, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSURL;
 
 @interface GPUTraceOutline : DYInOrderInstructionFilesVisitor <DVTInvalidation>
 {
@@ -23,14 +23,13 @@
     IDELaunchSession *_launchSession;
     NSMutableDictionary *_threadNameDict;
     NSMutableDictionary *_editorsDict;
-    NSMutableArray *_frames;
     NSMutableArray *_allMarkerItems;
     NSMutableArray *_allAPIItems;
     unsigned long long _currentThread;
     unsigned long long _currentQueue;
     BOOL _processingTraceFiles;
+    GPUTraceProcessItem *_processItem;
     NSMutableArray *_allDisplayableItems;
-    NSString *_contentDelegateUUID;
     GPUTraceGroupItem *_domainProviderRootResourceGroup;
 }
 
@@ -38,12 +37,10 @@
 @property(readonly) DYFunctionTracer *tracer; // @synthesize tracer=_tracer;
 @property(readonly) GPUTraceProgramGroup *rootProgramGroup; // @synthesize rootProgramGroup=_rootProgramGroup;
 @property(readonly) GPUTraceGroupItem *domainProviderRootResourceGroup; // @synthesize domainProviderRootResourceGroup=_domainProviderRootResourceGroup;
-@property(readonly) NSString *contentDelegateUUID; // @synthesize contentDelegateUUID=_contentDelegateUUID;
 @property(retain) NSMutableArray *allAPIItems; // @synthesize allAPIItems=_allAPIItems;
 @property(retain) NSMutableArray *allMarkerItems; // @synthesize allMarkerItems=_allMarkerItems;
 @property(retain) NSMutableArray *allDisplayableItems; // @synthesize allDisplayableItems=_allDisplayableItems;
 @property(readonly) NSMutableDictionary *editorsDict; // @synthesize editorsDict=_editorsDict;
-@property(retain) NSMutableArray *frames; // @synthesize frames=_frames;
 @property(readonly) DYCaptureSessionInfo *captureSessionInfo; // @synthesize captureSessionInfo=_captureSessionInfo;
 @property(retain) GPUTraceSession *traceSession; // @synthesize traceSession=_traceSession;
 - (id).cxx_construct;
@@ -59,10 +56,11 @@
 - (void)performPreCaptureVisitActions;
 - (void)performPreVisitActions;
 @property(readonly) __weak GPUTraceDisplayableItem *lastDisplayableItem;
-@property(readonly) GPUTraceGroupItem *rootProcessItem;
+@property(readonly) GPUTraceProcessItem *rootProcessItem;
 @property(readonly) NSMutableArray *allPrograms;
 @property(readonly) NSURL *captureArchiveURL;
 - (void)primitiveInvalidate;
+- (void)notifyUnusedResourcesStreamAvailable;
 - (id)initWithTraceSession:(id)arg1;
 
 // Remaining properties

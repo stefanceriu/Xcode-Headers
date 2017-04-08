@@ -9,14 +9,19 @@
 __attribute__((visibility("hidden")))
 @interface GPUSessionData : NSObject
 {
+    BOOL _valid;
     unsigned int _api;
     unsigned long long _overrides;
     double _tessScaleFactor;
+    unsigned long long _traceOverrides;
 }
 
+@property(nonatomic) BOOL valid; // @synthesize valid=_valid;
+@property(nonatomic) unsigned long long traceOverrides; // @synthesize traceOverrides=_traceOverrides;
 @property(nonatomic) unsigned int api; // @synthesize api=_api;
 @property(nonatomic) double tessScaleFactor; // @synthesize tessScaleFactor=_tessScaleFactor;
 @property(nonatomic) unsigned long long overrides; // @synthesize overrides=_overrides;
+- (void)report;
 - (id)initWithMask:(unsigned long long)arg1 tessScaleFactor:(double)arg2 API:(unsigned int)arg3;
 
 @end

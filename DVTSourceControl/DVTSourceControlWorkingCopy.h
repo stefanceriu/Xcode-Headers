@@ -33,7 +33,7 @@
 
 + (id)defaultImage;
 + (BOOL)supportsSecureCoding;
-+ (id)scanForWorkingCopiesInFolderPaths:(id)arg1 traversingUp:(BOOL)arg2 usingSourceControlSystems:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
++ (id)scanForWorkingCopiesInFolderPaths:(id)arg1 traversingUp:(BOOL)arg2 ignoringFolders:(id)arg3 usingSourceControlSystems:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
 @property(readonly) DVTSourceControlRemoteRepository *primaryRemoteRepository; // @synthesize primaryRemoteRepository=_primaryRemoteRepository;
 @property(retain) DVTSourceControlRevisionLocation *cachedCurrentLocation; // @synthesize cachedCurrentLocation=_cachedCurrentLocation;
 @property(retain) DVTSourceControlRevision *cachedBaseRevision; // @synthesize cachedBaseRevision=_cachedBaseRevision;
@@ -52,7 +52,7 @@
 - (id)historyFromRevision:(id)arg1 toRevision:(id)arg2 inclusionType:(unsigned long long)arg3 maximumLogItems:(long long)arg4 searchString:(id)arg5 searchType:(unsigned long long)arg6 includeFilePaths:(BOOL)arg7 showMergeCommits:(BOOL)arg8 incrementalLogBlock:(CDUnknownBlockType)arg9 completionBlock:(CDUnknownBlockType)arg10;
 - (id)updateWorkingCopyFromRepository:(id)arg1 location:(id)arg2 pathsToUpdate:(id)arg3 progressBlock:(CDUnknownBlockType)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (id)fastUpdateWorkingCopyFromRepository:(id)arg1 location:(id)arg2 progressBlock:(CDUnknownBlockType)arg3 completionBlock:(CDUnknownBlockType)arg4;
-- (id)forceUpdateWorkingCopyFromRepository:(id)arg1 progressBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (id)forceUpdateWorkingCopyLocation:(id)arg1 fromRepository:(id)arg2 progressBlock:(CDUnknownBlockType)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (id)mergeBranch:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (id)commitDetails:(id)arg1 incrementalLogBlock:(CDUnknownBlockType)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (id)historyOfFileWithNameStatus:(id)arg1 fromRevisionLocation:(id)arg2 showMergeCommits:(BOOL)arg3 follow:(BOOL)arg4 maxLogItems:(long long)arg5 completionBlock:(CDUnknownBlockType)arg6;

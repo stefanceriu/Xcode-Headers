@@ -8,7 +8,6 @@
 
 @class DBGLLDBProcess;
 
-__attribute__((visibility("hidden")))
 @interface DBGLLDBThreadSanitizerHelper : NSObject
 {
     DBGLLDBProcess *_process;

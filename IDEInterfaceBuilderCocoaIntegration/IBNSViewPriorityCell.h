@@ -10,18 +10,18 @@
 
 @interface IBNSViewPriorityCell : NSTableCellView
 {
-    NSNumber *_trackingRectTag;
-    NSTextField *_numberField;
-    id <IBNSViewPriorityCellDelegate> _delegate;
-    NSStepper *_stepper;
     IBNSViewPrioritySlider *_slider;
+    NSTextField *_numberField;
+    NSStepper *_stepper;
+    id <IBNSViewPriorityCellDelegate> _delegate;
+    NSNumber *_trackingRectTag;
 }
 
-@property(nonatomic) IBNSViewPrioritySlider *slider; // @synthesize slider=_slider;
-@property(nonatomic) NSStepper *stepper; // @synthesize stepper=_stepper;
-@property(nonatomic) id <IBNSViewPriorityCellDelegate> delegate; // @synthesize delegate=_delegate;
-@property(nonatomic) NSTextField *numberField; // @synthesize numberField=_numberField;
 @property(retain) NSNumber *trackingRectTag; // @synthesize trackingRectTag=_trackingRectTag;
+@property(nonatomic) id <IBNSViewPriorityCellDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) NSStepper *stepper; // @synthesize stepper=_stepper;
+@property(nonatomic) NSTextField *numberField; // @synthesize numberField=_numberField;
+@property(nonatomic) IBNSViewPrioritySlider *slider; // @synthesize slider=_slider;
 - (void).cxx_destruct;
 - (void)mouseExited:(id)arg1;
 - (void)mouseEntered:(id)arg1;

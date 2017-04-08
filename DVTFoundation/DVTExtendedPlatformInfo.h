@@ -12,6 +12,7 @@
 {
     BOOL _profileCreationRequiresProvisioningProfilePlatform;
     BOOL _devicesCanBeRegistered;
+    BOOL _requiresProxiedDevicesToBeRegistered;
     BOOL _requiresPortalAppGroups;
     BOOL _universalProfileRequiresCloudContainerEnvironmentString;
     BOOL _requiresExplicitAppIDForGameCenter;
@@ -86,6 +87,7 @@
 @property(readonly) NSString *portalPlatformIdentifier; // @synthesize portalPlatformIdentifier=_portalPlatformIdentifier;
 @property(readonly) NSArray *provisioningProfileUTIs; // @synthesize provisioningProfileUTIs=_provisioningProfileUTIs;
 @property(readonly) NSString *portalDeviceClass; // @synthesize portalDeviceClass=_portalDeviceClass;
+@property(readonly) BOOL requiresProxiedDevicesToBeRegistered; // @synthesize requiresProxiedDevicesToBeRegistered=_requiresProxiedDevicesToBeRegistered;
 @property(readonly) BOOL devicesCanBeRegistered; // @synthesize devicesCanBeRegistered=_devicesCanBeRegistered;
 @property(readonly) BOOL profileCreationRequiresProvisioningProfilePlatform; // @synthesize profileCreationRequiresProvisioningProfilePlatform=_profileCreationRequiresProvisioningProfilePlatform;
 @property(readonly) NSString *provisioningProfilePlatform; // @synthesize provisioningProfilePlatform=_provisioningProfilePlatform;

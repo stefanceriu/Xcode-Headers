@@ -15,6 +15,5 @@
 @property(readonly, copy) DVTFileDataType *fileDataType;
 @property(readonly) DVTFilePath *filePath;
 - (DVTFilePath *)filePathForBuildParameters:(IDEBuildParameters *)arg1;
-- (NSString *)productTypeIdentifier;
 @end
 

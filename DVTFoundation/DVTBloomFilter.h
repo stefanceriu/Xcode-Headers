@@ -27,7 +27,6 @@
 - (BOOL)mightContainKey:(const CDStruct_f444e920 *)arg1;
 - (void)addKey:(const CDStruct_f444e920 *)arg1;
 - (void)dealloc;
-- (void)awakeWithPropertyList:(id)arg1;
 - (void)encodeIntoPropertyList:(id)arg1;
 - (id)initWithPropertyList:(id)arg1 owner:(id)arg2;
 - (id)initWithSpecification:(CDStruct_d703e233)arg1 hashProvider:(CDUnknownBlockType)arg2;

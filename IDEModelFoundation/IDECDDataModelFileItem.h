@@ -18,6 +18,7 @@
 @property(readonly) DVTFilePath *filePath; // @synthesize filePath=_filePath;
 - (void).cxx_destruct;
 @property(readonly) NSString *name;
+- (id)description;
 - (id)initWithFilePath:(id)arg1 shouldUse:(BOOL)arg2;
 
 @end

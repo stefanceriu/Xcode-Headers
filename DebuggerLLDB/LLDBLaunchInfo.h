@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface LLDBLaunchInfo : NSObject <DBGSBLaunchInfo>
 {
     struct unique_ptr<lldb::SBLaunchInfo, std::__1::default_delete<lldb::SBLaunchInfo>> _launchInfo;

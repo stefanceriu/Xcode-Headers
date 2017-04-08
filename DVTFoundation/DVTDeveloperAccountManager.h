@@ -8,10 +8,11 @@
 
 #import "DVTDeveloperProfileAccountProvider.h"
 
-@class DVTDeveloperAccount, NSOrderedSet, NSString;
+@class DVTDeveloperAccount, NSMutableArray, NSOrderedSet, NSString;
 
 @interface DVTDeveloperAccountManager : NSObject <DVTDeveloperProfileAccountProvider>
 {
+    NSMutableArray *_accountObservers;
     NSOrderedSet *_accounts;
     DVTDeveloperAccount *_defaultAccount;
 }
@@ -26,8 +27,10 @@
 - (void)removeAccount:(id)arg1;
 - (void)addAccount:(id)arg1;
 @property(copy, nonatomic) NSOrderedSet *accounts; // @synthesize accounts=_accounts;
+- (void)notifyAndUpdateAccountSessionObservers;
 - (void)updateUserDefaults;
 - (id)_accountsByCreatingFromDefaults;
+- (BOOL)temporaryStateManagerWantsInMemoryOnlyBehavior;
 - (id)_accountDefaultsWithFallbacks;
 - (BOOL)hasAccountWithUsername:(id)arg1;
 - (id)accountWithUsername:(id)arg1;

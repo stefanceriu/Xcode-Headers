@@ -20,15 +20,14 @@
     BOOL _isHidden;
 }
 
-@property(nonatomic) BOOL isHidden; // @synthesize isHidden=_isHidden;
+@property(readonly, nonatomic) int functionIndex; // @synthesize functionIndex=_functionIndex;
 @property(nonatomic) BOOL isExpanded; // @synthesize isExpanded=_isExpanded;
 @property(readonly, nonatomic) NSString *descText; // @synthesize descText=_descText;
 @property(nonatomic) int apiCallCount; // @synthesize apiCallCount=_apiCallCount;
 @property(nonatomic) int displayableCallCount; // @synthesize displayableCallCount=_displayableCallCount;
+@property(nonatomic) BOOL isHidden; // @synthesize isHidden=_isHidden;
 @property(readonly, nonatomic) unsigned int groupType; // @synthesize groupType=_groupType;
-@property(readonly, nonatomic) int functionIndex; // @synthesize functionIndex=_functionIndex;
 - (void).cxx_destruct;
-- (id)UUIDSection;
 @property(readonly, nonatomic) BOOL automaticallyExpand;
 @property(readonly, nonatomic) BOOL showsDraws;
 @property(readonly, nonatomic) BOOL isSimpleGroup;

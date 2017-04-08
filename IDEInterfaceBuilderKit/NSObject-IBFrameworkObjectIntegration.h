@@ -415,7 +415,9 @@
 - (struct CGRect)ibRectForChild:(id)arg1 inFrameController:(id)arg2;
 - (id)ibSecondaryHitTestingRectsForChild:(id)arg1 inFrameController:(id)arg2;
 @property(nonatomic) BOOL ibCanFrameDecideEvenWhenAmbiguousForNextStatusUpdate;
-@property(readonly, nonatomic) BOOL ibFrameDecideDuringStatusUpdate;
+- (long long)ibFrameDecisionStrategyDuringFrameDecisionForChild:(id)arg1 hasCleanStatus:(BOOL)arg2;
+@property(readonly) long long ibManagedContainerBehavior;
+@property(readonly, nonatomic) long long ibFrameDecisionStrategy;
 - (BOOL)ibClipsChild:(id)arg1;
 - (void)ibSizeToFit;
 - (BOOL)ibCanSizeToFit;

@@ -10,10 +10,10 @@
 
 @interface IBTrackingIndicatorLayoutInfo : NSObject
 {
-    struct CGRect boundingFrame;
-    struct CGRect borderFrame;
-    IBTrackingIndicatorMagnitudeLayoutInfo *widthLayoutInfo;
-    IBTrackingIndicatorMagnitudeLayoutInfo *heightLayoutInfo;
+    struct CGRect _boundingFrame;
+    struct CGRect _borderFrame;
+    IBTrackingIndicatorMagnitudeLayoutInfo *_widthLayoutInfo;
+    IBTrackingIndicatorMagnitudeLayoutInfo *_heightLayoutInfo;
 }
 
 + (id)trackingIndicatorForSize:(struct CGSize)arg1 fromKnob:(CDUnion_31865a80)arg2 ofTrackedRect:(struct CGRect)arg3 constrainedToRect:(struct CGRect)arg4;

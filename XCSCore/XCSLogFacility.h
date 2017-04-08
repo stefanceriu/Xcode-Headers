@@ -17,10 +17,15 @@
 }
 
 + (void)critical:(id)arg1;
++ (void)critical:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
 + (void)error:(id)arg1;
++ (void)error:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
 + (void)warn:(id)arg1;
++ (void)warn:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
 + (void)info:(id)arg1;
++ (void)info:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
 + (void)debug:(id)arg1;
++ (void)debug:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
 + (id)facilityWithName:(id)arg1;
 + (id)defaultFacility;
 + (void)setDefaultFacilityName:(id)arg1;
@@ -30,10 +35,15 @@
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (void)critical:(id)arg1;
+- (void)critical:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
 - (void)error:(id)arg1;
+- (void)error:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
 - (void)warn:(id)arg1;
+- (void)warn:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
 - (void)info:(id)arg1;
+- (void)info:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
 - (void)debug:(id)arg1;
+- (void)debug:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
 - (void)removeOutputFileHandle:(id)arg1;
 - (void)addOutputFileHandle:(id)arg1;
 - (void)removeOutputFile:(id)arg1;

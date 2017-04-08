@@ -47,6 +47,11 @@
 @property struct CGRect frame; // @synthesize frame=_frame;
 @property(retain) id <DBGViewDescriber> viewDescriber; // @synthesize viewDescriber=_viewDescriber;
 - (void).cxx_destruct;
+- (id)threadWithBacktrace;
+- (id)classHierarchyForDisplay;
+- (BOOL)shouldDisplayMallocZone;
+- (BOOL)shouldDisplayInstanceSize;
+- (BOOL)shouldDisplayKind;
 - (id)ideModelObjectTypeIdentifier;
 - (void)_willInflateChildMemberList:(id)arg1;
 - (void)_inflateObjectIfNecessary;
@@ -58,7 +63,7 @@
 - (BOOL)childObjectsHaveIssues;
 - (BOOL)hasIssues;
 @property(readonly) NSArray *classHierarchy;
-@property(retain, nonatomic) id object;
+@property(retain, nonatomic) id <DBGObjectInstanceInspectorProvider><DBGClassHierarchyInspectorProvider><DBGBacktraceInspectorProvider> object;
 - (id)fetchedMemberList;
 @property(retain) NSArray *childViewObjects;
 @property(readonly) NSString *identifier;

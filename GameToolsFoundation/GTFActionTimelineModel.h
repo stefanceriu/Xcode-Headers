@@ -10,7 +10,7 @@
 #import "NSCoding.h"
 #import "NSCopying.h"
 
-@class DVTDocumentLocation, DVTFileDataType, GTFActionLibrary, GTFActionLibraryTargetThumbnail, IDEFileReference, NSArray, NSImage, NSMutableArray, NSString;
+@class DVTDocumentLocation, DVTFileDataType, GTFActionLibrary, GTFActionLibraryTargetThumbnail, IDEFileReference, NSArray, NSImage, NSMutableArray, NSNull, NSString;
 
 @interface GTFActionTimelineModel : NSObject <NSCoding, NSCopying, IDEKeyDrivenNavigableItemRepresentedObject>
 {
@@ -97,6 +97,7 @@
 - (BOOL)adjustNumberOfTracks;
 - (BOOL)canMoveAction:(id)arg1 toTrack:(int)arg2 atTime:(double)arg3;
 - (void)addActionToClosestOpenSlot:(id)arg1 inTrack:(int)arg2 atTime:(double)arg3 enableAlignment:(BOOL)arg4 canMoveBeforeStartTime:(BOOL)arg5;
+- (void)addAction:(id)arg1 inLoop:(id)arg2 toClosestOpenSlotInTrack:(int)arg3 atTime:(double)arg4 enableAlignment:(BOOL)arg5 canMoveBeforeStartTime:(BOOL)arg6;
 - (void)setActionStartTime:(id)arg1 inTrack:(int)arg2 atTime:(double)arg3 enableSnap:(BOOL)arg4;
 - (void)forceMoveAction:(id)arg1 toTrack:(int)arg2;
 - (BOOL)moveAction:(id)arg1 toTrack:(int)arg2 atTime:(double)arg3 enableAlignment:(BOOL)arg4;
@@ -125,8 +126,11 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;

@@ -40,26 +40,26 @@ struct CVSMPTETime {
 };
 
 struct ComponentInfo {
-    unsigned int type;
-    int bits;
+    unsigned int _field1;
+    int _field2;
 };
 
 struct Context {
-    struct _CGLContextObject *context;
-    struct CGLShareGroupRec *sharegroup;
-    struct __GLIContextRec *gliContext;
-    struct __GLIFunctionDispatchRec *front_disp;
-    struct __GLIFunctionDispatchRec *back_disp;
+    struct _CGLContextObject *_field1;
+    struct CGLShareGroupRec *_field2;
+    struct __GLIContextRec *_field3;
+    struct __GLIFunctionDispatchRec *_field4;
+    struct __GLIFunctionDispatchRec *_field5;
 };
 
 struct FormatComponentsInfo {
-    struct ComponentInfo color;
-    struct ComponentInfo depth;
-    struct ComponentInfo stencil;
+    struct ComponentInfo _field1;
+    struct ComponentInfo _field2;
+    struct ComponentInfo _field3;
 };
 
 struct GLSLObject {
-    unsigned int _objName;
+    unsigned int _field1;
 };
 
 struct ImageFormatInfo {
@@ -79,64 +79,36 @@ struct ImageInfo {
 };
 
 struct ImageRenderer {
-    struct Context _context;
-    struct ImageInfo _imageInfo;
-    struct FormatComponentsInfo _componentsInfo;
-    struct ImageFormatInfo _matchingColorRenderableFormatInfo;
-    struct shared_ptr<void> _textureData;
-    unsigned int _texture;
-    unsigned int _stencilTexture;
-    unsigned int _overlayTexture;
-    unsigned char _channelFlags;
-    struct GLSLObject _program;
-    unsigned int _programSampleType;
-    _Bool _programWithOverlay;
-    struct array<int, 16> _uniformLocations;
-    struct PixelStoreState _defaultPixelStoreState;
-    unsigned int _vao;
-    unsigned int _vbuffer;
-    unsigned int _framebuffer;
-    _Bool _useIOSurface;
+    struct Context _field1;
+    struct ImageInfo _field2;
+    struct FormatComponentsInfo _field3;
+    struct ImageFormatInfo _field4;
+    struct shared_ptr<void> _field5;
+    unsigned int _field6;
+    unsigned int _field7;
+    unsigned int _field8;
+    unsigned char _field9;
+    struct GLSLObject _field10;
+    unsigned int _field11;
+    _Bool _field12;
+    struct array<int, 16> _field13;
+    struct PixelStoreState _field14;
+    unsigned int _field15;
+    unsigned int _field16;
+    unsigned int _field17;
 };
 
 struct PixelStoreState {
-    int row_length;
-    int skip_rows;
-    int skip_pixels;
-    int alignment;
-    int image_height;
-    int skip_images;
-    int row_bytes;
-    int image_bytes;
-    unsigned char swap_bytes;
-    unsigned char lsb_first;
-};
-
-struct ReductionJob<float> {
-    float minimum[4];
-    float maximum[4];
-    float minimumLimits[4];
-    float maximumLimits[4];
-    float clientToHostCoefficients[4];
-    _Bool depthPlane;
-};
-
-struct ReductionJob<int> {
-    int minimum[4];
-    int maximum[4];
-    int minimumLimits[4];
-    int maximumLimits[4];
-    float clientToHostCoefficients[4];
-    _Bool depthPlane;
-};
-
-struct ReductionJob<unsigned int> {
-    unsigned int minimum[4];
-    unsigned int maximum[4];
-    unsigned int minimumLimits[4];
-    unsigned int maximumLimits[4];
-    float clientToHostCoefficients[4];
-    _Bool depthPlane;
+    int _field1;
+    int _field2;
+    int _field3;
+    int _field4;
+    int _field5;
+    int _field6;
+    int _field7;
+    int _field8;
+    unsigned char _field9;
+    unsigned char _field10;
 };
 
 struct ToneMapRange {
@@ -1133,12 +1105,12 @@ struct __GLIFunctionDispatchRec {
 };
 
 struct array<int, 16> {
-    int __elems_[16];
+    int _field1[16];
 };
 
 struct shared_ptr<void> {
-    void *__ptr_;
-    struct __shared_weak_count *__cntrl_;
+    void *_field1;
+    struct __shared_weak_count *_field2;
 };
 
 #pragma mark Typedef'd Structures

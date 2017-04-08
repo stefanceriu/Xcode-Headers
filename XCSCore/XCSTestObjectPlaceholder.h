@@ -16,7 +16,6 @@
     XCSTestObjectPlaceholder *_parent;
     NSString *_name;
     NSArray *_children;
-    long long _status;
     NSString *_keyPath;
     XCSDevice *_deviceFilter;
     NSNumber *_hasPerfMetricsCachedValue;
@@ -25,7 +24,6 @@
 @property(retain, nonatomic) NSNumber *hasPerfMetricsCachedValue; // @synthesize hasPerfMetricsCachedValue=_hasPerfMetricsCachedValue;
 @property(retain, nonatomic) XCSDevice *deviceFilter; // @synthesize deviceFilter=_deviceFilter;
 @property(retain, nonatomic) NSString *keyPath; // @synthesize keyPath=_keyPath;
-@property(nonatomic) long long status; // @synthesize status=_status;
 @property(retain, nonatomic) NSArray *children; // @synthesize children=_children;
 @property(copy, nonatomic) NSString *name; // @synthesize name=_name;
 @property(nonatomic) __weak XCSTestObjectPlaceholder *parent; // @synthesize parent=_parent;

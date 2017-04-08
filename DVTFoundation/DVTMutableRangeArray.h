@@ -16,6 +16,7 @@
 + (void)initialize;
 - (void)sort;
 - (void)normalize;
+- (void)addRangesFromArray:(id)arg1;
 - (void)replaceRangeAtIndex:(unsigned long long)arg1 withRange:(struct _NSRange)arg2;
 - (void)removeAllRanges;
 - (void)removeRangesAtIndexes:(id)arg1;

@@ -4,13 +4,13 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IDERunOperationWorker.h"
+#import <IDEiOSSupportCore/IDEDeviceRunOperationWorker.h>
 
 #import "DTMISProcessControlServiceAuthorizedAPI.h"
 
 @class DTXChannel, DVTDispatchLock, DVTObservingToken, DVTiPhoneSimulator, IDEPseudoTerminal, NSString;
 
-@interface IDELaunchiPhoneSimulatorLauncher : IDERunOperationWorker <DTMISProcessControlServiceAuthorizedAPI>
+@interface IDELaunchiPhoneSimulatorLauncher : IDEDeviceRunOperationWorker <DTMISProcessControlServiceAuthorizedAPI>
 {
     BOOL _debugSessionStarted;
     BOOL _responsibleForTermination;
@@ -38,7 +38,7 @@
 - (void)launchCompleteWithAppPID:(int)arg1;
 - (void)executionDidEnd;
 - (void)terminate;
-- (void)start;
+- (void)performWorkerAction;
 - (void)_setUpSimulatorSessionForAttaching;
 - (void)primitiveInvalidate;
 - (id)initWithExtensionIdentifier:(id)arg1 launchSession:(id)arg2;

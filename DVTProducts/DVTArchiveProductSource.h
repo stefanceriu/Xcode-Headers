@@ -10,6 +10,7 @@
 
 @interface DVTArchiveProductSource : DVTProductSource
 {
+    BOOL _hasCompletedInitialLoading;
     IDEArchiveManager *_archiveManager;
     DVTObservingToken *_archivedProductsObservingToken;
     DVTDelayedInvocation *_updateArchivesDelayedInvocation;
@@ -18,13 +19,18 @@
 @property(retain, nonatomic) DVTDelayedInvocation *updateArchivesDelayedInvocation; // @synthesize updateArchivesDelayedInvocation=_updateArchivesDelayedInvocation;
 @property(retain) DVTObservingToken *archivedProductsObservingToken; // @synthesize archivedProductsObservingToken=_archivedProductsObservingToken;
 @property(retain, nonatomic) IDEArchiveManager *archiveManager; // @synthesize archiveManager=_archiveManager;
+@property BOOL hasCompletedInitialLoading; // @synthesize hasCompletedInitialLoading=_hasCompletedInitialLoading;
 - (void).cxx_destruct;
-- (void)primitiveInvalidate;
-- (id)_productsFromArchives:(id)arg1 coordinator:(id)arg2;
+- (void)dealloc;
+- (id)productsFromArchives:(id)arg1 coordinator:(id)arg2;
 - (id)mostRecentArchive:(id)arg1;
-- (void)_addArchive:(id)arg1 toMalformedProductsDict:(id)arg2;
+- (void)addArchive:(id)arg1 toMalformedProductsDict:(id)arg2;
+- (void)_addArchive:(id)arg1 productVersionIdentifierToArchives:(id)arg2;
+- (void)prioritizeDeliveryOfResultsForProductIdentifier:(id)arg1;
+- (void)refreshProductsWithCompletion:(CDUnknownBlockType)arg1;
 - (void)refreshProducts;
-- (void)_startLocating;
+- (void)startLocating;
+- (void)updateArchivesWithCompletion:(CDUnknownBlockType)arg1;
 - (id)initWithArchiveManager:(id)arg1 productManager:(id)arg2;
 - (id)initWithProductManager:(id)arg1;
 

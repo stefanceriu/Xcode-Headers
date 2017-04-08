@@ -102,11 +102,17 @@ struct _NSRange {
     unsigned long long length;
 };
 
-struct __hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*> *_field1;
+};
 
-struct __hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*> *_field1;
+};
 
-struct __hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*> *_field1;
+};
 
 struct array_iterator<const GPUTools::FD::Argument> {
     struct Argument *_field1;
@@ -146,33 +152,33 @@ struct sm_region_header {
     unsigned int _field8;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
     } _field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
     } _field1;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
@@ -181,11 +187,9 @@ struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned lon
 
 struct unordered_map<dispatch_queue_s *, std::__1::basic_string<char>, std::__1::hash<dispatch_queue_s *>, std::__1::equal_to<dispatch_queue_s *>, std::__1::allocator<std::__1::pair<dispatch_queue_s *const, std::__1::basic_string<char>>>> {
     struct __hash_table<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, std::__1::__unordered_map_hasher<dispatch_queue_s *, std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, std::__1::hash<dispatch_queue_s *>, true>, std::__1::__unordered_map_equal<dispatch_queue_s *, std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, std::__1::equal_to<dispatch_queue_s *>, true>, std::__1::allocator<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<dispatch_queue_s *, std::__1::__hash_value_type<dispatch_queue_s *, std::__1::basic_string<char>>, std::__1::hash<dispatch_queue_s *>, true>> {
             unsigned long long _field1;
@@ -198,11 +202,9 @@ struct unordered_map<dispatch_queue_s *, std::__1::basic_string<char>, std::__1:
 
 struct unordered_map<long long, id<NSObject>, std::__1::hash<long long>, std::__1::equal_to<long long>, std::__1::allocator<std::__1::pair<const long long, id<NSObject>>>> {
     struct __hash_table<std::__1::__hash_value_type<long long, id<NSObject>>, std::__1::__unordered_map_hasher<long long, std::__1::__hash_value_type<long long, id<NSObject>>, std::__1::hash<long long>, true>, std::__1::__unordered_map_equal<long long, std::__1::__hash_value_type<long long, id<NSObject>>, std::__1::equal_to<long long>, true>, std::__1::allocator<std::__1::__hash_value_type<long long, id<NSObject>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<long long, id<NSObject>>, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<long long, std::__1::__hash_value_type<long long, id<NSObject>>, std::__1::hash<long long>, true>> {
             unsigned long long _field1;
@@ -215,11 +217,9 @@ struct unordered_map<long long, id<NSObject>, std::__1::hash<long long>, std::__
 
 struct unordered_map<unsigned long long, std::__1::basic_string<char>, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, std::__1::basic_string<char>>>> {
     struct __hash_table<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, std::__1::hash<unsigned long long>, true>, std::__1::__unordered_map_equal<unsigned long long, std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, std::__1::equal_to<unsigned long long>, true>, std::__1::allocator<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, std::__1::basic_string<char>>, std::__1::hash<unsigned long long>, true>> {
             unsigned long long _field1;

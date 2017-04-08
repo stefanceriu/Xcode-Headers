@@ -8,17 +8,16 @@
 
 #import "DVTColoredSpinnerDelegate.h"
 
-@class DVTColoredSpinner, DVTDelayedInvocation, IBImageButton, NSString;
+@class DVTColoredSpinner, IBImageButton, NSString;
 
 @interface IBButtonComboBox : NSComboBox <DVTColoredSpinnerDelegate>
 {
-    DVTDelayedInvocation *progressIndicatorInvocation;
-    BOOL shouldShowProgressIndicator;
-    DVTColoredSpinner *progressIndicator;
-    IBImageButton *button;
+    DVTColoredSpinner *_progressIndicator;
+    IBImageButton *_button;
 }
 
 + (Class)cellClass;
+@property(readonly) IBImageButton *button; // @synthesize button=_button;
 - (void).cxx_destruct;
 @property(getter=isShowingProgressIndicator) BOOL showingProgressIndicator;
 - (void)setShowingProgressIndicator:(BOOL)arg1 delayBeforeStarting:(double)arg2 minimumTimeOn:(double)arg3;
@@ -30,7 +29,6 @@
 - (BOOL)isShowingButton;
 - (BOOL)showingRightEdgeControl;
 - (void)setEnabled:(BOOL)arg1;
-@property(readonly) IBImageButton *button;
 - (void)initializeButton;
 - (struct CGRect)buttonRect;
 - (double)comboBoxButtonOffset;

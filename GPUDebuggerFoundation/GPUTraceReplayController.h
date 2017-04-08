@@ -49,7 +49,7 @@
 - (id)setupDevice;
 @property(readonly) DYDeviceInfo *playbackDeviceInfo;
 - (void)_handleGuestAppStatusChangeNotification:(id)arg1;
-- (id)initWithController:(id)arg1 lastFunctionIndex:(unsigned int)arg2;
+- (id)initWithController:(id)arg1;
 
 @end
 

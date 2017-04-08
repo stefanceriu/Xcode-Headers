@@ -26,11 +26,6 @@
 - (void).cxx_destruct;
 - (id)description;
 - (id)initWithProductionRule:(id)arg1 optional:(BOOL)arg2 repeatable:(BOOL)arg3;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 @end
 

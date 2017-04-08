@@ -6,12 +6,11 @@
 
 #import "NSView.h"
 
-#import "IBDocumentArchiving.h"
 #import "NSCoding.h"
 
 @class IBObjectLibraryAssetProvider, IBTargetRuntime, NSArray, NSImage, NSString;
 
-@interface IBObjectLibraryAsset : NSView <IBDocumentArchiving, NSCoding>
+@interface IBObjectLibraryAsset : NSView <NSCoding>
 {
     NSArray *_cachedPasteboardObjects;
     BOOL _hasCreatedContent;
@@ -66,7 +65,7 @@
 - (id)objectContainer;
 - (id)pasteboardObjects;
 - (id)fullDescriptionAsAttributedString;
-@property(readonly, copy) NSString *description;
+- (id)description;
 @property(readonly) NSView *effectiveDraggedView;
 @property(readonly) NSView *effectiveDraggableView;
 @property(readonly) id effectiveRepresentedObject;
@@ -78,19 +77,6 @@
 - (void)didCreateContent;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
-- (id)ibInspectedMinimumRequiredRuntimeOSVersionOptionValues;
-- (id)ibInspectedMinimumRequiredRuntimeOSVersionOptionTitles;
-- (id)ibQualifyingInfoForDefaultLabel;
-- (id)ibTypeNameForDefaultLabel;
-- (id)ibDesignableContentView;
-- (id)ibLocalAttributeKeyPaths;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

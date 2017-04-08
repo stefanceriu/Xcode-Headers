@@ -12,7 +12,6 @@
 - (id)configurableKeyPathForMarshalledDesignTimeToManyRelationship:(id)arg1;
 - (id)marshalledTraitStorageCandidatesForDesignTimeToManyRelationship:(id)arg1;
 - (id)instantiationKeyPathForMarshalledRelatedObject:(id)arg1;
-- (id)marshallerForAttributeStateKey:(id)arg1 defaultMarshaller:(id)arg2 context:(id)arg3;
 - (id)marshalSingleAttribute:(id)arg1 withContext:(id)arg2;
 - (id)userDefinedRuntimeAttributesToMarshallWithContext:(id)arg1;
 - (Class)classToTakeInitialMarshalledKeysFrom:(id)arg1;

@@ -45,7 +45,7 @@
 - (void)switchLocation:(id)arg1 ofWorkingCopy:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)currentLocationOfWorkingCopy:(id)arg1 completionBlock:(CDUnknownBlockType)arg2;
 - (void)historyOfWorkingCopy:(id)arg1 fromRevision:(id)arg2 toRevision:(id)arg3 inclusionType:(unsigned long long)arg4 maximumLogItems:(long long)arg5 searchString:(id)arg6 searchType:(unsigned long long)arg7 includeFilePaths:(BOOL)arg8 showMergeCommits:(BOOL)arg9 progressIdentifier:(id)arg10 completionBlock:(CDUnknownBlockType)arg11;
-- (void)forceUpdateWorkingCopy:(id)arg1 fromRepository:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)forceUpdateWorkingCopy:(id)arg1 location:(id)arg2 fromRepository:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)mergeBranch:(id)arg1 intoWorkingCopy:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)commitDetails:(id)arg1 revisions:(id)arg2 progressIdentifier:(id)arg3 completionBlock:(CDUnknownBlockType)arg4;
 - (void)historyOfFileWithNameStatus:(id)arg1 inWorkingCopy:(id)arg2 fromRevisionLocation:(id)arg3 showMergeCommits:(BOOL)arg4 follow:(BOOL)arg5 maxLogItems:(long long)arg6 completionBlock:(CDUnknownBlockType)arg7;

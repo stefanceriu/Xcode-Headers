@@ -8,10 +8,8 @@
 
 @interface GPUTraceStateItem : GPUTraceAPIItem
 {
-    BOOL _isHidden;
 }
 
-@property(nonatomic) BOOL isHidden; // @synthesize isHidden=_isHidden;
 - (BOOL)isGroupMarkerCall;
 
 @end

@@ -72,6 +72,7 @@
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)description;
+- (id)additionalLibrarySearchPaths;
 - (id)additionalFrameworkSearchPaths;
 - (id)additionalHeaderSearchPaths;
 - (id)commandLineToolSearchPath;

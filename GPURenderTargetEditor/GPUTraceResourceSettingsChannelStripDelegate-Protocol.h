@@ -9,7 +9,6 @@
 @class GPUTraceResourceSettingsChannelStrip;
 
 @protocol GPUTraceResourceSettingsChannelStripDelegate <NSObject>
-- (void)channelStrip:(GPUTraceResourceSettingsChannelStrip *)arg1 updateToneMapExtentsWithMin:(double)arg2 andMax:(double)arg3;
 - (void)channelStrip:(GPUTraceResourceSettingsChannelStrip *)arg1 updateToneMapRangeWithMin:(double)arg2 andMax:(double)arg3;
 - (void)channelStrip:(GPUTraceResourceSettingsChannelStrip *)arg1 autoRangeCheckBoxUpdatedWithState:(long long)arg2;
 - (void)channelStrip:(GPUTraceResourceSettingsChannelStrip *)arg1 enableButtonUpdatedWithState:(long long)arg2 usingAlternateKey:(BOOL)arg3;

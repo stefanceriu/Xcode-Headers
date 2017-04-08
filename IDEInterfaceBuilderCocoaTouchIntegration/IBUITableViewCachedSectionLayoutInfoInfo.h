@@ -16,7 +16,6 @@
 @property __weak IBUITableView *tableView; // @synthesize tableView=_tableView;
 - (void).cxx_destruct;
 - (id)cachedValueFromRequestedValue:(id)arg1;
-- (id)marshaller;
 - (id)initWithTableView:(id)arg1;
 
 @end

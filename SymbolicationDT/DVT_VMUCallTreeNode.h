@@ -34,6 +34,8 @@
 - (id)filterOutSymbols:(id)arg1;
 - (id)filterOutSymbols:(id)arg1 required:(id)arg2;
 - (id)invertedNode;
+- (void)printCallTree;
+- (void)printCallTreeToFile:(struct __sFILE *)arg1;
 - (id)stringFromCallTreeIndentIfNoBranches:(BOOL)arg1;
 - (id)stringFromCallTreeIndentIfNoBranches:(BOOL)arg1 showPseudoNodes:(BOOL)arg2;
 - (BOOL)callTreeHasBranches;
@@ -64,6 +66,7 @@
 - (unsigned long long)address;
 - (id)parent;
 - (void)dealloc;
+- (void)addChildCountsIntoNode;
 - (void)addChild:(id)arg1;
 - (void)setChildren:(id)arg1;
 - (id)allChildren;

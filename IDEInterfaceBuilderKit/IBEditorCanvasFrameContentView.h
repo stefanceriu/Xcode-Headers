@@ -10,20 +10,20 @@
 
 @interface IBEditorCanvasFrameContentView : IBSceneUpdateContentView
 {
-    NSView *documentView;
-    int horizontalContentResizingMode;
-    int verticalContentResizingMode;
+    int _horizontalContentResizingMode;
+    int _verticalContentResizingMode;
+    NSView *_documentView;
     NSView *_wrapperView;
 }
 
+@property(nonatomic) int verticalContentResizingMode; // @synthesize verticalContentResizingMode=_verticalContentResizingMode;
+@property(nonatomic) int horizontalContentResizingMode; // @synthesize horizontalContentResizingMode=_horizontalContentResizingMode;
 @property(retain, nonatomic) NSView *wrapperView; // @synthesize wrapperView=_wrapperView;
-@property(nonatomic) int verticalContentResizingMode; // @synthesize verticalContentResizingMode;
-@property(nonatomic) int horizontalContentResizingMode; // @synthesize horizontalContentResizingMode;
+@property(retain, nonatomic) NSView *documentView; // @synthesize documentView=_documentView;
 - (void).cxx_destruct;
 - (void)layoutBottomUp;
 - (void)layoutTopDown;
 - (struct CGSize)frameSizeForDocumentSize:(struct CGSize)arg1;
-@property(retain, nonatomic) NSView *documentView;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

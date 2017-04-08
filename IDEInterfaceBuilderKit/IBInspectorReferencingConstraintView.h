@@ -13,30 +13,30 @@
 @interface IBInspectorReferencingConstraintView : DVTLayoutView_ML <IBMouseMovedObservingView>
 {
     BOOL _pressed;
-    BOOL highlighted;
+    BOOL _highlighted;
     BOOL _selected;
-    long long borderAttributes;
-    id <IBInspectorReferencingConstraintViewDelegate> delegate;
-    NSImageView *imageView;
-    NSTextField *relatedViewTypeLabel;
-    NSTextField *constantTypeLabel;
-    NSTextField *relatedViewNameLabel;
-    NSTextField *constantValueLabel;
-    long long layoutType;
+    long long _borderAttributes;
+    long long _layoutType;
+    id <IBInspectorReferencingConstraintViewDelegate> _delegate;
+    NSImageView *_imageView;
+    NSTextField *_relatedViewTypeLabel;
+    NSTextField *_constantTypeLabel;
+    NSTextField *_relatedViewNameLabel;
+    NSTextField *_constantValueLabel;
     NSButton *_editButton;
 }
 
 @property(retain, nonatomic) NSButton *editButton; // @synthesize editButton=_editButton;
+@property(retain, nonatomic) NSTextField *constantValueLabel; // @synthesize constantValueLabel=_constantValueLabel;
+@property(retain, nonatomic) NSTextField *relatedViewNameLabel; // @synthesize relatedViewNameLabel=_relatedViewNameLabel;
+@property(retain, nonatomic) NSTextField *constantTypeLabel; // @synthesize constantTypeLabel=_constantTypeLabel;
+@property(retain, nonatomic) NSTextField *relatedViewTypeLabel; // @synthesize relatedViewTypeLabel=_relatedViewTypeLabel;
+@property(retain, nonatomic) NSImageView *imageView; // @synthesize imageView=_imageView;
+@property(nonatomic) __weak id <IBInspectorReferencingConstraintViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) long long layoutType; // @synthesize layoutType=_layoutType;
 @property(nonatomic, getter=isSelected) BOOL selected; // @synthesize selected=_selected;
-@property(nonatomic) long long layoutType; // @synthesize layoutType;
-@property(retain, nonatomic) NSTextField *constantValueLabel; // @synthesize constantValueLabel;
-@property(retain, nonatomic) NSTextField *relatedViewNameLabel; // @synthesize relatedViewNameLabel;
-@property(retain, nonatomic) NSTextField *constantTypeLabel; // @synthesize constantTypeLabel;
-@property(retain, nonatomic) NSTextField *relatedViewTypeLabel; // @synthesize relatedViewTypeLabel;
-@property(retain, nonatomic) NSImageView *imageView; // @synthesize imageView;
-@property(nonatomic) __weak id <IBInspectorReferencingConstraintViewDelegate> delegate; // @synthesize delegate;
-@property(nonatomic, getter=isHighlighted) BOOL highlighted; // @synthesize highlighted;
-@property(nonatomic) long long borderAttributes; // @synthesize borderAttributes;
+@property(nonatomic, getter=isHighlighted) BOOL highlighted; // @synthesize highlighted=_highlighted;
+@property(nonatomic) long long borderAttributes; // @synthesize borderAttributes=_borderAttributes;
 - (void).cxx_destruct;
 - (void)userDidSelectEditButton:(id)arg1;
 - (void)mouseUp:(id)arg1;

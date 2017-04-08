@@ -34,6 +34,8 @@
 @property(readonly) DVTProductIdentifier *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+@property(readonly) unsigned long long hash;
+- (BOOL)isEqual:(id)arg1;
 - (BOOL)writeToFilePath:(id)arg1 error:(id *)arg2;
 - (id)JSONRepresentation;
 - (void)primitiveInvalidate;
@@ -47,8 +49,6 @@
 @property(readonly) NSArray *flatProductVersions;
 - (void)_buildFlatproductVersionsWithVersionedProduct:(id)arg1 flatArray:(id)arg2;
 @property(readonly) DVTProductVersion *mostRecentVersion;
-@property(readonly) unsigned long long hash;
-- (BOOL)isEqual:(id)arg1;
 - (id)_initWithCoordinator:(id)arg1 productIdentifier:(id)arg2 productVersions:(id)arg3;
 - (id)init;
 

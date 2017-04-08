@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DVTLogAspect, NSMutableArray, NSString, NSTimer;
+@class DVTDispatchLock, DVTLogAspect, NSMutableArray, NSString, NSTimer;
 
 @interface DVTPerformanceMetric : NSObject
 {
@@ -18,6 +18,7 @@
     NSString *_result;
     NSString *_profileLogInfo;
     id _identifier;
+    DVTDispatchLock *_checkpointsLock;
     NSMutableArray *_checkpoints;
     struct __CFRunLoopObserver *_runLoopObserver;
     double _tolerance;

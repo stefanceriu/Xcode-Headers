@@ -158,7 +158,6 @@
 - (id)itemsForResolvingMisplacementOrAmbiguityInScope:(long long)arg1;
 - (id)itemsForResolvingMisplacementInScope:(long long)arg1;
 - (id)viewsForAutolayoutCommandScope:(long long)arg1;
-- (id)allObjectsInArbitrationUnitsOfObjects:(id)arg1;
 - (void)openAlignmentConstraintAdditionPopover:(id)arg1;
 - (void)openSpacingConstraintAdditionPopover:(id)arg1;
 - (void)_openConstraintAdditionPopoverWithType:(long long)arg1 sender:(id)arg2;
@@ -235,7 +234,7 @@
 - (BOOL)isExpressionInFunctionOrMethodBody:(id)arg1;
 - (BOOL)isExpressionFunctionOrMethodDefinition:(id)arg1;
 - (BOOL)isExpressionInPlainCode:(id)arg1;
-- (void)symbolsForExpression:(id)arg1 inQueue:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (void)symbolsForExpression:(id)arg1 queue:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (struct CGRect)expressionFrameForExpression:(id)arg1;
 @property(readonly, nonatomic) DVTSourceExpression *mouseOverExpression;
 @property(readonly) DVTSourceExpression *contextMenuExpression;

@@ -10,12 +10,12 @@
 
 @interface IBSourceCodeConnectionEndPointHandler : IBConnectionEndPointHandler
 {
-    IBSourceCodeConnectionContext *preferredMatchConnectionContext;
-    NSArray *connectionContexts;
+    NSArray *_connectionContexts;
+    IBSourceCodeConnectionContext *_preferredMatchConnectionContext;
 }
 
-@property(readonly) IBSourceCodeConnectionContext *preferredMatchConnectionContext; // @synthesize preferredMatchConnectionContext;
-@property(readonly) NSArray *connectionContexts; // @synthesize connectionContexts;
+@property(readonly) IBSourceCodeConnectionContext *preferredMatchConnectionContext; // @synthesize preferredMatchConnectionContext=_preferredMatchConnectionContext;
+@property(readonly) NSArray *connectionContexts; // @synthesize connectionContexts=_connectionContexts;
 - (void).cxx_destruct;
 - (id)targetToSendToEndPointProviderForConnectionSuccess;
 - (id)connectionForPrototype:(id)arg1 interfaceStyle:(id)arg2;

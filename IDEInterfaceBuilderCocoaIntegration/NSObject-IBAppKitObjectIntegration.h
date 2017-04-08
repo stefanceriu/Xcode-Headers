@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSString;
+@class NSString;
 
 @interface NSObject (IBAppKitObjectIntegration)
 + (id)ibStandInRuntimeClassName;
@@ -60,7 +60,7 @@
 - (BOOL)ibIsNSAppearanceContainer;
 - (id)ibSwizzledLocalNonreplaceableAttributeKeyPaths;
 - (id)ibSwizzledLocalSearchableConnectionArrayAttributeKeyPaths;
-@property(readonly) NSArray *ibSearchableBindingConnections;
+- (id)ibSearchableBindingConnections;
 - (id)ibExpectedClassNameForBinding:(id)arg1;
 - (id)ibResolvedTypeNameForControllerKey:(id)arg1;
 - (id)ibControlledObjectClassKey;

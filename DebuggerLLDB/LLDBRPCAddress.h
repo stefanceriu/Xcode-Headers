@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface LLDBRPCAddress : NSObject <DBGSBAddress>
 {
     struct SBAddress {

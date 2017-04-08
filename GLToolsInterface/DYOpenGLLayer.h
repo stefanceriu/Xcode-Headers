@@ -10,11 +10,12 @@
 
 @interface DYOpenGLLayer : CAOpenGLLayer
 {
-    struct ImageRenderer _renderer;
+    struct ImageRenderer *_renderer;
     struct ImageInfo _currentImageInfo;
     NSData *_currentImageData;
     NSData *_resolvedImageData;
     BOOL _isRenderbuffer;
+    BOOL _contentProviderHasChanged;
     struct dispatch_queue_s *_queue;
     id <DYOpenGLLayerContentProvider> _contentProvider;
     CDUnknownBlockType _postRenderSurfaceBlock;
@@ -30,7 +31,7 @@
 - (void)drawInCGLContext:(struct _CGLContextObject *)arg1 pixelFormat:(struct _CGLPixelFormatObject *)arg2 forLayerTime:(double)arg3 displayTime:(const CDStruct_e50ab651 *)arg4;
 - (BOOL)canDrawInCGLContext:(struct _CGLContextObject *)arg1 pixelFormat:(struct _CGLPixelFormatObject *)arg2 forLayerTime:(double)arg3 displayTime:(const CDStruct_e50ab651 *)arg4;
 - (void)invalidate;
-- (struct ImageRenderer *)renderer;
+- (void)dealloc;
 - (id)initWithIdentifer:(id)arg1;
 
 @end

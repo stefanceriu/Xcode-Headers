@@ -7,30 +7,29 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIViewController.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIPageViewController : IBUIViewController <IBDocumentArchiving, NSCoding>
+@interface IBUIPageViewController : IBUIViewController <IBDocumentArchiving>
 {
-    long long transitionStyle;
-    long long pageSpacing;
-    long long navigationOrientation;
-    long long spineLocation;
-    BOOL doubleSided;
+    BOOL _doubleSided;
+    long long _transitionStyle;
+    long long _pageSpacing;
+    long long _navigationOrientation;
+    long long _spineLocation;
 }
 
 + (id)ibInstantiateForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
-@property(getter=isDoubleSided) BOOL doubleSided; // @synthesize doubleSided;
-@property long long spineLocation; // @synthesize spineLocation;
-@property long long navigationOrientation; // @synthesize navigationOrientation;
-@property long long pageSpacing; // @synthesize pageSpacing;
-@property long long transitionStyle; // @synthesize transitionStyle;
+@property(getter=isDoubleSided) BOOL doubleSided; // @synthesize doubleSided=_doubleSided;
+@property long long spineLocation; // @synthesize spineLocation=_spineLocation;
+@property long long navigationOrientation; // @synthesize navigationOrientation=_navigationOrientation;
+@property long long pageSpacing; // @synthesize pageSpacing=_pageSpacing;
+@property long long transitionStyle; // @synthesize transitionStyle=_transitionStyle;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithTargetRuntime:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (void)setIbInspectedTransitionStyle:(long long)arg1;
 - (long long)ibInspectedTransitionStyle;
 - (void)setIbInspectedSpineLocation:(long long)arg1;

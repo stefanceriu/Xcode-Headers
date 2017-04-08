@@ -8,9 +8,20 @@
 
 @interface NSValue (IBNSValueAdditions)
 + (id)ib_valueWithUnsafeUnretainedPointer:(id)arg1;
++ (id)ib_valueWithKnobPosition:(CDUnion_42e99c75)arg1;
++ (id)ib_valueWithIBEdgeInsets:(struct NSEdgeInsets)arg1;
++ (id)ib_valueWithOffset:(CDStruct_c3b9c2ee)arg1;
++ (id)ib_valueWithInset:(CDStruct_c519178c)arg1;
 + (id)ib_valueWithSize:(struct CGSize)arg1;
 + (id)ib_valueWithRect:(struct CGRect)arg1;
 + (id)ib_valueWithPoint:(struct CGPoint)arg1;
+- (CDUnion_42e99c75)ib_knobPosition;
+- (struct NSEdgeInsets)ib_edgeInsetsValue;
+- (CDStruct_d0b1bdbd)ib_lineValue;
+- (BOOL)ib_isOffset;
+- (CDStruct_c3b9c2ee)ib_offsetValue;
+- (BOOL)ib_isInset;
+- (CDStruct_c519178c)ib_insetValue;
 @property(readonly) struct CGSize ib_sizeValue;
 @property(readonly) struct CGRect ib_rectValue;
 @property(readonly) struct CGPoint ib_pointValue;

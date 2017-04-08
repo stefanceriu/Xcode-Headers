@@ -22,7 +22,6 @@
     unsigned int _defnLevel:8;
     unsigned int _highestDefnLevel:8;
     unsigned int _unused:8;
-    int _retainCount;
     id *_nextScopeByDefnLevel;
 }
 
@@ -74,11 +73,6 @@
 - (id)evaluatedStringValueForMacroNamed:(id)arg1;
 - (id)evaluatedStringValueForMacroNamed:(id)arg1 returningFallbackConditionsUsed:(id *)arg2;
 - (id)lookupValueForMacroName:(id)arg1 hash:(unsigned int)arg2 withCursor:(struct DVTMacroNameLookupCursor *)arg3;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 @end
 

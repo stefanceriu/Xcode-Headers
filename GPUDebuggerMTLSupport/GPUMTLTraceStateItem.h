@@ -31,7 +31,7 @@ __attribute__((visibility("hidden")))
 @property(readonly, nonatomic) unsigned long long receiverID;
 @property(readonly, nonatomic) BOOL hasStateMirror;
 @property(readonly, nonatomic) id <DYPMTLStateMirror> stateMirror;
-- (void)primitiveInvalidate;
+- (void)dealloc;
 - (id)initWithController:(id)arg1 parent:(id)arg2 identifier:(id)arg3;
 - (id)initWithController:(id)arg1 parent:(id)arg2 deviceID:(unsigned long long)arg3 functionIndex:(int)arg4 displayIndex:(int)arg5 markedHidden:(BOOL)arg6;
 

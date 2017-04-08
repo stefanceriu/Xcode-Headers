@@ -15,10 +15,11 @@
     id _wrappingLogHandlerToken;
     DVTServicesSession *_parentSession;
     DVTDispatchLock *_sessionIDLock;
-    NSString *_sessionID;
+    NSString *_portalSessionID;
     DVTDeveloperAccount *_account;
     DVTLogAspect *_logAspect;
     long long _executionContext;
+    NSString *_sessionID;
     DVTDeveloperAccountSession *_accountSession;
 }
 
@@ -27,6 +28,7 @@
 + (id)servicesSessionWithDeveloperAccountSession:(id)arg1 executionContext:(long long)arg2;
 + (id)servicesSessionByLoggingInWithAccount:(id)arg1 executionContext:(long long)arg2 error:(id *)arg3;
 @property(retain, nonatomic) DVTDeveloperAccountSession *accountSession; // @synthesize accountSession=_accountSession;
+@property(copy, nonatomic) NSString *sessionID; // @synthesize sessionID=_sessionID;
 @property(readonly, nonatomic) long long executionContext; // @synthesize executionContext=_executionContext;
 @property(retain, nonatomic) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
 @property(readonly, nonatomic) DVTDeveloperAccount *account; // @synthesize account=_account;
@@ -34,7 +36,7 @@
 - (void)_clearWrappingLogAspect;
 - (void)_setWrappingLogAspect:(id)arg1;
 @property(readonly, copy, nonatomic) NSData *sessionData;
-@property(copy, nonatomic) NSString *sessionID; // @synthesize sessionID=_sessionID;
+@property(copy, nonatomic) NSString *portalSessionID; // @synthesize portalSessionID=_portalSessionID;
 - (void)dealloc;
 - (id)initWithAccount:(id)arg1 accountSession:(id)arg2 parentSession:(id)arg3 executionContext:(long long)arg4 logAspect:(id)arg5;
 

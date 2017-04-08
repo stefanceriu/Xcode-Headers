@@ -8,6 +8,8 @@
 
 @interface NSColor (IBUIColorSupport)
 + (id)ibSwizzledInstantiateWithDocumentUnarchiver:(id)arg1;
+- (const char *)ibSwizzledCStringClassNameForBinaryArchiver:(id)arg1;
+- (id)ibSwizzledArchivedSystemKeyPathForBinaryArchiver:(id)arg1;
 - (void)ibSwizzledArchiveWithDocumentArchiver:(id)arg1;
 - (id)valueByTransitioningFromTargetRuntime:(id)arg1 toTargetRuntime:(id)arg2;
 - (id)ibSwizzledInitWithCoder:(id)arg1;

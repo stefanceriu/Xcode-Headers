@@ -14,7 +14,6 @@
 @property __weak id <IBUIViewCachedItemFramesDictionaryInfoDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (id)cachedValueFromRequestedValue:(id)arg1;
-- (id)marshaller;
 - (id)initWithCachedKeyPath:(id)arg1 requestedKeyPath:(id)arg2 andDelegate:(id)arg3;
 
 @end

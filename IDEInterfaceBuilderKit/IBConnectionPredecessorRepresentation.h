@@ -10,7 +10,7 @@
 
 @interface IBConnectionPredecessorRepresentation : IBPredecessorRepresentation
 {
-    IBConnection *predecessor;
+    IBConnection *_predecessor;
 }
 
 - (void).cxx_destruct;

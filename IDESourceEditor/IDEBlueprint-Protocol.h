@@ -5,12 +5,11 @@
 //
 
 #import "IDEIntegrityLogDataSource.h"
-#import "IDEProvisionable.h"
 #import "NSObject.h"
 
-@class DVTFilePath, DVTSDK, DVTSourceCodeLanguage, DVTToolsVersion, IDEBuildParameters, IDEContainer<IDEBlueprintProvider>, IDEContainer<IDECustomDataStoring>, IDEFileReference, IDEGroup, IDESourceFileBuildInfo, IDETestBlueprintHostSettings, IDEWorkspaceArenaSnapshot, NSArray, NSArray<DVTMacroExpansion>, NSDictionary, NSSet, NSString;
+@class DVTFilePath, DVTSDK, DVTSourceCodeLanguage, DVTToolsVersion, IDEBuildParameters, IDEContainer<IDEBlueprintProvider>, IDEContainer<IDECustomDataStoring>, IDEFileReference, IDEGroup, IDEPIFGUID, IDESourceFileBuildInfo, IDETestBlueprintHostSettings, IDETypeIdentifier, IDEWorkspaceArenaSnapshot, NSArray, NSArray<DVTMacroExpansion>, NSDictionary, NSSet, NSString;
 
-@protocol IDEBlueprint <NSObject, IDEIntegrityLogDataSource, IDEProvisionable>
+@protocol IDEBlueprint <NSObject, IDEIntegrityLogDataSource>
 @property(readonly, copy) NSString *blueprintIdentifier;
 @property(readonly) NSString *name;
 - (DVTFilePath *)entitlementsFilePathForBuildConfiguration:(NSString *)arg1;
@@ -26,6 +25,9 @@
 - (IDEContainer<IDEBlueprintProvider> *)blueprintProvider;
 
 @optional
+@property(readonly) IDETypeIdentifier *activityLogDomainType;
+@property(readonly) IDEPIFGUID *PIFGUID;
+@property(readonly) id <IDEProvisionable> provisionable;
 @property(readonly) NSSet *knownAssetTags;
 @property(readonly) DVTToolsVersion *createdOnToolsVersion;
 @property(readonly, getter=isUnitTest) BOOL unitTest;
@@ -60,7 +62,6 @@
 - (void)updateSwiftCompilerTo:(NSString *)arg1;
 - (void)updateLastSwiftMigrationToCurrent;
 - (BOOL)lastSwiftMigrationIsCurrent;
-- (void)convertToUseModernUnitTests;
 - (void)convertToUseModernObjCSyntax;
 - (void)convertToUseARC;
 - (BOOL)canConvertToUseARC;

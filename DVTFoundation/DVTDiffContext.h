@@ -22,7 +22,7 @@
     unsigned long long _timestamp;
     int _needsUpdate;
     struct _DVTDiffContextFlags _dcFlags;
-    int _defaultDiffMergeDirection;
+    long long _defaultDiffMergeDirection;
     BOOL _shouldGenerateSubdiffDescriptors;
     BOOL _isRestoringState;
     BOOL _updatingChangedDescriptor;
@@ -60,7 +60,7 @@
 @property(readonly, copy) NSString *description;
 - (struct _DVTDiffContextFlags)dcFlags;
 - (void)setDcFlags:(struct _DVTDiffContextFlags)arg1;
-@property int defaultDiffMergeDirection;
+@property long long defaultDiffMergeDirection;
 @property BOOL shouldGenerateSubdiffDescriptors;
 @property BOOL ignoresCommon;
 @property BOOL ignoresLineEnds;
@@ -74,8 +74,6 @@
 - (BOOL)_setOriginalDataSource:(id)arg1;
 - (void)setUpdatingChangedDescriptor:(BOOL)arg1;
 - (BOOL)updatingChangedDescriptor;
-- (void)setDiffQueue:(id)arg1;
-- (id)diffQueue;
 - (id)_observeDataSource:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)init;

@@ -29,6 +29,8 @@
 
 + (id)sharedTrace;
 - (void).cxx_destruct;
+- (void)recordOverridesType:(id)arg1;
+- (void)recordOverridesUsed:(id)arg1;
 - (void)reportBufferViewerTypeUsage:(id)arg1;
 - (void)reportColorFilterSelection:(id)arg1;
 - (void)reportDebugNavigatorTextFilterMatchType:(id)arg1;

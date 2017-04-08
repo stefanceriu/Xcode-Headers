@@ -11,14 +11,24 @@
 __attribute__((visibility("hidden")))
 @interface GPUCaptureActivityReporter : IDEActivityReporter
 {
-    NSMapTable *_reportForTraceInferiorSessionTable;
+    NSMapTable *_launchSessionObserverTokens;
+    NSMapTable *_inferiorSessionReports;
+    NSMapTable *_inferiorSessionProgressObservers;
 }
 
 + (void)initialize;
 - (void).cxx_destruct;
-- (void)_handleTraceInferiorSessionStateChange:(id)arg1;
-- (void)_replaceActivityReportWithSession:(id)arg1 withTitle:(id)arg2 andProgressType:(long long)arg3;
-- (void)_cancelActivityForTraceInferiorSession:(id)arg1;
+- (void)primitiveInvalidate;
+- (void)_invalidateAllLaunchSessionTokens;
+- (id)_tokensForLaunchSession:(id)arg1;
+- (void)_addToken:(id)arg1 forLaunchSession:(id)arg2;
+- (void)_invalidateActivityForTraceInferiorSession:(id)arg1;
+- (void)_addNewActivityReportWithSession:(id)arg1 withTitle:(id)arg2 andProgressType:(long long)arg3;
+- (void)_updateActivityReportWithSession:(id)arg1 withTitle:(id)arg2 andProgressType:(long long)arg3;
+- (void)_displayCaptureDebuggingStateMesssage:(id)arg1;
+- (void)_monitorCaptureProgress:(id)arg1;
+- (void)_watchActiveGPUSession:(id)arg1;
+- (void)_handleCurrentLaunchSessionChanged:(id)arg1;
 - (id)initWithWorkspace:(id)arg1;
 
 @end

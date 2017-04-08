@@ -10,11 +10,12 @@
 
 @interface IBInspectorSceneKitResourceProperty : IDEInspectorProperty
 {
-    NSComboBox *comboBox;
     IDEInspectorKeyPath *_valueKeyPath;
     BOOL _allowsNilValues;
+    NSComboBox *_comboBox;
 }
 
+@property(retain) NSComboBox *comboBox; // @synthesize comboBox=_comboBox;
 - (void).cxx_destruct;
 - (id)findIndicatorContentViewWithContext:(id)arg1;
 - (void)setupRefreshTriggersAndConfigure;

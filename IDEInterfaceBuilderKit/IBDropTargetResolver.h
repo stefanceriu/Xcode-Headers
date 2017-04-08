@@ -14,20 +14,20 @@
 
 @interface IBDropTargetResolver : NSObject <IBDragAndDropPolicyDelegate, IBDragAndDropInsertionIndicatorDelegate, DVTInvalidation>
 {
-    id editedObject;
-    NSArray *policies;
-    IBOrderedRelationshipDragAndDropPolicy *activePolicy;
-    IBDropTargetResolver *parentDropTargetResolver;
-    IBEditorCanvasFrameController *frameController;
-    BOOL duringDrag;
-    id <IBDropTargetResolverDelegate> delegate;
+    NSArray *_policies;
+    IBOrderedRelationshipDragAndDropPolicy *_activePolicy;
+    BOOL _duringDrag;
+    id <IBDropTargetResolverDelegate> _delegate;
+    NSObject *_editedObject;
+    IBDropTargetResolver *_parentDropTargetResolver;
+    IBEditorCanvasFrameController *_frameController;
 }
 
 + (void)initialize;
-@property(readonly) IBEditorCanvasFrameController *frameController; // @synthesize frameController;
-@property(readonly) IBDropTargetResolver *parentDropTargetResolver; // @synthesize parentDropTargetResolver;
-@property(readonly) NSObject *editedObject; // @synthesize editedObject;
-@property __weak id <IBDropTargetResolverDelegate> delegate; // @synthesize delegate;
+@property(readonly) IBEditorCanvasFrameController *frameController; // @synthesize frameController=_frameController;
+@property(readonly) IBDropTargetResolver *parentDropTargetResolver; // @synthesize parentDropTargetResolver=_parentDropTargetResolver;
+@property(readonly) NSObject *editedObject; // @synthesize editedObject=_editedObject;
+@property __weak id <IBDropTargetResolverDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)insertionPolicy:(id)arg1 orderedRelationInsertionIndexDidChange:(long long)arg2;
 - (void)insertionPolicy:(id)arg1 orderedRelationInsertionIndexWillChange:(long long)arg2;

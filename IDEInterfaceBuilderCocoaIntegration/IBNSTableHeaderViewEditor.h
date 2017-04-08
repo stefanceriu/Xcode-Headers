@@ -8,7 +8,7 @@
 
 @interface IBNSTableHeaderViewEditor : IBNSViewEditor
 {
-    id <DVTCancellable> columnObserverToken;
+    id <DVTCancellable> _columnObserverToken;
 }
 
 - (void).cxx_destruct;

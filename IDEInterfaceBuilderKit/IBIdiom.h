@@ -29,7 +29,6 @@
 - (double)effectiveScaleFactorForPlatformToolDescriptionScaleFactor:(double)arg1;
 - (id)systemGuideSetsByIdentifier;
 - (id)guideSetForIdentifier:(id)arg1;
-- (id)designablesAgentApplicationName;
 - (id)designablesAgentName;
 - (void)populateVariantForResolvingMediaResources:(id)arg1 forDocument:(id)arg2;
 - (id)variantForResolvingMediaResourcesForDocument:(id)arg1;

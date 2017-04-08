@@ -39,7 +39,6 @@
 - (long long)compare:(id)arg1;
 @property(readonly, copy) NSString *description;
 - (BOOL)isEqualDisregardingTimestamp:(id)arg1;
-- (BOOL)isEqualToDocumentLocationDisregardingDocumentURL:(id)arg1;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)copyWithURL:(id)arg1;

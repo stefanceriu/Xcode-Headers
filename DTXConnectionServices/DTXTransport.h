@@ -16,7 +16,7 @@
     CDUnknownBlockType _dataReceivedHandler;
     unsigned int _status;
     NSObject<OS_dispatch_semaphore> *_waitForResume;
-    BOOL _resumed;
+    // Error parsing type: AB, name: _resumed
 }
 
 + (BOOL)recognizesURL:(id)arg1;

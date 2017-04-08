@@ -10,10 +10,11 @@
 
 @interface IBConnectionDisclosureHeaderView : DVTDisclosureHeaderView
 {
-    IBImageButton *disclosureImageButton;
-    IBConnectionInterfaceStyle *connectionInterfaceStyle;
+    IBImageButton *_disclosureImageButton;
+    IBConnectionInterfaceStyle *_connectionInterfaceStyle;
 }
 
+@property(readonly) IBConnectionInterfaceStyle *connectionInterfaceStyle; // @synthesize connectionInterfaceStyle=_connectionInterfaceStyle;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)disclosureClicked:(id)arg1;
@@ -22,7 +23,6 @@
 - (struct CGRect)titleFrame;
 - (struct CGRect)disclosureButtonFrame;
 - (void)setDisclosed:(BOOL)arg1;
-- (id)connectionInterfaceStyle;
 - (id)frameView;
 - (id)initWithFrame:(struct CGRect)arg1 andInterfaceStyle:(id)arg2;
 

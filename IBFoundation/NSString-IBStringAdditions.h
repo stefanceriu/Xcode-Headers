@@ -9,6 +9,7 @@
 @interface NSString (IBStringAdditions)
 + (id)ib_stringWithListComponentsJoinedByCommasAndAnd:(id)arg1;
 + (id)ib_UUIDString;
+- (id)ib_stringByMakingRFC1034Compliant;
 - (struct _NSRange)ib_rangeForSuffixOfLength:(long long)arg1;
 - (struct _NSRange)ib_range;
 - (id)ib_stringWithEachLinePrefixedByString:(id)arg1;

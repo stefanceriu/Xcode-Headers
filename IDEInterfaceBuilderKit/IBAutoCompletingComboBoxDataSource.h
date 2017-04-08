@@ -13,7 +13,7 @@
 
 @interface IBAutoCompletingComboBoxDataSource : NSObject <NSComboBoxDataSource, NSComboBoxCellDataSource>
 {
-    NSArray *orderedValues;
+    NSArray *_orderedValues;
 }
 
 - (void).cxx_destruct;

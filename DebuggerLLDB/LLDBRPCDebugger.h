@@ -10,7 +10,6 @@
 
 @class NSString, NSValue;
 
-__attribute__((visibility("hidden")))
 @interface LLDBRPCDebugger : NSObject <DBGSBDebugger>
 {
     struct SBDebugger {

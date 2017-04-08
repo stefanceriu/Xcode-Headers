@@ -12,12 +12,14 @@
 {
     IBUnicodeTR354Tokenizer *_unicodeTokenizer;
     IBSTRFTimeTokenizer *_strftimeTokenizer;
-    NSTokenField *preTenFourTokenField;
-    NSTokenField *tenFourTokenField;
+    NSTokenField *_preTenFourTokenField;
+    NSTokenField *_tenFourTokenField;
 }
 
 + (id)keyPathsForValuesAffectingTokenizedDateFormatForSelection;
 + (id)editingStringForTokens:(id)arg1;
+@property(retain) NSTokenField *tenFourTokenField; // @synthesize tenFourTokenField=_tenFourTokenField;
+@property(retain) NSTokenField *preTenFourTokenField; // @synthesize preTenFourTokenField=_preTenFourTokenField;
 - (void).cxx_destruct;
 - (void)tokenPopupDidChange:(id)arg1;
 - (id)tokenField:(id)arg1 menuForRepresentedObject:(id)arg2;

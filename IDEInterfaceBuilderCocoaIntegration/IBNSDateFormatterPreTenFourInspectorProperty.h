@@ -10,19 +10,29 @@
 
 @interface IBNSDateFormatterPreTenFourInspectorProperty : IBNSDateFormatterInspectorProperty
 {
-    NSTokenField *_oldPresetTokenField01;
-    NSTokenField *_oldPresetTokenField02;
-    NSTokenField *_oldPresetTokenField03;
-    NSTokenField *_oldPresetTokenField04;
-    NSTokenField *_oldPresetTokenField05;
-    NSTokenField *_oldPresetTokenField06;
-    NSTokenField *_oldPresetTokenField07;
-    NSTokenField *_oldPresetTokenField08;
-    NSTokenField *_oldPresetTokenField09;
-    NSTokenField *_oldPresetTokenField10;
-    NSSet *_oldPresetTokenFields;
+    NSSet *_preTenFourPresetTokenFields;
+    NSTokenField *_preTenFourPresetTokenField01;
+    NSTokenField *_preTenFourPresetTokenField02;
+    NSTokenField *_preTenFourPresetTokenField03;
+    NSTokenField *_preTenFourPresetTokenField04;
+    NSTokenField *_preTenFourPresetTokenField05;
+    NSTokenField *_preTenFourPresetTokenField06;
+    NSTokenField *_preTenFourPresetTokenField07;
+    NSTokenField *_preTenFourPresetTokenField08;
+    NSTokenField *_preTenFourPresetTokenField09;
+    NSTokenField *_preTenFourPresetTokenField10;
 }
 
+@property(retain) NSTokenField *preTenFourPresetTokenField10; // @synthesize preTenFourPresetTokenField10=_preTenFourPresetTokenField10;
+@property(retain) NSTokenField *preTenFourPresetTokenField09; // @synthesize preTenFourPresetTokenField09=_preTenFourPresetTokenField09;
+@property(retain) NSTokenField *preTenFourPresetTokenField08; // @synthesize preTenFourPresetTokenField08=_preTenFourPresetTokenField08;
+@property(retain) NSTokenField *preTenFourPresetTokenField07; // @synthesize preTenFourPresetTokenField07=_preTenFourPresetTokenField07;
+@property(retain) NSTokenField *preTenFourPresetTokenField06; // @synthesize preTenFourPresetTokenField06=_preTenFourPresetTokenField06;
+@property(retain) NSTokenField *preTenFourPresetTokenField05; // @synthesize preTenFourPresetTokenField05=_preTenFourPresetTokenField05;
+@property(retain) NSTokenField *preTenFourPresetTokenField04; // @synthesize preTenFourPresetTokenField04=_preTenFourPresetTokenField04;
+@property(retain) NSTokenField *preTenFourPresetTokenField03; // @synthesize preTenFourPresetTokenField03=_preTenFourPresetTokenField03;
+@property(retain) NSTokenField *preTenFourPresetTokenField02; // @synthesize preTenFourPresetTokenField02=_preTenFourPresetTokenField02;
+@property(retain) NSTokenField *preTenFourPresetTokenField01; // @synthesize preTenFourPresetTokenField01=_preTenFourPresetTokenField01;
 - (void).cxx_destruct;
 - (double)baseline;
 - (id)tokenField:(id)arg1 displayStringForRepresentedObject:(id)arg2;

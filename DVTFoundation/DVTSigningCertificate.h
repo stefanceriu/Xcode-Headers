@@ -12,6 +12,7 @@
 {
     NSNumber *_isTrusted;
     SFCertificateData *_certificateData;
+    NSNumber *_isValidForCodeSigning;
     DVTLogAspect *_logAspect;
     NSString *_certificateKind;
     NSString *_trimmedName;
@@ -32,6 +33,7 @@
 @property(readonly) NSString *portalTeamName; // @synthesize portalTeamName=_portalTeamName;
 @property(readonly) DVTLogAspect *logAspect; // @synthesize logAspect=_logAspect;
 - (void).cxx_destruct;
+- (BOOL)deleteFromKeychain:(id *)arg1;
 - (id)p12DataWithPassword:(id)arg1 error:(id *)arg2;
 - (id)_valueInSubjectNameSectionFromCertificate:(struct OpaqueSecCertificateRef *)arg1 forOID:(id)arg2;
 - (id)_dateFromCertificate:(struct OpaqueSecCertificateRef *)arg1 forOID:(id)arg2;
@@ -45,6 +47,7 @@
 @property(readonly, getter=isExpired) BOOL expired;
 @property(readonly) NSDate *expirationDate; // @synthesize expirationDate=_expirationDate;
 @property(readonly) NSDate *issueDate; // @synthesize issueDate=_issueDate;
+- (BOOL)isValidForCodeSigning;
 - (BOOL)isIdentityOnKeychains:(id)arg1;
 @property(readonly, getter=isIdentity) BOOL identity;
 @property(readonly) NSString *portalMemberID; // @synthesize portalMemberID=_portalMemberID;

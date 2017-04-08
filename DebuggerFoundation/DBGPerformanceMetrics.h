@@ -41,6 +41,7 @@
 - (void)stackFrameFetchStarted:(id)arg1;
 - (void)variablesViewUpdateCompleted;
 - (void)variablesViewUpdateStarted;
+- (void)perceivedStepStopped;
 - (void)perceivedStepCompleted;
 - (void)perceivedStepCheckpoint:(id)arg1;
 - (void)perceivedStepStarted;

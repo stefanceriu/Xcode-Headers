@@ -18,19 +18,11 @@
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (id)inspectedDocumentMembers;
-- (id)externalCustomFormattedClassNameForMember:(id)arg1;
-- (id)externalCustomClassModuleProviderForMember:(id)arg1;
-- (id)externalCustomClassModuleForMember:(id)arg1;
 - (id)externalCustomFormattedClassSymbolForMember:(id)arg1;
 - (id)effectiveFormattedClassSymbolForMember:(id)arg1;
-- (BOOL)canMemberChangeCustomClassName:(id)arg1;
 - (void)setExternalCustomFormattedClassSymbol:(id)arg1 forMember:(id)arg2;
-- (id)externalCustomClassNameForMember:(id)arg1;
+- (BOOL)canMemberChangeCustomClassName:(id)arg1;
 - (id)runtimeClassNameForMember:(id)arg1;
-- (id)effectiveClassModuleProviderForMember:(id)arg1;
-- (id)effectiveClassModuleForMember:(id)arg1;
-- (id)effectiveUnformattedClassNameForMember:(id)arg1;
-- (id)effectiveClassNameForMember:(id)arg1;
 
 @end
 

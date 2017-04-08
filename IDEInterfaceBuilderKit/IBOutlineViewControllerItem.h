@@ -12,29 +12,29 @@
 
 @interface IBOutlineViewControllerItem : NSObject <DVTInvalidation>
 {
-    IBOutlineViewControllerItem *parent;
-    id representedObject;
-    NSString *name;
-    IBMemberID *memberID;
-    NSImage *image;
-    NSArray *children;
-    NSArray *filteredChildren;
-    IBOutlineViewController *viewController;
     BOOL _installed;
+    IBOutlineViewControllerItem *_parent;
+    id _representedObject;
     id _representedDocumentObjectForAutolayoutStatus;
+    NSString *_name;
+    IBMemberID *_memberID;
+    NSImage *_image;
+    NSArray *_children;
+    IBOutlineViewController *_viewController;
+    NSArray *_filteredChildren;
 }
 
 + (void)initialize;
+@property(copy) NSArray *filteredChildren; // @synthesize filteredChildren=_filteredChildren;
+@property(retain) IBOutlineViewController *viewController; // @synthesize viewController=_viewController;
+@property(copy, nonatomic) NSArray *children; // @synthesize children=_children;
 @property(nonatomic, getter=isInstalled) BOOL installed; // @synthesize installed=_installed;
+@property(retain) NSImage *image; // @synthesize image=_image;
+@property(copy) IBMemberID *memberID; // @synthesize memberID=_memberID;
+@property(copy) NSString *name; // @synthesize name=_name;
 @property(retain) id representedDocumentObjectForAutolayoutStatus; // @synthesize representedDocumentObjectForAutolayoutStatus=_representedDocumentObjectForAutolayoutStatus;
-@property(copy) NSArray *filteredChildren; // @synthesize filteredChildren;
-@property(retain) IBOutlineViewController *viewController; // @synthesize viewController;
-@property(copy, nonatomic) NSArray *children; // @synthesize children;
-@property(retain) NSImage *image; // @synthesize image;
-@property(copy) IBMemberID *memberID; // @synthesize memberID;
-@property(copy) NSString *name; // @synthesize name;
-@property(retain) id representedObject; // @synthesize representedObject;
-@property(readonly, nonatomic) IBOutlineViewControllerItem *parent; // @synthesize parent;
+@property(retain) id representedObject; // @synthesize representedObject=_representedObject;
+@property(readonly, nonatomic) IBOutlineViewControllerItem *parent; // @synthesize parent=_parent;
 - (void).cxx_destruct;
 - (long long)topLevelObjectInsertionIndexForChildIndex:(long long)arg1;
 - (long long)lastLegalInsertionIndex;

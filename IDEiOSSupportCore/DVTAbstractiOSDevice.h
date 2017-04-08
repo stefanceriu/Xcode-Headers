@@ -13,10 +13,12 @@
 @interface DVTAbstractiOSDevice : DVTDevice <DVTBasiciOSDevice>
 {
     NSMapTable *_workspaceInstallsInProgress;
+    id _installOperation;
 }
 
 + (id)nameForDeviceFamilyObject:(id)arg1;
 - (void).cxx_destruct;
+- (BOOL)_updateTestConfiguration:(id)arg1 atPath:(id)arg2 destinationTestHostPath:(id)arg3 error:(id *)arg4;
 - (void)_processControlForPid:(int)arg1 payload:(id)arg2 onProxy:(BOOL)arg3 completed:(CDUnknownBlockType)arg4;
 - (BOOL)supportsUISnapshotOnProxy:(BOOL)arg1;
 - (BOOL)supportsNewLogging;
@@ -25,7 +27,7 @@
 - (void)showMessagesExtensionOnProxy:(BOOL)arg1 completed:(CDUnknownBlockType)arg2;
 - (void)simulateNotificationWithBundleID:(id)arg1 payload:(id)arg2 onProxy:(BOOL)arg3 completed:(CDUnknownBlockType)arg4;
 - (void)pressHomeButtonOnProxy:(BOOL)arg1 completed:(CDUnknownBlockType)arg2;
-- (void)showSiriForExtensions:(id)arg1 pid:(int)arg2 onProxy:(BOOL)arg3 completed:(CDUnknownBlockType)arg4;
+- (void)showSiriForExtensions:(id)arg1 queryText:(id)arg2 pid:(int)arg3 onProxy:(BOOL)arg4 completed:(CDUnknownBlockType)arg5;
 - (void)showTodayViewForExtensions:(id)arg1 pid:(int)arg2;
 - (id)serviceHubProcessControlChannelOnProxy:(BOOL)arg1;
 - (id)serviceHubProcessControlChannel;
@@ -36,9 +38,7 @@
 - (void)installProvisioningProfiles:(id)arg1;
 - (BOOL)canInstallProfile:(id)arg1;
 - (id)provisioningProfiles;
-@property(readonly) _Bool deviceIsBusy;
 - (id)taskForDeviceCommand:(id)arg1 withArguments:(id)arg2 error:(id *)arg3;
-- (void)setStatusOnMainThread:(id)arg1 userInitiated:(BOOL)arg2 progress:(long long)arg3;
 - (void)installActivityDidEndInWorkspace:(id)arg1 withError:(id)arg2;
 - (void)installActivityInWorkspace:(id)arg1 operationInProgress:(id)arg2 details:(id)arg3;
 - (void)installActivityWillBeginInWorkspace:(id)arg1 withProductName:(id)arg2;
@@ -59,12 +59,13 @@
 - (id)copyLocalPath:(id)arg1 toLocalPath:(id)arg2 sync:(_Bool)arg3 withStatusObserver:(CDUnknownBlockType)arg4;
 - (id)copyDevicePath:(id)arg1 toDevicePath:(id)arg2 sync:(_Bool)arg3 withStatusObserver:(CDUnknownBlockType)arg4;
 - (id)_copyPath:(id)arg1 toPath:(id)arg2 sync:(_Bool)arg3 onDevice:(_Bool)arg4 withStatusObserver:(CDUnknownBlockType)arg5;
-- (id)_rsyncInstallSourcePath:(id)arg1 destinationPath:(id)arg2 entirelyOnDevice:(BOOL)arg3 sync:(BOOL)arg4 activityString:(id)arg5 errorStringPtr:(id *)arg6;
+- (id)_rsyncInstallSourcePath:(id)arg1 destinationPath:(id)arg2 entirelyOnDevice:(BOOL)arg3 sync:(BOOL)arg4 activityString:(id)arg5 retryCount:(unsigned long long)arg6 errorStringPtr:(id *)arg7;
 - (id)_rsyncInstallDevicePath:(id)arg1 toDevicePath:(id)arg2 sync:(_Bool)arg3 activityString:(id)arg4 errorStringPtr:(id *)arg5;
 - (id)_rsyncInstallLocalPath:(id)arg1 toDevicePath:(id)arg2 sync:(_Bool)arg3 activityString:(id)arg4 errorStringPtr:(id *)arg5;
 - (id)_rsyncPath:(id)arg1 toPath:(id)arg2 sync:(_Bool)arg3 onDevice:(_Bool)arg4 withHardLinkDirs:(id)arg5 withStatusObserver:(CDUnknownBlockType)arg6;
 - (id)_rsyncErrorStringForNSError:(id)arg1;
-- (id)_transformPathForDevice:(id)arg1;
+- (BOOL)_rsyncErrorIsMkdirFailure:(id)arg1 missingPath:(id *)arg2;
+- (id)_transformPathForDevice:(id)arg1 error:(id *)arg2;
 - (id)_additionalRsyncParameters;
 - (id)_rsyncEnvironment;
 - (id)copyLocalPath:(id)arg1 toLocalPath:(id)arg2 sync:(BOOL)arg3 withHardLinkDirs:(id)arg4;
@@ -101,11 +102,13 @@
 - (BOOL)isConcreteDevice;
 - (BOOL)isGenericDevice;
 - (id)initWithDeviceLocation:(id)arg1 extension:(id)arg2;
+- (BOOL)supportsTargetBootstrapInjection;
 
 // Remaining properties
 @property(readonly, getter=isAvailable) BOOL available;
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
+@property(readonly) _Bool deviceIsBusy;
 @property(readonly) unsigned long long hash;
 @property(readonly, copy, nonatomic) NSString *identifier;
 @property(readonly) BOOL isProxiedDevice;

@@ -10,12 +10,12 @@
 
 @interface IBUIToolbarEditingPolicy : NSObject
 {
-    IBEditor *editor;
-    IBUIToolbar *toolbar;
+    IBUIToolbar *_toolbar;
+    IBEditor *_editor;
 }
 
-@property(readonly) IBUIToolbar *toolbar; // @synthesize toolbar;
-@property(readonly) IBEditor *editor; // @synthesize editor;
+@property(readonly) IBEditor *editor; // @synthesize editor=_editor;
+@property(readonly) IBUIToolbar *toolbar; // @synthesize toolbar=_toolbar;
 - (void).cxx_destruct;
 - (BOOL)isFrameLockedForButtonBarItem:(id)arg1;
 - (BOOL)shouldChildHaveResizeKnobs:(id)arg1;

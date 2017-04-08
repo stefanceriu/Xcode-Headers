@@ -10,14 +10,14 @@
 
 @interface IBPredecessorRepresentation : NSObject
 {
-    NSArray *displayValues;
-    IBDocument *document;
-    id endPoint;
+    NSArray *_displayValues;
+    IBDocument *_document;
+    id _endPoint;
 }
 
-@property(readonly) IBDocument *document; // @synthesize document;
-@property(readonly) id endPoint; // @synthesize endPoint;
-@property(readonly, copy) NSArray *displayValues; // @synthesize displayValues;
+@property(readonly) id endPoint; // @synthesize endPoint=_endPoint;
+@property(readonly) IBDocument *document; // @synthesize document=_document;
+@property(readonly, copy) NSArray *displayValues; // @synthesize displayValues=_displayValues;
 - (void).cxx_destruct;
 - (void)disconnect;
 - (BOOL)canDisconnect;

@@ -80,6 +80,10 @@ struct __sbuf {
     int _field2;
 };
 
+struct __tree_end_node<std::__1::__tree_node_base<void *>*> {
+    struct __tree_node_base<void *> *__left_;
+};
+
 struct in6_addr {
     union {
         unsigned char _field1[16];
@@ -137,44 +141,81 @@ struct kpdecode_record {
         unsigned long long _field5;
     } _field12;
     struct {
-        unsigned int _field1;
-        unsigned int _field2;
+        unsigned long long _field1;
+        unsigned long long _field2;
+        unsigned int _field3;
+        short _field4;
+        short _field5;
+        unsigned int :3;
+        unsigned int :3;
+        unsigned int :3;
+        unsigned int :3;
     } _field13;
     struct {
         unsigned long long _field1;
         int _field2;
+        int _field3;
+        unsigned long long _field4;
+        unsigned long long _field5;
     } _field14;
+    struct {
+        unsigned long long _field1;
+        unsigned long long _field2;
+        short _field3;
+        unsigned char _field4;
+    } _field15;
+    CDStruct_69d7cc99 _field16;
+    struct {
+        unsigned int _field1;
+        unsigned int _field2;
+    } _field17;
+    struct {
+        unsigned long long _field1;
+        int _field2;
+    } _field18;
     struct {
         int _field1;
         unsigned long long *_field2;
-    } _field15;
-    struct {
-        unsigned long long _field1;
-    } _field16;
+    } _field19;
+    CDStruct_69d7cc99 _field20;
     struct {
         unsigned int _field1;
         int _field2;
-    } _field17;
+    } _field21;
     struct {
         char _field1[256];
         unsigned long long _field2;
         unsigned long long _field3;
         unsigned int _field4;
-    } _field18;
+    } _field22;
 };
 
 struct map<unsigned long long, int, std::__1::less<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, int>>> {
     struct __tree<std::__1::__value_type<unsigned long long, int>, std::__1::__map_value_compare<unsigned long long, std::__1::__value_type<unsigned long long, int>, std::__1::less<unsigned long long>, true>, std::__1::allocator<std::__1::__value_type<unsigned long long, int>>> {
-        struct __tree_node<std::__1::__value_type<unsigned long long, int>, void *> *__begin_node_;
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *__begin_node_;
         struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<unsigned long long, int>, void *>>> {
-            struct __tree_end_node<std::__1::__tree_node_base<void *>*> {
-                struct __tree_node_base<void *> *__left_;
-            } __first_;
+            struct __tree_end_node<std::__1::__tree_node_base<void *>*> __first_;
         } __pair1_;
         struct __compressed_pair<unsigned long, std::__1::__map_value_compare<unsigned long long, std::__1::__value_type<unsigned long long, int>, std::__1::less<unsigned long long>, true>> {
             unsigned long long __first_;
         } __pair3_;
     } __tree_;
+};
+
+struct map<unsigned long long, std::__1::map<unsigned int, OAKeyFrame *, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, OAKeyFrame *>>>, std::__1::less<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, std::__1::map<unsigned int, OAKeyFrame *, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, OAKeyFrame *>>>>>> {
+    struct __tree<std::__1::__value_type<unsigned long long, std::__1::map<unsigned int, OAKeyFrame *, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, OAKeyFrame *>>>>, std::__1::__map_value_compare<unsigned long long, std::__1::__value_type<unsigned long long, std::__1::map<unsigned int, OAKeyFrame *, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, OAKeyFrame *>>>>, std::__1::less<unsigned long long>, true>, std::__1::allocator<std::__1::__value_type<unsigned long long, std::__1::map<unsigned int, OAKeyFrame *, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, OAKeyFrame *>>>>>> {
+        struct __tree_end_node<std::__1::__tree_node_base<void *>*> *__begin_node_;
+        struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *>*>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<unsigned long long, std::__1::map<unsigned int, OAKeyFrame *, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, OAKeyFrame *>>>>, void *>>> {
+            struct __tree_end_node<std::__1::__tree_node_base<void *>*> __first_;
+        } __pair1_;
+        struct __compressed_pair<unsigned long, std::__1::__map_value_compare<unsigned long long, std::__1::__value_type<unsigned long long, std::__1::map<unsigned int, OAKeyFrame *, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, OAKeyFrame *>>>>, std::__1::less<unsigned long long>, true>> {
+            unsigned long long __first_;
+        } __pair3_;
+    } __tree_;
+};
+
+struct processor_cpu_load_info {
+    unsigned int _field1[4];
 };
 
 struct sockaddr_in {
@@ -231,6 +272,21 @@ typedef struct {
     unsigned int _field3;
     unsigned int _field4;
 } CDStruct_cbbc06c7;
+
+typedef struct {
+    unsigned long long _field1;
+} CDStruct_69d7cc99;
+
+typedef struct {
+    double _field1;
+    unsigned int _field2;
+    unsigned int _field3;
+    unsigned long long _field4;
+    unsigned long long _field5;
+    unsigned long long _field6;
+    long long _field7;
+    unsigned long long _field8[0];
+} CDStruct_6c9135d0;
 
 typedef struct {
     unsigned int _field1;

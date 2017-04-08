@@ -6,10 +6,12 @@
 
 #import "NSObject.h"
 
-@class DVTPortalPermissions, NSArray, NSNumber, NSString;
+@class DVTDispatchLock, DVTPortalPermissions, NSArray, NSNumber, NSString;
 
 @interface DVTPortalMember : NSObject
 {
+    NSString *_memberID;
+    DVTDispatchLock *_memberIDLock;
     NSString *_firstName;
     NSString *_lastName;
     NSNumber *_personID;
@@ -28,6 +30,7 @@
 - (id)memberIDWithSession:(id)arg1 error:(id *)arg2;
 @property(readonly, nonatomic) NSString *roleDescription;
 - (id)description;
+- (id)init;
 
 @end
 

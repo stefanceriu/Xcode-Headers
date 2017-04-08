@@ -14,6 +14,8 @@
 @interface GPUTraceResourceItem : GPUTraceOutlineItem <DYPResourceItem, NSPasteboardWriting>
 {
     BOOL _generatesThumbnail;
+    BOOL _placeholder;
+    BOOL _harvested;
     unsigned int _type;
     unsigned long long _objectID;
     const void *_stateMirrorObject;
@@ -25,6 +27,8 @@
 }
 
 + (id)sharedByteFormatter;
+@property(nonatomic) BOOL harvested; // @synthesize harvested=_harvested;
+@property(readonly, nonatomic) BOOL placeholder; // @synthesize placeholder=_placeholder;
 @property(readonly, nonatomic) unsigned long long sharegroupID; // @synthesize sharegroupID=_sharegroupID;
 @property(retain, nonatomic) id displayAttributes; // @synthesize displayAttributes=_displayAttributes;
 @property(retain, nonatomic) id <DYResource> resourceObject; // @synthesize resourceObject=_resourceObject;
@@ -48,15 +52,16 @@
 - (void)generateFilterItems;
 - (id)_locationURLScheme;
 - (id)_locationURLPath;
-- (id)UUIDSection;
+@property(readonly, nonatomic) NSString *identifier;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)populatePlaceholderWithObjectID:(unsigned long long)arg1 stateMirrorObject:(const void *)arg2 containerID:(unsigned long long)arg3 identifier:(id)arg4;
+- (id)initPlaceholderWithController:(id)arg1 parent:(id)arg2 identifier:(id)arg3 type:(unsigned int)arg4;
 - (id)initWithController:(id)arg1 parent:(id)arg2 objectID:(unsigned long long)arg3 stateMirrorObject:(const void *)arg4 containerID:(unsigned long long)arg5 sharegroupID:(unsigned long long)arg6 identifier:(id)arg7 type:(unsigned int)arg8;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
-@property(readonly, nonatomic) NSString *identifier;
 @property(retain, nonatomic) NSString *label;
 @property(readonly) Class superclass;
 

@@ -21,7 +21,7 @@
 - (id)_locationURLPath;
 - (unsigned int)functionIndex;
 - (id)associatedDisplayableItem;
-- (void)primitiveInvalidate;
+- (void)dealloc;
 - (void)addNewDisplayableItem:(id)arg1;
 - (id)relatedDisplayableItems;
 - (id)navigableItem_subtitle;

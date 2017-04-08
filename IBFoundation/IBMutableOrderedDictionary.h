@@ -10,8 +10,8 @@
 
 @interface IBMutableOrderedDictionary : NSMutableDictionary
 {
-    NSMutableOrderedSet *set;
-    NSMapTable *backingMapTable;
+    NSMutableOrderedSet *_set;
+    NSMapTable *_backingMapTable;
 }
 
 - (void).cxx_destruct;

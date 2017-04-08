@@ -4,18 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IDERunOperationWorker.h"
+#import <IDEiOSSupportCore/IDEDeviceRunOperationWorker.h>
 
 #import "DTMISProcessControlServiceAuthorizedAPI.h"
 #import "XCDTMobileIS_AppPosixSpawnProcotol.h"
 
-@class DTXChannel, DVTObservingToken, DVTiOSDevice, NSString;
+@class DTXChannel, DVTiOSDevice, NSString;
 
-@interface IDELaunchiPhoneLauncher : IDERunOperationWorker <XCDTMobileIS_AppPosixSpawnProcotol, DTMISProcessControlServiceAuthorizedAPI>
+@interface IDELaunchiPhoneLauncher : IDEDeviceRunOperationWorker <XCDTMobileIS_AppPosixSpawnProcotol, DTMISProcessControlServiceAuthorizedAPI>
 {
     DTXChannel *_serviceHubProcessControlChannel;
     DTXChannel *_assetServerChannel;
-    DVTObservingToken *_passcodeLockedToken;
     BOOL _shouldSkipAppTermination;
     int _posixSpawnSTDOUTFDForRedirection;
     BOOL _launchingToDebug;
@@ -40,9 +39,8 @@
 - (void)_setupPlainLaunching;
 - (void)outputReceived:(id)arg1 fromProcess:(int)arg2 atTime:(unsigned long long)arg3;
 - (void)_setupDebugging;
-- (void)_continueStarting;
-- (void)start;
-- (void)_holdExecutionWithError:(id)arg1;
+- (void)performWorkerAction;
+- (BOOL)preflightWithError:(id *)arg1 recoverable:(char *)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

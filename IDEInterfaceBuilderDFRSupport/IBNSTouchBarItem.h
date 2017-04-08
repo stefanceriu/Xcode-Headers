@@ -48,8 +48,7 @@
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)ibPrepareToBackwardsDeployToOSVersion:(id)arg1 inDocument:(id)arg2;
-- (void)setIbIsInspectedPrincipalItem:(BOOL)arg1;
-- (BOOL)ibIsInspectedPrincipalItem;
+@property BOOL ibIsInspectedPrincipalItem;
 - (BOOL)child:(id)arg1 canHostTouchBarInDocument:(id)arg2;
 - (BOOL)ibShouldChildViewControllerSeparateItsViewDuringCompilation:(id)arg1;
 - (BOOL)ibShouldChildViewControllerAllowRemovalOfView:(id)arg1;

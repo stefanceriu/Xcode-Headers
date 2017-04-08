@@ -16,11 +16,6 @@
 
 @interface IBOutlineViewController : IDEViewController <IBEndPointProvider, NSOutlineViewDataSource, NSOutlineViewDelegate, NSUserInterfaceValidations, IBOutlineViewDelegate>
 {
-    IBOutlineView *_outlineView;
-    DVTBorderedView *_borderedView;
-    NSString *_filterString;
-    NSPredicate *_filterPredicate;
-    IBOutlineViewControllerItem *_rootItem;
     IBOutlineViewControllerItem *_placeholdersGroupItem;
     IBMutableIdentityDictionary *_memberWrapperToItemMap;
     NSArray *_topLevelGroupsOtherThanPlaceholders;
@@ -37,28 +32,33 @@
     BOOL _allowPushSelectionToOutlineViewNextInvocation;
     BOOL _allowDirectDropInOutlineView;
     long long _ignoreOutlineViewSelectionUpdates;
-    IDEUtilityPlaceholderView *_placeholderView;
     IBMutableIdentityDictionary *_unfilteredExpansionState;
-    BOOL _drawsWithActiveLook;
     BOOL _wrapperTreeValid;
+    BOOL _drawsWithActiveLook;
+    IDEUtilityPlaceholderView *_placeholderView;
+    IBOutlineView *_outlineView;
+    DVTBorderedView *_borderedView;
+    NSString *_filterString;
     id <IBOutlineViewControllerDelegate> _delegate;
     IBAbstractDocumentEditor *_documentEditor;
     NSSet *_selectedMembers;
+    NSPredicate *_filterPredicate;
+    IBOutlineViewControllerItem *_rootItem;
 }
 
 + (id)wrapperKeyPathsToObserve;
 + (id)defaultViewNibBundle;
 + (id)defaultViewNibName;
+@property(retain) IBOutlineViewControllerItem *rootItem; // @synthesize rootItem=_rootItem;
+@property(copy) NSPredicate *filterPredicate; // @synthesize filterPredicate=_filterPredicate;
 @property(readonly, copy) NSSet *selectedMembers; // @synthesize selectedMembers=_selectedMembers;
 @property(retain, nonatomic) IBAbstractDocumentEditor *documentEditor; // @synthesize documentEditor=_documentEditor;
 @property __weak id <IBOutlineViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain) IBOutlineViewControllerItem *rootItem; // @synthesize rootItem=_rootItem;
-@property(retain) IBOutlineView *outlineView; // @synthesize outlineView=_outlineView;
+@property(nonatomic) BOOL drawsWithActiveLook; // @synthesize drawsWithActiveLook=_drawsWithActiveLook;
 @property(copy) NSString *filterString; // @synthesize filterString=_filterString;
 @property(retain) DVTBorderedView *borderedView; // @synthesize borderedView=_borderedView;
+@property(retain) IBOutlineView *outlineView; // @synthesize outlineView=_outlineView;
 @property(retain) IDEUtilityPlaceholderView *placeholderView; // @synthesize placeholderView=_placeholderView;
-@property(copy) NSPredicate *filterPredicate; // @synthesize filterPredicate=_filterPredicate;
-@property(nonatomic) BOOL drawsWithActiveLook; // @synthesize drawsWithActiveLook=_drawsWithActiveLook;
 - (void).cxx_destruct;
 - (void)cut:(id)arg1;
 - (void)deleteBackward:(id)arg1;

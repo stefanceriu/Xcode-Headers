@@ -8,7 +8,7 @@
 
 @interface DYGLAnalyzerEngine : DYAnalyzerEngine
 {
-    StateMirrorManager_77eb64af mng;
+    StateMirrorManager_638356d4 mng;
 }
 
 + (void)initNSUnarchiverClassTranslationMappings;
@@ -35,8 +35,8 @@
 - (void)enableStateDeltaGeneratorHeuristics;
 - (void)configureForArchive:(id)arg1;
 - (_Bool)isMultiSampledRenderingEnabledForContext:(unsigned long long)arg1;
-- (ContextStateMirror_daaf80d0 *)getStateMirrorContext:(unsigned long long)arg1;
-- (StateMirrorManager_77eb64af *)getStateMirrorManager;
+- (ContextStateMirror_6e6ec125 *)getStateMirrorContext:(unsigned long long)arg1;
+- (StateMirrorManager_638356d4 *)getStateMirrorManager;
 - (struct PerStateMirrorAnnotation *)getPerStateMirrorAnnotation;
 - (id)getSharegroupObjectCoverage:(unsigned long long)arg1;
 - (int)getStateMirrorContextOpenGLFunctionalityLevel:(unsigned long long)arg1;

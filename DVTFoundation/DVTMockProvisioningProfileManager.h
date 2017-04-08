@@ -6,15 +6,24 @@
 
 #import <DVTFoundation/DVTProvisioningProfileManager.h>
 
-@class DVTDispatchLock, NSMutableSet, NSSet;
+@class DVTDispatchLock, DVTMockProvisioningProfileProvider, NSError, NSMutableDictionary, NSMutableSet, NSSet;
 
 @interface DVTMockProvisioningProfileManager : DVTProvisioningProfileManager
 {
     NSMutableSet *_profiles;
     NSMutableSet *_certificates;
     DVTDispatchLock *_lock;
+    DVTMockProvisioningProfileProvider *_provider;
+    id <DVTMockProvisioningProfileManagerDelegate> _testDelegate;
+    NSError *_installHostProfilesError;
+    NSMutableDictionary *_mockDataToProvisioningProfile;
+    NSMutableDictionary *_mockDataToProvisioningProfileError;
 }
 
+@property(retain, nonatomic) NSMutableDictionary *mockDataToProvisioningProfileError; // @synthesize mockDataToProvisioningProfileError=_mockDataToProvisioningProfileError;
+@property(retain, nonatomic) NSMutableDictionary *mockDataToProvisioningProfile; // @synthesize mockDataToProvisioningProfile=_mockDataToProvisioningProfile;
+@property(retain, nonatomic) NSError *installHostProfilesError; // @synthesize installHostProfilesError=_installHostProfilesError;
+@property(retain, nonatomic) id <DVTMockProvisioningProfileManagerDelegate> testDelegate; // @synthesize testDelegate=_testDelegate;
 - (void).cxx_destruct;
 - (id)profileMatchingUUID:(id)arg1;
 - (void)forceProfileLoading;
@@ -25,10 +34,11 @@
 - (void)addProfile:(id)arg1;
 - (void)setProfiles:(id)arg1;
 @property(readonly) NSSet *certificates;
-- (id)expiringProfiles;
-- (id)profilesMatchingPredicate:(id)arg1;
 - (void)installHostProfiles:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (id)profileWithData:(id)arg1 error:(id *)arg2;
+- (void)addProfile:(id)arg1 andError:(id)arg2 forData:(id)arg3;
+- (id)expiringProfiles;
+- (id)profilesMatchingPredicate:(id)arg1;
 - (id)profileWithURL:(id)arg1 error:(id *)arg2;
 - (id)expiringProfilesInExpansionContext:(id)arg1;
 - (BOOL)isProfileExpiringWithCodeSigningIdentity:(id)arg1 profileName:(id *)arg2;

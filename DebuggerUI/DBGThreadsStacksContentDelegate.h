@@ -76,7 +76,6 @@
 - (id)storedCompressionValue;
 - (void)commitStateToDictionary:(id)arg1;
 - (void)revertStateWithDictionary:(id)arg1;
-- (void)debugNavigator:(id)arg1 updateProcessActionPopUpButton:(id)arg2;
 - (void)_updateForNewCompressionValue;
 - (void)_suspendContexMenuSelectedItems;
 - (void)_resumeContexMenuSelectedItems;
@@ -100,7 +99,7 @@
 - (void)_expandForFilterStringIfNecessary:(id)arg1;
 - (BOOL)_needToAnalyzeFramesInThreads;
 - (id)_allExpandableNavigableItemsForItem:(id)arg1;
-- (id)expandableItemsForProcessItem:(id)arg1;
+- (id)expandableItemsForProcessItem:(id)arg1 tokens:(id)arg2;
 - (id)persistentNameForRepresentedObject:(id)arg1;
 - (id)tokenForExpandedRepresentedObject:(id)arg1;
 - (void)didCollapseForItem:(id)arg1;
@@ -117,9 +116,6 @@
 - (BOOL)validateMenuItem:(id)arg1;
 - (void)configureMenuForProcessHeaderActionPopUpCell:(id)arg1;
 - (id)controllerForQueryingDescendantItem;
-- (id)_createViewItemPredicate:(id)arg1;
-- (id)_createGaugeLocationItemPredicate;
-- (id)_createProcessItemPredicate;
 - (void)_updateFilter;
 - (void)updateForNewFilterString:(id)arg1;
 - (id)filterView;

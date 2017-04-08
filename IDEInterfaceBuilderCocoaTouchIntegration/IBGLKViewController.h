@@ -7,28 +7,27 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIViewController.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class IBGLKView, NSString;
 
-@interface IBGLKViewController : IBUIViewController <IBDocumentArchiving, NSCoding>
+@interface IBGLKViewController : IBUIViewController <IBDocumentArchiving>
 {
-    long long preferredFramesPerSecond;
-    BOOL pauseOnWillResignActive;
-    BOOL resumeOnDidBecomeActive;
+    BOOL _pauseOnWillResignActive;
+    BOOL _resumeOnDidBecomeActive;
+    long long _preferredFramesPerSecond;
 }
 
 + (id)ibViewPasteboardType;
 + (Class)ibViewClass;
-@property(nonatomic) BOOL resumeOnDidBecomeActive; // @synthesize resumeOnDidBecomeActive;
-@property(nonatomic) BOOL pauseOnWillResignActive; // @synthesize pauseOnWillResignActive;
-@property(nonatomic) long long preferredFramesPerSecond; // @synthesize preferredFramesPerSecond;
+@property(nonatomic) BOOL resumeOnDidBecomeActive; // @synthesize resumeOnDidBecomeActive=_resumeOnDidBecomeActive;
+@property(nonatomic) BOOL pauseOnWillResignActive; // @synthesize pauseOnWillResignActive=_pauseOnWillResignActive;
+@property(nonatomic) long long preferredFramesPerSecond; // @synthesize preferredFramesPerSecond=_preferredFramesPerSecond;
 @property(retain) IBGLKView *glkView;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithTargetRuntime:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (void)ibEstablishViewOutletsInDocument:(id)arg1;
 - (id)ibExplanatoryTextForEditor;
 - (id)ibImageForOwnedScene;

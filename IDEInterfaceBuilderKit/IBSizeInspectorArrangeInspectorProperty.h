@@ -13,6 +13,7 @@
     NSPopUpButton *_arrangePopUpButton;
 }
 
+@property(retain) NSPopUpButton *arrangePopUpButton; // @synthesize arrangePopUpButton=_arrangePopUpButton;
 - (void).cxx_destruct;
 - (double)baseline;
 - (void)disabledActionForArrangementMenuHeaders:(id)arg1;

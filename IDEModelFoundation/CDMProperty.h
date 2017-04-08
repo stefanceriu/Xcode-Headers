@@ -11,7 +11,7 @@
 #import "IDEInspectorAccessibilitySupport.h"
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class CDMEntity, CDMModel, DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, NSDictionary, NSImage, NSMutableDictionary, NSNumber, NSString;
+@class CDMEntity, CDMModel, DVTDocumentLocation, DVTFileDataType, DVTStackBacktrace, IDEFileReference, NSArray, NSDictionary, NSImage, NSMutableDictionary, NSNull, NSNumber, NSString;
 
 @interface CDMProperty : NSObject <IDEInspectorAccessibilitySupport, CDMIdentification, DVTInvalidation, IDEKeyDrivenNavigableItemRepresentedObject>
 {
@@ -52,7 +52,6 @@
 - (void).cxx_destruct;
 - (id)stringRepresentation;
 - (id)userInfoXMLElementTree;
-- (id)syncKeys;
 - (id)xmlElementAttributesByType;
 - (id)secondaryXMLElementAttributes;
 - (id)primaryXMLElementAttributes;
@@ -87,9 +86,12 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) NSImage *navigableItem_image;
 @property(readonly) BOOL navigableItem_isLeaf;

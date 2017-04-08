@@ -19,7 +19,9 @@
 @property(readonly) int installedLicenseType; // @synthesize installedLicenseType=_installedLicenseType;
 - (void).cxx_destruct;
 - (BOOL)shouldShowLicenseAgreement;
+@property(readonly) NSString *installedLicensePlistPath;
 - (BOOL)agreeToLicense;
+- (BOOL)_isLicensePlistImmutable;
 - (id)_getLoggedInUserName;
 - (BOOL)_isRunningAsSuperUser;
 - (id)initWithLicenseInfoPath:(id)arg1;

@@ -47,6 +47,7 @@
 - (void)resolve:(id)arg1;
 - (void)disableResolutionButton;
 - (void)enableResolutionButtonWithTitle:(id)arg1 target:(id)arg2 action:(SEL)arg3;
+- (void)showTitleAndSubtitle;
 - (void)viewDidLoad;
 
 @end

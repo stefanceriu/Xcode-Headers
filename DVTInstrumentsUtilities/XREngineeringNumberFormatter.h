@@ -10,6 +10,8 @@
 {
 }
 
++ (id)CLIPSLiteralFormatter;
++ (void)initialize;
 - (BOOL)getObjectValue:(out id *)arg1 forString:(id)arg2 errorDescription:(out id *)arg3;
 
 @end

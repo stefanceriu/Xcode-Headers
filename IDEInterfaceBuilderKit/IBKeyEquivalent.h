@@ -12,13 +12,13 @@
 
 @interface IBKeyEquivalent : NSObject <NSCopying>
 {
-    NSString *key;
-    unsigned long long modifierMask;
+    NSString *_key;
+    unsigned long long _modifierMask;
 }
 
 + (id)keyEquivalentFromMenuItem:(id)arg1;
-@property(readonly) unsigned long long modifierMask; // @synthesize modifierMask;
-@property(readonly) NSString *key; // @synthesize key;
+@property(readonly) unsigned long long modifierMask; // @synthesize modifierMask=_modifierMask;
+@property(readonly) NSString *key; // @synthesize key=_key;
 - (void).cxx_destruct;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;

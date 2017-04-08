@@ -31,6 +31,7 @@
 - (void)_keychainCertificateAdded:(struct OpaqueSecCertificateRef *)arg1;
 - (void)_stopListeningForKeychainEvents;
 - (void)_startListeningForKeychainEvents;
+- (void)_registerKeychainCallback;
 - (id)_fetchSigningCertificates;
 - (BOOL)_isCertificateAnIdentity:(id)arg1;
 - (BOOL)_installPrivateKey:(struct OpaqueSecKeyRef *)arg1 privateKeyName:(id)arg2 error:(id *)arg3;

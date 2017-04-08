@@ -7,17 +7,16 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIControl.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSArray, NSMutableArray, NSString;
 
-@interface IBUISegmentedControl : IBUIControl <IBDocumentArchiving, NSCoding>
+@interface IBUISegmentedControl : IBUIControl <IBDocumentArchiving>
 {
+    NSMutableArray *_segmentConfigurations;
     BOOL _apportionsSegmentWidthsByContent;
-    NSMutableArray *segmentConfigurations;
-    int segmentControlStyle;
-    BOOL momentary;
-    long long selectedSegmentIndex;
+    BOOL _momentary;
+    int _segmentControlStyle;
+    long long _selectedSegmentIndex;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -33,10 +32,10 @@
 + (id)keyPathsForValuesAffectingIbInspectedTitleForInspectedSegment;
 + (id)keyPathsForValuesAffectingIbInspectedSegmentControlStyle;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
+@property(nonatomic) long long selectedSegmentIndex; // @synthesize selectedSegmentIndex=_selectedSegmentIndex;
+@property(nonatomic) BOOL momentary; // @synthesize momentary=_momentary;
+@property(nonatomic) int segmentControlStyle; // @synthesize segmentControlStyle=_segmentControlStyle;
 @property(nonatomic) BOOL apportionsSegmentWidthsByContent; // @synthesize apportionsSegmentWidthsByContent=_apportionsSegmentWidthsByContent;
-@property(nonatomic) long long selectedSegmentIndex; // @synthesize selectedSegmentIndex;
-@property(nonatomic) BOOL momentary; // @synthesize momentary;
-@property(nonatomic) int segmentControlStyle; // @synthesize segmentControlStyle;
 - (void).cxx_destruct;
 - (void)willChangeTargetRuntimeInDocument:(id)arg1 withContext:(id)arg2;
 @property(copy) NSArray *segmentImages;
@@ -56,17 +55,16 @@
 - (id)titleForSegment:(unsigned long long)arg1;
 - (void)setTitle:(id)arg1 forSegment:(unsigned long long)arg2;
 @property long long numberOfSegments;
-- (id)marshallerForAttributeStateKey:(id)arg1 defaultMarshaller:(id)arg2 context:(id)arg3;
 @property(copy) NSArray *ibArchivedSegmentConfigurations;
 - (id)segmentConfigurations;
 - (void)decodeTintColor:(id)arg1;
 - (void)encodeTintColor:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (unsigned long long)ibDefaultAccessibilityTraits;
 - (BOOL)ibIsAccessibilityElementByDefault;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)ibShouldUseInspectorPropertyTitleInTooltipForKeyPath:(id)arg1;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (id)ibDisplayNameForKeyPath:(id)arg1;

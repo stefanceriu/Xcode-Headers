@@ -32,8 +32,8 @@
 - (void)allTestablesChanged;
 - (void)testsChanged:(id)arg1;
 - (void)testsInFileUpdated:(id)arg1;
+- (void)_collectAnnotation:(id)arg1 intoBucketsByLine:(id)arg2;
 - (id)_annotationsForTest:(id)arg1 sourceDocument:(id)arg2;
-- (id)_summaryAnnotationDescriptionForTimeAverage:(id)arg1 totalMemoryAverage:(id)arg2 persistentMemoryAverage:(id)arg3;
 - (void)providerWillUninstall;
 @property(readonly, copy) NSString *description;
 - (id)initWithContext:(id)arg1;

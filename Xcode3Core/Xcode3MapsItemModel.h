@@ -32,7 +32,6 @@
 - (void)addDirectionsRequestDocumentType;
 - (id)directionsRequestDocumentTypeDeclarations;
 - (BOOL)plistContainsDirectionsRequestDocumentType;
-- (BOOL)isEnabledUsingEducatedGuess;
 - (id)flightChecks;
 - (id)linkedFrameworksFlightCheck;
 @property(nonatomic) BOOL other; // @dynamic other;

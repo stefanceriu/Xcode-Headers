@@ -12,7 +12,6 @@
 
 @interface IBICAbstractCatalogItem : NSObject <NSCoding>
 {
-    int _retainCountMinusOne;
     NSDictionary *_cachedChildrenByIdentifier;
     NSArray *_cachedDisplayOrderedChildren;
     NSOrderedSet *_intrinsicallyOrderedChildren;
@@ -232,11 +231,6 @@
 - (unsigned long long)manifestArchivist:(id)arg1 conflictStateForChild:(id)arg2;
 - (id)manifestArchivist:(id)arg1 slotForChild:(id)arg2;
 - (Class)manifestArchivistSlotClassForChildren:(id)arg1;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 @end
 

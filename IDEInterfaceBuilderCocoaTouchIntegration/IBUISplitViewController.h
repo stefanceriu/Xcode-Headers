@@ -7,14 +7,13 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIViewController.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUISplitViewController : IBUIViewController <IBDocumentArchiving, NSCoding>
+@interface IBUISplitViewController : IBUIViewController <IBDocumentArchiving>
 {
-    IBUIViewController *masterViewController;
-    IBUIViewController *detailViewController;
+    IBUIViewController *_masterViewController;
+    IBUIViewController *_detailViewController;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -23,8 +22,8 @@
 + (double)defaultMasterColumnWidth;
 + (id)ibObservedPropertiesForEditorViewInvalidation;
 + (id)ibInstantiateForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
-@property(retain, nonatomic) IBUIViewController *detailViewController; // @synthesize detailViewController;
-@property(retain, nonatomic) IBUIViewController *masterViewController; // @synthesize masterViewController;
+@property(retain, nonatomic) IBUIViewController *detailViewController; // @synthesize detailViewController=_detailViewController;
+@property(retain, nonatomic) IBUIViewController *masterViewController; // @synthesize masterViewController=_masterViewController;
 - (void).cxx_destruct;
 - (void)decodeLegacyViewControllers:(id)arg1;
 - (id)effectiveSimulatedBottomBarMetrics;
@@ -33,11 +32,11 @@
 - (void)setViewControllers:(id)arg1;
 - (id)viewControllers;
 - (void)removeViewController:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)ibSegueSourceToOneRelationshipKeyPaths;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)ibIsPrimarySceneObject:(id)arg1 validSplitViewDetailWithSegue:(id)arg2;
 - (BOOL)ibIsPrimarySceneObject:(id)arg1 validSplitViewMasterWithSegue:(id)arg2;
 - (BOOL)ibCanBeEmbeddedInSplitViewControllerController;

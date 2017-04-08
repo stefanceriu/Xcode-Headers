@@ -43,6 +43,8 @@
 - (void)overrideCurrentStep:(long long)arg1 currentResult:(long long)arg2;
 - (void)updateStateOnMainThreadWithBlock:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) XCSIntegration *cachedIntegration;
+@property(readonly, nonatomic) NSDate *expectedStartDate;
+@property(readonly, nonatomic) NSDate *expectedCompletionDate;
 @property(readonly, nonatomic) BOOL isControlIntegration;
 @property(readonly, nonatomic) BOOL isRunning;
 @property(readonly, nonatomic) BOOL isPending;

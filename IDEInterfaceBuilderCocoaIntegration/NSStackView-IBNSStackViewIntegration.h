@@ -84,7 +84,6 @@
 - (BOOL)ibIsChildViewUserSizable:(id)arg1;
 - (BOOL)ibAllowResizeBasedOnIntrinsicContentSizeForChild:(id)arg1;
 - (BOOL)ibIsChildViewUserMovable:(id)arg1;
-- (void)ibWillUpdateFrameOnAutoLayoutSelfLayoutManagedView;
 - (void)_updateStackingMode;
 - (void)setIbShadowedSubviews:(id)arg1;
 - (void)_ibRemoveSubviews:(id)arg1;

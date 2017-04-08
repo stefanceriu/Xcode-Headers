@@ -9,6 +9,7 @@
 @class NSArray, NSString;
 
 @protocol DYPVariablesViewGPUStateValue <NSObject>
+@property BOOL sortAlwaysEnd;
 @property BOOL itemDescriptionHasChanged;
 @property BOOL childValuesCountValid;
 @property(copy) NSArray *childValues;

@@ -7,11 +7,10 @@
 #import "IBAbstractStoryboardSegueTemplate.h"
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIStoryboardSegueTemplate : IBAbstractStoryboardSegueTemplate <IBDocumentArchiving, NSCoding>
+@interface IBUIStoryboardSegueTemplate : IBAbstractStoryboardSegueTemplate <IBDocumentArchiving>
 {
     BOOL _animates;
 }
@@ -20,12 +19,12 @@
 @property(nonatomic) BOOL animates; // @synthesize animates=_animates;
 - (Class)classToTakeInitialMarshalledKeysFrom:(id)arg1;
 - (id)runtimeClassNameForContext:(id)arg1 returningOptionalFallbackClassName:(id *)arg2;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)init;
 - (id)ibLocalAttributeKeyPaths;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

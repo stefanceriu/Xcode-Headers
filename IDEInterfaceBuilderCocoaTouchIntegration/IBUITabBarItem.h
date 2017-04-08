@@ -7,17 +7,16 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIBarItem.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 #import "NSCopying.h"
 
 @class IBOffsetWrapper, IBUITabBar, NSImage, NSNumber, NSString;
 
-@interface IBUITabBarItem : IBUIBarItem <IBDocumentArchiving, NSCoding, NSCopying>
+@interface IBUITabBarItem : IBUIBarItem <IBDocumentArchiving, NSCopying>
 {
+    IBUITabBar *_tabBar;
     NSString *_badgeValue;
     NSImage *_selectedImage;
     NSNumber *_systemItemIdentifier;
-    IBUITabBar *_tabBar;
     IBOffsetWrapper *_titlePositionAdjustment;
 }
 
@@ -31,21 +30,19 @@
 @property(copy, nonatomic) NSNumber *systemItemIdentifier; // @synthesize systemItemIdentifier=_systemItemIdentifier;
 @property(retain, nonatomic) NSImage *selectedImage; // @synthesize selectedImage=_selectedImage;
 @property(copy, nonatomic) NSString *badgeValue; // @synthesize badgeValue=_badgeValue;
+@property(readonly) __weak IBUITabBar *tabBar; // @synthesize tabBar=_tabBar;
 - (void).cxx_destruct;
-- (void)encodeSystemItemIdentifier:(id)arg1;
-- (void)decodeSystemItemIdentifier:(id)arg1;
 - (BOOL)isSystemItem;
 - (void)setTabBar:(id)arg1;
 - (id)titleFont;
 - (struct CGRect)titleRect;
 - (struct CGRect)frame;
 - (id)barView;
-- (id)tabBar;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
 - (BOOL)shouldAcceptImages;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibPasteboardTypes;

@@ -6,10 +6,14 @@
 
 #import "NSObject.h"
 
+@class NSURL;
+
 @interface DYPluginDirectoryProvider : NSObject
 {
+    NSURL *_developerDirectory;
 }
 
+- (id)getPlatformDirectoriesWithBundleName:(id)arg1;
 - (void)enumerateDirectories:(CDUnknownBlockType)arg1;
 - (id)init;
 

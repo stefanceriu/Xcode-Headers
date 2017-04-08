@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DTTapLocal;
+@class DTTapLocal, DTTapStatusMemo;
 
 @protocol DTTapLocalDelegate <NSObject>
 - (void)fetchDataForReason:(unsigned long long)arg1 block:(void (^)(DTTapMemo *, BOOL))arg2;
@@ -15,7 +15,10 @@
 - (void)pause;
 - (void)stop;
 - (void)start;
-- (void)setTaskForPidBlock:(unsigned int (^)(int))arg1;
 - (void)setTap:(DTTapLocal *)arg1;
+- (DTTapStatusMemo *)validateConfig;
+
+@optional
+- (void)setTaskForPidBlock:(unsigned int (^)(int))arg1;
 @end
 

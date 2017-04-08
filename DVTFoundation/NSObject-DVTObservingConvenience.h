@@ -8,7 +8,10 @@
 
 @interface NSObject (DVTObservingConvenience)
 + (id)dvt_creationBacktracesOfObservingTokensForObservedObject:(id)arg1;
++ (id)_dvt_observingTokensForOwner:(id)arg1;
 + (void)dvt_cancelAllObservingTokensForOwner:(id)arg1;
+- (void)_dvt_treeDescription:(id)arg1 ofKeyPathsAffectingValueForKey:(id)arg2 depth:(int)arg3;
+- (id)dvt_treeDescriptionOfKeyPathsAffectingValueForKey:(id)arg1;
 - (id)dvt_observationInfoSummary;
 - (void)dvt_changeValueForKeys:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
 - (void)dvt_changeValueForKey:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;

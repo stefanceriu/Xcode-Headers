@@ -46,6 +46,7 @@
 @property(readonly, nonatomic) DVTPortalCertificateType *certificateType; // @synthesize certificateType=_certificateType;
 @property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 - (void).cxx_destruct;
+- (BOOL)supportsFeatures:(id)arg1 error:(id *)arg2;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 @property(readonly, nonatomic) DVTPlatform *platform;

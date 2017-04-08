@@ -8,20 +8,20 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, IBCocoaBindingsInspectorSlice, NSAttributeDescription, NSControl, NSString, NSTextField;
+@class DVTStackBacktrace, IBCocoaBindingsInspectorSlice, NSAttributeDescription, NSControl, NSString;
 
 @interface IBCocoaBindingsInspectorSliver : NSViewController <DVTInvalidation>
 {
-    IBCocoaBindingsInspectorSlice *_parentEditor;
     NSAttributeDescription *_optionAttribute;
     NSString *_optionName;
     id _originalValue;
-    NSTextField *_promptField;
-    NSControl *_valueField;
     BOOL _optionEnabled;
+    IBCocoaBindingsInspectorSlice *_parentEditor;
+    NSControl *_valueField;
 }
 
 + (void)initialize;
+@property(retain) NSControl *valueField; // @synthesize valueField=_valueField;
 @property(retain) IBCocoaBindingsInspectorSlice *parentEditor; // @synthesize parentEditor=_parentEditor;
 - (void).cxx_destruct;
 - (void)objectDidEndEditing:(id)arg1;

@@ -28,7 +28,6 @@
 - (BOOL)effectiveDrawsActivationDarkening;
 - (BOOL)forbidsShowingSelectionIndicators;
 - (id)lastMouseDown;
-- (void)didActivate;
 - (id)menuView;
 - (id)editedMenu;
 

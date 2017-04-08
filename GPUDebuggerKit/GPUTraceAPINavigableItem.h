@@ -4,23 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IDEKeyDrivenNavigableItem.h"
+#import <GPUDebuggerKit/GPUGenericNavigableItem.h>
 
-@class NSArray, NSIndexSet;
+@class GPUTraceAPIItem, NSArray;
 
-@interface GPUTraceAPINavigableItem : IDEKeyDrivenNavigableItem
+@interface GPUTraceAPINavigableItem : GPUGenericNavigableItem
 {
-    long long _compressionValue;
-    long long _maxCompressionValue;
     NSArray *_cachedChildRepresentedObjects;
-    NSIndexSet *_lastCompressedIndexSet;
+    long long _stackFrameFilter;
 }
 
+@property(nonatomic) long long stackFrameFilter; // @synthesize stackFrameFilter=_stackFrameFilter;
 - (void).cxx_destruct;
-- (BOOL)setCompressionValue:(long long)arg1 maxCompressionValue:(long long)arg2;
+- (BOOL)isLeaf;
 - (void)invalidateChildItems;
-- (id)childRepresentedObjects;
+@property(readonly, nonatomic) NSArray *childRepresentedObjects;
 - (id)initWithRepresentedObject:(id)arg1;
+
+// Remaining properties
+@property(readonly, nonatomic) GPUTraceAPIItem *representedObject; // @dynamic representedObject;
 
 @end
 

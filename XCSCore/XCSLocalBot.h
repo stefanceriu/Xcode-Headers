@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSDate, NSDictionary, NSString, XCSBot, XCSLocalIntegration;
+@class NSArray, NSDate, NSDictionary, NSString, XCSBot, XCSLocalIntegration, XCSLocalService;
 
 @interface XCSLocalBot : NSObject
 {
@@ -20,6 +20,7 @@
     XCSLocalIntegration *_newestNonPendingIntegration;
     XCSLocalIntegration *_newestCompletedIntegration;
     double _minAggregateProgress;
+    NSString *_builderVersion;
     CDUnknownBlockType _botStatusChangedCallback;
     CDUnknownBlockType _botAdvisoryStatusChangedCallback;
     CDUnknownBlockType _botIntegrationWasCreatedOrDeletedCallback;
@@ -36,6 +37,7 @@
 @property(copy, nonatomic) CDUnknownBlockType botIntegrationWasCreatedOrDeletedCallback; // @synthesize botIntegrationWasCreatedOrDeletedCallback=_botIntegrationWasCreatedOrDeletedCallback;
 @property(copy, nonatomic) CDUnknownBlockType botAdvisoryStatusChangedCallback; // @synthesize botAdvisoryStatusChangedCallback=_botAdvisoryStatusChangedCallback;
 @property(copy, nonatomic) CDUnknownBlockType botStatusChangedCallback; // @synthesize botStatusChangedCallback=_botStatusChangedCallback;
+@property(retain, nonatomic) NSString *builderVersion; // @synthesize builderVersion=_builderVersion;
 @property(nonatomic) double minAggregateProgress; // @synthesize minAggregateProgress=_minAggregateProgress;
 @property(retain, nonatomic) XCSLocalIntegration *newestCompletedIntegration; // @synthesize newestCompletedIntegration=_newestCompletedIntegration;
 @property(retain, nonatomic) XCSLocalIntegration *newestNonPendingIntegration; // @synthesize newestNonPendingIntegration=_newestNonPendingIntegration;
@@ -54,9 +56,12 @@
 @property(readonly, nonatomic) NSString *serviceClientUUID;
 @property(readonly, nonatomic) NSString *identifier;
 @property(readonly, nonatomic) NSString *serviceDisplayName;
+@property(readonly, nonatomic) XCSLocalService *localService;
 @property(readonly, nonatomic) NSString *name;
 - (id)cachedBot;
 @property(readonly, nonatomic) XCSBot *bot;
+- (void)issuesStreakInfo:(CDUnknownBlockType)arg1;
+- (void)testAdditionRateAndPerfTestAveragesAndCoverageInLastWeek:(CDUnknownBlockType)arg1;
 - (void)setFetchedIntegrations:(id)arg1;
 - (void)_purgeIntegrations:(id)arg1;
 - (void)loadMoreIntegrations:(CDUnknownBlockType)arg1;
@@ -67,9 +72,10 @@
 @property(readonly, nonatomic) BOOL hasPendingIntegration;
 @property(readonly, nonatomic) NSArray *lastTenCompletedIntegrations;
 - (void)configureListeners;
+- (void)builderVersion:(CDUnknownBlockType)arg1;
 - (void)updateStateWithAdvisoryMessage:(id)arg1 aggregateProgress:(double)arg2;
 - (void)_fireAdvisoryStatusUpdateCallback:(id)arg1;
-- (void)_fireStatusUpdateCallback;
+- (void)_fireStatusUpdateCallback:(id)arg1;
 - (id)description;
 - (void)resetRunningIntegration:(id)arg1;
 - (void)refreshCachedBot:(CDUnknownBlockType)arg1;

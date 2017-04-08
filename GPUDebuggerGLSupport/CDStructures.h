@@ -257,7 +257,7 @@ struct ContextStateMirror<GPUGLSMObjectTypes> {
     struct ObjectTrackingMap<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>, int> _mContextTextureObjectMap;
     unsigned long long _mSharegroupID;
     struct SharegroupStateMirror<GPUGLSMObjectTypes> *_mSharegroupMirror;
-    StateMirrorManager_912556b7 *_mManager;
+    StateMirrorManager_d0a27b46 *_mManager;
     unsigned long long _mContextID;
 };
 
@@ -862,37 +862,69 @@ struct _Iterator<GPUTools::FD::Function> {
 
 struct __CFString;
 
-struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, int>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*> *__next_;
+};
 
-struct __hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>;
+struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*> *__next_;
+};
 
 struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> {
     struct __compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__rep, std::__1::allocator<char>> {
@@ -942,176 +974,176 @@ struct unique_ptr<GPUTools::GL::ResourceManager<GPUGLSMObjectTypes>, std::__1::d
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, int>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
     } __ptr_;
 };
 
-struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>>> {
-        struct __hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *> **__first_;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*> **__first_;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*>> {
                 unsigned long long __first_;
             } __data_;
         } __second_;
@@ -1120,11 +1152,9 @@ struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned lon
 
 struct unordered_map<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>>, std::__1::hash<int>, true>> {
             unsigned long long __first_;
@@ -1137,11 +1167,9 @@ struct unordered_map<int, GPUTools::SM::GL::ProgramAttrib<GPUGLSMObjectTypes>, s
 
 struct unordered_map<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUGLSMObjectTypes>>, std::__1::hash<int>, true>> {
             unsigned long long __first_;
@@ -1154,11 +1182,9 @@ struct unordered_map<int, GPUTools::SM::GL::ProgramTransformFeedbackVarying<GPUG
 
 struct unordered_map<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>>, std::__1::hash<int>, true>> {
             unsigned long long __first_;
@@ -1171,11 +1197,9 @@ struct unordered_map<int, GPUTools::SM::GL::ProgramUniform<GPUGLSMObjectTypes>, 
 
 struct unordered_map<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTypes>>, std::__1::hash<int>, true>> {
             unsigned long long __first_;
@@ -1188,11 +1212,9 @@ struct unordered_map<int, GPUTools::SM::GL::ProgramUniformBlock<GPUGLSMObjectTyp
 
 struct unordered_map<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>, std::__1::hash<int>, true>> {
             unsigned long long __first_;
@@ -1205,11 +1227,9 @@ struct unordered_map<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>, st
 
 struct unordered_map<int, int, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, int>>> {
     struct __hash_table<std::__1::__hash_value_type<int, int>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, int>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, int>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, int>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, int>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, int>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, int>, std::__1::hash<int>, true>> {
             unsigned long long __first_;
@@ -1222,11 +1242,9 @@ struct unordered_map<int, int, std::__1::hash<int>, std::__1::equal_to<int>, std
 
 struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GPUGLSMObjectTypes>>>, std::__1::hash<int>, true>> {
             unsigned long long __first_;
@@ -1239,11 +1257,9 @@ struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::DrawableInfo<GP
 
 struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPUGLSMObjectTypes>>>, std::__1::hash<int>, true>> {
             unsigned long long __first_;
@@ -1256,11 +1272,9 @@ struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::QueryObject<GPU
 
 struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUGLSMObjectTypes>>>, std::__1::hash<int>, true>> {
             unsigned long long __first_;
@@ -1273,11 +1287,9 @@ struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::SyncObject<GPUG
 
 struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>>>, std::__1::hash<int>, true>> {
             unsigned long long __first_;
@@ -1290,11 +1302,9 @@ struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::TextureObject<G
 
 struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedbackObject<GPUGLSMObjectTypes>>>, std::__1::hash<int>, true>> {
             unsigned long long __first_;
@@ -1307,11 +1317,9 @@ struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::TransformFeedba
 
 struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>>> {
     struct __hash_table<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, std::__1::hash<int>, true>, std::__1::__unordered_map_equal<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, std::__1::equal_to<int>, true>, std::__1::allocator<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<int, std::__1::__hash_value_type<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObject<GPUGLSMObjectTypes>>>, std::__1::hash<int>, true>> {
             unsigned long long __first_;
@@ -1324,11 +1332,9 @@ struct unordered_map<int, std::__1::shared_ptr<GPUTools::SM::GL::VertexArrayObje
 
 struct unordered_map<std::__1::basic_string<char>, int, std::__1::hash<std::__1::basic_string<char>>, std::__1::equal_to<std::__1::basic_string<char>>, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, int>>> {
     struct __hash_table<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, int>, std::__1::hash<std::__1::basic_string<char>>, true>, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, int>, std::__1::equal_to<std::__1::basic_string<char>>, true>, std::__1::allocator<std::__1::__hash_value_type<std::__1::basic_string<char>, int>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, int>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, int>, std::__1::hash<std::__1::basic_string<char>>, true>> {
             unsigned long long __first_;
@@ -1341,11 +1347,9 @@ struct unordered_map<std::__1::basic_string<char>, int, std::__1::hash<std::__1:
 
 struct unordered_map<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>>> {
     struct __hash_table<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, std::__1::hash<unsigned long long>, true>, std::__1::__unordered_map_equal<unsigned long long, std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, std::__1::equal_to<unsigned long long>, true>, std::__1::allocator<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GPUGLSMObjectTypes>*>, std::__1::hash<unsigned long long>, true>> {
             unsigned long long __first_;
@@ -1358,11 +1362,9 @@ struct unordered_map<unsigned long long, GPUTools::SM::GL::ContextStateMirror<GP
 
 struct unordered_map<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>>> {
     struct __hash_table<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, std::__1::hash<unsigned long long>, true>, std::__1::__unordered_map_equal<unsigned long long, std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, std::__1::equal_to<unsigned long long>, true>, std::__1::allocator<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror<GPUGLSMObjectTypes>*>, std::__1::hash<unsigned long long>, true>> {
             unsigned long long __first_;
@@ -1375,11 +1377,9 @@ struct unordered_map<unsigned long long, GPUTools::SM::GL::SharegroupStateMirror
 
 struct unordered_map<unsigned long long, int, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, int>>> {
     struct __hash_table<std::__1::__hash_value_type<unsigned long long, int>, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, int>, std::__1::hash<unsigned long long>, true>, std::__1::__unordered_map_equal<unsigned long long, std::__1::__hash_value_type<unsigned long long, int>, std::__1::equal_to<unsigned long long>, true>, std::__1::allocator<std::__1::__hash_value_type<unsigned long long, int>>> {
-        struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>>> __bucket_list_;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>*>>> __bucket_list_;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*> {
-                struct __hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *> *__next_;
-            } __first_;
+            struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned long long, int>, void *>*> __first_;
         } __p1_;
         struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<unsigned long long, std::__1::__hash_value_type<unsigned long long, int>, std::__1::hash<unsigned long long>, true>> {
             unsigned long long __first_;
@@ -1666,9 +1666,9 @@ typedef struct ContextStateMirror<GPUGLSMObjectTypes> {
     struct ObjectTrackingMap<GPUTools::SM::GL::TextureObject<GPUGLSMObjectTypes>, int> _mContextTextureObjectMap;
     unsigned long long _mSharegroupID;
     struct SharegroupStateMirror<GPUGLSMObjectTypes> *_mSharegroupMirror;
-    StateMirrorManager_912556b7 *_mManager;
+    StateMirrorManager_d0a27b46 *_mManager;
     unsigned long long _mContextID;
-} ContextStateMirror_e2d92de6;
+} ContextStateMirror_35fc3168;
 
 typedef struct FramebufferObject<GPUGLSMObjectTypes> {
     int _functionIndex;
@@ -1725,7 +1725,7 @@ typedef struct ProgramObject<GPUGLSMObjectTypes> {
     struct DYStateElement<GPUTools::SM::GL::StateBool, GPUTools::CStateBaseAnalysis> _mProgramBinaryRetrievableHint;
     struct DYStateElement<GPUTools::SM::GL::StateEnum, GPUTools::CStateBaseAnalysis> _mTransformFeedbackBufferMode;
     struct DYStateElement<unsigned int, GPUTools::CStateBaseAnalysis> _mBuiltinsUsed;
-} ProgramObject_8ea7d896;
+} ProgramObject_81ee481a;
 
 typedef struct ProgramPipelineObject<GPUGLSMObjectTypes> {
     int _functionIndex;
@@ -1804,7 +1804,7 @@ typedef struct StateMirrorManager<GPUGLSMObjectTypes> {
     unsigned long long _surfaceBoundsDrawableID;
     int _deviceOrientation;
     int _lastFunctionIndex;
-} StateMirrorManager_912556b7;
+} StateMirrorManager_d0a27b46;
 
 typedef struct TextureObject<GPUGLSMObjectTypes> {
     int _functionIndex;
@@ -1838,7 +1838,7 @@ typedef struct TextureObject<GPUGLSMObjectTypes> {
     struct DYStateElement<int, GPUTools::CStateBaseAnalysis> _mTextureMaxLod;
     struct DYStateElement<int, GPUTools::CStateBaseAnalysis> _mTextureImmutableLevels;
     struct unordered_map<int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>, std::__1::hash<int>, std::__1::equal_to<int>, std::__1::allocator<std::__1::pair<const int, GPUTools::SM::GL::TextureLevel<GPUGLSMObjectTypes>>>> _mTextureLevels;
-} TextureObject_d19e20a8;
+} TextureObject_ec847b4b;
 
 typedef struct TransformFeedbackObject<GPUGLSMObjectTypes> {
     int _functionIndex;

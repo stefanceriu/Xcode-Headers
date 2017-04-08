@@ -8,7 +8,7 @@
 
 #import "NSCopying.h"
 
-@class DTiPhoneSimulatorApplicationSpecifier, DTiPhoneSimulatorSystemRoot, DVTSimulatorApplication, NSArray, NSDictionary, NSFileHandle, NSNumber, NSString, SimDevice, SimRuntime;
+@class DTiPhoneSimulatorApplicationSpecifier, DVTSimulatorApplication, NSArray, NSDictionary, NSFileHandle, NSNumber, NSString, SimDevice, SimRuntime;
 
 @interface DTiPhoneSimulatorSessionConfig : NSObject <NSCopying>
 {
@@ -27,23 +27,9 @@
     NSFileHandle *_stdinFileHandle;
     NSFileHandle *_stdoutFileHandle;
     NSFileHandle *_stderrFileHandle;
-    long long _externalDisplayType;
-    NSString *_simulatedDeviceInfoName;
-    NSString *_localizedClientName;
-    DTiPhoneSimulatorSystemRoot *_simulatedSystemRoot;
-    NSNumber *_simulatedDeviceFamily;
-    NSNumber *_simulatedDisplayHeight;
-    NSNumber *_simulatedDisplayScale;
 }
 
 + (id)displayNameForDeviceFamily:(id)arg1;
-@property(copy) NSNumber *simulatedDisplayScale; // @synthesize simulatedDisplayScale=_simulatedDisplayScale;
-@property(copy) NSNumber *simulatedDisplayHeight; // @synthesize simulatedDisplayHeight=_simulatedDisplayHeight;
-@property(copy) NSNumber *simulatedDeviceFamily; // @synthesize simulatedDeviceFamily=_simulatedDeviceFamily;
-@property(retain, nonatomic) DTiPhoneSimulatorSystemRoot *simulatedSystemRoot; // @synthesize simulatedSystemRoot=_simulatedSystemRoot;
-@property(copy) NSString *localizedClientName; // @synthesize localizedClientName=_localizedClientName;
-@property(copy, nonatomic) NSString *simulatedDeviceInfoName; // @synthesize simulatedDeviceInfoName=_simulatedDeviceInfoName;
-@property long long externalDisplayType; // @synthesize externalDisplayType=_externalDisplayType;
 @property BOOL launchForBackgroundFetch; // @synthesize launchForBackgroundFetch=_launchForBackgroundFetch;
 @property(retain) NSFileHandle *stderrFileHandle; // @synthesize stderrFileHandle=_stderrFileHandle;
 @property(retain) NSFileHandle *stdoutFileHandle; // @synthesize stdoutFileHandle=_stdoutFileHandle;

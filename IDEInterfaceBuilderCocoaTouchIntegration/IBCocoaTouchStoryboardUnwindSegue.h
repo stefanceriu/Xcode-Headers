@@ -6,11 +6,9 @@
 
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIStoryboardAbstractTriggeredSegue.h>
 
-#import "NSCoding.h"
-
 @class NSString;
 
-@interface IBCocoaTouchStoryboardUnwindSegue : IBUIStoryboardAbstractTriggeredSegue <NSCoding>
+@interface IBCocoaTouchStoryboardUnwindSegue : IBUIStoryboardAbstractTriggeredSegue
 {
     NSString *_unwindAction;
 }
@@ -29,6 +27,8 @@
 - (id)segueAttributeInspectorExtensionIdentifier;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)explicitDisplayNameWithRespectToPredecessors:(id)arg1;
 - (id)displayValuesWithRespectToPrototype:(id)arg1 inDocument:(id)arg2;
 - (id)destinationDisplayName;
@@ -41,8 +41,6 @@
 - (id)sourceMembersForIllustrativePurposes;
 - (BOOL)isPrototypeFor:(id)arg1;
 - (BOOL)isEqualToPrototype:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 
 @end
 

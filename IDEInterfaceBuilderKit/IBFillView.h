@@ -12,31 +12,31 @@
 
 @interface IBFillView : NSView <IBDocumentArchiving>
 {
-    NSAttributedString *cachedTextAttributedString;
-    NSValue *cachedTextAttributedStringSize;
-    NSColor *fillColor;
-    NSColor *borderColor;
-    NSColor *innerBorderColor;
-    NSImage *image;
-    double cornerRadius;
-    NSString *text;
-    NSFont *textFont;
-    NSColor *textColor;
-    double textRotation;
-    BOOL cachedOpaque;
-    BOOL flipped;
+    NSAttributedString *_cachedTextAttributedString;
+    NSValue *_cachedTextAttributedStringSize;
+    BOOL _cachedOpaque;
+    BOOL _flipped;
+    NSString *_text;
+    NSFont *_textFont;
+    NSColor *_textColor;
+    double _textRotation;
+    NSImage *_image;
+    NSColor *_fillColor;
+    NSColor *_borderColor;
+    NSColor *_innerBorderColor;
+    double _cornerRadius;
 }
 
-@property(nonatomic) double textRotation; // @synthesize textRotation;
-@property(copy, nonatomic) NSImage *image; // @synthesize image;
-@property(copy, nonatomic) NSColor *textColor; // @synthesize textColor;
-@property(copy, nonatomic) NSFont *textFont; // @synthesize textFont;
-@property(copy, nonatomic) NSString *text; // @synthesize text;
-@property(copy, nonatomic) NSColor *innerBorderColor; // @synthesize innerBorderColor;
-@property(copy, nonatomic) NSColor *borderColor; // @synthesize borderColor;
-@property(copy, nonatomic) NSColor *fillColor; // @synthesize fillColor;
-@property(nonatomic) double cornerRadius; // @synthesize cornerRadius;
-@property(getter=isFlipped) BOOL flipped; // @synthesize flipped;
+@property(nonatomic) double cornerRadius; // @synthesize cornerRadius=_cornerRadius;
+@property(copy, nonatomic) NSColor *innerBorderColor; // @synthesize innerBorderColor=_innerBorderColor;
+@property(copy, nonatomic) NSColor *borderColor; // @synthesize borderColor=_borderColor;
+@property(copy, nonatomic) NSColor *fillColor; // @synthesize fillColor=_fillColor;
+@property(copy, nonatomic) NSImage *image; // @synthesize image=_image;
+@property(nonatomic) double textRotation; // @synthesize textRotation=_textRotation;
+@property(copy, nonatomic) NSColor *textColor; // @synthesize textColor=_textColor;
+@property(copy, nonatomic) NSFont *textFont; // @synthesize textFont=_textFont;
+@property(copy, nonatomic) NSString *text; // @synthesize text=_text;
+@property(getter=isFlipped) BOOL flipped; // @synthesize flipped=_flipped;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (struct CGRect)destinationRectForContentWithSize:(struct CGSize)arg1 knob:(CDUnion_31865a80)arg2 offset:(struct CGPoint)arg3;

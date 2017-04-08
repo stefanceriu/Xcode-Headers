@@ -64,6 +64,7 @@
 - (void)addParticleSystem:(id)arg1 withTransform:(struct CATransform3D)arg2;
 - (void)addSceneAnimation:(id)arg1 forKey:(id)arg2 target:(id)arg3;
 - (const void *)__CFObject;
+- (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)valueForUndefinedKey:(id)arg1;
 - (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 property:(id)arg2;
 - (struct __C3DAnimationChannel *)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;

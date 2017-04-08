@@ -6,12 +6,11 @@
 
 #import "NSSliderCell.h"
 
-@class NSGradient, NSImage;
+@class NSColor, NSImage;
 
 @interface DYRangeSliderCell : NSSliderCell
 {
-    NSImage *_maxKnobImage;
-    NSImage *_minKnobImage;
+    NSImage *_knobImage;
     struct CGRect _drawInFrame;
     struct DYRangeValue _origValue;
     double _trackOffset;
@@ -19,8 +18,8 @@
     int _activeKnobPart;
     int _trackCount;
     BOOL _tracking;
-    NSGradient *_gradient1;
-    NSGradient *_gradient2;
+    NSColor *_inactiveBarColor;
+    NSColor *_activeBarColor;
     struct DYRangeValue _rangeValue;
 }
 

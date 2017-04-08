@@ -29,6 +29,7 @@ __attribute__((visibility("hidden")))
 - (void)setFilterString:(id)arg1;
 - (void)doubleClick:(id)arg1;
 - (id)outlineView:(id)arg1 viewForTableColumn:(id)arg2 item:(id)arg3;
+- (BOOL)outlineView:(id)arg1 shouldSelectItem:(id)arg2;
 - (id)outlineView:(id)arg1 child:(long long)arg2 ofItem:(id)arg3;
 - (BOOL)outlineView:(id)arg1 isGroupItem:(id)arg2;
 - (BOOL)outlineView:(id)arg1 isItemExpandable:(id)arg2;

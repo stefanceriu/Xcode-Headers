@@ -8,7 +8,6 @@
 
 @class DBGLLDBThread, DVTTextDocumentLocation;
 
-__attribute__((visibility("hidden")))
 @interface DBGLLDBProcessControl : NSObject
 {
     int _action;

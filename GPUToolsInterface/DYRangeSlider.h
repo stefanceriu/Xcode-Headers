@@ -6,25 +6,18 @@
 
 #import "NSControl.h"
 
-@class DYRangeSliderCell;
-
 @interface DYRangeSlider : NSControl
 {
-    DYRangeSliderCell *_sliderCell;
-    BOOL _showMinMax;
 }
 
 + (Class)cellClass;
 + (void)initialize;
-- (void).cxx_destruct;
-- (double)maxExtent;
-- (void)setMaxExtent:(double)arg1;
-- (double)minExtent;
-- (void)setMinExtent:(double)arg1;
-- (BOOL)showsRangeAsMinMax;
-- (void)setShowRangeAsMinMax:(BOOL)arg1;
-- (struct DYRangeValue)rangeValue;
-- (void)setRangeValue:(struct DYRangeValue)arg1;
+- (void)setMinLimit:(double)arg1 maxLimit:(double)arg2;
+@property(readonly, nonatomic) double maxLimit;
+@property(readonly, nonatomic) double minLimit;
+- (void)setMinValue:(double)arg1 maxValue:(double)arg2;
+@property(readonly, nonatomic) double maxValue;
+@property(readonly, nonatomic) double minValue;
 - (void)mouseDown:(id)arg1;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)sizeToFit;

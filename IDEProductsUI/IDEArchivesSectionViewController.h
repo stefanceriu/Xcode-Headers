@@ -8,7 +8,7 @@
 
 #import "DVTReplacementViewDelegate.h"
 
-@class DVTObservingToken, DVTReplacementView, IDEArchivesViewController, NSString;
+@class DVTDelayedInvocation, DVTObservingToken, DVTReplacementView, IDEArchivesViewController, NSString;
 
 @interface IDEArchivesSectionViewController : IDEProductSectionViewController <DVTReplacementViewDelegate>
 {
@@ -16,9 +16,13 @@
     DVTReplacementView *_replacementView;
     DVTObservingToken *_inspectableObserver;
     DVTObservingToken *_selectedProductObserver;
+    DVTObservingToken *_hasCompletedInitialLoadingObserver;
+    DVTDelayedInvocation *_delayedHideSpinner;
 }
 
 + (BOOL)canShowContentForProduct:(id)arg1;
+@property(retain) DVTDelayedInvocation *delayedHideSpinner; // @synthesize delayedHideSpinner=_delayedHideSpinner;
+@property(retain) DVTObservingToken *hasCompletedInitialLoadingObserver; // @synthesize hasCompletedInitialLoadingObserver=_hasCompletedInitialLoadingObserver;
 @property(retain) DVTObservingToken *selectedProductObserver; // @synthesize selectedProductObserver=_selectedProductObserver;
 @property(retain) DVTObservingToken *inspectableObserver; // @synthesize inspectableObserver=_inspectableObserver;
 @property __weak DVTReplacementView *replacementView; // @synthesize replacementView=_replacementView;
@@ -26,7 +30,8 @@
 - (void).cxx_destruct;
 - (BOOL)shouldShowNoSelection;
 - (void)handleAction:(id)arg1 fromInspectable:(id)arg2;
-- (void)_updateTeams;
+- (void)updateFreeProvisioningStatusForInspectable:(id)arg1;
+- (void)updateFreeProvisioningStatusForArchive:(id)arg1 teamID:(id)arg2 manager:(id)arg3;
 - (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
 - (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
 @property(readonly) IDEArchivesViewController *archivesViewController;

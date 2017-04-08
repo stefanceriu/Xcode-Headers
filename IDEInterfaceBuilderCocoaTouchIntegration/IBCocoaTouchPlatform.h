@@ -10,7 +10,7 @@
 {
 }
 
-+ (BOOL)supportsAdjustsImageWhenAncestorFocused;
++ (BOOL)supportsFocusEngine;
 + (BOOL)supportsAllowedPressTypes;
 + (BOOL)supportsSceneUpdates;
 + (id)targetRuntimes;
@@ -24,6 +24,7 @@
 - (double)defaultUITableViewRowHeightForCellStyle:(int)arg1;
 - (BOOL)defaultUICollectionViewPrefetchingEnabled;
 - (id)defaultBackgroundColorForUIViewClass:(Class)arg1;
+- (id)defaultUILabelFont;
 - (id)defaultFontForUIButtonType:(int)arg1;
 - (unsigned long long)preferredActionEventTypeForUIButton;
 - (id)minimumLayoutSizeForWidget:(id)arg1;

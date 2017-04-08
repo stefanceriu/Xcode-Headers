@@ -8,12 +8,12 @@
 
 @interface IBSnapSet : NSObject
 {
-    unsigned char count;
-    double *values;
+    double *_values;
+    unsigned char _count;
 }
 
 + (void)initialize;
-@property(readonly) unsigned char count; // @synthesize count;
+@property(readonly) unsigned char count; // @synthesize count=_count;
 - (id)description;
 - (void)enumerateUsingBlock:(CDUnknownBlockType)arg1;
 - (double)maxValue;
@@ -21,7 +21,6 @@
 - (double)valueAtIndex:(unsigned char)arg1;
 - (void)dealloc;
 - (id)initWithCount:(unsigned long long)arg1;
-- (id)init;
 
 @end
 

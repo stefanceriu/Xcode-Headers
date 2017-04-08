@@ -13,19 +13,19 @@
 
 @interface IBUISegment : NSObject <IBDocumentArchiving, NSCoding>
 {
-    NSString *title;
-    double width;
-    BOOL enabled;
-    struct CGSize contentOffset;
-    NSImage *image;
+    BOOL _enabled;
+    NSString *_title;
+    double _width;
+    NSImage *_image;
+    struct CGSize _contentOffset;
 }
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
-@property(retain, nonatomic) NSImage *image; // @synthesize image;
-@property struct CGSize contentOffset; // @synthesize contentOffset;
-@property BOOL enabled; // @synthesize enabled;
-@property double width; // @synthesize width;
-@property(copy) NSString *title; // @synthesize title;
+@property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
+@property struct CGSize contentOffset; // @synthesize contentOffset=_contentOffset;
+@property BOOL enabled; // @synthesize enabled=_enabled;
+@property double width; // @synthesize width=_width;
+@property(copy) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

@@ -10,16 +10,16 @@
 
 @interface IBTrackingIndicatorMagnitudeLayoutInfo : NSObject
 {
-    NSAttributedString *prefixString;
-    NSAttributedString *valueString;
-    struct CGRect valueFrame;
-    struct CGRect prefixFrame;
+    NSAttributedString *_prefixString;
+    NSAttributedString *_valueString;
+    struct CGRect _valueFrame;
+    struct CGRect _prefixFrame;
 }
 
-@property(retain, nonatomic) NSAttributedString *valueString; // @synthesize valueString;
-@property(retain, nonatomic) NSAttributedString *prefixString; // @synthesize prefixString;
-@property(nonatomic) struct CGRect prefixFrame; // @synthesize prefixFrame;
-@property(nonatomic) struct CGRect valueFrame; // @synthesize valueFrame;
+@property(retain, nonatomic) NSAttributedString *valueString; // @synthesize valueString=_valueString;
+@property(retain, nonatomic) NSAttributedString *prefixString; // @synthesize prefixString=_prefixString;
+@property(nonatomic) struct CGRect prefixFrame; // @synthesize prefixFrame=_prefixFrame;
+@property(nonatomic) struct CGRect valueFrame; // @synthesize valueFrame=_valueFrame;
 - (void).cxx_destruct;
 - (struct CGRect *)valueFramePtr;
 - (struct CGRect *)prefixFramePtr;

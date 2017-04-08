@@ -15,9 +15,10 @@
 
 - (void).cxx_destruct;
 - (void)setDefaultsForPlane:(id)arg1;
-- (id)decorateContainer:(struct DTTimelineDecorationContainer *)arg1;
+- (void)decorateContainer:(struct DTTimelineDecorationContainer *)arg1 qualityOfService:(unsigned int)arg2 priority:(int)arg3 group:(id)arg4;
 - (id)init;
 - (id)initWithTimeLabelAttributes:(id)arg1;
+- (BOOL)mustDecorateOnMainThread;
 
 @end
 

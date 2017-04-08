@@ -12,6 +12,7 @@
 
 + (void)populatePrototypes:(id)arg1 inStoryboard:(id)arg2 forSegueFromObject:(id)arg3 toObject:(id)arg4 withTrigger:(id)arg5;
 + (id)prototypeTriggeredSeguesForDestination:(id)arg1 inStoryboard:(id)arg2;
++ (id)qualifiedSegueClassSymbolsForDocument:(id)arg1;
 + (id)customSegueSubclassesForDocument:(id)arg1;
 + (id)builtInSegueClasses;
 + (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;

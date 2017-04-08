@@ -64,8 +64,9 @@
 - (BOOL)_checkPresenceOfRequiredPlugIns:(id)arg1 error:(id *)arg2;
 - (BOOL)shouldPerformConsistencyCheck;
 - (void)_registerPlugInsFromScanRecords:(id)arg1;
-- (void)_pruneUnusablePlugInsAndScanRecords:(id)arg1;
-- (id)_plugInsToIgnore;
+- (void)_pruneUnusablePlugInsAndScanRecords:(id)arg1 linkedFrameworkPaths:(id)arg2;
+- (id)_oldPluginNamesToSupersedingPluginNames;
+- (id)_plugInIDsToIgnore;
 - (void)_recordSanitizedPluginStatus:(id)arg1 errorMessage:(id)arg2;
 - (void)_addSanitizedNonApplePlugInStatusForBundle:(id)arg1 reason:(id)arg2;
 @property(readonly) NSSet *sanitizedNonApplePlugInStatuses;
@@ -86,7 +87,8 @@
 @property(readonly, copy) NSArray *nonApplePlugInDescriptors;
 - (id)_extractErrorFromPlugInLoadingException:(id)arg1;
 - (BOOL)_scanForPlugIns:(id *)arg1;
-- (id)_plugInScanRecordsForInitialScan:(BOOL)arg1;
+- (id)_plugInScanRecordsForInitialScan:(BOOL)arg1 linkedFrameworksScanRecords:(id *)arg2;
+- (id)_allFrameworks;
 @property(readonly, copy) NSUUID *plugInHostUUID;
 @property BOOL hasScannedForPlugIns; // @dynamic hasScannedForPlugIns;
 - (id)_scanRecordForBundle:(id)arg1 atPath:(id)arg2;

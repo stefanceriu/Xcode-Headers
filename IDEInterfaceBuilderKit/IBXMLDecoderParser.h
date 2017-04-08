@@ -12,10 +12,9 @@
 
 @interface IBXMLDecoderParser : NSObject <NSXMLParserDelegate>
 {
-    int _retainCountMinusOne;
-    NSMutableArray *elementStack;
-    NSError *parseError;
-    IBXMLDecoderArchiveElement *archiveElement;
+    NSMutableArray *_elementStack;
+    NSError *_parseError;
+    IBXMLDecoderArchiveElement *_archiveElement;
     struct _xmlParserCtxt {
         struct _xmlSAXHandler *_field1;
         void *_field2;
@@ -141,9 +140,9 @@
         struct _xmlParserNodeInfo *_field87;
         int _field88;
         unsigned long long _field89;
-    } *context;
-    IBXMLDecoderParserStringTable *stringTable;
-    IBXMLDecoderElement *currentElement;
+    } *_context;
+    IBXMLDecoderParserStringTable *_stringTable;
+    IBXMLDecoderElement *_currentElement;
 }
 
 + (id)parseArchive:(id)arg1 error:(id *)arg2;
@@ -151,11 +150,6 @@
 - (void).cxx_destruct;
 - (id)parseArchive:(id)arg1 error:(id *)arg2;
 - (id)init;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

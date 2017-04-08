@@ -59,6 +59,7 @@
 @property(readonly) NSBundle *bundle;
 @property(readonly, copy) NSString *description;
 - (void)encodeIntoPropertyList:(id)arg1;
+- (void)awakeFromPropertyList;
 - (void)awakeWithPropertyList:(id)arg1;
 - (id)initWithPropertyList:(id)arg1 owner:(id)arg2;
 - (id)initWithExtensionData:(id)arg1 plugIn:(id)arg2;

@@ -8,12 +8,11 @@
 
 #import "IBBinaryArchiving.h"
 
-@class NSArray, NSMutableArray, NSString;
+@class NSArray, NSString;
 
 @interface IBSceneUpdateProcessingRequestGroup : NSObject <IBBinaryArchiving>
 {
-    NSMutableArray *_processingRequests;
-    BOOL _needsSort;
+    NSArray *_processingRequests;
 }
 
 - (void).cxx_destruct;
@@ -24,7 +23,6 @@
 - (id)orderedProcessingRequestsWithPhase:(long long)arg1;
 - (id)orderedProcessingRequestsWithPhaseInRange:(struct _NSRange)arg1;
 @property(readonly, nonatomic) NSArray *processingRequests;
-- (void)_ensureProcessingRequestsAreSorted;
 - (void)addProcessingRequest:(id)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;

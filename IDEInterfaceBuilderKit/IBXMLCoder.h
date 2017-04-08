@@ -10,41 +10,40 @@
 
 @interface IBXMLCoder : NSCoder
 {
-    NSHashTable *encodedObjects;
-    NSMapTable *pointersToOids;
-    NSMapTable *oidsToPointers;
-    IBMutableIdentityDictionary *replacements;
-    IBMutableIdentityDictionary *referencableObjectsToXMLElements;
-    IBMutableIdentityDictionary *classNamesForClasses;
-    NSHashTable *referenceNodes;
-    NSHashTable *encodedClasses;
-    NSMutableData *data;
-    IBSelfCompressingDataWrapper *previousXML;
-    NSXMLElement *rootXMLNode;
-    NSXMLElement *archiveXMLNode;
-    NSPointerArray *overflowObjects;
+    NSHashTable *_encodedObjects;
+    NSMapTable *_pointersToOids;
+    NSMapTable *_oidsToPointers;
+    IBMutableIdentityDictionary *_replacements;
+    IBMutableIdentityDictionary *_referencableObjectsToXMLElements;
+    IBMutableIdentityDictionary *_classNamesForClasses;
+    NSHashTable *_referenceNodes;
+    NSHashTable *_encodedClasses;
+    NSMutableData *_data;
+    IBSelfCompressingDataWrapper *_previousXML;
+    NSXMLElement *_rootXMLNode;
+    NSXMLElement *_archiveXMLNode;
+    NSPointerArray *_overflowObjects;
     struct {
         char classNameForClass;
-    } delegateRespondsTo;
-    BOOL finished;
-    id <IBXMLCoderDelegate> delegate;
-    long long depth;
-    double minimumReadableVersion;
-    NSXMLElement *objectState_currentXMLNode;
-    long long objectState_nextGenericKey;
-    id objectState_encodedParent;
-    NSDictionary *objectState_encodingSpecialCaseContext;
-    BOOL objectState_processingDelayedEncoding;
-    DVTMutableOrderedDictionary *objectState_delayedObjects;
-    BOOL prettyPrintOutput;
+    } _delegateRespondsTo;
+    BOOL _finished;
+    id <IBXMLCoderDelegate> _delegate;
+    long long _depth;
+    double _minimumReadableVersion;
+    NSXMLElement *_objectState_currentXMLNode;
+    long long _objectState_nextGenericKey;
+    id _objectState_encodedParent;
+    NSDictionary *_objectState_encodingSpecialCaseContext;
+    BOOL _objectState_processingDelayedEncoding;
+    DVTMutableOrderedDictionary *_objectState_delayedObjects;
+    BOOL _prettyPrintOutput;
 }
 
 + (id)archivedDataWithRootObject:(id)arg1;
 + (void)initialize;
-@property BOOL prettyPrintOutput; // @synthesize prettyPrintOutput;
+@property BOOL prettyPrintOutput; // @synthesize prettyPrintOutput=_prettyPrintOutput;
+@property(retain, nonatomic) id <IBXMLCoderDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (id)delegate;
-- (void)setDelegate:(id)arg1;
 - (void)encodeBytes:(const char *)arg1 length:(unsigned long long)arg2 forKey:(id)arg3;
 - (void)encodeRect:(struct CGRect)arg1 forKey:(id)arg2;
 - (void)encodeDouble:(double)arg1 forKey:(id)arg2;
@@ -56,6 +55,7 @@
 - (void)encodeConditionalObject:(id)arg1 forKey:(id)arg2;
 - (BOOL)canEncodeObjectConditionally:(id)arg1;
 - (void)encodeObject:(id)arg1 forKey:(id)arg2;
+- (id)nextGenericKey;
 - (void)encodeReferenceToObject:(id)arg1 forKey:(id)arg2;
 - (void)serializeObject:(id)arg1;
 - (BOOL)objectShouldUseCustomCoding:(id)arg1 comparatorForUnorderedCollection:(CDUnknownBlockType *)arg2;
@@ -97,7 +97,6 @@
 - (void)encodeDataObject:(id)arg1;
 - (void)encodeValueOfObjCType:(const char *)arg1 at:(const void *)arg2;
 - (void)encodeNXObject:(id)arg1;
-- (id)nextGenericKey;
 
 @end
 

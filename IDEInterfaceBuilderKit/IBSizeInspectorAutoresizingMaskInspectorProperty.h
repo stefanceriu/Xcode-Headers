@@ -10,31 +10,41 @@
 
 @interface IBSizeInspectorAutoresizingMaskInspectorProperty : IBAbstractSizeInspectorProperty
 {
-    IBFillView *animationStageFrame;
-    NSImageView *desktopBackgroundImageView;
-    NSView *autosizingControlArea;
-    NSButton *minXStrut;
-    NSButton *minYStrut;
-    NSButton *maxXStrut;
-    NSButton *maxYStrut;
-    NSButton *widthSpring;
-    NSButton *heightSpring;
-    IBViewResizingDiagram *resizingDiagram;
-    NSDate *animationStart;
-    NSDate *animationEnd;
-    NSTimer *animationTimer;
-    NSTrackingArea *mouseTrackingArea;
-    BOOL mouseIsInTrackingArea;
-    BOOL inspectorIsActive;
-    BOOL applicationIsActive;
-    CDUnknownBlockType currentFrameAnimator;
-    CDUnknownBlockType previousFrameAnimator;
-    struct CGRect initialDiagramObjectFrame;
-    struct CGRect initialDiagramContainerFrame;
-    struct CGRect finalDiagramContainerFrame;
     IDEInspectorKeyPath *_valueKeyPath;
+    NSDate *_animationStart;
+    NSDate *_animationEnd;
+    NSTimer *_animationTimer;
+    NSTrackingArea *_mouseTrackingArea;
+    BOOL _mouseIsInTrackingArea;
+    BOOL _inspectorIsActive;
+    BOOL _applicationIsActive;
+    CDUnknownBlockType _currentFrameAnimator;
+    CDUnknownBlockType _previousFrameAnimator;
+    struct CGRect _initialDiagramObjectFrame;
+    struct CGRect _initialDiagramContainerFrame;
+    struct CGRect _finalDiagramContainerFrame;
+    IBFillView *_animationStageFrame;
+    NSImageView *_desktopBackgroundImageView;
+    NSView *_autosizingControlArea;
+    IBViewResizingDiagram *_resizingDiagram;
+    NSButton *_minXStrut;
+    NSButton *_minYStrut;
+    NSButton *_maxXStrut;
+    NSButton *_maxYStrut;
+    NSButton *_widthSpring;
+    NSButton *_heightSpring;
 }
 
+@property(retain) NSButton *heightSpring; // @synthesize heightSpring=_heightSpring;
+@property(retain) NSButton *widthSpring; // @synthesize widthSpring=_widthSpring;
+@property(retain) NSButton *maxYStrut; // @synthesize maxYStrut=_maxYStrut;
+@property(retain) NSButton *maxXStrut; // @synthesize maxXStrut=_maxXStrut;
+@property(retain) NSButton *minYStrut; // @synthesize minYStrut=_minYStrut;
+@property(retain) NSButton *minXStrut; // @synthesize minXStrut=_minXStrut;
+@property(retain) IBViewResizingDiagram *resizingDiagram; // @synthesize resizingDiagram=_resizingDiagram;
+@property(retain) NSView *autosizingControlArea; // @synthesize autosizingControlArea=_autosizingControlArea;
+@property(retain) NSImageView *desktopBackgroundImageView; // @synthesize desktopBackgroundImageView=_desktopBackgroundImageView;
+@property(retain) IBFillView *animationStageFrame; // @synthesize animationStageFrame=_animationStageFrame;
 - (void).cxx_destruct;
 - (void)resetAutoresizingDemonstrationAnimation:(id)arg1;
 - (void)appDidDeactivate:(id)arg1;

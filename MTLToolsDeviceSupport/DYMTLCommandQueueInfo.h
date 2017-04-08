@@ -13,22 +13,23 @@
 
 @interface DYMTLCommandQueueInfo : NSObject <NSCoding, NSCopying>
 {
-    BOOL _isInternalQueue;
     BOOL _canBeCaptured;
     BOOL _isOpenGLQueue;
+    BOOL _isInternalQueue;
     NSString *_displayName;
     unsigned long long _deviceAddress;
     unsigned long long _queueAddress;
     NSString *_label;
 }
 
++ (BOOL)isLabelAppleInternal:(const char *)arg1;
+@property(nonatomic) BOOL isInternalQueue; // @synthesize isInternalQueue=_isInternalQueue;
 @property(nonatomic) BOOL isOpenGLQueue; // @synthesize isOpenGLQueue=_isOpenGLQueue;
 @property(nonatomic) BOOL canBeCaptured; // @synthesize canBeCaptured=_canBeCaptured;
 @property(readonly, nonatomic) NSString *label; // @synthesize label=_label;
 @property(readonly, nonatomic) unsigned long long queueAddress; // @synthesize queueAddress=_queueAddress;
 @property(readonly, nonatomic) unsigned long long deviceAddress; // @synthesize deviceAddress=_deviceAddress;
 - (void).cxx_destruct;
-- (BOOL)isInternalQueue;
 - (id)description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithCoder:(id)arg1;

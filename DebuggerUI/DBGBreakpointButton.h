@@ -6,22 +6,26 @@
 
 #import "NSButton.h"
 
+#import "DVTTableCellViewStatusView.h"
+
 @class IDEBreakpoint, IDEBreakpointIcon, NSNumber;
 
-@interface DBGBreakpointButton : NSButton
+@interface DBGBreakpointButton : NSButton <DVTTableCellViewStatusView>
 {
-    IDEBreakpointIcon *_icon;
     CDUnknownBlockType _commandOptionClickHander;
     IDEBreakpoint *_breakpoint;
+    IDEBreakpointIcon *_breakpointIcon;
     NSNumber *_breakpointsActivated;
     NSNumber *_breakpointEnabled;
 }
 
 @property(retain, nonatomic) NSNumber *breakpointEnabled; // @synthesize breakpointEnabled=_breakpointEnabled;
 @property(retain, nonatomic) NSNumber *breakpointsActivated; // @synthesize breakpointsActivated=_breakpointsActivated;
+@property(retain, nonatomic) IDEBreakpointIcon *breakpointIcon; // @synthesize breakpointIcon=_breakpointIcon;
 @property __weak IDEBreakpoint *breakpoint; // @synthesize breakpoint=_breakpoint;
 @property(copy) CDUnknownBlockType commandOptionClickHander; // @synthesize commandOptionClickHander=_commandOptionClickHander;
 - (void).cxx_destruct;
+- (void)rowSizeStyleDidChange:(long long)arg1;
 - (void)mouseDown:(id)arg1;
 - (void)_updateImage;
 - (struct CGSize)intrinsicContentSize;

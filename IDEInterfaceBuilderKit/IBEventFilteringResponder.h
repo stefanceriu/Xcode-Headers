@@ -8,10 +8,10 @@
 
 @interface IBEventFilteringResponder : NSResponder
 {
-    unsigned long long allowedEventsMask;
+    unsigned long long _allowedEventsMask;
 }
 
-@property unsigned long long allowedEventsMask; // @synthesize allowedEventsMask;
+@property unsigned long long allowedEventsMask; // @synthesize allowedEventsMask=_allowedEventsMask;
 - (void)endGestureWithEvent:(id)arg1;
 - (void)beginGestureWithEvent:(id)arg1;
 - (void)rotateWithEvent:(id)arg1;

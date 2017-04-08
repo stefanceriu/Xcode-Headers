@@ -12,24 +12,27 @@
 
 @interface IBNSToolbarConfigurationView : DVTLayoutView_ML <DVTInvalidation>
 {
-    IBDefaultNSToolbarItemsContainerView *defaultItemsView;
-    IBNSToolbarItemsContainerView *allowedItemsView;
-    NSTextField *allowedItemsLabel;
-    NSTextField *defaultItemsLabel;
-    NSButton *doneButton;
-    IBMutableIdentityDictionary *setupOffsets;
-    NSString *localPasteboardType;
-    IBDocument *document;
+    IBMutableIdentityDictionary *_setupOffsets;
+    IBDefaultNSToolbarItemsContainerView *_defaultItemsView;
+    IBNSToolbarItemsContainerView *_allowedItemsView;
+    NSString *_localPasteboardType;
+    IBDocument *_document;
     id <IBNSToolbarConfigurationViewDelegate> _delegate;
+    NSTextField *_allowedItemsLabel;
+    NSTextField *_defaultItemsLabel;
+    NSButton *_doneButton;
 }
 
 + (id)configurationViewWithAllowedItems:(id)arg1 defaultItems:(id)arg2;
 + (void)initialize;
+@property(retain) NSButton *doneButton; // @synthesize doneButton=_doneButton;
+@property(retain) NSTextField *defaultItemsLabel; // @synthesize defaultItemsLabel=_defaultItemsLabel;
+@property(retain) NSTextField *allowedItemsLabel; // @synthesize allowedItemsLabel=_allowedItemsLabel;
 @property(nonatomic) __weak id <IBNSToolbarConfigurationViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) IBNSToolbarItemsContainerView *allowedItemsView; // @synthesize allowedItemsView;
-@property(readonly, nonatomic) NSString *localPasteboardType; // @synthesize localPasteboardType;
-@property(retain, nonatomic) IBDocument *document; // @synthesize document;
-@property(readonly, nonatomic) IBDefaultNSToolbarItemsContainerView *defaultItemsView; // @synthesize defaultItemsView;
+@property(retain, nonatomic) IBDocument *document; // @synthesize document=_document;
+@property(readonly, nonatomic) NSString *localPasteboardType; // @synthesize localPasteboardType=_localPasteboardType;
+@property(retain, nonatomic) IBNSToolbarItemsContainerView *allowedItemsView; // @synthesize allowedItemsView=_allowedItemsView;
+@property(retain, nonatomic) IBDefaultNSToolbarItemsContainerView *defaultItemsView; // @synthesize defaultItemsView=_defaultItemsView;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)layoutBottomUp;

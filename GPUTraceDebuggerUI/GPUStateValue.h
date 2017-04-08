@@ -9,7 +9,7 @@
 #import "DYPVariablesViewGPUStateValue.h"
 #import "IDEDataValue.h"
 
-@class NSArray, NSMutableArray, NSString;
+@class IDEStackFrame, NSArray, NSMutableArray, NSString;
 
 @interface GPUStateValue : NSObject <IDEDataValue, DYPVariablesViewGPUStateValue>
 {
@@ -25,9 +25,12 @@
     NSMutableArray *_childValues;
     BOOL _itemDescriptionHasChanged;
     BOOL _childValuesCountValid;
+    BOOL _sortAlwaysEnd;
+    IDEStackFrame *_stackFrame;
     NSString *_itemSummary;
 }
 
+@property BOOL sortAlwaysEnd; // @synthesize sortAlwaysEnd=_sortAlwaysEnd;
 @property BOOL childValuesCountValid; // @synthesize childValuesCountValid=_childValuesCountValid;
 @property(copy) NSString *itemSummary; // @synthesize itemSummary=_itemSummary;
 @property BOOL itemDescriptionHasChanged; // @synthesize itemDescriptionHasChanged=_itemDescriptionHasChanged;
@@ -39,6 +42,7 @@
 @property BOOL valueHasChanged; // @synthesize valueHasChanged=_valueHasChanged;
 @property(copy) NSString *value; // @synthesize value=_value;
 @property(copy) NSString *name; // @synthesize name=_name;
+@property(readonly) IDEStackFrame *stackFrame; // @synthesize stackFrame=_stackFrame;
 - (void).cxx_destruct;
 - (id)formattedSummary;
 - (long long)compareName:(id)arg1;

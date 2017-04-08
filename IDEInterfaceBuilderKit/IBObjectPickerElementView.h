@@ -10,19 +10,19 @@
 
 @interface IBObjectPickerElementView : DVTLayoutView_ML
 {
-    NSString *title;
-    id representedObject;
-    IBImageButton *deleteButton;
-    id mouseObserveringToken;
-    id mouseWillCloseNotificationToken;
-    BOOL rolledOver;
-    id <IBObjectPickerElementViewDelegate> delegate;
+    IBImageButton *_deleteButton;
+    id _mouseObserveringToken;
+    id _mouseWillCloseNotificationToken;
+    BOOL _rolledOver;
+    id _representedObject;
+    NSString *_title;
+    id <IBObjectPickerElementViewDelegate> _delegate;
 }
 
-@property(nonatomic, getter=isRolledOver) BOOL rolledOver; // @synthesize rolledOver;
-@property(copy, nonatomic) NSString *title; // @synthesize title;
-@property(retain) id representedObject; // @synthesize representedObject;
-@property __weak id <IBObjectPickerElementViewDelegate> delegate; // @synthesize delegate;
+@property __weak id <IBObjectPickerElementViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic, getter=isRolledOver) BOOL rolledOver; // @synthesize rolledOver=_rolledOver;
+@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
+@property(retain) id representedObject; // @synthesize representedObject=_representedObject;
 - (void).cxx_destruct;
 - (void)delete:(id)arg1;
 - (void)didCompleteLayout;

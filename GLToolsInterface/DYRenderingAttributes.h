@@ -10,17 +10,14 @@
 
 @interface DYRenderingAttributes : NSObject
 {
-    struct ReductionJob<float> floatReductionJob;
-    struct ReductionJob<int> intReductionJob;
-    struct ReductionJob<unsigned int> uintReductionJob;
     unsigned int _fundamentalType;
     struct CGColorSpace *_colorSpace;
     id <DYResource> _toneMapResource;
     char _channelStates[4];
     struct ToneMapRange _toneMapValues[4];
-    struct ToneMapRange _toneMapExtents[4];
     struct ToneMapRange _toneMapLimits[4];
     struct ToneMapRange _toneMapDefaults[4];
+    double _toneMapFactors[4];
     BOOL _userDefaultAlphaOverride;
     BOOL _toneMapIsFromUser;
     BOOL _convertTosRGB;
@@ -46,22 +43,14 @@
 @property(nonatomic) int selectedMipmapLevel; // @synthesize selectedMipmapLevel=_selectedMipmapLevel;
 @property(nonatomic) BOOL convertTosRGB; // @synthesize convertTosRGB=_convertTosRGB;
 @property(nonatomic) BOOL toneMapIsFromUser; // @synthesize toneMapIsFromUser=_toneMapIsFromUser;
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)renderedImageUsingRenderer:(struct ImageRenderer *)arg1 imageInfo:(struct ImageInfo)arg2 size:(struct CGSize)arg3 imageData:(id)arg4 dataOffset:(unsigned long long)arg5 showDepth:(BOOL)arg6 flipped:(BOOL)arg7 showAlpha:(BOOL)arg8;
 - (void)updateToneMapRangeAndResource:(id)arg1 showingDepth:(BOOL)arg2 usingRenderer:(struct ImageRenderer *)arg3;
-- (void)setDefaultMax:(double)arg1 forChannelIndex:(unsigned char)arg2;
+- (double)toneMapFactorForChannelIndex:(unsigned char)arg1;
 - (double)defaultMaxForChannelIndex:(unsigned char)arg1;
-- (void)setDefaultMin:(double)arg1 forChannelIndex:(unsigned char)arg2;
 - (double)defaultMinForChannelIndex:(unsigned char)arg1;
-- (void)setToneMapLimitMax:(double)arg1 forChannelIndex:(unsigned char)arg2;
 - (double)toneMapLimitMaxForChannelIndex:(unsigned char)arg1;
-- (void)setToneMapLimitMin:(double)arg1 forChannelIndex:(unsigned char)arg2;
 - (double)toneMapLimitMinForChannelIndex:(unsigned char)arg1;
-- (void)setToneMapExtentMax:(double)arg1 forChannelIndex:(unsigned char)arg2;
-- (double)toneMapExtentMaxForChannelIndex:(unsigned char)arg1;
-- (void)setToneMapExtentMin:(double)arg1 forChannelIndex:(unsigned char)arg2;
-- (double)toneMapExtentMinForChannelIndex:(unsigned char)arg1;
 - (void)setToneMapMax:(double)arg1 forChannelIndex:(unsigned char)arg2;
 - (double)toneMapMaxForChannelIndex:(unsigned char)arg1;
 - (void)setToneMapMin:(double)arg1 forChannelIndex:(unsigned char)arg2;

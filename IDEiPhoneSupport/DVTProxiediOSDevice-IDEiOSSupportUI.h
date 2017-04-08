@@ -13,10 +13,15 @@
 @interface DVTProxiediOSDevice (IDEiOSSupportUI) <DVTBasicDeviceUI>
 + (id)keyPathsForValuesAffectingDeviceSummaryPropertyDictionaries;
 + (id)keyPathsForValuesAffectingImage;
++ (id)keyPathsForValuesAffectingTokenUI;
 @property(readonly) BOOL showCompanionUI;
 @property(readonly) NSArray *deviceSummaryPropertyDictionaries;
+- (id)ui_deviceBatteryCapacity;
+- (id)ui_deviceAvailableCapacity;
+- (id)ui_deviceTotalCapacity;
 @property(readonly) int deviceWindowCategory;
 @property(readonly) NSImage *image;
+- (id)tokenUI;
 
 // Remaining properties
 @property(readonly, getter=isAvailable) BOOL available;

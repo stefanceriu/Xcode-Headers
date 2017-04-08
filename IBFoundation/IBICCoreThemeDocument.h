@@ -29,6 +29,7 @@
 - (void)logAssets;
 - (void)logAsset:(id)arg1;
 - (void)logAssetImport:(id)arg1;
+- (id)stringFromSizeClass:(long long)arg1;
 - (id)stringFromCompressionType:(long long)arg1;
 - (id)stringFromTemplateRenderingMode:(long long)arg1;
 - (id)stringFromLayoutDirection:(unsigned long long)arg1;

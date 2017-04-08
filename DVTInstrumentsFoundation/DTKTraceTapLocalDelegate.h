@@ -32,6 +32,7 @@
 - (void)start;
 - (void)setTaskForPidBlock:(CDUnknownBlockType)arg1;
 - (void)setTap:(id)arg1;
+- (id)validateConfig;
 - (id)initWithConfig:(id)arg1;
 - (id)_getSessionMetadata;
 - (unsigned long long)bufferSizeForConfiguration:(id)arg1;

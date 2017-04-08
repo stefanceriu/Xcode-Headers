@@ -6,9 +6,7 @@
 
 #import <IDEInterfaceBuilderCocoaIntegration/IBNSStoryboardAbstractTriggeredSegue.h>
 
-#import "NSCoding.h"
-
-@interface IBNSStoryboardCustomSegue : IBNSStoryboardAbstractTriggeredSegue <NSCoding>
+@interface IBNSStoryboardCustomSegue : IBNSStoryboardAbstractTriggeredSegue
 {
 }
 
@@ -17,8 +15,6 @@
 - (id)instantiateSegueTemplate;
 - (id)badgeImage;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 
 @end
 

@@ -47,7 +47,7 @@
 - (id)description;
 - (id)initWithDevice:(id)arg1 keyPath:(id)arg2 date:(id)arg3 startTime:(double)arg4 endTime:(double)arg5 passed:(BOOL)arg6 failureSummaries:(id)arg7 testableBlueprintPath:(id)arg8 testableBlueprintName:(id)arg9 validationErrors:(id *)arg10;
 - (id)initWithContents:(id)arg1 service:(id)arg2 validationErrors:(id *)arg3;
-- (id)activityResultWithTitle:(id)arg1 UUID:(id)arg2 start:(id)arg3 finish:(id)arg4 screenshotFilePath:(id)arg5 snapshotFilePath:(id)arg6 diagnosticReportFilePath:(id)arg7 validationErrors:(id *)arg8;
+- (id)activityResultWithTitle:(id)arg1 UUID:(id)arg2 start:(id)arg3 finish:(id)arg4 screenshotFilePath:(id)arg5 snapshotFilePath:(id)arg6 diagnosticReportFilePath:(id)arg7 memoryGraphFilePath:(id)arg8 validationErrors:(id *)arg9;
 - (id)perfMetricResultWithName:(id)arg1 identifier:(id)arg2 type:(unsigned long long)arg3 unit:(id)arg4 iterations:(id)arg5 baseline:(id)arg6 maxPercentRegression:(double)arg7 maxPercentRelativeStandardDeviation:(double)arg8 hasPassed:(BOOL)arg9 validationErrors:(id *)arg10;
 
 @end

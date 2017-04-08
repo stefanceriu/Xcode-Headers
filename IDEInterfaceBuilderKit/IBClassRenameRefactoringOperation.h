@@ -10,14 +10,14 @@
 
 @interface IBClassRenameRefactoringOperation : IBRefactoringOperation
 {
-    NSString *oldClassName;
-    NSString *newClassName;
+    NSString *_oldClassName;
+    NSString *_newClassName;
 }
 
+@property(readonly) NSString *newClassName; // @synthesize newClassName=_newClassName;
+@property(readonly) NSString *oldClassName; // @synthesize oldClassName=_oldClassName;
 - (void).cxx_destruct;
 - (BOOL)refactorObject:(id)arg1 inDocument:(id)arg2 error:(id *)arg3;
-- (id)newClassName;
-- (id)oldClassName;
 - (id)initWithOldClassName:(id)arg1 andNewClassName:(id)arg2;
 
 @end

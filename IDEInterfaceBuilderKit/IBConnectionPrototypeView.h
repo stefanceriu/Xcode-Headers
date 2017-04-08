@@ -12,29 +12,30 @@
 
 @interface IBConnectionPrototypeView : DVTLayoutView_ML <IBConnectionPredecessorViewDelegate>
 {
-    IBConnectionInterfaceStyle *connectionInterfaceStyle;
-    IBImageButton *connectionWell;
-    DVTStackView_ML *predecessorStack;
-    NSTextField *titleField;
-    NSMutableArray *predecessorViews;
-    BOOL allowsNewConnections;
-    NSString *warningMessage;
-    id mouseObserveringToken;
-    NSView *hoverTarget;
-    struct CGRect hoverTargetRect;
-    NSWindow *observedWindow;
-    double titleWidthPercentage;
-    id representedObject;
+    IBImageButton *_connectionWell;
+    DVTStackView_ML *_predecessorStack;
+    NSMutableArray *_predecessorViews;
+    id _mouseObserveringToken;
+    NSView *_hoverTarget;
+    struct CGRect _hoverTargetRect;
+    NSWindow *_observedWindow;
+    BOOL _allowsNewConnections;
+    double _titleWidthPercentage;
+    id _representedObject;
+    NSString *_warningMessage;
     id <IBConnectionPrototypeViewDelegate> _delegate;
+    NSTextField *_titleField;
+    IBConnectionInterfaceStyle *_connectionInterfaceStyle;
 }
 
 + (id)defaultTitleFieldWithInterfaceStyle:(id)arg1;
+@property(retain) IBConnectionInterfaceStyle *connectionInterfaceStyle; // @synthesize connectionInterfaceStyle=_connectionInterfaceStyle;
+@property(readonly, nonatomic) NSTextField *titleField; // @synthesize titleField=_titleField;
 @property(nonatomic) __weak id <IBConnectionPrototypeViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(readonly, nonatomic) NSTextField *titleField; // @synthesize titleField;
-@property(copy, nonatomic) NSString *warningMessage; // @synthesize warningMessage;
-@property(nonatomic) double titleWidthPercentage; // @synthesize titleWidthPercentage;
-@property(nonatomic) BOOL allowsNewConnections; // @synthesize allowsNewConnections;
-@property(retain) id representedObject; // @synthesize representedObject;
+@property(copy, nonatomic) NSString *warningMessage; // @synthesize warningMessage=_warningMessage;
+@property(nonatomic) BOOL allowsNewConnections; // @synthesize allowsNewConnections=_allowsNewConnections;
+@property(retain) id representedObject; // @synthesize representedObject=_representedObject;
+@property(nonatomic) double titleWidthPercentage; // @synthesize titleWidthPercentage=_titleWidthPercentage;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)effectiveLinkBubbleStrokeColor;
@@ -69,10 +70,9 @@
 - (void)setHoverTarget:(id)arg1;
 - (void)pushHoverTargetRect;
 - (void)setHoverTargetRect:(struct CGRect)arg1;
-- (id)connectionInterfaceStyle;
 - (void)setPredecessorDisplayValues:(id)arg1 representedObjects:(id)arg2 andEnabledStates:(id)arg3;
 - (id)predecessorDisplayValues;
-@property(copy) NSString *title; // @dynamic title;
+@property(copy) NSString *title;
 - (id)initWithFrame:(struct CGRect)arg1 andInterfaceStyle:(id)arg2;
 
 // Remaining properties

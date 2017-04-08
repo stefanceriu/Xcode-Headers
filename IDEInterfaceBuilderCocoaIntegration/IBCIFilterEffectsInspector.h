@@ -10,13 +10,13 @@
 
 @interface IBCIFilterEffectsInspector : IBInspectorViewController
 {
-    NSMutableDictionary *defaultFiltersByFilterName;
-    CIFilter *editedFilter;
-    BOOL viewIsInstalled;
+    NSMutableDictionary *_defaultFiltersByFilterName;
+    BOOL _viewIsInstalled;
+    CIFilter *_editedFilter;
 }
 
 + (id)keyPathsForValuesAffectingInspectedView;
-@property(retain, nonatomic) CIFilter *editedFilter; // @synthesize editedFilter;
+@property(retain, nonatomic) CIFilter *editedFilter; // @synthesize editedFilter=_editedFilter;
 - (void).cxx_destruct;
 - (id)defaultFilterForFilterName:(id)arg1;
 - (id)filterNamesInCategories:(id)arg1;

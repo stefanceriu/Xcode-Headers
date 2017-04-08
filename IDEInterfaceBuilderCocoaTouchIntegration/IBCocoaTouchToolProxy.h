@@ -24,8 +24,8 @@
 - (id)unregisterFontsAtURLs:(id)arg1;
 - (id)registerFontsAtURLs:(id)arg1;
 - (id)fontNameForFamily:(id)arg1 withSymbolicTraits:(id)arg2;
-- (id)valueForKeyPath:(id)arg1 ofClassWithName:(id)arg2 resultMarshaller:(id)arg3 resultMarshallerContext:(id)arg4;
-- (id)valuesForKeyPaths:(id)arg1 ofMarshalledObjectRequest:(id)arg2 resultMarshallerClassNames:(id)arg3 resultMarshallerContexts:(id)arg4;
+- (id)valueForKeyPath:(id)arg1 ofClassWithName:(id)arg2;
+- (id)valuesForKeyPaths:(id)arg1 ofMarshalledObjectRequest:(id)arg2;
 - (id)compileNibForRequest:(id)arg1 minimumCompatibility:(id)arg2 layoutInfo:(id)arg3 imagesToImageNames:(id)arg4;
 
 // Remaining properties

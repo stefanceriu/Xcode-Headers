@@ -21,7 +21,9 @@ struct CGSize {
     double _field2;
 };
 
-struct __hash_node<jet_buffer *, void *>;
+struct __hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*> {
+    struct __hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*> *_field1;
+};
 
 struct jet_context {
     CDUnknownFunctionPointerType *_field1;
@@ -70,11 +72,11 @@ struct shared_ptr<jet_fence> {
     struct __shared_weak_count *__cntrl_;
 };
 
-struct unique_ptr<std::__1::__hash_node<jet_buffer *, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<jet_buffer *, void *>*>>> {
-    struct __compressed_pair<std::__1::__hash_node<jet_buffer *, void *>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<jet_buffer *, void *>*>>> {
-        struct __hash_node<jet_buffer *, void *> **_field1;
-        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<jet_buffer *, void *>*>> {
-            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<jet_buffer *, void *>*>> {
+struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*>*>>> {
+    struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*>**, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*>*>>> {
+        struct __hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*> **_field1;
+        struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*>*>> {
+            struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*>*>> {
                 unsigned long long _field1;
             } _field1;
         } _field2;
@@ -83,11 +85,9 @@ struct unique_ptr<std::__1::__hash_node<jet_buffer *, void *>*[], std::__1::__bu
 
 struct unordered_set<jet_buffer *, std::__1::hash<jet_buffer *>, std::__1::equal_to<jet_buffer *>, std::__1::allocator<jet_buffer *>> {
     struct __hash_table<jet_buffer *, std::__1::hash<jet_buffer *>, std::__1::equal_to<jet_buffer *>, std::__1::allocator<jet_buffer *>> {
-        struct unique_ptr<std::__1::__hash_node<jet_buffer *, void *>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<jet_buffer *, void *>*>>> _field1;
+        struct unique_ptr<std::__1::__hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*>*[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*>*>>> _field1;
         struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*>, std::__1::allocator<std::__1::__hash_node<jet_buffer *, void *>>> {
-            struct __hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*> {
-                struct __hash_node<jet_buffer *, void *> *_field1;
-            } _field1;
+            struct __hash_node_base<std::__1::__hash_node<jet_buffer *, void *>*> _field1;
         } _field2;
         struct __compressed_pair<unsigned long, std::__1::hash<jet_buffer *>> {
             unsigned long long _field1;

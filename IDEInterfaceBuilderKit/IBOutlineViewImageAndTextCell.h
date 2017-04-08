@@ -8,12 +8,12 @@
 
 @interface IBOutlineViewImageAndTextCell : DVTImageAndTextCell
 {
-    BOOL usesGroupHeaderStyle;
-    BOOL usesBoldFontForGroupHeaders;
+    BOOL _usesGroupHeaderStyle;
+    BOOL _usesBoldFontForGroupHeaders;
 }
 
-@property(nonatomic) BOOL usesBoldFontForGroupHeaders; // @synthesize usesBoldFontForGroupHeaders;
-@property(nonatomic) BOOL usesGroupHeaderStyle; // @synthesize usesGroupHeaderStyle;
+@property(nonatomic) BOOL usesBoldFontForGroupHeaders; // @synthesize usesBoldFontForGroupHeaders=_usesBoldFontForGroupHeaders;
+@property(nonatomic) BOOL usesGroupHeaderStyle; // @synthesize usesGroupHeaderStyle=_usesGroupHeaderStyle;
 - (id)subtitleFont;
 - (struct CGRect)imageRectForBounds:(struct CGRect)arg1;
 - (id)initTextCell:(id)arg1;

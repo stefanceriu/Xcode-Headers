@@ -6,7 +6,6 @@
 
 #import "NSObject.h"
 
-__attribute__((visibility("hidden")))
 @interface DBGLLDBMemoryManager : NSObject
 {
     id _workspaceClosedNotificationObserver;
@@ -18,6 +17,7 @@ __attribute__((visibility("hidden")))
 - (void).cxx_destruct;
 - (void)_invalidate;
 - (id)_initInternal;
+- (void)_memoryPressureDetected;
 - (id)init;
 
 @end

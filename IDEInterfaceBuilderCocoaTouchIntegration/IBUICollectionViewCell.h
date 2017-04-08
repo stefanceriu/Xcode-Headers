@@ -7,14 +7,13 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUICollectionReusableView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class IBUIView, NSString, NSValue;
 
-@interface IBUICollectionViewCell : IBUICollectionReusableView <IBDocumentArchiving, NSCoding>
+@interface IBUICollectionViewCell : IBUICollectionReusableView <IBDocumentArchiving>
 {
-    IBUIView *contentView;
-    NSValue *customSize;
+    NSValue *_customSize;
+    IBUIView *_contentView;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -24,22 +23,21 @@
 + (id)keyPathsForValuesAffectingIbInspectedDefaultSize;
 + (void)ibDidInstantiateView:(id)arg1 forAsset:(id)arg2 role:(long long)arg3;
 + (long long)ibInstantiationSizeBehavior;
-@property(retain, nonatomic) IBUIView *contentView; // @synthesize contentView;
-@property(copy, nonatomic) NSValue *customSize; // @synthesize customSize;
+@property(retain, nonatomic) IBUIView *contentView; // @synthesize contentView=_contentView;
+@property(copy, nonatomic) NSValue *customSize; // @synthesize customSize=_customSize;
 - (void).cxx_destruct;
 - (id)configurableKeyPathForMarshalledDesignTimeToManyRelationship:(id)arg1;
 - (id)localExtraMarshalledToManyRelationshipKeyPaths;
 - (id)localExtraMarshalledAttributesKeyPaths;
 @property(readonly) BOOL isInsideCollectionView;
 - (void)collectionViewItemSizeDidChange:(id)arg1;
-- (void)verifyContentView:(id)arg1;
 - (void)installContentViewIfNeeded;
 - (void)layoutSubviews;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (id)ibViewForAncestorViewEdgeMovementQuestionsOfSubview:(id)arg1;
 - (void)ibPopulateAdditionalTargetOSVersions:(id)arg1 forCompilingDocument:(id)arg2;
 - (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;

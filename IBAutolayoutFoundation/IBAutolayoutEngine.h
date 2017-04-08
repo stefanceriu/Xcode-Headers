@@ -10,34 +10,33 @@
 
 @interface IBAutolayoutEngine : NSObject
 {
-    IBMutableIdentityDictionary *representedConstraintToRealConstraintMap;
-    IBMutableIdentityDictionary *realConstraintToRepresentedConstraintMap;
-    NSMutableSet *customLayoutViewsThatStartedWithAmbiguousLayout;
-    IBLayoutConstraint *systemRequiredBorderViewHeightConstraint;
-    IBLayoutConstraint *systemRequiredBorderViewWidthConstraint;
-    IBMutableIdentityDictionary *representedViewToRealViewMap;
-    IBMutableIdentityDictionary *realViewToRepresentedViewMap;
-    NSSet *additionalRepresentedConstraintsRequiredToCopyViewHierarchy;
-    NSSet *realConstraintsForViewsRequiringAdditionalEngineConstraints;
-    NSMapTable *constraintContainingViewsByView;
-    unsigned long long options;
-    NSObject<IBAutolayoutItem> *topLevelRealView;
+    IBMutableIdentityDictionary *_representedConstraintToRealConstraintMap;
+    IBMutableIdentityDictionary *_realConstraintToRepresentedConstraintMap;
+    NSMutableSet *_customLayoutViewsThatStartedWithAmbiguousLayout;
+    IBLayoutConstraint *_systemRequiredBorderViewHeightConstraint;
+    IBLayoutConstraint *_systemRequiredBorderViewWidthConstraint;
+    IBMutableIdentityDictionary *_representedViewToRealViewMap;
+    IBMutableIdentityDictionary *_realViewToRepresentedViewMap;
+    NSSet *_additionalRepresentedConstraintsRequiredToCopyViewHierarchy;
+    NSSet *_realConstraintsForViewsRequiringAdditionalEngineConstraints;
+    NSMapTable *_constraintContainingViewsByView;
+    NSObject<IBAutolayoutItem> *_topLevelRealView;
     IBMutableIdentityDictionary *_spacerItemsByTag;
     unsigned long long _nextSpacerItemTag;
     NSMutableSet *_mutuallyExclusiveConstraintsRemovedDuringBootstrapping;
-    BOOL haveUpdatedTopLevelSystemRequiredConstraintsForTheFirstTime;
-    BOOL allowsResizingTopLevelView;
-    IBAutolayoutArbitrationUnit *arbitrationUnit;
-    id <IBAutolayoutInfoProvider> layoutInfo;
+    BOOL _haveUpdatedTopLevelSystemRequiredConstraintsForTheFirstTime;
+    BOOL _allowsResizingTopLevelView;
+    IBAutolayoutArbitrationUnit *_arbitrationUnit;
+    unsigned long long _options;
 }
 
 + (void)setGlobalAssertsOnRuntimeUnsatisfiableConstraints:(BOOL)arg1;
 + (BOOL)globalAssertsOnRuntimeUnsatisfiableConstraints;
 + (id)layoutConstraintEngineForViewHierarchyOfView:(id)arg1 layoutInfo:(id)arg2 options:(unsigned long long)arg3;
 @property(readonly, nonatomic) NSSet *mutuallyExclusiveConstraintsRemovedDuringBootstrapping; // @synthesize mutuallyExclusiveConstraintsRemovedDuringBootstrapping=_mutuallyExclusiveConstraintsRemovedDuringBootstrapping;
-@property(readonly) NSObject<IBAutolayoutItem> *topMostView; // @synthesize topMostView=topLevelRealView;
-@property(readonly) unsigned long long options; // @synthesize options;
-@property(readonly) IBAutolayoutArbitrationUnit *arbitrationUnit; // @synthesize arbitrationUnit;
+@property(readonly) unsigned long long options; // @synthesize options=_options;
+@property(readonly) IBAutolayoutArbitrationUnit *arbitrationUnit; // @synthesize arbitrationUnit=_arbitrationUnit;
+@property(readonly) NSObject<IBAutolayoutItem> *topMostView; // @synthesize topMostView=_topLevelRealView;
 - (void).cxx_destruct;
 - (void)exerciseAmbiguityInLayoutForView:(id)arg1;
 - (void)_catchExceptionsToWorkaround13752578During:(CDUnknownBlockType)arg1;
@@ -111,7 +110,7 @@
 - (id)representedViewForRealView:(id)arg1;
 - (id)representedItemsOrderedBreadthFirst;
 @property(readonly) NSArray *realViewsOrderedBreadthFirst;
-@property(readonly) id <IBAutolayoutInfoProvider> layoutInfo; // @synthesize layoutInfo;
+@property(readonly) id <IBAutolayoutInfoProvider> layoutInfo;
 - (void)performInternalEngineModificationsAndAssertOnUnsatisfiableConstraintsIfNeededDuring:(CDUnknownBlockType)arg1 withUnsatisfiableConstraintsHandler:(CDUnknownBlockType)arg2;
 - (BOOL)localAssertsOnRuntimeUnsatisfiableConstraints;
 - (id)prepareViewHierarchyAndReturnAddedRepresentedConstraintsForRepresentedViews;

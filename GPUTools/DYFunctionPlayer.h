@@ -30,7 +30,7 @@
     BOOL _mainExecutionMode;
     unsigned int _currentExecutionModeFunctionIndex;
     unsigned int _currentFileFunctionIndex;
-    unordered_map_82d59a1a _dataSizeMap;
+    unordered_map_a62b5969 _dataSizeMap;
     NSMapTable *_variables;
     unsigned long long _ctxID;
     struct CoreFunction *_function;
@@ -55,7 +55,7 @@
 - (void)executePlatformFunction;
 - (BOOL)shouldExecuteGraphicsFunction;
 - (void)processArguments;
-- (void)addPointerDataSizeMap:(unordered_map_82d59a1a *)arg1;
+- (void)addPointerDataSizeMap:(unordered_map_a62b5969 *)arg1;
 - (void *)copyDataForPosition:(unsigned long long)arg1 dataSize:(unsigned long long *)arg2;
 - (void *)copyDataForFilename:(const char *)arg1 dataSize:(unsigned long long *)arg2;
 - (void)executeFunctions:(struct CoreFunction *)arg1 count:(unsigned long long)arg2;

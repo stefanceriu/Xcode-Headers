@@ -14,9 +14,9 @@
 @interface IBAbstractStoryboardSegueTemplate : NSObject <IBDocumentArchiving, NSCoding>
 {
     NSString *_identifier;
-    NSString *_trigger;
     NSString *_segueClassName;
     NSString *_destinationControllerIdentifier;
+    NSString *_trigger;
 }
 
 + (id)segueTemplateWithIdentifier:(id)arg1 trigger:(id)arg2 segueClassName:(id)arg3 destinationControllerIdentifier:(id)arg4;

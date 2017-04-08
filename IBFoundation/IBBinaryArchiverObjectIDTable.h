@@ -8,9 +8,9 @@
 
 @interface IBBinaryArchiverObjectIDTable : NSObject
 {
-    struct IBObjectIDHashEntry_tag *table;
-    long long capacity;
-    long long count;
+    struct IBObjectIDHashEntry_tag *_table;
+    long long _capacity;
+    long long _count;
 }
 
 - (void)addObject:(id)arg1 withObjectID:(long long)arg2;

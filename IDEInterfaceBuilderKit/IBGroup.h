@@ -12,15 +12,15 @@
 
 @interface IBGroup : NSObject <NSCoding>
 {
-    DVTMutableOrderedSet *objectRecords;
-    IBMutableBijectiveDictionary *identifierToRecordBijectiveDictionary;
-    DVTMutableOrderedSet *objects;
-    id <IBGroupDelegate> delegate;
+    DVTMutableOrderedSet *_objectRecords;
+    IBMutableBijectiveDictionary *_identifierToRecordBijectiveDictionary;
+    DVTMutableOrderedSet *_objects;
+    id <IBGroupDelegate> _delegate;
 }
 
 + (long long)ibMemberType;
-@property __weak id <IBGroupDelegate> delegate; // @synthesize delegate;
-@property(readonly) DVTMutableOrderedSet *objects; // @synthesize objects;
+@property __weak id <IBGroupDelegate> delegate; // @synthesize delegate=_delegate;
+@property(readonly) DVTMutableOrderedSet *objects; // @synthesize objects=_objects;
 - (void).cxx_destruct;
 - (id)ibMemberIDInObjectContainer:(id)arg1;
 - (id)objectWithIdentifier:(id)arg1;

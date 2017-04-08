@@ -35,9 +35,9 @@
     DVTNotificationToken *_availablePointsOfViewListNeedsUpdateObservingToken;
     SKEAdjustSceneWindowController *_adjustSceneWindowController;
     BOOL _isUpgradingToDifferentFileType;
-    IDEMediaResourceVariantContext *_variantContext;
-    id <DVTInvalidation> _variantContextKVOToken;
-    IDEMediaResourceFoldingStrategy *_foldingStrategy;
+    IDEMediaResourceVariantContext *_variantContext[5];
+    id <DVTInvalidation> _variantContextKVOToken[5];
+    IDEMediaResourceFoldingStrategy *_foldingStrategy[5];
     int _assetCatalogClients;
     NSMutableDictionary *_fileBasedImageCache;
     SKESceneEditor *_inspectedSceneEditor;

@@ -4,11 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "IDERunOperationWorker.h"
+#import <IDEiOSSupportCore/IDEDeviceRunOperationWorker.h>
 
 @class DVTiPhoneSimulator;
 
-@interface _IDEInstalliPhoneSimulatorWorker : IDERunOperationWorker
+@interface _IDEInstalliPhoneSimulatorWorker : IDEDeviceRunOperationWorker
 {
     DVTiPhoneSimulator *_device;
 }
@@ -16,7 +16,7 @@
 @property(retain) DVTiPhoneSimulator *device; // @synthesize device=_device;
 - (void).cxx_destruct;
 - (void)terminate;
-- (void)start;
+- (void)performWorkerAction;
 
 @end
 

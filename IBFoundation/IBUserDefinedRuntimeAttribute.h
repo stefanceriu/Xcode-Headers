@@ -30,6 +30,7 @@
 @property(readonly, nonatomic) long long type;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)isEqualToUserDefinedRuntimeAttribute:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 @property(readonly, copy) NSString *debugDescription;

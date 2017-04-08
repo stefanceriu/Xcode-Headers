@@ -112,8 +112,8 @@
 - (void)handleDocumentChanged:(id)arg1 currentAPIItem:(id)arg2;
 - (id)runShaderProfiler;
 - (void)didUpdateMainTraceItem;
-- (id)_profileShaders;
-- (id)_profileFrame;
+- (id)_profileShaders:(id)arg1;
+- (id)_profileFrame:(id)arg1;
 - (void)displayAlertWithTitle:(id)arg1 andDetails:(id)arg2;
 - (void)loadShaderProfilerResults;
 - (void)saveShaderProfilerResults;
@@ -123,6 +123,7 @@
 @property(readonly) BOOL isShaderProfilerAvailable;
 @property(readonly) BOOL isRuntimeOSAppleInternal;
 - (id)queryShaderInfoWithPayload:(id)arg1;
+- (unsigned long long)_getTargetFrameRateFromDisplayLinkInfo:(id)arg1;
 - (void)createReportWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)resetResourceManagerWithResourceStreamer:(id)arg1;
 - (void)archiveReports;

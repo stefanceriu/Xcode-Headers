@@ -10,15 +10,15 @@
 
 @interface IBShadowBox : NSView
 {
-    NSShadow *shadow;
-    unsigned long long shadowedEdges;
+    NSShadow *_shadow;
+    unsigned long long _shadowedEdges;
 }
 
-@property(nonatomic) unsigned long long shadowedEdges; // @synthesize shadowedEdges;
+@property(nonatomic) unsigned long long shadowedEdges; // @synthesize shadowedEdges=_shadowedEdges;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)hitTest:(struct CGPoint)arg1;
-@property(copy) NSShadow *shadow; // @synthesize shadow;
+@property(copy) NSShadow *shadow; // @synthesize shadow=_shadow;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end

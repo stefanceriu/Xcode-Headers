@@ -8,13 +8,16 @@
 
 @interface DVTDispatchLock_Recursive : DVTDispatchLock
 {
-    void *_context;
+    // Error parsing type: A^{_opaque_pthread_t}, name: _recursiveSafeThread
 }
 
 - (void)performLockedBlockAsyncUnlessRecursing:(CDUnknownBlockType)arg1;
+- (void)afterTimeInterval:(double)arg1 asyncPerformLockedBlock:(CDUnknownBlockType)arg2;
+- (void)asyncPerformLockedWriterBlock:(CDUnknownBlockType)arg1;
+- (void)asyncPerformLockedReaderBlock:(CDUnknownBlockType)arg1;
+- (void)asyncPerformLockedBlock:(CDUnknownBlockType)arg1;
 - (void)performLockedReaderBlock:(CDUnknownBlockType)arg1;
 - (void)performLockedBlock:(CDUnknownBlockType)arg1;
-- (id)initWithDebugName:(id)arg1;
 
 @end
 

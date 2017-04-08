@@ -12,12 +12,12 @@
 
 @interface IBLayoutGuideGeneratorDelegate : NSObject <IBLayoutGuideGeneratorDelegate>
 {
-    long long disabledContainmentGuidesCount;
-    long long disabledSiblingGuidesCount;
-    id <IBAutolayoutInfoProvider> layoutInfo;
+    long long _disabledContainmentGuidesCount;
+    long long _disabledSiblingGuidesCount;
+    id <IBAutolayoutInfoProvider> _layoutInfo;
 }
 
-@property(readonly) id <IBAutolayoutInfoProvider> layoutInfo; // @synthesize layoutInfo;
+@property(readonly) id <IBAutolayoutInfoProvider> layoutInfo; // @synthesize layoutInfo=_layoutInfo;
 - (void).cxx_destruct;
 - (Class)symbolicLayoutConstantClassForLayoutGuideGenerator:(id)arg1;
 - (Class)layoutConstantClassForLayoutGuideGenerator:(id)arg1;

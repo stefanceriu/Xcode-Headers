@@ -6,7 +6,7 @@
 
 #import "NSCollectionView.h"
 
-@class NSCollectionViewLayout, NSColor;
+@class NSColor;
 
 @interface NSCollectionView (IBNSCollectionViewIntegration)
 + (id)keyPathsForValuesAffectingIbInspectedGridLayout;
@@ -25,10 +25,7 @@
 - (void)setIbShadowedBackgroundColor:(id)arg1 atIndex:(unsigned long long)arg2;
 - (id)ibInspectedGridLayout;
 - (id)ibInspectedFlowLayout;
-@property(retain) NSCollectionViewLayout *ibShadowedCollectionViewLayout;
-@property BOOL ibShadowedAllowsEmptySelection;
 @property(nonatomic) long long ibInspectedLayoutMode;
-- (BOOL)ibInspectedRuntimeDoesNotSupportLayouts;
 - (id)ibDocumentationPropertyInfosForKeyPath:(id)arg1;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibLocalAttributeKeyPaths;

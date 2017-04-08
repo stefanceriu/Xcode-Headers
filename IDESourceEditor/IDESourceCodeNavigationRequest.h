@@ -56,7 +56,7 @@
 - (void)primitiveInvalidate;
 - (void)filterItems:(id)arg1 inMenu:(id)arg2 forSearchString:(id)arg3;
 - (void)_filesForModuleImportExpression:(id)arg1 completionQueue:(id)arg2 completionHandler:(CDUnknownBlockType)arg3;
-- (BOOL)_destinationLocationForImportedFileInExpression:(id)arg1 inQueue:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
+- (BOOL)_destinationLocationForImportedFileInExpression:(id)arg1 queue:(id)arg2 completionBlock:(CDUnknownBlockType)arg3;
 - (void)_handlePopupDocLoc:(id)arg1;
 - (void)_handleSimpleDocLoc:(id)arg1;
 - (void)_headerPopUpAction:(id)arg1;
@@ -66,7 +66,7 @@
 - (void)_disambiguateAndJumpToMappedHeaderFiles;
 - (void)_disambiguateAndJumpToResolvedSymbolOccurrences;
 - (id)_allMethodsMatchingMethods:(id)arg1 expression:(id)arg2 inMethodBody:(BOOL)arg3 fileContents:(id)arg4 forIndex:(id)arg5;
-- (void)_symbolOccurrencesForExpression:(id)arg1 includeCurrentLoc:(BOOL)arg2 onlyCurrentDeclarator:(BOOL)arg3 inQueue:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
+- (void)_symbolOccurrencesForExpression:(id)arg1 includeCurrentLoc:(BOOL)arg2 onlyCurrentDeclarator:(BOOL)arg3 queue:(id)arg4 completionBlock:(CDUnknownBlockType)arg5;
 - (BOOL)_looksLikeASetter:(id)arg1;
 - (void)_searchForMoreInSymbolNavigator:(id)arg1;
 - (void)_searchForMoreInFindNavigator:(id)arg1;

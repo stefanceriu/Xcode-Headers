@@ -8,13 +8,13 @@
 
 @interface IBDockObjectAndGroupPair : NSObject
 {
-    id object;
-    id group;
+    id _group;
+    id _object;
 }
 
 + (id)pairWithObject:(id)arg1 andGroup:(id)arg2;
-@property(readonly) id object; // @synthesize object;
-@property(readonly) id group; // @synthesize group;
+@property(readonly) id object; // @synthesize object=_object;
+@property(readonly) id group; // @synthesize group=_group;
 - (void).cxx_destruct;
 - (id)description;
 - (BOOL)isEqual:(id)arg1;

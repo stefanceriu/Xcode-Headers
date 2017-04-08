@@ -53,6 +53,7 @@
 @property(readonly) unsigned long long hash;
 @property(readonly) DVTStackBacktrace *invalidationBacktrace;
 @property(readonly) BOOL loadingNewVariablesInBackground;
+@property(readonly) BOOL recordedStackFrameSelected;
 @property(readonly) Class superclass;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 

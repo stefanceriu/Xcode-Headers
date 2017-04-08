@@ -8,24 +8,26 @@
 
 #import "NSTextFieldDelegate.h"
 
-@class IDEAppleScriptBreakpointAction, NSImageView, NSString, NSTextField, NSTextView;
+@class DBGBreakpointEditorCompletingTextView, DVTTextDocumentLocation, IDEAppleScriptBreakpointAction, NSImageView, NSString, NSTextField;
 
 @interface IDEAppleScriptBreakpointActionEditor : NSViewController <NSTextFieldDelegate>
 {
     IDEAppleScriptBreakpointAction *_action;
-    NSTextView *_script;
+    DVTTextDocumentLocation *_breakpointLocation;
+    DBGBreakpointEditorCompletingTextView *_script;
     NSImageView *_compileStatusImage;
     NSTextField *_compileStatus;
 }
 
 - (void).cxx_destruct;
+- (void)completingTextView:(id)arg1 willPassContextToStrategies:(id)arg2 atWordStartLocation:(unsigned long long)arg3;
 - (BOOL)control:(id)arg1 textShouldEndEditing:(id)arg2;
 - (void)testScript:(id)arg1;
 - (id)_compileScriptAndSetStatusMessage;
 - (void)compileScript:(id)arg1;
 - (void)loadView;
 - (void)dealloc;
-- (id)initWithAction:(id)arg1;
+- (id)initWithAction:(id)arg1 breakpointLocation:(id)arg2;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -12,11 +12,12 @@
 {
     IBAutoCompletingComboBoxDataSource *_comboBoxDataSource;
     IBResourceValueTransformer *_resourceValueTransformer;
-    IBButtonComboBox *_comboBox;
     IDEInspectorKeyPath *_valueKeyPath;
     IDEInspectorKeyPath *_listContentKeyPath;
+    IBButtonComboBox *_comboBox;
 }
 
+@property(retain) IBButtonComboBox *comboBox; // @synthesize comboBox=_comboBox;
 - (void).cxx_destruct;
 - (id)findIndicatorContentViewWithContext:(id)arg1;
 - (void)loadView;
@@ -31,7 +32,6 @@
 - (id)resourceType;
 - (double)baseline;
 - (id)inspectorController;
-- (id)comboBox;
 - (id)initWithPropertyDefinition:(id)arg1 andController:(id)arg2;
 
 @end

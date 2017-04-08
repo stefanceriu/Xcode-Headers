@@ -10,14 +10,14 @@
 
 @interface IBViewTrackerLayoutGuideState : NSObject
 {
-    IBLayoutManager *layoutManager;
-    NSSet *layoutGuideMatches;
-    struct CGRect layoutFrame;
+    IBLayoutManager *_layoutManager;
+    NSSet *_layoutGuideMatches;
+    struct CGRect _layoutFrame;
 }
 
-@property(retain, nonatomic) NSSet *layoutGuideMatches; // @synthesize layoutGuideMatches;
-@property(retain, nonatomic) IBLayoutManager *layoutManager; // @synthesize layoutManager;
-@property(nonatomic) struct CGRect layoutFrame; // @synthesize layoutFrame;
+@property(retain, nonatomic) NSSet *layoutGuideMatches; // @synthesize layoutGuideMatches=_layoutGuideMatches;
+@property(retain, nonatomic) IBLayoutManager *layoutManager; // @synthesize layoutManager=_layoutManager;
+@property(nonatomic) struct CGRect layoutFrame; // @synthesize layoutFrame=_layoutFrame;
 - (void).cxx_destruct;
 
 @end

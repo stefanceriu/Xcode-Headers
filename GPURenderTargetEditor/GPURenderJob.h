@@ -6,9 +6,11 @@
 
 #import "NSObject.h"
 
+#import "DYOpenGLLayerContentProvider.h"
+
 @class DYRenderingAttributes, GPUTraceModelFactory, NSString;
 
-@interface GPURenderJob : NSObject
+@interface GPURenderJob : NSObject <DYOpenGLLayerContentProvider>
 {
     id <DYResource> _resource;
     id <DYResource> _overlayResource;
@@ -23,14 +25,19 @@
 @property(readonly, nonatomic) __weak id <DYResource> overlayResource; // @synthesize overlayResource=_overlayResource;
 @property(nonatomic) __weak id <DYResource> resource; // @synthesize resource=_resource;
 - (void).cxx_destruct;
-- (BOOL)showOverlay;
-- (BOOL)isColor;
+- (BOOL)wantsDepth;
 - (BOOL)flipped;
 - (struct CGSize)imageSize;
 - (void)resolveWithTraceResourceItem:(id)arg1;
 @property(readonly, nonatomic) BOOL isStencilDisplayElement;
 @property(readonly, nonatomic) BOOL isDepthDisplayElement;
 - (id)initWithResource:(id)arg1 modelFactory:(id)arg2 renderingAttributes:(id)arg3 overlayResource:(id)arg4;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

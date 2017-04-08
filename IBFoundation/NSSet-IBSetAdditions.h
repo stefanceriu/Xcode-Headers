@@ -14,8 +14,6 @@
 + (id)ib_setByIntersectingSets:(id)arg1;
 + (id)ib_setByUnioningCollections:(id)arg1;
 + (id)ib_setByUnioningCollection:(id)arg1 withCollection:(id)arg2;
-+ (id)ib_setWithOptionalObjects:(id *)arg1 count:(long long)arg2;
-+ (id)ib_setWithOptionalObject:(id)arg1;
 + (id)ib_collectionWithObject:(id)arg1;
 + (id)ib_emptyCollection;
 + (Class)ib_mutableClass;
@@ -39,7 +37,6 @@
 - (id)ib_setBySubtractingSet:(id)arg1;
 - (void)ib_enumerateCopyOfObjectsUsingBlock:(CDUnknownBlockType)arg1;
 - (void)ib_enumerateObjectsUsingMutatingBlock:(CDUnknownBlockType)arg1;
-- (void)ib_enumerateObjectsUsingBlock:(CDUnknownBlockType)arg1;
 - (id)ib_collectionByRemovingNulls;
 - (id)ib_setByRemovingNulls;
 - (id)ib_firstObjectPassingTest:(CDUnknownBlockType)arg1;

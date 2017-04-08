@@ -12,8 +12,8 @@
 
 @interface IBCocoaBindingsManager : NSObject <DVTInvalidation>
 {
-    NSUserDefaultsController *sharedUserDefaultsControllerProxy;
-    IBDocument *document;
+    NSUserDefaultsController *_sharedUserDefaultsControllerProxy;
+    IBDocument *_document;
 }
 
 + (void)initialize;

@@ -10,11 +10,12 @@
 
 @interface IBDocumentUnarchiverGroupMember : IBAbstractDocumentUnarchiverGroupMember
 {
-    NSXMLElement *element;
-    IBDocumentUnarchiver *unarchiver;
+    NSXMLElement *_element;
+    IBDocumentUnarchiver *_unarchiver;
 }
 
-@property(copy) NSXMLElement *element; // @synthesize element;
+@property(readonly) IBDocumentUnarchiver *unarchiver; // @synthesize unarchiver=_unarchiver;
+@property(copy) NSXMLElement *element; // @synthesize element=_element;
 - (void).cxx_destruct;
 - (id)key;
 - (id)elementName;

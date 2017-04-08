@@ -7,9 +7,12 @@
 #import "NSObject.h"
 
 @interface NSObject (DVTInvalidation_Private)
++ (BOOL)__classIsDVTInvalidation;
 + (void)_dvt_synthesizeInvalidationWithDeallocAssertion:(BOOL)arg1 multipleInvalidationAssertion:(BOOL)arg2;
 + (void)_dvt_synthesizeInvalidationWithoutDeallocAssertion;
 + (id)_dvt_invalidatableClasses;
+- (BOOL)__isKVOInvalidationZombie;
+- (BOOL)__isInvalidationZombie;
 - (BOOL)__isDVTInvalidation;
 @end
 

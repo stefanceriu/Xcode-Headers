@@ -26,7 +26,7 @@
 - (void)newestNonFatalIntegrationWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (void)newestIntegrationWithCompletionBlock:(CDUnknownBlockType)arg1;
 - (BOOL)_validateID:(id)arg1 name:(id)arg2 group:(id)arg3 type:(unsigned long long)arg4 configuration:(id)arg5 lastRevisionBlueprint:(id)arg6;
-- (id)_initWithID:(id)arg1 rev:(id)arg2 tinyID:(id)arg3 docType:(id)arg4 name:(id)arg5 group:(id)arg6 type:(unsigned long long)arg7 configuration:(id)arg8 lastRevisionBlueprint:(id)arg9 service:(id)arg10 requiresUpgrade:(BOOL)arg11 validationErrors:(id *)arg12;
+- (id)_initWithID:(id)arg1 rev:(id)arg2 tinyID:(id)arg3 docType:(id)arg4 name:(id)arg5 group:(id)arg6 type:(unsigned long long)arg7 configuration:(id)arg8 lastRevisionBlueprint:(id)arg9 nextIntegrationNumber:(long long)arg10 service:(id)arg11 requiresUpgrade:(BOOL)arg12 validationErrors:(id *)arg13;
 - (unsigned long long)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)patchRepresentation;
@@ -40,6 +40,7 @@
 @property(retain, nonatomic) XCSBotConfiguration *configuration; // @dynamic configuration;
 @property(retain, nonatomic) XCSBotGroup *group; // @dynamic group;
 @property(copy, nonatomic) NSString *name; // @dynamic name;
+@property(nonatomic) long long nextIntegrationNumber; // @dynamic nextIntegrationNumber;
 @property(nonatomic) unsigned long long type; // @dynamic type;
 
 @end

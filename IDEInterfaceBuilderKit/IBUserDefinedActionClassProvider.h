@@ -10,13 +10,13 @@
 
 @interface IBUserDefinedActionClassProvider : IBAbstractClassProvider
 {
-    NSDictionary *_actionSelectorToTypeMap;
     NSMutableArray *_partialClassDescriptions;
+    NSDictionary *_actionSelectorToTypeMap;
 }
 
+@property(copy, nonatomic) NSDictionary *actionSelectorToTypeMap; // @synthesize actionSelectorToTypeMap=_actionSelectorToTypeMap;
 - (void).cxx_destruct;
 - (id)partialClassDescriptions;
-@property(copy) NSDictionary *actionSelectorToTypeMap;
 - (void)integrateDocumentDecodedPartialClassDescriptions:(id)arg1;
 - (id)partialClassDescription;
 - (id)init;

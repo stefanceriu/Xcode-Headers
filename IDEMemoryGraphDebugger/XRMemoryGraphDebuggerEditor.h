@@ -7,10 +7,12 @@
 #import "IDEEditor.h"
 
 #import "DTObjectGridGraphDelegate.h"
+#import "NSTouchBarDelegate.h"
+#import "NSTouchBarProvider.h"
 
-@class DTMemoryGraphItem, DTVMUObjectGridGraphViewController, DVTObservingToken, IDEVariablesViewQuickLookPopover, NSArray, NSMutableSet, NSProgressIndicator, NSString, NSTextField, NSView, XRMemoryGraphDebuggerIndexSearchManager, XRMemoryGraphDebuggerRadarManager;
+@class DTMemoryGraphItem, DTVMUObjectGridGraphViewController, DVTObservingToken, IDEVariablesViewQuickLookPopover, NSArray, NSMutableSet, NSProgressIndicator, NSString, NSTextField, NSTouchBar, NSView, XRMemoryGraphDebuggerEditorDFRSupport, XRMemoryGraphDebuggerIndexSearchManager, XRMemoryGraphDebuggerRadarManager;
 
-@interface XRMemoryGraphDebuggerEditor : IDEEditor <DTObjectGridGraphDelegate>
+@interface XRMemoryGraphDebuggerEditor : IDEEditor <NSTouchBarProvider, NSTouchBarDelegate, DTObjectGridGraphDelegate>
 {
     DTMemoryGraphItem *_documentInstanceItem;
     DVTObservingToken *_filteredChildrenObservingToken;
@@ -20,6 +22,7 @@
     DVTObservingToken *_backupWorkspaceExecEnvObservation;
     DVTObservingToken *_debuggerUIControllerObservation;
     BOOL _isMemGraphFile;
+    XRMemoryGraphDebuggerEditorDFRSupport *_touchBarSupportController;
     DTVMUObjectGridGraphViewController *_gridGraphController;
     NSView *_buildingMemoryGraphView;
     NSProgressIndicator *_progressIndicator;
@@ -44,6 +47,7 @@
 @property __weak NSProgressIndicator *progressIndicator; // @synthesize progressIndicator=_progressIndicator;
 @property __weak NSView *buildingMemoryGraphView; // @synthesize buildingMemoryGraphView=_buildingMemoryGraphView;
 @property __weak DTVMUObjectGridGraphViewController *gridGraphController; // @synthesize gridGraphController=_gridGraphController;
+@property(retain) XRMemoryGraphDebuggerEditorDFRSupport *touchBarSupportController; // @synthesize touchBarSupportController=_touchBarSupportController;
 - (void).cxx_destruct;
 - (void)primitiveInvalidate;
 - (void)commitStateToDictionary:(id)arg1;
@@ -75,7 +79,7 @@
 - (void)_displayQuickLook:(id)arg1;
 - (void)_displayQuickLookForNode:(id)arg1;
 - (void)_showFirstMemoryGraphWithController:(id)arg1;
-- (id)_getDebugSessionForRunDestination:(id)arg1 withMemgraphFile:(id)arg2;
+- (id)_getDebugSessionForRunDestination:(id)arg1 workspace:(id)arg2 withMemgraphFile:(id)arg3;
 - (id)_getRunDestination;
 - (void)setupInfrastructureForMemgraphFile:(id)arg1;
 - (id)memoryGraphDebuggerDocument;
@@ -85,12 +89,20 @@
 - (void)_performWithTabUIController:(CDUnknownBlockType)arg1;
 - (void)loadView;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2 document:(id)arg3;
+- (id)dfrSupport;
+- (id)_barItemForExpandCollapseWithIdentifier:(id)arg1;
+- (id)_barItemForFocusOnNodeWithIdentifier:(id)arg1;
+- (id)_barItemForJumpToDefinitionWithIdentifier:(id)arg1;
+- (id)_barItemForPrintDescriptionWithIdentifier:(id)arg1;
+- (id)touchBar:(id)arg1 makeItemForIdentifier:(id)arg2;
+- (id)makeTouchBar;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
+@property(readonly) NSTouchBar *touchBar;
 
 @end
 

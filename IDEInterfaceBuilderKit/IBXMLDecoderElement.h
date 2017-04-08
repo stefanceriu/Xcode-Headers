@@ -10,7 +10,6 @@
 
 @interface IBXMLDecoderElement : NSObject
 {
-    int _retainCountMinusOne;
     struct {
         unsigned char inlineBytes[32];
         char *bytes;
@@ -69,11 +68,6 @@
 @property(readonly) NSString *elementName;
 - (id)initWithAttributes:(const char **)arg1 stringTable:(id)arg2 error:(id *)arg3;
 - (Class)elementClassForElementName:(const char *)arg1;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 @end
 

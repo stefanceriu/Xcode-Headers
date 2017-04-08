@@ -7,11 +7,10 @@
 #import <IDEInterfaceBuilderCocoaIntegration/IBNSStoryboardSegueTemplate.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBNSStoryboardShowSegueTemplate : IBNSStoryboardSegueTemplate <NSCoding, IBDocumentArchiving>
+@interface IBNSStoryboardShowSegueTemplate : IBNSStoryboardSegueTemplate <IBDocumentArchiving>
 {
     NSString *_uniqueControllerIdentifier;
 }

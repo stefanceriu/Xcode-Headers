@@ -17,10 +17,12 @@
     _Bool _scheduledReadOnWritableSocket;
 }
 
+@property(readonly, nonatomic) DYSharedMemoryTransport *smTransport; // @synthesize smTransport=_smTransport;
 - (unsigned int)_nextMessageSerial;
 - (BOOL)relayMessageOverSharedMemoryTransport:(id)arg1 error:(id *)arg2;
 - (void)destroySharedMemoryTransport;
 - (void)_destroySharedMemoryTransport;
+- (id)createNewSharedMemoryTransportWithURL:(id)arg1;
 - (id)createNewSharedMemoryTransport;
 - (void)_invalidate;
 - (void)setPrioritizeOutgoingMessages:(BOOL)arg1;

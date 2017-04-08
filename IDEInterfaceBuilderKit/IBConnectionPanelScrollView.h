@@ -10,31 +10,31 @@
 
 @interface IBConnectionPanelScrollView : DVTLayoutView_ML
 {
-    IBConnectionPanelScroller *vertScroller;
-    IBConnectionPanelScroller *horzScroller;
-    NSView *clipView;
-    NSView *documentView;
-    BOOL autohidesScrollers;
-    BOOL allowRoomForGrowBox;
-    BOOL resizesContentVertically;
-    BOOL resizesContentHorizontally;
-    double scrollerSize;
+    BOOL _autohidesScrollers;
+    BOOL _allowRoomForGrowBox;
+    BOOL _resizesContentVertically;
+    BOOL _resizesContentHorizontally;
+    NSView *_clipView;
+    double _scrollerSize;
+    IBConnectionPanelScroller *_verticalScroller;
+    IBConnectionPanelScroller *_horizontalScroller;
+    NSView *_documentView;
 }
 
-@property(nonatomic) BOOL resizesContentHorizontally; // @synthesize resizesContentHorizontally;
-@property(nonatomic) BOOL resizesContentVertically; // @synthesize resizesContentVertically;
-@property(nonatomic) BOOL autohidesScrollers; // @synthesize autohidesScrollers;
-@property(nonatomic) BOOL allowRoomForGrowBox; // @synthesize allowRoomForGrowBox;
-@property(readonly) NSView *contentView; // @synthesize contentView=clipView;
-@property(readonly) IBConnectionPanelScroller *verticalScroller; // @synthesize verticalScroller=vertScroller;
-@property(readonly) IBConnectionPanelScroller *horizontalScroller; // @synthesize horizontalScroller=horzScroller;
+@property(retain, nonatomic) NSView *documentView; // @synthesize documentView=_documentView;
+@property(readonly) IBConnectionPanelScroller *horizontalScroller; // @synthesize horizontalScroller=_horizontalScroller;
+@property(readonly) IBConnectionPanelScroller *verticalScroller; // @synthesize verticalScroller=_verticalScroller;
+@property(nonatomic) BOOL resizesContentHorizontally; // @synthesize resizesContentHorizontally=_resizesContentHorizontally;
+@property(nonatomic) BOOL resizesContentVertically; // @synthesize resizesContentVertically=_resizesContentVertically;
+@property(nonatomic) BOOL allowRoomForGrowBox; // @synthesize allowRoomForGrowBox=_allowRoomForGrowBox;
+@property(nonatomic) BOOL autohidesScrollers; // @synthesize autohidesScrollers=_autohidesScrollers;
+@property double scrollerSize; // @synthesize scrollerSize=_scrollerSize;
+@property(readonly) NSView *contentView; // @synthesize contentView=_clipView;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (void)scrollWheel:(id)arg1;
 @property(readonly) BOOL hasHorizontalScroller;
 @property(readonly) BOOL hasVerticalScroller;
-@property(retain) NSView *documentView;
-@property double scrollerSize;
 @property struct CGSize scrollPosition;
 - (void)scrollVertically:(id)arg1;
 - (void)scrollHorizontally:(id)arg1;

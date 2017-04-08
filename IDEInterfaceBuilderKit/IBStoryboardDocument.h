@@ -6,7 +6,7 @@
 
 #import <IDEInterfaceBuilderKit/IBDocument.h>
 
-@class DVTMutableOrderedSet, IBStoryboardGlobalEntryPointIndicator, IBStoryboardMetricsInferrer, NSDictionary, NSObject<IBPrimarySceneObject>;
+@class DVTMutableOrderedSet, IBStoryboardGlobalEntryPointIndicator, NSDictionary, NSObject<IBPrimarySceneObject>;
 
 @interface IBStoryboardDocument : IBDocument
 {
@@ -115,9 +115,6 @@
 - (id)transformForCanvasAnchorsWhenEnablingConfigurations;
 - (void)setUsesConfigurations:(BOOL)arg1;
 - (id)defaultPreviewedObject;
-
-// Remaining properties
-@property(readonly, nonatomic) IBStoryboardMetricsInferrer *metricsInferrer; // @dynamic metricsInferrer;
 
 @end
 

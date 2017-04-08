@@ -10,31 +10,31 @@
 
 @interface IBConnectionPopUpMenuView : DVTStackView_ML
 {
-    IBScrollingStackView *scrollingItemView;
-    IBImageButton *scrollUpButton;
-    IBImageButton *scrollDownButton;
-    NSColor *backgroundColor;
-    NSMutableArray *itemViews;
-    NSMutableArray *installedItemViews;
-    NSArray *menuItems;
-    DVTTypeCompletionHandler *typeCompletionHandler;
-    IBConnectionPopUpMenuItemView *explanationItemsSeparator;
-    IBConnectionPopUpMenuItemView *multipleSelectionExplanationItem;
-    IBConnectionPopUpMenuItemView *multipleSelectionAcceptItem;
-    IBConnectionPopUpMenuItemView *alternateItemsExplanationItem;
-    IBMutableIdentityDictionary *itemViewsByItem;
-    IBMutableIdentityDictionary *itemsByItemView;
-    BOOL optionIsDown;
-    BOOL allowsAndNeedsMultipleSelection;
-    BOOL allowsMultipleSelection;
-    BOOL hasAlternateItems;
-    id <IBConnectionPopUpMenuDelegate> delegate;
+    IBScrollingStackView *_scrollingItemView;
+    IBImageButton *_scrollUpButton;
+    IBImageButton *_scrollDownButton;
+    NSColor *_backgroundColor;
+    NSMutableArray *_itemViews;
+    NSMutableArray *_installedItemViews;
+    NSArray *_menuItems;
+    DVTTypeCompletionHandler *_typeCompletionHandler;
+    IBConnectionPopUpMenuItemView *_explanationItemsSeparator;
+    IBConnectionPopUpMenuItemView *_multipleSelectionExplanationItem;
+    IBConnectionPopUpMenuItemView *_multipleSelectionAcceptItem;
+    IBConnectionPopUpMenuItemView *_alternateItemsExplanationItem;
+    IBMutableIdentityDictionary *_itemViewsByItem;
+    IBMutableIdentityDictionary *_itemsByItemView;
+    BOOL _optionIsDown;
+    BOOL _allowsMultipleSelection;
+    BOOL _allowsAndNeedsMultipleSelection;
+    BOOL _hasAlternateItems;
+    id <IBConnectionPopUpMenuDelegate> _delegate;
 }
 
-@property __weak id <IBConnectionPopUpMenuDelegate> delegate; // @synthesize delegate;
-@property(readonly, nonatomic) BOOL hasAlternateItems; // @synthesize hasAlternateItems;
-@property(nonatomic) BOOL allowsMultipleSelection; // @synthesize allowsMultipleSelection;
-@property(readonly, nonatomic) BOOL allowsAndNeedsMultipleSelection; // @synthesize allowsAndNeedsMultipleSelection;
+@property(readonly, nonatomic) BOOL hasAlternateItems; // @synthesize hasAlternateItems=_hasAlternateItems;
+@property(readonly, nonatomic) BOOL allowsAndNeedsMultipleSelection; // @synthesize allowsAndNeedsMultipleSelection=_allowsAndNeedsMultipleSelection;
+@property(nonatomic) BOOL allowsMultipleSelection; // @synthesize allowsMultipleSelection=_allowsMultipleSelection;
+@property __weak id <IBConnectionPopUpMenuDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect)arg1;
 - (id)effectiveBackgroundColor;
@@ -52,7 +52,6 @@
 - (void)setHighlightedBackgroundColor:(id)arg1;
 - (void)setHighlightedTextColor:(id)arg1;
 - (void)setBackgroundColor:(id)arg1;
-- (id)backgroundColor;
 - (void)setTextColor:(id)arg1;
 - (void)configureScrollButtonImages:(id)arg1 upButton:(BOOL)arg2;
 - (id)initWithMenuItems:(id)arg1 showsStateImagesForItems:(id)arg2 allowsMultipleSelection:(BOOL)arg3 withMultipleSelectionAcceptsTitle:(id)arg4 andMaxWidth:(double)arg5;

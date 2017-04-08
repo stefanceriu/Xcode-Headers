@@ -7,23 +7,22 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIScrollView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class IBUICollectionReusableView, IBUICollectionViewFlowLayout, IBUICollectionViewLayout, IBUIView, NSArray, NSDictionary, NSMutableDictionary, NSString, NSValue;
 
-@interface IBUICollectionView : IBUIScrollView <IBDocumentArchiving, NSCoding>
+@interface IBUICollectionView : IBUIScrollView <IBDocumentArchiving>
 {
+    id <DVTCancellable> _cellObservingToken;
+    NSDictionary *_cachedCellFramesByPrototype;
+    NSMutableDictionary *_compiledPrototypeNIBs;
+    BOOL _prefetchingEnabled;
+    BOOL _separatingPrototypeChildrenForCompilation;
     long long _dataMode;
+    IBUICollectionViewLayout *_collectionViewLayout;
+    NSArray *_cells;
     IBUIView *_backgroundView;
     IBUICollectionReusableView *_sectionHeaderView;
     IBUICollectionReusableView *_sectionFooterView;
-    IBUICollectionViewLayout *_collectionViewLayout;
-    NSMutableDictionary *_compiledPrototypeNIBs;
-    BOOL _prefetchingEnabled;
-    BOOL separatingPrototypeChildrenForCompilation;
-    id <DVTCancellable> _cellObservingToken;
-    NSDictionary *_cachedCellFramesByPrototype;
-    NSArray *_cells;
     NSArray *_cachedCellFrames;
     NSArray *_cachedSectionHeaderViewFrames;
     NSArray *_cachedSectionFooterViewFrames;
@@ -53,6 +52,7 @@
 @property(copy, nonatomic) NSArray *cachedSectionFooterViewFrames; // @synthesize cachedSectionFooterViewFrames=_cachedSectionFooterViewFrames;
 @property(copy, nonatomic) NSArray *cachedSectionHeaderViewFrames; // @synthesize cachedSectionHeaderViewFrames=_cachedSectionHeaderViewFrames;
 @property(copy, nonatomic) NSArray *cachedCellFrames; // @synthesize cachedCellFrames=_cachedCellFrames;
+@property BOOL separatingPrototypeChildrenForCompilation; // @synthesize separatingPrototypeChildrenForCompilation=_separatingPrototypeChildrenForCompilation;
 @property(nonatomic) BOOL prefetchingEnabled; // @synthesize prefetchingEnabled=_prefetchingEnabled;
 @property(retain, nonatomic) IBUICollectionReusableView *sectionFooterView; // @synthesize sectionFooterView=_sectionFooterView;
 @property(retain, nonatomic) IBUICollectionReusableView *sectionHeaderView; // @synthesize sectionHeaderView=_sectionHeaderView;
@@ -106,11 +106,11 @@
 - (BOOL)prefersCachedImageBasedDrawing;
 - (id)bezierPathForShadowClip;
 @property(readonly, nonatomic) IBUICollectionViewFlowLayout *flowLayout;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (id)ibPreviewingRegistrantSourceViewInDocument:(id)arg1;
 - (id)ibPrefersMarginRelativeConstraintsToChildItem:(id)arg1;
 - (BOOL)ibChildView:(id)arg1 shouldUseConstraintsInsteadOfAutoresizingWhenAddedToDocument:(id)arg2;

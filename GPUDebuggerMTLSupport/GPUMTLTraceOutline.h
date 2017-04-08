@@ -17,8 +17,10 @@ __attribute__((visibility("hidden")))
     int _devicePlatform;
     DYFunctionStream *_captureStream;
     id <DYPMTLStateMirror> _stateMirror;
+    id <DYPStateMirror> _rootStateMirror;
 }
 
+@property(readonly, nonatomic) id <DYPStateMirror> rootStateMirror; // @synthesize rootStateMirror=_rootStateMirror;
 - (void).cxx_destruct;
 - (id)resourceDictionaryForDeviceID:(unsigned long long)arg1;
 - (void)outlineVisitor:(id)arg1 addPipelineStateToCurrentDisplayable:(unsigned long long)arg2;
@@ -34,6 +36,7 @@ __attribute__((visibility("hidden")))
 - (id)labelForReceiver:(const struct Function *)arg1 functionIndex:(unsigned int)arg2 hideCommandBuffersAndEncoders:(BOOL)arg3;
 - (id)labelForObjectID:(unsigned long long)arg1;
 - (void)visitFunctionStreamFile:(id)arg1;
+- (void)notifyUnusedResourcesStreamAvailable;
 - (id)stateMirrorForTraceItem:(id)arg1;
 - (id)_derivedStateMirrorFromStateMirror:(id)arg1 forFunctionIndex:(unsigned int)arg2 fromFunctionIndex:(unsigned int)arg3;
 - (id)initWithTraceSession:(id)arg1;

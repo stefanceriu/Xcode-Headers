@@ -8,21 +8,19 @@
 
 #import "DVTInvalidation.h"
 #import "DVTServicesJSONSerialization.h"
+#import "NSCopying.h"
 
-@class DVTCrashPointAppStoreSource, DVTCrashPointLocalSource, DVTProductCategory, DVTProductVersionBinaryInfos, DVTStackBacktrace, NSArray, NSDate, NSSet, NSString, NSURL;
+@class DVTCrashPointAppStoreSource, DVTCrashPointLocalSource, DVTProductCategory, DVTProductVersionBinaryInfos, DVTProductVersionIdentifier, DVTStackBacktrace, NSArray, NSDate, NSSet, NSString, NSURL;
 
-@interface DVTProductVersion : NSObject <DVTServicesJSONSerialization, DVTInvalidation>
+@interface DVTProductVersion : NSObject <DVTServicesJSONSerialization, DVTInvalidation, NSCopying>
 {
-    NSString *_bundleIdentifier;
-    NSString *_version;
-    NSString *_buildNumber;
-    NSString *_platformSDKIdentifier;
     NSString *_name;
+    DVTProductVersionIdentifier *_productVersionIdentifier;
+    NSString *_platformSDKIdentifier;
     NSURL *_imageURL;
     NSURL *_cacheImageURL;
     NSDate *_creationDate;
     NSArray *_childProducts;
-    DVTProductCategory *_productCategory;
     NSString *_adamId;
     NSSet *_supportedDeviceTypes;
     NSSet *_supportedOSVersions;
@@ -47,21 +45,18 @@
 @property(retain) NSSet *supportedOSVersions; // @synthesize supportedOSVersions=_supportedOSVersions;
 @property(retain) NSSet *supportedDeviceTypes; // @synthesize supportedDeviceTypes=_supportedDeviceTypes;
 @property(copy) NSString *adamId; // @synthesize adamId=_adamId;
-@property(readonly) DVTProductCategory *productCategory; // @synthesize productCategory=_productCategory;
 @property(retain) NSArray *childProducts; // @synthesize childProducts=_childProducts;
 @property(retain) NSDate *creationDate; // @synthesize creationDate=_creationDate;
 @property(retain) NSURL *cacheImageURL; // @synthesize cacheImageURL=_cacheImageURL;
 @property(retain) NSURL *imageURL; // @synthesize imageURL=_imageURL;
-@property(readonly) NSString *name; // @synthesize name=_name;
 @property(retain) NSString *platformSDKIdentifier; // @synthesize platformSDKIdentifier=_platformSDKIdentifier;
-@property(readonly) NSString *buildNumber; // @synthesize buildNumber=_buildNumber;
-@property(readonly) NSString *version; // @synthesize version=_version;
-@property(readonly) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
+@property(readonly) DVTProductVersionIdentifier *productVersionIdentifier; // @synthesize productVersionIdentifier=_productVersionIdentifier;
 - (void).cxx_destruct;
-- (id)JSONRepresentation;
-@property(readonly, copy) NSString *description;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 @property(readonly) unsigned long long hash;
 - (BOOL)isEqual:(id)arg1;
+- (id)JSONRepresentation;
+@property(readonly, copy) NSString *description;
 @property(readonly, getter=isAvailableForSale) BOOL availableForSale;
 @property(readonly, getter=isAvailableForPrerelease) BOOL availableForPrerelease;
 @property(readonly) NSArray *flatChildProducts;
@@ -70,7 +65,12 @@
 - (id)cachePathWithProductDirectory:(id)arg1;
 - (id)olderVersion:(id)arg1;
 - (id)newerVersion:(id)arg1;
-- (id)initWithBundleIdentifier:(id)arg1 version:(id)arg2 buildNumber:(id)arg3 name:(id)arg4 childProducts:(id)arg5 productCategory:(id)arg6;
+@property(readonly) DVTProductCategory *productCategory;
+@property(readonly) NSString *name; // @synthesize name=_name;
+@property(readonly) NSString *buildNumber;
+@property(readonly) NSString *version;
+@property(readonly) NSString *bundleIdentifier;
+- (id)initWithProductVersionIdentifier:(id)arg1 name:(id)arg2 childProducts:(id)arg3;
 - (id)init;
 
 // Remaining properties

@@ -10,12 +10,12 @@
 
 @interface IBMenuTargetResponderForwarder : NSResponder
 {
-    NSMutableSet *actionWhitelist;
-    NSResponder *targetResponder;
+    NSMutableSet *_actionWhitelist;
+    NSResponder *_targetResponder;
 }
 
-@property(readonly, nonatomic) NSSet *actionWhitelist; // @synthesize actionWhitelist;
-@property(retain, nonatomic) NSResponder *targetResponder; // @synthesize targetResponder;
+@property(readonly, nonatomic) NSSet *actionWhitelist; // @synthesize actionWhitelist=_actionWhitelist;
+@property(retain, nonatomic) NSResponder *targetResponder; // @synthesize targetResponder=_targetResponder;
 - (void).cxx_destruct;
 - (BOOL)validateUserInterfaceItem:(id)arg1;
 - (id)forwardingTargetForSelector:(SEL)arg1;

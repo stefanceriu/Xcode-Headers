@@ -12,13 +12,16 @@
 
 @interface IBWantsLayerEffectsInspector : IBInspectorViewController <NSTableViewDelegate>
 {
-    NSArrayController *renderTreeViewsArrayController;
-    IBWantsLayerContainerView *containerView;
-    DVTTableView *tableView;
-    NSView *lastInspectedView;
+    NSView *_lastInspectedView;
+    NSArrayController *_renderTreeViewsArrayController;
+    IBWantsLayerContainerView *_containerView;
+    DVTTableView *_tableView;
 }
 
 + (id)keyPathsForValuesAffectingInspectedView;
+@property(retain) DVTTableView *tableView; // @synthesize tableView=_tableView;
+@property(retain) IBWantsLayerContainerView *containerView; // @synthesize containerView=_containerView;
+@property(retain) NSArrayController *renderTreeViewsArrayController; // @synthesize renderTreeViewsArrayController=_renderTreeViewsArrayController;
 - (void).cxx_destruct;
 - (BOOL)tableView:(id)arg1 shouldTrackCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
 - (BOOL)tableView:(id)arg1 shouldSelectRow:(long long)arg2;

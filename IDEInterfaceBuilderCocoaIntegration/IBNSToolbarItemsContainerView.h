@@ -10,23 +10,23 @@
 
 @interface IBNSToolbarItemsContainerView : DVTLayoutView_ML
 {
-    IBNSToolbarItemsContainerView *itemsContainerCounterpart;
-    IBMutableIdentityDictionary *viewsByToolbarItem;
-    IBNSToolbarConfigurationView *configurationView;
-    NSMutableArray *orderedItemViews;
-    NSArray *preDragOrderedItemViews;
-    IBToolbarItemView *draggedItem;
-    NSMutableArray *layoutMatrix;
-    NSEvent *lastMouseDown;
-    NSMutableArray *items;
-    NSArray *preDragItems;
+    IBMutableIdentityDictionary *_viewsByToolbarItem;
+    NSMutableArray *_orderedItemViews;
+    NSArray *_preDragOrderedItemViews;
+    IBToolbarItemView *_draggedItem;
+    NSMutableArray *_layoutMatrix;
+    NSEvent *_lastMouseDown;
+    NSMutableArray *_items;
+    NSArray *_preDragItems;
+    IBNSToolbarItemsContainerView *_itemsContainerCounterpart;
+    IBNSToolbarConfigurationView *_configurationView;
     id <IBNSToolbarItemsContainerViewDelegate> _delegate;
 }
 
 @property(nonatomic) __weak id <IBNSToolbarItemsContainerViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain, nonatomic) IBNSToolbarConfigurationView *configurationView; // @synthesize configurationView;
-@property(retain, nonatomic) IBNSToolbarItemsContainerView *itemsContainerCounterpart; // @synthesize itemsContainerCounterpart;
-@property(copy, nonatomic) NSArray *items; // @synthesize items;
+@property(copy, nonatomic) NSArray *items; // @synthesize items=_items;
+@property(retain, nonatomic) IBNSToolbarConfigurationView *configurationView; // @synthesize configurationView=_configurationView;
+@property(retain, nonatomic) IBNSToolbarItemsContainerView *itemsContainerCounterpart; // @synthesize itemsContainerCounterpart=_itemsContainerCounterpart;
 - (void).cxx_destruct;
 - (void)mouseDragged:(id)arg1;
 - (void)mouseDown:(id)arg1;
@@ -58,7 +58,6 @@
 - (id)generateItemViewForToolbarItem:(id)arg1;
 - (BOOL)isFlipped;
 - (void)setFrameSize:(struct CGSize)arg1;
-- (id)orderedItemViews;
 - (BOOL)canAddToolbarItem:(id)arg1;
 - (id)toolbarItemForItemView:(id)arg1;
 - (id)firstViewForItem:(id)arg1;

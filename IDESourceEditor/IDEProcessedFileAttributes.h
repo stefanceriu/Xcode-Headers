@@ -10,7 +10,7 @@
 
 @interface IDEProcessedFileAttributes : NSObject
 {
-    int _command;
+    long long _command;
     DVTFilePath *_inputFilePath;
     DVTFilePath *_outputFilePath;
     NSString *_architecture;
@@ -27,12 +27,12 @@
 @property(readonly) NSString *architecture; // @synthesize architecture=_architecture;
 @property(readonly) DVTFilePath *outputFilePath; // @synthesize outputFilePath=_outputFilePath;
 @property(readonly) DVTFilePath *inputFilePath; // @synthesize inputFilePath=_inputFilePath;
-@property(readonly) int command; // @synthesize command=_command;
+@property(readonly) long long command; // @synthesize command=_command;
 - (void).cxx_destruct;
 - (id)headerCommentRepresentation;
 - (id)_dateFormatter;
 - (id)initWithPreprocessedFilePath:(id)arg1;
-- (id)initWithBuildOperationCommand:(int)arg1 inputFilePath:(id)arg2 outputFilePath:(id)arg3 architecture:(id)arg4 configuration:(id)arg5 projectName:(id)arg6 targetName:(id)arg7 timestamp:(id)arg8;
+- (id)initWithBuildOperationCommand:(long long)arg1 inputFilePath:(id)arg2 outputFilePath:(id)arg3 architecture:(id)arg4 configuration:(id)arg5 projectName:(id)arg6 targetName:(id)arg7 timestamp:(id)arg8;
 
 @end
 

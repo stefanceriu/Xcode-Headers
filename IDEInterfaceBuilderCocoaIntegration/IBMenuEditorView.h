@@ -14,14 +14,15 @@
     IBMutableIdentityDictionary *_representedObjectsToItems;
     IBMutableIdentityDictionary *_itemsToViews;
     DVTStackView_ML *_itemStack;
-    NSArray *_menuItemViews;
     NSSet *_selectedItems;
     BOOL _rebuildViewList;
     BOOL _mainMenuOrDescendantOfMainMenu;
     NSFont *_font;
     double _minimumFixedDimensionMagnitude;
+    NSArray *_menuItemViews;
 }
 
+@property(readonly) NSArray *menuItemViews; // @synthesize menuItemViews=_menuItemViews;
 @property(nonatomic) double minimumFixedDimensionMagnitude; // @synthesize minimumFixedDimensionMagnitude=_minimumFixedDimensionMagnitude;
 @property(nonatomic, getter=isMainMenuOrDescendantOfMainMenu) BOOL mainMenuOrDescendantOfMainMenu; // @synthesize mainMenuOrDescendantOfMainMenu=_mainMenuOrDescendantOfMainMenu;
 @property(copy, nonatomic) NSFont *font; // @synthesize font=_font;
@@ -49,7 +50,6 @@
 - (id)viewForRepresentedObject:(id)arg1;
 - (id)menuItemForRepresentedObject:(id)arg1;
 - (id)viewForMenuItem:(id)arg1;
-- (id)menuItemViews;
 - (void)setMenu:(id)arg1;
 - (void)setDrawsKeyEquivalentRectForItemWithRepresentedObject:(id)arg1;
 - (id)initWithMenu:(id)arg1;

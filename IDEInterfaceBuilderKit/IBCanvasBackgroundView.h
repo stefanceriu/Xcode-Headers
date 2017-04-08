@@ -8,11 +8,8 @@
 
 @interface IBCanvasBackgroundView : DVTLayoutView_ML
 {
-    CDUnknownBlockType _drawingCompletionBlock;
 }
 
-@property(copy, nonatomic) CDUnknownBlockType drawingCompletionBlock; // @synthesize drawingCompletionBlock=_drawingCompletionBlock;
-- (void).cxx_destruct;
 - (id)hitTest:(struct CGPoint)arg1;
 - (void)setBoundsOrigin:(struct CGPoint)arg1;
 - (BOOL)isFlipped;

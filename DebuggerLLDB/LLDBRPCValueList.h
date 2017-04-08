@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface LLDBRPCValueList : NSObject <DBGSBValueList>
 {
     struct SBValueList {

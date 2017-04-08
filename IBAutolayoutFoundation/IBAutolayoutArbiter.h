@@ -30,9 +30,9 @@
 + (BOOL)canConsiderRemovalOfRedundantConstraint:(id)arg1;
 + (BOOL)canConsiderRemovalOfOverConstrainingConstraint:(id)arg1;
 + (id)arbitrateConstraintsByModifyingLayoutEngine:(id)arg1 options:(id)arg2;
-@property(readonly) IBAutolayoutEngine *engine; // @synthesize engine=_engine;
 @property(copy) NSSet *constraintsToAdd; // @synthesize constraintsToAdd=_constraintsToAdd;
 @property(copy) NSSet *constraintsToRemove; // @synthesize constraintsToRemove=_constraintsToRemove;
+@property(readonly) IBAutolayoutEngine *engine; // @synthesize engine=_engine;
 - (void).cxx_destruct;
 - (id)arbitrateWithOptions:(id)arg1;
 - (void)removeTemporaryConstraintsForAncestorsOfWhitelistedViews;

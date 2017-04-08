@@ -15,7 +15,9 @@
     NSObject<OS_dispatch_queue> *_scanQueue;
     NSMutableSet *_allProfiles;
     BOOL _hasCompletedInitialScan;
+    BOOL _hasCompletedFirstScan;
     NSArray *_provisioningProfileSearchPaths;
+    DVTDispatchLock *_firstScanLock;
 }
 
 + (id)keyPathsForValuesAffectingAllUsableProfiles;
@@ -23,6 +25,8 @@
 + (id)mobileDeviceSupportSearchPaths;
 + (id)controllerWithProvisioningProfileSearchPaths:(id)arg1;
 + (id)controller;
+@property(nonatomic) BOOL hasCompletedFirstScan; // @synthesize hasCompletedFirstScan=_hasCompletedFirstScan;
+@property(retain, nonatomic) DVTDispatchLock *firstScanLock; // @synthesize firstScanLock=_firstScanLock;
 @property(readonly) NSArray *provisioningProfileSearchPaths; // @synthesize provisioningProfileSearchPaths=_provisioningProfileSearchPaths;
 @property(readonly) BOOL hasCompletedInitialScan; // @synthesize hasCompletedInitialScan=_hasCompletedInitialScan;
 - (void).cxx_destruct;

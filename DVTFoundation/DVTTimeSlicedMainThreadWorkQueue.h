@@ -59,6 +59,7 @@
 - (void)_addWorkItem:(id)arg1;
 - (void)primitiveInvalidate;
 - (id)_init;
+- (void)enqueueWithClosure:(CDUnknownBlockType)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

@@ -10,11 +10,11 @@
 
 @interface IBUICollectionViewEditor : IBUIScrollViewEditor
 {
-    NSString *targetRelation;
+    NSString *_targetRelation;
 }
 
 + (Class)ibDropTargetResolverClass;
-@property(retain, nonatomic) NSString *targetRelation; // @synthesize targetRelation;
+@property(retain, nonatomic) NSString *targetRelation; // @synthesize targetRelation=_targetRelation;
 - (void).cxx_destruct;
 - (BOOL)interceptEvent:(id)arg1;
 - (void)reattachDraggedObjects:(id)arg1 dragContext:(id)arg2;

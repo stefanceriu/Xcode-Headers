@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class NSSet, NSString;
+@class DVTPlatform, NSSet, NSString;
 
 @interface DVTPortalProgram : NSObject
 {
     NSString *_identifier;
     NSString *_portalIdentifier;
     NSSet *_platforms;
+    DVTPlatform *_primaryPlatform;
     NSString *_userDescription;
 }
 
@@ -20,9 +21,10 @@
 + (id)portalProgramWithPortalIdentifier:(id)arg1;
 + (id)_extensionPointIdentifierToPortalProgramMap;
 + (id)_portalIdentifierToPortalProgramMap;
-+ (id)_platformsFromExtension:(id)arg1;
++ (id)_platformsFromExtension:(id)arg1 primaryPlatform:(id *)arg2;
 + (id)portalPrograms;
 @property(readonly, nonatomic) NSString *userDescription; // @synthesize userDescription=_userDescription;
+@property(readonly, nonatomic) DVTPlatform *primaryPlatform; // @synthesize primaryPlatform=_primaryPlatform;
 @property(readonly, nonatomic) NSSet *platforms; // @synthesize platforms=_platforms;
 @property(readonly, nonatomic) NSString *portalIdentifier; // @synthesize portalIdentifier=_portalIdentifier;
 @property(readonly, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;

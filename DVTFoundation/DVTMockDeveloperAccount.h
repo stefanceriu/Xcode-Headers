@@ -17,6 +17,7 @@
 @property(copy) NSString *mockPassword; // @synthesize mockPassword=_mockPassword;
 @property(copy) NSString *mockUsername; // @synthesize mockUsername=_mockUsername;
 - (void).cxx_destruct;
+- (unsigned long long)hash;
 - (id)password;
 - (id)username;
 

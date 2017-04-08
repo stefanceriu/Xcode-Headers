@@ -8,8 +8,8 @@
 
 @interface IDEDMHighlightImageAndTextCell : DVTImageAndTextCell
 {
-    struct _NSRange _titleHighlightRange;
     BOOL _isSelected;
+    struct _NSRange _titleHighlightRange;
 }
 
 @property BOOL isSelected; // @synthesize isSelected=_isSelected;

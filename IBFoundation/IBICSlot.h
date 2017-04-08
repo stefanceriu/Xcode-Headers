@@ -15,7 +15,6 @@
 
 @interface IBICSlot : NSObject <NSFastEnumeration, NSCopying, NSCoding, IBBinaryArchiving>
 {
-    int _retainCountMinusOne;
     id *_componentsByID;
     id *_denseComponents;
     NSDictionary *_unknownIDsByClass;
@@ -72,11 +71,6 @@
 - (void)extractSlotsByComponentID:(id *)arg1 capacity:(long long)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToSlot:(id)arg1;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

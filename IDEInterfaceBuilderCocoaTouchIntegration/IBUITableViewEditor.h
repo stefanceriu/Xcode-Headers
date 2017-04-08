@@ -12,13 +12,13 @@
 
 @interface IBUITableViewEditor : IBUIScrollViewEditor <IBUITableViewCellOwningEditor>
 {
-    NSString *targetRelation;
-    NSValue *targetFrame;
+    NSString *_targetRelation;
+    NSValue *_targetFrame;
 }
 
 + (Class)ibDropTargetResolverClass;
-@property(copy, nonatomic) NSValue *targetFrame; // @synthesize targetFrame;
-@property(copy) NSString *targetRelation; // @synthesize targetRelation;
+@property(copy, nonatomic) NSValue *targetFrame; // @synthesize targetFrame=_targetFrame;
+@property(copy) NSString *targetRelation; // @synthesize targetRelation=_targetRelation;
 - (void).cxx_destruct;
 - (BOOL)dvt_autoscrollWithExternalDragEvent:(id)arg1 animate:(BOOL)arg2;
 - (BOOL)interceptEvent:(id)arg1;

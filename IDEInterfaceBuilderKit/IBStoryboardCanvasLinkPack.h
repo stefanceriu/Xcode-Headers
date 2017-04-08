@@ -10,13 +10,13 @@
 
 @interface IBStoryboardCanvasLinkPack : NSObject
 {
-    NSMutableArray *canvasLinks;
-    NSObject *source;
-    NSObject *destination;
+    NSMutableArray *_canvasLinks;
+    NSObject *_source;
+    NSObject *_destination;
 }
 
-@property(readonly, nonatomic) NSObject *destination; // @synthesize destination;
-@property(readonly, nonatomic) NSObject *source; // @synthesize source;
+@property(readonly, nonatomic) NSObject *destination; // @synthesize destination=_destination;
+@property(readonly, nonatomic) NSObject *source; // @synthesize source=_source;
 - (void).cxx_destruct;
 - (void)sortCanvasLinksUsingComparator:(CDUnknownBlockType)arg1;
 @property(readonly, nonatomic) NSArray *exclusiveCanvasLinks;

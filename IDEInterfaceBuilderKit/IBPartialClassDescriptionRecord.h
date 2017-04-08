@@ -12,7 +12,6 @@
 
 @interface IBPartialClassDescriptionRecord : NSObject <NSFastEnumeration>
 {
-    int _retainCountMinusOne;
     NSString *_className;
     IBClassDescriptionSource *_sourceIdentifier;
     IBPartialClassDescription *_partialClassDescription;
@@ -34,11 +33,6 @@
 - (unsigned long long)countByEnumeratingWithState:(CDStruct_70511ce9 *)arg1 objects:(id *)arg2 count:(unsigned long long)arg3;
 - (id)description;
 - (id)initWithPartialClassDescription:(id)arg1;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 @end
 

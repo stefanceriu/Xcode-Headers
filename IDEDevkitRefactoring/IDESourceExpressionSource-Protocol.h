@@ -16,7 +16,7 @@
 - (BOOL)isExpressionInFunctionOrMethodBody:(DVTSourceExpression *)arg1;
 - (BOOL)isExpressionFunctionOrMethodDefinition:(DVTSourceExpression *)arg1;
 - (BOOL)isExpressionInPlainCode:(DVTSourceExpression *)arg1;
-- (void)symbolsForExpression:(DVTSourceExpression *)arg1 inQueue:(NSObject<OS_dispatch_queue> *)arg2 completionBlock:(void (^)(IDEIndexCollection *, NSDictionary *))arg3;
+- (void)symbolsForExpression:(DVTSourceExpression *)arg1 queue:(NSObject<OS_dispatch_queue> *)arg2 completionBlock:(void (^)(IDEIndexCollection *, NSDictionary *))arg3;
 
 @optional
 - (BOOL)isLocationInFunctionOrMethodBody:(DVTTextDocumentLocation *)arg1;

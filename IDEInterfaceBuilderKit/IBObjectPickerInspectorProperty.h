@@ -12,11 +12,11 @@
 
 @interface IBObjectPickerInspectorProperty : IDEInspectorProperty <IBObjectPickerViewDelegate>
 {
-    IBObjectPickerView *pickerView;
-    id lastRolledOverObject;
-    IBCancellationToken *rolloverToken;
     IDEInspectorKeyPath *_valueKeyPath;
     NSString *_placeholder;
+    id _lastRolledOverObject;
+    IBObjectPickerView *_pickerView;
+    IBCancellationToken *_rolloverToken;
 }
 
 - (void).cxx_destruct;

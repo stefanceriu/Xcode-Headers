@@ -19,6 +19,7 @@
 @property(readonly) _Bool deviceIsBusy;
 @property(readonly) NSError *unavailabilityError;
 @property(readonly, getter=isAvailable) BOOL available;
+@property(readonly) _Bool isPasscodeLocked;
 @property(readonly) NSString *adjustedOperatingSystemVersion;
 - (id)supportedDeviceFamilies;
 @property(readonly, copy, nonatomic) NSString *name;

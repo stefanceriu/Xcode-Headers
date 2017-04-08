@@ -6,9 +6,12 @@
 
 #import "NSObject.h"
 
+#import "NSCopying.h"
+#import "NSMutableCopying.h"
+
 @class NSMutableDictionary;
 
-@interface XRCapabilityRegistry : NSObject
+@interface XRCapabilityRegistry : NSObject <NSMutableCopying, NSCopying>
 {
     NSMutableDictionary *_capabilityRanges;
     NSMutableDictionary *_unimplementedRecoveries;
@@ -25,7 +28,10 @@
 - (void)setUnimplementedRecoverySuggestion:(id)arg1 forCapability:(id)arg2;
 - (void)setAbandonedRecoverySuggestion:(id)arg1 forCapability:(id)arg2;
 - (void)registerCapability:(id)arg1 versions:(struct _NSRange)arg2;
+- (id)mutableCopyWithZone:(struct _NSZone *)arg1;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
+- (id)initWithRanges:(id)arg1 unimplementedRecoveries:(id)arg2 abandonedRecoveries:(id)arg3;
 
 @end
 

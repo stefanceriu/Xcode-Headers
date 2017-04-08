@@ -10,10 +10,11 @@
 
 @interface IBNSNumberFormatterExtraOptionsSlice : IDEInspectorProperty
 {
-    DVTStackView_ML *extraOptionsStackView;
-    NSArray *overflowItems;
+    NSArray *_overflowItems;
+    DVTStackView_ML *_extraOptionsStackView;
 }
 
+@property(retain) DVTStackView_ML *extraOptionsStackView; // @synthesize extraOptionsStackView=_extraOptionsStackView;
 - (void).cxx_destruct;
 - (double)baseline;
 - (void)setupRefreshTriggersAndConfigure;

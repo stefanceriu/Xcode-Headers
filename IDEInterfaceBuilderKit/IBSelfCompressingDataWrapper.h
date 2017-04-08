@@ -10,12 +10,12 @@
 
 @interface IBSelfCompressingDataWrapper : NSObject
 {
-    NSData *originalData;
-    NSData *compressedData;
+    NSData *_originalData;
+    NSData *_compressedData;
 }
 
-@property(retain) NSData *compressedData; // @synthesize compressedData;
-@property(retain) NSData *originalData; // @synthesize originalData;
+@property(retain) NSData *compressedData; // @synthesize compressedData=_compressedData;
+@property(retain) NSData *originalData; // @synthesize originalData=_originalData;
 - (void).cxx_destruct;
 - (id)data;
 - (id)initWithData:(id)arg1 shouldCompress:(BOOL)arg2;

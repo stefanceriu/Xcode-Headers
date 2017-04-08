@@ -26,6 +26,8 @@ __attribute__((visibility("hidden")))
 + (Class)captureSessionInfoClassWithAPI:(unsigned int)arg1;
 @property(retain, nonatomic) GPUMTLTraceOutline *outline; // @synthesize outline=_outline;
 - (void).cxx_destruct;
+- (void)populatePlaceholderItem:(id)arg1 objectID:(unsigned long long)arg2 stateMirrorObject:(const void *)arg3 containerID:(unsigned long long)arg4 identifier:(id)arg5;
+- (id)placeholderResourceItemWithGroup:(id)arg1 type:(unsigned int)arg2 identifier:(id)arg3;
 - (id)functionWithPipeline:(id)arg1 shaderType:(unsigned int)arg2 functionInfo:(id)arg3 identifier:(id)arg4;
 - (id)pipelineStateWithProgramGroup:(id)arg1 programType:(unsigned int)arg2 pipelineStateID:(unsigned long long)arg3 stateMirrorObject:(const void *)arg4 containerID:(unsigned long long)arg5 identifier:(id)arg6;
 - (id)functionInfoWithSourceURL:(id)arg1 lineNumber:(long long)arg2 onlineCompiled:(BOOL)arg3;
@@ -39,6 +41,7 @@ __attribute__((visibility("hidden")))
 - (id)resolveCurrentResourceItemWithPreviousItem:(id)arg1 currentMainEditorItem:(id)arg2 topLevelObjects:(id)arg3;
 - (void)establishChildrenForProgramItem:(id)arg1;
 - (id)programObjectFromProgramItem:(id)arg1 shaderType:(unsigned int)arg2;
+- (void)populateUnusedResourcesMetadataForGroup:(id)arg1 stateMirror:(id)arg2;
 - (void)generateResourcesForGroup:(id)arg1 apiItem:(id)arg2 boundOnly:(BOOL)arg3;
 - (void)createParentResourceGroupsForAPIItem:(id)arg1;
 - (id)_createResourceGroup:(id)arg1 parentItem:(id)arg2 boundOnly:(BOOL)arg3;
@@ -47,10 +50,10 @@ __attribute__((visibility("hidden")))
 - (id)locateDisplayableItemToDraw:(id)arg1 isAssociatedWithStateItem:(char *)arg2;
 - (id)apiItemForTrueFunctionIndex:(unsigned int)arg1;
 - (id)apiItemFromFunctionIndex:(unsigned int)arg1;
+- (void)notifyUnusedResourcesStreamAvailable;
 - (void)invalidateModel;
 - (void)generateModelWithTraceSession:(id)arg1;
 - (id)resourceTypeToViewClassMaptable;
-- (id)frames;
 - (id)domainProviderRootProgramGroup;
 - (id)domainProviderRootResourceGroup;
 - (id)allMarkerItems;

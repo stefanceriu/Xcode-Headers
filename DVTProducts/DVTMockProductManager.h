@@ -19,7 +19,6 @@
 - (id)archiveProductSource;
 - (void)setMockArchiveProductSource:(id)arg1;
 - (id)initWithDictionary:(id)arg1;
-- (void)primitiveInvalidate;
 - (id)initWithPlist:(id)arg1;
 
 @end

@@ -61,6 +61,7 @@
 - (id)allSubViewControllers;
 - (id)capsuleViewControllers;
 - (void)primitiveInvalidate;
+- (void)_gatherModelMetrics;
 - (void)loadView;
 - (void)reloadDataModels;
 - (void)updateMappings;

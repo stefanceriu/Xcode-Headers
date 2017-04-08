@@ -8,16 +8,21 @@
 
 #import "DVTInvalidation.h"
 
-@class DVTStackBacktrace, NSString;
+@class DVTSourceExpression, DVTStackBacktrace, NSString;
 
 @interface IDESourceCodeHelpNavigationRequest : NSObject <DVTInvalidation>
 {
+    DVTSourceExpression *_sourceExpression;
     unsigned long long _clickCount;
 }
 
 + (void)initialize;
-@property unsigned long long clickCount; // @synthesize clickCount=_clickCount;
+@property(readonly) unsigned long long clickCount; // @synthesize clickCount=_clickCount;
+@property(readonly) DVTSourceExpression *sourceExpression; // @synthesize sourceExpression=_sourceExpression;
+- (void).cxx_destruct;
 - (void)primitiveInvalidate;
+- (id)init;
+- (id)initWithSourceExpression:(id)arg1 clickCount:(unsigned long long)arg2;
 
 // Remaining properties
 @property(retain) DVTStackBacktrace *creationBacktrace;

@@ -38,6 +38,7 @@
 - (id)ibPasteboardTypes;
 - (void)ibRemoveChildren:(id)arg1;
 - (void)ibPopulateChildRelationOrder:(id)arg1;
+- (BOOL)ibCanSupportIdentifierProperty;
 - (id)ibEditorClass;
 - (id)ibLocalAdditionalLocalizableAttributeKeyPaths;
 - (id)ibLocalLocalizableStringsAttributeKeyPaths;

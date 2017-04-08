@@ -17,6 +17,7 @@
 @property BOOL shouldUse; // @synthesize shouldUse=_shouldUse;
 @property(readonly) CDMEntity *entity; // @synthesize entity=_entity;
 - (void).cxx_destruct;
+- (id)description;
 - (id)initWithEntity:(id)arg1 shouldUse:(BOOL)arg2;
 
 @end

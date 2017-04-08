@@ -26,6 +26,7 @@
 @property(readonly) DVTProvisioningProfileReaper *provisioningProfileReaper; // @synthesize provisioningProfileReaper=_provisioningProfileReaper;
 @property(readonly) NSArray *provisioningProfileSearchPaths; // @synthesize provisioningProfileSearchPaths=_provisioningProfileSearchPaths;
 - (void).cxx_destruct;
+- (void)uninstallHostProfiles:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (void)installHostProfiles:(id)arg1 callback:(CDUnknownBlockType)arg2;
 - (id)profileWithData:(id)arg1 error:(id *)arg2;
 - (id)profileWithURL:(id)arg1 error:(id *)arg2;

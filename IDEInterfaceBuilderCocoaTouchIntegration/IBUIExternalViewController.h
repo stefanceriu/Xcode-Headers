@@ -8,11 +8,10 @@
 
 #import "IBDocumentArchiving.h"
 #import "IBExternalPrimarySceneObject.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIExternalViewController : IBUIViewController <IBDocumentArchiving, NSCoding, IBExternalPrimarySceneObject>
+@interface IBUIExternalViewController : IBUIViewController <IBDocumentArchiving, IBExternalPrimarySceneObject>
 {
     NSString *_storyboardName;
     NSString *_bundleIdentifier;
@@ -26,11 +25,11 @@
 @property(copy, nonatomic) NSString *bundleIdentifier; // @synthesize bundleIdentifier=_bundleIdentifier;
 @property(copy, nonatomic) NSString *storyboardName; // @synthesize storyboardName=_storyboardName;
 - (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)runtimeClassNameForContext:(id)arg1 returningOptionalFallbackClassName:(id *)arg2;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)ibIsInspectorApplicable:(id)arg1 forCategory:(id)arg2;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibEditorViewWithSuggestedSize:(struct CGSize)arg1 forDocument:(id)arg2;

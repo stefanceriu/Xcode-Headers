@@ -15,7 +15,7 @@
 
 + (id)keyPathsForValuesAffectingSortedEntityMappingNames;
 + (id)keyPathsForValuesAffectingSortedEntityMappings;
-+ (id)keyPathsForValuesAffectingValueForMappingModel;
++ (id)keyPathsForValuesAffectingMappingModel;
 @property unsigned long long valueExpressionChoice; // @synthesize valueExpressionChoice=_valueExpressionChoice;
 @property(readonly) NSArray *sortedEntityMappingNames;
 - (id)sortedEntityMappings;

@@ -94,6 +94,8 @@
 - (void)applyChanges:(id)arg1;
 - (void)applyChange:(id)arg1;
 - (void)catalogSynchronizer:(id)arg1 didApplyMutationToModel:(id)arg2;
+- (void)finishReplacingContent;
+- (void)beginReplacingContent;
 - (Class)catalogClass;
 - (id)init;
 

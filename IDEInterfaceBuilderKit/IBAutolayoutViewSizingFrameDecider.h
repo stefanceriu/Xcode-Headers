@@ -15,7 +15,6 @@
 
 + (void)decideAndSetFramesOfEntireViewHierarchyForSizingView:(id)arg1 toLayoutSize:(struct CGSize)arg2 suggestedLayoutOrigin:(struct CGPoint)arg3 allowTopLevelResize:(BOOL)arg4 layoutInfo:(id)arg5 delegate:(id)arg6;
 - (void).cxx_destruct;
-- (void)decideAndSetFramesOfEntireViewHierarchyForSizingViewToLayoutSize:(struct CGSize)arg1 suggestedLayoutOrigin:(struct CGPoint)arg2;
 - (id)initWithArbitrationUnit:(id)arg1 driverOptions:(id)arg2 delegate:(id)arg3 sizingView:(id)arg4 statusInitializationBlock:(CDUnknownBlockType)arg5;
 - (BOOL)shouldPropagateFrameForFixedFrameItem:(id)arg1;
 

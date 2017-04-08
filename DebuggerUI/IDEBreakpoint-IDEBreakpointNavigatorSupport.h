@@ -8,12 +8,17 @@
 
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString;
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSNull, NSString;
 
 @interface IDEBreakpoint (IDEBreakpointNavigatorSupport) <IDEKeyDrivenNavigableItemRepresentedObject>
++ (id)keyPathsForValuesAffectingNavigableItem_filtered;
++ (id)keyPathsForValuesAffectingNavigableItem_isLeaf;
++ (id)keyPathsForValuesAffectingNavigableItem_childRepresentedObjects;
 + (id)keyPathsForValuesAffectingNavigableItem_name;
 - (BOOL)shouldEditNewBreakpoints;
 @property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) NSString *popUpEditorDisplayName;
 @property(readonly) NSString *navigableItem_subtitle;
 @property(readonly) NSString *navigableItem_name;
@@ -23,11 +28,12 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
 @property(readonly) DVTFileDataType *navigableItem_documentType;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) NSImage *navigableItem_image;
-@property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;
 @property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
 @property(readonly) BOOL navigableItem_referencedContentExists;

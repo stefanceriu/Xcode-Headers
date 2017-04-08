@@ -19,6 +19,14 @@
 + (BOOL)isApplication:(id)arg1;
 + (void)registerCapabilities:(id)arg1;
 - (id)networkInformation;
+- (id)networkInterfaceNames;
+- (id)netstatRouteAttributes;
+- (id)netstatUDPAttributes;
+- (id)netstatTCPAttributes;
+- (id)netstatCountsAttributes;
+- (id)sysmonCoalitionAttributes;
+- (id)sysmonSystemAttributes;
+- (id)sysmonProcessAttributes;
 - (id)kpepDatabase;
 - (id)traceCodesFile;
 - (id)cpDeviceName;

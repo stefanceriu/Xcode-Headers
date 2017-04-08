@@ -14,12 +14,12 @@
 - (BOOL)isAvailable;
 - (id)deviceType;
 - (unsigned long long)supportsFetchEvents;
-- (id)deviceForRunningUnitTestsError:(id *)arg1;
 - (void)debugXPCServices:(id)arg1 onPairedDevice:(BOOL)arg2 completionSemaphore:(id)arg3;
 - (BOOL)supportsRecordedFrames;
 - (BOOL)supportsPGOReturningError:(id *)arg1;
 - (BOOL)supportsAttachByPIDOrName;
 - (BOOL)supportsArchiving;
+- (BOOL)allowsManagedStateControl;
 - (void)requestProcessInformationsOnPairedDevice:(BOOL)arg1 handler:(CDUnknownBlockType)arg2;
 - (BOOL)supportsRunningExecutableAtPath:(id)arg1 usingArchitecture:(id)arg2 error:(id *)arg3;
 - (BOOL)supportsExecutionForArchitecture:(id)arg1 launchSession:(id)arg2 error:(id *)arg3;
@@ -41,6 +41,7 @@
 - (id)displayOrder;
 - (id)displayNameAdditionsWhenUsingArchitecture:(id)arg1 withSDK:(id)arg2;
 - (id)name;
+- (id)connectionServicesFrameworkPath;
 
 @end
 

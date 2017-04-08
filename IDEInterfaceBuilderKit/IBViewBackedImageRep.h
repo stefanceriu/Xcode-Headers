@@ -10,15 +10,15 @@
 
 @interface IBViewBackedImageRep : NSImageRep
 {
-    NSView *view;
-    BOOL transformsWhenScaled;
-    double opacity;
+    BOOL _transformsWhenScaled;
+    double _opacity;
+    NSView *_view;
 }
 
 + (id)imageOfView:(id)arg1 transformsWhenScaled:(BOOL)arg2 opacity:(double)arg3;
-@property double opacity; // @synthesize opacity;
-@property(retain, nonatomic) NSView *view; // @synthesize view;
-@property BOOL transformsWhenScaled; // @synthesize transformsWhenScaled;
+@property BOOL transformsWhenScaled; // @synthesize transformsWhenScaled=_transformsWhenScaled;
+@property(retain, nonatomic) NSView *view; // @synthesize view=_view;
+@property double opacity; // @synthesize opacity=_opacity;
 - (void).cxx_destruct;
 - (void)viewBoundsChanged:(id)arg1;
 - (BOOL)_drawFromRect:(struct CGRect)arg1 toRect:(struct CGRect)arg2 operation:(unsigned long long)arg3 alpha:(double)arg4 compositing:(BOOL)arg5 flipped:(BOOL)arg6 ignoreContext:(BOOL)arg7;

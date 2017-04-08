@@ -24,7 +24,8 @@
 + (id)_findMatchingTypeUsingDetectors:(id)arg1 givenCurrentMatchingType:(id)arg2 filePath:(id)arg3 allowCustomDetectors:(BOOL)arg4 error:(id *)arg5;
 + (id)_matchingTypeDetectorExtensionsForFilePathExtension:(id)arg1;
 + (id)_launchServicesUTIForMimeType:(id)arg1;
-+ (id)_launchServicesUTIForFileAtPath:(id)arg1;
++ (id)_launchServicesUTIForFileAtPath:(id)arg1 consideringFileContent:(BOOL)arg2;
++ (id)_launchServicesUTIForFileAtURL:(id)arg1;
 + (id)_convertFromLaunchServicesDynamicUTIIfNeeded:(id)arg1;
 + (id)fileDataTypeWithIdentifier:(id)arg1;
 + (id)fileDataTypeFromStringRepresentation:(id)arg1;

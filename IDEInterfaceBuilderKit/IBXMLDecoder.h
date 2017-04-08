@@ -10,18 +10,18 @@
 
 @interface IBXMLDecoder : NSCoder
 {
-    NSMutableArray *successfullyDecodedObjects;
-    NSMapTable *objectsToElements;
-    NSMutableDictionary *classFallbacks;
-    NSMutableSet *uniquedValueObjects;
-    IBXMLDecoderArchiveElement *archiveElement;
-    NSMutableArray *decodedBytes;
-    IBSelfCompressingDataWrapper *originalDocumentData;
-    long long nextGenericKey;
-    NSSet *objectElementNamesWithPotentialObjectChildren;
-    NSSet *specialCaseCollectionElementNames;
-    NSDictionary *specialTypesToClasses;
-    NSMutableArray *classesBeingDecoded;
+    NSMutableArray *_successfullyDecodedObjects;
+    NSMapTable *_objectsToElements;
+    NSMutableDictionary *_classFallbacks;
+    NSMutableSet *_uniquedValueObjects;
+    IBXMLDecoderArchiveElement *_archiveElement;
+    NSMutableArray *_decodedBytes;
+    IBSelfCompressingDataWrapper *_originalDocumentData;
+    long long _nextGenericKey;
+    NSSet *_objectElementNamesWithPotentialObjectChildren;
+    NSSet *_specialCaseCollectionElementNames;
+    NSDictionary *_specialTypesToClasses;
+    NSMutableArray *_classesBeingDecoded;
     id <IBXMLDecoderDelegate> _delegate;
     IBXMLDecoderElement *_currentElement;
 }

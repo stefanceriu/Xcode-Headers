@@ -10,11 +10,11 @@
 
 @interface IBSourceCodeConnectionPopUpController : DVTHUDPopUpController
 {
-    CDUnknownBlockType cancelButtonClickHandlerBlock;
-    NSButton *cancelButton;
+    NSButton *_cancelButton;
+    CDUnknownBlockType _cancelButtonClickHandlerBlock;
 }
 
-@property(copy) CDUnknownBlockType cancelButtonClickHandlerBlock; // @synthesize cancelButtonClickHandlerBlock;
+@property(copy) CDUnknownBlockType cancelButtonClickHandlerBlock; // @synthesize cancelButtonClickHandlerBlock=_cancelButtonClickHandlerBlock;
 - (void).cxx_destruct;
 - (void)cancel:(id)arg1;
 - (void)closeForCancelling;

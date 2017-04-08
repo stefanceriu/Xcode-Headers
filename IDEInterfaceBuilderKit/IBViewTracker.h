@@ -6,40 +6,39 @@
 
 #import "NSObject.h"
 
-@class IBDocument, IBViewEditorCanvasFrameController, NSArray, NSEvent, NSNumber, NSValue, NSView;
+@class IBDocument, IBViewEditorCanvasFrameController, NSArray, NSNumber, NSValue, NSView;
 
 @interface IBViewTracker : NSObject
 {
-    NSEvent *currentResizingEvent;
-    CDUnion_31865a80 initialKnob;
-    BOOL trackingIsHorzFlipped;
-    BOOL trackingIsVertFlipped;
-    BOOL showsGuides;
-    BOOL snapsToGuides;
-    BOOL showsTrackingKnob;
-    NSArray *layoutManagers;
-    IBViewEditorCanvasFrameController *frameController;
-    NSView *trackedView;
-    id measurementTarget;
-    NSValue *pinnedKnob;
-    CDUnknownBlockType willTrackHandler;
-    CDUnknownBlockType didTrackHandler;
-    NSNumber *forceBoundsIndicatorValue;
+    CDUnion_31865a80 _initialKnob;
+    BOOL _trackingIsFlippedHorizontally;
+    BOOL _trackingIsFlippedVertically;
+    BOOL _snapsToGuides;
+    BOOL _showsGuides;
+    BOOL _showsTrackingKnob;
+    CDUnknownBlockType _willTrackHandler;
+    CDUnknownBlockType _didTrackHandler;
+    NSArray *_layoutManagers;
+    NSView *_trackedView;
+    id _measurementTarget;
+    IBViewEditorCanvasFrameController *_frameController;
+    NSNumber *_forceBoundsIndicatorValue;
+    NSValue *_pinnedKnob;
 }
 
 + (void)setAppliesAutoResizingRulesWhileResizing:(BOOL)arg1;
 + (BOOL)appliesAutoResizingRulesWhileResizing;
-@property(copy) NSNumber *forceBoundsIndicatorValue; // @synthesize forceBoundsIndicatorValue;
-@property BOOL showsTrackingKnob; // @synthesize showsTrackingKnob;
-@property(copy) CDUnknownBlockType didTrackHandler; // @synthesize didTrackHandler;
-@property(copy) CDUnknownBlockType willTrackHandler; // @synthesize willTrackHandler;
-@property(copy) NSValue *pinnedKnob; // @synthesize pinnedKnob;
-@property BOOL snapsToGuides; // @synthesize snapsToGuides;
-@property BOOL showsGuides; // @synthesize showsGuides;
-@property(readonly) id measurementTarget; // @synthesize measurementTarget;
-@property(readonly) NSView *trackedView; // @synthesize trackedView;
-@property(readonly) IBViewEditorCanvasFrameController *frameController; // @synthesize frameController;
-@property(copy) NSArray *layoutManagers; // @synthesize layoutManagers;
+@property(copy) NSValue *pinnedKnob; // @synthesize pinnedKnob=_pinnedKnob;
+@property(copy) NSNumber *forceBoundsIndicatorValue; // @synthesize forceBoundsIndicatorValue=_forceBoundsIndicatorValue;
+@property BOOL showsTrackingKnob; // @synthesize showsTrackingKnob=_showsTrackingKnob;
+@property BOOL showsGuides; // @synthesize showsGuides=_showsGuides;
+@property BOOL snapsToGuides; // @synthesize snapsToGuides=_snapsToGuides;
+@property(readonly) IBViewEditorCanvasFrameController *frameController; // @synthesize frameController=_frameController;
+@property(readonly) id measurementTarget; // @synthesize measurementTarget=_measurementTarget;
+@property(readonly) NSView *trackedView; // @synthesize trackedView=_trackedView;
+@property(copy) NSArray *layoutManagers; // @synthesize layoutManagers=_layoutManagers;
+@property(copy) CDUnknownBlockType didTrackHandler; // @synthesize didTrackHandler=_didTrackHandler;
+@property(copy) CDUnknownBlockType willTrackHandler; // @synthesize willTrackHandler=_willTrackHandler;
 - (void).cxx_destruct;
 - (void)trackWithEvent:(id)arg1;
 - (void)clearGuides;

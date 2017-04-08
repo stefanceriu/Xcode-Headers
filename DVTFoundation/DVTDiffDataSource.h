@@ -31,9 +31,9 @@
 - (unsigned long long)diffTokenHashInDiffDescriptor:(id)arg1 range:(struct _NSRange)arg2;
 - (long long)numberOfDiffTokens;
 - (long long)numberOfDiffTokensInDiffDescriptor:(id)arg1;
-- (struct _DVTDiffToken)diffTokenAtIndex:(long long)arg1;
-- (void)getDiffTokens:(struct _DVTDiffToken *)arg1 inDiffDescriptor:(id)arg2 inRange:(struct _NSRange)arg3;
-- (struct _DVTDiffToken)diffTokenInDiffDescriptor:(id)arg1 atIndex:(long long)arg2;
+- (CDStruct_3dd9eb72)diffTokenAtIndex:(long long)arg1;
+- (void)getDiffTokens:(CDStruct_3dd9eb72 *)arg1 inDiffDescriptor:(id)arg2 inRange:(struct _NSRange)arg3;
+- (CDStruct_3dd9eb72)diffTokenInDiffDescriptor:(id)arg1 atIndex:(long long)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToDiffDataSource:(id)arg1;
 @property(retain) NSString *label; // @synthesize label=_label;

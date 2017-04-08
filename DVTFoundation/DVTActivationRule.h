@@ -28,7 +28,6 @@
 @property(readonly) NSPredicate *predicate;
 - (id)_predicateWithIdentifier:(id)arg1 versionString:(id)arg2 query:(id)arg3;
 - (void)encodeIntoPropertyList:(id)arg1;
-- (void)awakeWithPropertyList:(id)arg1;
 - (id)initWithPropertyList:(id)arg1 owner:(id)arg2;
 
 // Remaining properties

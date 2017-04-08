@@ -16,8 +16,8 @@
     NSDictionary *_counterInfos;
     struct vector<unsigned long, std::__1::allocator<unsigned long>> _baseCounterIndexForList;
     struct unordered_map<unsigned long long, CommandBufferInfo, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, CommandBufferInfo>>> _commandBufferMap;
-    unordered_map_ca22002e _encoderMap;
-    unordered_map_ca22002e _parallelEncoderMap;
+    unordered_map_9dcb35d8 _encoderMap;
+    unordered_map_9dcb35d8 _parallelEncoderMap;
     struct unordered_map<unsigned long long, unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, unsigned long long>>> _encoderToParallelEncoderMap;
     unsigned long long _lastEncoderID;
     BOOL _disableWireframe;
@@ -30,6 +30,8 @@
     unsigned int _drawIndex;
     unsigned long long _targetCommandEncoderId;
     CAMetalLayer *_layer;
+    unsigned long long _lastCommandBufferId;
+    struct vector<unsigned long long, std::__1::allocator<unsigned long long>> _last;
     BOOL _shouldIgnoreCaptureFile;
     _Bool _isInVertexMode;
     _Bool _requiresMultiplePasses;
@@ -70,6 +72,7 @@
 - (_Bool)setupProfilingForListAtIndex:(unsigned long long)arg1;
 - (void)setupProfilingForCounterLists;
 - (void)setupAllStatLocations;
+- (_Bool)isCounterAvailable:(id)arg1;
 - (void)enableStatsSampling:(BOOL)arg1;
 - (_Bool)didSetupFrameProfilingNeedMultiplePasses;
 - (_Bool)_setupCounterConfigurationForCommandQueue:(id)arg1;
@@ -86,13 +89,13 @@
 - (id)_texture2DFromTexture:(id)arg1 level:(unsigned long long)arg2 slice:(unsigned long long)arg3 depthPlane:(unsigned long long)arg4 commandBuffer:(id)arg5;
 - (void)waitForCommmandBuffersCompletion;
 - (void)commitEncodersAndCommandBuffers;
-- (void)_endEncodingForAllRemainingEncoders:(unordered_map_ca22002e *)arg1;
+- (void)_endEncodingForAllRemainingEncoders:(unordered_map_9dcb35d8 *)arg1;
 - (void)prepareForCaptureExecution;
 - (void)executePlatformFunction;
 - (void)_superExecutePlatformFunction;
 - (void)executeGraphicsFunction;
 - (void)executeFunctions:(struct CoreFunction *)arg1 count:(unsigned long long)arg2;
-- (unordered_map_ca22002e *)encoderMap;
+- (unordered_map_9dcb35d8 *)encoderMap;
 - (id)initWithCaptureStore:(id)arg1;
 - (void)setDevice:(id)arg1;
 

@@ -7,11 +7,10 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIStoryboardAbstractTriggeredSegue.h>
 
 #import "IBCocoaTouchStoryboardAbstractModalSegue.h"
-#import "NSCoding.h"
 
 @class NSNumber, NSString;
 
-@interface IBCocoaTouchStoryboardModalSegue : IBUIStoryboardAbstractTriggeredSegue <NSCoding, IBCocoaTouchStoryboardAbstractModalSegue>
+@interface IBCocoaTouchStoryboardModalSegue : IBUIStoryboardAbstractTriggeredSegue <IBCocoaTouchStoryboardAbstractModalSegue>
 {
     NSNumber *_modalPresentationStyle;
     NSNumber *_modalTransitionStyle;

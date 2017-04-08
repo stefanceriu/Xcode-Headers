@@ -11,6 +11,7 @@
 @interface DVTPortalProfileCharacteristics : NSObject
 {
     BOOL _forceExplicitAppID;
+    BOOL _overrideDeletionOfPreExistingProfile;
     DVTPortalTeam *_team;
     DVTPortalProfileType *_profileType;
     NSString *_bundleID;
@@ -23,6 +24,7 @@
 
 + (id)_errorFeatures:(id)arg1 mustMatchContainers:(id)arg2;
 + (BOOL)_allContainers:(id)arg1 haveFeaturesEnabled:(id)arg2 error:(id *)arg3;
+@property(nonatomic) BOOL overrideDeletionOfPreExistingProfile; // @synthesize overrideDeletionOfPreExistingProfile=_overrideDeletionOfPreExistingProfile;
 @property BOOL forceExplicitAppID; // @synthesize forceExplicitAppID=_forceExplicitAppID;
 @property(readonly, nonatomic) NSString *manualStyleProfileName; // @synthesize manualStyleProfileName=_manualStyleProfileName;
 @property(readonly, nonatomic) NSSet *manualStyleProfileDevices; // @synthesize manualStyleProfileDevices=_manualStyleProfileDevices;

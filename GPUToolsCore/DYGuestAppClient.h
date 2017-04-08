@@ -70,6 +70,8 @@
 - (void)_appendLinkTimeLibrary:(const char *)arg1 toVersionsDictionary:(id)arg2;
 - (void)unlockGraphics;
 - (void)lockGraphicsAndWaitForThreads:(BOOL)arg1;
+- (void)notifyAllCaptureMetadataSent;
+- (void)notifyUsedDataSentWithDictionary:(id)arg1;
 - (void)notifyAllCaptureDataSent;
 - (void)_handleActivateCaptureMessage:(id)arg1;
 - (void)_armCapturing:(unsigned int)arg1 andFrameLimit:(unsigned int)arg2 andSerial:(unsigned int)arg3;

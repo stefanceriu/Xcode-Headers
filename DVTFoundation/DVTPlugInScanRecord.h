@@ -50,7 +50,6 @@
 - (void)_instantiateBundleIfNecessary;
 - (BOOL)isEquivalentToPlistRepresentation:(id)arg1;
 - (void)encodeIntoPropertyList:(id)arg1;
-- (void)awakeWithPropertyList:(id)arg1;
 - (id)initWithPropertyList:(id)arg1 owner:(id)arg2;
 @property(readonly, copy) NSString *description;
 - (long long)compare:(id)arg1;

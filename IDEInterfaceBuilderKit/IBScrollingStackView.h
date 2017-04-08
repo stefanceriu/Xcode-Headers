@@ -10,9 +10,9 @@
 
 @interface IBScrollingStackView : DVTStackView_ML
 {
-    NSArray *views;
-    NSView *firstVisible;
-    long long maxVisibleViews;
+    NSArray *_views;
+    NSView *_firstVisible;
+    long long _maxVisibleViews;
 }
 
 - (void).cxx_destruct;

@@ -13,18 +13,18 @@
 
 @interface IBUIStoryboardTabBarControllerArrangementView : DVTLayoutView_ML <IBUIOverlayViewDelegate, IBDragAndDropPolicyDelegate>
 {
-    IBUITabBar *tabBar;
-    IBUITabBarItem *draggedTabBarItem;
-    IBUIOverlayView *overlayView;
-    IBOrderedRelationshipDragAndDropPolicy *tabBarItemInsertionPolicy;
-    IBDragAndDropInsertionIndicator *insertionIndicator;
-    NSString *uniquePasteboardType;
+    IBUIOverlayView *_overlayView;
+    IBOrderedRelationshipDragAndDropPolicy *_tabBarItemInsertionPolicy;
+    IBDragAndDropInsertionIndicator *_insertionIndicator;
+    NSString *_uniquePasteboardType;
     id <IBUIStoryboardTabBarControllerArrangementViewDelegate> _delegate;
+    IBUITabBarItem *_draggedTabBarItem;
+    IBUITabBar *_tabBar;
 }
 
+@property(retain) IBUITabBar *tabBar; // @synthesize tabBar=_tabBar;
+@property(retain) IBUITabBarItem *draggedTabBarItem; // @synthesize draggedTabBarItem=_draggedTabBarItem;
 @property __weak id <IBUIStoryboardTabBarControllerArrangementViewDelegate> delegate; // @synthesize delegate=_delegate;
-@property(retain) IBUITabBarItem *draggedTabBarItem; // @synthesize draggedTabBarItem;
-@property(retain) IBUITabBar *tabBar; // @synthesize tabBar;
 - (void).cxx_destruct;
 - (void)layoutTopDown;
 - (id)overlayView:(id)arg1 hitTest:(struct CGPoint)arg2 defaultHit:(id)arg3;
@@ -36,7 +36,6 @@
 - (void)insertionPolicy:(id)arg1 orderedRelationInsertionIndexDidChange:(long long)arg2;
 - (void)insertionPolicy:(id)arg1 orderedRelationInsertionIndexWillChange:(long long)arg2;
 - (void)setNeedsDisplayInDragInsertionIndicatorRect;
-- (id)insertionIndicator;
 - (void)draggingEnded:(id)arg1;
 - (BOOL)performDragOperation:(id)arg1;
 - (unsigned long long)draggingUpdated:(id)arg1;

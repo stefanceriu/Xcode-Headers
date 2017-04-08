@@ -14,27 +14,27 @@
 
 @interface IBUIAccessibilityConfiguration : NSObject <IBDocumentArchiving, NSCoding, NSCopying>
 {
-    NSString *accessibilityHint;
-    NSString *accessibilityIdentifier;
-    NSString *accessibilityLabel;
-    NSNumber *accessibilityTraits;
-    NSNumber *isAccessibilityElement;
+    NSString *_accessibilityHint;
+    NSString *_accessibilityIdentifier;
+    NSString *_accessibilityLabel;
+    NSNumber *_accessibilityTraits;
+    NSNumber *_isAccessibilityElement;
 }
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
-@property(copy) NSNumber *isAccessibilityElement; // @synthesize isAccessibilityElement;
-@property(copy) NSNumber *accessibilityTraits; // @synthesize accessibilityTraits;
-@property(copy) NSString *accessibilityLabel; // @synthesize accessibilityLabel;
-@property(copy) NSString *accessibilityIdentifier; // @synthesize accessibilityIdentifier;
-@property(copy) NSString *accessibilityHint; // @synthesize accessibilityHint;
+@property(copy) NSNumber *isAccessibilityElement; // @synthesize isAccessibilityElement=_isAccessibilityElement;
+@property(copy) NSNumber *accessibilityTraits; // @synthesize accessibilityTraits=_accessibilityTraits;
+@property(copy) NSString *accessibilityLabel; // @synthesize accessibilityLabel=_accessibilityLabel;
+@property(copy) NSString *accessibilityIdentifier; // @synthesize accessibilityIdentifier=_accessibilityIdentifier;
+@property(copy) NSString *accessibilityHint; // @synthesize accessibilityHint=_accessibilityHint;
 - (void).cxx_destruct;
 - (BOOL)isEquivalentToDefaultConfiguration:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithLabel:(id)arg1 hint:(id)arg2 identifier:(id)arg3 traits:(id)arg4 andIsAccessibilityElement:(id)arg5;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

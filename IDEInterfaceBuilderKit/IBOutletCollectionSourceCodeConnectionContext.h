@@ -10,10 +10,10 @@
 
 @interface IBOutletCollectionSourceCodeConnectionContext : IBSourceCodeConnectionContext
 {
-    NSString *collectionType;
+    NSString *_collectionType;
 }
 
-@property(copy) NSString *collectionType; // @synthesize collectionType;
+@property(copy) NSString *collectionType; // @synthesize collectionType=_collectionType;
 - (void).cxx_destruct;
 - (id)qualifiedCollectionType;
 - (id)description;

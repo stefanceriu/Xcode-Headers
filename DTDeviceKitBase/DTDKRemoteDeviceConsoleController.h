@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class DTDKRemoteDeviceToken, DVTDispatchLock, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
+@class DVTDispatchLock, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
 
 @interface DTDKRemoteDeviceConsoleController : NSObject
 {
@@ -18,12 +18,12 @@
     struct DTDKCircularBuffer *_circularBuffer;
     DVTDispatchLock *_bufferLock;
     id <DTDKRemoteDeviceConsoleControllerDelegate> _delegate;
-    DTDKRemoteDeviceToken *_token;
+    id <DTDKRemoteDeviceToken> _token;
 }
 
 + (id)consoleStringWithData:(id)arg1 startingAtOffset:(unsigned long long)arg2;
 + (id)controllerForDevice:(id)arg1;
-@property __weak DTDKRemoteDeviceToken *token; // @synthesize token=_token;
+@property __weak id <DTDKRemoteDeviceToken> token; // @synthesize token=_token;
 @property(retain) id <DTDKRemoteDeviceConsoleControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 @property(readonly, copy) NSString *consoleString;

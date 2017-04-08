@@ -7,14 +7,13 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIVisualEffectView : IBUIView <IBDocumentArchiving, NSCoding>
+@interface IBUIVisualEffectView : IBUIView <IBDocumentArchiving>
 {
-    long long _blurEffectStyle;
     BOOL _vibrancy;
+    long long _blurEffectStyle;
     IBUIView *_contentView;
 }
 
@@ -30,11 +29,11 @@
 - (void)layoutSubviews;
 - (void)unarchiveVisualEffect:(id)arg1;
 - (void)archiveVisualEffect:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)ibShouldPropagateFramesDuringFrameDecisionForChildItem:(id)arg1;
 - (BOOL)ibIsChildViewUserSizable:(id)arg1;
 - (BOOL)ibIsChildViewUserMovable:(id)arg1;

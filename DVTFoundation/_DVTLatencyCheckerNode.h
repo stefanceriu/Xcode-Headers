@@ -25,9 +25,10 @@
     NSString *_formatString;
 }
 
++ (void)_addUnknownFramesForParentFrame:(id)arg1 newChildFrames:(id)arg2 minDuration:(double)arg3;
 + (void)_purgeSmallFramesFromParentFrame:(id)arg1 minDuration:(double)arg2;
 + (id)unknownFrameForStartTime:(unsigned long long)arg1 endTime:(unsigned long long)arg2 minimumDuration:(double)arg3;
-+ (void)logSoftAssertForNodes:(id)arg1;
++ (void)logSoftAssertForNodes:(id)arg1 performanceAnalysisID:(id)arg2;
 + (id)_rootFrameForSoftAssert:(id)arg1;
 + (void)logNodesForTesting:(id)arg1;
 + (id)rootNodeForNodes:(id)arg1;

@@ -10,9 +10,11 @@
 {
 }
 
+- (void)_verifyPopUpMenuCellsAndPopulateMessages:(id)arg1;
 - (void)_verifyTextFieldPreferredMaxLayoutWidthUsingAutomaticMode;
 - (void)_verifyTextViewFrames;
 - (void)_verifyPDFThumbnailViewAndPopulateMessages:(id)arg1;
+- (void)_verifyNSDatePickerDoesNotUseNSCalendarDate;
 - (void)_restoreMenuDefaultLayoutDirection;
 - (void)verifyAndPopulateMessages:(id)arg1;
 

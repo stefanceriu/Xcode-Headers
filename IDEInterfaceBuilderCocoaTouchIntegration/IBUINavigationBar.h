@@ -8,28 +8,26 @@
 
 #import "IBDocumentArchiving.h"
 #import "IBUIEditorDecoratableView.h"
-#import "NSCoding.h"
 
 @class IBUITextAttributes, NSArray, NSColor, NSDictionary, NSImage, NSMutableArray, NSString, NSValue;
 
-@interface IBUINavigationBar : IBUIView <IBDocumentArchiving, NSCoding, IBUIEditorDecoratableView>
+@interface IBUINavigationBar : IBUIView <IBDocumentArchiving, IBUIEditorDecoratableView>
 {
-    long long barStyle;
-    NSMutableArray *items;
-    NSArray *observedSubviews;
-    NSValue *cachedTitleViewFrame;
-    NSDictionary *cachedLeftItemFrames;
-    NSDictionary *cachedRightItemFrames;
-    NSDictionary *cachedBarButtonItemImages;
-    NSDictionary *cachedLeftItemsTitleRects;
-    NSDictionary *cachedRightItemsTitleRects;
-    BOOL forcesPrompt;
-    NSImage *shadowImage;
-    NSImage *backIndicatorImage;
-    NSImage *backIndicatorTransitionMaskImage;
-    IBUITextAttributes *titleTextAttributes;
-    BOOL translucent;
-    NSColor *barTintColor;
+    NSMutableArray *_items;
+    NSValue *_cachedTitleViewFrame;
+    NSDictionary *_cachedLeftItemFrames;
+    NSDictionary *_cachedRightItemFrames;
+    NSDictionary *_cachedBarButtonItemImages;
+    NSDictionary *_cachedLeftItemsTitleRects;
+    NSDictionary *_cachedRightItemsTitleRects;
+    BOOL _translucent;
+    BOOL _forcesPrompt;
+    long long _barStyle;
+    IBUITextAttributes *_titleTextAttributes;
+    NSImage *_shadowImage;
+    NSImage *_backIndicatorImage;
+    NSImage *_backIndicatorTransitionMaskImage;
+    NSColor *_barTintColor;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -45,12 +43,14 @@
 + (id)ibObservedPropertiesForInheritableMetricsInvalidation;
 + (long long)ibInstantiationSizeBehavior;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
-@property(retain, nonatomic) NSImage *backIndicatorTransitionMaskImage; // @synthesize backIndicatorTransitionMaskImage;
-@property(retain, nonatomic) NSImage *backIndicatorImage; // @synthesize backIndicatorImage;
-@property(copy, nonatomic) NSColor *barTintColor; // @synthesize barTintColor;
-@property(nonatomic, getter=isTranslucent) BOOL translucent; // @synthesize translucent;
-@property(copy, nonatomic) IBUITextAttributes *titleTextAttributes; // @synthesize titleTextAttributes;
-@property(retain, nonatomic) NSImage *shadowImage; // @synthesize shadowImage;
+@property(nonatomic) BOOL forcesPrompt; // @synthesize forcesPrompt=_forcesPrompt;
+@property(copy, nonatomic) NSColor *barTintColor; // @synthesize barTintColor=_barTintColor;
+@property(retain, nonatomic) NSImage *backIndicatorTransitionMaskImage; // @synthesize backIndicatorTransitionMaskImage=_backIndicatorTransitionMaskImage;
+@property(retain, nonatomic) NSImage *backIndicatorImage; // @synthesize backIndicatorImage=_backIndicatorImage;
+@property(retain, nonatomic) NSImage *shadowImage; // @synthesize shadowImage=_shadowImage;
+@property(copy, nonatomic) IBUITextAttributes *titleTextAttributes; // @synthesize titleTextAttributes=_titleTextAttributes;
+@property(nonatomic, getter=isTranslucent) BOOL translucent; // @synthesize translucent=_translucent;
+@property(nonatomic) long long barStyle; // @synthesize barStyle=_barStyle;
 - (void).cxx_destruct;
 - (void)layoutSubviews;
 - (id)imageOfBarButtonItem:(id)arg1;
@@ -60,31 +60,25 @@
 - (struct CGRect)titleRectForButtonBarItem:(id)arg1;
 - (id)allBarButtonItems;
 - (struct CGRect)frameForButtonBarItem:(id)arg1;
-- (void)setObservedSubviews:(id)arg1;
-- (void)subviewFrameChanged:(id)arg1;
 - (id)titleFont;
 - (id)promptFont;
 - (struct CGRect)promptRect;
 - (struct CGRect)titleRect;
 - (id)currentNavigationItem;
-- (void)setItems:(id)arg1;
-- (id)items;
+@property(retain, nonatomic) NSArray *items;
 - (void)addNavigationBarItem:(id)arg1;
 - (void)removeNavigationBarItem:(id)arg1;
 - (id)title;
 - (id)prompt;
 - (BOOL)isPrompted;
-- (BOOL)forcesPrompt;
-- (void)setForcesPrompt:(BOOL)arg1;
-@property(nonatomic) long long barStyle;
 - (void)populateCachedGeometryInfos:(id)arg1;
 - (void)enumerateCachedImageKeyPaths:(CDUnknownBlockType)arg1;
 - (void)dealloc;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)ibWantsPlaceholderContainingViewController;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (void)setIbInspectedTitleTextShadowVerticalOffset:(double)arg1;

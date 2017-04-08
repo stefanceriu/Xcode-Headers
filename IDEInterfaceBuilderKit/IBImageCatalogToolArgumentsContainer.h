@@ -37,10 +37,12 @@
     NSString *_stickerPackIdentifierPrefix;
     NSMutableDictionary *_stringFilesByStickerPackAndLanguage;
     NSString *_productType;
+    NSMutableDictionary *_additionalEnvironment;
     NSDictionary *_assetPackOutputSpecifications;
 }
 
 @property(copy) NSDictionary *assetPackOutputSpecifications; // @synthesize assetPackOutputSpecifications=_assetPackOutputSpecifications;
+@property(retain, nonatomic) NSMutableDictionary *additionalEnvironment; // @synthesize additionalEnvironment=_additionalEnvironment;
 @property(copy) NSString *productType; // @synthesize productType=_productType;
 @property(retain, nonatomic) NSMutableDictionary *stringFilesByStickerPackAndLanguage; // @synthesize stringFilesByStickerPackAndLanguage=_stringFilesByStickerPackAndLanguage;
 @property(copy) NSString *stickerPackIdentifierPrefix; // @synthesize stickerPackIdentifierPrefix=_stickerPackIdentifierPrefix;

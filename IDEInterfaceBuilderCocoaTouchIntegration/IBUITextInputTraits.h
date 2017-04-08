@@ -14,18 +14,19 @@
 
 @interface IBUITextInputTraits : NSObject <IBDocumentArchiving, NSCoding, NSCopying>
 {
+    BOOL _enablesReturnKeyAutomatically;
+    BOOL _secureTextEntry;
     int _autocapitalizationType;
     int _autocorrectionType;
     int _spellCheckingType;
     int _keyboardAppearance;
     int _returnKeyType;
     long long _keyboardType;
-    BOOL _enablesReturnKeyAutomatically;
-    BOOL _secureTextEntry;
     IBCocoaTouchTargetRuntime *_targetRuntime;
 }
 
 + (id)instantiateWithDocumentUnarchiver:(id)arg1;
+@property(retain) IBCocoaTouchTargetRuntime *targetRuntime; // @synthesize targetRuntime=_targetRuntime;
 @property(nonatomic) BOOL secureTextEntry; // @synthesize secureTextEntry=_secureTextEntry;
 @property(nonatomic) BOOL enablesReturnKeyAutomatically; // @synthesize enablesReturnKeyAutomatically=_enablesReturnKeyAutomatically;
 @property(nonatomic) long long keyboardType; // @synthesize keyboardType=_keyboardType;
@@ -35,16 +36,14 @@
 @property(nonatomic) int autocorrectionType; // @synthesize autocorrectionType=_autocorrectionType;
 @property(nonatomic) int autocapitalizationType; // @synthesize autocapitalizationType=_autocapitalizationType;
 - (void).cxx_destruct;
-- (void)setTargetRuntime:(id)arg1;
-- (id)targetRuntime;
 - (void)verifyDecodedValues:(id)arg1;
 - (id)copyWithZone:(struct _NSZone *)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithTargetRuntime:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

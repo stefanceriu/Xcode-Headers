@@ -12,7 +12,7 @@
 
 @interface IBEmbeddingMenuDelegate : IBAbstractEditorMenuDelegate <NSMenuDelegate>
 {
-    IBMutableIdentityDictionary *menuItemsByTargetRuntime;
+    IBMutableIdentityDictionary *_menuItemsByTargetRuntime;
 }
 
 - (void).cxx_destruct;

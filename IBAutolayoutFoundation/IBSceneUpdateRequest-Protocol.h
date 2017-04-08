@@ -10,7 +10,6 @@
 
 @protocol IBSceneUpdateRequest <IBBinaryArchiving>
 @property(copy, nonatomic) NSString *incrementalUpdateSessionID;
-@property(readonly, nonatomic) long long renderingFidelity;
 @property(readonly, nonatomic) IBSceneUpdateProcessingRequestGroup *processingRequestGroup;
 @property(readonly, copy, nonatomic) NSString *identifier;
 - (void)visitWithFullRequestBlock:(void (^)(IBFullSceneUpdateRequest *))arg1 incrementalRequestBlock:(void (^)(IBIncrementalSceneUpdateRequest *))arg2;

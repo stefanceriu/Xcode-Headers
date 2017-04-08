@@ -29,11 +29,16 @@
 
 + (void)initialize;
 @property(retain, nonatomic) DVT_VMUClassInfoMap *indexedClassInfos; // @synthesize indexedClassInfos=_knownClassInfos;
+- (void *)createMapForIntersectGraph:(id)arg1;
+- (void *)createMapForMinusGraph:(id)arg1;
+- (void *)_compareWithGraph:(id)arg1 andMarkOnMatch:(BOOL)arg2;
 - (void)_refineTypesWithOverlay:(id)arg1;
 - (void)_modifyDerivativeGraphCount:(int)arg1;
 - (CDStruct_8b65991f)_rawReferenceInfoWithName:(unsigned int)arg1;
 - (CDStruct_8b65991f)referenceInfoWithName:(unsigned int)arg1;
 - (CDStruct_599faf0f)nodeDetails:(unsigned int)arg1;
+- (unsigned int)enumerateObjectsContainedInCollection:(unsigned int)arg1 withBlock:(CDUnknownBlockType)arg2;
+- (unsigned int)nodeReferencedFromSourceNode:(unsigned int)arg1 byIvarWithName:(id)arg2;
 - (unsigned int)enumerateReferencesOfNode:(unsigned int)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (unsigned int)enumerateReferencesWithBlock:(CDUnknownBlockType)arg1;
 - (unsigned int)enumerateMarkedObjects:(void *)arg1 withBlock:(CDUnknownBlockType)arg2;
@@ -49,6 +54,10 @@
 - (void)dealloc;
 - (id)initWithNodesNoCopy:(struct _VMUBlockNode *)arg1 nodeCount:(unsigned int)arg2;
 - (id)initWithNodeCount:(unsigned int)arg1 nodeProvider:(CDUnknownBlockType)arg2;
+- (id)subgraphWithUniquePathsFromNode:(unsigned int)arg1 toNodes:(void *)arg2;
+- (id)subgraphWithShortestPathsFromNode:(unsigned int)arg1 toNodes:(void *)arg2;
+- (void)stronglyConnectedComponentSearch:(unsigned int)arg1 withRecorder:(CDUnknownBlockType)arg2;
+- (void)markReachableNodesFromRoots:(void *)arg1 inMap:(void *)arg2;
 
 @end
 

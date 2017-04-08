@@ -12,8 +12,8 @@
 
 @interface IBMutableBijectiveDictionary : NSMutableDictionary <NSCoding>
 {
-    NSMapTable *keyToObjectMap;
-    NSMapTable *objectToKeyMap;
+    NSMapTable *_keyToObjectMap;
+    NSMapTable *_objectToKeyMap;
 }
 
 - (void).cxx_destruct;

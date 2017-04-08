@@ -10,7 +10,6 @@
 
 @class NSString;
 
-__attribute__((visibility("hidden")))
 @interface LLDBRPCFileSpec : NSObject <DBGSBFileSpec>
 {
     struct SBFileSpec {

@@ -10,17 +10,17 @@
 
 @interface IBMenuItemEditorView : DVTLayoutView_ML
 {
-    NSMenuItem *menuItem;
-    BOOL mainMenuOrDescendantOfMainMenu;
-    BOOL highlighted;
-    BOOL drawsKeyEquivalentRect;
+    BOOL _mainMenuOrDescendantOfMainMenu;
+    BOOL _highlighted;
+    BOOL _drawsKeyEquivalentRect;
+    NSMenuItem *_menuItem;
 }
 
 + (void)layoutItemViewsCollectively:(id)arg1 minimumFixedDimensionMagnitude:(double)arg2;
-@property(getter=isMainMenuOrDescendantOfMainMenu) BOOL mainMenuOrDescendantOfMainMenu; // @synthesize mainMenuOrDescendantOfMainMenu;
-@property BOOL drawsKeyEquivalentRect; // @synthesize drawsKeyEquivalentRect;
-@property(getter=isHighlighted) BOOL highlighted; // @synthesize highlighted;
-@property(readonly) NSMenuItem *menuItem; // @synthesize menuItem;
+@property BOOL drawsKeyEquivalentRect; // @synthesize drawsKeyEquivalentRect=_drawsKeyEquivalentRect;
+@property(getter=isHighlighted) BOOL highlighted; // @synthesize highlighted=_highlighted;
+@property(getter=isMainMenuOrDescendantOfMainMenu) BOOL mainMenuOrDescendantOfMainMenu; // @synthesize mainMenuOrDescendantOfMainMenu=_mainMenuOrDescendantOfMainMenu;
+@property(readonly) NSMenuItem *menuItem; // @synthesize menuItem=_menuItem;
 - (void).cxx_destruct;
 - (struct CGRect)editingTitleRectForBounds:(struct CGRect)arg1;
 - (struct CGRect)titleRectForBounds:(struct CGRect)arg1;

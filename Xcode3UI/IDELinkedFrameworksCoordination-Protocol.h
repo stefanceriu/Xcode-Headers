@@ -12,6 +12,6 @@
 - (BOOL)hasLinkedFrameworkWithName:(NSString *)arg1;
 - (void)unlinkFrameworkWithName:(NSString *)arg1;
 - (BOOL)linkFrameworkWithName:(NSString *)arg1 error:(id *)arg2;
-- (id)initWithTarget:(id)arg1;
+- (id)initWithTarget:(id)arg1 buildConfiguration:(NSString *)arg2;
 @end
 

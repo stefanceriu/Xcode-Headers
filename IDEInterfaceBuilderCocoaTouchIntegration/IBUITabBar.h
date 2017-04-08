@@ -9,12 +9,16 @@
 #import "IBDocumentArchiving.h"
 #import "IBUIEditorDecoratableView.h"
 #import "IBUIViewCachedItemFramesDictionaryInfoDelegate.h"
-#import "NSCoding.h"
 
-@class IBMutableIdentityDictionary, IBUITabBarItem, NSColor, NSImage, NSMutableArray, NSNumber, NSString;
+@class IBMutableIdentityDictionary, IBUITabBarItem, NSArray, NSColor, NSImage, NSMutableArray, NSNumber, NSString;
 
-@interface IBUITabBar : IBUIView <IBDocumentArchiving, NSCoding, IBUIEditorDecoratableView, IBUIViewCachedItemFramesDictionaryInfoDelegate>
+@interface IBUITabBar : IBUIView <IBDocumentArchiving, IBUIEditorDecoratableView, IBUIViewCachedItemFramesDictionaryInfoDelegate>
 {
+    NSMutableArray *_items;
+    IBMutableIdentityDictionary *_cachedItemFrames;
+    IBMutableIdentityDictionary *_cachedItemImages;
+    IBMutableIdentityDictionary *_cachedTitleRects;
+    BOOL _translucent;
     NSColor *_selectedImageTintColor;
     NSImage *_backgroundImage;
     NSImage *_selectionIndicatorImage;
@@ -23,13 +27,8 @@
     NSNumber *_itemWidth;
     NSNumber *_itemSpacing;
     long long _barStyle;
-    BOOL _translucent;
     NSColor *_barTintColor;
-    NSMutableArray *_items;
     IBUITabBarItem *_selectedItem;
-    IBMutableIdentityDictionary *_cachedItemFrames;
-    IBMutableIdentityDictionary *_cachedItemImages;
-    IBMutableIdentityDictionary *_cachedTitleRects;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -39,6 +38,7 @@
 + (id)ibObservedPropertiesForInheritableMetricsInvalidation;
 + (long long)ibInstantiationSizeBehavior;
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
+@property(retain, nonatomic) IBUITabBarItem *selectedItem; // @synthesize selectedItem=_selectedItem;
 @property(copy, nonatomic) NSColor *barTintColor; // @synthesize barTintColor=_barTintColor;
 @property(nonatomic, getter=isTranslucent) BOOL translucent; // @synthesize translucent=_translucent;
 @property(nonatomic) long long barStyle; // @synthesize barStyle=_barStyle;
@@ -57,21 +57,18 @@
 - (id)titleRects;
 - (struct CGRect)frameForItem:(id)arg1;
 - (id)itemFrames;
-- (void)setSelectedItem:(id)arg1;
-- (id)selectedItem;
 - (void)populateCachedGeometryInfos:(id)arg1;
 - (void)enumerateCachedImageKeyPaths:(CDUnknownBlockType)arg1;
-- (void)setItems:(id)arg1;
+@property(retain, nonatomic) NSArray *items;
 - (BOOL)ignoreItemCountMismatchRadar23282644ForCachedItemFramesDictionaryInfo:(id)arg1;
 - (id)orderedItemsForCachedItemFramesDictionaryInfo:(id)arg1;
-- (id)items;
 - (void)removeTabBarItem:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (Class)barMetricsClass;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (id)ibUnarchiveValueForAttribute:(id)arg1 inConfiguration:(id)arg2 withDocumentUnarchiver:(id)arg3;
 - (void)ibArchiveEvaluatedValue:(id)arg1 forAttribute:(id)arg2 inConfiguration:(id)arg3 withDocumentArchiver:(id)arg4;
 - (id)ibLocalPerConfigurationAttributeKeyPaths;

@@ -11,21 +11,13 @@
 @interface DYSymbolicator : NSObject
 {
     NSArray *_rootPaths;
-    BOOL _removeTopGPUTools;
-    CDUnknownBlockType _ownerFilter;
-    CDUnknownBlockType _stackFrameAllocator;
     struct _CSTypeRef _coreSymbolicator;
 }
 
 + (id)dysmURLForUUIDBytes:(const CDStruct_bd2f613f *)arg1 roots:(id)arg2;
-@property(copy, nonatomic) CDUnknownBlockType stackFrameAllocator; // @synthesize stackFrameAllocator=_stackFrameAllocator;
-@property(copy, nonatomic) CDUnknownBlockType ownerFilter; // @synthesize ownerFilter=_ownerFilter;
-@property(nonatomic) BOOL removeTopGPUTools; // @synthesize removeTopGPUTools=_removeTopGPUTools;
 @property(readonly, nonatomic) struct _CSTypeRef coreSymbolicator; // @synthesize coreSymbolicator=_coreSymbolicator;
 - (void).cxx_destruct;
-- (void)enumerateStackFrames:(id)arg1 usingBlock:(CDUnknownBlockType)arg2;
-- (void)enumerateStackFrames:(unsigned long long *)arg1 count:(unsigned long long)arg2 usingBlock:(CDUnknownBlockType)arg3;
-- (id)_createStackFrame;
+- (id)stackFramesWithBacktrace:(const unsigned long long *)arg1 count:(unsigned long long)arg2;
 - (void)dealloc;
 - (id)initWithSignature:(id)arg1 rootPaths:(id)arg2 device:(id)arg3 error:(id *)arg4;
 - (id)initWithCoreSymbolicator:(struct _CSTypeRef)arg1 rootPaths:(id)arg2 device:(id)arg3;

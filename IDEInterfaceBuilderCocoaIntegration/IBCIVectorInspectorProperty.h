@@ -10,17 +10,25 @@
 
 @interface IBCIVectorInspectorProperty : IDEInspectorProperty
 {
-    NSTextField *xTextField;
-    NSTextField *yTextField;
-    NSTextField *zTextField;
-    NSTextField *wTextField;
-    NSStepper *xStepper;
-    NSStepper *yStepper;
-    NSStepper *zStepper;
-    NSStepper *wStepper;
     IDEInspectorKeyPath *_valueKeyPath;
+    NSTextField *_xTextField;
+    NSTextField *_yTextField;
+    NSTextField *_zTextField;
+    NSTextField *_wTextField;
+    NSStepper *_xStepper;
+    NSStepper *_yStepper;
+    NSStepper *_zStepper;
+    NSStepper *_wStepper;
 }
 
+@property(retain) NSStepper *wStepper; // @synthesize wStepper=_wStepper;
+@property(retain) NSStepper *zStepper; // @synthesize zStepper=_zStepper;
+@property(retain) NSStepper *yStepper; // @synthesize yStepper=_yStepper;
+@property(retain) NSStepper *xStepper; // @synthesize xStepper=_xStepper;
+@property(retain) NSTextField *wTextField; // @synthesize wTextField=_wTextField;
+@property(retain) NSTextField *zTextField; // @synthesize zTextField=_zTextField;
+@property(retain) NSTextField *yTextField; // @synthesize yTextField=_yTextField;
+@property(retain) NSTextField *xTextField; // @synthesize xTextField=_xTextField;
 - (void).cxx_destruct;
 - (void)setupRefreshTriggersAndConfigure;
 - (void)applyComponentValue:(id)arg1;

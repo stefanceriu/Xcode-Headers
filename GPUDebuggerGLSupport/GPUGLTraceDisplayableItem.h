@@ -33,7 +33,7 @@ __attribute__((visibility("hidden")))
 - (id)generateLabel;
 @property(readonly) BOOL hasStateMirror;
 @property(copy) GPUGLStateMirror *stateMirror;
-- (void)primitiveInvalidate;
+- (void)dealloc;
 @property(readonly, copy) NSString *description;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 

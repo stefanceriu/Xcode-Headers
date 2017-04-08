@@ -11,11 +11,11 @@
 __attribute__((visibility("hidden")))
 @interface GPUGLBindingResolver : NSObject
 {
-    const ContextStateMirror_e2d92de6 *_context;
+    const ContextStateMirror_35fc3168 *_context;
     DYContextInfo *_contextInfo;
 }
 
-+ (id)labelForObject:(unsigned long long)arg1 context:(const ContextStateMirror_e2d92de6 *)arg2 target:(unsigned int)arg3;
++ (id)labelForObject:(unsigned long long)arg1 context:(const ContextStateMirror_35fc3168 *)arg2 target:(unsigned int)arg3;
 + (id)_sharedByteFormatter;
 - (void).cxx_destruct;
 - (void)_annotateAndProcessBinding:(struct GPUGLBindPoint *)arg1 withBlock:(CDUnknownBlockType)arg2 prefix:(const char *)arg3;
@@ -33,7 +33,7 @@ __attribute__((visibility("hidden")))
 - (void)processBoundBuffersForFunction:(const struct Function *)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)processAllBoundObjectsForFunction:(const struct Function *)arg1 withBlock:(CDUnknownBlockType)arg2;
 - (void)processAllObjectsOfType:(unsigned int)arg1 withBlock:(CDUnknownBlockType)arg2;
-- (id)initWithContextStateMirror:(const ContextStateMirror_e2d92de6 *)arg1 andContextInfo:(id)arg2;
+- (id)initWithContextStateMirror:(const ContextStateMirror_35fc3168 *)arg1 andContextInfo:(id)arg2;
 
 @end
 

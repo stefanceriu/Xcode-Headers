@@ -7,23 +7,22 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class IBUITableViewCell, NSString;
 
-@interface IBUITableViewCellContentView : IBUIView <IBDocumentArchiving, NSCoding>
+@interface IBUITableViewCellContentView : IBUIView <IBDocumentArchiving>
 {
-    IBUITableViewCell *tableViewCell;
+    IBUITableViewCell *_tableViewCell;
 }
 
-@property(nonatomic) __weak IBUITableViewCell *tableViewCell; // @synthesize tableViewCell;
+@property(nonatomic) __weak IBUITableViewCell *tableViewCell; // @synthesize tableViewCell=_tableViewCell;
 - (void).cxx_destruct;
-- (BOOL)canHaveLayoutInsetOrIntrinsicContentSizeOrBasline;
+- (BOOL)canHaveLayoutInsetOrIntrinsicContentSizeOrBaseline;
 - (BOOL)prefersCachedImageBasedDrawing;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
 - (unsigned long long)ibCustomSubviewLayoutStrategy;
 - (BOOL)ibChildView:(id)arg1 shouldUseConstraintsInsteadOfAutoresizingWhenAddedToDocument:(id)arg2;
 - (BOOL)ibCanChildChangeCustomClassName:(id)arg1;

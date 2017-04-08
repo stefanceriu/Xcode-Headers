@@ -6,38 +6,29 @@
 
 #import "NSObject.h"
 
-#import "DVTInvalidation.h"
 #import "NSCopying.h"
 
-@class DVTProductManager, DVTStackBacktrace, NSArray, NSString;
+@class DVTProductManager, NSArray;
 
-@interface DVTProductSource : NSObject <DVTInvalidation, NSCopying>
+@interface DVTProductSource : NSObject <NSCopying>
 {
     BOOL _busy;
+    BOOL _hasCompletedInitialLoading;
     DVTProductManager *_productManager;
     NSArray *_products;
 }
 
-+ (void)initialize;
 @property(retain) NSArray *products; // @synthesize products=_products;
-@property(retain) DVTProductManager *productManager; // @synthesize productManager=_productManager;
+@property __weak DVTProductManager *productManager; // @synthesize productManager=_productManager;
+@property(readonly) BOOL hasCompletedInitialLoading; // @synthesize hasCompletedInitialLoading=_hasCompletedInitialLoading;
 @property(getter=isBusy) BOOL busy; // @synthesize busy=_busy;
 - (void).cxx_destruct;
+- (void)prioritizeDeliveryOfResultsForProductIdentifier:(id)arg1;
 - (void)refreshProducts;
-- (void)_startLocating;
+- (void)startLocating;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)primitiveInvalidate;
 - (id)initWithProductManager:(id)arg1;
 - (id)init;
-
-// Remaining properties
-@property(retain) DVTStackBacktrace *creationBacktrace;
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) DVTStackBacktrace *invalidationBacktrace;
-@property(readonly) Class superclass;
-@property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
 

@@ -24,8 +24,6 @@
 @property(nonatomic) BOOL programMetricsAsPercentage;
 - (BOOL)showGroupDrawCallCount;
 @property(nonatomic) BOOL hideShaderProfilingInFrameNavigator;
-@property(nonatomic) BOOL hideGroupMarkerCalls;
-@property(nonatomic) BOOL hideEmptyMarkerGroups;
 @property(nonatomic) BOOL compactTextMode;
 - (id)_init;
 - (id)init;

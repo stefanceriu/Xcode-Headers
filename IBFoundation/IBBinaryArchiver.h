@@ -10,25 +10,25 @@
 
 @interface IBBinaryArchiver : NSObject
 {
-    IBBinaryArchiverObjectIDTable *objectToOIDMap;
+    IBBinaryArchiverObjectIDTable *_objectToOIDMap;
     struct {
         unsigned long long length;
         unsigned long long capacity;
         char *bytes;
-    } buffer;
-    unsigned long long nextOID;
-    BOOL finished;
-    NSData *archiveData;
-    long long archiveVersion;
+    } _buffer;
+    unsigned long long _nextOID;
+    BOOL _finished;
     NSMutableArray *_objectTranslationDelegateStack;
+    NSData *_archiveData;
     NSDictionary *_context;
+    long long _archiveVersion;
 }
 
 + (id)archivedDataWithRootObject:(id)arg1 version:(long long)arg2 context:(id)arg3;
 + (id)archiveDataWithVersion:(long long)arg1 context:(id)arg2 byRunningBlock:(CDUnknownBlockType)arg3;
+@property(readonly, nonatomic) long long archiveVersion; // @synthesize archiveVersion=_archiveVersion;
 @property(readonly, nonatomic) NSDictionary *context; // @synthesize context=_context;
-@property(readonly, nonatomic) long long archiveVersion; // @synthesize archiveVersion;
-@property(readonly) NSData *archiveData; // @synthesize archiveData;
+@property(readonly) NSData *archiveData; // @synthesize archiveData=_archiveData;
 - (void).cxx_destruct;
 - (void)encodeObjectReferenceIfPossible:(id)arg1;
 - (void)encodeObject:(id)arg1;

@@ -7,23 +7,24 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIStoryboardSegueTemplate.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class IBUIBarButtonItem, IBUIView, NSArray, NSString;
 
-@interface IBUIStoryboardPopoverSegueTemplate : IBUIStoryboardSegueTemplate <IBDocumentArchiving, NSCoding>
+@interface IBUIStoryboardPopoverSegueTemplate : IBUIStoryboardSegueTemplate <IBDocumentArchiving>
 {
-    unsigned long long permittedArrowDirections;
-    NSArray *passthroughViews;
-    IBUIView *anchorView;
-    IBUIBarButtonItem *anchorBarButtonItem;
+    unsigned long long _permittedArrowDirections;
+    NSArray *_passthroughViews;
+    IBUIView *_anchorView;
+    IBUIBarButtonItem *_anchorBarButtonItem;
 }
 
-@property(retain) IBUIBarButtonItem *anchorBarButtonItem; // @synthesize anchorBarButtonItem;
-@property(retain) IBUIView *anchorView; // @synthesize anchorView;
-@property(copy) NSArray *passthroughViews; // @synthesize passthroughViews;
-@property unsigned long long permittedArrowDirections; // @synthesize permittedArrowDirections;
+@property(retain) IBUIBarButtonItem *anchorBarButtonItem; // @synthesize anchorBarButtonItem=_anchorBarButtonItem;
+@property(retain) IBUIView *anchorView; // @synthesize anchorView=_anchorView;
+@property(copy) NSArray *passthroughViews; // @synthesize passthroughViews=_passthroughViews;
+@property unsigned long long permittedArrowDirections; // @synthesize permittedArrowDirections=_permittedArrowDirections;
 - (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)ibLocalAutoNullifyingNonChildToManyRelationshipsKeyPaths;
 - (id)ibLocalNonChildToManyRelationshipsKeyPaths;
 - (id)ibLocalAutoNullifyingNonChildToOneRelationshipsKeyPaths;
@@ -31,8 +32,6 @@
 - (id)ibLocalAttributeKeyPaths;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

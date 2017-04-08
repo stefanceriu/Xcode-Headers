@@ -6,23 +6,23 @@
 
 #import "IBTargetRuntime.h"
 
-@class IBCocoaTouchIdiom, IBCocoaTouchOSVersion, IBCocoaTouchPlatform, IBColorList, IBUIFontDataSource, IBUIScreenMetrics, IBUISimulatedOrientationMetrics, IBUISimulatedStatusBarMetrics, NSArray, NSDictionary, NSMutableDictionary;
+@class IBCocoaTouchIdiom, IBColorList, IBUIFontDataSource, IBUIScreenMetrics, IBUISimulatedOrientationMetrics, IBUISimulatedStatusBarMetrics, NSArray, NSDictionary, NSMutableDictionary;
 
 @interface IBCocoaTouchTargetRuntime : IBTargetRuntime
 {
     IBCocoaTouchIdiom *_idiom;
-    NSDictionary *systemNamesToGenericColorsMap;
-    IBColorList *colorList;
-    NSArray *availableFonts;
+    NSDictionary *_systemNamesToGenericColorsMap;
+    IBColorList *_colorList;
+    NSArray *_availableFonts;
     NSDictionary *_textStyles;
     NSDictionary *_fontDescriptorTextStyles;
-    NSMutableDictionary *fontsByFontName;
-    NSMutableDictionary *fontsByFamily;
-    NSDictionary *systemFontSizes;
-    NSDictionary *systemFontInfo;
-    NSDictionary *boldSystemFontInfo;
-    NSDictionary *italicSystemFontInfo;
-    IBUIFontDataSource *fontDataSource;
+    NSMutableDictionary *_fontsByFontName;
+    NSMutableDictionary *_fontsByFamily;
+    NSDictionary *_systemFontSizes;
+    NSDictionary *_systemFontInfo;
+    NSDictionary *_boldSystemFontInfo;
+    NSDictionary *_italicSystemFontInfo;
+    IBUIFontDataSource *_fontDataSource;
     NSMutableDictionary *_filenamesByFontName;
     id <DVTCancellable> _fontsObservationToken;
 }
@@ -32,12 +32,11 @@
 + (id)targetRuntimeForIdiom:(id)arg1 andUserInterfaceEra:(long long)arg2;
 - (void).cxx_destruct;
 - (BOOL)populateEnvironment:(id)arg1 forExecutionContext:(id)arg2 error:(id *)arg3;
-- (id)registerSceneUpdateRenderingDelegate:(id)arg1 forScaleFactor:(double)arg2 returningSceneIdentifier:(long long *)arg3 error:(id *)arg4;
 - (id)processingRequestForIncrementallyUpdatingAttribute:(id)arg1 ofObject:(id)arg2 withObjectID:(id)arg3 marshallingContext:(id)arg4;
 - (Class)sceneUpdateRequestProcessorClass;
 - (Class)imageRequestProcessorClass;
 - (id)toolDescriptionForAutolayoutOperationsWithRole:(long long)arg1 scaleFactor:(double)arg2;
-- (id)toolDescriptionForSceneUpdatesWithRole:(long long)arg1 scaleFactor:(double)arg2 renderingFidelity:(long long)arg3;
+- (id)toolDescriptionForSceneUpdatesWithRole:(long long)arg1 scaleFactor:(double)arg2;
 - (id)defaultToolDescriptionWithRole:(long long)arg1 scaleFactor:(double)arg2;
 - (id)toolProxyManager;
 - (id)alternateTargetRuntimeForEra:(long long)arg1;
@@ -95,12 +94,12 @@
 - (id)icon;
 - (id)displayNameForUserInterfaceStyle;
 @property(readonly, nonatomic) long long userInterfaceEra;
-@property(readonly, nonatomic) IBCocoaTouchOSVersion *cocoaTouchOSVersion;
-@property(readonly, nonatomic) IBCocoaTouchIdiom *idiom;
+- (id)cocoaTouchOSVersion;
+- (id)idiom;
 - (id)archiveVariantIdentifier;
 - (id)archiveIdentifier;
 - (id)identifier;
-@property(readonly, nonatomic) IBCocoaTouchPlatform *platform;
+- (id)platform;
 - (void)dealloc;
 - (id)targetRuntimeWithIdiom:(id)arg1;
 - (id)initWithIdiom:(id)arg1 andOSVersion:(id)arg2;

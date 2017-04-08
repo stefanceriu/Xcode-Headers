@@ -10,23 +10,19 @@
 
 @interface DTAllocationsRecorder : NSObject
 {
-    // Error parsing type: ^{DTXSharedMemory=QQQIIIIiiIAiAiAiAiIII[0c]}, name: _shmem
+    // Error parsing type: ^{DTXSharedMemory=QQQIIIIAiAiAIAiAiAiAiIII[0c]}, name: _shmem
     NSObject<OS_dispatch_queue> *_processingQueue;
-    struct {
-        double _field1;
-        unsigned int _field2;
-        unsigned int _field3;
-        unsigned long long _field4;
-        unsigned long long _field5;
-        unsigned long long _field6;
-        long long _field7;
-        unsigned long long _field8[0];
-    } *_partialEvent;
+    NSObject<OS_dispatch_queue> *_serialEventQueue;
+    CDStruct_6c9135d0 *_partialEvent;
+    CDStruct_6c9135d0 *_fullEvent;
     unsigned int _partialSize;
     unsigned int _partialFilled;
     int _eventTotal;
+    unsigned long long _bytesTotal;
+    // Error parsing type: AQ, name: _outstandingBytes
     unsigned int _targetTask;
     int _stopCollection;
+    struct map<unsigned long long, std::__1::map<unsigned int, OAKeyFrame *, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, OAKeyFrame *>>>, std::__1::less<unsigned long long>, std::__1::allocator<std::__1::pair<const unsigned long long, std::__1::map<unsigned int, OAKeyFrame *, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, OAKeyFrame *>>>>>> _threadToKeyFramesMap;
     BOOL _readStackLogsUponAttach;
     unsigned int _sharedMemorySize;
     CDUnknownBlockType _eventHandler;
@@ -46,6 +42,7 @@
 @property(nonatomic) BOOL readStackLogsUponAttach; // @synthesize readStackLogsUponAttach=_readStackLogsUponAttach;
 @property(copy, nonatomic) CDUnknownBlockType bufferHandler; // @synthesize bufferHandler=_bufferHandler;
 @property(copy, nonatomic) CDUnknownBlockType eventHandler; // @synthesize eventHandler=_eventHandler;
+- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_processIncomingData;
 @property(readonly) int eventCount;
@@ -53,6 +50,8 @@
 - (void)cancel;
 - (void)stop;
 - (void)processBufferMessage:(id)arg1;
+- (void)createFullEventFromDelta:(CDStruct_6c9135d0 *)arg1 withEvent:(CDStruct_6c9135d0 *)arg2;
+- (void)addKeyFrame:(CDStruct_6c9135d0 *)arg1;
 - (BOOL)_startWithError:(id *)arg1;
 - (BOOL)startForProcessingBuffersWithError:(id *)arg1;
 - (BOOL)startWithLaunchedTask:(unsigned int)arg1 error:(id *)arg2;

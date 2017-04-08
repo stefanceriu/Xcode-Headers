@@ -7,11 +7,10 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIViewController.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBAVPlayerViewController : IBUIViewController <IBDocumentArchiving, NSCoding>
+@interface IBAVPlayerViewController : IBUIViewController <IBDocumentArchiving>
 {
     BOOL _showsPlaybackControls;
     NSString *_videoGravity;
@@ -20,11 +19,11 @@
 @property(copy, nonatomic) NSString *videoGravity; // @synthesize videoGravity=_videoGravity;
 @property(nonatomic) BOOL showsPlaybackControls; // @synthesize showsPlaybackControls=_showsPlaybackControls;
 - (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithTargetRuntime:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)ibCanBeEmbeddedInSplitViewControllerController;
 - (BOOL)ibCanBeEmbeddedInNavigationController;
 - (BOOL)ibCanBeEmbeddedInTabBarController;

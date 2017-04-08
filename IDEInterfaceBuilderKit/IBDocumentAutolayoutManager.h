@@ -76,7 +76,6 @@
 - (void)_invalidateAutolayoutStatusForHierarchyContainingObject:(id)arg1;
 - (void)_runBlockIfStatusInvalidationIsEnabledForObject:(id)arg1 withReasonBlock:(CDUnknownBlockType)arg2 block:(CDUnknownBlockType)arg3;
 - (void)__runBlockIfStatusUpdatingIsEnabledForObject:(id)arg1 operationName:(id)arg2 withReasonBlock:(CDUnknownBlockType)arg3 block:(CDUnknownBlockType)arg4;
-- (void)preserveCleanAutolayoutStatusDuring:(CDUnknownBlockType)arg1;
 - (void)conditionallyPreserveCleanAutolayoutStatusDuring:(CDUnknownBlockType)arg1;
 - (void)_clearPendingAutolayoutStatusTables;
 - (void)ensureAutolayoutStatusIsValid;
@@ -116,8 +115,8 @@
 - (void)clearConstraintsForItems:(id)arg1 inAllConfigurations:(BOOL)arg2;
 - (void)updateAllConstraintConstants;
 - (void)updateConstraintConstantsForItems:(id)arg1;
-- (void)updateAllFramesToMatchConstraints;
-- (void)updateFramesToMatchConstraintsForItems:(id)arg1;
+- (void)scheduleUpdateAllFramesToMatchConstraints;
+- (void)scheduleUpdateFramesToMatchConstraintsForItems:(id)arg1;
 - (void)_whitelistAndDecideConstraintsForItems:(id)arg1 withOptions:(id)arg2;
 - (void)_primitiveUpdateConstraintConstantsForItems:(id)arg1;
 - (void)_primitiveClearConstraintsForItems:(id)arg1 inAllConfigurations:(BOOL)arg2;

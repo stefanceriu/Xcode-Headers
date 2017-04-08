@@ -6,16 +6,14 @@
 
 #import "IDEArchive.h"
 
-@class DVTProductCategory, NSNumber, NSString;
+@class DVTProductCategory, NSString;
 
 @interface IDEArchive (Products)
 + (id)largestImageInFilePaths:(id)arg1;
-@property(readonly) NSNumber *products_onDiskSizeBytes;
 @property(readonly) DVTProductCategory *products_productCategory;
 - (id)applicationBundle;
 - (id)products_platformName;
 - (id)products_appInfoPlist;
 @property(readonly) NSString *products_displayName;
-- (id)_products_appInfoPlist;
 @end
 

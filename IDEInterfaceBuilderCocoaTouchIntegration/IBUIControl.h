@@ -7,29 +7,28 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIControl : IBUIView <IBDocumentArchiving, NSCoding>
+@interface IBUIControl : IBUIView <IBDocumentArchiving>
 {
-    BOOL enabled;
-    BOOL highlighted;
-    BOOL selected;
-    int contentVerticalAlignment;
-    int contentHorizontalAlignment;
+    BOOL _enabled;
+    BOOL _highlighted;
+    BOOL _selected;
+    int _contentHorizontalAlignment;
+    int _contentVerticalAlignment;
 }
 
 + (long long)ibInstantiationSizeBehavior;
-@property(nonatomic) int contentVerticalAlignment; // @synthesize contentVerticalAlignment;
-@property(nonatomic) int contentHorizontalAlignment; // @synthesize contentHorizontalAlignment;
-@property(nonatomic) BOOL selected; // @synthesize selected;
-@property(nonatomic) BOOL highlighted; // @synthesize highlighted;
-@property(nonatomic) BOOL enabled; // @synthesize enabled;
-- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
-- (void)archiveWithDocumentArchiver:(id)arg1;
+@property(nonatomic) int contentVerticalAlignment; // @synthesize contentVerticalAlignment=_contentVerticalAlignment;
+@property(nonatomic) int contentHorizontalAlignment; // @synthesize contentHorizontalAlignment=_contentHorizontalAlignment;
+@property(nonatomic) BOOL selected; // @synthesize selected=_selected;
+@property(nonatomic) BOOL highlighted; // @synthesize highlighted=_highlighted;
+@property(nonatomic) BOOL enabled; // @synthesize enabled=_enabled;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (void)unarchiveWithDocumentUnarchiver:(id)arg1;
+- (void)archiveWithDocumentArchiver:(id)arg1;
 - (void)ibSetupTriggerForSegueTemplate:(id)arg1 inCompilationUnit:(id)arg2;
 - (long long)ibPreferredResizeDirection;
 - (BOOL)ibIsBaselineAtIndex:(long long)arg1 inMotionWithKnob:(CDUnion_42e99c75)arg2;

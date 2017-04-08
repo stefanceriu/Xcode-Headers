@@ -12,9 +12,8 @@
 
 @class IBClassDescriptionSource, NSArray, NSMutableArray, NSString;
 
-@interface IBPartialClassDescription : NSObject <NSCopying, NSMutableCopying, NSCoding>
+@interface IBPartialClassDescription : NSObject <NSCoding, NSCopying, NSMutableCopying>
 {
-    int _retainCountMinusOne;
     NSString *_className;
     NSString *_superclassName;
     NSMutableArray *_relationships;
@@ -65,11 +64,6 @@
 - (id)initWithStaticDescription:(id)arg1 andSourceIdentifier:(id)arg2;
 - (id)initWithName:(id)arg1 andSourceIdentifier:(id)arg2;
 - (id)initWithName:(id)arg1 requiresClassNameFormatting:(BOOL)arg2 source:(id)arg3 superclassName:(id)arg4 isDesignable:(BOOL)arg5 relationshipsKnownToBeUniqueByNamePerType:(id)arg6;
-- (BOOL)_isDeallocating;
-- (BOOL)_tryRetain;
-- (unsigned long long)retainCount;
-- (oneway void)release;
-- (id)retain;
 
 @end
 

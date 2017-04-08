@@ -10,22 +10,12 @@
 
 @interface IBCocoaTouchPlatformToolDescription : IBPlatformToolDescription
 {
-    long long _fidelity;
 }
 
-+ (id)effectiveToolDescriptionForTargetRuntime:(id)arg1 role:(long long)arg2 scaleFactor:(double)arg3 fidelity:(long long)arg4;
-+ (id)effectiveToolDescriptionForTargetRuntime:(id)arg1 role:(long long)arg2 scaleFactor:(double)arg3;
-@property(readonly, nonatomic) long long fidelity; // @synthesize fidelity=_fidelity;
 - (id)toolName;
 - (id)preferredDeviceTypeReturningError:(id *)arg1;
 - (id)newestAvailableAndSupportedRuntimeReturningError:(id *)arg1;
-- (id)ib_verboseDescription;
-- (id)description;
-- (id)_fidelityString;
-- (id)descriptionBySettingRole:(long long)arg1;
-- (unsigned long long)hash;
 @property(readonly, nonatomic) IBCocoaTouchTargetRuntime *targetRuntime;
-- (BOOL)isEqualToDescription:(id)arg1;
 
 @end
 

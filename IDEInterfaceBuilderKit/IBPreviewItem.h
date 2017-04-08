@@ -9,20 +9,20 @@
 #import "IDEGeniusResultNavigableRepresentedObject.h"
 #import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSImage, NSString, NSURL;
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSNull, NSString, NSURL;
 
 @interface IBPreviewItem : NSObject <IDEGeniusResultNavigableRepresentedObject, IDEKeyDrivenNavigableItemRepresentedObject>
 {
+    NSString *_name;
     NSURL *_originalFileURL;
     DVTDocumentLocation *_documentLocation;
     DVTFileDataType *_type;
-    NSString *_name;
 }
 
-@property(retain) NSString *name; // @synthesize name=_name;
-@property(retain) DVTFileDataType *type; // @synthesize type=_type;
-@property(retain) DVTDocumentLocation *documentLocation; // @synthesize documentLocation=_documentLocation;
-@property(retain) NSURL *originalFileURL; // @synthesize originalFileURL=_originalFileURL;
+@property(readonly) DVTFileDataType *type; // @synthesize type=_type;
+@property(readonly) DVTDocumentLocation *documentLocation; // @synthesize documentLocation=_documentLocation;
+@property(readonly) NSURL *originalFileURL; // @synthesize originalFileURL=_originalFileURL;
+@property(readonly) NSString *name; // @synthesize name=_name;
 - (void).cxx_destruct;
 - (id)geniusResult_identifierForManualCategory;
 - (id)geniusResult_identifierForGeniusCategory;
@@ -37,7 +37,10 @@
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
 @property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
 @property(readonly) NSString *navigableItem_groupIdentifier;
 @property(readonly) BOOL navigableItem_isLeaf;
 @property(readonly) BOOL navigableItem_isMajorGroup;

@@ -6,17 +6,19 @@
 
 #import <DVTFoundation/DVTProcessInformation.h>
 
-@class NSString;
+@class NSArray, NSString;
 
 @interface DVTLocalProcessInformation : DVTProcessInformation
 {
     NSString *_realApplicationName;
     NSString *_requestedApplicationName;
     NSString *_firstApplicationArgument;
+    NSArray *_allApplicationArguments;
 }
 
 + (id)_blacklistedProcesses;
 + (id)_currentProcessIDsAsNumbers;
++ (id)currentProcessInformationsUnfiltered;
 + (id)currentProcessInformations;
 + (id)_processInformationsFilteredBy:(CDUnknownBlockType)arg1;
 + (id)_archNameForExecutableArchitecture:(int)arg1;
@@ -29,7 +31,8 @@
 - (id)_calculatePreferredArchitecture;
 - (id)_calculateProcessURL;
 - (id)_calculateDisplayName;
-- (void)_initProcessInformation;
+- (void)_initProcessInformationFetchingAllArguments:(BOOL)arg1;
+@property(readonly, nonatomic) NSArray *allApplicationArguments; // @synthesize allApplicationArguments=_allApplicationArguments;
 - (id)preferredArchitecture;
 - (id)processURL;
 - (id)displayName;

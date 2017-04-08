@@ -18,6 +18,7 @@
 @property __weak DBGImageInspectorPropertyView *imageView; // @synthesize imageView=_imageView;
 @property __weak NSTextField *textField; // @synthesize textField=_textField;
 - (void).cxx_destruct;
+- (void)_copyImageToClipboard:(id)arg1;
 - (void)setupRefreshTriggersAndConfigure;
 - (double)baseline;
 - (void)_adjustHeightTo:(double)arg1;

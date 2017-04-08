@@ -10,7 +10,7 @@
 
 @interface IBNinePartImage : NSObject
 {
-    NSImage *images[3][3];
+    NSImage *_images[3][3];
 }
 
 + (id)ninePartImageWithCenterPixelOfImage:(id)arg1;

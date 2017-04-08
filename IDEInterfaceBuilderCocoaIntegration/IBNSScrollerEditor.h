@@ -8,7 +8,7 @@
 
 @interface IBNSScrollerEditor : IBNSViewEditor
 {
-    BOOL first;
+    BOOL _first;
 }
 
 - (BOOL)interceptEvent:(id)arg1;

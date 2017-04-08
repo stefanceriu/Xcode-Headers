@@ -10,8 +10,8 @@
 
 @interface IBDefaultNSToolbarItemsContainerView : IBNSToolbarItemsContainerView
 {
-    IBMutableIdentityDictionary *realItemsByCopiedItem;
-    IBMutableIdentityDictionary *realItemsByItemView;
+    IBMutableIdentityDictionary *_realItemsByCopiedItem;
+    IBMutableIdentityDictionary *_realItemsByItemView;
 }
 
 - (void).cxx_destruct;

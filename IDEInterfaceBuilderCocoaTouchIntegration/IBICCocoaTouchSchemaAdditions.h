@@ -22,7 +22,6 @@
     IBICSubtype *_retina4Subtype;
     IBICSubtype *_retinaHDSubtype;
     IBICSubtype *_retina47Subtype;
-    IBICSubtype *_ipad12Subtype;
     IBICScale *_anyScale;
     IBICScale *_oneXScale;
     IBICScale *_twoXScale;
@@ -52,6 +51,7 @@
     IBICSystemVersion *_iOSv7;
     IBICSystemVersion *_iOSv8;
     IBICSystemVersion *_iOSv9;
+    IBICSystemVersion *_iOSv10;
     IBICWidthClass *_anyWidth;
     IBICWidthClass *_compactWidth;
     IBICWidthClass *_regularWidth;

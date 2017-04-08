@@ -15,11 +15,9 @@
     NSString *_identifier;
     IBSceneUpdateProcessingRequestGroup *_processingRequestGroup;
     NSString *_incrementalUpdateSessionID;
-    long long _renderingFidelity;
 }
 
-+ (id)requestWithRenderingFidelity:(long long)arg1;
-@property(readonly, nonatomic) long long renderingFidelity; // @synthesize renderingFidelity=_renderingFidelity;
++ (id)request;
 @property(copy, nonatomic) NSString *incrementalUpdateSessionID; // @synthesize incrementalUpdateSessionID=_incrementalUpdateSessionID;
 @property(readonly, nonatomic) IBSceneUpdateProcessingRequestGroup *processingRequestGroup; // @synthesize processingRequestGroup=_processingRequestGroup;
 @property(readonly, copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
@@ -28,7 +26,7 @@
 - (void)configureWithConfigurer:(id)arg1;
 - (void)encodeWithBinaryArchiver:(id)arg1;
 - (id)initWithBinaryUnarchiver:(id)arg1;
-- (id)initWithIdentifier:(id)arg1 renderingFidelity:(long long)arg2;
+- (id)initWithIdentifier:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

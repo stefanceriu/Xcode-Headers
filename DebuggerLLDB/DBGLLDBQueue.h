@@ -6,7 +6,6 @@
 
 #import "IDEDebugQueue.h"
 
-__attribute__((visibility("hidden")))
 @interface DBGLLDBQueue : IDEDebugQueue
 {
     id <DBGSBQueue> _lldbQueue;

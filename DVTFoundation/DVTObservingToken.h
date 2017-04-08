@@ -20,6 +20,7 @@
 @property(retain) DVTStackBacktrace *creationBacktrace; // @synthesize creationBacktrace=_creationBacktrace;
 - (void).cxx_destruct;
 - (void)dealloc;
+- (id)_dvt_keyPath;
 @property(readonly, getter=isCancelled) BOOL cancelled;
 - (void)cancel;
 - (void)_primitiveCancelObservation;

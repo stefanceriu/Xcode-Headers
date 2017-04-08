@@ -28,7 +28,6 @@
 @property(nonatomic) __weak id <GPUColorChannelsViewControllerDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)colorChannelLink:(id)arg1 changedLinkState:(BOOL)arg2;
-- (void)channelStrip:(id)arg1 updateToneMapExtentsWithMin:(double)arg2 andMax:(double)arg3;
 - (void)channelStrip:(id)arg1 updateToneMapRangeWithMin:(double)arg2 andMax:(double)arg3;
 - (void)channelStrip:(id)arg1 autoRangeCheckBoxUpdatedWithState:(long long)arg2;
 - (void)channelStrip:(id)arg1 enableButtonUpdatedWithState:(long long)arg2 usingAlternateKey:(BOOL)arg3;

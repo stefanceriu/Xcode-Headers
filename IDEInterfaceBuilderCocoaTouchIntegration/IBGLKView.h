@@ -7,32 +7,31 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIView.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBGLKView : IBUIView <IBDocumentArchiving, NSCoding>
+@interface IBGLKView : IBUIView <IBDocumentArchiving>
 {
-    int drawableColorFormat;
-    int drawableDepthFormat;
-    int drawableStencilFormat;
-    int drawableMultisample;
-    BOOL enableSetNeedsDisplay;
+    BOOL _enableSetNeedsDisplay;
+    int _drawableColorFormat;
+    int _drawableDepthFormat;
+    int _drawableStencilFormat;
+    int _drawableMultisample;
 }
 
 + (id)ibInstantiateViewForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
-@property BOOL enableSetNeedsDisplay; // @synthesize enableSetNeedsDisplay;
-@property int drawableMultisample; // @synthesize drawableMultisample;
-@property int drawableStencilFormat; // @synthesize drawableStencilFormat;
-@property int drawableDepthFormat; // @synthesize drawableDepthFormat;
-@property int drawableColorFormat; // @synthesize drawableColorFormat;
+@property BOOL enableSetNeedsDisplay; // @synthesize enableSetNeedsDisplay=_enableSetNeedsDisplay;
+@property int drawableMultisample; // @synthesize drawableMultisample=_drawableMultisample;
+@property int drawableStencilFormat; // @synthesize drawableStencilFormat=_drawableStencilFormat;
+@property int drawableDepthFormat; // @synthesize drawableDepthFormat=_drawableDepthFormat;
+@property int drawableColorFormat; // @synthesize drawableColorFormat=_drawableColorFormat;
 - (void)drawRect:(struct CGRect)arg1;
 - (BOOL)shouldDrawAsPlaceholder;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (id)ibDesignableContentView;
 - (BOOL)ibSizesToFillViewControllers;
 - (id)ibPasteboardTypes;

@@ -14,8 +14,8 @@
     NSMutableArray *_mutableElements;
 }
 
-@property(copy) NSMutableArray *mutableElements; // @synthesize mutableElements=_mutableElements;
-@property(copy) NSMutableArray *mutableAttributes; // @synthesize mutableAttributes=_mutableAttributes;
+@property(readonly) NSMutableArray *mutableElements; // @synthesize mutableElements=_mutableElements;
+@property(readonly) NSMutableArray *mutableAttributes; // @synthesize mutableAttributes=_mutableAttributes;
 - (void).cxx_destruct;
 - (id)description;
 - (id)init;

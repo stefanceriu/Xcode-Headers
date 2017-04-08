@@ -10,18 +10,18 @@
 
 @interface IBObjectPropertyMarshallingRecord : NSObject
 {
-    NSString *designTimeKeyPath;
-    NSString *runtimeKeyPath;
-    id value;
-    long long action;
-    long long deferralRound;
+    NSString *_designTimeKeyPath;
+    NSString *_runtimeKeyPath;
+    long long _deferralRound;
+    id _value;
+    long long _action;
 }
 
-@property(nonatomic) long long deferralRound; // @synthesize deferralRound;
-@property(nonatomic) long long action; // @synthesize action;
-@property(retain, nonatomic) id value; // @synthesize value;
-@property(copy, nonatomic) NSString *runtimeKeyPath; // @synthesize runtimeKeyPath;
-@property(readonly, nonatomic) NSString *designTimeKeyPath; // @synthesize designTimeKeyPath;
+@property(nonatomic) long long action; // @synthesize action=_action;
+@property(retain, nonatomic) id value; // @synthesize value=_value;
+@property(nonatomic) long long deferralRound; // @synthesize deferralRound=_deferralRound;
+@property(copy, nonatomic) NSString *runtimeKeyPath; // @synthesize runtimeKeyPath=_runtimeKeyPath;
+@property(readonly, nonatomic) NSString *designTimeKeyPath; // @synthesize designTimeKeyPath=_designTimeKeyPath;
 - (void).cxx_destruct;
 - (id)description;
 - (void)reset;

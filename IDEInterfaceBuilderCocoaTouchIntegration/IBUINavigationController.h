@@ -7,14 +7,11 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIViewController.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class IBUINavigationBar, IBUIToolbar, NSArray, NSString;
 
-@interface IBUINavigationController : IBUIViewController <IBDocumentArchiving, NSCoding>
+@interface IBUINavigationController : IBUIViewController <IBDocumentArchiving>
 {
-    IBUINavigationBar *_navigationBar;
-    IBUIToolbar *_toolbar;
     NSArray *_viewControllers;
     BOOL _navigationBarHidden;
     BOOL _toolbarHidden;
@@ -22,6 +19,8 @@
     BOOL _hidesBarsOnSwipe;
     BOOL _hidesBarsWhenVerticallyCompact;
     BOOL _hidesBarsOnTap;
+    IBUINavigationBar *_navigationBar;
+    IBUIToolbar *_toolbar;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -48,11 +47,11 @@
 - (id)viewControllers;
 - (BOOL)ownsBottomBar;
 - (BOOL)ownsTopBar;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithTargetRuntime:(id)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)ibIsValidPushReceiver;
 - (BOOL)ibIsChildArbitrationUnitRoot:(id)arg1;
 - (BOOL)ibCanBeEmbeddedInSplitViewControllerController;

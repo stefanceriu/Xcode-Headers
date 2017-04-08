@@ -6,11 +6,9 @@
 
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIStoryboardAbstractTriggeredSegue.h>
 
-#import "NSCoding.h"
-
 @class NSNumber;
 
-@interface IBCocoaTouchStoryboardReplaceSegue : IBUIStoryboardAbstractTriggeredSegue <NSCoding>
+@interface IBCocoaTouchStoryboardReplaceSegue : IBUIStoryboardAbstractTriggeredSegue
 {
     NSNumber *_splitViewControllerTargetIndex;
 }
@@ -27,9 +25,9 @@
 - (id)instantiateSegueTemplate;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (id)initWithSource:(id)arg1 label:(id)arg2 destination:(id)arg3;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithSource:(id)arg1 label:(id)arg2 destination:(id)arg3;
 
 @end
 

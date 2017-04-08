@@ -10,20 +10,20 @@
 
 @interface IBUIButtonPerStateAttributes : NSObject
 {
-    NSString *title;
-    NSAttributedString *attributedTitle;
-    NSColor *titleColor;
-    NSColor *titleShadowColor;
-    NSImage *image;
-    NSImage *backgroundImage;
+    NSString *_title;
+    NSAttributedString *_attributedTitle;
+    NSColor *_titleColor;
+    NSColor *_titleShadowColor;
+    NSImage *_image;
+    NSImage *_backgroundImage;
 }
 
-@property(retain, nonatomic) NSImage *backgroundImage; // @synthesize backgroundImage;
-@property(retain, nonatomic) NSImage *image; // @synthesize image;
-@property(copy, nonatomic) NSColor *titleShadowColor; // @synthesize titleShadowColor;
-@property(copy, nonatomic) NSColor *titleColor; // @synthesize titleColor;
-@property(copy, nonatomic) NSAttributedString *attributedTitle; // @synthesize attributedTitle;
-@property(copy, nonatomic) NSString *title; // @synthesize title;
+@property(retain, nonatomic) NSImage *backgroundImage; // @synthesize backgroundImage=_backgroundImage;
+@property(retain, nonatomic) NSImage *image; // @synthesize image=_image;
+@property(copy, nonatomic) NSColor *titleShadowColor; // @synthesize titleShadowColor=_titleShadowColor;
+@property(copy, nonatomic) NSColor *titleColor; // @synthesize titleColor=_titleColor;
+@property(copy, nonatomic) NSAttributedString *attributedTitle; // @synthesize attributedTitle=_attributedTitle;
+@property(copy, nonatomic) NSString *title; // @synthesize title=_title;
 - (void).cxx_destruct;
 
 @end

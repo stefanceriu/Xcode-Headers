@@ -46,6 +46,7 @@ __attribute__((visibility("hidden")))
 - (void)performPreCaptureVisitActions;
 - (BOOL)_openFilenames:(id)arg1 archive:(id)arg2 filesArray:(id)arg3;
 - (void)_addProgramForDisplayableItem:(id)arg1;
+- (void)notifyUnusedResourcesStreamAvailable;
 - (id)initWithTraceSession:(id)arg1;
 
 @end

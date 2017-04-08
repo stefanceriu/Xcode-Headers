@@ -15,6 +15,7 @@
     BOOL _isUniversalMock;
     BOOL _appleInternalMock;
     BOOL _xcodeManagedMock;
+    BOOL _isActiveMock;
     NSArray *_signingCertificatesMock;
     NSDate *_creationDateMock;
     NSDate *_expirationDateMock;
@@ -28,8 +29,13 @@
     NSArray *_appIdentifierPrefixesMock;
     NSArray *_teamIdentifierPrefixesMock;
     NSString *_platformMock;
+    NSString *_appIdentifierNameMock;
+    DVTFilePath *_filePathMock;
 }
 
+@property(retain) DVTFilePath *filePathMock; // @synthesize filePathMock=_filePathMock;
+@property(retain) NSString *appIdentifierNameMock; // @synthesize appIdentifierNameMock=_appIdentifierNameMock;
+@property(nonatomic) BOOL isActiveMock; // @synthesize isActiveMock=_isActiveMock;
 @property(nonatomic, getter=isXcodeManaged) BOOL xcodeManagedMock; // @synthesize xcodeManagedMock=_xcodeManagedMock;
 @property(nonatomic, getter=isAppleInternalMock) BOOL appleInternalMock; // @synthesize appleInternalMock=_appleInternalMock;
 @property(retain) NSString *platformMock; // @synthesize platformMock=_platformMock;
@@ -47,6 +53,7 @@
 @property(retain) NSDate *creationDateMock; // @synthesize creationDateMock=_creationDateMock;
 @property(retain) NSArray *signingCertificatesMock; // @synthesize signingCertificatesMock=_signingCertificatesMock;
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)longDescription;
 - (BOOL)matchesBundleIdentifier:(id)arg1;
 @property(readonly) BOOL isPushEnabled;
@@ -61,6 +68,7 @@
 @property(readonly) BOOL isGameCenterEnabled;
 @property(readonly) BOOL isMapsEnabled;
 @property(readonly) BOOL isInterAppAudioEnabled;
+@property(readonly) BOOL isNetworkExtensionsEnabled;
 @property(readonly) BOOL isSiriEnabled;
 @property(readonly) BOOL isDataProtectionEnabled;
 @property(readonly) NSString *dataProtectionLevel;
@@ -73,6 +81,7 @@
 @property(readonly) BOOL expiredOrWillExpireSoon;
 @property(readonly) BOOL willExpireSoon;
 @property(readonly) BOOL usesExplicitAppIdentifier;
+@property(readonly) NSString *appIdentifierUserDescription;
 @property(readonly) NSString *appIdentifierEntitlementWithoutPrefix;
 @property(readonly) DVTPlatform *dvt_platform;
 @property(readonly) BOOL isMacProfile;
@@ -83,7 +92,6 @@
 - (BOOL)writeToURL:(id)arg1 options:(unsigned long long)arg2 error:(id *)arg3;
 - (BOOL)writeToFile:(id)arg1 options:(unsigned long long)arg2 error:(id *)arg3;
 @property(readonly) NSData *dataRepresentation;
-@property(readonly, copy) NSString *localPath;
 @property(readonly, copy) DVTFilePath *filePath;
 - (BOOL)hasCertificateMatchingIdentity:(id)arg1 includeExpired:(BOOL)arg2;
 @property(readonly) NSArray *identityCertificates;
@@ -91,9 +99,12 @@
 @property(readonly) NSArray *certificates;
 @property(readonly) NSString *preferredFilenameExtension;
 @property(readonly) int version;
+@property(readonly) BOOL isActive;
 - (BOOL)isAppleInternal;
+@property(readonly) NSString *provisioningProfilePlatformIdentifier;
 @property(readonly) NSString *platform;
 @property(readonly) NSArray *teamIdentifierPrefixes;
+@property(readonly) NSString *appIdentifierName;
 @property(readonly) NSArray *appIdentifierPrefixes;
 @property(readonly) NSString *teamName;
 @property(readonly) NSString *teamID;

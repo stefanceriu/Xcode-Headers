@@ -19,6 +19,7 @@
     DVTDelayedInvocation *_openTopLevelStoryboardableObjectsInvocation;
     DVTDelayedInvocation *_showingDockInFramesInvocation;
     IBStoryboardSceneCanvasFrame *_canvasFrameShowingDock;
+    BOOL _scrollDefaultObjectToVisible;
     NSObject<IBStoryboardEntryPointIndicator> *_draggedEntryPointIndicator;
     NSArray *_selectedEntryPointIndicators;
     IBStoryboardCanvasBackgroundOverlayView *_backgroundOverlayView;
@@ -99,6 +100,7 @@
 - (void)setSelectedConnections:(id)arg1;
 - (id)canvasView;
 - (void)zoomToFactor:(double)arg1 anchor:(struct CGPoint)arg2 animated:(BOOL)arg3;
+- (void)revertStateWithDictionary:(id)arg1;
 - (void)registerWithDocumentEditor;
 - (id)storyboardDocumentEditor;
 - (void)takeFocus;

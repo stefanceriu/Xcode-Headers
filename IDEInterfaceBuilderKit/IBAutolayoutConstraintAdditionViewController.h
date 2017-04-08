@@ -26,7 +26,6 @@
     IBDocument *_document;
     CDUnknownBlockType _didAddConstraintsHandler;
     NSButton *_addConstraintsButton;
-    NSPopUpButton *_updateFramesPopUp;
     NSButton *_topNearestNeighborCheckBox;
     NSButton *_bottomNearestNeighborCheckBox;
     NSButton *_leadingNearestNeighborCheckBox;
@@ -200,7 +199,6 @@
 @property(retain, nonatomic) NSButton *leadingNearestNeighborCheckBox; // @synthesize leadingNearestNeighborCheckBox=_leadingNearestNeighborCheckBox;
 @property(retain, nonatomic) NSButton *bottomNearestNeighborCheckBox; // @synthesize bottomNearestNeighborCheckBox=_bottomNearestNeighborCheckBox;
 @property(retain, nonatomic) NSButton *topNearestNeighborCheckBox; // @synthesize topNearestNeighborCheckBox=_topNearestNeighborCheckBox;
-@property(retain, nonatomic) NSPopUpButton *updateFramesPopUp; // @synthesize updateFramesPopUp=_updateFramesPopUp;
 @property(retain, nonatomic) NSButton *addConstraintsButton; // @synthesize addConstraintsButton=_addConstraintsButton;
 @property(copy, nonatomic) CDUnknownBlockType didAddConstraintsHandler; // @synthesize didAddConstraintsHandler=_didAddConstraintsHandler;
 @property(readonly, nonatomic) IBDocument *document; // @synthesize document=_document;

@@ -9,41 +9,52 @@
 #import "IBCocoaBindingsAutocompletingTextFieldDelegate.h"
 #import "NSMenuDelegate.h"
 
-@class DVTStackView_ML, IBCocoaBindingsAutocompletingResizingTextFieldView, IBCocoaBindingsAutocompletingTextField, IBCocoaBindingsSuggestedKeyPathProvider, NSArray, NSDictionary, NSObject, NSOperationQueue, NSPopUpButton, NSString, NSTextField, NSView;
+@class DVTStackView_ML, IBCocoaBindingsAutocompletingResizingTextFieldView, IBCocoaBindingsAutocompletingTextField, IBCocoaBindingsSuggestedKeyPathProvider, NSArray, NSDictionary, NSObject, NSPopUpButton, NSString, NSTextField, NSView;
 
 @interface IBCocoaBindingsConnectionContextOptionsController : IBSourceCodeConnectionPopUpOptionsViewController <NSMenuDelegate, IBCocoaBindingsAutocompletingTextFieldDelegate>
 {
-    IBCocoaBindingsSuggestedKeyPathProvider *keyPathProvider;
-    NSArray *availableControllers;
-    NSString *enteredControllerKeyPath;
-    NSString *enteredControlledObjectClass;
-    NSString *enteredModelKeyPath;
-    NSString *selectedType;
-    NSObject *selectedController;
-    NSArray *controlledObjectClasses;
-    NSDictionary *controllerToInitialControlledObjectClass;
-    NSOperationQueue *modelKeyPathValidationQueue;
-    NSOperationQueue *controllerKeyPathValidationQueue;
-    NSOperationQueue *controlledObjectClassValidationQueue;
-    NSPopUpButton *typePopUp;
-    NSPopUpButton *controllerPopUp;
-    IBCocoaBindingsAutocompletingTextField *controllerKeyField;
-    IBCocoaBindingsAutocompletingTextField *modelKeyField;
-    IBCocoaBindingsAutocompletingTextField *controlledObjectClassField;
-    NSTextField *controlledCustomObjectClassLabel;
-    DVTStackView_ML *contentStackView;
-    NSView *viewObjectContainerView;
-    NSView *typePopUpContainerView;
-    NSView *controllerPopUpContainerView;
-    NSView *modelObjectContainerView;
-    IBCocoaBindingsAutocompletingResizingTextFieldView *modelKeyResizingFieldView;
-    IBCocoaBindingsAutocompletingResizingTextFieldView *controllerKeyResizingFieldView;
-    IBCocoaBindingsAutocompletingResizingTextFieldView *controlledObjectResizingFieldView;
+    IBCocoaBindingsSuggestedKeyPathProvider *_keyPathProvider;
+    NSArray *_availableControllers;
+    NSString *_enteredControllerKeyPath;
+    NSString *_enteredControlledObjectClass;
+    NSString *_enteredModelKeyPath;
+    NSString *_selectedType;
+    NSObject *_selectedController;
+    NSArray *_controlledObjectClasses;
+    NSDictionary *_controllerToInitialControlledObjectClass;
+    NSPopUpButton *_typePopUp;
+    NSPopUpButton *_controllerPopUp;
+    IBCocoaBindingsAutocompletingTextField *_controllerKeyField;
+    IBCocoaBindingsAutocompletingTextField *_modelKeyField;
+    IBCocoaBindingsAutocompletingTextField *_controlledObjectClassField;
+    NSTextField *_controlledCustomObjectClassLabel;
+    DVTStackView_ML *_contentStackView;
+    NSView *_viewObjectContainerView;
+    NSView *_typePopUpContainerView;
+    NSView *_controllerPopUpContainerView;
+    NSView *_modelObjectContainerView;
+    IBCocoaBindingsAutocompletingResizingTextFieldView *_modelKeyResizingFieldView;
+    IBCocoaBindingsAutocompletingResizingTextFieldView *_controllerKeyResizingFieldView;
+    IBCocoaBindingsAutocompletingResizingTextFieldView *_controlledObjectResizingFieldView;
 }
 
-@property(readonly, copy) NSString *enteredControlledObjectClass; // @synthesize enteredControlledObjectClass;
-@property(readonly, copy) NSString *enteredModelKeyPath; // @synthesize enteredModelKeyPath;
-@property(readonly, copy) NSString *enteredControllerKeyPath; // @synthesize enteredControllerKeyPath;
+@property(retain) IBCocoaBindingsAutocompletingResizingTextFieldView *controlledObjectResizingFieldView; // @synthesize controlledObjectResizingFieldView=_controlledObjectResizingFieldView;
+@property(retain) IBCocoaBindingsAutocompletingResizingTextFieldView *controllerKeyResizingFieldView; // @synthesize controllerKeyResizingFieldView=_controllerKeyResizingFieldView;
+@property(retain) IBCocoaBindingsAutocompletingResizingTextFieldView *modelKeyResizingFieldView; // @synthesize modelKeyResizingFieldView=_modelKeyResizingFieldView;
+@property(retain) NSView *modelObjectContainerView; // @synthesize modelObjectContainerView=_modelObjectContainerView;
+@property(retain) NSView *controllerPopUpContainerView; // @synthesize controllerPopUpContainerView=_controllerPopUpContainerView;
+@property(retain) NSView *typePopUpContainerView; // @synthesize typePopUpContainerView=_typePopUpContainerView;
+@property(retain) NSView *viewObjectContainerView; // @synthesize viewObjectContainerView=_viewObjectContainerView;
+@property(retain) DVTStackView_ML *contentStackView; // @synthesize contentStackView=_contentStackView;
+@property(retain) NSTextField *controlledCustomObjectClassLabel; // @synthesize controlledCustomObjectClassLabel=_controlledCustomObjectClassLabel;
+@property(retain) IBCocoaBindingsAutocompletingTextField *controlledObjectClassField; // @synthesize controlledObjectClassField=_controlledObjectClassField;
+@property(retain) IBCocoaBindingsAutocompletingTextField *modelKeyField; // @synthesize modelKeyField=_modelKeyField;
+@property(retain) IBCocoaBindingsAutocompletingTextField *controllerKeyField; // @synthesize controllerKeyField=_controllerKeyField;
+@property(retain) NSPopUpButton *controllerPopUp; // @synthesize controllerPopUp=_controllerPopUp;
+@property(retain) NSPopUpButton *typePopUp; // @synthesize typePopUp=_typePopUp;
+@property(readonly, copy) NSString *enteredControlledObjectClass; // @synthesize enteredControlledObjectClass=_enteredControlledObjectClass;
+@property(readonly, copy) NSString *enteredModelKeyPath; // @synthesize enteredModelKeyPath=_enteredModelKeyPath;
+@property(readonly, copy) NSString *enteredControllerKeyPath; // @synthesize enteredControllerKeyPath=_enteredControllerKeyPath;
 - (void).cxx_destruct;
 - (void)revertControllersToInitialState;
 - (void)menuWillOpen:(id)arg1;
@@ -71,7 +82,7 @@
 - (void)validateModelKeyPath:(id)arg1;
 - (void)setValidationStatusForModelKeyField:(long long)arg1 keyPath:(id)arg2 type:(id)arg3;
 - (long long)validationStatusForModelKeyTypeName:(id)arg1 keyPath:(id)arg2;
-- (BOOL)isController:(id)arg1 AKindOf:(id)arg2;
+- (BOOL)isController:(id)arg1 aKindOf:(id)arg2;
 - (id)suggestedControllerKeyPathForController:(id)arg1 bindingType:(id)arg2;
 - (void)didCancelInsertingRepresentedConnectionContext;
 - (void)willInsertRepresentedConnectionContext;

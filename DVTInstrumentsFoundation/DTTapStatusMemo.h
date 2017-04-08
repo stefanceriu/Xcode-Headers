@@ -21,7 +21,9 @@
 @property(nonatomic) unsigned long long timestamp; // @synthesize timestamp=_timestamp;
 @property(nonatomic) unsigned int status; // @synthesize status=_status;
 - (void).cxx_destruct;
-- (id)initWithStatus:(unsigned int)arg1 timestamp:(unsigned long long)arg2 notice:(id)arg3 info:(id)arg4;
+- (id)initWithStatus:(unsigned int)arg1 notice:(id)arg2 info:(id)arg3 timestamp:(unsigned long long)arg4;
+- (id)initWithStatus:(unsigned int)arg1 notice:(id)arg2 info:(id)arg3;
+- (id)initWithStatus:(unsigned int)arg1 notice:(id)arg2;
 
 @end
 

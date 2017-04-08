@@ -7,23 +7,22 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIControl.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSAttributedString, NSString;
 
-@interface IBUIRefreshControl : IBUIControl <IBDocumentArchiving, NSCoding>
+@interface IBUIRefreshControl : IBUIControl <IBDocumentArchiving>
 {
-    NSAttributedString *attributedTitle;
+    NSAttributedString *_attributedTitle;
 }
 
 + (BOOL)shouldArchiveTintColorWithUIViewProperties;
-@property(copy, nonatomic) NSAttributedString *attributedTitle; // @synthesize attributedTitle;
+@property(copy, nonatomic) NSAttributedString *attributedTitle; // @synthesize attributedTitle=_attributedTitle;
 - (void).cxx_destruct;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect)arg1 targetRuntime:(id)arg2;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)ibPasteboardTypes;
 - (id)ibLocalAttributeKeyPaths;

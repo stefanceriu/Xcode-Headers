@@ -33,6 +33,8 @@
 + (BOOL)_updateContainersForAppID:(id)arg1 withCharacteristics:(id)arg2 session:(id)arg3 error:(id *)arg4;
 + (id)_preparedAppIDWithCharacteristics:(id)arg1 session:(id)arg2 error:(id *)arg3;
 + (BOOL)_existingAppIDWithCharacteristics:(id)arg1 session:(id)arg2 explicitAppIDRequired:(char *)arg3 appIDFeaturesNeedUpdating:(char *)arg4 existingAppID:(id *)arg5 error:(id *)arg6;
++ (id)_errorForProfileType:(id)arg1 unsupportedFeaturesError:(id)arg2 characteristics:(id)arg3;
++ (id)_errorForTeam:(id)arg1 unsupportedFeatures:(id)arg2 characteristics:(id)arg3;
 + (id)_errorForPermissionsFailure;
 + (id)_errorForNoCertificates;
 + (id)_errorForBundleIdentifierUnavailable:(id)arg1 withUnderlyingError:(id)arg2;
@@ -40,9 +42,9 @@
 + (id)_profileMatchingName:(id)arg1 session:(id)arg2 team:(id)arg3 profileType:(id)arg4 error:(id *)arg5;
 + (BOOL)_deletePreExistingProfileForType:(id)arg1 name:(id)arg2 session:(id)arg3 team:(id)arg4 error:(id *)arg5;
 + (id)_certificatesForProfileType:(id)arg1 session:(id)arg2 team:(id)arg3 error:(id *)arg4;
-+ (id)_createAndDownloadNonTeamProvisioningProfileWithTeam:(id)arg1 session:(id)arg2 profileType:(id)arg3 platform:(id)arg4 appID:(id)arg5 manualStyleProfileDevices:(id)arg6 manualStyleProfileName:(id)arg7 error:(id *)arg8;
++ (id)_createAndDownloadNonTeamProvisioningProfileWithTeam:(id)arg1 session:(id)arg2 profileType:(id)arg3 platform:(id)arg4 appID:(id)arg5 manualStyleProfileDevices:(id)arg6 manualStyleProfileName:(id)arg7 overrideDeletionOfPreExistingProfile:(BOOL)arg8 error:(id *)arg9;
 + (id)_downloadTeamProfileServiceWithTeam:(id)arg1 platform:(id)arg2 appID:(id)arg3;
-+ (id)_requestProfileWithAppID:(id)arg1 type:(id)arg2 manualStyleProfileDevices:(id)arg3 manualStyleProfileName:(id)arg4 team:(id)arg5 platform:(id)arg6 session:(id)arg7 error:(id *)arg8;
++ (id)_requestProfileWithAppID:(id)arg1 type:(id)arg2 manualStyleProfileDevices:(id)arg3 manualStyleProfileName:(id)arg4 team:(id)arg5 platform:(id)arg6 overrideDeletionOfPreExistingProfile:(BOOL)arg7 session:(id)arg8 error:(id *)arg9;
 + (BOOL)permittedToCreateProfileWithSession:(id)arg1 characteristics:(id)arg2 error:(id *)arg3;
 + (id)createProfileWithSession:(id)arg1 characteristics:(id)arg2 error:(id *)arg3;
 + (id)_listProfilesServiceWithTeam:(id)arg1 platform:(id)arg2;
@@ -61,6 +63,8 @@
 @property(readonly, nonatomic) NSString *name; // @synthesize name=_name;
 @property(readonly, nonatomic) NSData *profileData; // @synthesize profileData=_profileData;
 - (void).cxx_destruct;
+- (unsigned long long)hash;
+- (BOOL)isEqual:(id)arg1;
 - (BOOL)removeWithSession:(id)arg1 error:(id *)arg2;
 - (BOOL)downloadWithSession:(id)arg1 error:(id *)arg2;
 - (BOOL)isActive;

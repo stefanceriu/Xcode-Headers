@@ -13,18 +13,22 @@
 
 @interface IBCocoaBindingsAutocompletingTextFieldEditor : NSTextView <NSTableViewDelegate, NSTableViewDataSource>
 {
-    NSWindow *completionWindow;
-    NSArray *filteredKeys;
-    BOOL completionsListVisible;
-    NSTableView *completionsTableView;
-    NSView *view;
-    NSScrollView *scrollView;
-    NSTextField *completionsUnavailableField;
-    NSCharacterSet *separatorChars;
-    struct CGPoint windowPositionReferencePoint;
+    NSWindow *_completionWindow;
+    NSArray *_filteredKeys;
+    BOOL _completionsListVisible;
+    struct CGPoint _windowPositionReferencePoint;
+    NSTableView *_completionsTableView;
+    NSView *_view;
+    NSScrollView *_scrollView;
+    NSTextField *_completionsUnavailableField;
+    NSCharacterSet *_separatorChars;
 }
 
-@property(retain) NSCharacterSet *separatorChars; // @synthesize separatorChars;
+@property(retain) NSCharacterSet *separatorChars; // @synthesize separatorChars=_separatorChars;
+@property(retain) NSTextField *completionsUnavailableField; // @synthesize completionsUnavailableField=_completionsUnavailableField;
+@property(retain) NSScrollView *scrollView; // @synthesize scrollView=_scrollView;
+@property(retain) NSView *view; // @synthesize view=_view;
+@property(retain) NSTableView *completionsTableView; // @synthesize completionsTableView=_completionsTableView;
 - (void).cxx_destruct;
 - (void)doubleClick:(id)arg1;
 - (id)tableView:(id)arg1 objectValueForTableColumn:(id)arg2 row:(long long)arg3;
@@ -34,13 +38,12 @@
 - (void)didChangeText;
 - (void)dismissCompletions;
 - (void)acceptCompletionBy:(unsigned long long)arg1;
-- (void)displayCompletions;
+- (void)displayCompletionsForcefully:(BOOL)arg1;
 - (struct _NSRange)rangeForUserCompletion;
 - (void)repositionCompletionsWindowIfNeeded;
 - (void)positionWindow;
 - (struct CGRect)positionedWindowFrameForFrameSize:(struct CGSize)arg1;
 - (double)columnWidthForColumnWithIdentifier:(id)arg1;
-- (double)widthOfString:(id)arg1 withFont:(id)arg2;
 - (id)delegate;
 - (id)initWithFrame:(struct CGRect)arg1;
 

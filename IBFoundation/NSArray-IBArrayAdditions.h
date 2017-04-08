@@ -40,7 +40,6 @@
 - (BOOL)ib_isSortedWithComparator:(CDUnknownBlockType)arg1;
 - (void)ib_enumerateCopyOfObjectsUsingBlock:(CDUnknownBlockType)arg1;
 - (void)ib_enumerateObjectsUsingMutatingBlock:(CDUnknownBlockType)arg1;
-- (void)ib_enumerateObjectsUsingBlock:(CDUnknownBlockType)arg1;
 - (id)ib_collectionByRemovingNulls;
 - (id)ib_indexesOfObjects:(id)arg1;
 - (BOOL)ib_objectsAreStrictlyContainedBySet:(id)arg1;

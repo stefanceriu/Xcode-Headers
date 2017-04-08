@@ -6,13 +6,14 @@
 
 #import "NSObject.h"
 
-@class DYCaptureArchive, DYContinuation, DYFuture, DYGuestAppSession, DYTransportSource, NSError, NSMapTable, NSMutableDictionary;
+@class DYCaptureArchive, DYContinuation, DYFuture, DYGuestAppSession, DYProgressDigest, DYTransportSource, NSError, NSMapTable, NSMutableDictionary;
 
 @interface DYCaptureSession : NSObject
 {
     DYGuestAppSession *_session;
     DYCaptureArchive *_archive;
     struct dispatch_queue_s *_queue;
+    struct dispatch_queue_s *_backgroundQueue;
     NSMutableDictionary *_finalConfigurationDictionary;
     DYTransportSource *_source;
     DYContinuation *_invalidationCompletion;
@@ -33,11 +34,13 @@
     BOOL _complete;
     BOOL _clientDidSendAllData;
     BOOL _deviceSupportsSessionSerial;
+    DYProgressDigest *_progessDigest;
 }
 
 + (void)initialize;
 + (BOOL)accessInstanceVariablesDirectly;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
+@property(nonatomic) __weak DYProgressDigest *progessDigest; // @synthesize progessDigest=_progessDigest;
 @property(nonatomic) BOOL complete; // @synthesize complete=_complete;
 @property(nonatomic) int storeSymbolicatorSignature; // @synthesize storeSymbolicatorSignature=_storeSymbolicatorSignature;
 @property(nonatomic) BOOL suspendAfterCompletion; // @synthesize suspendAfterCompletion=_suspendAfterCompletion;
@@ -53,6 +56,7 @@
 - (void)_postProcessArchive;
 - (void)_saveAPISpecificData:(id)arg1;
 - (void)_setupFinalConfigurationDictionary:(id)arg1;
+- (void)_receivedUsedClientData:(id)arg1;
 - (void)_receivedAllClientData:(id)arg1;
 - (void)_flushBuffers;
 - (BOOL)stopCapturing;

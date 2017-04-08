@@ -9,6 +9,8 @@
 @class NSString;
 
 @protocol DYPResourceItemFactory <NSObject>
+- (void)populatePlaceholderItem:(id <DYPResourceItem>)arg1 objectID:(unsigned long long)arg2 stateMirrorObject:(const void *)arg3 containerID:(unsigned long long)arg4 identifier:(NSString *)arg5;
+- (id <DYPResourceItem>)placeholderResourceItemWithGroup:(id <DYPResourceGroup>)arg1 type:(unsigned int)arg2 identifier:(NSString *)arg3;
 - (id <DYPRawBytesResourceItem>)rawBytesItemWithGroup:(id <DYPResourceGroup>)arg1 bytesType:(unsigned long long)arg2 bindingIndex:(unsigned int)arg3 stateMirrorObject:(const void *)arg4 containerID:(unsigned long long)arg5 identifier:(NSString *)arg6;
 - (id <DYPShaderItem>)shaderItemWithProgram:(id <DYPProgramItem>)arg1 shaderType:(unsigned int)arg2 functionInfo:(id <DYPFunctionInfo>)arg3 identifier:(NSString *)arg4;
 - (id <DYPProgramItem>)programItemWithGroup:(id <DYPResourceGroup>)arg1 programType:(unsigned int)arg2 programID:(unsigned long long)arg3 stateMirrorObject:(const void *)arg4 containerID:(unsigned long long)arg5 identifier:(NSString *)arg6;

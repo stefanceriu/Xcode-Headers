@@ -20,7 +20,6 @@
 @property(readonly) NSString *cachedKeyPath; // @synthesize cachedKeyPath=_cachedKeyPath;
 - (void).cxx_destruct;
 - (id)cachedValueFromRequestedValue:(id)arg1;
-- (id)marshaller;
 - (BOOL)computesValue;
 - (id)initWithCachedKeyPath:(id)arg1 andRequestedKeyPath:(id)arg2;
 - (id)init;

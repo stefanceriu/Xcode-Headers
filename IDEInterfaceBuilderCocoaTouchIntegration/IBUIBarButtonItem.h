@@ -7,20 +7,19 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIBarItem.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 #import "NSCopying.h"
 
 @class IBUINavigationItem, IBUIToolbar, IBUIView, NSColor, NSNumber, NSString;
 
-@interface IBUIBarButtonItem : IBUIBarItem <IBDocumentArchiving, NSCoding, NSCopying>
+@interface IBUIBarButtonItem : IBUIBarItem <IBDocumentArchiving, NSCopying>
 {
-    double width;
-    IBUIView *customView;
-    NSNumber *systemItemIdentifier;
-    int style;
-    IBUIToolbar *toolbar;
-    IBUINavigationItem *navigationItem;
-    NSColor *tintColor;
+    int _style;
+    IBUINavigationItem *_navigationItem;
+    IBUIToolbar *_toolbar;
+    double _width;
+    IBUIView *_customView;
+    NSNumber *_systemItemIdentifier;
+    NSColor *_tintColor;
 }
 
 + (void)registerMarshallingRecordHandlers;
@@ -30,34 +29,32 @@
 + (id)keyPathsForValuesAffectingIbInspectedFlexibleFixedSpaceOptionValues;
 + (id)ibDefaultImageForInstance:(id)arg1 targetRuntime:(id)arg2;
 + (id)ibInstantiateForRole:(long long)arg1 withTargetRuntime:(id)arg2 documentClass:(Class)arg3 assetIdentifier:(id)arg4;
-@property(copy, nonatomic) NSColor *tintColor; // @synthesize tintColor;
+@property(copy, nonatomic) NSColor *tintColor; // @synthesize tintColor=_tintColor;
+@property(copy, nonatomic) NSNumber *systemItemIdentifier; // @synthesize systemItemIdentifier=_systemItemIdentifier;
+@property(retain, nonatomic) IBUIView *customView; // @synthesize customView=_customView;
+@property(nonatomic) int style; // @synthesize style=_style;
+@property(nonatomic) double width; // @synthesize width=_width;
+@property(nonatomic) __weak IBUIToolbar *toolbar; // @synthesize toolbar=_toolbar;
+@property(nonatomic) __weak IBUINavigationItem *navigationItem; // @synthesize navigationItem=_navigationItem;
 - (void).cxx_destruct;
 - (void)encodeSystemItemIdentifier:(id)arg1;
 - (void)decodeSystemItemIdentifier:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)valueForKey:(id)arg1;
 - (BOOL)isFlexibleSpace;
 - (BOOL)isFixedSpace;
 - (BOOL)isSystemItem;
-@property(copy) NSNumber *systemItemIdentifier;
-@property(retain) IBUIView *customView;
-@property int style;
-@property double width;
-- (void)setToolbar:(id)arg1;
-- (void)setNavigationItem:(id)arg1;
 - (id)titleFont;
 - (struct CGRect)titleRect;
 - (void)setTitle:(id)arg1;
 - (struct CGRect)frame;
 - (id)barView;
-- (id)toolbar;
 - (id)navigationBar;
 - (void)removeFromBarView;
-- (id)navigationItem;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)ibIsChildArbitrationUnitRoot:(id)arg1;
 - (BOOL)shouldAcceptImages;
 - (void)ibSetupTriggerForSegueTemplate:(id)arg1 inCompilationUnit:(id)arg2;

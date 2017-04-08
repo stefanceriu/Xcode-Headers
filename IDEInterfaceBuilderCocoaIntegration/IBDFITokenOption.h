@@ -12,25 +12,20 @@
 
 @interface IBDFITokenOption : NSObject <NSCoding>
 {
-    NSString *editingString;
-    NSString *displayString;
-    NSString *menuString;
-    BOOL isLabel;
-    BOOL isHidden;
+    BOOL _isLabel;
+    BOOL _isHidden;
+    NSString *_editingString;
+    NSString *_displayString;
+    NSString *_menuString;
 }
 
 + (id)tokenOptionWithEditingString:(id)arg1 displayString:(id)arg2 menuString:(id)arg3 hidden:(BOOL)arg4 label:(BOOL)arg5;
+@property BOOL isHidden; // @synthesize isHidden=_isHidden;
+@property BOOL isLabel; // @synthesize isLabel=_isLabel;
+@property(copy, nonatomic) NSString *menuString; // @synthesize menuString=_menuString;
+@property(copy, nonatomic) NSString *displayString; // @synthesize displayString=_displayString;
+@property(copy, nonatomic) NSString *editingString; // @synthesize editingString=_editingString;
 - (void).cxx_destruct;
-- (void)setIsHidden:(BOOL)arg1;
-- (BOOL)isHidden;
-- (void)setIsLabel:(BOOL)arg1;
-- (BOOL)isLabel;
-- (void)setMenuString:(id)arg1;
-- (id)menuString;
-- (void)setDisplayString:(id)arg1;
-- (id)displayString;
-- (void)setEditingString:(id)arg1;
-- (id)editingString;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithEditingString:(id)arg1 displayString:(id)arg2 menuString:(id)arg3 hidden:(BOOL)arg4 label:(BOOL)arg5;

@@ -43,6 +43,7 @@
 @property(readonly, nonatomic) NSString *identifier;
 @property(retain, nonatomic) NSString *label;
 @property(readonly, nonatomic) unsigned long long objectID;
+@property(readonly, nonatomic) BOOL placeholder;
 @property(readonly, nonatomic) NSMutableDictionary *properties;
 @property(readonly, nonatomic) const void *stateMirrorObject;
 @property(readonly) Class superclass;

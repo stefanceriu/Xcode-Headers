@@ -10,13 +10,14 @@
 
 @interface IBFirstResponderActionRelationInspectorProperty : IDEInspectorProperty
 {
-    NSComboBoxCell *_comboBoxCell;
     id <DVTCancellable> _classDescriberObservingToken;
     IBDocument *_observedDocument;
     BOOL _refreshClassInfo;
     NSDictionary *_cachedActions;
+    NSComboBoxCell *_comboBoxCell;
 }
 
+@property(retain) NSComboBoxCell *comboBoxCell; // @synthesize comboBoxCell=_comboBoxCell;
 - (void).cxx_destruct;
 - (void)tearDownRefreshTriggers;
 - (void)setupRefreshTriggersAndConfigure;

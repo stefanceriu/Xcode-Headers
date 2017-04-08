@@ -28,6 +28,7 @@
 @property(readonly) unsigned long long hash;
 @property(readonly, copy) NSString *description;
 @property(readonly, nonatomic) BOOL hasAnyMisplacement;
+- (BOOL)hasAnyMisplacementInOrientation:(unsigned long long)arg1;
 - (BOOL)hasMisplacedSizeInOrientation:(unsigned long long)arg1;
 - (BOOL)hasMisplacedPositionInOrientation:(unsigned long long)arg1;
 @property(readonly, nonatomic) BOOL hasMisplacedVerticalSize;

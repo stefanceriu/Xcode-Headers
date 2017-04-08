@@ -23,7 +23,7 @@
 @property __weak NSSegmentedControl *segmentControl; // @synthesize segmentControl=_segmentControl;
 - (void).cxx_destruct;
 - (void)_configureSegmentedControl;
-- (id)showProductsSectionWithIdentifier:(id)arg1 forProductIdentifier:(id)arg2;
+- (void)showProductsSectionWithIdentifier:(id)arg1 forProductIdentifier:(id)arg2 didShowProduct:(CDUnknownBlockType)arg3;
 - (void)refresh;
 - (void)resizeSegmentControl;
 - (void)windowWillClose:(id)arg1;

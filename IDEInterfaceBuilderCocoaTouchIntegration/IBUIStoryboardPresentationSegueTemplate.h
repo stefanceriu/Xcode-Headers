@@ -7,11 +7,10 @@
 #import <IDEInterfaceBuilderCocoaTouchIntegration/IBUIStoryboardSegueTemplate.h>
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSString;
 
-@interface IBUIStoryboardPresentationSegueTemplate : IBUIStoryboardSegueTemplate <NSCoding, IBDocumentArchiving>
+@interface IBUIStoryboardPresentationSegueTemplate : IBUIStoryboardSegueTemplate <IBDocumentArchiving>
 {
     BOOL _useDefaultModalPresentationStyle;
     BOOL _useDefaultModalTransitionStyle;

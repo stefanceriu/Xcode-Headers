@@ -10,22 +10,22 @@
 
 @interface IBDragConnectionContext : NSObject
 {
-    NSString *connectionName;
-    long long relationshipType;
-    NSString *sourceClassName;
-    id source;
-    IBConnection *prototype;
-    BOOL limitToInterfaceBuilder;
-    NSSet *endPointProvidingDocuments;
+    BOOL _limitToInterfaceBuilder;
+    NSString *_connectionName;
+    long long _relationshipType;
+    NSString *_sourceClassName;
+    id _source;
+    IBConnection *_prototype;
+    NSSet *_endPointProvidingDocuments;
 }
 
-@property(readonly) NSSet *endPointProvidingDocuments; // @synthesize endPointProvidingDocuments;
-@property(readonly) BOOL limitToInterfaceBuilder; // @synthesize limitToInterfaceBuilder;
-@property(readonly) NSString *connectionName; // @synthesize connectionName;
-@property(readonly) long long relationshipType; // @synthesize relationshipType;
-@property(readonly) NSString *sourceClassName; // @synthesize sourceClassName;
-@property(readonly) IBConnection *prototype; // @synthesize prototype;
-@property(readonly) id source; // @synthesize source;
+@property(readonly) NSSet *endPointProvidingDocuments; // @synthesize endPointProvidingDocuments=_endPointProvidingDocuments;
+@property(readonly) BOOL limitToInterfaceBuilder; // @synthesize limitToInterfaceBuilder=_limitToInterfaceBuilder;
+@property(readonly) IBConnection *prototype; // @synthesize prototype=_prototype;
+@property(readonly) id source; // @synthesize source=_source;
+@property(readonly) NSString *sourceClassName; // @synthesize sourceClassName=_sourceClassName;
+@property(readonly) long long relationshipType; // @synthesize relationshipType=_relationshipType;
+@property(readonly) NSString *connectionName; // @synthesize connectionName=_connectionName;
 - (void).cxx_destruct;
 - (id)initWithConnectionName:(id)arg1 relationshipType:(long long)arg2 sourceClassName:(id)arg3 endPointProvidingDocuments:(id)arg4 limitedToInterfaceBuilder:(BOOL)arg5;
 - (id)initWithPrototype:(id)arg1 endPointProvidingDocuments:(id)arg2;

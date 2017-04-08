@@ -12,13 +12,11 @@
 
 @interface IBNSViewController : IBAbstractViewController <IBDocumentArchiving>
 {
-    IBNSViewController *_parentViewController;
-    NSView *_view;
-    NSString *_explicitStoryboardIdentifier;
-    NSArray *_storyboardSegueTemplates;
-    IBSimulatedMetricsContainer *_inheritedSimulatedMetrics;
-    NSDictionary *_storyboardSegueDestinationOptions;
     BOOL _encodeAsRuntimeInstance;
+    NSString *_explicitStoryboardIdentifier;
+    IBSimulatedMetricsContainer *_inheritedSimulatedMetrics;
+    NSArray *_storyboardSegueTemplates;
+    NSView *_view;
     NSString *_title;
     NSString *_nibName;
     NSString *_nibBundleIdentifier;
@@ -41,13 +39,13 @@
 @property(copy) NSString *title; // @synthesize title=_title;
 - (void)setView:(id)arg1;
 - (id)view;
-- (void).cxx_destruct;
 - (void)setStoryboardSegueTemplates:(id)arg1;
 - (id)storyboardSegueTemplates;
-- (id)explicitStoryboardIdentifier;
-- (void)setExplicitStoryboardIdentifier:(id)arg1;
 - (void)setInheritedSimulatedMetrics:(id)arg1;
 - (id)inheritedSimulatedMetrics;
+- (void)setExplicitStoryboardIdentifier:(id)arg1;
+- (id)explicitStoryboardIdentifier;
+- (void).cxx_destruct;
 - (struct CGSize)effectiveSimulatedViewSize;
 - (BOOL)ibUsesStandardIdentifierPropertySlice;
 - (BOOL)ibCanSupportIdentifierProperty;
@@ -55,6 +53,7 @@
 - (void)archivePlaceholderTable:(id)arg1;
 - (void)ibPrepareTopLevelControllerForStoryboardCompilation;
 - (id)ibUniqueIdentifierForStoryboardCompilation;
+- (long long)ibFrameDecisionStrategyDuringFrameDecisionForChild:(id)arg1 hasCleanStatus:(BOOL)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (Class)classForDocumentArchiver:(id)arg1;

@@ -7,12 +7,36 @@
 #import "IDEThread.h"
 
 #import "DBGNavigableItemPerformance.h"
+#import "IDEKeyDrivenNavigableItemRepresentedObject.h"
 
-@class NSImage;
+@class DVTDocumentLocation, DVTFileDataType, IDEFileReference, NSArray, NSImage, NSNull, NSString;
 
-@interface IDEThread (DBGNavigableItemPropertySupport) <DBGNavigableItemPerformance>
+@interface IDEThread (DBGNavigableItemPropertySupport) <IDEKeyDrivenNavigableItemRepresentedObject, DBGNavigableItemPerformance>
 + (id)keyPathsForValuesAffectingStatusIcon;
++ (id)keyPathsForValuesAffectingNavigableItem_name;
 - (id)sortValue;
 @property(readonly) NSImage *statusIcon;
+@property(readonly) NSString *navigableItem_name;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) NSString *navigableItem_accessibleImageDescription;
+@property(readonly) NSArray *navigableItem_additionalFilterMatchingText;
+@property(readonly) NSArray *navigableItem_childRepresentedObjects;
+@property(readonly) DVTDocumentLocation *navigableItem_contentDocumentLocation;
+@property(readonly) DVTFileDataType *navigableItem_documentType;
+@property(readonly) IDEFileReference *navigableItem_fileReference;
+@property(readonly) NSNull *navigableItem_filtered;
+@property(readonly) NSString *navigableItem_groupIdentifier;
+@property(readonly) NSImage *navigableItem_image;
+@property(readonly) BOOL navigableItem_isLeaf;
+@property(readonly) BOOL navigableItem_isMajorGroup;
+@property(readonly) BOOL navigableItem_missingReferencedContentIsImportant;
+@property(readonly) BOOL navigableItem_referencedContentExists;
+@property(readonly) NSString *navigableItem_subtitle;
+@property(readonly) NSString *navigableItem_toolTip;
+@property(readonly) Class superclass;
 @end
 

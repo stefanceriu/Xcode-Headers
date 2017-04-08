@@ -28,5 +28,7 @@
 - (void)inputHandlerForGraph:(DTTimelineGraph *)arg1 requestsLongPressDragToTime:(unsigned long long)arg2;
 - (BOOL)inputHandlerForGraph:(DTTimelineGraph *)arg1 requestsLongPressDragBeginAtTime:(unsigned long long)arg2 onPlanes:(NSSet *)arg3;
 - (void)inputHandlerForGraph:(DTTimelineGraph *)arg1 unhandledClickAtTime:(unsigned long long)arg2 clickCount:(long long)arg3 onPlanes:(NSSet *)arg4;
+- (void)inputHandlerForGraph:(DTTimelineGraph *)arg1 iconClickedOnPlane:(DTTimelinePlane *)arg2 relativeRect:(struct CGRect)arg3 completionBlock:(void (^)(void))arg4;
+- (void)inputHandlerForGraph:(DTTimelineGraph *)arg1 glyphClickedAt:(unsigned long long)arg2 onPlane:(DTTimelinePlane *)arg3 relativeRect:(struct CGRect)arg4 completionBlock:(void (^)(void))arg5;
 @end
 

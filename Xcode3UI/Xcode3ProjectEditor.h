@@ -27,7 +27,6 @@
     DVTChoice *_selectedChoice;
     Class _previousProjectEditorClass;
     Class _previousTargetEditorClass;
-    IDENavigableItemSyncFilteringCoordinator *_navigableItemCoordinator;
     NSMutableArray *_contents;
     DVTImageAndTextCell *titleCell;
     DVTImageAndTextCell *itemCell;
@@ -46,6 +45,8 @@
     NSMutableArray *_contentsBeforeFiltering;
     BOOL _sourceListVisible;
     BOOL _filtered;
+    IDENavigableItemSyncFilteringCoordinator *_outlineViewNavItemCoordinator;
+    IDENavigableItemCoordinator *_popUpNavItemCoordinator;
     DVTGradientImageButton *_sourceListVisiblityToggleButton;
     NSPopUpButton *_sourceListPopUp;
     Xcode3ProjectEditorTopBarView *_topBarView;
@@ -70,8 +71,9 @@
 @property(retain) Xcode3ProjectEditorTopBarView *topBarView; // @synthesize topBarView=_topBarView;
 @property(retain) NSPopUpButton *sourceListPopUp; // @synthesize sourceListPopUp=_sourceListPopUp;
 @property(retain) DVTGradientImageButton *sourceListVisiblityToggleButton; // @synthesize sourceListVisiblityToggleButton=_sourceListVisiblityToggleButton;
+@property(readonly) IDENavigableItemCoordinator *popUpNavItemCoordinator; // @synthesize popUpNavItemCoordinator=_popUpNavItemCoordinator;
+@property(readonly) IDENavigableItemSyncFilteringCoordinator *outlineViewNavItemCoordinator; // @synthesize outlineViewNavItemCoordinator=_outlineViewNavItemCoordinator;
 @property(copy) NSArray *currentSelectedItems; // @synthesize currentSelectedItems=_currentSelectedItems;
-@property(readonly) IDENavigableItemCoordinator *navigableItemCoordinator; // @synthesize navigableItemCoordinator=_navigableItemCoordinator;
 @property(copy) NSArray *draggingTreeNodes; // @synthesize draggingTreeNodes=_draggingTreeNodes;
 @property(retain, nonatomic) DVTChoice *selectedChoice; // @synthesize selectedChoice=_selectedChoice;
 @property(copy, nonatomic) NSMutableArray *contents; // @synthesize contents=_contents;

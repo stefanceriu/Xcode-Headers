@@ -10,14 +10,14 @@
 
 @interface IBUIViewControllerEditorView : IBUIEditorView
 {
-    IBUIViewControllerEditorPlaceholderView *placeholderView;
     NSView *_emptyPlaceholderView;
-    id <IBUIViewControllerEditorViewDelegate> delegate;
+    IBUIViewControllerEditorPlaceholderView *_placeholderView;
+    id <IBUIViewControllerEditorViewDelegate> _delegate;
     IBUIViewController *_editedViewController;
 }
 
 @property(retain, nonatomic) IBUIViewController *editedViewController; // @synthesize editedViewController=_editedViewController;
-@property(nonatomic) __weak id <IBUIViewControllerEditorViewDelegate> delegate; // @synthesize delegate;
+@property(nonatomic) __weak id <IBUIViewControllerEditorViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
 - (void)layoutBottomUp;
 - (void)layoutTopDown;
@@ -30,7 +30,7 @@
 - (id)topBarForSimulatedBarMetrics:(id)arg1;
 - (void)customizeBottomBarView:(id)arg1 forSimulatedBarMetrics:(id)arg2;
 - (void)customizeTopBarView:(id)arg1 forSimulatedBarMetrics:(id)arg2;
-@property(readonly) IBUIViewControllerEditorPlaceholderView *placeholderView; // @synthesize placeholderView;
+@property(readonly) IBUIViewControllerEditorPlaceholderView *placeholderView; // @synthesize placeholderView=_placeholderView;
 - (id)itemsForSimulatedToolbar:(id)arg1;
 - (id)itemsForSimulatedTabBar:(id)arg1;
 - (id)itemsForSimulatedNavigationBar:(id)arg1;

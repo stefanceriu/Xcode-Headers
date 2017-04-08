@@ -17,6 +17,7 @@
 {
     BOOL _contentTypeNeedsToBeInferred;
     BOOL _scoringTypeNeedsToBeInferred;
+    BOOL _isUsingLayoutAnchorEngineVariables;
     BOOL _placeholder;
     NSObject<IBAutolayoutItem> *_firstItem;
     unsigned long long _firstAttribute;
@@ -47,6 +48,7 @@
 + (id)explicitLayoutConstraintWithFirstItem:(id)arg1 firstAttribute:(unsigned long long)arg2 relation:(long long)arg3 secondItem:(id)arg4 secondAttribute:(unsigned long long)arg5 constant:(id)arg6;
 + (id)systemRequiredLayoutConstraintWithItem:(id)arg1 attribute:(unsigned long long)arg2 constant:(id)arg3;
 + (id)systemRequiredLayoutConstraintWithFirstItem:(id)arg1 firstAttribute:(unsigned long long)arg2 relation:(long long)arg3 secondItem:(id)arg4 secondAttribute:(unsigned long long)arg5 constant:(id)arg6;
+@property(readonly, nonatomic) BOOL isUsingLayoutAnchorEngineVariables; // @synthesize isUsingLayoutAnchorEngineVariables=_isUsingLayoutAnchorEngineVariables;
 @property(nonatomic) long long contentType; // @synthesize contentType=_contentType;
 @property(copy, nonatomic) NSString *identifier; // @synthesize identifier=_identifier;
 @property(nonatomic, getter=isPlaceholder) BOOL placeholder; // @synthesize placeholder=_placeholder;

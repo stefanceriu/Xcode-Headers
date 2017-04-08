@@ -8,10 +8,12 @@
 
 #import "DBGSceneViewControllerDelegate.h"
 #import "IDEFocusedHierarchy.h"
+#import "NSTouchBarDelegate.h"
+#import "NSTouchBarProvider.h"
 
-@class DBGSceneViewController, DBGViewDebuggerAdditionUIController, DBGViewDebuggerDocument, DBGViewSurface, DBGViewWindow, DVTBorderedView, DVTDelayedInvocation, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTRangeSliderCell, NSArray, NSLayoutConstraint, NSProgressIndicator, NSSegmentedControl, NSSet, NSSlider, NSString, NSTextField, NSView, NSVisualEffectView;
+@class DBGSceneViewController, DBGViewDebuggerAdditionUIController, DBGViewDebuggerDocument, DBGViewSurface, DBGViewWindow, DVTBorderedView, DVTDelayedInvocation, DVTGradientImageButton, DVTGradientImagePopUpButton, DVTObservingToken, DVTRangeSliderCell, NSArray, NSLayoutConstraint, NSProgressIndicator, NSSegmentedControl, NSSet, NSSlider, NSString, NSTextField, NSTouchBar, NSView, NSVisualEffectView;
 
-@interface DBGViewDebuggerEditor : IDEEditor <DBGSceneViewControllerDelegate, IDEFocusedHierarchy>
+@interface DBGViewDebuggerEditor : IDEEditor <NSTouchBarProvider, NSTouchBarDelegate, DBGSceneViewControllerDelegate, IDEFocusedHierarchy>
 {
     NSArray *_currentSelectedItems;
     DBGViewWindow *_selectedWindow;
@@ -32,6 +34,13 @@
     BOOL _toolBarVisible;
     BOOL _reachedStage2;
     NSSet *_selectedConstraintSet;
+    DVTObservingToken *_toolbarHiddenObservationToken;
+    DVTObservingToken *_canvas3DEnabledObservationToken;
+    DVTObservingToken *_clippingEnabledObservationToken;
+    DVTObservingToken *_constraintsEnabledObservationToken;
+    DVTObservingToken *_viewRangeMaxValueObservationToken;
+    DVTObservingToken *_viewRangeValueObservationToken;
+    DVTObservingToken *_zDistanceValueObservationToken;
     DBGSceneViewController *_sceneViewController;
     DVTBorderedView *_backgroundView;
     NSVisualEffectView *_toolBarContainerView;
@@ -79,6 +88,13 @@
 @property __weak NSVisualEffectView *toolBarContainerView; // @synthesize toolBarContainerView=_toolBarContainerView;
 @property __weak DVTBorderedView *backgroundView; // @synthesize backgroundView=_backgroundView;
 @property(retain) DBGSceneViewController *sceneViewController; // @synthesize sceneViewController=_sceneViewController;
+@property(retain) DVTObservingToken *zDistanceValueObservationToken; // @synthesize zDistanceValueObservationToken=_zDistanceValueObservationToken;
+@property(retain) DVTObservingToken *viewRangeValueObservationToken; // @synthesize viewRangeValueObservationToken=_viewRangeValueObservationToken;
+@property(retain) DVTObservingToken *viewRangeMaxValueObservationToken; // @synthesize viewRangeMaxValueObservationToken=_viewRangeMaxValueObservationToken;
+@property(retain) DVTObservingToken *constraintsEnabledObservationToken; // @synthesize constraintsEnabledObservationToken=_constraintsEnabledObservationToken;
+@property(retain) DVTObservingToken *clippingEnabledObservationToken; // @synthesize clippingEnabledObservationToken=_clippingEnabledObservationToken;
+@property(retain) DVTObservingToken *canvas3DEnabledObservationToken; // @synthesize canvas3DEnabledObservationToken=_canvas3DEnabledObservationToken;
+@property(retain) DVTObservingToken *toolbarHiddenObservationToken; // @synthesize toolbarHiddenObservationToken=_toolbarHiddenObservationToken;
 @property(getter=isToolBarVisible) BOOL toolBarVisible; // @synthesize toolBarVisible=_toolBarVisible;
 @property(retain) NSSet *selectedConstraintSet; // @synthesize selectedConstraintSet=_selectedConstraintSet;
 - (void).cxx_destruct;
@@ -133,12 +149,34 @@
 - (void)_configureNodeContentModePopUp;
 - (void)regenerateIssues;
 - (void)loadView;
+- (void)visibleRangeSliderAction:(id)arg1;
+- (void)_observeViewRangeValueChangesToUpdateRangeSlider:(id)arg1;
+- (id)_visibleRangeControl;
+- (id)_visibleRangePopoverFunctionBar;
+- (id)_canvas3DToggleButton;
+- (id)_toggleConstraintsButton;
+- (id)_toggleClippedViewsButton;
+- (id)_zSpacingPopoverFunctionBar;
+- (void)_configureZSpacingSlider:(id)arg1;
+- (void)zSpacingChanged:(id)arg1;
+- (id)_barItemForVisibleRangeSliderWithIdentifier:(id)arg1;
+- (id)_barItemForZSpacingSliderWithIdentifier:(id)arg1;
+- (id)_barItemForVisibleRangePopupWithIdentifier:(id)arg1;
+- (id)_barItemForCanvas3DToggleWithIdentifier:(id)arg1;
+- (id)_barItemForToggleConstraintsWithIdentifier:(id)arg1;
+- (id)_barItemForToggleClippedViewsWithIdentifier:(id)arg1;
+- (id)_barItemForZSpacingPopupButtonWithIdentifier:(id)arg1;
+- (id)touchBar:(id)arg1 makeItemForIdentifier:(id)arg2;
+- (id)_viewDebuggerTouchBar;
+- (void)_registerToolBarVisibilityChangedObserver;
+- (id)makeTouchBar;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;
 @property(readonly, copy) NSString *description;
 @property(readonly) unsigned long long hash;
 @property(readonly) Class superclass;
+@property(readonly) NSTouchBar *touchBar;
 
 @end
 

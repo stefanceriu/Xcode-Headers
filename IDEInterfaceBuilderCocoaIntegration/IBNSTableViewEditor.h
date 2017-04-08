@@ -12,7 +12,7 @@
 
 @interface IBNSTableViewEditor : IBNSViewEditor <NSTableViewDelegate>
 {
-    id originalDelegate;
+    id _originalDelegate;
 }
 
 + (void)resetCursorRectsForObject:(id)arg1 inFrameController:(id)arg2;

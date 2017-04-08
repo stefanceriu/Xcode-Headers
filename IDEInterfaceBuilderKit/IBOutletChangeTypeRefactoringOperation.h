@@ -10,18 +10,18 @@
 
 @interface IBOutletChangeTypeRefactoringOperation : IBRefactoringOperation
 {
-    NSString *outletName;
-    NSString *className;
-    NSString *oldType;
-    NSString *newType;
+    NSString *_outletName;
+    NSString *_className;
+    NSString *_oldType;
+    NSString *_newType;
 }
 
+@property(readonly) NSString *newType; // @synthesize newType=_newType;
+@property(readonly) NSString *oldType; // @synthesize oldType=_oldType;
+@property(readonly) NSString *className; // @synthesize className=_className;
+@property(readonly) NSString *outletName; // @synthesize outletName=_outletName;
 - (void).cxx_destruct;
 - (BOOL)refactorObject:(id)arg1 inDocument:(id)arg2 error:(id *)arg3;
-- (id)newType;
-- (id)oldType;
-- (id)className;
-- (id)outletName;
 - (id)initWithClassName:(id)arg1 outletName:(id)arg2 oldType:(id)arg3 andNewType:(id)arg4;
 
 @end

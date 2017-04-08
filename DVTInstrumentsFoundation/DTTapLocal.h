@@ -12,12 +12,13 @@
 {
     CDUnknownBlockType _nextTaskForPid;
     NSObject<OS_dispatch_source> *_pollTimer;
+    BOOL _validConfig;
     id <DTTapLocalDelegate> _delegate;
 }
 
 @property(readonly, retain) id <DTTapLocalDelegate> delegate; // @synthesize delegate=_delegate;
 - (void).cxx_destruct;
-- (void)_handleStatus:(unsigned int)arg1 timestamp:(unsigned long long)arg2 notice:(id)arg3 info:(id)arg4;
+- (void)_handleStatusMemo:(id)arg1;
 - (id)_fetchDataForReason:(unsigned long long)arg1;
 - (BOOL)_canFetchWhileArchiving;
 - (void)_unpause;

@@ -6,13 +6,10 @@
 
 #import "IBStoryboardAbstractTriggeredSegue.h"
 
-#import "NSCoding.h"
-
 @class NSString;
 
-@interface IBUIStoryboardAbstractTriggeredSegue : IBStoryboardAbstractTriggeredSegue <NSCoding>
+@interface IBUIStoryboardAbstractTriggeredSegue : IBStoryboardAbstractTriggeredSegue
 {
-    NSString *_customSegueClassName;
     BOOL _animates;
     unsigned long long _triggerMode;
     IBUIStoryboardAbstractTriggeredSegue *_preview;
@@ -20,6 +17,7 @@
     IBUIStoryboardAbstractTriggeredSegue *_parent;
     IBUIStoryboardAbstractTriggeredSegue *_inheritsFrom;
     unsigned long long _phase;
+    NSString *_customSegueClassName;
     NSString *_customSegueClassModuleProvider;
 }
 
@@ -41,6 +39,8 @@
 + (BOOL)isDeprecatedInDocument:(id)arg1;
 + (BOOL)shouldBeUserVisibleInDocument:(id)arg1;
 + (BOOL)isLegacySegue;
++ (id)keyPathsForValuesAffectingCustomSegueClassModule;
++ (id)keyPathsForValuesAffectingCustomSegueFormattedClassSymbol;
 + (BOOL)wantsDefaultAnimatesCompatibilityWarning;
 + (BOOL)wantsDefaultCustomClassCompatibilityWarning;
 + (BOOL)isAbstractType;
@@ -109,7 +109,6 @@
 - (id)destinationCandidateObjectFilterPredicate;
 - (BOOL)isExclusiveTo:(id)arg1 inObjectContainer:(id)arg2;
 @property(copy) NSString *customSegueClassModule;
-- (id)keyPathsAffectingCustomSegueClassModule;
 - (void)setCustomSegueFormattedClassSymbol:(id)arg1;
 - (id)customSegueFormattedClassSymbol;
 - (void)copyCommonInstanceStateToTriggeredSegue:(id)arg1;
@@ -122,9 +121,9 @@
 - (id)_inheritsFromSourceString;
 - (void)ibWarnings:(id)arg1 forDocument:(id)arg2 withComputationContext:(id)arg3;
 - (id)segueAttributeInspectorExtensionIdentifier;
-- (id)initWithSource:(id)arg1 label:(id)arg2 destination:(id)arg3;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithSource:(id)arg1 label:(id)arg2 destination:(id)arg3;
 
 @end
 

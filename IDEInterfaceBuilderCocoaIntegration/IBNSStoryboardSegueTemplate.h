@@ -7,14 +7,13 @@
 #import "IBAbstractStoryboardSegueTemplate.h"
 
 #import "IBDocumentArchiving.h"
-#import "NSCoding.h"
 
 @class NSStoryboard, NSString;
 
-@interface IBNSStoryboardSegueTemplate : IBAbstractStoryboardSegueTemplate <IBDocumentArchiving, NSCoding>
+@interface IBNSStoryboardSegueTemplate : IBAbstractStoryboardSegueTemplate <IBDocumentArchiving>
 {
-    NSStoryboard *_storyboard;
     BOOL _encodeAsRuntimeInstance;
+    NSStoryboard *_storyboard;
 }
 
 + (id)codingKeyForPropertyName:(id)arg1;
@@ -27,8 +26,6 @@
 - (Class)classForCoder;
 - (void)unarchiveWithDocumentUnarchiver:(id)arg1;
 - (void)archiveWithDocumentArchiver:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 
 // Remaining properties
 @property(readonly, copy) NSString *debugDescription;

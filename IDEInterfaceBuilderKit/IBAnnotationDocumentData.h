@@ -10,12 +10,12 @@
 
 @interface IBAnnotationDocumentData : NSObject
 {
-    NSSet *annotations;
-    NSDate *dateCached;
+    NSSet *_annotations;
+    NSDate *_dateCached;
 }
 
-@property(readonly) NSDate *dateCached; // @synthesize dateCached;
-@property(readonly) NSSet *annotations; // @synthesize annotations;
+@property(readonly) NSDate *dateCached; // @synthesize dateCached=_dateCached;
+@property(readonly) NSSet *annotations; // @synthesize annotations=_annotations;
 - (void).cxx_destruct;
 - (id)initWithAnnotations:(id)arg1;
 
